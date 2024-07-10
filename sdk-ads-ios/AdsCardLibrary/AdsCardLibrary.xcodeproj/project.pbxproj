@@ -1,0 +1,1261 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1E373D562BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */; };
+		1E373D612BFCF7CA00E2EF25 /* BTFairBidRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */; };
+		1E8256442B2380B4001DFBA4 /* AdsCardLibrary.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 1E8256432B2380B4001DFBA4 /* AdsCardLibrary.xctestplan */; };
+		430B6F032A65377900A6EFA4 /* OptinVideoAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430B6F022A65377900A6EFA4 /* OptinVideoAdManagerTests.swift */; };
+		431441192A6539780067AD47 /* ThumbnailAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431441182A6539780067AD47 /* ThumbnailAdManagerTests.swift */; };
+		4314411B2A653B060067AD47 /* BannerAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4314411A2A653B060067AD47 /* BannerAdManagerTests.swift */; };
+		4314411E2A653CA70067AD47 /* CwlPreconditionTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 4314411D2A653CA70067AD47 /* CwlPreconditionTesting */; };
+		431F6F062C0F3D8100DBFFAA /* AdTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6F052C0F3D8100DBFFAA /* AdTagView.swift */; };
+		431F6F092C0F403F00DBFFAA /* AdTagFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6F082C0F403F00DBFFAA /* AdTagFeature.swift */; };
+		4328B2832AD7CF44003C7F91 /* MaxRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328B2822AD7CF44003C7F91 /* MaxRetriever.swift */; };
+		4328B28B2ADFBDA9003C7F91 /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328B28A2ADFBDA9003C7F91 /* Storable.swift */; };
+		434F84982AC1AF9B005077F5 /* RewardedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84962AC1AF9B005077F5 /* RewardedView.swift */; };
+		434F84992AC1AF9B005077F5 /* RewardedFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84972AC1AF9B005077F5 /* RewardedFeature.swift */; };
+		434F851B2AD534A5005077F5 /* MaxHeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F851A2AD534A5005077F5 /* MaxHeaderBidable.swift */; };
+		434F851D2AD535B2005077F5 /* HeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F851C2AD535B2005077F5 /* HeaderBidable.swift */; };
+		434F85252AD6D9EF005077F5 /* MpuAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F85242AD6D9EF005077F5 /* MpuAdManagerTests.swift */; };
+		435C55E42A42EAEF004186FF /* AdsCardLibrary.docc in Sources */ = {isa = PBXBuildFile; fileRef = 435C55E32A42EAEF004186FF /* AdsCardLibrary.docc */; };
+		435C55EA2A42EAEF004186FF /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C55DF2A42EAEF004186FF /* AdsCardLibrary.framework */; };
+		435C55EF2A42EAEF004186FF /* AdsCardManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435C55EE2A42EAEF004186FF /* AdsCardManagerTests.swift */; };
+		435C55F02A42EAEF004186FF /* AdsCardLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 435C55E22A42EAEF004186FF /* AdsCardLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		435C55FA2A42F36B004186FF /* AdsCardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435C55F92A42F36B004186FF /* AdsCardManager.swift */; };
+		435C56122A447431004186FF /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */; };
+		435F7BCA2A5EE3970077843A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 435F7BC92A5EE3970077843A /* ComposableArchitecture */; };
+		435F7BCF2A601F990077843A /* InterstitialAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435F7BCE2A601F990077843A /* InterstitialAdManagerTests.swift */; };
+		436E97272A6A7BC30074E922 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 436E97262A6A7BC30074E922 /* Assets.xcassets */; };
+		43788F292B5FB7980041A9C1 /* AdsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F282B5FB7980041A9C1 /* AdsTextField.swift */; };
+		43788F332B5FBA1B0041A9C1 /* PPTelegraf-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43788F2B2B5FBA1A0041A9C1 /* PPTelegraf-Semibold.ttf */; };
+		43788F342B5FBA1B0041A9C1 /* PPTelegraf-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43788F2C2B5FBA1A0041A9C1 /* PPTelegraf-Regular.ttf */; };
+		43788F362B5FBA1B0041A9C1 /* PPTelegraf-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43788F2E2B5FBA1A0041A9C1 /* PPTelegraf-Light.ttf */; };
+		43788F372B5FBA1B0041A9C1 /* PPTelegraf-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43788F2F2B5FBA1B0041A9C1 /* PPTelegraf-Medium.ttf */; };
+		43788F3A2B5FBA1B0041A9C1 /* PPTelegraf-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43788F322B5FBA1B0041A9C1 /* PPTelegraf-Bold.ttf */; };
+		43788F3C2B5FBA360041A9C1 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3B2B5FBA360041A9C1 /* Font+Extension.swift */; };
+		438ED3C72AA0C2BA00486AF2 /* ThumbnailAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3AF2AA0C2B900486AF2 /* ThumbnailAdManager.swift */; };
+		438ED3C82AA0C2BA00486AF2 /* InterstitialAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B02AA0C2B900486AF2 /* InterstitialAdManager.swift */; };
+		438ED3CA2AA0C2BA00486AF2 /* OptInAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B22AA0C2B900486AF2 /* OptInAdManager.swift */; };
+		438ED3CB2AA0C2BA00486AF2 /* AdDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B32AA0C2B900486AF2 /* AdDelegateProxy.swift */; };
+		438ED3CC2AA0C2BA00486AF2 /* AdManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B42AA0C2BA00486AF2 /* AdManagerDelegate.swift */; };
+		438ED3CD2AA0C2BA00486AF2 /* OguryErrorConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B62AA0C2BA00486AF2 /* OguryErrorConvertible.swift */; };
+		438ED3CE2AA0C2BA00486AF2 /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B72AA0C2BA00486AF2 /* AdManager.swift */; };
+		438ED3D12AA0C2BA00486AF2 /* ThumbnailOptionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3BD2AA0C2BA00486AF2 /* ThumbnailOptionFeature.swift */; };
+		438ED3D22AA0C2BA00486AF2 /* ThumbnailOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3BE2AA0C2BA00486AF2 /* ThumbnailOptionView.swift */; };
+		438ED3D32AA0C2BA00486AF2 /* AdColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3BF2AA0C2BA00486AF2 /* AdColorPalette.swift */; };
+		438ED3D42AA0C2BA00486AF2 /* AdActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C12AA0C2BA00486AF2 /* AdActionBar.swift */; };
+		438ED3D52AA0C2BA00486AF2 /* AdActionBarFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C22AA0C2BA00486AF2 /* AdActionBarFeature.swift */; };
+		438ED3D62AA0C2BA00486AF2 /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C42AA0C2BA00486AF2 /* AdView.swift */; };
+		438ED3D72AA0C2BA00486AF2 /* AdViewFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C52AA0C2BA00486AF2 /* AdViewFeature.swift */; };
+		438ED3D82AA0C2BA00486AF2 /* AdManagerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C62AA0C2BA00486AF2 /* AdManagerOptions.swift */; };
+		43A78A6E2A52ABF30004A613 /* AdManagerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */; };
+		43A9F4A52C37E7800085EF6F /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A9F4A42C37E7800085EF6F /* OguryCore.framework */; };
+		43A9F4A62C37E7800085EF6F /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43A9F4A42C37E7800085EF6F /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43ACBB6D2B304AB9003FBF35 /* Mockingbird in Frameworks */ = {isa = PBXBuildFile; productRef = 43ACBB6C2B304AB9003FBF35 /* Mockingbird */; };
+		43ACBB702B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ACBB6F2B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift */; };
+		43AE68042AAB25B1002E7C46 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED4392AA8565800486AF2 /* OguryAds.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		43BCB1612C22FBF0002FB0B1 /* AdsCardLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 435C55E22A42EAEF004186FF /* AdsCardLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43BCB1632C22FBF0002FB0B1 /* AdColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3BF2AA0C2BA00486AF2 /* AdColorPalette.swift */; };
+		43BCB1642C22FBF0002FB0B1 /* AdDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B32AA0C2B900486AF2 /* AdDelegateProxy.swift */; };
+		43BCB1652C22FBF0002FB0B1 /* RewardedFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84972AC1AF9B005077F5 /* RewardedFeature.swift */; };
+		43BCB1662C22FBF0002FB0B1 /* AdsCardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435C55F92A42F36B004186FF /* AdsCardManager.swift */; };
+		43BCB1672C22FBF0002FB0B1 /* AdActionBarFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C22AA0C2BA00486AF2 /* AdActionBarFeature.swift */; };
+		43BCB1682C22FBF0002FB0B1 /* AdsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F282B5FB7980041A9C1 /* AdsTextField.swift */; };
+		43BCB1692C22FBF0002FB0B1 /* ThumbnailOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3BE2AA0C2BA00486AF2 /* ThumbnailOptionView.swift */; };
+		43BCB16A2C22FBF0002FB0B1 /* AdActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C12AA0C2BA00486AF2 /* AdActionBar.swift */; };
+		43BCB16B2C22FBF0002FB0B1 /* BannerAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127F2AB888D900766D99 /* BannerAdManager.swift */; };
+		43BCB16C2C22FBF0002FB0B1 /* AdViewFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C52AA0C2BA00486AF2 /* AdViewFeature.swift */; };
+		43BCB16D2C22FBF0002FB0B1 /* OptInAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B22AA0C2B900486AF2 /* OptInAdManager.swift */; };
+		43BCB16E2C22FBF0002FB0B1 /* DTFairBidHeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */; };
+		43BCB16F2C22FBF0002FB0B1 /* MaxHeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F851A2AD534A5005077F5 /* MaxHeaderBidable.swift */; };
+		43BCB1702C22FBF0002FB0B1 /* RewardedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84962AC1AF9B005077F5 /* RewardedView.swift */; };
+		43BCB1712C22FBF0002FB0B1 /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328B28A2ADFBDA9003C7F91 /* Storable.swift */; };
+		43BCB1722C22FBF0002FB0B1 /* HeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F851C2AD535B2005077F5 /* HeaderBidable.swift */; };
+		43BCB1732C22FBF0002FB0B1 /* AdsCardLibrary.docc in Sources */ = {isa = PBXBuildFile; fileRef = 435C55E32A42EAEF004186FF /* AdsCardLibrary.docc */; };
+		43BCB1742C22FBF0002FB0B1 /* OguryErrorConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B62AA0C2BA00486AF2 /* OguryErrorConvertible.swift */; };
+		43BCB1752C22FBF0002FB0B1 /* ThumbnailOptionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3BD2AA0C2BA00486AF2 /* ThumbnailOptionFeature.swift */; };
+		43BCB1762C22FBF0002FB0B1 /* InterstitialAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B02AA0C2B900486AF2 /* InterstitialAdManager.swift */; };
+		43BCB1772C22FBF0002FB0B1 /* AdManagerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C62AA0C2BA00486AF2 /* AdManagerOptions.swift */; };
+		43BCB1782C22FBF0002FB0B1 /* AdTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6F052C0F3D8100DBFFAA /* AdTagView.swift */; };
+		43BCB1792C22FBF0002FB0B1 /* AdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127A2AB888D300766D99 /* AdBannerView.swift */; };
+		43BCB17A2C22FBF0002FB0B1 /* BannerPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */; };
+		43BCB17B2C22FBF0002FB0B1 /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B72AA0C2BA00486AF2 /* AdManager.swift */; };
+		43BCB17C2C22FBF0002FB0B1 /* AdManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B42AA0C2BA00486AF2 /* AdManagerDelegate.swift */; };
+		43BCB17D2C22FBF0002FB0B1 /* AdTagFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6F082C0F403F00DBFFAA /* AdTagFeature.swift */; };
+		43BCB17E2C22FBF0002FB0B1 /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C42AA0C2BA00486AF2 /* AdView.swift */; };
+		43BCB17F2C22FBF0002FB0B1 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3B2B5FBA360041A9C1 /* Font+Extension.swift */; };
+		43BCB1802C22FBF0002FB0B1 /* ThumbnailAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3AF2AA0C2B900486AF2 /* ThumbnailAdManager.swift */; };
+		43BCB1812C22FBF0002FB0B1 /* BannerPlaceholderFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA12792AB888D300766D99 /* BannerPlaceholderFeature.swift */; };
+		43BCB1832C22FBF0002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */; };
+		43BCB1852C22FBF0002FB0B1 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB15D2C22FBF0002FB0B1 /* ComposableArchitecture */; };
+		43BCB1882C22FBF0002FB0B1 /* PPTelegraf-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43788F2E2B5FBA1A0041A9C1 /* PPTelegraf-Light.ttf */; };
+		43BCB1892C22FBF0002FB0B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 436E97262A6A7BC30074E922 /* Assets.xcassets */; };
+		43BCB18A2C22FBF0002FB0B1 /* PPTelegraf-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43788F322B5FBA1B0041A9C1 /* PPTelegraf-Bold.ttf */; };
+		43BCB18B2C22FBF0002FB0B1 /* PPTelegraf-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43788F2F2B5FBA1B0041A9C1 /* PPTelegraf-Medium.ttf */; };
+		43BCB18C2C22FBF0002FB0B1 /* PPTelegraf-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43788F2B2B5FBA1A0041A9C1 /* PPTelegraf-Semibold.ttf */; };
+		43BCB18D2C22FBF0002FB0B1 /* PPTelegraf-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43788F2C2B5FBA1A0041A9C1 /* PPTelegraf-Regular.ttf */; };
+		43DA127C2AB888D300766D99 /* BannerPlaceholderFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA12792AB888D300766D99 /* BannerPlaceholderFeature.swift */; };
+		43DA127D2AB888D300766D99 /* AdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127A2AB888D300766D99 /* AdBannerView.swift */; };
+		43DA127E2AB888D300766D99 /* BannerPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */; };
+		43DA12802AB888D900766D99 /* BannerAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127F2AB888D900766D99 /* BannerAdManager.swift */; };
+		7F385E25C7DBDC9D529417A9 /* Pods_AdsCardLibrary_Release.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E6B6490D55C3C0FEDB34FF7 /* Pods_AdsCardLibrary_Release.framework */; };
+		8953E489A7F8331EA044BBF1 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		F742226A354C28BA8DB140A7 /* Pods_AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E39D208810A6569411ED157A /* Pods_AdsCardLibrary.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		435C55EB2A42EAEF004186FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 435C55D62A42EAEF004186FF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 435C55DE2A42EAEF004186FF;
+			remoteInfo = AdsCardLibrary;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		43A9F4A72C37E7800085EF6F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				43A9F4A62C37E7800085EF6F /* OguryCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTFairBidHeaderBidable.swift; sourceTree = "<group>"; };
+		1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTFairBidRetriever.swift; sourceTree = "<group>"; };
+		1E8256432B2380B4001DFBA4 /* AdsCardLibrary.xctestplan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AdsCardLibrary.xctestplan; sourceTree = "<group>"; };
+		430B6F022A65377900A6EFA4 /* OptinVideoAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptinVideoAdManagerTests.swift; sourceTree = "<group>"; };
+		431441182A6539780067AD47 /* ThumbnailAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailAdManagerTests.swift; sourceTree = "<group>"; };
+		4314411A2A653B060067AD47 /* BannerAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdManagerTests.swift; sourceTree = "<group>"; };
+		431F6F052C0F3D8100DBFFAA /* AdTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdTagView.swift; sourceTree = "<group>"; };
+		431F6F082C0F403F00DBFFAA /* AdTagFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdTagFeature.swift; sourceTree = "<group>"; };
+		4328B2822AD7CF44003C7F91 /* MaxRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxRetriever.swift; sourceTree = "<group>"; };
+		4328B28A2ADFBDA9003C7F91 /* Storable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storable.swift; sourceTree = "<group>"; };
+		434F84962AC1AF9B005077F5 /* RewardedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardedView.swift; sourceTree = "<group>"; };
+		434F84972AC1AF9B005077F5 /* RewardedFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardedFeature.swift; sourceTree = "<group>"; };
+		434F851A2AD534A5005077F5 /* MaxHeaderBidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxHeaderBidable.swift; sourceTree = "<group>"; };
+		434F851C2AD535B2005077F5 /* HeaderBidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBidable.swift; sourceTree = "<group>"; };
+		434F85242AD6D9EF005077F5 /* MpuAdManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MpuAdManagerTests.swift; sourceTree = "<group>"; };
+		435C55DF2A42EAEF004186FF /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		435C55E22A42EAEF004186FF /* AdsCardLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdsCardLibrary.h; sourceTree = "<group>"; };
+		435C55E32A42EAEF004186FF /* AdsCardLibrary.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = AdsCardLibrary.docc; sourceTree = "<group>"; };
+		435C55E92A42EAEF004186FF /* AdsCardLibraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdsCardLibraryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		435C55EE2A42EAEF004186FF /* AdsCardManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCardManagerTests.swift; sourceTree = "<group>"; };
+		435C55F92A42F36B004186FF /* AdsCardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCardManager.swift; sourceTree = "<group>"; };
+		435C55FC2A42F451004186FF /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OMSDK_Ogury.xcframework; path = ../OMSDK_Ogury.xcframework; sourceTree = "<absolute>"; };
+		435F7BCE2A601F990077843A /* InterstitialAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdManagerTests.swift; sourceTree = "<group>"; };
+		436E97262A6A7BC30074E922 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		43788F282B5FB7980041A9C1 /* AdsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsTextField.swift; sourceTree = "<group>"; };
+		43788F2B2B5FBA1A0041A9C1 /* PPTelegraf-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PPTelegraf-Semibold.ttf"; sourceTree = "<group>"; };
+		43788F2C2B5FBA1A0041A9C1 /* PPTelegraf-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PPTelegraf-Regular.ttf"; sourceTree = "<group>"; };
+		43788F2E2B5FBA1A0041A9C1 /* PPTelegraf-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PPTelegraf-Light.ttf"; sourceTree = "<group>"; };
+		43788F2F2B5FBA1B0041A9C1 /* PPTelegraf-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PPTelegraf-Medium.ttf"; sourceTree = "<group>"; };
+		43788F322B5FBA1B0041A9C1 /* PPTelegraf-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PPTelegraf-Bold.ttf"; sourceTree = "<group>"; };
+		43788F3B2B5FBA360041A9C1 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
+		43788F3D2B5FBB260041A9C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		438ED3AF2AA0C2B900486AF2 /* ThumbnailAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailAdManager.swift; sourceTree = "<group>"; };
+		438ED3B02AA0C2B900486AF2 /* InterstitialAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterstitialAdManager.swift; sourceTree = "<group>"; };
+		438ED3B22AA0C2B900486AF2 /* OptInAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptInAdManager.swift; sourceTree = "<group>"; };
+		438ED3B32AA0C2B900486AF2 /* AdDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdDelegateProxy.swift; sourceTree = "<group>"; };
+		438ED3B42AA0C2BA00486AF2 /* AdManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdManagerDelegate.swift; sourceTree = "<group>"; };
+		438ED3B62AA0C2BA00486AF2 /* OguryErrorConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OguryErrorConvertible.swift; sourceTree = "<group>"; };
+		438ED3B72AA0C2BA00486AF2 /* AdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
+		438ED3BD2AA0C2BA00486AF2 /* ThumbnailOptionFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailOptionFeature.swift; sourceTree = "<group>"; };
+		438ED3BE2AA0C2BA00486AF2 /* ThumbnailOptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailOptionView.swift; sourceTree = "<group>"; };
+		438ED3BF2AA0C2BA00486AF2 /* AdColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdColorPalette.swift; sourceTree = "<group>"; };
+		438ED3C12AA0C2BA00486AF2 /* AdActionBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdActionBar.swift; sourceTree = "<group>"; };
+		438ED3C22AA0C2BA00486AF2 /* AdActionBarFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdActionBarFeature.swift; sourceTree = "<group>"; };
+		438ED3C42AA0C2BA00486AF2 /* AdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdView.swift; sourceTree = "<group>"; };
+		438ED3C52AA0C2BA00486AF2 /* AdViewFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdViewFeature.swift; sourceTree = "<group>"; };
+		438ED3C62AA0C2BA00486AF2 /* AdManagerOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdManagerOptions.swift; sourceTree = "<group>"; };
+		438ED4392AA8565800486AF2 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManagerOptionsTests.swift; sourceTree = "<group>"; };
+		43A9F4A42C37E7800085EF6F /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43ACBB6F2B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift"; sourceTree = "<group>"; };
+		43BCB1912C22FBF0002FB0B1 /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43DA12792AB888D300766D99 /* BannerPlaceholderFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerPlaceholderFeature.swift; sourceTree = "<group>"; };
+		43DA127A2AB888D300766D99 /* AdBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdBannerView.swift; sourceTree = "<group>"; };
+		43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerPlaceholderView.swift; sourceTree = "<group>"; };
+		43DA127F2AB888D900766D99 /* BannerAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdManager.swift; sourceTree = "<group>"; };
+		6A11D6CA90315458587BADB3 /* Pods-AdsCardLibrary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary/Pods-AdsCardLibrary.debug.xcconfig"; sourceTree = "<group>"; };
+		8E6B6490D55C3C0FEDB34FF7 /* Pods_AdsCardLibrary_Release.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsCardLibrary_Release.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93E41BC933C7C059FD62B2FB /* Pods-AdsCardLibrary-Release.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-Release.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-Release/Pods-AdsCardLibrary-Release.debug.xcconfig"; sourceTree = "<group>"; };
+		E39D208810A6569411ED157A /* Pods_AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7AFA38E59DDD72885696215 /* Pods-AdsCardLibrary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary/Pods-AdsCardLibrary.release.xcconfig"; sourceTree = "<group>"; };
+		FD61C3C1BAEA09E61B64842E /* Pods-AdsCardLibrary-Release.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-Release.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-Release/Pods-AdsCardLibrary-Release.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		435C55DC2A42EAEF004186FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				435C56122A447431004186FF /* OMSDK_Ogury.xcframework in Frameworks */,
+				43AE68042AAB25B1002E7C46 /* OguryAds.framework in Frameworks */,
+				43A9F4A52C37E7800085EF6F /* OguryCore.framework in Frameworks */,
+				435F7BCA2A5EE3970077843A /* ComposableArchitecture in Frameworks */,
+				8953E489A7F8331EA044BBF1 /* (null) in Frameworks */,
+				F742226A354C28BA8DB140A7 /* Pods_AdsCardLibrary.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		435C55E62A42EAEF004186FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				435C55EA2A42EAEF004186FF /* AdsCardLibrary.framework in Frameworks */,
+				4314411E2A653CA70067AD47 /* CwlPreconditionTesting in Frameworks */,
+				43ACBB6D2B304AB9003FBF35 /* Mockingbird in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43BCB1822C22FBF0002FB0B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43BCB1832C22FBF0002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
+				43BCB1852C22FBF0002FB0B1 /* ComposableArchitecture in Frameworks */,
+				7F385E25C7DBDC9D529417A9 /* Pods_AdsCardLibrary_Release.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		431F6F072C0F403400DBFFAA /* AdTag */ = {
+			isa = PBXGroup;
+			children = (
+				431F6F052C0F3D8100DBFFAA /* AdTagView.swift */,
+				431F6F082C0F403F00DBFFAA /* AdTagFeature.swift */,
+			);
+			path = AdTag;
+			sourceTree = "<group>";
+		};
+		4328B2892ADFBD88003C7F91 /* Serialization */ = {
+			isa = PBXGroup;
+			children = (
+				4328B28A2ADFBDA9003C7F91 /* Storable.swift */,
+			);
+			path = Serialization;
+			sourceTree = "<group>";
+		};
+		434F84952AC1AF6B005077F5 /* Rewarded */ = {
+			isa = PBXGroup;
+			children = (
+				434F84962AC1AF9B005077F5 /* RewardedView.swift */,
+				434F84972AC1AF9B005077F5 /* RewardedFeature.swift */,
+			);
+			path = Rewarded;
+			sourceTree = "<group>";
+		};
+		434F85192AD53392005077F5 /* HeaderBiding */ = {
+			isa = PBXGroup;
+			children = (
+				434F851A2AD534A5005077F5 /* MaxHeaderBidable.swift */,
+				1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */,
+				434F851C2AD535B2005077F5 /* HeaderBidable.swift */,
+			);
+			path = HeaderBiding;
+			sourceTree = "<group>";
+		};
+		435C55D52A42EAEF004186FF = {
+			isa = PBXGroup;
+			children = (
+				435C55E12A42EAEF004186FF /* AdsCardLibrary */,
+				435C55ED2A42EAEF004186FF /* AdsCardLibraryTests */,
+				435C55E02A42EAEF004186FF /* Products */,
+				435C55FB2A42F451004186FF /* Frameworks */,
+				A85F5428F6AAA851ED4CCD45 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		435C55E02A42EAEF004186FF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				435C55DF2A42EAEF004186FF /* AdsCardLibrary.framework */,
+				435C55E92A42EAEF004186FF /* AdsCardLibraryTests.xctest */,
+				43BCB1912C22FBF0002FB0B1 /* AdsCardLibrary.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		435C55E12A42EAEF004186FF /* AdsCardLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				43788F3D2B5FBB260041A9C1 /* Info.plist */,
+				435C55E22A42EAEF004186FF /* AdsCardLibrary.h */,
+				435C55E32A42EAEF004186FF /* AdsCardLibrary.docc */,
+				43E349412A49B9FB0060B41F /* AdsCardManager */,
+				43E349422A49BA040060B41F /* AdManager */,
+				43788F2A2B5FBA000041A9C1 /* Fonts */,
+				4328B2892ADFBD88003C7F91 /* Serialization */,
+				436E97262A6A7BC30074E922 /* Assets.xcassets */,
+			);
+			path = AdsCardLibrary;
+			sourceTree = "<group>";
+		};
+		435C55ED2A42EAEF004186FF /* AdsCardLibraryTests */ = {
+			isa = PBXGroup;
+			children = (
+				43ACBB6E2B304B37003FBF35 /* MockingbirdMocks */,
+				1E8256432B2380B4001DFBA4 /* AdsCardLibrary.xctestplan */,
+				435F7BCB2A5FFA990077843A /* AdsCardManager */,
+				435F7BCC2A5FFAA50077843A /* AdManager */,
+			);
+			path = AdsCardLibraryTests;
+			sourceTree = "<group>";
+		};
+		435C55FB2A42F451004186FF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				43A9F4A42C37E7800085EF6F /* OguryCore.framework */,
+				438ED4392AA8565800486AF2 /* OguryAds.framework */,
+				435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */,
+				435C55FC2A42F451004186FF /* OguryAds.framework */,
+				8E6B6490D55C3C0FEDB34FF7 /* Pods_AdsCardLibrary_Release.framework */,
+				E39D208810A6569411ED157A /* Pods_AdsCardLibrary.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		435F7BCB2A5FFA990077843A /* AdsCardManager */ = {
+			isa = PBXGroup;
+			children = (
+				435C55EE2A42EAEF004186FF /* AdsCardManagerTests.swift */,
+			);
+			path = AdsCardManager;
+			sourceTree = "<group>";
+		};
+		435F7BCC2A5FFAA50077843A /* AdManager */ = {
+			isa = PBXGroup;
+			children = (
+				43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */,
+				435F7BCE2A601F990077843A /* InterstitialAdManagerTests.swift */,
+				430B6F022A65377900A6EFA4 /* OptinVideoAdManagerTests.swift */,
+				431441182A6539780067AD47 /* ThumbnailAdManagerTests.swift */,
+				4314411A2A653B060067AD47 /* BannerAdManagerTests.swift */,
+				434F85242AD6D9EF005077F5 /* MpuAdManagerTests.swift */,
+				4328B2822AD7CF44003C7F91 /* MaxRetriever.swift */,
+				1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */,
+			);
+			path = AdManager;
+			sourceTree = "<group>";
+		};
+		43788F272B5FB77A0041A9C1 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				43788F282B5FB7980041A9C1 /* AdsTextField.swift */,
+			);
+			path = TextFields;
+			sourceTree = "<group>";
+		};
+		43788F2A2B5FBA000041A9C1 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				43788F322B5FBA1B0041A9C1 /* PPTelegraf-Bold.ttf */,
+				43788F2E2B5FBA1A0041A9C1 /* PPTelegraf-Light.ttf */,
+				43788F2F2B5FBA1B0041A9C1 /* PPTelegraf-Medium.ttf */,
+				43788F2C2B5FBA1A0041A9C1 /* PPTelegraf-Regular.ttf */,
+				43788F2B2B5FBA1A0041A9C1 /* PPTelegraf-Semibold.ttf */,
+				43788F3B2B5FBA360041A9C1 /* Font+Extension.swift */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		438ED3AE2AA0C2B900486AF2 /* Dedicated Managers */ = {
+			isa = PBXGroup;
+			children = (
+				438ED3B32AA0C2B900486AF2 /* AdDelegateProxy.swift */,
+				43DA127F2AB888D900766D99 /* BannerAdManager.swift */,
+				438ED3B02AA0C2B900486AF2 /* InterstitialAdManager.swift */,
+				438ED3B22AA0C2B900486AF2 /* OptInAdManager.swift */,
+				438ED3AF2AA0C2B900486AF2 /* ThumbnailAdManager.swift */,
+			);
+			path = "Dedicated Managers";
+			sourceTree = "<group>";
+		};
+		438ED3B52AA0C2BA00486AF2 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				438ED3B62AA0C2BA00486AF2 /* OguryErrorConvertible.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		438ED3B82AA0C2BA00486AF2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				438ED3BF2AA0C2BA00486AF2 /* AdColorPalette.swift */,
+				43788F272B5FB77A0041A9C1 /* TextFields */,
+				434F84952AC1AF6B005077F5 /* Rewarded */,
+				43DA12782AB888D300766D99 /* BannerPlaceholder */,
+				438ED3BC2AA0C2BA00486AF2 /* ThumbnailOptionView */,
+				438ED3C02AA0C2BA00486AF2 /* AdActionBar */,
+				438ED3C32AA0C2BA00486AF2 /* AdView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		438ED3BC2AA0C2BA00486AF2 /* ThumbnailOptionView */ = {
+			isa = PBXGroup;
+			children = (
+				438ED3BD2AA0C2BA00486AF2 /* ThumbnailOptionFeature.swift */,
+				438ED3BE2AA0C2BA00486AF2 /* ThumbnailOptionView.swift */,
+			);
+			path = ThumbnailOptionView;
+			sourceTree = "<group>";
+		};
+		438ED3C02AA0C2BA00486AF2 /* AdActionBar */ = {
+			isa = PBXGroup;
+			children = (
+				438ED3C12AA0C2BA00486AF2 /* AdActionBar.swift */,
+				438ED3C22AA0C2BA00486AF2 /* AdActionBarFeature.swift */,
+			);
+			path = AdActionBar;
+			sourceTree = "<group>";
+		};
+		438ED3C32AA0C2BA00486AF2 /* AdView */ = {
+			isa = PBXGroup;
+			children = (
+				438ED3C42AA0C2BA00486AF2 /* AdView.swift */,
+				438ED3C52AA0C2BA00486AF2 /* AdViewFeature.swift */,
+				431F6F072C0F403400DBFFAA /* AdTag */,
+			);
+			path = AdView;
+			sourceTree = "<group>";
+		};
+		43ACBB6E2B304B37003FBF35 /* MockingbirdMocks */ = {
+			isa = PBXGroup;
+			children = (
+				43ACBB6F2B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift */,
+			);
+			path = MockingbirdMocks;
+			sourceTree = SOURCE_ROOT;
+		};
+		43DA12782AB888D300766D99 /* BannerPlaceholder */ = {
+			isa = PBXGroup;
+			children = (
+				43DA12792AB888D300766D99 /* BannerPlaceholderFeature.swift */,
+				43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */,
+				43DA127A2AB888D300766D99 /* AdBannerView.swift */,
+			);
+			path = BannerPlaceholder;
+			sourceTree = "<group>";
+		};
+		43E349412A49B9FB0060B41F /* AdsCardManager */ = {
+			isa = PBXGroup;
+			children = (
+				435C55F92A42F36B004186FF /* AdsCardManager.swift */,
+			);
+			path = AdsCardManager;
+			sourceTree = "<group>";
+		};
+		43E349422A49BA040060B41F /* AdManager */ = {
+			isa = PBXGroup;
+			children = (
+				438ED3B72AA0C2BA00486AF2 /* AdManager.swift */,
+				438ED3B42AA0C2BA00486AF2 /* AdManagerDelegate.swift */,
+				438ED3C62AA0C2BA00486AF2 /* AdManagerOptions.swift */,
+				438ED3AE2AA0C2B900486AF2 /* Dedicated Managers */,
+				438ED3B52AA0C2BA00486AF2 /* Errors */,
+				434F85192AD53392005077F5 /* HeaderBiding */,
+				438ED3B82AA0C2BA00486AF2 /* Views */,
+			);
+			path = AdManager;
+			sourceTree = "<group>";
+		};
+		A85F5428F6AAA851ED4CCD45 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6A11D6CA90315458587BADB3 /* Pods-AdsCardLibrary.debug.xcconfig */,
+				E7AFA38E59DDD72885696215 /* Pods-AdsCardLibrary.release.xcconfig */,
+				93E41BC933C7C059FD62B2FB /* Pods-AdsCardLibrary-Release.debug.xcconfig */,
+				FD61C3C1BAEA09E61B64842E /* Pods-AdsCardLibrary-Release.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		435C55DA2A42EAEF004186FF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				435C55F02A42EAEF004186FF /* AdsCardLibrary.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43BCB1602C22FBF0002FB0B1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43BCB1612C22FBF0002FB0B1 /* AdsCardLibrary.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		435C55DE2A42EAEF004186FF /* AdsCardLibrary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 435C55F32A42EAEF004186FF /* Build configuration list for PBXNativeTarget "AdsCardLibrary" */;
+			buildPhases = (
+				0E95E17B9138A2F04EEBA73F /* [CP] Check Pods Manifest.lock */,
+				435C55DA2A42EAEF004186FF /* Headers */,
+				435C55DB2A42EAEF004186FF /* Sources */,
+				435C55DC2A42EAEF004186FF /* Frameworks */,
+				435C55DD2A42EAEF004186FF /* Resources */,
+				43A9F4A72C37E7800085EF6F /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AdsCardLibrary;
+			packageProductDependencies = (
+				435F7BC92A5EE3970077843A /* ComposableArchitecture */,
+			);
+			productName = AdsCardLibrary;
+			productReference = 435C55DF2A42EAEF004186FF /* AdsCardLibrary.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		435C55E82A42EAEF004186FF /* AdsCardLibraryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 435C55F62A42EAEF004186FF /* Build configuration list for PBXNativeTarget "AdsCardLibraryTests" */;
+			buildPhases = (
+				B99641DA4ABD9D62FEAC31C8 /* Generate Mockingbird Mocks */,
+				435C55E52A42EAEF004186FF /* Sources */,
+				435C55E62A42EAEF004186FF /* Frameworks */,
+				435C55E72A42EAEF004186FF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				435C55EC2A42EAEF004186FF /* PBXTargetDependency */,
+			);
+			name = AdsCardLibraryTests;
+			packageProductDependencies = (
+				4314411D2A653CA70067AD47 /* CwlPreconditionTesting */,
+				43ACBB6C2B304AB9003FBF35 /* Mockingbird */,
+			);
+			productName = AdsCardLibraryTests;
+			productReference = 435C55E92A42EAEF004186FF /* AdsCardLibraryTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		43BCB15C2C22FBF0002FB0B1 /* AdsCardLibrary-Release */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43BCB18E2C22FBF0002FB0B1 /* Build configuration list for PBXNativeTarget "AdsCardLibrary-Release" */;
+			buildPhases = (
+				43BCB15F2C22FBF0002FB0B1 /* [CP] Check Pods Manifest.lock */,
+				43BCB1602C22FBF0002FB0B1 /* Headers */,
+				43BCB1622C22FBF0002FB0B1 /* Sources */,
+				43BCB1822C22FBF0002FB0B1 /* Frameworks */,
+				43BCB1872C22FBF0002FB0B1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "AdsCardLibrary-Release";
+			packageProductDependencies = (
+				43BCB15D2C22FBF0002FB0B1 /* ComposableArchitecture */,
+			);
+			productName = AdsCardLibrary;
+			productReference = 43BCB1912C22FBF0002FB0B1 /* AdsCardLibrary.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		435C55D62A42EAEF004186FF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					435C55DE2A42EAEF004186FF = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+					435C55E82A42EAEF004186FF = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 435C55D92A42EAEF004186FF /* Build configuration list for PBXProject "AdsCardLibrary" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 435C55D52A42EAEF004186FF;
+			packageReferences = (
+				43E349582A4AC9820060B41F /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				4314411C2A653CA70067AD47 /* XCRemoteSwiftPackageReference "CwlPreconditionTesting" */,
+				43ACBB6B2B304AB9003FBF35 /* XCRemoteSwiftPackageReference "mockingbird" */,
+			);
+			productRefGroup = 435C55E02A42EAEF004186FF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				435C55DE2A42EAEF004186FF /* AdsCardLibrary */,
+				43BCB15C2C22FBF0002FB0B1 /* AdsCardLibrary-Release */,
+				435C55E82A42EAEF004186FF /* AdsCardLibraryTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		435C55DD2A42EAEF004186FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43788F362B5FBA1B0041A9C1 /* PPTelegraf-Light.ttf in Resources */,
+				436E97272A6A7BC30074E922 /* Assets.xcassets in Resources */,
+				43788F3A2B5FBA1B0041A9C1 /* PPTelegraf-Bold.ttf in Resources */,
+				43788F372B5FBA1B0041A9C1 /* PPTelegraf-Medium.ttf in Resources */,
+				43788F332B5FBA1B0041A9C1 /* PPTelegraf-Semibold.ttf in Resources */,
+				43788F342B5FBA1B0041A9C1 /* PPTelegraf-Regular.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		435C55E72A42EAEF004186FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E8256442B2380B4001DFBA4 /* AdsCardLibrary.xctestplan in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43BCB1872C22FBF0002FB0B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43BCB1882C22FBF0002FB0B1 /* PPTelegraf-Light.ttf in Resources */,
+				43BCB1892C22FBF0002FB0B1 /* Assets.xcassets in Resources */,
+				43BCB18A2C22FBF0002FB0B1 /* PPTelegraf-Bold.ttf in Resources */,
+				43BCB18B2C22FBF0002FB0B1 /* PPTelegraf-Medium.ttf in Resources */,
+				43BCB18C2C22FBF0002FB0B1 /* PPTelegraf-Semibold.ttf in Resources */,
+				43BCB18D2C22FBF0002FB0B1 /* PPTelegraf-Regular.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0E95E17B9138A2F04EEBA73F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AdsCardLibrary-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43BCB15F2C22FBF0002FB0B1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AdsCardLibrary-Release-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B99641DA4ABD9D62FEAC31C8 /* Generate Mockingbird Mocks */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Mockingbird Mocks";
+			outputPaths = (
+				"$(SRCROOT)/MockingbirdMocks/AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "DERIVED_DATA=\"$(xcodebuild -showBuildSettings | sed -n 's|.*BUILD_ROOT = \\(.*\\)/Build/.*|\\1|p')\"\n \"${DERIVED_DATA}/SourcePackages/checkouts/mockingbird/mockingbird\" generate \\\n    --testbundle AdsCardLibraryTests \\\n    --targets AdsCardLibrary \\\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		435C55DB2A42EAEF004186FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				438ED3D32AA0C2BA00486AF2 /* AdColorPalette.swift in Sources */,
+				438ED3CB2AA0C2BA00486AF2 /* AdDelegateProxy.swift in Sources */,
+				434F84992AC1AF9B005077F5 /* RewardedFeature.swift in Sources */,
+				435C55FA2A42F36B004186FF /* AdsCardManager.swift in Sources */,
+				438ED3D52AA0C2BA00486AF2 /* AdActionBarFeature.swift in Sources */,
+				43788F292B5FB7980041A9C1 /* AdsTextField.swift in Sources */,
+				438ED3D22AA0C2BA00486AF2 /* ThumbnailOptionView.swift in Sources */,
+				438ED3D42AA0C2BA00486AF2 /* AdActionBar.swift in Sources */,
+				43DA12802AB888D900766D99 /* BannerAdManager.swift in Sources */,
+				438ED3D72AA0C2BA00486AF2 /* AdViewFeature.swift in Sources */,
+				438ED3CA2AA0C2BA00486AF2 /* OptInAdManager.swift in Sources */,
+				1E373D562BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift in Sources */,
+				434F851B2AD534A5005077F5 /* MaxHeaderBidable.swift in Sources */,
+				434F84982AC1AF9B005077F5 /* RewardedView.swift in Sources */,
+				4328B28B2ADFBDA9003C7F91 /* Storable.swift in Sources */,
+				434F851D2AD535B2005077F5 /* HeaderBidable.swift in Sources */,
+				435C55E42A42EAEF004186FF /* AdsCardLibrary.docc in Sources */,
+				438ED3CD2AA0C2BA00486AF2 /* OguryErrorConvertible.swift in Sources */,
+				438ED3D12AA0C2BA00486AF2 /* ThumbnailOptionFeature.swift in Sources */,
+				438ED3C82AA0C2BA00486AF2 /* InterstitialAdManager.swift in Sources */,
+				438ED3D82AA0C2BA00486AF2 /* AdManagerOptions.swift in Sources */,
+				431F6F062C0F3D8100DBFFAA /* AdTagView.swift in Sources */,
+				43DA127D2AB888D300766D99 /* AdBannerView.swift in Sources */,
+				43DA127E2AB888D300766D99 /* BannerPlaceholderView.swift in Sources */,
+				438ED3CE2AA0C2BA00486AF2 /* AdManager.swift in Sources */,
+				438ED3CC2AA0C2BA00486AF2 /* AdManagerDelegate.swift in Sources */,
+				431F6F092C0F403F00DBFFAA /* AdTagFeature.swift in Sources */,
+				438ED3D62AA0C2BA00486AF2 /* AdView.swift in Sources */,
+				438ED3D62AA0C2BA00486AF2 /* AdView.swift in Sources */,
+				43788F3C2B5FBA360041A9C1 /* Font+Extension.swift in Sources */,
+				438ED3C72AA0C2BA00486AF2 /* ThumbnailAdManager.swift in Sources */,
+				43DA127C2AB888D300766D99 /* BannerPlaceholderFeature.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		435C55E52A42EAEF004186FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E373D612BFCF7CA00E2EF25 /* BTFairBidRetriever.swift in Sources */,
+				435F7BCF2A601F990077843A /* InterstitialAdManagerTests.swift in Sources */,
+				431441192A6539780067AD47 /* ThumbnailAdManagerTests.swift in Sources */,
+				4328B2832AD7CF44003C7F91 /* MaxRetriever.swift in Sources */,
+				43A78A6E2A52ABF30004A613 /* AdManagerOptionsTests.swift in Sources */,
+				43ACBB702B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift in Sources */,
+				4314411B2A653B060067AD47 /* BannerAdManagerTests.swift in Sources */,
+				435C55EF2A42EAEF004186FF /* AdsCardManagerTests.swift in Sources */,
+				430B6F032A65377900A6EFA4 /* OptinVideoAdManagerTests.swift in Sources */,
+				434F85252AD6D9EF005077F5 /* MpuAdManagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43BCB1622C22FBF0002FB0B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43BCB1632C22FBF0002FB0B1 /* AdColorPalette.swift in Sources */,
+				43BCB1642C22FBF0002FB0B1 /* AdDelegateProxy.swift in Sources */,
+				43BCB1652C22FBF0002FB0B1 /* RewardedFeature.swift in Sources */,
+				43BCB1662C22FBF0002FB0B1 /* AdsCardManager.swift in Sources */,
+				43BCB1672C22FBF0002FB0B1 /* AdActionBarFeature.swift in Sources */,
+				43BCB1682C22FBF0002FB0B1 /* AdsTextField.swift in Sources */,
+				43BCB1692C22FBF0002FB0B1 /* ThumbnailOptionView.swift in Sources */,
+				43BCB16A2C22FBF0002FB0B1 /* AdActionBar.swift in Sources */,
+				43BCB16B2C22FBF0002FB0B1 /* BannerAdManager.swift in Sources */,
+				43BCB16C2C22FBF0002FB0B1 /* AdViewFeature.swift in Sources */,
+				43BCB16D2C22FBF0002FB0B1 /* OptInAdManager.swift in Sources */,
+				43BCB16E2C22FBF0002FB0B1 /* DTFairBidHeaderBidable.swift in Sources */,
+				43BCB16F2C22FBF0002FB0B1 /* MaxHeaderBidable.swift in Sources */,
+				43BCB1702C22FBF0002FB0B1 /* RewardedView.swift in Sources */,
+				43BCB1712C22FBF0002FB0B1 /* Storable.swift in Sources */,
+				43BCB1722C22FBF0002FB0B1 /* HeaderBidable.swift in Sources */,
+				43BCB1732C22FBF0002FB0B1 /* AdsCardLibrary.docc in Sources */,
+				43BCB1742C22FBF0002FB0B1 /* OguryErrorConvertible.swift in Sources */,
+				43BCB1752C22FBF0002FB0B1 /* ThumbnailOptionFeature.swift in Sources */,
+				43BCB1762C22FBF0002FB0B1 /* InterstitialAdManager.swift in Sources */,
+				43BCB1772C22FBF0002FB0B1 /* AdManagerOptions.swift in Sources */,
+				43BCB1782C22FBF0002FB0B1 /* AdTagView.swift in Sources */,
+				43BCB1792C22FBF0002FB0B1 /* AdBannerView.swift in Sources */,
+				43BCB17A2C22FBF0002FB0B1 /* BannerPlaceholderView.swift in Sources */,
+				43BCB17B2C22FBF0002FB0B1 /* AdManager.swift in Sources */,
+				43BCB17C2C22FBF0002FB0B1 /* AdManagerDelegate.swift in Sources */,
+				43BCB17D2C22FBF0002FB0B1 /* AdTagFeature.swift in Sources */,
+				43BCB17E2C22FBF0002FB0B1 /* AdView.swift in Sources */,
+				43BCB17E2C22FBF0002FB0B1 /* AdView.swift in Sources */,
+				43BCB17F2C22FBF0002FB0B1 /* Font+Extension.swift in Sources */,
+				43BCB1802C22FBF0002FB0B1 /* ThumbnailAdManager.swift in Sources */,
+				43BCB1812C22FBF0002FB0B1 /* BannerPlaceholderFeature.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		435C55EC2A42EAEF004186FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 435C55DE2A42EAEF004186FF /* AdsCardLibrary */;
+			targetProxy = 435C55EB2A42EAEF004186FF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		435C55F12A42EAEF004186FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		435C55F22A42EAEF004186FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		435C55F42A42EAEF004186FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A11D6CA90315458587BADB3 /* Pods-AdsCardLibrary.debug.xcconfig */;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AdsCardLibrary/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = mh_dylib;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ogury.AdsCardLibrary;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		435C55F52A42EAEF004186FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7AFA38E59DDD72885696215 /* Pods-AdsCardLibrary.release.xcconfig */;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AdsCardLibrary/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = mh_dylib;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ogury.AdsCardLibrary;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		435C55F72A42EAEF004186FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ogury.AdsCardLibraryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		435C55F82A42EAEF004186FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ogury.AdsCardLibraryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		43BCB18F2C22FBF0002FB0B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93E41BC933C7C059FD62B2FB /* Pods-AdsCardLibrary-Release.debug.xcconfig */;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AdsCardLibrary/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = mh_dylib;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ogury.AdsCardLibrary;
+				PRODUCT_MODULE_NAME = AdsCardLibrary;
+				PRODUCT_NAME = AdsCardLibrary;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		43BCB1902C22FBF0002FB0B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD61C3C1BAEA09E61B64842E /* Pods-AdsCardLibrary-Release.release.xcconfig */;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AdsCardLibrary/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = mh_dylib;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ogury.AdsCardLibrary;
+				PRODUCT_MODULE_NAME = AdsCardLibrary;
+				PRODUCT_NAME = AdsCardLibrary;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		435C55D92A42EAEF004186FF /* Build configuration list for PBXProject "AdsCardLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				435C55F12A42EAEF004186FF /* Debug */,
+				435C55F22A42EAEF004186FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		435C55F32A42EAEF004186FF /* Build configuration list for PBXNativeTarget "AdsCardLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				435C55F42A42EAEF004186FF /* Debug */,
+				435C55F52A42EAEF004186FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		435C55F62A42EAEF004186FF /* Build configuration list for PBXNativeTarget "AdsCardLibraryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				435C55F72A42EAEF004186FF /* Debug */,
+				435C55F82A42EAEF004186FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43BCB18E2C22FBF0002FB0B1 /* Build configuration list for PBXNativeTarget "AdsCardLibrary-Release" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43BCB18F2C22FBF0002FB0B1 /* Debug */,
+				43BCB1902C22FBF0002FB0B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4314411C2A653CA70067AD47 /* XCRemoteSwiftPackageReference "CwlPreconditionTesting" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mattgallagher/CwlPreconditionTesting.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		43ACBB6B2B304AB9003FBF35 /* XCRemoteSwiftPackageReference "mockingbird" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/birdrides/mockingbird";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.20.0;
+			};
+		};
+		43BCB15E2C22FBF0002FB0B1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		43E349582A4AC9820060B41F /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4314411D2A653CA70067AD47 /* CwlPreconditionTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4314411C2A653CA70067AD47 /* XCRemoteSwiftPackageReference "CwlPreconditionTesting" */;
+			productName = CwlPreconditionTesting;
+		};
+		435F7BC92A5EE3970077843A /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43E349582A4AC9820060B41F /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+		43ACBB6C2B304AB9003FBF35 /* Mockingbird */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43ACBB6B2B304AB9003FBF35 /* XCRemoteSwiftPackageReference "mockingbird" */;
+			productName = Mockingbird;
+		};
+		43BCB15D2C22FBF0002FB0B1 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43BCB15E2C22FBF0002FB0B1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 435C55D62A42EAEF004186FF /* Project object */;
+}

@@ -1,0 +1,41 @@
+{
+    "profig": {
+        "enabled": "bad bad bad",
+        "timing_finder": {
+            "profig": 43200,
+            "no_internet_retry": 7200
+        },
+        "timeout": {
+            "ads": 3
+        },
+        "timing_execute_internal": {},
+        "max_size": {},
+        "max_per_day": {
+            "profig": 10
+        },
+        "api_key": "269841",
+        "webview": {
+            "back_button_enabled": false,
+            "close_ad_when_leaving_app": true,
+            "webview_load_timeout": 80
+        },
+        "cache": {
+            "logs": true,
+            "ad_expiration": 14400,
+            "ads_to_precache": {
+                "max": 3,
+                "default": 1
+            },
+            "ad_sync_timing_lock": 8,
+            "window_lock": {
+                "load": 180,
+                "show": 50
+            },
+            "max_call": {
+                "load": 3,
+                "show": 1
+            }
+        }
+    },
+    "odid": "041adcd5-7066-48bb-92b3-638fb52d8e93"
+}

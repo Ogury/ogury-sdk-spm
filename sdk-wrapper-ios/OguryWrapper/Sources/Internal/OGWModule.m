@@ -1,0 +1,84 @@
+//
+//  Copyright © 2021 Ogury Ltd. All rights reserved.
+//
+
+#import "OGWModule.h"
+#import "OGWLog.h"
+
+@interface OGWModule ()
+
+@property(nonatomic, retain, nullable) id module;
+
+@end
+
+@implementation OGWModule
+
+NSString *const OGWModuleSharedSelector = @"shared";
+NSString *const OGWModuleStartWithAssetKeySelector = @"startWithAssetKey:persistentEventBus:broadcastEventBus:";
+NSString *const OGWModuleSetLogLevelSelector = @"setLogLevel:";
+NSString *const OGWModuleGetVersionSelector = @"getVersion";
+
+#pragma mark - Initialization
+
+- (instancetype)initWithClassName:(NSString *)className {
+   if (self = [super init]) {
+      _className = className;
+      SEL sharedSelector = NSSelectorFromString(OGWModuleSharedSelector);
+      Class moduleClass = NSClassFromString(className);
+      _module = [moduleClass performSelector:sharedSelector];
+   }
+   return self;
+}
+
+#pragma mark - Properties
+
+- (BOOL)isPresent {
+   return self.module != nil;
+}
+
+#pragma mark - Methods
+
+- (void)setLogLevel:(OguryLogLevel)logLevel {
+   SEL setLogLevelSelector = NSSelectorFromString(OGWModuleSetLogLevelSelector);
+   if ([self.module respondsToSelector:setLogLevelSelector]) {
+      // using Invocation to pass a no-object type paramater
+      NSInvocation *inv = [NSInvocation invocationWithMethodSignature:[self.module methodSignatureForSelector:setLogLevelSelector]];
+      [inv setSelector:setLogLevelSelector];
+      [inv setTarget:self.module];
+      [inv setArgument:&logLevel atIndex:2];  // arguments 0 and 1 are self and _cmd respectively, automatically set by NSInvocation
+      [inv invoke];
+   }
+}
+
+- (void)startWithAssetKey:(NSString *)assetKey
+       persistentEventBus:(OguryPersistentEventBus *)persistentEventBus
+        broadcastEventBus:(OguryEventBus *)broadcastEventBus {
+   SEL startWithAssetKeySelector = NSSelectorFromString(OGWModuleStartWithAssetKeySelector);
+   if ([self.module respondsToSelector:startWithAssetKeySelector]) {
+      [[OGWLog shared] logAssetKeyFormat:OguryLogLevelDebug assetKey:assetKey format:@"performing selector %@-%@-%@", self.className, OGWModuleSharedSelector, OGWModuleStartWithAssetKeySelector];
+
+      NSMethodSignature *signature = [self methodSignatureForSelector:startWithAssetKeySelector];
+      NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+
+      [invocation setSelector:startWithAssetKeySelector];
+      [invocation setTarget:self.module];
+      [invocation setArgument:&assetKey atIndex:2];
+      [invocation setArgument:&persistentEventBus atIndex:3];
+      [invocation setArgument:&broadcastEventBus atIndex:4];
+      [invocation invoke];
+   }
+}
+
+- (NSString *)getVersion {
+   SEL getVersionSelector = NSSelectorFromString(OGWModuleGetVersionSelector);
+   if ([self.module respondsToSelector:getVersionSelector]) {
+      [[OGWLog shared] logFormat:OguryLogLevelDebug format:@"performing selector %@-%@-%@", self.className, OGWModuleSharedSelector, OGWModuleGetVersionSelector];
+      return [self.module performSelector:getVersionSelector];
+   } else {
+      [[OGWLog shared] logFormat:OguryLogLevelError format:@"selector[%@] not found on %@-%@", OGWModuleGetVersionSelector, self.className, OGWModuleSharedSelector];
+
+      return nil;
+   }
+}
+
+@end

@@ -1,0 +1,6 @@
+framework module Pods_AdsTestApp_Release_Devc {
+  umbrella header "Pods-AdsTestApp-Release-Devc-umbrella.h"
+
+  export *
+  module * { export * }
+}

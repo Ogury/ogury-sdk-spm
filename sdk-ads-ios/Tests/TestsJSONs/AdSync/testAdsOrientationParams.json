@@ -1,0 +1,303 @@
+{
+  "cache": [
+    {
+      "campaign_id": "41547",
+      "advert_id": "b3d6393b-fa5f-4e5e-8b4e-20c0782075d9",
+      "assets": [
+        "http://www.litecdn.com/v2.42.3-b186970/formats/mraid-wrapper/index.html",
+        "http://medias.cloud.ogury.io/icon_params/attachments/000/316/254/cropped/EZGo.jpg?1517247457",
+        "http://medias.cloud.ogury.io/EZGo/NewAugust/ezgo_800x392+copy-min+(1).png",
+        "http://medias.cloud.ogury.io/EZGo/NewAugust/ezgo_664x920-min+(1).png",
+        "http://medias.cloud.ogury.io/EZGo/NewAugust/ezgo_520x550+copy-min.png",
+        "http://www.litecdn.com/v2.42.3-b186970/formats/recommandation-sdk3/index.js"
+      ]
+    }
+  ],
+  "ad": [
+    {
+      "id": "3f515295-264a-4868-8a79-a502296e9df3",
+      "name": "[duplicate] EZGo - Consumer CPC - SEP18US / Msg 1 - Elite / November",
+      "after_campaign_url": "",
+      "google_interest_based_status": "ALL",
+      "allow_video_opt_in": true,
+      "custom_target": false,
+      "moat": true,
+      "bundle": "",
+      "app_launch_auto": false,
+      "app_launch_package": "",
+      "app_launch_class": "",
+      "app_launch_rate": 100,
+      "clicks_sold": 6344,
+      "margin": 0,
+      "publisher": null,
+      "advertiser": {
+        "id": 888,
+        "name": "EZGo"
+      },
+      "client_tracker_pattern": null,
+      "ad_track_urls":{
+          "ad_precache_url":"https://ad_precache_url.com",
+          "ad_track_url":"https://ad_track_url.com",
+          "ad_history_url":"https://ad_history_url.com"
+      },
+      "format": {
+        "id": 121,
+        "name": "Recommandation",
+        "type": "launch_activity",
+        "format_base_url": "http://www.litecdn.com/v2.42.3-b186970/",
+        "params_assets": [
+          "entrypoint",
+          "icon",
+          "large_portrait_creative",
+          "large_landscape_creative",
+          "small_portrait_creative"
+        ],
+        "format_assets": [
+          "http://www.litecdn.com/v2.42.3-b186970/formats/mraid-wrapper/index.html"
+        ],
+        "sdk_requirement": ">= 1.7.0",
+        "android_requirement": "",
+        "ad_type": "display",
+        "sdk_close_button_url": "https://ms-ads-events.presage.io/track?event=sdk_close_button&imp=[advert_id]&oc_id=[campaignid]&ak=[apikey]&a_sdk=[sdk]",
+        "ad_content": "<html>  <head>  <meta charset=\"UTF-8\">  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">  <link rel=\"icon\" type=\"image/png\" href=\"data:image/png;base64,iVBORw0KGgo=\">  </head>  <body>  <div id=\"root\">  </div>  <script src=\"mraid.js\"></script>  <script src=\"https://ms-ads.presage.io/mraid?dsp=ogury&t=[random]&imp=[advert_id]&oc_id=[campaignid]&ak=[apikey]&u_do=[is_data_optin]&u_id=[aaid]&a_sdk=[sdk]&conn=[connectivity][opti]\"></script>  </body>  </html>",
+        "webview_base_url": "http://www.ogyfmts.com/",
+        "params": [
+          {
+            "name": "allow_precaching",
+            "value": true
+          },
+          {
+            "name": "assets_list_url",
+            "value": "http://www.litecdn.com/v2.42.3-b186970/formats/recommandation-sdk3/assets.json"
+          },
+          {
+            "name": "entrypoint",
+            "value": "http://www.litecdn.com/v2.42.3-b186970/formats/recommandation-sdk3/index.js"
+          },
+          {
+            "name": "frame",
+            "value": {
+              "size": {
+                "width": -1,
+                "height": -1
+              }
+            }
+          },
+          {
+            "name": "helper",
+            "value": "multi_webviews"
+          },
+          {
+            "name": "launch_type",
+            "value": "sdk"
+          },
+          {
+            "name": "use_icon",
+            "value": true
+          },
+          {
+            "name": "zones",
+            "value": [
+              {
+                "name": "controller",
+                "url": "http://www.litecdn.com/v2.42.3-b186970/formats/mraid-wrapper/index.html",
+                "size": {
+                  "width": -1,
+                  "height": -1
+                }
+              }
+            ]
+          },
+          {
+            "name": "ad_type",
+            "value": "display"
+          }
+        ],
+        "mraid_download_url": "https://mraid.presage.io/ec9d014/mraid.js"
+      },
+      "ad_content": "<html>  <head>  <meta charset=\"UTF-8\">  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">  <link rel=\"icon\" type=\"image/png\" href=\"data:image/png;base64,iVBORw0KGgo=\">  </head>  <body>  <div id=\"root\">  </div>  <script src=\"mraid.js\"></script>  <script src=\"https://ms-ads.presage.io/mraid?dsp=ogury&t=3744412a-ce80-4523-9065-bd6284a7dceb&imp=3f515295-264a-4868-8a79-a502296e9df3&oc_id=41547&ak=271870&u_do=false&u_id=383cbb85-03e3-4113-af2b-38a5a25a927b&a_sdk=3.0.18&conn=WIFI\"></script>  </body>  </html>",
+      "sdk_close_button_url": "https://ms-ads-events.presage.io/track?event=sdk_close_button&imp=3f515295-264a-4868-8a79-a502296e9df3&oc_id=41547&ak=271870&a_sdk=3.0.18",
+      "impression_trackers": "",
+      "start_trackers": "",
+      "first_quartile_trackers": "",
+      "midpoint_trackers": "",
+      "third_quartile_trackers": "",
+      "complete_trackers": "",
+      "params": [
+        {
+          "name": "confirm_button_show",
+          "value": false
+        },
+        {
+          "name": "orientation",
+          "value": "orientationTrue"
+        },
+        {
+          "name": "icon",
+          "value": "http://medias.cloud.ogury.io/icon_params/attachments/000/316/254/cropped/EZGo.jpg?1517247457"
+        },
+        {
+          "name": "icon_name",
+          "value": "E-Z-Go"
+        },
+        {
+          "name": "identifier",
+          "value": "ezgo-consumer-cpc-jan18us-msg-1-elite"
+        },
+        {
+          "name": "large_landscape_creative",
+          "value": "http://medias.cloud.ogury.io/EZGo/NewAugust/ezgo_800x392+copy-min+(1).png"
+        },
+        {
+          "name": "large_portrait_creative",
+          "value": "http://medias.cloud.ogury.io/EZGo/NewAugust/ezgo_664x920-min+(1).png"
+        },
+        {
+          "name": "name",
+          "value": "E-Z-Go"
+        },
+        {
+          "name": "percent_show",
+          "value": true
+        },
+        {
+          "name": "small_portrait_creative",
+          "value": "http://medias.cloud.ogury.io/EZGo/NewAugust/ezgo_520x550+copy-min.png"
+        },
+        {
+          "name": "use_icon",
+          "value": true
+        },
+        {
+          "name": "display_trackers",
+          "value": "<IMG SRC=\"https://ad.doubleclick.net/ddm/trackimp/N46002.1979102MEC-OGURYIT/B20631325.226016847;dc_trk_aid=423934913;dc_trk_cid=97586165;ord=1541686881;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=?\" BORDER=0 WIDTH=1 HEIGHT=1 ALT=\"Advertisement\"></IMG>"
+        },
+        {
+          "name": "format_base_url",
+          "value": "http://www.litecdn.com/v2.42.3-b186970/"
+        },
+        {
+          "name": "entrypoint",
+          "value": "http://www.litecdn.com/v2.42.3-b186970/formats/recommandation-sdk3/index.js"
+        },
+        {
+          "name": "use_moat",
+          "value": true
+        },
+        {
+          "name": "odid",
+          "value": "383cbb85-03e3-4113-af2b-38a5a25a927b"
+        },
+        {
+          "name": "application",
+          "value": {
+            "id": 271870,
+            "db_id": 7309,
+            "name": "Format test App",
+            "bundle": "io.presage.test",
+            "publisher_id": 10,
+            "in_pause": false,
+            "moat_tracking": true,
+            "data_optin": true,
+            "target_active": true,
+            "target_unactive": false,
+            "category_blacklist": [],
+            "is_live": false,
+            "require_permissions": [],
+            "postitial": true,
+            "install_icon": true,
+            "created_at": "2018-03-20T15:41:15.702Z",
+            "updated_at": "2018-11-08T03:17:32.317Z",
+            "blacklist_format": [
+              ""
+            ],
+            "publisher_name": "i work for my own",
+            "campaign_price_groups": "premium,backfill",
+            "logger_levels": {
+              "root": "OFF"
+            },
+            "user_app_any_format_capping": {
+              "day": null,
+              "total": null,
+              "between": {
+                "time": 0,
+                "type": "minutes"
+              }
+            },
+            "user_app_video_capping": {
+              "day": null,
+              "total": null,
+              "between": {
+                "time": 0,
+                "type": "minutes"
+              }
+            },
+            "user_app_display_capping": {
+              "day": null,
+              "total": null,
+              "between": {
+                "time": 0,
+                "type": "minutes"
+              }
+            },
+            "eula_mode": "MANUAL_WITH_FALLBACK",
+            "forced_orientation": "AUTOMATIC",
+            "ad_units": {
+              "271870_default": {
+                "ad_unit_id": "271870_default",
+                "name": "Default",
+                "advert_type": "interstitial",
+                "in_pause": false,
+                "archived": false,
+                "accept_eula": true,
+                "forced_orientation": "AUTOMATIC",
+                "campaign_price_groups": "premium,backfill"
+              }
+            },
+            "ad_test": [
+              {
+                "aaid": "9358b73e-0201-46d8-9ac5-9ca549a137a9"
+              }
+            ],
+            "activate": true,
+            "activate_at": "2018-03-23T16:15:32.918Z",
+            "categories_iab": []
+          }
+        },
+        {
+          "name": "aaid",
+          "value": "383cbb85-03e3-4113-af2b-38a5a25a927b"
+        },
+        {
+          "name": "aaid-optout",
+          "value": false
+        },
+        {
+          "name": "richadvertid",
+          "value": "3f515295264a48688a79a502296e9df3-41547-271870-363d802c410e48ee99e6768fbf10325a"
+        },
+        {
+          "name": "sdk_version",
+          "value": "3.0.18"
+        }
+      ],
+      "actions": [],
+      "finish": [],
+      "ssp": [
+        "OGURY"
+      ],
+      "geo_automat": {
+        "allow": {
+          "us": true
+        },
+        "deny": null
+      },
+      "campaign_id": 41547,
+      "link_url": "http://wsback-redirect.presage.io/v1/url/383cbb85-03e3-4113-af2b-38a5a25a927b/[\"271870\"]/41547/3f515295-264a-4868-8a79-a502296e9df3",
+      "ad_unit": {
+        "id": "271870_default",
+        "type": "interstitial"
+      }
+    }
+  ]
+}

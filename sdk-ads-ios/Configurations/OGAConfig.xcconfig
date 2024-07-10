@@ -1,0 +1,14 @@
+//
+//  Copyright © 2020 Ogury. All rights reserved.
+//
+
+// Identification
+FRAMEWORK_NAME = OguryAds
+PRODUCT_BUNDLE_IDENTIFIER = co.ogury.OguryAds
+
+// Versioning
+MARKETING_VERSION = 3.7.0
+BUNDLE_VERSION = 3
+
+// Environment available : PROD, DEVC, STAGING
+DEFAULT_ENV = PROD

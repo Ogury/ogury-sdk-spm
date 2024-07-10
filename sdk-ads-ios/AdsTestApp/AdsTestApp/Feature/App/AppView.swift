@@ -1,0 +1,82 @@
+//
+//  Copyright © 2023 Ogury Ltd. All rights reserved.
+//
+
+
+import SwiftUI
+import ComposableArchitecture
+import AdsCardLibrary
+
+struct AppView: View {
+    let store: StoreOf<AppFeature>
+    @State private var toolbarVisible = false
+    
+    var body: some View {
+        if #available(iOS 16, *) {
+            NavigationStackStore(
+                store.scope(state: \.path, action: { .path($0) })
+            ) {
+                MainView(
+                    store: store.scope(
+                        state: \.main,
+                        action: { .main($0) }
+                    )
+                )
+                .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) {
+                        if toolbarVisible {
+                            HStack {
+                                Spacer()
+                                
+                                Button("Close") {
+                                    store.send(.endEditing)
+                                }
+                                .font(.adsBody)
+                                .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
+                            }
+                        }
+                    }
+                }
+                .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { notification in
+                    if let _ = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+                        toolbarVisible = true
+                    }
+                }
+                .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
+                    toolbarVisible = false
+                }
+            } destination: { state in
+                switch state {
+                    case .main:
+                        CaseLet(
+                            /AppFeature.Path.State.main,
+                             action: AppFeature.Path.Action.main,
+                             then: MainView.init(store:)
+                        )
+                    case .detail:
+                        CaseLet(
+                            /AppFeature.Path.State.detail,
+                             action: AppFeature.Path.Action.detail,
+                             then: DetailListView.init(store:)
+                        )
+                }
+            }
+            .alert(store: self.store.scope(state: \.$alert, action: { .alert($0) }))
+        } else {
+            NavigationView(content: {
+                MainView(
+                    store: self.store.scope(
+                        state: \.main,
+                        action: { .main($0) }
+                    )
+                )
+            })
+        }
+    }
+}
+
+#Preview {
+    AppView(store: Store(initialState: AppFeature.State(), reducer: {
+        AppFeature(adHostingViewController: nil, adDelegate: nil)
+    }))
+}

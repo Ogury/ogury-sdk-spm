@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "8A439821-0AD1-4D58-A5B9-40CFD22EDF7C",
+      "name" : "Test Scheme Action",
+      "options" : {
+        "diagnosticCollectionPolicy" : "Always"
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "diagnosticCollectionPolicy" : "Always",
+    "testRepetitionMode" : "retryOnFailure"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:AdsCardLibrary.xcodeproj",
+        "identifier" : "435C55E82A42EAEF004186FF",
+        "name" : "AdsCardLibraryTests"
+      }
+    }
+  ],
+  "version" : 1
+}
