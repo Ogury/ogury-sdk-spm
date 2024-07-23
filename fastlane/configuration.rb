@@ -1,10 +1,14 @@
 class Configuration
-  attr_reader :workspace, :project, :schemes, :sdks, :test_devices, :allowed_environments, :firebase, :artifactory, :amazon, :slack, :cocoapods, :frameworks, :directories
+  attr_reader :workspace, :targets, :schemes, :sdks, :test_devices, :allowed_environments, :firebase, :artifactory, :amazon, :slack, :cocoapods, :frameworks, :directories
 
   def initialize
-    @workspace = Workspace.new(name: "OgurySdks", file_path: "OgurySdks.xcworkspace")
-    @project = Project.new("OguryAds", "sdk-ads-ios/OguryAdsSDK.xcodeproj", "AdsCardLibrary", "OguryCore", "sdk-core-ios/OguryCore.xcodeproj", "OguryWrapper", "OgurySdk", "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj")
-    @schemes = Schemes.new("OguryAds", "AdsCardLibrary", "OguryCore", "OguryWrapper", "OguryWrapperTestApp")
+    @workspace = Workspace.new("OgurySdks", "OgurySdks.xcworkspace")
+    ads = Target.new("OguryAds", "sdk-ads-ios/OguryAdsSDK.xcodeproj", "OguryAds")
+    adsLibrary = Target.new("AdsCardLibrary", "sdk-ads-ios/OguryAdsSDK.xcodeproj", "AdsCardLibrary")
+    core = Target.new("OguryCore", "sdk-core-ios/OguryCore.xcodeproj", "OguryCore")
+    wrapper = Target.new("OguryWrapper", "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj", "OguryWrapper", "OgurySdk")
+    testApp = Target.new("OguryCore", "sdk-core-ios/OguryCore.xcodeproj", "OguryCore")
+    @targets = Targets.new(ads, adsLibrary, core, wrapper)
     @sdks = Sdks.new(["iphoneos", "iphonesimulator"], ["iphonesimulator"])
     @test_devices = ["iPhone 15"]
     @allowed_environments = ["devc", "staging", "prod", "beta", "release"]
@@ -24,10 +28,15 @@ end
 Workspace = Struct.new(:name, :file_path) do
 end
 
-Project = Struct.new(:adsName, :adsFilePath, :adsLibraryName, :coreName, :coreFilePath, :wrapperName, :wrapperPublicName, :wrapperFilePath) do
+Targets = Struct.new(:ads, :adsLibrary, :core, :wrapper, :testApp) do
 end
 
-Schemes = Struct.new(:ads, :adsLibrary, :core, :wrapper, :wrappertestApp) do
+Target = Struct.new(:name, :path, :scheme, :releaseScheme, :publicName) do
+  def initialize(name, path, scheme, releaseScheme = nil, publicName = nil)
+    publicName ||= name
+    releaseScheme ||= "#{scheme}-Release"
+    super(name, path, scheme, releaseScheme, publicName)
+  end
 end
 
 Sdks = Struct.new(:defaults, :tests) do

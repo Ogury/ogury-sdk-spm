@@ -2,9 +2,7 @@ import("./configuration.rb")
 import("./scripts/utility_functions.rb")
 import("./scripts/prepare_deploy.rb")
 import("./scripts/deploy.rb")
-import("../sdk-ads-ios/fastlane/scripts/build.rb")
-import("../sdk-core-ios/fastlane/scripts/build.rb")
-import("../sdk-wrapper-ios/fastlane/scripts/build.rb")
+import("./scripts/build.rb")
 
 default_platform(:ios)
 
@@ -19,6 +17,7 @@ platform :ios do
     end
 
     environment = options[:environment]
+    release = options[:release] ? release : false
 
     # Install Cocoapods dependencies
     update_internal_cocoapods environment: environment
@@ -40,12 +39,12 @@ platform :ios do
         sdk: sdk,
       )
 
-      build_card_library(
-        configuration: configuration,
-        sdk: sdk,
-      )
+      #build_card_library(
+      # configuration: configuration,
+      #  sdk: sdk,
+      #)
 
-      build_wrapper_framework(
+      build_wrapper(
         configuration: configuration,
         sdk: sdk,
       )
@@ -64,12 +63,12 @@ platform :ios do
     end
 
     environment = options[:environment]
-    filePath = configuration.project.adsFilePath
-    projectName = configuration.project.adsName
+    filePath = configuration.targets.ads.path
+    projectName = configuration.targets.ads.name
     tag = options[:tag]
     version = get_version(environment, filePath, projectName, tag)
-    filePath = configuration.project.adsFilePath
-    projectName = configuration.project.adsName
+    filePath = configuration.targets.ads.path
+    projectName = configuration.targets.ads.name
 
     print "Deploying #{projectName} with version: #{version}\n"
 

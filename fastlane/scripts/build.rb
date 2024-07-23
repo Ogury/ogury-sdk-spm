@@ -1,23 +1,27 @@
-require 'sdk-ads-ios/fastlane/scripts/build'
-require 'sdk-core-ios/fastlane/scripts/build'
-require 'sdk-wrapper-ios/fastlane/scripts/build'
 
 private_lane :build_framework do |options|
   if !options[:configuration]
     raise "No configuration specified!".red
   end
-
   if !options[:sdk]
     raise "No SDK specified!".red
+  end
+  if !options[:workspace]
+    raise "No workspace specified!".red
+  end
+  if !options[:scheme]
+    raise "No scheme specified!".red
   end
 
   configuration = options[:configuration]
   sdk = options[:sdk]
+  workspace = options[:workspace]
+  scheme = options[:scheme]
 
   build_ios_app(
-    workspace: configuration.workspace.file_path,
+    workspace: workspace,
     configuration: "Debug",
-    scheme: configuration.schemes.default,
+    scheme: scheme,
     sdk: sdk,
     clean: true,
     skip_archive: true,
@@ -25,11 +29,11 @@ private_lane :build_framework do |options|
   )
 end
 
-private_lane :build_card_library do |options|
+
+private_lane :build_core_framework do |options|
   if !options[:configuration]
     raise "No configuration specified!".red
   end
-
   if !options[:sdk]
     raise "No SDK specified!".red
   end
@@ -37,15 +41,79 @@ private_lane :build_card_library do |options|
   configuration = options[:configuration]
   sdk = options[:sdk]
 
-  build_ios_app(
-    workspace: configuration.workspace.file_path,
-    configuration: "Debug",
-    scheme: configuration.schemes.adsLibrary,
+  puts "Compiling OguryCore".yellow
+
+  build_framework(
+    configuration: configuration,
     sdk: sdk,
-    clean: true,
-    skip_archive: true,
-    skip_package_ipa: true,
-  )
+    workspace: configuration.workspace.file_path,
+    scheme: configuration.targets.core.scheme
+    )
+end
+
+private_lane :build_ads_framework do |options|
+  if !options[:configuration]
+    raise "No configuration specified!".red
+  end
+  if !options[:sdk]
+    raise "No SDK specified!".red
+  end
+
+  configuration = options[:configuration]
+  sdk = options[:sdk]
+  release = options[:release] ? release : false
+  scheme = release ? configuration.targets.ads.scheme : configuration.targets.ads.releaseScheme
+
+  puts "Compiling OguryAds".blue
+
+  build_framework(
+    configuration: configuration,
+    sdk: sdk,
+    workspace: configuration.workspace.file_path,
+    scheme: scheme
+    )
+end
+
+private_lane :build_card_library do |options|
+  if !options[:configuration]
+    raise "No configuration specified!".red
+  end
+  if !options[:sdk]
+    raise "No SDK specified!".red
+  end
+
+  configuration = options[:configuration]
+  sdk = options[:sdk]
+  
+  puts "Compiling AdsCardLibrary".yellow
+
+  build_framework(
+    configuration: configuration,
+    sdk: sdk,
+    workspace: configuration.workspace.file_path,
+    scheme: configuration.targets.adsLibrary.scheme
+    )
+end
+
+private_lane :build_wrapper do |options|
+  if !options[:configuration]
+    raise "No configuration specified!".red
+  end
+  if !options[:sdk]
+    raise "No SDK specified!".red
+  end
+
+  configuration = options[:configuration]
+  sdk = options[:sdk]
+  
+  puts "Compiling OgurySdk".green
+
+  build_framework(
+    configuration: configuration,
+    sdk: sdk,
+    workspace: configuration.workspace.file_path,
+    scheme: configuration.targets.wrapper.scheme
+    )
 end
 
 ### build test App
@@ -55,6 +123,8 @@ private_lane :build_test_app do |options|
   end
 
   configuration = options[:configuration]
+  
+  puts "Building TestApp".green
 
   build_ios_app(
     workspace: configuration.workspace.file_path,
