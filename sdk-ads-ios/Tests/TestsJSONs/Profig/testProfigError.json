@@ -1,0 +1,6 @@
+{
+    "error" : {
+        "type": "VALIDATION",
+        "message": "missing body"
+    }
+}

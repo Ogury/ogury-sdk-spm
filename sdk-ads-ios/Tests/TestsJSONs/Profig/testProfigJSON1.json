@@ -1,0 +1,47 @@
+{ "response" :
+    {
+        "global": {
+            "request_timeout": 3,
+            "children_request_permissions_filter": 0
+        },
+        "config_pull": {
+            "limit_per_day": 10
+        },
+        "ad_serving": {
+            "enabled": true,
+            "request_permissions": 16382,
+            "ad_expiration_time": 14400,
+            "webview": {
+                "back_button_enabled": false,
+                "close_ad_when_leaving_app": true,
+                "webview_load_timeout": 80
+            },
+            "thumbnail": {
+                "view": {
+                    "blacklist": [
+                        "com.unity3d.services.ads.adunit"
+                    ]
+                }
+            }
+        },
+        "monitoring": {
+            "request_permissions": 32767,
+            "tracks": {
+                "enabled": true
+            },
+            "precaching_logs": {
+                "enabled": true
+            },
+            "ad_life_cycle": {
+                "enabled": true,
+                "blacklist": [
+                    "LI-002",
+                    "LI-003"
+                ]
+            }
+        },
+        "omid": {
+            "enabled": true
+        }
+    }
+}

@@ -1,0 +1,155 @@
+import("./configuration.rb")
+import("./scripts/utility_functions.rb")
+import("./scripts/prepare_deploy.rb")
+import("./scripts/deploy.rb")
+import("../sdk-ads-ios/fastlane/scripts/build.rb")
+import("../sdk-core-ios/fastlane/scripts/build.rb")
+import("../sdk-wrapper-ios/fastlane/scripts/build.rb")
+
+default_platform(:ios)
+
+platform :ios do
+  configuration = Configuration.new()
+
+  ##### PUBLIC LANES #####
+
+  lane :build do |options|
+    if !options[:environment]
+      raise "No environment specified!".red
+    end
+
+    environment = options[:environment]
+
+    # Install Cocoapods dependencies
+    update_internal_cocoapods environment: environment
+    generate_podfile environment: environment
+
+    cocoapods(
+      podfile: "./Podfile",
+      repo_update: true
+    )
+
+    configuration.sdks.defaults.each do |sdk|
+      build_core_framework(
+        configuration: configuration,
+        sdk: sdk,
+      )
+
+      build_ads_framework(
+        configuration: configuration,
+        sdk: sdk,
+      )
+
+      build_card_library(
+        configuration: configuration,
+        sdk: sdk,
+      )
+
+      build_wrapper_framework(
+        configuration: configuration,
+        sdk: sdk,
+      )
+    end
+  end
+
+
+  desc "Proceed to deploy a new version of a framewok passed as parameter for the specified environment"
+  lane :deploy_ads_framework do |options|
+    if !options[:environment]
+      raise "No environment specified!".red
+    end
+  
+    if !options[:tag]
+      raise "No tag specified!".red
+    end
+
+    environment = options[:environment]
+    filePath = configuration.project.adsFilePath
+    projectName = configuration.project.adsName
+    tag = options[:tag]
+    version = get_version(environment, filePath, projectName, tag)
+    filePath = configuration.project.adsFilePath
+    projectName = configuration.project.adsName
+
+    print "Deploying #{projectName} with version: #{version}\n"
+
+    if !configuration.allowed_environments.include? environment
+      raise "Wrong environment specified!".red
+    end
+
+    case environment
+
+    when "devc", "staging", "prod"
+      prepare_ads_for_deployment configuration: configuration, environment: environment, version: version, tag: tag
+      
+      if !options[:dry_run]
+        deploy_on_artifactory configuration: configuration, environment: environment, version: version
+        deploy_card_lib_on_artifactory configuration: configuration, environment: environment, version: version
+      end
+
+    when "beta", "release"
+      prepare_ads_for_deployment configuration: configuration, environment: environment, version: version, tag: tag
+
+      if !options[:dry_run]
+        deploy_on_amazon configuration: configuration, environment: environment, version: version
+      end
+    end
+  end
+
+
+  desc "Install cocoapods internal repository for environment and update it."
+  lane :update_internal_cocoapods do |options|
+    if !options[:environment]
+      raise "No environment specified!".red
+    end
+
+    environment = options[:environment]
+
+    artifactory_repository_url = get_artifactory_repository_url(environment, configuration.artifactory.url)
+    if !artifactory_repository_url
+      next
+    end
+
+    if artifactory_repository_url.empty?
+      next
+    end
+
+    artifactory_repository_name = get_artifactory_repository_name(environment)
+
+    Dir.chdir("..") do
+      sh("pod repo-art add #{artifactory_repository_name} #{artifactory_repository_url} || true")
+      sh("pod repo-art update #{artifactory_repository_name}")
+    end
+  end
+
+  desc "Generates a new Podilfe based on the environment and the configuration file"
+  lane :generate_podfile do |options|
+    if !options[:environment]
+      raise "No environment specified!".red
+    end
+
+    if !configuration.allowed_environments.include? options[:environment]
+      raise "Wrong environment specified!".red
+    end
+
+    environment = options[:environment]
+    
+    artifactory_repository_name = get_artifactory_repository_name(environment)
+    ogury_core_version = get_module_version(environment, configuration.frameworks.ogury_core.internal_version, configuration.frameworks.ogury_core.beta_version, configuration.frameworks.ogury_core.release_version)
+    ogury_ads_version = get_module_version(environment, configuration.frameworks.ogury_ads.internal_version, configuration.frameworks.ogury_ads.beta_version, configuration.frameworks.ogury_ads.release_version)
+    ogury_choice_manager_version = get_module_version(environment, configuration.frameworks.ogury_choice_manager.internal_version, configuration.frameworks.ogury_choice_manager.beta_version, configuration.frameworks.ogury_choice_manager.release_version)
+
+    erb(
+      template: "./fastlane/templates/Podfile.erb",
+      destination: "./Podfile",
+      placeholders: {
+        :environment => environment,
+        :artifactory_repository_name => artifactory_repository_name,
+        :framework_suffix => get_framework_suffix(environment),
+        :ogury_core_version => ogury_core_version,
+        :ogury_ads_version => ogury_ads_version,
+        :ogury_choice_manager_version => ogury_choice_manager_version
+      }
+    )
+  end
+end

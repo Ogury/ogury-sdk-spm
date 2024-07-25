@@ -1,0 +1,77 @@
+{
+    "interstitial" : {
+        "adUnitId" : "c2a077ff-575b-4b67-bfe5-4578e6949fe6",
+        "campaignId" : "35993",
+        "creativeId" : ""
+    },
+    "optIn" : {
+        "adUnitId" : "0060aa49-82cf-443a-92eb-454073d4e259",
+        "campaignId" : "35993",
+        "creativeId" : ""
+    },
+    "banner" : {
+        "adUnitId" : "84dd4494-a4b9-4255-8b68-9fa10108594e",
+        "campaignId" : "35997",
+        "creativeId" : ""
+    },
+    "mpu" : {
+        "adUnitId" : "200da583-4a97-4fc2-b44b-83fc82bd32e0",
+        "campaignId" : "35996",
+        "creativeId" : ""
+    },
+    "thumbnail" : {
+        "adUnitId" : "266c0936-8ff7-4d25-abc4-98e94aaf3180",
+        "campaignId" : "35995",
+        "creativeId" : ""
+    },
+    "maxHeaderBidding" : {
+        "url" : "https://ms-bidder-bidmax.staging.cloud.ogury.io/api/header-bidding-request",
+        "interstitial" : {
+            "adUnitId" : "22c75486-fe6e-4c9f-9fe8-df30292298ab",
+            "campaignId" : "",
+            "creativeId" : ""
+        },
+        "optIn" : {
+            "adUnitId" : "3a4c4495-1ad9-4ee5-869c-4a8e6fc6e091",
+            "campaignId" : "",
+            "creativeId" : ""
+        },
+        "banner" : {
+            "adUnitId" : "06a27303-f959-4159-9f5a-e526298c3a61",
+            "campaignId" : "",
+            "creativeId" : ""
+        },
+        "mpu" : {
+            "adUnitId" : "d1dadced-d4fb-4b33-b6e3-0dbcfd32e959",
+            "campaignId" : "",
+            "creativeId" : ""
+        }
+    },
+    "DTFairBidHeaderBidding" : {
+        "url" : "https://ms-bidder-fairbid.staging.cloud.ogury.io/api/header-bidding-request",
+        "interstitial" : {
+            "adUnitId" : "530cb240-3370-4623-aa1c-9e68dbbae870",
+            "campaignId" : "",
+            "creativeId" : "",
+            "dspCreativeId" : ""
+        },
+        "optIn" : {
+            "adUnitId" : "723cfeb0-a224-42a4-9412-8eca3bd4312b",
+            "campaignId" : "",
+            "creativeId" : "",
+            "dspCreativeId" : ""
+        },
+        "banner" : {
+            "adUnitId" : "6939c84a-5c7c-45a1-8fdd-56e3c94ccd9d",
+            "campaignId" : "",
+            "creativeId" : "",
+            "dspCreativeId" : ""
+        },
+        "mpu" : {
+            "adUnitId" : "8d31e702-19f2-45a2-9bc5-4f67f62155ad",
+            "campaignId" : "",
+            "creativeId" : "",
+            "dspCreativeId" : ""
+        }
+    }
+}

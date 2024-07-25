@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "1530"
+   version = "1.7">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES"
+      buildArchitectures = "Automatic">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "set -x&#10;CLANG_FORMAT=&quot;/opt/homebrew/bin/clang-format&quot;&#10;&#10;if [ ! -x &quot;$CLANG_FORMAT&quot; ]; then&#10;  echo &quot;clang-format not found&quot;&#10;  exit 1&#10;fi&#10;&#10;echo &quot;Using clang-format at: $CLANG_FORMAT for ${SRCROOT}&quot;&#10;&#10;find &quot;${SRCROOT}&quot; \( -name &quot;*.xcframework&quot; -o -name &quot;*.framework&quot; \) -prune -o \( -name &quot;*.h&quot; -or -name &quot;*.m&quot; -or -name &quot;*.mm&quot; \) -print0 | xargs -0 $CLANG_FORMAT -i&#10;&#10;&#10;echo &quot;All source files have been formatted.&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "DEF1BF72213917AA0004BAD1"
+                     BuildableName = "OguryAds.framework"
+                     BlueprintName = "OguryAds"
+                     ReferencedContainer = "container:OguryAdsSDK.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DEF1BF72213917AA0004BAD1"
+               BuildableName = "OguryAds.framework"
+               BlueprintName = "OguryAds"
+               ReferencedContainer = "container:OguryAdsSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DEF1BF7B213917AA0004BAD1"
+               BuildableName = "OguryAdsTests.xctest"
+               BlueprintName = "OguryAdsTests"
+               ReferencedContainer = "container:OguryAdsSDK.xcodeproj">
+            </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "OGAConfigurationUtilsTests/test_ShouldReturnBuildIdentifier">
+               </Test>
+               <Test
+                  Identifier = "OGAMonitoringDispatcherJSONTests/testSendLoadErrorEventEnvelope">
+               </Test>
+               <Test
+                  Identifier = "OGAWebViewUserAgentServiceTests/testWhenServiceIsResetedBeforeReceivingUserAgentThenWebviewDelegateIsCalled">
+               </Test>
+            </SkippedTests>
+         </TestableReference>
+      </Testables>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "DEF1BF72213917AA0004BAD1"
+            BuildableName = "OguryAds.framework"
+            BlueprintName = "OguryAds"
+            ReferencedContainer = "container:OguryAdsSDK.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>

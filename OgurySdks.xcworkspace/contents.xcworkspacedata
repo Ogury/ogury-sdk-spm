@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:sdk-ads-ios/OguryAdsSDK.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:sdk-core-ios/OguryCore.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:sdk-ads-ios/AdsCardLibrary/AdsCardLibrary.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:sdk-ads-ios/AdsTestApp/AdsTestApp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:sdk-wrapper-ios/OguryWrapperTestApp/OguryWrapperTestApp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>
