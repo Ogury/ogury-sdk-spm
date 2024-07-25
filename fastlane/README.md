@@ -34,6 +34,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
+### ios test
+
+```sh
+[bundle exec] fastlane ios test
+```
+
+test framework for different SDKs
+
 ### ios deploy_ads_framework
 
 ```sh

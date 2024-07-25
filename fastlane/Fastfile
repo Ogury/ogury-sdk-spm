@@ -3,6 +3,7 @@ import("./scripts/utility_functions.rb")
 import("./scripts/prepare_deploy.rb")
 import("./scripts/deploy.rb")
 import("./scripts/build.rb")
+import("./scripts/test.rb")
 
 default_platform(:ios)
 
@@ -17,7 +18,6 @@ platform :ios do
     end
 
     environment = options[:environment]
-    release = options[:release] ? release : false
 
     # Install Cocoapods dependencies
     update_internal_cocoapods environment: environment
@@ -26,38 +26,88 @@ platform :ios do
     cocoapods(
       podfile: "./Podfile",
       repo_update: true
-    )
+      )
 
     configuration.sdks.defaults.each do |sdk|
-      build_core_framework(
+      # build_core_framework(
+      #   configuration: configuration,
+      #   sdk: sdk,
+      #   )
+
+      # build_ads_framework(
+      #   configuration: configuration,
+      #   sdk: sdk,
+      #   )
+
+      build_card_library(
         configuration: configuration,
         sdk: sdk,
-      )
+        )
 
-      build_ads_framework(
-        configuration: configuration,
-        sdk: sdk,
-      )
+      # build_wrapper(
+      #   configuration: configuration,
+      #   sdk: sdk,
+      #   )
 
-      #build_card_library(
-      # configuration: configuration,
-      #  sdk: sdk,
-      #)
-
-      build_wrapper(
-        configuration: configuration,
-        sdk: sdk,
-      )
+      # build_test_app(
+      #   configuration: configuration,
+      #   sdk: sdk,
+      #   )
     end
   end
 
+
+  desc "test framework for different SDKs"
+  lane :test do |options|
+    if !options[:environment]
+      raise "No environment specified!".red
+    end
+
+    environment = options[:environment]
+
+    # Install Cocoapods dependencies
+    update_internal_cocoapods environment: environment
+    generate_podfile environment: environment
+
+    cocoapods(
+      podfile: "./Podfile",
+      )
+
+    configuration.sdks.tests.each do |sdk|
+      test_core_framework(
+        configuration: configuration, 
+        sdk: sdk
+      )
+
+      test_ads_framework(
+        configuration: configuration, 
+        sdk: sdk
+      )
+
+      test_wrapper(
+        configuration: configuration, 
+        sdk: sdk
+      )
+
+      #test_card_framework(
+      #   configuration: configuration, 
+      #   sdk: sdk
+      # )
+    end
+  end
+
+  # desc "Analyse the test result for the framework"
+  # lane :analyse do
+  #   convert_code_coverage configuration: configuration
+  #   analyse_source_code login: ENV["SONAR_CLOUD_TOKEN"], pull_request_branch: ENV["BRANCH_NAME"], pull_request_base: ENV["CHANGE_TARGET"], pull_request_key: ENV["CHANGE_ID"]
+  # end
 
   desc "Proceed to deploy a new version of a framewok passed as parameter for the specified environment"
   lane :deploy_ads_framework do |options|
     if !options[:environment]
       raise "No environment specified!".red
     end
-  
+
     if !options[:tag]
       raise "No tag specified!".red
     end
@@ -149,6 +199,6 @@ platform :ios do
         :ogury_ads_version => ogury_ads_version,
         :ogury_choice_manager_version => ogury_choice_manager_version
       }
-    )
+      )
   end
 end

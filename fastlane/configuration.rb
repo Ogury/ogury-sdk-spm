@@ -4,11 +4,11 @@ class Configuration
   def initialize
     @workspace = Workspace.new("OgurySdks", "OgurySdks.xcworkspace")
     ads = Target.new("OguryAds", "sdk-ads-ios/OguryAdsSDK.xcodeproj", "OguryAds")
-    adsLibrary = Target.new("AdsCardLibrary", "sdk-ads-ios/OguryAdsSDK.xcodeproj", "AdsCardLibrary")
+    adsLibrary = Target.new("AdsCardLibrary", "sdk-ads-ios/AdsCardLibrary/AdsCardLibrary.xcodeproj", "AdsCardLibrary")
     core = Target.new("OguryCore", "sdk-core-ios/OguryCore.xcodeproj", "OguryCore")
     wrapper = Target.new("OguryWrapper", "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj", "OguryWrapper", "OgurySdk")
-    testApp = Target.new("OguryCore", "sdk-core-ios/OguryCore.xcodeproj", "OguryCore")
-    @targets = Targets.new(ads, adsLibrary, core, wrapper)
+    testApp = Target.new("AdsTestApp", "sdk-ads-ios/AdsTestApp/AdsTestApp.xcodeproj", "AdsTestApp")
+    @targets = Targets.new(ads, adsLibrary, core, wrapper, testApp)
     @sdks = Sdks.new(["iphoneos", "iphonesimulator"], ["iphonesimulator"])
     @test_devices = ["iPhone 15"]
     @allowed_environments = ["devc", "staging", "prod", "beta", "release"]
@@ -36,6 +36,16 @@ Target = Struct.new(:name, :path, :scheme, :releaseScheme, :publicName) do
     publicName ||= name
     releaseScheme ||= "#{scheme}-Release"
     super(name, path, scheme, releaseScheme, publicName)
+  end
+end
+
+module TestAppVariant
+  DEVC = "Devc"
+  STAGING = "Staging"
+  PROD = "Prod"
+
+  def self.all
+    constants.map { |const| const_get(const) }
   end
 end
 

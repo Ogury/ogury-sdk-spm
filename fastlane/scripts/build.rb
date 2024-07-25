@@ -29,7 +29,6 @@ private_lane :build_framework do |options|
   )
 end
 
-
 private_lane :build_core_framework do |options|
   if !options[:configuration]
     raise "No configuration specified!".red
@@ -84,6 +83,8 @@ private_lane :build_card_library do |options|
 
   configuration = options[:configuration]
   sdk = options[:sdk]
+  release = options[:release] ? release : false
+  scheme = release ? configuration.targets.adsLibrary.scheme : configuration.targets.adsLibrary.releaseScheme
   
   puts "Compiling AdsCardLibrary".yellow
 
@@ -91,7 +92,7 @@ private_lane :build_card_library do |options|
     configuration: configuration,
     sdk: sdk,
     workspace: configuration.workspace.file_path,
-    scheme: configuration.targets.adsLibrary.scheme
+    scheme: scheme
     )
 end
 
@@ -126,32 +127,40 @@ private_lane :build_test_app do |options|
   
   puts "Building TestApp".green
 
-  build_ios_app(
-    workspace: configuration.workspace.file_path,
-    configuration: "Debug",
-    scheme: configuration.schemes.test_app,
-    sdk: "iphoneos",
-    clean: true,
-    output_directory: configuration.directories.test_app,
-    output_name: "ios_ads_test.ipa",
-    export_method: "development",
-    export_options: {
-      signingStyle: "manual",
-      provisioningProfiles: {
-        "co.ogury.Test-Application" => "Test Application Dev",
-      },
-    },
-  )
-  
-  copy_artifacts(
-    target_path: "artifacts",
-    artifacts: ["ios_ads_test.ipa"]
-  )
+  TestAppVariant.all.each do |variant|
+    
+    puts "Building #{configuration.targets.testApp.scheme}-#{variant}".blue
+    release = options[:release] ? release : false
+    scheme = "#{configuration.targets.testApp.scheme}-#{variant}"
+    scheme =  release ? "#{scheme}-Release" : scheme
 
-  firebase_app_distribution(
-    app: "1:433541045380:ios:715a877bd12614bd0c36d1",
-    testers: configuration.firebase.test_group,
-    firebase_cli_token: "1//03VqloLsbSYJoCgYIARAAGAMSNwF-L9IrdbY5QQQDTEUBtWKAbeT0dxPkwNb0okDx1AIbr8Xli4R2-Ez6ZQMfVycZtf_Hv488wZg",
-    release_notes: "",
-  )
+    build_ios_app(
+      workspace: configuration.workspace.file_path,
+      configuration: "Debug",
+      scheme: scheme,
+      sdk: "iphoneos",
+      clean: true,
+      output_directory: configuration.directories.test_app,
+      output_name: "#{scheme}.ipa",
+      export_method: "development",
+      export_options: {
+        signingStyle: "manual",
+        provisioningProfiles: {
+          "co.ogury.Test-Application" => "Test Application Dev",
+        },
+      },
+      )
+
+    copy_artifacts(
+      target_path: "artifacts",
+      artifacts: ["#{scheme}.ipa"]
+      )
+
+    firebase_app_distribution(
+      app: "1:433541045380:ios:715a877bd12614bd0c36d1",
+      testers: configuration.firebase.test_group,
+      firebase_cli_token: "1//03VqloLsbSYJoCgYIARAAGAMSNwF-L9IrdbY5QQQDTEUBtWKAbeT0dxPkwNb0okDx1AIbr8Xli4R2-Ez6ZQMfVycZtf_Hv488wZg",
+      release_notes: "",
+      )
+  end
 end
