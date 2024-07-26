@@ -5,7 +5,7 @@
 #import <OguryCore/OguryLog.h>
 #import <OguryCore/OguryOSLogger.h>
 #import <XCTest/XCTest.h>
-#import "OCMock.h"
+#import <OCMock/OCMock.h>
 #import "OGWLog.h"
 #import "OguryLog+Wrapper.h"
 

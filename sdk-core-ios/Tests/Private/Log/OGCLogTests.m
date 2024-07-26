@@ -3,7 +3,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "OCMock.h"
+#import <OCMock/OCMock.h>
 #import "OGCLog.h"
 #import "OguryOSLogger.h"
 #import "OguryLogLevel.h"

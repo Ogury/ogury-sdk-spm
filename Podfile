@@ -21,6 +21,11 @@ target "OguryAds-Release" do
   pod "OguryCore-Prod", "1.4.1-RC-1.0.7"
 end
 
+target "OguryCoreTests" do
+  project "sdk-core-ios/OguryCore"
+  pod "OCMock", :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
+end
+
 target "OguryAdsTests" do
   project "sdk-ads-ios/OguryAdsSDK"
 

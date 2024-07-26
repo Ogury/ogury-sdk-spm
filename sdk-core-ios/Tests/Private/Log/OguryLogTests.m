@@ -7,7 +7,7 @@
 #import "OguryOSLogger.h"
 #import "OguryLogFormatter.h"
 #import "OguryLogMessage.h"
-#import "OCMock.h"
+#import <OCMock/OCMock.h>
 #import "OguryLogLevel.h"
 
 @interface OguryLog ()

@@ -1,9 +1,9 @@
 import("./configuration.rb")
+import("./scripts/test.rb")
 import("./scripts/utility_functions.rb")
 import("./scripts/prepare_deploy.rb")
 import("./scripts/deploy.rb")
 import("./scripts/build.rb")
-import("./scripts/test.rb")
 
 default_platform(:ios)
 
@@ -29,30 +29,30 @@ platform :ios do
       )
 
     configuration.sdks.defaults.each do |sdk|
-      # build_core_framework(
-      #   configuration: configuration,
-      #   sdk: sdk,
-      #   )
+      build_core_framework(
+        configuration: configuration,
+        sdk: sdk,
+        )
 
-      # build_ads_framework(
-      #   configuration: configuration,
-      #   sdk: sdk,
-      #   )
+      build_ads_framework(
+        configuration: configuration,
+        sdk: sdk,
+        )
 
       build_card_library(
         configuration: configuration,
         sdk: sdk,
         )
 
-      # build_wrapper(
-      #   configuration: configuration,
-      #   sdk: sdk,
-      #   )
+      build_wrapper(
+        configuration: configuration,
+        sdk: sdk,
+        )
 
-      # build_test_app(
-      #   configuration: configuration,
-      #   sdk: sdk,
-      #   )
+      build_test_app(
+        configuration: configuration,
+        sdk: sdk,
+        )
     end
   end
 
@@ -89,10 +89,10 @@ platform :ios do
         sdk: sdk
       )
 
-      #test_card_framework(
-      #   configuration: configuration, 
-      #   sdk: sdk
-      # )
+      test_card_framework(
+        configuration: configuration, 
+        sdk: sdk
+      )
     end
   end
 

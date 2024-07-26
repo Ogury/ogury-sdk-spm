@@ -12,7 +12,7 @@ public protocol AdManager: Storable, Equatable, Identifiable where ID == UUID {
    /// The underlying ad implementation associated with this manager
    associatedtype Ad
    /// the ad associate with this ad format. Mandatory
-     ad: Ad! { get }
+   var ad: Ad! { get }
    /// the type of ad to load
    var adType: AdType<Self> { get }
    /// The underlying ad implementation associated with this manager

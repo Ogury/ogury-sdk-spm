@@ -3,7 +3,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "OCMock.h"
+#import <OCMock/OCMock.h>
 #import "OGWModules.h"
 #import "OGWMonitoringInfoManager.h"
 #import "OGWSetLogLevelNotificationManager.h"
