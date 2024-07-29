@@ -13,17 +13,6 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
-### prepare_ads_for_deployment
-
-```sh
-[bundle exec] fastlane prepare_ads_for_deployment
-```
-
-
-
-----
-
-
 ## iOS
 
 ### ios build

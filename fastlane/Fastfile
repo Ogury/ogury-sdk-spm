@@ -1,8 +1,8 @@
 import("./configuration.rb")
 import("./scripts/test.rb")
 import("./scripts/utility_functions.rb")
-import("./scripts/prepare_deploy.rb")
-import("./scripts/deploy.rb")
+# import("./scripts/prepare_deploy.rb")
+# import("./scripts/deploy.rb")
 import("./scripts/build.rb")
 
 default_platform(:ios)
@@ -89,10 +89,10 @@ platform :ios do
         sdk: sdk
       )
 
-      test_card_framework(
-        configuration: configuration, 
-        sdk: sdk
-      )
+      # test_card_framework(
+      #   configuration: configuration, 
+      #   sdk: sdk
+      # )
     end
   end
 

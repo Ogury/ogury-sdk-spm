@@ -5,19 +5,25 @@ private_lane :build_frameworks do |options|
   if !options[:configuration]
     raise "No configuration specified!".red
   end
-
+  if !options[:workspace]
+    raise "No workspace specified!".red
+  end
+  if !options[:target]
+    raise "No target specified!".red
+  end
   if !options[:version]
     raise "No version specified!".red
   end
-
   if !options[:environment_url]
     raise "No environment_url specified!".red
   end
 
-  configuration = options[:configuration]
-  sdk = options[:sdk]
   version = options[:version]
   destination = ""
+  configuration = options[:configuration]
+  workspace = options[:workspace]
+  target = options[:target]
+  release = options[:release] ? options[:release] : false
 
   configuration.sdks.defaults.each do |sdk|
     case sdk
@@ -27,19 +33,369 @@ private_lane :build_frameworks do |options|
       destination = "generic/platform=iOS"
     end
 
-    puts "Compiling OguryAds".green
+    puts "Compiling #{scheme}".green
     xcodebuild(
       archive: true,
       workspace: configuration.workspace.file_path,
-      scheme: configuration.schemes.ads,
+      scheme: target.scheme,
       sdk: sdk,
       clean: true,
       destination: destination,
       xcargs: "CLANG_ENABLE_CODE_COVERAGE=NO SKIP_INSTALL=NO MARKETING_VERSION=#{version} ENV_URL=#{options[:environment_url]}",
-      archive_path: "#{configuration.directories.build}/archives/#{configuration.project.adsName}-#{sdk}",
+      archive_path: "#{configuration.directories.build}/archives/#{target.name}-#{sdk}",
     )
   end
 end
+
+lane :prepare_for_deployment do |options|
+  if !options[:configuration]
+    raise "No configuration specified!".red
+  end
+  if !options[:target]
+    raise "No target specified!".red
+  end
+  if !options[:environment]
+    raise "No environment specified!".red
+  end
+  if !options[:version]
+    raise "No version specified!".red
+  end
+  if !options[:tag]
+    raise "No tag specified!".red
+  end
+
+  configuration = options[:configuration]
+  environment = options[:environment]
+  version = options[:version]
+  tag = options[:tag]
+  framework_suffix = get_framework_suffix(environment)
+  target = options[:target]
+  copyOmid = options[:copyOmid] ? true : false
+  release = options[:release] ? options[:release] : false
+
+  # Source URL for Cocoapods
+  source_url = ""
+  case environment
+  when "devc", "staging", "prod"
+    # Artifactory
+    source_url = "#{configuration.artifactory.url}/sdk-cocoapods-#{environment}/#{target.name}#{framework_suffix}"
+  when "beta", "release"
+    # S3 release / beta buckets
+    source_url = "#{configuration.amazon.url}/#{environment}/#{configuration.amazon.project_key}/#{version}"
+  end
+
+  # Environment url for SDK
+  environment_url = ""
+  case environment
+  when "devc"
+    environment_url = "OGADevCURL"
+  when "staging"
+    environment_url = "OGAStagingURL"
+  when "prod", "beta", "release"
+    environment_url = "OGAProductionURL"
+  end
+
+  build_frameworks(
+    configuration: configuration, 
+    version: version, 
+    environment_url: environment_url, 
+    target:target
+    )
+  combine_framework(configuration: configuration)
+
+  if copyOmid
+    copy_omsdk(configuration: configuration)
+  end
+
+  generate_podspec(
+    configuration: configuration,
+    version: version, 
+    environment: environment, 
+    source_url: source_url
+    )
+  zip_famework(
+    configuration: configuration,
+    version: version, 
+    environment: environment
+    )
+end
+
+private_lane :combine_framework do |options|
+  if !options[:configuration]
+    raise "No configuration specified!".red
+  end
+  if !options[:target]
+    raise "No target specified!".red
+  end
+
+  configuration = options[:configuration]
+  target = options[:target]
+
+  puts "Creating #{target.name} XCFramework"
+  inputs = ""
+  configuration.sdks.defaults.each do |sdk|
+    inputs += "-framework '#{configuration.directories.build}/archives/#{target.name}-#{sdk}.xcarchive/Products/Library/Frameworks/#{target.name}.framework' "
+  end
+
+  output_file = "#{configuration.directories.output}/#{target.name}.xcframework"
+  Dir.chdir("..") do
+    FileUtils.remove_dir(output_file) if File.directory?(output_file)
+
+    sh("set -o pipefail && xcodebuild -create-xcframework #{inputs} -output '#{output_file}' | xcpretty")
+  end
+end
+
+private_lane :copy_omsdk do |options|
+  if !options[:configuration]
+    raise "No configuration specified!".red
+  end
+
+  configuration = options[:configuration]
+
+  Dir.chdir("..") do
+    sh("cp -R sdk-ads-ios/#{configuration.frameworks.omid} #{configuration.directories.output}")
+  end
+end
+
+private_lane :zip_famework do |options|
+  if !options[:configuration]
+    raise "No configuration specified!".red
+  end
+
+  if !options[:version]
+    raise "No tag specified!".red
+  end
+
+  if !options[:environment]
+    raise "No environment specified!".red
+  end
+  if !options[:target]
+    raise "No target specified!".red
+  end
+
+  configuration = options[:configuration]
+  version = options[:version]
+  environment = options[:environment]
+
+  puts "Zipping OguryAds"
+  framework_suffix = get_framework_suffix(environment)
+  archive_filename = get_archive_filename(target.name, framework_suffix, version)
+  podspec_filename = get_podspec_filename(target.name, framework_suffix)
+  omsdk_filename = File.basename(configuration.frameworks.omid)
+
+  Dir.chdir("..") do
+    sh("tar -czvf #{configuration.directories.output}/#{archive_filename} -C #{configuration.directories.output} #{target.name}.xcframework #{podspec_filename} #{omsdk_filename}")
+  end
+end
+
+private_lane :generate_podspec do |options|
+  if !options[:configuration]
+    raise "No configuration specified!".red
+  end
+
+  if !options[:environment]
+    raise "No environment specified!".red
+  end
+
+  if !options[:version]
+    raise "No version specified!".red
+  end
+
+  if !options[:source_url]
+    raise "No source url specified!".red
+  end
+  if !options[:target]
+    raise "No target specified!".red
+  end
+
+  configuration = options[:configuration]
+  environment = options[:environment]
+  version = options[:version]
+  source_url = options[:source_url]
+  target = options[:target]
+  
+  framework_suffix = get_framework_suffix(environment)
+  archive_filename = get_archive_filename(target.name, framework_suffix, version)
+  output_file = get_podspec_filename(target.name, framework_suffix)
+
+  content = JSON.parse(IO.read("./templates/#{target.name}.podspec.json"))
+
+  ogury_core_version = get_module_version(environment, configuration.frameworks.ogury_core.internal_version, configuration.frameworks.ogury_core.beta_version, configuration.frameworks.ogury_core.release_version)
+  ogury_core_version = get_module_version(environment, configuration.frameworks.ogury_core.internal_version, configuration.frameworks.ogury_core.beta_version, configuration.frameworks.ogury_core.release_version)
+  ogury_ads_version = get_module_version(environment, configuration.frameworks.ogury_ads.internal_version, configuration.frameworks.ogury_ads.beta_version, configuration.frameworks.ogury_ads.release_version)
+  ogury_choice_manager_version = get_module_version(environment, configuration.frameworks.ogury_choice_manager.internal_version, configuration.frameworks.ogury_choice_manager.beta_version, configuration.frameworks.ogury_choice_manager.release_version)
+
+  erb(
+    template: "./fastlane/templates/OgurySdk.podspec.json.erb",
+    destination: "#{configuration.directories.output}/#{output_file}",
+    placeholders: {
+      :version => version,
+      :framework_suffix => framework_suffix,
+      :artifactory_repository_name => artifactory_repository_name,
+      :ogury_core_version => ogury_core_version,
+      :ogury_ads_version => ogury_ads_version,
+      :ogury_choice_manager_version => ogury_choice_manager_version,
+      :source_url => source_url + "/#{archive_filename}",
+      :subspecs => [{ "name": "OMID", "vendored_frameworks": "#{File.basename(configuration.frameworks.omid)}" }],
+    },
+
+  # content["name"] = configuration.project.adsName + framework_suffix
+  # content["version"] = version
+  # content["vendored_frameworks"] = "#{configuration.project.adsName}.xcframework"
+  # content["dependencies"] = { "OguryCore#{framework_suffix}": ["#{ogury_core_version}"]}
+  # content["source"]["http"] = source_url + "/#{archive_filename}"
+  # content["subspecs"] = [{ "name": "OMID", "vendored_frameworks": "#{File.basename(configuration.frameworks.omid)}" }]
+
+end
+
+
+
+
+
+
+
+
+private_lane :build_core_framework do |options|
+  if !options[:configuration]
+    raise "No configuration specified!".red
+  end
+  if !options[:sdk]
+    raise "No SDK specified!".red
+  end
+
+  configuration = options[:configuration]
+  sdk = options[:sdk]
+
+  puts "Compiling OguryCore".yellow
+
+  build_framework(
+    configuration: configuration,
+    sdk: sdk,
+    workspace: configuration.workspace.file_path,
+    target: configuration.targets.core
+    )
+end
+
+private_lane :build_ads_framework do |options|
+  if !options[:configuration]
+    raise "No configuration specified!".red
+  end
+  if !options[:sdk]
+    raise "No SDK specified!".red
+  end
+
+  configuration = options[:configuration]
+  sdk = options[:sdk]
+  release = options[:release] ? release : false
+
+  puts "Compiling OguryAds".blue
+
+  build_framework(
+    configuration: configuration,
+    sdk: sdk,
+    workspace: configuration.workspace.file_path,
+    target: configuration.targets.ads
+    )
+end
+
+private_lane :build_card_library do |options|
+  if !options[:configuration]
+    raise "No configuration specified!".red
+  end
+  if !options[:sdk]
+    raise "No SDK specified!".red
+  end
+
+  configuration = options[:configuration]
+  sdk = options[:sdk]
+  release = options[:release] ? release : false
+  
+  puts "Compiling AdsCardLibrary".yellow
+
+  build_framework(
+    configuration: configuration,
+    sdk: sdk,
+    workspace: configuration.workspace.file_path,
+    target: configuration.targets.adsLibrary
+    )
+end
+
+private_lane :build_wrapper do |options|
+  if !options[:configuration]
+    raise "No configuration specified!".red
+  end
+  if !options[:sdk]
+    raise "No SDK specified!".red
+  end
+
+  configuration = options[:configuration]
+  sdk = options[:sdk]
+  
+  puts "Compiling OgurySdk".green
+
+  build_framework(
+    configuration: configuration,
+    sdk: sdk,
+    workspace: configuration.workspace.file_path,
+    target: configuration.targets.wrapper
+    )
+end
+
+### build test App
+private_lane :build_test_app do |options|
+  if !options[:configuration]
+    raise "No configuration specified!".red
+  end
+
+  configuration = options[:configuration]
+  
+  puts "Building TestApp".green
+
+  TestAppVariant.all.each do |variant|
+    
+    puts "Building #{configuration.targets.testApp.scheme}-#{variant}".blue
+    release = options[:release] ? release : false
+    scheme = "#{configuration.targets.testApp.scheme}-#{variant}"
+    scheme =  release ? "#{scheme}-Release" : scheme
+
+    build_ios_app(
+      workspace: configuration.workspace.file_path,
+      configuration: "Debug",
+      scheme: scheme,
+      sdk: "iphoneos",
+      clean: true,
+      output_directory: configuration.directories.test_app,
+      output_name: "#{scheme}.ipa",
+      export_method: "development",
+      export_options: {
+        signingStyle: "manual",
+        provisioningProfiles: {
+          "co.ogury.Test-Application" => "Test Application Dev",
+        },
+      },
+      )
+
+    copy_artifacts(
+      target_path: "artifacts",
+      artifacts: ["#{scheme}.ipa"]
+      )
+
+    firebase_app_distribution(
+      app: "1:433541045380:ios:715a877bd12614bd0c36d1",
+      testers: configuration.firebase.test_group,
+      firebase_cli_token: "1//03VqloLsbSYJoCgYIARAAGAMSNwF-L9IrdbY5QQQDTEUBtWKAbeT0dxPkwNb0okDx1AIbr8Xli4R2-Ez6ZQMfVycZtf_Hv488wZg",
+      release_notes: "",
+      )
+  end
+end
+
+
+
+
+
+
+
+
 
 desc "Archive the card framework for the specified scheme and destination"
 private_lane :build_card_frameworks do |options|
@@ -82,179 +438,9 @@ private_lane :build_card_frameworks do |options|
   end
 end
 
-private_lane :combine_framework do |options|
-  if !options[:configuration]
-    raise "No configuration specified!".red
-  end
-
-  configuration = options[:configuration]
-
-  puts "Creating OguryAds XCFramework"
-  inputs = ""
-  configuration.sdks.defaults.each do |sdk|
-    inputs += "-framework '#{configuration.directories.build}/archives/#{configuration.project.adsName}-#{sdk}.xcarchive/Products/Library/Frameworks/#{configuration.project.adsName}.framework' "
-  end
-
-  output_file = "#{configuration.directories.output}/#{configuration.project.adsName}.xcframework"
-  Dir.chdir("..") do
-    FileUtils.remove_dir(output_file) if File.directory?(output_file)
-
-    sh("set -o pipefail && xcodebuild -create-xcframework #{inputs} -output '#{output_file}' | xcpretty")
-  end
-
-  puts "Creating AdsCardLibrary XCFramework"
-  inputs = ""
-  configuration.sdks.defaults.each do |sdk|
-    inputs += "-framework '#{configuration.directories.build}/archives/#{configuration.project.adsLibraryName}-#{sdk}.xcarchive/Products/Library/Frameworks/#{configuration.project.adsLibraryName}.framework' "
-  end
 
 
-  output_file = "#{configuration.directories.output}/#{configuration.project.adsLibraryName}.xcframework"
-  Dir.chdir("..") do
-    FileUtils.remove_dir(output_file) if File.directory?(output_file)
 
-    sh("set -o pipefail && xcodebuild -create-xcframework #{inputs} -output '#{output_file}' | xcpretty")
-  end
-end
 
-private_lane :copy_omsdk do |options|
-  if !options[:configuration]
-    raise "No configuration specified!".red
-  end
 
-  configuration = options[:configuration]
 
-  Dir.chdir("..") do
-    sh("cp -R sdk-ads-ios/#{configuration.frameworks.omid} #{configuration.directories.output}")
-  end
-end
-
-private_lane :zip_famework do |options|
-  if !options[:configuration]
-    raise "No configuration specified!".red
-  end
-
-  if !options[:version]
-    raise "No tag specified!".red
-  end
-
-  if !options[:environment]
-    raise "No environment specified!".red
-  end
-
-  configuration = options[:configuration]
-  version = options[:version]
-  environment = options[:environment]
-
-  puts "Zipping OguryAds"
-  framework_suffix = get_framework_suffix(environment)
-  archive_filename = get_archive_filename(configuration.project.adsName, framework_suffix, version)
-  podspec_filename = get_podspec_filename(configuration.project.adsName, framework_suffix)
-  omsdk_filename = File.basename(configuration.frameworks.omid)
-
-  Dir.chdir("..") do
-    sh("tar -czvf #{configuration.directories.output}/#{archive_filename} -C #{configuration.directories.output} #{configuration.project.adsName}.xcframework #{configuration.project.adsLibraryName}.xcframework #{podspec_filename} #{omsdk_filename}")
-  end
-end
-
-private_lane :generate_podspec do |options|
-  if !options[:configuration]
-    raise "No configuration specified!".red
-  end
-
-  if !options[:environment]
-    raise "No environment specified!".red
-  end
-
-  if !options[:version]
-    raise "No version specified!".red
-  end
-
-  if !options[:source_url]
-    raise "No source url specified!".red
-  end
-
-  configuration = options[:configuration]
-  environment = options[:environment]
-  version = options[:version]
-  source_url = options[:source_url]
-  
-  framework_suffix = get_framework_suffix(environment)
-  archive_filename = get_archive_filename(configuration.project.adsName, framework_suffix, version)
-  output_file = get_podspec_filename(configuration.project.adsName, framework_suffix)
-
-  content = JSON.parse(IO.read("../sdk-ads-ios/fastlane/templates/OguryAds.podspec.json"))
-
-  ogury_core_version = get_module_version(environment, configuration.frameworks.ogury_core.internal_version, configuration.frameworks.ogury_core.beta_version, configuration.frameworks.ogury_core.release_version)
-
-  content["name"] = configuration.project.adsName + framework_suffix
-  content["version"] = version
-  content["vendored_frameworks"] = "#{configuration.project.adsName}.xcframework"
-  content["dependencies"] = { "OguryCore#{framework_suffix}": ["#{ogury_core_version}"]}
-  content["source"]["http"] = source_url + "/#{archive_filename}"
-  content["subspecs"] = [{ "name": "OMID", "vendored_frameworks": "#{File.basename(configuration.frameworks.omid)}" }]
-
-  # create the podspec
-  Dir.chdir("..") do
-    File.open("#{configuration.directories.output}/#{output_file}", "w") do |file|
-      file.write(JSON.pretty_generate(content))
-    end
-  end
-end
-
-lane :prepare_ads_for_deployment do |options|
-  if !options[:configuration]
-    raise "No configuration specified!".red
-  end
-
-  if !options[:environment]
-    raise "No environment specified!".red
-  end
-
-  if !options[:version]
-    raise "No version specified!".red
-  end
-
-  if !options[:tag]
-    raise "No tag specified!".red
-  end
-
-  configuration = options[:configuration]
-  environment = options[:environment]
-  version = options[:version]
-  tag = options[:tag]
-  framework_suffix = get_framework_suffix(environment)
-
-  # Source URL for Cocoapods
-  source_url = ""
-  case environment
-  when "devc", "staging", "prod"
-    # Artifactory
-    source_url = "#{configuration.artifactory.url}/sdk-cocoapods-#{environment}/#{configuration.project.adsName}#{framework_suffix}"
-  when "beta", "release"
-    # S3 release / beta buckets
-    source_url = "#{configuration.amazon.url}/#{environment}/#{configuration.amazon.project_key}/#{version}"
-  end
-
-  # Environment url for SDK
-  environment_url = ""
-  case environment
-  when "devc"
-    environment_url = "OGADevCURL"
-  when "staging"
-    environment_url = "OGAStagingURL"
-  when "prod", "beta", "release"
-    environment_url = "OGAProductionURL"
-  end
-
-  build_frameworks configuration: configuration, version: version, environment_url: environment_url
-  build_card_frameworks configuration: configuration, version: version, environment_url: environment_url
-
-  combine_framework configuration: configuration
-
-  copy_omsdk configuration: configuration
-
-  generate_podspec configuration: configuration, version: version, environment: environment, source_url: source_url
-
-  zip_famework configuration: configuration, version: version, environment: environment
-end
