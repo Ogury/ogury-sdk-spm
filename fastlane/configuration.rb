@@ -3,18 +3,18 @@ class Configuration
 
   def initialize
     @workspace = Workspace.new("OgurySdks", "OgurySdks.xcworkspace")
-    core = Target.new("OguryCore", "sdk-core-ios/OguryCore.xcodeproj", "OguryCore", nil, nil, Dependency.new(hasPodspec: true), "core")
-    ads = Target.new("OguryAds", "sdk-ads-ios/OguryAdsSDK.xcodeproj", "OguryAds", nil, nil, Dependency.new(core: true, omid: true, hasPodspec: true), "ads")
-    adsLibrary = Target.new("AdsCardLibrary", "sdk-ads-ios/AdsCardLibrary/AdsCardLibrary.xcodeproj", "AdsCardLibrary", nil, nil, Dependency.new(core: true, ads: true), "adsLibrary")
-    wrapper = Target.new("OguryWrapper", "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj", "OguryWrapper", nil, "OgurySdk", Dependency.new(core: true, ads: true, hasPodspec: true), "wrapper")
-    testApp = Target.new("AdsTestApp", "sdk-ads-ios/AdsTestApp/AdsTestApp.xcodeproj", "AdsTestApp", nil, nil, Dependency.new(core: true, ads: true), "testApp")
+    core = Target.new("OguryCore", "sdk-core-ios/OguryCore.xcodeproj", "OguryCore", nil, nil, Dependency.new(hasPodspec: true), "core", "core-ios")
+    ads = Target.new("OguryAds", "sdk-ads-ios/OguryAdsSDK.xcodeproj", "OguryAds", nil, nil, Dependency.new(core: true, omid: true, hasPodspec: true), "ads", "ads-ios")
+    adsLibrary = Target.new("AdsCardLibrary", "sdk-ads-ios/AdsCardLibrary/AdsCardLibrary.xcodeproj", "AdsCardLibrary", nil, nil, Dependency.new(core: true, ads: true), "adsLibrary", "adsLibrary-ios")
+    wrapper = Target.new("OguryWrapper", "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj", "OguryWrapper", nil, "OgurySdk", Dependency.new(core: true, ads: true, hasPodspec: true), "wrapper", "wrapper-ios")
+    testApp = Target.new("AdsTestApp", "sdk-ads-ios/AdsTestApp/AdsTestApp.xcodeproj", "AdsTestApp", nil, nil, Dependency.new(core: true, ads: true), "testApp", "testApp-ios")
     @targets = Targets.new(ads, adsLibrary, core, wrapper, testApp)
     @sdks = Sdks.new(["iphoneos", "iphonesimulator"], ["iphonesimulator"])
     @test_devices = ["iPhone 15"]
     @allowed_environments = ["devc", "staging", "prod", "beta", "release"]
     @firebase = Firebase.new("sdk-tester-group")
     @artifactory = Artifactory.new("https://ogury.jfrog.io/artifactory")
-    @amazon = Amazon.new("https://binaries.ogury.co", "ads-ios")
+    @amazon = Amazon.new("https://binaries.ogury.co")
     @slack = Slack.new("https://hooks.slack.com/services/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", "#sdk-ios-ci-update")
     @cocoapods = Cocoapods.new("git@github.com:Ogury/ogury-cocoapods-repository.git")
     @frameworks = Frameworks.new("./OMSDK_Ogury.xcframework")
@@ -45,15 +45,16 @@ class Dependency
 end
 
 class Target
-  attr_accessor :name, :path, :scheme, :releaseScheme, :publicName, :dependencies, :method
+  attr_accessor :name, :path, :scheme, :releaseScheme, :publicName, :dependencies, :method, :amazon
 
-  def initialize(name, path, scheme, releaseScheme = nil, publicName = nil, dependencies = nil, method)
+  def initialize(name, path, scheme, releaseScheme = nil, publicName = nil, dependencies = nil, method, amazon)
     @name = name
     @path = path
     @scheme = scheme
     @releaseScheme = releaseScheme.nil? ? "#{scheme}-Release" : releaseScheme
     @publicName = publicName.nil? ? name : publicName
     @method = method
+    @amazon = amazon
     @dependencies = if dependencies.is_a?(Dependency)
                       dependencies
                     else
@@ -81,7 +82,7 @@ end
 Artifactory = Struct.new(:url) do
 end
 
-Amazon = Struct.new(:url, :project_key) do
+Amazon = Struct.new(:url) do
 end
 
 Slack = Struct.new(:url, :channel) do

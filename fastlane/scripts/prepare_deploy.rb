@@ -23,7 +23,6 @@ lane :prepare_for_deployment do |options|
   tag = options[:tag]
   framework_suffix = get_framework_suffix(environment)
   target = options[:target]
-  puts target.inspect
   release = options[:release] ? options[:release] : false
 
   # Source URL for Cocoapods
@@ -34,7 +33,7 @@ lane :prepare_for_deployment do |options|
     source_url = "#{configuration.artifactory.url}/sdk-cocoapods-#{environment}/#{target.name}#{framework_suffix}"
   when "beta", "release"
     # S3 release / beta buckets
-    source_url = "#{configuration.amazon.url}/#{environment}/#{configuration.amazon.project_key}/#{version}"
+    source_url = "#{configuration.amazon.url}/#{environment}/#{target.amazon}/#{version}"
   end
 
   # Environment url for SDK

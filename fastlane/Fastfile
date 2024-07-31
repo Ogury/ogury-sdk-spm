@@ -179,7 +179,7 @@ lane :test do |options|
     end
 
     if wrapperTag != nil 
-      deploy_wrapper_framework(environment: environment, tag: wrapperlTag)
+      deploy_wrapper_framework(environment: environment, tag: wrapperTag)
     end
 
   end
