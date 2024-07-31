@@ -236,6 +236,22 @@ lane :test do |options|
   end
 
   desc "Proceed to deploy a new version of a framewok passed as parameter for the specified environment"
+  lane :deploy_adsLibrary_framework do |options|
+    if !options[:environment]
+      raise "No environment specified!".red
+    end
+
+    if !options[:tag]
+      raise "No tag specified!".red
+    end
+
+    environment = options[:environment]
+    tag = options[:tag]
+
+    deploy_framework(environment: environment, tag: tag, target: configuration.targets.adsLibrary)
+  end
+
+  desc "Proceed to deploy a new version of a framewok passed as parameter for the specified environment"
   lane :deploy_wrapper_framework do |options|
     if !options[:environment]
       raise "No environment specified!".red

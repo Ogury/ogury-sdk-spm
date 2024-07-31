@@ -37,6 +37,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
+### prepare_adsLibrary_for_deployment
+
+```sh
+[bundle exec] fastlane prepare_adsLibrary_for_deployment
+```
+
+
+
 ### prepare_wrapper_for_deployment
 
 ```sh
@@ -102,6 +110,14 @@ Proceed to deploy a new version of a framewok passed as parameter for the specif
 
 ```sh
 [bundle exec] fastlane ios deploy_ads_framework
+```
+
+Proceed to deploy a new version of a framewok passed as parameter for the specified environment
+
+### ios deploy_adsLibrary_framework
+
+```sh
+[bundle exec] fastlane ios deploy_adsLibrary_framework
 ```
 
 Proceed to deploy a new version of a framewok passed as parameter for the specified environment

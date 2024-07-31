@@ -329,6 +329,36 @@ lane :prepare_ads_for_deployment do |options|
     )
 end
 
+lane :prepare_adsLibrary_for_deployment do |options|
+  if !options[:configuration]
+    raise "No configuration specified!".red
+  end
+  if !options[:environment]
+    raise "No environment specified!".red
+  end
+  if !options[:version]
+    raise "No version specified!".red
+  end
+  if !options[:tag]
+    raise "No tag specified!".red
+  end
+
+  configuration = options[:configuration]
+  environment = options[:environment]
+  version = options[:version]
+  tag = options[:tag]
+
+  puts "Deploy AdsLibrary".yellow
+
+  prepare_for_deployment(
+    configuration: configuration,
+    environment: environment,
+    version: version,
+    tag: tag,
+    target: configuration.targets.adsLibrary
+    )
+end
+
 lane :prepare_wrapper_for_deployment do |options|
   if !options[:configuration]
     raise "No configuration specified!".red
