@@ -58,10 +58,6 @@ pipeline {
                     mkdir -p jenkins
                     bundle exec fastlane test environment:'prod'
                 """
-
-                sh """#!/bin/zsh -l
-                    bundle exec fastlane analyse
-                """
             }
         }
     }

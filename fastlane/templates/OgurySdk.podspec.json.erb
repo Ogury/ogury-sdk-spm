@@ -14,7 +14,7 @@
     "text": "\tCopyright (c) Ogury Ltd. All rights reserved.\n"
   },
   "platforms": {
-    "ios": "10.0"
+    "ios": "12.0"
   },
   "requires_arc": true,
   "vendored_frameworks": ["OgurySdk.xcframework"],
@@ -23,21 +23,13 @@
       "<%= ogury_core_version %>"
     ]
   },
-  "default_subspecs": ["OguryAds", "OguryChoiceManager"],
+  "default_subspecs": ["OguryAds"],
   "subspecs": [
     {
       "name": "OguryAds",
       "dependencies": {
         "OguryAds<%= framework_suffix %>": [
           "<%= ogury_ads_version %>"
-        ]
-      }
-    },
-    {
-      "name": "OguryChoiceManager",
-      "dependencies": {
-        "OguryChoiceManager<%= framework_suffix %>": [
-          "<%= ogury_choice_manager_version %>"
         ]
       }
     }

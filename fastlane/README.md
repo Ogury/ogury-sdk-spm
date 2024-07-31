@@ -13,6 +13,41 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
+### prepare_for_deployment
+
+```sh
+[bundle exec] fastlane prepare_for_deployment
+```
+
+
+
+### prepare_core_for_deployment
+
+```sh
+[bundle exec] fastlane prepare_core_for_deployment
+```
+
+
+
+### prepare_ads_for_deployment
+
+```sh
+[bundle exec] fastlane prepare_ads_for_deployment
+```
+
+
+
+### prepare_wrapper_for_deployment
+
+```sh
+[bundle exec] fastlane prepare_wrapper_for_deployment
+```
+
+
+
+----
+
+
 ## iOS
 
 ### ios build
@@ -22,22 +57,6 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 ```
 
 
-
-### ios test
-
-```sh
-[bundle exec] fastlane ios test
-```
-
-test framework for different SDKs
-
-### ios deploy_ads_framework
-
-```sh
-[bundle exec] fastlane ios deploy_ads_framework
-```
-
-Proceed to deploy a new version of a framewok passed as parameter for the specified environment
 
 ### ios update_internal_cocoapods
 
@@ -54,6 +73,46 @@ Install cocoapods internal repository for environment and update it.
 ```
 
 Generates a new Podilfe based on the environment and the configuration file
+
+### ios test
+
+```sh
+[bundle exec] fastlane ios test
+```
+
+test framework for different SDKs
+
+### ios deploy_framework
+
+```sh
+[bundle exec] fastlane ios deploy_framework
+```
+
+Proceed to deploy a new version of a framewok passed as parameter for the specified environment
+
+### ios deploy_core_framework
+
+```sh
+[bundle exec] fastlane ios deploy_core_framework
+```
+
+Proceed to deploy a new version of a framewok passed as parameter for the specified environment
+
+### ios deploy_ads_framework
+
+```sh
+[bundle exec] fastlane ios deploy_ads_framework
+```
+
+Proceed to deploy a new version of a framewok passed as parameter for the specified environment
+
+### ios deploy_wrapper_framework
+
+```sh
+[bundle exec] fastlane ios deploy_wrapper_framework
+```
+
+Proceed to deploy a new version of a framewok passed as parameter for the specified environment
 
 ----
 

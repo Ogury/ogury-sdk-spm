@@ -3,11 +3,11 @@ class Configuration
 
   def initialize
     @workspace = Workspace.new("OgurySdks", "OgurySdks.xcworkspace")
-    ads = Target.new("OguryAds", "sdk-ads-ios/OguryAdsSDK.xcodeproj", "OguryAds")
-    adsLibrary = Target.new("AdsCardLibrary", "sdk-ads-ios/AdsCardLibrary/AdsCardLibrary.xcodeproj", "AdsCardLibrary")
-    core = Target.new("OguryCore", "sdk-core-ios/OguryCore.xcodeproj", "OguryCore")
-    wrapper = Target.new("OguryWrapper", "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj", "OguryWrapper", "OgurySdk")
-    testApp = Target.new("AdsTestApp", "sdk-ads-ios/AdsTestApp/AdsTestApp.xcodeproj", "AdsTestApp")
+    core = Target.new("OguryCore", "sdk-core-ios/OguryCore.xcodeproj", "OguryCore", nil, nil, Dependency.new(hasPodspec: true), "core")
+    ads = Target.new("OguryAds", "sdk-ads-ios/OguryAdsSDK.xcodeproj", "OguryAds", nil, nil, Dependency.new(core: true, omid: true, hasPodspec: true), "ads")
+    adsLibrary = Target.new("AdsCardLibrary", "sdk-ads-ios/AdsCardLibrary/AdsCardLibrary.xcodeproj", "AdsCardLibrary", nil, nil, Dependency.new(core: true, ads: true), "adsLibrary")
+    wrapper = Target.new("OguryWrapper", "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj", "OguryWrapper", nil, "OgurySdk", Dependency.new(core: true, ads: true, hasPodspec: true), "wrapper")
+    testApp = Target.new("AdsTestApp", "sdk-ads-ios/AdsTestApp/AdsTestApp.xcodeproj", "AdsTestApp", nil, nil, Dependency.new(core: true, ads: true), "testApp")
     @targets = Targets.new(ads, adsLibrary, core, wrapper, testApp)
     @sdks = Sdks.new(["iphoneos", "iphonesimulator"], ["iphonesimulator"])
     @test_devices = ["iPhone 15"]
@@ -31,11 +31,34 @@ end
 Targets = Struct.new(:ads, :adsLibrary, :core, :wrapper, :testApp) do
 end
 
-Target = Struct.new(:name, :path, :scheme, :releaseScheme, :publicName) do
-  def initialize(name, path, scheme, releaseScheme = nil, publicName = nil)
-    publicName ||= name
-    releaseScheme ||= "#{scheme}-Release"
-    super(name, path, scheme, releaseScheme, publicName)
+class Dependency
+  attr_accessor :core, :ads, :omid, :adsLibrary, :wrapper, :hasPodspec
+
+  def initialize(core: false, ads: false, omid: false, adsLibrary: false, wrapper: false, hasPodspec: false)
+    @core = core
+    @ads = ads
+    @omid = omid
+    @adsLibrary = adsLibrary
+    @wrapper = wrapper
+    @hasPodspec = hasPodspec
+  end
+end
+
+class Target
+  attr_accessor :name, :path, :scheme, :releaseScheme, :publicName, :dependencies, :method
+
+  def initialize(name, path, scheme, releaseScheme = nil, publicName = nil, dependencies = nil, method)
+    @name = name
+    @path = path
+    @scheme = scheme
+    @releaseScheme = releaseScheme.nil? ? "#{scheme}-Release" : releaseScheme
+    @publicName = publicName.nil? ? name : publicName
+    @method = method
+    @dependencies = if dependencies.is_a?(Dependency)
+                      dependencies
+                    else
+                      Dependency.new(**(dependencies || {}))
+                    end
   end
 end
 
