@@ -389,171 +389,50 @@ lane :prepare_wrapper_for_deployment do |options|
     )
 end
 
-# private_lane :build_ads_framework do |options|
-#   if !options[:configuration]
-#     raise "No configuration specified!".red
-#   end
-#   if !options[:sdk]
-#     raise "No SDK specified!".red
-#   end
+### build test App
+private_lane :deploy_test_app do |options|
+  if !options[:configuration]
+    raise "No configuration specified!".red
+  end
 
-#   configuration = options[:configuration]
-#   sdk = options[:sdk]
-#   release = options[:release] ? release : false
-
-#   puts "Compiling OguryAds".blue
-
-#   build_framework(
-#     configuration: configuration,
-#     sdk: sdk,
-#     workspace: configuration.workspace.file_path,
-#     target: configuration.targets.ads
-#     )
-# end
-
-# private_lane :build_card_library do |options|
-#   if !options[:configuration]
-#     raise "No configuration specified!".red
-#   end
-#   if !options[:sdk]
-#     raise "No SDK specified!".red
-#   end
-
-#   configuration = options[:configuration]
-#   sdk = options[:sdk]
-#   release = options[:release] ? release : false
+  configuration = options[:configuration]
   
-#   puts "Compiling AdsCardLibrary".yellow
+  puts "Building TestApp".green
 
-#   build_framework(
-#     configuration: configuration,
-#     sdk: sdk,
-#     workspace: configuration.workspace.file_path,
-#     target: configuration.targets.adsLibrary
-#     )
-# end
+  TestAppVariant.all.each do |variant|
 
-# private_lane :build_wrapper do |options|
-#   if !options[:configuration]
-#     raise "No configuration specified!".red
-#   end
-#   if !options[:sdk]
-#     raise "No SDK specified!".red
-#   end
+    puts "Building #{configuration.targets.testApp.scheme}-#{variant}".blue
+    release = options[:release] ? release : false
+    scheme = "#{configuration.targets.testApp.scheme}-#{variant}"
+    scheme =  release ? "#{scheme}-Release" : scheme
 
-#   configuration = options[:configuration]
-#   sdk = options[:sdk]
-  
-#   puts "Compiling OgurySdk".green
+    build_ios_app(
+      workspace: configuration.workspace.file_path,
+      configuration: "Debug",
+      scheme: scheme,
+      sdk: "iphoneos",
+      clean: true,
+      output_directory: configuration.directories.test_app,
+      output_name: "#{scheme}.ipa",
+      export_method: "development",
+      export_options: {
+        signingStyle: "manual",
+        provisioningProfiles: {
+          "co.ogury.Test-Application" => "Test Application Dev",
+        },
+      },
+      )
 
-#   build_framework(
-#     configuration: configuration,
-#     sdk: sdk,
-#     workspace: configuration.workspace.file_path,
-#     target: configuration.targets.wrapper
-#     )
-# end
+    copy_artifacts(
+      target_path: "artifacts",
+      artifacts: ["#{scheme}.ipa"]
+      )
 
-# ### build test App
-# private_lane :build_test_app do |options|
-#   if !options[:configuration]
-#     raise "No configuration specified!".red
-#   end
-
-#   configuration = options[:configuration]
-  
-#   puts "Building TestApp".green
-
-#   TestAppVariant.all.each do |variant|
-    
-#     puts "Building #{configuration.targets.testApp.scheme}-#{variant}".blue
-#     release = options[:release] ? release : false
-#     scheme = "#{configuration.targets.testApp.scheme}-#{variant}"
-#     scheme =  release ? "#{scheme}-Release" : scheme
-
-#     build_ios_app(
-#       workspace: configuration.workspace.file_path,
-#       configuration: "Debug",
-#       scheme: scheme,
-#       sdk: "iphoneos",
-#       clean: true,
-#       output_directory: configuration.directories.test_app,
-#       output_name: "#{scheme}.ipa",
-#       export_method: "development",
-#       export_options: {
-#         signingStyle: "manual",
-#         provisioningProfiles: {
-#           "co.ogury.Test-Application" => "Test Application Dev",
-#         },
-#       },
-#       )
-
-#     copy_artifacts(
-#       target_path: "artifacts",
-#       artifacts: ["#{scheme}.ipa"]
-#       )
-
-#     firebase_app_distribution(
-#       app: "1:433541045380:ios:715a877bd12614bd0c36d1",
-#       testers: configuration.firebase.test_group,
-#       firebase_cli_token: "1//03VqloLsbSYJoCgYIARAAGAMSNwF-L9IrdbY5QQQDTEUBtWKAbeT0dxPkwNb0okDx1AIbr8Xli4R2-Ez6ZQMfVycZtf_Hv488wZg",
-#       release_notes: "",
-#       )
-#   end
-# end
-
-
-
-
-
-
-
-
-
-# desc "Archive the card framework for the specified scheme and destination"
-# private_lane :build_card_frameworks do |options|
-#   if !options[:configuration]
-#     raise "No configuration specified!".red
-#   end
-
-#   if !options[:version]
-#     raise "No version specified!".red
-#   end
-
-#   if !options[:environment_url]
-#     raise "No environment_url specified!".red
-#   end
-
-#   configuration = options[:configuration]
-#   sdk = options[:sdk]
-#   version = options[:version]
-#   destination = ""
-
-#   configuration.sdks.defaults.each do |sdk|
-#     case sdk
-#     when "iphonesimulator"
-#       destination = "generic/platform=iOS Simulator"
-#     when "iphoneos"
-#       destination = "generic/platform=iOS"
-#     end
-
-#     puts "Compiling AdsCardLibrary".green
-#     xcodebuild(
-#       archive: true,
-#       workspace: configuration.workspace.file_path,
-#       scheme: configuration.schemes.adsLibrary,
-#       sdk: sdk,
-#       clean: true,
-#       destination: destination,
-#       xcargs: "CLANG_ENABLE_CODE_COVERAGE=NO SKIP_INSTALL=NO MARKETING_VERSION=#{version} ENV_URL=#{options[:environment_url]}",
-#       archive_path: "#{configuration.directories.build}/archives/#{configuration.project.adsLibraryName}-#{sdk}",
-#     )
-#   end
-# end
-
-
-
-
-
-
-
+    firebase_app_distribution(
+      app: "1:433541045380:ios:715a877bd12614bd0c36d1",
+      testers: configuration.firebase.test_group,
+      firebase_cli_token: "1//03VqloLsbSYJoCgYIARAAGAMSNwF-L9IrdbY5QQQDTEUBtWKAbeT0dxPkwNb0okDx1AIbr8Xli4R2-Ez6ZQMfVycZtf_Hv488wZg",
+      release_notes: "",
+      )
+  end
+end

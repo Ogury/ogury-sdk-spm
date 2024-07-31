@@ -90,13 +90,13 @@ Generates a new Podilfe based on the environment and the configuration file
 
 test framework for different SDKs
 
-### ios deploy_framework
+### ios deploy_frameworks
 
 ```sh
-[bundle exec] fastlane ios deploy_framework
+[bundle exec] fastlane ios deploy_frameworks
 ```
 
-Proceed to deploy a new version of a framewok passed as parameter for the specified environment
+
 
 ### ios deploy_core_framework
 
