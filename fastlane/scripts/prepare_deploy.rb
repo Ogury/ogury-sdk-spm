@@ -51,7 +51,8 @@ lane :prepare_for_deployment do |options|
     configuration: configuration, 
     version: version, 
     environment_url: environment_url, 
-    target:target
+    target:target,
+    release: release
     )
 
   combine_framework(
@@ -103,7 +104,9 @@ private_lane :build_frameworks do |options|
   destination = ""
   configuration = options[:configuration]
   target = options[:target]
+  puts "options[:release] #{options[:release]}"
   release = options[:release] ? options[:release] : false
+  scheme = release ? target.releaseScheme : target.scheme
 
   configuration.sdks.defaults.each do |sdk|
     case sdk
@@ -117,7 +120,7 @@ private_lane :build_frameworks do |options|
     xcodebuild(
       archive: true,
       workspace: configuration.workspace.file_path,
-      scheme: target.scheme,
+      scheme: scheme,
       sdk: sdk,
       clean: true,
       destination: destination,
@@ -286,6 +289,7 @@ lane :prepare_core_for_deployment do |options|
   environment = options[:environment]
   version = options[:version]
   tag = options[:tag]
+  release = options[:release] ? options[:release] : false
 
   puts "Deploy OguryCore".yellow
 
@@ -294,7 +298,8 @@ lane :prepare_core_for_deployment do |options|
     environment: environment,
     version: version,
     tag: tag,
-    target: configuration.targets.core
+    target: configuration.targets.core,
+    release: release
     )
 end
 
@@ -316,6 +321,7 @@ lane :prepare_ads_for_deployment do |options|
   environment = options[:environment]
   version = options[:version]
   tag = options[:tag]
+  release = options[:release] ? options[:release] : false
 
   puts "Deploy OguryCore".yellow
 
@@ -324,7 +330,8 @@ lane :prepare_ads_for_deployment do |options|
     environment: environment,
     version: version,
     tag: tag,
-    target: configuration.targets.ads
+    target: configuration.targets.ads,
+    release: release
     )
 end
 
@@ -346,6 +353,7 @@ lane :prepare_adsLibrary_for_deployment do |options|
   environment = options[:environment]
   version = options[:version]
   tag = options[:tag]
+  release = options[:release] ? options[:release] : false
 
   puts "Deploy AdsLibrary".yellow
 
@@ -354,7 +362,8 @@ lane :prepare_adsLibrary_for_deployment do |options|
     environment: environment,
     version: version,
     tag: tag,
-    target: configuration.targets.adsLibrary
+    target: configuration.targets.adsLibrary,
+    release: release
     )
 end
 
@@ -376,6 +385,7 @@ lane :prepare_wrapper_for_deployment do |options|
   environment = options[:environment]
   version = options[:version]
   tag = options[:tag]
+  release = options[:release] ? options[:release] : false
 
   puts "Deploy OgurySdk".yellow
 
@@ -384,7 +394,8 @@ lane :prepare_wrapper_for_deployment do |options|
     environment: environment,
     version: version,
     tag: tag,
-    target: configuration.targets.wrapper
+    target: configuration.targets.wrapper,
+    release: release
     )
 end
 
