@@ -566,9 +566,9 @@
 			productReference = 435C55E92A42EAEF004186FF /* AdsCardLibraryTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		43BCB15C2C22FBF0002FB0B1 /* AdsCardLibrary-Release */ = {
+		43BCB15C2C22FBF0002FB0B1 /* AdsCardLibrary-art */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43BCB18E2C22FBF0002FB0B1 /* Build configuration list for PBXNativeTarget "AdsCardLibrary-Release" */;
+			buildConfigurationList = 43BCB18E2C22FBF0002FB0B1 /* Build configuration list for PBXNativeTarget "AdsCardLibrary-art" */;
 			buildPhases = (
 				43BCB15F2C22FBF0002FB0B1 /* [CP] Check Pods Manifest.lock */,
 				43BCB1602C22FBF0002FB0B1 /* Headers */,
@@ -580,7 +580,7 @@
 			);
 			dependencies = (
 			);
-			name = "AdsCardLibrary-Release";
+			name = "AdsCardLibrary-art";
 			packageProductDependencies = (
 				43BCB15D2C22FBF0002FB0B1 /* ComposableArchitecture */,
 			);
@@ -631,7 +631,7 @@
 			projectRoot = "";
 			targets = (
 				435C55DE2A42EAEF004186FF /* AdsCardLibrary */,
-				43BCB15C2C22FBF0002FB0B1 /* AdsCardLibrary-Release */,
+				43BCB15C2C22FBF0002FB0B1 /* AdsCardLibrary-art */,
 				435C55E82A42EAEF004186FF /* AdsCardLibraryTests */,
 			);
 		};
@@ -1188,7 +1188,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43BCB18E2C22FBF0002FB0B1 /* Build configuration list for PBXNativeTarget "AdsCardLibrary-Release" */ = {
+		43BCB18E2C22FBF0002FB0B1 /* Build configuration list for PBXNativeTarget "AdsCardLibrary-art" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43BCB18F2C22FBF0002FB0B1 /* Debug */,

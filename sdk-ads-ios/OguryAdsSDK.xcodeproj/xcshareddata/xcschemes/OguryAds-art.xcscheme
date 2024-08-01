@@ -15,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43BCB0D62C22DD59002FB0B1"
-               BuildableName = "AdsTestApp-Release-Staging.app"
-               BlueprintName = "AdsTestApp-Release-Staging"
-               ReferencedContainer = "container:AdsTestApp.xcodeproj">
+               BlueprintIdentifier = "43A9F2AC2C37E6B40085EF6F"
+               BuildableName = "OguryAds.framework"
+               BlueprintName = "OguryAds-art"
+               ReferencedContainer = "container:OguryAdsSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -40,16 +40,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43BCB0D62C22DD59002FB0B1"
-            BuildableName = "AdsTestApp-Release-Staging.app"
-            BlueprintName = "AdsTestApp-Release-Staging"
-            ReferencedContainer = "container:AdsTestApp.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -57,16 +47,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43BCB0D62C22DD59002FB0B1"
-            BuildableName = "AdsTestApp-Release-Staging.app"
-            BlueprintName = "AdsTestApp-Release-Staging"
-            ReferencedContainer = "container:AdsTestApp.xcodeproj">
+            BlueprintIdentifier = "43A9F2AC2C37E6B40085EF6F"
+            BuildableName = "OguryAds.framework"
+            BlueprintName = "OguryAds-art"
+            ReferencedContainer = "container:OguryAdsSDK.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

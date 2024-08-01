@@ -290,14 +290,14 @@
 		43FC85612B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43FC85622B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43FC85632B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
-		607F9FDA3A6054F898F87DC5 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		607F9FDA3A6054F898F87DC5 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		72B17994AE990681D8B1DCB2 /* Pods_AdsTestApp_Release_Devc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0015EF10545AFCCF1E922931 /* Pods_AdsTestApp_Release_Devc.framework */; };
 		ABE9BE7EE57004FFE0E35C1C /* Pods_AdsTestApp_Release_Prod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1422A7AD952633F3BC89804 /* Pods_AdsTestApp_Release_Prod.framework */; };
 		B1463A9E2EDF3D79550C21FD /* Pods_AdsTestApp_Release_Staging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9491BF56B9CC442C5A75A1FF /* Pods_AdsTestApp_Release_Staging.framework */; };
 		C5BD9D21EE45869DEF69AB73 /* Pods_AdsTestApp_Prod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 967A69F95815147E2A65EF91 /* Pods_AdsTestApp_Prod.framework */; };
 		D62E7256A49EE16D96075941 /* Pods_AdsTestApp_Staging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1166968A5CF316EC4F730077 /* Pods_AdsTestApp_Staging.framework */; };
-		DB5087F0569CA93057CEDA5F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
-		F3B7B454AC5B8E401E757555 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		DB5087F0569CA93057CEDA5F /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		F3B7B454AC5B8E401E757555 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -439,9 +439,9 @@
 		43B713FC2B4D6075007C8D21 /* HeaderBiddingBid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderBiddingBid.swift; sourceTree = "<group>"; };
 		43B713FD2B4D6075007C8D21 /* HeaderBiddingResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderBiddingResponse.swift; sourceTree = "<group>"; };
 		43B713FE2B4D6075007C8D21 /* HeaderBiddingExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderBiddingExt.swift; sourceTree = "<group>"; };
-		43BCB0D42C22DD45002FB0B1 /* AdsTestApp-Release-Devc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AdsTestApp-Release-Devc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		43BCB1172C22DD59002FB0B1 /* AdsTestApp-Release-Staging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AdsTestApp-Release-Staging.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		43BCB15A2C22DD60002FB0B1 /* AdsTestApp-Release-Prod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AdsTestApp-Release-Prod.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43BCB0D42C22DD45002FB0B1 /* AdsTestApp-Devc-art.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AdsTestApp-Devc-art.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43BCB1172C22DD59002FB0B1 /* AdsTestApp-Staging-art.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AdsTestApp-Staging-art.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43BCB15A2C22DD60002FB0B1 /* AdsTestApp-Prod-art.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AdsTestApp-Prod-art.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43BCB1932C23254D002FB0B1 /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43BCB1962C23255C002FB0B1 /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43BCB1992C232565002FB0B1 /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -480,7 +480,7 @@
 				43B7136B2B45702C007C8D21 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43AE85C92B4FD19D0010C812 /* OguryChoiceManager.xcframework in Frameworks */,
 				43F788B22B4E882B0022157E /* AdsCardLibrary.framework in Frameworks */,
-				F3B7B454AC5B8E401E757555 /* BuildFile in Frameworks */,
+				F3B7B454AC5B8E401E757555 /* (null) in Frameworks */,
 				D62E7256A49EE16D96075941 /* Pods_AdsTestApp_Staging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,7 +496,7 @@
 				43B713702B457035007C8D21 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43AE85CA2B4FD19D0010C812 /* OguryChoiceManager.xcframework in Frameworks */,
 				43F788B52B4E882F0022157E /* AdsCardLibrary.framework in Frameworks */,
-				607F9FDA3A6054F898F87DC5 /* BuildFile in Frameworks */,
+				607F9FDA3A6054F898F87DC5 /* (null) in Frameworks */,
 				C5BD9D21EE45869DEF69AB73 /* Pods_AdsTestApp_Prod.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,7 +512,7 @@
 				1E5BE62D2B21CD0E0010B995 /* SnapKit in Frameworks */,
 				43AE85C82B4FD19D0010C812 /* OguryChoiceManager.xcframework in Frameworks */,
 				43F788AF2B4E88250022157E /* AdsCardLibrary.framework in Frameworks */,
-				DB5087F0569CA93057CEDA5F /* BuildFile in Frameworks */,
+				DB5087F0569CA93057CEDA5F /* (null) in Frameworks */,
 				2419B11388DFA06C12DD3144 /* Pods_AdsTestApp_Devc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -736,9 +736,9 @@
 				438ED4132AA5D0C200486AF2 /* AdsTestApp-Devc.app */,
 				434F84D62ACFE4FE005077F5 /* AdsTestApp-Staging.app */,
 				434F84F22ACFE50A005077F5 /* AdsTestApp-Prod.app */,
-				43BCB0D42C22DD45002FB0B1 /* AdsTestApp-Release-Devc.app */,
-				43BCB1172C22DD59002FB0B1 /* AdsTestApp-Release-Staging.app */,
-				43BCB15A2C22DD60002FB0B1 /* AdsTestApp-Release-Prod.app */,
+				43BCB0D42C22DD45002FB0B1 /* AdsTestApp-Devc-art.app */,
+				43BCB1172C22DD59002FB0B1 /* AdsTestApp-Staging-art.app */,
+				43BCB15A2C22DD60002FB0B1 /* AdsTestApp-Prod-art.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -940,9 +940,9 @@
 			productReference = 438ED4132AA5D0C200486AF2 /* AdsTestApp-Devc.app */;
 			productType = "com.apple.product-type.application";
 		};
-		43BCB0932C22DD45002FB0B1 /* AdsTestApp-Release-Devc */ = {
+		43BCB0932C22DD45002FB0B1 /* AdsTestApp-Devc-art */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43BCB0D12C22DD45002FB0B1 /* Build configuration list for PBXNativeTarget "AdsTestApp-Release-Devc" */;
+			buildConfigurationList = 43BCB0D12C22DD45002FB0B1 /* Build configuration list for PBXNativeTarget "AdsTestApp-Devc-art" */;
 			buildPhases = (
 				43BCB09C2C22DD45002FB0B1 /* [CP] Check Pods Manifest.lock */,
 				43BCB09D2C22DD45002FB0B1 /* Sources */,
@@ -954,7 +954,7 @@
 			);
 			dependencies = (
 			);
-			name = "AdsTestApp-Release-Devc";
+			name = "AdsTestApp-Devc-art";
 			packageProductDependencies = (
 				43BCB0942C22DD45002FB0B1 /* SnapKit */,
 				43BCB0962C22DD45002FB0B1 /* GoogleMobileAds */,
@@ -962,12 +962,12 @@
 				43BCB09A2C22DD45002FB0B1 /* SwiftMessages */,
 			);
 			productName = AdsTestApp;
-			productReference = 43BCB0D42C22DD45002FB0B1 /* AdsTestApp-Release-Devc.app */;
+			productReference = 43BCB0D42C22DD45002FB0B1 /* AdsTestApp-Devc-art.app */;
 			productType = "com.apple.product-type.application";
 		};
-		43BCB0D62C22DD59002FB0B1 /* AdsTestApp-Release-Staging */ = {
+		43BCB0D62C22DD59002FB0B1 /* AdsTestApp-Staging-art */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43BCB1142C22DD59002FB0B1 /* Build configuration list for PBXNativeTarget "AdsTestApp-Release-Staging" */;
+			buildConfigurationList = 43BCB1142C22DD59002FB0B1 /* Build configuration list for PBXNativeTarget "AdsTestApp-Staging-art" */;
 			buildPhases = (
 				43BCB0DF2C22DD59002FB0B1 /* [CP] Check Pods Manifest.lock */,
 				43BCB0E02C22DD59002FB0B1 /* Sources */,
@@ -979,7 +979,7 @@
 			);
 			dependencies = (
 			);
-			name = "AdsTestApp-Release-Staging";
+			name = "AdsTestApp-Staging-art";
 			packageProductDependencies = (
 				43BCB0D72C22DD59002FB0B1 /* SnapKit */,
 				43BCB0D92C22DD59002FB0B1 /* GoogleMobileAds */,
@@ -987,12 +987,12 @@
 				43BCB0DD2C22DD59002FB0B1 /* SwiftMessages */,
 			);
 			productName = AdsTestApp;
-			productReference = 43BCB1172C22DD59002FB0B1 /* AdsTestApp-Release-Staging.app */;
+			productReference = 43BCB1172C22DD59002FB0B1 /* AdsTestApp-Staging-art.app */;
 			productType = "com.apple.product-type.application";
 		};
-		43BCB1192C22DD60002FB0B1 /* AdsTestApp-Release-Prod */ = {
+		43BCB1192C22DD60002FB0B1 /* AdsTestApp-Prod-art */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43BCB1572C22DD60002FB0B1 /* Build configuration list for PBXNativeTarget "AdsTestApp-Release-Prod" */;
+			buildConfigurationList = 43BCB1572C22DD60002FB0B1 /* Build configuration list for PBXNativeTarget "AdsTestApp-Prod-art" */;
 			buildPhases = (
 				43BCB1222C22DD60002FB0B1 /* [CP] Check Pods Manifest.lock */,
 				43BCB1232C22DD60002FB0B1 /* Sources */,
@@ -1004,7 +1004,7 @@
 			);
 			dependencies = (
 			);
-			name = "AdsTestApp-Release-Prod";
+			name = "AdsTestApp-Prod-art";
 			packageProductDependencies = (
 				43BCB11A2C22DD60002FB0B1 /* SnapKit */,
 				43BCB11C2C22DD60002FB0B1 /* GoogleMobileAds */,
@@ -1012,7 +1012,7 @@
 				43BCB1202C22DD60002FB0B1 /* SwiftMessages */,
 			);
 			productName = AdsTestApp;
-			productReference = 43BCB15A2C22DD60002FB0B1 /* AdsTestApp-Release-Prod.app */;
+			productReference = 43BCB15A2C22DD60002FB0B1 /* AdsTestApp-Prod-art.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1059,9 +1059,9 @@
 				438ED4122AA5D0C200486AF2 /* AdsTestApp-Devc */,
 				434F84BC2ACFE4FE005077F5 /* AdsTestApp-Staging */,
 				434F84D82ACFE50A005077F5 /* AdsTestApp-Prod */,
-				43BCB0932C22DD45002FB0B1 /* AdsTestApp-Release-Devc */,
-				43BCB0D62C22DD59002FB0B1 /* AdsTestApp-Release-Staging */,
-				43BCB1192C22DD60002FB0B1 /* AdsTestApp-Release-Prod */,
+				43BCB0932C22DD45002FB0B1 /* AdsTestApp-Devc-art */,
+				43BCB0D62C22DD59002FB0B1 /* AdsTestApp-Staging-art */,
+				43BCB1192C22DD60002FB0B1 /* AdsTestApp-Prod-art */,
 			);
 		};
 /* End PBXProject section */
@@ -2222,7 +2222,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43BCB0D12C22DD45002FB0B1 /* Build configuration list for PBXNativeTarget "AdsTestApp-Release-Devc" */ = {
+		43BCB0D12C22DD45002FB0B1 /* Build configuration list for PBXNativeTarget "AdsTestApp-Devc-art" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43BCB0D22C22DD45002FB0B1 /* Debug */,
@@ -2231,7 +2231,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43BCB1142C22DD59002FB0B1 /* Build configuration list for PBXNativeTarget "AdsTestApp-Release-Staging" */ = {
+		43BCB1142C22DD59002FB0B1 /* Build configuration list for PBXNativeTarget "AdsTestApp-Staging-art" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43BCB1152C22DD59002FB0B1 /* Debug */,
@@ -2240,7 +2240,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43BCB1572C22DD60002FB0B1 /* Build configuration list for PBXNativeTarget "AdsTestApp-Release-Prod" */ = {
+		43BCB1572C22DD60002FB0B1 /* Build configuration list for PBXNativeTarget "AdsTestApp-Prod-art" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43BCB1582C22DD60002FB0B1 /* Debug */,

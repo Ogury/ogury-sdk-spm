@@ -3,7 +3,7 @@ class Configuration
 
   def initialize
     @workspace = Workspace.new("OgurySdks", "OgurySdks.xcworkspace")
-    core = Target.new("OguryCore", "sdk-core-ios/OguryCore.xcodeproj", "OguryCore", nil, nil, Dependency.new(hasPodspec: true), "core", "core-ios")
+    core = Target.new("OguryCore", "sdk-core-ios/OguryCore.xcodeproj", "OguryCore", "OguryCore", nil, Dependency.new(hasPodspec: true), "core", "core-ios")
     ads = Target.new("OguryAds", "sdk-ads-ios/OguryAdsSDK.xcodeproj", "OguryAds", nil, nil, Dependency.new(core: true, omid: true, hasPodspec: true), "ads", "ads-ios")
     adsLibrary = Target.new("AdsCardLibrary", "sdk-ads-ios/AdsCardLibrary/AdsCardLibrary.xcodeproj", "AdsCardLibrary", nil, nil, Dependency.new(core: true, ads: true), "adsLibrary", "adsLibrary-ios")
     wrapper = Target.new("OguryWrapper", "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj", "OguryWrapper", nil, "OgurySdk", Dependency.new(core: true, ads: true, hasPodspec: true), "wrapper", "wrapper-ios")
@@ -45,13 +45,13 @@ class Dependency
 end
 
 class Target
-  attr_accessor :name, :path, :scheme, :releaseScheme, :publicName, :dependencies, :method, :amazon
+  attr_accessor :name, :path, :scheme, :artScheme, :publicName, :dependencies, :method, :amazon
 
-  def initialize(name, path, scheme, releaseScheme = nil, publicName = nil, dependencies = nil, method, amazon)
+  def initialize(name, path, scheme, artScheme = nil, publicName = nil, dependencies = nil, method, amazon)
     @name = name
     @path = path
     @scheme = scheme
-    @releaseScheme = releaseScheme.nil? ? "#{scheme}-Release" : releaseScheme
+    @artScheme = artScheme.nil? ? "#{scheme}-art" : artScheme
     @publicName = publicName.nil? ? name : publicName
     @method = method
     @amazon = amazon

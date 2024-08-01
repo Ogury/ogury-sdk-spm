@@ -60,8 +60,8 @@ private_lane :build_ads_framework do |options|
 
   configuration = options[:configuration]
   sdk = options[:sdk]
-  release = options[:release] ? release : false
-  scheme = release ? configuration.targets.ads.scheme : configuration.targets.ads.releaseScheme
+  artifactory = options[:artifactory] ? options[:artifactory] : false
+  scheme = artifactory ? configuration.targets.ads.scheme : configuration.targets.ads.artScheme
 
   puts "Compiling OguryAds".blue
 
@@ -83,8 +83,8 @@ private_lane :build_card_library do |options|
 
   configuration = options[:configuration]
   sdk = options[:sdk]
-  release = options[:release] ? release : false
-  scheme = release ? configuration.targets.adsLibrary.scheme : configuration.targets.adsLibrary.releaseScheme
+  artifactory = options[:artifactory] ? options[:artifactory] : false
+  scheme = artifactory ? configuration.targets.adsLibrary.scheme : configuration.targets.adsLibrary.artScheme
   
   puts "Compiling AdsCardLibrary".yellow
 
@@ -130,9 +130,9 @@ private_lane :build_test_app do |options|
   TestAppVariant.all.each do |variant|
     
     puts "Building #{configuration.targets.testApp.scheme}-#{variant}".blue
-    release = options[:release] ? release : false
+    artifactory = options[:artifactory] ? options[:artifactory] : false
     scheme = "#{configuration.targets.testApp.scheme}-#{variant}"
-    scheme =  release ? "#{scheme}-Release" : scheme
+    scheme =  artifactory ? "#{scheme}-Release" : scheme
 
     build_ios_app(
       workspace: configuration.workspace.file_path,

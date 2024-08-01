@@ -14,6 +14,8 @@
 		351A124D3B382C7CCFF8B44B /* AdsFullscreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351A16660272F38F3279B421 /* AdsFullscreenController.swift */; };
 		393D067380175864ACD6ED9B /* Pods_LegacyTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F501599943F878CA9FD609 /* Pods_LegacyTestApp.framework */; };
 		436A80E7295072580021EA32 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A80E6295072580021EA32 /* String+Ext.swift */; };
+		43D0E5A92C5BD61B00AF9CF6 /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D0E5A82C5BD61B00AF9CF6 /* OguryCore.framework */; };
+		43D0E5AA2C5BD61B00AF9CF6 /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43D0E5A82C5BD61B00AF9CF6 /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C907356224A3CCDD000EF992 /* LogsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C907356124A3CCDD000EF992 /* LogsController.swift */; };
 		C907356524A3D034000EF992 /* LogsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C907356424A3D034000EF992 /* LogsCell.swift */; };
 		C907356724A3D045000EF992 /* LogsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C907356624A3D045000EF992 /* LogsCell.xib */; };
@@ -98,6 +100,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				43D0E5AA2C5BD61B00AF9CF6 /* OguryCore.framework in Embed Frameworks */,
 				226B0E422886F1D8005275EB /* OMSDK_Ogury.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -112,6 +115,7 @@
 		351A16660272F38F3279B421 /* AdsFullscreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsFullscreenController.swift; sourceTree = "<group>"; };
 		435C560F2A433987004186FF /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		436A80E6295072580021EA32 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		43D0E5A82C5BD61B00AF9CF6 /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		59F501599943F878CA9FD609 /* Pods_LegacyTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LegacyTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C907356124A3CCDD000EF992 /* LogsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsController.swift; sourceTree = "<group>"; };
 		C907356424A3D034000EF992 /* LogsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsCell.swift; sourceTree = "<group>"; };
@@ -204,6 +208,7 @@
 			files = (
 				22D942FC291401DD00A9F90A /* OguryAds.framework in Frameworks */,
 				226B0E412886F1D8005275EB /* OMSDK_Ogury.xcframework in Frameworks */,
+				43D0E5A92C5BD61B00AF9CF6 /* OguryCore.framework in Frameworks */,
 				393D067380175864ACD6ED9B /* Pods_LegacyTestApp.framework in Frameworks */,
 				C94DAA0A28F59CC5008BFAB1 /* StoreKit.framework in Frameworks */,
 				1E3D78CF2B23181000FCD4CA /* SnapKit in Frameworks */,
@@ -216,6 +221,7 @@
 		3E89C737BA898E957C8C33F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43D0E5A82C5BD61B00AF9CF6 /* OguryCore.framework */,
 				435C560F2A433987004186FF /* AdsCardLibrary.framework */,
 				1ED3C27C29F03974007604BF /* StoreKitTest.framework */,
 				22D942FB291401DD00A9F90A /* OguryAds.framework */,

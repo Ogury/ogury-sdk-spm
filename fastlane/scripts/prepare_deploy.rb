@@ -23,7 +23,7 @@ lane :prepare_for_deployment do |options|
   tag = options[:tag]
   framework_suffix = get_framework_suffix(environment)
   target = options[:target]
-  release = options[:release] ? options[:release] : false
+  artifactory = options[:artifactory] ? options[:artifactory] : false
 
   # Source URL for Cocoapods
   source_url = ""
@@ -52,7 +52,7 @@ lane :prepare_for_deployment do |options|
     version: version, 
     environment_url: environment_url, 
     target:target,
-    release: release
+    artifactory: artifactory
     )
 
   combine_framework(
@@ -104,9 +104,8 @@ private_lane :build_frameworks do |options|
   destination = ""
   configuration = options[:configuration]
   target = options[:target]
-  puts "options[:release] #{options[:release]}"
-  release = options[:release] ? options[:release] : false
-  scheme = release ? target.releaseScheme : target.scheme
+  artifactory = options[:artifactory] ? options[:artifactory] : false
+  scheme = artifactory ? target.artScheme : target.scheme
 
   configuration.sdks.defaults.each do |sdk|
     case sdk
@@ -289,7 +288,7 @@ lane :prepare_core_for_deployment do |options|
   environment = options[:environment]
   version = options[:version]
   tag = options[:tag]
-  release = options[:release] ? options[:release] : false
+  artifactory = options[:artifactory] ? options[:artifactory] : false
 
   puts "Deploy OguryCore".yellow
 
@@ -299,7 +298,7 @@ lane :prepare_core_for_deployment do |options|
     version: version,
     tag: tag,
     target: configuration.targets.core,
-    release: release
+    artifactory: artifactory
     )
 end
 
@@ -321,7 +320,7 @@ lane :prepare_ads_for_deployment do |options|
   environment = options[:environment]
   version = options[:version]
   tag = options[:tag]
-  release = options[:release] ? options[:release] : false
+  artifactory = options[:artifactory] ? options[:artifactory] : false
 
   puts "Deploy OguryCore".yellow
 
@@ -331,7 +330,7 @@ lane :prepare_ads_for_deployment do |options|
     version: version,
     tag: tag,
     target: configuration.targets.ads,
-    release: release
+    artifactory: artifactory
     )
 end
 
@@ -353,7 +352,7 @@ lane :prepare_adsLibrary_for_deployment do |options|
   environment = options[:environment]
   version = options[:version]
   tag = options[:tag]
-  release = options[:release] ? options[:release] : false
+  artifactory = options[:artifactory] ? options[:artifactory] : false
 
   puts "Deploy AdsLibrary".yellow
 
@@ -363,7 +362,7 @@ lane :prepare_adsLibrary_for_deployment do |options|
     version: version,
     tag: tag,
     target: configuration.targets.adsLibrary,
-    release: release
+    artifactory: artifactory
     )
 end
 
@@ -385,7 +384,7 @@ lane :prepare_wrapper_for_deployment do |options|
   environment = options[:environment]
   version = options[:version]
   tag = options[:tag]
-  release = options[:release] ? options[:release] : false
+  artifactory = options[:artifactory] ? options[:artifactory] : false
 
   puts "Deploy OgurySdk".yellow
 
@@ -395,7 +394,7 @@ lane :prepare_wrapper_for_deployment do |options|
     version: version,
     tag: tag,
     target: configuration.targets.wrapper,
-    release: release
+    artifactory: artifactory
     )
 end
 
@@ -413,9 +412,9 @@ private_lane :deploy_test_app do |options|
   TestAppVariant.all.each do |variant|
 
     puts "Building #{configuration.targets.testApp.scheme}-#{variant}".blue
-    release = options[:release] ? release : false
+    artifactory = options[:artifactory] ? options[:artifactory] : false
     scheme = "#{configuration.targets.testApp.scheme}-#{variant}"
-    scheme =  release ? "#{scheme}-Release" : scheme
+    scheme =  artifactory ? "#{scheme}-art" : scheme
     bundleId = variant == TestAppVariant::PROD ? "co.ogury.sdk.ads.app" : "co.ogury.sdk.ads.app.#{variant.downcase}"
     puts "bundleId #{bundleId}".yellow
 

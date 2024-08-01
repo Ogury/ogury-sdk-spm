@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43BCB1192C22DD60002FB0B1"
-               BuildableName = "AdsTestApp-Release-Prod.app"
-               BlueprintName = "AdsTestApp-Release-Prod"
+               BlueprintIdentifier = "43BCB0932C22DD45002FB0B1"
+               BuildableName = "AdsTestApp-Devc-art.app"
+               BlueprintName = "AdsTestApp-Devc-art"
                ReferencedContainer = "container:AdsTestApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,9 +44,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43BCB1192C22DD60002FB0B1"
-            BuildableName = "AdsTestApp-Release-Prod.app"
-            BlueprintName = "AdsTestApp-Release-Prod"
+            BlueprintIdentifier = "43BCB0932C22DD45002FB0B1"
+            BuildableName = "AdsTestApp-Devc-art.app"
+            BlueprintName = "AdsTestApp-Devc-art"
             ReferencedContainer = "container:AdsTestApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -61,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43BCB1192C22DD60002FB0B1"
-            BuildableName = "AdsTestApp-Release-Prod.app"
-            BlueprintName = "AdsTestApp-Release-Prod"
+            BlueprintIdentifier = "43BCB0932C22DD45002FB0B1"
+            BuildableName = "AdsTestApp-Devc-art.app"
+            BlueprintName = "AdsTestApp-Devc-art"
             ReferencedContainer = "container:AdsTestApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
