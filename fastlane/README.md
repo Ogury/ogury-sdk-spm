@@ -130,6 +130,14 @@ Proceed to deploy a new version of a framewok passed as parameter for the specif
 
 Proceed to deploy a new version of a framewok passed as parameter for the specified environment
 
+### ios generate_test_app
+
+```sh
+[bundle exec] fastlane ios generate_test_app
+```
+
+Proceed to deploy a new version of a framewok passed as parameter for the specified environment
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.

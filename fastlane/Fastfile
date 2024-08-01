@@ -313,6 +313,12 @@ lane :test do |options|
     deploy_framework(environment: environment, tag: tag, target: configuration.targets.wrapper, release: release)
   end
 
+  desc "Proceed to deploy a new version of a framewok passed as parameter for the specified environment"
+  lane :generate_test_app do |options|
+    release = options[:release] ? options[:release] : false
+    deploy_test_app(configuration: configuration, release: release)
+  end
+
 end
 
 

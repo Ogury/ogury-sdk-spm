@@ -67,3 +67,10 @@ def get_module_version(environment, internal_version, beta_version, staging_vers
     return staging_version
   end
 end
+
+private_lane :setup_xcode do
+  # Run the defaults write command
+  sh("defaults write com.apple.dt.Xcode IDESkipMacroFingerprintValidation -bool YES")
+
+  # Additional setup steps can be added here
+end

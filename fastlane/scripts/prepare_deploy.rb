@@ -58,7 +58,7 @@ lane :prepare_for_deployment do |options|
   combine_framework(
     configuration: configuration, 
     target: target
-  )
+    )
 
   if target.dependencies.omid
     copy_omsdk(configuration: configuration)
@@ -126,7 +126,7 @@ private_lane :build_frameworks do |options|
       destination: destination,
       xcargs: "CLANG_ENABLE_CODE_COVERAGE=NO SKIP_INSTALL=NO MARKETING_VERSION=#{version} ENV_URL=#{options[:environment_url]}",
       archive_path: "#{configuration.directories.build}/archives/#{target.name}-#{sdk}",
-    )
+      )
   end
 end
 
@@ -241,10 +241,10 @@ private_lane :generate_podspec do |options|
   output_file = get_podspec_filename(target.publicName, framework_suffix)
 
   placeholders = {
-      :version => version,
-      :framework_suffix => framework_suffix,
-      :source_url => source_url + "/#{archive_filename}"
-    }
+    :version => version,
+    :framework_suffix => framework_suffix,
+    :source_url => source_url + "/#{archive_filename}"
+  }
 
   if target.dependencies.core
     ogury_core_version = get_module_version(environment, configuration.frameworks.ogury_core.internal_version, configuration.frameworks.ogury_core.beta_version, configuration.frameworks.ogury_core.release_version)
@@ -406,6 +406,7 @@ private_lane :deploy_test_app do |options|
   end
 
   configuration = options[:configuration]
+  setup_xcode
   
   puts "Building TestApp".green
 
@@ -415,22 +416,25 @@ private_lane :deploy_test_app do |options|
     release = options[:release] ? release : false
     scheme = "#{configuration.targets.testApp.scheme}-#{variant}"
     scheme =  release ? "#{scheme}-Release" : scheme
+    bundleId = variant == TestAppVariant::PROD ? "co.ogury.sdk.ads.app" : "co.ogury.sdk.ads.app.#{variant.downcase}"
+    puts "bundleId #{bundleId}".yellow
 
     build_ios_app(
       workspace: configuration.workspace.file_path,
-      configuration: "Debug",
       scheme: scheme,
       sdk: "iphoneos",
+      derived_data_path: configuration.directories.test_derived_data,
       clean: true,
       output_directory: configuration.directories.test_app,
       output_name: "#{scheme}.ipa",
       export_method: "development",
       export_options: {
-        signingStyle: "manual",
+        signingStyle: "automatic",
         provisioningProfiles: {
-          "co.ogury.Test-Application" => "Test Application Dev",
+          bundleId => "XC co ogury sdk ads app #{variant.downcase}"
         },
       },
+
       )
 
     copy_artifacts(
