@@ -20,6 +20,9 @@
       location = "group:sdk-wrapper-ios/OguryWrapperTestApp/OguryWrapperTestApp.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:sdk-ads-ios/AdsCardLibrary/../OguryAdsTestApp/OguryAdsTestApp.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

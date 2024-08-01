@@ -105,7 +105,7 @@
 		43DA127E2AB888D300766D99 /* BannerPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */; };
 		43DA12802AB888D900766D99 /* BannerAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127F2AB888D900766D99 /* BannerAdManager.swift */; };
 		7F385E25C7DBDC9D529417A9 /* Pods_AdsCardLibrary_Release.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E6B6490D55C3C0FEDB34FF7 /* Pods_AdsCardLibrary_Release.framework */; };
-		8953E489A7F8331EA044BBF1 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		8953E489A7F8331EA044BBF1 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +115,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 435C55DE2A42EAEF004186FF;
 			remoteInfo = AdsCardLibrary;
+		};
+		436C917A2C5BB4E600114555 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 436C91762C5BB4E600114555 /* OguryAdsTestApp.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C9A5E770241A51660093E79B;
+			remoteInfo = OguryAdsTestApp;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -157,6 +164,7 @@
 		435C55FC2A42F451004186FF /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OMSDK_Ogury.xcframework; path = ../OMSDK_Ogury.xcframework; sourceTree = "<absolute>"; };
 		435F7BCE2A601F990077843A /* InterstitialAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdManagerTests.swift; sourceTree = "<group>"; };
+		436C91762C5BB4E600114555 /* OguryAdsTestApp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OguryAdsTestApp.xcodeproj; path = ../OguryAdsTestApp/OguryAdsTestApp.xcodeproj; sourceTree = "<group>"; };
 		436E97262A6A7BC30074E922 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43788F282B5FB7980041A9C1 /* AdsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsTextField.swift; sourceTree = "<group>"; };
 		43788F2B2B5FBA1A0041A9C1 /* PPTelegraf-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PPTelegraf-Semibold.ttf"; sourceTree = "<group>"; };
@@ -204,7 +212,7 @@
 				43AE68042AAB25B1002E7C46 /* OguryAds.framework in Frameworks */,
 				43A9F4A52C37E7800085EF6F /* OguryCore.framework in Frameworks */,
 				435F7BCA2A5EE3970077843A /* ComposableArchitecture in Frameworks */,
-				8953E489A7F8331EA044BBF1 /* BuildFile in Frameworks */,
+				8953E489A7F8331EA044BBF1 /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +278,7 @@
 		435C55D52A42EAEF004186FF = {
 			isa = PBXGroup;
 			children = (
+				436C91762C5BB4E600114555 /* OguryAdsTestApp.xcodeproj */,
 				435C55E12A42EAEF004186FF /* AdsCardLibrary */,
 				435C55ED2A42EAEF004186FF /* AdsCardLibraryTests */,
 				435C55E02A42EAEF004186FF /* Products */,
@@ -347,6 +356,14 @@
 				1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */,
 			);
 			path = AdManager;
+			sourceTree = "<group>";
+		};
+		436C91772C5BB4E600114555 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				436C917B2C5BB4E600114555 /* OguryTestApp.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		43788F272B5FB77A0041A9C1 /* TextFields */ = {
@@ -605,6 +622,12 @@
 			);
 			productRefGroup = 435C55E02A42EAEF004186FF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 436C91772C5BB4E600114555 /* Products */;
+					ProjectRef = 436C91762C5BB4E600114555 /* OguryAdsTestApp.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				435C55DE2A42EAEF004186FF /* AdsCardLibrary */,
@@ -613,6 +636,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		436C917B2C5BB4E600114555 /* OguryTestApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = OguryTestApp.app;
+			remoteRef = 436C917A2C5BB4E600114555 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		435C55DD2A42EAEF004186FF /* Resources */ = {

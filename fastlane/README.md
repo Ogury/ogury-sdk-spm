@@ -138,6 +138,38 @@ Proceed to deploy a new version of a framewok passed as parameter for the specif
 
 Proceed to deploy a new version of a framewok passed as parameter for the specified environment
 
+### ios deploy_podspec
+
+```sh
+[bundle exec] fastlane ios deploy_podspec
+```
+
+Proceed to deploy a new version of the framewok for the specified environment
+
+### ios deploy_core_podspec
+
+```sh
+[bundle exec] fastlane ios deploy_core_podspec
+```
+
+Proceed to deploy a new version of the core framewok for the specified environment
+
+### ios deploy_ads_podspec
+
+```sh
+[bundle exec] fastlane ios deploy_ads_podspec
+```
+
+Proceed to deploy a new version of the ads framewok for the specified environment
+
+### ios deploy_wrapper_podspec
+
+```sh
+[bundle exec] fastlane ios deploy_wrapper_podspec
+```
+
+Proceed to deploy a new version of the ads framewok for the specified environment
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
