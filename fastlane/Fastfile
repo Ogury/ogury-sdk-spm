@@ -319,6 +319,89 @@ lane :test do |options|
     deploy_test_app(configuration: configuration, release: release)
   end
 
+  desc "Proceed to deploy a new version of the framewok for the specified environment"
+  lane :deploy_podspec do |options|
+    if !options[:environment]
+      raise "No environment specified!".red
+    end
+
+    if !options[:tag]
+      raise "No tag specified!".red
+    end
+
+    if !options[:target]
+      raise "No target specified!".red
+    end
+
+    environment = options[:environment]
+    tag = options[:tag]
+    target = options[:target]
+
+    if !configuration.allowed_environments.include? environment
+      raise "Wrong environment specified!".red
+    end
+
+    framework_suffix = get_framework_suffix(environment)
+
+    # Retrieve project version
+    version = get_version(environment, configuration.project.file_path, target.publicName, tag)
+
+    case environment
+    when "beta"
+      # Upload updated Podspec to public Cocoapods repository
+      push_to_cocoapods_repository configuration: configuration, framework_suffix: framework_suffix, version: version
+    when "release"
+      # Upload updated Podspec to Cocoapods trunk
+      # TODO: Perform initial release on Cocoapods trunk to obtain CocoaPods authentication token
+      # TODO: See https://fuller.li/posts/automated-cocoapods-releases-with-ci on how to automate 'pod trunk push OguryCore.podspec.json' with CocoaPods authentication token
+    end
+  end
+
+  desc "Proceed to deploy a new version of the core framewok for the specified environment"
+  lane :deploy_core_podspec do |options|
+    if !options[:environment]
+      raise "No environment specified!".red
+    end
+
+    if !options[:tag]
+      raise "No tag specified!".red
+    end
+
+    environment = options[:environment]
+    tag = options[:tag]
+    deploy_podspec(configuration: configuration, tag:tag, target: configuration.targets.core)
+  end
+
+  desc "Proceed to deploy a new version of the ads framewok for the specified environment"
+  lane :deploy_ads_podspec do |options|
+    if !options[:environment]
+      raise "No environment specified!".red
+    end
+
+    if !options[:tag]
+      raise "No tag specified!".red
+    end
+
+    environment = options[:environment]
+    tag = options[:tag]
+    deploy_podspec(configuration: configuration, tag:tag, target: configuration.targets.ads)
+  end
+
+  desc "Proceed to deploy a new version of the ads framewok for the specified environment"
+  lane :deploy_wrapper_podspec do |options|
+    if !options[:environment]
+      raise "No environment specified!".red
+    end
+
+    if !options[:tag]
+      raise "No tag specified!".red
+    end
+
+    environment = options[:environment]
+    tag = options[:tag]
+    deploy_podspec(configuration: configuration, tag:tag, target: configuration.targets.wrapper)
+  end
+
 end
 
 
