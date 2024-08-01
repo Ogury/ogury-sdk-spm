@@ -13,8 +13,8 @@ workspace "OgurySdks.xcworkspace"
 
 install! 'cocoapods',:warn_for_multiple_pod_sources => false, :warn_for_unused_master_specs_repo => false
 
-target 'OguryAdsTestApp' do
-  project 'sdk-ads-ios/OguryAdsTestApp/OguryAdsTestApp'
+target 'LegacyTestApp' do
+  project 'sdk-ads-ios/LegacyTestApp/LegacyTestApp'
   pod 'RxSwift', "6.2.0" # 6.5+ introduced concurrency supports which breaks with iOS under 13
   pod 'RxCocoa', "6.2.0" # 6.5+ introduced concurrency supports which breaks with iOS under 13
   pod 'Yaml'

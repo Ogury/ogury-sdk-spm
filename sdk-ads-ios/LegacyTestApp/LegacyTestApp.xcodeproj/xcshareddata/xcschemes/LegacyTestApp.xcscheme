@@ -17,8 +17,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C9A5E76F241A51660093E79B"
                BuildableName = "OguryTestApp.app"
-               BlueprintName = "OguryAdsTestApp"
-               ReferencedContainer = "container:OguryAdsTestApp.xcodeproj">
+               BlueprintName = "LegacyTestApp"
+               ReferencedContainer = "container:LegacyTestApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,8 +46,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C9A5E76F241A51660093E79B"
             BuildableName = "OguryTestApp.app"
-            BlueprintName = "OguryAdsTestApp"
-            ReferencedContainer = "container:OguryAdsTestApp.xcodeproj">
+            BlueprintName = "LegacyTestApp"
+            ReferencedContainer = "container:LegacyTestApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C9A5E76F241A51660093E79B"
             BuildableName = "OguryTestApp.app"
-            BlueprintName = "OguryAdsTestApp"
-            ReferencedContainer = "container:OguryAdsTestApp.xcodeproj">
+            BlueprintName = "LegacyTestApp"
+            ReferencedContainer = "container:LegacyTestApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

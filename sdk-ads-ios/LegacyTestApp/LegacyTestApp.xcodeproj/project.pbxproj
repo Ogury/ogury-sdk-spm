@@ -12,7 +12,7 @@
 		226B0E422886F1D8005275EB /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C9153DB526FCB03600ADB443 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		22D942FC291401DD00A9F90A /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D942FB291401DD00A9F90A /* OguryAds.framework */; };
 		351A124D3B382C7CCFF8B44B /* AdsFullscreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351A16660272F38F3279B421 /* AdsFullscreenController.swift */; };
-		393D067380175864ACD6ED9B /* Pods_OguryAdsTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F501599943F878CA9FD609 /* Pods_OguryAdsTestApp.framework */; };
+		393D067380175864ACD6ED9B /* Pods_LegacyTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F501599943F878CA9FD609 /* Pods_LegacyTestApp.framework */; };
 		436A80E7295072580021EA32 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A80E6295072580021EA32 /* String+Ext.swift */; };
 		C907356224A3CCDD000EF992 /* LogsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C907356124A3CCDD000EF992 /* LogsController.swift */; };
 		C907356524A3D034000EF992 /* LogsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C907356424A3D034000EF992 /* LogsCell.swift */; };
@@ -106,13 +106,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		057D8B21259B7BBA00838AAB /* OguryAdsTestApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OguryAdsTestApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		057D8B21259B7BBA00838AAB /* LegacyTestApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LegacyTestApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		1ED3C27C29F03974007604BF /* StoreKitTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKitTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/StoreKitTest.framework; sourceTree = DEVELOPER_DIR; };
 		22D942FB291401DD00A9F90A /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		351A16660272F38F3279B421 /* AdsFullscreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsFullscreenController.swift; sourceTree = "<group>"; };
 		435C560F2A433987004186FF /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		436A80E6295072580021EA32 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
-		59F501599943F878CA9FD609 /* Pods_OguryAdsTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OguryAdsTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		59F501599943F878CA9FD609 /* Pods_LegacyTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LegacyTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C907356124A3CCDD000EF992 /* LogsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsController.swift; sourceTree = "<group>"; };
 		C907356424A3D034000EF992 /* LogsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsCell.swift; sourceTree = "<group>"; };
 		C907356624A3D045000EF992 /* LogsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogsCell.xib; sourceTree = "<group>"; };
@@ -179,8 +179,8 @@
 		C9E8AA9D2492B9D600147961 /* ThumbnailCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailCollectionCell.swift; sourceTree = "<group>"; };
 		C9E8AA9E2492B9D600147961 /* ThumbnailCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThumbnailCollectionCell.xib; sourceTree = "<group>"; };
 		C9E8AAA12492C1EB00147961 /* AdThumbnailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdThumbnailController.swift; sourceTree = "<group>"; };
-		D0C20E7F32BC05567D0EE8E0 /* Pods-OguryAdsTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAdsTestApp.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryAdsTestApp/Pods-OguryAdsTestApp.release.xcconfig"; sourceTree = "<group>"; };
-		D61D54F054E3DF02D47A82B4 /* Pods-OguryAdsTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAdsTestApp.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryAdsTestApp/Pods-OguryAdsTestApp.debug.xcconfig"; sourceTree = "<group>"; };
+		D0C20E7F32BC05567D0EE8E0 /* Pods-LegacyTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LegacyTestApp.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-LegacyTestApp/Pods-LegacyTestApp.release.xcconfig"; sourceTree = "<group>"; };
+		D61D54F054E3DF02D47A82B4 /* Pods-LegacyTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LegacyTestApp.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-LegacyTestApp/Pods-LegacyTestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		ED0A181125FFAA7E00509201 /* AdController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdController.swift; sourceTree = "<group>"; };
 		ED0E40B52743B30B00D3009E /* HeaderBiddingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBiddingResponse.swift; sourceTree = "<group>"; };
 		ED0E40B92743C25900D3009E /* HeaderBiddingSeatBid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBiddingSeatBid.swift; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 			files = (
 				22D942FC291401DD00A9F90A /* OguryAds.framework in Frameworks */,
 				226B0E412886F1D8005275EB /* OMSDK_Ogury.xcframework in Frameworks */,
-				393D067380175864ACD6ED9B /* Pods_OguryAdsTestApp.framework in Frameworks */,
+				393D067380175864ACD6ED9B /* Pods_LegacyTestApp.framework in Frameworks */,
 				C94DAA0A28F59CC5008BFAB1 /* StoreKit.framework in Frameworks */,
 				1E3D78CF2B23181000FCD4CA /* SnapKit in Frameworks */,
 			);
@@ -223,7 +223,7 @@
 				C9153DB526FCB03600ADB443 /* OMSDK_Ogury.xcframework */,
 				EDFCD27E25A316F500490E16 /* OguryAds.framework */,
 				C9643F2125752A890055DDBC /* OguryCore.xcframework */,
-				59F501599943F878CA9FD609 /* Pods_OguryAdsTestApp.framework */,
+				59F501599943F878CA9FD609 /* Pods_LegacyTestApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -508,7 +508,7 @@
 		C9A5E767241A51660093E79B = {
 			isa = PBXGroup;
 			children = (
-				C9A5E772241A51660093E79B /* OguryAdsTestApp */,
+				C9A5E772241A51660093E79B /* LegacyTestApp */,
 				C9A5E771241A51660093E79B /* Products */,
 				F4E802600099A88DEDB1FAC8 /* Pods */,
 				3E89C737BA898E957C8C33F1 /* Frameworks */,
@@ -523,7 +523,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C9A5E772241A51660093E79B /* OguryAdsTestApp */ = {
+		C9A5E772241A51660093E79B /* LegacyTestApp */ = {
 			isa = PBXGroup;
 			children = (
 				C9A5E773241A51660093E79B /* AppDelegate.swift */,
@@ -533,13 +533,13 @@
 				C9A5E781241A51680093E79B /* Info.plist */,
 				C99A4D52241FCC6800288F51 /* Extensions */,
 				C99A4D47241FBF9C00288F51 /* Models */,
-				057D8B21259B7BBA00838AAB /* OguryAdsTestApp-Bridging-Header.h */,
+				057D8B21259B7BBA00838AAB /* LegacyTestApp-Bridging-Header.h */,
 				C99A4D4A241FC8DB00288F51 /* Rx */,
 				C964069724BC634300689316 /* Sources */,
 				ED14F99325AC8B8A00DA841A /* Stores */,
 				C99A4D46241FBD1700288F51 /* UI */,
 			);
-			path = OguryAdsTestApp;
+			path = LegacyTestApp;
 			sourceTree = "<group>";
 		};
 		C9E8AA982492B7F500147961 /* ThumbnailAdCell */ = {
@@ -598,8 +598,8 @@
 		F4E802600099A88DEDB1FAC8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D61D54F054E3DF02D47A82B4 /* Pods-OguryAdsTestApp.debug.xcconfig */,
-				D0C20E7F32BC05567D0EE8E0 /* Pods-OguryAdsTestApp.release.xcconfig */,
+				D61D54F054E3DF02D47A82B4 /* Pods-LegacyTestApp.debug.xcconfig */,
+				D0C20E7F32BC05567D0EE8E0 /* Pods-LegacyTestApp.release.xcconfig */,
 			);
 			name = Pods;
 			path = ../Pods;
@@ -608,9 +608,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C9A5E76F241A51660093E79B /* OguryAdsTestApp */ = {
+		C9A5E76F241A51660093E79B /* LegacyTestApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C9A5E784241A51680093E79B /* Build configuration list for PBXNativeTarget "OguryAdsTestApp" */;
+			buildConfigurationList = C9A5E784241A51680093E79B /* Build configuration list for PBXNativeTarget "LegacyTestApp" */;
 			buildPhases = (
 				BA96786969230B9F0252CECE /* [CP] Check Pods Manifest.lock */,
 				C9A5E76C241A51660093E79B /* Sources */,
@@ -623,11 +623,11 @@
 			);
 			dependencies = (
 			);
-			name = OguryAdsTestApp;
+			name = LegacyTestApp;
 			packageProductDependencies = (
 				1E3D78CE2B23181000FCD4CA /* SnapKit */,
 			);
-			productName = OguryAdsTestApp;
+			productName = LegacyTestApp;
 			productReference = C9A5E770241A51660093E79B /* OguryTestApp.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -647,7 +647,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C9A5E76B241A51660093E79B /* Build configuration list for PBXProject "OguryAdsTestApp" */;
+			buildConfigurationList = C9A5E76B241A51660093E79B /* Build configuration list for PBXProject "LegacyTestApp" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -663,7 +663,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C9A5E76F241A51660093E79B /* OguryAdsTestApp */,
+				C9A5E76F241A51660093E79B /* LegacyTestApp */,
 			);
 		};
 /* End PBXProject section */
@@ -698,15 +698,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OguryAdsTestApp/Pods-OguryAdsTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-LegacyTestApp/Pods-LegacyTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OguryAdsTestApp/Pods-OguryAdsTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-LegacyTestApp/Pods-LegacyTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OguryAdsTestApp/Pods-OguryAdsTestApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LegacyTestApp/Pods-LegacyTestApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BA96786969230B9F0252CECE /* [CP] Check Pods Manifest.lock */ = {
@@ -724,7 +724,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OguryAdsTestApp-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-LegacyTestApp-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -877,7 +877,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = OguryAdsTestApp/Info.plist;
+				INFOPLIST_FILE = LegacyTestApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MARKETING_VERSION = 3.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -938,7 +938,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = OguryAdsTestApp/Info.plist;
+				INFOPLIST_FILE = LegacyTestApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MARKETING_VERSION = 3.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -956,7 +956,7 @@
 		};
 		C9A5E785241A51680093E79B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D61D54F054E3DF02D47A82B4 /* Pods-OguryAdsTestApp.debug.xcconfig */;
+			baseConfigurationReference = D61D54F054E3DF02D47A82B4 /* Pods-LegacyTestApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -966,7 +966,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/OguryAdsTestApp",
+					"$(PROJECT_DIR)/LegacyTestApp",
 					"$(PROJECT_DIR)",
 					"${PODS_XCFRAMEWORKS_BUILD_DIR}/OguryCore",
 					"${PODS_ROOT}/OguryCore-Beta",
@@ -984,13 +984,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.ogury.Test-Application";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "OguryAdsTestApp/OguryAdsTestApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "LegacyTestApp/LegacyTestApp-Bridging-Header.h";
 			};
 			name = Debug;
 		};
 		C9A5E786241A51680093E79B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0C20E7F32BC05567D0EE8E0 /* Pods-OguryAdsTestApp.release.xcconfig */;
+			baseConfigurationReference = D0C20E7F32BC05567D0EE8E0 /* Pods-LegacyTestApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1000,7 +1000,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/OguryAdsTestApp",
+					"$(PROJECT_DIR)/LegacyTestApp",
 					"$(PROJECT_DIR)",
 					"${PODS_XCFRAMEWORKS_BUILD_DIR}/OguryCore",
 					"${PODS_ROOT}/OguryCore-Beta",
@@ -1018,14 +1018,14 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.ogury.Test-Application";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "OguryAdsTestApp/OguryAdsTestApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "LegacyTestApp/LegacyTestApp-Bridging-Header.h";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C9A5E76B241A51660093E79B /* Build configuration list for PBXProject "OguryAdsTestApp" */ = {
+		C9A5E76B241A51660093E79B /* Build configuration list for PBXProject "LegacyTestApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9A5E782241A51680093E79B /* Debug */,
@@ -1034,7 +1034,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C9A5E784241A51680093E79B /* Build configuration list for PBXNativeTarget "OguryAdsTestApp" */ = {
+		C9A5E784241A51680093E79B /* Build configuration list for PBXNativeTarget "LegacyTestApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9A5E785241A51680093E79B /* Debug */,
