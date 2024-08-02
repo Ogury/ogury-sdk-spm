@@ -54,11 +54,11 @@ platform :ios do
         artifactory: artifactory
         )
 
-      build_test_app(
-        configuration: configuration,
-        sdk: sdk,
-        artifactory: artifactory
-        )
+      # build_test_app(
+      #   configuration: configuration,
+      #   sdk: sdk,
+      #   artifactory: artifactory
+      #   )
     end
   end
 
