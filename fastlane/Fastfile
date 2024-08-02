@@ -344,7 +344,7 @@ lane :test do |options|
     framework_suffix = get_framework_suffix(environment)
 
     # Retrieve project version
-    version = get_version(environment, configuration.project.file_path, target.publicName, tag)
+    version = get_version(environment, configuration.workspace.file_path, target.publicName, tag)
 
     case environment
     when "beta"
