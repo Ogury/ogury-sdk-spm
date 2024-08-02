@@ -349,7 +349,7 @@ lane :test do |options|
     case environment
     when "beta"
       # Upload updated Podspec to public Cocoapods repository
-      push_to_cocoapods_repository configuration: configuration, environment: environment, framework_suffix: framework_suffix, version: version
+      push_to_cocoapods_repository(configuration: configuration, environment: environment, framework_suffix: framework_suffix, version: version, target:target)
     when "release"
       # Upload updated Podspec to Cocoapods trunk
       # TODO: Perform initial release on Cocoapods trunk to obtain CocoaPods authentication token
