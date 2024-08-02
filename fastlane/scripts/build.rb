@@ -124,6 +124,7 @@ private_lane :build_test_app do |options|
   end
 
   configuration = options[:configuration]
+  setup_xcode
   
   puts "Building TestApp".green
 
