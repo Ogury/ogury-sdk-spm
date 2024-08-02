@@ -349,7 +349,7 @@ lane :test do |options|
     case environment
     when "beta"
       # Upload updated Podspec to public Cocoapods repository
-      push_to_cocoapods_repository configuration: configuration, framework_suffix: framework_suffix, version: version
+      push_to_cocoapods_repository configuration: configuration, environment: environment, framework_suffix: framework_suffix, version: version
     when "release"
       # Upload updated Podspec to Cocoapods trunk
       # TODO: Perform initial release on Cocoapods trunk to obtain CocoaPods authentication token
@@ -369,7 +369,7 @@ lane :test do |options|
 
     environment = options[:environment]
     tag = options[:tag]
-    deploy_podspec(configuration: configuration, tag:tag, target: configuration.targets.core)
+    deploy_podspec(configuration: configuration, environment: environment, tag:tag, target: configuration.targets.core)
   end
 
   desc "Proceed to deploy a new version of the ads framewok for the specified environment"
@@ -384,7 +384,7 @@ lane :test do |options|
 
     environment = options[:environment]
     tag = options[:tag]
-    deploy_podspec(configuration: configuration, tag:tag, target: configuration.targets.ads)
+    deploy_podspec(configuration: configuration, environment: environment, tag:tag, target: configuration.targets.ads)
   end
 
   desc "Proceed to deploy a new version of the ads framewok for the specified environment"
@@ -399,7 +399,7 @@ lane :test do |options|
 
     environment = options[:environment]
     tag = options[:tag]
-    deploy_podspec(configuration: configuration, tag:tag, target: configuration.targets.wrapper)
+    deploy_podspec(configuration: configuration, environment: environment, tag:tag, target: configuration.targets.wrapper)
   end
 
 end
