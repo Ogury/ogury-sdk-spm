@@ -23,7 +23,7 @@ target 'LegacyTestApp' do
 end
 
 #Ads
-target "OguryAds-Release" do
+target "OguryAds-art" do
   project "sdk-ads-ios/OguryAdsSDK"
 
   pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
@@ -41,7 +41,7 @@ target "OguryAdsTests" do
   pod "OCMock", :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
 end
 
-target "AdsCardLibrary-Release" do
+target "AdsCardLibrary-art" do
   project "sdk-ads-ios/AdsCardLibrary/AdsCardLibrary"
   pod "OguryAds<%= framework_suffix %>", "<%= ogury_ads_version %>"
   pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
@@ -61,15 +61,15 @@ target "AdsTestApp-Prod" do
   pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
 end
 
-target "AdsTestApp-Release-Devc" do
+target "AdsTestApp-Devc-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
 end
-target "AdsTestApp-Release-Staging" do
+target "AdsTestApp-Staging-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
 end
-target "AdsTestApp-Release-Prod" do
+target "AdsTestApp-Prod-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
 end
