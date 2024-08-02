@@ -102,12 +102,12 @@ pipeline {
                 stage('Deploy Core Internal release') {
                     when {
                         beforeAgent true
-                        tag "internal-core-release-*"
+                        tag "internal-core-art-*"
                     }
                     steps {
 
                         sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_core_framework environment:prod tag:${env.TAG_NAME} release:true
+                            bundle exec fastlane deploy_core_framework environment:prod tag:${env.TAG_NAME} artifactory:true
                         """
                     }
                 }
@@ -126,12 +126,12 @@ pipeline {
                 stage('Deploy Ads Internal release') {
                     when {
                         beforeAgent true
-                        tag "internal-ads-release-*"
+                        tag "internal-ads-art-*"
                     }
                     steps {
 
                         sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_ads_framework environment:prod tag:${env.TAG_NAME} release:true
+                            bundle exec fastlane deploy_ads_framework environment:prod tag:${env.TAG_NAME} artifactory:true
                         """
                     }
                 }
@@ -150,12 +150,12 @@ pipeline {
                 stage('Deploy wrapper Internal release') {
                     when {
                         beforeAgent true
-                        tag "internal-wrapper-release-*"
+                        tag "internal-wrapper-art-*"
                     }
                     steps {
 
                         sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_wrapper_framework environment:prod tag:${env.TAG_NAME} release:true
+                            bundle exec fastlane deploy_wrapper_framework environment:prod tag:${env.TAG_NAME} artifactory:true
                         """
                     }
                 }
@@ -197,11 +197,11 @@ pipeline {
                     }
                     when {
                         beforeAgent true
-                        tag "beta-core-release-*"
+                        tag "beta-core-art-*"
                     }
                     steps {
                         sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_core_framework environment:beta tag:${env.TAG_NAME} release:true
+                            bundle exec fastlane deploy_core_framework environment:beta tag:${env.TAG_NAME} artifactory:true
                         """
 
                         withAWS(role:'ci-eu-west-1-macos-jenkins-ci', roleAccount:'556593845588')  {
@@ -257,11 +257,11 @@ pipeline {
                     }
                     when {
                         beforeAgent true
-                        tag "beta-ads-release-*"
+                        tag "beta-ads-art-*"
                     }
                     steps {
                         sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_ads_framework environment:beta tag:${env.TAG_NAME} release:true
+                            bundle exec fastlane deploy_ads_framework environment:beta tag:${env.TAG_NAME} artifactory:true
                         """
 
                         withAWS(role:'ci-eu-west-1-macos-jenkins-ci', roleAccount:'556593845588')  {
@@ -317,11 +317,11 @@ pipeline {
                     }
                     when {
                         beforeAgent true
-                        tag "beta-wrapper-release-*"
+                        tag "beta-wrapper-art-*"
                     }
                     steps {
                         sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_wrapper_framework environment:beta tag:${env.TAG_NAME} release:true
+                            bundle exec fastlane deploy_wrapper_framework environment:beta tag:${env.TAG_NAME} artifactory:true
                         """
 
                         withAWS(role:'ci-eu-west-1-macos-jenkins-ci', roleAccount:'556593845588')  {
@@ -353,7 +353,7 @@ pipeline {
                     }
                     steps {
                         sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_core_framework environment:release tag:${env.TAG_NAME} release:true
+                            bundle exec fastlane deploy_core_framework environment:release tag:${env.TAG_NAME} artifactory:true
                         """
 
                         withAWS(role:'ci-eu-west-1-macos-jenkins-ci', roleAccount:'556593845588')  {
@@ -383,7 +383,7 @@ pipeline {
                     }
                     steps {
                         sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_ads_framework environment:release tag:${env.TAG_NAME} release:true
+                            bundle exec fastlane deploy_ads_framework environment:release tag:${env.TAG_NAME} artifactory:true
                         """
 
                         withAWS(role:'ci-eu-west-1-macos-jenkins-ci', roleAccount:'556593845588')  {
@@ -413,7 +413,7 @@ pipeline {
                     }
                     steps {
                         sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_wrapper_framework environment:release tag:${env.TAG_NAME} release:true
+                            bundle exec fastlane deploy_wrapper_framework environment:release tag:${env.TAG_NAME} artifactory:true
                         """
 
                         withAWS(role:'ci-eu-west-1-macos-jenkins-ci', roleAccount:'556593845588')  {

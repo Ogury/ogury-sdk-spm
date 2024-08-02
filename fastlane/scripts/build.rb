@@ -132,7 +132,7 @@ private_lane :build_test_app do |options|
     puts "Building #{configuration.targets.testApp.scheme}-#{variant}".blue
     artifactory = options[:artifactory] ? options[:artifactory] : false
     scheme = "#{configuration.targets.testApp.scheme}-#{variant}"
-    scheme =  artifactory ? "#{scheme}-Release" : scheme
+    scheme =  artifactory ? "#{scheme}-art" : scheme
 
     build_ios_app(
       workspace: configuration.workspace.file_path,
