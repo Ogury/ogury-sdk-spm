@@ -118,7 +118,11 @@ pipeline {
                 stage('Deploy Ads Internal dev') {
                     when {
                         beforeAgent true
-                        tag "internal-ads-*"
+                        expression {
+                            // Check if the current tag matches the pattern "internal-ads-<digits separated by dots>-<description>"
+                            def tagPattern = ~/^internal-ads-(\d+(\.\d+)*)-.*$/
+                            return env.GIT_TAG ==~ tagPattern
+                        }
                     }
                     steps {
 
@@ -142,7 +146,11 @@ pipeline {
                 stage('Deploy Wrapper Internal dev') {
                     when {
                         beforeAgent true
-                        tag "internal-wrapper-*"
+                        expression {
+                            // Check if the current tag matches the pattern "internal-wrapper-<digits separated by dots>-<description>"
+                            def tagPattern = ~/^internal-wrapper-(\d+(\.\d+)*)-.*$/
+                            return env.GIT_TAG ==~ tagPattern
+                        }
                     }
                     steps {
 
@@ -235,7 +243,11 @@ pipeline {
                     }
                     when {
                         beforeAgent true
-                        tag "beta-ads-*"
+                        expression {
+                            // Check if the current tag matches the pattern "internal-ads-<digits separated by dots>-<description>"
+                            def tagPattern = ~/^beta-ads-(\d+(\.\d+)*)-.*$/
+                            return env.GIT_TAG ==~ tagPattern
+                        }
                     }
                     steps {
                         sh """#!/bin/zsh -l
@@ -295,7 +307,11 @@ pipeline {
                     }
                     when {
                         beforeAgent true
-                        tag "beta-wrapper-*"
+                        expression {
+                            // Check if the current tag matches the pattern "internal-wrapper-<digits separated by dots>-<description>"
+                            def tagPattern = ~/^beta-wrapper-(\d+(\.\d+)*)-.*$/
+                            return env.GIT_TAG ==~ tagPattern
+                        }
                     }
                     steps {
                         sh """#!/bin/zsh -l
