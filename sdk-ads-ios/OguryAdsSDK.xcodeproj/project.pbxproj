@@ -4625,9 +4625,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		43A9F2AC2C37E6B40085EF6F /* OguryAds-art2 */ = {
+		43A9F2AC2C37E6B40085EF6F /* OguryAds-art */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43A9F49C2C37E6B40085EF6F /* Build configuration list for PBXNativeTarget "OguryAds-art2" */;
+			buildConfigurationList = 43A9F49C2C37E6B40085EF6F /* Build configuration list for PBXNativeTarget "OguryAds-art" */;
 			buildPhases = (
 				43A9F2AD2C37E6B40085EF6F /* [CP] Check Pods Manifest.lock */,
 				43A9F2AE2C37E6B40085EF6F /* Sources */,
@@ -4640,7 +4640,7 @@
 			);
 			dependencies = (
 			);
-			name = "OguryAds-art2";
+			name = "OguryAds-art";
 			productName = PresageSDK;
 			productReference = 43A9F49F2C37E6B40085EF6F /* OguryAds.framework */;
 			productType = "com.apple.product-type.framework";
@@ -4718,7 +4718,7 @@
 			projectRoot = "";
 			targets = (
 				DEF1BF72213917AA0004BAD1 /* OguryAds */,
-				43A9F2AC2C37E6B40085EF6F /* OguryAds-art2 */,
+				43A9F2AC2C37E6B40085EF6F /* OguryAds-art */,
 				DEF1BF7B213917AA0004BAD1 /* OguryAdsTests */,
 			);
 		};
@@ -5927,7 +5927,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		43A9F49C2C37E6B40085EF6F /* Build configuration list for PBXNativeTarget "OguryAds-art2" */ = {
+		43A9F49C2C37E6B40085EF6F /* Build configuration list for PBXNativeTarget "OguryAds-art" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43A9F49D2C37E6B40085EF6F /* Debug */,
