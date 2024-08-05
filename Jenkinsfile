@@ -90,7 +90,11 @@ pipeline {
                 stage('Deploy Core Internal dev') {
                     when {
                         beforeAgent true
-                        tag "internal-core-*"
+                        expression {
+                            // Check if the current tag matches the pattern "internal-core-<digits separated by dots>-<description>"
+                            def tagPattern = ~/^internal-core-(\d+(\.\d+)*)-.*$/
+                            return env.GIT_TAG ==~ tagPattern
+                        }
                     }
                     steps {
 
@@ -99,7 +103,7 @@ pipeline {
                         """
                     }
                 }
-                stage('Deploy Core Internal release') {
+                stage('Deploy Core Internal With Cocoapod Dependencies') {
                     when {
                         beforeAgent true
                         tag "internal-core-art-*"
@@ -123,7 +127,7 @@ pipeline {
                         """
                     }
                 }
-                stage('Deploy Ads Internal release') {
+                stage('Deploy Ads Internal With Cocoapod Dependencies') {
                     when {
                         beforeAgent true
                         tag "internal-ads-art-*"
@@ -147,7 +151,7 @@ pipeline {
                         """
                     }
                 }
-                stage('Deploy wrapper Internal release') {
+                stage('Deploy wrapper Internal With Cocoapod Dependencies') {
                     when {
                         beforeAgent true
                         tag "internal-wrapper-art-*"
@@ -191,7 +195,7 @@ pipeline {
                         }
                     }
                 }
-                stage('Deploy Core Beta release') {
+                stage('Deploy Core Beta With Cocoapod Dependencies') {
                     environment {
                         GIT_SSH_COMMAND = 'ssh -o StrictHostKeyChecking=no'
                     }
@@ -251,7 +255,7 @@ pipeline {
                         }
                     }
                 }
-                stage('Deploy ads Beta release') {
+                stage('Deploy ads Beta With Cocoapod Dependencies') {
                     environment {
                         GIT_SSH_COMMAND = 'ssh -o StrictHostKeyChecking=no'
                     }
@@ -311,7 +315,7 @@ pipeline {
                         }
                     }
                 }
-                stage('Deploy wrapper Beta release') {
+                stage('Deploy wrapper Beta With Cocoapod Dependencies') {
                     environment {
                         GIT_SSH_COMMAND = 'ssh -o StrictHostKeyChecking=no'
                     }
