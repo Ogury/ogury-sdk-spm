@@ -171,7 +171,11 @@ pipeline {
                     }
                     when {
                         beforeAgent true
-                        tag "beta-core-*"
+                        expression {
+                            // Check if the current tag matches the pattern "internal-core-<digits separated by dots>-<description>"
+                            def tagPattern = ~/^beta-core-(\d+(\.\d+)*)-.*$/
+                            return env.GIT_TAG ==~ tagPattern
+                        }
                     }
                     steps {
                         sh """#!/bin/zsh -l
