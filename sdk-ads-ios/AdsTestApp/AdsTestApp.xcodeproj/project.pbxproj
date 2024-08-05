@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A1B96E53367BA914B4FDD0C /* Pods_AdsTestApp_Staging_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492D0E907FA4EAC9174ADA6D /* Pods_AdsTestApp_Staging_art.framework */; };
 		1E0E81642ACD8DFB00EFD70C /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; };
 		1E0E81652ACD8DFB00EFD70C /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1E373D592BFC9CB600E2EF25 /* RTBBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D582BFC9CB600E2EF25 /* RTBBidder.swift */; };
@@ -32,7 +33,6 @@
 		4301B1F62B56D4C30076065D /* shareImageData.png in Resources */ = {isa = PBXBuildFile; fileRef = 4301B1F52B56D4C30076065D /* shareImageData.png */; };
 		4317C00A2BC7D69F00F40F5F /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C0092BC7D69F00F40F5F /* config.release.xcconfig */; };
 		4317C00C2BC7D6BC00F40F5F /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C00B2BC7D6BC00F40F5F /* config.release.xcconfig */; };
-		4317C00E2BC7D6CA00F40F5F /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C00D2BC7D6CA00F40F5F /* config.release.xcconfig */; };
 		433B4A8B2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
 		433B4A8C2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
 		433B4A8D2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
@@ -89,7 +89,6 @@
 		434F850F2AD004B0005077F5 /* Default.json in Resources */ = {isa = PBXBuildFile; fileRef = 434F850E2AD004AD005077F5 /* Default.json */; };
 		434F85102AD004B8005077F5 /* Default.json in Resources */ = {isa = PBXBuildFile; fileRef = 434F850D2AD004AD005077F5 /* Default.json */; };
 		434F85162AD00DC2005077F5 /* config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 434F85022ACFE6D5005077F5 /* config.debug.xcconfig */; };
-		434F85172AD00DC4005077F5 /* config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 434F85042ACFE6E2005077F5 /* config.debug.xcconfig */; };
 		43788F402B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
 		43788F412B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
 		43788F422B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
@@ -168,9 +167,7 @@
 		43BCB0C12C22DD45002FB0B1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB0942C22DD45002FB0B1 /* SnapKit */; };
 		43BCB0C22C22DD45002FB0B1 /* OguryChoiceManager.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AE85C72B4FD19C0010C812 /* OguryChoiceManager.xcframework */; };
 		43BCB0C62C22DD45002FB0B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
-		43BCB0C72C22DD45002FB0B1 /* config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 434F85002ACFE6C8005077F5 /* config.debug.xcconfig */; };
 		43BCB0C82C22DD45002FB0B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41F2AA5D0C300486AF2 /* Assets.xcassets */; };
-		43BCB0C92C22DD45002FB0B1 /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C0092BC7D69F00F40F5F /* config.release.xcconfig */; };
 		43BCB0CA2C22DD45002FB0B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41C2AA5D0C200486AF2 /* Main.storyboard */; };
 		43BCB0CB2C22DD45002FB0B1 /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434F84F72ACFE5E0005077F5 /* Asset.xcassets */; };
 		43BCB0CC2C22DD45002FB0B1 /* shareImageData.png in Resources */ = {isa = PBXBuildFile; fileRef = 433B4A922B34927900037FE1 /* shareImageData.png */; };
@@ -215,11 +212,9 @@
 		43BCB1092C22DD59002FB0B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
 		43BCB10A2C22DD59002FB0B1 /* Default.json in Resources */ = {isa = PBXBuildFile; fileRef = 434F850E2AD004AD005077F5 /* Default.json */; };
 		43BCB10B2C22DD59002FB0B1 /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434F84F92ACFE5E8005077F5 /* Asset.xcassets */; };
-		43BCB10C2C22DD59002FB0B1 /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C00B2BC7D6BC00F40F5F /* config.release.xcconfig */; };
 		43BCB10D2C22DD59002FB0B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41F2AA5D0C300486AF2 /* Assets.xcassets */; };
 		43BCB10E2C22DD59002FB0B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41C2AA5D0C200486AF2 /* Main.storyboard */; };
 		43BCB10F2C22DD59002FB0B1 /* shareImageData.png in Resources */ = {isa = PBXBuildFile; fileRef = 4301B1F52B56D4C30076065D /* shareImageData.png */; };
-		43BCB1102C22DD59002FB0B1 /* config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 434F85022ACFE6D5005077F5 /* config.debug.xcconfig */; };
 		43BCB1122C22DD59002FB0B1 /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43BCB1242C22DD60002FB0B1 /* HeaderBiddingBid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FC2B4D6075007C8D21 /* HeaderBiddingBid.swift */; };
 		43BCB1252C22DD60002FB0B1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
@@ -259,8 +254,6 @@
 		43BCB1482C22DD60002FB0B1 /* OguryChoiceManager.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AE85C72B4FD19C0010C812 /* OguryChoiceManager.xcframework */; };
 		43BCB14C2C22DD60002FB0B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
 		43BCB14D2C22DD60002FB0B1 /* Default.json in Resources */ = {isa = PBXBuildFile; fileRef = 434F850D2AD004AD005077F5 /* Default.json */; };
-		43BCB14E2C22DD60002FB0B1 /* config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 434F85042ACFE6E2005077F5 /* config.debug.xcconfig */; };
-		43BCB14F2C22DD60002FB0B1 /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C00D2BC7D6CA00F40F5F /* config.release.xcconfig */; };
 		43BCB1502C22DD60002FB0B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41F2AA5D0C300486AF2 /* Assets.xcassets */; };
 		43BCB1512C22DD60002FB0B1 /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434F84FB2ACFE5ED005077F5 /* Asset.xcassets */; };
 		43BCB1522C22DD60002FB0B1 /* shareImageData.png in Resources */ = {isa = PBXBuildFile; fileRef = 4301B1F32B56D4AC0076065D /* shareImageData.png */; };
@@ -278,6 +271,14 @@
 		43C1D15B2B7E672C006F2D23 /* NotificationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C1D15A2B7E672C006F2D23 /* NotificationMessage.swift */; };
 		43C1D15C2B7E672C006F2D23 /* NotificationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C1D15A2B7E672C006F2D23 /* NotificationMessage.swift */; };
 		43C1D15D2B7E672C006F2D23 /* NotificationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C1D15A2B7E672C006F2D23 /* NotificationMessage.swift */; };
+		43D0E6162C61052300AF9CF6 /* config-art.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 43D0E6142C61052300AF9CF6 /* config-art.release.xcconfig */; };
+		43D0E6172C61052300AF9CF6 /* config-art.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 43D0E6152C61052300AF9CF6 /* config-art.debug.xcconfig */; };
+		43D0E61C2C6105D700AF9CF6 /* config-art.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 43D0E61A2C6105D600AF9CF6 /* config-art.debug.xcconfig */; };
+		43D0E61D2C6105D700AF9CF6 /* config-art.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 43D0E61B2C6105D600AF9CF6 /* config-art.release.xcconfig */; };
+		43D0E6202C61060700AF9CF6 /* config-art.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 43D0E61E2C61060700AF9CF6 /* config-art.release.xcconfig */; };
+		43D0E6212C61060700AF9CF6 /* config-art.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 43D0E61F2C61060700AF9CF6 /* config-art.debug.xcconfig */; };
+		43D0E6222C61060F00AF9CF6 /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C00D2BC7D6CA00F40F5F /* config.release.xcconfig */; };
+		43D0E6232C61060F00AF9CF6 /* config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 434F85042ACFE6E2005077F5 /* config.debug.xcconfig */; };
 		43F788AF2B4E88250022157E /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
 		43F788B02B4E88250022157E /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43F788B22B4E882B0022157E /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B12B4E882B0022157E /* AdsCardLibrary.framework */; };
@@ -291,9 +292,8 @@
 		43FC85622B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43FC85632B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		607F9FDA3A6054F898F87DC5 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
-		72B17994AE990681D8B1DCB2 /* Pods_AdsTestApp_Release_Devc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0015EF10545AFCCF1E922931 /* Pods_AdsTestApp_Release_Devc.framework */; };
-		ABE9BE7EE57004FFE0E35C1C /* Pods_AdsTestApp_Release_Prod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1422A7AD952633F3BC89804 /* Pods_AdsTestApp_Release_Prod.framework */; };
-		B1463A9E2EDF3D79550C21FD /* Pods_AdsTestApp_Release_Staging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9491BF56B9CC442C5A75A1FF /* Pods_AdsTestApp_Release_Staging.framework */; };
+		674BCBAC82FBD4EBB2A4A8E7 /* Pods_AdsTestApp_Devc_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB3C78894E080AB4A6A149C /* Pods_AdsTestApp_Devc_art.framework */; };
+		9C71FDCB35B5CFCF68678C12 /* Pods_AdsTestApp_Prod_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4F757AAFB2FB32691E991C8 /* Pods_AdsTestApp_Prod_art.framework */; };
 		C5BD9D21EE45869DEF69AB73 /* Pods_AdsTestApp_Prod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 967A69F95815147E2A65EF91 /* Pods_AdsTestApp_Prod.framework */; };
 		D62E7256A49EE16D96075941 /* Pods_AdsTestApp_Staging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1166968A5CF316EC4F730077 /* Pods_AdsTestApp_Staging.framework */; };
 		DB5087F0569CA93057CEDA5F /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -376,8 +376,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0015EF10545AFCCF1E922931 /* Pods_AdsTestApp_Release_Devc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Release_Devc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		007C09F8FC1CA7D747DA869C /* Pods-AdsTestApp-Devc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc.release.xcconfig"; sourceTree = "<group>"; };
+		0129D7EE4B4D98C8EF460985 /* Pods-AdsTestApp-Devc-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc-art.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art.debug.xcconfig"; sourceTree = "<group>"; };
+		03519F466E6F8E1195487C99 /* Pods-AdsTestApp-Prod-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod-art.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art.release.xcconfig"; sourceTree = "<group>"; };
 		1166968A5CF316EC4F730077 /* Pods_AdsTestApp_Staging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Staging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E373D582BFC9CB600E2EF25 /* RTBBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTBBidder.swift; sourceTree = "<group>"; };
 		1E373D5C2BFC9F5C00E2EF25 /* DTFairBidBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTFairBidBidder.swift; sourceTree = "<group>"; };
@@ -446,6 +447,12 @@
 		43BCB1962C23255C002FB0B1 /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43BCB1992C232565002FB0B1 /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C1D15A2B7E672C006F2D23 /* NotificationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationMessage.swift; sourceTree = "<group>"; };
+		43D0E6142C61052300AF9CF6 /* config-art.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "config-art.release.xcconfig"; sourceTree = "<group>"; };
+		43D0E6152C61052300AF9CF6 /* config-art.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "config-art.debug.xcconfig"; sourceTree = "<group>"; };
+		43D0E61A2C6105D600AF9CF6 /* config-art.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "config-art.debug.xcconfig"; sourceTree = "<group>"; };
+		43D0E61B2C6105D600AF9CF6 /* config-art.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "config-art.release.xcconfig"; sourceTree = "<group>"; };
+		43D0E61E2C61060700AF9CF6 /* config-art.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "config-art.release.xcconfig"; sourceTree = "<group>"; };
+		43D0E61F2C61060700AF9CF6 /* config-art.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "config-art.debug.xcconfig"; sourceTree = "<group>"; };
 		43F788AE2B4E88250022157E /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F788B12B4E882B0022157E /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F788B42B4E882F0022157E /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -453,18 +460,23 @@
 		43F788C12B4EDDF00022157E /* OGYModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGYModule.h; sourceTree = "<group>"; };
 		43F788C22B4EDDF00022157E /* OGYModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGYModule.m; sourceTree = "<group>"; };
 		43FC85602B0F5E0900EABA43 /* MaxBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxBidder.swift; sourceTree = "<group>"; };
+		47C0E4A5A6B569012BC88AE1 /* Pods-AdsTestApp-Prod-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod-art.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art.debug.xcconfig"; sourceTree = "<group>"; };
+		492D0E907FA4EAC9174ADA6D /* Pods_AdsTestApp_Staging_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Staging_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C776A4803A253348F9AB40F /* Pods-AdsTestApp-Release-Staging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Release-Staging.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Release-Staging/Pods-AdsTestApp-Release-Staging.release.xcconfig"; sourceTree = "<group>"; };
 		5D82105BFBFD3D3FCD2F6C9F /* Pods-AdsTestApp-Devc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc.debug.xcconfig"; sourceTree = "<group>"; };
+		6259979422DC1ADB7AD09C7E /* Pods-AdsTestApp-Devc-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc-art.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art.release.xcconfig"; sourceTree = "<group>"; };
 		8714551AA0AAF899695126D1 /* Pods-AdsTestApp-Release-Prod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Release-Prod.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Release-Prod/Pods-AdsTestApp-Release-Prod.debug.xcconfig"; sourceTree = "<group>"; };
-		9491BF56B9CC442C5A75A1FF /* Pods_AdsTestApp_Release_Staging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Release_Staging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		967A69F95815147E2A65EF91 /* Pods_AdsTestApp_Prod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Prod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA3A9DEB44516CD436869350 /* Pods-AdsTestApp-Prod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod.debug.xcconfig"; sourceTree = "<group>"; };
+		ACB3C78894E080AB4A6A149C /* Pods_AdsTestApp_Devc_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Devc_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF01C2B608A976962ACECA48 /* Pods-AdsTestApp-Staging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Staging.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging.debug.xcconfig"; sourceTree = "<group>"; };
 		B6B2195DC2CFCCA048F35F62 /* Pods_AdsTestApp_Devc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Devc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4F757AAFB2FB32691E991C8 /* Pods_AdsTestApp_Prod_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Prod_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C860CC60D519AE3856A471A0 /* Pods-AdsTestApp-Release-Prod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Release-Prod.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Release-Prod/Pods-AdsTestApp-Release-Prod.release.xcconfig"; sourceTree = "<group>"; };
-		D1422A7AD952633F3BC89804 /* Pods_AdsTestApp_Release_Prod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Release_Prod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2E0249A4EB372F439921E86 /* Pods-AdsTestApp-Staging-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Staging-art.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art.debug.xcconfig"; sourceTree = "<group>"; };
 		E06C629B3B274326312D352B /* Pods-AdsTestApp-Release-Devc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Release-Devc.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Release-Devc/Pods-AdsTestApp-Release-Devc.release.xcconfig"; sourceTree = "<group>"; };
 		E687BA28882964E5A7943B94 /* Pods-AdsTestApp-Staging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Staging.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging.release.xcconfig"; sourceTree = "<group>"; };
+		F6AFD8E97E1CBEEDAF2058CD /* Pods-AdsTestApp-Staging-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Staging-art.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art.release.xcconfig"; sourceTree = "<group>"; };
 		FFF9A770567053190890F99A /* Pods-AdsTestApp-Release-Staging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Release-Staging.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Release-Staging/Pods-AdsTestApp-Release-Staging.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -528,7 +540,7 @@
 				43BCB0C02C22DD45002FB0B1 /* UserDefault in Frameworks */,
 				43BCB0C12C22DD45002FB0B1 /* SnapKit in Frameworks */,
 				43BCB0C22C22DD45002FB0B1 /* OguryChoiceManager.xcframework in Frameworks */,
-				72B17994AE990681D8B1DCB2 /* Pods_AdsTestApp_Release_Devc.framework in Frameworks */,
+				674BCBAC82FBD4EBB2A4A8E7 /* Pods_AdsTestApp_Devc_art.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,7 +555,7 @@
 				43BCB1032C22DD59002FB0B1 /* UserDefault in Frameworks */,
 				43BCB1042C22DD59002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43BCB1052C22DD59002FB0B1 /* OguryChoiceManager.xcframework in Frameworks */,
-				B1463A9E2EDF3D79550C21FD /* Pods_AdsTestApp_Release_Staging.framework in Frameworks */,
+				0A1B96E53367BA914B4FDD0C /* Pods_AdsTestApp_Staging_art.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,7 +570,7 @@
 				43BCB1462C22DD60002FB0B1 /* UserDefault in Frameworks */,
 				43BCB1472C22DD60002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43BCB1482C22DD60002FB0B1 /* OguryChoiceManager.xcframework in Frameworks */,
-				ABE9BE7EE57004FFE0E35C1C /* Pods_AdsTestApp_Release_Prod.framework in Frameworks */,
+				9C71FDCB35B5CFCF68678C12 /* Pods_AdsTestApp_Prod_art.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -687,6 +699,8 @@
 			isa = PBXGroup;
 			children = (
 				434F84F72ACFE5E0005077F5 /* Asset.xcassets */,
+				43D0E6152C61052300AF9CF6 /* config-art.debug.xcconfig */,
+				43D0E6142C61052300AF9CF6 /* config-art.release.xcconfig */,
 				434F85002ACFE6C8005077F5 /* config.debug.xcconfig */,
 				4317C0092BC7D69F00F40F5F /* config.release.xcconfig */,
 				434F850B2AD003A0005077F5 /* Default.json */,
@@ -699,6 +713,8 @@
 			isa = PBXGroup;
 			children = (
 				434F84F92ACFE5E8005077F5 /* Asset.xcassets */,
+				43D0E61A2C6105D600AF9CF6 /* config-art.debug.xcconfig */,
+				43D0E61B2C6105D600AF9CF6 /* config-art.release.xcconfig */,
 				434F85022ACFE6D5005077F5 /* config.debug.xcconfig */,
 				4317C00B2BC7D6BC00F40F5F /* config.release.xcconfig */,
 				434F850E2AD004AD005077F5 /* Default.json */,
@@ -711,6 +727,8 @@
 			isa = PBXGroup;
 			children = (
 				434F84FB2ACFE5ED005077F5 /* Asset.xcassets */,
+				43D0E61F2C61060700AF9CF6 /* config-art.debug.xcconfig */,
+				43D0E61E2C61060700AF9CF6 /* config-art.release.xcconfig */,
 				434F85042ACFE6E2005077F5 /* config.debug.xcconfig */,
 				4317C00D2BC7D6CA00F40F5F /* config.release.xcconfig */,
 				434F850D2AD004AD005077F5 /* Default.json */,
@@ -773,12 +791,12 @@
 				43F788AE2B4E88250022157E /* AdsCardLibrary.framework */,
 				43B713D92B4D5092007C8D21 /* OguryCore.xcframework */,
 				438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */,
-				0015EF10545AFCCF1E922931 /* Pods_AdsTestApp_Release_Devc.framework */,
-				D1422A7AD952633F3BC89804 /* Pods_AdsTestApp_Release_Prod.framework */,
-				9491BF56B9CC442C5A75A1FF /* Pods_AdsTestApp_Release_Staging.framework */,
 				1166968A5CF316EC4F730077 /* Pods_AdsTestApp_Staging.framework */,
 				B6B2195DC2CFCCA048F35F62 /* Pods_AdsTestApp_Devc.framework */,
 				967A69F95815147E2A65EF91 /* Pods_AdsTestApp_Prod.framework */,
+				ACB3C78894E080AB4A6A149C /* Pods_AdsTestApp_Devc_art.framework */,
+				C4F757AAFB2FB32691E991C8 /* Pods_AdsTestApp_Prod_art.framework */,
+				492D0E907FA4EAC9174ADA6D /* Pods_AdsTestApp_Staging_art.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -857,6 +875,12 @@
 				C860CC60D519AE3856A471A0 /* Pods-AdsTestApp-Release-Prod.release.xcconfig */,
 				FFF9A770567053190890F99A /* Pods-AdsTestApp-Release-Staging.debug.xcconfig */,
 				4C776A4803A253348F9AB40F /* Pods-AdsTestApp-Release-Staging.release.xcconfig */,
+				0129D7EE4B4D98C8EF460985 /* Pods-AdsTestApp-Devc-art.debug.xcconfig */,
+				6259979422DC1ADB7AD09C7E /* Pods-AdsTestApp-Devc-art.release.xcconfig */,
+				47C0E4A5A6B569012BC88AE1 /* Pods-AdsTestApp-Prod-art.debug.xcconfig */,
+				03519F466E6F8E1195487C99 /* Pods-AdsTestApp-Prod-art.release.xcconfig */,
+				D2E0249A4EB372F439921E86 /* Pods-AdsTestApp-Staging-art.debug.xcconfig */,
+				F6AFD8E97E1CBEEDAF2058CD /* Pods-AdsTestApp-Staging-art.release.xcconfig */,
 			);
 			name = Pods;
 			path = ../Pods;
@@ -1088,11 +1112,11 @@
 			files = (
 				434F84EC2ACFE50A005077F5 /* LaunchScreen.storyboard in Resources */,
 				434F85102AD004B8005077F5 /* Default.json in Resources */,
-				434F85172AD00DC4005077F5 /* config.debug.xcconfig in Resources */,
-				4317C00E2BC7D6CA00F40F5F /* config.release.xcconfig in Resources */,
 				434F84ED2ACFE50A005077F5 /* Assets.xcassets in Resources */,
 				434F84FE2ACFE5F8005077F5 /* Asset.xcassets in Resources */,
 				4301B1F42B56D4AC0076065D /* shareImageData.png in Resources */,
+				43D0E6222C61060F00AF9CF6 /* config.release.xcconfig in Resources */,
+				43D0E6232C61060F00AF9CF6 /* config.debug.xcconfig in Resources */,
 				434F84EE2ACFE50A005077F5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1117,12 +1141,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				43BCB0C62C22DD45002FB0B1 /* LaunchScreen.storyboard in Resources */,
-				43BCB0C72C22DD45002FB0B1 /* config.debug.xcconfig in Resources */,
 				43BCB0C82C22DD45002FB0B1 /* Assets.xcassets in Resources */,
-				43BCB0C92C22DD45002FB0B1 /* config.release.xcconfig in Resources */,
+				43D0E6172C61052300AF9CF6 /* config-art.debug.xcconfig in Resources */,
 				43BCB0CA2C22DD45002FB0B1 /* Main.storyboard in Resources */,
 				43BCB0CB2C22DD45002FB0B1 /* Asset.xcassets in Resources */,
 				43BCB0CC2C22DD45002FB0B1 /* shareImageData.png in Resources */,
+				43D0E6162C61052300AF9CF6 /* config-art.release.xcconfig in Resources */,
 				43BCB0CD2C22DD45002FB0B1 /* Default.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1132,13 +1156,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				43BCB1092C22DD59002FB0B1 /* LaunchScreen.storyboard in Resources */,
+				43D0E61D2C6105D700AF9CF6 /* config-art.release.xcconfig in Resources */,
 				43BCB10A2C22DD59002FB0B1 /* Default.json in Resources */,
+				43D0E61C2C6105D700AF9CF6 /* config-art.debug.xcconfig in Resources */,
 				43BCB10B2C22DD59002FB0B1 /* Asset.xcassets in Resources */,
-				43BCB10C2C22DD59002FB0B1 /* config.release.xcconfig in Resources */,
 				43BCB10D2C22DD59002FB0B1 /* Assets.xcassets in Resources */,
 				43BCB10E2C22DD59002FB0B1 /* Main.storyboard in Resources */,
 				43BCB10F2C22DD59002FB0B1 /* shareImageData.png in Resources */,
-				43BCB1102C22DD59002FB0B1 /* config.debug.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1148,11 +1172,11 @@
 			files = (
 				43BCB14C2C22DD60002FB0B1 /* LaunchScreen.storyboard in Resources */,
 				43BCB14D2C22DD60002FB0B1 /* Default.json in Resources */,
-				43BCB14E2C22DD60002FB0B1 /* config.debug.xcconfig in Resources */,
-				43BCB14F2C22DD60002FB0B1 /* config.release.xcconfig in Resources */,
+				43D0E6212C61060700AF9CF6 /* config-art.debug.xcconfig in Resources */,
 				43BCB1502C22DD60002FB0B1 /* Assets.xcassets in Resources */,
 				43BCB1512C22DD60002FB0B1 /* Asset.xcassets in Resources */,
 				43BCB1522C22DD60002FB0B1 /* shareImageData.png in Resources */,
+				43D0E6202C61060700AF9CF6 /* config-art.release.xcconfig in Resources */,
 				43BCB1532C22DD60002FB0B1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1219,7 +1243,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AdsTestApp-Release-Devc-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-AdsTestApp-Devc-art-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1241,7 +1265,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AdsTestApp-Release-Staging-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-AdsTestApp-Staging-art-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1263,7 +1287,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AdsTestApp-Release-Prod-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-AdsTestApp-Prod-art-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1920,7 +1944,7 @@
 		};
 		43BCB0D22C22DD45002FB0B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 434F85002ACFE6C8005077F5 /* config.debug.xcconfig */;
+			baseConfigurationReference = 43D0E6152C61052300AF9CF6 /* config-art.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1966,7 +1990,7 @@
 		};
 		43BCB0D32C22DD45002FB0B1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4317C0092BC7D69F00F40F5F /* config.release.xcconfig */;
+			baseConfigurationReference = 43D0E6142C61052300AF9CF6 /* config-art.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2011,7 +2035,7 @@
 		};
 		43BCB1152C22DD59002FB0B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 434F85022ACFE6D5005077F5 /* config.debug.xcconfig */;
+			baseConfigurationReference = 43D0E61A2C6105D600AF9CF6 /* config-art.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2055,7 +2079,7 @@
 		};
 		43BCB1162C22DD59002FB0B1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4317C00B2BC7D6BC00F40F5F /* config.release.xcconfig */;
+			baseConfigurationReference = 43D0E61B2C6105D600AF9CF6 /* config-art.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2098,7 +2122,7 @@
 		};
 		43BCB1582C22DD60002FB0B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 434F85042ACFE6E2005077F5 /* config.debug.xcconfig */;
+			baseConfigurationReference = 43D0E61F2C61060700AF9CF6 /* config-art.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2142,7 +2166,7 @@
 		};
 		43BCB1592C22DD60002FB0B1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4317C00D2BC7D6CA00F40F5F /* config.release.xcconfig */;
+			baseConfigurationReference = 43D0E61E2C61060700AF9CF6 /* config-art.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

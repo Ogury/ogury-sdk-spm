@@ -11,7 +11,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getAdIdentifier;
 + (NSString *)getVendorIdentifier;
 + (NSString *)getInstanceToken;
-+ (NSString *)getConsentToken;
 + (BOOL)isAdOptin;
 + (BOOL)isFakeAaid;
 + (NSString *)getUserAgent;

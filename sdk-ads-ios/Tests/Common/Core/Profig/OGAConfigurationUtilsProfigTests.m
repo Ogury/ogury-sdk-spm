@@ -22,7 +22,7 @@
 - (void)testProfigParams {
     NSMutableDictionary *profigParam = [OGAConfigurationUtils profigParams];
     XCTAssertNotNil(profigParam);
-    XCTAssertEqual([[profigParam allKeys] count], 4);
+    XCTAssertEqual([[profigParam allKeys] count], 3);
     XCTAssertNotNil(profigParam[@"device"]);
     XCTAssertNotNil(profigParam[@"device"][@"os"]);
     XCTAssertNotNil(profigParam[@"device"][@"os_version"]);
@@ -30,8 +30,6 @@
     XCTAssertNotNil(profigParam[@"app"][@"bundle_id"]);
     XCTAssertNotNil(profigParam[@"app"][@"asset_type"]);
     XCTAssertNotNil(profigParam[@"app"][@"version"]);
-    XCTAssertNotNil(profigParam[@"privacy_compliancy"]);
-    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"consent_token"]);
     XCTAssertNotNil(profigParam[@"sdk"]);
     XCTAssertNotNil(profigParam[@"sdk"][@"module_version"]);
 }

@@ -25,7 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)getAdIdentifier;
 - (NSString *)getVendorIdentifier;
 - (NSString *)getInstanceToken;
-- (NSString *)getConsentToken;
 - (OGCSDKType)getFrameworkType;
 - (void)updateInstanceToken;
 - (BOOL)isAdOptin;

@@ -31,9 +31,6 @@ static NSString *const OGAProfigBodyDeviceModuleVersion = @"module_version";
     content[OGAProfigBodyDeviceSDK][OGAProfigBodyDeviceModuleVersion] = OGA_SDK_VERSION;
     // device
     content[OGAProfigBodyDeviceKey] = [[[OGADevice alloc] init] mapped];
-    // Privacy
-    content[OGARequestBodyPrivacyComplianceKey] = [NSMutableDictionary dictionary];
-    content[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyComplianceConsentTokenKey] = [OGAAdIdentifierService getConsentToken];
 
     return content;
 }

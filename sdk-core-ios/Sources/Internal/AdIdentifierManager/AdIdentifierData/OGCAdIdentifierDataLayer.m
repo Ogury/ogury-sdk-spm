@@ -7,7 +7,6 @@
 #pragma mark - Constants
 
 static NSString * const OGCInstanceTokenKey = @"OGURY_INSTANCE_TOKEN";
-static NSString * const OGCConsentTokenKey = @"OGURY_CONSENT_TOKEN";
 static NSString * const OGCLastProfigParamsKey = @"LastProfigParams";
 static NSString * const OGCDeprecatedOGYDeviceSettingsKey = @"DeviceSettings";
 static NSString * const OGCCMDeviceSettingsKey = @"OGYDeviceSettings";
@@ -52,7 +51,6 @@ static NSString * const OGCCMDeviceSettingsKey = @"OGYDeviceSettings";
 
 - (void)resetPrivacyDefaults {
     [self.userDefaults removeObjectForKey:OGCInstanceTokenKey];
-    [self.userDefaults removeObjectForKey:OGCConsentTokenKey];
 }
 
 - (void)removeOldProfigParam {
@@ -87,16 +85,8 @@ static NSString * const OGCCMDeviceSettingsKey = @"OGYDeviceSettings";
     return [self dataForKey:OGCInstanceTokenKey];
 }
 
-- (NSData *)getConsentToken {
-    return [self dataForKey:OGCConsentTokenKey];
-}
-
 - (void)storeInstanceToken:(NSData *)instanceToken {
     [self storeData:instanceToken key:OGCInstanceTokenKey];
-}
-
-- (void)storeConsentToken:(NSData *)consentToken {
-    [self storeData:consentToken key:OGCConsentTokenKey];
 }
 
 - (void)storeData:(NSData *)data key:(NSString *)key {

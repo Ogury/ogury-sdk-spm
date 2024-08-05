@@ -5,7 +5,6 @@
 
 import AdsCardLibrary
 import Foundation 
-import OguryChoiceManager
 import OguryAds.Private
 
 struct AdSdkLauncher {
@@ -16,7 +15,7 @@ struct AdSdkLauncher {
     private init() {}
     
     func launch() {
-        startCMP()
+        startCore()
         startAds()
     }
     
@@ -27,8 +26,7 @@ struct AdSdkLauncher {
         }
     }
     
-    private func startCMP() {
-        forceCMPEnvironment()
+    private func startCore() {
         startModule(from: "OGYInternal")
     }
     
@@ -56,16 +54,6 @@ struct AdSdkLauncher {
             case "DEVC": return 2
             default: return 0
         }
-    }
-    
-    private func forceCMPEnvironment() {
-        let obj = OguryChoiceManager.shared()
-        let sel = NSSelectorFromString("forceEnvironment:")
-        let meth = class_getInstanceMethod(object_getClass(obj), sel)
-        let imp = method_getImplementation(meth!)
-        typealias ClosureType = @convention(c) (AnyObject, Selector, Int) -> Void
-        let sayHiTo = unsafeBitCast(imp, to: ClosureType.self)
-        sayHiTo(obj, sel, environmentRawValue)
     }
     
     private func forceAdsEnvironment() {

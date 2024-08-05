@@ -68,19 +68,6 @@ static NSString *const DefaultDspRegion = @"dspRegion";
     XCTAssertTrue([version isEqualToString:[OGAConfigurationUtils getAppMarketingVersion]]);
 }
 
-- (void)testTokenHasConsentToken {
-    OGATokenGenerator *tokenGenerator = OCMPartialMock([OGATokenGenerator new]);
-    NSError *error = nil;
-    OCMStub([tokenGenerator canSendToken]).andReturn(YES);
-    NSString *bidderToken = [OguryTokenService getBidderTokenFrom:tokenGenerator];
-    NSDictionary *token = [NSDictionary ogaDecodeFromBase64:bidderToken error:&error];
-    NSDictionary *compliancy = token[OGARequestBodyPrivacyComplianceKey];
-    XCTAssertNotNil(compliancy, @"compliancy key not found");
-    NSString *consentToken = compliancy[OGARequestBodyPrivacyComplianceConsentTokenKey];
-    XCTAssertNotNil(consentToken, @"consent token key not found");
-    XCTAssertTrue([consentToken isEqualToString:[OGAAdIdentifierService getConsentToken]]);
-}
-
 - (void)testGetBidderTokenWithCampaignIdCreativeIdDspCreativeIdDspRegion {
     OGATokenGenerator *tokenGenerator = OCMPartialMock([[OGATokenGenerator alloc] init]);
     OCMStub([tokenGenerator canSendToken]).andReturn(YES);

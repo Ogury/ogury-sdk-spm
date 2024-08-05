@@ -21,7 +21,6 @@ static NSString * const InternalIdfa = @"11000000-1111-3333-1598-000000000000";
 static NSString * const InternalIdfv = @"11000000-1111-3333-1598-000000000000";
 static NSString * const InternalSalt = @"1234567890";
 static NSString * const InternalTokenId = @"00000000-1111-3333-1598-000000000000";
-static NSString * const InternalConsentToken = @"00000000-1111-3333-1598-000000000000";
 
 @interface OGCInternalTests : XCTestCase
 
@@ -215,31 +214,6 @@ static NSString * const InternalConsentToken = @"00000000-1111-3333-1598-0000000
     XCTAssertNotNil(coreInternalInstance.adIdentifierManager);
     XCTAssertEqual([coreInternalInstance getAdIdentifier].length, 36);
     XCTAssertEqual([coreInternalInstance getInstanceToken].length, 36);
-}
-
-- (void)test_shouldReturnConsentNewToken {
-    OGCAdIdentifierManager *adIdentifierManager = [[OGCAdIdentifierManager alloc] initWithPrivacyLayer:self.privacyLayer andDataLayer:self.dataLayer andProcessInfo:[NSProcessInfo processInfo] log:self.log];
-    OGCInternal *coreInternalInstance = [[OGCInternal alloc] initWithAdIdentifierManager:adIdentifierManager log:self.log logNotificationManager:[[OGCSetLogLevelNotificationManager alloc] init]];
-
-    NSString *consentToken = [coreInternalInstance getConsentToken];
-
-    XCTAssertNotNil(coreInternalInstance);
-    XCTAssertNotNil(coreInternalInstance.adIdentifierManager);
-    XCTAssertEqual(consentToken.length, 36);
-}
-
-- (void)test_shouldReturnConsentPreviouslyGeneratedToken {
-    [self.dataLayer storeConsentToken:[InternalConsentToken dataUsingEncoding:NSUTF8StringEncoding]];
-
-    OGCAdIdentifierManager *adIdentifierManager = [[OGCAdIdentifierManager alloc] initWithPrivacyLayer:self.privacyLayer andDataLayer:self.dataLayer andProcessInfo:[NSProcessInfo processInfo] log:self.log];
-    OGCInternal *coreInternalInstance = [[OGCInternal alloc] initWithAdIdentifierManager:adIdentifierManager log:self.log logNotificationManager:[[OGCSetLogLevelNotificationManager alloc] init]];
-
-    NSString *consentToken = [coreInternalInstance getConsentToken];
-
-    XCTAssertNotNil(coreInternalInstance);
-    XCTAssertNotNil(coreInternalInstance.adIdentifierManager);
-    XCTAssertEqual(consentToken.length, 36);
-    XCTAssertEqualObjects(consentToken, InternalConsentToken);
 }
 
 @end
