@@ -90,7 +90,11 @@ pipeline {
                 stage('Deploy Core Internal dev') {
                     when {
                         beforeAgent true
-                        tag "internal-core-*"
+                        expression {
+                            // Check if the current tag matches the pattern "internal-core-<digits separated by dots>-<description>"
+                            def tagPattern = ~/^internal-core-(\d+(\.\d+)*)-.*$/
+                            return env.GIT_TAG ==~ tagPattern
+                        }
                     }
                     steps {
 
@@ -99,7 +103,7 @@ pipeline {
                         """
                     }
                 }
-                stage('Deploy Core Internal release') {
+                stage('Deploy Core Internal With Cocoapod Dependencies') {
                     when {
                         beforeAgent true
                         tag "internal-core-art-*"
@@ -114,7 +118,11 @@ pipeline {
                 stage('Deploy Ads Internal dev') {
                     when {
                         beforeAgent true
-                        tag "internal-ads-*"
+                        expression {
+                            // Check if the current tag matches the pattern "internal-ads-<digits separated by dots>-<description>"
+                            def tagPattern = ~/^internal-ads-(\d+(\.\d+)*)-.*$/
+                            return env.GIT_TAG ==~ tagPattern
+                        }
                     }
                     steps {
 
@@ -123,7 +131,7 @@ pipeline {
                         """
                     }
                 }
-                stage('Deploy Ads Internal release') {
+                stage('Deploy Ads Internal With Cocoapod Dependencies') {
                     when {
                         beforeAgent true
                         tag "internal-ads-art-*"
@@ -138,7 +146,11 @@ pipeline {
                 stage('Deploy Wrapper Internal dev') {
                     when {
                         beforeAgent true
-                        tag "internal-wrapper-*"
+                        expression {
+                            // Check if the current tag matches the pattern "internal-wrapper-<digits separated by dots>-<description>"
+                            def tagPattern = ~/^internal-wrapper-(\d+(\.\d+)*)-.*$/
+                            return env.GIT_TAG ==~ tagPattern
+                        }
                     }
                     steps {
 
@@ -147,7 +159,7 @@ pipeline {
                         """
                     }
                 }
-                stage('Deploy wrapper Internal release') {
+                stage('Deploy wrapper Internal With Cocoapod Dependencies') {
                     when {
                         beforeAgent true
                         tag "internal-wrapper-art-*"
@@ -167,7 +179,11 @@ pipeline {
                     }
                     when {
                         beforeAgent true
-                        tag "beta-core-*"
+                        expression {
+                            // Check if the current tag matches the pattern "internal-core-<digits separated by dots>-<description>"
+                            def tagPattern = ~/^beta-core-(\d+(\.\d+)*)-.*$/
+                            return env.GIT_TAG ==~ tagPattern
+                        }
                     }
                     steps {
                         sh """#!/bin/zsh -l
@@ -191,7 +207,7 @@ pipeline {
                         }
                     }
                 }
-                stage('Deploy Core Beta release') {
+                stage('Deploy Core Beta With Cocoapod Dependencies') {
                     environment {
                         GIT_SSH_COMMAND = 'ssh -o StrictHostKeyChecking=no'
                     }
@@ -227,7 +243,11 @@ pipeline {
                     }
                     when {
                         beforeAgent true
-                        tag "beta-ads-*"
+                        expression {
+                            // Check if the current tag matches the pattern "internal-ads-<digits separated by dots>-<description>"
+                            def tagPattern = ~/^beta-ads-(\d+(\.\d+)*)-.*$/
+                            return env.GIT_TAG ==~ tagPattern
+                        }
                     }
                     steps {
                         sh """#!/bin/zsh -l
@@ -251,7 +271,7 @@ pipeline {
                         }
                     }
                 }
-                stage('Deploy ads Beta release') {
+                stage('Deploy ads Beta With Cocoapod Dependencies') {
                     environment {
                         GIT_SSH_COMMAND = 'ssh -o StrictHostKeyChecking=no'
                     }
@@ -287,7 +307,11 @@ pipeline {
                     }
                     when {
                         beforeAgent true
-                        tag "beta-wrapper-*"
+                        expression {
+                            // Check if the current tag matches the pattern "internal-wrapper-<digits separated by dots>-<description>"
+                            def tagPattern = ~/^beta-wrapper-(\d+(\.\d+)*)-.*$/
+                            return env.GIT_TAG ==~ tagPattern
+                        }
                     }
                     steps {
                         sh """#!/bin/zsh -l
@@ -311,7 +335,7 @@ pipeline {
                         }
                     }
                 }
-                stage('Deploy wrapper Beta release') {
+                stage('Deploy wrapper Beta With Cocoapod Dependencies') {
                     environment {
                         GIT_SSH_COMMAND = 'ssh -o StrictHostKeyChecking=no'
                     }
