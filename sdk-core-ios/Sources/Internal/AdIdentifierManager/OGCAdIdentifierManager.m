@@ -90,6 +90,23 @@
     return [self.privacyLayer vendorIdentifier];
 }
 
+- (NSString * _Nullable) retrieveGPPConsentString {
+   NSData *GPPConsentData = [self.dataLayer getGPPConsentString];
+   if (GPPConsentData == nil) {
+      return nil;
+   }
+   NSString *GPPConsentString = [[NSString alloc] initWithData:GPPConsentData encoding:NSUTF8StringEncoding];
+   return GPPConsentString;
+}
+
+- (NSString * _Nullable) retrieveGPPSID {
+   return [[NSString alloc] initWithData:[self.dataLayer getGPPSID] encoding:NSUTF8StringEncoding];
+}
+
+- (NSString * _Nullable) retrieveTCFConsentString {
+   return [[NSString alloc] initWithData:[self.dataLayer getTCFConsentString] encoding:NSUTF8StringEncoding];
+}
+
 - (NSString *)getInstanceToken {
     [NSKeyedUnarchiver setClass:[OGCInstanceToken class] forClassName:@"OGYInstanceToken"];
     OGCInstanceToken *storedInstanceToken = [NSKeyedUnarchiver unarchiveObjectWithData:[self.dataLayer getInstanceToken]];

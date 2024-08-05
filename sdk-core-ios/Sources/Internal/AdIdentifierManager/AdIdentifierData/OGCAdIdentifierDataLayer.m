@@ -12,6 +12,10 @@ static NSString * const OGCLastProfigParamsKey = @"LastProfigParams";
 static NSString * const OGCDeprecatedOGYDeviceSettingsKey = @"DeviceSettings";
 static NSString * const OGCCMDeviceSettingsKey = @"OGYDeviceSettings";
 
+static NSString * const OGCGPPConsentStringKey = @"IABGPP_HDR_GppString";
+static NSString * const OGCGPPSIDKey = @"IABGPP_GppSID";
+static NSString * const OGCTCStringKey = @"IABTCF_TCString";
+
 @interface OGCAdIdentifierDataLayer()
 
 #pragma mark - Properties
@@ -89,6 +93,30 @@ static NSString * const OGCCMDeviceSettingsKey = @"OGYDeviceSettings";
 
 - (NSData *)getConsentToken {
     return [self dataForKey:OGCConsentTokenKey];
+}
+
+- (NSData *)getGPPConsentString {
+   return [self dataForKey:OGCGPPConsentStringKey];
+}
+
+- (NSData *)getGPPSID {
+   return [self dataForKey:OGCGPPSIDKey];
+}
+
+- (NSData *)getTCFConsentString {
+   return [self dataForKey:OGCTCStringKey];
+}
+
+- (void)storePrivacyData:(NSString *)key boolean:(BOOL)value {
+   [self.userDefaults setBool:value forKey:key];
+}
+
+- (void)storePrivacyData:(NSString *)key integer:(NSInteger)value {
+   [self.userDefaults setInteger:value forKey:key];
+}
+
+- (void)storePrivacyData:(NSString *)key string:(NSString *)value {
+   [self.userDefaults setValue:value forKey:key];
 }
 
 - (void)storeInstanceToken:(NSData *)instanceToken {
