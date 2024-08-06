@@ -109,7 +109,6 @@ static NSString *const AdSyncServiceBodyContentOverlayMaximumSizeScaleKey = @"sc
 
     // Privacy
     body[OGARequestBodyPrivacyComplianceKey] = [NSMutableDictionary dictionary];
-    body[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyComplianceConsentTokenKey] = [OGAAdIdentifierService getConsentToken];
 
     // app
     body[AdSyncServiceBodyAppKey] = [@{} mutableCopy];

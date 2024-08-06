@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12E481270B7DBDC9D9DC6980 /* Pods_AdsCardLibrary_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EBD10A0783A9C4D4A62AFFB /* Pods_AdsCardLibrary_art.framework */; };
 		1E373D562BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */; };
 		1E373D612BFCF7CA00E2EF25 /* BTFairBidRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */; };
 		1E8256442B2380B4001DFBA4 /* AdsCardLibrary.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 1E8256432B2380B4001DFBA4 /* AdsCardLibrary.xctestplan */; };
@@ -104,8 +105,7 @@
 		43DA127D2AB888D300766D99 /* AdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127A2AB888D300766D99 /* AdBannerView.swift */; };
 		43DA127E2AB888D300766D99 /* BannerPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */; };
 		43DA12802AB888D900766D99 /* BannerAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127F2AB888D900766D99 /* BannerAdManager.swift */; };
-		7F385E25C7DBDC9D529417A9 /* Pods_AdsCardLibrary_Release.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E6B6490D55C3C0FEDB34FF7 /* Pods_AdsCardLibrary_Release.framework */; };
-		8953E489A7F8331EA044BBF1 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		8953E489A7F8331EA044BBF1 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +143,8 @@
 		1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTFairBidHeaderBidable.swift; sourceTree = "<group>"; };
 		1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTFairBidRetriever.swift; sourceTree = "<group>"; };
 		1E8256432B2380B4001DFBA4 /* AdsCardLibrary.xctestplan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AdsCardLibrary.xctestplan; sourceTree = "<group>"; };
+		26C0AEAF1B91EB6AA20B7E18 /* Pods-AdsCardLibrary-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-art.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-art/Pods-AdsCardLibrary-art.debug.xcconfig"; sourceTree = "<group>"; };
+		2EBD10A0783A9C4D4A62AFFB /* Pods_AdsCardLibrary_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsCardLibrary_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		430B6F022A65377900A6EFA4 /* OptinVideoAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptinVideoAdManagerTests.swift; sourceTree = "<group>"; };
 		431441182A6539780067AD47 /* ThumbnailAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailAdManagerTests.swift; sourceTree = "<group>"; };
 		4314411A2A653B060067AD47 /* BannerAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdManagerTests.swift; sourceTree = "<group>"; };
@@ -198,8 +200,8 @@
 		43DA127A2AB888D300766D99 /* AdBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdBannerView.swift; sourceTree = "<group>"; };
 		43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerPlaceholderView.swift; sourceTree = "<group>"; };
 		43DA127F2AB888D900766D99 /* BannerAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdManager.swift; sourceTree = "<group>"; };
-		8E6B6490D55C3C0FEDB34FF7 /* Pods_AdsCardLibrary_Release.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsCardLibrary_Release.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93E41BC933C7C059FD62B2FB /* Pods-AdsCardLibrary-Release.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-Release.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-Release/Pods-AdsCardLibrary-Release.debug.xcconfig"; sourceTree = "<group>"; };
+		B53EB2B505F1F4CEAAD6AC64 /* Pods-AdsCardLibrary-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-art.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-art/Pods-AdsCardLibrary-art.release.xcconfig"; sourceTree = "<group>"; };
 		FD61C3C1BAEA09E61B64842E /* Pods-AdsCardLibrary-Release.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-Release.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-Release/Pods-AdsCardLibrary-Release.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -212,7 +214,7 @@
 				43AE68042AAB25B1002E7C46 /* OguryAds.framework in Frameworks */,
 				43A9F4A52C37E7800085EF6F /* OguryCore.framework in Frameworks */,
 				435F7BCA2A5EE3970077843A /* ComposableArchitecture in Frameworks */,
-				8953E489A7F8331EA044BBF1 /* (null) in Frameworks */,
+				8953E489A7F8331EA044BBF1 /* BuildFile in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,7 +234,7 @@
 			files = (
 				43BCB1832C22FBF0002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43BCB1852C22FBF0002FB0B1 /* ComposableArchitecture in Frameworks */,
-				7F385E25C7DBDC9D529417A9 /* Pods_AdsCardLibrary_Release.framework in Frameworks */,
+				12E481270B7DBDC9D9DC6980 /* Pods_AdsCardLibrary_art.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +332,7 @@
 				438ED4392AA8565800486AF2 /* OguryAds.framework */,
 				435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */,
 				435C55FC2A42F451004186FF /* OguryAds.framework */,
-				8E6B6490D55C3C0FEDB34FF7 /* Pods_AdsCardLibrary_Release.framework */,
+				2EBD10A0783A9C4D4A62AFFB /* Pods_AdsCardLibrary_art.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -494,6 +496,8 @@
 			children = (
 				93E41BC933C7C059FD62B2FB /* Pods-AdsCardLibrary-Release.debug.xcconfig */,
 				FD61C3C1BAEA09E61B64842E /* Pods-AdsCardLibrary-Release.release.xcconfig */,
+				26C0AEAF1B91EB6AA20B7E18 /* Pods-AdsCardLibrary-art.debug.xcconfig */,
+				B53EB2B505F1F4CEAAD6AC64 /* Pods-AdsCardLibrary-art.release.xcconfig */,
 			);
 			name = Pods;
 			path = ../Pods;
@@ -700,7 +704,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AdsCardLibrary-Release-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-AdsCardLibrary-art-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1072,7 +1076,7 @@
 		};
 		43BCB18F2C22FBF0002FB0B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93E41BC933C7C059FD62B2FB /* Pods-AdsCardLibrary-Release.debug.xcconfig */;
+			baseConfigurationReference = 26C0AEAF1B91EB6AA20B7E18 /* Pods-AdsCardLibrary-art.debug.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -1116,7 +1120,7 @@
 		};
 		43BCB1902C22FBF0002FB0B1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD61C3C1BAEA09E61B64842E /* Pods-AdsCardLibrary-Release.release.xcconfig */;
+			baseConfigurationReference = B53EB2B505F1F4CEAAD6AC64 /* Pods-AdsCardLibrary-art.release.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;

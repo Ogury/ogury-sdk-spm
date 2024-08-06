@@ -5,7 +5,6 @@
 import Foundation
 import UserMessagingPlatform
 import AppTrackingTransparency
-import OguryChoiceManager
 
 final class ConsentManager {
 
