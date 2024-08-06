@@ -65,7 +65,7 @@
     XCTAssertNotNil(profigDao.profigFullResponse);
     XCTAssertNotNil(profigDao.lastProfigSyncDate);
     XCTAssertNotNil(profigDao.profigInstanceToken);
-    XCTAssertEqual([[profigDao.profigParams allKeys] count], 3);
+    XCTAssertEqual([[profigDao.profigParams allKeys] count], 4);
     XCTAssertEqualObjects(profigDao.profigInstanceToken, @"instance_token");
     XCTAssertEqualObjects(profigDao.lastProfigSyncDate, [NSDate dateWithTimeIntervalSince1970:9000]);
     XCTAssertEqualObjects(profigDao.profigFullResponse.webviewLoadTimeout, profigResponse.webviewLoadTimeout);
@@ -101,7 +101,7 @@
     XCTAssertNotNil(profigDao.profigFullResponse);
     XCTAssertNotNil(profigDao.lastProfigSyncDate);
     XCTAssertNotNil(profigDao.profigInstanceToken);
-    XCTAssertEqual([[profigDao.profigParams allKeys] count], 3);
+    XCTAssertEqual([[profigDao.profigParams allKeys] count], 4);
     XCTAssertEqualObjects(profigDao.profigInstanceToken, @"instance_token");
     XCTAssertEqualObjects(profigDao.lastProfigSyncDate, [NSDate dateWithTimeIntervalSince1970:9000]);
     XCTAssertEqualObjects(profigDao.profigFullResponse.webviewLoadTimeout, profigResponse.webviewLoadTimeout);
@@ -150,7 +150,7 @@
     XCTAssertNotNil(profigDao.profigFullResponse);
     XCTAssertNotNil(profigDao.lastProfigSyncDate);
     XCTAssertNotNil(profigDao.profigInstanceToken);
-    XCTAssertEqual([[profigDao.profigParams allKeys] count], 3);
+    XCTAssertEqual([[profigDao.profigParams allKeys] count], 4);
     XCTAssertNotEqualObjects(profigDao.profigInstanceToken, @"instance_token");
     XCTAssertNotEqualObjects(profigDao.lastProfigSyncDate, [NSDate dateWithTimeIntervalSince1970:9000]);
     XCTAssertEqualObjects(profigDao.profigFullResponse.webviewLoadTimeout, profigResponse.webviewLoadTimeout);

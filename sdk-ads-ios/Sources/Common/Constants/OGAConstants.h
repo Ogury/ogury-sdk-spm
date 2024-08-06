@@ -6,3 +6,4 @@
 
 extern NSString *const OGARequestBodyAppKey;
 extern NSString *const OGARequestBodyAppVersionKey;
+extern NSString *const OGARequestBodyPrivacyComplianceKey;

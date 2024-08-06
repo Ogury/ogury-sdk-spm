@@ -108,7 +108,8 @@
         OGATokenSDK : @{
             OGATokenModuleVersion : [self.internal getVersion],
             OGATokenBuildVersion : [self.internal getBuildVersion]
-        }
+        },
+        OGARequestBodyPrivacyComplianceKey : @{}
     }];
 
     /// device

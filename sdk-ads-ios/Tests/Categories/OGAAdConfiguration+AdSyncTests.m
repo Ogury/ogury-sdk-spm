@@ -96,7 +96,7 @@ static NSString *const DefaultUserID = @"User";
                                                                   reachability:self.reachability
                                                              profigPersistence:[[OGAProfigDao alloc] init]
                                                         isOmidFrameworkPresent:YES];
-    XCTAssertEqual(payload.count, 6);
+    XCTAssertEqual(payload.count, 7);
 }
 
 - (void)testLowBatteryModeOn {

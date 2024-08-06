@@ -6,3 +6,4 @@
 
 NSString *const OGARequestBodyAppKey = @"app";
 NSString *const OGARequestBodyAppVersionKey = @"version";
+NSString *const OGARequestBodyPrivacyComplianceKey = @"privacy_compliancy";

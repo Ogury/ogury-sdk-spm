@@ -22,7 +22,7 @@
 - (void)testProfigParams {
     NSMutableDictionary *profigParam = [OGAConfigurationUtils profigParams];
     XCTAssertNotNil(profigParam);
-    XCTAssertEqual([[profigParam allKeys] count], 3);
+    XCTAssertEqual([[profigParam allKeys] count], 4);
     XCTAssertNotNil(profigParam[@"device"]);
     XCTAssertNotNil(profigParam[@"device"][@"os"]);
     XCTAssertNotNil(profigParam[@"device"][@"os_version"]);
@@ -32,6 +32,7 @@
     XCTAssertNotNil(profigParam[@"app"][@"version"]);
     XCTAssertNotNil(profigParam[@"sdk"]);
     XCTAssertNotNil(profigParam[@"sdk"][@"module_version"]);
+    XCTAssertNotNil(profigParam[@"privacy_compliancy"]);
 }
 
 - (void)testErrorForServerProfigError {

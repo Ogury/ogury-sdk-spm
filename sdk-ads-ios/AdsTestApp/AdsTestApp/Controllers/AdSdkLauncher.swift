@@ -15,7 +15,6 @@ struct AdSdkLauncher {
     private init() {}
     
     func launch() {
-        startCore()
         startAds()
     }
     
@@ -24,10 +23,6 @@ struct AdSdkLauncher {
             forceAdsEnvironment()
             startModule(from: "OGAInternal")
         }
-    }
-    
-    private func startCore() {
-        startModule(from: "OGYInternal")
     }
     
     var assetKey: String {

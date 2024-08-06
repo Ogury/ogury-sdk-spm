@@ -107,6 +107,9 @@ static NSString *const AdSyncServiceBodyContentOverlayMaximumSizeScaleKey = @"sc
     body[AdSyncServiceBodyTimestampKey] = [NSDate timestampInMilliseconds];
     body[AdSyncServiceBodyRequestIdKey] = [[self requestId] lowercaseString];
 
+    // Privacy
+    body[OGARequestBodyPrivacyComplianceKey] = [NSMutableDictionary dictionary];
+
     // app
     body[AdSyncServiceBodyAppKey] = [@{} mutableCopy];
     body[AdSyncServiceBodyAppKey][AdSyncServiceBodyAssetKeyKey] = [assetKeyManager assetKey];
