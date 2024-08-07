@@ -16,8 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)getInstanceToken;
 
-- (NSString *)getConsentToken;
-
 - (NSString * _Nullable) retrieveGPPConsentString;
 
 - (NSString * _Nullable) retrieveGPPSID;
@@ -31,8 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isAdOptin;
 
 - (void)updateInstanceToken;
-
-- (void)updateConsentToken;
 
 @end
 

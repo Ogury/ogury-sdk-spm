@@ -17,7 +17,6 @@
 @property (nonatomic, strong) OGCAdIdentifierPrivacyLayer *privacyLayer;
 @property (nonatomic, strong) OGCAdIdentifierDataLayer *dataLayer;
 @property (nonatomic, strong) OGCInstanceToken *instanceToken;
-@property (nonatomic, copy) NSString *consentToken;
 @property (nonatomic, strong) NSProcessInfo *processInfo;
 @property (nonatomic, strong) OGCLog *log;
 
@@ -129,21 +128,6 @@
     }
 }
 
-- (NSString *)getConsentToken {
-    NSString *storedConsentToken = [[NSString alloc] initWithData:[self.dataLayer getConsentToken] encoding:NSUTF8StringEncoding];
-
-    if (storedConsentToken && storedConsentToken.length > 0) {
-        return storedConsentToken;
-    }
-
-    // Generate and store a new consent token
-    self.consentToken = [self.privacyLayer generateToken];
-
-    [self.dataLayer storeConsentToken:[self.consentToken dataUsingEncoding:NSUTF8StringEncoding]];
-
-    return self.consentToken;
-}
-
 - (BOOL)isAdOptin {
     return ![self.privacyLayer isEmptyIDFA];
 }
@@ -151,11 +135,6 @@
 - (void)updateInstanceToken {
     self.instanceToken = [self createInstanceTokenWithProcessInfo:self.processInfo];
     [self.log logMessage:OguryLogLevelDebug message:@"Update instance token"];
-}
-
-- (void)updateConsentToken {
-    self.consentToken = [self.privacyLayer generateToken];
-    [self.log logMessage:OguryLogLevelDebug message:@"Update consent token"];
 }
 
 

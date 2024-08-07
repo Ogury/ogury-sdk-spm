@@ -439,18 +439,6 @@ NSString *tokenId2= @"00000000-2222-3333-1598-000000000000";
     XCTAssertEqual([modelLayer getInstanceToken].length, 36);
 }
 
-- (void)test_shouldUpdateConsentToken {
-    OGCNSProcessInfoMock *processInfo = [[OGCNSProcessInfoMock alloc] initWithMajorVersion:14];
-    OGCAdIdentifierManager *modelLayer = [[OGCAdIdentifierManager alloc] initWithPrivacyLayer:self.privacyLayer andDataLayer:self.dataLayer andProcessInfo:processInfo log:self.log];
-    NSString *consentToken = [modelLayer getConsentToken];
-
-    XCTAssertEqual(consentToken.length, 36);
-
-    [modelLayer updateConsentToken];
-
-    XCTAssertEqual([modelLayer getConsentToken].length, 36);
-}
-
 - (void)testRetrievedGPPConsentString {
    [self.mockedUserDefault unlockUserDefault];
    [self.mockedUserDefault setObject:[@"2-3" dataUsingEncoding:NSUTF8StringEncoding] forKey:@"IABGPP_GppSID"];

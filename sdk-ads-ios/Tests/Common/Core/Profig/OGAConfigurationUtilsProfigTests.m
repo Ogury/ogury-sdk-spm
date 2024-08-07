@@ -30,10 +30,9 @@
     XCTAssertNotNil(profigParam[@"app"][@"bundle_id"]);
     XCTAssertNotNil(profigParam[@"app"][@"asset_type"]);
     XCTAssertNotNil(profigParam[@"app"][@"version"]);
-    XCTAssertNotNil(profigParam[@"privacy_compliancy"]);
-    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"consent_token"]);
     XCTAssertNotNil(profigParam[@"sdk"]);
     XCTAssertNotNil(profigParam[@"sdk"][@"module_version"]);
+    XCTAssertNotNil(profigParam[@"privacy_compliancy"]);
 }
 
 - (void)testErrorForServerProfigError {

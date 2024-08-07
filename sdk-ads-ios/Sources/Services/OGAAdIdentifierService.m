@@ -23,10 +23,6 @@
     return [[OGCInternal shared] getInstanceToken];
 }
 
-+ (NSString *)getConsentToken {
-    return [[OGCInternal shared] getConsentToken];
-}
-
 + (BOOL)isAdOptin {
     return [[OGCInternal shared] isAdOptin];
 }

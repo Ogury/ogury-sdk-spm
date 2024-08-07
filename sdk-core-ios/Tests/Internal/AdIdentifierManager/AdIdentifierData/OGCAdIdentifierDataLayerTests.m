@@ -7,7 +7,6 @@
 #import "OGCNSUserDefaultsMock.h"
 
 static NSString * const OguryInstanceTokenKey = @"OGURY_INSTANCE_TOKEN";
-static NSString * const OguryConsentTokenKey = @"OGURY_CONSENT_TOKEN";
 
 @interface OGCAdIdentifierDataLayerTests : XCTestCase
 

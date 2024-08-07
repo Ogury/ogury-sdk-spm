@@ -200,7 +200,6 @@
     OCMStub(OCMClassMethod([configurationUtilsMock getVendorId])).andReturn(@"vendorId");
     id adIdentifierServiceMock = OCMClassMock([OGAAdIdentifierService class]);
     OCMStub(OCMClassMethod([adIdentifierServiceMock getInstanceToken])).andReturn(instanceTokenEnabled ? @"instanceToken" : nil);
-    OCMStub(OCMClassMethod([adIdentifierServiceMock getConsentToken])).andReturn(@"consentToken");
     OCMStub(OCMClassMethod([adIdentifierServiceMock getAdIdentifier])).andReturn(@"deviceId");
     OCMStub(self.assetKeyManager.assetKey).andReturn(assetKeyEnabled ? @"AssetKey" : nil);
     OCMStub([self.internal getVersion]).andReturn(@"5.5.5");
@@ -234,8 +233,6 @@
     XCTAssertEqualObjects(token[@"device"][@"settings"][@"low_power_mode"], @1);
     XCTAssertEqualObjects(token[@"device"][@"settings"][@"time_zone"], @"+00:00");
     XCTAssertEqualObjects(token[@"device"][@"settings"][@"vendor_id"], @"vendorId");
-    // privacy_compliancy
-    XCTAssertEqualObjects(token[@"privacy_compliancy"][@"consent_token"], @"consentToken");
     // sdk
     XCTAssertEqualObjects(token[@"sdk"][@"build_version"], @"1234");
     XCTAssertEqualObjects(token[@"sdk"][@"module_version"], @"5.5.5");
@@ -266,8 +263,6 @@
     XCTAssertNil(token[@"device"][@"settings"][@"low_power_mode"]);
     XCTAssertNil(token[@"device"][@"settings"][@"time_zone"]);
     XCTAssertNil(token[@"device"][@"settings"][@"vendor_id"]);
-    // privacy_compliancy
-    XCTAssertNotNil(token[@"privacy_compliancy"][@"consent_token"]);
     // sdk
     XCTAssertNotNil(token[@"sdk"][@"build_version"]);
     XCTAssertNotNil(token[@"sdk"][@"module_version"]);

@@ -92,7 +92,7 @@ pipeline {
                         beforeAgent true
                         expression {
                             // Check if the current tag matches the pattern "internal-core-<digits separated by dots>-<description>"
-                            def tagPattern = ~/^internal-core-(\d+(\.\d+)*)-.*$/
+                            def tagPattern = ~/^internal-core-(\d+(\.\d+)*?)-.*$/
                             return env.GIT_TAG ==~ tagPattern
                         }
                     }

@@ -67,10 +67,6 @@
     return [self.adIdentifierManager getInstanceToken];
 }
 
-- (NSString *)getConsentToken {
-    return [self.adIdentifierManager getConsentToken];
-}
-
 - (BOOL)isAdOptin {
     return [self.adIdentifierManager isAdOptin];
 }
