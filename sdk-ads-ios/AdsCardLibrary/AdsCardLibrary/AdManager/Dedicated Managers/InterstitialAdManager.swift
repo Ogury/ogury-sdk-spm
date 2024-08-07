@@ -51,6 +51,9 @@ public final class InterstitialAdManager: AdManager {
       else if case let .dtFairBidHeaderBidding(_, adMarkUpRetriever) = adType {
          bidder = adMarkUpRetriever
       }
+      else if case let .unityLevelPlayHeaderBidding(_, adMarkUpRetriever) = adType {
+         bidder = adMarkUpRetriever
+      }
    }
    
    public func update(options: BaseAdOptions) {

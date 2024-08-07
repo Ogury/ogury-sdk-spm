@@ -25,6 +25,7 @@ struct MaxBidder: MaxHeaderBidable {
                              creativeId: creativeId,
                              dspCreative: dspCreative,
                              dspRegion: dspRegion,
+                             displayManager: Configuration.shared.maxOptions.displayManager,
                              url: Configuration.shared.maxOptions.url) { result in
                 print("👀 \(result)")
                 switch result {

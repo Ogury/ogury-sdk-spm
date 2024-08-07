@@ -1051,12 +1051,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4BFB006EEAC67C4A30D0BAF8 /* Pods-OguryCoreTests.debug.xcconfig */;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Tests/OCMock\"/**";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Tests/OCMock",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)Tests";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_MODULE_NAME)Tests";
 				PRODUCT_NAME = "$(PRODUCT_NAME)Tests";
@@ -1067,12 +1066,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CE692C3841CF8D177988BC43 /* Pods-OguryCoreTests.release.xcconfig */;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Tests/OCMock\"/**";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Tests/OCMock",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)Tests";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_MODULE_NAME)Tests";
 				PRODUCT_NAME = "$(PRODUCT_NAME)Tests";

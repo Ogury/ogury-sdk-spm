@@ -1,4 +1,5 @@
 PODS:
+  - DDPopoverBackgroundView (1.0.2)
   - OCMock (3.9.1)
   - OguryAds-Prod (3.7.0-rc-3):
     - OguryAds-Prod/OMID (= 3.7.0-rc-3)
@@ -8,18 +9,38 @@ PODS:
   - OguryChoiceManager-Prod (4.3.0-rc-2):
     - OguryCore-Prod (= 1.4.1-RC-1.0.7)
   - OguryCore-Prod (1.4.1-RC-1.0.7)
+  - RxCocoa (6.2.0):
+    - RxRelay (= 6.2.0)
+    - RxSwift (= 6.2.0)
+  - RxRelay (6.2.0):
+    - RxSwift (= 6.2.0)
+  - RxSwift (6.2.0)
+  - SnapKit (5.7.1)
+  - Yaml (3.4.4)
 
 DEPENDENCIES:
+  - DDPopoverBackgroundView
   - OCMock (from `https://github.com/SDKOguryDev/ocmock`, branch `master`)
   - OguryAds-Prod (= 3.7.0-rc-3)
   - OguryChoiceManager-Prod (= 4.3.0-rc-2)
   - OguryCore-Prod (= 1.4.1-RC-1.0.7)
+  - RxCocoa (= 6.2.0)
+  - RxSwift (= 6.2.0)
+  - SnapKit
+  - Yaml
 
 SPEC REPOS:
   https://ogury.jfrog.io/artifactory/api/pods/sdk-cocoapods-prod:
     - OguryAds-Prod
     - OguryChoiceManager-Prod
     - OguryCore-Prod
+  trunk:
+    - DDPopoverBackgroundView
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SnapKit
+    - Yaml
 
 EXTERNAL SOURCES:
   OCMock:
@@ -32,11 +53,17 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SDKOguryDev/ocmock
 
 SPEC CHECKSUMS:
+  DDPopoverBackgroundView: a538082a8a9bd8581ed3740f601c6e070bba071f
   OCMock: 9491e4bec59e0b267d52a9184ff5605995e74be8
   OguryAds-Prod: 7c36ec0b4a1ba93b525f2ec61c798a8448f401d6
   OguryChoiceManager-Prod: 9eebe61b9d5b8580897d0306dc58410179ccdf2f
   OguryCore-Prod: 428d8fce1a3e3a5906ebe81b56d30eca194a7555
+  RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
+  RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
+  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
+  SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
+  Yaml: 52831fc1d9ac2db4ddf6d7562993457127256ca6
 
-PODFILE CHECKSUM: 44c7d8f397ce166caf17e48a7ce30ec0cac34643
+PODFILE CHECKSUM: 04b42c930d1225255634e694e612528bbf620e96
 
 COCOAPODS: 1.15.2

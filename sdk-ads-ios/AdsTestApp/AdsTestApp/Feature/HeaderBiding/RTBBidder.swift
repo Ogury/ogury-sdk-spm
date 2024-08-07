@@ -70,7 +70,7 @@ struct RTBBidder {
                 "w": 320
               },
               "bidfloor": 1.12,
-              "displaymanager": "max",
+              "displaymanager": "$DISPLAY_MANAGER",
               "displaymanagerver": "5.3.0",
               "exp": 14400,
               "id": "1",
@@ -176,6 +176,7 @@ struct RTBBidder {
                           creativeId: String?,
                           dspCreative: String?,
                           dspRegion: DspRegion?,
+                          displayManager: String?,
                           url: URL?,
                           completionHandler: @escaping HeaderBiddingServiceCompletionHandler) {
         // call on Main Thread because of an Xcode warning : bidder token access UIWindowsScene connectedScene
@@ -197,8 +198,9 @@ struct RTBBidder {
             var formattedBody = fakeBody
             formattedBody = formattedBody.replacingOccurrences(of: "$ASSET_KEY", with: assetKey)
             formattedBody = formattedBody.replacingOccurrences(of: "$AD_UNIT_ID", with: adUnitId)
+            formattedBody = formattedBody.replacingOccurrences(of: "$DISPLAY_MANAGER", with: displayManager ?? "default")
             formattedBody = formattedBody.replacingOccurrences(of: "$GEO_OBJECT", with: self.buildGeoObject(with: country))
-           formattedBody = formattedBody.replacingOccurrences(of: "$BUNDLE", with: Bundle.main.bundleIdentifier ?? "co.ogury.sdk.ads.app.devc")
+            formattedBody = formattedBody.replacingOccurrences(of: "$BUNDLE", with: Bundle.main.bundleIdentifier ?? "co.ogury.sdk.ads.app.devc")
             
            if (campaignId != nil && !campaignId!.isEmpty && dspCreative != nil && !dspCreative!.isEmpty && dspRegion != nil) {
               let cls:AnyClass = OguryTokenService.self
@@ -298,6 +300,7 @@ struct RTBBidder {
                  creativeId: String?,
                  dspCreative: String?,
                  dspRegion: DspRegion?,
+                 displayManager: String,
                  url: URL?) async throws -> String? {
         try await withUnsafeThrowingContinuation { continuation in
             retrieveAdMarkup(assetKey: AdSdkLauncher.shared.assetKey,
@@ -306,7 +309,9 @@ struct RTBBidder {
                              campaignId: campaignId,
                              creativeId: creativeId,
                              dspCreative: dspCreative,
-                             dspRegion: dspRegion, url: url) { result in
+                             dspRegion: dspRegion,
+                             displayManager: displayManager,
+                             url: url) { result in
                 print("👀 \(result)")
                 switch result {
                     case let .success(adMarkUp): continuation.resume(returning: adMarkUp)

@@ -5,7 +5,7 @@
 import AdsCardLibrary
 import OguryAds
 
-struct DTFairBidBidder: DTFairBidHeaderBidable {
+struct UnityLevelPlayBidder: UnityLevelPlayBidable {
    
    func description(for error: Error) -> String {
       RTBBidder().description(for: error)
@@ -25,8 +25,8 @@ struct DTFairBidBidder: DTFairBidHeaderBidable {
                              creativeId: creativeId,
                              dspCreative: dspCreative,
                              dspRegion: dspRegion,
-                             displayManager: Configuration.shared.dtFairBidOptions.displayManager,
-                             url: Configuration.shared.dtFairBidOptions.url) { result in
+                             displayManager: Configuration.shared.unityLevelPlayOptions.displayManager,
+                             url: Configuration.shared.unityLevelPlayOptions.url) { result in
                 print("👀 \(result)")
                 switch result {
                     case let .success(adMarkUp): continuation.resume(returning: adMarkUp)

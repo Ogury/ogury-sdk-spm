@@ -104,8 +104,11 @@
 		43DA127D2AB888D300766D99 /* AdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127A2AB888D300766D99 /* AdBannerView.swift */; };
 		43DA127E2AB888D300766D99 /* BannerPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */; };
 		43DA12802AB888D900766D99 /* BannerAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127F2AB888D900766D99 /* BannerAdManager.swift */; };
-		7F385E25C7DBDC9D529417A9 /* Pods_AdsCardLibrary_Release.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E6B6490D55C3C0FEDB34FF7 /* Pods_AdsCardLibrary_Release.framework */; };
+		50CFA85F2C63776200E64D20 /* UnityLevelPlayBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA85D2C63774B00E64D20 /* UnityLevelPlayBidable.swift */; };
+		50CFA8602C63776200E64D20 /* UnityLevelPlayBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA85D2C63774B00E64D20 /* UnityLevelPlayBidable.swift */; };
+		50CFA8622C637F0B00E64D20 /* UnityLevelPlayRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8612C637F0A00E64D20 /* UnityLevelPlayRetriever.swift */; };
 		8953E489A7F8331EA044BBF1 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		ACA5E9FA7E59514EB048ED47 /* Pods_AdsCardLibrary_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4925EF716018B487E9F91C3B /* Pods_AdsCardLibrary_art.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,13 +118,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 435C55DE2A42EAEF004186FF;
 			remoteInfo = AdsCardLibrary;
-		};
-		436C917A2C5BB4E600114555 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 436C91762C5BB4E600114555 /* LegacyTestApp.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C9A5E770241A51660093E79B;
-			remoteInfo = LegacyTestApp;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -164,7 +160,6 @@
 		435C55FC2A42F451004186FF /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OMSDK_Ogury.xcframework; path = ../OMSDK_Ogury.xcframework; sourceTree = "<absolute>"; };
 		435F7BCE2A601F990077843A /* InterstitialAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdManagerTests.swift; sourceTree = "<group>"; };
-		436C91762C5BB4E600114555 /* LegacyTestApp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LegacyTestApp.xcodeproj; path = ../LegacyTestApp/LegacyTestApp.xcodeproj; sourceTree = "<group>"; };
 		436E97262A6A7BC30074E922 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43788F282B5FB7980041A9C1 /* AdsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsTextField.swift; sourceTree = "<group>"; };
 		43788F2B2B5FBA1A0041A9C1 /* PPTelegraf-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PPTelegraf-Semibold.ttf"; sourceTree = "<group>"; };
@@ -198,9 +193,11 @@
 		43DA127A2AB888D300766D99 /* AdBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdBannerView.swift; sourceTree = "<group>"; };
 		43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerPlaceholderView.swift; sourceTree = "<group>"; };
 		43DA127F2AB888D900766D99 /* BannerAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdManager.swift; sourceTree = "<group>"; };
-		8E6B6490D55C3C0FEDB34FF7 /* Pods_AdsCardLibrary_Release.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsCardLibrary_Release.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		93E41BC933C7C059FD62B2FB /* Pods-AdsCardLibrary-Release.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-Release.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-Release/Pods-AdsCardLibrary-Release.debug.xcconfig"; sourceTree = "<group>"; };
-		FD61C3C1BAEA09E61B64842E /* Pods-AdsCardLibrary-Release.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-Release.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-Release/Pods-AdsCardLibrary-Release.release.xcconfig"; sourceTree = "<group>"; };
+		4925EF716018B487E9F91C3B /* Pods_AdsCardLibrary_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsCardLibrary_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50CFA85D2C63774B00E64D20 /* UnityLevelPlayBidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityLevelPlayBidable.swift; sourceTree = "<group>"; };
+		50CFA8612C637F0A00E64D20 /* UnityLevelPlayRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityLevelPlayRetriever.swift; sourceTree = "<group>"; };
+		5F9DF635BE8DD81CCC944431 /* Pods-AdsCardLibrary-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-art.release.xcconfig"; path = "Target Support Files/Pods-AdsCardLibrary-art/Pods-AdsCardLibrary-art.release.xcconfig"; sourceTree = "<group>"; };
+		7200694DC9A3D084F0CE0E1F /* Pods-AdsCardLibrary-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-art.debug.xcconfig"; path = "Target Support Files/Pods-AdsCardLibrary-art/Pods-AdsCardLibrary-art.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,7 +229,7 @@
 			files = (
 				43BCB1832C22FBF0002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43BCB1852C22FBF0002FB0B1 /* ComposableArchitecture in Frameworks */,
-				7F385E25C7DBDC9D529417A9 /* Pods_AdsCardLibrary_Release.framework in Frameworks */,
+				ACA5E9FA7E59514EB048ED47 /* Pods_AdsCardLibrary_art.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +265,7 @@
 		434F85192AD53392005077F5 /* HeaderBiding */ = {
 			isa = PBXGroup;
 			children = (
+				50CFA85D2C63774B00E64D20 /* UnityLevelPlayBidable.swift */,
 				434F851A2AD534A5005077F5 /* MaxHeaderBidable.swift */,
 				1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */,
 				434F851C2AD535B2005077F5 /* HeaderBidable.swift */,
@@ -278,12 +276,11 @@
 		435C55D52A42EAEF004186FF = {
 			isa = PBXGroup;
 			children = (
-				436C91762C5BB4E600114555 /* LegacyTestApp.xcodeproj */,
 				435C55E12A42EAEF004186FF /* AdsCardLibrary */,
 				435C55ED2A42EAEF004186FF /* AdsCardLibraryTests */,
 				435C55E02A42EAEF004186FF /* Products */,
 				435C55FB2A42F451004186FF /* Frameworks */,
-				A85F5428F6AAA851ED4CCD45 /* Pods */,
+				EF5C3C579273150CBA537921 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -330,7 +327,7 @@
 				438ED4392AA8565800486AF2 /* OguryAds.framework */,
 				435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */,
 				435C55FC2A42F451004186FF /* OguryAds.framework */,
-				8E6B6490D55C3C0FEDB34FF7 /* Pods_AdsCardLibrary_Release.framework */,
+				4925EF716018B487E9F91C3B /* Pods_AdsCardLibrary_art.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -352,18 +349,11 @@
 				431441182A6539780067AD47 /* ThumbnailAdManagerTests.swift */,
 				4314411A2A653B060067AD47 /* BannerAdManagerTests.swift */,
 				434F85242AD6D9EF005077F5 /* MpuAdManagerTests.swift */,
+				50CFA8612C637F0A00E64D20 /* UnityLevelPlayRetriever.swift */,
 				4328B2822AD7CF44003C7F91 /* MaxRetriever.swift */,
 				1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */,
 			);
 			path = AdManager;
-			sourceTree = "<group>";
-		};
-		436C91772C5BB4E600114555 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				436C917B2C5BB4E600114555 /* OguryTestApp.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		43788F272B5FB77A0041A9C1 /* TextFields */ = {
@@ -489,14 +479,14 @@
 			path = AdManager;
 			sourceTree = "<group>";
 		};
-		A85F5428F6AAA851ED4CCD45 /* Pods */ = {
+		EF5C3C579273150CBA537921 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				93E41BC933C7C059FD62B2FB /* Pods-AdsCardLibrary-Release.debug.xcconfig */,
-				FD61C3C1BAEA09E61B64842E /* Pods-AdsCardLibrary-Release.release.xcconfig */,
+				7200694DC9A3D084F0CE0E1F /* Pods-AdsCardLibrary-art.debug.xcconfig */,
+				5F9DF635BE8DD81CCC944431 /* Pods-AdsCardLibrary-art.release.xcconfig */,
 			);
 			name = Pods;
-			path = ../Pods;
+			path = ../../Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -622,12 +612,6 @@
 			);
 			productRefGroup = 435C55E02A42EAEF004186FF /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 436C91772C5BB4E600114555 /* Products */;
-					ProjectRef = 436C91762C5BB4E600114555 /* LegacyTestApp.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				435C55DE2A42EAEF004186FF /* AdsCardLibrary */,
@@ -636,16 +620,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		436C917B2C5BB4E600114555 /* OguryTestApp.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = OguryTestApp.app;
-			remoteRef = 436C917A2C5BB4E600114555 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		435C55DD2A42EAEF004186FF /* Resources */ = {
@@ -700,7 +674,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AdsCardLibrary-Release-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-AdsCardLibrary-art-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -756,6 +730,7 @@
 				43DA127E2AB888D300766D99 /* BannerPlaceholderView.swift in Sources */,
 				438ED3CE2AA0C2BA00486AF2 /* AdManager.swift in Sources */,
 				438ED3CC2AA0C2BA00486AF2 /* AdManagerDelegate.swift in Sources */,
+				50CFA85F2C63776200E64D20 /* UnityLevelPlayBidable.swift in Sources */,
 				431F6F092C0F403F00DBFFAA /* AdTagFeature.swift in Sources */,
 				438ED3D62AA0C2BA00486AF2 /* AdView.swift in Sources */,
 				438ED3D62AA0C2BA00486AF2 /* AdView.swift in Sources */,
@@ -776,6 +751,7 @@
 				43A78A6E2A52ABF30004A613 /* AdManagerOptionsTests.swift in Sources */,
 				43ACBB702B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift in Sources */,
 				4314411B2A653B060067AD47 /* BannerAdManagerTests.swift in Sources */,
+				50CFA8622C637F0B00E64D20 /* UnityLevelPlayRetriever.swift in Sources */,
 				435C55EF2A42EAEF004186FF /* AdsCardManagerTests.swift in Sources */,
 				430B6F032A65377900A6EFA4 /* OptinVideoAdManagerTests.swift in Sources */,
 				434F85252AD6D9EF005077F5 /* MpuAdManagerTests.swift in Sources */,
@@ -812,6 +788,7 @@
 				43BCB17A2C22FBF0002FB0B1 /* BannerPlaceholderView.swift in Sources */,
 				43BCB17B2C22FBF0002FB0B1 /* AdManager.swift in Sources */,
 				43BCB17C2C22FBF0002FB0B1 /* AdManagerDelegate.swift in Sources */,
+				50CFA8602C63776200E64D20 /* UnityLevelPlayBidable.swift in Sources */,
 				43BCB17D2C22FBF0002FB0B1 /* AdTagFeature.swift in Sources */,
 				43BCB17E2C22FBF0002FB0B1 /* AdView.swift in Sources */,
 				43BCB17E2C22FBF0002FB0B1 /* AdView.swift in Sources */,
@@ -1044,6 +1021,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ogury.AdsCardLibraryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1061,6 +1039,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ogury.AdsCardLibraryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1072,7 +1051,7 @@
 		};
 		43BCB18F2C22FBF0002FB0B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93E41BC933C7C059FD62B2FB /* Pods-AdsCardLibrary-Release.debug.xcconfig */;
+			baseConfigurationReference = 7200694DC9A3D084F0CE0E1F /* Pods-AdsCardLibrary-art.debug.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -1116,7 +1095,7 @@
 		};
 		43BCB1902C22FBF0002FB0B1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD61C3C1BAEA09E61B64842E /* Pods-AdsCardLibrary-Release.release.xcconfig */;
+			baseConfigurationReference = 5F9DF635BE8DD81CCC944431 /* Pods-AdsCardLibrary-art.release.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;

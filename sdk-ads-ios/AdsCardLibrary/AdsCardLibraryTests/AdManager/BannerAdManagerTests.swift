@@ -362,6 +362,23 @@ final class BannerAdManagerTests: XCTestCase {
         wait(for: [ex], timeout: 0.5)
     }
     
+    func testWhenUnityLevelPlayBannerIsUsedThenMaxBiddableIsCalled() {
+        let retriever = UnityLevelPlayRetriever(adMarkUpToReturn: "")
+        let ad: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType: .banner, adMarkUpRetriever: retriever)
+        let adManager = BannerAdManager(adType: ad)
+        let vc = UIView()
+        adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
+        let ex = XCTestExpectation(description: "The ad did not load")
+        adManager.events.sink { event in
+            if event == .adLoading {
+                ex.fulfill()
+            }
+        }
+        .store(in: &storables)
+        try? adManager.loadAd(from: adManager.options.baseOptions)
+        wait(for: [ex], timeout: 0.5)
+    }
+    
     func testWhenMaxBannerIsUsedAndBidderReturnNilThenErrorIsDispatched() {
         let retriever = MaxRetriever(adMarkUpToReturn: nil)
         let ad: AdType<BannerAdManager> = .maxHeaderBidding(adType: .banner, adMarkUpRetriever: retriever)
@@ -382,6 +399,23 @@ final class BannerAdManagerTests: XCTestCase {
     func testWhenDTFairBidBannerIsUsedAndBidderReturnNilThenErrorIsDispatched() {
         let retriever = BTFairBidRetriever(adMarkUpToReturn: nil)
         let ad: AdType<BannerAdManager> = .dtFairBidHeaderBidding(adType: .banner, adMarkUpRetriever: retriever)
+        let adManager = BannerAdManager(adType: ad)
+        let vc = UIView()
+        adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
+        let ex = XCTestExpectation(description: "The ad did not load")
+        adManager.events.sink { event in
+            if event == .adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")) {
+                ex.fulfill()
+            }
+        }
+        .store(in: &storables)
+        try? adManager.loadAd(from: adManager.options.baseOptions)
+        wait(for: [ex], timeout: 1)
+    }
+    
+    func testWhenUnityLevelPlayBannerIsUsedAndBidderReturnNilThenErrorIsDispatched() {
+        let retriever = UnityLevelPlayRetriever(adMarkUpToReturn: nil)
+        let ad: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType: .banner, adMarkUpRetriever: retriever)
         let adManager = BannerAdManager(adType: ad)
         let vc = UIView()
         adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
@@ -430,6 +464,23 @@ final class BannerAdManagerTests: XCTestCase {
         wait(for: [ex], timeout: 0.5)
     }
     
+    func testWhenUnityLevelPlayMpuIsUsedThenMaxBiddableIsCalled() {
+        let retriever = UnityLevelPlayRetriever(adMarkUpToReturn: "")
+        let ad: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType: .mpu, adMarkUpRetriever: retriever)
+        let adManager = BannerAdManager(adType: ad)
+        let vc = UIView()
+        adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
+        let ex = XCTestExpectation(description: "The ad did not load")
+        adManager.events.sink { event in
+            if event == .adLoading {
+                ex.fulfill()
+            }
+        }
+        .store(in: &storables)
+        try? adManager.loadAd(from: adManager.options.baseOptions)
+        wait(for: [ex], timeout: 0.5)
+    }
+    
     func testWhenMaxMpuIsUsedAndBidderReturnNilThenErrorIsDispatched() {
         let retriever = MaxRetriever(adMarkUpToReturn: nil)
         let ad: AdType<BannerAdManager> = .maxHeaderBidding(adType: .mpu, adMarkUpRetriever: retriever)
@@ -463,4 +514,22 @@ final class BannerAdManagerTests: XCTestCase {
         try? adManager.loadAd(from: adManager.options.baseOptions)
         wait(for: [ex], timeout: 1)
     }
+    
+    func testWhenUnityLevelPlayMpuIsUsedAndBidderReturnNilThenErrorIsDispatched() {
+        let retriever = UnityLevelPlayRetriever(adMarkUpToReturn: nil)
+        let ad: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType: .mpu, adMarkUpRetriever: retriever)
+        let adManager = BannerAdManager(adType: ad)
+        let vc = UIView()
+        adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
+        let ex = XCTestExpectation(description: "The ad did not load")
+        adManager.events.sink { event in
+            if event == .adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")) {
+                ex.fulfill()
+            }
+        }
+        .store(in: &storables)
+        try? adManager.loadAd(from: adManager.options.baseOptions)
+        wait(for: [ex], timeout: 1)
+    }
+    
 }
