@@ -11,7 +11,7 @@
 #import "OGCAdIdentifierPrivacyLayer.h"
 #import "OGCNSUserDefaultsMock.h"
 #import "OGCASIdentifierManagerMock.h"
-#import "OCMock.h"
+#import <OCMock/OCMock.h>
 #import "OGCLog.h"
 #import "OguryLogLevel.h"
 #import "OGCSetLogLevelNotificationManager.h"

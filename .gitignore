@@ -59,6 +59,7 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+jenkins/**
 
 # Code Injection
 #
@@ -66,3 +67,11 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+
+fastlane/.DS_Store
+
+.DS_Store
+
+Pods/
+
+OgurySdks.xcworkspace/xcshareddata/swiftpm/Package.resolved

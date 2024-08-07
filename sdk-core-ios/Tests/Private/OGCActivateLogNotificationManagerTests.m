@@ -4,7 +4,7 @@
 
 #import <XCTest/XCTest.h>
 #import "OGCSetLogLevelNotificationManager.h"
-#import "OCMock.h"
+#import <OCMock/OCMock.h>
 #import "OGCInternal.h"
 #import "OguryLogLevel.h"
 #import "OGCLog.h"

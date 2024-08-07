@@ -12,7 +12,7 @@
 #import "OGCInstanceToken.h"
 #import "NSString+OGCHash.h"
 #import "OGCLog.h"
-#import "OCMock.h"
+#import <OCMock/OCMock.h>
 
 @interface OGCAdIdentifierManagerTests : XCTestCase
 

@@ -760,7 +760,6 @@
 		43A9F3962C37E6B40085EF6F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C0FC95225BA040005D6F29 /* SystemConfiguration.framework */; };
 		43A9F3972C37E6B40085EF6F /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9D432526E8AB3700A42224 /* OMSDK_Ogury.xcframework */; };
 		43A9F3982C37E6B40085EF6F /* StoreKitTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED3C27829F036E1007604BF /* StoreKitTest.framework */; };
-		43A9F3992C37E6B40085EF6F /* Pods_OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D983E354EDE56DD2918D8F2 /* Pods_OguryAds.framework */; };
 		43A9F39B2C37E6B40085EF6F /* OGAAdExposureController.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A1EF98E157D0BB361919F /* OGAAdExposureController.h */; };
 		43A9F39C2C37E6B40085EF6F /* OGAAdExposureDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A1D8B6572264C576AEB58 /* OGAAdExposureDelegate.h */; };
 		43A9F39D2C37E6B40085EF6F /* OGAMetamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = ED58D02A25DC2381002C4738 /* OGAMetamacros.h */; };
@@ -1079,7 +1078,7 @@
 		58DB921728996C4200C0D3DC /* OGAAdLogMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DB921328996C4200C0D3DC /* OGAAdLogMessageTests.m */; };
 		58DB921828996C4200C0D3DC /* OGAMraidLogMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DB921428996C4200C0D3DC /* OGAMraidLogMessageTests.m */; };
 		6A1E0992BED1EC98FD7A4DCB /* Pods_OguryAdsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5EBAD21E062EFBB85C93DB4 /* Pods_OguryAdsTests.framework */; };
-		6DD19CB17CDD3ED68CE1502C /* Pods_OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D983E354EDE56DD2918D8F2 /* Pods_OguryAds.framework */; };
+		98A14F7E0F0EDD6642C8F245 /* Pods_OguryAds_Release.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E4363E8A47EFCB79E3C1341 /* Pods_OguryAds_Release.framework */; };
 		C4E381481C7661EDF2AF7B5A /* OGAWebViewCleanupManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C4E38449D5386BBCF1367C6A /* OGAWebViewCleanupManager.h */; };
 		C4E383E062BE72C0D389BDB2 /* OGAAdExposureControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E38508C1B88F0E4B4E846B /* OGAAdExposureControllerTests.m */; };
 		C4E3884875D1473928A6B461 /* UIViewController+OGAThumbnailAdRestrictions.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E38CBEFCF1D990C8A2F410 /* UIViewController+OGAThumbnailAdRestrictions.m */; };
@@ -1229,7 +1228,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		05011686A903860DCE8F883E /* Pods-OguryAds.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAds.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryAds/Pods-OguryAds.debug.xcconfig"; sourceTree = "<group>"; };
 		05B5124225D57EAF00E06388 /* OGAAdMraidDisplayerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAAdMraidDisplayerState.h; sourceTree = "<group>"; };
 		1E308B3E2B85043100DFC6E3 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		1E3F16572BADD50000A897D4 /* OGAAssetKeyManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAAssetKeyManagerDelegate.h; sourceTree = "<group>"; };
@@ -1357,7 +1355,6 @@
 		22FAEBA8299D3DF400BA88B8 /* OGAMonitoringEventFormatterSKNetworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAMonitoringEventFormatterSKNetworkTests.m; sourceTree = "<group>"; };
 		22FAEBAA299D4B9D00BA88B8 /* OGAMonitoringDispatcherSKNetworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAMonitoringDispatcherSKNetworkTests.m; sourceTree = "<group>"; };
 		22FB08C5255EC40C002CBF45 /* OGAAdIdentifierServiceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAAdIdentifierServiceTests.m; sourceTree = "<group>"; };
-		2D983E354EDE56DD2918D8F2 /* Pods_OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		351A100F631943E2EFB45AE7 /* OGAWebViewUserAgentService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAWebViewUserAgentService.h; sourceTree = "<group>"; };
 		351A1016F7809FCA816C578B /* NSString+OGAUtilityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OGAUtilityTests.m"; sourceTree = "<group>"; };
 		351A101A83A4130F640AF6C5 /* OGABaseAdContainerStateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGABaseAdContainerStateTests.m; sourceTree = "<group>"; };
@@ -1809,6 +1806,7 @@
 		43F8BBEB2BA885DB002695F8 /* OGAMonitoringDetails.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAMonitoringDetails.h; sourceTree = "<group>"; };
 		43F8BBEC2BA885DB002695F8 /* OGAMonitoringDetails.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAMonitoringDetails.m; sourceTree = "<group>"; };
 		4762507994EC33D730BD4E44 /* Pods-OguryAdsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAdsTests.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4E4363E8A47EFCB79E3C1341 /* Pods_OguryAds_Release.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OguryAds_Release.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		502477242B0D0E17006386BF /* OGAAdDspTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAAdDspTests.m; sourceTree = "<group>"; };
 		5057B6862B4C588800A3E575 /* OGAMRAIDWebViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAMRAIDWebViewTests.m; sourceTree = "<group>"; };
 		5057B6892B5025CB00A3E575 /* OGAMonitoringConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAMonitoringConstants.h; sourceTree = "<group>"; };
@@ -1850,7 +1848,8 @@
 		58DB921228996C4200C0D3DC /* OGAEventBusLogMessageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAEventBusLogMessageTests.m; sourceTree = "<group>"; };
 		58DB921328996C4200C0D3DC /* OGAAdLogMessageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAAdLogMessageTests.m; sourceTree = "<group>"; };
 		58DB921428996C4200C0D3DC /* OGAMraidLogMessageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAMraidLogMessageTests.m; sourceTree = "<group>"; };
-		7D5936618B05C3430C81B6E8 /* Pods-OguryAds.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAds.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryAds/Pods-OguryAds.release.xcconfig"; sourceTree = "<group>"; };
+		9AC9F752E5E24BC8668BC9D1 /* Pods-OguryAds-Release.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAds-Release.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryAds-Release/Pods-OguryAds-Release.release.xcconfig"; sourceTree = "<group>"; };
+		C406CC6516CC2C7E608B2017 /* Pods-OguryAds-Release.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAds-Release.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryAds-Release/Pods-OguryAds-Release.debug.xcconfig"; sourceTree = "<group>"; };
 		C4E38449D5386BBCF1367C6A /* OGAWebViewCleanupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAWebViewCleanupManager.h; sourceTree = "<group>"; };
 		C4E38508C1B88F0E4B4E846B /* OGAAdExposureControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAAdExposureControllerTests.m; sourceTree = "<group>"; };
 		C4E38A16C5EF918BF6059874 /* UIViewController+OGAThumbnailAdRestrictions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+OGAThumbnailAdRestrictions.h"; sourceTree = "<group>"; };
@@ -1992,7 +1991,7 @@
 				43A9F3962C37E6B40085EF6F /* SystemConfiguration.framework in Frameworks */,
 				43A9F3972C37E6B40085EF6F /* OMSDK_Ogury.xcframework in Frameworks */,
 				43A9F3982C37E6B40085EF6F /* StoreKitTest.framework in Frameworks */,
-				43A9F3992C37E6B40085EF6F /* Pods_OguryAds.framework in Frameworks */,
+				98A14F7E0F0EDD6642C8F245 /* Pods_OguryAds_Release.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2004,7 +2003,6 @@
 				43A9F4A22C37E6D00085EF6F /* OguryCore.framework in Frameworks */,
 				223A5571287C60F600275B12 /* OMSDK_Ogury.xcframework in Frameworks */,
 				1ED3C27F29F03A45007604BF /* StoreKitTest.framework in Frameworks */,
-				6DD19CB17CDD3ED68CE1502C /* Pods_OguryAds.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2334,8 +2332,8 @@
 			children = (
 				43A9F4A12C37E6D00085EF6F /* OguryCore.framework */,
 				1ED3C27829F036E1007604BF /* StoreKitTest.framework */,
-				2D983E354EDE56DD2918D8F2 /* Pods_OguryAds.framework */,
 				D5EBAD21E062EFBB85C93DB4 /* Pods_OguryAdsTests.framework */,
+				4E4363E8A47EFCB79E3C1341 /* Pods_OguryAds_Release.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3714,10 +3712,10 @@
 		AA721214C79BB877754AE033 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				05011686A903860DCE8F883E /* Pods-OguryAds.debug.xcconfig */,
-				7D5936618B05C3430C81B6E8 /* Pods-OguryAds.release.xcconfig */,
 				4762507994EC33D730BD4E44 /* Pods-OguryAdsTests.debug.xcconfig */,
 				E1F1B5A747DDC0768EEBCC5B /* Pods-OguryAdsTests.release.xcconfig */,
+				C406CC6516CC2C7E608B2017 /* Pods-OguryAds-Release.debug.xcconfig */,
+				9AC9F752E5E24BC8668BC9D1 /* Pods-OguryAds-Release.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -4627,9 +4625,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		43A9F2AC2C37E6B40085EF6F /* OguryAds-Release */ = {
+		43A9F2AC2C37E6B40085EF6F /* OguryAds-art */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43A9F49C2C37E6B40085EF6F /* Build configuration list for PBXNativeTarget "OguryAds-Release" */;
+			buildConfigurationList = 43A9F49C2C37E6B40085EF6F /* Build configuration list for PBXNativeTarget "OguryAds-art" */;
 			buildPhases = (
 				43A9F2AD2C37E6B40085EF6F /* [CP] Check Pods Manifest.lock */,
 				43A9F2AE2C37E6B40085EF6F /* Sources */,
@@ -4642,7 +4640,7 @@
 			);
 			dependencies = (
 			);
-			name = "OguryAds-Release";
+			name = "OguryAds-art";
 			productName = PresageSDK;
 			productReference = 43A9F49F2C37E6B40085EF6F /* OguryAds.framework */;
 			productType = "com.apple.product-type.framework";
@@ -4651,7 +4649,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DEF1BF87213917AA0004BAD1 /* Build configuration list for PBXNativeTarget "OguryAds" */;
 			buildPhases = (
-				4CDF2A2D8B21EC7B4FBE3DCB /* [CP] Check Pods Manifest.lock */,
 				DEF1BF6E213917AA0004BAD1 /* Sources */,
 				DEF1BF6F213917AA0004BAD1 /* Frameworks */,
 				DEF1BF70213917AA0004BAD1 /* Headers */,
@@ -4721,7 +4718,7 @@
 			projectRoot = "";
 			targets = (
 				DEF1BF72213917AA0004BAD1 /* OguryAds */,
-				43A9F2AC2C37E6B40085EF6F /* OguryAds-Release */,
+				43A9F2AC2C37E6B40085EF6F /* OguryAds-art */,
 				DEF1BF7B213917AA0004BAD1 /* OguryAdsTests */,
 			);
 		};
@@ -4783,29 +4780,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OguryAds-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4CDF2A2D8B21EC7B4FBE3DCB /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OguryAds-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-OguryAds-Release-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -5534,7 +5509,7 @@
 /* Begin XCBuildConfiguration section */
 		43A9F49D2C37E6B40085EF6F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 05011686A903860DCE8F883E /* Pods-OguryAds.debug.xcconfig */;
+			baseConfigurationReference = C406CC6516CC2C7E608B2017 /* Pods-OguryAds-Release.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -5578,7 +5553,7 @@
 		};
 		43A9F49E2C37E6B40085EF6F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D5936618B05C3430C81B6E8 /* Pods-OguryAds.release.xcconfig */;
+			baseConfigurationReference = 9AC9F752E5E24BC8668BC9D1 /* Pods-OguryAds-Release.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -5771,7 +5746,6 @@
 		};
 		DEF1BF88213917AA0004BAD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 05011686A903860DCE8F883E /* Pods-OguryAds.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -5813,7 +5787,6 @@
 		};
 		DEF1BF89213917AA0004BAD1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D5936618B05C3430C81B6E8 /* Pods-OguryAds.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -5954,7 +5927,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		43A9F49C2C37E6B40085EF6F /* Build configuration list for PBXNativeTarget "OguryAds-Release" */ = {
+		43A9F49C2C37E6B40085EF6F /* Build configuration list for PBXNativeTarget "OguryAds-art" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43A9F49D2C37E6B40085EF6F /* Debug */,
