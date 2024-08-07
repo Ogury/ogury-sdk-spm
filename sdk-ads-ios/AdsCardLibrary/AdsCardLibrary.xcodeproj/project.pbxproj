@@ -11,6 +11,7 @@
 		1E373D562BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */; };
 		1E373D612BFCF7CA00E2EF25 /* BTFairBidRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */; };
 		1E8256442B2380B4001DFBA4 /* AdsCardLibrary.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 1E8256432B2380B4001DFBA4 /* AdsCardLibrary.xctestplan */; };
+		38C9C1C5E8F4743633B5B720 /* Pods_AdsCardLibrary_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE3729EA0781674E62DD906 /* Pods_AdsCardLibrary_art.framework */; };
 		430B6F032A65377900A6EFA4 /* OptinVideoAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430B6F022A65377900A6EFA4 /* OptinVideoAdManagerTests.swift */; };
 		431441192A6539780067AD47 /* ThumbnailAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431441182A6539780067AD47 /* ThumbnailAdManagerTests.swift */; };
 		4314411B2A653B060067AD47 /* BannerAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4314411A2A653B060067AD47 /* BannerAdManagerTests.swift */; };
