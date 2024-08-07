@@ -6,9 +6,7 @@
 
 #import "OGAAdManager.h"
 #import "OGAAssetKeyManager.h"
-#import "OGABroadcastEventBus.h"
 #import "OGAEnvironmentManager.h"
-#import "OGAPersistentEventBus.h"
 #import "OGAProfigManager.h"
 #import "OGAReachability.h"
 #import "OGASetLogLevelNotificationManager.h"
@@ -16,16 +14,14 @@
 
 @interface OGAInternal (Testing)
 
-- (instancetype)initWithPersistentEventBus:(OGAPersistentEventBus *)consentEventBus
-                         broadcastEventBus:(OGABroadcastEventBus *)broadcastEventBus
-                           assetKeyManager:(OGAAssetKeyManager *)assetKeyManager
-                             profigManager:(OGAProfigManager *)profigManager
-                        environmentManager:(OGAEnvironmentManager *)environmentManager
-                      internetReachability:(OGAReachability *)internetReachability
-                                 adManager:(OGAAdManager *)adManager
-                                       log:(OGALog *)log
-                    logNotificationManager:(OGASetLogLevelNotificationManager *)logNotificationManager
-                   webViewUserAgentService:(OGAWebViewUserAgentService *)webViewUserAgentService;
+- (instancetype)initWithAssetKeyManager:(OGAAssetKeyManager *)assetKeyManager
+                          profigManager:(OGAProfigManager *)profigManager
+                     environmentManager:(OGAEnvironmentManager *)environmentManager
+                   internetReachability:(OGAReachability *)internetReachability
+                              adManager:(OGAAdManager *)adManager
+                                    log:(OGALog *)log
+                 logNotificationManager:(OGASetLogLevelNotificationManager *)logNotificationManager
+                webViewUserAgentService:(OGAWebViewUserAgentService *)webViewUserAgentService;
 
 - (void)changeServerEnvironment:(NSString *)environment;
 

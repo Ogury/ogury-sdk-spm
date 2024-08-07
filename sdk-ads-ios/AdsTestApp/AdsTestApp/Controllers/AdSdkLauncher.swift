@@ -9,8 +9,6 @@ import OguryAds.Private
 
 struct AdSdkLauncher {
     static let shared = AdSdkLauncher()
-    let persistentBus = OguryPersistentEventBus()
-    let broadcastBus = OguryEventBus()
     
     private init() {}
     
@@ -58,6 +56,6 @@ struct AdSdkLauncher {
     
     private func startModule(from moduleClass: String) {
         let module = OGYModule(className: moduleClass)
-        module.start(withAssetKey: assetKey, persistentEventBus: persistentBus, broadcast: broadcastBus)
+        module.start(withAssetKey: assetKey)
     }
 }

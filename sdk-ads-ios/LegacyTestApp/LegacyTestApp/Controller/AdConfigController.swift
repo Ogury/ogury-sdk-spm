@@ -22,8 +22,6 @@ class AdConfigController {
     var config: [Yaml: Yaml]?
     var env = Environment.prod
     let disposeBag = DisposeBag()
-    private let persistentEventBus = OguryPersistentEventBus()
-    private let broadcasrEventBus = OguryEventBus()
 
     init() {
         readConfig()
@@ -230,7 +228,7 @@ class AdConfigController {
                 guard let assetKey = AdConfigController.shared.assetKey(), !assetKey.isEmpty else {
                     fatalError("Asset key must not be nil nor empty.")
                 }
-                OGAInternal.shared().start(withAssetKey: assetKey, persistentEventBus:self.persistentEventBus, broadcast:self.broadcasrEventBus)
+                OGAInternal.shared().start(withAssetKey: assetKey)
                 OGAInternal.shared().setLogLevel(.all)
             }
         }

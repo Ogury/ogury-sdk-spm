@@ -13,8 +13,6 @@
 #import "OGAAssetKeyManager.h"
 #import "OGAConfigurationUtils+Profig.h"
 #import "OGAEXTScope.h"
-#import "OGAEventBusConstants.h"
-#import "OGAEventSubscriber.h"
 #import "OGAExpirationContext.h"
 #import "OGAInternetConnectionChecker.h"
 #import "OGAIsExpiredChecker.h"
@@ -24,7 +22,6 @@
 #import "OGALog.h"
 #import "OGAMetricsService.h"
 #import "OGAMonitoringDispatcher.h"
-#import "OGAPersistentEventBus.h"
 #import "OGAPreCacheEvent.h"
 #import "OGAProfigDao.h"
 #import "OGAProfigManager.h"
@@ -53,14 +50,9 @@ static NSString *const OGADisablingReason = @"disabling_reason";
 @property(nonatomic, strong) OGAIsExpiredChecker *isExpiredChecker;
 @property(nonatomic, strong) OGAAdEnabledChecker *adEnabledChecker;
 
-@property(nonatomic, strong) OGAEventSubscriber *eventSubscriber;
-@property(nonatomic, strong) OguryEventEntry *lastConsentEventEntry;
-
-@property(nonatomic, strong) NSHashTable *sequencesWaitingForConsent;
 @property(nonatomic, strong) NSHashTable *sequencesWaitingForInit;
 @property(nonatomic, strong) OGAMonitoringDispatcher *monitoringDispatcher;
 @property(nonatomic, strong) OGALog *log;
-@property(nonatomic, strong) NSTimer *eventBusExprirationTimer;
 @property(nonatomic, strong, readwrite) NSHashTable *sequencesShowing;
 
 @end
@@ -127,7 +119,6 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         _isLoadedChecker.adManager = self;
         _isExpiredChecker = isExpiredChecker;
         _internetConnectionChecker = internetConnectionChecker;
-        _sequencesWaitingForConsent = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
         _sequencesWaitingForInit = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
         _sequencesShowing = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
         _monitoringDispatcher = monitoringDispatcher;
@@ -139,23 +130,6 @@ static NSString *const OGADisablingReason = @"disabling_reason";
 }
 
 #pragma mark - Methods
-
-- (void)registerToPersistentEventBus {
-    @weakify(self)[self registerToPersistentEventBus:self.persistentEventBus
-                                     eventSubscriber:[[OGAEventSubscriber alloc] initWithEvent:OGAAdsChoiceManagerEventBusEvent
-                                                                                    andHandler:^(OguryEventEntry *eventEntry) {
-                                                                                        @strongify(self)[self.log logEventBus:OguryLogLevelDebug
-                                                                                                                   eventEntry:eventEntry
-                                                                                                                      message:@"AdManager received event"];
-                                                                                        [self handleConsentChange:eventEntry];
-                                                                                    }]];
-}
-
-- (void)registerToPersistentEventBus:(OGAPersistentEventBus *)persistentEventBus eventSubscriber:(OGAEventSubscriber *)eventSubscriber {
-    self.eventSubscriber = eventSubscriber;
-    [persistentEventBus registerOguryEventSubscriber:eventSubscriber];
-}
-
 - (OGAAdSequence *)loadAdConfiguration:(OGAAdConfiguration *)configuration previousSequence:(OGAAdSequence *)previousSequence {
     // Copy configuration to prevent any mutation on parameters that may impact the result of the load.
     // ex. campaign id.
@@ -235,13 +209,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         return;
     }
 
-    // Wait for consent
-    @synchronized(self) {
-        if (![self.persistentEventBus shouldContinueLoadingAdWith:self.lastConsentEventEntry]) {
-            [self.sequencesWaitingForConsent addObject:sequence];
-            return;
-        }
-    }
+    // TODO: Add wait for consent here
 
     // Otherwise continue loading
     [self continueLoadAdSequenceAfterConsentEventReceived:sequence];
@@ -538,41 +506,6 @@ static NSString *const OGADisablingReason = @"disabling_reason";
 - (void)close:(OGAAdSequence *)sequence {
     [sequence.coordinator close];
     sequence.status = OGAAdSequenceStatusClosed;
-}
-
-- (void)handleConsentChange:(OguryEventEntry *)event {
-    if (self.eventBusExprirationTimer) {
-        [self.eventBusExprirationTimer invalidate];
-        self.eventBusExprirationTimer = nil;
-    }
-    NSMutableArray<OGAAdSequence *> *sequencesToLoad = [NSMutableArray array];
-    @synchronized(self) {
-        if ([self.persistentEventBus shouldContinueLoadingAdWith:event]) {
-            for (OGAAdSequence *sequence in self.sequencesWaitingForConsent) {
-                [sequencesToLoad addObject:sequence];
-            }
-            [self.sequencesWaitingForConsent removeAllObjects];
-        } else {
-            [self handleEventBusAfterEventExpiration:event];
-        }
-        self.lastConsentEventEntry = event;
-    }
-
-    for (OGAAdSequence *sequence in sequencesToLoad) {
-        [self continueLoadAdSequenceAfterConsentEventReceived:sequence];
-    }
-}
-
-- (void)handleEventBusAfterEventExpiration:(OguryEventEntry *)event {
-    NSTimeInterval timeInterval = [[event.timestamp dateByAddingTimeInterval:OguryChoiceManagerEventBusExpirationWindow] timeIntervalSinceDate:[NSDate date]];
-    self.eventBusExprirationTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(timerHasExpiredFor:) userInfo:@{OGAEventEntry : event} repeats:NO];
-    [[NSRunLoop currentRunLoop] addTimer:self.eventBusExprirationTimer forMode:NSRunLoopCommonModes];
-}
-
-- (void)timerHasExpiredFor:(NSTimer *)timer {
-    OguryEventEntry *event = [[OguryEventEntry alloc] initWithEvent:OGAAdsChoiceManagerEventBusEvent andMessage:OGAChoiceManagerEventBusStatusError];
-    [self.log logEventBus:OguryLogLevelDebug eventEntry:event message:@"AdManager received event expired"];
-    [self handleConsentChange:event];
 }
 
 - (void)dispatchError:(OguryError *_Nullable)error sequence:(OGAAdSequence *_Nullable)sequence {

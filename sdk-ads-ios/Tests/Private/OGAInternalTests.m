@@ -11,8 +11,6 @@
 
 @interface OGAInternalTests : XCTestCase
 
-@property(nonatomic, strong) OGAPersistentEventBus *persistentEventBus;
-@property(nonatomic, strong) OGABroadcastEventBus *broadcastEventBus;
 @property(nonatomic, strong) OGAAssetKeyManager *assetKeyManager;
 @property(nonatomic, strong) OGAProfigManager *profigManager;
 @property(nonatomic, strong) OGAEnvironmentManager *environment;
@@ -41,8 +39,6 @@
 @implementation OGAInternalTests
 
 - (void)setUp {
-    self.persistentEventBus = OCMClassMock([OGAPersistentEventBus class]);
-    self.broadcastEventBus = OCMClassMock([OGABroadcastEventBus class]);
     self.assetKeyManager = OCMClassMock([OGAAssetKeyManager class]);
     self.profigManager = OCMClassMock([OGAProfigManager class]);
     self.environment = OCMClassMock([OGAEnvironmentManager class]);
@@ -51,42 +47,32 @@
     self.log = OCMClassMock([OGALog class]);
     self.logNotificationManager = OCMClassMock([OGASetLogLevelNotificationManager class]);
     self.webViewUserAgentService = OCMClassMock([OGAWebViewUserAgentService class]);
-    self.internal = OCMPartialMock([[OGAInternal alloc] initWithPersistentEventBus:self.persistentEventBus
-                                                                 broadcastEventBus:self.broadcastEventBus
-                                                                   assetKeyManager:self.assetKeyManager
-                                                                     profigManager:self.profigManager
-                                                                environmentManager:self.environment
-                                                              internetReachability:self.internetReachability
-                                                                         adManager:self.adManager
-                                                                               log:self.log
-                                                            logNotificationManager:self.logNotificationManager
-                                                           webViewUserAgentService:self.webViewUserAgentService]);
+    self.internal = OCMPartialMock([[OGAInternal alloc] initWithAssetKeyManager:self.assetKeyManager
+                                                                  profigManager:self.profigManager
+                                                             environmentManager:self.environment
+                                                           internetReachability:self.internetReachability
+                                                                      adManager:self.adManager
+                                                                            log:self.log
+                                                         logNotificationManager:self.logNotificationManager
+                                                        webViewUserAgentService:self.webViewUserAgentService]);
 }
 
 - (void)testStartWithAssetKey {
-    OguryPersistentEventBus *persistentEventBus = OCMClassMock([OguryPersistentEventBus class]);
-    OguryEventBus *broadcastEventBus = OCMClassMock([OguryEventBus class]);
     OCMStub([self.assetKeyManager configureAssetKey:[OCMArg any]]).andReturn(YES);
 
-    [self.internal startWithAssetKey:@"OGY-XXXXXXXX" persistentEventBus:persistentEventBus broadcastEventBus:broadcastEventBus];
+    [self.internal startWithAssetKey:@"OGY-XXXXXXXX"];
 
     OCMVerify([self.assetKeyManager configureAssetKey:@"OGY-XXXXXXXX"]);
-    OCMVerify([self.persistentEventBus setCorePersistentEventBus:persistentEventBus]);
-    OCMVerify([self.broadcastEventBus setCoreBroadcastEventBus:broadcastEventBus]);
     OCMVerify([self.internetReachability startNotifier]);
     OCMVerify([self.webViewUserAgentService syncWebViewUserAgent]);
-    OCMVerify([self.profigManager registerToBroadcastEventBus]);
-    OCMVerify([self.adManager registerToPersistentEventBus]);
 }
 
 - (void)testStartWithAssetKey_cannotReconfigureAssetKey {
-    OguryPersistentEventBus *persistentEventBus = OCMClassMock([OguryPersistentEventBus class]);
-    OguryEventBus *broadcastEventBus = OCMClassMock([OguryEventBus class]);
     OCMStub([self.assetKeyManager configureAssetKey:[OCMArg any]]).andReturn(NO);
     OCMReject([self.internetReachability startNotifier]);
     OCMReject([self.profigManager syncProfigWithCompletion:[OCMArg any]]);
 
-    [self.internal startWithAssetKey:@"OGY-XXXXXXXX" persistentEventBus:persistentEventBus broadcastEventBus:broadcastEventBus];
+    [self.internal startWithAssetKey:@"OGY-XXXXXXXX"];
 }
 
 - (void)testSetLogLevel {
@@ -96,16 +82,14 @@
 
 - (void)testActivateNotificationReceiver {
     id receiver = OCMClassMock([OGASetLogLevelNotificationManager class]);
-    id internal = [[OGAInternal alloc] initWithPersistentEventBus:self.persistentEventBus
-                                                broadcastEventBus:self.broadcastEventBus
-                                                  assetKeyManager:self.assetKeyManager
-                                                    profigManager:self.profigManager
-                                               environmentManager:self.environment
-                                             internetReachability:self.internetReachability
-                                                        adManager:self.adManager
-                                                              log:self.log
-                                           logNotificationManager:receiver
-                                          webViewUserAgentService:self.webViewUserAgentService];
+    id internal = [[OGAInternal alloc] initWithAssetKeyManager:self.assetKeyManager
+                                                 profigManager:self.profigManager
+                                            environmentManager:self.environment
+                                          internetReachability:self.internetReachability
+                                                     adManager:self.adManager
+                                                           log:self.log
+                                        logNotificationManager:receiver
+                                       webViewUserAgentService:self.webViewUserAgentService];
 
     // no action required since receiver is directly activated in class init
     XCTAssertNotNil(internal);
@@ -161,7 +145,7 @@
 //    OguryEventBus *broadcastEventBus = OCMClassMock([OguryEventBus class]);
 //    OCMStub(self.assetKeyManager.assetKey).andReturn(nil);
 //    OCMStub(self.assetKeyManager.assetKeyHasBeenSet).andReturn(NO);
-//    [self.internal startWithAssetKey:@"OGY-XXXXXXXX" persistentEventBus:persistentEventBus broadcastEventBus:broadcastEventBus];
+//    [self.internal startWithAssetKey:@"OGY-XXXXXXXX"];
 //    OCMReject([self.internal resetSDK]);
 //}
 //
@@ -170,8 +154,8 @@
 //    OguryEventBus *broadcastEventBus = OCMClassMock([OguryEventBus class]);
 //    OCMStub(self.assetKeyManager.assetKey).andReturn(nil);
 //    OCMStub(self.assetKeyManager.assetKeyHasBeenSet).andReturn(NO);
-//    [self.internal startWithAssetKey:@"OGY-XXXXXXXX" persistentEventBus:persistentEventBus broadcastEventBus:broadcastEventBus];
-//    [self.internal startWithAssetKey:@"OGY-XXXXXXXX" persistentEventBus:persistentEventBus broadcastEventBus:broadcastEventBus];
+//    [self.internal startWithAssetKey:@"OGY-XXXXXXXX"];
+//    [self.internal startWithAssetKey:@"OGY-XXXXXXXX"];
 //    OCMReject([self.internal resetSDK]);
 //}
 //
@@ -180,8 +164,8 @@
 //    OguryEventBus *broadcastEventBus = OCMClassMock([OguryEventBus class]);
 //    OGAAssetKeyManager* assetKeyManager = OCMPartialMock([OGAAssetKeyManager new]);
 //    OCMStub(self.internal.assetKeyManager).andReturn(assetKeyManager);
-//    [self.internal startWithAssetKey:@"OGY-XXXXXXXX" persistentEventBus:persistentEventBus broadcastEventBus:broadcastEventBus];
-//    [self.internal startWithAssetKey:@"OGY-YYYYYYYY" persistentEventBus:persistentEventBus broadcastEventBus:broadcastEventBus];
+//    [self.internal startWithAssetKey:@"OGY-XXXXXXXX"];
+//    [self.internal startWithAssetKey:@"OGY-YYYYYYYY"];
 //    OCMVerify([self.internal resetSDK]);
 //}
 

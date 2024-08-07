@@ -99,9 +99,6 @@
 		438ED4202AA5D0C300486AF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41F2AA5D0C300486AF2 /* Assets.xcassets */; };
 		438ED4232AA5D0C300486AF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
 		438ED42B2AA5D0E100486AF2 /* AdSdkLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED42A2AA5D0E100486AF2 /* AdSdkLauncher.swift */; };
-		43AE85C82B4FD19D0010C812 /* OguryChoiceManager.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AE85C72B4FD19C0010C812 /* OguryChoiceManager.xcframework */; };
-		43AE85C92B4FD19D0010C812 /* OguryChoiceManager.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AE85C72B4FD19C0010C812 /* OguryChoiceManager.xcframework */; };
-		43AE85CA2B4FD19D0010C812 /* OguryChoiceManager.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AE85C72B4FD19C0010C812 /* OguryChoiceManager.xcframework */; };
 		43AE85D82B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
 		43AE85D92B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
 		43AE85DA2B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
@@ -165,7 +162,6 @@
 		43BCB0BF2C22DD45002FB0B1 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB0962C22DD45002FB0B1 /* GoogleMobileAds */; };
 		43BCB0C02C22DD45002FB0B1 /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB0982C22DD45002FB0B1 /* UserDefault */; };
 		43BCB0C12C22DD45002FB0B1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB0942C22DD45002FB0B1 /* SnapKit */; };
-		43BCB0C22C22DD45002FB0B1 /* OguryChoiceManager.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AE85C72B4FD19C0010C812 /* OguryChoiceManager.xcframework */; };
 		43BCB0C62C22DD45002FB0B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
 		43BCB0C82C22DD45002FB0B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41F2AA5D0C300486AF2 /* Assets.xcassets */; };
 		43BCB0CA2C22DD45002FB0B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41C2AA5D0C200486AF2 /* Main.storyboard */; };
@@ -208,7 +204,6 @@
 		43BCB1022C22DD59002FB0B1 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB0DD2C22DD59002FB0B1 /* SwiftMessages */; };
 		43BCB1032C22DD59002FB0B1 /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB0DB2C22DD59002FB0B1 /* UserDefault */; };
 		43BCB1042C22DD59002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; };
-		43BCB1052C22DD59002FB0B1 /* OguryChoiceManager.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AE85C72B4FD19C0010C812 /* OguryChoiceManager.xcframework */; };
 		43BCB1092C22DD59002FB0B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
 		43BCB10A2C22DD59002FB0B1 /* Default.json in Resources */ = {isa = PBXBuildFile; fileRef = 434F850E2AD004AD005077F5 /* Default.json */; };
 		43BCB10B2C22DD59002FB0B1 /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434F84F92ACFE5E8005077F5 /* Asset.xcassets */; };
@@ -251,7 +246,6 @@
 		43BCB1452C22DD60002FB0B1 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB1202C22DD60002FB0B1 /* SwiftMessages */; };
 		43BCB1462C22DD60002FB0B1 /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB11E2C22DD60002FB0B1 /* UserDefault */; };
 		43BCB1472C22DD60002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; };
-		43BCB1482C22DD60002FB0B1 /* OguryChoiceManager.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AE85C72B4FD19C0010C812 /* OguryChoiceManager.xcframework */; };
 		43BCB14C2C22DD60002FB0B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
 		43BCB14D2C22DD60002FB0B1 /* Default.json in Resources */ = {isa = PBXBuildFile; fileRef = 434F850D2AD004AD005077F5 /* Default.json */; };
 		43BCB1502C22DD60002FB0B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41F2AA5D0C300486AF2 /* Assets.xcassets */; };
@@ -490,7 +484,6 @@
 				43C1D1572B7E567A006F2D23 /* SwiftMessages in Frameworks */,
 				43AE85DF2B5018B90010C812 /* UserDefault in Frameworks */,
 				43B7136B2B45702C007C8D21 /* OMSDK_Ogury.xcframework in Frameworks */,
-				43AE85C92B4FD19D0010C812 /* OguryChoiceManager.xcframework in Frameworks */,
 				43F788B22B4E882B0022157E /* AdsCardLibrary.framework in Frameworks */,
 				F3B7B454AC5B8E401E757555 /* (null) in Frameworks */,
 				D62E7256A49EE16D96075941 /* Pods_AdsTestApp_Staging.framework in Frameworks */,
@@ -506,7 +499,6 @@
 				43C1D1592B7E5684006F2D23 /* SwiftMessages in Frameworks */,
 				43AE85E12B5018BF0010C812 /* UserDefault in Frameworks */,
 				43B713702B457035007C8D21 /* OMSDK_Ogury.xcframework in Frameworks */,
-				43AE85CA2B4FD19D0010C812 /* OguryChoiceManager.xcframework in Frameworks */,
 				43F788B52B4E882F0022157E /* AdsCardLibrary.framework in Frameworks */,
 				607F9FDA3A6054F898F87DC5 /* (null) in Frameworks */,
 				C5BD9D21EE45869DEF69AB73 /* Pods_AdsTestApp_Prod.framework in Frameworks */,
@@ -522,7 +514,6 @@
 				43B713E02B4D5127007C8D21 /* GoogleMobileAds in Frameworks */,
 				43AE85DD2B5018A20010C812 /* UserDefault in Frameworks */,
 				1E5BE62D2B21CD0E0010B995 /* SnapKit in Frameworks */,
-				43AE85C82B4FD19D0010C812 /* OguryChoiceManager.xcframework in Frameworks */,
 				43F788AF2B4E88250022157E /* AdsCardLibrary.framework in Frameworks */,
 				DB5087F0569CA93057CEDA5F /* (null) in Frameworks */,
 				2419B11388DFA06C12DD3144 /* Pods_AdsTestApp_Devc.framework in Frameworks */,
@@ -539,7 +530,6 @@
 				43BCB1942C23254D002FB0B1 /* AdsCardLibrary.framework in Frameworks */,
 				43BCB0C02C22DD45002FB0B1 /* UserDefault in Frameworks */,
 				43BCB0C12C22DD45002FB0B1 /* SnapKit in Frameworks */,
-				43BCB0C22C22DD45002FB0B1 /* OguryChoiceManager.xcframework in Frameworks */,
 				674BCBAC82FBD4EBB2A4A8E7 /* Pods_AdsTestApp_Devc_art.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -554,7 +544,6 @@
 				43BCB1972C23255C002FB0B1 /* AdsCardLibrary.framework in Frameworks */,
 				43BCB1032C22DD59002FB0B1 /* UserDefault in Frameworks */,
 				43BCB1042C22DD59002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
-				43BCB1052C22DD59002FB0B1 /* OguryChoiceManager.xcframework in Frameworks */,
 				0A1B96E53367BA914B4FDD0C /* Pods_AdsTestApp_Staging_art.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -569,7 +558,6 @@
 				43BCB19A2C232565002FB0B1 /* AdsCardLibrary.framework in Frameworks */,
 				43BCB1462C22DD60002FB0B1 /* UserDefault in Frameworks */,
 				43BCB1472C22DD60002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
-				43BCB1482C22DD60002FB0B1 /* OguryChoiceManager.xcframework in Frameworks */,
 				9C71FDCB35B5CFCF68678C12 /* Pods_AdsTestApp_Prod_art.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

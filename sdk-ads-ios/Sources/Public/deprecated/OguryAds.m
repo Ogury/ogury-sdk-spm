@@ -50,13 +50,13 @@
 
 - (void)setupWithAssetKey:(NSString *)assetKey
          andMediationName:(NSString *)mediationName {
-    [self.internal startWithAssetKey:assetKey persistentEventBus:nil broadcastEventBus:nil];
+    [self.internal startWithAssetKey:assetKey];
 }
 
 - (void)setupWithAssetKey:(NSString *)assetKey
             mediationName:(NSString *)mediationName
      andCompletionHandler:(SetupCompletionBlock)completionHandler {
-    [self.internal startWithAssetKey:assetKey persistentEventBus:nil broadcastEventBus:nil];
+    [self.internal startWithAssetKey:assetKey];
     if (completionHandler) {
         completionHandler(nil);
     }
@@ -64,14 +64,14 @@
 
 - (void)setupWithAssetKey:(NSString *)assetKey
      andCompletionHandler:(SetupCompletionBlock)completionHandler {
-    [self.internal startWithAssetKey:assetKey persistentEventBus:nil broadcastEventBus:nil];
+    [self.internal startWithAssetKey:assetKey];
     if (completionHandler) {
         completionHandler(nil);
     }
 }
 
 - (void)setupWithAssetKey:(NSString *)assetKey {
-    [self.internal startWithAssetKey:assetKey persistentEventBus:nil broadcastEventBus:nil];
+    [self.internal startWithAssetKey:assetKey];
 }
 
 - (void)defineSDKType:(NSUInteger)sdkType {

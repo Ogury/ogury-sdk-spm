@@ -13,7 +13,7 @@
 @implementation OGYModule
 
 NSString *const OGWModuleSharedSelector = @"shared";
-NSString *const OGWModuleStartWithAssetKeySelector = @"startWithAssetKey:persistentEventBus:broadcastEventBus:";
+NSString *const OGWModuleStartWithAssetKeySelector = @"startWithAssetKey:";
 NSString *const OGWModuleGetVersionSelector = @"getVersion";
 
 #pragma mark - Initialization
@@ -36,9 +36,7 @@ NSString *const OGWModuleGetVersionSelector = @"getVersion";
 
 #pragma mark - Methods
 
-- (void)startWithAssetKey:(NSString *)assetKey
-       persistentEventBus:(OguryPersistentEventBus *)persistentEventBus
-        broadcastEventBus:(OguryEventBus *)broadcastEventBus {
+- (void)startWithAssetKey:(NSString *)assetKey {
     SEL startWithAssetKeySelector = NSSelectorFromString(OGWModuleStartWithAssetKeySelector);
     if ([self.module respondsToSelector:startWithAssetKeySelector]) {
         NSMethodSignature *signature = [self methodSignatureForSelector:startWithAssetKeySelector];
@@ -47,8 +45,6 @@ NSString *const OGWModuleGetVersionSelector = @"getVersion";
         [invocation setSelector:startWithAssetKeySelector];
         [invocation setTarget:self.module];
         [invocation setArgument:&assetKey atIndex:2];
-        [invocation setArgument:&persistentEventBus atIndex:3];
-        [invocation setArgument:&broadcastEventBus atIndex:4];
         [invocation invoke];
     }
 }
