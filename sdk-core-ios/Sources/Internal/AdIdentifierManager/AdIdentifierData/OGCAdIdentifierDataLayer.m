@@ -125,7 +125,9 @@ static NSString * const OGCTCStringKey = @"IABTCF_TCString";
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    [self.delegateConsentChanged consentChanged];
+   if ([self.delegateConsentChanged respondsToSelector:@selector(consentChanged)]) {
+      [self.delegateConsentChanged consentChanged];
+   }
 }
 
 @end
