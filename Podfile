@@ -19,12 +19,11 @@ target 'LegacyTestApp' do
   pod 'RxCocoa', "6.2.0" # 6.5+ introduced concurrency supports which breaks with iOS under 13
   pod 'Yaml'
   pod 'DDPopoverBackgroundView'
-  pod "OguryCore-Prod", "1.4.1-RC-1.0.7"
   pod "SnapKit"
 end
 
 #Ads
-target "OguryAds-Release" do
+target "OguryAds-art" do
   project "sdk-ads-ios/OguryAdsSDK"
 
   pod "OguryCore-Prod", "1.4.1-RC-1.0.7"
@@ -42,7 +41,7 @@ target "OguryAdsTests" do
   pod "OCMock", :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
 end
 
-target "AdsCardLibrary-Release" do
+target "AdsCardLibrary-art" do
   project "sdk-ads-ios/AdsCardLibrary/AdsCardLibrary"
   pod "OguryAds-Prod", "3.7.0-rc-3"
   pod "OguryCore-Prod", "1.4.1-RC-1.0.7"
@@ -52,27 +51,33 @@ end
 target "AdsTestApp-Devc" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod "OguryCore-Prod", "1.4.1-RC-1.0.7"
+  pod 'InMobiCMP', '2.0.1'
 end
 target "AdsTestApp-Staging" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod "OguryCore-Prod", "1.4.1-RC-1.0.7"
+  pod 'InMobiCMP', '2.0.1'
 end
 target "AdsTestApp-Prod" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod "OguryCore-Prod", "1.4.1-RC-1.0.7"
+  pod 'InMobiCMP', '2.0.1'
 end
 
-target "AdsTestApp-Release-Devc" do
+target "AdsTestApp-Devc-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod "OguryCore-Prod", "1.4.1-RC-1.0.7"
+  pod 'InMobiCMP', '2.0.1'
 end
-target "AdsTestApp-Release-Staging" do
+target "AdsTestApp-Staging-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod "OguryCore-Prod", "1.4.1-RC-1.0.7"
+  pod 'InMobiCMP', '2.0.1'
 end
-target "AdsTestApp-Release-Prod" do
+target "AdsTestApp-Prod-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod "OguryCore-Prod", "1.4.1-RC-1.0.7"
+  pod 'InMobiCMP', '2.0.1' 
 end
 
 

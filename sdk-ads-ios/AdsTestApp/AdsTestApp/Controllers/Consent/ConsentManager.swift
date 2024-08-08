@@ -3,51 +3,55 @@
 //
 
 import Foundation
+import InMobiCMP
 import UserMessagingPlatform
 import AppTrackingTransparency
+import OguryChoiceManager
+import SwiftMessages
 
-final class ConsentManager {
+final class ConsentManager: ChoiceCmpDelegate {
 
     // MARK: - Initialization
     static let shared = ConsentManager()
-    private init() {}
+    private init() {
+       ChoiceCmp.shared.startChoice(pcode: "f2N9N2QnAYZz8", delegate: self)
+    }
 
-    // MARK: - Functions
-    func askForUserConsent(viewController: UIViewController) {
-        requestConsentInfoUpdate(viewController: viewController)
-    }
-    
-    func showConsent(from viewController: UIViewController) {
-        let parameters = UMPRequestParameters()
-        parameters.tagForUnderAgeOfConsent = false
-        UMPConsentForm.presentPrivacyOptionsForm(from: viewController) {requestConsentError in
-            if let requestConsentError {
-                print("Error: \(requestConsentError.localizedDescription)")
-                return
-            }
-            
-        }
-    }
+    // MARK: - Function
 
     func resetConsent(viewController: UIViewController) {
-        UMPConsentInformation.sharedInstance.reset()
-        requestConsentInfoUpdate(viewController: viewController)
+       ChoiceCmp.shared.forceDisplayUI()
     }
-
-    private func requestConsentInfoUpdate(viewController: UIViewController) {
-        let parameters = UMPRequestParameters()
-        parameters.tagForUnderAgeOfConsent = false
-        UMPConsentInformation.sharedInstance.requestConsentInfoUpdate(with: parameters) { requestConsentError in
-            if let requestConsentError {
-                print("Error: \(requestConsentError.localizedDescription)")
-                return
-            }
-            UMPConsentForm.loadAndPresentIfRequired(from: viewController) { loadAndPresentError in
-                if let loadAndPresentError {
-                    print("Error: \(loadAndPresentError.localizedDescription)")
-                    return
-                }
-            }
-        }
+   
+    func cmpDidLoad(info: InMobiCMP.PingResponse) {
     }
+   
+    func cmpDidShow(info: InMobiCMP.PingResponse) {
+    }
+   
+    func didReceiveIABVendorConsent(gdprData: InMobiCMP.GDPRData, updated: Bool) {
+    }
+   
+    func didReceiveNonIABVendorConsent(nonIabData: InMobiCMP.NonIABData, updated: Bool) {
+    }
+   
+    func didReceiveAdditionalConsent(acData: InMobiCMP.ACData, updated: Bool) {
+    }
+   
+    @MainActor func cmpDidError(error: any Error) {
+      let view = MessageView.viewFromNib(layout: .cardView)
+      view.configureTheme(.error)
+      view.configureDropShadow()
+      view.configureContent(title: "Error", body: error.reflectedString, iconText: "🙄")
+      view.layoutMarginAdditions = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+      (view.backgroundView as? CornerRoundingView)?.cornerRadius = 10
+      SwiftMessages.show(view: view)
+    }
+   
+    func didReceiveUSRegulationsConsent(usRegData: InMobiCMP.USRegulationsData) {
+    }
+   
+    func userDidMoveToOtherState() {
+    }
+   
 }
