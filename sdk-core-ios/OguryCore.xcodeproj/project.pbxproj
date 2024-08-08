@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1E308B3A2B839FB500DFC6E3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 1E308B392B839FB500DFC6E3 /* PrivacyInfo.xcprivacy */; };
+		1E6D20B92C64B5EF00DF24AB /* OGCDelegateConsentChanged.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E6D20B82C64B5D300DF24AB /* OGCDelegateConsentChanged.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		22951E482551A29F0032A04F /* OGCInstanceToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 22951E462551A29F0032A04F /* OGCInstanceToken.h */; };
 		22951E492551A29F0032A04F /* OGCInstanceToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 22951E472551A29F0032A04F /* OGCInstanceToken.m */; };
 		22951E522551A3590032A04F /* NSString+OGCHash.h in Headers */ = {isa = PBXBuildFile; fileRef = 22951E502551A3590032A04F /* NSString+OGCHash.h */; };
@@ -105,6 +106,7 @@
 
 /* Begin PBXFileReference section */
 		1E308B392B839FB500DFC6E3 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		1E6D20B82C64B5D300DF24AB /* OGCDelegateConsentChanged.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGCDelegateConsentChanged.h; sourceTree = "<group>"; };
 		22951E462551A29F0032A04F /* OGCInstanceToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGCInstanceToken.h; sourceTree = "<group>"; };
 		22951E472551A29F0032A04F /* OGCInstanceToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGCInstanceToken.m; sourceTree = "<group>"; };
 		22951E502551A3590032A04F /* NSString+OGCHash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+OGCHash.h"; sourceTree = "<group>"; };
@@ -509,6 +511,7 @@
 		ED2770962514D60200F3891B /* Private */ = {
 			isa = PBXGroup;
 			children = (
+				1E6D20B82C64B5D300DF24AB /* OGCDelegateConsentChanged.h */,
 				5806AFA2286AEE9D00044C76 /* OguryStringFormattable.h */,
 				58F80EC9288168260084D5FE /* DarwinNotification */,
 				22951E442551A0260032A04F /* EventBus */,
@@ -593,6 +596,7 @@
 				977348C8243F6E2F0002EBA4 /* OguryCore.h in Headers */,
 				5890DD6D281AEDED00B3CDE7 /* OGCURLRequestLogMessage.h in Headers */,
 				58E9AB9627CD11A100537BCC /* OguryLogLevel.h in Headers */,
+				1E6D20B92C64B5EF00DF24AB /* OGCDelegateConsentChanged.h in Headers */,
 				977348DF244077ED0002EBA4 /* OguryError.h in Headers */,
 				ED174D10255A882500904297 /* OguryNetworkClient.h in Headers */,
 				ED057DF624E27D87008784C4 /* OguryEventBus.h in Headers */,

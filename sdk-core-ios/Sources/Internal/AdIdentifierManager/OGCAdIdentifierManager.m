@@ -10,7 +10,7 @@
 #import "OGCLog.h"
 #import "OguryLogLevel.h"
 
-@interface OGCAdIdentifierManager()
+@interface OGCAdIdentifierManager() <OGCDelegateConsentChanged>
 
 #pragma mark - Properties
 
@@ -35,7 +35,6 @@
 - (id)init {
     OGCAdIdentifierPrivacyLayer *privacyLayer = [[OGCAdIdentifierPrivacyLayer alloc] init];
     OGCAdIdentifierDataLayer *dataLayer = [[OGCAdIdentifierDataLayer alloc] init];
-
     return [self initWithPrivacyLayer:privacyLayer andDataLayer:dataLayer andProcessInfo:[NSProcessInfo processInfo] log:[OGCLog shared]];
 }
 
@@ -43,6 +42,7 @@
     if (self = [super init]) {
         _privacyLayer = privacyLayer;
         _dataLayer = dataLayer;
+        _dataLayer.delegateConsentChanged = self;
         _processInfo = processInfo;
         _instanceToken = [self createInstanceTokenWithProcessInfo:processInfo];
         _log = log;
@@ -130,5 +130,10 @@
     [self.log logMessage:OguryLogLevelDebug message:@"Update instance token"];
 }
 
+- (void)consentChanged {
+   if ([self.delegateConsentChanged respondsToSelector:@selector(consentChanged)]) {
+      [self.delegateConsentChanged consentChanged];
+   }
+}
 
 @end

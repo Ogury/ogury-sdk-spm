@@ -3,10 +3,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OGCDelegateConsentChanged.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OGCAdIdentifierDataLayer : NSObject
+
+@property (nonatomic, weak) id<OGCDelegateConsentChanged> delegateConsentChanged;
 
 #pragma mark - Methods
 
