@@ -4,4 +4,7 @@
 
 @protocol OGCDelegateConsentChanged <NSObject>
 - (void)consentChanged;
+- (void)dataPrivacyChanged:(NSString *)key boolean:(BOOL)value;
+- (void)dataPrivacyChanged:(NSString *)key string:(NSString *)value;
+- (void)dataPrivacyChanged:(NSString *)key integer:(NSInteger)value;
 @end

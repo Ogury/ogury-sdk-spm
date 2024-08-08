@@ -86,4 +86,35 @@
    }
 }
 
+- (void)dataPrivacyChanged:(NSString *)key integer:(NSInteger *)value {
+   if ([self.delegateConsentChanged respondsToSelector:@selector(dataPrivacyChanged:integer:)]) {
+      [self.delegateConsentChanged dataPrivacyChanged:key integer:value];
+   }
+}
+
+- (void)dataPrivacyChanged:(NSString *)key boolean:(BOOL)value{
+   if ([self.delegateConsentChanged respondsToSelector:@selector(dataPrivacyChanged:boolean:)]) {
+      [self.delegateConsentChanged dataPrivacyChanged:key boolean:value];
+   }
+}
+
+- (void)dataPrivacyChanged:(NSString *)key string:(NSString *)value{
+   if ([self.delegateConsentChanged respondsToSelector:@selector(dataPrivacyChanged:string:)]) {
+      [self.delegateConsentChanged dataPrivacyChanged:key string:value];
+   }
+}
+
+- (void)storePrivacyData:(NSString *)key boolean:(BOOL)value {
+   [self.adIdentifierManager storePrivacyData:key boolean:value];
+}
+
+- (void)storePrivacyData:(NSString *)key integer:(NSInteger)value {
+   [self.adIdentifierManager storePrivacyData:key integer:value];
+}
+
+- (void)storePrivacyData:(NSString *)key string:(NSString *)value {
+   [self.adIdentifierManager storePrivacyData:key string:value];
+}
+
+
 @end

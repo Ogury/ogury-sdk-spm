@@ -106,14 +106,23 @@ static NSString * const OGCTCStringKey = @"IABTCF_TCString";
 
 - (void)storePrivacyData:(NSString *)key boolean:(BOOL)value {
    [self.userDefaults setBool:value forKey:key];
+   if ([self.delegateConsentChanged respondsToSelector:@selector(dataPrivacyChanged:boolean:)]) {
+      [self.delegateConsentChanged dataPrivacyChanged:key boolean:value];
+   }
 }
 
 - (void)storePrivacyData:(NSString *)key integer:(NSInteger)value {
    [self.userDefaults setInteger:value forKey:key];
+   if ([self.delegateConsentChanged respondsToSelector:@selector(dataPrivacyChanged:integer:)]) {
+      [self.delegateConsentChanged dataPrivacyChanged:key integer:value];
+   }
 }
 
 - (void)storePrivacyData:(NSString *)key string:(NSString *)value {
    [self.userDefaults setValue:value forKey:key];
+   if ([self.delegateConsentChanged respondsToSelector:@selector(dataPrivacyChanged:string:)]) {
+      [self.delegateConsentChanged dataPrivacyChanged:key string:value];
+   }
 }
 
 - (void)storeInstanceToken:(NSData *)instanceToken {
@@ -125,7 +134,9 @@ static NSString * const OGCTCStringKey = @"IABTCF_TCString";
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    [self.delegateConsentChanged consentChanged];
+   if ([self.delegateConsentChanged respondsToSelector:@selector(consentChanged)]) {
+      [self.delegateConsentChanged consentChanged];
+   }
 }
 
 @end
