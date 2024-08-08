@@ -90,30 +90,23 @@
 }
 
 - (NSString * _Nullable) retrieveGPPConsentString {
-   NSData *gppConsentData = [self.dataLayer getGPPConsentString];
-   if (gppConsentData == nil) {
-      return nil;
-   }
-   NSString *gppConsentString = [[NSString alloc] initWithData:gppConsentData encoding:NSUTF8StringEncoding];
-   return gppConsentString;
+   return [self stringFrom: [self.dataLayer getGPPConsentString]];
 }
 
 - (NSString * _Nullable) retrieveGPPSID {
-   NSData *gppSIDData = [self.dataLayer getGPPSID];
-   if (gppSIDData == nil) {
-      return nil;
-   }
-   NSString *gppSIDString = [[NSString alloc] initWithData:gppSIDData encoding:NSUTF8StringEncoding];
-   return gppSIDString;
+   return [self stringFrom: [self.dataLayer getGPPSID]];
 }
 
 - (NSString * _Nullable) retrieveTCFConsentString {
-   NSData *tcfData = [self.dataLayer getTCFConsentString];
-   if (tcfData == nil) {
+   return [self stringFrom: [self.dataLayer getTCFConsentString]];
+}
+
+- (NSString * _Nullable)stringFrom:(NSData*)data {
+   if (data == nil) {
       return nil;
    }
-   NSString *tcfString = [[NSString alloc] initWithData:tcfData encoding:NSUTF8StringEncoding];
-   return tcfString;
+   NSString *gppSIDString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+   return gppSIDString;
 }
 
 - (NSString *)getInstanceToken {
