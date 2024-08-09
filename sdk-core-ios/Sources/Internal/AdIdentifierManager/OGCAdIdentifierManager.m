@@ -10,7 +10,7 @@
 #import "OGCLog.h"
 #import "OguryLogLevel.h"
 
-@interface OGCAdIdentifierManager() <OGCConsentChangedDelegate>
+@interface OGCAdIdentifierManager()
 
 #pragma mark - Properties
 
@@ -42,7 +42,7 @@
     if (self = [super init]) {
         _privacyLayer = privacyLayer;
         _dataLayer = dataLayer;
-        _dataLayer.consentChangedDelegate = self;
+        _dataLayer.consentChangedDelegate = self.consentChangedDelegate;
         _processInfo = processInfo;
         _instanceToken = [self createInstanceTokenWithProcessInfo:processInfo];
         _log = log;
@@ -128,12 +128,6 @@
 - (void)updateInstanceToken {
     self.instanceToken = [self createInstanceTokenWithProcessInfo:self.processInfo];
     [self.log logMessage:OguryLogLevelDebug message:@"Update instance token"];
-}
-
-- (void)consentChanged {
-   if ([self.consentChangedDelegate respondsToSelector:@selector(consentChanged)]) {
-      [self.consentChangedDelegate consentChanged];
-   }
 }
 
 @end
