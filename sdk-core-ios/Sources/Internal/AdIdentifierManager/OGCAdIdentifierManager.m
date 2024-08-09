@@ -10,7 +10,7 @@
 #import "OGCLog.h"
 #import "OguryLogLevel.h"
 
-@interface OGCAdIdentifierManager() <OGCDelegateConsentChanged>
+@interface OGCAdIdentifierManager() <OGCConsentChangedDelegate>
 
 #pragma mark - Properties
 
@@ -42,7 +42,7 @@
     if (self = [super init]) {
         _privacyLayer = privacyLayer;
         _dataLayer = dataLayer;
-        _dataLayer.delegateConsentChanged = self;
+        _dataLayer.consentChangedDelegate = self;
         _processInfo = processInfo;
         _instanceToken = [self createInstanceTokenWithProcessInfo:processInfo];
         _log = log;
@@ -131,8 +131,8 @@
 }
 
 - (void)consentChanged {
-   if ([self.delegateConsentChanged respondsToSelector:@selector(consentChanged)]) {
-      [self.delegateConsentChanged consentChanged];
+   if ([self.consentChangedDelegate respondsToSelector:@selector(consentChanged)]) {
+      [self.consentChangedDelegate consentChanged];
    }
 }
 

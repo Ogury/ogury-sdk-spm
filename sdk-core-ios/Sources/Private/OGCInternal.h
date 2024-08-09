@@ -3,7 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OGCDelegateConsentChanged.h"
+#import "OGCConsentChangedDelegate.h"
 
 typedef NS_ENUM(NSInteger, OguryLogLevel);
 
@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OGCInternal : NSObject
 
-@property (nonatomic, weak) id<OGCDelegateConsentChanged> delegateConsentChanged;
+@property (nonatomic, weak) id<OGCConsentChangedDelegate> consentChangedDelegate;
 
 + (instancetype)shared;
 - (void)setLogLevel:(OguryLogLevel)logLevel;

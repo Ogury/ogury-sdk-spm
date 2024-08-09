@@ -9,7 +9,7 @@
 #import "OguryLogLevel.h"
 #import "OGCSetLogLevelNotificationManager.h"
 
-@interface OGCInternal() <OGCDelegateConsentChanged>
+@interface OGCInternal() <OGCConsentChangedDelegate>
 
 @property (nonatomic, strong) OGCAdIdentifierManager *adIdentifierManager;
 @property (nonatomic, strong) OGCLog *log;
@@ -22,7 +22,7 @@
 - (id)initWithAdIdentifierManager:(OGCAdIdentifierManager *)adIdentifierManager log:(OGCLog *)log logNotificationManager:(OGCSetLogLevelNotificationManager *)logNotificationManager {
     if (self = [super init]) {
         _adIdentifierManager = adIdentifierManager;
-        _adIdentifierManager.delegateConsentChanged = self;
+        _adIdentifierManager.consentChangedDelegate = self;
         _log = log;
         _logNotificationManager = logNotificationManager;
         [_logNotificationManager registerToNotification];
@@ -81,8 +81,8 @@
 }
 
 - (void)consentChanged { 
-   if ([self.delegateConsentChanged respondsToSelector:@selector(consentChanged)]) {
-      [self.delegateConsentChanged consentChanged];
+   if ([self.consentChangedDelegate respondsToSelector:@selector(consentChanged)]) {
+      [self.consentChangedDelegate consentChanged];
    }
 }
 
