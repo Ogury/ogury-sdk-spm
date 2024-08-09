@@ -42,6 +42,12 @@ static NSString * const OGCTCStringKey = @"IABTCF_TCString";
     return self;
 }
 
+- (void)deinit{
+   [_userDefaults removeObserver:self forKeyPath:OGCGPPConsentStringKey];
+   [_userDefaults removeObserver:self forKeyPath:OGCGPPSIDKey];
+   [_userDefaults removeObserver:self forKeyPath:OGCTCStringKey];
+}
+
 #pragma mark - Methods
 
 - (NSData *)dataForKey:(NSString *)key {
@@ -106,22 +112,22 @@ static NSString * const OGCTCStringKey = @"IABTCF_TCString";
 
 - (void)storePrivacyData:(NSString *)key boolean:(BOOL)value {
    [self.userDefaults setBool:value forKey:key];
-   if ([self.delegateConsentChanged respondsToSelector:@selector(dataPrivacyChanged:boolean:)]) {
-      [self.delegateConsentChanged dataPrivacyChanged:key boolean:value];
+   if ([self.consentChangedDelegate respondsToSelector:@selector(dataPrivacyChanged:boolean:)]) {
+      [self.consentChangedDelegate dataPrivacyChanged:key boolean:value];
    }
 }
 
 - (void)storePrivacyData:(NSString *)key integer:(NSInteger)value {
    [self.userDefaults setInteger:value forKey:key];
-   if ([self.delegateConsentChanged respondsToSelector:@selector(dataPrivacyChanged:integer:)]) {
-      [self.delegateConsentChanged dataPrivacyChanged:key integer:value];
+   if ([self.consentChangedDelegate respondsToSelector:@selector(dataPrivacyChanged:integer:)]) {
+      [self.consentChangedDelegate dataPrivacyChanged:key integer:value];
    }
 }
 
 - (void)storePrivacyData:(NSString *)key string:(NSString *)value {
    [self.userDefaults setValue:value forKey:key];
-   if ([self.delegateConsentChanged respondsToSelector:@selector(dataPrivacyChanged:string:)]) {
-      [self.delegateConsentChanged dataPrivacyChanged:key string:value];
+   if ([self.consentChangedDelegate respondsToSelector:@selector(dataPrivacyChanged:string:)]) {
+      [self.consentChangedDelegate dataPrivacyChanged:key string:value];
    }
 }
 
@@ -134,8 +140,8 @@ static NSString * const OGCTCStringKey = @"IABTCF_TCString";
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-   if ([self.delegateConsentChanged respondsToSelector:@selector(consentChanged)]) {
-      [self.delegateConsentChanged consentChanged];
+   if ([self.consentChangedDelegate respondsToSelector:@selector(consentChanged)]) {
+      [self.consentChangedDelegate consentChanged];
    }
 }
 

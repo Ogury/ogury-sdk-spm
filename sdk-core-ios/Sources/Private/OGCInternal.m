@@ -9,7 +9,7 @@
 #import "OguryLogLevel.h"
 #import "OGCSetLogLevelNotificationManager.h"
 
-@interface OGCInternal() <OGCDelegateConsentChanged>
+@interface OGCInternal()
 
 @property (nonatomic, strong) OGCAdIdentifierManager *adIdentifierManager;
 @property (nonatomic, strong) OGCLog *log;
@@ -22,7 +22,7 @@
 - (id)initWithAdIdentifierManager:(OGCAdIdentifierManager *)adIdentifierManager log:(OGCLog *)log logNotificationManager:(OGCSetLogLevelNotificationManager *)logNotificationManager {
     if (self = [super init]) {
         _adIdentifierManager = adIdentifierManager;
-        _adIdentifierManager.delegateConsentChanged = self;
+        _adIdentifierManager.consentChangedDelegate = self.consentChangedDelegate;
         _log = log;
         _logNotificationManager = logNotificationManager;
         [_logNotificationManager registerToNotification];
@@ -80,30 +80,6 @@
     return [OGCUtils getFrameworkType];
 }
 
-- (void)consentChanged { 
-   if ([self.delegateConsentChanged respondsToSelector:@selector(consentChanged)]) {
-      [self.delegateConsentChanged consentChanged];
-   }
-}
-
-- (void)dataPrivacyChanged:(NSString *)key integer:(NSInteger *)value {
-   if ([self.delegateConsentChanged respondsToSelector:@selector(dataPrivacyChanged:integer:)]) {
-      [self.delegateConsentChanged dataPrivacyChanged:key integer:value];
-   }
-}
-
-- (void)dataPrivacyChanged:(NSString *)key boolean:(BOOL)value{
-   if ([self.delegateConsentChanged respondsToSelector:@selector(dataPrivacyChanged:boolean:)]) {
-      [self.delegateConsentChanged dataPrivacyChanged:key boolean:value];
-   }
-}
-
-- (void)dataPrivacyChanged:(NSString *)key string:(NSString *)value{
-   if ([self.delegateConsentChanged respondsToSelector:@selector(dataPrivacyChanged:string:)]) {
-      [self.delegateConsentChanged dataPrivacyChanged:key string:value];
-   }
-}
-
 - (void)storePrivacyData:(NSString *)key boolean:(BOOL)value {
    [self.adIdentifierManager storePrivacyData:key boolean:value];
 }
@@ -115,6 +91,5 @@
 - (void)storePrivacyData:(NSString *)key string:(NSString *)value {
    [self.adIdentifierManager storePrivacyData:key string:value];
 }
-
 
 @end

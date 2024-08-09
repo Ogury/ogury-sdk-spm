@@ -10,7 +10,7 @@
 #import "OGCLog.h"
 #import "OguryLogLevel.h"
 
-@interface OGCAdIdentifierManager() <OGCDelegateConsentChanged>
+@interface OGCAdIdentifierManager()
 
 #pragma mark - Properties
 
@@ -42,7 +42,7 @@
     if (self = [super init]) {
         _privacyLayer = privacyLayer;
         _dataLayer = dataLayer;
-        _dataLayer.delegateConsentChanged = self;
+        _dataLayer.consentChangedDelegate = self.consentChangedDelegate;
         _processInfo = processInfo;
         _instanceToken = [self createInstanceTokenWithProcessInfo:processInfo];
         _log = log;
@@ -128,30 +128,6 @@
 - (void)updateInstanceToken {
     self.instanceToken = [self createInstanceTokenWithProcessInfo:self.processInfo];
     [self.log logMessage:OguryLogLevelDebug message:@"Update instance token"];
-}
-
-- (void)consentChanged {
-   if ([self.delegateConsentChanged respondsToSelector:@selector(consentChanged)]) {
-      [self.delegateConsentChanged consentChanged];
-   }
-}
-
-- (void)dataPrivacyChanged:(NSString *)key integer:(NSInteger)value {
-   if ([self.delegateConsentChanged respondsToSelector:@selector(dataPrivacyChanged:integer:)]) {
-      [self.delegateConsentChanged dataPrivacyChanged:key integer:value];
-   }
-}
-
-- (void)dataPrivacyChanged:(NSString *)key boolean:(BOOL)value{
-   if ([self.delegateConsentChanged respondsToSelector:@selector(dataPrivacyChanged:boolean:)]) {
-      [self.delegateConsentChanged dataPrivacyChanged:key boolean:value];
-   }
-}
-
-- (void)dataPrivacyChanged:(NSString *)key string:(NSString *)value{
-   if ([self.delegateConsentChanged respondsToSelector:@selector(dataPrivacyChanged:string:)]) {
-      [self.delegateConsentChanged dataPrivacyChanged:key string:value];
-   }
 }
 
 - (void)storePrivacyData:(NSString *)key boolean:(BOOL)value {
