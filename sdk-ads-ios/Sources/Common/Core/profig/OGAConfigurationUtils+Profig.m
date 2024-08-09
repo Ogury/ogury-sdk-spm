@@ -33,8 +33,23 @@ static NSString *const OGAProfigBodyDeviceModuleVersion = @"module_version";
     content[OGAProfigBodyDeviceKey] = [[[OGADevice alloc] init] mapped];
     // Privacy
     content[OGARequestBodyPrivacyComplianceKey] = [NSMutableDictionary dictionary];
+    content[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyTCFKey] = [self tcfConsentString];
+    content[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyGPPKey] = [self gppConsentString];
+    content[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyGPPSIDKey] = [self gppSidConsentString];
 
     return content;
+}
+
++ (NSString *)gppConsentString {
+    return [OGAAdIdentifierService gppConsentString];
+}
+
++ (NSString *)gppSidConsentString {
+    return [OGAAdIdentifierService gppSID];
+}
+
++ (NSString *)tcfConsentString {
+    return [OGAAdIdentifierService tcfConsentString];
 }
 
 + (NSError *)errorForOGAProfigError:(OGAProfigExternalError)profigError {

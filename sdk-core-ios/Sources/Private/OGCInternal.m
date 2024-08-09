@@ -79,4 +79,18 @@
     return [OGCUtils getFrameworkType];
 }
 
+// GPP
+- (NSString * _Nullable)gppConsentString {
+    return [self.adIdentifierManager retrieveGPPConsentString];
+}
+
+- (NSString * _Nullable)gppSID {
+    return [self.adIdentifierManager retrieveGPPSID];
+}
+
+- (NSString * _Nullable)tcfConsentString {
+    return [self.adIdentifierManager retrieveTCFConsentString];
+}
+
+
 @end

@@ -15,6 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)isFakeAaid;
 + (NSString *)getUserAgent;
 + (void)updateInstanceToken;
+// GPP
++ (NSString * _Nullable)gppConsentString;
++ (NSString * _Nullable)gppSID;
++ (NSString * _Nullable)tcfConsentString;
 
 @end
 

@@ -33,6 +33,9 @@
     XCTAssertNotNil(profigParam[@"sdk"]);
     XCTAssertNotNil(profigParam[@"sdk"][@"module_version"]);
     XCTAssertNotNil(profigParam[@"privacy_compliancy"]);
+    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"tcf"]);
+    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"gpp"]);
+    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"gpp_sid"]);
 }
 
 - (void)testErrorForServerProfigError {
@@ -90,6 +93,14 @@
     XCTAssertEqual([[userInfo allKeys] count], 1);
     XCTAssertNotNil(userInfo[NSLocalizedDescriptionKey]);
     XCTAssertEqualObjects(userInfo[NSLocalizedDescriptionKey], @"VALIDATION : missing body");
+}
+
+- (void)testWhenRetrievingGPPDataThenAllDataIsSetCorrectly {
+    
+    NSMutableDictionary *profigParam = [OGAConfigurationUtils profigParams];
+    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"tcf"]);
+    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"gpp"]);
+    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"gpp_sid"]);
 }
 
 @end

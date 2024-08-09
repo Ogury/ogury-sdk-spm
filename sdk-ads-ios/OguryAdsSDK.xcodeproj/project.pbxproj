@@ -599,7 +599,7 @@
 		43A9F2F32C37E6B40085EF6F /* OGAAdDisplayerUpdatePlacementInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1ED565C7C4317CC46EBD /* OGAAdDisplayerUpdatePlacementInformation.m */; };
 		43A9F2F42C37E6B40085EF6F /* OGAAdDisplayerUpdateCurrentPositionInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1087311F2330CCB19943 /* OGAAdDisplayerUpdateCurrentPositionInformation.m */; };
 		43A9F2F52C37E6B40085EF6F /* OGAAdDisplayerSystemCloseInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A17D165485E4D8DF3FF93 /* OGAAdDisplayerSystemCloseInformation.m */; };
-		43A9F2F62C37E6B40085EF6F /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		43A9F2F62C37E6B40085EF6F /* (null) in Sources */ = {isa = PBXBuildFile; };
 		43A9F2F72C37E6B40085EF6F /* OGAEventHeaderBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = C95C8E9A2805CFEA00736B3F /* OGAEventHeaderBuilder.m */; };
 		43A9F2F82C37E6B40085EF6F /* OGAMRAIDAdDisplayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1D32F07757A8A2786FC6 /* OGAMRAIDAdDisplayer.m */; };
 		43A9F2F92C37E6B40085EF6F /* OGAIsExpiredChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0DD8DE25ECE51B000FB0C6 /* OGAIsExpiredChecker.m */; };
@@ -1090,7 +1090,7 @@
 		C95C8E9728059EC600736B3F /* OGAAdPrivacyConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = C95C8E9628059EC000736B3F /* OGAAdPrivacyConfiguration.m */; };
 		C95C8E9828059ECF00736B3F /* OGAAdPrivacyConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = C95C8E9528059C1D00736B3F /* OGAAdPrivacyConfiguration.h */; };
 		C95C8E9B2805CFEA00736B3F /* OGAEventHeaderBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = C95C8E9A2805CFEA00736B3F /* OGAEventHeaderBuilder.m */; };
-		C99D2D7D26FE04DB007882DF /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		C99D2D7D26FE04DB007882DF /* (null) in Sources */ = {isa = PBXBuildFile; };
 		C99E2478290685FC00480E3F /* OGASKAdNetworkResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E2477290685FC00480E3F /* OGASKAdNetworkResponse.m */; };
 		C99E24792906860100480E3F /* OGASKAdNetworkResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = C99E2476290685F200480E3F /* OGASKAdNetworkResponse.h */; };
 		C99E247D2906EEF400480E3F /* OGASKAdNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E247C2906EEF400480E3F /* OGASKAdNetworkManager.m */; };
@@ -2152,11 +2152,11 @@
 		223A62E929F7CD870022FFE0 /* Environment */ = {
 			isa = PBXGroup;
 			children = (
-				223A62F229F7D7B50022FFE0 /* URL */,
-				351A1DA81515DEDDB3E881D5 /* OGAEnvironmentManager.h */,
-				351A1B9A99CD5B9BDC65011F /* OGAEnvironmentManager.m */,
 				223A62EA29F7CE070022FFE0 /* OGAEnvironmentConstants.h */,
 				223A62EB29F7CE070022FFE0 /* OGAEnvironmentConstants.m */,
+				351A1DA81515DEDDB3E881D5 /* OGAEnvironmentManager.h */,
+				351A1B9A99CD5B9BDC65011F /* OGAEnvironmentManager.m */,
+				223A62F229F7D7B50022FFE0 /* URL */,
 			);
 			path = Environment;
 			sourceTree = "<group>";
@@ -2741,27 +2741,27 @@
 		351A17758F1E3883420B131F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				351A1141015EFB6379226DA7 /* Check */,
 				223A62E929F7CD870022FFE0 /* Environment */,
+				351A10AB2CE514556689A914 /* HostManagers */,
 				ED618F3925EE3D7100F774A5 /* OGAAdExpirationManager.h */,
+				ED618F3A25EE3D7100F774A5 /* OGAAdExpirationManager.m */,
 				351A152AAD13C26CD4252B1A /* OGAAdImpressionManager.h */,
+				351A1CE315AEF05DF26A084C /* OGAAdImpressionManager.m */,
 				4360BE8828E19AE200C54E6D /* OGAAdLoadStateManager.h */,
+				4360BE8928E19AE200C54E6D /* OGAAdLoadStateManager.m */,
 				351A1C643593BE47EBE82652 /* OGAAdManager.h */,
+				351A1B1F6332BCCF3B2EA62E /* OGAAdManager.m */,
 				351A1BD5717D35556EFF6EC4 /* OGAAdManager+Check.h */,
 				351A1E0C5ED341F578573D6D /* OGAAdSyncManager.h */,
+				351A1B5A56974F6CA7FF11C9 /* OGAAdSyncManager.m */,
 				351A17EA65B30CE4DB08A6CC /* OGAAssetKeyManager.h */,
+				351A10A35F4C2E82E06AFCC3 /* OGAAssetKeyManager.m */,
 				1E3F16572BADD50000A897D4 /* OGAAssetKeyManagerDelegate.h */,
 				351A1B3524945BB520317220 /* OGAProfigManager.h */,
-				C99E247B2906EEE300480E3F /* OGASKAdNetworkManager.h */,
-				ED618F3A25EE3D7100F774A5 /* OGAAdExpirationManager.m */,
-				351A1CE315AEF05DF26A084C /* OGAAdImpressionManager.m */,
-				4360BE8928E19AE200C54E6D /* OGAAdLoadStateManager.m */,
-				351A1B1F6332BCCF3B2EA62E /* OGAAdManager.m */,
-				351A1B5A56974F6CA7FF11C9 /* OGAAdSyncManager.m */,
-				351A10A35F4C2E82E06AFCC3 /* OGAAssetKeyManager.m */,
 				351A1147A33549A93D224F11 /* OGAProfigManager.m */,
+				C99E247B2906EEE300480E3F /* OGASKAdNetworkManager.h */,
 				C99E247C2906EEF400480E3F /* OGASKAdNetworkManager.m */,
-				351A1141015EFB6379226DA7 /* Check */,
-				351A10AB2CE514556689A914 /* HostManagers */,
 				351A19A4848D1576ABA174B8 /* PreCache */,
 			);
 			path = Managers;
@@ -4908,7 +4908,7 @@
 				43A9F2F32C37E6B40085EF6F /* OGAAdDisplayerUpdatePlacementInformation.m in Sources */,
 				43A9F2F42C37E6B40085EF6F /* OGAAdDisplayerUpdateCurrentPositionInformation.m in Sources */,
 				43A9F2F52C37E6B40085EF6F /* OGAAdDisplayerSystemCloseInformation.m in Sources */,
-				43A9F2F62C37E6B40085EF6F /* BuildFile in Sources */,
+				43A9F2F62C37E6B40085EF6F /* (null) in Sources */,
 				43A9F2F72C37E6B40085EF6F /* OGAEventHeaderBuilder.m in Sources */,
 				43A9F2F82C37E6B40085EF6F /* OGAMRAIDAdDisplayer.m in Sources */,
 				43A9F2F92C37E6B40085EF6F /* OGAIsExpiredChecker.m in Sources */,
@@ -5145,7 +5145,7 @@
 				351A19125C513DEABA8AEA9C /* OGAAdDisplayerUpdatePlacementInformation.m in Sources */,
 				351A16969CEE33B1BEFE03E0 /* OGAAdDisplayerUpdateCurrentPositionInformation.m in Sources */,
 				351A1698A0AF9EBCDE7BF234 /* OGAAdDisplayerSystemCloseInformation.m in Sources */,
-				C99D2D7D26FE04DB007882DF /* BuildFile in Sources */,
+				C99D2D7D26FE04DB007882DF /* (null) in Sources */,
 				C95C8E9B2805CFEA00736B3F /* OGAEventHeaderBuilder.m in Sources */,
 				351A161DCA9427DF18A040CD /* OGAMRAIDAdDisplayer.m in Sources */,
 				ED0DD8E025ECE51B000FB0C6 /* OGAIsExpiredChecker.m in Sources */,
