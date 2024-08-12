@@ -23,7 +23,10 @@ struct RTBBidder {
             "publisher": {
               "id": "04241e0b1cc98976858ce16377c7eef4"
             },
-            "ver": "1.0"
+            "ver": "1.0",
+            "ext": {
+                    $TOKEN_EXT
+                }
           },
           "at": 1,
           "badv": [],
@@ -80,15 +83,14 @@ struct RTBBidder {
             }
           ],
           "regs": {
-            "ext": {}
-          },
+            },
           "tmax": 550,
           "user": {
             "data": [
               {
                 "segment": [
                   {
-                    "signal": $TOKEN
+                    $TOKEN_SIGNAL
                   }
                 ]
               }
@@ -201,6 +203,7 @@ struct RTBBidder {
             formattedBody = formattedBody.replacingOccurrences(of: "$DISPLAY_MANAGER", with: displayManager ?? "default")
             formattedBody = formattedBody.replacingOccurrences(of: "$GEO_OBJECT", with: self.buildGeoObject(with: country))
             formattedBody = formattedBody.replacingOccurrences(of: "$BUNDLE", with: Bundle.main.bundleIdentifier ?? "co.ogury.sdk.ads.app.devc")
+            var token:String?
             
            if (campaignId != nil && !campaignId!.isEmpty && dspCreative != nil && !dspCreative!.isEmpty && dspRegion != nil) {
               let cls:AnyClass = OguryTokenService.self
@@ -209,8 +212,8 @@ struct RTBBidder {
               let imp = method_getImplementation(meth!)
               typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?, String?, String?) -> String
               let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-              let tokenforCampaign = sayHiTo(OguryTokenService.classForCoder(), sel, campaignId!, creativeId, dspCreative, dspRegion!.displayName)
-              formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(tokenforCampaign)\"")
+              token = sayHiTo(OguryTokenService.classForCoder(), sel, campaignId!, creativeId, dspCreative, dspRegion!.displayName)
+              
            } else if (campaignId != nil && !campaignId!.isEmpty) {
                 let cls:AnyClass = OguryTokenService.self
                 let sel = NSSelectorFromString("getBidderTokenWithCampaignId:creativeId:")
@@ -218,22 +221,30 @@ struct RTBBidder {
                 let imp = method_getImplementation(meth!)
                 typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?) -> String
                 let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-                let tokenforCampaign = sayHiTo(OguryTokenService.classForCoder(), sel, campaignId!, creativeId)
-                formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(tokenforCampaign)\"")
+                token = sayHiTo(OguryTokenService.classForCoder(), sel, campaignId!, creativeId)
             } else {
-                let token = OguryTokenService.getBidderToken()
-                if let token {
-                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(token)\"")
-                } else {
-                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "null")
+                token = OguryTokenService.getBidderToken()
+            }
+            
+            if (token != nil) {
+                let filledToken = token!
+                if ( displayManager == "max" || displayManager == "fyber") {
+                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN_SIGNAL", with: "\"signal\": \"\(filledToken)\"")
+                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN_EXT", with: "")
+                } else if (displayManager == "unity levelplay") {
+                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN_SIGNAL", with: "")
+                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN_EXT", with: "\"token\": \"\(filledToken)\"")
                 }
+            } else {
+                formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN_SIGNAL", with: "")
+                formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN_EXT", with: "")
             }
             
             request.httpBody = formattedBody.data(using: .utf8)
             
             URLSession.shared
                 .dataTask(with: request) { (data, response, error) in
-                    handle(data: data, response: response, error: error, completionHandler: completionHandler)
+                    handle(data: data, displayManager: displayManager, response: response, error: error, completionHandler: completionHandler)
                 }
                 .resume()
         }
@@ -254,7 +265,7 @@ struct RTBBidder {
         }
     }
     
-    private func handle(data: Data?, response: URLResponse?, error: Error?, completionHandler: HeaderBiddingServiceCompletionHandler) {
+    private func handle(data: Data?, displayManager: String?, response: URLResponse?, error: Error?, completionHandler: HeaderBiddingServiceCompletionHandler) {
         if let error = error {
             completionHandler(.failure(.networkError(subError: error)))
             return
@@ -274,12 +285,25 @@ struct RTBBidder {
                 
                 guard
                     let bidResponse = try? JSONDecoder().decode(HeaderBiddingResponse.self, from: data),
-                    let firstSeatBid = bidResponse.seatbid.first, let firstExt = firstSeatBid.bid.first else {
+                    let firstSeatBid = bidResponse.seatbid.first, let firstBid = firstSeatBid.bid.first else {
                     completionHandler(.failure(.invalidData))
                     return
                 }
-                
-                completionHandler(.success(firstExt.ext.signaldata))
+                if ( displayManager == "max" || displayManager == "fyber") {
+                    if(firstBid.ext != nil) {
+                        completionHandler(.success(firstBid.ext!.signaldata))
+                    } else {
+                        completionHandler(.failure(.invalidResponse))
+                        return
+                    }
+                } else if (displayManager == "unity levelplay") {
+                    if(firstBid.adm != nil) {
+                        completionHandler(.success(firstBid.adm!))
+                    } else {
+                        completionHandler(.failure(.invalidResponse))
+                        return
+                    }
+                }
                 
             case 300..<400:
                 completionHandler(.failure(.redirection(code: urlResponse.statusCode)))

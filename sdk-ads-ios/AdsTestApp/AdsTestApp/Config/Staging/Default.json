@@ -78,7 +78,7 @@
     },
     "UnityLevelPlayHeaderBidding" : {
         "url" : "https://inapp-unitylevelplay.staging.cloud.ogury.io/api/header-bidding-request",
-        "displayManager" : "unity level play",
+        "displayManager" : "unity levelplay",
         "interstitial" : {
             "adUnitId" : "eedb0030-6445-42a5-8cd5-fb34231df2c8",
             "campaignId" : "",

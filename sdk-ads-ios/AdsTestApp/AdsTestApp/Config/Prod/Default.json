@@ -87,7 +87,7 @@
     },
     "UnityLevelPlayHeaderBidding" : {
         "url" : "https://inapp-unitylevelplay.presage.io/api/header-bidding-request",
-        "displayManager" : "unity level play",
+        "displayManager" : "unity levelplay",
         "interstitial" : {
             "adUnitId" : "368441d2-44eb-417f-8b72-19da8cdf9365",
             "campaignId" : "",
