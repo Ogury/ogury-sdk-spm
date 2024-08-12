@@ -104,7 +104,7 @@ public final class BannerAdManager: AdManager {
    
    private var isMpu: Bool {
       switch adType {
-         case .mpu, .maxHeaderBidding(.mpu, _): return true
+         case .mpu, .maxHeaderBidding(.mpu, _), .dtFairBidHeaderBidding(.mpu, _), .unityLevelPlayHeaderBidding(.mpu, _): return true
          default: return false
       }
    }
