@@ -107,6 +107,7 @@
 /* Begin PBXFileReference section */
 		1E308B392B839FB500DFC6E3 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		1E6D20B82C64B5D300DF24AB /* OGCConsentChangedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGCConsentChangedDelegate.h; sourceTree = "<group>"; };
+		1E6D20C42C6A70B000DF24AB /* OguryCore.Private.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = OguryCore.Private.modulemap; sourceTree = "<group>"; };
 		22951E462551A29F0032A04F /* OGCInstanceToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGCInstanceToken.h; sourceTree = "<group>"; };
 		22951E472551A29F0032A04F /* OGCInstanceToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGCInstanceToken.m; sourceTree = "<group>"; };
 		22951E502551A3590032A04F /* NSString+OGCHash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+OGCHash.h"; sourceTree = "<group>"; };
@@ -420,7 +421,6 @@
 		977348D1243F6FC00002EBA4 /* Internal */ = {
 			isa = PBXGroup;
 			children = (
-				977348BA243F6E2E0002EBA4 /* OguryCore.h */,
 				22951E452551A0530032A04F /* AdIdentifierManager */,
 				22951E4E2551A30F0032A04F /* Utility */,
 				977348F92440C0EE0002EBA4 /* Constants */,
@@ -440,6 +440,7 @@
 		977348D9243F72EC0002EBA4 /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				977348BA243F6E2E0002EBA4 /* OguryCore.h */,
 				977348DD244077ED0002EBA4 /* OguryError.h */,
 				977348DE244077ED0002EBA4 /* OguryError.m */,
 				58E9AB9527CD024700537BCC /* OguryLogLevel.h */,
@@ -519,6 +520,7 @@
 				ED174D1E255A897400904297 /* Network */,
 				977348D2243F70AC0002EBA4 /* OGCInternal.h */,
 				977348D3243F70AC0002EBA4 /* OGCInternal.m */,
+				1E6D20C42C6A70B000DF24AB /* OguryCore.Private.modulemap */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -1013,6 +1015,7 @@
 					"$(PROJECT_DIR)/Tests/OCMock",
 				);
 				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "$(SRCROOT)/Sources/Private/OguryCore.Private.modulemap";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1044,6 +1047,7 @@
 					"$(PROJECT_DIR)/Tests/OCMock",
 				);
 				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "$(SRCROOT)/Sources/Private/OguryCore.Private.modulemap";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;

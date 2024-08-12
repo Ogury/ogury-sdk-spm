@@ -32,4 +32,10 @@ struct SettingsController {
     
     @UserDefault("enableFeedbacks")
     var enableFeedbacks: Bool = true
+   
+    @UserDefault("usOptout")
+    var usOptout: Bool = false
+   
+    @UserDefault("usOptoutPartner")
+    var usOptoutPartner: Bool = false
 }

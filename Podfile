@@ -77,7 +77,7 @@ end
 target "AdsTestApp-Prod-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod "OguryCore-Prod", "1.4.1-RC-1.0.7"
-  pod 'InMobiCMP', '2.0.1' 
+  pod 'InMobiCMP', '2.0.1'
 end
 
 
@@ -97,7 +97,6 @@ target 'OguryWrapperTestApp' do
   project "sdk-wrapper-ios/OguryWrapperTestApp/OguryWrapperTestApp.xcodeproj"
   pod 'OguryCore-Prod', '1.4.1-RC-1.0.7'
   pod 'OguryAds-Prod', '3.7.0-rc-3'
-  pod 'OguryChoiceManager-Prod', '4.3.0-rc-2'
 end
 
 
