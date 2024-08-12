@@ -36,8 +36,10 @@ static NSString *const OGAProfigBodyDeviceModuleVersion = @"module_version";
     content[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyTCFKey] = [self tcfConsentString];
     content[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyGPPKey] = [self gppConsentString];
     content[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyGPPSIDKey] = [self gppSidConsentString];
-    content[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyUSOptout] = @([self usOptoutValue]);
-    content[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyUSOptoutPartner] = @([self usOptoutPartnerValue]);
+    NSDictionary *privacyDatas = [self privacyDatas];
+    [privacyDatas enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        content[OGARequestBodyPrivacyComplianceKey][key] = obj;
+    }];
 
     return content;
 }
@@ -54,12 +56,8 @@ static NSString *const OGAProfigBodyDeviceModuleVersion = @"module_version";
     return [OGAAdIdentifierService tcfConsentString];
 }
 
-+ (BOOL)usOptoutValue {
-    return YES;
-}
-
-+ (BOOL)usOptoutPartnerValue {
-    return YES;
++ (NSDictionary<NSString*, NSString*>*)privacyDatas {
+    return @{};
 }
 
 + (NSError *)errorForOGAProfigError:(OGAProfigExternalError)profigError {

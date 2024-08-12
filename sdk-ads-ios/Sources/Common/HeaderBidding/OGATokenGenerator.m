@@ -109,9 +109,17 @@
             OGATokenModuleVersion : [self.internal getVersion],
             OGATokenBuildVersion : [self.internal getBuildVersion]
         },
-        OGARequestBodyPrivacyComplianceKey : @{}
+        OGARequestBodyPrivacyComplianceKey : @{
+            OGARequestBodyPrivacyTCFKey : [self tcfConsentString],
+            OGARequestBodyPrivacyGPPKey : [self gppConsentString],
+            OGARequestBodyPrivacyGPPSIDKey : [self gppSidConsentString]
+        }
     }];
-
+    NSDictionary *privacyDatas = [self privacyDatas];
+    [privacyDatas enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        token[OGARequestBodyPrivacyComplianceKey][key] = obj;
+    }];
+    
     /// device
     NSMutableDictionary *device = [@{} mutableCopy];
     if ([privacyConfiguration adSyncPermissionIsEnabledFor:OGAAdPrivacyPermissionDeviceOrientation]) {
@@ -198,6 +206,22 @@
     }
 
     return token;
+}
+
+- (NSString *)gppConsentString {
+    return [OGAAdIdentifierService gppConsentString];
+}
+
+- (NSString *)gppSidConsentString {
+    return [OGAAdIdentifierService gppSID];
+}
+
+- (NSString *)tcfConsentString {
+    return [OGAAdIdentifierService tcfConsentString];
+}
+
+- (NSDictionary<NSString*, NSString*>*)privacyDatas {
+    return @{};
 }
 
 @end
