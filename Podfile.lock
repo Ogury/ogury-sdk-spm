@@ -1,5 +1,6 @@
 PODS:
   - DDPopoverBackgroundView (1.0.2)
+  - InMobiCMP (2.0.1)
   - OCMock (3.9.1)
   - OguryAds-Prod (3.7.0-rc-3):
     - OguryAds-Prod/OMID (= 3.7.0-rc-3)
@@ -18,6 +19,7 @@ PODS:
 
 DEPENDENCIES:
   - DDPopoverBackgroundView
+  - InMobiCMP
   - OCMock (from `https://github.com/SDKOguryDev/ocmock`, branch `master`)
   - OguryAds-Prod (= 3.7.0-rc-3)
   - OguryCore-Prod (= 1.4.1-RC-1.0.7)
@@ -32,6 +34,7 @@ SPEC REPOS:
     - OguryCore-Prod
   trunk:
     - DDPopoverBackgroundView
+    - InMobiCMP
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -50,6 +53,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   DDPopoverBackgroundView: a538082a8a9bd8581ed3740f601c6e070bba071f
+  InMobiCMP: b820fe58e825fc4b83439797a3853fae07933fa0
   OCMock: 9491e4bec59e0b267d52a9184ff5605995e74be8
   OguryAds-Prod: 7c36ec0b4a1ba93b525f2ec61c798a8448f401d6
   OguryCore-Prod: 428d8fce1a3e3a5906ebe81b56d30eca194a7555
@@ -59,6 +63,6 @@ SPEC CHECKSUMS:
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
   Yaml: 52831fc1d9ac2db4ddf6d7562993457127256ca6
 
-PODFILE CHECKSUM: 889d2cd7ea7d9bc9d0430a2d58bd9cf3fdf16e4c
+PODFILE CHECKSUM: 412cb886960f0303df785444beb5add417719f5d
 
 COCOAPODS: 1.15.2

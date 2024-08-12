@@ -36,6 +36,8 @@ static NSString *const OGAProfigBodyDeviceModuleVersion = @"module_version";
     content[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyTCFKey] = [self tcfConsentString];
     content[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyGPPKey] = [self gppConsentString];
     content[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyGPPSIDKey] = [self gppSidConsentString];
+    content[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyUSOptout] = @([self usOptoutValue]);
+    content[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyUSOptoutPartner] = @([self usOptoutPartnerValue]);
 
     return content;
 }
@@ -50,6 +52,14 @@ static NSString *const OGAProfigBodyDeviceModuleVersion = @"module_version";
 
 + (NSString *)tcfConsentString {
     return [OGAAdIdentifierService tcfConsentString];
+}
+
++ (BOOL)usOptoutValue {
+    return YES;
+}
+
++ (BOOL)usOptoutPartnerValue {
+    return YES;
 }
 
 + (NSError *)errorForOGAProfigError:(OGAProfigExternalError)profigError {

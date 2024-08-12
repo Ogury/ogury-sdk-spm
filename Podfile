@@ -51,6 +51,7 @@ end
 target "AdsTestApp-Devc" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod "OguryCore-Prod", "1.4.1-RC-1.0.7"
+  pod 'InMobiCMP'
 end
 target "AdsTestApp-Staging" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
