@@ -37,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)storePrivacyData:(NSString *)key string:(NSString *)value;
 
+- (NSDictionary *)retrivedDataPrivacy;
+
 @end
 
 NS_ASSUME_NONNULL_END

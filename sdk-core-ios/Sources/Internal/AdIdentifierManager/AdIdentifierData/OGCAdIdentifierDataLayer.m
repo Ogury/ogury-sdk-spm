@@ -15,6 +15,9 @@ static NSString * const OGCGPPConsentStringKey = @"IABGPP_HDR_GppString";
 static NSString * const OGCGPPSIDKey = @"IABGPP_GppSID";
 static NSString * const OGCTCStringKey = @"IABTCF_TCString";
 
+static NSString * const OGCPrefixeKey = @"OGY-";
+static NSString * const OGCDataPrivacyKey = @"OGY-PrivacyDataKeys";
+
 @interface OGCAdIdentifierDataLayer()
 
 #pragma mark - Properties
@@ -111,24 +114,47 @@ static NSString * const OGCTCStringKey = @"IABTCF_TCString";
 }
 
 - (void)storePrivacyData:(NSString *)key boolean:(BOOL)value {
-   [self.userDefaults setBool:value forKey:key];
+   [self.userDefaults setBool:value forKey:[OGCPrefixeKey stringByAppendingString: key]];
+   [self addPrivacyDataKey:key];
    if ([self.consentChangedDelegate respondsToSelector:@selector(dataPrivacyChanged:boolean:)]) {
       [self.consentChangedDelegate dataPrivacyChanged:key boolean:value];
    }
 }
 
 - (void)storePrivacyData:(NSString *)key integer:(NSInteger)value {
-   [self.userDefaults setInteger:value forKey:key];
+   [self.userDefaults setInteger:value forKey:[OGCPrefixeKey stringByAppendingString: key]];
+   [self addPrivacyDataKey:key];
    if ([self.consentChangedDelegate respondsToSelector:@selector(dataPrivacyChanged:integer:)]) {
       [self.consentChangedDelegate dataPrivacyChanged:key integer:value];
    }
 }
 
 - (void)storePrivacyData:(NSString *)key string:(NSString *)value {
-   [self.userDefaults setValue:value forKey:key];
+   [self.userDefaults setValue:value forKey:[OGCPrefixeKey stringByAppendingString: key]];
+   [self addPrivacyDataKey:key];
    if ([self.consentChangedDelegate respondsToSelector:@selector(dataPrivacyChanged:string:)]) {
       [self.consentChangedDelegate dataPrivacyChanged:key string:value];
    }
+}
+
+- (void)addPrivacyDataKey:(NSString *)key {
+   if ([[self.userDefaults objectForKey:OGCDataPrivacyKey] isKindOfClass:[NSArray class]]) {
+      NSArray<NSString *> *dataPrivacyKeys = [self.userDefaults objectForKey:OGCDataPrivacyKey];
+      if (![dataPrivacyKeys containsObject:key]) {
+         NSMutableArray *dataPrivacyKeysMutable =  [dataPrivacyKeys mutableCopy];
+         [dataPrivacyKeysMutable addObject:key];
+         [self.userDefaults setObject:dataPrivacyKeysMutable forKey:OGCDataPrivacyKey];
+      }
+   }
+}
+
+- (NSDictionary *)retrivedDataPrivacy {
+   NSMutableDictionary *dataPrivacy = [NSMutableDictionary new];
+   NSArray *dataPrivacyKeys = [self.userDefaults objectForKey:OGCDataPrivacyKey];
+   for (NSString *key in dataPrivacyKeys) {
+      dataPrivacy[key] = [self.userDefaults objectForKey:[OGCPrefixeKey stringByAppendingString: key]];
+   }
+   return dataPrivacy;
 }
 
 - (void)storeInstanceToken:(NSData *)instanceToken {
