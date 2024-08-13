@@ -18,8 +18,7 @@
 + (NSString *)gppConsentString;
 + (NSString *)gppSidConsentString;
 + (NSString *)tcfConsentString;
-+ (BOOL)usOptoutValue;
-+ (BOOL)usOptoutPartnerValue;
++ (NSDictionary<NSString*, NSString*>*)privacyDatas;
 
 @end
 
@@ -34,8 +33,8 @@
     OCMStub([mockMyClass gppConsentString]).andReturn(@"gppConsentString");
     OCMStub([mockMyClass gppSidConsentString]).andReturn(@"gppSidConsentString");
     OCMStub([mockMyClass tcfConsentString]).andReturn(@"tcfConsentString");
-    OCMStub([mockMyClass usOptoutValue]).andReturn(YES);
-    OCMStub([mockMyClass usOptoutPartnerValue]).andReturn(YES);
+    NSDictionary *privacyDatas = @{ @"us_optout" : @(YES), @"customKey" : @"customValue" };
+    OCMStub([mockMyClass privacyDatas]).andReturn(privacyDatas);
     NSMutableDictionary *profigParam = [OGAConfigurationUtils profigParams];
     XCTAssertNotNil(profigParam);
     XCTAssertEqual([[profigParam allKeys] count], 4);
@@ -53,7 +52,7 @@
     XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"gpp"]);
     XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"gpp_sid"]);
     XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"us_optout"]);
-    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"us_optout_partner"]);
+    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"customKey"]);
 }
 
 - (void)testErrorForServerProfigError {
@@ -118,19 +117,19 @@
     OCMStub([mockMyClass gppConsentString]).andReturn(@"gppConsentString");
     OCMStub([mockMyClass gppSidConsentString]).andReturn(@"gppSidConsentString");
     OCMStub([mockMyClass tcfConsentString]).andReturn(@"tcfConsentString");
-    OCMStub([mockMyClass usOptoutValue]).andReturn(YES);
-    OCMStub([mockMyClass usOptoutPartnerValue]).andReturn(YES);
+    NSDictionary *privacyDatas = @{ @"us_optout" : @(YES), @"customKey" : @"customValue" };
+    OCMStub([mockMyClass privacyDatas]).andReturn(privacyDatas);
     NSMutableDictionary *profigParam = [OGAConfigurationUtils profigParams];
     XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"tcf"]);
     XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"gpp"]);
     XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"gpp_sid"]);
     XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"us_optout"]);
-    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"us_optout_partner"]);
+    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"customKey"]);
     XCTAssertEqualObjects(profigParam[@"privacy_compliancy"][@"tcf"], @"tcfConsentString");
     XCTAssertEqualObjects(profigParam[@"privacy_compliancy"][@"gpp"], @"gppConsentString");
     XCTAssertEqualObjects(profigParam[@"privacy_compliancy"][@"gpp_sid"], @"gppSidConsentString");
     XCTAssertTrue(profigParam[@"privacy_compliancy"][@"us_optout"]);
-    XCTAssertTrue(profigParam[@"privacy_compliancy"][@"us_optout_partner"]);
+    XCTAssertEqualObjects(profigParam[@"privacy_compliancy"][@"customKey"], @"customValue");
 }
 
 @end

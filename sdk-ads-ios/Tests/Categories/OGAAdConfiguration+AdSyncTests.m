@@ -39,6 +39,10 @@
 - (NSInteger)secondsFromGMT;
 - (NSLocale *)locale;
 - (NSString *)requestId;
+- (NSString *)gppConsentString;
+- (NSString *)gppSidConsentString;
+- (NSString *)tcfConsentString;
+- (NSDictionary<NSString*, NSString*>*)privacyDatas;
 
 @end
 
@@ -522,6 +526,36 @@ static NSString *const DefaultUserID = @"User";
     NSString *requestId = payload[@"request_id"];
     NSString *requestId2 = payload2[@"request_id"];
     XCTAssertFalse([requestId isEqualToString:requestId2]);
+}
+
+- (void)testWhenRetrievingGPPDataThenAllDataIsSetCorrectly {
+    OGAAdConfiguration *configuration = [self fullyMockedConfiguration];
+    OCMStub([configuration gppConsentString]).andReturn(@"gppConsentString");
+    OCMStub([configuration gppSidConsentString]).andReturn(@"gppSidConsentString");
+    OCMStub([configuration tcfConsentString]).andReturn(@"tcfConsentString");
+    NSDictionary *privacyDatas = @{ @"us_optout" : @(YES), @"customKey" : @"customValue" };
+    OCMStub([configuration privacyDatas]).andReturn(privacyDatas);
+    OGAProfigDao *dao = OCMPartialMock([[OGAProfigDao alloc] init]);
+    OGAProfigFullResponse *profig = OCMClassMock([OGAProfigFullResponse class]);
+    OGAAdPrivacyConfiguration *privacy = OCMClassMock([OGAAdPrivacyConfiguration class]);
+    OCMStub([dao profigFullResponse]).andReturn(profig);
+    OGAWebViewUserAgentService *userAgentService = OCMClassMock([OGAWebViewUserAgentService class]);
+    OCMStub([userAgentService webViewUserAgent]).andReturn(@"Mozilla/5.0");
+    NSDictionary *payload = [configuration payloadForAdSyncWithAssetKeyManager:self.assetKeyManager
+                                                                             reachability:self.reachability
+                                                                        profigPersistence:dao
+                                                                   isOmidFrameworkPresent:YES
+                                                                         userAgentService:userAgentService];
+    XCTAssertNotNil(payload[@"privacy_compliancy"][@"tcf"]);
+    XCTAssertNotNil(payload[@"privacy_compliancy"][@"gpp"]);
+    XCTAssertNotNil(payload[@"privacy_compliancy"][@"gpp_sid"]);
+    XCTAssertNotNil(payload[@"privacy_compliancy"][@"us_optout"]);
+    XCTAssertNotNil(payload[@"privacy_compliancy"][@"customKey"]);
+    XCTAssertEqualObjects(payload[@"privacy_compliancy"][@"tcf"], @"tcfConsentString");
+    XCTAssertEqualObjects(payload[@"privacy_compliancy"][@"gpp"], @"gppConsentString");
+    XCTAssertEqualObjects(payload[@"privacy_compliancy"][@"gpp_sid"], @"gppSidConsentString");
+    XCTAssertTrue(payload[@"privacy_compliancy"][@"us_optout"]);
+    XCTAssertEqualObjects(payload[@"privacy_compliancy"][@"customKey"], @"customValue");
 }
 
 @end

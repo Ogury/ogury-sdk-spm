@@ -38,6 +38,10 @@
 
 @interface OGATokenGenerator ()
 - (BOOL)canSendToken;
+- (NSString *)gppConsentString;
+- (NSString *)gppSidConsentString;
+- (NSString *)tcfConsentString;
+- (NSDictionary<NSString*, NSString*>*)privacyDatas;
 @end
 
 @interface OGAAdPrivacyConfiguration ()
@@ -438,6 +442,27 @@
         permission += OGAAdPrivacyPermissionAdTracking;
         [self checkTokenWithPermissionMask:permission assertMessage:[self assertMessageForPermission:permission]];
     }
+}
+
+- (void)testWhenRetrievingGPPDataThenAllDataIsSetCorrectly {
+    OCMStub([self.tokenGenerator gppConsentString]).andReturn(@"gppConsentString");
+    OCMStub([self.tokenGenerator gppSidConsentString]).andReturn(@"gppSidConsentString");
+    OCMStub([self.tokenGenerator tcfConsentString]).andReturn(@"tcfConsentString");
+    NSDictionary *privacyDatas = @{ @"us_optout" : @(YES), @"customKey" : @"customValue" };
+    OCMStub([self.tokenGenerator privacyDatas]).andReturn(privacyDatas);
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef]]).andReturn(YES);
+    [self mockDataWithPermissions:0 skanEnabled:NO assetKeyEnabled:NO instanceTokenEnabled:NO lowBatteryMode:NO];
+    NSDictionary *token = [self.tokenGenerator collectBidderTokenData];
+    XCTAssertNotNil(token[@"privacy_compliancy"][@"tcf"]);
+    XCTAssertNotNil(token[@"privacy_compliancy"][@"gpp"]);
+    XCTAssertNotNil(token[@"privacy_compliancy"][@"gpp_sid"]);
+    XCTAssertNotNil(token[@"privacy_compliancy"][@"us_optout"]);
+    XCTAssertNotNil(token[@"privacy_compliancy"][@"customKey"]);
+    XCTAssertEqualObjects(token[@"privacy_compliancy"][@"tcf"], @"tcfConsentString");
+    XCTAssertEqualObjects(token[@"privacy_compliancy"][@"gpp"], @"gppConsentString");
+    XCTAssertEqualObjects(token[@"privacy_compliancy"][@"gpp_sid"], @"gppSidConsentString");
+    XCTAssertTrue(token[@"privacy_compliancy"][@"us_optout"]);
+    XCTAssertEqualObjects(token[@"privacy_compliancy"][@"customKey"], @"customValue");
 }
 
 @end
