@@ -130,16 +130,8 @@
     [self.log logMessage:OguryLogLevelDebug message:@"Update instance token"];
 }
 
-- (void)storePrivacyData:(NSString *)key boolean:(BOOL)value {
-   [self.dataLayer storePrivacyData:key boolean:value];
-}
-
-- (void)storePrivacyData:(NSString *)key integer:(NSInteger)value {
-   [self.dataLayer storePrivacyData:key integer:value];
-}
-
-- (void)storePrivacyData:(NSString *)key string:(NSString *)value {
-   [self.dataLayer storePrivacyData:key string:value];
+- (void)storePrivacyData:(id)value forKey:(NSString *)key {
+   [self.dataLayer storePrivacyData:value forKey:key];
 }
 
 - (NSDictionary<NSString *, id> *)retrieveDataPrivacy {

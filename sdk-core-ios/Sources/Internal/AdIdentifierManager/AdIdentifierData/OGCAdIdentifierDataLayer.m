@@ -15,7 +15,7 @@ static NSString * const OGCGPPConsentStringKey = @"IABGPP_HDR_GppString";
 static NSString * const OGCGPPSIDKey = @"IABGPP_GppSID";
 static NSString * const OGCTCStringKey = @"IABTCF_TCString";
 
-static NSString * const OGCPrefixeKey = @"OGY-";
+static NSString * const OGCPrefixKey = @"OGY-";
 static NSString * const OGCDataPrivacyKey = @"OGY-PrivacyDataKeys";
 
 @interface OGCAdIdentifierDataLayer()
@@ -113,27 +113,11 @@ static NSString * const OGCDataPrivacyKey = @"OGY-PrivacyDataKeys";
    return [self dataForKey:OGCTCStringKey];
 }
 
-- (void)storePrivacyData:(NSString *)key boolean:(BOOL)value {
-   [self.userDefaults setBool:value forKey:[OGCPrefixeKey stringByAppendingString: key]];
+- (void)storePrivacyData:(id)value forKey:(NSString *)key; {
+   [self.userDefaults setValue:value forKey:[OGCPrefixKey stringByAppendingString: key]];
    [self addPrivacyDataKey:key];
    if ([self.consentChangedDelegate respondsToSelector:@selector(dataPrivacyChanged:boolean:)]) {
       [self.consentChangedDelegate dataPrivacyChanged:key boolean:value];
-   }
-}
-
-- (void)storePrivacyData:(NSString *)key integer:(NSInteger)value {
-   [self.userDefaults setInteger:value forKey:[OGCPrefixeKey stringByAppendingString: key]];
-   [self addPrivacyDataKey:key];
-   if ([self.consentChangedDelegate respondsToSelector:@selector(dataPrivacyChanged:integer:)]) {
-      [self.consentChangedDelegate dataPrivacyChanged:key integer:value];
-   }
-}
-
-- (void)storePrivacyData:(NSString *)key string:(NSString *)value {
-   [self.userDefaults setValue:value forKey:[OGCPrefixeKey stringByAppendingString: key]];
-   [self addPrivacyDataKey:key];
-   if ([self.consentChangedDelegate respondsToSelector:@selector(dataPrivacyChanged:string:)]) {
-      [self.consentChangedDelegate dataPrivacyChanged:key string:value];
    }
 }
 
@@ -154,7 +138,7 @@ static NSString * const OGCDataPrivacyKey = @"OGY-PrivacyDataKeys";
    NSMutableDictionary *dataPrivacy = [NSMutableDictionary new];
    NSArray *dataPrivacyKeys = [self.userDefaults objectForKey:OGCDataPrivacyKey];
    for (NSString *key in dataPrivacyKeys) {
-      dataPrivacy[key] = [self.userDefaults objectForKey:[OGCPrefixeKey stringByAppendingString: key]];
+      dataPrivacy[key] = [self.userDefaults objectForKey:[OGCPrefixKey stringByAppendingString: key]];
    }
    return dataPrivacy;
 }

@@ -81,15 +81,15 @@
 }
 
 - (void)storePrivacyData:(NSString *)key boolean:(BOOL)value {
-   [self.adIdentifierManager storePrivacyData:key boolean:value];
+   [self.adIdentifierManager storePrivacyData:[NSNumber numberWithBool:value]  forKey:key];
 }
 
 - (void)storePrivacyData:(NSString *)key integer:(NSInteger)value {
-   [self.adIdentifierManager storePrivacyData:key integer:value];
+   [self.adIdentifierManager storePrivacyData:[NSNumber numberWithInteger:value] forKey:key];
 }
 
 - (void)storePrivacyData:(NSString *)key string:(NSString *)value {
-   [self.adIdentifierManager storePrivacyData:key string:value];
+   [self.adIdentifierManager storePrivacyData:value forKey:key];
 }
 
 - (NSDictionary<NSString *, id> *)retrieveDataPrivacy {
