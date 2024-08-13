@@ -41,7 +41,7 @@ struct RTBBidder {
             "dnt": 0,
             "geo": $GEO_OBJECT,
             "h": 1334,
-            "ifa": "6abe796f-0eed-4130-b416-99939422dc77",
+            "ifa": "00000000-0000-0000-0000-000000000000",
             "ip": "8.25.196.26",
             "js": 1,
             "language": "en",
@@ -53,7 +53,6 @@ struct RTBBidder {
             "ua": "Mozilla/5.0 (Linux; Android 11; Android SDK built for x86 Build/RSR1.210210.001.A1; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.106 Mobile Safari/537.36",
             "w": 750
           },
-          "id": "$AD_UNIT_ID",
           "imp": [
             {
               "banner": {
@@ -94,8 +93,7 @@ struct RTBBidder {
                   }
                 ]
               }
-            ],
-            "id": "$AD_UNIT_ID"
+            ]
           }
         }
         """

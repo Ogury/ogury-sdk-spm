@@ -21,6 +21,6 @@ struct UnityLevelPlayRetriever: UnityLevelPlayBidable {
     }
     
     func description(for error: Error) -> String {
-       "Unity Level Play AdMarkup retriever failed :\(error.localizedDescription)"
+       "Unity LevelPlay AdMarkup retriever failed :\(error.localizedDescription)"
     }
 }

@@ -422,7 +422,7 @@ extension AdType {
          case .banner: return "Banner"
          case let .maxHeaderBidding(innerFormat, _): return "MAX HB - \(innerFormat.sectionName)"
          case let .dtFairBidHeaderBidding(innerFormat, _): return "DT Fair Bid HB - \(innerFormat.sectionName)"
-         case let .unityLevelPlayHeaderBidding(innerFormat, _): return "Unity Level Play HB - \(innerFormat.sectionName)"
+         case let .unityLevelPlayHeaderBidding(innerFormat, _): return "Unity LevelPlay HB - \(innerFormat.sectionName)"
          @unknown default:
             fatalError()
       }

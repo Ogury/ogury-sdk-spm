@@ -283,7 +283,7 @@ public enum AdTag: String {
             case .bypass: return "Bypass"
             case .waterfall: return "Waterfall"
             case .headerBidding: return "HB"
-            case .unityLevelPlay: return "Unity Level Play"
+            case .unityLevelPlay: return "Unity LevelPlay"
         }
     }
     public var description: String {
@@ -291,7 +291,7 @@ public enum AdTag: String {
             case .ogury: return "Ogury"
             case .max: return "AppLovin Max"
             case .dtFairbid: return "Fyber"
-            case .unityLevelPlay: return "Unity Level Play"
+            case .unityLevelPlay: return "Unity LevelPlay"
             case .direct: return "Direct integration"
             case .bypass: return "The mediation's SDK is bypassed when loading the ad. In header bidding mediation case, the test app directly calls the ms-bidder endpoint of the mediation to retrieve an ad"
             case .waterfall: return "Waterfall auction integration"

@@ -107,19 +107,18 @@ struct AdFormat: Equatable, Identifiable, Hashable {
     }
     
     var displayIcon: Image? {
-        if (adType.adType is AdType<InterstitialAdManager>) {
-            return Image(systemName: "iphone").symbolRenderingMode(.monochrome)
+        switch adType.adType {
+            case is AdType<InterstitialAdManager>:
+                return Image(systemName: "iphone").symbolRenderingMode(.monochrome)
+            case is AdType<OptInAdManager>:
+                return Image(systemName: "iphone.gen3.badge.play")
+            case is AdType<ThumbnailAdManager>:
+                return Image(systemName: "rectangle.portrait.bottomright.inset.filled")
+            case is AdType<BannerAdManager>:
+                return Image(systemName: "platter.filled.bottom.iphone")
+            default:
+                return nil
         }
-        if (adType.adType is AdType<OptInAdManager>) {
-            return Image(systemName: "iphone.gen3.badge.play")
-        }
-        if (adType.adType is AdType<ThumbnailAdManager>) {
-            return Image(systemName: "rectangle.portrait.bottomright.inset.filled")
-        }
-        if (adType.adType is AdType<BannerAdManager>) {
-            return Image(systemName: "platter.filled.bottom.iphone")
-        }
-        return nil
     }
     
     var tags: [AdTag] {
@@ -207,31 +206,36 @@ struct AddFeature: Reducer {
             let mpuUnityLevelPlay: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType: .mpu, adMarkUpRetriever: unityLevelPlayBidable)
             let bannerUnityLevelPlay: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType: .banner, adMarkUpRetriever: unityLevelPlayBidable)
             
-            sections = [.init(title: "Ogury",
-                              adFormats: [.init(id: inter.uuid, adType: .init(inter)),
-                                          .init(id: optIn.uuid, adType: .init(optIn)),
-                                          .init(id: banner.uuid, adType: .init(banner)),
-                                          .init(id: mpu.uuid, adType: .init(mpu)),
-                                          .init(id: thumb.uuid, adType: .init(thumb))
-                              ]),
-                        .init(title: "MAX Header Bidding",
-                              adFormats: [.init(id: interMax.uuid, adType: .init(interMax)),
-                                          .init(id: optInMax.uuid, adType: .init(optInMax)),
-                                          .init(id: bannerMax.uuid, adType: .init(bannerMax)),
-                                          .init(id: mpuMax.uuid, adType: .init(mpuMax))
-                              ]),
-                        .init(title: "DT Fair Bid Header Bidding",
-                              adFormats: [.init(id: interDTFairBid.uuid, adType: .init(interDTFairBid)),
-                                          .init(id: optInDTFairBid.uuid, adType: .init(optInDTFairBid)),
-                                          .init(id: bannerDTFairBid.uuid, adType: .init(bannerDTFairBid)),
-                                          .init(id: mpuDTFairBid.uuid, adType: .init(mpuDTFairBid))
-                              ]),
-                        .init(title: "Unity Level Play Header Bidding",
-                              adFormats: [.init(id: interUnityLevelPlay.uuid, adType: .init(interUnityLevelPlay)),
-                                          .init(id: optInUnityLevelPlay.uuid, adType: .init(optInUnityLevelPlay)),
-                                          .init(id: bannerUnityLevelPlay.uuid, adType: .init(bannerUnityLevelPlay)),
-                                          .init(id: mpuUnityLevelPlay.uuid, adType: .init(mpuUnityLevelPlay))
-                              ])
+            sections = [
+                .init(title: "Ogury",
+                      adFormats: [
+                        .init(id: inter.uuid, adType: .init(inter)),
+                        .init(id: optIn.uuid, adType: .init(optIn)),
+                        .init(id: banner.uuid, adType: .init(banner)),
+                        .init(id: mpu.uuid, adType: .init(mpu)),
+                        .init(id: thumb.uuid, adType: .init(thumb))
+                      ]),
+                .init(title: "MAX Header Bidding",
+                      adFormats: [
+                        .init(id: interMax.uuid, adType: .init(interMax)),
+                        .init(id: optInMax.uuid, adType: .init(optInMax)),
+                        .init(id: bannerMax.uuid, adType: .init(bannerMax)),
+                        .init(id: mpuMax.uuid, adType: .init(mpuMax))
+                      ]),
+                .init(title: "DT Fair Bid Header Bidding",
+                      adFormats: [
+                        .init(id: interDTFairBid.uuid, adType: .init(interDTFairBid)),
+                        .init(id: optInDTFairBid.uuid, adType: .init(optInDTFairBid)),
+                        .init(id: bannerDTFairBid.uuid, adType: .init(bannerDTFairBid)),
+                        .init(id: mpuDTFairBid.uuid, adType: .init(mpuDTFairBid))
+                      ]),
+                .init(title: "Unity LevelPlay Header Bidding",
+                      adFormats: [
+                        .init(id: interUnityLevelPlay.uuid, adType: .init(interUnityLevelPlay)),
+                        .init(id: optInUnityLevelPlay.uuid, adType: .init(optInUnityLevelPlay)),
+                        .init(id: bannerUnityLevelPlay.uuid, adType: .init(bannerUnityLevelPlay)),
+                        .init(id: mpuUnityLevelPlay.uuid, adType: .init(mpuUnityLevelPlay))
+                      ])
             ]
         }
     }
