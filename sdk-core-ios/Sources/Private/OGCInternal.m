@@ -92,7 +92,7 @@
    [self.adIdentifierManager storePrivacyData:key string:value];
 }
 
-- (NSDictionary<NSString *, id> *)retrivedDataPrivacy {
+- (NSDictionary<NSString *, id> *)retriveDataPrivacy {
    return [self.adIdentifierManager retrivedDataPrivacy];
 }
 

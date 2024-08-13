@@ -83,7 +83,7 @@ struct AppSettingsFeature: Reducer {
         case toggleEnableFeedbacks
         case usOptoutTapped
         case usOptoutPartnerTapped
-        case retrievedPrivacyDataTapped
+        case retrievePrivacyDataTapped
     }
     
     var body: some ReducerOf<Self> {
@@ -138,9 +138,9 @@ struct AppSettingsFeature: Reducer {
                     OGCInternal.shared().storePrivacyData("us_optout_partner", boolean: state.settings.usOptoutPartner)
                     return .none
                
-                case .retrievedPrivacyDataTapped:
+                case .retrievePrivacyDataTapped:
                     return .run { _ in
-                       await showNotification(title: "Privacy info", message: OGCInternal.shared().retrivedDataPrivacy().description)
+                       await showNotification(title: "Privacy info", message: OGCInternal.shared().retriveDataPrivacy().description)
                     }
                     
                 case .toggleEnableFeedbacks:

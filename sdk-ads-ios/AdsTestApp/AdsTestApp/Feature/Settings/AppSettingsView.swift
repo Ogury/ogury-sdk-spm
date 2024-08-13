@@ -270,9 +270,9 @@ struct AppSettingsView: View {
                            }
                         }
                         Button{
-                            viewStore.send(.retrievedPrivacyDataTapped)
+                            viewStore.send(.retrievePrivacyDataTapped)
                         } label : {
-                           Text("Retrieved Privacy data")
+                           Text("Retrieve Privacy data")
                                .padding(.vertical, 4)
                                .frame(maxWidth: .infinity)
                         }
