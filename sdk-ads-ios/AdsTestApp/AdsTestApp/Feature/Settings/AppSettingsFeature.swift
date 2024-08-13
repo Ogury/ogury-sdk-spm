@@ -140,7 +140,7 @@ struct AppSettingsFeature: Reducer {
                
                 case .retrievePrivacyDataTapped:
                     return .run { _ in
-                       await showNotification(title: "Privacy info", message: OGCInternal.shared().retriveDataPrivacy().description)
+                       await showNotification(title: "Privacy info", message: OGCInternal.shared().retrieveDataPrivacy().description)
                     }
                     
                 case .toggleEnableFeedbacks:

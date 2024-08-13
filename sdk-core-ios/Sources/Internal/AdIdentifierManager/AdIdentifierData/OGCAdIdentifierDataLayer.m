@@ -150,7 +150,7 @@ static NSString * const OGCDataPrivacyKey = @"OGY-PrivacyDataKeys";
    [self.userDefaults setObject:@[key] forKey:OGCDataPrivacyKey];
 }
 
-- (NSDictionary<NSString *, id> *)retriveDataPrivacy {
+- (NSDictionary<NSString *, id> *)retrieveDataPrivacy {
    NSMutableDictionary *dataPrivacy = [NSMutableDictionary new];
    NSArray *dataPrivacyKeys = [self.userDefaults objectForKey:OGCDataPrivacyKey];
    for (NSString *key in dataPrivacyKeys) {

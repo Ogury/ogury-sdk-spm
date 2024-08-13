@@ -142,8 +142,8 @@
    [self.dataLayer storePrivacyData:key string:value];
 }
 
-- (NSDictionary<NSString *, id> *)retriveDataPrivacy {
-   return [self.dataLayer retrivedDataPrivacy];
+- (NSDictionary<NSString *, id> *)retrieveDataPrivacy {
+   return [self.dataLayer retrieveDataPrivacy];
 }
 
 @end
