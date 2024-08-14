@@ -41,7 +41,7 @@
 - (NSString *)gppConsentString;
 - (NSString *)gppSidConsentString;
 - (NSString *)tcfConsentString;
-- (NSDictionary<NSString*, NSString*>*)privacyDatas;
+- (NSDictionary<NSString *, NSString *> *)privacyDatas;
 @end
 
 @interface OGAAdPrivacyConfiguration ()
@@ -448,7 +448,7 @@
     OCMStub([self.tokenGenerator gppConsentString]).andReturn(@"gppConsentString");
     OCMStub([self.tokenGenerator gppSidConsentString]).andReturn(@"gppSidConsentString");
     OCMStub([self.tokenGenerator tcfConsentString]).andReturn(@"tcfConsentString");
-    NSDictionary *privacyDatas = @{ @"us_optout" : @(YES), @"customKey" : @"customValue" };
+    NSDictionary *privacyDatas = @{@"us_optout" : @(YES), @"customKey" : @"customValue"};
     OCMStub([self.tokenGenerator privacyDatas]).andReturn(privacyDatas);
     OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef]]).andReturn(YES);
     [self mockDataWithPermissions:0 skanEnabled:NO assetKeyEnabled:NO instanceTokenEnabled:NO lowBatteryMode:NO];

@@ -115,11 +115,11 @@
     privacy[OGARequestBodyPrivacyGPPKey] = [self gppConsentString];
     privacy[OGARequestBodyPrivacyGPPSIDKey] = [self gppSidConsentString];
     NSDictionary *privacyDatas = [self privacyDatas];
-    [privacyDatas enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+    [privacyDatas enumerateKeysAndObjectsUsingBlock:^(id _Nonnull key, id _Nonnull obj, BOOL *_Nonnull stop) {
         privacy[key] = obj;
     }];
     token[OGARequestBodyPrivacyComplianceKey] = privacy;
-    
+
     /// device
     NSMutableDictionary *device = [@{} mutableCopy];
     if ([privacyConfiguration adSyncPermissionIsEnabledFor:OGAAdPrivacyPermissionDeviceOrientation]) {
@@ -220,7 +220,7 @@
     return [OGAAdIdentifierService tcfConsentString];
 }
 
-- (NSDictionary<NSString*, id>*)privacyDatas {
+- (NSDictionary<NSString *, id> *)privacyDatas {
     return [OGAAdIdentifierService privacyDatas];
 }
 

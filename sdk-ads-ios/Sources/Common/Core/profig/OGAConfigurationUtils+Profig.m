@@ -37,7 +37,7 @@ static NSString *const OGAProfigBodyDeviceModuleVersion = @"module_version";
     content[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyGPPKey] = [self gppConsentString];
     content[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyGPPSIDKey] = [self gppSidConsentString];
     NSDictionary *privacyDatas = [self privacyDatas];
-    [privacyDatas enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+    [privacyDatas enumerateKeysAndObjectsUsingBlock:^(id _Nonnull key, id _Nonnull obj, BOOL *_Nonnull stop) {
         content[OGARequestBodyPrivacyComplianceKey][key] = obj;
     }];
 
@@ -56,7 +56,7 @@ static NSString *const OGAProfigBodyDeviceModuleVersion = @"module_version";
     return [OGAAdIdentifierService tcfConsentString];
 }
 
-+ (NSDictionary<NSString*, id>*)privacyDatas {
++ (NSDictionary<NSString *, id> *)privacyDatas {
     return [OGAAdIdentifierService privacyDatas];
 }
 

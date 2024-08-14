@@ -113,7 +113,7 @@ static NSString *const AdSyncServiceBodyContentOverlayMaximumSizeScaleKey = @"sc
     body[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyGPPKey] = [self gppConsentString];
     body[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyGPPSIDKey] = [self gppSidConsentString];
     NSDictionary *privacyDatas = [self privacyDatas];
-    [privacyDatas enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+    [privacyDatas enumerateKeysAndObjectsUsingBlock:^(id _Nonnull key, id _Nonnull obj, BOOL *_Nonnull stop) {
         body[OGARequestBodyPrivacyComplianceKey][key] = obj;
     }];
 
@@ -269,7 +269,7 @@ static NSString *const AdSyncServiceBodyContentOverlayMaximumSizeScaleKey = @"sc
     return [OGAAdIdentifierService tcfConsentString];
 }
 
-- (NSDictionary<NSString*, id>*)privacyDatas {
+- (NSDictionary<NSString *, id> *)privacyDatas {
     return [OGAAdIdentifierService privacyDatas];
 }
 

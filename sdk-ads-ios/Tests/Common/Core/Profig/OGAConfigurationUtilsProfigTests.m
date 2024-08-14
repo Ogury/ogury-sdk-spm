@@ -13,12 +13,12 @@
 
 @end
 
-@interface OGAConfigurationUtils()
+@interface OGAConfigurationUtils ()
 
 + (NSString *)gppConsentString;
 + (NSString *)gppSidConsentString;
 + (NSString *)tcfConsentString;
-+ (NSDictionary<NSString*, NSString*>*)privacyDatas;
++ (NSDictionary<NSString *, NSString *> *)privacyDatas;
 
 @end
 
@@ -33,7 +33,7 @@
     OCMStub([mockMyClass gppConsentString]).andReturn(@"gppConsentString");
     OCMStub([mockMyClass gppSidConsentString]).andReturn(@"gppSidConsentString");
     OCMStub([mockMyClass tcfConsentString]).andReturn(@"tcfConsentString");
-    NSDictionary *privacyDatas = @{ @"us_optout" : @(YES), @"customKey" : @"customValue" };
+    NSDictionary *privacyDatas = @{@"us_optout" : @(YES), @"customKey" : @"customValue"};
     OCMStub([mockMyClass privacyDatas]).andReturn(privacyDatas);
     NSMutableDictionary *profigParam = [OGAConfigurationUtils profigParams];
     XCTAssertNotNil(profigParam);
@@ -117,7 +117,7 @@
     OCMStub([mockMyClass gppConsentString]).andReturn(@"gppConsentString");
     OCMStub([mockMyClass gppSidConsentString]).andReturn(@"gppSidConsentString");
     OCMStub([mockMyClass tcfConsentString]).andReturn(@"tcfConsentString");
-    NSDictionary *privacyDatas = @{ @"us_optout" : @(YES), @"customKey" : @"customValue" };
+    NSDictionary *privacyDatas = @{@"us_optout" : @(YES), @"customKey" : @"customValue"};
     OCMStub([mockMyClass privacyDatas]).andReturn(privacyDatas);
     NSMutableDictionary *profigParam = [OGAConfigurationUtils profigParams];
     XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"tcf"]);

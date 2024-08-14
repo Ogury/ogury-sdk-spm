@@ -40,19 +40,19 @@
     return [NSString stringWithFormat:@"%@/%@/%@", OGA_SDK_VERSION, OGAAssetKeyManager.shared.assetKey, systemVersion];
 }
 // GPP
-+ (NSString * _Nullable)gppConsentString{
++ (NSString *_Nullable)gppConsentString {
     return [[OGCInternal shared] gppConsentString];
 }
 
-+ (NSString * _Nullable)gppSID{
++ (NSString *_Nullable)gppSID {
     return [[OGCInternal shared] gppSID];
 }
 
-+ (NSString * _Nullable)tcfConsentString{
++ (NSString *_Nullable)tcfConsentString {
     return [[OGCInternal shared] tcfConsentString];
 }
 
-+ (NSDictionary<NSString*, id>*)privacyDatas {
++ (NSDictionary<NSString *, id> *)privacyDatas {
     // return [[OGCInternal shared] retrieveDataPrivacy];
     return @{};
 }

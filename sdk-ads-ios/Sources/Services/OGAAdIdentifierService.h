@@ -16,10 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getUserAgent;
 + (void)updateInstanceToken;
 // GPP
-+ (NSString * _Nullable)gppConsentString;
-+ (NSString * _Nullable)gppSID;
-+ (NSString * _Nullable)tcfConsentString;
-+ (NSDictionary<NSString*, id>*)privacyDatas;
++ (NSString *_Nullable)gppConsentString;
++ (NSString *_Nullable)gppSID;
++ (NSString *_Nullable)tcfConsentString;
++ (NSDictionary<NSString *, id> *)privacyDatas;
 
 @end
 

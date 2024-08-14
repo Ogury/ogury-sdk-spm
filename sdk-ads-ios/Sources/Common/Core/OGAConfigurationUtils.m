@@ -139,5 +139,4 @@ static NSString *const OGAConfigurationUtilsManufacturer = @"Apple";
     return NO;
 }
 
-
 @end

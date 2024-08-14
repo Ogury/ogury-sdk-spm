@@ -42,7 +42,7 @@
 - (NSString *)gppConsentString;
 - (NSString *)gppSidConsentString;
 - (NSString *)tcfConsentString;
-- (NSDictionary<NSString*, NSString*>*)privacyDatas;
+- (NSDictionary<NSString *, NSString *> *)privacyDatas;
 
 @end
 
@@ -533,7 +533,7 @@ static NSString *const DefaultUserID = @"User";
     OCMStub([configuration gppConsentString]).andReturn(@"gppConsentString");
     OCMStub([configuration gppSidConsentString]).andReturn(@"gppSidConsentString");
     OCMStub([configuration tcfConsentString]).andReturn(@"tcfConsentString");
-    NSDictionary *privacyDatas = @{ @"us_optout" : @(YES), @"customKey" : @"customValue" };
+    NSDictionary *privacyDatas = @{@"us_optout" : @(YES), @"customKey" : @"customValue"};
     OCMStub([configuration privacyDatas]).andReturn(privacyDatas);
     OGAProfigDao *dao = OCMPartialMock([[OGAProfigDao alloc] init]);
     OGAProfigFullResponse *profig = OCMClassMock([OGAProfigFullResponse class]);
@@ -542,10 +542,10 @@ static NSString *const DefaultUserID = @"User";
     OGAWebViewUserAgentService *userAgentService = OCMClassMock([OGAWebViewUserAgentService class]);
     OCMStub([userAgentService webViewUserAgent]).andReturn(@"Mozilla/5.0");
     NSDictionary *payload = [configuration payloadForAdSyncWithAssetKeyManager:self.assetKeyManager
-                                                                             reachability:self.reachability
-                                                                        profigPersistence:dao
-                                                                   isOmidFrameworkPresent:YES
-                                                                         userAgentService:userAgentService];
+                                                                  reachability:self.reachability
+                                                             profigPersistence:dao
+                                                        isOmidFrameworkPresent:YES
+                                                              userAgentService:userAgentService];
     XCTAssertNotNil(payload[@"privacy_compliancy"][@"tcf"]);
     XCTAssertNotNil(payload[@"privacy_compliancy"][@"gpp"]);
     XCTAssertNotNil(payload[@"privacy_compliancy"][@"gpp_sid"]);
