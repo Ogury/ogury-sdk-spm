@@ -155,6 +155,7 @@ struct AdsStorableContainer: Codable {
     func retrieveAds(cardManager: AdsCardManager,
                      maxHeaderBidable: MaxBidder,
                      dtFairBidHeaderBidable: DTFairBidBidder,
+                     unityLevelPlayBidable: UnityLevelPlayBidder,
                      viewController: UIViewController? = nil,
                      view: UIView? = nil,
                      adDelegate: AdLifeCycleDelegate? = nil) -> [AdFormat: [any AdManager]] {
@@ -163,6 +164,7 @@ struct AdsStorableContainer: Codable {
             if let adTuple = adContainers.convertToAdFormat(cardManager: cardManager,
                                                             maxHeaderBidable: maxHeaderBidable,
                                                             dtFairBidHeaderBidable: dtFairBidHeaderBidable,
+                                                            unityLevelPlayBidable: unityLevelPlayBidable,
                                                             settings: settings,
                                                             viewController: viewController,
                                                             view: view,
@@ -241,6 +243,9 @@ struct AdContainer: Codable {
                 case RawInnerAdType.interstitial.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
                     let adType: AdType<InterstitialAdManager> = .dtFairBidHeaderBidding(adType: .interstitial, adMarkUpRetriever: nil)
                     return AdFormat(id: adType.uuid, adType: .init(adType))
+                case RawInnerAdType.interstitial.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
+                    let adType: AdType<InterstitialAdManager> = .unityLevelPlayHeaderBidding(adType: .interstitial, adMarkUpRetriever: nil)
+                    return AdFormat(id: adType.uuid, adType: .init(adType))
                     
                 case RawInnerAdType.optInVideo.rawValue:
                     let adType: AdType<OptInAdManager> = .optInVideo
@@ -250,6 +255,9 @@ struct AdContainer: Codable {
                     return AdFormat(id: adType.uuid, adType: .init(adType))
                 case RawInnerAdType.optInVideo.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
                     let adType: AdType<OptInAdManager> = .dtFairBidHeaderBidding(adType: .optInVideo, adMarkUpRetriever: nil)
+                    return AdFormat(id: adType.uuid, adType: .init(adType))
+                case RawInnerAdType.optInVideo.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
+                    let adType: AdType<OptInAdManager> = .unityLevelPlayHeaderBidding(adType: .optInVideo, adMarkUpRetriever: nil)
                     return AdFormat(id: adType.uuid, adType: .init(adType))
                     
                 case RawInnerAdType.thumbnail.rawValue:
@@ -265,7 +273,10 @@ struct AdContainer: Codable {
                 case RawInnerAdType.mpu.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
                     let adType: AdType<BannerAdManager> = .dtFairBidHeaderBidding(adType: .mpu, adMarkUpRetriever: nil)
                     return AdFormat(id: adType.uuid, adType: .init(adType))
-                    
+                case RawInnerAdType.mpu.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
+                    let adType: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType: .mpu, adMarkUpRetriever: nil)
+                    return AdFormat(id: adType.uuid, adType: .init(adType))
+                
                 case RawInnerAdType.banner.rawValue:
                     let adType: AdType<BannerAdManager> = .banner
                     return AdFormat(id: adType.uuid, adType: .init(adType))
@@ -274,6 +285,9 @@ struct AdContainer: Codable {
                     return AdFormat(id: adType.uuid, adType: .init(adType))
                 case RawInnerAdType.banner.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
                     let adType: AdType<BannerAdManager> = .dtFairBidHeaderBidding(adType: .banner, adMarkUpRetriever: nil)
+                    return AdFormat(id: adType.uuid, adType: .init(adType))
+                case RawInnerAdType.banner.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
+                    let adType: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType: .banner, adMarkUpRetriever: nil)
                     return AdFormat(id: adType.uuid, adType: .init(adType))
                     
                 default: throw EncodingError.invalidValue(adType, .init(codingPath: [], debugDescription: "The adFormat is not allowed"))
@@ -347,6 +361,7 @@ extension Array where Element == AdContainer {
     func convertToAdFormat(cardManager: AdsCardManager,
                            maxHeaderBidable: MaxBidder,
                            dtFairBidHeaderBidable: DTFairBidBidder,
+                           unityLevelPlayBidable: UnityLevelPlayBidder,
                            settings: SettingsContainer,
                            viewController: UIViewController?,
                            view: UIView?,
@@ -371,6 +386,19 @@ extension Array where Element == AdContainer {
                 case RawInnerAdType.interstitial.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
                     if let adType: AdType<InterstitialAdManager> = try? AdType.adType(from: adContainer.adType,
                                                                                       adMarkUpRetriever: dtFairBidHeaderBidable),
+                       let adManager = try? AdsStorableContainer
+                        .cardManager
+                        .adManager(for: adType,
+                                   options: adContainer.adOptions(adType: adType,
+                                                                  settings: settings,
+                                                                  viewController: viewController ?? UIViewController()),
+                                   adDelegate: adDelegate) {
+                        return adManager
+                    }
+                
+                case RawInnerAdType.interstitial.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
+                    if let adType: AdType<InterstitialAdManager> = try? AdType.adType(from: adContainer.adType,
+                                                                                      adMarkUpRetriever: unityLevelPlayBidable),
                        let adManager = try? AdsStorableContainer
                         .cardManager
                         .adManager(for: adType,
@@ -407,6 +435,19 @@ extension Array where Element == AdContainer {
                                    adDelegate: adDelegate) {
                         return adManager
                     }
+                
+                case RawInnerAdType.optInVideo.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
+                    if let adType: AdType<OptInAdManager> = try? AdType.adType(from: adContainer.adType,
+                                                                               adMarkUpRetriever: unityLevelPlayBidable),
+                       let adManager = try? AdsStorableContainer
+                        .cardManager
+                        .adManager(for: adType,
+                                   options: adContainer.adOptions(adType: adType,
+                                                                  settings: settings,
+                                                                  viewController: viewController ?? UIViewController()),
+                                   adDelegate: adDelegate) {
+                        return adManager
+                    }
                     
                 case RawInnerAdType.thumbnail.rawValue:
                     if let adType: AdType<ThumbnailAdManager> = try? AdType.adType(from: adContainer.adType,
@@ -427,6 +468,22 @@ extension Array where Element == AdContainer {
                     RawInnerAdType.mpu.rawValue + RawInnerAdType.maxSuffix.rawValue:
                     if let adType: AdType<BannerAdManager> = try? AdType.adType(from: adContainer.adType,
                                                                                 adMarkUpRetriever: maxHeaderBidable),
+                       let adManager = try? AdsStorableContainer
+                        .cardManager
+                        .adManager(for: adType,
+                                   options: adContainer.bannerOptions(adType: adType,
+                                                                      settings: settings,
+                                                                      view: view ?? UIView()),
+                                   adDelegate: adDelegate) {
+                        return adManager
+                    }
+                
+                case RawInnerAdType.banner.rawValue,
+                    RawInnerAdType.banner.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue,
+                    RawInnerAdType.mpu.rawValue,
+                    RawInnerAdType.mpu.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
+                    if let adType: AdType<BannerAdManager> = try? AdType.adType(from: adContainer.adType,
+                                                                                adMarkUpRetriever: unityLevelPlayBidable),
                        let adManager = try? AdsStorableContainer
                         .cardManager
                         .adManager(for: adType,
@@ -471,6 +528,7 @@ extension AdType {
             case .mpu: return currentOptions.mpu.adUnitId + (testMode ? AdsCardManager.testModeSuffix : "")
             case .maxHeaderBidding(let adType, _): return adType.defaultAdUnit(options: Configuration.shared.maxOptions, testMode: testMode)
             case .dtFairBidHeaderBidding(let adType, _): return adType.defaultAdUnit(options: Configuration.shared.dtFairBidOptions, testMode: testMode)
+            case .unityLevelPlayHeaderBidding(let adType, _): return adType.defaultAdUnit(options: Configuration.shared.unityLevelPlayOptions, testMode: testMode)
             @unknown default: fatalError()
         }
     }

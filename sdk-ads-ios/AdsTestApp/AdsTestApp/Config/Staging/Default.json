@@ -26,6 +26,7 @@
     },
     "maxHeaderBidding" : {
         "url" : "https://ms-bidder-bidmax.staging.cloud.ogury.io/api/header-bidding-request",
+        "displayManager" : "max",
         "interstitial" : {
             "adUnitId" : "22c75486-fe6e-4c9f-9fe8-df30292298ab",
             "campaignId" : "",
@@ -49,6 +50,7 @@
     },
     "DTFairBidHeaderBidding" : {
         "url" : "https://ms-bidder-fairbid.staging.cloud.ogury.io/api/header-bidding-request",
+        "displayManager" : "fyber",
         "interstitial" : {
             "adUnitId" : "530cb240-3370-4623-aa1c-9e68dbbae870",
             "campaignId" : "",
@@ -69,6 +71,34 @@
         },
         "mpu" : {
             "adUnitId" : "8d31e702-19f2-45a2-9bc5-4f67f62155ad",
+            "campaignId" : "",
+            "creativeId" : "",
+            "dspCreativeId" : ""
+        }
+    },
+    "UnityLevelPlayHeaderBidding" : {
+        "url" : "https://ms-bidder-ironsource.staging.cloud.ogury.io/api/header-bidding-request",
+        "displayManager" : "unity levelplay",
+        "interstitial" : {
+            "adUnitId" : "eedb0030-6445-42a5-8cd5-fb34231df2c8",
+            "campaignId" : "",
+            "creativeId" : "",
+            "dspCreativeId" : ""
+        },
+        "optIn" : {
+            "adUnitId" : "678e84a5-bc3d-4678-b94c-c6d7ff668e36",
+            "campaignId" : "",
+            "creativeId" : "",
+            "dspCreativeId" : ""
+        },
+        "banner" : {
+            "adUnitId" : "98d26253-5665-48f7-89d6-0d079c559e07",
+            "campaignId" : "",
+            "creativeId" : "",
+            "dspCreativeId" : ""
+        },
+        "mpu" : {
+            "adUnitId" : "50613cd0-5ea1-4baa-89e4-2ab0f3ac27f1",
             "campaignId" : "",
             "creativeId" : "",
             "dspCreativeId" : ""
