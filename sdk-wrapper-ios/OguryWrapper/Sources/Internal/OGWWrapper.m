@@ -4,8 +4,6 @@
 
 #import "OGWWrapper.h"
 
-#import <OguryCore/OguryPersistentEventBus.h>
-
 #import "OGWLog.h"
 #import "OGWModules.h"
 #import "OGWMonitoringInfoManager.h"
@@ -25,8 +23,6 @@ static int ogcMaxNumberOfConvertionValue = 63;
 @interface OGWWrapper ()
 
 @property(nonatomic, strong) OGWModules *modules;
-@property(nonatomic, strong) OguryPersistentEventBus *persistentEventBus;
-@property(nonatomic, strong) OguryEventBus *broadcastEventBus;
 @property(nonatomic, strong) OGWMonitoringInfoManager *monitoringInfoManager;
 @property(nonatomic, strong) OGWSetLogLevelNotificationManager *logNotificationManager;
 @property(nonatomic, strong) NSUserDefaults *userDefault;
@@ -46,25 +42,19 @@ static int ogcMaxNumberOfConvertionValue = 63;
 
 - (instancetype)init {
    return [self initWithModules:[OGWModules shared]
-             persistentEventBus:[[OguryPersistentEventBus alloc] init]
-              broadcastEventBus:[[OguryEventBus alloc] init]
           monitoringInfoManager:[[OGWMonitoringInfoManager alloc] init]
          logNotificationManager:[[OGWSetLogLevelNotificationManager alloc] init]
                     userDefault:[NSUserDefaults standardUserDefaults]];
 }
 
 - (instancetype)initWithModules:(OGWModules *)modules
-             persistentEventBus:(OguryPersistentEventBus *)persistentEventBus
-              broadcastEventBus:(OguryEventBus *)broadcastEventBus
           monitoringInfoManager:(OGWMonitoringInfoManager *)monitoringInfoManager
          logNotificationManager:(OGWSetLogLevelNotificationManager *)logNotificationManager
                     userDefault:(NSUserDefaults *)userDefault {
    if (self = [super init]) {
       _modules = modules;
-      _persistentEventBus = persistentEventBus;
       _monitoringInfoManager = monitoringInfoManager;
       _logNotificationManager = logNotificationManager;
-      _broadcastEventBus = broadcastEventBus;
       [logNotificationManager registerToNotification];
       _userDefault = userDefault;
    }
@@ -76,7 +66,7 @@ static int ogcMaxNumberOfConvertionValue = 63;
    for (OGWModule *module in self.modules.modules) {
       if (module.isPresent) {
          [[OGWLog shared] logAssetKeyFormat:OguryLogLevelDebug assetKey:configuration.assetKey format:@"Module [%@] initialization...", module.className];
-         [module startWithAssetKey:configuration.assetKey persistentEventBus:self.persistentEventBus broadcastEventBus:self.broadcastEventBus];
+         [module startWithAssetKey:configuration.assetKey];
          numberOfModulesPresent++;
       }
    }

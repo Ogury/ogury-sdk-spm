@@ -41,7 +41,7 @@ NSString *const OguryAdsTestsMediationName = @"AdinCube";
 - (void)testSetupWithAssetKey {
     [self.oguryAds setupWithAssetKey:OguryAdsTestsAssetKey];
 
-    OCMVerify([self.internal startWithAssetKey:OguryAdsTestsAssetKey persistentEventBus:nil broadcastEventBus:nil]);
+    OCMVerify([self.internal startWithAssetKey:OguryAdsTestsAssetKey]);
 }
 
 - (void)setupWithAssetKeyAndCompletionHandler {
@@ -55,14 +55,14 @@ NSString *const OguryAdsTestsMediationName = @"AdinCube";
 
     [self waitForExpectationsWithTimeout:0.5
                                  handler:^(NSError *error) {
-                                     OCMVerify([self.internal startWithAssetKey:OguryAdsTestsAssetKey persistentEventBus:nil broadcastEventBus:nil]);
+                                     OCMVerify([self.internal startWithAssetKey:OguryAdsTestsAssetKey]);
                                  }];
 }
 
 - (void)testSetupWithAssetKeyAndMediationName {
     [self.oguryAds setupWithAssetKey:OguryAdsTestsAssetKey andMediationName:OguryAdsTestsMediationName];
 
-    OCMVerify([self.internal startWithAssetKey:OguryAdsTestsAssetKey persistentEventBus:nil broadcastEventBus:nil]);
+    OCMVerify([self.internal startWithAssetKey:OguryAdsTestsAssetKey]);
 }
 
 - (void)testSetupWithAssetKeyMediationNameAndCompletionHandler {
@@ -77,7 +77,7 @@ NSString *const OguryAdsTestsMediationName = @"AdinCube";
 
     [self waitForExpectationsWithTimeout:0.5
                                  handler:^(NSError *error) {
-                                     OCMVerify([self.internal startWithAssetKey:OguryAdsTestsAssetKey persistentEventBus:nil broadcastEventBus:nil]);
+                                     OCMVerify([self.internal startWithAssetKey:OguryAdsTestsAssetKey]);
                                  }];
 }
 

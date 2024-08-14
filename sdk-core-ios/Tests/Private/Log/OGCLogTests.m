@@ -15,9 +15,6 @@
 @end
 
 @interface OguryLog (Core)
-
-- (void)ogcLogEventBusMessage:(OguryLogLevel)level message:(NSString *)message eventEntry:(OguryEventEntry *)eventEntry;
-
 - (void)ogcLogRequestMessage:(OguryLogLevel)level message:(NSString *)message request:(NSURLRequest *)request;
 
 @end
@@ -69,16 +66,6 @@ static NSString * const DefaultRawURL = @"https://www.github.com";
 
     OCMVerify([self.log.oguryLog ogcLogRequestMessage:OguryLogLevelDebug message:@"Hello" request:[OCMArg checkWithBlock:^BOOL(NSURLRequest *obj) {
         return obj == request; //test the pointer adress is equal
-    }]]);
-}
-
-- (void)testLogMessageEvent {
-    OguryEventEntry *entry = [[OguryEventEntry alloc] initWithEvent:@"event" andMessage:@"test"];
-
-    [self.log logEventBusMessage:OguryLogLevelDebug message:@"hello" eventEntry:entry];
-
-    OCMVerify([self.log.oguryLog ogcLogEventBusMessage:OguryLogLevelDebug message:@"hello" eventEntry:[OCMArg checkWithBlock:^BOOL(OguryEventEntry *obj) {
-        return obj == entry; //test the pointer adress is equal
     }]]);
 }
 

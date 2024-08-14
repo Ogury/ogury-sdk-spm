@@ -5,10 +5,8 @@
 #import "OGAInternal.h"
 #import "OGAAdManager.h"
 #import "OGAAssetKeyManager.h"
-#import "OGABroadcastEventBus.h"
 #import "OGAEnvironmentManager.h"
 #import "OGALog.h"
-#import "OGAPersistentEventBus.h"
 #import "OGAProfigManager.h"
 #import "OGAReachability.h"
 #import "OGASetLogLevelNotificationManager.h"
@@ -25,8 +23,6 @@
 @property(nonatomic, strong) OGAAdManager *adManager;
 @property(nonatomic, strong) OGALog *log;
 @property(nonatomic, strong) OGASetLogLevelNotificationManager *logNotificationManager;
-@property(nonatomic, strong) OGABroadcastEventBus *broadcastEventBus;
-@property(nonatomic, strong) OGAPersistentEventBus *persistentEventBus;
 
 @end
 
@@ -51,38 +47,30 @@
 #pragma mark - Initilization
 
 - (instancetype)init {
-    return [self initWithPersistentEventBus:[[OGAPersistentEventBus alloc] init]
-                          broadcastEventBus:[[OGABroadcastEventBus alloc] init]
-                            assetKeyManager:[OGAAssetKeyManager shared]
-                              profigManager:[OGAProfigManager shared]
-                         environmentManager:[OGAEnvironmentManager shared]
-                       internetReachability:[OGAReachability reachabilityForInternetConnection]
-                                  adManager:[OGAAdManager sharedManager]
-                                        log:[OGALog shared]
-                     logNotificationManager:[[OGASetLogLevelNotificationManager alloc] init]
-                    webViewUserAgentService:[OGAWebViewUserAgentService shared]];
+    return [self initWithAssetKeyManager:[OGAAssetKeyManager shared]
+                           profigManager:[OGAProfigManager shared]
+                      environmentManager:[OGAEnvironmentManager shared]
+                    internetReachability:[OGAReachability reachabilityForInternetConnection]
+                               adManager:[OGAAdManager sharedManager]
+                                     log:[OGALog shared]
+                  logNotificationManager:[[OGASetLogLevelNotificationManager alloc] init]
+                 webViewUserAgentService:[OGAWebViewUserAgentService shared]];
 }
 
-- (instancetype)initWithPersistentEventBus:(OGAPersistentEventBus *)consentEventBus
-                         broadcastEventBus:(OGABroadcastEventBus *)broadcastEventBus
-                           assetKeyManager:(OGAAssetKeyManager *)assetKeyManager
-                             profigManager:(OGAProfigManager *)profigManager
-                        environmentManager:(OGAEnvironmentManager *)environmentManager
-                      internetReachability:(OGAReachability *)internetReachability
-                                 adManager:(OGAAdManager *)adManager
-                                       log:(OGALog *)log
-                    logNotificationManager:(OGASetLogLevelNotificationManager *)logNotificationManager
-                   webViewUserAgentService:(OGAWebViewUserAgentService *)webViewUserAgentService {
+- (instancetype)initWithAssetKeyManager:(OGAAssetKeyManager *)assetKeyManager
+                          profigManager:(OGAProfigManager *)profigManager
+                     environmentManager:(OGAEnvironmentManager *)environmentManager
+                   internetReachability:(OGAReachability *)internetReachability
+                              adManager:(OGAAdManager *)adManager
+                                    log:(OGALog *)log
+                 logNotificationManager:(OGASetLogLevelNotificationManager *)logNotificationManager
+                webViewUserAgentService:(OGAWebViewUserAgentService *)webViewUserAgentService {
     if (self = [super init]) {
-        _persistentEventBus = consentEventBus;
-        _broadcastEventBus = broadcastEventBus;
         _assetKeyManager = assetKeyManager;
         _profigManager = profigManager;
-        _profigManager.broadcastEventBus = broadcastEventBus;
         _environmentManager = environmentManager;
         _internetReachability = internetReachability;
         _adManager = adManager;
-        _adManager.persistentEventBus = consentEventBus;
         _log = log;
         _logNotificationManager = logNotificationManager;
         _webViewUserAgentService = webViewUserAgentService;
@@ -94,19 +82,8 @@
 
 #pragma mark - methods
 
-- (void)startWithAssetKey:(NSString *)assetKey
-       persistentEventBus:(OguryPersistentEventBus *)persistentEventBus
-        broadcastEventBus:(OguryEventBus *)broadcastEventBus {
+- (void)startWithAssetKey:(NSString *)assetKey {
     [self.log log:OguryLogLevelInfo message:@"Module started"];
-    if (persistentEventBus) {
-        self.persistentEventBus.corePersistentEventBus = persistentEventBus;
-    }
-    if (broadcastEventBus) {
-        self.broadcastEventBus.coreBroadcastEventBus = broadcastEventBus;
-    }
-
-    [self.adManager registerToPersistentEventBus];
-    [self.profigManager registerToBroadcastEventBus];
 
     // if ([self.assetKeyManager shouldResetSDKFor:assetKey]) {
     //    [self resetSDK];

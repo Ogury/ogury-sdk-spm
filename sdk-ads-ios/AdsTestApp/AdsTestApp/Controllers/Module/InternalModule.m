@@ -2,26 +2,25 @@
 //  Copyright © 2021 Ogury Ltd. All rights reserved.
 //
 
-#import "OGYModule.h"
+#import "InternalModule.h"
 
-@interface OGYModule ()
+@interface InternalModule ()
 
 @property(nonatomic, retain, nullable) id module;
 
 @end
 
-@implementation OGYModule
+@implementation InternalModule
 
-NSString *const OGWModuleSharedSelector = @"shared";
-NSString *const OGWModuleStartWithAssetKeySelector = @"startWithAssetKey:persistentEventBus:broadcastEventBus:";
-NSString *const OGWModuleGetVersionSelector = @"getVersion";
+NSString *const InternalModuleSharedSelector = @"shared";
+NSString *const InternalModuleStartWithAssetKeySelector = @"startWithAssetKey:";
 
 #pragma mark - Initialization
 
 - (instancetype)initWithClassName:(NSString *)className {
     if (self = [super init]) {
         _className = className;
-        SEL sharedSelector = NSSelectorFromString(OGWModuleSharedSelector);
+        SEL sharedSelector = NSSelectorFromString(InternalModuleSharedSelector);
         Class moduleClass = NSClassFromString(className);
         _module = [moduleClass performSelector:sharedSelector];
     }
@@ -36,10 +35,8 @@ NSString *const OGWModuleGetVersionSelector = @"getVersion";
 
 #pragma mark - Methods
 
-- (void)startWithAssetKey:(NSString *)assetKey
-       persistentEventBus:(OguryPersistentEventBus *)persistentEventBus
-        broadcastEventBus:(OguryEventBus *)broadcastEventBus {
-    SEL startWithAssetKeySelector = NSSelectorFromString(OGWModuleStartWithAssetKeySelector);
+- (void)startWithAssetKey:(NSString *)assetKey {
+    SEL startWithAssetKeySelector = NSSelectorFromString(InternalModuleStartWithAssetKeySelector);
     if ([self.module respondsToSelector:startWithAssetKeySelector]) {
         NSMethodSignature *signature = [self methodSignatureForSelector:startWithAssetKeySelector];
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
@@ -47,8 +44,6 @@ NSString *const OGWModuleGetVersionSelector = @"getVersion";
         [invocation setSelector:startWithAssetKeySelector];
         [invocation setTarget:self.module];
         [invocation setArgument:&assetKey atIndex:2];
-        [invocation setArgument:&persistentEventBus atIndex:3];
-        [invocation setArgument:&broadcastEventBus atIndex:4];
         [invocation invoke];
     }
 }
