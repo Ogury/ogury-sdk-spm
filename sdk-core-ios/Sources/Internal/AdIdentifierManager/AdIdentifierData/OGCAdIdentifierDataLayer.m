@@ -34,9 +34,18 @@ static NSString * const OGCTCStringKey = @"IABTCF_TCString";
 - (id)initWithUserDefaults:(NSUserDefaults *)userDefault {
     if (self = [super init]) {
         _userDefaults = userDefault;
+        [_userDefaults addObserver:self forKeyPath:OGCGPPConsentStringKey options:NSKeyValueObservingOptionNew context:NULL];
+        [_userDefaults addObserver:self forKeyPath:OGCGPPSIDKey options:NSKeyValueObservingOptionNew context:NULL];
+        [_userDefaults addObserver:self forKeyPath:OGCTCStringKey options:NSKeyValueObservingOptionNew context:NULL];
     }
     
     return self;
+}
+
+- (void)deinit{
+   [_userDefaults removeObserver:self forKeyPath:OGCGPPConsentStringKey];
+   [_userDefaults removeObserver:self forKeyPath:OGCGPPSIDKey];
+   [_userDefaults removeObserver:self forKeyPath:OGCTCStringKey];
 }
 
 #pragma mark - Methods
@@ -119,6 +128,12 @@ static NSString * const OGCTCStringKey = @"IABTCF_TCString";
 
 - (void)storeData:(NSData *)data key:(NSString *)key {
     [self.userDefaults setObject:data forKey:key];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+   if ([self.consentChangedDelegate respondsToSelector:@selector(consentChanged)]) {
+      [self.consentChangedDelegate consentChanged];
+   }
 }
 
 @end
