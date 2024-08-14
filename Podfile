@@ -97,7 +97,6 @@ target 'OguryWrapperTestApp' do
   project "sdk-wrapper-ios/OguryWrapperTestApp/OguryWrapperTestApp.xcodeproj"
   pod 'OguryCore-Prod', '1.4.1-RC-1.0.7'
   pod 'OguryAds-Prod', '3.7.0-rc-3'
-  pod 'OguryChoiceManager-Prod', '4.3.0-rc-2'
 end
 
 

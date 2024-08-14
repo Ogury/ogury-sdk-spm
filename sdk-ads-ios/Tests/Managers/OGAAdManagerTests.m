@@ -3,7 +3,6 @@
 //
 
 #import <OCMock/OCMock.h>
-#import <OguryCore/OguryEventEntry.h>
 #import <XCTest/XCTest.h>
 #import "OGAAdConfiguration.h"
 #import "OGAAdManager+Testing.h"
@@ -37,7 +36,6 @@
 
 @property(nonatomic, strong) OGAAdManager *adManager;
 @property(nonatomic, strong) OGALog *log;
-@property(nonatomic, strong) OGAPersistentEventBus *persistentEventBus;
 
 @end
 
@@ -61,9 +59,7 @@
     self.isKilledChecker = OCMClassMock([OGAIsKilledChecker class]);
     self.isExpiredChecker = OCMClassMock(OGAIsExpiredChecker.self);
     self.keyboardObserver = OCMClassMock([OGAKeyboardObserver class]);
-    self.persistentEventBus = OCMClassMock([OGAPersistentEventBus class]);
     self.monitoringDispatcher = OCMClassMock([OGAMonitoringDispatcher class]);
-    self.persistentEventBus = OCMClassMock([OGAPersistentEventBus class]);
     self.adEnabledChecker = OCMClassMock([OGAAdEnabledChecker class]);
 
     self.adManager = OCMPartialMock([[OGAAdManager alloc] initWithProfigManager:self.profigManager
@@ -80,8 +76,6 @@
                                                            monitoringDispatcher:self.monitoringDispatcher
                                                                adEnabledChecker:self.adEnabledChecker
                                                                             log:self.log]);
-    self.adManager.persistentEventBus = self.persistentEventBus;
-    [self.adManager registerToPersistentEventBus];
     OCMStub(self.assetKeyManager.assetKey).andReturn(@"");
     OCMStub(self.assetKeyManager.sdkState).andReturn(OgurySDKStateReady);
 }
@@ -131,7 +125,6 @@
     OGAAdConfiguration *configuration = OCMClassMock([OGAAdConfiguration class]);
     OCMStub([self.adManager checkConditions:[OCMArg any] sequence:[OCMArg any] error:[OCMArg anyObjectRef]]).andReturn(YES);
     OCMStub([self.adManager continueLoadAdSequenceAfterConsentEventReceived:[OCMArg any]]);
-    OCMStub([self.persistentEventBus shouldContinueLoadingAdWith:[OCMArg any]]).andReturn(YES);
     OCMStub(self.assetKeyManager.sdkState).andReturn(OgurySDKStateReady);
     OCMStub(self.assetKeyManager.assetKey).andReturn(@"xxx");
     OCMStub([self.internetConnectionChecker checkForSequence:[OCMArg any] error:[OCMArg anyObjectRef]]).andReturn(YES);
@@ -142,24 +135,6 @@
     XCTAssertNotNil(sequence);
     XCTAssertEqual(sequence.status, OGAAdSequenceStatusLoading);
     XCTAssertEqual(sequence.configuration, configuration);
-}
-
-- (void)testLoadAdConfiguration_waitingForConsent {
-    OGAAdConfiguration *configuration = OCMClassMock([OGAAdConfiguration class]);
-    self.adManager.lastConsentEventEntry = [[OguryEventEntry alloc] initWithEvent:@"CM-status" andMessage:@"LOADING"];
-    OCMStub([self.adManager checkConditions:[OCMArg any] sequence:[OCMArg any] error:[OCMArg anyObjectRef]]).andReturn(YES);
-    OCMReject([self.adManager continueLoadAdSequenceAfterConsentEventReceived:[OCMArg any]]);
-    OCMStub(self.assetKeyManager.sdkState).andReturn(OgurySDKStateReady);
-    OCMStub(self.assetKeyManager.assetKey).andReturn(@"xxx");
-    OCMStub([self.internetConnectionChecker checkForSequence:[OCMArg any] error:[OCMArg anyObjectRef]]).andReturn(YES);
-
-    OGAAdSequence *sequence = [self.adManager loadAdConfiguration:configuration];
-
-    XCTAssertNotNil(sequence);
-    XCTAssertEqual(sequence.status, OGAAdSequenceStatusLoading);
-    XCTAssertEqual(sequence.configuration, configuration);
-    XCTAssertEqual(self.adManager.sequencesWaitingForConsent.count, 1);
-    XCTAssertEqual([[self.adManager.sequencesWaitingForConsent objectEnumerator] nextObject], sequence);
 }
 
 - (void)testContinueLoadAdSequenceAfterConsentEventReceived {
@@ -645,57 +620,6 @@
     OCMStub([profigResponse isAdsEnabled]).andReturn(YES);
     [self.adManager show:sequence additionalConditions:nil];
     OCMVerify([self.monitoringDispatcher sendShowErrorEventAdExpired:[OCMArg any] context:[OCMArg any]]);
-}
-
-- (void)testRegisterToPersistentEventBus {
-    [self.adManager registerToPersistentEventBus];
-    XCTAssertEqual(self.adManager.persistentEventBus, self.persistentEventBus);
-    OCMVerify([self.adManager registerToPersistentEventBus:[OCMArg any] eventSubscriber:[OCMArg any]]);
-}
-
-- (void)testRegisterToPersistentEventBusWithArguments {
-    OGAEventSubscriber *subscriber = OCMClassMock([OGAEventSubscriber class]);
-    [self.adManager registerToPersistentEventBus:self.persistentEventBus eventSubscriber:subscriber];
-    XCTAssertEqual(self.adManager.eventSubscriber, subscriber);
-    OCMVerify([self.persistentEventBus registerOguryEventSubscriber:subscriber]);
-}
-
-- (void)testHandleEventBusAfterEventExpiration {
-    OguryEventEntry *eventEntry = OCMClassMock([OguryEventEntry class]);
-    OCMStub(eventEntry.timestamp).andReturn([NSDate date]);
-    [self.adManager handleEventBusAfterEventExpiration:eventEntry];
-    XCTAssertNotNil(self.adManager.eventBusExprirationTimer);
-    OguryEventEntry *event = [self.adManager.eventBusExprirationTimer.userInfo objectForKey:@"event"];
-    XCTAssertEqual(event, eventEntry);
-}
-
-- (void)testTimerHasExpiredFor {
-    NSTimer *timer = OCMClassMock([NSTimer class]);
-    OCMStub([self.adManager handleConsentChange:[OCMArg any]]);
-    [self.adManager timerHasExpiredFor:timer];
-    OCMVerify([self.adManager handleConsentChange:[OCMArg any]]);
-}
-
-- (void)testHandleConsentChangeTimerExpired {
-    self.adManager.eventBusExprirationTimer = OCMClassMock([NSTimer class]);
-    ;
-    OguryEventEntry *eventEntry = OCMClassMock([OguryEventEntry class]);
-    OCMStub([self.adManager handleEventBusAfterEventExpiration:eventEntry]);
-    OCMStub([self.persistentEventBus shouldContinueLoadingAdWith:eventEntry]).andReturn(NO);
-    [self.adManager handleConsentChange:eventEntry];
-    XCTAssertNil(self.adManager.eventBusExprirationTimer);
-    OCMVerify([self.adManager handleEventBusAfterEventExpiration:eventEntry]);
-}
-
-- (void)testHandleConsentChangeTimerExpiredContinue {
-    self.adManager.eventBusExprirationTimer = OCMClassMock([NSTimer class]);
-    ;
-    OguryEventEntry *eventEntry = OCMClassMock([OguryEventEntry class]);
-    OCMStub([self.adManager handleEventBusAfterEventExpiration:eventEntry]);
-    OCMStub([self.persistentEventBus shouldContinueLoadingAdWith:eventEntry]).andReturn(YES);
-    [self.adManager handleConsentChange:eventEntry];
-    XCTAssertNil(self.adManager.eventBusExprirationTimer);
-    OCMReject([self.adManager handleEventBusAfterEventExpiration:eventEntry]);
 }
 
 - (void)testWhenCallingLoadWhileASequenceIsLoadingThenACallErrorShouldBeSent {

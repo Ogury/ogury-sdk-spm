@@ -26,15 +26,9 @@
 - (void)testStartWithAssetKey {
    OGWModule *module = [[OGWModule alloc] initWithClassName:@"OGWModuleClassMock"];
    NSString *assetKey = @"test";
-   OguryPersistentEventBus *persistenceEventBus = [[OguryPersistentEventBus alloc] init];
-   OguryEventBus *broadcastEventBus = [[OguryEventBus alloc] init];
    XCTAssertNil(OGWModuleClassMock.shared.storedAssetKey);
-   XCTAssertNil(OGWModuleClassMock.shared.storedPersistentEventBus);
-   XCTAssertNil(OGWModuleClassMock.shared.storedBroadcastEventBus);
-   [module startWithAssetKey:assetKey persistentEventBus:persistenceEventBus broadcastEventBus:broadcastEventBus];
+   [module startWithAssetKey:assetKey];
    XCTAssertEqual(OGWModuleClassMock.shared.storedAssetKey, assetKey);
-   XCTAssertEqual(OGWModuleClassMock.shared.storedPersistentEventBus, persistenceEventBus);
-   XCTAssertEqual(OGWModuleClassMock.shared.storedBroadcastEventBus, broadcastEventBus);
 }
 
 @end

@@ -74,14 +74,6 @@
     [self logMessage:message level:level];
 }
 
-- (void)ogcLogEventBusMessage:(OguryLogLevel)level message:(NSString *)message eventEntry:(OguryEventEntry *)eventEntry {
-    @synchronized (self.loggers) {
-        for (id<OguryLogger> currentLogger in self.loggers) {
-            [currentLogger logMessage:[[OGCEventLogMessage alloc] initWithLevel:level message:message eventEntry:eventEntry]];
-        }
-    }
-}
-
 - (void)ogcLogRequestMessage:(OguryLogLevel)level message:(NSString *)message request:(NSURLRequest *)request {
     @synchronized (self.loggers) {
         for (id<OguryLogger> currentLogger in self.loggers) {

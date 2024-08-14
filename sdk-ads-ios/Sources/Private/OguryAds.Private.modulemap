@@ -5,8 +5,6 @@
 explicit module OguryAds.Private {
 
     header "OGAInternal.h"
-    header "OGAPersistentEventBus.h"
-    header "OGABroadcastEventBus.h"
     
     export *
 }

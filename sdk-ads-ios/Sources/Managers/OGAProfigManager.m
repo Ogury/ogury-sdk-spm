@@ -11,12 +11,8 @@
 #import "OGAConfigurationUtils+Profig.h"
 #import "OGAEXTScope.h"
 #import "OGAOMIDService.h"
-#import "OGABroadcastEventBus.h"
-#import "OGAEventSubscriber.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGAMetricsService.h"
-#import "OGABroadcastEventBus.h"
-#import "OGAEventSubscriber.h"
 
 @interface OGAProfigManager ()
 
@@ -26,9 +22,7 @@
 @property(nonatomic, strong) NSMutableArray<ProfigCompletionBlock> *waitingCompletionBlocks;
 @property(nonatomic, strong) OGAMonitoringDispatcher *monitoringDispatcher;
 @property(nonatomic, strong) OGAMetricsService *metricsService;
-
 @property(nonatomic, strong) OGALog *log;
-@property(nonatomic, strong) OGAEventSubscriber *eventSubscriber;
 
 @end
 
@@ -75,30 +69,6 @@
 }
 
 #pragma mark - methods
-
-- (void)registerToBroadcastEventBus {
-    @weakify(self)
-        [self registerToBroadcastEventBus:self.broadcastEventBus
-                          eventSubscriber:[[OGAEventSubscriber alloc] initWithEvent:OGAChoiceManagerEventBusCMChange
-                                                                         andHandler:^(OguryEventEntry *eventEntry) {
-                                                                             @strongify(self)
-                                                                                 [self.log logEventBus:OguryLogLevelDebug
-                                                                                            eventEntry:eventEntry
-                                                                                               message:@"OGAProfigManager received event"];
-                                                                             if ([self.broadcastEventBus shouldResetProfig:eventEntry]) {
-                                                                                 [self.log logEventBus:OguryLogLevelDebug eventEntry:eventEntry message:@"OGAProfigManager calling reset profig by eventBus"];
-                                                                                 [self resetProfig];
-                                                                                 [self fetchProfig];
-                                                                             }
-                                                                         }]];
-}
-
-- (void)registerToBroadcastEventBus:(OGABroadcastEventBus *)broadcastEventBus
-                    eventSubscriber:(OGAEventSubscriber *)eventSubscriber {
-    self.eventSubscriber = eventSubscriber;
-    [broadcastEventBus registerOguryEventSubscriber:eventSubscriber];
-}
-
 - (void)syncProfigWithCompletion:(ProfigCompletionBlock)completion {
     @synchronized(self.waitingCompletionBlocks) {
         if (self.waitingCompletionBlocks.count > 0) {
