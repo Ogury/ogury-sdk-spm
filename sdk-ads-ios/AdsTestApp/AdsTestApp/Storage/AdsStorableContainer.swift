@@ -478,9 +478,7 @@ extension Array where Element == AdContainer {
                         return adManager
                     }
                 
-                case RawInnerAdType.banner.rawValue,
-                    RawInnerAdType.banner.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue,
-                    RawInnerAdType.mpu.rawValue,
+                case RawInnerAdType.banner.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue,
                     RawInnerAdType.mpu.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
                     if let adType: AdType<BannerAdManager> = try? AdType.adType(from: adContainer.adType,
                                                                                 adMarkUpRetriever: unityLevelPlayBidable),
