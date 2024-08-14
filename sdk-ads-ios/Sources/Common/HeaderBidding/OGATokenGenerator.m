@@ -111,15 +111,9 @@
         }
     }];
     NSMutableDictionary *privacy = [NSMutableDictionary dictionary];
-    if ([self tcfConsentString] != nil) {
-        privacy[OGARequestBodyPrivacyTCFKey] = [self tcfConsentString];
-    }
-    if ([self gppConsentString] != nil) {
-        privacy[OGARequestBodyPrivacyGPPKey] = [self gppConsentString];
-    }
-    if ([self gppSidConsentString] != nil) {
-        privacy[OGARequestBodyPrivacyGPPSIDKey] = [self gppSidConsentString];
-    }
+    privacy[OGARequestBodyPrivacyTCFKey] = [self tcfConsentString];
+    privacy[OGARequestBodyPrivacyGPPKey] = [self gppConsentString];
+    privacy[OGARequestBodyPrivacyGPPSIDKey] = [self gppSidConsentString];
     NSDictionary *privacyDatas = [self privacyDatas];
     [privacyDatas enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         privacy[key] = obj;
