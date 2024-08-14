@@ -220,7 +220,7 @@ class RTBBidder: HeaderBidable {
                              dspCreative: dspCreative,
                              dspRegion: dspRegion,
                              url: url) { result in
-                print("👀 \(result)")
+//                print("👀 \(result)")
                 switch result {
                     case let .success(adMarkUp): continuation.resume(returning: adMarkUp)
                     case let .failure(error): continuation.resume(throwing: error)
