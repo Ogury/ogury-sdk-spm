@@ -3,11 +3,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <OguryCore/OguryPersistentEventBus.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OGYModule : NSObject
+@interface InternalModule : NSObject
 
 #pragma mark - Properties
 
@@ -21,9 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Methods
 
-- (void)startWithAssetKey:(NSString *)assetKey
-       persistentEventBus:(OguryPersistentEventBus *)persistentEventBus
-        broadcastEventBus:(OguryEventBus *)broadcastEventBus;
+- (void)startWithAssetKey:(NSString *)assetKey;
 
 @end
 
