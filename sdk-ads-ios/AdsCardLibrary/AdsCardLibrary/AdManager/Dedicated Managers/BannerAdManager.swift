@@ -44,21 +44,18 @@ public final class BannerAdManager: AdManager {
    public let id: UUID = UUID()
    
    //MARK: Initializer
-   public init(adType: AdType<BannerAdManager>, adDelegate: AdLifeCycleDelegate? = nil) {
-      events = PassthroughSubject<AdLifeCycleEvent, Never>()
-      self.adType = adType
-      proxyDelegate = MrecProxyDelegate(adDelegate: adDelegate)
-      proxyDelegate.adManager = self
-      if case let .maxHeaderBidding(_, adMarkUpRetriever) = adType {
-         bidder = adMarkUpRetriever
-      }
-      else if case let .dtFairBidHeaderBidding(_, adMarkUpRetriever) = adType {
-         bidder = adMarkUpRetriever
-      }
-      else if case let .unityLevelPlayHeaderBidding(_, adMarkUpRetriever) = adType {
-         bidder = adMarkUpRetriever
-      }
-   }
+    public init(adType: AdType<BannerAdManager>, adDelegate: AdLifeCycleDelegate? = nil) {
+        events = PassthroughSubject<AdLifeCycleEvent, Never>()
+        self.adType = adType
+        proxyDelegate = MrecProxyDelegate(adDelegate: adDelegate)
+        proxyDelegate.adManager = self
+        switch adType {
+            case let .maxHeaderBidding(_, adMarkUpRetriever): bidder = adMarkUpRetriever
+            case let .dtFairBidHeaderBidding(_, adMarkUpRetriever): bidder = adMarkUpRetriever
+            case let .unityLevelPlayHeaderBidding(_, adMarkUpRetriever): bidder = adMarkUpRetriever
+            default: ()
+        }
+    }
    
    public func update(options: BaseAdOptions) {
       if self.options.baseOptions.adUnitId != options.adUnitId {

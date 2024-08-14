@@ -223,21 +223,20 @@ struct RTBBidder {
             } else {
                 token = OguryTokenService.getBidderToken()
             }
-            
-            if (token != nil) {
-                let filledToken = token!
-                if ( displayManager == "max" || displayManager == "fyber") {
-                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN_SIGNAL", with: "\"signal\": \"\(filledToken)\"")
-                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN_EXT", with: "")
-                } else if (displayManager == "unity levelplay") {
-                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN_SIGNAL", with: "")
-                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN_EXT", with: "\"token\": \"\(filledToken)\"")
+            var signal = ""
+            var ext = ""
+            if let token {
+                switch displayManager {
+                    case "max", "fyber": signal = "\"signal\": \"\(token)\""
+                    case "unity levelplay": ext = "\"token\": \"\(token)\""
+                    default: break
                 }
+                formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN_EXT", with: "\(ext)")
+                formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN_SIGNAL", with: "\(signal)")
             } else {
-                formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN_SIGNAL", with: "")
                 formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN_EXT", with: "")
+                formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN_SIGNAL", with: "")
             }
-            
             request.httpBody = formattedBody.data(using: .utf8)
             
             URLSession.shared
@@ -287,22 +286,26 @@ struct RTBBidder {
                     completionHandler(.failure(.invalidData))
                     return
                 }
-                if ( displayManager == "max" || displayManager == "fyber") {
-                    if(firstBid.ext != nil) {
-                        completionHandler(.success(firstBid.ext!.signaldata))
-                    } else {
-                        completionHandler(.failure(.invalidResponse))
-                        return
-                    }
-                } else if (displayManager == "unity levelplay") {
-                    if(firstBid.adm != nil) {
-                        completionHandler(.success(firstBid.adm!))
-                    } else {
-                        completionHandler(.failure(.invalidResponse))
-                        return
-                    }
+                var token: String?
+                switch displayManager {
+                    case "unity levelplay":
+                        if let adm = firstBid.adm {
+                            token = adm
+                        }
+                    case "max", "fyber":
+                        if let ext = firstBid.ext {
+                            token = ext.signaldata
+                        }
+                    default :
+                        if let ext = firstBid.ext {
+                            token = ext.signaldata
+                        }
                 }
-                
+                if let token {
+                    completionHandler(.success(token))
+                } else {
+                    completionHandler(.failure(.invalidResponse))
+                }
             case 300..<400:
                 completionHandler(.failure(.redirection(code: urlResponse.statusCode)))
                 
