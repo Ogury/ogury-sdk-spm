@@ -226,8 +226,8 @@
     return [OGAAdIdentifierService tcfConsentString];
 }
 
-- (NSDictionary<NSString*, NSString*>*)privacyDatas {
-    return @{};
+- (NSDictionary<NSString*, id>*)privacyDatas {
+    return [OGAAdIdentifierService privacyDatas];
 }
 
 @end

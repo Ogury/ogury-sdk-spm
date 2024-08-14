@@ -269,8 +269,8 @@ static NSString *const AdSyncServiceBodyContentOverlayMaximumSizeScaleKey = @"sc
     return [OGAAdIdentifierService tcfConsentString];
 }
 
-- (NSDictionary<NSString*, NSString*>*)privacyDatas {
-    return @{};
+- (NSDictionary<NSString*, id>*)privacyDatas {
+    return [OGAAdIdentifierService privacyDatas];
 }
 
 - (NSString *)sdkVersion {

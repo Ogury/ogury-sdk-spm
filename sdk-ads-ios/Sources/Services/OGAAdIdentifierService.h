@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString * _Nullable)gppConsentString;
 + (NSString * _Nullable)gppSID;
 + (NSString * _Nullable)tcfConsentString;
++ (NSDictionary<NSString*, id>*)privacyDatas;
 
 @end
 

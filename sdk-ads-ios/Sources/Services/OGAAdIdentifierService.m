@@ -52,5 +52,9 @@
     return [[OGCInternal shared] tcfConsentString];
 }
 
++ (NSDictionary<NSString*, id>*)privacyDatas {
+    // return [[OGCInternal shared] retrieveDataPrivacy];
+    return @{};
+}
 
 @end

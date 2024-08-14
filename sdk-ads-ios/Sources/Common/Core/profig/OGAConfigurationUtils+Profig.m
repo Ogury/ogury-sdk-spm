@@ -56,8 +56,8 @@ static NSString *const OGAProfigBodyDeviceModuleVersion = @"module_version";
     return [OGAAdIdentifierService tcfConsentString];
 }
 
-+ (NSDictionary<NSString*, NSString*>*)privacyDatas {
-    return @{};
++ (NSDictionary<NSString*, id>*)privacyDatas {
+    return [OGAAdIdentifierService privacyDatas];
 }
 
 + (NSError *)errorForOGAProfigError:(OGAProfigExternalError)profigError {
