@@ -439,5 +439,17 @@ NSString *tokenId2= @"00000000-2222-3333-1598-000000000000";
     XCTAssertEqual([modelLayer getInstanceToken].length, 36);
 }
 
+- (void)testRetrievedGPPConsentString {
+   [self.mockedUserDefault unlockUserDefault];
+   [self.mockedUserDefault setObject:[@"2-3" dataUsingEncoding:NSUTF8StringEncoding] forKey:@"IABGPP_GppSID"];
+   [self.mockedUserDefault setObject:[@"DBABM~CPXxRfAPXxRfAAfKABENB-CgAAAAAAAAAAYgAAAAAAAA" dataUsingEncoding:NSUTF8StringEncoding] forKey:@"IABGPP_HDR_GppString"];
+   [self.mockedUserDefault setObject:[@"CPokAsAPokAsABEACBENC7CgAP_AAH_AAAwIAAAAAAAA" dataUsingEncoding:NSUTF8StringEncoding] forKey:@"IABTCF_TCString"];
+   OGCNSProcessInfoMock *processInfo = [[OGCNSProcessInfoMock alloc] initWithMajorVersion:13];
+   OGCAdIdentifierManager *modelLayer = [[OGCAdIdentifierManager alloc] initWithPrivacyLayer:self.privacyLayer andDataLayer:self.dataLayer andProcessInfo:processInfo log:self.log];
+   XCTAssertTrue([[modelLayer retrieveGPPSID] isEqualToString: @"2-3"]);
+   XCTAssertTrue([[modelLayer retrieveGPPConsentString] isEqualToString: @"DBABM~CPXxRfAPXxRfAAfKABENB-CgAAAAAAAAAAYgAAAAAAAA"]);
+   XCTAssertTrue([[modelLayer retrieveTCFConsentString] isEqualToString: @"CPokAsAPokAsABEACBENC7CgAP_AAH_AAAwIAAAAAAAA"]);
+}
+
 @end
 
