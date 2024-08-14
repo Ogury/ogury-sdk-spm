@@ -55,7 +55,7 @@ struct AdSdkLauncher {
     }
     
     private func startModule(from moduleClass: String) {
-        let module = OGYModule(className: moduleClass)
+        let module = InternalModule(className: moduleClass)
         module.start(withAssetKey: assetKey)
     }
 }
