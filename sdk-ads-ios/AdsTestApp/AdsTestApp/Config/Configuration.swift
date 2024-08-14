@@ -39,7 +39,7 @@ struct Configuration: Decodable {
         let banner: DefaultBaseOptions
         let thumbnail: DefaultBaseOptions?
         let url: URL?
-        var displayManager: String?
+        var displayManager: String? { "max" }
     }
     struct DefaultDTFairBidOptions: MediationOptions {
         let interstitial: DefaultBaseOptions
@@ -48,7 +48,7 @@ struct Configuration: Decodable {
         let banner: DefaultBaseOptions
         let thumbnail: DefaultBaseOptions?
         let url: URL?
-        var displayManager: String?
+        var displayManager: String? { "fyber" }
     }
     struct DefaultUnityLevelPlayOptions: MediationOptions {
         let interstitial: DefaultBaseOptions
@@ -57,7 +57,7 @@ struct Configuration: Decodable {
         let banner: DefaultBaseOptions
         let thumbnail: DefaultBaseOptions?
         let url: URL?
-        var displayManager: String?
+        var displayManager: String? { "unity levelplay" }
     }
     let options: DefaultOptions
     let maxOptions: DefaultMaxOptions
