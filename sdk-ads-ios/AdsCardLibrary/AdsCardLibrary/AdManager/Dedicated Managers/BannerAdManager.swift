@@ -43,7 +43,7 @@ public final class BannerAdManager: AdManager {
    internal var bidder: HeaderBidable?
    public let id: UUID = UUID()
    
-   //MARK: Initializer
+    //MARK: Initializer
     public init(adType: AdType<BannerAdManager>, adDelegate: AdLifeCycleDelegate? = nil) {
         events = PassthroughSubject<AdLifeCycleEvent, Never>()
         self.adType = adType

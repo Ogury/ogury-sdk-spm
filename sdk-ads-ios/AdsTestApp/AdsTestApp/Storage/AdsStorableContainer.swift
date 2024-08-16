@@ -463,8 +463,20 @@ extension Array where Element == AdContainer {
                     }
                     
                 case RawInnerAdType.banner.rawValue,
-                    RawInnerAdType.banner.rawValue + RawInnerAdType.maxSuffix.rawValue,
-                    RawInnerAdType.mpu.rawValue,
+                    RawInnerAdType.mpu.rawValue:
+                    if let adType: AdType<BannerAdManager> = try? AdType.adType(from: adContainer.adType,
+                                                                                adMarkUpRetriever: nil),
+                       let adManager = try? AdsStorableContainer
+                        .cardManager
+                        .adManager(for: adType,
+                                   options: adContainer.bannerOptions(adType: adType,
+                                                                      settings: settings,
+                                                                      view: view ?? UIView()),
+                                   adDelegate: adDelegate) {
+                        return adManager
+                    }
+                    
+                case RawInnerAdType.banner.rawValue + RawInnerAdType.maxSuffix.rawValue,
                     RawInnerAdType.mpu.rawValue + RawInnerAdType.maxSuffix.rawValue:
                     if let adType: AdType<BannerAdManager> = try? AdType.adType(from: adContainer.adType,
                                                                                 adMarkUpRetriever: maxHeaderBidable),
@@ -478,9 +490,7 @@ extension Array where Element == AdContainer {
                         return adManager
                     }
                 
-                case RawInnerAdType.banner.rawValue,
-                    RawInnerAdType.banner.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue,
-                    RawInnerAdType.mpu.rawValue,
+                case RawInnerAdType.banner.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue,
                     RawInnerAdType.mpu.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
                     if let adType: AdType<BannerAdManager> = try? AdType.adType(from: adContainer.adType,
                                                                                 adMarkUpRetriever: unityLevelPlayBidable),
