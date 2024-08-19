@@ -53,8 +53,7 @@
 }
 
 + (NSDictionary<NSString *, id> *)privacyDatas {
-    // return [[OGCInternal shared] retrieveDataPrivacy];
-    return @{};
+    return [[OGCInternal shared] retrieveDataPrivacy];
 }
 
 @end
