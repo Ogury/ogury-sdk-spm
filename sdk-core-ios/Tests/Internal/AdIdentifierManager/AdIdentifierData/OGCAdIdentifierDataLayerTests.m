@@ -151,4 +151,23 @@ static NSString *NoIDFA = @"00000000-0000-0000-0000-000000000000";
     XCTAssertNotNil([self.mockedUserDefault objectForKey:@"DeviceSettings"]);
 }
 
+- (void)testStoreAndRetrievePrivacyData {
+    OGCAdIdentifierDataLayer *dataLayer = [[OGCAdIdentifierDataLayer alloc] initWithUserDefaults:self.mockedUserDefault];
+    XCTAssertEqual([self.mockedUserDefault.dict count], 0);
+    [dataLayer storePrivacyData:@"testValue" forKey:@"testKey"];
+    XCTAssertEqual([self.mockedUserDefault.dict count], 2);
+    XCTAssertEqual([[dataLayer retrieveDataPrivacy] count], 1);
+    [dataLayer storePrivacyData:@"testValue" forKey:@"testKey"];
+    XCTAssertEqual([self.mockedUserDefault.dict count], 2);
+    XCTAssertEqual([[dataLayer retrieveDataPrivacy] count], 1);
+    [dataLayer storePrivacyData:[NSNumber numberWithBool:false] forKey:@"testKeyBool"];
+    [dataLayer storePrivacyData:[NSNumber numberWithBool:false] forKey:@"testKeyBool"];
+    XCTAssertEqual([self.mockedUserDefault.dict count], 3);
+    XCTAssertEqual([[dataLayer retrieveDataPrivacy] count], 2);
+    [dataLayer storePrivacyData:[NSNumber  numberWithInt:12] forKey:@"testKeyInt"];
+    [dataLayer storePrivacyData:[NSNumber  numberWithInt:12] forKey:@"testKeyInt"];
+    XCTAssertEqual([self.mockedUserDefault.dict count], 4);
+    XCTAssertEqual([[dataLayer retrieveDataPrivacy] count], 3);
+}
+
 @end

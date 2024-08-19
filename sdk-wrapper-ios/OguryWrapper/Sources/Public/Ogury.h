@@ -19,6 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)registerAttributionForSKAdNetwork;
 
++ (void)storePrivacyData:(NSString *)key boolean:(BOOL)value;
+
++ (void)storePrivacyData:(NSString *)key integer:(NSInteger)value;
+
++ (void)storePrivacyData:(NSString *)key string:(NSString *)value;
+
 @end
 
 NS_ASSUME_NONNULL_END

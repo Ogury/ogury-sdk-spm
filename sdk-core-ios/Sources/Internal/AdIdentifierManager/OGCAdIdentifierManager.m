@@ -35,7 +35,6 @@
 - (id)init {
     OGCAdIdentifierPrivacyLayer *privacyLayer = [[OGCAdIdentifierPrivacyLayer alloc] init];
     OGCAdIdentifierDataLayer *dataLayer = [[OGCAdIdentifierDataLayer alloc] init];
-
     return [self initWithPrivacyLayer:privacyLayer andDataLayer:dataLayer andProcessInfo:[NSProcessInfo processInfo] log:[OGCLog shared]];
 }
 
@@ -43,6 +42,7 @@
     if (self = [super init]) {
         _privacyLayer = privacyLayer;
         _dataLayer = dataLayer;
+        _dataLayer.consentChangedDelegate = self.consentChangedDelegate;
         _processInfo = processInfo;
         _instanceToken = [self createInstanceTokenWithProcessInfo:processInfo];
         _log = log;
@@ -130,5 +130,12 @@
     [self.log logMessage:OguryLogLevelDebug message:@"Update instance token"];
 }
 
+- (void)storePrivacyData:(id)value forKey:(NSString *)key {
+   [self.dataLayer storePrivacyData:value forKey:key];
+}
+
+- (NSDictionary<NSString *, id> *)retrieveDataPrivacy {
+   return [self.dataLayer retrieveDataPrivacy];
+}
 
 @end

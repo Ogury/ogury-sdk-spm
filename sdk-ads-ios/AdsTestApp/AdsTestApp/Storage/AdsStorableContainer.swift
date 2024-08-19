@@ -45,6 +45,14 @@ struct SettingsContainer: Codable, Equatable {
         get { settings.enableFeedbacks }
         set { settings.enableFeedbacks = newValue }
     }
+    var usOptout: Bool {
+        get { settings.usOptout }
+        set { settings.usOptout = newValue }
+    }
+    var usOptoutPartner: Bool {
+        get { settings.usOptoutPartner }
+        set { settings.usOptoutPartner = newValue }
+    }
     var name = "AdsSet"
     var os = SettingsContainer.currentOs
     var shouldUpdateAdUnits: Bool { os != SettingsContainer.currentOs }

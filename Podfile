@@ -73,6 +73,7 @@ end
 target "AdsTestApp-Prod-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod "OguryCore-Prod", "1.4.1-RC-1.0.7"
+  pod 'InMobiCMP', '2.0.1'
 end
 
 

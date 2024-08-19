@@ -5,6 +5,7 @@
 #import "Ogury.h"
 #import "OGWLog.h"
 #import "OGWWrapper.h"
+#import <OguryCore/OGCInternal.h>
 
 @implementation Ogury
 
@@ -25,4 +26,15 @@
    [[OGWWrapper shared] registerAttributionForSKAdNetwork];
 }
 
++ (void)storePrivacyData:(NSString *)key boolean:(BOOL)value {
+   [[OGCInternal shared] storePrivacyData:key boolean:value];
+}
+
++ (void)storePrivacyData:(NSString *)key integer:(NSInteger)value {
+   [[OGCInternal shared] storePrivacyData:key integer:value];
+}
+
++ (void)storePrivacyData:(NSString *)key string:(NSString *)value {
+   [[OGCInternal shared] storePrivacyData:key string:value];
+}
 @end

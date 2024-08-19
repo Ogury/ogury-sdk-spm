@@ -22,6 +22,7 @@
 - (id)initWithAdIdentifierManager:(OGCAdIdentifierManager *)adIdentifierManager log:(OGCLog *)log logNotificationManager:(OGCSetLogLevelNotificationManager *)logNotificationManager {
     if (self = [super init]) {
         _adIdentifierManager = adIdentifierManager;
+        _adIdentifierManager.consentChangedDelegate = self.consentChangedDelegate;
         _log = log;
         _logNotificationManager = logNotificationManager;
         [_logNotificationManager registerToNotification];
@@ -92,5 +93,21 @@
     return [self.adIdentifierManager retrieveTCFConsentString];
 }
 
+
+- (void)storePrivacyData:(NSString *)key boolean:(BOOL)value {
+   [self.adIdentifierManager storePrivacyData:[NSNumber numberWithBool:value]  forKey:key];
+}
+
+- (void)storePrivacyData:(NSString *)key integer:(NSInteger)value {
+   [self.adIdentifierManager storePrivacyData:[NSNumber numberWithInteger:value] forKey:key];
+}
+
+- (void)storePrivacyData:(NSString *)key string:(NSString *)value {
+   [self.adIdentifierManager storePrivacyData:value forKey:key];
+}
+
+- (NSDictionary<NSString *, id> *)retrieveDataPrivacy {
+   return [self.adIdentifierManager retrieveDataPrivacy];
+}
 
 @end

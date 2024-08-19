@@ -3,10 +3,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OGCConsentChangedDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OGCAdIdentifierDataLayer : NSObject
+
+@property (nonatomic, weak) id<OGCConsentChangedDelegate> consentChangedDelegate;
 
 #pragma mark - Methods
 
@@ -28,11 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSData *)getTCFConsentString;
 
-- (void)storePrivacyData:(NSString *)key boolean:(BOOL)value;
+- (void)storePrivacyData:(id)value forKey:(NSString *)key;
 
-- (void)storePrivacyData:(NSString *)key integer:(NSInteger)value;
-
-- (void)storePrivacyData:(NSString *)key string:(NSString *)value;
+- (NSDictionary<NSString *, id> *)retrieveDataPrivacy;
 
 @end
 
