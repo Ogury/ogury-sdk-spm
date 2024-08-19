@@ -411,15 +411,21 @@
     OCMStub([mockedDao profigFullResponse]).andReturn(profigResponse);
     OCMStub([profigResponse isAdsEnabled]).andReturn(YES);
     OGAAdSequenceCoordinator *coordinator = OCMClassMock([OGAAdSequenceCoordinator class]);
-    OCMStub([coordinator show:[OCMArg anyObjectRef]]).andReturn(YES);
     sequence.coordinator = coordinator;
     OCMStub(self.assetKeyManager.assetKey).andReturn(@"");
     OCMStub(self.assetKeyManager.sdkState).andReturn(OgurySDKStateReady);
 
+    XCTestExpectation *ex = [[XCTestExpectation alloc] initWithDescription:@"sendShowErrorEventAdExpired should be called"];
+    OCMStub([coordinator show:[OCMArg anyObjectRef]]).andDo(^(NSInvocation *invocation) {
+                                                         // XCTAssertTrue([NSThread isMainThread], @"doSomething should be called on the main thread");
+                                                         [ex fulfill];
+                                                     })
+        .andReturn(YES);
     [self.adManager show:sequence additionalConditions:nil];
+    [self waitForExpectations:@[ ex ] timeout:1];
 
     XCTAssertEqual(sequence.status, OGAAdSequenceStatusShown);
-    OCMVerify([coordinator show:[OCMArg anyObjectRef]]);
+    ;
 
     __block NSArray<id<OGAConditionChecker>> *conditions;
     OCMVerify([self.adManager checkConditions:[OCMArg checkWithBlock:^BOOL(id obj) {
@@ -450,11 +456,11 @@
 
 - (void)testShow_withAdditionalConditions {
     OGAAdConfiguration *configuration = OCMClassMock([OGAAdConfiguration class]);
-    OGAAdSequence *sequence = [[OGAAdSequence alloc] initWithAdConfiguration:configuration];
+    OGAAdSequence *sequence = OCMPartialMock([[OGAAdSequence alloc] initWithAdConfiguration:configuration]);
     OCMStub([self.adManager checkConditions:[OCMArg any] sequence:[OCMArg any] error:[OCMArg anyObjectRef]]).andReturn(YES);
     OGAAdSequenceCoordinator *coordinator = OCMClassMock([OGAAdSequenceCoordinator class]);
-    OCMStub([coordinator show:[OCMArg anyObjectRef]]).andReturn(YES);
-    sequence.coordinator = coordinator;
+    //    OCMStub([coordinator show:[OCMArg anyObjectRef]]).andReturn(YES);
+    OCMStub(sequence.coordinator).andReturn(coordinator);
     id<OGAConditionChecker> additionalCondition = OCMProtocolMock(@protocol(OGAConditionChecker));
     OGAProfigDao *mockedDao = OCMClassMock([OGAProfigDao class]);
     OCMStub([self.adManager profigDao]).andReturn(mockedDao);
@@ -462,11 +468,17 @@
     OCMStub([mockedDao profigFullResponse]).andReturn(profigResponse);
     OCMStub([profigResponse isAdsEnabled]).andReturn(YES);
 
+    XCTestExpectation *ex = [[XCTestExpectation alloc] initWithDescription:@"sendShowErrorEventAdExpired should be called"];
+    OCMStub([coordinator show:[OCMArg anyObjectRef]]).andDo(^(NSInvocation *invocation) {
+                                                         // XCTAssertTrue([NSThread isMainThread], @"doSomething should be called on the main thread");
+                                                         [ex fulfill];
+                                                     })
+        .andReturn(YES);
     [self.adManager show:sequence additionalConditions:@[ additionalCondition ]];
+    [self waitForExpectations:@[ ex ] timeout:1];
 
     __block OGAPreCacheEvent *preCacheEvent;
     XCTAssertEqual(sequence.status, OGAAdSequenceStatusShown);
-    OCMVerify([coordinator show:[OCMArg anyObjectRef]]);
 
     __block NSArray<id<OGAConditionChecker>> *conditions;
     OCMVerify([self.adManager checkConditions:[OCMArg checkWithBlock:^BOOL(id obj) {
@@ -529,11 +541,16 @@
     OCMStub([mockedDao profigFullResponse]).andReturn(profigResponse);
     OCMStub([profigResponse isAdsEnabled]).andReturn(YES);
 
+    XCTestExpectation *ex = [[XCTestExpectation alloc] initWithDescription:@"sendShowErrorEventAdExpired should be called"];
+    OCMStub([self.adManager dispatchError:coordinatorError sequence:sequence]).andDo(^(NSInvocation *invocation) {
+        // XCTAssertTrue([NSThread isMainThread], @"doSomething should be called on the main thread");
+        [ex fulfill];
+    });
     [self.adManager show:sequence additionalConditions:nil];
+    [self waitForExpectations:@[ ex ] timeout:1];
 
     __block OGAPreCacheEvent *preCacheEvent;
     XCTAssertEqual(sequence.status, OGAAdSequenceStatusError);
-    OCMVerify([self.adManager dispatchError:coordinatorError sequence:sequence]);
     // For compatibility with the old architecture, we send the SHOW even if the ad fails to presented.
     OCMVerify([self.metricsService enqueueEvent:[OCMArg checkWithBlock:^BOOL(id obj) {
                                        if ([obj isKindOfClass:[OGAPreCacheEvent class]]) {
@@ -643,8 +660,13 @@
     OGAProfigFullResponse *profigResponse = OCMClassMock([OGAProfigFullResponse class]);
     OCMStub([mockedDao profigFullResponse]).andReturn(profigResponse);
     OCMStub([profigResponse isAdsEnabled]).andReturn(YES);
+    XCTestExpectation *ex = [[XCTestExpectation alloc] initWithDescription:@"sendShowErrorEventAdExpired should be called"];
+    OCMStub([self.monitoringDispatcher sendShowErrorEventAdExpired:[OCMArg any] context:[OCMArg any]]).andDo(^(NSInvocation *invocation) {
+        // XCTAssertTrue([NSThread isMainThread], @"doSomething should be called on the main thread");
+        [ex fulfill];
+    });
     [self.adManager show:sequence additionalConditions:nil];
-    OCMVerify([self.monitoringDispatcher sendShowErrorEventAdExpired:[OCMArg any] context:[OCMArg any]]);
+    [self waitForExpectations:@[ ex ] timeout:1];
 }
 
 - (void)testRegisterToPersistentEventBus {
