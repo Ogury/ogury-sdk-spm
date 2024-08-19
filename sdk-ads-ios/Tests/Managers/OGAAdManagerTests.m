@@ -726,4 +726,12 @@
     OCMVerify([sequence updateReloadStateWithSessionId:[OCMArg any]]);
 }
 
+- (void)testWhenShowIsCalledThenItIsCalledOnMainThread {
+    OGAAdSequence *sequence = OCMClassMock([OGAAdSequence class]);
+    OCMStub([sequence.coordinator show:[OCMArg anyObjectRef]]).andDo(^(NSInvocation *invocation) {
+        XCTAssertTrue([NSThread isMainThread], @"doSomething should be called on the main thread");
+    });
+    [self.adManager show:sequence additionalConditions:nil];
+}
+
 @end

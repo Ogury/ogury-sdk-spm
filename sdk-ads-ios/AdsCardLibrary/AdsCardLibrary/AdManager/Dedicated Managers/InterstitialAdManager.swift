@@ -140,9 +140,7 @@ public final class InterstitialAdManager: AdManager {
          ad.delegate = proxyDelegate
       }
       append(.adDisplaying)
-      DispatchQueue.main.async {
-         self.ad?.show(in: options.viewController)
-      }
+       self.ad?.show(in: options.viewController)
    }
    
    internal func update(ad: OguryInterstitialAd) {

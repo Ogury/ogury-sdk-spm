@@ -152,20 +152,18 @@ public final class BannerAdManager: AdManager {
       }
    }
    
-   public func loadAdFromAdMarkUp(from options: BaseAdOptions) throws {
-      self.options.baseOptions = options
-      guard let adMarkUp = options.adMarkUp else { throw AdManagerError.noOptions }
-      DispatchQueue.main.async {
-         self.ad = OguryBannerAd(adUnitId: options.adUnitId)
-         self.ad.delegate = self.proxyDelegate
-         switch self.adType {
+    public func loadAdFromAdMarkUp(from options: BaseAdOptions) throws {
+        self.options.baseOptions = options
+        guard let adMarkUp = options.adMarkUp else { throw AdManagerError.noOptions }
+        self.ad = OguryBannerAd(adUnitId: options.adUnitId)
+        self.ad.delegate = self.proxyDelegate
+        switch self.adType {
             case .mpu: self.ad.load(withAdMarkup: adMarkUp, size: .mpu_300x250())
             case .banner: self.ad.load(withAdMarkup: adMarkUp, size: .small_banner_320x50())
             default: ()
-         }
-         self.append(.adLoading)
-      }
-   }
+        }
+        self.append(.adLoading)
+    }
    
    public func showAd() throws {
        guard let options else { throw AdManagerError.noOptions }
