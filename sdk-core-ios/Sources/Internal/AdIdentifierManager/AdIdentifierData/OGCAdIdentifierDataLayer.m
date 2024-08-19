@@ -17,6 +17,7 @@ static NSString * const OGCTCStringKey = @"IABTCF_TCString";
 
 static NSString * const OGCPrefixKey = @"OGY-";
 static NSString * const OGCDataPrivacyKey = @"OGY-PrivacyDataKeys";
+static NSString * const OGCHashConsentKey = @"OGY-HashConsentKeys";
 
 @interface OGCAdIdentifierDataLayer()
 
@@ -40,6 +41,8 @@ static NSString * const OGCDataPrivacyKey = @"OGY-PrivacyDataKeys";
         [_userDefaults addObserver:self forKeyPath:OGCGPPConsentStringKey options:NSKeyValueObservingOptionNew context:NULL];
         [_userDefaults addObserver:self forKeyPath:OGCGPPSIDKey options:NSKeyValueObservingOptionNew context:NULL];
         [_userDefaults addObserver:self forKeyPath:OGCTCStringKey options:NSKeyValueObservingOptionNew context:NULL];
+        [_userDefaults synchronize];
+        [self CheckChangeOfConsent];
     }
     
     return self;
@@ -52,6 +55,33 @@ static NSString * const OGCDataPrivacyKey = @"OGY-PrivacyDataKeys";
 }
 
 #pragma mark - Methods
+
+- (NSData *)globalConsentData {
+   NSData *gppData = [[self.userDefaults objectForKey:OGCGPPConsentStringKey] dataUsingEncoding:NSUTF8StringEncoding];
+   NSData *sidData = [[self.userDefaults objectForKey:OGCGPPSIDKey] dataUsingEncoding:NSUTF8StringEncoding];
+   NSData *tcfData = [[self.userDefaults objectForKey:OGCTCStringKey] dataUsingEncoding:NSUTF8StringEncoding];
+   NSData *privacyData = [NSKeyedArchiver archivedDataWithRootObject:[self retrieveDataPrivacy]];
+   NSMutableData *globalConsentData = [[NSMutableData alloc] init];
+   [globalConsentData appendData:gppData];
+   [globalConsentData appendData:sidData];
+   [globalConsentData appendData:tcfData];
+   [globalConsentData appendData:privacyData];
+   return globalConsentData;
+}
+
+- (void)CheckChangeOfConsent {
+   NSData *hashConsent = [self dataForKey:OGCHashConsentKey];
+   NSData *globalConsentData = [self globalConsentData];
+   if ([hashConsent isEqual:globalConsentData] || (globalConsentData.length == 0 && hashConsent.length == 0 )) {
+      return;
+   }
+   
+   [self.userDefaults setObject:globalConsentData forKey:OGCHashConsentKey];
+   if ([self.consentChangedDelegate respondsToSelector:@selector(consentChanged)]) {
+      [self.consentChangedDelegate consentChanged];
+   }
+   return;
+}
 
 - (NSData *)dataForKey:(NSString *)key {
     return [self.userDefaults dataForKey:key];

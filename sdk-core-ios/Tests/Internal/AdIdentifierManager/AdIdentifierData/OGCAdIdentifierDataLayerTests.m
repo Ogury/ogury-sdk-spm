@@ -17,6 +17,7 @@ static NSString * const OguryInstanceTokenKey = @"OGURY_INSTANCE_TOKEN";
 @interface OGCAdIdentifierDataLayer()
 
 - (id)initWithUserDefaults:(NSUserDefaults *)userDefault;
+- (NSData *)globalConsentData;
 
 @end
 
@@ -168,6 +169,19 @@ static NSString *NoIDFA = @"00000000-0000-0000-0000-000000000000";
     [dataLayer storePrivacyData:[NSNumber  numberWithInt:12] forKey:@"testKeyInt"];
     XCTAssertEqual([self.mockedUserDefault.dict count], 4);
     XCTAssertEqual([[dataLayer retrieveDataPrivacy] count], 3);
+}
+
+- (void)testGetGeneralConsentDats {
+   OGCAdIdentifierDataLayer *dataLayer = [[OGCAdIdentifierDataLayer alloc] initWithUserDefaults:self.mockedUserDefault];
+   [self.mockedUserDefault.dict setObject:@"gppstring" forKey:@"IABGPP_HDR_GppString"];
+   [self.mockedUserDefault.dict setObject:@"sid" forKey:@"IABGPP_GppSID"];
+   [self.mockedUserDefault.dict setObject:@"tcf" forKey:@"IABTCF_TCString"];
+   [dataLayer storePrivacyData:[NSNumber  numberWithInt:12] forKey:@"testKeyInt"];
+   NSMutableData * data = [[NSMutableData alloc] initWithBase64EncodedString:@"gppstring" options:0];
+   [data appendData:[[NSData alloc] initWithBase64EncodedString:@"sid" options:0]];
+   [data appendData:[[NSData alloc] initWithBase64EncodedString:@"tcf" options:0]];
+   [data appendData:[NSKeyedArchiver archivedDataWithRootObject:@{@"testKeyInt":[NSNumber  numberWithInt:12]}]];
+   XCTAssertEqual([dataLayer globalConsentData],data);
 }
 
 @end
