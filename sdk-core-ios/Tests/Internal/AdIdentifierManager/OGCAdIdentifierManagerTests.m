@@ -464,6 +464,8 @@ NSString *tokenId2= @"00000000-2222-3333-1598-000000000000";
     OCMVerify([dataLayer getGPPConsentString]);
     [modelLayer retrieveTCFConsentString];
     OCMVerify([dataLayer getTCFConsentString]);
+    [modelLayer retrieveDataPrivacy];
+    OCMVerify([dataLayer retrieveDataPrivacy]);
 }
 
 @end
