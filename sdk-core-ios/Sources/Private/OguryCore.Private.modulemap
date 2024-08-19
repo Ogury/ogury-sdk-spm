@@ -1,0 +1,11 @@
+
+
+framework module OguryCore {
+    export *
+    umbrella header "OguryCore.h"
+    module Private {
+       export *
+       header "OGCInternal.h"
+       header "OGCConsentChangedDelegate.h"
+    }
+}

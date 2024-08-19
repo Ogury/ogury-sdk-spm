@@ -31,6 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (OGCSDKType)getFrameworkType;
 - (void)updateInstanceToken;
 - (BOOL)isAdOptin;
+- (void)storePrivacyData:(NSString *)key boolean:(BOOL)value;
+- (void)storePrivacyData:(NSString *)key integer:(NSInteger)value;
+- (void)storePrivacyData:(NSString *)key string:(NSString *)value;
+- (NSDictionary<NSString *, id> *)retrieveDataPrivacy;
 
 @end
 

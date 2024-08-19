@@ -242,6 +242,49 @@ struct AppSettingsView: View {
                     }
                     .listRowBackground(Color(AdColorPalette.State.failure.color))
                     .disabled(true)
+                   
+                    //MARK: - Profig settings
+                    Section {
+                        Button {
+                           viewStore.send(.usOptoutTapped)
+                        } label: {
+                           HStack {
+                               Text("US Opt-out")
+                               Toggle("", isOn:
+                                       viewStore.binding(
+                                           get: \.usOptout,
+                                           send: .usOptoutTapped)
+                               )
+                           }
+                        }
+                        Button {
+                           viewStore.send(.usOptoutPartnerTapped)
+                        } label: {
+                           HStack {
+                              Text("US Opt-out Partner")
+                              Toggle("", isOn:
+                                      viewStore.binding(
+                                          get: \.usOptoutPartner,
+                                          send: .usOptoutPartnerTapped)
+                              )
+                           }
+                        }
+                        Button{
+                            viewStore.send(.showPrivacyDataTapped)
+                        } label : {
+                           Text("Retrieve Privacy data")
+                               .padding(.vertical, 4)
+                               .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(AdsSecondaryButton())
+                   } header: {
+                       Text("Privacy")
+                           .font(.adsBody)
+                           .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                           .padding(.horizontal, -16)
+                   }
+                   .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                   .listRowBackground(Color(AdColorPalette.Background.secondary.color))
                     
                     Spacer()
                         .listRowBackground(Color.clear)
