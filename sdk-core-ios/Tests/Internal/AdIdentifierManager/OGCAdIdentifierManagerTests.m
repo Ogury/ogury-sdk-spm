@@ -451,5 +451,20 @@ NSString *tokenId2= @"00000000-2222-3333-1598-000000000000";
    XCTAssertTrue([[modelLayer retrieveTCFConsentString] isEqualToString: @"CPokAsAPokAsABEACBENC7CgAP_AAH_AAAwIAAAAAAAA"]);
 }
 
+- (void)testWhenCallingGppConsentGettersThenProperInternalMethodAreForwarded {
+    OGCNSProcessInfoMock *processInfo = [[OGCNSProcessInfoMock alloc] initWithMajorVersion:13];
+    OGCAdIdentifierDataLayer* dataLayer = OCMPartialMock([[OGCAdIdentifierDataLayer alloc] initWithUserDefaults:self.mockedUserDefault]);
+    OGCAdIdentifierManager *modelLayer = [[OGCAdIdentifierManager alloc] initWithPrivacyLayer:self.privacyLayer
+                                                                                 andDataLayer:dataLayer
+                                                                               andProcessInfo:processInfo
+                                                                                          log:self.log];
+    [modelLayer retrieveGPPSID];
+    OCMVerify([dataLayer getGPPSID]);
+    [modelLayer retrieveGPPConsentString];
+    OCMVerify([dataLayer getGPPConsentString]);
+    [modelLayer retrieveTCFConsentString];
+    OCMVerify([dataLayer getTCFConsentString]);
+}
+
 @end
 

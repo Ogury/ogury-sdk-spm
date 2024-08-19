@@ -93,7 +93,6 @@
     return [self.adIdentifierManager retrieveTCFConsentString];
 }
 
-
 - (void)storePrivacyData:(NSString *)key boolean:(BOOL)value {
    [self.adIdentifierManager storePrivacyData:[NSNumber numberWithBool:value]  forKey:key];
 }
