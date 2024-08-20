@@ -31,6 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (OGCSDKType)getFrameworkType;
 - (void)updateInstanceToken;
 - (BOOL)isAdOptin;
+// GPP
+- (NSString * _Nullable)gppConsentString;
+- (NSString * _Nullable)gppSID;
+- (NSString * _Nullable)tcfConsentString;
 - (void)storePrivacyData:(NSString *)key boolean:(BOOL)value;
 - (void)storePrivacyData:(NSString *)key integer:(NSInteger)value;
 - (void)storePrivacyData:(NSString *)key string:(NSString *)value;

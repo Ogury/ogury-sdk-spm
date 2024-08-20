@@ -108,9 +108,17 @@
         OGATokenSDK : @{
             OGATokenModuleVersion : [self.internal getVersion],
             OGATokenBuildVersion : [self.internal getBuildVersion]
-        },
-        OGARequestBodyPrivacyComplianceKey : @{}
+        }
     }];
+    NSMutableDictionary *privacy = [NSMutableDictionary dictionary];
+    privacy[OGARequestBodyPrivacyTCFKey] = [self tcfConsentString];
+    privacy[OGARequestBodyPrivacyGPPKey] = [self gppConsentString];
+    privacy[OGARequestBodyPrivacyGPPSIDKey] = [self gppSidConsentString];
+    NSDictionary *privacyDatas = [self privacyDatas];
+    [privacyDatas enumerateKeysAndObjectsUsingBlock:^(id _Nonnull key, id _Nonnull obj, BOOL *_Nonnull stop) {
+        privacy[key] = obj;
+    }];
+    token[OGARequestBodyPrivacyComplianceKey] = privacy;
 
     /// device
     NSMutableDictionary *device = [@{} mutableCopy];
@@ -198,6 +206,22 @@
     }
 
     return token;
+}
+
+- (NSString *)gppConsentString {
+    return [OGAAdIdentifierService gppConsentString];
+}
+
+- (NSString *)gppSidConsentString {
+    return [OGAAdIdentifierService gppSID];
+}
+
+- (NSString *)tcfConsentString {
+    return [OGAAdIdentifierService tcfConsentString];
+}
+
+- (NSDictionary<NSString *, id> *)privacyDatas {
+    return [OGAAdIdentifierService privacyDatas];
 }
 
 @end
