@@ -105,7 +105,6 @@
 		43DA127D2AB888D300766D99 /* AdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127A2AB888D300766D99 /* AdBannerView.swift */; };
 		43DA127E2AB888D300766D99 /* BannerPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */; };
 		43DA12802AB888D900766D99 /* BannerAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127F2AB888D900766D99 /* BannerAdManager.swift */; };
-		8953E489A7F8331EA044BBF1 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -214,7 +213,6 @@
 				43AE68042AAB25B1002E7C46 /* OguryAds.framework in Frameworks */,
 				43A9F4A52C37E7800085EF6F /* OguryCore.framework in Frameworks */,
 				435F7BCA2A5EE3970077843A /* ComposableArchitecture in Frameworks */,
-				8953E489A7F8331EA044BBF1 /* BuildFile in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

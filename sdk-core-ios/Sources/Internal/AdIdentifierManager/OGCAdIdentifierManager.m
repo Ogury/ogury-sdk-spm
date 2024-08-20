@@ -89,15 +89,15 @@
     return [self.privacyLayer vendorIdentifier];
 }
 
-- (NSString * _Nullable) retrieveGPPConsentString {
+- (NSString * _Nullable)retrieveGPPConsentString {
    return [self stringFrom: [self.dataLayer getGPPConsentString]];
 }
 
-- (NSString * _Nullable) retrieveGPPSID {
+- (NSString * _Nullable)retrieveGPPSID {
    return [self stringFrom: [self.dataLayer getGPPSID]];
 }
 
-- (NSString * _Nullable) retrieveTCFConsentString {
+- (NSString * _Nullable)retrieveTCFConsentString {
    return [self stringFrom: [self.dataLayer getTCFConsentString]];
 }
 

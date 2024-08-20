@@ -6,7 +6,6 @@ import Foundation
 import InMobiCMP
 import UserMessagingPlatform
 import AppTrackingTransparency
-import OguryChoiceManager
 import SwiftMessages
 
 final class ConsentManager: ChoiceCmpDelegate {
@@ -38,14 +37,16 @@ final class ConsentManager: ChoiceCmpDelegate {
     func didReceiveAdditionalConsent(acData: InMobiCMP.ACData, updated: Bool) {
     }
    
-    @MainActor func cmpDidError(error: any Error) {
-      let view = MessageView.viewFromNib(layout: .cardView)
-      view.configureTheme(.error)
-      view.configureDropShadow()
-      view.configureContent(title: "Error", body: error.reflectedString, iconText: "🙄")
-      view.layoutMarginAdditions = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-      (view.backgroundView as? CornerRoundingView)?.cornerRadius = 10
-      SwiftMessages.show(view: view)
+    func cmpDidError(error: any Error) {
+        let view = MessageView.viewFromNib(layout: .cardView)
+        view.configureTheme(.error)
+        view.configureDropShadow()
+        view.configureContent(title: "Error", body: error.reflectedString, iconText: "🙄")
+        view.layoutMarginAdditions = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        (view.backgroundView as? CornerRoundingView)?.cornerRadius = 10
+        Task {
+            await SwiftMessages.show(view: view)
+        }
     }
    
     func didReceiveUSRegulationsConsent(usRegData: InMobiCMP.USRegulationsData) {
