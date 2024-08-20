@@ -42,7 +42,7 @@ static NSString * const OGCHashConsentKey = @"OGY-HashConsentKeys";
         [_userDefaults addObserver:self forKeyPath:OGCGPPSIDKey options:NSKeyValueObservingOptionNew context:NULL];
         [_userDefaults addObserver:self forKeyPath:OGCTCStringKey options:NSKeyValueObservingOptionNew context:NULL];
         [_userDefaults synchronize];
-        [self CheckChangeOfConsent];
+        [self checkChangeOfConsent];
     }
     
     return self;
@@ -60,16 +60,19 @@ static NSString * const OGCHashConsentKey = @"OGY-HashConsentKeys";
    NSData *gppData = [[self.userDefaults objectForKey:OGCGPPConsentStringKey] dataUsingEncoding:NSUTF8StringEncoding];
    NSData *sidData = [[self.userDefaults objectForKey:OGCGPPSIDKey] dataUsingEncoding:NSUTF8StringEncoding];
    NSData *tcfData = [[self.userDefaults objectForKey:OGCTCStringKey] dataUsingEncoding:NSUTF8StringEncoding];
-   NSData *privacyData = [NSKeyedArchiver archivedDataWithRootObject:[self retrieveDataPrivacy]];
+   NSDictionary *privacy = [self retrieveDataPrivacy];
+   NSData *privacyData = [NSKeyedArchiver archivedDataWithRootObject:privacy];
    NSMutableData *globalConsentData = [[NSMutableData alloc] init];
    [globalConsentData appendData:gppData];
    [globalConsentData appendData:sidData];
    [globalConsentData appendData:tcfData];
-   [globalConsentData appendData:privacyData];
+   if (privacy.allKeys.count > 0) {
+      [globalConsentData appendData:privacyData];
+   }
    return globalConsentData;
 }
 
-- (void)CheckChangeOfConsent {
+- (void)checkChangeOfConsent {
    NSData *hashConsent = [self dataForKey:OGCHashConsentKey];
    NSData *globalConsentData = [self globalConsentData];
    if ([hashConsent isEqual:globalConsentData] || (globalConsentData.length == 0 && hashConsent.length == 0 )) {
@@ -80,7 +83,6 @@ static NSString * const OGCHashConsentKey = @"OGY-HashConsentKeys";
    if ([self.consentChangedDelegate respondsToSelector:@selector(consentChanged)]) {
       [self.consentChangedDelegate consentChanged];
    }
-   return;
 }
 
 - (NSData *)dataForKey:(NSString *)key {
@@ -131,16 +133,16 @@ static NSString * const OGCHashConsentKey = @"OGY-HashConsentKeys";
     return [self dataForKey:OGCInstanceTokenKey];
 }
 
-- (NSData *)getGPPConsentString {
-   return [self dataForKey:OGCGPPConsentStringKey];
+- (NSString *)getGPPConsentString {
+   return [self.userDefaults objectForKey:OGCGPPConsentStringKey];
 }
 
-- (NSData *)getGPPSID {
-   return [self dataForKey:OGCGPPSIDKey];
+- (NSString *)getGPPSID {
+   return [self.userDefaults objectForKey:OGCGPPSIDKey];
 }
 
 - (NSData *)getTCFConsentString {
-   return [self dataForKey:OGCTCStringKey];
+   return [self.userDefaults objectForKey:OGCTCStringKey];
 }
 
 - (void)storePrivacyData:(id)value forKey:(NSString *)key; {

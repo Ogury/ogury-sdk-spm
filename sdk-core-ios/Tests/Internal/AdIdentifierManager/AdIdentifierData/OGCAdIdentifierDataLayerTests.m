@@ -3,6 +3,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
 #import "OGCAdIdentifierDataLayer.h"
 #import "OGCNSUserDefaultsMock.h"
 
@@ -18,6 +19,7 @@ static NSString * const OguryInstanceTokenKey = @"OGURY_INSTANCE_TOKEN";
 
 - (id)initWithUserDefaults:(NSUserDefaults *)userDefault;
 - (NSData *)globalConsentData;
+- (void)checkChangeOfConsent;
 
 @end
 
@@ -171,17 +173,54 @@ static NSString *NoIDFA = @"00000000-0000-0000-0000-000000000000";
     XCTAssertEqual([[dataLayer retrieveDataPrivacy] count], 3);
 }
 
-- (void)testGetGeneralConsentDats {
+- (void)testGetGeneralConsentData {
    OGCAdIdentifierDataLayer *dataLayer = [[OGCAdIdentifierDataLayer alloc] initWithUserDefaults:self.mockedUserDefault];
    [self.mockedUserDefault.dict setObject:@"gppstring" forKey:@"IABGPP_HDR_GppString"];
    [self.mockedUserDefault.dict setObject:@"sid" forKey:@"IABGPP_GppSID"];
    [self.mockedUserDefault.dict setObject:@"tcf" forKey:@"IABTCF_TCString"];
    [dataLayer storePrivacyData:[NSNumber  numberWithInt:12] forKey:@"testKeyInt"];
-   NSMutableData * data = [[NSMutableData alloc] initWithBase64EncodedString:@"gppstring" options:0];
-   [data appendData:[[NSData alloc] initWithBase64EncodedString:@"sid" options:0]];
-   [data appendData:[[NSData alloc] initWithBase64EncodedString:@"tcf" options:0]];
-   [data appendData:[NSKeyedArchiver archivedDataWithRootObject:@{@"testKeyInt":[NSNumber  numberWithInt:12]}]];
-   XCTAssertEqual([dataLayer globalConsentData],data);
+   NSMutableData * data = [NSMutableData new];
+   [data appendData:[@"gppstring" dataUsingEncoding:NSUTF8StringEncoding]];
+   [data appendData:[@"sid" dataUsingEncoding:NSUTF8StringEncoding]];
+   [data appendData:[@"tcf" dataUsingEncoding:NSUTF8StringEncoding]];
+   [data appendData: [NSKeyedArchiver archivedDataWithRootObject:[dataLayer retrieveDataPrivacy]]];
+   XCTAssertTrue([[dataLayer globalConsentData] isEqual:data]);
+}
+
+-(void)testCheckChangeOfConsent {
+   OGCAdIdentifierDataLayer *dataLayer = OCMPartialMock([[OGCAdIdentifierDataLayer alloc] initWithUserDefaults:self.mockedUserDefault]);
+   id delegate = OCMProtocolMock(@protocol(OGCConsentChangedDelegate));
+   OCMStub(dataLayer.consentChangedDelegate).andReturn(delegate);
+   [dataLayer storePrivacyData:@"coucou" forKey:@"magic_bool"];
+   [dataLayer checkChangeOfConsent];
+   OCMVerify([delegate consentChanged]);
+}
+
+-(void)testCheckChangeOfConsentGPP {
+   OGCAdIdentifierDataLayer *dataLayer = OCMPartialMock([[OGCAdIdentifierDataLayer alloc] initWithUserDefaults:self.mockedUserDefault]);
+   id delegate = OCMProtocolMock(@protocol(OGCConsentChangedDelegate));
+   OCMStub(dataLayer.consentChangedDelegate).andReturn(delegate);
+   [self.mockedUserDefault.dict setObject:@"gppstring" forKey:@"IABGPP_HDR_GppString"];
+   [dataLayer checkChangeOfConsent];
+   OCMVerify([delegate consentChanged]);
+}
+
+-(void)testCheckChangeOfConsentNoChange {
+   OGCAdIdentifierDataLayer *dataLayer = OCMPartialMock([[OGCAdIdentifierDataLayer alloc] initWithUserDefaults:self.mockedUserDefault]);
+   id delegate = OCMProtocolMock(@protocol(OGCConsentChangedDelegate));
+   OCMStub(dataLayer.consentChangedDelegate).andReturn(delegate);
+   OCMReject([delegate consentChanged]);
+   [dataLayer checkChangeOfConsent];
+}
+
+-(void)testCheckChangeOfConsentGPPNoChange {
+   OGCAdIdentifierDataLayer *dataLayer = OCMPartialMock([[OGCAdIdentifierDataLayer alloc] initWithUserDefaults:self.mockedUserDefault]);
+   id delegate = OCMProtocolMock(@protocol(OGCConsentChangedDelegate));
+   OCMStub(dataLayer.consentChangedDelegate).andReturn(delegate);
+   [self.mockedUserDefault.dict setObject:@"gppstring" forKey:@"IABGPP_HDR_GppString"];
+   [self.mockedUserDefault setObject:[dataLayer globalConsentData] forKey:@"OGY-HashConsentKeys"];
+   OCMReject([delegate consentChanged]);
+   [dataLayer checkChangeOfConsent];
 }
 
 @end

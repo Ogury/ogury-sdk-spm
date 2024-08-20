@@ -90,23 +90,15 @@
 }
 
 - (NSString * _Nullable) retrieveGPPConsentString {
-   return [self stringFrom: [self.dataLayer getGPPConsentString]];
+   return [self.dataLayer getGPPConsentString];
 }
 
 - (NSString * _Nullable) retrieveGPPSID {
-   return [self stringFrom: [self.dataLayer getGPPSID]];
+   return [self.dataLayer getGPPSID];
 }
 
 - (NSString * _Nullable) retrieveTCFConsentString {
-   return [self stringFrom: [self.dataLayer getTCFConsentString]];
-}
-
-- (NSString * _Nullable)stringFrom:(NSData*)data {
-   if (data == nil) {
-      return nil;
-   }
-   NSString *gppSIDString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-   return gppSIDString;
+   return [self.dataLayer getTCFConsentString];
 }
 
 - (NSString *)getInstanceToken {

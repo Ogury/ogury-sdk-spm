@@ -25,11 +25,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)migrateDeprecatedOGYDeviceSettingsWithInstanceTokenID:(NSString *)instanceTokenID;
 
-- (NSData *)getGPPConsentString;
+- (NSString *)getGPPConsentString;
 
-- (NSData *)getGPPSID;
+- (NSString *)getGPPSID;
 
-- (NSData *)getTCFConsentString;
+- (NSString *)getTCFConsentString;
 
 - (void)storePrivacyData:(id)value forKey:(NSString *)key;
 
