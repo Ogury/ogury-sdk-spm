@@ -14,6 +14,7 @@
 @property (nonatomic, strong) OGCAdIdentifierManager *adIdentifierManager;
 @property (nonatomic, strong) OGCLog *log;
 @property (nonatomic, strong) OGCSetLogLevelNotificationManager *logNotificationManager;
+- (void)updateInstanceToken;
 
 @end
 
