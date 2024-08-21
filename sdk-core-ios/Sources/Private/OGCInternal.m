@@ -79,6 +79,19 @@
     return [OGCUtils getFrameworkType];
 }
 
+// GPP
+- (NSString * _Nullable)gppConsentString {
+    return [self.adIdentifierManager retrieveGPPConsentString];
+}
+
+- (NSString * _Nullable)gppSID {
+    return [self.adIdentifierManager retrieveGPPSID];
+}
+
+- (NSString * _Nullable)tcfConsentString {
+    return [self.adIdentifierManager retrieveTCFConsentString];
+}
+
 - (void)storePrivacyData:(NSString *)key boolean:(BOOL)value {
    [self.adIdentifierManager storePrivacyData:[NSNumber numberWithBool:value]  forKey:key];
 }
@@ -93,18 +106,6 @@
 
 - (NSDictionary<NSString *, id> *)retrieveDataPrivacy {
    return [self.adIdentifierManager retrieveDataPrivacy];
-}
-
-- (NSString * _Nullable) retrieveGPPConsentString {
-   return [self.adIdentifierManager retrieveGPPConsentString];
-}
-
-- (NSString * _Nullable) retrieveGPPSID {
-   return [self.adIdentifierManager retrieveGPPSID];
-}
-
-- (NSString * _Nullable) retrieveTCFConsentString{
-   return [self.adIdentifierManager retrieveTCFConsentString];
 }
 
 @end

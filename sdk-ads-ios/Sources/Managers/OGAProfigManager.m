@@ -184,9 +184,9 @@ static NSString *const OGAHashConsentKey = @"OGY-HashConsentKeys";
 }
 
 - (NSData *)globalConsentData {
-    NSData *gppData = [[self.internalCore retrieveGPPConsentString] dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *sidData = [[self.internalCore retrieveGPPSID] dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *tcfData = [[self.internalCore retrieveTCFConsentString] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *gppData = [[self.internalCore gppConsentString] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *sidData = [[self.internalCore gppSID] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *tcfData = [[self.internalCore tcfConsentString] dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *privacy = [self.internalCore retrieveDataPrivacy];
     NSData *privacyData = [NSKeyedArchiver archivedDataWithRootObject:privacy];
     NSMutableData *globalConsentData = [[NSMutableData alloc] init];

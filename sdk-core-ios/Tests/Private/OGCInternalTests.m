@@ -273,4 +273,20 @@ static NSString * const InternalTokenId = @"00000000-1111-3333-1598-000000000000
 
 }
 
+- (void)testWhenCallingGppConsentGettersThenProperInternalMethodAreForwarded {
+    OGCAdIdentifierManager *adIdentifierManager = OCMPartialMock([[OGCAdIdentifierManager alloc] initWithPrivacyLayer:self.privacyLayer
+                                                                                                         andDataLayer:self.dataLayer
+                                                                                                       andProcessInfo:[NSProcessInfo processInfo]
+                                                                                                                  log:self.log]);
+    OGCInternal *coreInternalInstance = OCMPartialMock([[OGCInternal alloc] initWithAdIdentifierManager:adIdentifierManager
+                                                                                                    log:self.log
+                                                                                 logNotificationManager:[[OGCSetLogLevelNotificationManager alloc] init]]);
+    [coreInternalInstance gppConsentString];
+    OCMVerify([adIdentifierManager retrieveGPPConsentString]);
+    [coreInternalInstance gppSID];
+    OCMVerify([adIdentifierManager retrieveGPPSID]);
+    [coreInternalInstance tcfConsentString];
+    OCMVerify([adIdentifierManager retrieveTCFConsentString]);
+}
+
 @end

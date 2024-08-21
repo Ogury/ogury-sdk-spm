@@ -2099,11 +2099,11 @@
 		223A62E929F7CD870022FFE0 /* Environment */ = {
 			isa = PBXGroup;
 			children = (
-				223A62F229F7D7B50022FFE0 /* URL */,
-				351A1DA81515DEDDB3E881D5 /* OGAEnvironmentManager.h */,
-				351A1B9A99CD5B9BDC65011F /* OGAEnvironmentManager.m */,
 				223A62EA29F7CE070022FFE0 /* OGAEnvironmentConstants.h */,
 				223A62EB29F7CE070022FFE0 /* OGAEnvironmentConstants.m */,
+				351A1DA81515DEDDB3E881D5 /* OGAEnvironmentManager.h */,
+				351A1B9A99CD5B9BDC65011F /* OGAEnvironmentManager.m */,
+				223A62F229F7D7B50022FFE0 /* URL */,
 			);
 			path = Environment;
 			sourceTree = "<group>";
@@ -2688,27 +2688,27 @@
 		351A17758F1E3883420B131F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				351A1141015EFB6379226DA7 /* Check */,
 				223A62E929F7CD870022FFE0 /* Environment */,
+				351A10AB2CE514556689A914 /* HostManagers */,
 				ED618F3925EE3D7100F774A5 /* OGAAdExpirationManager.h */,
+				ED618F3A25EE3D7100F774A5 /* OGAAdExpirationManager.m */,
 				351A152AAD13C26CD4252B1A /* OGAAdImpressionManager.h */,
+				351A1CE315AEF05DF26A084C /* OGAAdImpressionManager.m */,
 				4360BE8828E19AE200C54E6D /* OGAAdLoadStateManager.h */,
+				4360BE8928E19AE200C54E6D /* OGAAdLoadStateManager.m */,
 				351A1C643593BE47EBE82652 /* OGAAdManager.h */,
+				351A1B1F6332BCCF3B2EA62E /* OGAAdManager.m */,
 				351A1BD5717D35556EFF6EC4 /* OGAAdManager+Check.h */,
 				351A1E0C5ED341F578573D6D /* OGAAdSyncManager.h */,
+				351A1B5A56974F6CA7FF11C9 /* OGAAdSyncManager.m */,
 				351A17EA65B30CE4DB08A6CC /* OGAAssetKeyManager.h */,
+				351A10A35F4C2E82E06AFCC3 /* OGAAssetKeyManager.m */,
 				1E3F16572BADD50000A897D4 /* OGAAssetKeyManagerDelegate.h */,
 				351A1B3524945BB520317220 /* OGAProfigManager.h */,
-				C99E247B2906EEE300480E3F /* OGASKAdNetworkManager.h */,
-				ED618F3A25EE3D7100F774A5 /* OGAAdExpirationManager.m */,
-				351A1CE315AEF05DF26A084C /* OGAAdImpressionManager.m */,
-				4360BE8928E19AE200C54E6D /* OGAAdLoadStateManager.m */,
-				351A1B1F6332BCCF3B2EA62E /* OGAAdManager.m */,
-				351A1B5A56974F6CA7FF11C9 /* OGAAdSyncManager.m */,
-				351A10A35F4C2E82E06AFCC3 /* OGAAssetKeyManager.m */,
 				351A1147A33549A93D224F11 /* OGAProfigManager.m */,
+				C99E247B2906EEE300480E3F /* OGASKAdNetworkManager.h */,
 				C99E247C2906EEF400480E3F /* OGASKAdNetworkManager.m */,
-				351A1141015EFB6379226DA7 /* Check */,
-				351A10AB2CE514556689A914 /* HostManagers */,
 				351A19A4848D1576ABA174B8 /* PreCache */,
 			);
 			path = Managers;
