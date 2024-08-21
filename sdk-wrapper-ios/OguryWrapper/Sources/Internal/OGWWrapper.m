@@ -61,7 +61,7 @@ static int ogcMaxNumberOfConvertionValue = 63;
    return self;
 }
 
-- (void)startWithConfiguration:(OguryConfiguration *)configuration {
+- (void)startWithConfiguration:(OguryConfiguration *)configuration completionHandler:(SetupCompletionBlock)completionHandler {
    int numberOfModulesPresent = 0;
    for (OGWModule *module in self.modules.modules) {
       if (module.isPresent) {
@@ -71,7 +71,8 @@ static int ogcMaxNumberOfConvertionValue = 63;
       }
    }
    if (numberOfModulesPresent == 0) {
-      [[OGWLog shared] logAssetKey:OguryLogLevelError assetKey:configuration.assetKey message:@"No Ogury module found in your application. Make sure you have the -ObjC flag in your OTHER_LINKER_FLAGS build setting."];
+      [[OGWLog shared] logAssetKey:OguryLogLevelError assetKey:configuration.assetKey message:@"No Ogury module found in your application."];
+       [OguryError createOguryErrorWithCode:<#(NSInteger)#>]
    }
 
    [self.monitoringInfoManager appendMonitoringInfoAndSendIfNecessary:configuration];

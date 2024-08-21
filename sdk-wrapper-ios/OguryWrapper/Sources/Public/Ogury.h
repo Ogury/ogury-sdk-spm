@@ -9,9 +9,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^SetupCompletionBlock)(BOOL success, OguryError * _Nullable error);
+
 @interface Ogury : NSObject
 
 + (void)startWithConfiguration:(OguryConfiguration *)configuration;
+
++ (void)startWithConfiguration:(OguryConfiguration *)configuration completionHandler:(SetupCompletionBlock _Nullable)completionHandler;
 
 + (void)setLogLevel:(OguryLogLevel)logLevel;
 
