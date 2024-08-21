@@ -42,7 +42,6 @@
     if (self = [super init]) {
         _privacyLayer = privacyLayer;
         _dataLayer = dataLayer;
-        _dataLayer.consentChangedDelegate = self.consentChangedDelegate;
         _processInfo = processInfo;
         _instanceToken = [self createInstanceTokenWithProcessInfo:processInfo];
         _log = log;

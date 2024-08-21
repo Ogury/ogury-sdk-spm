@@ -22,7 +22,6 @@
 - (id)initWithAdIdentifierManager:(OGCAdIdentifierManager *)adIdentifierManager log:(OGCLog *)log logNotificationManager:(OGCSetLogLevelNotificationManager *)logNotificationManager {
     if (self = [super init]) {
         _adIdentifierManager = adIdentifierManager;
-        _adIdentifierManager.consentChangedDelegate = self.consentChangedDelegate;
         _log = log;
         _logNotificationManager = logNotificationManager;
         [_logNotificationManager registerToNotification];
@@ -94,6 +93,18 @@
 
 - (NSDictionary<NSString *, id> *)retrieveDataPrivacy {
    return [self.adIdentifierManager retrieveDataPrivacy];
+}
+
+- (NSString * _Nullable) retrieveGPPConsentString {
+   return [self.adIdentifierManager retrieveGPPConsentString];
+}
+
+- (NSString * _Nullable) retrieveGPPSID {
+   return [self.adIdentifierManager retrieveGPPSID];
+}
+
+- (NSString * _Nullable) retrieveTCFConsentString{
+   return [self.adIdentifierManager retrieveTCFConsentString];
 }
 
 @end

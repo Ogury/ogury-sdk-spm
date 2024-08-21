@@ -3,7 +3,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OGCConsentChangedDelegate.h"
 
 typedef NS_ENUM(NSInteger, OguryLogLevel);
 
@@ -20,8 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OGCInternal : NSObject
 
-@property (nonatomic, weak) id<OGCConsentChangedDelegate> consentChangedDelegate;
-
 + (instancetype)shared;
 - (void)setLogLevel:(OguryLogLevel)logLevel;
 - (NSString *)getVersion;
@@ -31,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (OGCSDKType)getFrameworkType;
 - (void)updateInstanceToken;
 - (BOOL)isAdOptin;
+- (NSString * _Nullable) retrieveGPPConsentString;
+- (NSString * _Nullable) retrieveGPPSID;
+- (NSString * _Nullable) retrieveTCFConsentString;
 - (void)storePrivacyData:(NSString *)key boolean:(BOOL)value;
 - (void)storePrivacyData:(NSString *)key integer:(NSInteger)value;
 - (void)storePrivacyData:(NSString *)key string:(NSString *)value;

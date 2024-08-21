@@ -13,6 +13,11 @@
 #import "OGAOMIDService.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGAMetricsService.h"
+#import "OGAUserDefaultsStore.h"
+#import <OguryCore/OguryCore.h>
+#import <OguryCore/OGCInternal.h>
+
+static NSString *const OGAHashConsentKey = @"OGY-HashConsentKeys";
 
 @interface OGAProfigManager ()
 
@@ -23,6 +28,8 @@
 @property(nonatomic, strong) OGAMonitoringDispatcher *monitoringDispatcher;
 @property(nonatomic, strong) OGAMetricsService *metricsService;
 @property(nonatomic, strong) OGALog *log;
+@property(nonatomic, strong) OGCInternal *internalCore;
+@property(nonatomic, strong) OGAUserDefaultsStore *userDefaultStore;
 
 @end
 
@@ -47,7 +54,9 @@
                        omidService:[OGAOMIDService shared]
               monitoringDispatcher:[OGAMonitoringDispatcher shared]
                     metricsService:[OGAMetricsService shared]
-                               log:[OGALog shared]];
+                               log:[OGALog shared]
+                      internalCore:[OGCInternal shared]
+                  userDefaultStore:[OGAUserDefaultsStore shared]];
 }
 
 - (instancetype)initWithProfigDao:(OGAProfigDao *)profigDao
@@ -55,7 +64,9 @@
                       omidService:(OGAOMIDService *)omidService
              monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher
                    metricsService:(OGAMetricsService *)metricsService
-                              log:(OGALog *)log {
+                              log:(OGALog *)log
+                     internalCore:(OGCInternal *)internalCore
+                 userDefaultStore:(OGAUserDefaultsStore *)userDefaultStore {
     if (self = [super init]) {
         _profigDao = profigDao;
         _profigService = profigService;
@@ -64,6 +75,8 @@
         _waitingCompletionBlocks = [[NSMutableArray alloc] init];
         _metricsService = metricsService;
         _log = log;
+        _internalCore = internalCore;
+        _userDefaultStore = userDefaultStore;
     }
     return self;
 }
@@ -75,6 +88,7 @@
             [self.waitingCompletionBlocks addObject:completion];
         } else if ([self shouldSync]) {
             [self.waitingCompletionBlocks addObject:completion];
+            [self.userDefaultStore setObject:[self globalConsentData] forKey:OGAHashConsentKey];
             [self fetchProfig];
         } else {
             if (self.profigDao.profigFullResponse.isOmidEnabled) {
@@ -169,8 +183,29 @@
     }
 }
 
+- (NSData *)globalConsentData {
+    NSData *gppData = [[self.internalCore retrieveGPPConsentString] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *sidData = [[self.internalCore retrieveGPPSID] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *tcfData = [[self.internalCore retrieveTCFConsentString] dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *privacy = [self.internalCore retrieveDataPrivacy];
+    NSData *privacyData = [NSKeyedArchiver archivedDataWithRootObject:privacy];
+    NSMutableData *globalConsentData = [[NSMutableData alloc] init];
+    [globalConsentData appendData:gppData];
+    [globalConsentData appendData:sidData];
+    [globalConsentData appendData:tcfData];
+    if (privacy.allKeys.count > 0) {
+        [globalConsentData appendData:privacyData];
+    }
+    return globalConsentData;
+}
+
 - (BOOL)shouldSync {
-    return [self isProfigExpired] || [self profigParametersWereUpdated];
+    NSData *hashConsent = [self.userDefaultStore dataForKey:OGAHashConsentKey];
+    NSData *globalConsentData = [self globalConsentData];
+    if ([hashConsent isEqual:globalConsentData] || (globalConsentData.length == 0 && hashConsent.length == 0)) {
+        return [self isProfigExpired] || [self profigParametersWereUpdated];
+    }
+    return YES;
 }
 
 - (BOOL)profigParametersWereUpdated {

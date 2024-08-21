@@ -12,6 +12,7 @@
 #import "OGALog.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGAMetricsService.h"
+#import "OGAUserDefaultsStore.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,7 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
                       omidService:(OGAOMIDService *)omidService
              monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher
                    metricsService:(OGAMetricsService *)metricsService
-                              log:(OGALog *)log;
+                              log:(OGALog *)log
+                     internalCore:(OGCInternal *)internalCore
+                 userDefaultStore:(OGAUserDefaultsStore *)userDefaultStore;
 
 - (BOOL)shouldSync;
 
@@ -45,6 +48,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateMonitoringTrackingAndBlacklistedTracks:(OGAProfigFullResponse *)profigResponse;
 
 - (OGATrackingMask)trackingMaskFromProfig:(OGAProfigFullResponse *)profigResponse;
+
+- (NSData *)globalConsentData;
 
 @end
 
