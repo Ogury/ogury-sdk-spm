@@ -135,7 +135,7 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
             if (CGSizeEqualToSize(self.size, [[OguryAdsBannerSize small_banner_320x50] getSize])) {
                 return OGAAdConfigurationAdTypeSmallBanner;
             }
-            if (CGSizeEqualToSize(self.size, [[OguryAdsBannerSize mpu_300x250] getSize])) {
+            if (CGSizeEqualToSize(self.size, [[OguryAdsBannerSize mrec_300x250] getSize])) {
                 return OGAAdConfigurationAdTypeMPU;
             }
             return @"";

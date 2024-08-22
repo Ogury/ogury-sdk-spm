@@ -49,13 +49,13 @@ static NSString *const TestDelegate = @"DELEGATE";
 }
 
 - (void)testShouldLoadWithSize {
-    OguryAdsBannerSize *size = [OguryAdsBannerSize mpu_300x250];
+    OguryAdsBannerSize *size = [OguryAdsBannerSize mrec_300x250];
     [self.banner loadWithSize:size];
     OCMVerify([self.internalAPI loadWithSize:size]);
 }
 
 - (void)testShouldLoadWithAdMarkupAndSize {
-    OguryAdsBannerSize *size = [OguryAdsBannerSize mpu_300x250];
+    OguryAdsBannerSize *size = [OguryAdsBannerSize mrec_300x250];
     [self.banner loadWithAdMarkup:@"adMarkup" size:size];
     OCMVerify([self.internalAPI loadWithAdMarkup:@"adMarkup" size:size]);
 }
@@ -73,14 +73,14 @@ static NSString *const TestDelegate = @"DELEGATE";
 }
 
 - (void)testShouldLoadWithCampaignId {
-    OguryAdsBannerSize *size = [OguryAdsBannerSize mpu_300x250];
+    OguryAdsBannerSize *size = [OguryAdsBannerSize mrec_300x250];
     OCMExpect([self.internalAPI loadWithCampaignId:TestCampaignId size:size]);
     [self.banner loadWithCampaignId:TestCampaignId size:size];
     OCMVerify([self.internalAPI loadWithCampaignId:TestCampaignId size:size]);
 }
 
 - (void)testLoadWithCampaignIdCreativeIdDspCreativeIdDspRegionSize {
-    OguryAdsBannerSize *size = [OguryAdsBannerSize mpu_300x250];
+    OguryAdsBannerSize *size = [OguryAdsBannerSize mrec_300x250];
 
     OCMExpect([self.internalAPI loadWithCampaignId:TestCampaignId
                                         creativeId:TestCreativeId
@@ -102,7 +102,7 @@ static NSString *const TestDelegate = @"DELEGATE";
 }
 
 - (void)testLoadWithCampaignIdCreativeId {
-    OguryAdsBannerSize *size = [OguryAdsBannerSize mpu_300x250];
+    OguryAdsBannerSize *size = [OguryAdsBannerSize mrec_300x250];
 
     OCMExpect([self.internalAPI loadWithCampaignId:TestCampaignId
                                         creativeId:TestCreativeId

@@ -18,7 +18,7 @@ enum BannerType: CaseIterable {
     
     var oguryBannerSize: OguryAdsBannerSize {
         switch self {
-            case .mpu: return OguryAdsBannerSize.mpu_300x250()
+            case .mpu: return OguryAdsBannerSize.mrec_300x250()
             case .smallBanner: return OguryAdsBannerSize.small_banner_320x50()
         }
     }

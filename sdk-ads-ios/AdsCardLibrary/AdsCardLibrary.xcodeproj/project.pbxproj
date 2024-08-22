@@ -11,7 +11,7 @@
 		1E373D562BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */; };
 		1E373D612BFCF7CA00E2EF25 /* BTFairBidRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */; };
 		1E8256442B2380B4001DFBA4 /* AdsCardLibrary.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 1E8256432B2380B4001DFBA4 /* AdsCardLibrary.xctestplan */; };
-		430B6F032A65377900A6EFA4 /* OptinVideoAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430B6F022A65377900A6EFA4 /* OptinVideoAdManagerTests.swift */; };
+		430B6F032A65377900A6EFA4 /* RewardedAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430B6F022A65377900A6EFA4 /* RewardedAdManagerTests.swift */; };
 		431441192A6539780067AD47 /* ThumbnailAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431441182A6539780067AD47 /* ThumbnailAdManagerTests.swift */; };
 		4314411B2A653B060067AD47 /* BannerAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4314411A2A653B060067AD47 /* BannerAdManagerTests.swift */; };
 		4314411E2A653CA70067AD47 /* CwlPreconditionTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 4314411D2A653CA70067AD47 /* CwlPreconditionTesting */; };
@@ -137,7 +137,7 @@
 		1E8256432B2380B4001DFBA4 /* AdsCardLibrary.xctestplan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AdsCardLibrary.xctestplan; sourceTree = "<group>"; };
 		26C0AEAF1B91EB6AA20B7E18 /* Pods-AdsCardLibrary-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-art.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-art/Pods-AdsCardLibrary-art.debug.xcconfig"; sourceTree = "<group>"; };
 		2EBD10A0783A9C4D4A62AFFB /* Pods_AdsCardLibrary_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsCardLibrary_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		430B6F022A65377900A6EFA4 /* OptinVideoAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptinVideoAdManagerTests.swift; sourceTree = "<group>"; };
+		430B6F022A65377900A6EFA4 /* RewardedAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardedAdManagerTests.swift; sourceTree = "<group>"; };
 		431441182A6539780067AD47 /* ThumbnailAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailAdManagerTests.swift; sourceTree = "<group>"; };
 		4314411A2A653B060067AD47 /* BannerAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdManagerTests.swift; sourceTree = "<group>"; };
 		431F6F052C0F3D8100DBFFAA /* AdTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdTagView.swift; sourceTree = "<group>"; };
@@ -339,7 +339,7 @@
 			children = (
 				43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */,
 				435F7BCE2A601F990077843A /* InterstitialAdManagerTests.swift */,
-				430B6F022A65377900A6EFA4 /* OptinVideoAdManagerTests.swift */,
+				430B6F022A65377900A6EFA4 /* RewardedAdManagerTests.swift */,
 				431441182A6539780067AD47 /* ThumbnailAdManagerTests.swift */,
 				4314411A2A653B060067AD47 /* BannerAdManagerTests.swift */,
 				434F85242AD6D9EF005077F5 /* MpuAdManagerTests.swift */,
@@ -746,7 +746,7 @@
 				43ACBB702B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift in Sources */,
 				4314411B2A653B060067AD47 /* BannerAdManagerTests.swift in Sources */,
 				435C55EF2A42EAEF004186FF /* AdsCardManagerTests.swift in Sources */,
-				430B6F032A65377900A6EFA4 /* OptinVideoAdManagerTests.swift in Sources */,
+				430B6F032A65377900A6EFA4 /* RewardedAdManagerTests.swift in Sources */,
 				434F85252AD6D9EF005077F5 /* MpuAdManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

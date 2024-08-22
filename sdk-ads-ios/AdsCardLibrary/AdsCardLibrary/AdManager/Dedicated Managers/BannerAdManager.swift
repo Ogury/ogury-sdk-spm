@@ -107,11 +107,11 @@ public final class BannerAdManager: AdManager {
    }
    
    private func load(from adMarkUp: String) {
-      ad.load(withAdMarkup: adMarkUp, size: self.isMpu ? .mpu_300x250() : .small_banner_320x50())
+      ad.load(withAdMarkup: adMarkUp, size: self.isMpu ? .mrec_300x250() : .small_banner_320x50())
    }
    
    private func load() {
-      let maxSize: OguryAdsBannerSize = self.adType == .banner ? .small_banner_320x50() : .mpu_300x250()
+      let maxSize: OguryAdsBannerSize = self.adType == .banner ? .small_banner_320x50() : .mrec_300x250()
       if let dspCreativeId = options.baseOptions.dspCreativeId, !dspCreativeId.isEmpty,
          let campaignId = options.baseOptions.campaignId, !campaignId.isEmpty,
          let creativeId = options.baseOptions.creativeId,
@@ -145,7 +145,7 @@ public final class BannerAdManager: AdManager {
          sayHiTo(obj, sel, campaignId, maxSize)
       } else {
          switch self.adType {
-            case .mpu: self.ad.load(with: .mpu_300x250())
+            case .mpu: self.ad.load(with: .mrec_300x250())
             case .banner: self.ad.load(with: .small_banner_320x50())
             default: ()
          }
@@ -159,7 +159,7 @@ public final class BannerAdManager: AdManager {
          self.ad = OguryBannerAd(adUnitId: options.adUnitId)
          self.ad.delegate = self.proxyDelegate
          switch self.adType {
-            case .mpu: self.ad.load(withAdMarkup: adMarkUp, size: .mpu_300x250())
+            case .mpu: self.ad.load(withAdMarkup: adMarkUp, size: .mrec_300x250())
             case .banner: self.ad.load(withAdMarkup: adMarkUp, size: .small_banner_320x50())
             default: ()
          }
