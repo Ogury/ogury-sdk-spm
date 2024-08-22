@@ -258,18 +258,6 @@ static NSString *const DefaultDspRegion = @"dspRegion";
     OCMVerify([internalAPI.adManager show:OCMOCK_ANY additionalConditions:[OCMArg any]]);
 }
 
-- (void)testShouldDispatchDidDisplay {
-    OGABannerAdInternalAPI *internalAPI = OCMPartialMock(self.internalAPI);
-
-    OguryBannerAd *bannerAd = OCMClassMock([OguryBannerAd class]);
-
-    OCMExpect([internalAPI.delegateDispatcher displayed]);
-
-    [internalAPI didDisplayOguryBannerAd:bannerAd];
-
-    OCMVerify([internalAPI.delegateDispatcher displayed]);
-}
-
 - (void)testShouldDispatchDidClick {
     OGABannerAdInternalAPI *internalAPI = OCMPartialMock(self.internalAPI);
 

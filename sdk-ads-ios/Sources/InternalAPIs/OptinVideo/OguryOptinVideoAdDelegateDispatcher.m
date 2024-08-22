@@ -29,19 +29,6 @@
     self.hasSentDisplayedDelegate = NO;
 }
 
-- (void)displayed {
-    if (!self.hasSentDisplayedDelegate) {
-        [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad displayed called", OGAAdConfigurationAdTypeOptinVideo, self.optinVideo.adUnitId];
-
-        if ([self.delegate respondsToSelector:@selector(didDisplayOguryOptinVideoAd:)] && self.optinVideo != nil) {
-            [self dispatch:^(id<OguryOptinVideoAdDelegate> _Nonnull delegate) {
-                [delegate didDisplayOguryOptinVideoAd:self.optinVideo];
-            }];
-        }
-        self.hasSentDisplayedDelegate = YES;
-    }
-}
-
 - (void)failedWithError:(OguryError *)error {
     [self.log logErrorFormat:error format:@"[%@][%@] callback ad failed with error called", OGAAdConfigurationAdTypeOptinVideo, self.optinVideo.adUnitId];
 

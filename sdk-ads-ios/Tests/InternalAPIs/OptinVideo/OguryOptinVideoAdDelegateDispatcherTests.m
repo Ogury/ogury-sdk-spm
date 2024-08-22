@@ -51,11 +51,6 @@
     OCMVerify([self.delegate didFailOguryOptinVideoAdWithError:error forAd:self.optin]);
 }
 
-- (void)testOguryAdsOptinVideoAdDisplayed {
-    [self.delegateDispatcher displayed];
-    OCMVerify([self.delegate didDisplayOguryOptinVideoAd:self.optin]);
-}
-
 - (void)testOguryAdsOptinVideoAdClosed {
     [self.delegateDispatcher closed];
     OCMVerify([self.delegate didCloseOguryOptinVideoAd:self.optin]);

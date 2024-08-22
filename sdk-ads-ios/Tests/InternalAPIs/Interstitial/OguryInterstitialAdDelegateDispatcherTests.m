@@ -51,11 +51,6 @@
     OCMVerify([self.delegate didFailOguryInterstitialAdWithError:error forAd:self.interstitial]);
 }
 
-- (void)testOguryAdsInterstitialAdDisplayed {
-    [self.delegateDispatcher displayed];
-    OCMVerify([self.delegate didDisplayOguryInterstitialAd:self.interstitial]);
-}
-
 - (void)testOguryAdsInterstitialAdClosed {
     [self.delegateDispatcher closed];
     OCMVerify([self.delegate didCloseOguryInterstitialAd:self.interstitial]);

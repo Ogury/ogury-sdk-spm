@@ -217,10 +217,6 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
     }
 }
 
-- (void)didDisplayOguryBannerAd:(OguryBannerAd *)banner {
-    [self.delegateDispatcher displayed];
-}
-
 - (void)didClickOguryBannerAd:(OguryBannerAd *)banner {
     [self.delegateDispatcher clicked];
 }

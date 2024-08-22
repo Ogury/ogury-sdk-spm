@@ -15,7 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol OguryOptinVideoAdDelegate <NSObject>
 @optional
 - (void)didLoadOguryOptinVideoAd:(OguryOptinVideoAd *)optinVideo;
-- (void)didDisplayOguryOptinVideoAd:(OguryOptinVideoAd *)optinVideo;
 - (void)didClickOguryOptinVideoAd:(OguryOptinVideoAd *)optinVideo;
 - (void)didCloseOguryOptinVideoAd:(OguryOptinVideoAd *)optinVideo;
 - (void)didRewardOguryOptinVideoAdWithItem:(OGARewardItem *)item forAd:(OguryOptinVideoAd *)optinVideo;

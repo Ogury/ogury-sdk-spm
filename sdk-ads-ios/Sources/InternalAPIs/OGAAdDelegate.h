@@ -8,7 +8,6 @@
 @protocol OGAAdDelegate <NSObject>
 
 - (void)loaded;
-- (void)displayed;
 - (void)clicked;
 - (void)adImpression;
 - (void)closed;

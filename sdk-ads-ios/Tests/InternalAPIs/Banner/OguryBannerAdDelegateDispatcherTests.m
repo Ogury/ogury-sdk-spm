@@ -59,12 +59,6 @@
     OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
 }
 
-- (void)testOguryAdsBannerAdDisplayed {
-    [self.delegateDispatcher displayed];
-
-    OCMVerify([self.delegate didDisplayOguryBannerAd:self.banner]);
-}
-
 - (void)testOguryAdsBannerAdClosed {
     [self.delegateDispatcher closed];
 
