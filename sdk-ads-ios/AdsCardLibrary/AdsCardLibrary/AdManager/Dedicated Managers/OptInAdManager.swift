@@ -8,8 +8,8 @@ import OguryAds
 import ComposableArchitecture
 import Combine
 
-public final class OptInAdManager: AdManager {
-   public static func == (lhs: OptInAdManager, rhs: OptInAdManager) -> Bool {
+public final class RewardedAdManager: AdManager {
+   public static func == (lhs: RewardedAdManager, rhs: RewardedAdManager) -> Bool {
       return lhs.adType == rhs.adType && lhs.ad == rhs.ad
    }
    
@@ -24,7 +24,7 @@ public final class OptInAdManager: AdManager {
    //MARK: Variables
    public var options: AdManagerOptions!
    public private(set) var ad: OguryRewardedAd!
-   public private(set) var adType: AdType<OptInAdManager>
+   public private(set) var adType: AdType<RewardedAdManager>
    public var adView: AdView { AdView(store: self.store) }
    public var adDelegate: AdLifeCycleDelegate? {
       set {
@@ -35,16 +35,16 @@ public final class OptInAdManager: AdManager {
          proxyDelegate.adDelegate
       }
    }
-   internal let proxyDelegate: OptInProxyDelegate!
+   internal let proxyDelegate: RewardedProxyDelegate!
    public var lifeCycleEvents: [AdLifeCycleEventHistory] = []
    internal var bidder: HeaderBidable?
    public let id: UUID = UUID()
    
    //MARK: Initializer
-   public init(adType: AdType<OptInAdManager>, adDelegate: AdLifeCycleDelegate? = nil) {
+   public init(adType: AdType<RewardedAdManager>, adDelegate: AdLifeCycleDelegate? = nil) {
       events = PassthroughSubject<AdLifeCycleEvent, Never>()
       self.adType = adType
-      proxyDelegate = OptInProxyDelegate(adDelegate: adDelegate)
+      proxyDelegate = RewardedProxyDelegate(adDelegate: adDelegate)
       proxyDelegate.adManager = self
       if case let .maxHeaderBidding(_, adMarkUpRetriever) = adType {
          bidder = adMarkUpRetriever
@@ -172,7 +172,7 @@ public final class OptInAdManager: AdManager {
 // We have to use a proxy object because otherwise, we would have to make InterstitialAdManager a final class that inherits from NSObject
 // and for some reasons, that leads to unexpected compilation fail
 // To overcome easily this, we use a proxy object
-internal class OptInProxyDelegate: AdDelegateProxy<OptInAdManager>, OguryRewardedAdDelegate {
+internal class RewardedProxyDelegate: AdDelegateProxy<RewardedAdManager>, OguryRewardedAdDelegate {
    func didLoad(_ ad: OguryRewardedAd) {
       guard let adManager else { return }
       adManager.append(.adLoaded(canShow: true))
@@ -203,7 +203,7 @@ internal class OptInProxyDelegate: AdDelegateProxy<OptInAdManager>, OguryRewarde
    }
 }
 
-extension OptInAdManager: Storable {
+extension RewardedAdManager: Storable {
    public convenience init(from data: StorableAdManager) {
       fatalError()
    }

@@ -49,14 +49,14 @@ final class AdsCardManagerTests: XCTestCase {
     }
     
     func testWhenInstanciatingInterstitialAdTypeWithWrongManagerThenErrorIsThrown() {
-        let inter: AdType<OptInAdManager> = .interstitial
+        let inter: AdType<RewardedAdManager> = .interstitial
         let manager = try? inter.adManager
         XCTAssertNil(manager)
         XCTAssertThrowsError(try inter.adManager)
     }
     
     func testGivenOptInAdTypesWhenRetrievingAdManagerThenProperManagerIsReturned() {
-        let inter: AdType<OptInAdManager> = .optInVideo
+        let inter: AdType<RewardedAdManager> = .optInVideo
         let manager = try? inter.adManager
         XCTAssertNotNil(manager)
     }
@@ -120,27 +120,27 @@ final class AdsCardManagerTests: XCTestCase {
     }
     
     func testWhenInstanciatingHBInterstitialAdTypeWithWrongManagerThenErrorIsThrown() {
-        let inter: AdType<OptInAdManager> = .maxHeaderBidding(adType: .interstitial, adMarkUpRetriever: HBRetriever())
+        let inter: AdType<RewardedAdManager> = .maxHeaderBidding(adType: .interstitial, adMarkUpRetriever: HBRetriever())
         let manager = try? inter.adManager
         XCTAssertNil(manager)
         XCTAssertThrowsError(try inter.adManager)
     }
    
     func testGivenHBDTFairBidInterstitialAdTypeWithWrongManagerThenErrorIsThrown() {
-        let inter: AdType<OptInAdManager> = .dtFairBidHeaderBidding(adType: .interstitial, adMarkUpRetriever: HBDTFairBidRetriever())
+        let inter: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType: .interstitial, adMarkUpRetriever: HBDTFairBidRetriever())
         let manager = try? inter.adManager
        XCTAssertNil(manager)
        XCTAssertThrowsError(try inter.adManager)
     }
     
     func testGivenHBOptInAdTypesWhenRetrievingAdManagerThenProperManagerIsReturned() {
-        let inter: AdType<OptInAdManager> = .maxHeaderBidding(adType: .optInVideo, adMarkUpRetriever: HBRetriever())
+        let inter: AdType<RewardedAdManager> = .maxHeaderBidding(adType: .optInVideo, adMarkUpRetriever: HBRetriever())
         let manager = try? inter.adManager
         XCTAssertNotNil(manager)
     }
    
     func testGivenHBDTFairBidOptInAdTypesWhenRetrievingAdManagerThenProperManagerIsReturned() {
-        let inter: AdType<OptInAdManager> = .dtFairBidHeaderBidding(adType: .optInVideo, adMarkUpRetriever: HBDTFairBidRetriever())
+        let inter: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType: .optInVideo, adMarkUpRetriever: HBDTFairBidRetriever())
         let manager = try? inter.adManager
         XCTAssertNotNil(manager)
     }

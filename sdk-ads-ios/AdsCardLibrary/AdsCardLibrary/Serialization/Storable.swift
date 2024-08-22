@@ -47,7 +47,7 @@ extension AdType: Codable {
                 return adType as? AdType<T>
                 
             case RawInnerAdType.optInVideo.rawValue:
-                let adType: AdType<OptInAdManager> = .optInVideo
+                let adType: AdType<RewardedAdManager> = .optInVideo
                 return adType as? AdType<T>
                 
             case RawInnerAdType.banner.rawValue:
@@ -67,7 +67,7 @@ extension AdType: Codable {
                 return adType as? AdType<T>
                 
             case RawInnerAdType.optInVideo.rawValue + RawInnerAdType.maxSuffix.rawValue:
-                let adType: AdType<OptInAdManager> = .maxHeaderBidding(adType:.optInVideo, adMarkUpRetriever: adMarkUpRetriever as? MaxHeaderBidable)
+                let adType: AdType<RewardedAdManager> = .maxHeaderBidding(adType:.optInVideo, adMarkUpRetriever: adMarkUpRetriever as? MaxHeaderBidable)
                 return adType as? AdType<T>
                 
             case RawInnerAdType.thumbnail.rawValue + RawInnerAdType.maxSuffix.rawValue:
@@ -87,7 +87,7 @@ extension AdType: Codable {
                 return adType as? AdType<T>
                
             case RawInnerAdType.optInVideo.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
-                let adType: AdType<OptInAdManager> = .dtFairBidHeaderBidding(adType:.optInVideo, adMarkUpRetriever: adMarkUpRetriever as? DTFairBidHeaderBidable)
+                let adType: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType:.optInVideo, adMarkUpRetriever: adMarkUpRetriever as? DTFairBidHeaderBidable)
                 return adType as? AdType<T>
                
             case RawInnerAdType.thumbnail.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:

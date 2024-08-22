@@ -251,13 +251,13 @@ struct AdContainer: Codable {
                     return AdFormat(id: adType.uuid, adType: .init(adType))
                     
                 case RawInnerAdType.optInVideo.rawValue:
-                    let adType: AdType<OptInAdManager> = .optInVideo
+                    let adType: AdType<RewardedAdManager> = .optInVideo
                     return AdFormat(id: adType.uuid, adType: .init(adType))
                 case RawInnerAdType.optInVideo.rawValue + RawInnerAdType.maxSuffix.rawValue:
-                    let adType: AdType<OptInAdManager> = .maxHeaderBidding(adType: .optInVideo, adMarkUpRetriever: nil)
+                    let adType: AdType<RewardedAdManager> = .maxHeaderBidding(adType: .optInVideo, adMarkUpRetriever: nil)
                     return AdFormat(id: adType.uuid, adType: .init(adType))
                 case RawInnerAdType.optInVideo.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
-                    let adType: AdType<OptInAdManager> = .dtFairBidHeaderBidding(adType: .optInVideo, adMarkUpRetriever: nil)
+                    let adType: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType: .optInVideo, adMarkUpRetriever: nil)
                     return AdFormat(id: adType.uuid, adType: .init(adType))
                     
                 case RawInnerAdType.thumbnail.rawValue:
@@ -391,7 +391,7 @@ extension Array where Element == AdContainer {
                     
                 case RawInnerAdType.optInVideo.rawValue,
                     RawInnerAdType.optInVideo.rawValue + RawInnerAdType.maxSuffix.rawValue:
-                    if let adType: AdType<OptInAdManager> = try? AdType.adType(from: adContainer.adType,
+                    if let adType: AdType<RewardedAdManager> = try? AdType.adType(from: adContainer.adType,
                                                                                adMarkUpRetriever: maxHeaderBidable),
                        let adManager = try? AdsStorableContainer
                         .cardManager
@@ -404,7 +404,7 @@ extension Array where Element == AdContainer {
                     }
                     
                 case RawInnerAdType.optInVideo.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
-                    if let adType: AdType<OptInAdManager> = try? AdType.adType(from: adContainer.adType,
+                    if let adType: AdType<RewardedAdManager> = try? AdType.adType(from: adContainer.adType,
                                                                                adMarkUpRetriever: dtFairBidHeaderBidable),
                        let adManager = try? AdsStorableContainer
                         .cardManager

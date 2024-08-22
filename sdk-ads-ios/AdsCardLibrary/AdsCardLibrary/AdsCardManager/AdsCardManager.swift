@@ -83,10 +83,10 @@ public indirect enum AdType<T: AdManager> {
         get throws {
             switch self {
                 case .optInVideo:
-                    guard T.self == OptInAdManager.self else {
+                    guard T.self == RewardedAdManager.self else {
                         throw AdManagerError.adManagerMismatch
                     }
-                    return OptInAdManager(adType: .optInVideo) as! T
+                    return RewardedAdManager(adType: .optInVideo) as! T
                     
                 case .interstitial:
                     guard T.self == InterstitialAdManager.self else {
@@ -122,10 +122,10 @@ public indirect enum AdType<T: AdManager> {
                     return InterstitialAdManager(adType: .maxHeaderBidding(adType: .interstitial, adMarkUpRetriever: adMarkUpRetriever)) as! T
                     
                 case let .maxHeaderBidding(.optInVideo, adMarkUpRetriever):
-                    guard T.self == OptInAdManager.self else {
+                    guard T.self == RewardedAdManager.self else {
                         throw AdManagerError.adManagerMismatch
                     }
-                    return OptInAdManager(adType: .maxHeaderBidding(adType: .optInVideo, adMarkUpRetriever: adMarkUpRetriever)) as! T
+                    return RewardedAdManager(adType: .maxHeaderBidding(adType: .optInVideo, adMarkUpRetriever: adMarkUpRetriever)) as! T
                     
                 case let .maxHeaderBidding(.banner, adMarkUpRetriever):
                     guard T.self == BannerAdManager.self else {
@@ -149,10 +149,10 @@ public indirect enum AdType<T: AdManager> {
                    return InterstitialAdManager(adType: .dtFairBidHeaderBidding(adType: .interstitial, adMarkUpRetriever: adMarkUpRetriever)) as! T
                    
                 case let .dtFairBidHeaderBidding(.optInVideo, adMarkUpRetriever):
-                   guard T.self == OptInAdManager.self else {
+                   guard T.self == RewardedAdManager.self else {
                        throw AdManagerError.adManagerMismatch
                    }
-                   return OptInAdManager(adType: .dtFairBidHeaderBidding(adType: .optInVideo, adMarkUpRetriever: adMarkUpRetriever)) as! T
+                   return RewardedAdManager(adType: .dtFairBidHeaderBidding(adType: .optInVideo, adMarkUpRetriever: adMarkUpRetriever)) as! T
                    
                 case let .dtFairBidHeaderBidding(.banner, adMarkUpRetriever):
                    guard T.self == BannerAdManager.self else {
