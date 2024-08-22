@@ -22,7 +22,6 @@
 - (id)initWithAdIdentifierManager:(OGCAdIdentifierManager *)adIdentifierManager log:(OGCLog *)log logNotificationManager:(OGCSetLogLevelNotificationManager *)logNotificationManager {
     if (self = [super init]) {
         _adIdentifierManager = adIdentifierManager;
-        _adIdentifierManager.consentChangedDelegate = self.consentChangedDelegate;
         _log = log;
         _logNotificationManager = logNotificationManager;
         [_logNotificationManager registerToNotification];
