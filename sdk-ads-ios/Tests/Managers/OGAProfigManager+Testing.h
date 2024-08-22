@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (OGATrackingMask)trackingMaskFromProfig:(OGAProfigFullResponse *)profigResponse;
 
-- (NSData *)globalConsentData;
+- (NSData *)retreiveConsentData;
 
 @end
 

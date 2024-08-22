@@ -88,7 +88,7 @@ static NSString *const OGAHashConsentKey = @"OGY-HashConsentKeys";
             [self.waitingCompletionBlocks addObject:completion];
         } else if ([self shouldSync]) {
             [self.waitingCompletionBlocks addObject:completion];
-            [self.userDefaultStore setObject:[self globalConsentData] forKey:OGAHashConsentKey];
+            [self.userDefaultStore setObject:[self retreiveConsentData] forKey:OGAHashConsentKey];
             [self fetchProfig];
         } else {
             if (self.profigDao.profigFullResponse.isOmidEnabled) {
@@ -183,26 +183,26 @@ static NSString *const OGAHashConsentKey = @"OGY-HashConsentKeys";
     }
 }
 
-- (NSData *)globalConsentData {
+- (NSData *)retreiveConsentData {
     NSData *gppData = [[self.internalCore gppConsentString] dataUsingEncoding:NSUTF8StringEncoding];
     NSData *sidData = [[self.internalCore gppSID] dataUsingEncoding:NSUTF8StringEncoding];
     NSData *tcfData = [[self.internalCore tcfConsentString] dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *privacy = [self.internalCore retrieveDataPrivacy];
     NSData *privacyData = [NSKeyedArchiver archivedDataWithRootObject:privacy];
-    NSMutableData *globalConsentData = [[NSMutableData alloc] init];
-    [globalConsentData appendData:gppData];
-    [globalConsentData appendData:sidData];
-    [globalConsentData appendData:tcfData];
+    NSMutableData *consentData = [[NSMutableData alloc] init];
+    [consentData appendData:gppData];
+    [consentData appendData:sidData];
+    [consentData appendData:tcfData];
     if (privacy.allKeys.count > 0) {
-        [globalConsentData appendData:privacyData];
+        [consentData appendData:privacyData];
     }
-    return globalConsentData;
+    return consentData;
 }
 
 - (BOOL)shouldSync {
-    NSData *hashConsent = [self.userDefaultStore dataForKey:OGAHashConsentKey];
-    NSData *globalConsentData = [self globalConsentData];
-    if ([hashConsent isEqual:globalConsentData] || (globalConsentData.length == 0 && hashConsent.length == 0)) {
+    NSData *previousConsent = [self.userDefaultStore dataForKey:OGAHashConsentKey];
+    NSData *consentData = [self retreiveConsentData];
+    if ([previousConsent isEqual:consentData] || (consentData.length == 0 && previousConsent.length == 0)) {
         return [self isProfigExpired] || [self profigParametersWereUpdated];
     }
     return YES;
