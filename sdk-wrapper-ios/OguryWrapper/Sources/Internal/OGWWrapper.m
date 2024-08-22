@@ -3,10 +3,9 @@
 //
 
 #import "OGWWrapper.h"
-
 #import "OGWLog.h"
 #import "OGWModules.h"
-#import "OGWMonitoringInfoManager.h"
+#import "OguryError+OGWWrapper.h"
 #import "OGWSetLogLevelNotificationManager.h"
 
 #if __has_include(<StoreKit/StoreKit.h>) || __has_include("StoreKit.h")
@@ -23,7 +22,6 @@ static int ogcMaxNumberOfConvertionValue = 63;
 @interface OGWWrapper ()
 
 @property(nonatomic, strong) OGWModules *modules;
-@property(nonatomic, strong) OGWMonitoringInfoManager *monitoringInfoManager;
 @property(nonatomic, strong) OGWSetLogLevelNotificationManager *logNotificationManager;
 @property(nonatomic, strong) NSUserDefaults *userDefault;
 
@@ -42,18 +40,15 @@ static int ogcMaxNumberOfConvertionValue = 63;
 
 - (instancetype)init {
    return [self initWithModules:[OGWModules shared]
-          monitoringInfoManager:[[OGWMonitoringInfoManager alloc] init]
          logNotificationManager:[[OGWSetLogLevelNotificationManager alloc] init]
                     userDefault:[NSUserDefaults standardUserDefaults]];
 }
 
 - (instancetype)initWithModules:(OGWModules *)modules
-          monitoringInfoManager:(OGWMonitoringInfoManager *)monitoringInfoManager
          logNotificationManager:(OGWSetLogLevelNotificationManager *)logNotificationManager
                     userDefault:(NSUserDefaults *)userDefault {
    if (self = [super init]) {
       _modules = modules;
-      _monitoringInfoManager = monitoringInfoManager;
       _logNotificationManager = logNotificationManager;
       [logNotificationManager registerToNotification];
       _userDefault = userDefault;
@@ -62,20 +57,26 @@ static int ogcMaxNumberOfConvertionValue = 63;
 }
 
 - (void)startWithConfiguration:(OguryConfiguration *)configuration completionHandler:(SetupCompletionBlock)completionHandler {
-   int numberOfModulesPresent = 0;
-   for (OGWModule *module in self.modules.modules) {
-      if (module.isPresent) {
-         [[OGWLog shared] logAssetKeyFormat:OguryLogLevelDebug assetKey:configuration.assetKey format:@"Module [%@] initialization...", module.className];
-         [module startWithAssetKey:configuration.assetKey];
-         numberOfModulesPresent++;
-      }
-   }
-   if (numberOfModulesPresent == 0) {
-      [[OGWLog shared] logAssetKey:OguryLogLevelError assetKey:configuration.assetKey message:@"No Ogury module found in your application."];
-       [OguryError createOguryErrorWithCode:<#(NSInteger)#>]
-   }
-
-   [self.monitoringInfoManager appendMonitoringInfoAndSendIfNecessary:configuration];
+    int numberOfModulesPresent = 0;
+    NSString *errorMessage = @"";
+    for (OGWModule *module in self.modules.modules) {
+        if (module.isPresent) {
+            [[OGWLog shared] logAssetKeyFormat:OguryLogLevelDebug assetKey:configuration.assetKey format:@"Module [%@] initialization...", module.className];
+            [module startWithAssetKey:configuration.assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
+                if(error && !success) {
+                    [errorMessage stringByAppendingString:error.localizedDescription];
+                }
+            }];
+            numberOfModulesPresent++;
+        }
+    }
+    if (numberOfModulesPresent == 0) {
+        [[OGWLog shared] logAssetKey:OguryLogLevelError assetKey:configuration.assetKey message:@"No Ogury module found in your application."];
+        OguryError *noSDKModuleFound = [OguryError createNoSDKModuleFoundError];
+        if(completionHandler) {
+            completionHandler(false, noSDKModuleFound);
+        }
+    }
 }
 
 - (void)setLogLevel:(OguryLogLevel)logLevel {

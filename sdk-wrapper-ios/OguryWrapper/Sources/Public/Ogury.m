@@ -41,4 +41,5 @@
 + (void)storePrivacyData:(NSString *)key string:(NSString *)value {
    [[OGCInternal shared] storePrivacyData:key string:value];
 }
+
 @end

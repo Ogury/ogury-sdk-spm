@@ -14,7 +14,7 @@
 @implementation OGWModule
 
 NSString *const OGWModuleSharedSelector = @"shared";
-NSString *const OGWModuleStartWithAssetKeySelector = @"startWithAssetKey:";
+NSString *const OGWModuleStartWithAssetKeyCompletionHandlerSelector = @"startWithAssetKey:completionHandler:";
 NSString *const OGWModuleSetLogLevelSelector = @"setLogLevel:";
 NSString *const OGWModuleGetVersionSelector = @"getVersion";
 
@@ -50,19 +50,20 @@ NSString *const OGWModuleGetVersionSelector = @"getVersion";
    }
 }
 
-- (void)startWithAssetKey:(NSString *)assetKey {
-   SEL startWithAssetKeySelector = NSSelectorFromString(OGWModuleStartWithAssetKeySelector);
-   if ([self.module respondsToSelector:startWithAssetKeySelector]) {
-      [[OGWLog shared] logAssetKeyFormat:OguryLogLevelDebug assetKey:assetKey format:@"performing selector %@-%@-%@", self.className, OGWModuleSharedSelector, OGWModuleStartWithAssetKeySelector];
-
-      NSMethodSignature *signature = [self methodSignatureForSelector:startWithAssetKeySelector];
-      NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-
-      [invocation setSelector:startWithAssetKeySelector];
-      [invocation setTarget:self.module];
-      [invocation setArgument:&assetKey atIndex:2];
-      [invocation invoke];
-   }
+- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetupCompletionBlock _Nullable)completionHandler {
+    SEL startWithAssetKeyCompletionHandlerSelector = NSSelectorFromString(OGWModuleStartWithAssetKeyCompletionHandlerSelector);
+    if ([self.module respondsToSelector:startWithAssetKeyCompletionHandlerSelector]) {
+        [[OGWLog shared] logAssetKeyFormat:OguryLogLevelDebug assetKey:assetKey format:@"performing selector %@-%@-%@", self.className, OGWModuleSharedSelector, OGWModuleStartWithAssetKeyCompletionHandlerSelector];
+        
+        NSMethodSignature *signature = [self methodSignatureForSelector:startWithAssetKeyCompletionHandlerSelector];
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+        
+        [invocation setSelector:startWithAssetKeyCompletionHandlerSelector];
+        [invocation setTarget:self.module];
+        [invocation setArgument:&assetKey atIndex:2];
+        [invocation setArgument:&completionHandler atIndex:3];
+        [invocation invoke];
+    }
 }
 
 - (NSString *)getVersion {

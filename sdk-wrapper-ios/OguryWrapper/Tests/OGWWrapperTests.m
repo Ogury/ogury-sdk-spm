@@ -5,14 +5,12 @@
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
 #import "OGWModules.h"
-#import "OGWMonitoringInfoManager.h"
 #import "OGWSetLogLevelNotificationManager.h"
 #import "OGWWrapper.h"
 
 @interface OGWWrapper (Testing)
 
 - (instancetype)initWithModules:(OGWModules *)modules
-          monitoringInfoManager:(OGWMonitoringInfoManager *)monitoringInfoManager
          logNotificationManager:(OGWSetLogLevelNotificationManager *)logNotificationManager
                     userDefault:(NSUserDefaults *)userDefault;
 
@@ -26,12 +24,10 @@
 
 - (void)testLogNotificationRegister {
    id modules = OCMClassMock([OGWModules class]);
-   id monitoringInfoManager = OCMClassMock([OGWMonitoringInfoManager class]);
    id receiver = OCMClassMock([OGWSetLogLevelNotificationManager class]);
    id userDefault = OCMClassMock([NSUserDefaults class]);
 
    id wrapperInstant = [[OGWWrapper alloc] initWithModules:modules
-                                     monitoringInfoManager:monitoringInfoManager
                                     logNotificationManager:receiver
                                                userDefault:userDefault];
 

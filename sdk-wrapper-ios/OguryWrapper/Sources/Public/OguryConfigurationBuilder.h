@@ -16,8 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Methods
 
-- (void)putMonitoringInfo:(NSString *)monitoringInfoKey value:(NSString *)value;
-
 - (OguryConfiguration *)build;
 
 @end
