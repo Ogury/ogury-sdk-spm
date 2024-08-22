@@ -4,7 +4,6 @@
 
 #import <UIKit/UIKit.h>
 #import "OGAAdInternalAPI.h"
-#import "OguryAdsDelegate.h"
 #import "OGADelegateDispatcher.h"
 #import "OGAAdSequence.h"
 #import "OguryMediation.h"

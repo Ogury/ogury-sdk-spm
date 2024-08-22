@@ -2,7 +2,6 @@
 //  Copyright © 2020 Ogury Ltd. All rights reserved.
 //
 
-#import "OguryAds/OguryAdsDelegate.h"
 #import "OGADelegateDispatcher.h"
 #import "OguryAds/OguryOptinVideoAdDelegate.h"
 #import "OGAAdDelegate.h"

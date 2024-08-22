@@ -3,13 +3,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OguryAdsThumbnailAd.h"
 #import "OGADelegateDispatcher.h"
 #import "OguryAdsADType.h"
 #import "OGAExpirationContext.h"
 #import "OGAMonitoringDetails.h"
 #import "OGAAdDsp.h"
 #import "OguryMediation.h"
+#import "OGAThumbnailAdConstants.h"
+#import "OguryOffset.h"
+#import "OguryRectCorner.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

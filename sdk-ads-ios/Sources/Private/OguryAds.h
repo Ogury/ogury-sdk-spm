@@ -4,12 +4,6 @@
 #import "OguryOptinVideoAd.h"
 #import "OguryBannerAd.h"
 #import "OguryThumbnailAd.h"
-
-#import "OguryAdsDelegate.h"
-#import "OguryAdsInterstitial.h"
-#import "OguryAdsOptinVideo.h"
-#import "OguryAdsThumbnailAd.h"
-#import "OguryAdsBanner.h"
 #import "OGARewardItem.h"
 #import "OguryTokenService.h"
 
