@@ -2,38 +2,38 @@
 //  Copyright © 2020 Ogury Ltd. All rights reserved.
 //
 
-#import "OguryOptinVideoAd.h"
+#import "OguryRewardedAd.h"
 
-#import "OGAOptinVideoAdInternalAPI.h"
-#import "OguryOptinVideoAdDelegateDispatcher.h"
+#import "OGARewardedAdInternalAPI.h"
+#import "OguryRewardedAdDelegateDispatcher.h"
 
-@interface OguryOptinVideoAd ()
+@interface OguryRewardedAd ()
 
-@property(nonatomic, strong) OguryOptinVideoAdDelegateDispatcher *delegateDispatcher;
-@property(nonatomic, strong) OGAOptinVideoAdInternalAPI *internalAPI;
+@property(nonatomic, strong) OguryRewardedAdDelegateDispatcher *delegateDispatcher;
+@property(nonatomic, strong) OGARewardedAdInternalAPI *internalAPI;
 
 @end
 
-@implementation OguryOptinVideoAd
+@implementation OguryRewardedAd
 
 #pragma mark - Initialization
 
 - (instancetype)initWithAdUnitId:(NSString *_Nonnull)adUnitId mediation:(OguryMediation *_Nonnull)mediation {
-    return [self initWithInternalAPI:[[OGAOptinVideoAdInternalAPI alloc] initWithAdUnitId:adUnitId
-                                                                       delegateDispatcher:[[OguryOptinVideoAdDelegateDispatcher alloc] init]
-                                                                                mediation:mediation]];
+    return [self initWithInternalAPI:[[OGARewardedAdInternalAPI alloc] initWithAdUnitId:adUnitId
+                                                                     delegateDispatcher:[[OguryRewardedAdDelegateDispatcher alloc] init]
+                                                                              mediation:mediation]];
 }
 
 - (instancetype)initWithAdUnitId:(NSString *_Nonnull)adUnitId {
-    return [self initWithInternalAPI:[[OGAOptinVideoAdInternalAPI alloc] initWithAdUnitId:adUnitId
-                                                                       delegateDispatcher:[[OguryOptinVideoAdDelegateDispatcher alloc] init]
-                                                                                mediation:nil]];
+    return [self initWithInternalAPI:[[OGARewardedAdInternalAPI alloc] initWithAdUnitId:adUnitId
+                                                                     delegateDispatcher:[[OguryRewardedAdDelegateDispatcher alloc] init]
+                                                                              mediation:nil]];
 }
 
-- (instancetype)initWithInternalAPI:(OGAOptinVideoAdInternalAPI *_Nonnull)internalAPI {
+- (instancetype)initWithInternalAPI:(OGARewardedAdInternalAPI *_Nonnull)internalAPI {
     if (self = [super init]) {
         _internalAPI = internalAPI;
-        _delegateDispatcher = (OguryOptinVideoAdDelegateDispatcher *)internalAPI.delegateDispatcher;
+        _delegateDispatcher = (OguryRewardedAdDelegateDispatcher *)internalAPI.delegateDispatcher;
         _delegateDispatcher.optinVideo = self;
     }
     return self;
@@ -45,11 +45,11 @@
     return self.internalAPI.adUnitId;
 }
 
-- (id<OguryOptinVideoAdDelegate>)delegate {
+- (id<OguryRewardedAdDelegate>)delegate {
     return self.delegateDispatcher.delegate;
 }
 
-- (void)setDelegate:(id<OguryOptinVideoAdDelegate>)delegate {
+- (void)setDelegate:(id<OguryRewardedAdDelegate>)delegate {
     self.delegateDispatcher.delegate = delegate;
 }
 

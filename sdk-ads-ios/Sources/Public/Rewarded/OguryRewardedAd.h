@@ -3,14 +3,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OguryOptinVideoAdDelegate.h"
+#import "OguryRewardedAdDelegate.h"
 #import "OguryMediation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OguryOptinVideoAd : NSObject
+@interface OguryRewardedAd : NSObject
 
-@property(nonatomic, weak, nullable) id<OguryOptinVideoAdDelegate> delegate;
+@property(nonatomic, weak, nullable) id<OguryRewardedAdDelegate> delegate;
 @property(nonatomic, strong, readonly) NSString *adUnitId;
 @property(nonatomic, strong, nullable) NSString *userId;
 

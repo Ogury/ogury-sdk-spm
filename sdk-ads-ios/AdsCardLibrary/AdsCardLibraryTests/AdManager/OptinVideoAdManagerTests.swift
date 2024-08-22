@@ -8,7 +8,7 @@ import OguryAds
 import Mockingbird
 import Combine
 
-final class OptinVideoAdManagerTests: XCTestCase {
+final class RewardedAdManagerTests: XCTestCase {
     var storables: [AnyCancellable] = []
     
     func testWhenReceivingDisplayErrorsThenProperDelegateShouldBeCalled() {
@@ -38,7 +38,7 @@ final class OptinVideoAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &storables)
-            adManager.ad?.delegate?.didFailOguryOptinVideoAdWithError?(error, for: OguryOptinVideoAd())
+            adManager.ad?.delegate?.didFailOguryRewardedAdWithError?(error, for: OguryRewardedAd())
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
         }
     }
@@ -72,7 +72,7 @@ final class OptinVideoAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &storables)
-            adManager.ad?.delegate?.didFailOguryOptinVideoAdWithError?(error, for: OguryOptinVideoAd())
+            adManager.ad?.delegate?.didFailOguryRewardedAdWithError?(error, for: OguryRewardedAd())
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
         }
     }
@@ -99,7 +99,7 @@ final class OptinVideoAdManagerTests: XCTestCase {
             }
         }
         .store(in: &storables)
-        proxy.handle(AdManagerError.loadNotCalledBeforeShow, for: OguryOptinVideoAd())
+        proxy.handle(AdManagerError.loadNotCalledBeforeShow, for: OguryRewardedAd())
         self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 2)
     }
     
@@ -160,7 +160,7 @@ final class OptinVideoAdManagerTests: XCTestCase {
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didLoad?(OguryOptinVideoAd())
+        adManager.ad?.delegate?.didLoad?(OguryRewardedAd())
         wait(for: [ex], timeout: 0.5)
     }
     
@@ -178,25 +178,7 @@ final class OptinVideoAdManagerTests: XCTestCase {
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didClick?(OguryOptinVideoAd())
-        wait(for: [ex], timeout: 0.5)
-    }
-    
-    func testWhenAdDisplayedDelegateIsCalledThenItIsForwardedToProxy() {
-        let ad: AdType<OptInAdManager> = .optInVideo
-        
-        let adManager = OptInAdManager(adType: ad)
-        let vc = UIViewController()
-        adManager.options = AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: "")
-        try? adManager.loadAd(from: adManager.options.baseOptions)
-        let ex = expectation(description: "")
-        adManager.events.sink { event in
-            if event == .adDisplayed {
-                ex.fulfill()
-            }
-        }
-        .store(in: &storables)
-        adManager.ad?.delegate?.didDisplay?(OguryOptinVideoAd())
+        adManager.ad?.delegate?.didClick?(OguryRewardedAd())
         wait(for: [ex], timeout: 0.5)
     }
     
@@ -214,7 +196,7 @@ final class OptinVideoAdManagerTests: XCTestCase {
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didClose?(OguryOptinVideoAd())
+        adManager.ad?.delegate?.didClose?(OguryRewardedAd())
         wait(for: [ex], timeout: 0.5)
     }
     
@@ -232,7 +214,7 @@ final class OptinVideoAdManagerTests: XCTestCase {
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didTriggerImpressionOguryOptinVideoAd?(OguryOptinVideoAd())
+        adManager.ad?.delegate?.didTriggerImpressionOguryRewardedAd?(OguryRewardedAd())
         wait(for: [ex], timeout: 0.5)
     }
     
@@ -251,7 +233,7 @@ final class OptinVideoAdManagerTests: XCTestCase {
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didFailOguryOptinVideoAdWithError?(error, for: OguryOptinVideoAd())
+        adManager.ad?.delegate?.didFailOguryRewardedAdWithError?(error, for: OguryRewardedAd())
         wait(for: [ex], timeout: 0.5)
     }
     
@@ -281,7 +263,7 @@ final class OptinVideoAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &storables)
-            adManager.ad?.delegate?.didFailOguryOptinVideoAdWithError?(error, for: OguryOptinVideoAd())
+            adManager.ad?.delegate?.didFailOguryRewardedAdWithError?(error, for: OguryRewardedAd())
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
         }
     }

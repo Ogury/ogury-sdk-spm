@@ -225,11 +225,6 @@ internal class ThumbnailProxyDelegate: AdDelegateProxy<ThumbnailAdManager>, Ogur
       adManager.append(.adLoaded(canShow: true))
    }
    
-   func didDisplay(_ ad: OguryThumbnailAd) {
-      guard let adManager else { return }
-      adManager.append(.adDisplayed)
-   }
-   
    func didClick(_ ad: OguryThumbnailAd) {
       guard let adManager else { return }
       adManager.append(.adClicked)

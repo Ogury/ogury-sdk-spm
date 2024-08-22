@@ -155,42 +155,6 @@ final class InterstitialAdManagerTests: XCTestCase {
         wait(for: [ex], timeout: 0.5)
     }
     
-    func testWhenAdDisplayedDelegateIsCalledThenItIsForwardedToProxy() {
-        let inter: AdType<InterstitialAdManager> = .interstitial
-        
-        let adManager = InterstitialAdManager(adType: inter)
-        let vc = UIViewController()
-        adManager.options = AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: "")
-        try? adManager.loadAd(from: adManager.options.baseOptions)
-        let ex = expectation(description: "")
-        adManager.events.sink { event in
-            if event == .adDisplayed {
-                ex.fulfill()
-            }
-        }
-        .store(in: &storables)
-        adManager.ad?.delegate?.didDisplay?(OguryInterstitialAd())
-        wait(for: [ex], timeout: 0.5)
-    }
-    
-    func testWhenAdClosedDelegateIsCalledThenItIsForwardedToProxy() {
-        let inter: AdType<InterstitialAdManager> = .interstitial
-        
-        let adManager = InterstitialAdManager(adType: inter)
-        let vc = UIViewController()
-        adManager.options = AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: "")
-        try? adManager.loadAd(from: adManager.options.baseOptions)
-        let ex = expectation(description: "")
-        adManager.events.sink { event in
-            if event == .adClosed {
-                ex.fulfill()
-            }
-        }
-        .store(in: &storables)
-        adManager.ad?.delegate?.didClose?(OguryInterstitialAd())
-        wait(for: [ex], timeout: 0.5)
-    }
-    
     func testWhenAdDidTriggerImpressionDelegateIsCalledThenItIsForwardedToProxy() {
         let inter: AdType<InterstitialAdManager> = .interstitial
         

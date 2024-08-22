@@ -2,7 +2,7 @@
 // Copyright (c) 2020 Ogury Ltd. All rights reserved.
 //
 
-#import "OGAOptinVideoAdInternalAPI.h"
+#import "OGARewardedAdInternalAPI.h"
 
 #import "OGAAdSequence.h"
 #import "OGAAdManager.h"
@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class OGAMonitoringDispatcher;
 
-@interface OGAOptinVideoAdInternalAPI (Testing)
+@interface OGARewardedAdInternalAPI (Testing)
 
 @property(nonatomic, strong) OGAAdSequence *sequence;
 @property(nonatomic, strong) OGAAdConfiguration *configuration;

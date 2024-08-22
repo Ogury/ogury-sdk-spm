@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 
 #import "OguryInterstitialAd.h"
-#import "OguryOptinVideoAd.h"
+#import "OguryRewardedAd.h"
 #import "OguryBannerAd.h"
 #import "OguryThumbnailAd.h"
 #import "OGARewardItem.h"

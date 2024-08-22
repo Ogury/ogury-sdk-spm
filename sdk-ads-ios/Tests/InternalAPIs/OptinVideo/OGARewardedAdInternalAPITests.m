@@ -4,7 +4,7 @@
 
 #import <XCTest/XCTest.h>
 #import "OGALog.h"
-#import "OGAOptinVideoAdInternalAPI+Testing.h"
+#import "OGARewardedAdInternalAPI+Testing.h"
 #import <OCMock/OCMock.h>
 #import "OguryError+utility.h"
 #import "OGAMonitoringDispatcher.h"
@@ -16,7 +16,7 @@ static NSString *const DefaultDspCreativeId = @"dspCreativeId";
 static NSString *const DefaultDspRegion = @"dspRegion";
 static NSString *const DefaultUserId = @"USER-ID";
 
-@interface OGAOptinVideoAdInternalAPITests : XCTestCase
+@interface OGARewardedAdInternalAPITests : XCTestCase
 
 @property(nonatomic, strong) OGADelegateDispatcher *delegateDispatcher;
 @property(nonatomic, strong) OGAAdManager *adManager;
@@ -24,12 +24,12 @@ static NSString *const DefaultUserId = @"USER-ID";
 @property(nonatomic, strong) OGAAnotherAdInFullScreenOverlayStateChecker *anotherAdInOverlayStateChecker;
 @property(nonatomic, strong) OGAMonitoringDispatcher *monitoringDispatcher;
 @property(nonatomic, strong) OGALog *log;
-@property(nonatomic, strong) OGAOptinVideoAdInternalAPI *internalAPI;
+@property(nonatomic, strong) OGARewardedAdInternalAPI *internalAPI;
 @property(nonatomic, strong) OGAInternal *internal;
 
 @end
 
-@implementation OGAOptinVideoAdInternalAPITests
+@implementation OGARewardedAdInternalAPITests
 
 #pragma mark - Methods
 
@@ -42,15 +42,15 @@ static NSString *const DefaultUserId = @"USER-ID";
     self.anotherAdInOverlayStateChecker = OCMClassMock([OGAAnotherAdInFullScreenOverlayStateChecker class]);
     self.monitoringDispatcher = OCMClassMock([OGAMonitoringDispatcher class]);
 
-    self.internalAPI = [[OGAOptinVideoAdInternalAPI alloc] initWithAdUnitId:DefaultAdUnitId
-                                                         delegateDispatcher:self.delegateDispatcher
-                                                                  adManager:self.adManager
-                                                  internetConnectionChecker:self.internetConnectionChecker
-                                   anotherAdInFullScreenOverlayStateChecker:self.anotherAdInOverlayStateChecker
-                                                       monitoringDispatcher:self.monitoringDispatcher
-                                                                   internal:self.internal
-                                                                  mediation:nil
-                                                                        log:self.log];
+    self.internalAPI = [[OGARewardedAdInternalAPI alloc] initWithAdUnitId:DefaultAdUnitId
+                                                       delegateDispatcher:self.delegateDispatcher
+                                                                adManager:self.adManager
+                                                internetConnectionChecker:self.internetConnectionChecker
+                                 anotherAdInFullScreenOverlayStateChecker:self.anotherAdInOverlayStateChecker
+                                                     monitoringDispatcher:self.monitoringDispatcher
+                                                                 internal:self.internal
+                                                                mediation:nil
+                                                                      log:self.log];
 }
 
 - (void)testLoad {

@@ -2,7 +2,7 @@
 //  Copyright © 2020 Ogury Ltd. All rights reserved.
 //
 
-#import "OGAOptinVideoAdInternalAPI.h"
+#import "OGARewardedAdInternalAPI.h"
 #import "NSDictionary+OGABase64.h"
 #import "OGAAdManager.h"
 #import "OGAAnotherAdInFullScreenOverlayStateChecker.h"
@@ -15,7 +15,7 @@
 #import "OGAAdController.h"
 #import "OGAInternal.h"
 
-@interface OGAOptinVideoAdInternalAPI ()
+@interface OGARewardedAdInternalAPI ()
 
 #pragma mark - Properties
 
@@ -33,7 +33,7 @@
 
 @end
 
-@implementation OGAOptinVideoAdInternalAPI
+@implementation OGARewardedAdInternalAPI
 
 #pragma mark - Initialization
 

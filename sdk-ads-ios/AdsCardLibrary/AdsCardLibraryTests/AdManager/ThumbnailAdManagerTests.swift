@@ -102,27 +102,6 @@ final class ThumbnailAdManagerTests: XCTestCase {
         }
     }
     
-    func testWhenAdDisplayedDelegateIsCalledThenItIsForwardedToProxy() {
-        let ad: AdType<ThumbnailAdManager> = .thumbnail
-        let adManager = ThumbnailAdManager(adType: ad)
-        
-        
-        let vc = UIViewController()
-        adManager.options = ThumbnailAdManagerOptions(viewController: vc, thumbnailOptions: .init(), adDisplayName: "", adUnitId: "")
-        try? adManager.loadAd(from: adManager.options.baseOptions)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            let ex = self.expectation(description: "")
-            adManager.events.sink { event in
-                if event == .adDisplayed {
-                    ex.fulfill()
-                }
-            }
-            .store(in: &self.storables)
-            adManager.ad?.delegate?.didDisplay?(OguryThumbnailAd())
-            self.wait(for: [ex], timeout: 0.5)
-        }
-    }
-    
     func testWhenAdClosedDelegateIsCalledThenItIsForwardedToProxy() {
         let ad: AdType<ThumbnailAdManager> = .thumbnail
         

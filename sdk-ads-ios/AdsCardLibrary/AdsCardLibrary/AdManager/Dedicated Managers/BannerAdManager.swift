@@ -204,11 +204,6 @@ internal class MrecProxyDelegate: AdDelegateProxy<BannerAdManager>, OguryBannerA
       adManager.append(.adLoaded(canShow:true))
    }
    
-   func didDisplay(_ ad: OguryBannerAd) {
-      guard let adManager else { return }
-      adManager.append(.adDisplayed)
-   }
-   
    func didClick(_ ad: OguryBannerAd) {
       guard let adManager else { return }
       adManager.append(.adClicked)

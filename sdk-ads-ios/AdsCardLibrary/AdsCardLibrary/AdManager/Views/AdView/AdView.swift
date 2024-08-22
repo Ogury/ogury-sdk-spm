@@ -26,7 +26,7 @@ public struct AdView: View {
                     }
                     
                     switch viewStore.adStateEvent {
-                        case .adLoading, .adDisplaying:
+                        case .adLoading/*, .adDisplaying*/:
                             ProgressView()
                                 .tint(Color(AdColorPalette.Primary.supplementary.color))
                                 .padding(.trailing, 3)

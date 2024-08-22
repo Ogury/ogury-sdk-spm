@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class OGAAdManager;
 
-@interface OGAOptinVideoAdInternalAPI : NSObject <OGAAdInternalAPI>
+@interface OGARewardedAdInternalAPI : NSObject <OGAAdInternalAPI>
 
 #pragma mark - Properties
 

@@ -3,39 +3,39 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "OguryOptinVideoAd.h"
-#import "OGAOptinVideoAdInternalAPI.h"
-#import "OguryOptinVideoAdDelegateDispatcher.h"
+#import "OguryRewardedAd.h"
+#import "OGARewardedAdInternalAPI.h"
+#import "OguryRewardedAdDelegateDispatcher.h"
 #import <OCMock/OCMock.h>
 
-@interface OguryOptinVideoAd ()
+@interface OguryRewardedAd ()
 
-- (instancetype)initWithInternalAPI:(OGAOptinVideoAdInternalAPI *_Nonnull)internalAPI;
+- (instancetype)initWithInternalAPI:(OGARewardedAdInternalAPI *_Nonnull)internalAPI;
 
 - (void)loadWithCampaignId:(NSString *)campaignId;
 
 - (void)loadWithCampaignId:(NSString *)campaignId creativeId:(NSString *)creativeId;
 
 - (void)loadWithCampaignId:(NSString *)campaignId creativeId:(NSString *)creativeId dspCreativeId:(NSString *)dspCreativeId dspRegion:(NSString *)dspRegion;
-@property(nonatomic, strong) OGAOptinVideoAdInternalAPI *internalAPI;
+@property(nonatomic, strong) OGARewardedAdInternalAPI *internalAPI;
 
 @end
 
-@interface OGAOptinVideoAdInternalAPI (Test)
+@interface OGARewardedAdInternalAPI (Test)
 
 @property(nonatomic, strong) OGAAdConfiguration *configuration;
 
 @end
 
-@interface OguryOptinVideoAdTests : XCTestCase
+@interface OguryRewardedAdTests : XCTestCase
 
-@property(nonatomic, strong) OguryOptinVideoAdDelegateDispatcher *delegateDispatcher;
-@property(nonatomic, strong) OGAOptinVideoAdInternalAPI *internalAPI;
-@property(nonatomic, strong) OguryOptinVideoAd *optinVideo;
+@property(nonatomic, strong) OguryRewardedAdDelegateDispatcher *delegateDispatcher;
+@property(nonatomic, strong) OGARewardedAdInternalAPI *internalAPI;
+@property(nonatomic, strong) OguryRewardedAd *optinVideo;
 
 @end
 
-@implementation OguryOptinVideoAdTests
+@implementation OguryRewardedAdTests
 
 static NSString *const TestAdUnitId = @"AD-UNIT-ID";
 static NSString *const TestCampaignId = @"CAMPAIGN-ID";
@@ -45,10 +45,10 @@ static NSString *const TestDspRegion = @"REGION";
 static NSString *const TestDelegate = @"DELEGATE";
 
 - (void)setUp {
-    self.delegateDispatcher = OCMClassMock([OguryOptinVideoAdDelegateDispatcher class]);
-    self.internalAPI = OCMClassMock([OGAOptinVideoAdInternalAPI class]);
+    self.delegateDispatcher = OCMClassMock([OguryRewardedAdDelegateDispatcher class]);
+    self.internalAPI = OCMClassMock([OGARewardedAdInternalAPI class]);
     OCMStub([self.internalAPI delegateDispatcher]).andReturn(self.delegateDispatcher);
-    self.optinVideo = [[OguryOptinVideoAd alloc] initWithInternalAPI:self.internalAPI];
+    self.optinVideo = [[OguryRewardedAd alloc] initWithInternalAPI:self.internalAPI];
 }
 
 - (void)testLoad {
@@ -105,14 +105,14 @@ static NSString *const TestDelegate = @"DELEGATE";
 }
 
 - (void)testSetDelegate {
-    id delegate = OCMStrictProtocolMock(@protocol(OguryOptinVideoAdDelegate));
+    id delegate = OCMStrictProtocolMock(@protocol(OguryRewardedAdDelegate));
     [self.optinVideo setDelegate:delegate];
     OCMVerify([self.delegateDispatcher setDelegate:delegate]);
 }
 
 - (void)testWhenCreatingAnAdWithMediationThenMediationIsSavedInInternalApi {
     OguryMediation *mediation = [[OguryMediation alloc] initWithName:@"name" version:@"version"];
-    OguryOptinVideoAd *ad = [[OguryOptinVideoAd alloc] initWithAdUnitId:@"adUnit" mediation:mediation];
+    OguryRewardedAd *ad = [[OguryRewardedAd alloc] initWithAdUnitId:@"adUnit" mediation:mediation];
     XCTAssertEqualObjects(ad.internalAPI.configuration.mediation, mediation);
 }
 
