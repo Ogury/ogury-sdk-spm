@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithAdUnitId:(NSString *)adUnitId
                       bannerView:(UIView *_Nullable)bannerView
+                            size:(OguryAdsBannerSize *)size
               delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher
                        adManager:(OGAAdManager *)adManager
               notificationCenter:(NSNotificationCenter *)notificationCenter

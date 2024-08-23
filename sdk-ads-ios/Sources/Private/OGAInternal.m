@@ -23,6 +23,7 @@
 @property(nonatomic, strong) OGAAdManager *adManager;
 @property(nonatomic, strong) OGALog *log;
 @property(nonatomic, strong) OGASetLogLevelNotificationManager *logNotificationManager;
+@property(nonatomic, copy) SetUpCompletionBlock setupBlock;
 
 @end
 
@@ -82,7 +83,8 @@
 
 #pragma mark - methods
 
-- (void)startWithAssetKey:(NSString *)assetKey {
+- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetUpCompletionBlock __nullable)completionHandler {
+    self.setupBlock = completionHandler;
     [self.log log:OguryLogLevelInfo message:@"Module started"];
 
     // if ([self.assetKeyManager shouldResetSDKFor:assetKey]) {
@@ -92,7 +94,6 @@
     if ([self.assetKeyManager configureAssetKey:assetKey]) {
         // Setup notifier otherwise further call to the internetReachability will return invalid statuses.
         [self.internetReachability startNotifier];
-
         [self.webViewUserAgentService syncWebViewUserAgent];
 
     } else {
@@ -110,6 +111,7 @@
         if (!response) {
             [self.log logError:error message:@"Failed to initialize Ogury Ads"];
         }
+        self.setupBlock(response != nil, error);
     }];
 }
 

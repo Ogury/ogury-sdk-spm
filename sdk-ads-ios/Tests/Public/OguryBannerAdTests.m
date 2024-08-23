@@ -41,7 +41,7 @@ static NSString *const TestDelegate = @"DELEGATE";
 }
 
 - (void)testShouldInstantiateWithAdUnitId {
-    OguryBannerAd *banner = [[OguryBannerAd alloc] initWithAdUnitId:TestAdUnitId];
+    OguryBannerAd *banner = [[OguryBannerAd alloc] initWithAdUnitId:TestAdUnitId size:OguryAdsBannerSize.mrec_300x250];
 
     XCTAssertNotNil(banner.adUnitId);
     XCTAssertNotNil(banner.delegateDispatcher);
@@ -49,15 +49,13 @@ static NSString *const TestDelegate = @"DELEGATE";
 }
 
 - (void)testShouldLoadWithSize {
-    OguryAdsBannerSize *size = [OguryAdsBannerSize mrec_300x250];
-    [self.banner loadWithSize:size];
-    OCMVerify([self.internalAPI loadWithSize:size]);
+    [self.banner load];
+    OCMVerify([self.internalAPI load]);
 }
 
 - (void)testShouldLoadWithAdMarkupAndSize {
-    OguryAdsBannerSize *size = [OguryAdsBannerSize mrec_300x250];
-    [self.banner loadWithAdMarkup:@"adMarkup" size:size];
-    OCMVerify([self.internalAPI loadWithAdMarkup:@"adMarkup" size:size]);
+    [self.banner loadWithAdMarkup:@"adMarkup"];
+    OCMVerify([self.internalAPI loadWithAdMarkup:@"adMarkup"]);
 }
 
 - (void)testShouldReturnIsLoaded {
@@ -73,10 +71,9 @@ static NSString *const TestDelegate = @"DELEGATE";
 }
 
 - (void)testShouldLoadWithCampaignId {
-    OguryAdsBannerSize *size = [OguryAdsBannerSize mrec_300x250];
-    OCMExpect([self.internalAPI loadWithCampaignId:TestCampaignId size:size]);
-    [self.banner loadWithCampaignId:TestCampaignId size:size];
-    OCMVerify([self.internalAPI loadWithCampaignId:TestCampaignId size:size]);
+    OCMExpect([self.internalAPI loadWithCampaignId:TestCampaignId]);
+    [self.banner loadWithCampaignId:TestCampaignId];
+    OCMVerify([self.internalAPI loadWithCampaignId:TestCampaignId]);
 }
 
 - (void)testLoadWithCampaignIdCreativeIdDspCreativeIdDspRegionSize {
@@ -85,36 +82,30 @@ static NSString *const TestDelegate = @"DELEGATE";
     OCMExpect([self.internalAPI loadWithCampaignId:TestCampaignId
                                         creativeId:TestCreativeId
                                      dspCreativeId:TestDspCreativeId
-                                         dspRegion:TestDspRegion
-                                              size:size]);
+                                         dspRegion:TestDspRegion]);
 
     [self.banner loadWithCampaignId:TestCampaignId
                          creativeId:TestCreativeId
                       dspCreativeId:TestDspCreativeId
-                          dspRegion:TestDspRegion
-                               size:size];
+                          dspRegion:TestDspRegion];
 
     OCMVerify([self.internalAPI loadWithCampaignId:TestCampaignId
                                         creativeId:TestCreativeId
                                      dspCreativeId:TestDspCreativeId
-                                         dspRegion:TestDspRegion
-                                              size:size]);
+                                         dspRegion:TestDspRegion]);
 }
 
 - (void)testLoadWithCampaignIdCreativeId {
     OguryAdsBannerSize *size = [OguryAdsBannerSize mrec_300x250];
 
     OCMExpect([self.internalAPI loadWithCampaignId:TestCampaignId
-                                        creativeId:TestCreativeId
-                                              size:size]);
+                                        creativeId:TestCreativeId]);
 
     [self.banner loadWithCampaignId:TestCampaignId
-                         creativeId:TestCreativeId
-                               size:size];
+                         creativeId:TestCreativeId];
 
     OCMVerify([self.internalAPI loadWithCampaignId:TestCampaignId
-                                        creativeId:TestCreativeId
-                                              size:size]);
+                                        creativeId:TestCreativeId]);
 }
 
 - (void)testShouldDestroy {
@@ -160,7 +151,9 @@ static NSString *const TestDelegate = @"DELEGATE";
 
 - (void)testWhenCreatingAnAdWithMediationThenMediationIsSavedInInternalApi {
     OguryMediation *mediation = [[OguryMediation alloc] initWithName:@"name" version:@"version"];
-    OguryBannerAd *ad = [[OguryBannerAd alloc] initWithAdUnitId:@"adUnit" mediation:mediation];
+    OguryBannerAd *ad = [[OguryBannerAd alloc] initWithAdUnitId:@"adUnit"
+                                                           size:OguryAdsBannerSize.mrec_300x250
+                                                      mediation:mediation];
     XCTAssertEqualObjects(ad.internalAPI.configuration.mediation, mediation);
 }
 

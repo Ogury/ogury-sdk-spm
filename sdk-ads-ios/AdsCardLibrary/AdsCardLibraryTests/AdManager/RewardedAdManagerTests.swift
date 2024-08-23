@@ -15,7 +15,7 @@ final class RewardedAdManagerTests: XCTestCase {
         [OguryAdsError.adExpiredError.rawValue,
          OguryAdsError.anotherAdAlreadyDisplayedError.rawValue,
          OguryAdsError.cantShowAdsInPresentingViewControllerError.rawValue].forEach { errorCode in
-           let ad: AdType<RewardedAdManager> = .optInVideo
+           let ad: AdType<RewardedAdManager> = .rewarded
            let adManager = RewardedAdManager(adType: ad)
            let vc = UIViewController()
            adManager.options = AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: "")
@@ -49,7 +49,7 @@ final class RewardedAdManagerTests: XCTestCase {
          OguryAdsError.notAvailableError.rawValue,
          OguryAdsError.sdkInitNotCalledError.rawValue,
          OguryAdsError.unknownError.rawValue].forEach { errorCode in
-           let ad: AdType<RewardedAdManager> = .optInVideo
+           let ad: AdType<RewardedAdManager> = .rewarded
            let adManager = RewardedAdManager(adType: ad)
            let vc = UIViewController()
            adManager.options = AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: "")
@@ -78,9 +78,9 @@ final class RewardedAdManagerTests: XCTestCase {
     }
     
     func testWhenNonOguryErrorIsForwardedToTheProxyThenGenericCallbackIsCalled() {
-        let ad: AdType<RewardedAdManager> = .optInVideo
+        let ad: AdType<RewardedAdManager> = .rewarded
         let adManager = RewardedAdManager(adType: ad)
-        let proxy = OptInProxyDelegate()
+        let proxy = RewardedProxyDelegate()
         proxy.adManager = adManager
         let loadFailEx = expectation(description: "adDidFailToLoad called")
         loadFailEx.isInverted = true
@@ -104,14 +104,14 @@ final class RewardedAdManagerTests: XCTestCase {
     }
     
     func testWhenInstanciatingInterstitialAdManagerThenAllPropertiesAreSet() {
-        let ad: AdType<RewardedAdManager> = .optInVideo
+        let ad: AdType<RewardedAdManager> = .rewarded
         let adManager = RewardedAdManager(adType: ad)
         XCTAssertTrue(adManager.adType == ad)
         XCTAssertNotNil(adManager.proxyDelegate)
     }
     
     func testWhenSettingNewAdDelegateThenProxyIsUpdated() {
-        let ad: AdType<RewardedAdManager> = .optInVideo
+        let ad: AdType<RewardedAdManager> = .rewarded
         
         let adManager = RewardedAdManager(adType: ad)
         let newDelegate = mock(AdLifeCycleDelegate.self)
@@ -121,7 +121,7 @@ final class RewardedAdManagerTests: XCTestCase {
     }
     
     func testWhenCallingLoadWithOptionsThenAdObjectIsInstanciated() {
-        let ad: AdType<RewardedAdManager> = .optInVideo
+        let ad: AdType<RewardedAdManager> = .rewarded
         
         let adManager = RewardedAdManager(adType: ad)
         adManager.options = AdManagerOptions(viewController: UIViewController(), adDisplayName: "", adUnitId: "")
@@ -131,14 +131,14 @@ final class RewardedAdManagerTests: XCTestCase {
     }
     
     func testWhenCallingShowWithoutAnyOptionsThenErrorIsThrown() {
-        let ad: AdType<RewardedAdManager> = .optInVideo
+        let ad: AdType<RewardedAdManager> = .rewarded
         
         let adManager = RewardedAdManager(adType: ad)
         XCTAssertThrowsError(try adManager.showAd())
     }
     
     func testWhenCallingShowWithOptionsThenNoErrorIsThrown() {
-        let ad: AdType<RewardedAdManager> = .optInVideo
+        let ad: AdType<RewardedAdManager> = .rewarded
         let adManager = RewardedAdManager(adType: ad)
         let vc = UIViewController()
         adManager.options = AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: "")
@@ -148,7 +148,7 @@ final class RewardedAdManagerTests: XCTestCase {
     
     //MARK: Delegates
     func testWhenAdLoadedDelegateIsCalledThenItIsForwardedToProxy() {
-        let ad: AdType<RewardedAdManager> = .optInVideo
+        let ad: AdType<RewardedAdManager> = .rewarded
         let adManager = RewardedAdManager(adType: ad)
         let vc = UIViewController()
         adManager.options = AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: "")
@@ -165,7 +165,7 @@ final class RewardedAdManagerTests: XCTestCase {
     }
     
     func testWhenAdClickedDelegateIsCalledThenItIsForwardedToProxy() {
-        let ad: AdType<RewardedAdManager> = .optInVideo
+        let ad: AdType<RewardedAdManager> = .rewarded
         
         let adManager = RewardedAdManager(adType: ad)
         let vc = UIViewController()
@@ -183,7 +183,7 @@ final class RewardedAdManagerTests: XCTestCase {
     }
     
     func testWhenAdClosedDelegateIsCalledThenItIsForwardedToProxy() {
-        let ad: AdType<RewardedAdManager> = .optInVideo
+        let ad: AdType<RewardedAdManager> = .rewarded
         
         let adManager = RewardedAdManager(adType: ad)
         let vc = UIViewController()
@@ -201,7 +201,7 @@ final class RewardedAdManagerTests: XCTestCase {
     }
     
     func testWhenAdDidTriggerImpressionDelegateIsCalledThenItIsForwardedToProxy() {
-        let ad: AdType<RewardedAdManager> = .optInVideo
+        let ad: AdType<RewardedAdManager> = .rewarded
         
         let adManager = RewardedAdManager(adType: ad)
         let vc = UIViewController()
@@ -219,7 +219,7 @@ final class RewardedAdManagerTests: XCTestCase {
     }
     
     func testWhenAdDidFailDelegateIsCalledThenItIsForwardedToProxy() {
-        let ad: AdType<RewardedAdManager> = .optInVideo
+        let ad: AdType<RewardedAdManager> = .rewarded
         
         let adManager = RewardedAdManager(adType: ad)
         let vc = UIViewController()
@@ -240,7 +240,7 @@ final class RewardedAdManagerTests: XCTestCase {
     func testWhenReceivingLoadingErrorsThenProperDelegateShouldBeCalled() {
         [OguryAdsError.profigNotSyncedError.rawValue,
          OguryAdsError.notLoadedError.rawValue].forEach { errorCode in
-           let ad: AdType<RewardedAdManager> = .optInVideo
+           let ad: AdType<RewardedAdManager> = .rewarded
            var adManager = RewardedAdManager(adType: ad)
            let vc = UIViewController()
            adManager.options = AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: "")
@@ -270,7 +270,7 @@ final class RewardedAdManagerTests: XCTestCase {
     
     func testWhenMaxOptInVideoIsUsedThenMaxBiddableIsCalled() {
         let retriever = MaxRetriever(adMarkUpToReturn: "")
-        let ad: AdType<RewardedAdManager> = .maxHeaderBidding(adType: .optInVideo, adMarkUpRetriever: retriever)
+        let ad: AdType<RewardedAdManager> = .maxHeaderBidding(adType: .rewarded, adMarkUpRetriever: retriever)
         let adManager = RewardedAdManager(adType: ad)
         adManager.options = AdManagerOptions(viewController: UIViewController(), adDisplayName: "", adUnitId: "")
         let ex = XCTestExpectation(description: "The ad did not load")
@@ -286,7 +286,7 @@ final class RewardedAdManagerTests: XCTestCase {
    
     func testWhenDTFairBidOptInVideoIsUsedThenMaxBiddableIsCalled() {
         let retriever = BTFairBidRetriever(adMarkUpToReturn: "")
-        let ad: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType: .optInVideo, adMarkUpRetriever: retriever)
+        let ad: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType: .rewarded, adMarkUpRetriever: retriever)
         let adManager = RewardedAdManager(adType: ad)
         adManager.options = AdManagerOptions(viewController: UIViewController(), adDisplayName: "", adUnitId: "")
         let ex = XCTestExpectation(description: "The ad did not load")
@@ -302,7 +302,7 @@ final class RewardedAdManagerTests: XCTestCase {
     
     func testWhenMaxOptInVideoIsUsedAndBidderReturnNilThenErrorIsDispatched() {
         let retriever = MaxRetriever(adMarkUpToReturn: nil)
-        let ad: AdType<RewardedAdManager> = .maxHeaderBidding(adType: .optInVideo, adMarkUpRetriever: retriever)
+        let ad: AdType<RewardedAdManager> = .maxHeaderBidding(adType: .rewarded, adMarkUpRetriever: retriever)
         let adManager = RewardedAdManager(adType: ad)
         adManager.options = AdManagerOptions(viewController: UIViewController(), adDisplayName: "", adUnitId: "")
         let ex = XCTestExpectation(description: "The ad did not load")
@@ -318,7 +318,7 @@ final class RewardedAdManagerTests: XCTestCase {
    
     func testWhenDTFairBidOptInVideoIsUsedAndBidderReturnNilThenErrorIsDispatched() {
         let retriever = BTFairBidRetriever(adMarkUpToReturn: nil)
-        let ad: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType: .optInVideo, adMarkUpRetriever: retriever)
+        let ad: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType: .rewarded, adMarkUpRetriever: retriever)
         let adManager = RewardedAdManager(adType: ad)
         adManager.options = AdManagerOptions(viewController: UIViewController(), adDisplayName: "", adUnitId: "")
         let ex = XCTestExpectation(description: "The ad did not load")

@@ -70,7 +70,7 @@ public enum AdTypeTitle: String {
 /// ```
 public indirect enum AdType<T: AdManager> {
     case interstitial
-    case optInVideo
+    case rewarded
     case thumbnail
     case banner
     case mpu
@@ -82,11 +82,11 @@ public indirect enum AdType<T: AdManager> {
     internal var adManager: T  {
         get throws {
             switch self {
-                case .optInVideo:
+                case .rewarded:
                     guard T.self == RewardedAdManager.self else {
                         throw AdManagerError.adManagerMismatch
                     }
-                    return RewardedAdManager(adType: .optInVideo) as! T
+                    return RewardedAdManager(adType: .rewarded) as! T
                     
                 case .interstitial:
                     guard T.self == InterstitialAdManager.self else {
@@ -121,11 +121,11 @@ public indirect enum AdType<T: AdManager> {
                     }
                     return InterstitialAdManager(adType: .maxHeaderBidding(adType: .interstitial, adMarkUpRetriever: adMarkUpRetriever)) as! T
                     
-                case let .maxHeaderBidding(.optInVideo, adMarkUpRetriever):
+                case let .maxHeaderBidding(.rewarded, adMarkUpRetriever):
                     guard T.self == RewardedAdManager.self else {
                         throw AdManagerError.adManagerMismatch
                     }
-                    return RewardedAdManager(adType: .maxHeaderBidding(adType: .optInVideo, adMarkUpRetriever: adMarkUpRetriever)) as! T
+                    return RewardedAdManager(adType: .maxHeaderBidding(adType: .rewarded, adMarkUpRetriever: adMarkUpRetriever)) as! T
                     
                 case let .maxHeaderBidding(.banner, adMarkUpRetriever):
                     guard T.self == BannerAdManager.self else {
@@ -148,11 +148,11 @@ public indirect enum AdType<T: AdManager> {
                    }
                    return InterstitialAdManager(adType: .dtFairBidHeaderBidding(adType: .interstitial, adMarkUpRetriever: adMarkUpRetriever)) as! T
                    
-                case let .dtFairBidHeaderBidding(.optInVideo, adMarkUpRetriever):
+                case let .dtFairBidHeaderBidding(.rewarded, adMarkUpRetriever):
                    guard T.self == RewardedAdManager.self else {
                        throw AdManagerError.adManagerMismatch
                    }
-                   return RewardedAdManager(adType: .dtFairBidHeaderBidding(adType: .optInVideo, adMarkUpRetriever: adMarkUpRetriever)) as! T
+                   return RewardedAdManager(adType: .dtFairBidHeaderBidding(adType: .rewarded, adMarkUpRetriever: adMarkUpRetriever)) as! T
                    
                 case let .dtFairBidHeaderBidding(.banner, adMarkUpRetriever):
                    guard T.self == BannerAdManager.self else {
@@ -174,7 +174,7 @@ public indirect enum AdType<T: AdManager> {
     public var displayTitle: String {
         switch self {
             case .interstitial: return AdTypeTitle.interstitial.rawValue
-            case .optInVideo: return AdTypeTitle.rewarded.rawValue
+            case .rewarded: return AdTypeTitle.rewarded.rawValue
             case .thumbnail: return AdTypeTitle.thumbnail.rawValue
             case .mpu: return AdTypeTitle.mpu.rawValue
             case .banner: return AdTypeTitle.banner.rawValue
@@ -186,7 +186,7 @@ public indirect enum AdType<T: AdManager> {
     public var headerTitle: String {
         switch self {
             case .interstitial: return AdTypeTitle.interstitial.rawValue
-            case .optInVideo: return AdTypeTitle.rewarded.rawValue
+            case .rewarded: return AdTypeTitle.rewarded.rawValue
             case .thumbnail: return AdTypeTitle.thumbnail.rawValue
             case .mpu: return AdTypeTitle.mpu.rawValue
             case .banner: return AdTypeTitle.banner.rawValue
@@ -198,7 +198,7 @@ public indirect enum AdType<T: AdManager> {
     public var uuid: Int {
         switch self {
             case .interstitial: return displayTitle.hashValue
-            case .optInVideo: return displayTitle.hashValue
+            case .rewarded: return displayTitle.hashValue
             case .thumbnail: return displayTitle.hashValue
             case .mpu: return displayTitle.hashValue
             case .banner: return displayTitle.hashValue
@@ -209,7 +209,7 @@ public indirect enum AdType<T: AdManager> {
     
     public var tags: [AdTag] {
         switch self {
-            case .interstitial, .optInVideo, .thumbnail, .banner, .mpu: return [.ogury, .direct]
+            case .interstitial, .rewarded, .thumbnail, .banner, .mpu: return [.ogury, .direct]
             case .maxHeaderBidding: return [.max, .headerBidding, .bypass]
             case .dtFairBidHeaderBidding: return [.dtFairbid, .headerBidding, .bypass]
         }
@@ -220,7 +220,7 @@ extension AdType: Equatable {
     public static func ==(lhs: AdType<T>, rhs:AdType<T>) -> Bool {
         switch (lhs, rhs) {
             case (.interstitial, .interstitial): return true
-            case (.optInVideo, .optInVideo): return true
+            case (.rewarded, .rewarded): return true
             case (.thumbnail, .thumbnail): return true
             case (.banner, .banner): return true
             case (.mpu, .mpu): return true

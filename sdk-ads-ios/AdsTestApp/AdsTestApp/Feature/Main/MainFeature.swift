@@ -415,7 +415,7 @@ extension AdType {
    var sectionName: String {
       switch self {
          case .interstitial: return "Interstitial"
-         case .optInVideo: return "Rewarded Video"
+         case .rewarded: return "Rewarded Video"
          case .thumbnail: return "Thumbnail"
          case .mpu: return "Mpu"
          case .banner: return "Banner"

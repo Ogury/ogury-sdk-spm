@@ -250,14 +250,14 @@ struct AdContainer: Codable {
                     let adType: AdType<InterstitialAdManager> = .dtFairBidHeaderBidding(adType: .interstitial, adMarkUpRetriever: nil)
                     return AdFormat(id: adType.uuid, adType: .init(adType))
                     
-                case RawInnerAdType.optInVideo.rawValue:
-                    let adType: AdType<RewardedAdManager> = .optInVideo
+                case RawInnerAdType.rewarded.rawValue:
+                    let adType: AdType<RewardedAdManager> = .rewarded
                     return AdFormat(id: adType.uuid, adType: .init(adType))
-                case RawInnerAdType.optInVideo.rawValue + RawInnerAdType.maxSuffix.rawValue:
-                    let adType: AdType<RewardedAdManager> = .maxHeaderBidding(adType: .optInVideo, adMarkUpRetriever: nil)
+                case RawInnerAdType.rewarded.rawValue + RawInnerAdType.maxSuffix.rawValue:
+                    let adType: AdType<RewardedAdManager> = .maxHeaderBidding(adType: .rewarded, adMarkUpRetriever: nil)
                     return AdFormat(id: adType.uuid, adType: .init(adType))
-                case RawInnerAdType.optInVideo.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
-                    let adType: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType: .optInVideo, adMarkUpRetriever: nil)
+                case RawInnerAdType.rewarded.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
+                    let adType: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType: .rewarded, adMarkUpRetriever: nil)
                     return AdFormat(id: adType.uuid, adType: .init(adType))
                     
                 case RawInnerAdType.thumbnail.rawValue:
@@ -389,8 +389,8 @@ extension Array where Element == AdContainer {
                         return adManager
                     }
                     
-                case RawInnerAdType.optInVideo.rawValue,
-                    RawInnerAdType.optInVideo.rawValue + RawInnerAdType.maxSuffix.rawValue:
+                case RawInnerAdType.rewarded.rawValue,
+                    RawInnerAdType.rewarded.rawValue + RawInnerAdType.maxSuffix.rawValue:
                     if let adType: AdType<RewardedAdManager> = try? AdType.adType(from: adContainer.adType,
                                                                                adMarkUpRetriever: maxHeaderBidable),
                        let adManager = try? AdsStorableContainer
@@ -403,7 +403,7 @@ extension Array where Element == AdContainer {
                         return adManager
                     }
                     
-                case RawInnerAdType.optInVideo.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
+                case RawInnerAdType.rewarded.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
                     if let adType: AdType<RewardedAdManager> = try? AdType.adType(from: adContainer.adType,
                                                                                adMarkUpRetriever: dtFairBidHeaderBidable),
                        let adManager = try? AdsStorableContainer
@@ -473,7 +473,7 @@ extension AdType {
         let currentOptions = options == nil ? Configuration.shared.options : options!
         switch self {
             case .interstitial: return currentOptions.interstitial.adUnitId + (testMode ? AdsCardManager.testModeSuffix : "")
-            case .optInVideo: return currentOptions.optIn.adUnitId + (testMode ? AdsCardManager.testModeSuffix : "")
+            case .rewarded: return currentOptions.optIn.adUnitId + (testMode ? AdsCardManager.testModeSuffix : "")
             case .thumbnail: return (currentOptions.thumbnail?.adUnitId ?? "") + (testMode ? AdsCardManager.testModeSuffix : "")
             case .banner: return currentOptions.banner.adUnitId + (testMode ? AdsCardManager.testModeSuffix : "")
             case .mpu: return currentOptions.mpu.adUnitId + (testMode ? AdsCardManager.testModeSuffix : "")

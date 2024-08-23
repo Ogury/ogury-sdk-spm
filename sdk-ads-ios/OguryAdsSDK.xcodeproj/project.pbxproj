@@ -2494,6 +2494,8 @@
 				351A10816631701140DE1EC5 /* Delegates */,
 				351A1F71BFD4878E8FF7CEF6 /* Interstitial */,
 				351A154EF207C8A8E9FB38CA /* OguryAdsError.h */,
+				351A1F7013E692FDFFFB0E16 /* OguryAds.m */,
+				351A1AD7F2E8C1005095ED18 /* OguryAds.h */,
 				351A1F4E8FFC3EC714E48244 /* Rewarded */,
 				351A1A29CB3C1999B625D2CB /* Thumbnail */,
 			);
@@ -2664,8 +2666,6 @@
 		351A187AEA0189DFD0B88C34 /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				351A1F7013E692FDFFFB0E16 /* OguryAds.m */,
-				351A1AD7F2E8C1005095ED18 /* OguryAds.h */,
 				351A118E190ACB87F06F8CEC /* OGAInternal.h */,
 				351A1C3EF272F9C3DFA521D9 /* OGAInternal.m */,
 				351A18F88B193AE6CD4341B0 /* OGAInternal+Private.h */,

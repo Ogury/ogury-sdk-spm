@@ -47,7 +47,7 @@ enum ThumbnailPositionType: Int, CaseIterable, Codable {
 
 indirect enum AvailableType: Equatable {
     case interstitial
-    case optinVideo
+    case rewarded
     case thumbnail
     case banner(type: BannerType)
     case logs

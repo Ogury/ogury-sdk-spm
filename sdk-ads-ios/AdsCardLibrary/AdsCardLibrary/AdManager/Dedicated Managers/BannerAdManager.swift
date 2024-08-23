@@ -69,7 +69,9 @@ public final class BannerAdManager: AdManager {
       self.options.baseOptions = options
       DispatchQueue.main.async {
          if (self.ad == nil) {
-             self.ad = OguryBannerAd(adUnitId: options.adUnitId, mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
+             self.ad = OguryBannerAd(adUnitId: options.adUnitId,
+                                     size: self.adType == .banner ? .small_banner_320x50() : .mrec_300x250(),
+                                     mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
          } else {
             self.ad?.destroy()
          }
@@ -107,48 +109,43 @@ public final class BannerAdManager: AdManager {
    }
    
    private func load(from adMarkUp: String) {
-      ad.load(withAdMarkup: adMarkUp, size: self.isMpu ? .mrec_300x250() : .small_banner_320x50())
+      ad.load(withAdMarkup: adMarkUp)
    }
    
    private func load() {
-      let maxSize: OguryAdsBannerSize = self.adType == .banner ? .small_banner_320x50() : .mrec_300x250()
       if let dspCreativeId = options.baseOptions.dspCreativeId, !dspCreativeId.isEmpty,
          let campaignId = options.baseOptions.campaignId, !campaignId.isEmpty,
          let creativeId = options.baseOptions.creativeId,
          let dspRegion = options.baseOptions.dspRegion?.displayName, !dspRegion.isEmpty {
          let obj = ad as OguryBannerAd
-         let sel = NSSelectorFromString("loadWithCampaignId:creativeId:dspCreativeId:dspRegion:size:")
+         let sel = NSSelectorFromString("loadWithCampaignId:creativeId:dspCreativeId:dspRegion:")
          let meth = class_getInstanceMethod(object_getClass(obj), sel)
          let imp = method_getImplementation(meth!)
-         typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?, String, String, OguryAdsBannerSize) -> Void
+         typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?, String, String) -> Void
          let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-         sayHiTo(obj, sel, campaignId, creativeId, dspCreativeId, dspRegion, maxSize)
+         sayHiTo(obj, sel, campaignId, creativeId, dspCreativeId, dspRegion)
       } else if let campaignId = options.baseOptions.campaignId,
                 !campaignId.isEmpty,
                 let creativeId = options.baseOptions.creativeId,
                 !creativeId.isEmpty {
          let obj = ad as OguryBannerAd
-         let sel = NSSelectorFromString("loadWithCampaignId:creativeId:size:")
+         let sel = NSSelectorFromString("loadWithCampaignId:creativeId:")
          let meth = class_getInstanceMethod(object_getClass(obj), sel)
          let imp = method_getImplementation(meth!)
-         typealias ClosureType = @convention(c) (AnyObject, Selector, String, String, OguryAdsBannerSize) -> Void
+         typealias ClosureType = @convention(c) (AnyObject, Selector, String, String) -> Void
          let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-         sayHiTo(obj, sel, campaignId, creativeId, maxSize)
+         sayHiTo(obj, sel, campaignId, creativeId)
       } else if let campaignId = options.baseOptions.campaignId,
                 !campaignId.isEmpty {
          let obj = ad as OguryBannerAd
-         let sel = NSSelectorFromString("loadWithCampaignId:size:")
+         let sel = NSSelectorFromString("loadWithCampaignId:")
          let meth = class_getInstanceMethod(object_getClass(obj), sel)
          let imp = method_getImplementation(meth!)
-         typealias ClosureType = @convention(c) (AnyObject, Selector, String, OguryAdsBannerSize) -> Void
+         typealias ClosureType = @convention(c) (AnyObject, Selector, String) -> Void
          let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-         sayHiTo(obj, sel, campaignId, maxSize)
+         sayHiTo(obj, sel, campaignId)
       } else {
-         switch self.adType {
-            case .mpu: self.ad.load(with: .mrec_300x250())
-            case .banner: self.ad.load(with: .small_banner_320x50())
-            default: ()
-         }
+          self.ad.load()
       }
    }
    
@@ -156,13 +153,11 @@ public final class BannerAdManager: AdManager {
       self.options.baseOptions = options
       guard let adMarkUp = options.adMarkUp else { throw AdManagerError.noOptions }
       DispatchQueue.main.async {
-         self.ad = OguryBannerAd(adUnitId: options.adUnitId)
+          self.ad = OguryBannerAd(adUnitId: options.adUnitId,
+                                  size: self.adType == .banner ? .small_banner_320x50() : .mrec_300x250(),
+                                  mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
          self.ad.delegate = self.proxyDelegate
-         switch self.adType {
-            case .mpu: self.ad.load(withAdMarkup: adMarkUp, size: .mrec_300x250())
-            case .banner: self.ad.load(withAdMarkup: adMarkUp, size: .small_banner_320x50())
-            default: ()
-         }
+          self.ad.load(withAdMarkup: adMarkUp)
          self.append(.adLoading)
       }
    }
@@ -170,7 +165,9 @@ public final class BannerAdManager: AdManager {
    public func showAd() throws {
        guard let options else { throw AdManagerError.noOptions }
        if ad == nil {
-           ad = OguryBannerAd(adUnitId: options.baseOptions.adUnitId)
+           self.ad = OguryBannerAd(adUnitId: options.baseOptions.adUnitId,
+                                   size: self.adType == .banner ? .small_banner_320x50() : .mrec_300x250(),
+                                   mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
            ad.delegate = proxyDelegate
        }
       append(.bannerReady(ad))

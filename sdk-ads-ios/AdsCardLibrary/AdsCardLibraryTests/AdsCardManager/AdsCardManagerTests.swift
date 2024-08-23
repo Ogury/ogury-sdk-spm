@@ -56,13 +56,13 @@ final class AdsCardManagerTests: XCTestCase {
     }
     
     func testGivenOptInAdTypesWhenRetrievingAdManagerThenProperManagerIsReturned() {
-        let inter: AdType<RewardedAdManager> = .optInVideo
+        let inter: AdType<RewardedAdManager> = .rewarded
         let manager = try? inter.adManager
         XCTAssertNotNil(manager)
     }
     
     func testWhenInstanciatingOptInAdTypeWithWrongManagerThenErrorIsThrown() {
-        let inter: AdType<InterstitialAdManager> = .optInVideo
+        let inter: AdType<InterstitialAdManager> = .rewarded
         let manager = try? inter.adManager
         XCTAssertNil(manager)
         XCTAssertThrowsError(try inter.adManager)
@@ -134,26 +134,26 @@ final class AdsCardManagerTests: XCTestCase {
     }
     
     func testGivenHBOptInAdTypesWhenRetrievingAdManagerThenProperManagerIsReturned() {
-        let inter: AdType<RewardedAdManager> = .maxHeaderBidding(adType: .optInVideo, adMarkUpRetriever: HBRetriever())
+        let inter: AdType<RewardedAdManager> = .maxHeaderBidding(adType: .rewarded, adMarkUpRetriever: HBRetriever())
         let manager = try? inter.adManager
         XCTAssertNotNil(manager)
     }
    
     func testGivenHBDTFairBidOptInAdTypesWhenRetrievingAdManagerThenProperManagerIsReturned() {
-        let inter: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType: .optInVideo, adMarkUpRetriever: HBDTFairBidRetriever())
+        let inter: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType: .rewarded, adMarkUpRetriever: HBDTFairBidRetriever())
         let manager = try? inter.adManager
         XCTAssertNotNil(manager)
     }
     
     func testWhenInstanciatingHBOptInAdTypeWithWrongManagerThenErrorIsThrown() {
-        let inter: AdType<InterstitialAdManager> = .maxHeaderBidding(adType: .optInVideo, adMarkUpRetriever: HBRetriever())
+        let inter: AdType<InterstitialAdManager> = .maxHeaderBidding(adType: .rewarded, adMarkUpRetriever: HBRetriever())
         let manager = try? inter.adManager
         XCTAssertNil(manager)
         XCTAssertThrowsError(try inter.adManager)
     }
    
     func testWhenInstanciatingHBDTFairBidOptInAdTypeWithWrongManagerThenErrorIsThrown() {
-        let inter: AdType<InterstitialAdManager> = .dtFairBidHeaderBidding(adType: .optInVideo, adMarkUpRetriever: HBDTFairBidRetriever())
+        let inter: AdType<InterstitialAdManager> = .dtFairBidHeaderBidding(adType: .rewarded, adMarkUpRetriever: HBDTFairBidRetriever())
         let manager = try? inter.adManager
         XCTAssertNil(manager)
         XCTAssertThrowsError(try inter.adManager)

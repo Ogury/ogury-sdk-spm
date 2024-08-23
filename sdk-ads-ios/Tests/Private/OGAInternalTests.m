@@ -60,7 +60,7 @@
 - (void)testStartWithAssetKey {
     OCMStub([self.assetKeyManager configureAssetKey:[OCMArg any]]).andReturn(YES);
 
-    [self.internal startWithAssetKey:@"OGY-XXXXXXXX"];
+    [self.internal startWithAssetKey:@"OGY-XXXXXXXX" completionHandler:nil];
 
     OCMVerify([self.assetKeyManager configureAssetKey:@"OGY-XXXXXXXX"]);
     OCMVerify([self.internetReachability startNotifier]);
@@ -72,7 +72,7 @@
     OCMReject([self.internetReachability startNotifier]);
     OCMReject([self.profigManager syncProfigWithCompletion:[OCMArg any]]);
 
-    [self.internal startWithAssetKey:@"OGY-XXXXXXXX"];
+    [self.internal startWithAssetKey:@"OGY-XXXXXXXX" completionHandler:nil];
 }
 
 - (void)testSetLogLevel {

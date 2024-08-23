@@ -188,16 +188,16 @@ struct AddFeature: Reducer {
             self.maxHeaderBidable = maxHeaderBidable
             self.dtFairBidHeaderBidable = dtFairBidHeaderBidable
             let inter: AdType<InterstitialAdManager> = .interstitial
-            let optIn: AdType<RewardedAdManager> = .optInVideo
+            let optIn: AdType<RewardedAdManager> = .rewarded
             let mpu: AdType<BannerAdManager> = .mpu
             let banner: AdType<BannerAdManager> = .banner
             let thumb: AdType<ThumbnailAdManager> = .thumbnail
             let interMax: AdType<InterstitialAdManager> = .maxHeaderBidding(adType: .interstitial, adMarkUpRetriever: maxHeaderBidable)
-            let optInMax: AdType<RewardedAdManager> = .maxHeaderBidding(adType: .optInVideo, adMarkUpRetriever: maxHeaderBidable)
+            let optInMax: AdType<RewardedAdManager> = .maxHeaderBidding(adType: .rewarded, adMarkUpRetriever: maxHeaderBidable)
             let mpuMax: AdType<BannerAdManager> = .maxHeaderBidding(adType: .mpu, adMarkUpRetriever: maxHeaderBidable)
             let bannerMax: AdType<BannerAdManager> = .maxHeaderBidding(adType: .banner, adMarkUpRetriever: maxHeaderBidable)
             let interDTFairBid: AdType<InterstitialAdManager> = .dtFairBidHeaderBidding(adType: .interstitial, adMarkUpRetriever: dtFairBidHeaderBidable)
-            let optInDTFairBid: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType: .optInVideo, adMarkUpRetriever: dtFairBidHeaderBidable)
+            let optInDTFairBid: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType: .rewarded, adMarkUpRetriever: dtFairBidHeaderBidable)
             let mpuDTFairBid: AdType<BannerAdManager> = .dtFairBidHeaderBidding(adType: .mpu, adMarkUpRetriever: dtFairBidHeaderBidable)
             let bannerDTFairBid: AdType<BannerAdManager> = .dtFairBidHeaderBidding(adType: .banner, adMarkUpRetriever: dtFairBidHeaderBidable)
             
