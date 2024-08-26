@@ -142,17 +142,15 @@ public final class OptInAdManager: AdManager {
       append(.adLoading)
    }
    
-   public func showAd() throws {
-      guard let options else { throw AdManagerError.noOptions }
-      if ad == nil {
-         ad = OguryOptinVideoAd(adUnitId: options.baseOptions.adUnitId)
-         ad.delegate = proxyDelegate
-      }
-      DispatchQueue.main.async {
-         self.ad?.show(in: options.viewController)
-      }
-      append(.adDisplaying)
-   }
+    public func showAd() throws {
+        guard let options else { throw AdManagerError.noOptions }
+        if ad == nil {
+            ad = OguryOptinVideoAd(adUnitId: options.baseOptions.adUnitId)
+            ad.delegate = proxyDelegate
+        }
+        self.ad?.show(in: options.viewController)
+        append(.adDisplaying)
+    }
    
    internal func update(ad: OguryOptinVideoAd) {
       self.ad = ad

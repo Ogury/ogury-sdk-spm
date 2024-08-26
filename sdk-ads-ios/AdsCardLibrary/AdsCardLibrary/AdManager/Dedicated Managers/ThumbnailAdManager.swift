@@ -169,37 +169,35 @@ public final class ThumbnailAdManager: AdManager {
          default: ()
       }
    }
-   
-   public func showAd() throws {
-      guard let options else { throw AdManagerError.noOptions }
-//      guard let ad else { throw AdManagerError.loadNotCalledBeforeShow }
-      if ad == nil {
-         ad = OguryThumbnailAd(adUnitId: options.baseOptions.adUnitId)
-         ad.delegate = proxyDelegate
-      }
-      let thumbOptions = options.thumbnailOptions
-      DispatchQueue.main.async {
-         switch (thumbOptions?.scene, thumbOptions?.corner, thumbOptions?.offset, thumbOptions?.position) {
+    
+    public func showAd() throws {
+        guard let options else { throw AdManagerError.noOptions }
+        //      guard let ad else { throw AdManagerError.loadNotCalledBeforeShow }
+        if ad == nil {
+            ad = OguryThumbnailAd(adUnitId: options.baseOptions.adUnitId)
+            ad.delegate = proxyDelegate
+        }
+        let thumbOptions = options.thumbnailOptions
+        switch (thumbOptions?.scene, thumbOptions?.corner, thumbOptions?.offset, thumbOptions?.position) {
             case (let scene, let corner, let offset, _) where scene != nil && corner != nil && offset != nil:
-               self.ad?.show(in: scene!, with: corner!, margin: offset!)
-               
+                self.ad?.show(in: scene!, with: corner!, margin: offset!)
+                
             case (let scene, _, _, let position) where scene != nil && position != nil:
-               self.ad?.show(in: scene!, atPosition: position!)
-               
+                self.ad?.show(in: scene!, atPosition: position!)
+                
             case (let scene, _, _, _) where scene != nil:
-               self.ad?.show(in: scene!)
-               
+                self.ad?.show(in: scene!)
+                
             case (_, let corner, let offset, _) where corner != nil && offset != nil:
-               self.ad?.show(with: corner!, margin: offset!)
-               
+                self.ad?.show(with: corner!, margin: offset!)
+                
             case (_, _, _, let position) where position != nil:
-               self.ad?.show(position!)
-               
+                self.ad?.show(position!)
+                
             default: self.ad?.show()
-         }
-      }
-      append(.adDisplaying)
-   }
+        }
+        append(.adDisplaying)
+    }
    
    internal func update(ad: OguryThumbnailAd) {
       self.ad = ad
