@@ -12,6 +12,7 @@
 #import "OGAAdDisplayerUpdateViewabilityInformation.h"
 #import "OGAAdDisplayerUpdateExposureInformation.h"
 #import "OGABannerAdInternalAPI.h"
+#import "OguryError+Ads.h"
 
 #pragma mark - Constants
 
@@ -68,7 +69,7 @@ static int const OGABannerAdContainerStateMaximumNumberOfParentTraversals = 16;
 
     if (!self.displayer.ad.bannerAdResponse) {
         if (error) {
-            *error = [OguryError createOguryErrorWithCode:OguryAdsUnknownError localizedDescription:@"Missing banner configuration."];
+            *error = [OguryError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"Missing banner configuration."];
         }
 
         return NO;
@@ -78,7 +79,7 @@ static int const OGABannerAdContainerStateMaximumNumberOfParentTraversals = 16;
 
     if (!self.bannerView) {
         if (error) {
-            *error = [OguryError createOguryErrorWithCode:OguryAdsUnknownError localizedDescription:@"Missing banner view to present."];
+            *error = [OguryError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"Missing banner view to present."];
         }
 
         return NO;

@@ -64,7 +64,7 @@
                 privacyConfiguration:(OGAAdPrivacyConfiguration *)privacyConfiguration
                    completionHandler:(OGAAdSyncCompletionHandler)completionHandler {
     if ([self.profigManager shouldSync]) {
-        completionHandler(nil, [OguryError createAdSyncProfigNotSyncedError]);
+        completionHandler(nil, [OguryAdsError invalidConfigurationFrom:OguryInternalAdsErrorOriginLoad]);
         return;
     }
 

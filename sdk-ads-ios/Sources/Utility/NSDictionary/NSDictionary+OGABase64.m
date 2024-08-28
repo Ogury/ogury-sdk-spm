@@ -23,19 +23,19 @@
 
 + (NSDictionary *)ogaDecodeFromBase64:(NSString *)jsonString error:(NSError **)error {
     if (!jsonString) {
-        *error = [OguryError createAdSyncParsingErrorWithStackTrace:[NSString stringWithFormat:@"Base64 string is empty"]];
+        *error = [OguryAdsError adParsingFailedWithStackTrace:[NSString stringWithFormat:@"Base64 string is empty"]];
         return nil;
     }
     NSError *parseError;
     NSData *data = [[NSData alloc] initWithBase64EncodedString:jsonString options:NSDataBase64DecodingIgnoreUnknownCharacters];
     if (!data) {
-        *error = [OguryError createBase64DecodeError];
+        *error = [OguryAdsError adParsingFailedWithStackTrace:@"Could not decode Base64"];
         return nil;
     }
     id jsonConverted = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&parseError];
     if (parseError || jsonConverted == nil) {
         [[OGALog shared] log:OguryLogLevelError message:@"An error occurred while decoding Base64 to NSSObject"];
-        *error = [OguryError createAdSyncParsingErrorWithStackTrace:[NSString stringWithFormat:@"Base64 contained invalid JSON (%@)", parseError.localizedDescription]];
+        *error = [OguryAdsError adParsingFailedWithStackTrace:[NSString stringWithFormat:@"Base64 contained invalid JSON (%@)", parseError.localizedDescription]];
         return nil;
     } else {
         return jsonConverted;

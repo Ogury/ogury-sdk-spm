@@ -16,6 +16,7 @@
 #import "OGAProfigFullResponse.h"
 #import "OGAAdEnabledChecker.h"
 #import "OGAAdController.h"
+#import "OguryError+Ads.h"
 
 @interface OGAAdManagerTests : XCTestCase
 
@@ -287,7 +288,7 @@
     [self.adManager continueLoadAdAfterAdSynced:sequence ads:@[] error:[OguryError createNotAvailableError]];
 
     XCTAssertEqual(sequence.status, OGAAdSequenceStatusError);
-    OCMVerify([self.adManager dispatchError:[OguryError createUnknownError] sequence:sequence]);
+    OCMVerify([self.adManager dispatchError:OguryError createOguryErrorWithCode:OguryAdsInternalErrorTypeUnknownError sequence:sequence]);
 }
 
 - (void)testContinueLoadAdAferAdSynced_notAdsReturnedByAdSync {
@@ -316,7 +317,7 @@
 
 - (void)testErrorForAdSyncError {
     XCTAssertEqualObjects([self.adManager errorForAdSyncError:[OguryError createAdSyncNoFillError] ads:nil], [OguryError createNotAvailableError]);
-    XCTAssertEqualObjects([self.adManager errorForAdSyncError:nil ads:nil], [OguryError createUnknownError]);
+    XCTAssertEqualObjects([self.adManager errorForAdSyncError:nil ads:nil], OguryError createOguryErrorWithCode : OguryAdsInternalErrorTypeUnknownError);
 }
 
 - (void)testContinueLoadAdAfterAdContentsPrepared_adContentsPrepared {

@@ -7,6 +7,7 @@
 #import <OCMock/OCMock.h>
 #import "OguryInterstitialAdDelegateDispatcher.h"
 #import "OguryInterstitialAd.h"
+#import "OguryAdsError.h"
 #import "OguryError+Ads.h"
 
 @interface OguryInterstitialAdDelegateDispatcherTests : XCTestCase
@@ -93,7 +94,7 @@
 }
 
 - (void)testOguryAdsInterstitialUnknownError {
-    OguryError *error = [OguryError createUnknownError];
+    OguryError *error = OguryError createOguryErrorWithCode : OguryAdsInternalErrorTypeUnknownError;
     [self.delegateDispatcher failedWithError:error];
     OCMVerify([self.delegate didFailOguryInterstitialAdWithError:error forAd:self.interstitial]);
 }

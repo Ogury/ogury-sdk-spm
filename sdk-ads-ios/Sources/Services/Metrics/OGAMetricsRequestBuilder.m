@@ -15,6 +15,7 @@
 #import "OGAProfigDao.h"
 #import "NSDate+OGAFormatter.h"
 #import "OGAConfigurationUtils.h"
+#import "OguryAdsError.h"
 #import "OguryError+Ads.h"
 
 #warning FIXME - Implements unit tests
@@ -81,7 +82,7 @@ NSString *const OGAMetricsRequestBuilderContentKey = @"content";
     NSError *serializationError;
     NSData *payload = [NSJSONSerialization dataWithJSONObject:bodyContent options:0 error:&serializationError];
     if (serializationError || payload == nil) {
-        [self.log logError:serializationError ?: [OguryError createUnknownError]
+        [self.log logError:serializationError ?: [OguryError createOguryErrorWithCode:OGAInternalUnknownError]
                    message:@"Failed to serialize metrics"];
         return nil;
     }

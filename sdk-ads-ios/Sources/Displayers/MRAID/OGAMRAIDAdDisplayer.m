@@ -48,6 +48,7 @@
 #import "OGAWKWebView.h"
 #import "OGAWebViewCleanupManager.h"
 #import "OGAAdController.h"
+#import "OguryError+Ads.h"
 
 #pragma mark - Constants
 
@@ -603,14 +604,14 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
     } else if ([self.delegate isKindOfClass:[OGAAdController class]] && [(OGAAdController *)self.delegate isLoaded]) {
         [self.monitoringDispatcher sendLoadEvent:OGALoadEventLoadAdBackgroundUnloaded adConfiguration:self.ad.adConfiguration];
         if ([self.configuration.delegateDispatcher respondsToSelector:@selector(failedWithError:)]) {
-            [self.configuration.delegateDispatcher failedWithError:[OguryError createUnknownError]];
+            [self.configuration.delegateDispatcher failedWithError:[OguryError createOguryErrorWithCode:OGAInternalUnknownError]];
         }
         // unload received while the load has not yet finish -> Load Error
     } else if (origin == UnloadOriginFormat) {
         [self.monitoringDispatcher sendLoadErrorEventPrecacheFail:OGAMonitoringPrecacheErrorUnload
                                                   adConfiguration:self.ad.adConfiguration];
         if ([self.configuration.delegateDispatcher respondsToSelector:@selector(failedWithError:)]) {
-            [self.configuration.delegateDispatcher failedWithError:[OguryError createUnknownError]];
+            [self.configuration.delegateDispatcher failedWithError:[OguryError createOguryErrorWithCode:OGAInternalUnknownError]];
         }
     }
     [self safeDelegateCallWithAction:[[OGAUnloadAdAction alloc] initWithNextAd:[OGANextAd nextAdTrue]]];

@@ -6,6 +6,7 @@
 #import <OCMock/OCMock.h>
 #import "OguryBannerAdDelegateDispatcher.h"
 #import "OguryBannerAd.h"
+#import "OguryAdsError.h"
 #import "OguryError+Ads.h"
 
 @interface OguryBannerAdDelegateDispatcherTests : XCTestCase
@@ -112,7 +113,7 @@
 }
 
 - (void)testOguryAdsBannerUnknownError {
-    OguryError *error = [OguryError createUnknownError];
+    OguryError *error = OguryError createOguryErrorWithCode : OguryAdsInternalErrorTypeUnknownError;
 
     [self.delegateDispatcher failedWithError:error];
 

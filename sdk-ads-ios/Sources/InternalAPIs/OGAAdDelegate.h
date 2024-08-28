@@ -2,7 +2,8 @@
 //  Copyright © 2020 Ogury Ltd. All rights reserved.
 //
 
-#import "OguryError+Ads.h"
+#import "OguryAdsError.h"
+#import "OGARewardItem.h"
 #import <UIKit/UIKit.h>
 
 @protocol OGAAdDelegate <NSObject>

@@ -18,7 +18,7 @@
     NSArray<NSDictionary *> *adsJSON = json[@"ad"];
 
     if ([adsJSON count] == 0) {
-        *error = [OguryError createAdSyncParsingErrorWithStackTrace:@"No ad received"];
+        *error = [OguryAdsError adParsingFailedWithStackTrace:@"No ad received"];
         return adsJSON;
     }
 
@@ -72,7 +72,7 @@
 + (BOOL)shouldParseAd:(OGAAd *)ad withConfiguration:(OGAAdConfiguration *)adConfig error:(NSError *_Nonnull *_Nonnull)error {
     if ([NSString ogaIsNilOrEmpty:ad.adUnit.identifier] || [NSString ogaIsNilOrEmpty:ad.adUnit.type]) {
         [[OGALog shared] logAdFormat:OguryLogLevelInfo forAdConfiguration:adConfig format:@"adUnit on ad object is empty"];
-        *error = [OguryError createAdSyncParsingErrorWithStackTrace:@"No adUnit on Ad object"];
+        *error = [OguryAdsError adParsingFailedWithStackTrace:@"No adUnit on Ad object"];
         return NO;
     }
 
@@ -80,9 +80,9 @@
         [[OGALog shared] logAdFormat:OguryLogLevelError
                   forAdConfiguration:adConfig
                               format:@"ad.adUnit type [%@] not equalt to expected adConfiguration with type [%@]", ad.adUnit.type, [adConfig getAdTypeString]];
-        *error = [OguryError createAdSyncParsingErrorWithStackTrace:[NSString stringWithFormat:@"Type mismatch. Awaited (%@) - received (%@)",
-                                                                                               [adConfig getAdTypeString],
-                                                                                               ad.adUnit.type]];
+        *error = [OguryAdsError adParsingFailedWithStackTrace:[NSString stringWithFormat:@"Type mismatch. Awaited (%@) - received (%@)",
+                                                                                         [adConfig getAdTypeString],
+                                                                                         ad.adUnit.type]];
         return NO;
     }
 

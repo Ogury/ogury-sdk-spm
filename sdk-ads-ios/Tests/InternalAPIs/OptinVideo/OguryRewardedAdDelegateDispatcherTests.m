@@ -7,6 +7,7 @@
 #import <OCMock/OCMock.h>
 #import "OguryRewardedAdDelegateDispatcher.h"
 #import "OguryRewardedAd.h"
+#import "OguryAdsError.h"
 #import "OguryError+Ads.h"
 
 @interface OguryRewardedAdDelegateDispatcherTests : XCTestCase
@@ -70,7 +71,7 @@
 }
 
 - (void)testOguryAdsRewardedAdUnknownError {
-    OguryError *error = [OguryError createUnknownError];
+    OguryError *error = OguryError createOguryErrorWithCode : OguryAdsInternalErrorTypeUnknownError;
     [self.delegateDispatcher failedWithError:error];
     OCMVerify([self.delegate didFailOguryRewardedAdWithError:error forAd:self.optin]);
 }

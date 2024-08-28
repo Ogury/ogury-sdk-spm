@@ -4,7 +4,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "OguryError+Ads.h"
+#import "OguryAdsError.h"
 #import "OGAAssetKeyManager.h"
 
 @interface OGAAssetKeyManagerTests : XCTestCase

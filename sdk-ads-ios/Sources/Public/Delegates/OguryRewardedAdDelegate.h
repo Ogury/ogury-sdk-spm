@@ -6,7 +6,7 @@
 #import <OguryCore/OguryError.h>
 
 #import "OGARewardItem.h"
-#import "OguryAdsError.h"
+#import "OguryAdsErrorType.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

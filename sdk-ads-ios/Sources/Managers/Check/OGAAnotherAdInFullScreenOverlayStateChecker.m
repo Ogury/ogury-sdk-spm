@@ -42,7 +42,7 @@
 - (BOOL)checkForSequence:(OGAAdSequence *)sequence error:(OguryError **)error {
     if ([self isAnotherAdInFullScreenOverlayState:sequence]) {
         if (error) {
-            *error = [OguryError createAnotherAdAlreadyDisplayedError];
+            *error = [OguryAdsError anotherAdIsAlreadyDisplayed];
         }
         return NO;
     }

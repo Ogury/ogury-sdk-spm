@@ -5,7 +5,7 @@
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
 #import "OGAMraidFileDownloader.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError.h"
 #import "OGAAd.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGALog.h"

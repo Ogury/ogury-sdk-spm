@@ -4,7 +4,7 @@
 
 #import <Foundation/Foundation.h>
 #import <OguryCore/OguryError.h>
-#import "OguryAdsError.h"
+#import "OguryAdsErrorType.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -8,7 +8,7 @@
 #import "OGAAdContentPreCacheManager+Testing.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGATrackEvent.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError.h"
 #import "OguryError+utility.h"
 
 NSString *const TestAdIdentifier = @"ad-identifier";

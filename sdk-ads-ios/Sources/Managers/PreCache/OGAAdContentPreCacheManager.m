@@ -10,6 +10,7 @@
 #import "OGAMraidFileDownloader.h"
 #import "OGATrackEvent.h"
 #import "OGAUserDefaultsStore.h"
+#import "OguryAdsError.h"
 #import "OguryError+Ads.h"
 
 @interface OGAAdContentPreCacheManager ()
@@ -61,7 +62,7 @@
 
     // if all ads are empty
     if (htmlEmptyCount == ads.count) {
-        completionHandler([OguryError createOguryErrorWithCode:OguryAdsUnknownError localizedDescription:@"Ad Html is empty"]);
+        completionHandler([OguryAdsError adPrecachingFailedWithStackTrace:@"Ad Html is empty"]);
         return;
     }
 
@@ -107,7 +108,7 @@
                         }
                         if ((error || mraidUrlsToDownload.count == 0) && !dispatched) {
                             dispatched = YES;
-                            completionHandler(error ? [OguryError createNotLoadedError] : nil);
+                            completionHandler(error ? [OguryAdsError adPrecachingFailedWithStackTrace:@"Mraid download error"] : nil);
                         }
                     }
                 }];
@@ -128,7 +129,7 @@
                                                             }
 
                                                             if (!response || [response isEqualToString:@""]) {
-                                                                completionHandler(ad.mraidDownloadUrl, [OguryError createNotLoadedError]);
+                                                                completionHandler(ad.mraidDownloadUrl, [OguryAdsError adPrecachingFailedWithStackTrace:@"Mraid download error"]);
                                                                 return;
                                                             }
 
