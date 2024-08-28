@@ -45,7 +45,7 @@
 
 - (void)testCheckForSequence_wrongAssetKey {
     OGAAdSequence *sequence = OCMClassMock([OGAAdSequence class]);
-    OguryError *assetKeyError = OCMClassMock([OguryError class]);
+    OguryError *assetKeyError = OCMClassMock([OguryAdsError class]);
     OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef]]).andDo(^(NSInvocation *invocation) {
                                                                                   OguryError *__autoreleasing *errorPointer = nil;
                                                                                   [invocation getArgument:&errorPointer atIndex:2];

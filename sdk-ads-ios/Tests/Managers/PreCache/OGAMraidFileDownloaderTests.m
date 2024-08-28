@@ -80,7 +80,7 @@
     OCMStub(self.ad.mraidDownloadUrl).andReturn(downloadURL);
     [self.mraidFileDownloader downloadMraidJSFromURL:self.ad
                                           completion:^(NSString *response, NSError *error) {
-                                              XCTAssertEqualObjects(error, [OguryError createNotLoadedError]);
+                                              XCTAssertEqualObjects(error, [OguryAdsError noAdLoaded]);
                                               [expect fulfill];
                                           }];
     [self waitForExpectations:@[ expect ] timeout:1.0];

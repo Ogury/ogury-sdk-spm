@@ -90,7 +90,7 @@
 }
 
 - (void)testPerformAction_shouldNotPerform {
-    OguryError *delegateError = OCMClassMock([OguryError class]);
+    OguryError *delegateError = OCMClassMock([OguryAdsError class]);
     id<OGAAdContainerDelegate> delegate = OCMProtocolMock(@protocol(OGAAdContainerDelegate));
     OCMStub([delegate shouldTransitionTo:[OCMArg any] from:[OCMArg any] error:[OCMArg anyObjectRef]]).andDo(^(NSInvocation *invocation) {
                                                                                                          OguryError *__autoreleasing *errorPointer = nil;
@@ -106,7 +106,7 @@
 }
 
 - (void)testPerformAction_failedToDisplay {
-    OguryError *displayError = [OguryError createCantShowAdsInPresentingViewControllerError];
+    OguryError *displayError = [OguryAdsError viewControllerPreventsAdFromBeingDisplayed];
     OCMStub([self.transition performTransition:[OCMArg anyObjectRef]]).andDo(^(NSInvocation *invocation) {
                                                                           OguryError *__autoreleasing *errorPointer = nil;
                                                                           [invocation getArgument:&errorPointer atIndex:2];

@@ -45,7 +45,7 @@ NSString *const AnotherTestAssetKey = @"OGY-XXXXXXXX2";
 - (void)testCheckAssetKey_errorIfInitNotCalled {
     OguryError *error = nil;
     XCTAssertFalse([self.assetKeyManager checkAssetKeyIsValid:&error]);
-    XCTAssertEqualObjects(error, [OguryError createSdkInitNotCalledError]);
+    XCTAssertEqualObjects(error, [OguryAdsError sdkNotInitializedFrom:OguryInternalAdsErrorOriginLoad stackTrace:@""]);
 }
 
 - (void)testCheckAssetKey_errorIfInvalidAssetKey {
@@ -53,7 +53,7 @@ NSString *const AnotherTestAssetKey = @"OGY-XXXXXXXX2";
 
     OguryError *error = nil;
     XCTAssertFalse([self.assetKeyManager checkAssetKeyIsValid:&error]);
-    XCTAssertEqualObjects(error, [OguryError createAssetKeyNotValidError]);
+    XCTAssertEqualObjects(error, [OguryAdsError sdkNotProperlyInitializedFrom:OguryInternalAdsErrorOriginLoad stackTrace:@""]);
 }
 
 - (void)testCheckAssetKey {
