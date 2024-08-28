@@ -93,8 +93,7 @@ pipeline {
                         expression {
                             // Check if the current tag matches the pattern "internal-core-<digits separated by dots>-<description>"
                             //def tagPattern = ~/^internal-core-(\d+(\.\d+)*?)-.*$/
-                            def arr = "${env.TAG_NAME}".split("-")
-                            return !arr.contains("-art")
+                            return !"${env.TAG_NAME}".split("-").contains("-art")
                         }
                     }
                     steps {
