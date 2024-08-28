@@ -189,7 +189,7 @@ NSString *const TestMraidDownloadUrl2 = @"https://example.com/mraid2.js";
     [self.manager downloadMraidScripts:ads
                      completionHandler:^(OguryError *error) {
                          completionHandlerCount++;
-                         XCTAssertEqualObjects(error, [OguryAdsError noAdLoaded]);
+                         XCTAssertEqualObjects(error, [OguryAdsError adPrecachingFailedWithStackTrace:@"Mraid download error"]);
                      }];
 
     OCMVerify([self.monitoringDispatcher sendLoadEvent:OGALoadEventLoadAdPrecache adConfiguration:[OCMArg any]]);

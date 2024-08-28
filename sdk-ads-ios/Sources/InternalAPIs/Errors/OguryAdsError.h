@@ -37,10 +37,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (OguryAdsError *)anotherAdIsAlreadyDisplayed;
 + (OguryAdsError *)webviewTerminatedBySystem;
 + (OguryAdsError *)viewControllerPreventsAdFromBeingDisplayed;
-// internal errors that are used to dispatch correct monitoring information
-+ (OguryAdsError *)adSyncProfigNotSynced;
-+ (OguryAdsError *)adSyncParsingError;
-+ (OguryAdsError *)adSyncRequestError;
 @end
 
 NS_ASSUME_NONNULL_END

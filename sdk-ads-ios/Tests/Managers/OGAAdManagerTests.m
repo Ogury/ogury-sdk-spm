@@ -202,9 +202,10 @@
 }
 
 - (void)testErrorForProfigError {
-    XCTAssertEqualObjects([self.adManager errorForProfigError:[OGAConfigurationUtils errorForOGAProfigError:OGAProfigExternalErrorSetupFailed]], [OguryAdsError invalidConfigurationFrom:OguryInternalAdsErrorOriginLoad]);
+    XCTAssertEqualObjects([self.adManager errorForProfigError:[OGAConfigurationUtils errorForOGAProfigError:OGAProfigExternalErrorSetupFailed]],
+                          [OguryAdsError invalidConfigurationFrom:OguryInternalAdsErrorOriginLoad]);
     XCTAssertEqualObjects([self.adManager errorForProfigError:[OGAConfigurationUtils errorForOGAProfigError:OGAProfigExternalErrorNoInternet]],
-                          [OguryAdsError createOguryErrorWithCode:OguryCoreErrorTypeNoInternetConnection]);
+                          [OguryAdsError noInternetConnectionError]);
 }
 
 - (void)testContinueLoadAdSequenceAfterProfigSynced {
@@ -288,7 +289,7 @@
     [self.adManager continueLoadAdAfterAdSynced:sequence ads:@[] error:[OguryAdsError noFillFrom:OguryAdsIntegrationTypeDirect]];
 
     XCTAssertEqual(sequence.status, OGAAdSequenceStatusError);
-    OCMVerify([self.adManager dispatchError:[OguryAdsError createOguryErrorWithCode:OGAInternalUnknownError] sequence:sequence]);
+    OCMVerify([self.adManager dispatchError:[OguryAdsError noFillFrom:OguryAdsIntegrationTypeDirect] sequence:sequence]);
 }
 
 - (void)testContinueLoadAdAferAdSynced_notAdsReturnedByAdSync {
@@ -305,13 +306,13 @@
     OGAAdConfiguration *configuration = OCMClassMock([OGAAdConfiguration class]);
     OCMStub(configuration.isHeaderBidding).andReturn(true);
     OGAAdSequence *sequence = [[OGAAdSequence alloc] initWithAdConfiguration:configuration];
-    [self.adManager continueLoadAdAfterAdSynced:sequence ads:@[] error:[OguryAdsError adSyncParsingError]];
+    [self.adManager continueLoadAdAfterAdSynced:sequence ads:@[] error:[OguryAdsError adParsingFailedWithStackTrace:@"stack"]];
     XCTAssertEqual(sequence.status, OGAAdSequenceStatusError);
-    OCMVerify([self.adManager dispatchError:[OguryAdsError noAdLoaded] sequence:sequence]);
+    OCMVerify([self.adManager dispatchError:[OguryAdsError adParsingFailedWithStackTrace:@"stack"] sequence:sequence]);
     OCMVerify([self.log logAd:OguryLogLevelError forAdConfiguration:configuration message:@"failed to decode ad markup"]);
 
     OCMVerify([self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventAdMarkUpParsingError
-                                                 stackTrace:@"Could not decode base64"
+                                                 stackTrace:@"The parsing of the ad failed : stack"
                                             adConfiguration:sequence.monitoringAdConfiguration]);
 }
 
@@ -590,7 +591,7 @@
     OCMStub(configuration.monitoringDetails.sessionId).andReturn(@"sessionId");
     OCMStub([configuration adUnitId]).andReturn(@"adUnitId");
     OGAAdSequence *sequence = [[OGAAdSequence alloc] initWithAdConfiguration:configuration];
-    [self.adManager continueLoadAdAfterAdSynced:sequence ads:@[] error:[OguryAdsError adSyncParsingError]];
+    [self.adManager continueLoadAdAfterAdSynced:sequence ads:@[] error:[OguryAdsError adParsingFailedWithStackTrace:@""]];
     OCMVerify([self.monitoringDispatcher sendLoadErrorEventParsingFailWithStackTrace:[OCMArg any]
                                                                      adConfiguration:[OCMArg any]]);
 }

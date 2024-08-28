@@ -63,7 +63,7 @@
 
 - (BOOL)canSendToken {
     OguryError *error = nil;
-    BOOL isAssetKeyValid = [self.assetKeyManager checkAssetKeyIsValid:&error];
+    BOOL isAssetKeyValid = [self.assetKeyManager checkAssetKeyIsValid:&error origin:OguryInternalAdsErrorOriginLoad];
     return [self.profigDao.profigFullResponse adsEnabled] && isAssetKeyValid;
 }
 

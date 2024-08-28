@@ -271,7 +271,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
 
 - (OguryError *)errorForProfigError:(NSError *)error {
     if (error.code == OGAProfigExternalErrorNoInternet) {
-        return [OguryError createOguryErrorWithCode:OguryCoreErrorTypeNoInternetConnection];
+        return [OguryAdsError noInternetConnectionError];
     }
     return [OguryAdsError invalidConfigurationFrom:OguryInternalAdsErrorOriginLoad];
 }
@@ -357,15 +357,15 @@ static NSString *const OGADisablingReason = @"disabling_reason";
                     break;
             }
         } else {
-            NSString *errorMessage = @"failed to decode base64 from ad markup";
+            OguryError *ogyError = [OguryAdsError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"failed to decode base64 from ad markup"];
             if ([error isKindOfClass:[OguryError class]]) {
-                errorMessage = error.localizedDescription;
+                ogyError = (OguryError *)error;
             }
             [self.log logAd:OguryLogLevelError forAdConfiguration:sequence.configuration message:@"failed to decode ad markup"];
             [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventAdMarkUpParsingError
-                                               stackTrace:errorMessage
+                                               stackTrace:ogyError.localizedDescription
                                           adConfiguration:sequence.monitoringAdConfiguration];
-            [self dispatchError:[OguryAdsError adParsingFailedWithStackTrace:errorMessage] sequence:sequence];
+            [self dispatchError:ogyError sequence:sequence];
         }
         return;
     }
@@ -470,7 +470,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         [self dispatchError:error sequence:sequence];
 
         // to make difference with no internet error on load
-        if (error.code == OguryCoreErrorTypeNoInternetConnection) {
+        if (error.code == OguryCoreErrorTypeNoInternetConnection || error.code == OguryAdsErrorTypeNoInternetConnection) {
             [self.monitoringDispatcher sendShowErrorEvent:OGAShowErrorEventNoInternetConnection
                                           adConfiguration:sequence.monitoringAdConfiguration
                                           customSessionId:sessionId];
