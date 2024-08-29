@@ -11,8 +11,6 @@ import AdsCardLibrary
 import SwiftMessages
 import OguryCore.Private
 
-
-
 struct AppSettingsFeature: Reducer {
     struct State: Equatable {
         static func == (lhs: AppSettingsFeature.State, rhs: AppSettingsFeature.State) -> Bool {

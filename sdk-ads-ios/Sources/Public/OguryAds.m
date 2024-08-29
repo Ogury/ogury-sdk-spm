@@ -30,6 +30,10 @@
 
 #pragma mark - Initialization
 
+- (NSString *)sdkVersion {
+    return [self.internal getVersion];
+}
+
 - (instancetype)init {
     return [self initWithInternal:[OGAInternal shared]];
 }
