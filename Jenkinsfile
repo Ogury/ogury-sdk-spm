@@ -91,8 +91,8 @@ pipeline {
                     when {
                         beforeAgent true
                         expression {
-                            def tagPattern = ~/^internal-core-.*$/
-                            return env.GIT_TAG ==~ tagPattern && !"${env.TAG_NAME}".split("-").contains("-art")
+                            def elements = "${env.TAG_NAME}".split("-")
+                            return elements.contains("-core") && !elements.contains("-art") && elements.contains("-internal")
                         }
                     }
                     steps {
