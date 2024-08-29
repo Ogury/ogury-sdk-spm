@@ -91,9 +91,8 @@ pipeline {
                     when {
                         beforeAgent true
                         expression {
-                            // Check if the current tag matches the pattern "internal-core-<digits separated by dots>-<description>"
-                            //def tagPattern = ~/^internal-core-(\d+(\.\d+)*?)-.*$/
-                            return !"${env.TAG_NAME}".split("-").contains("-art")
+                            def tagPattern = ~/^internal-core-.*$/
+                            return env.GIT_TAG ==~ tagPattern && !"${env.TAG_NAME}".split("-").contains("-art")
                         }
                     }
                     steps {
@@ -119,9 +118,8 @@ pipeline {
                     when {
                         beforeAgent true
                         expression {
-                            // Check if the current tag matches the pattern "internal-ads-<digits separated by dots>-<description>"
-                            def tagPattern = ~/^internal-ads-(\d+(\.\d+)*)-.*$/
-                            return env.GIT_TAG ==~ tagPattern
+                            def tagPattern = ~/^internal-ads-.*$/
+                            return env.GIT_TAG ==~ tagPattern && !"${env.TAG_NAME}".split("-").contains("-art")
                         }
                     }
                     steps {
