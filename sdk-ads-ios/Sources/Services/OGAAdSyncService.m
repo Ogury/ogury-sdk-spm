@@ -21,7 +21,7 @@
 #import "NSDictionary+OGABase64.h"
 #import "OGAPreCacheEvent.h"
 #import "OGAMetricsService.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAAdSyncService ()
 

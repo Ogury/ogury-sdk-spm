@@ -7,14 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OguryAdsErrorType.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError.h"
 #import <OguryCore/OguryError.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OguryAdsError : OguryError
-@property(nonatomic) OguryInternalAdsErrorOrigin origin;
+typedef NS_ENUM(NSInteger, OGAInternalError) {
+    OGAInternalUnknownError = 100000
+};
+
+typedef NS_ENUM(NSInteger, OguryAdsIntegrationType) {
+    OguryAdsIntegrationTypeDirect = 0,
+    OguryAdsIntegrationTypeHeaderBidding
+};
+
+@interface OguryAdsError (internal)
 @property(nonatomic) OguryAdsErrorType type;
 
 + (OguryAdsError *)sdkNotInitializedFrom:(OguryInternalAdsErrorOrigin)origin stackTrace:(NSString *)stackTrace;

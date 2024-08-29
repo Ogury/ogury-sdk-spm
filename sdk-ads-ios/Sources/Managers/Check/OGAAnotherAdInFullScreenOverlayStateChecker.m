@@ -6,6 +6,7 @@
 
 #import "OGAAdManager+Check.h"
 #import "OGAAdSequenceCoordinator.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAAnotherAdInFullScreenOverlayStateChecker ()
 

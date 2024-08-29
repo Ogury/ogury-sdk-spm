@@ -6,6 +6,7 @@
 #import "OGAAdEnabledChecker.h"
 #import "OGALog.h"
 #import "OGAProfigDao.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAAdEnabledChecker ()
 

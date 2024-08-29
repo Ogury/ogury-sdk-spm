@@ -29,7 +29,7 @@
 #import "OguryAdsError.h"
 #import "OGAOrderedDictionary.h"
 #import "OGAAdEnabledChecker.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError+Internal.h"
 
 static NSString *const OGAHeaderBiddingTrackingURLOverrides = @"ad_track_urls";
 static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_precache_url";
@@ -206,6 +206,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         return;
     }
 
+    self.internetConnectionChecker.origin = OguryInternalAdsErrorOriginLoad;
     if (![self.internetConnectionChecker checkForSequence:sequence error:&error]) {
         sequence.status = OGAAdSequenceStatusInitError;
         [self sendMonitoringEventFor:sequence oguryError:error customSessionId:nil];
@@ -464,6 +465,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         [conditions addObjectsFromArray:additionalConditions];
     }
     [conditions addObject:self.internetConnectionChecker];
+    self.internetConnectionChecker.origin = OguryInternalAdsErrorOriginShow;
     OguryError *error = nil;
     if (![self checkConditions:conditions sequence:sequence error:&error]) {
         sequence.status = OGAAdSequenceStatusError;

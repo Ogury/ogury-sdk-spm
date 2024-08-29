@@ -3,13 +3,13 @@
 //
 
 #import "OGASKOverlayState.h"
-#import "OguryAdsErrorType.h"
+#import "OguryAdsError.h"
 #import "OGAAdConfiguration.h"
 #import <StoreKit/StoreKit.h>
 #import "OGAAdDisplayerUserCloseSKOverlayInformation.h"
 #import "OGAMonitoringDispatcher+SKNetwork.h"
 #import "OGASKAdNetworkService.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError+Internal.h"
 
 API_AVAILABLE(ios(14.0))
 @interface OGASKOverlayState () <SKOverlayDelegate>

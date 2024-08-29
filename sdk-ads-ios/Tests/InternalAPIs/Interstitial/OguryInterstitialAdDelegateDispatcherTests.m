@@ -8,7 +8,7 @@
 #import "OguryInterstitialAdDelegateDispatcher.h"
 #import "OguryInterstitialAd.h"
 #import "OguryAdsError.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OguryInterstitialAdDelegateDispatcherTests : XCTestCase
 

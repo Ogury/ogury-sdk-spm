@@ -16,7 +16,7 @@
 #import "OGAProfigFullResponse.h"
 #import "OGAAdEnabledChecker.h"
 #import "OGAAdController.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAAdManagerTests : XCTestCase
 

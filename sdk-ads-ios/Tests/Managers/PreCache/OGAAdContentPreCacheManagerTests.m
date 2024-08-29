@@ -10,6 +10,7 @@
 #import "OGATrackEvent.h"
 #import "OguryAdsError.h"
 #import "OguryError+utility.h"
+#import "OguryAdsError+Internal.h"
 
 NSString *const TestAdIdentifier = @"ad-identifier";
 NSString *const TestMraidDownloadUrl = @"https://example.com/mraid.js";

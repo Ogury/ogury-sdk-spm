@@ -168,8 +168,8 @@ final class ThumbnailAdManagerTests: XCTestCase {
     }
     
     func testWhenReceivingLoadingErrorsThenProperDelegateShouldBeCalled() {
-            [OguryAdsError.profigNotSyncedError.rawValue,
-             OguryAdsError.notLoadedError.rawValue].forEach { errorCode in
+            [OguryAdsErrorType.profigNotSyncedError.rawValue,
+             OguryAdsErrorType.notLoadedError.rawValue].forEach { errorCode in
                let ad: AdType<ThumbnailAdManager> = .thumbnail
                let adManager = ThumbnailAdManager(adType: ad)
                
@@ -202,9 +202,9 @@ final class ThumbnailAdManagerTests: XCTestCase {
     }
     
     func testWhenReceivingDisplayErrorsThenProperDelegateShouldBeCalled() {
-            [OguryAdsError.adExpiredError.rawValue,
-             OguryAdsError.anotherAdAlreadyDisplayedError.rawValue,
-             OguryAdsError.cantShowAdsInPresentingViewControllerError.rawValue].forEach { errorCode in
+            [OguryAdsErrorType.adExpiredError.rawValue,
+             OguryAdsErrorType.anotherAdAlreadyDisplayedError.rawValue,
+             OguryAdsErrorType.cantShowAdsInPresentingViewControllerError.rawValue].forEach { errorCode in
                let ad: AdType<ThumbnailAdManager> = .thumbnail
                let adManager = ThumbnailAdManager(adType: ad)
                
@@ -237,11 +237,11 @@ final class ThumbnailAdManagerTests: XCTestCase {
     }
     
     func testWhenReceivingGenericErrorsThenProperDelegateShouldBeCalled() {
-            [OguryAdsError.adDisabledError.rawValue,
-             OguryAdsError.assetKeyNotValidError.rawValue,
-             OguryAdsError.notAvailableError.rawValue,
-             OguryAdsError.sdkInitNotCalledError.rawValue,
-             OguryAdsError.unknownError.rawValue].forEach { errorCode in
+            [OguryAdsErrorType.adDisabledError.rawValue,
+             OguryAdsErrorType.assetKeyNotValidError.rawValue,
+             OguryAdsErrorType.notAvailableError.rawValue,
+             OguryAdsErrorType.sdkInitNotCalledError.rawValue,
+             OguryAdsErrorType.unknownError.rawValue].forEach { errorCode in
                let ad: AdType<ThumbnailAdManager> = .thumbnail
                
                let adManager = ThumbnailAdManager(adType: ad)

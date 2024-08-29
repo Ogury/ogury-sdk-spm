@@ -9,6 +9,7 @@
 #import "OGAAdSequenceRetainController.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGAAdController+Testing.h"
+#import "OguryAdsError+Internal.h"
 
 NSString *const OGAAdSequenceCoordinatorTestsAdIdOne = @"one";
 NSString *const OGAAdSequenceCoordinatorTestsAdIdTwo = @"two";

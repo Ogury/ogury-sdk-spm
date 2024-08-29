@@ -8,6 +8,8 @@
 
 #import "OguryAdsError.h"
 #import "OGAProfigFullResponse.h"
+#import "OguryAdsError.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OguryAdsError (private)
 - (instancetype)initWithErrorType:(OguryAdsErrorType)type origin:(OguryInternalAdsErrorOrigin)origin;
@@ -56,7 +58,7 @@ NSString *const AnotherAdIsAlreadyDisplayedSugg = @"Try not to show two ads at t
 NSString *const WebviewTerminatedBySystemDesc = @"The iOS webview was killed by the system because the app consumes too much memory";
 NSString *const WebviewTerminatedBySystemSugg = @"Try to reduce your app memory footprint";
 
-@implementation OguryAdsError
+@implementation OguryAdsError (internal)
 
 - (instancetype)initWithErrorType:(OguryAdsErrorType)type
                            origin:(OguryInternalAdsErrorOrigin)origin {
@@ -71,7 +73,7 @@ NSString *const WebviewTerminatedBySystemSugg = @"Try to reduce your app memory 
         NSLocalizedRecoverySuggestionErrorKey : [self suggestionFor:type]
     };
     if (self = [super initWithDomain:OguryAdsErrorDomain code:type userInfo:userInfo]) {
-        _origin = origin;
+        self.origin = origin;
     }
     return self;
 }

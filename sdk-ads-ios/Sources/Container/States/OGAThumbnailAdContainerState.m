@@ -4,13 +4,13 @@
 
 #import "OGAThumbnailAdContainerState.h"
 
-#import "OguryAdsErrorType.h"
+#import "OguryAdsError.h"
 #import "OGAThumbnailAdWindow.h"
 #import "OGAThumbnailAdWindowFactory.h"
 #import "OGAAdDisplayerUpdateStateInformation.h"
 #import "OGAProfigDao.h"
 #import "OGAThumbnailAdConstants.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAThumbnailAdContainerState ()
 

@@ -3,14 +3,14 @@
 //
 
 #import "OGAStoreKitState.h"
-#import "OguryAdsErrorType.h"
+#import "OguryAdsError.h"
 #import "OGAAdConfiguration.h"
 #import <StoreKit/StoreKit.h>
 #import "OGAAdDisplayerUserCloseStoreKitInformation.h"
 #import "OGAFullscreenViewController.h"
 #import "OGAMonitoringDispatcher+SKNetwork.h"
 #import "OGASKAdNetworkService.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAStoreKitState () <SKStoreProductViewControllerDelegate>
 

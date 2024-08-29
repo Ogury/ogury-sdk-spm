@@ -3,7 +3,7 @@
 //
 
 #import "OGAInternetConnectionChecker.h"
-
+#import "OguryAdsError+Internal.h"
 #import "OGAReachability.h"
 
 @interface OGAInternetConnectionChecker ()

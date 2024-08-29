@@ -4,6 +4,7 @@
 
 #import "OGAIsExpiredChecker.h"
 #import "OGALog.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAIsExpiredChecker ()
 

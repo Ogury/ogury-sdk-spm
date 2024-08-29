@@ -4,6 +4,7 @@
 
 #import "OGAIsLoadedChecker.h"
 #import "OGALog.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAIsLoadedChecker ()
 

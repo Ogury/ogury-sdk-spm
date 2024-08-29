@@ -6,6 +6,7 @@
 
 #import "OguryAdsError.h"
 #import "OGAAssetKeyManager.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAAssetKeyManagerTests : XCTestCase
 @property OGAAssetKeyManager *assetKeyManager;

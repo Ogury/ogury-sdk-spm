@@ -7,7 +7,7 @@
 #import "OguryBannerAdDelegateDispatcher.h"
 #import "OguryBannerAd.h"
 #import "OguryAdsError.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OguryBannerAdDelegateDispatcherTests : XCTestCase
 

@@ -6,6 +6,7 @@
 #import "OguryAdsError.h"
 #import "OGALog.h"
 #import "OGAUserDefaultsStore.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAAssetKeyManager ()
 

@@ -2,6 +2,17 @@
 //  Copyright © 2020 Ogury Ltd. All rights reserved.
 //
 
+#import <OguryCore/OguryError.h>
+
+typedef NS_ENUM(NSInteger, OguryInternalAdsErrorOrigin) {
+    OguryInternalAdsErrorOriginLoad = 0,
+    OguryInternalAdsErrorOriginShow
+};
+
+@interface OguryAdsError : OguryError
+@property(nonatomic) OguryInternalAdsErrorOrigin origin;
+@end
+
 typedef NS_ENUM(NSInteger, OguryAdsErrorType) {
     OguryAdsErrorTypeSDKNotInitialized = 2000,
     OguryAdsErrorTypeSDKNotProperlyInitialized = 2001,

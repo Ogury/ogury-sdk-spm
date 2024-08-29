@@ -16,7 +16,7 @@
 #import "NSDate+OGAFormatter.h"
 #import "OGAConfigurationUtils.h"
 #import "OguryAdsError.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError+Internal.h"
 
 #warning FIXME - Implements unit tests
 

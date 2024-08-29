@@ -12,7 +12,7 @@
 #import "OGAAdDisplayerUpdateViewabilityInformation.h"
 #import "OGAAdDisplayerUpdateExposureInformation.h"
 #import "OGABannerAdInternalAPI.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError+Internal.h"
 
 #pragma mark - Constants
 

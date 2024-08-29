@@ -12,6 +12,7 @@
 #import "OGAMonitoringDispatcher.h"
 #import "OGATrackEvent.h"
 #import "OguryAdsError.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAAdSequenceCoordinator () <OGAAdControllerDelegate>
 

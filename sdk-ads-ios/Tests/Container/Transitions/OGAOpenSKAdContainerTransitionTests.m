@@ -10,6 +10,7 @@
 #import "OGAOpenStoreKitAction.h"
 #import "OGAOpenSKOverlayAction.h"
 #import "OGASKOverlayState.h"
+#import "OguryAdsError.h"
 
 @interface OGAOpenSKAdContainerTransitionTests : XCTestCase
 

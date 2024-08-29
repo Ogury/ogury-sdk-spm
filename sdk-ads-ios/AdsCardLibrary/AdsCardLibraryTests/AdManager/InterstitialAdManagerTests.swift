@@ -193,8 +193,8 @@ final class InterstitialAdManagerTests: XCTestCase {
     }
     
     func testWhenReceivingLoadingErrorsThenProperDelegateShouldBeCalled() {
-        [OguryAdsError.profigNotSyncedError.rawValue,
-         OguryAdsError.notLoadedError.rawValue].forEach { errorCode in
+        [OguryAdsErrorType.profigNotSyncedError.rawValue,
+         OguryAdsErrorType.notLoadedError.rawValue].forEach { errorCode in
            let inter: AdType<InterstitialAdManager> = .interstitial
            var adManager = InterstitialAdManager(adType: inter)
            let vc = UIViewController()
@@ -224,9 +224,9 @@ final class InterstitialAdManagerTests: XCTestCase {
     }
     
     func testWhenReceivingDisplayErrorsThenProperDelegateShouldBeCalled() {
-        [OguryAdsError.adExpiredError.rawValue,
-         OguryAdsError.anotherAdAlreadyDisplayedError.rawValue,
-         OguryAdsError.cantShowAdsInPresentingViewControllerError.rawValue].forEach { errorCode in
+        [OguryAdsErrorType.adExpiredError.rawValue,
+         OguryAdsErrorType.anotherAdAlreadyDisplayedError.rawValue,
+         OguryAdsErrorType.cantShowAdsInPresentingViewControllerError.rawValue].forEach { errorCode in
            let inter: AdType<InterstitialAdManager> = .interstitial
            let adManager = InterstitialAdManager(adType: inter)
            let vc = UIViewController()
@@ -256,11 +256,11 @@ final class InterstitialAdManagerTests: XCTestCase {
     }
     
     func testWhenReceivingGenericErrorsThenProperDelegateShouldBeCalled() {
-        [OguryAdsError.adDisabledError.rawValue,
-         OguryAdsError.assetKeyNotValidError.rawValue,
-         OguryAdsError.notAvailableError.rawValue,
-         OguryAdsError.sdkInitNotCalledError.rawValue,
-         OguryAdsError.unknownError.rawValue].forEach { errorCode in
+        [OguryAdsErrorType.adDisabledError.rawValue,
+         OguryAdsErrorType.assetKeyNotValidError.rawValue,
+         OguryAdsErrorType.notAvailableError.rawValue,
+         OguryAdsErrorType.sdkInitNotCalledError.rawValue,
+         OguryAdsErrorType.unknownError.rawValue].forEach { errorCode in
            let inter: AdType<InterstitialAdManager> = .interstitial
            
            let adManager = InterstitialAdManager(adType: inter)

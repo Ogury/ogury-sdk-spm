@@ -12,9 +12,9 @@ final class RewardedAdManagerTests: XCTestCase {
     var storables: [AnyCancellable] = []
     
     func testWhenReceivingDisplayErrorsThenProperDelegateShouldBeCalled() {
-        [OguryAdsError.adExpiredError.rawValue,
-         OguryAdsError.anotherAdAlreadyDisplayedError.rawValue,
-         OguryAdsError.cantShowAdsInPresentingViewControllerError.rawValue].forEach { errorCode in
+        [OguryAdsErrorType.adExpiredError.rawValue,
+         OguryAdsErrorType.anotherAdAlreadyDisplayedError.rawValue,
+         OguryAdsErrorType.cantShowAdsInPresentingViewControllerError.rawValue].forEach { errorCode in
            let ad: AdType<RewardedAdManager> = .rewarded
            let adManager = RewardedAdManager(adType: ad)
            let vc = UIViewController()
@@ -44,11 +44,11 @@ final class RewardedAdManagerTests: XCTestCase {
     }
     
     func testWhenReceivingGenericErrorsThenProperDelegateShouldBeCalled() {
-        [OguryAdsError.adDisabledError.rawValue,
-         OguryAdsError.assetKeyNotValidError.rawValue,
-         OguryAdsError.notAvailableError.rawValue,
-         OguryAdsError.sdkInitNotCalledError.rawValue,
-         OguryAdsError.unknownError.rawValue].forEach { errorCode in
+        [OguryAdsErrorType.adDisabledError.rawValue,
+         OguryAdsErrorType.assetKeyNotValidError.rawValue,
+         OguryAdsErrorType.notAvailableError.rawValue,
+         OguryAdsErrorType.sdkInitNotCalledError.rawValue,
+         OguryAdsErrorType.unknownError.rawValue].forEach { errorCode in
            let ad: AdType<RewardedAdManager> = .rewarded
            let adManager = RewardedAdManager(adType: ad)
            let vc = UIViewController()
@@ -238,8 +238,8 @@ final class RewardedAdManagerTests: XCTestCase {
     }
     
     func testWhenReceivingLoadingErrorsThenProperDelegateShouldBeCalled() {
-        [OguryAdsError.profigNotSyncedError.rawValue,
-         OguryAdsError.notLoadedError.rawValue].forEach { errorCode in
+        [OguryAdsErrorType.profigNotSyncedError.rawValue,
+         OguryAdsErrorType.notLoadedError.rawValue].forEach { errorCode in
            let ad: AdType<RewardedAdManager> = .rewarded
            var adManager = RewardedAdManager(adType: ad)
            let vc = UIViewController()

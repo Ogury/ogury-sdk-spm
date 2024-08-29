@@ -6,6 +6,7 @@
 #import "OguryThumbnailAd.h"
 #import "OGARewardItem.h"
 #import "OguryTokenService.h"
+#import "OguryAdsError.h"
 
 typedef void (^SetUpCompletionBlock)(BOOL success, NSError *error);
 

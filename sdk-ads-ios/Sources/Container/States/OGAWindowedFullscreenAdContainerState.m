@@ -4,11 +4,11 @@
 
 #import "OGAWindowedFullscreenAdContainerState.h"
 
-#import "OguryAdsErrorType.h"
+#import "OguryAdsError.h"
 #import "OGASizeSafeAreaController.h"
 #import "OGAAdDisplayerUpdateCurrentPositionInformation.h"
 #import "OGAAdDisplayerUpdateStateInformation.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAWindowedFullscreenAdContainerState ()
 

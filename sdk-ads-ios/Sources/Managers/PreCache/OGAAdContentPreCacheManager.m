@@ -11,7 +11,7 @@
 #import "OGATrackEvent.h"
 #import "OGAUserDefaultsStore.h"
 #import "OguryAdsError.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAAdContentPreCacheManager ()
 

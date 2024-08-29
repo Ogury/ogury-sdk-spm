@@ -5,6 +5,7 @@
 #import "OGAAnotherAdOfSameTypeAlreadyDisplayedChecker.h"
 #import "OGAAdManager+Check.h"
 #import "OGAAdSequenceCoordinator.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAAnotherAdOfSameTypeAlreadyDisplayedChecker ()
 

@@ -48,7 +48,7 @@
 #import "OGAWKWebView.h"
 #import "OGAWebViewCleanupManager.h"
 #import "OGAAdController.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError+Internal.h"
 
 #pragma mark - Constants
 
@@ -214,6 +214,7 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
         return;
     }
     // if no internet then we set the ad as killed to avoid failed reload
+    [OGAInternetConnectionChecker shared].origin = OguryInternalAdsErrorOriginLoad;
     if (![[OGAInternetConnectionChecker shared] checkForSequence:NULL error:NULL]) {
         self.mraidDisplayerState = OGAAdMraidDisplayerStateKilled;
         return;
@@ -384,6 +385,7 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
 }
 
 - (void)createWebView:(OGAMraidCommand *)command {
+    [OGAInternetConnectionChecker shared].origin = OguryInternalAdsErrorOriginLoad;
     if (![[OGAInternetConnectionChecker shared] checkForSequence:NULL error:NULL]) {
         [self forceClose:[OGAMraidCommand MraidCloseCommandWithNextAdFalse]];
         return;

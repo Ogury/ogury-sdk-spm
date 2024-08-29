@@ -3,12 +3,12 @@
 //
 
 #import "OGAFullscreenAdContainerState.h"
-#import "OguryAdsErrorType.h"
+#import "OguryAdsError.h"
 #import "OGAFullscreenViewController.h"
 #import "OGAAdDisplayerUpdateExposureInformation.h"
 #import "OGAAdConfiguration.h"
 #import "OGAAdDisplayerUpdateStateInformation.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAFullscreenAdContainerState ()
 

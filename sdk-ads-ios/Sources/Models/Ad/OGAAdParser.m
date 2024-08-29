@@ -6,6 +6,7 @@
 #import "NSString+OGAUtility.h"
 #import "OGAAdConfiguration.h"
 #import "OGALog.h"
+#import "OguryAdsError+Internal.h"
 
 @implementation OGAAdParser
 

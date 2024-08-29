@@ -9,6 +9,7 @@
 #import "OGAAd.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGALog.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAMraidFileDownloader ()
 

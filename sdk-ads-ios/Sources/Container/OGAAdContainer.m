@@ -5,11 +5,11 @@
 #import "OGAAdContainer.h"
 #import "OGACloseAdAction.h"
 #import "OGAForceCloseAdAction.h"
-#import "OguryAdsErrorType.h"
+#import "OguryAdsError.h"
 #import "OGAAdDisplayerInformation.h"
 #import "OGAAdDisplayerUpdateScreenSizeInformation.h"
 #import "OguryAdsError.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAAdContainer ()
 

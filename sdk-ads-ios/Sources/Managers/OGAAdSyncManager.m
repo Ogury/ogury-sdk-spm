@@ -10,6 +10,7 @@
 #import "OGAEXTScope.h"
 #import "OGAWebViewUserAgentService.h"
 #import "OGALog.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAAdSyncManager ()
 

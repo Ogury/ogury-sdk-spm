@@ -5,6 +5,7 @@
 #import "NSDictionary+OGABase64.h"
 #import "NSString+OGABase64.h"
 #import "OGALog.h"
+#import "OguryAdsError+Internal.h"
 
 @implementation NSDictionary (OGABase64)
 

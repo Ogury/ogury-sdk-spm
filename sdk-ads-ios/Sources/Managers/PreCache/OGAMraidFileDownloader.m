@@ -10,6 +10,7 @@
 #import "OGAMonitoringDispatcher.h"
 #import "OGALog.h"
 #import "OGAAd.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAMraidFileDownloader ()
 

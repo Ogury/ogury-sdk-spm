@@ -7,7 +7,6 @@
 #import <OCMock/OCMock.h>
 #import "OGAInternetConnectionChecker.h"
 #import "OGAReachability.h"
-#import "OguryError+Ads.h"
 
 @interface OGAInternetConnectionChecker (Testing)
 

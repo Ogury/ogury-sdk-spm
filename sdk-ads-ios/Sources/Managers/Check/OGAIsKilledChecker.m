@@ -5,6 +5,7 @@
 #import <Foundation/Foundation.h>
 #import "OGAIsKilledChecker.h"
 #import "OGALog.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAIsKilledChecker ()
 
