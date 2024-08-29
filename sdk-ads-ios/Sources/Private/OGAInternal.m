@@ -82,6 +82,9 @@
 }
 
 #pragma mark - methods
+- (void)startWithAssetKey:(NSString *)assetKey {
+    [self startWithAssetKey:assetKey completionHandler:nil];
+}
 
 - (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetUpCompletionBlock __nullable)completionHandler {
     self.setupBlock = completionHandler;
@@ -111,7 +114,9 @@
         if (!response) {
             [self.log logError:error message:@"Failed to initialize Ogury Ads"];
         }
-        self.setupBlock(response != nil, error);
+        if (self.setupBlock != nil) {
+            self.setupBlock(response != nil, error);
+        }
     }];
 }
 
