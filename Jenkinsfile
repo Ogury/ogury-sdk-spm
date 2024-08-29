@@ -92,7 +92,7 @@ pipeline {
                         beforeAgent true
                         expression {
                             def elements = "${env.TAG_NAME}".split("-")
-                            return elements.contains("-core") && !elements.contains("-art") && elements.contains("-internal")
+                            return elements.contains("core") && !elements.contains("art") && elements.contains("internal")
                         }
                     }
                     steps {
