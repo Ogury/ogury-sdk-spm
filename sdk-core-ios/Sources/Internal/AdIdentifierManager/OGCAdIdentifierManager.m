@@ -42,7 +42,6 @@
     if (self = [super init]) {
         _privacyLayer = privacyLayer;
         _dataLayer = dataLayer;
-        _dataLayer.consentChangedDelegate = self.consentChangedDelegate;
         _processInfo = processInfo;
         _instanceToken = [self createInstanceTokenWithProcessInfo:processInfo];
         _log = log;
@@ -89,24 +88,16 @@
     return [self.privacyLayer vendorIdentifier];
 }
 
-- (NSString * _Nullable)retrieveGPPConsentString {
-   return [self stringFrom: [self.dataLayer getGPPConsentString]];
+- (NSString * _Nullable) retrieveGPPConsentString {
+   return [self.dataLayer getGPPConsentString];
 }
 
-- (NSString * _Nullable)retrieveGPPSID {
-   return [self stringFrom: [self.dataLayer getGPPSID]];
+- (NSString * _Nullable) retrieveGPPSID {
+   return [self.dataLayer getGPPSID];
 }
 
-- (NSString * _Nullable)retrieveTCFConsentString {
-   return [self stringFrom: [self.dataLayer getTCFConsentString]];
-}
-
-- (NSString * _Nullable)stringFrom:(NSData*)data {
-   if (data == nil) {
-      return nil;
-   }
-   NSString *gppSIDString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-   return gppSIDString;
+- (NSString * _Nullable) retrieveTCFConsentString {
+   return [self.dataLayer getTCFConsentString];
 }
 
 - (NSString *)getInstanceToken {

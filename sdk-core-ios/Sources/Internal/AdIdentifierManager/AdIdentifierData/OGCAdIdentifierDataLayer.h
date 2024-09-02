@@ -3,13 +3,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OGCConsentChangedDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OGCAdIdentifierDataLayer : NSObject
-
-@property (nonatomic, weak) id<OGCConsentChangedDelegate> consentChangedDelegate;
 
 #pragma mark - Methods
 
@@ -25,11 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)migrateDeprecatedOGYDeviceSettingsWithInstanceTokenID:(NSString *)instanceTokenID;
 
-- (NSData *)getGPPConsentString;
+- (NSString *)getGPPConsentString;
 
-- (NSData *)getGPPSID;
+- (NSString *)getGPPSID;
 
-- (NSData *)getTCFConsentString;
+- (NSString *)getTCFConsentString;
 
 - (void)storePrivacyData:(id)value forKey:(NSString *)key;
 

@@ -6,6 +6,5 @@ framework module OguryCore {
     module Private {
        export *
        header "OGCInternal.h"
-       header "OGCConsentChangedDelegate.h"
     }
 }

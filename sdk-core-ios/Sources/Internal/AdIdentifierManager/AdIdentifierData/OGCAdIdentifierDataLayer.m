@@ -37,18 +37,10 @@ static NSString * const OGCDataPrivacyKey = @"OGY-PrivacyDataKeys";
 - (id)initWithUserDefaults:(NSUserDefaults *)userDefault {
     if (self = [super init]) {
         _userDefaults = userDefault;
-        [_userDefaults addObserver:self forKeyPath:OGCGPPConsentStringKey options:NSKeyValueObservingOptionNew context:NULL];
-        [_userDefaults addObserver:self forKeyPath:OGCGPPSIDKey options:NSKeyValueObservingOptionNew context:NULL];
-        [_userDefaults addObserver:self forKeyPath:OGCTCStringKey options:NSKeyValueObservingOptionNew context:NULL];
+        [_userDefaults synchronize];
     }
     
     return self;
-}
-
-- (void)deinit{
-   [_userDefaults removeObserver:self forKeyPath:OGCGPPConsentStringKey];
-   [_userDefaults removeObserver:self forKeyPath:OGCGPPSIDKey];
-   [_userDefaults removeObserver:self forKeyPath:OGCTCStringKey];
 }
 
 #pragma mark - Methods
@@ -101,24 +93,21 @@ static NSString * const OGCDataPrivacyKey = @"OGY-PrivacyDataKeys";
     return [self dataForKey:OGCInstanceTokenKey];
 }
 
-- (NSData *)getGPPConsentString {
-   return [self dataForKey:OGCGPPConsentStringKey];
+- (NSString *)getGPPConsentString {
+   return [self.userDefaults objectForKey:OGCGPPConsentStringKey];
 }
 
-- (NSData *)getGPPSID {
-   return [self dataForKey:OGCGPPSIDKey];
+- (NSString *)getGPPSID {
+   return [self.userDefaults objectForKey:OGCGPPSIDKey];
 }
 
 - (NSData *)getTCFConsentString {
-   return [self dataForKey:OGCTCStringKey];
+   return [self.userDefaults objectForKey:OGCTCStringKey];
 }
 
 - (void)storePrivacyData:(id)value forKey:(NSString *)key; {
    [self.userDefaults setValue:value forKey:[OGCPrefixKey stringByAppendingString: key]];
    [self addPrivacyDataKey:key];
-   if ([self.consentChangedDelegate respondsToSelector:@selector(dataPrivacyChanged:boolean:)]) {
-      [self.consentChangedDelegate dataPrivacyChanged:key boolean:value];
-   }
 }
 
 - (void)addPrivacyDataKey:(NSString *)key {
@@ -149,12 +138,6 @@ static NSString * const OGCDataPrivacyKey = @"OGY-PrivacyDataKeys";
 
 - (void)storeData:(NSData *)data key:(NSString *)key {
     [self.userDefaults setObject:data forKey:key];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-   if ([self.consentChangedDelegate respondsToSelector:@selector(consentChanged)]) {
-      [self.consentChangedDelegate consentChanged];
-   }
 }
 
 @end

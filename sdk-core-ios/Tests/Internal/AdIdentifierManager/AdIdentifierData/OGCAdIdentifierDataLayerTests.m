@@ -3,6 +3,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
 #import "OGCAdIdentifierDataLayer.h"
 #import "OGCNSUserDefaultsMock.h"
 
@@ -17,6 +18,8 @@ static NSString * const OguryInstanceTokenKey = @"OGURY_INSTANCE_TOKEN";
 @interface OGCAdIdentifierDataLayer()
 
 - (id)initWithUserDefaults:(NSUserDefaults *)userDefault;
+- (NSData *)globalConsentData;
+- (void)checkChangeOfConsent;
 
 @end
 

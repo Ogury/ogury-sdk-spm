@@ -4,9 +4,9 @@
 
 import Foundation
 import InMobiCMP
-import UserMessagingPlatform
 import AppTrackingTransparency
 import SwiftMessages
+import UIKit
 
 final class ConsentManager: ChoiceCmpDelegate {
 
