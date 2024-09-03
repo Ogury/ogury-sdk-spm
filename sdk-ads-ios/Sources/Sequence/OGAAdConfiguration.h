@@ -21,7 +21,7 @@ typedef UIView *_Nonnull (^OGAViewProvider)(void);
 extern NSString *const OGAAdConfigurationAdTypeSmallBanner;
 extern NSString *const OGAAdConfigurationAdTypeMPU;
 extern NSString *const OGAAdConfigurationAdTypeThumbnailAd;
-extern NSString *const OGAAdConfigurationAdTypeOptinVideo;
+extern NSString *const OGAAdConfigurationAdTypeRewarded;
 extern NSString *const OGAAdConfigurationAdTypeInterstitial;
 
 @interface OGAAdConfiguration : NSObject <NSCopying>
