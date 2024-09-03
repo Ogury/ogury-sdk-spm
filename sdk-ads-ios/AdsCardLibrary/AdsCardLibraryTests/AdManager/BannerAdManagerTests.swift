@@ -115,26 +115,6 @@ final class BannerAdManagerTests: XCTestCase {
         }
     }
     
-    func testWhenAdDisplayedDelegateIsCalledThenItIsForwardedToProxy() {
-        let ad: AdType<BannerAdManager> = .banner
-        
-        let adManager = BannerAdManager(adType: ad)
-        let vc = UIView()
-        adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
-        try? adManager.loadAd(from: adManager.options.baseOptions)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            let ex = self.expectation(description: "")
-            adManager.events.sink { event in
-                if event == .adDisplayed {
-                    ex.fulfill()
-                }
-            }
-            .store(in: &self.storables)
-            adManager.ad?.delegate?.didDisplay?(OguryBannerAd())
-            self.wait(for: [ex], timeout: 0.5)
-        }
-    }
-    
     func testWhenAdClosedDelegateIsCalledThenItIsForwardedToProxy() {
         let ad: AdType<BannerAdManager> = .banner
         
@@ -197,8 +177,8 @@ final class BannerAdManagerTests: XCTestCase {
     }
     
     func testWhenReceivingLoadingErrorsThenProperDelegateShouldBeCalled() {
-            [OguryAdsError.profigNotSyncedError.rawValue,
-             OguryAdsError.notLoadedError.rawValue].forEach { errorCode in
+            [OguryAdsErrorType.profigNotSyncedError.rawValue,
+             OguryAdsErrorType.notLoadedError.rawValue].forEach { errorCode in
                let ad: AdType<BannerAdManager> = .banner
                var adManager = BannerAdManager(adType: ad)
                let vc = UIView()
@@ -230,9 +210,9 @@ final class BannerAdManagerTests: XCTestCase {
     }
     
    func testWhenReceivingDisplayErrorsThenProperDelegateShouldBeCalled() {
-      [OguryAdsError.adExpiredError.rawValue,
-       OguryAdsError.anotherAdAlreadyDisplayedError.rawValue,
-       OguryAdsError.cantShowAdsInPresentingViewControllerError.rawValue].forEach { errorCode in
+      [OguryAdsErrorType.adExpiredError.rawValue,
+       OguryAdsErrorType.anotherAdAlreadyDisplayedError.rawValue,
+       OguryAdsErrorType.cantShowAdsInPresentingViewControllerError.rawValue].forEach { errorCode in
          let ad: AdType<BannerAdManager> = .banner
          let adManager = BannerAdManager(adType: ad)
          let vc = UIView()
@@ -264,11 +244,11 @@ final class BannerAdManagerTests: XCTestCase {
     }
     
     func testWhenReceivingGenericErrorsThenProperDelegateShouldBeCalled() {
-            [OguryAdsError.adDisabledError.rawValue,
-             OguryAdsError.assetKeyNotValidError.rawValue,
-             OguryAdsError.notAvailableError.rawValue,
-             OguryAdsError.sdkInitNotCalledError.rawValue,
-             OguryAdsError.unknownError.rawValue].forEach { errorCode in
+            [OguryAdsErrorType.adDisabledError.rawValue,
+             OguryAdsErrorType.assetKeyNotValidError.rawValue,
+             OguryAdsErrorType.notAvailableError.rawValue,
+             OguryAdsErrorType.sdkInitNotCalledError.rawValue,
+             OguryAdsErrorType.unknownError.rawValue].forEach { errorCode in
                let ad: AdType<BannerAdManager> = .banner
                
                let adManager = BannerAdManager(adType: ad)

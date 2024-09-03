@@ -10,6 +10,7 @@
 #import "OGAAdDisplayerUpdateStateInformation.h"
 #import "OGAProfigDao.h"
 #import "OGAThumbnailAdConstants.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAThumbnailAdContainerState ()
 
@@ -60,7 +61,7 @@
     self.thumbnailAdWindow = [self.thumbnailAdWindowFactory createThumbnailAdWindowWithDisplayer:displayer];
     if (!self.thumbnailAdWindow) {
         if (error) {
-            *error = [OguryError createOguryErrorWithCode:OguryAdsUnknownError localizedDescription:@"Missing window."];
+            *error = [OguryError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"Missing window."];
         }
         return NO;
     }

@@ -10,6 +10,7 @@
 #import "OGAOpenStoreKitAction.h"
 #import "OGAOpenSKOverlayAction.h"
 #import "OGASKOverlayState.h"
+#import "OguryAdsError.h"
 
 @interface OGAOpenSKAdContainerTransitionTests : XCTestCase
 
@@ -82,7 +83,7 @@
             finalState:self.finalState];
 
     NSError *error;
-    OguryError *displayError = OCMClassMock([OguryError class]);
+    OguryError *displayError = OCMClassMock([OguryAdsError class]);
     OCMStub([self.finalState display:[OCMArg any] error:[OCMArg anyObjectRef]]).andDo(^(NSInvocation *invocation) {
                                                                                    OguryError *__autoreleasing *errorPointer = nil;
                                                                                    [invocation getArgument:&errorPointer atIndex:3];
@@ -104,7 +105,7 @@
             finalState:self.finalState];
 
     NSError *error;
-    OguryError *displayError = OCMClassMock([OguryError class]);
+    OguryError *displayError = OCMClassMock([OguryAdsError class]);
     OCMStub([self.finalState display:[OCMArg any] error:[OCMArg anyObjectRef]]).andDo(^(NSInvocation *invocation) {
                                                                                    OguryError *__autoreleasing *errorPointer = nil;
                                                                                    [invocation getArgument:&errorPointer atIndex:3];

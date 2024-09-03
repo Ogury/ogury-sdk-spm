@@ -8,7 +8,8 @@
 #import "OguryAdsError.h"
 #import "OGAAdDisplayerInformation.h"
 #import "OGAAdDisplayerUpdateScreenSizeInformation.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAAdContainer ()
 
@@ -51,7 +52,7 @@
     id<OGAAdContainerTransition> transition = [self findTransitionForAction:action initialState:self.currentState];
     if (!transition) {
         if (error) {
-            *error = [OguryError createOguryErrorWithCode:OguryAdsUnknownError localizedDescription:@"No transitions available."];
+            *error = [OguryError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"No transitions available."];
         }
         return NO;
     }
@@ -66,7 +67,7 @@
     OguryError *transitionError = nil;
     if (![transition performTransition:&transitionError]) {
         if (error) {
-            *error = [OguryError createCantShowAdsInPresentingViewControllerError];
+            *error = [OguryAdsError viewControllerPreventsAdFromBeingDisplayed];
         }
         if ([self.delegate respondsToSelector:@selector(didFailToTransitionTo:error:)]) {
             [self.delegate didFailToTransitionTo:transition.finalState error:transitionError];

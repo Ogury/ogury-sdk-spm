@@ -41,7 +41,7 @@ class AdConfigController {
     func adConfigObservable(for type: AvailableType) -> Observable<AdConfig> {
         switch type {
             case .interstitial: return adInterConfig.asObserver()
-            case .optinVideo: return adOptInConfig.asObserver()
+            case .rewarded: return adOptInConfig.asObserver()
             case .thumbnail: return adThumbnailConfig.asObserver()
             case .banner(type: .mpu): return adMpuConfig.asObserver()
             case .banner(type: .smallBanner): return adSmallBannerConfig.asObserver()
@@ -50,7 +50,7 @@ class AdConfigController {
             case .headerBidding(let nestedType):
                 switch nestedType {
                     case .interstitial: return headerBiddingInterConfig.asObservable()
-                    case .optinVideo: return headerBiddingOptInConfig.asObservable()
+                    case .rewarded: return headerBiddingOptInConfig.asObservable()
                     case .banner(type: .mpu): return headerBiddingMpuConfig.asObservable()
                     case .banner(type: .smallBanner): return headerBiddingSmallBannerConfig.asObservable()
                     default: fatalError()
@@ -132,12 +132,12 @@ class AdConfigController {
 
     func updateRxConfig() {
         adInterConfig.on(.next((self.adConfig(for: .interstitial)!)))
-        adOptInConfig.on(.next(self.adConfig(for: .optinVideo)!))
+        adOptInConfig.on(.next(self.adConfig(for: .rewarded)!))
         adMpuConfig.on(.next(self.adConfig(for: .banner(type: .mpu))!))
         adSmallBannerConfig.on(.next(self.adConfig(for: .banner(type: .smallBanner))!))
         adThumbnailConfig.on(.next(self.adConfig(for: .thumbnail)!))
         headerBiddingInterConfig.on(.next((self.adConfig(for: .headerBidding(.interstitial))!)))
-        headerBiddingOptInConfig.on(.next(self.adConfig(for: .headerBidding(.optinVideo))!))
+        headerBiddingOptInConfig.on(.next(self.adConfig(for: .headerBidding(.rewarded))!))
         headerBiddingMpuConfig.on(.next(self.adConfig(for: .headerBidding(.banner(type: .mpu)))!))
         headerBiddingSmallBannerConfig.on(.next(self.adConfig(for: .headerBidding(.banner(type: .smallBanner)))!))
     }

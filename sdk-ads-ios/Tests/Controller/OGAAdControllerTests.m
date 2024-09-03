@@ -140,7 +140,7 @@ double const OGAAdControllerTestsDefaultExpirationTime = 14400;
 }
 
 - (void)testShow_performActionFails {
-    OguryError *performActionError = OCMClassMock([OguryError class]);
+    OguryError *performActionError = OCMClassMock([OguryAdsError class]);
     OCMStub([self.controller performAction:[OCMArg any] error:[OCMArg anyObjectRef]]).andDo(^(NSInvocation *invocation) {
                                                                                          OguryError *__autoreleasing *errorPointer = nil;
                                                                                          [invocation getArgument:&errorPointer atIndex:3];
@@ -211,7 +211,7 @@ double const OGAAdControllerTestsDefaultExpirationTime = 14400;
 
 - (void)testPerformAction_failedToPerformAction {
     id<OGAAdAction> action = OCMProtocolMock(@protocol(OGAAdAction));
-    OguryError *actionError = OCMClassMock([OguryError class]);
+    OguryError *actionError = OCMClassMock([OguryAdsError class]);
     OCMStub([action performAction:[OCMArg any] error:[OCMArg anyObjectRef]]).andDo(^(NSInvocation *invocation) {
                                                                                 OguryError *__autoreleasing *errorPointer = nil;
                                                                                 [invocation getArgument:&errorPointer atIndex:3];

@@ -6,7 +6,8 @@
 #import <OCMock/OCMock.h>
 #import "OguryBannerAdDelegateDispatcher.h"
 #import "OguryBannerAd.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OguryBannerAdDelegateDispatcherTests : XCTestCase
 
@@ -38,7 +39,7 @@
 }
 
 - (void)testOguryAdsBannerAdNotAvailable {
-    OguryError *error = [OguryError createNotAvailableError];
+    OguryError *error = [OguryAdsError noFillFrom:OguryAdsIntegrationTypeDirect];
 
     [self.delegateDispatcher failedWithError:error];
 
@@ -52,17 +53,11 @@
 }
 
 - (void)testOguryAdsBannerAdNotLoaded {
-    OguryError *error = [OguryError createNotLoadedError];
+    OguryError *error = [OguryAdsError noAdLoaded];
 
     [self.delegateDispatcher failedWithError:error];
 
     OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
-}
-
-- (void)testOguryAdsBannerAdDisplayed {
-    [self.delegateDispatcher displayed];
-
-    OCMVerify([self.delegate didDisplayOguryBannerAd:self.banner]);
 }
 
 - (void)testOguryAdsBannerAdClosed {
@@ -72,7 +67,7 @@
 }
 
 - (void)testOguryAdsBannerAdDisableError {
-    OguryError *error = [OguryError createAdDisabledError];
+    OguryError *error = [OguryAdsError adDisabledOtherReasonFrom:OguryInternalAdsErrorOriginLoad];
 
     [self.delegateDispatcher failedWithError:error];
 
@@ -80,13 +75,13 @@
 }
 
 - (void)testOguryAdsBannerProfigNotSyncedError {
-    OguryError *error = [OguryError createProfigNotSyncedError];
+    OguryError *error = [OguryAdsError invalidConfigurationFrom:OguryInternalAdsErrorOriginLoad];
     [self.delegateDispatcher failedWithError:error];
     OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
 }
 
 - (void)testOguryAdsBannerSdkInitNotCalledError {
-    OguryError *error = [OguryError createSdkInitNotCalledError];
+    OguryError *error = [OguryAdsError sdkNotInitializedFrom:OguryInternalAdsErrorOriginLoad stackTrace:@""];
 
     [self.delegateDispatcher failedWithError:error];
 
@@ -94,7 +89,7 @@
 }
 
 - (void)testOguryAdsBannerAnotherAdAlreadyDisplayedError {
-    OguryError *error = [OguryError createAnotherAdAlreadyDisplayedError];
+    OguryError *error = [OguryAdsError anotherAdIsAlreadyDisplayed];
 
     [self.delegateDispatcher failedWithError:error];
 
@@ -102,7 +97,7 @@
 }
 
 - (void)testOguryAdsBannerCantShowAdsInPresentingViewControllerError {
-    OguryError *error = [OguryError createCantShowAdsInPresentingViewControllerError];
+    OguryError *error = [OguryAdsError viewControllerPreventsAdFromBeingDisplayed];
 
     [self.delegateDispatcher failedWithError:error];
 
@@ -110,7 +105,7 @@
 }
 
 - (void)testOguryAdsBannerAdExpiredError {
-    OguryError *error = [OguryError createAdExpiredError];
+    OguryError *error = [OguryAdsError adExpired];
 
     [self.delegateDispatcher failedWithError:error];
 
@@ -118,7 +113,7 @@
 }
 
 - (void)testOguryAdsBannerUnknownError {
-    OguryError *error = [OguryError createUnknownError];
+    OguryError *error = [OguryAdsError createOguryErrorWithCode:OGAInternalUnknownError];
 
     [self.delegateDispatcher failedWithError:error];
 

@@ -3,7 +3,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OguryAdsDelegate.h"
 #import "OGADelegateDispatcher.h"
 #import "OguryMediation.h"
 

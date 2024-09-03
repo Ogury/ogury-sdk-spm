@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol OguryInterstitialAdDelegate <NSObject>
 @optional
 - (void)didLoadOguryInterstitialAd:(OguryInterstitialAd *)interstitial;
-- (void)didDisplayOguryInterstitialAd:(OguryInterstitialAd *)interstitial;
 - (void)didClickOguryInterstitialAd:(OguryInterstitialAd *)interstitial;
 - (void)didCloseOguryInterstitialAd:(OguryInterstitialAd *)interstitial;
 - (void)didFailOguryInterstitialAdWithError:(OguryError *)error forAd:(OguryInterstitialAd *)interstitial;

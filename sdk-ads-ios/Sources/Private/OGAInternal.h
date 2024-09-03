@@ -4,6 +4,7 @@
 
 #import <Foundation/Foundation.h>
 #import <OguryCore/OguryLogLevel.h>
+#import <OguryAds/OguryAds.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - methods
 
+- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetUpCompletionBlock __nullable)completionHandler;
 - (void)startWithAssetKey:(NSString *)assetKey;
 - (void)setLogLevel:(OguryLogLevel)logLevel;
 - (NSString *)getVersion;
