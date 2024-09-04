@@ -47,7 +47,7 @@ struct MainFeature: Reducer {
       }
       
       var adFormats: [AdFormat:[any AdManager]] = [:]
-      @PresentationState var destination: Destination.State?
+      @PresentationState var destination: Destination.State? = .log(AppSettingsFeature.State(settings: .init(), adDelegate: nil))
       @BindingState var setName = ""
       fileprivate var settingsPriorToChange: SettingsContainer = SettingsContainer()
    }
@@ -91,6 +91,7 @@ struct MainFeature: Reducer {
       case deleteCard(id: UUID)
       case saveCards
       case refreshAllCards(_: [AdFormat:[any AdManager]])
+      case reloadLogView
       
       enum Alert {
          case notImplemented
@@ -154,6 +155,10 @@ struct MainFeature: Reducer {
             case .settingsButtonTapped:
                state.destination = .settings(AppSettingsFeature.State(settings: .init(), adDelegate: adDelegate))
                return .none
+            
+            case .reloadLogView:
+               state.destination = .log(AppSettingsFeature.State(settings: .init(), adDelegate: adDelegate))
+               return .none
                
             case .bulkModeButtonTapped:
                state.destination = .alert(AlertState.notImplementedAlert("bulk mode"))
@@ -205,6 +210,7 @@ struct MainFeature: Reducer {
                return .none
                
             case .removeSetButtonTapped:
+               UIApplication.topViewController()?.dismiss(animated: true)
                state.destination = .alert(AlertState.removerSetAlert())
                return .none
                
@@ -352,11 +358,13 @@ struct MainFeature: Reducer {
          case alert(AlertState<MainFeature.Action.Alert>)
          case settings(AppSettingsFeature.State)
          case add(AddFeature.State)
+         case log(AppSettingsFeature.State)
       }
       enum Action: Equatable {
          case alert(MainFeature.Action.Alert)
          case settings(AppSettingsFeature.Action)
          case add(AddFeature.Action)
+         case log(AppSettingsFeature.Action)
       }
       var body: some ReducerOf<Self> {
          Scope(state: /State.settings, action: /Action.settings) {
@@ -364,6 +372,9 @@ struct MainFeature: Reducer {
          }
          Scope(state: /State.add, action: /Action.add) {
             AddFeature()
+         }
+         Scope(state: /State.log, action: /Action.log) {
+            AppSettingsFeature()
          }
       }
    }

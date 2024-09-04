@@ -30,6 +30,7 @@ struct AppFeature: Reducer {
         case alert(PresentationAction<Alert>)
         case forceTestMode(_: Bool)
         case endEditing
+        case reloadLogView
         
         enum Alert {
             case cantImportFile
@@ -103,7 +104,10 @@ struct AppFeature: Reducer {
                     
                 case .saveCards:
                     return .send(.main(.saveCards))
-                    
+               
+                case .reloadLogView:
+                    return .send(.main(.reloadLogView))
+               
                 case let .forceTestMode(enable):
                     state
                         .main

@@ -18,7 +18,7 @@ class MainViewController: UIViewController {
     }
     lazy var rootView = AppView(store: self.store)
     lazy var adViewController = UIHostingController(rootView: rootView)
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         start()
@@ -106,6 +106,7 @@ extension MainViewController: AdLifeCycleDelegate {
     }
     
     func share(json: String, filename: String) {
+        UIApplication.topViewController()?.dismiss(animated: true)
         guard let url = createTemporaryFile(text: json, filename: filename) else { return }
         print("📄 File exported to \(url.absoluteString)")
         let metaData = LinkPresentationItemSource.metaData(title: "Share your Ads set",
@@ -114,6 +115,9 @@ extension MainViewController: AdLifeCycleDelegate {
                                                            fileType: "png")
         let item = LinkPresentationItemSource(metaData: metaData)
         let ac = UIActivityViewController(activityItems: [item], applicationActivities: nil)
+       ac.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems:[Any]?, error: Error?) in
+          ViewStore(self.store, observe: { $0 }).send(.reloadLogView)
+      }
         present(ac, animated: true)
     }
     
@@ -129,6 +133,7 @@ extension MainViewController: AdLifeCycleDelegate {
     }
     
     func showImportPanel() {
+        UIApplication.topViewController()?.dismiss(animated: true)
         let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.oguryAds])
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false // Set to true if you want to allow multiple file selection
@@ -171,10 +176,29 @@ extension MainViewController: UIDocumentPickerDelegate {
             return
         }
         print("📄 load File at \(selectedURL.absoluteString)")
+        ViewStore(store, observe: { $0 }).send(.reloadLogView)
         loadFile(at: selectedURL)
     }
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        ViewStore(store, observe: { $0 }).send(.reloadLogView)
         print("Document picker was cancelled.")
+    }
+}
+
+extension UIApplication {
+    class func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(controller: selected)
+            }
+        }
+        if let presented = controller?.presentedViewController {
+            return topViewController(controller: presented)
+        }
+        return controller
     }
 }
