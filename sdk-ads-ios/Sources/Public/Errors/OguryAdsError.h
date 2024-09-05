@@ -27,11 +27,11 @@ typedef NS_ENUM(NSInteger, OguryAdsErrorType) {
     OguryAdsErrorTypeAdParsingFailed = 2202,
     OguryAdsErrorTypeAdPrecachingFailed = 2300,
     OguryAdsErrorTypeAdPrecachingTimeout = 2301,
-    OguryAdsErrorTypeAdExpired = 2302,
-    OguryAdsErrorTypeNoAdLoaded = 2303,
-    OguryAdsErrorTypeViewInBackground = 2400,
-    OguryAdsErrorTypeAnotherAdIsAlreadyDisplayed = 2401,
-    OguryAdsErrorTypeWebviewTerminatedBySystem = 2402,
-    OguryAdsErrorTypeViewControllerPreventsAdFromBeingDisplayed = 2403,
+    OguryAdsErrorTypeAdExpired = 2400,
+    OguryAdsErrorTypeNoAdLoaded = 2401,
+    OguryAdsErrorTypeViewInBackground = 2402,
+    OguryAdsErrorTypeAnotherAdIsAlreadyDisplayed = 2403,
+    OguryAdsErrorTypeWebviewTerminatedBySystem = 2404,
+    OguryAdsErrorTypeViewControllerPreventsAdFromBeingDisplayed = 2405,
     OguryAdsErrorTypeHeaderBidding = 2500
 };
