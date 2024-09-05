@@ -10,6 +10,7 @@
 #import "OGAProfigFullResponse.h"
 #import "OguryAdsError.h"
 #import "OguryAdsError+Internal.h"
+#import <OguryCore/OguryError.h>
 
 @interface OguryAdsError (private)
 - (instancetype)initWithErrorType:(OguryAdsErrorType)type origin:(OguryInternalAdsErrorOrigin)origin;
@@ -57,6 +58,7 @@ NSString *const AnotherAdIsAlreadyDisplayedDesc = @"Another ad is already displa
 NSString *const AnotherAdIsAlreadyDisplayedSugg = @"Try not to show two ads at the time or wait for the previous to end";
 NSString *const WebviewTerminatedBySystemDesc = @"The iOS webview was killed by the system because the app consumes too much memory";
 NSString *const WebviewTerminatedBySystemSugg = @"Try to reduce your app memory footprint";
+NSString *const HeaderBiddingFormatDesc = @"OgurySDK can't generate HB token : %@";
 
 @implementation OguryAdsError (internal)
 
@@ -293,6 +295,10 @@ NSString *const WebviewTerminatedBySystemSugg = @"Try to reduce your app memory 
 + (OguryAdsError *)viewControllerPreventsAdFromBeingDisplayed {
     return [[OguryAdsError alloc] initWithErrorType:OguryAdsErrorTypeViewControllerPreventsAdFromBeingDisplayed
                                              origin:OguryInternalAdsErrorOriginShow];
+}
++ (OguryError *)headerBiddingWithStacktrace:(NSString *)stacktrace {
+    return [OguryError createOguryErrorWithCode:OguryAdsErrorTypeHeaderBidding
+                           localizedDescription:[NSString stringWithFormat:HeaderBiddingFormatDesc, stacktrace]];
 }
 
 @end

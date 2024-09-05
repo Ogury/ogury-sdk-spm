@@ -7,31 +7,55 @@
 
 @implementation OguryTokenService
 
-+ (NSString *_Nullable)getBidderToken {
++ (void)bidderToken:(HeaderBiddingCompletionBlock)completion {
     OGATokenGenerator *tokenGenerator = [[OGATokenGenerator alloc] init];
-    return [OguryTokenService getBidderTokenFrom:tokenGenerator];
+    [self bidderTokenFrom:tokenGenerator completion:completion];
 }
 
-+ (NSString *_Nullable)getBidderTokenFrom:(OGATokenGenerator *)tokenGenerator {
-    return [tokenGenerator generateBidderToken];
++ (void)bidderTokenFrom:(OGATokenGenerator *)tokenGenerator completion:(HeaderBiddingCompletionBlock)completion {
+    [tokenGenerator generateBidderToken:completion];
 }
 
-+ (NSString *_Nullable)getBidderTokenWithCampaignId:(NSString *)campaignId {
-    return [OguryTokenService getBidderTokenWithCampaignId:campaignId creativeId:nil];
++ (void)bidderTokenWithCampaignId:(NSString *)campaignId
+                       completion:(HeaderBiddingCompletionBlock)completion {
+    [self bidderTokenWithCampaignId:campaignId creativeId:nil completion:completion];
 }
 
-+ (NSString *_Nullable)getBidderTokenWithCampaignId:(NSString *)campaignId creativeId:(NSString *_Nullable)creativeId {
++ (void)bidderTokenWithCampaignId:(NSString *)campaignId
+                       creativeId:(NSString *_Nullable)creativeId
+                       completion:(HeaderBiddingCompletionBlock)completion {
+    [self bidderTokenWithCampaignId:campaignId
+                         creativeId:creativeId
+                      dspCreativeId:nil
+                          dspRegion:nil
+                         completion:completion];
+}
+
++ (void)bidderTokenWithCampaignId:(NSString *)campaignId
+                       creativeId:(NSString *_Nullable)creativeId
+                    dspCreativeId:(NSString *_Nullable)dspCreativeId
+                        dspRegion:(NSString *_Nullable)dspRegion
+                       completion:(HeaderBiddingCompletionBlock)completion {
     OGATokenGenerator *tokenGenerator = [[OGATokenGenerator alloc] init];
-    return [OguryTokenService getBidderTokenFrom:tokenGenerator campaignId:campaignId creativeId:creativeId dspCreativeId:nil dspRegion:nil];
+    [self bidderTokenFrom:tokenGenerator
+               campaignId:campaignId
+               creativeId:creativeId
+            dspCreativeId:dspCreativeId
+                dspRegion:dspRegion
+               completion:completion];
 }
 
-+ (NSString *_Nullable)getBidderTokenWithCampaignId:(NSString *)campaignId creativeId:(NSString *_Nullable)creativeId dspCreativeId:(NSString *_Nullable)dspCreativeId dspRegion:(NSString *_Nullable)dspRegion {
-    OGATokenGenerator *tokenGenerator = [[OGATokenGenerator alloc] init];
-    return [OguryTokenService getBidderTokenFrom:tokenGenerator campaignId:campaignId creativeId:creativeId dspCreativeId:dspCreativeId dspRegion:dspRegion];
-}
-
-+ (NSString *_Nullable)getBidderTokenFrom:(OGATokenGenerator *)tokenGenerator campaignId:(NSString *)campaignId creativeId:(NSString *_Nullable)creativeId dspCreativeId:(NSString *_Nullable)dspCreativeId dspRegion:(NSString *_Nullable)dspRegion {
-    return [tokenGenerator generateBidderToken:campaignId creativeId:creativeId dspCreativeId:dspCreativeId dspRegion:dspRegion];
++ (void)bidderTokenFrom:(OGATokenGenerator *)tokenGenerator
+             campaignId:(NSString *)campaignId
+             creativeId:(NSString *_Nullable)creativeId
+          dspCreativeId:(NSString *_Nullable)dspCreativeId
+              dspRegion:(NSString *_Nullable)dspRegion
+             completion:(HeaderBiddingCompletionBlock)completion {
+    [tokenGenerator generateBidderTokenWithCampaignId:campaignId
+                                           creativeId:creativeId
+                                        dspCreativeId:dspCreativeId
+                                            dspRegion:dspRegion
+                                           completion:completion];
 }
 
 @end
