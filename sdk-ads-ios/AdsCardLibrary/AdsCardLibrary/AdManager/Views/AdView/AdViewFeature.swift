@@ -39,6 +39,9 @@ struct BaseOptions: Equatable {
     var showSpecificOptions: Bool = true
     var bulkModeEnabled = false
     var isSelected = false
+    var oguryTestModeEnabled: Bool = false
+    var rtbTestModeEnabled: Bool = false
+    var qaLabel: String = UUID().uuidString
     
     init(from options: any AdOptions) {
         showCampaignId = options.showCampaignId
@@ -53,6 +56,9 @@ struct BaseOptions: Equatable {
         dspRegion = options.baseOptions.dspRegion ?? .euWest1
         bulkModeEnabled = options.baseOptions.bulkModeEnabled
         isSelected = options.baseOptions.isSelected
+        oguryTestModeEnabled = options.baseOptions.oguryTestModeEnabled
+        rtbTestModeEnabled = options.baseOptions.rtbTestModeEnabled
+        qaLabel = options.baseOptions.qaLabel
     }
 }
 
@@ -84,7 +90,22 @@ struct AdViewFeature: Reducer {
         var thumbnailOptions: ThumbnailDisplayOptions?
         var bannerContainer: BannerContainer?
         var rewardedOptions: RewardedOptions?
-        var testModeEnabled = false
+        var testModeEnabled: Bool {
+            get {
+                baseOptions.oguryTestModeEnabled
+            }
+            set {
+                baseOptions.oguryTestModeEnabled = newValue
+            }
+        }
+        var rtbTestModeEnabled: Bool {
+            get {
+                baseOptions.rtbTestModeEnabled
+            }
+            set {
+                baseOptions.rtbTestModeEnabled = newValue
+            }
+        }
         var showTestModeButton = true
         var enableAdUnitEditing = true
         var enableFeedbacks = true
@@ -207,7 +228,8 @@ struct AdViewFeature: Reducer {
         // test mode
         case showTestModeButton(_: Bool)
         case checkForTestMode
-        case testModeButtonTapped
+        case oguryTestModeButtonTapped
+        case rtbTestModeButtonTapped
         case forceTestMode(_: Bool)
         case enableFeedbacks(_: Bool)
         
@@ -282,7 +304,10 @@ struct AdViewFeature: Reducer {
                                                 creativeId: options.creativeId,
                                                 adMarkUp: "",
                                                 isSelected: options.isSelected,
-                                                bulkModeEnabled: options.bulkModeEnabled))
+                                                bulkModeEnabled: options.bulkModeEnabled,
+                                                oguryTestModeEnabled:options.oguryTestModeEnabled,
+                                                rtbTestModeEnabled:options.rtbTestModeEnabled,
+                                                qaLabel:options.qaLabel))
     }
     
     var body: some ReducerOf<Self> {
@@ -494,9 +519,14 @@ struct AdViewFeature: Reducer {
                     }
                     return .none
                     
-                case .testModeButtonTapped:
+                case .oguryTestModeButtonTapped:
                     state.toggleTestMode()
                     return .send(.checkForTestMode)
+                    
+                case .rtbTestModeButtonTapped:
+                    state.rtbTestModeEnabled.toggle()
+                    updateAdManager(options: state.baseOptions)
+                    return .none
                     
                 case let .forceTestMode(enable):
                     state.forceTestMode(enable)

@@ -58,12 +58,12 @@ public struct AdView: View {
                     
                     Menu {
                         Button {
-                            viewStore.send(.testModeButtonTapped)
+                            viewStore.send(.oguryTestModeButtonTapped)
                         } label: {
                             HStack {
                                 Text(viewStore.testModeEnabled
-                                     ? "Disable test mode"
-                                     : "Enable test mode")
+                                     ? "Disable _test mode"
+                                     : "Enable _test mode")
                                 Spacer()
                                 Image(systemName: viewStore.testModeEnabled
                                       ? "eraser.line.dashed.fill"
@@ -71,6 +71,22 @@ public struct AdView: View {
                             }
                         }
                         .disabled(!viewStore.showTestModeButton)
+                        
+                        Button {
+                            viewStore.send(.rtbTestModeButtonTapped)
+                        } label: {
+                            HStack {
+                                Text(viewStore.rtbTestModeEnabled
+                                     ? "Disable RTB test mode"
+                                     : "Enable RTB test mode")
+                                Spacer()
+                                Image(systemName: viewStore.rtbTestModeEnabled
+                                      ? "eraser.line.dashed.fill"
+                                      : "wand.and.stars")
+                            }
+                        }
+                        .disabled(!viewStore.showTestModeButton)
+                        
                     } label: {
                         Image(systemName: "ellipsis.circle")
                             .frame(width: 40, height: 40)
@@ -93,17 +109,7 @@ public struct AdView: View {
                 Group {
                     VStack(spacing:4) {
                         AdsTextField(viewStore.$baseOptions.adUnitId,
-                                     placeholder: "Ad Unit Id", content: {
-                            if viewStore.testModeEnabled {
-                                Text("test mode")
-                                    .font(.adsCaption)
-                                    .padding(.horizontal, 6)
-                                    .padding(.vertical, 2)
-                                    .background(Color(AdColorPalette.State.failure.color.lighter(by: 80) ?? AdColorPalette.State.failure.color))
-                                    .foregroundStyle(Color(AdColorPalette.State.failure.color))
-                                    .clipShape(Capsule())
-                            }
-                        })
+                                     placeholder: "Ad Unit Id")
                         .disabled(!viewStore.enableAdUnitEditing)
                         
                        HStack(alignment: .bottom, spacing: 8) {
