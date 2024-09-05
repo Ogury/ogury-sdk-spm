@@ -13,7 +13,7 @@
 }
 
 + (void)bidderTokenFrom:(OGATokenGenerator *)tokenGenerator completion:(HeaderBiddingCompletionBlock)completion {
-    [tokenGenerator generateBidderToken:completion];
+    [tokenGenerator bidderToken:completion];
 }
 
 + (void)bidderTokenWithCampaignId:(NSString *)campaignId
@@ -51,11 +51,11 @@
           dspCreativeId:(NSString *_Nullable)dspCreativeId
               dspRegion:(NSString *_Nullable)dspRegion
              completion:(HeaderBiddingCompletionBlock)completion {
-    [tokenGenerator generateBidderTokenWithCampaignId:campaignId
-                                           creativeId:creativeId
-                                        dspCreativeId:dspCreativeId
-                                            dspRegion:dspRegion
-                                           completion:completion];
+    [tokenGenerator bidderTokenWithCampaignId:campaignId
+                                   creativeId:creativeId
+                                dspCreativeId:dspCreativeId
+                                    dspRegion:dspRegion
+                                   completion:completion];
 }
 
 @end

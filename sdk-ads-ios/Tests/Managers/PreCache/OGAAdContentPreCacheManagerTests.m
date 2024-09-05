@@ -261,7 +261,7 @@ NSString *const TestMraidDownloadUrl2 = @"https://example.com/mraid2.js";
     [self.manager prepareAdContents:@[ ad ]
                   completionHandler:^(OguryError *_Nullable error) {
                       XCTAssertNotNil(error);
-                      XCTAssertEqual(error.code, 2011);
+                      XCTAssertEqual(error.code, 2300);
                   }];
     OCMVerify([self.monitoringDispatcher sendLoadErrorEventPrecacheFail:OGAMonitoringPrecacheErrorHtmlEmpty adConfiguration:conf]);
 }
@@ -274,7 +274,7 @@ NSString *const TestMraidDownloadUrl2 = @"https://example.com/mraid2.js";
     [self.manager prepareAdContents:@[ ad ]
                   completionHandler:^(OguryError *_Nullable error) {
                       XCTAssertNotNil(error);
-                      XCTAssertEqual(error.code, 2011);
+                      XCTAssertEqual(error.code, 2300);
                   }];
     OCMVerify([self.monitoringDispatcher sendLoadErrorEventPrecacheFail:OGAMonitoringPrecacheErrorHtmlEmpty adConfiguration:conf]);
 }
