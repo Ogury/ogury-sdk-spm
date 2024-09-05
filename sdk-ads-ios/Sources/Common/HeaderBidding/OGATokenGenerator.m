@@ -94,13 +94,17 @@
     [self bidderTokenWithCampaignId:campaignId creativeId:creativeId dspCreativeId:nil dspRegion:nil completion:completion];
 }
 
+- (OGAProfigManager *)profigManager {
+    return [OGAProfigManager shared];
+}
+
 - (void)bidderTokenWithCampaignId:(NSString *_Nullable)campaignId
                        creativeId:(NSString *_Nullable)creativeId
                     dspCreativeId:(NSString *_Nullable)dspCreativeId
                         dspRegion:(NSString *_Nullable)dspRegion
                        completion:(HeaderBiddingCompletionBlock)completion {
-    if ([[OGAProfigManager shared] shouldSync]) {
-        [[OGAProfigManager shared] syncProfigWithCompletion:^(OGAProfigFullResponse *response, NSError *error) {
+    if ([[self profigManager] shouldSync]) {
+        [[self profigManager] syncProfigWithCompletion:^(OGAProfigFullResponse *response, NSError *error) {
             [self collectBidderTokenDataWithCampaignId:campaignId
                                             creativeId:creativeId
                                          dspCreativeId:dspCreativeId

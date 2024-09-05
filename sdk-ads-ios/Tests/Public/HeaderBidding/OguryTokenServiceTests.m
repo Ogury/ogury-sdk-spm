@@ -34,6 +34,17 @@ static NSString *const DefaultDspRegion = @"dspRegion";
 @interface OGATokenGenerator ()
 
 - (NSError *)tokenGenerationDenied;
+- (OGAProfigManager *)profigManager;
+- (void)bidderTokenWithCampaignId:(NSString *_Nullable)campaignId
+                       creativeId:(NSString *_Nullable)creativeId
+                    dspCreativeId:(NSString *_Nullable)dspCreativeId
+                        dspRegion:(NSString *_Nullable)dspRegion
+                       completion:(HeaderBiddingCompletionBlock)completion;
+- (void)collectBidderTokenDataWithCampaignId:(NSString *_Nullable)campaignId
+                                  creativeId:(NSString *_Nullable)creativeId
+                               dspCreativeId:(NSString *_Nullable)dspCreativeId
+                                   dspRegion:(NSString *_Nullable)dspRegion
+                                  completion:(HeaderBiddingCompletionBlock)completion;
 
 @end
 
@@ -78,6 +89,48 @@ static NSString *const DefaultDspRegion = @"dspRegion";
                             completion:^(NSString *_Nullable token, NSError *_Nullable error) {
                                 XCTAssertNotNil(token);
                             }];
+}
+
+- (void)testWhenProfigShouldBeUpdatedThenItIsUpdatedBeforeComputingToken {
+    OGAProfigManager *profigManager = OCMClassMock([OGAProfigManager class]);
+    OGATokenGenerator *tokenGenerator = OCMPartialMock([[OGATokenGenerator alloc] init]);
+    OCMStub(profigManager.shouldSync).andReturn(YES);
+    OCMStub(tokenGenerator.profigManager).andReturn(profigManager);
+    [tokenGenerator bidderTokenWithCampaignId:nil
+                                   creativeId:nil
+                                dspCreativeId:nil
+                                    dspRegion:nil
+                                   completion:^(NSString *_Nullable token, NSError *_Nullable error){
+
+                                   }];
+    OCMVerify([profigManager syncProfigWithCompletion:[OCMArg any]]);
+    OCMReject([tokenGenerator collectBidderTokenDataWithCampaignId:nil
+                                                        creativeId:nil
+                                                     dspCreativeId:nil
+                                                         dspRegion:nil
+                                                        completion:^(NSString *_Nullable token, NSError *_Nullable error){
+
+                                                        }]);
+}
+
+- (void)testWhenProfigShouldNotBeUpdatedThenComputingTokenStartsImmediately {
+    OGAProfigManager *profigManager = OCMClassMock([OGAProfigManager class]);
+    OGATokenGenerator *tokenGenerator = OCMPartialMock([[OGATokenGenerator alloc] init]);
+    OCMStub(profigManager.shouldSync).andReturn(NO);
+    OCMStub(tokenGenerator.profigManager).andReturn(profigManager);
+    [tokenGenerator bidderTokenWithCampaignId:nil
+                                   creativeId:nil
+                                dspCreativeId:nil
+                                    dspRegion:nil
+                                   completion:^(NSString *_Nullable token, NSError *_Nullable error){
+
+                                   }];
+    OCMReject([profigManager syncProfigWithCompletion:[OCMArg any]]);
+    OCMVerify([tokenGenerator collectBidderTokenDataWithCampaignId:[OCMArg any]
+                                                        creativeId:[OCMArg any]
+                                                     dspCreativeId:[OCMArg any]
+                                                         dspRegion:[OCMArg any]
+                                                        completion:[OCMArg any]]);
 }
 
 @end
