@@ -94,10 +94,6 @@
     [self bidderTokenWithCampaignId:campaignId creativeId:creativeId dspCreativeId:nil dspRegion:nil completion:completion];
 }
 
-- (OGAProfigManager *)profigManager {
-    return [OGAProfigManager shared];
-}
-
 - (void)bidderTokenWithCampaignId:(NSString *_Nullable)campaignId
                        creativeId:(NSString *_Nullable)creativeId
                     dspCreativeId:(NSString *_Nullable)dspCreativeId

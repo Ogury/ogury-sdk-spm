@@ -232,6 +232,7 @@
     NSArray *items = @[ @"1", @"2" ];
     [[[[self.skAdNetworkService stub] classMethod] andReturn:items] getInfoAdNetworkItems];
     OCMStub([self.profigResponse adsEnabled]).andReturn(YES);
+    OCMStub(self.profigManager.shouldSync).andReturn(NO);
 }
 
 - (NSDictionary *)fullyMockedTokenWithPermissions:(NSUInteger)permissions skanEnabled:(BOOL)skanEnabled {
