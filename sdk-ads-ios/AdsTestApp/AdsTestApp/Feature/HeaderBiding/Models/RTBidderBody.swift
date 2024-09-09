@@ -18,6 +18,7 @@ struct RTBidderBody: Encodable {
         case regs
         case tmax
         case user
+        case test
     }
 
     var app: App = .init()
@@ -29,6 +30,7 @@ struct RTBidderBody: Encodable {
     var regs: [String: String] = [:]
     var tmax: Int = 550
     var user: User = .init()
+    var test: Int = 0
 }
 
 struct Imp: Encodable {

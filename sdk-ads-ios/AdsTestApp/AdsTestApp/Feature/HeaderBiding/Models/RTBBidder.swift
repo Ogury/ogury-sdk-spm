@@ -89,6 +89,7 @@ class RTBBidder: HeaderBidable {
                           creativeId: String?,
                           dspCreative: String?,
                           dspRegion: DspRegion?,
+                          rtbTestModeEnabled: Bool,
                           url: URL?,
                           completionHandler: @escaping HeaderBiddingServiceCompletionHandler) {
         // call on Main Thread because of an Xcode warning : bidder token access UIWindowsScene connectedScene
@@ -129,7 +130,7 @@ class RTBBidder: HeaderBidable {
                 token = OguryTokenService.getBidderToken()
             }
             
-            updateJson(withAdUnit: adUnitId, assetKey: assetKey, country: country, token: token)
+            updateJson(withAdUnit: adUnitId, assetKey: assetKey, country: country, token: token, rtbTestModeEnabled: rtbTestModeEnabled)
             request.httpBody = try? JSONEncoder().encode(body)
             
             URLSession.shared
@@ -199,18 +200,22 @@ class RTBBidder: HeaderBidable {
         fatalError("should be overriden")
     }
     
-    func updateJson(withAdUnit adUnit: String, assetKey: String, country: String?, token: String?) {
+    func updateJson(withAdUnit adUnit: String, assetKey: String, country: String?, token: String?, rtbTestModeEnabled: Bool) {
         body.app.bundle = Bundle.main.bundleIdentifier ?? "co.ogury.sdk.ads.app.devc"
         body.app.id = assetKey
         body.imp[0].tagid = adUnit
         body.device.geo = buildGeoObject(with: country)
+        if rtbTestModeEnabled {
+            body.test = 1
+        }
     }
     
     func adMarkUp(adUnitId: String,
                   campaignId: String?,
                   creativeId: String?,
                   dspCreative: String?,
-                  dspRegion: DspRegion?) async throws -> String? {
+                  dspRegion: DspRegion?,
+                  rtbTestModeEnabled: Bool) async throws -> String? {
         try await withUnsafeThrowingContinuation { continuation in
             retrieveAdMarkup(assetKey: AdSdkLauncher.shared.assetKey,
                              adUnitId: adUnitId,
@@ -219,6 +224,7 @@ class RTBBidder: HeaderBidable {
                              creativeId: creativeId,
                              dspCreative: dspCreative,
                              dspRegion: dspRegion,
+                             rtbTestModeEnabled: rtbTestModeEnabled,
                              url: url) { result in
 //                print("👀 \(result)")
                 switch result {
