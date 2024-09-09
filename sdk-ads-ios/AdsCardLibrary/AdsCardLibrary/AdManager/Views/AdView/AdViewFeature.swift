@@ -109,30 +109,42 @@ struct AdViewFeature: Reducer {
         var showTestModeButton = true
         var enableAdUnitEditing = true
         var enableFeedbacks = true
+        @BindingState var showQALabelInput = false
         let id: UUID = UUID()
         // this field is used to show the content od the various fields when the test mode is enabled
         // since we need a Binding to a String, we wille use this property
         @BindingState var fakeTextState = ""
         @PresentationState var alert: AlertState<Action.Alert>?
+        var tags: Set<AdTag> = Set()
         
         private var adUnitIsInTestMode: Bool { baseOptions.adUnitId.isTestModeOn }
-        mutating func updateTestMode() -> Bool {
+        
+        @discardableResult mutating func updateTestMode() -> Bool {
             let previousMode = testModeEnabled
             testModeEnabled = adUnitIsInTestMode
+            if testModeEnabled {
+                tags.insert(.oguryTestMode)
+            } else {
+                tags.remove(.oguryTestMode)
+            }
             return previousMode != testModeEnabled
         }
         mutating func toggleTestMode() {
             if adUnitIsInTestMode {
                 baseOptions.adUnitId.removeLast(5)
+                tags.remove(.oguryTestMode)
             } else {
                 baseOptions.adUnitId.append(AdsCardManager.testModeSuffix)
+                tags.insert(.oguryTestMode)
             }
         }
         mutating func forceTestMode(_ enable: Bool) {
             if !adUnitIsInTestMode && enable {
                 baseOptions.adUnitId.append(AdsCardManager.testModeSuffix)
+                tags.insert(.oguryTestMode)
             } else if adUnitIsInTestMode && !enable {
                 baseOptions.adUnitId.removeLast(5)
+                tags.remove(.oguryTestMode)
             }
         }
         
@@ -183,10 +195,23 @@ struct AdViewFeature: Reducer {
             }
             self.bannerContainer = bannerContainer
             self.rewardedOptions = rewardedOptions
-            updateTestMode()
+            updateTags()
             UISegmentedControl.appearance().selectedSegmentTintColor = AdColorPalette.Primary.accent.color
             UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
             UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: AdColorPalette.Primary.accent.color], for: .normal)
+        }
+        
+        mutating func updateTags() {
+            updateTestMode()
+            updateRTBTag()
+        }
+        
+        mutating func updateRTBTag() {
+            if rtbTestModeEnabled {
+                tags.insert(.rtbTestMode)
+            } else {
+                tags.remove(.rtbTestMode)
+            }
         }
     }
     
@@ -232,6 +257,7 @@ struct AdViewFeature: Reducer {
         case rtbTestModeButtonTapped
         case forceTestMode(_: Bool)
         case enableFeedbacks(_: Bool)
+        case showQALabelTapped
         
         enum Alert {
             case confirmDelete
@@ -525,6 +551,7 @@ struct AdViewFeature: Reducer {
                     
                 case .rtbTestModeButtonTapped:
                     state.rtbTestModeEnabled.toggle()
+                    state.updateRTBTag()
                     updateAdManager(options: state.baseOptions)
                     return .none
                     
@@ -538,6 +565,10 @@ struct AdViewFeature: Reducer {
                     
                 case let .enableAdUnitEditing(value):
                     state.enableAdUnitEditing = value
+                    return .none
+                    
+                case .showQALabelTapped:
+                    state.showQALabelInput.toggle()
                     return .none
             }
         }
