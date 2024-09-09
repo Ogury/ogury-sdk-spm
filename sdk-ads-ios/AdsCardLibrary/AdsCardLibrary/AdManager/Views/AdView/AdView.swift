@@ -109,7 +109,7 @@ public struct AdView: View {
                         }
                         .padding(.leading, 4)
                     }
-                    .padding(EdgeInsets(top: 6, leading: 12, bottom: 4, trailing: 12))
+                    .padding(EdgeInsets(top: 6, leading: 12, bottom: 0, trailing: 12))
                     .alert(isPresented: $showErrorAlert) {
                         let alertMessage = (viewStore.error as? OguryErrorConvertible)?.readableError ?? String(describing: viewStore.error)
                         return Alert(title: Text(alertMessage))
@@ -118,7 +118,7 @@ public struct AdView: View {
                     // use of HStack + Spacer beacause tags were centered :-/ 
                     HStack {
                         AdTagList(tags: Array(viewStore.tags))
-                            .padding(.vertical, 4)
+                            .padding(.bottom, 4)
                             .padding(.horizontal, 8)
                             .frame(minHeight: 30)
                         
