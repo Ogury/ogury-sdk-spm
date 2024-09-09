@@ -9,7 +9,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OGAAdEnabledChecker : NSObject <OGAConditionChecker>
-
+@property(nonatomic) OguryInternalAdsErrorOrigin origin;
+- (instancetype)initFrom:(OguryInternalAdsErrorOrigin)origin;
 @end
 
 NS_ASSUME_NONNULL_END

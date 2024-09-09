@@ -21,13 +21,13 @@ class AdDelegateProxy<T: AdManager>: NSObject {
       }
       
       switch error.code {
-         case OguryAdsError.profigNotSyncedError.rawValue,
-            OguryAdsError.notLoadedError.rawValue:
+         case OguryAdsErrorType.invalidConfiguration.rawValue,
+            OguryAdsErrorType.noAdLoaded.rawValue:
             adManager.append(.adDidFailToLoad(error))
             
-         case OguryAdsError.adExpiredError.rawValue,
-            OguryAdsError.anotherAdAlreadyDisplayedError.rawValue,
-            OguryAdsError.cantShowAdsInPresentingViewControllerError.rawValue:
+         case OguryAdsErrorType.adExpired.rawValue,
+            OguryAdsErrorType.anotherAdIsAlreadyDisplayed.rawValue,
+            OguryAdsErrorType.viewControllerPreventsAdFromBeingDisplayed.rawValue:
             adManager.append(.adDidFailToDisplay(error))
             
          default:

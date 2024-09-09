@@ -19,14 +19,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Initialization
 
-- (instancetype)initWithAdUnitId:(NSString *)adUnitId;
-- (instancetype)initWithAdUnitId:(NSString *)adUnitId mediation:(OguryMediation *_Nonnull)mediation;
+- (instancetype)initWithAdUnitId:(NSString *)adUnitId size:(OguryAdsBannerSize *)size;
+- (instancetype)initWithAdUnitId:(NSString *)adUnitId size:(OguryAdsBannerSize *)size mediation:(OguryMediation *_Nonnull)mediation;
 
 #pragma mark - Methods
 
-- (void)loadWithSize:(OguryAdsBannerSize *)size;
+- (void)load;
 
-- (void)loadWithAdMarkup:(NSString *)adMarkup size:(OguryAdsBannerSize *)size;
+- (void)loadWithAdMarkup:(NSString *)adMarkup;
 
 - (void)destroy;
 

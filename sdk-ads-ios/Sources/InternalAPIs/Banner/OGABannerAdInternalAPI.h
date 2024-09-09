@@ -29,20 +29,24 @@ extern NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationNa
 
 - (instancetype)initWithAdUnitId:(NSString *)adUnitId
                       bannerView:(UIView *_Nullable)bannerView
+                            size:(OguryAdsBannerSize *)size
               delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher
                        mediation:(OguryMediation *_Nullable)mediation;
 
 #pragma mark - Methods
 
-- (void)loadWithSize:(OguryAdsBannerSize *)size;
+- (void)load;
 
-- (void)loadWithAdMarkup:(NSString *)adMarkup size:(OguryAdsBannerSize *)size;
+- (void)loadWithAdMarkup:(NSString *)adMarkup;
 
-- (void)loadWithCampaignId:(NSString *_Nullable)campaignId size:(OguryAdsBannerSize *)size;
+- (void)loadWithCampaignId:(NSString *_Nullable)campaignId;
 
-- (void)loadWithCampaignId:(NSString *_Nullable)campaignId creativeId:(NSString *_Nullable)creativeId size:(OguryAdsBannerSize *)size;
+- (void)loadWithCampaignId:(NSString *_Nullable)campaignId creativeId:(NSString *_Nullable)creativeId;
 
-- (void)loadWithCampaignId:(NSString *_Nullable)campaignId creativeId:(NSString *_Nullable)creativeId dspCreativeId:(NSString *_Nullable)dspCreativeId dspRegion:(NSString *_Nullable)dspRegion size:(OguryAdsBannerSize *)size;
+- (void)loadWithCampaignId:(NSString *_Nullable)campaignId
+                creativeId:(NSString *_Nullable)creativeId
+             dspCreativeId:(NSString *_Nullable)dspCreativeId
+                 dspRegion:(NSString *_Nullable)dspRegion;
 
 - (void)destroy;
 

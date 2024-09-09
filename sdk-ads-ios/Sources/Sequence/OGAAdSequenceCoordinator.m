@@ -11,7 +11,8 @@
 #import "OGAMetricsService.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGATrackEvent.h"
-#import "OguryError+Ads.h"
+#import "OguryAdsError.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAAdSequenceCoordinator () <OGAAdControllerDelegate>
 
@@ -166,20 +167,20 @@
 - (BOOL)show:(OguryError *_Nullable *_Nullable)error {
     if (!self.isLoaded) {
         if (error) {
-            *error = [OguryError createNotLoadedError];
+            *error = [OguryAdsError noAdLoaded];
         }
         return NO;
     }
     if (self.isDisplayed) {
         if (error) {
 #warning FIXME create dedicated error for this case.
-            *error = [OguryError createAnotherAdAlreadyDisplayedError];
+            *error = [OguryAdsError anotherAdIsAlreadyDisplayed];
         }
         return NO;
     }
     if (self.isClosed) {
         if (error) {
-            *error = [OguryError createNotLoadedError];
+            *error = [OguryAdsError noAdLoaded];
         }
         return NO;
     }
@@ -195,7 +196,7 @@
 
     if (!initialController) {
         if (error) {
-            *error = [OguryError createAdExpiredError];
+            *error = [OguryAdsError adExpired];
         }
         return NO;
     }
@@ -309,11 +310,11 @@
         [self setSequenceStatusLoadedWithAdController:controller];
     } else if (self.isClosed) {
         self.sequence.status = OGAAdSequenceStatusClosed;
-        [self.sequence.configuration.delegateDispatcher failedWithError:[OguryError createNotLoadedError]];
+        [self.sequence.configuration.delegateDispatcher failedWithError:[OguryAdsError noAdLoaded]];
         [self.metricService sendEvent:[[OGATrackEvent alloc] initWithAd:ad event:OGAMetricsEventLoadedError]];
     } else if (self.isNotLoadedYet) {
         self.sequence.status = OGAAdSequenceStatusError;
-        [self.sequence.configuration.delegateDispatcher failedWithError:[OguryError createNotLoadedError]];
+        [self.sequence.configuration.delegateDispatcher failedWithError:[OguryAdsError noAdLoaded]];
         [self.metricService sendEvent:[[OGATrackEvent alloc] initWithAd:ad event:OGAMetricsEventLoadedError]];
         if (unloadOrigin == UnloadOriginFormat) {
             [self.monitoringDispatcher sendLoadErrorEventPrecacheFail:OGAMonitoringPrecacheErrorUnload

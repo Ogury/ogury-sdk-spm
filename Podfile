@@ -15,6 +15,8 @@ install! 'cocoapods',:warn_for_multiple_pod_sources => false, :warn_for_unused_m
 
 target 'LegacyTestApp' do
   project 'sdk-ads-ios/LegacyTestApp/LegacyTestApp'
+  pod "OguryAds-Prod", "3.7.0-rc-3"
+  pod "OguryCore-Prod", "1.4.1-RC-1.0.7"
   pod 'RxSwift', "6.2.0" # 6.5+ introduced concurrency supports which breaks with iOS under 13
   pod 'RxCocoa', "6.2.0" # 6.5+ introduced concurrency supports which breaks with iOS under 13
   pod 'Yaml'

@@ -90,7 +90,6 @@ CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
             } else {
                 [self sendDefaultImpressionTracker:ad];
             }
-            [delegateDispatcher displayed];
 
             [[OGASKAdNetworkManager shared] startImpressionWithAd:ad];
 

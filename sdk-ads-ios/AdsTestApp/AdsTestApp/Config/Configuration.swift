@@ -90,7 +90,7 @@ struct Configuration: Decodable {
                                         dspRegion: options.interstitial.dspRegion,
                                         bulkModeEnabled: settings.bulkModeEnabled) as! T.Options
                 
-            case .optInVideo:
+            case .rewarded:
                 return AdManagerOptions(showCampaignId:settings.showCampaignId,
                                         showCreativeId:settings.showCreativeId,
                                         showDspFields: settings.showDspFields,
@@ -161,7 +161,7 @@ struct Configuration: Decodable {
                                                 creativeId: maxOptions.interstitial.creativeId,
                                                 bulkModeEnabled: settings.bulkModeEnabled) as! T.Options
                         
-                    case .optInVideo:
+                    case .rewarded:
                         return AdManagerOptions(showCampaignId:settings.showCampaignId,
                                                 showCreativeId:settings.showCreativeId,
                                                 showDspFields: settings.showDspFields,
@@ -214,7 +214,7 @@ struct Configuration: Decodable {
                                                creativeId: dtFairBidOptions.interstitial.creativeId,
                                                bulkModeEnabled: settings.bulkModeEnabled) as! T.Options
                        
-                   case .optInVideo:
+                   case .rewarded:
                        return AdManagerOptions(showCampaignId:settings.showCampaignId,
                                                showCreativeId:settings.showCreativeId,
                                                showDspFields: settings.showDspFields,

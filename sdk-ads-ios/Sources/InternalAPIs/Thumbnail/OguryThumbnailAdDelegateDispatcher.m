@@ -18,19 +18,6 @@
     }
 }
 
-- (void)displayed {
-    if (!self.hasSentDisplayedDelegate) {
-        [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad displayed called", OGAAdConfigurationAdTypeThumbnailAd, self.thumbnail.adUnitId];
-
-        if ([self.delegate respondsToSelector:@selector(didDisplayOguryThumbnailAd:)] && self.thumbnail != nil) {
-            [self dispatch:^(id<OguryThumbnailAdDelegate> _Nonnull delegate) {
-                [delegate didDisplayOguryThumbnailAd:self.thumbnail];
-            }];
-        }
-        self.hasSentDisplayedDelegate = YES;
-    }
-}
-
 - (void)clicked {
     [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad clicked called", OGAAdConfigurationAdTypeThumbnailAd, self.thumbnail.adUnitId];
 

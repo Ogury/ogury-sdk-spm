@@ -18,7 +18,7 @@ enum BannerType: CaseIterable {
     
     var oguryBannerSize: OguryAdsBannerSize {
         switch self {
-            case .mpu: return OguryAdsBannerSize.mpu_300x250()
+            case .mpu: return OguryAdsBannerSize.mrec_300x250()
             case .smallBanner: return OguryAdsBannerSize.small_banner_320x50()
         }
     }
@@ -47,7 +47,7 @@ enum ThumbnailPositionType: Int, CaseIterable, Codable {
 
 indirect enum AvailableType: Equatable {
     case interstitial
-    case optinVideo
+    case rewarded
     case thumbnail
     case banner(type: BannerType)
     case logs
@@ -58,9 +58,9 @@ indirect enum AvailableType: Equatable {
                             interstitial,
                             headerBidding(.interstitial),
                             //.deprecated(.interstitial),
-                            optinVideo,
+                            rewarded,
                             //.deprecated(.optinVideo),
-                            headerBidding(.optinVideo),
+                            headerBidding(.rewarded),
                             thumbnail,
                             //.deprecated(.thumbnail),
                             banner(type: .mpu),
@@ -79,19 +79,19 @@ indirect enum AvailableType: Equatable {
                 inter.configType = .deprecated(.interstitial)
                 return inter
                 
-            case .optinVideo:
+            case .rewarded:
                 let inter = InterstitialCollectionCell()
-                inter.configType = .optinVideo
+                inter.configType = .rewarded
                 return inter
                 
-            case .headerBidding(.optinVideo):
+            case .headerBidding(.rewarded):
                 let inter = InterstitialCollectionCell()
-                inter.configType = .headerBidding(.optinVideo)
+                inter.configType = .headerBidding(.rewarded)
                 return inter
                 
-            case .deprecated(.optinVideo):
+            case .deprecated(.rewarded):
                 let inter = InterstitialCollectionCell()
-                inter.configType = .deprecated(.optinVideo)
+                inter.configType = .deprecated(.rewarded)
                 return inter
                 
             case .thumbnail:
@@ -151,7 +151,7 @@ indirect enum AvailableType: Equatable {
     var configName: String {
         switch self {
             case .interstitial: return "interstitial"
-            case .optinVideo: return "optin"
+            case .rewarded: return "rewarded"
             case .thumbnail: return "thumbnail"
             case .banner(type: .mpu): return "mpu"
             case .banner(type: .smallBanner): return "smallBanner"
@@ -164,7 +164,7 @@ indirect enum AvailableType: Equatable {
     var displayName: String? {
         switch self {
             case .interstitial: return "Interstitial ad"
-            case .optinVideo: return "Opt-in Video ad"
+            case .rewarded: return "Rewarded ad"
             case .thumbnail: return "Thumbnail ad"
             case .banner:return "Banner ad"
             case .logs:return "Logs"

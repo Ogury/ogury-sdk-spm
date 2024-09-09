@@ -9,6 +9,10 @@
 
 #import "OGAAssetKeyManager.h"
 
+@interface OGCInternal ()
+- (void)updateInstanceToken;
+@end
+
 @implementation OGAAdIdentifierService
 
 + (NSString *)getAdIdentifier {
@@ -25,10 +29,6 @@
 
 + (BOOL)isAdOptin {
     return [[OGCInternal shared] isAdOptin];
-}
-
-+ (BOOL)isFakeAaid {
-    return ![OGAAdIdentifierService isAdOptin];
 }
 
 + (void)updateInstanceToken {
