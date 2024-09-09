@@ -44,6 +44,7 @@ typedef NS_ENUM(NSInteger, OguryAdsIntegrationType) {
 + (OguryAdsError *)anotherAdIsAlreadyDisplayed;
 + (OguryAdsError *)webviewTerminatedBySystem;
 + (OguryAdsError *)viewControllerPreventsAdFromBeingDisplayed;
++ (OguryError *)headerBiddingWithStacktrace:(NSString *)stacktrace;
 @end
 
 NS_ASSUME_NONNULL_END

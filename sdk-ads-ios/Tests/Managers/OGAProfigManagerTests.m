@@ -259,7 +259,7 @@ static NSString *const TestInstanceToken = @"TestInstanceToken";
 
 - (void)testShouldSync_shouldNotSyncNoConsentChanged {
     OCMStub([self.internalCore gppConsentString]).andReturn(@"GPP");
-    OCMStub([self.userDefaultStore dataForKey:@"OGY-HashConsentKeys"]).andReturn([self.profigManager retreiveConsentData]);
+    OCMStub([self.userDefaultStore dataForKey:@"OGY-HashConsentKeys"]).andReturn([self.profigManager retrieveConsentData]);
     OCMStub([self.profigManager isProfigExpired]).andReturn(NO);
     OCMStub([self.profigManager profigParametersWereUpdated]).andReturn(NO);
     XCTAssertFalse([self.profigManager shouldSync]);
