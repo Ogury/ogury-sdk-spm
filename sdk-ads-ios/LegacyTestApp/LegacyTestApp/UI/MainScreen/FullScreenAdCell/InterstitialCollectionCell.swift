@@ -263,7 +263,7 @@ class InterstitialCollectionCell: AdsCollectionCell {
         switch configType {
             case .headerBidding(let nestedType):
                 switch nestedType {
-                    case .optinVideo:
+                    case .rewarded:
                         (controller as? AdsOptinVideoController)?.loadWithHeaderBidding(adUnitId: adUnitId,
                                                                                         country: SettingsHeaderVC.selectedCountry,
                                                                                         campaignId: campaignIdTF.text,
@@ -318,7 +318,7 @@ class InterstitialCollectionCell: AdsCollectionCell {
             case .headerBidding(let nestedType):
                 guard let viewController else { return }
                 switch nestedType {
-                    case .optinVideo:
+                    case .rewarded:
                         (controller as? AdsOptinVideoController)?.loadWithHeaderBidding(adUnitId: adUnitId,
                                                                                         country: SettingsHeaderVC.selectedCountry,
                                                                                         campaignId: campaignIdTF.text,
@@ -362,8 +362,8 @@ class InterstitialCollectionCell: AdsCollectionCell {
             case .interstitial,
                 .headerBidding(.interstitial):
                 controller = AdsInterstitialController.shared
-            case .optinVideo,
-                 .headerBidding(.optinVideo):
+            case .rewarded,
+                 .headerBidding(.rewarded):
                 controller = AdsOptinVideoController.shared
             default: fatalError()
         }

@@ -48,6 +48,7 @@
 #import "OGAWKWebView.h"
 #import "OGAWebViewCleanupManager.h"
 #import "OGAAdController.h"
+#import "OguryAdsError+Internal.h"
 
 #pragma mark - Constants
 
@@ -213,6 +214,7 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
         return;
     }
     // if no internet then we set the ad as killed to avoid failed reload
+    [OGAInternetConnectionChecker shared].origin = OguryInternalAdsErrorOriginLoad;
     if (![[OGAInternetConnectionChecker shared] checkForSequence:NULL error:NULL]) {
         self.mraidDisplayerState = OGAAdMraidDisplayerStateKilled;
         return;
@@ -383,6 +385,7 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
 }
 
 - (void)createWebView:(OGAMraidCommand *)command {
+    [OGAInternetConnectionChecker shared].origin = OguryInternalAdsErrorOriginLoad;
     if (![[OGAInternetConnectionChecker shared] checkForSequence:NULL error:NULL]) {
         [self forceClose:[OGAMraidCommand MraidCloseCommandWithNextAdFalse]];
         return;
@@ -603,14 +606,14 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
     } else if ([self.delegate isKindOfClass:[OGAAdController class]] && [(OGAAdController *)self.delegate isLoaded]) {
         [self.monitoringDispatcher sendLoadEvent:OGALoadEventLoadAdBackgroundUnloaded adConfiguration:self.ad.adConfiguration];
         if ([self.configuration.delegateDispatcher respondsToSelector:@selector(failedWithError:)]) {
-            [self.configuration.delegateDispatcher failedWithError:[OguryError createUnknownError]];
+            [self.configuration.delegateDispatcher failedWithError:[OguryError createOguryErrorWithCode:OGAInternalUnknownError]];
         }
         // unload received while the load has not yet finish -> Load Error
     } else if (origin == UnloadOriginFormat) {
         [self.monitoringDispatcher sendLoadErrorEventPrecacheFail:OGAMonitoringPrecacheErrorUnload
                                                   adConfiguration:self.ad.adConfiguration];
         if ([self.configuration.delegateDispatcher respondsToSelector:@selector(failedWithError:)]) {
-            [self.configuration.delegateDispatcher failedWithError:[OguryError createUnknownError]];
+            [self.configuration.delegateDispatcher failedWithError:[OguryError createOguryErrorWithCode:OGAInternalUnknownError]];
         }
     }
     [self safeDelegateCallWithAction:[[OGAUnloadAdAction alloc] initWithNextAd:[OGANextAd nextAdTrue]]];

@@ -38,7 +38,7 @@
     return [[OguryAdsBannerSize alloc] initWithSize:CGSizeMake(320, 50)];
 }
 
-+ (OguryAdsBannerSize *)mpu_300x250 {
++ (OguryAdsBannerSize *)mrec_300x250 {
     return [[OguryAdsBannerSize alloc] initWithSize:CGSizeMake(300, 250)];
 }
 

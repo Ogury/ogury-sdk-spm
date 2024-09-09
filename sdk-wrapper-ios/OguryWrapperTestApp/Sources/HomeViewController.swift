@@ -5,7 +5,6 @@
 import os.log
 import UIKit
 import OgurySdk
-import OguryChoiceManager
 import OguryAds
 
 class HomeViewController: UIViewController {
@@ -30,23 +29,11 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func askButtonClicked() {
-        OguryChoiceManager.shared().ask(with: self) { (error, answer) in
-            if (error != nil) {
-                os_log("Ask failed with error: %@", String(describing: error))
-            } else {
-                os_log("Ask completed with answer: %d", answer.rawValue)
-            }
-        }
+       //TODO: Add new CMP
     }
     
     @IBAction func editButtonClicked() {
-        OguryChoiceManager.shared().edit(with: self) { (error, answer) in
-            if (error != nil) {
-                os_log("Edit failed with error: %@", String(describing: error))
-            } else {
-                os_log("Edit completed with answer: %d", answer.rawValue)
-            }
-        }
+        //TODO: Add new CMP
     }
     
     @IBAction func interstitialLoadButtonClicked() {

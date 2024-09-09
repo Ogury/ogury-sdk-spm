@@ -292,8 +292,8 @@ struct MainFeature: Reducer {
                                                                          adDelegate: adDelegate)
                adsManager.append(interstitialManager!)
                
-            case is AdType<OptInAdManager>:
-               let optin: AdType<OptInAdManager> =  section.adType.adType as! AdType<OptInAdManager>
+            case is AdType<RewardedAdManager>:
+               let optin: AdType<RewardedAdManager> =  section.adType.adType as! AdType<RewardedAdManager>
                let options = Configuration.shared.options(for: optin, index: index + startIndex + 1)
                options.viewController = adHostingViewController
                let optinManager = try? self.cardManager.adManager(for: optin,
@@ -416,7 +416,7 @@ extension AdType {
    var sectionName: String {
       switch self {
          case .interstitial: return "Interstitial"
-         case .optInVideo: return "Rewarded Video"
+         case .rewarded: return "Rewarded Video"
          case .thumbnail: return "Thumbnail"
          case .mpu: return "Mpu"
          case .banner: return "Banner"

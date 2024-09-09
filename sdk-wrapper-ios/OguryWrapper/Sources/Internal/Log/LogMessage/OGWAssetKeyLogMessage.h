@@ -4,7 +4,6 @@
 
 #import <Foundation/Foundation.h>
 #import <OguryCore/OguryAbstractLogMessage.h>
-#import <OguryCore/OguryEventEntry.h>
 #import <OguryCore/OguryStringFormattable.h>
 #import "OguryConfiguration.h"
 

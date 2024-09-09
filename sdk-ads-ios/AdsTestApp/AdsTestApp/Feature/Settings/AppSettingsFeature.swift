@@ -9,6 +9,7 @@ import UserDefault
 import OguryAds
 import AdsCardLibrary
 import SwiftMessages
+import OguryCore.Private
 
 struct AppSettingsFeature: Reducer {
     struct State: Equatable {
@@ -22,6 +23,8 @@ struct AppSettingsFeature: Reducer {
             lhs.startSDKWithApplication == rhs.startSDKWithApplication &&
             lhs.showTestMode == rhs.showTestMode &&
             lhs.showShowSection == rhs.showShowSection &&
+            lhs.usOptout == rhs.usOptout &&
+            lhs.usOptoutPartner == rhs.usOptoutPartner &&
             lhs.enableFeedbacks == rhs.enableFeedbacks
         }
         
@@ -34,6 +37,8 @@ struct AppSettingsFeature: Reducer {
         var bulkModeEnabled: Bool { settings.bulkModeEnabled }
         var startSDKWithApplication: Bool { settings.startSDKWithApplication }
         var showTestMode: Bool { settings.showTestMode }
+        var usOptout: Bool { settings.usOptout }
+        var usOptoutPartner: Bool { settings.usOptoutPartner }
         var enableFeedbacks: Bool { settings.enableFeedbacks }
         var showShowSection = true  {
             didSet {
@@ -74,6 +79,9 @@ struct AppSettingsFeature: Reducer {
         case disabledTestModeButtonTapped
         case toggleShowShowSection
         case toggleEnableFeedbacks
+        case usOptoutTapped
+        case usOptoutPartnerTapped
+        case showPrivacyDataTapped
     }
     
     var body: some ReducerOf<Self> {
@@ -117,6 +125,21 @@ struct AppSettingsFeature: Reducer {
                 case .enableAdUnitEditingToggleTapped:
                     state.settings.enableAdUnitEditing.toggle()
                     return .none
+               
+                case .usOptoutTapped:
+                    state.settings.usOptout.toggle()
+                    OGCInternal.shared().storePrivacyData("us_optout", boolean: state.settings.usOptout)
+                    return .none
+               
+                case .usOptoutPartnerTapped:
+                    state.settings.usOptoutPartner.toggle()
+                    OGCInternal.shared().storePrivacyData("us_optout_partner", boolean: state.settings.usOptoutPartner)
+                    return .none
+               
+                case .showPrivacyDataTapped:
+                    return .run { _ in
+                       await showNotification(title: "Privacy info", message: OGCInternal.shared().retrieveDataPrivacy().description)
+                    }
                     
                 case .toggleEnableFeedbacks:
                     state.settings.enableFeedbacks.toggle()

@@ -16,11 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithInternalAPI:(OGABannerAdInternalAPI *_Nonnull)internalAPI;
 
-- (void)loadWithCampaignId:(NSString *)campaignId size:(OguryAdsBannerSize *)size;
+- (void)loadWithCampaignId:(NSString *)campaignId;
 
-- (void)loadWithCampaignId:(NSString *)campaignId creativeId:(NSString *)creativeId dspCreativeId:(NSString *)dspCreativeId dspRegion:(NSString *)dspRegion size:(OguryAdsBannerSize *)size;
+- (void)loadWithCampaignId:(NSString *)campaignId
+                creativeId:(NSString *)creativeId
+             dspCreativeId:(NSString *)dspCreativeId
+                 dspRegion:(NSString *)dspRegion;
 
-- (void)loadWithCampaignId:(NSString *)campaignId creativeId:(NSString *)creativeId size:(OguryAdsBannerSize *)size;
+- (void)loadWithCampaignId:(NSString *)campaignId creativeId:(NSString *)creativeId;
 
 @end
 

@@ -5,18 +5,14 @@
 
 import AdsCardLibrary
 import Foundation 
-import OguryChoiceManager
 import OguryAds.Private
 
 struct AdSdkLauncher {
     static let shared = AdSdkLauncher()
-    let persistentBus = OguryPersistentEventBus()
-    let broadcastBus = OguryEventBus()
     
     private init() {}
     
     func launch() {
-        startCMP()
         startAds()
     }
     
@@ -25,11 +21,6 @@ struct AdSdkLauncher {
             forceAdsEnvironment()
             startModule(from: "OGAInternal")
         }
-    }
-    
-    private func startCMP() {
-        forceCMPEnvironment()
-        startModule(from: "OGYInternal")
     }
     
     var assetKey: String {
@@ -58,23 +49,13 @@ struct AdSdkLauncher {
         }
     }
     
-    private func forceCMPEnvironment() {
-        let obj = OguryChoiceManager.shared()
-        let sel = NSSelectorFromString("forceEnvironment:")
-        let meth = class_getInstanceMethod(object_getClass(obj), sel)
-        let imp = method_getImplementation(meth!)
-        typealias ClosureType = @convention(c) (AnyObject, Selector, Int) -> Void
-        let sayHiTo = unsafeBitCast(imp, to: ClosureType.self)
-        sayHiTo(obj, sel, environmentRawValue)
-    }
-    
     private func forceAdsEnvironment() {
         let sel = NSSelectorFromString("changeServerEnvironment:")
         OGAInternal.shared().perform(sel, with: environment)
     }
     
     private func startModule(from moduleClass: String) {
-        let module = OGYModule(className: moduleClass)
-        module.start(withAssetKey: assetKey, persistentEventBus: persistentBus, broadcast: broadcastBus)
+        let module = InternalModule(className: moduleClass)
+        module.start(withAssetKey: assetKey)
     }
 }

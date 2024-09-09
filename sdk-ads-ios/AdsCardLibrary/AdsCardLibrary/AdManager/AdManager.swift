@@ -62,7 +62,6 @@ public enum AdLifeCycleEvent {
    // False in case of banners/mpu, true otherwise
    case adLoaded(canShow: Bool)
    case adDisplaying
-   case adDisplayed
    case adClicked
    case adClosed
    case adDidTriggerImpression
@@ -91,7 +90,6 @@ extension AdLifeCycleEvent: Equatable {
          case (.adLoading, .adLoading): return true
          case (.adLoaded, .adLoaded): return true
          case (.adDisplaying, .adDisplaying): return true
-         case (.adDisplayed, .adDisplayed): return true
          case (.adClicked, .adClicked): return true
          case (.adClosed, .adClosed): return true
          case (.adDidTriggerImpression, .adDidTriggerImpression): return true

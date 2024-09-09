@@ -8,6 +8,7 @@
 #import "OGAAdDisplayerUpdateExposureInformation.h"
 #import "OGAAdConfiguration.h"
 #import "OGAAdDisplayerUpdateStateInformation.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAFullscreenAdContainerState ()
 
@@ -56,14 +57,14 @@
 
     if (!self.viewControllerProvider) {
         if (error) {
-            *error = [OguryError createOguryErrorWithCode:OguryAdsUnknownError localizedDescription:@"Missing root view controller to present."];
+            *error = [OguryError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"Missing root view controller to present."];
         }
         return NO;
     }
     UIViewController *rootViewController = self.viewControllerProvider();
     if (!rootViewController) {
         if (error) {
-            *error = [OguryError createOguryErrorWithCode:OguryAdsUnknownError localizedDescription:@"Missing root view controller to present."];
+            *error = [OguryError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"Missing root view controller to present."];
         }
         return NO;
     }

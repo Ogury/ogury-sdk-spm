@@ -170,11 +170,6 @@ internal class InterstitialProxyDelegate: AdDelegateProxy<InterstitialAdManager>
         adManager.append(.adLoaded(canShow: true))
     }
     
-    func didDisplay(_ interstitial: OguryInterstitialAd) {
-        guard let adManager else { return }
-        adManager.append(.adDisplayed)
-    }
-    
     func didClick(_ interstitial: OguryInterstitialAd) {
         guard let adManager else { return }
         adManager.append(.adClicked)

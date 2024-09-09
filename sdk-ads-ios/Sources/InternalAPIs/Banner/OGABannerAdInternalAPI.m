@@ -46,10 +46,12 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
 
 - (instancetype)initWithAdUnitId:(NSString *)adUnitId
                       bannerView:(UIView *)bannerView
+                            size:(OguryAdsBannerSize *)size
               delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher
                        mediation:(OguryMediation *_Nullable)mediation {
     return [self initWithAdUnitId:adUnitId
                        bannerView:bannerView
+                             size:size
                delegateDispatcher:delegateDispatcher
                         adManager:[OGAAdManager sharedManager]
                notificationCenter:NSNotificationCenter.defaultCenter
@@ -61,6 +63,7 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
 
 - (instancetype)initWithAdUnitId:(NSString *)adUnitId
                       bannerView:(UIView *)bannerView
+                            size:(OguryAdsBannerSize *)size
               delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher
                        adManager:(OGAAdManager *)adManager
               notificationCenter:(NSNotificationCenter *)notificationCenter
@@ -74,6 +77,7 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
         _monitoringDispatcher = monitoringDispatcher;
         _delegateDispatcher = delegateDispatcher;
         _internal = internal;
+        _size = size;
 
         // Use a proxy to intercept lifecycle messages and resend them to the original delegate dispatcher
         _dispatcherProxy = [[OguryBannerAdDelegateDispatcher alloc] init];
@@ -111,37 +115,35 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
 #pragma mark - Methods
 
 - (void)load {
-    // Not implemented
+    [self loadWithCampaignId:nil];
 }
 
-- (void)loadWithSize:(OguryAdsBannerSize *)size {
-    [self loadWithCampaignId:nil size:size];
+- (void)loadWithCampaignId:(NSString *_Nullable)campaignId {
+    [self loadWithCampaignId:campaignId creativeId:nil];
 }
 
-- (void)loadWithCampaignId:(NSString *_Nullable)campaignId size:(OguryAdsBannerSize *)size {
-    [self loadWithCampaignId:campaignId creativeId:nil size:size];
-}
-
-- (void)loadWithCampaignId:(NSString *_Nullable)campaignId creativeId:(NSString *_Nullable)creativeId size:(OguryAdsBannerSize *)size {
+- (void)loadWithCampaignId:(NSString *_Nullable)campaignId
+                creativeId:(NSString *_Nullable)creativeId {
     [self loadWithCampaignId:campaignId
                   creativeId:creativeId
                dspCreativeId:nil
-                   dspRegion:nil
-                        size:size];
+                   dspRegion:nil];
 }
 
 - (void)loadWithCampaignId:(NSString *_Nullable)campaignId
                 creativeId:(NSString *_Nullable)creativeId
              dspCreativeId:(NSString *_Nullable)dspCreativeId
-                 dspRegion:(NSString *_Nullable)dspRegion
-                      size:(OguryAdsBannerSize *)size {
+                 dspRegion:(NSString *_Nullable)dspRegion {
     [self.log logAdFormat:OguryLogLevelDebug
         forAdConfiguration:self.configuration
                     format:@"loadWithCampaignId:campaignId called [campaignId:%@][creativeId:%@][dspCreativeId:%@][dspRegion:%@]", campaignId, creativeId, dspCreativeId, dspRegion];
 
-    self.size = size;
-    self.bannerView.frame = CGRectMake(self.bannerView.frame.origin.x, self.bannerView.frame.origin.y, [size getSize].width, [size getSize].height);
-    self.configuration.size = [size getSize];
+    CGSize size = [self.size getSize];
+    self.bannerView.frame = CGRectMake(self.bannerView.frame.origin.x,
+                                       self.bannerView.frame.origin.y,
+                                       size.width,
+                                       size.height);
+    self.configuration.size = size;
     self.configuration.campaignId = campaignId;
     self.configuration.creativeId = creativeId;
     if (dspCreativeId && dspRegion) {
@@ -164,11 +166,14 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
     self.sequence = [self.adManager loadAdConfiguration:self.configuration previousSequence:self.sequence];
 }
 
-- (void)loadWithAdMarkup:(NSString *)adMarkup size:(OguryAdsBannerSize *)size {
-    [self.log logAdFormat:OguryLogLevelDebug forAdConfiguration:self.configuration format:@"loadWithCampaignId:size called [adMarkup][size:%d x %d]", size.getSize.height, size.getSize.width];
+- (void)loadWithAdMarkup:(NSString *)adMarkup {
+    CGSize size = [self.size getSize];
 
-    self.size = size;
-    self.configuration.size = [size getSize];
+    [self.log logAdFormat:OguryLogLevelDebug
+        forAdConfiguration:self.configuration
+                    format:@"loadWithCampaignId:size called [adMarkup][size:%d x %d]", size.height, size.width];
+
+    self.configuration.size = size;
     self.configuration.campaignId = nil;
     self.configuration.isHeaderBidding = true;
     self.configuration.encodedAdMarkup = adMarkup;
@@ -217,10 +222,6 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
     }
 }
 
-- (void)didDisplayOguryBannerAd:(OguryBannerAd *)banner {
-    [self.delegateDispatcher displayed];
-}
-
 - (void)didClickOguryBannerAd:(OguryBannerAd *)banner {
     [self.delegateDispatcher clicked];
 }
@@ -236,5 +237,7 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
 - (void)didTriggerImpressionOguryBannerAd:(OguryBannerAd *)banner {
     [self.delegateDispatcher adImpression];
 }
+
+@synthesize mediation;
 
 @end
