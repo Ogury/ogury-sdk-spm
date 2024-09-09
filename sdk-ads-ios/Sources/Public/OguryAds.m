@@ -11,7 +11,7 @@
 @interface OguryAds ()
 
 @property(nonatomic, strong) OGAInternal *internal;
-@property(nonatomic, copy) SetUpCompletionBlock setupBlock;
+@property(nonatomic, copy) SetupCompletionBlock setupBlock;
 
 @end
 
@@ -46,7 +46,7 @@
 }
 
 #pragma mark - Methods
-- (void)setupWithAssetKey:(NSString *)assetKey completionHandler:(SetUpCompletionBlock)completionHandler {
+- (void)setupWithAssetKey:(NSString *)assetKey completionHandler:(SetupCompletionBlock)completionHandler {
     [self.internal startWithAssetKey:assetKey completionHandler:completionHandler];
 }
 

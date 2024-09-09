@@ -15,7 +15,7 @@ typedef NS_ENUM(NSInteger, OGWErrorCode) {
 
 @interface OguryError(OGWWrapper)
 
-+ (instancetype)createFailedStartingOguryModuleError;
++ (instancetype)createFailedStartingOguryModuleError:(NSString *)errorMessage;
 + (instancetype)createNoSDKModuleFoundError;
 
 @end

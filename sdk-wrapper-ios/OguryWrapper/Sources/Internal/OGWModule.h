@@ -24,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetupCompletionBlock _Nullable)completionHandler;
 - (void)setLogLevel:(OguryLogLevel)logLevel;
-
 - (NSString *_Nullable)getVersion;
 
 @end

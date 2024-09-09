@@ -24,7 +24,10 @@ class HomeViewController: UIViewController {
     @IBAction func startButtonClicked() {
         let config = OguryConfigurationBuilder(assetKey: getEnvironment().assetKey)
             .build()
-        Ogury.start(with: config)
+        Ogury.start(with: config, completionHandler: { success, error in
+            print("success \(success)")
+            print("error \(String(describing: error))")
+        })
         Ogury.setLogLevel(OguryLogLevel.all)
     }
     

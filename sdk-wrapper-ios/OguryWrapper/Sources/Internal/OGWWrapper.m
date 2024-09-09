@@ -76,6 +76,12 @@ static int ogcMaxNumberOfConvertionValue = 63;
         if(completionHandler) {
             completionHandler(false, noSDKModuleFound);
         }
+    } else {
+        if(errorMessage.length > 0) {
+            completionHandler(false, [OguryError createFailedStartingOguryModuleError:errorMessage]);
+            return;
+        }
+        completionHandler(true, nil);
     }
 }
 

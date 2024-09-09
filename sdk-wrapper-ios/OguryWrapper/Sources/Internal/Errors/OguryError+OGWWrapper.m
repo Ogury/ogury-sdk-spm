@@ -7,9 +7,9 @@
 
 @implementation OguryError (OGWErrorCode)
 
-+ (instancetype)createFailedStartingOguryModuleError {
++ (instancetype)createFailedStartingOguryModuleError:(NSString *)errorMessage {
     return [OguryError createOguryErrorWithCode:OGWErrorFailedStartingOguryModule
-                           localizedDescription:OGWErrorFailedStartingOguryModuleMessage];
+                           localizedDescription:errorMessage];
 }
 
 + (instancetype)createNoSDKModuleFoundError {

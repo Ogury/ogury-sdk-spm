@@ -15,9 +15,11 @@ static OGWModuleClassMock *_storedShared = nil;
    return [self storedShared];
 }
 
-- (void)startWithAssetKey:(NSString *_Nullable)assetKey {
-   self.storedAssetKey = assetKey;
+- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetupCompletionBlock _Nullable)completionHandler {
+    self.storedAssetKey = assetKey;
+    completionHandler(true, nil);
 }
+
 
 - (void)setLogLevel:(OguryLogLevel)logLevel {
    self.storedLogLevel = logLevel;

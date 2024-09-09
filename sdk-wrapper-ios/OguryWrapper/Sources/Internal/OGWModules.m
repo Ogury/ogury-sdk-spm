@@ -11,7 +11,6 @@
 @end
 
 static NSString * const OGWModulesCoreModuleClassName = @"OGCInternal";
-static NSString * const OGWModulesChoiceManagerModuleClassName = @"OGYInternal";
 static NSString * const OGWModulesAdsModuleClassName = @"OGAInternal";
 
 @implementation OGWModules
@@ -32,7 +31,6 @@ static NSString * const OGWModulesAdsModuleClassName = @"OGAInternal";
         NSMutableArray *modules = [[NSMutableArray alloc] init];
         for (NSString *moduleClassName in @[
                 OGWModulesCoreModuleClassName,
-                OGWModulesChoiceManagerModuleClassName,
                 OGWModulesAdsModuleClassName
         ]) {
             [modules addObject:[[OGWModule alloc] initWithClassName:moduleClassName]];
@@ -50,10 +48,6 @@ static NSString * const OGWModulesAdsModuleClassName = @"OGAInternal";
 
 - (OGWModule *)adsModule {
     return [self moduleByClassName:OGWModulesAdsModuleClassName];
-}
-
-- (OGWModule *)choiceManagerModule {
-    return [self moduleByClassName:OGWModulesChoiceManagerModuleClassName];
 }
 
 #pragma mark - Methods

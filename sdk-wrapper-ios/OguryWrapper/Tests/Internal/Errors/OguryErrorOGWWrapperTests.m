@@ -13,9 +13,10 @@
 @implementation OguryErrorOGWWrapperTests
 
 - (void)testCreateFailedStartingOguryModuleError {
-    OguryError *errorFailedModuleStart = [OguryError createFailedStartingOguryModuleError];
+    NSString *longMessage = @"long message";
+    OguryError *errorFailedModuleStart = [OguryError createFailedStartingOguryModuleError:longMessage];
     XCTAssertEqual(errorFailedModuleStart.code, 1000);
-    XCTAssertEqual(errorFailedModuleStart.localizedDescription, OGWErrorFailedStartingOguryModuleMessage);
+    XCTAssertEqualObjects(errorFailedModuleStart.localizedDescription, longMessage);
 }
 
 - (void)testCreateNoSDKModuleFoundError {

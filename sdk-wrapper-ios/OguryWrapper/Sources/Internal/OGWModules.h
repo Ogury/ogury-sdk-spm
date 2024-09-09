@@ -18,8 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly, nullable) OGWModule *adsModule;
 
-@property (nonatomic, strong, readonly, nullable) OGWModule *choiceManagerModule;
-
 #pragma mark - Initialization
 
 + (OGWModules *)shared;

@@ -218,7 +218,6 @@
 				505059352C776248007B29EA /* Internal */,
 				05FFA0F425BB0CA60047EFCD /* Utility */,
 				05FDDE01255ADE78000F4C8B /* Public */,
-				58BDDA8C288EEC5B000A4A12 /* OGWWrapperTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -252,6 +251,10 @@
 		505059352C776248007B29EA /* Internal */ = {
 			isa = PBXGroup;
 			children = (
+				580AF64A28758CD1006A829A /* OGWModuleClassMock.h */,
+				580AF64828758CD1006A829A /* OGWModuleClassMock.m */,
+				580AF64928758CD1006A829A /* OGWModuleTests.m */,
+				58BDDA8C288EEC5B000A4A12 /* OGWWrapperTests.m */,
 				505059362C7763CA007B29EA /* Errors */,
 				58CD4D8C2810286100E0524A /* Log */,
 				58BDDA8E288FDB2A000A4A12 /* DarwinNotification */,
@@ -302,9 +305,6 @@
 		58CD4D8C2810286100E0524A /* Log */ = {
 			isa = PBXGroup;
 			children = (
-				580AF64A28758CD1006A829A /* OGWModuleClassMock.h */,
-				580AF64828758CD1006A829A /* OGWModuleClassMock.m */,
-				580AF64928758CD1006A829A /* OGWModuleTests.m */,
 				58D79F04285892F900E94E70 /* OGWLogTests.m */,
 			);
 			path = Log;

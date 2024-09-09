@@ -14,7 +14,8 @@
 		05FF9FF725B88DEF0047EFCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05FF9FF525B88DEF0047EFCD /* LaunchScreen.storyboard */; };
 		05FFA07E25B9CA4B0047EFCD /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FFA07D25B9CA4B0047EFCD /* Environment.swift */; };
 		05FFA15C25BEC5C10047EFCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05FFA15B25BEC5C10047EFCD /* Assets.xcassets */; };
-		58E8031B283D116100F2372B /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E8031A283D116100F2372B /* OgurySdk.framework */; };
+		501E02D92C8F2E71005879C5 /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501E02D82C8F2E71005879C5 /* OguryCore.framework */; };
+		501E02DB2C8F2E7E005879C5 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501E02DA2C8F2E7E005879C5 /* OguryAds.framework */; };
 		DBDE3CBD7F771EFE53CE1790 /* Pods_OguryWrapperTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F846C4C708D976A6FCC1C6 /* Pods_OguryWrapperTestApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,8 @@
 		05FFA15B25BEC5C10047EFCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26484642A57146350328DBED /* Pods-OguryWrapperTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryWrapperTestApp.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryWrapperTestApp/Pods-OguryWrapperTestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		3E0D22C68D5A3D29C94C5B87 /* Pods-OguryWrapperTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryWrapperTestApp.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryWrapperTestApp/Pods-OguryWrapperTestApp.release.xcconfig"; sourceTree = "<group>"; };
+		501E02D82C8F2E71005879C5 /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		501E02DA2C8F2E7E005879C5 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58E8031A283D116100F2372B /* OgurySdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OgurySdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68F846C4C708D976A6FCC1C6 /* Pods_OguryWrapperTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OguryWrapperTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -39,7 +42,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58E8031B283D116100F2372B /* OgurySdk.framework in Frameworks */,
+				501E02DB2C8F2E7E005879C5 /* OguryAds.framework in Frameworks */,
+				501E02D92C8F2E71005879C5 /* OguryCore.framework in Frameworks */,
 				DBDE3CBD7F771EFE53CE1790 /* Pods_OguryWrapperTestApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,6 +121,8 @@
 		BDE08D00BAFA4CABBE4891A2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				501E02DA2C8F2E7E005879C5 /* OguryAds.framework */,
+				501E02D82C8F2E71005879C5 /* OguryCore.framework */,
 				58E8031A283D116100F2372B /* OgurySdk.framework */,
 				68F846C4C708D976A6FCC1C6 /* Pods_OguryWrapperTestApp.framework */,
 			);
