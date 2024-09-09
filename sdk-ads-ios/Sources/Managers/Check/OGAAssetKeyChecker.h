@@ -7,5 +7,6 @@
 #import "OGAConditionChecker.h"
 
 @interface OGAAssetKeyChecker : NSObject <OGAConditionChecker>
-
+@property(nonatomic) OguryInternalAdsErrorOrigin origin;
+- (instancetype)initFrom:(OguryInternalAdsErrorOrigin)origin;
 @end

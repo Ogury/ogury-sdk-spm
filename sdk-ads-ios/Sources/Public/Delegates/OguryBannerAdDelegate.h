@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol OguryBannerAdDelegate <NSObject>
 @optional
 - (void)didLoadOguryBannerAd:(OguryBannerAd *)banner;
-- (void)didDisplayOguryBannerAd:(OguryBannerAd *)banner;
 - (void)didClickOguryBannerAd:(OguryBannerAd *)banner;
 - (void)didCloseOguryBannerAd:(OguryBannerAd *)banner;
 - (void)didFailOguryBannerAdWithError:(OguryError *)error forAd:(OguryBannerAd *)banner;

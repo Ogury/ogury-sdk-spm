@@ -82,7 +82,7 @@
     UIViewController *rootViewController = OCMClassMock([UIViewController class]);
     id<OGAAdDisplayer> displayer = OCMProtocolMock(@protocol(OGAAdDisplayer));
     OGAFullscreenViewController *viewController = OCMClassMock([OGAFullscreenViewController class]);
-    OguryError *viewControllerError = OCMClassMock([OguryError class]);
+    OguryError *viewControllerError = OCMClassMock([OguryAdsError class]);
     OCMStub([viewController display:[OCMArg any] error:[OCMArg anyObjectRef]]).andDo(^(NSInvocation *invocation) {
                                                                                   OguryError *__autoreleasing *errorPointer = nil;
                                                                                   [invocation getArgument:&errorPointer atIndex:3];

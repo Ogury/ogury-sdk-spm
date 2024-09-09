@@ -20,6 +20,8 @@
 @property(nonatomic, strong) OGAMetricsService *metricsService;
 
 @property(nonatomic, strong) OGALog *log;
+@property(nonatomic, strong) OGCInternal *internalCore;
+@property(nonatomic, strong) OGAUserDefaultsStore *userDefaultStore;
 
 @end
 
@@ -35,13 +37,16 @@ static NSString *const TestInstanceToken = @"TestInstanceToken";
     self.omidService = OCMClassMock([OGAOMIDService class]);
     self.monitoringDispatcher = OCMClassMock([OGAMonitoringDispatcher class]);
     self.metricsService = OCMClassMock([OGAMetricsService class]);
-
+    self.internalCore = OCMClassMock([OGCInternal class]);
+    self.userDefaultStore = OCMClassMock([OGAUserDefaultsStore class]);
     OGAProfigManager *profigManager = [[OGAProfigManager alloc] initWithProfigDao:self.profigDao
                                                                     profigService:self.profigService
                                                                       omidService:self.omidService
                                                              monitoringDispatcher:self.monitoringDispatcher
                                                                    metricsService:self.metricsService
-                                                                              log:self.log];
+                                                                              log:self.log
+                                                                     internalCore:self.internalCore
+                                                                 userDefaultStore:self.userDefaultStore];
     self.profigManager = OCMPartialMock(profigManager);
 }
 
@@ -241,6 +246,20 @@ static NSString *const TestInstanceToken = @"TestInstanceToken";
 }
 
 - (void)testShouldSync_shouldNotSyncIfProfigValidAndParametersNotUpdated {
+    OCMStub([self.profigManager isProfigExpired]).andReturn(NO);
+    OCMStub([self.profigManager profigParametersWereUpdated]).andReturn(NO);
+    XCTAssertFalse([self.profigManager shouldSync]);
+}
+
+- (void)testShouldSync_shouldSyncConsentChanged {
+    OCMStub([self.internalCore gppConsentString]).andReturn(@"GPP");
+    OCMStub([self.userDefaultStore dataForKey:@"OGY-HashConsentKeys"]).andReturn([[NSData alloc] init]);
+    XCTAssertTrue([self.profigManager shouldSync]);
+}
+
+- (void)testShouldSync_shouldNotSyncNoConsentChanged {
+    OCMStub([self.internalCore gppConsentString]).andReturn(@"GPP");
+    OCMStub([self.userDefaultStore dataForKey:@"OGY-HashConsentKeys"]).andReturn([self.profigManager retrieveConsentData]);
     OCMStub([self.profigManager isProfigExpired]).andReturn(NO);
     OCMStub([self.profigManager profigParametersWereUpdated]).andReturn(NO);
     XCTAssertFalse([self.profigManager shouldSync]);

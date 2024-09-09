@@ -6,6 +6,7 @@
 #import "OGAAdEnabledChecker.h"
 #import "OGALog.h"
 #import "OGAProfigDao.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAAdEnabledChecker ()
 
@@ -17,13 +18,14 @@
 
 #pragma mark - Initialization
 
-- (instancetype)init {
-    return [self init:[OGALog shared]];
+- (instancetype)initFrom:(OguryInternalAdsErrorOrigin)origin {
+    return [self init:[OGALog shared] origin:origin];
 }
 
-- (instancetype)init:(OGALog *)log {
+- (instancetype)init:(OGALog *)log origin:(OguryInternalAdsErrorOrigin)origin {
     if (self = [super init]) {
         _log = log;
+        _origin = origin;
     }
     return self;
 }
@@ -37,7 +39,7 @@
 - (BOOL)checkForSequence:(OGAAdSequence *)sequence error:(OguryError *_Nullable __autoreleasing *)error {
     if ([[self profigDao].profigFullResponse isAdsEnabled] == NO) {
         sequence.status = OGAAdSequenceStatusError;
-        *error = [OguryError createAdDisabledError];
+        *error = [OguryAdsError adDisabled:[[self profigDao].profigFullResponse disablingReason] from:self.origin];
         [self.log logAd:OguryLogLevelError forAdConfiguration:sequence.configuration message:@" Failed to show (ad is disabled)"];
         return NO;
     }

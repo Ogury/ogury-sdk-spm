@@ -17,16 +17,18 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithAdUnitId:(NSString *)adUnitId mediation:(OguryMediation *_Nonnull)mediation {
+- (instancetype)initWithAdUnitId:(NSString *)adUnitId size:(OguryAdsBannerSize *)size mediation:(OguryMediation *_Nonnull)mediation {
     return [self initWithInternalAPI:[[OGABannerAdInternalAPI alloc] initWithAdUnitId:adUnitId
                                                                            bannerView:self
+                                                                                 size:size
                                                                    delegateDispatcher:[[OguryBannerAdDelegateDispatcher alloc] init]
                                                                             mediation:mediation]];
 }
 
-- (instancetype)initWithAdUnitId:(NSString *_Nonnull)adUnitId {
+- (instancetype)initWithAdUnitId:(NSString *_Nonnull)adUnitId size:(OguryAdsBannerSize *)size {
     return [self initWithInternalAPI:[[OGABannerAdInternalAPI alloc] initWithAdUnitId:adUnitId
                                                                            bannerView:self
+                                                                                 size:size
                                                                    delegateDispatcher:[[OguryBannerAdDelegateDispatcher alloc] init]
                                                                             mediation:nil]];
 }
@@ -61,24 +63,27 @@
 
 #pragma mark - Public Methods
 
-- (void)loadWithSize:(OguryAdsBannerSize *)size {
-    [self.internalAPI loadWithSize:size];
+- (void)load {
+    [self.internalAPI load];
 }
 
-- (void)loadWithAdMarkup:(NSString *)adMarkup size:(OguryAdsBannerSize *)size {
-    [self.internalAPI loadWithAdMarkup:adMarkup size:size];
+- (void)loadWithAdMarkup:(NSString *)adMarkup {
+    [self.internalAPI loadWithAdMarkup:adMarkup];
 }
 
-- (void)loadWithCampaignId:(NSString *)campaignId size:(OguryAdsBannerSize *)size {
-    [self.internalAPI loadWithCampaignId:campaignId size:size];
+- (void)loadWithCampaignId:(NSString *)campaignId {
+    [self.internalAPI loadWithCampaignId:campaignId];
 }
 
-- (void)loadWithCampaignId:(NSString *)campaignId creativeId:(NSString *)creativeId size:(OguryAdsBannerSize *)size {
-    [self.internalAPI loadWithCampaignId:campaignId creativeId:creativeId size:size];
+- (void)loadWithCampaignId:(NSString *)campaignId creativeId:(NSString *)creativeId {
+    [self.internalAPI loadWithCampaignId:campaignId creativeId:creativeId];
 }
 
-- (void)loadWithCampaignId:(NSString *)campaignId creativeId:(NSString *)creativeId dspCreativeId:(NSString *)dspCreativeId dspRegion:(NSString *)dspRegion size:(OguryAdsBannerSize *)size {
-    [self.internalAPI loadWithCampaignId:campaignId creativeId:creativeId dspCreativeId:dspCreativeId dspRegion:dspRegion size:size];
+- (void)loadWithCampaignId:(NSString *)campaignId
+                creativeId:(NSString *)creativeId
+             dspCreativeId:(NSString *)dspCreativeId
+                 dspRegion:(NSString *)dspRegion {
+    [self.internalAPI loadWithCampaignId:campaignId creativeId:creativeId dspCreativeId:dspCreativeId dspRegion:dspRegion];
 }
 
 - (void)destroy {

@@ -4,6 +4,7 @@
 
 #import "OGAIsLoadedChecker.h"
 #import "OGALog.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAIsLoadedChecker ()
 
@@ -31,7 +32,7 @@
 - (BOOL)checkForSequence:(OGAAdSequence *)sequence error:(OguryError **)error {
     if (![self.adManager isLoaded:sequence]) {
         if (error) {
-            *error = [OguryError createNotLoadedError];
+            *error = [OguryAdsError noAdLoaded];
 
             [self.log logAd:OguryLogLevelError forAdConfiguration:sequence.configuration message:@"Failed to show (no ad loaded)"];
         }

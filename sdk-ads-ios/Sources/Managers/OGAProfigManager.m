@@ -11,12 +11,13 @@
 #import "OGAConfigurationUtils+Profig.h"
 #import "OGAEXTScope.h"
 #import "OGAOMIDService.h"
-#import "OGABroadcastEventBus.h"
-#import "OGAEventSubscriber.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGAMetricsService.h"
-#import "OGABroadcastEventBus.h"
-#import "OGAEventSubscriber.h"
+#import "OGAUserDefaultsStore.h"
+#import <OguryCore/OguryCore.h>
+#import <OguryCore/OGCInternal.h>
+
+static NSString *const OGAHashConsentKey = @"OGY-HashConsentKeys";
 
 @interface OGAProfigManager ()
 
@@ -26,9 +27,9 @@
 @property(nonatomic, strong) NSMutableArray<ProfigCompletionBlock> *waitingCompletionBlocks;
 @property(nonatomic, strong) OGAMonitoringDispatcher *monitoringDispatcher;
 @property(nonatomic, strong) OGAMetricsService *metricsService;
-
 @property(nonatomic, strong) OGALog *log;
-@property(nonatomic, strong) OGAEventSubscriber *eventSubscriber;
+@property(nonatomic, strong) OGCInternal *internalCore;
+@property(nonatomic, strong) OGAUserDefaultsStore *userDefaultStore;
 
 @end
 
@@ -53,7 +54,9 @@
                        omidService:[OGAOMIDService shared]
               monitoringDispatcher:[OGAMonitoringDispatcher shared]
                     metricsService:[OGAMetricsService shared]
-                               log:[OGALog shared]];
+                               log:[OGALog shared]
+                      internalCore:[OGCInternal shared]
+                  userDefaultStore:[OGAUserDefaultsStore shared]];
 }
 
 - (instancetype)initWithProfigDao:(OGAProfigDao *)profigDao
@@ -61,7 +64,9 @@
                       omidService:(OGAOMIDService *)omidService
              monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher
                    metricsService:(OGAMetricsService *)metricsService
-                              log:(OGALog *)log {
+                              log:(OGALog *)log
+                     internalCore:(OGCInternal *)internalCore
+                 userDefaultStore:(OGAUserDefaultsStore *)userDefaultStore {
     if (self = [super init]) {
         _profigDao = profigDao;
         _profigService = profigService;
@@ -70,41 +75,20 @@
         _waitingCompletionBlocks = [[NSMutableArray alloc] init];
         _metricsService = metricsService;
         _log = log;
+        _internalCore = internalCore;
+        _userDefaultStore = userDefaultStore;
     }
     return self;
 }
 
 #pragma mark - methods
-
-- (void)registerToBroadcastEventBus {
-    @weakify(self)
-        [self registerToBroadcastEventBus:self.broadcastEventBus
-                          eventSubscriber:[[OGAEventSubscriber alloc] initWithEvent:OGAChoiceManagerEventBusCMChange
-                                                                         andHandler:^(OguryEventEntry *eventEntry) {
-                                                                             @strongify(self)
-                                                                                 [self.log logEventBus:OguryLogLevelDebug
-                                                                                            eventEntry:eventEntry
-                                                                                               message:@"OGAProfigManager received event"];
-                                                                             if ([self.broadcastEventBus shouldResetProfig:eventEntry]) {
-                                                                                 [self.log logEventBus:OguryLogLevelDebug eventEntry:eventEntry message:@"OGAProfigManager calling reset profig by eventBus"];
-                                                                                 [self resetProfig];
-                                                                                 [self fetchProfig];
-                                                                             }
-                                                                         }]];
-}
-
-- (void)registerToBroadcastEventBus:(OGABroadcastEventBus *)broadcastEventBus
-                    eventSubscriber:(OGAEventSubscriber *)eventSubscriber {
-    self.eventSubscriber = eventSubscriber;
-    [broadcastEventBus registerOguryEventSubscriber:eventSubscriber];
-}
-
 - (void)syncProfigWithCompletion:(ProfigCompletionBlock)completion {
     @synchronized(self.waitingCompletionBlocks) {
         if (self.waitingCompletionBlocks.count > 0) {
             [self.waitingCompletionBlocks addObject:completion];
         } else if ([self shouldSync]) {
             [self.waitingCompletionBlocks addObject:completion];
+            [self.userDefaultStore setObject:[self retrieveConsentData] forKey:OGAHashConsentKey];
             [self fetchProfig];
         } else {
             if (self.profigDao.profigFullResponse.isOmidEnabled) {
@@ -199,8 +183,29 @@
     }
 }
 
+- (NSData *)retrieveConsentData {
+    NSData *gppData = [[self.internalCore gppConsentString] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *sidData = [[self.internalCore gppSID] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *tcfData = [[self.internalCore tcfConsentString] dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *privacy = [self.internalCore retrieveDataPrivacy];
+    NSData *privacyData = [NSKeyedArchiver archivedDataWithRootObject:privacy];
+    NSMutableData *consentData = [[NSMutableData alloc] init];
+    [consentData appendData:gppData];
+    [consentData appendData:sidData];
+    [consentData appendData:tcfData];
+    if (privacy.allKeys.count > 0) {
+        [consentData appendData:privacyData];
+    }
+    return consentData;
+}
+
 - (BOOL)shouldSync {
-    return [self isProfigExpired] || [self profigParametersWereUpdated];
+    NSData *previousConsent = [self.userDefaultStore dataForKey:OGAHashConsentKey];
+    NSData *consentData = [self retrieveConsentData];
+    if ([previousConsent isEqual:consentData] || (consentData.length == 0 && previousConsent.length == 0)) {
+        return [self isProfigExpired] || [self profigParametersWereUpdated];
+    }
+    return YES;
 }
 
 - (BOOL)profigParametersWereUpdated {

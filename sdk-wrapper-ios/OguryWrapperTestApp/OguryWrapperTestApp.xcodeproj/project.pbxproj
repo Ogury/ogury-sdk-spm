@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -421,8 +421,6 @@
 					"-framework",
 					"\"Foundation\"",
 					"-framework",
-					"\"OguryChoiceManager\"",
-					"-framework",
 					"\"OguryCore\"",
 					"-framework",
 					"\"SystemConfiguration\"",
@@ -470,8 +468,6 @@
 					"\"AdSupport\"",
 					"-framework",
 					"\"Foundation\"",
-					"-framework",
-					"\"OguryChoiceManager\"",
 					"-framework",
 					"\"OguryCore\"",
 					"-framework",

@@ -4,7 +4,6 @@
 
 #import <Foundation/Foundation.h>
 #import <OguryCore/OguryLogLevel.h>
-#import <OguryCore/OguryPersistentEventBus.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,10 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Methods
 
-- (void)startWithAssetKey:(NSString *)assetKey
-       persistentEventBus:(OguryPersistentEventBus *)persistentEventBus
-        broadcastEventBus:(OguryEventBus *)broadcastEventBus;
-
+- (void)startWithAssetKey:(NSString *)assetKey;
 - (void)setLogLevel:(OguryLogLevel)logLevel;
 
 - (NSString *_Nullable)getVersion;

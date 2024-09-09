@@ -99,7 +99,7 @@ NSString *const OGAEncodedAdMarkup = @"encoded-adMarkup";
     XCTAssertEqualObjects(configuration.getAdTypeString, @"interstitial");
 }
 
-- (void)testGetAdTypeString_optInVideoAd {
+- (void)testGetAdTypeString_RewardedAd {
     OGAAdConfiguration *configuration = [[OGAAdConfiguration alloc] initWithType:OguryAdsTypeOptinVideo adUnitId:OGAAdConfigurationTestsAdUnitId delegateDispatcher:self.delegateDispatcher viewControllerProvider:nil viewProvider:nil];
 
     XCTAssertEqualObjects(configuration.getAdTypeString, @"optin_video");
@@ -120,7 +120,7 @@ NSString *const OGAEncodedAdMarkup = @"encoded-adMarkup";
 
 - (void)testGetAdTypeString_bannerAd_mpu {
     OGAAdConfiguration *configuration = [[OGAAdConfiguration alloc] initWithType:OguryAdsTypeBanner adUnitId:OGAAdConfigurationTestsAdUnitId delegateDispatcher:self.delegateDispatcher viewControllerProvider:nil viewProvider:nil];
-    configuration.size = [[OguryAdsBannerSize mpu_300x250] getSize];
+    configuration.size = [[OguryAdsBannerSize mrec_300x250] getSize];
 
     XCTAssertEqualObjects(configuration.getAdTypeString, @"medium_rectangle");
 }

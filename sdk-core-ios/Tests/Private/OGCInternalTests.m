@@ -21,7 +21,6 @@ static NSString * const InternalIdfa = @"11000000-1111-3333-1598-000000000000";
 static NSString * const InternalIdfv = @"11000000-1111-3333-1598-000000000000";
 static NSString * const InternalSalt = @"1234567890";
 static NSString * const InternalTokenId = @"00000000-1111-3333-1598-000000000000";
-static NSString * const InternalConsentToken = @"00000000-1111-3333-1598-000000000000";
 
 @interface OGCInternalTests : XCTestCase
 
@@ -198,48 +197,77 @@ static NSString * const InternalConsentToken = @"00000000-1111-3333-1598-0000000
     XCTAssertFalse([coreInternalInstance isAdOptin]);
 }
 
-- (void)testUpdateInstanceToken {
-    [self storeInstanceTokenWithIDFA];
-    self.identifierManagerMock.customIDFA = [[NSUUID alloc] initWithUUIDString:InternalIdfa];
+- (void)testStoreAndRetrievePrivacyData {
+   
     OGCAdIdentifierManager *adIdentifierManager = [[OGCAdIdentifierManager alloc] initWithPrivacyLayer:self.privacyLayer andDataLayer:self.dataLayer andProcessInfo:[NSProcessInfo processInfo] log:self.log];
     OGCInternal *coreInternalInstance = [[OGCInternal alloc] initWithAdIdentifierManager:adIdentifierManager log:self.log logNotificationManager:[[OGCSetLogLevelNotificationManager alloc] init]];
-
-    XCTAssertNotNil(coreInternalInstance);
-    XCTAssertNotNil(coreInternalInstance.adIdentifierManager);
-    XCTAssertEqual([coreInternalInstance getAdIdentifier].length, 36);
-    XCTAssertEqualObjects([coreInternalInstance getAdIdentifier], InternalIdfa);
-    XCTAssertTrue([coreInternalInstance isAdOptin]);
-
-    [coreInternalInstance updateInstanceToken];
-
-    XCTAssertNotNil(coreInternalInstance.adIdentifierManager);
-    XCTAssertEqual([coreInternalInstance getAdIdentifier].length, 36);
-    XCTAssertEqual([coreInternalInstance getInstanceToken].length, 36);
+   
+    [coreInternalInstance storePrivacyData:@"testValue" string:@"testKey"];
+    XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 1);
+    [coreInternalInstance storePrivacyData:@"testValue" string:@"testKey"];
+    XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 1);
+   
+    [coreInternalInstance storePrivacyData:@"testValueBool" boolean:false];
+    XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 2);
+    [coreInternalInstance storePrivacyData:@"testValueBool" boolean:false];
+    XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 2);
+   
+    [coreInternalInstance storePrivacyData:@"testValueInt" integer:12];
+    XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 3);
+    [coreInternalInstance storePrivacyData:@"testValueInt" integer:12];
+    XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 3);
 }
 
-- (void)test_shouldReturnConsentNewToken {
+- (void)testStoreAndRetrievePrivacyDataBool {
+   
     OGCAdIdentifierManager *adIdentifierManager = [[OGCAdIdentifierManager alloc] initWithPrivacyLayer:self.privacyLayer andDataLayer:self.dataLayer andProcessInfo:[NSProcessInfo processInfo] log:self.log];
     OGCInternal *coreInternalInstance = [[OGCInternal alloc] initWithAdIdentifierManager:adIdentifierManager log:self.log logNotificationManager:[[OGCSetLogLevelNotificationManager alloc] init]];
+   
+    [coreInternalInstance storePrivacyData:@"testValueBool" boolean:false];
+    XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 1);
+    [coreInternalInstance storePrivacyData:@"testValueBool" boolean:false];
+    XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 1);
 
-    NSString *consentToken = [coreInternalInstance getConsentToken];
-
-    XCTAssertNotNil(coreInternalInstance);
-    XCTAssertNotNil(coreInternalInstance.adIdentifierManager);
-    XCTAssertEqual(consentToken.length, 36);
 }
 
-- (void)test_shouldReturnConsentPreviouslyGeneratedToken {
-    [self.dataLayer storeConsentToken:[InternalConsentToken dataUsingEncoding:NSUTF8StringEncoding]];
-
+- (void)testStoreAndRetrievePrivacyDataInt {
+   
     OGCAdIdentifierManager *adIdentifierManager = [[OGCAdIdentifierManager alloc] initWithPrivacyLayer:self.privacyLayer andDataLayer:self.dataLayer andProcessInfo:[NSProcessInfo processInfo] log:self.log];
     OGCInternal *coreInternalInstance = [[OGCInternal alloc] initWithAdIdentifierManager:adIdentifierManager log:self.log logNotificationManager:[[OGCSetLogLevelNotificationManager alloc] init]];
+   
+    [coreInternalInstance storePrivacyData:@"testValueInt" integer:12];
+    XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 1);
+    [coreInternalInstance storePrivacyData:@"testValueInt" integer:12];
+    XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 1);
 
-    NSString *consentToken = [coreInternalInstance getConsentToken];
+}
 
-    XCTAssertNotNil(coreInternalInstance);
-    XCTAssertNotNil(coreInternalInstance.adIdentifierManager);
-    XCTAssertEqual(consentToken.length, 36);
-    XCTAssertEqualObjects(consentToken, InternalConsentToken);
+- (void)testStoreAndRetrievePrivacyDataString {
+   
+    OGCAdIdentifierManager *adIdentifierManager = [[OGCAdIdentifierManager alloc] initWithPrivacyLayer:self.privacyLayer andDataLayer:self.dataLayer andProcessInfo:[NSProcessInfo processInfo] log:self.log];
+    OGCInternal *coreInternalInstance = [[OGCInternal alloc] initWithAdIdentifierManager:adIdentifierManager log:self.log logNotificationManager:[[OGCSetLogLevelNotificationManager alloc] init]];
+   
+    [coreInternalInstance storePrivacyData:@"testValue" string:@"testKey"];
+    XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 1);
+    [coreInternalInstance storePrivacyData:@"testValue" string:@"testKey"];
+    XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 1);
+
+}
+
+- (void)testWhenCallingGppConsentGettersThenProperInternalMethodAreForwarded {
+    OGCAdIdentifierManager *adIdentifierManager = OCMPartialMock([[OGCAdIdentifierManager alloc] initWithPrivacyLayer:self.privacyLayer
+                                                                                                         andDataLayer:self.dataLayer
+                                                                                                       andProcessInfo:[NSProcessInfo processInfo]
+                                                                                                                  log:self.log]);
+    OGCInternal *coreInternalInstance = OCMPartialMock([[OGCInternal alloc] initWithAdIdentifierManager:adIdentifierManager
+                                                                                                    log:self.log
+                                                                                 logNotificationManager:[[OGCSetLogLevelNotificationManager alloc] init]]);
+    [coreInternalInstance gppConsentString];
+    OCMVerify([adIdentifierManager retrieveGPPConsentString]);
+    [coreInternalInstance gppSID];
+    OCMVerify([adIdentifierManager retrieveGPPSID]);
+    [coreInternalInstance tcfConsentString];
+    OCMVerify([adIdentifierManager retrieveTCFConsentString]);
 }
 
 @end

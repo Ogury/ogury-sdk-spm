@@ -10,19 +10,13 @@
 static OGWModuleClassMock *_storedShared = nil;
 @synthesize storedLogLevel = OguryLogLevelError;  // default
 @synthesize storedAssetKey;
-@synthesize storedPersistentEventBus;
-@synthesize storedBroadcastEventBus;
 
 + (instancetype)shared {
    return [self storedShared];
 }
 
-- (void)startWithAssetKey:(NSString *_Nullable)assetKey
-       persistentEventBus:(OguryPersistentEventBus *_Nullable)persistentEventBus
-        broadcastEventBus:(OguryEventBus *_Nullable)broadcastEventBus {
+- (void)startWithAssetKey:(NSString *_Nullable)assetKey {
    self.storedAssetKey = assetKey;
-   self.storedPersistentEventBus = persistentEventBus;
-   self.storedBroadcastEventBus = broadcastEventBus;
 }
 
 - (void)setLogLevel:(OguryLogLevel)logLevel {

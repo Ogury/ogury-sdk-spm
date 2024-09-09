@@ -6,9 +6,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^HeaderBiddingCompletionBlock)(NSString *_Nullable token, NSError *_Nullable error);
+
 @interface OguryTokenService : NSObject
 
-+ (NSString *_Nullable)getBidderToken;
++ (void)bidderToken:(HeaderBiddingCompletionBlock)completion;
 
 @end
 

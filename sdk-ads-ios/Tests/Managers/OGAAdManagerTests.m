@@ -3,7 +3,6 @@
 //
 
 #import <OCMock/OCMock.h>
-#import <OguryCore/OguryEventEntry.h>
 #import <XCTest/XCTest.h>
 #import "OGAAdConfiguration.h"
 #import "OGAAdManager+Testing.h"
@@ -17,6 +16,7 @@
 #import "OGAProfigFullResponse.h"
 #import "OGAAdEnabledChecker.h"
 #import "OGAAdController.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAAdManagerTests : XCTestCase
 
@@ -37,7 +37,6 @@
 
 @property(nonatomic, strong) OGAAdManager *adManager;
 @property(nonatomic, strong) OGALog *log;
-@property(nonatomic, strong) OGAPersistentEventBus *persistentEventBus;
 
 @end
 
@@ -61,9 +60,7 @@
     self.isKilledChecker = OCMClassMock([OGAIsKilledChecker class]);
     self.isExpiredChecker = OCMClassMock(OGAIsExpiredChecker.self);
     self.keyboardObserver = OCMClassMock([OGAKeyboardObserver class]);
-    self.persistentEventBus = OCMClassMock([OGAPersistentEventBus class]);
     self.monitoringDispatcher = OCMClassMock([OGAMonitoringDispatcher class]);
-    self.persistentEventBus = OCMClassMock([OGAPersistentEventBus class]);
     self.adEnabledChecker = OCMClassMock([OGAAdEnabledChecker class]);
 
     self.adManager = OCMPartialMock([[OGAAdManager alloc] initWithProfigManager:self.profigManager
@@ -80,8 +77,6 @@
                                                            monitoringDispatcher:self.monitoringDispatcher
                                                                adEnabledChecker:self.adEnabledChecker
                                                                             log:self.log]);
-    self.adManager.persistentEventBus = self.persistentEventBus;
-    [self.adManager registerToPersistentEventBus];
     OCMStub(self.assetKeyManager.assetKey).andReturn(@"");
     OCMStub(self.assetKeyManager.sdkState).andReturn(OgurySDKStateReady);
 }
@@ -131,7 +126,6 @@
     OGAAdConfiguration *configuration = OCMClassMock([OGAAdConfiguration class]);
     OCMStub([self.adManager checkConditions:[OCMArg any] sequence:[OCMArg any] error:[OCMArg anyObjectRef]]).andReturn(YES);
     OCMStub([self.adManager continueLoadAdSequenceAfterConsentEventReceived:[OCMArg any]]);
-    OCMStub([self.persistentEventBus shouldContinueLoadingAdWith:[OCMArg any]]).andReturn(YES);
     OCMStub(self.assetKeyManager.sdkState).andReturn(OgurySDKStateReady);
     OCMStub(self.assetKeyManager.assetKey).andReturn(@"xxx");
     OCMStub([self.internetConnectionChecker checkForSequence:[OCMArg any] error:[OCMArg anyObjectRef]]).andReturn(YES);
@@ -142,24 +136,6 @@
     XCTAssertNotNil(sequence);
     XCTAssertEqual(sequence.status, OGAAdSequenceStatusLoading);
     XCTAssertEqual(sequence.configuration, configuration);
-}
-
-- (void)testLoadAdConfiguration_waitingForConsent {
-    OGAAdConfiguration *configuration = OCMClassMock([OGAAdConfiguration class]);
-    self.adManager.lastConsentEventEntry = [[OguryEventEntry alloc] initWithEvent:@"CM-status" andMessage:@"LOADING"];
-    OCMStub([self.adManager checkConditions:[OCMArg any] sequence:[OCMArg any] error:[OCMArg anyObjectRef]]).andReturn(YES);
-    OCMReject([self.adManager continueLoadAdSequenceAfterConsentEventReceived:[OCMArg any]]);
-    OCMStub(self.assetKeyManager.sdkState).andReturn(OgurySDKStateReady);
-    OCMStub(self.assetKeyManager.assetKey).andReturn(@"xxx");
-    OCMStub([self.internetConnectionChecker checkForSequence:[OCMArg any] error:[OCMArg anyObjectRef]]).andReturn(YES);
-
-    OGAAdSequence *sequence = [self.adManager loadAdConfiguration:configuration];
-
-    XCTAssertNotNil(sequence);
-    XCTAssertEqual(sequence.status, OGAAdSequenceStatusLoading);
-    XCTAssertEqual(sequence.configuration, configuration);
-    XCTAssertEqual(self.adManager.sequencesWaitingForConsent.count, 1);
-    XCTAssertEqual([[self.adManager.sequencesWaitingForConsent objectEnumerator] nextObject], sequence);
 }
 
 - (void)testContinueLoadAdSequenceAfterConsentEventReceived {
@@ -204,7 +180,7 @@
     profigCompletionBlock(profigFullResponse, nil);
 
     XCTAssertEqual(sequence.status, OGAAdSequenceStatusError);
-    OCMVerify([self.adManager dispatchError:[OguryError createAdDisabledError] sequence:sequence]);
+    OCMVerify([self.adManager dispatchError:[OguryAdsError adDisabledOtherReasonFrom:OguryInternalAdsErrorOriginLoad] sequence:sequence]);
 }
 
 - (void)testContinueLoadAdSequenceAfterConsentEventReceived_profigError {
@@ -222,13 +198,14 @@
     profigCompletionBlock(nil, [OGAConfigurationUtils errorForOGAProfigError:OGAProfigExternalErrorSetupFailed]);
 
     XCTAssertEqual(sequence.status, OGAAdSequenceStatusError);
-    OCMVerify([self.adManager dispatchError:[OguryError createProfigNotSyncedError] sequence:sequence]);
+    OCMVerify([self.adManager dispatchError:[OguryAdsError invalidConfigurationFrom:OguryInternalAdsErrorOriginLoad] sequence:sequence]);
 }
 
 - (void)testErrorForProfigError {
-    XCTAssertEqualObjects([self.adManager errorForProfigError:[OGAConfigurationUtils errorForOGAProfigError:OGAProfigExternalErrorSetupFailed]], [OguryError createProfigNotSyncedError]);
+    XCTAssertEqualObjects([self.adManager errorForProfigError:[OGAConfigurationUtils errorForOGAProfigError:OGAProfigExternalErrorSetupFailed]],
+                          [OguryAdsError invalidConfigurationFrom:OguryInternalAdsErrorOriginLoad]);
     XCTAssertEqualObjects([self.adManager errorForProfigError:[OGAConfigurationUtils errorForOGAProfigError:OGAProfigExternalErrorNoInternet]],
-                          [OguryError createOguryErrorWithCode:OguryCoreErrorTypeNoInternetConnection]);
+                          [OguryAdsError noInternetConnectionError]);
 }
 
 - (void)testContinueLoadAdSequenceAfterProfigSynced {
@@ -309,10 +286,10 @@
     OGAAdConfiguration *configuration = OCMClassMock([OGAAdConfiguration class]);
     OGAAdSequence *sequence = [[OGAAdSequence alloc] initWithAdConfiguration:configuration];
 
-    [self.adManager continueLoadAdAfterAdSynced:sequence ads:@[] error:[OguryError createNotAvailableError]];
+    [self.adManager continueLoadAdAfterAdSynced:sequence ads:@[] error:[OguryAdsError noFillFrom:OguryAdsIntegrationTypeDirect]];
 
     XCTAssertEqual(sequence.status, OGAAdSequenceStatusError);
-    OCMVerify([self.adManager dispatchError:[OguryError createUnknownError] sequence:sequence]);
+    OCMVerify([self.adManager dispatchError:[OguryAdsError noFillFrom:OguryAdsIntegrationTypeDirect] sequence:sequence]);
 }
 
 - (void)testContinueLoadAdAferAdSynced_notAdsReturnedByAdSync {
@@ -322,26 +299,21 @@
     [self.adManager continueLoadAdAfterAdSynced:sequence ads:@[] error:nil];
 
     XCTAssertEqual(sequence.status, OGAAdSequenceStatusError);
-    OCMVerify([self.adManager dispatchError:[OguryError createNotAvailableError] sequence:sequence]);
+    OCMVerify([self.adManager dispatchError:[OguryAdsError noFillFrom:OguryAdsIntegrationTypeDirect] sequence:sequence]);
 }
 
 - (void)testContinueLoadAdAferAdSynced_HeaderBiddingError {
     OGAAdConfiguration *configuration = OCMClassMock([OGAAdConfiguration class]);
     OCMStub(configuration.isHeaderBidding).andReturn(true);
     OGAAdSequence *sequence = [[OGAAdSequence alloc] initWithAdConfiguration:configuration];
-    [self.adManager continueLoadAdAfterAdSynced:sequence ads:@[] error:[OguryError createBase64DecodeError]];
+    [self.adManager continueLoadAdAfterAdSynced:sequence ads:@[] error:[OguryAdsError adParsingFailedWithStackTrace:@"stack"]];
     XCTAssertEqual(sequence.status, OGAAdSequenceStatusError);
-    OCMVerify([self.adManager dispatchError:[OguryError createNotLoadedError] sequence:sequence]);
+    OCMVerify([self.adManager dispatchError:[OguryAdsError adParsingFailedWithStackTrace:@"stack"] sequence:sequence]);
     OCMVerify([self.log logAd:OguryLogLevelError forAdConfiguration:configuration message:@"failed to decode ad markup"]);
 
     OCMVerify([self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventAdMarkUpParsingError
-                                                 stackTrace:@"Could not decode base64"
+                                                 stackTrace:@"The parsing of the ad failed : stack"
                                             adConfiguration:sequence.monitoringAdConfiguration]);
-}
-
-- (void)testErrorForAdSyncError {
-    XCTAssertEqualObjects([self.adManager errorForAdSyncError:[OguryError createAdSyncNoFillError] ads:nil], [OguryError createNotAvailableError]);
-    XCTAssertEqualObjects([self.adManager errorForAdSyncError:nil ads:nil], [OguryError createUnknownError]);
 }
 
 - (void)testContinueLoadAdAfterAdContentsPrepared_adContentsPrepared {
@@ -360,10 +332,10 @@
     NSArray<OGAAd *> *ads = OCMClassMock([NSArray class]);
     OCMReject([self.adControllerFactory createControllersForSequence:[OCMArg any] ads:[OCMArg any] configuration:[OCMArg any]]);
 
-    [self.adManager continueLoadAdAfterAdContentsPrepared:sequence ads:ads error:[OguryError createNotLoadedError]];
+    [self.adManager continueLoadAdAfterAdContentsPrepared:sequence ads:ads error:[OguryAdsError noFillFrom:OguryAdsIntegrationTypeDirect]];
 
     XCTAssertEqual(sequence.status, OGAAdSequenceStatusError);
-    OCMVerify([self.adManager dispatchError:[OguryError createNotLoadedError] sequence:sequence]);
+    OCMVerify([self.adManager dispatchError:[OguryAdsError noFillFrom:OguryAdsIntegrationTypeDirect] sequence:sequence]);
 }
 
 - (void)testIsLoaded {
@@ -432,7 +404,7 @@
 
 - (void)testShow_ProfigNotSynced {
     OguryError *checkConditionsError = OCMClassMock([OguryError class]);
-    OCMStub(checkConditionsError.code).andReturn(OguryAdsWebViewKilledError);
+    OCMStub(checkConditionsError.code).andReturn(OguryAdsErrorTypeWebviewTerminatedBySystem);
     OCMStub([self.isKilledChecker checkForSequence:[OCMArg any] error:[OCMArg anyObjectRef]])
         .andDo(^(NSInvocation *invocation) {
             OguryError *__autoreleasing *errorPointer = nil;
@@ -590,7 +562,7 @@
 
 - (void)testWhenIsKillerCheckFailsThenProperErrorAndMonitoringEventsAreDispatched {
     OguryError *checkConditionsError = OCMClassMock([OguryError class]);
-    OCMStub(checkConditionsError.code).andReturn(OguryAdsWebViewKilledError);
+    OCMStub(checkConditionsError.code).andReturn(OguryAdsErrorTypeWebviewTerminatedBySystem);
     OCMStub([self.isKilledChecker checkForSequence:[OCMArg any] error:[OCMArg anyObjectRef]])
         .andDo(^(NSInvocation *invocation) {
             OguryError *__autoreleasing *errorPointer = nil;
@@ -619,7 +591,7 @@
     OCMStub(configuration.monitoringDetails.sessionId).andReturn(@"sessionId");
     OCMStub([configuration adUnitId]).andReturn(@"adUnitId");
     OGAAdSequence *sequence = [[OGAAdSequence alloc] initWithAdConfiguration:configuration];
-    [self.adManager continueLoadAdAfterAdSynced:sequence ads:@[] error:[OguryError createAdSyncParsingError]];
+    [self.adManager continueLoadAdAfterAdSynced:sequence ads:@[] error:[OguryAdsError adParsingFailedWithStackTrace:@""]];
     OCMVerify([self.monitoringDispatcher sendLoadErrorEventParsingFailWithStackTrace:[OCMArg any]
                                                                      adConfiguration:[OCMArg any]]);
 }
@@ -645,57 +617,6 @@
     OCMStub([profigResponse isAdsEnabled]).andReturn(YES);
     [self.adManager show:sequence additionalConditions:nil];
     OCMVerify([self.monitoringDispatcher sendShowErrorEventAdExpired:[OCMArg any] context:[OCMArg any]]);
-}
-
-- (void)testRegisterToPersistentEventBus {
-    [self.adManager registerToPersistentEventBus];
-    XCTAssertEqual(self.adManager.persistentEventBus, self.persistentEventBus);
-    OCMVerify([self.adManager registerToPersistentEventBus:[OCMArg any] eventSubscriber:[OCMArg any]]);
-}
-
-- (void)testRegisterToPersistentEventBusWithArguments {
-    OGAEventSubscriber *subscriber = OCMClassMock([OGAEventSubscriber class]);
-    [self.adManager registerToPersistentEventBus:self.persistentEventBus eventSubscriber:subscriber];
-    XCTAssertEqual(self.adManager.eventSubscriber, subscriber);
-    OCMVerify([self.persistentEventBus registerOguryEventSubscriber:subscriber]);
-}
-
-- (void)testHandleEventBusAfterEventExpiration {
-    OguryEventEntry *eventEntry = OCMClassMock([OguryEventEntry class]);
-    OCMStub(eventEntry.timestamp).andReturn([NSDate date]);
-    [self.adManager handleEventBusAfterEventExpiration:eventEntry];
-    XCTAssertNotNil(self.adManager.eventBusExprirationTimer);
-    OguryEventEntry *event = [self.adManager.eventBusExprirationTimer.userInfo objectForKey:@"event"];
-    XCTAssertEqual(event, eventEntry);
-}
-
-- (void)testTimerHasExpiredFor {
-    NSTimer *timer = OCMClassMock([NSTimer class]);
-    OCMStub([self.adManager handleConsentChange:[OCMArg any]]);
-    [self.adManager timerHasExpiredFor:timer];
-    OCMVerify([self.adManager handleConsentChange:[OCMArg any]]);
-}
-
-- (void)testHandleConsentChangeTimerExpired {
-    self.adManager.eventBusExprirationTimer = OCMClassMock([NSTimer class]);
-    ;
-    OguryEventEntry *eventEntry = OCMClassMock([OguryEventEntry class]);
-    OCMStub([self.adManager handleEventBusAfterEventExpiration:eventEntry]);
-    OCMStub([self.persistentEventBus shouldContinueLoadingAdWith:eventEntry]).andReturn(NO);
-    [self.adManager handleConsentChange:eventEntry];
-    XCTAssertNil(self.adManager.eventBusExprirationTimer);
-    OCMVerify([self.adManager handleEventBusAfterEventExpiration:eventEntry]);
-}
-
-- (void)testHandleConsentChangeTimerExpiredContinue {
-    self.adManager.eventBusExprirationTimer = OCMClassMock([NSTimer class]);
-    ;
-    OguryEventEntry *eventEntry = OCMClassMock([OguryEventEntry class]);
-    OCMStub([self.adManager handleEventBusAfterEventExpiration:eventEntry]);
-    OCMStub([self.persistentEventBus shouldContinueLoadingAdWith:eventEntry]).andReturn(YES);
-    [self.adManager handleConsentChange:eventEntry];
-    XCTAssertNil(self.adManager.eventBusExprirationTimer);
-    OCMReject([self.adManager handleEventBusAfterEventExpiration:eventEntry]);
 }
 
 - (void)testWhenCallingLoadWhileASequenceIsLoadingThenACallErrorShouldBeSent {

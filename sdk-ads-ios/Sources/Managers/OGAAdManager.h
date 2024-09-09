@@ -10,15 +10,12 @@
 
 @class OGAAdSequence;
 @class OGAAdConfiguration;
-@class OGAPersistentEventBus;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OGAAdManager : NSObject
 
 #pragma mark - @properties
-
-@property(nonatomic, strong) OGAPersistentEventBus *persistentEventBus;
 
 #warning FIXME both should not be carried by the ad manager since it create cyclic dependency between ad sync service and this manager.
 @property(nonatomic, assign, setter=defineSDKType:) OGASDKType sdkType;
@@ -41,7 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isExpired:(OGAAdSequence *)sequence;
 - (BOOL)isExpanded:(OGAAdSequence *_Nullable)sequence;
 - (void)close:(OGAAdSequence *)sequence;
-- (void)registerToPersistentEventBus;
 
 - (BOOL)isKilled:(OGAAdSequence *)sequence;
 

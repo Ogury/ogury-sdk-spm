@@ -90,15 +90,6 @@ static OguryRectCorner const OguryAdsThumbnailDefaultConer = OguryBottomRight;
 }
 
 #pragma mark - Methods
-
-- (id<OguryAdsThumbnailAdDelegate>)delegate {
-    return self.delegateDispatcher.delegate;
-}
-
-- (void)setDelegate:(id<OguryAdsThumbnailAdDelegate>)delegate {
-    self.delegateDispatcher.delegate = delegate;
-}
-
 - (void)load {
     CGSize defaultThumbnailSize = CGSizeMake(OGAThumbnailDefaultWidth, OGAThumbnailDefaultHeight);
     [self load:defaultThumbnailSize];

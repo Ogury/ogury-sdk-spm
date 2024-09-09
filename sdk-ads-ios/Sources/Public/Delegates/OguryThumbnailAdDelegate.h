@@ -12,7 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol OguryThumbnailAdDelegate <NSObject>
 @optional
 - (void)didLoadOguryThumbnailAd:(OguryThumbnailAd *)thumbnail;
-- (void)didDisplayOguryThumbnailAd:(OguryThumbnailAd *)thumbnail;
 - (void)didClickOguryThumbnailAd:(OguryThumbnailAd *)thumbnail;
 - (void)didCloseOguryThumbnailAd:(OguryThumbnailAd *)thumbnail;
 - (void)didFailOguryThumbnailAdWithError:(OguryError *)error forAd:(OguryThumbnailAd *)thumbnail;

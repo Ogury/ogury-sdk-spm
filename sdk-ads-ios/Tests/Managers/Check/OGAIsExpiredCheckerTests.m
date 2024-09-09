@@ -48,7 +48,7 @@
 
     XCTAssertFalse([checker checkForSequence:sequence error:&error]);
     XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, OguryAdsAdExpiredError);
+    XCTAssertEqual(error.code, OguryAdsErrorTypeAdExpired);
 }
 
 @end

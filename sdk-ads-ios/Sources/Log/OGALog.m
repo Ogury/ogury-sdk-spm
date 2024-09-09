@@ -139,28 +139,6 @@
     va_end(arguments);
 }
 
-- (void)logEventBus:(OguryLogLevel)logLevel eventEntry:(OguryEventEntry *)eventEntry message:(NSString *)message {
-    [self.oguryLog ogaLogEventBusMessage:logLevel eventEntry:eventEntry message:message];
-}
-
-- (void)logEventBusFormat:(OguryLogLevel)logLevel eventEntry:(OguryEventEntry *)eventEntry format:(NSString *)format, ... {
-    va_list arguments;
-    va_start(arguments, format);
-    [self logEventBus:logLevel eventEntry:eventEntry message:[[NSString alloc] initWithFormat:format arguments:arguments]];
-    va_end(arguments);
-}
-
-- (void)logEventBusError:(NSError *)error eventEntry:(OguryEventEntry *)eventEntry message:(NSString *)message {
-    [self logEventBus:OguryLogLevelError eventEntry:eventEntry message:[NSString stringWithFormat:@"%@ - Error: %@", message, [self formatError:error]]];
-}
-
-- (void)logEventBusErrorFormat:(NSError *)error eventEntry:(OguryEventEntry *)eventEntry format:(NSString *)format, ... {
-    va_list arguments;
-    va_start(arguments, format);
-    [self logEventBusError:error eventEntry:eventEntry message:[[NSString alloc] initWithFormat:format arguments:arguments]];
-    va_end(arguments);
-}
-
 - (NSString *)formatError:(NSError *)error {
     if ([NSString ogaIsNilOrEmpty:error.localizedDescription]) {
         return [NSString stringWithFormat:@"Caused by error with code %ld and domain '%@'.", error.code, error.domain];

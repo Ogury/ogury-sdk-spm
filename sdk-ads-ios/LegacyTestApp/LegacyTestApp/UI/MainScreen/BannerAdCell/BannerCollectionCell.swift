@@ -292,7 +292,7 @@ final class BannerCollectionCell: AdsCollectionCell {
     func load() {
         destroy()
 
-        let size = bannerType == .mpu ? OguryAdsBannerSize.mpu_300x250() : OguryAdsBannerSize.small_banner_320x50()
+        let size = bannerType == .mpu ? OguryAdsBannerSize.mrec_300x250() : OguryAdsBannerSize.small_banner_320x50()
 
         updateSizeBannerView(height: size.getSize().height, width: size.getSize().width)
 

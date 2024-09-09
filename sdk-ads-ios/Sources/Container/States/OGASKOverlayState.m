@@ -9,6 +9,7 @@
 #import "OGAAdDisplayerUserCloseSKOverlayInformation.h"
 #import "OGAMonitoringDispatcher+SKNetwork.h"
 #import "OGASKAdNetworkService.h"
+#import "OguryAdsError+Internal.h"
 
 API_AVAILABLE(ios(14.0))
 @interface OGASKOverlayState () <SKOverlayDelegate>
@@ -97,7 +98,7 @@ API_AVAILABLE(ios(14.0))
 
     if (!displayer.ad.skAdNetworkResponse) {
         if (error) {
-            *error = [OguryError createOguryErrorWithCode:OguryAdsUnknownError localizedDescription:@"[SKAdNetwork] Missing SKAN information to present Store Kit rendered ads."];
+            *error = [OguryError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"[SKAdNetwork] Missing SKAN information to present Store Kit rendered ads."];
         }
         [self sendGenericError];
         return NO;
@@ -105,7 +106,7 @@ API_AVAILABLE(ios(14.0))
 
     if (!displayer.ad.skAdNetworkResponse.isStoreKitDisplay) {
         if (error) {
-            *error = [OguryError createOguryErrorWithCode:OguryAdsUnknownError localizedDescription:@"[SKAdNetwork] SKAN should not be rendered with StoreKit."];
+            *error = [OguryError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"[SKAdNetwork] SKAN should not be rendered with StoreKit."];
         }
         [self sendGenericError];
         return NO;
@@ -119,11 +120,11 @@ API_AVAILABLE(ios(14.0))
             [self.skOverlay presentInScene:self.windowScene];
         } else {
             [displayer dispatchInformation:[[OGAAdDisplayerUserCloseSKOverlayInformation alloc] initWithErrorCode:@(self.loadError.code)]];
-            *error = [OguryError createOguryErrorWithCode:OguryAdsUnknownError localizedDescription:@"[SKAdNetwork] Error during presentation of StoreKit"];
+            *error = [OguryError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"[SKAdNetwork] Error during presentation of StoreKit"];
             return NO;
         }
     } else {
-        *error = [OguryError createOguryErrorWithCode:OguryAdsUnknownError localizedDescription:@"[SKAdNetwork] This version of iOS is not compatible with StoreKit"];
+        *error = [OguryError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"[SKAdNetwork] This version of iOS is not compatible with StoreKit"];
         [self sendGenericError];
         return NO;
     }

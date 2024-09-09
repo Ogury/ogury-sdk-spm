@@ -29,19 +29,6 @@
     self.hasSentDisplayedDelegate = NO;
 }
 
-- (void)displayed {
-    if (!self.hasSentDisplayedDelegate) {
-        [self.log logFormat:OguryLogLevelInfo format:@"[banner][%@] callback ad displayed called", self.banner.adUnitId];
-
-        if ([self.delegate respondsToSelector:@selector(didDisplayOguryBannerAd:)]) {
-            [self dispatch:^(id<OguryBannerAdDelegate> _Nonnull delegate) {
-                [delegate didDisplayOguryBannerAd:self.banner];
-            }];
-        }
-        self.hasSentDisplayedDelegate = YES;
-    }
-}
-
 - (void)failedWithError:(OguryError *)error {
     [self.log logErrorFormat:error format:@"[banner][%@] calldback failed with error called", self.banner.adUnitId];
 

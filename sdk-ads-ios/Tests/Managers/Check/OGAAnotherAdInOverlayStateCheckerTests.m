@@ -57,7 +57,7 @@
     OguryError *error;
     XCTAssertFalse([self.checker checkForSequence:sequence error:&error]);
 
-    XCTAssertEqual(error.code, OguryAdsAnotherAdAlreadyDisplayedError);
+    XCTAssertEqual(error.code, OguryAdsErrorTypeAnotherAdIsAlreadyDisplayed);
 }
 
 - (void)testIsAnotherAdInOverlayState_anotherSequenceInOverlay {

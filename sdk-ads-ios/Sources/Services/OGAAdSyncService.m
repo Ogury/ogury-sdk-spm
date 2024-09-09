@@ -21,6 +21,7 @@
 #import "NSDictionary+OGABase64.h"
 #import "OGAPreCacheEvent.h"
 #import "OGAMetricsService.h"
+#import "OguryAdsError+Internal.h"
 
 @interface OGAAdSyncService ()
 
@@ -190,7 +191,7 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
                                          error:(NSError *_Nullable)error
                              completionHandler:(void (^)(NSArray<OGAAd *> *ads, NSError *_Nullable error))completionHandler {
     if (((NSHTTPURLResponse *)response).statusCode == 204) {
-        completionHandler(nil, [OguryError createAdSyncNoFillError]);
+        completionHandler(nil, [OguryAdsError noFillFrom:adConfiguration.isHeaderBidding ? OguryAdsIntegrationTypeHeaderBidding : OguryAdsIntegrationTypeDirect]);
         return;
     }
 
@@ -204,11 +205,8 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
         NSUInteger code = ((NSHTTPURLResponse *)response).statusCode ?: 200;
         switch (code) {
             case 400 ... 499:
-                completionHandler(nil, [OguryError createClientError:code]);
-                break;
-
             case 500 ... 599:
-                completionHandler(nil, [OguryError createServerError:code]);
+                completionHandler(nil, [OguryAdsError adRequestFailedWithCode:code]);
                 break;
 
             default:
@@ -221,12 +219,12 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
     NSError *parseError;
     NSArray<OGAAd *> *ads = [self parseAdsFromData:result adConfiguration:adConfiguration privacyConfiguration:privacyConfiguration error:&parseError];
     if (parseError) {
-        completionHandler(nil, [parseError isKindOfClass:[OguryError class]] ? parseError : [OguryError createAdSyncParsingErrorWithStackTrace:parseError.localizedDescription]);
+        completionHandler(nil, [parseError isKindOfClass:[OguryError class]] ? parseError : [OguryAdsError adParsingFailedWithStackTrace:parseError.localizedDescription]);
         return;
     }
 
     if (!ads) {
-        completionHandler(nil, [OguryError createAdSyncNoDataError]);
+        completionHandler(nil, [OguryAdsError adParsingFailedWithStackTrace:@"The ad's array is empty, that should not happen"]);
         return;
     }
 
@@ -255,7 +253,7 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
                                        error:error
                         monitoringDispatcher:self.monitoringDispatcher];
     } else {
-        *error = [OguryError createAdSyncParsingErrorWithStackTrace:@"No ad received"];
+        *error = [OguryAdsError adParsingFailedWithStackTrace:@"No ad received"];
         return nil;
     }
 
@@ -274,7 +272,9 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
     NSData *payload = [NSJSONSerialization dataWithJSONObject:jsonPayload options:0 error:&serializationError];
 
     if (serializationError || payload == nil) {
-        [self.log logAdError:serializationError ?: [OguryError createUnknownError] forAdConfiguration:adConfiguration message:@"Failed to serialize ad sync"];
+        [self.log logAdError:serializationError ?: [OguryError createOguryErrorWithCode:OGAInternalUnknownError]
+            forAdConfiguration:adConfiguration
+                       message:@"Failed to serialize ad sync"];
         return nil;
     }
 

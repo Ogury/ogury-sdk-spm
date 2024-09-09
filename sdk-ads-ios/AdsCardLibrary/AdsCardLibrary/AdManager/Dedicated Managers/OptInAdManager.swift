@@ -8,8 +8,8 @@ import OguryAds
 import ComposableArchitecture
 import Combine
 
-public final class OptInAdManager: AdManager {
-   public static func == (lhs: OptInAdManager, rhs: OptInAdManager) -> Bool {
+public final class RewardedAdManager: AdManager {
+   public static func == (lhs: RewardedAdManager, rhs: RewardedAdManager) -> Bool {
       return lhs.adType == rhs.adType && lhs.ad == rhs.ad
    }
    
@@ -18,13 +18,13 @@ public final class OptInAdManager: AdManager {
                                                             rewardedOptions: RewardedOptions()), reducer: {
       AdViewFeature(adManager: self)
    })
-   public typealias Ad = OguryOptinVideoAd
+   public typealias Ad = OguryRewardedAd
    public typealias Options = AdManagerOptions
    public var adOptionView: (any View)? { nil }
    //MARK: Variables
    public var options: AdManagerOptions!
-   public private(set) var ad: OguryOptinVideoAd!
-   public private(set) var adType: AdType<OptInAdManager>
+   public private(set) var ad: OguryRewardedAd!
+   public private(set) var adType: AdType<RewardedAdManager>
    public var adView: AdView { AdView(store: self.store) }
    public var adDelegate: AdLifeCycleDelegate? {
       set {
@@ -35,16 +35,16 @@ public final class OptInAdManager: AdManager {
          proxyDelegate.adDelegate
       }
    }
-   internal let proxyDelegate: OptInProxyDelegate!
+   internal let proxyDelegate: RewardedProxyDelegate!
    public var lifeCycleEvents: [AdLifeCycleEventHistory] = []
    internal var bidder: HeaderBidable?
    public let id: UUID = UUID()
    
     //MARK: Initializer
-    public init(adType: AdType<OptInAdManager>, adDelegate: AdLifeCycleDelegate? = nil) {
+    public init(adType: AdType<RewardedAdManager>, adDelegate: AdLifeCycleDelegate? = nil) {
         events = PassthroughSubject<AdLifeCycleEvent, Never>()
         self.adType = adType
-        proxyDelegate = OptInProxyDelegate(adDelegate: adDelegate)
+        proxyDelegate = RewardedProxyDelegate(adDelegate: adDelegate)
         proxyDelegate.adManager = self
         switch adType {
             case let .maxHeaderBidding(_, adMarkUpRetriever): bidder = adMarkUpRetriever
@@ -65,7 +65,7 @@ public final class OptInAdManager: AdManager {
    public func loadAd(from options: BaseAdOptions) throws {
       self.options.baseOptions = options
       if (ad == nil) {
-         ad = OguryOptinVideoAd(adUnitId: options.adUnitId, mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
+         ad = OguryRewardedAd(adUnitId: options.adUnitId, mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
       }
       ad.delegate = proxyDelegate
       append(.adLoading)
@@ -101,7 +101,7 @@ public final class OptInAdManager: AdManager {
          let campaignId = options.baseOptions.campaignId, !campaignId.isEmpty,
          let creativeId = options.baseOptions.creativeId,
          let dspRegion = options.baseOptions.dspRegion?.displayName, !dspRegion.isEmpty {
-         let obj = ad as OguryOptinVideoAd
+         let obj = ad as OguryRewardedAd
          let sel = NSSelectorFromString("loadWithCampaignId:creativeId:dspCreativeId:dspRegion:")
          let meth = class_getInstanceMethod(object_getClass(obj), sel)
          let imp = method_getImplementation(meth!)
@@ -112,7 +112,7 @@ public final class OptInAdManager: AdManager {
                 !campaignId.isEmpty,
                 let creativeId = options.baseOptions.creativeId,
                 !creativeId.isEmpty {
-         let obj = ad as OguryOptinVideoAd
+         let obj = ad as OguryRewardedAd
          let sel = NSSelectorFromString("loadWithCampaignId:creativeId:")
          let meth = class_getInstanceMethod(object_getClass(obj), sel)
          let imp = method_getImplementation(meth!)
@@ -121,7 +121,7 @@ public final class OptInAdManager: AdManager {
          sayHiTo(obj, sel, campaignId, creativeId)
       } else if let campaignId = options.baseOptions.campaignId,
                 !campaignId.isEmpty {
-         let obj = ad as OguryOptinVideoAd
+         let obj = ad as OguryRewardedAd
          let sel = NSSelectorFromString("loadWithCampaignId:")
          let meth = class_getInstanceMethod(object_getClass(obj), sel)
          let imp = method_getImplementation(meth!)
@@ -136,7 +136,7 @@ public final class OptInAdManager: AdManager {
    public func loadAdFromAdMarkUp(from options: BaseAdOptions) throws {
       self.options.baseOptions = options
       guard let adMarkUp = options.adMarkUp else { throw AdManagerError.noOptions }
-      ad = OguryOptinVideoAd(adUnitId: options.adUnitId)
+      ad = OguryRewardedAd(adUnitId: options.adUnitId)
       ad.delegate = proxyDelegate
       ad.load(withAdMarkup: adMarkUp)
       append(.adLoading)
@@ -145,7 +145,7 @@ public final class OptInAdManager: AdManager {
    public func showAd() throws {
       guard let options else { throw AdManagerError.noOptions }
       if ad == nil {
-         ad = OguryOptinVideoAd(adUnitId: options.baseOptions.adUnitId)
+         ad = OguryRewardedAd(adUnitId: options.baseOptions.adUnitId)
          ad.delegate = proxyDelegate
       }
       DispatchQueue.main.async {
@@ -154,7 +154,7 @@ public final class OptInAdManager: AdManager {
       append(.adDisplaying)
    }
    
-   internal func update(ad: OguryOptinVideoAd) {
+   internal func update(ad: OguryRewardedAd) {
       self.ad = ad
       ad.delegate = self.proxyDelegate
    }
@@ -172,43 +172,38 @@ public final class OptInAdManager: AdManager {
 // We have to use a proxy object because otherwise, we would have to make InterstitialAdManager a final class that inherits from NSObject
 // and for some reasons, that leads to unexpected compilation fail
 // To overcome easily this, we use a proxy object
-internal class OptInProxyDelegate: AdDelegateProxy<OptInAdManager>, OguryOptinVideoAdDelegate {
-   func didLoad(_ ad: OguryOptinVideoAd) {
+internal class RewardedProxyDelegate: AdDelegateProxy<RewardedAdManager>, OguryRewardedAdDelegate {
+   func didLoad(_ ad: OguryRewardedAd) {
       guard let adManager else { return }
       adManager.append(.adLoaded(canShow: true))
    }
    
-   func didDisplay(_ ad: OguryOptinVideoAd) {
-      guard let adManager else { return }
-      adManager.append(.adDisplayed)
-   }
-   
-   func didClick(_ ad: OguryOptinVideoAd) {
+   func didClick(_ ad: OguryRewardedAd) {
       guard let adManager else { return }
       adManager.append(.adClicked)
    }
    
-   func didClose(_ ad: OguryOptinVideoAd) {
+   func didClose(_ ad: OguryRewardedAd) {
       guard let adManager else { return }
       adManager.append(.adClosed)
    }
    
-   func didFailOguryOptinVideoAdWithError(_ error: OguryError, for optinVideo: OguryOptinVideoAd) {
+   func didFailOguryRewardedAdWithError(_ error: OguryError, for optinVideo: OguryRewardedAd) {
       handle(error, for: optinVideo)
    }
    
-   func didTriggerImpressionOguryOptinVideoAd(_ optinVideo: OguryOptinVideoAd) {
+   func didTriggerImpressionOguryRewardedAd(_ optinVideo: OguryRewardedAd) {
       guard let adManager else { return }
       adManager.append(.adDidTriggerImpression)
    }
    
-   func didRewardOguryOptinVideoAd(with item: OGARewardItem, for optinVideo: OguryOptinVideoAd) {
+   func didRewardOguryRewardedAd(with item: OGARewardItem, for optinVideo: OguryRewardedAd) {
       guard let adManager else { return }
       adManager.append(.rewardReady(item))
    }
 }
 
-extension OptInAdManager: Storable {
+extension RewardedAdManager: Storable {
    public convenience init(from data: StorableAdManager) {
       fatalError()
    }

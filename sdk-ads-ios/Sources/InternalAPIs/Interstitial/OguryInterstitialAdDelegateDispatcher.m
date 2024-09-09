@@ -30,19 +30,6 @@
     self.hasSentDisplayedDelegate = NO;
 }
 
-- (void)displayed {
-    if (!self.hasSentDisplayedDelegate) {
-        [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad displayed called", OGAAdConfigurationAdTypeInterstitial, self.interstitial.adUnitId];
-
-        if ([self.delegate respondsToSelector:@selector(didDisplayOguryInterstitialAd:)]) {
-            [self dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
-                [delegate didDisplayOguryInterstitialAd:self.interstitial];
-            }];
-        }
-        self.hasSentDisplayedDelegate = YES;
-    }
-}
-
 - (void)failedWithError:(OguryError *)error {
     [self.log logErrorFormat:error format:@"[%@][%@] callback ad failed with error called", OGAAdConfigurationAdTypeInterstitial, self.interstitial.adUnitId];
 

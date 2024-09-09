@@ -18,15 +18,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)storeInstanceToken:(NSData *)instanceToken;
 
-- (BOOL)isConsentTokenStored;
-
-- (NSData *)getConsentToken;
-
-- (void)storeConsentToken:(NSData *)consentToken;
-
 - (void)removeOldProfigParam;
 
 - (void)migrateDeprecatedOGYDeviceSettingsWithInstanceTokenID:(NSString *)instanceTokenID;
+
+- (NSString *)getGPPConsentString;
+
+- (NSString *)getGPPSID;
+
+- (NSString *)getTCFConsentString;
+
+- (void)storePrivacyData:(id)value forKey:(NSString *)key;
+
+- (NSDictionary<NSString *, id> *)retrieveDataPrivacy;
 
 @end
 
