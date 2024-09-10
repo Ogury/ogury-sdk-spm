@@ -18,7 +18,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AA025B7DD34D91A97E44E395AAD46B6E"
+               BlueprintIdentifier = "DEF1BF7B213917AA0004BAD1"
                BuildableName = "OguryAdsTests.xctest"
                BlueprintName = "OguryAdsTests"
                ReferencedContainer = "container:OguryAdsSDK.xcodeproj">
