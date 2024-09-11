@@ -94,6 +94,7 @@ end
 
 target 'OguryWrapperTestApp' do
   project "sdk-wrapper-ios/OguryWrapperTestApp/OguryWrapperTestApp.xcodeproj"
+  pod 'InMobiCMP', '2.0.1'
 end
 
 
