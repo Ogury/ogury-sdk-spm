@@ -456,13 +456,13 @@
     XCTAssertNotNil(token[@"privacy_compliancy"][@"tcf"]);
     XCTAssertNotNil(token[@"privacy_compliancy"][@"gpp"]);
     XCTAssertNotNil(token[@"privacy_compliancy"][@"gpp_sid"]);
-    XCTAssertNotNil(token[@"privacy_compliancy"][@"us_optout"]);
-    XCTAssertNotNil(token[@"privacy_compliancy"][@"customKey"]);
+    XCTAssertNotNil(token[@"privacy_compliancy"][@"publisher_data"][@"us_optout"]);
+    XCTAssertNotNil(token[@"privacy_compliancy"][@"publisher_data"][@"customKey"]);
     XCTAssertEqualObjects(token[@"privacy_compliancy"][@"tcf"], @"tcfConsentString");
     XCTAssertEqualObjects(token[@"privacy_compliancy"][@"gpp"], @"gppConsentString");
     XCTAssertEqualObjects(token[@"privacy_compliancy"][@"gpp_sid"], @"gppSidConsentString");
-    XCTAssertTrue(token[@"privacy_compliancy"][@"us_optout"]);
-    XCTAssertEqualObjects(token[@"privacy_compliancy"][@"customKey"], @"customValue");
+    XCTAssertTrue(token[@"privacy_compliancy"][@"publisher_data"][@"us_optout"]);
+    XCTAssertEqualObjects(token[@"privacy_compliancy"][@"publisher_data"][@"customKey"], @"customValue");
 }
 
 @end

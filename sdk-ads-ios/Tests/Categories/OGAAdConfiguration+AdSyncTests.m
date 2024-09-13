@@ -549,13 +549,13 @@ static NSString *const DefaultUserID = @"User";
     XCTAssertNotNil(payload[@"privacy_compliancy"][@"tcf"]);
     XCTAssertNotNil(payload[@"privacy_compliancy"][@"gpp"]);
     XCTAssertNotNil(payload[@"privacy_compliancy"][@"gpp_sid"]);
-    XCTAssertNotNil(payload[@"privacy_compliancy"][@"us_optout"]);
-    XCTAssertNotNil(payload[@"privacy_compliancy"][@"customKey"]);
+    XCTAssertNotNil(payload[@"privacy_compliancy"][@"publisher_data"][@"us_optout"]);
+    XCTAssertNotNil(payload[@"privacy_compliancy"][@"publisher_data"][@"customKey"]);
     XCTAssertEqualObjects(payload[@"privacy_compliancy"][@"tcf"], @"tcfConsentString");
     XCTAssertEqualObjects(payload[@"privacy_compliancy"][@"gpp"], @"gppConsentString");
     XCTAssertEqualObjects(payload[@"privacy_compliancy"][@"gpp_sid"], @"gppSidConsentString");
-    XCTAssertTrue(payload[@"privacy_compliancy"][@"us_optout"]);
-    XCTAssertEqualObjects(payload[@"privacy_compliancy"][@"customKey"], @"customValue");
+    XCTAssertTrue(payload[@"privacy_compliancy"][@"publisher_data"][@"us_optout"]);
+    XCTAssertEqualObjects(payload[@"privacy_compliancy"][@"publisher_data"][@"customKey"], @"customValue");
 }
 
 @end
