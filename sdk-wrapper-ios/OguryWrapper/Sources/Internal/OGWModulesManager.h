@@ -8,7 +8,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OGWModules : NSObject
+@interface OGWModulesManager : NSObject
 
 #pragma mark - Properties
 
@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Initialization
 
-+ (OGWModules *)shared;
++ (OGWModulesManager *)shared;
 
 @end
 

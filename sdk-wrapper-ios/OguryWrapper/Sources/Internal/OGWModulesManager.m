@@ -2,9 +2,9 @@
 //  Copyright © 2021 Ogury Ltd. All rights reserved.
 //
 
-#import "OGWModules.h"
+#import "OGWModulesManager.h"
 
-@interface OGWModules ()
+@interface OGWModulesManager ()
 
 @property (nonatomic, strong) NSArray<OGWModule *> *modules;
 
@@ -13,12 +13,12 @@
 static NSString * const OGWModulesCoreModuleClassName = @"OGCInternal";
 static NSString * const OGWModulesAdsModuleClassName = @"OGAInternal";
 
-@implementation OGWModules
+@implementation OGWModulesManager
 
 #pragma mark - Initialization
 
-+ (OGWModules *)shared {
-    static OGWModules *instance = nil;
++ (OGWModulesManager *)shared {
+    static OGWModulesManager *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[self alloc] init];
