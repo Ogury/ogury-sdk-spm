@@ -14,8 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Properties
 
-@property (nonatomic, strong, nullable) id<OguryLogFormatter> logFormatter;
 @property (nonatomic, assign, readwrite) OguryLogLevel logLevel;
+@property (nonatomic, assign, readwrite) NSArray<OguryLogType> *allowedLogTypes;
 
 #pragma mark - Methods
 

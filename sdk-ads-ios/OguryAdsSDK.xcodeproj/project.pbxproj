@@ -481,6 +481,8 @@
 		436A811829545C700021EA32 /* OGMMonitorEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 436A811629545C700021EA32 /* OGMMonitorEvent.h */; };
 		436A811929545C700021EA32 /* OGMMonitorEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 436A811729545C700021EA32 /* OGMMonitorEvent.m */; };
 		4376399C2990E6E300B4DFB5 /* OguryError+utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4376399B2990E6E300B4DFB5 /* OguryError+utility.m */; };
+		437D16D82C92EE55007AD2E2 /* OGALogType.h in Headers */ = {isa = PBXBuildFile; fileRef = 437D16D72C9180D3007AD2E2 /* OGALogType.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		437D16D92C92EE56007AD2E2 /* OGALogType.h in Headers */ = {isa = PBXBuildFile; fileRef = 437D16D72C9180D3007AD2E2 /* OGALogType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		438AF74A28DC54A6000DCB49 /* OGAViewControllerOrientationHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 438AF74828DC54A6000DCB49 /* OGAViewControllerOrientationHelper.h */; };
 		438AF74B28DC54A6000DCB49 /* OGAViewControllerOrientationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 438AF74928DC54A6000DCB49 /* OGAViewControllerOrientationHelper.m */; };
 		439CE68B29EE8610005C2E0A /* OGAOrderedDictionaryTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 439CE68A29EE8610005C2E0A /* OGAOrderedDictionaryTestHelper.m */; };
@@ -1664,6 +1666,7 @@
 		436A811729545C700021EA32 /* OGMMonitorEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGMMonitorEvent.m; sourceTree = "<group>"; };
 		4376399A2990E6E300B4DFB5 /* OguryError+utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OguryError+utility.h"; sourceTree = "<group>"; };
 		4376399B2990E6E300B4DFB5 /* OguryError+utility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "OguryError+utility.m"; sourceTree = "<group>"; };
+		437D16D72C9180D3007AD2E2 /* OGALogType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGALogType.h; sourceTree = "<group>"; };
 		438AF74828DC54A6000DCB49 /* OGAViewControllerOrientationHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAViewControllerOrientationHelper.h; sourceTree = "<group>"; };
 		438AF74928DC54A6000DCB49 /* OGAViewControllerOrientationHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAViewControllerOrientationHelper.m; sourceTree = "<group>"; };
 		439CE68929EE8610005C2E0A /* OGAOrderedDictionaryTestHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAOrderedDictionaryTestHelper.h; sourceTree = "<group>"; };
@@ -3680,6 +3683,7 @@
 				ED3F886B272193F5007C6A6D /* OguryLog+Ads.m */,
 				22837233288584D4001A07E3 /* OguryLogConstants.h */,
 				22837234288584D4001A07E3 /* OguryLogConstants.m */,
+				437D16D72C9180D3007AD2E2 /* OGALogType.h */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -4107,6 +4111,7 @@
 				43A9F4752C37E6B40085EF6F /* OGAJavascriptCommandExecutor.h in Headers */,
 				43A9F4762C37E6B40085EF6F /* OGASizeSafeAreaController.h in Headers */,
 				43A9F4772C37E6B40085EF6F /* OGAAdLogMessage.h in Headers */,
+				437D16D92C92EE56007AD2E2 /* OGALogType.h in Headers */,
 				43A9F4782C37E6B40085EF6F /* OGASafeAreaDelegate.h in Headers */,
 				43A9F4792C37E6B40085EF6F /* OGAMetricsRequestBuilder.h in Headers */,
 				43A9F47A2C37E6B40085EF6F /* OGAMetricsService.h in Headers */,
@@ -4352,6 +4357,7 @@
 				351A16BC22F28CF4962C960F /* OGAJavascriptCommandExecutor.h in Headers */,
 				351A13DE661FFC711D626AB9 /* OGASizeSafeAreaController.h in Headers */,
 				ED3F886027216546007C6A6D /* OGAAdLogMessage.h in Headers */,
+				437D16D82C92EE55007AD2E2 /* OGALogType.h in Headers */,
 				351A1C11976F3F6FBF23F4B0 /* OGASafeAreaDelegate.h in Headers */,
 				351A17858B84379632F7302B /* OGAMetricsRequestBuilder.h in Headers */,
 				351A15740A4BE95D08C9FB5F /* OGAMetricsService.h in Headers */,

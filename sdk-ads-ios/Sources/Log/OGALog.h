@@ -4,7 +4,9 @@
 
 #import <Foundation/Foundation.h>
 #import <OguryCore/OguryLogLevel.h>
+#import <OguryCore/OguryLog.h>
 #import "OGAAdConfiguration.h"
+#import "OGALogType.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -55,6 +57,8 @@ NS_ASSUME_NONNULL_BEGIN
          forAdConfiguration:(OGAAdConfiguration *)adConfiguration
                   webViewId:(NSString *)webViewId
                      format:(NSString *)format, ...;
+
+- (void)addLogger:(id<OguryAdsLogger>)logger;
 
 @end
 

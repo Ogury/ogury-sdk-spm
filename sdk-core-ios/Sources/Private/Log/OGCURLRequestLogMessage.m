@@ -8,8 +8,10 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithLevel:(OguryLogLevel)level message:(NSString *)message request:(NSURLRequest *)request {
-    if (self = [super initWithLevel:level message:message]) {
+- (instancetype)initWithLevel:(OguryLogLevel)level 
+                      message:(NSString *)message
+                      request:(NSURLRequest *)request {
+    if (self = [super initWithLevel:level logType:OguryLogTypeRequests message:message]) {
         _request = request;
     }
 

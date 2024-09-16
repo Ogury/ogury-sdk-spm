@@ -3,6 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OguryLogMessage.h"
 
 typedef NS_ENUM(NSInteger, OguryLogLevel);
 
@@ -24,9 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setLogLevel:(OguryLogLevel)logLevel;
 
-- (void)logMessage:(NSString *)message level:(OguryLogLevel)level;
-
-- (void)log:(OguryLogLevel)level format:(NSString *)format, ...;
+- (void)logMessage:(id<OguryLogMessage>)message;
 
 @end
 

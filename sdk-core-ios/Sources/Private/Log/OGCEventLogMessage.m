@@ -9,7 +9,7 @@
 #pragma mark - Initialization
 
 - (instancetype)initWithLevel:(OguryLogLevel)level message:(NSString *)message {
-    if (self = [super initWithLevel:level message:message]) {
+    if (self = [super initWithLevel:level logType:OguryLogTypeInternal message:message]) {
     }
 
     return self;

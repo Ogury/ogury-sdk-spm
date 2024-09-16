@@ -124,6 +124,10 @@
     [self.log setLogLevel:logLevel];
 }
 
+- (void)addLogger:(id<OguryAdsLogger>)logger {
+    [self.log addLogger:logger];
+}
+
 // Hidden method allowing test app to change the URL of the server
 - (void)changeServerEnvironment:(NSString *)environment {
     [self.environmentManager updateWith:environment];

@@ -11,7 +11,7 @@
 - (instancetype)initWithLevel:(OguryLogLevel)level
               adConfiguration:(OGAAdConfiguration *)adConfiguration
                       message:(NSString *)message {
-    if (self = [super initWithLevel:level message:message]) {
+    if (self = [super initWithLevel:level logType:OguryLogTypeInternal message:message]) {
         _adConfiguration = adConfiguration;
     }
     return self;

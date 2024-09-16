@@ -33,13 +33,16 @@
 }
 
 - (instancetype)init {
-    return [self init:[[OguryLog alloc] init] oSLogger:[[OguryOSLogger alloc] initWithSubSystem:OGABundleIdentifier category:OGALogOgury] logFormatter:[[OGALogFormatter alloc] init]];
+    return [self init:[[OguryLog alloc] init]
+             oSLogger:[[OguryOSLogger alloc] initWithSubSystem:OGABundleIdentifier
+                                                      category:OGALogOgury]
+         logFormatter:[[OGALogFormatter alloc] init]];
 }
 
 - (instancetype)init:(OguryLog *)oguryLog oSLogger:(OguryOSLogger *)logger logFormatter:(OGALogFormatter *)formatter {
     if (self = [super init]) {
         _oguryLog = oguryLog;
-        logger.logFormatter = formatter;
+//        logger.logFormatter = formatter;
         [_oguryLog addLogger:logger];
     }
     return self;
@@ -51,8 +54,12 @@
     [self.oguryLog setLogLevel:logLevel];
 }
 
+- (void)addLogger:(id<OguryAdsLogger>)logger {
+    [self.oguryLog addLogger:logger];
+}
+
 - (void)log:(OguryLogLevel)logLevel message:(NSString *)message {
-    [self.oguryLog logMessage:message level:logLevel];
+//    [self.oguryLog logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:logLevel message:message]];
 }
 
 - (void)logFormat:(OguryLogLevel)logLevel format:(NSString *)format, ... {

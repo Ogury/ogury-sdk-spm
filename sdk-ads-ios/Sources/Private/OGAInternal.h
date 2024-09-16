@@ -3,8 +3,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <OguryCore/OguryLogLevel.h>
+#import <OguryCore/OguryLog.h>
 #import <OguryAds/OguryAds.h>
+#import <OguryAds/OGALogType.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetUpCompletionBlock __nullable)completionHandler;
 - (void)startWithAssetKey:(NSString *)assetKey;
 - (void)setLogLevel:(OguryLogLevel)logLevel;
+- (void)addLogger:(id<OguryAdsLogger>)logger;
 - (NSString *)getVersion;
 - (NSString *)getBuildVersion;
 - (void)defineSDKType:(NSUInteger)sdkType;
