@@ -44,7 +44,6 @@ NSString *const OGAssetKeyStoreKey = @"OGAssetKeyStoreKey";
     static OGAAssetKeyManager *instance = nil;
 
     dispatch_once(&onceToken, ^{
-        NSLog(@"%p", &onceToken);
         instance = [[self alloc] init];
     });
 

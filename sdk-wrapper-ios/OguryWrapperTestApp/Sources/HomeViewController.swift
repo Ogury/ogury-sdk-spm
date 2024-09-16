@@ -65,11 +65,11 @@ class HomeViewController: UIViewController, ChoiceCmpDelegate {
     @IBAction func startButtonClicked() {
         let config = OguryConfigurationBuilder(assetKey: getEnvironment().assetKey)
             .build()
+        Ogury.setLogLevel(.all)
         Ogury.start(with: config, completionHandler: { success, error in
             print("success \(success)")
             print("error \(String(describing: error))")
         })
-        Ogury.setLogLevel(OguryLogLevel.all)
     }
     
     @IBAction func askButtonClicked() {

@@ -63,6 +63,9 @@ NSString *const OGWModuleGetVersionSelector = @"getVersion";
         [invocation setArgument:&assetKey atIndex:2];
         [invocation setArgument:&completionHandler atIndex:3];
         [invocation invoke];
+    } else {
+        [[OGWLog shared] logAssetKeyFormat:OguryLogLevelDebug assetKey:assetKey format:@"selector not found %@-%@-%@", self.className, OGWModuleSharedSelector, OGWModuleStartWithAssetKeyCompletionHandlerSelector];
+        completionHandler(true, nil);
     }
 }
 
