@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)log:(OguryLogLevel)logLevel message:(NSString *)message;
 
-- (void)logFormat:(OguryLogLevel)logLevel format:(NSString *)format, ...;
+- (void)logFormat:(OguryLogLevel)logLevel logType:(OguryLogType)logType format:(NSString *)format, ...;
 
 - (void)logError:(NSError *)error message:(NSString *)message;
 

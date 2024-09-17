@@ -10,13 +10,21 @@
 #pragma mark - Initialization
 
 - (instancetype)initWithLevel:(OguryLogLevel)level logType:(OguryLogType)logType message:(NSString *)message {
+    return [self initWithLevel:level logType:logType message:message tags:nil];
+}
+
+- (instancetype)initWithLevel:(OguryLogLevel)level 
+                      logType:(OguryLogType)logType
+                      message:(NSString *)message
+                         tags:(NSArray<OguryLogTag*> *_Nullable)tags {
     if (self = [super init]) {
         _level = level;
         _logType = logType;
         _message = message;
+        _tags = tags;
         _logFormatter = [[OGCLogFormatter alloc] init];
     }
-
+    
     return self;
 }
 

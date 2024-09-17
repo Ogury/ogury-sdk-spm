@@ -62,7 +62,7 @@
 //    [self.oguryLog logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:logLevel message:message]];
 }
 
-- (void)logFormat:(OguryLogLevel)logLevel format:(NSString *)format, ... {
+- (void)logFormat:(OguryLogLevel)logLevel logType:(OguryLogType)logType format:(NSString *)format, ... {
     va_list args;
     va_start(args, format);
     NSString *message = [[NSString alloc] initWithFormat:format arguments:args];

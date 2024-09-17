@@ -3287,6 +3287,15 @@
 			path = MonitorManager;
 			sourceTree = "<group>";
 		};
+		437D16E22C98723D007AD2E2 /* Formatters */ = {
+			isa = PBXGroup;
+			children = (
+				ED3F885A272164FD007C6A6D /* OGALogFormatter.h */,
+				ED3F885B272164FD007C6A6D /* OGALogFormatter.m */,
+			);
+			path = Formatters;
+			sourceTree = "<group>";
+		};
 		438AF74728DC545B000DCB49 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -3674,11 +3683,10 @@
 		ED3F8846272163B5007C6A6D /* Log */ = {
 			isa = PBXGroup;
 			children = (
+				437D16E22C98723D007AD2E2 /* Formatters */,
 				5890DD7228215E4100B3CDE7 /* LogMessage */,
 				ED3F886E27219893007C6A6D /* OGALog.h */,
 				ED3F886F27219893007C6A6D /* OGALog.m */,
-				ED3F885A272164FD007C6A6D /* OGALogFormatter.h */,
-				ED3F885B272164FD007C6A6D /* OGALogFormatter.m */,
 				ED3F886A272193F5007C6A6D /* OguryLog+Ads.h */,
 				ED3F886B272193F5007C6A6D /* OguryLog+Ads.m */,
 				22837233288584D4001A07E3 /* OguryLogConstants.h */,

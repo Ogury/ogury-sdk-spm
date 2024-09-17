@@ -10,3 +10,4 @@ extern OguryLogType const OguryLogTypeRequests;
 extern OguryLogType const OguryLogTypeInternal;
 extern OguryLogType const OguryLogTypeAll;
 
+

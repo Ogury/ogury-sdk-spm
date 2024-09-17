@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, OGALogType) {
 };
 
 @protocol OGALogMessage <OguryLogMessage>
-@property(nonatomic) OGALogType logType;
+@property(nonatomic) OGALogType *_Nullable logType;
 @property(nonatomic, retain) NSDate *_Nonnull date;
 @property(nonatomic, retain) NSArray<NSString *> *_Nullable tags;
 - (instancetype _Nonnull)initWithLevel:(OguryLogLevel)level
