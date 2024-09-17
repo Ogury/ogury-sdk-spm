@@ -561,7 +561,7 @@
 		43A9F2F32C37E6B40085EF6F /* OGAAdDisplayerUpdatePlacementInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1ED565C7C4317CC46EBD /* OGAAdDisplayerUpdatePlacementInformation.m */; };
 		43A9F2F42C37E6B40085EF6F /* OGAAdDisplayerUpdateCurrentPositionInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1087311F2330CCB19943 /* OGAAdDisplayerUpdateCurrentPositionInformation.m */; };
 		43A9F2F52C37E6B40085EF6F /* OGAAdDisplayerSystemCloseInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A17D165485E4D8DF3FF93 /* OGAAdDisplayerSystemCloseInformation.m */; };
-		43A9F2F62C37E6B40085EF6F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		43A9F2F62C37E6B40085EF6F /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		43A9F2F72C37E6B40085EF6F /* OGAEventHeaderBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = C95C8E9A2805CFEA00736B3F /* OGAEventHeaderBuilder.m */; };
 		43A9F2F82C37E6B40085EF6F /* OGAMRAIDAdDisplayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1D32F07757A8A2786FC6 /* OGAMRAIDAdDisplayer.m */; };
 		43A9F2F92C37E6B40085EF6F /* OGAIsExpiredChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0DD8DE25ECE51B000FB0C6 /* OGAIsExpiredChecker.m */; };
@@ -1023,7 +1023,7 @@
 		C95C8E9728059EC600736B3F /* OGAAdPrivacyConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = C95C8E9628059EC000736B3F /* OGAAdPrivacyConfiguration.m */; };
 		C95C8E9828059ECF00736B3F /* OGAAdPrivacyConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = C95C8E9528059C1D00736B3F /* OGAAdPrivacyConfiguration.h */; };
 		C95C8E9B2805CFEA00736B3F /* OGAEventHeaderBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = C95C8E9A2805CFEA00736B3F /* OGAEventHeaderBuilder.m */; };
-		C99D2D7D26FE04DB007882DF /* (null) in Sources */ = {isa = PBXBuildFile; };
+		C99D2D7D26FE04DB007882DF /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		C99E2478290685FC00480E3F /* OGASKAdNetworkResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E2477290685FC00480E3F /* OGASKAdNetworkResponse.m */; };
 		C99E24792906860100480E3F /* OGASKAdNetworkResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = C99E2476290685F200480E3F /* OGASKAdNetworkResponse.h */; };
 		C99E247D2906EEF400480E3F /* OGASKAdNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E247C2906EEF400480E3F /* OGASKAdNetworkManager.m */; };
@@ -1162,6 +1162,7 @@
 
 /* Begin PBXFileReference section */
 		05B5124225D57EAF00E06388 /* OGAAdMraidDisplayerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAAdMraidDisplayerState.h; sourceTree = "<group>"; };
+		18B9F49BCA2774BBD547ED42 /* Pods-OguryAds-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAds-art.release.xcconfig"; path = "Target Support Files/Pods-OguryAds-art/Pods-OguryAds-art.release.xcconfig"; sourceTree = "<group>"; };
 		1E308B3E2B85043100DFC6E3 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		1E3F16572BADD50000A897D4 /* OGAAssetKeyManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAAssetKeyManagerDelegate.h; sourceTree = "<group>"; };
 		1E65E5E82A0E5BCF00703FB0 /* OGAOpenSKOverlayAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAOpenSKOverlayAction.h; sourceTree = "<group>"; };
@@ -1677,7 +1678,6 @@
 		43A0691E29E7FDF90055518D /* OGAOrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAOrderedDictionary.m; sourceTree = "<group>"; };
 		43A0691F29E7FDF90055518D /* OGAOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAOrderedDictionary.h; sourceTree = "<group>"; };
 		43A9F49F2C37E6B40085EF6F /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		43A9F4A02C37E6B40085EF6F /* OguryAds copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "OguryAds copy-Info.plist"; path = "/Users/jerometonnelier/Developer/OgurySdks/sdk-ads-ios/OguryAds copy-Info.plist"; sourceTree = "<absolute>"; };
 		43A9F4A12C37E6D00085EF6F /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43AC4FBD2A122849007E3873 /* testProfigError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testProfigError.json; sourceTree = "<group>"; };
 		43C1D13C2B7B46C2006F2D23 /* OGAMonitorEventConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAMonitorEventConfiguration.h; sourceTree = "<group>"; };
@@ -1703,7 +1703,6 @@
 		43E5AA8028F549BA00AF014D /* OGAMraidSetOrientationPropertiesCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAMraidSetOrientationPropertiesCommand.h; sourceTree = "<group>"; };
 		43F8BBEB2BA885DB002695F8 /* OGAMonitoringDetails.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAMonitoringDetails.h; sourceTree = "<group>"; };
 		43F8BBEC2BA885DB002695F8 /* OGAMonitoringDetails.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAMonitoringDetails.m; sourceTree = "<group>"; };
-		4762507994EC33D730BD4E44 /* Pods-OguryAdsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAdsTests.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		502477242B0D0E17006386BF /* OGAAdDspTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAAdDspTests.m; sourceTree = "<group>"; };
 		5057B6862B4C588800A3E575 /* OGAMRAIDWebViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAMRAIDWebViewTests.m; sourceTree = "<group>"; };
 		5057B6892B5025CB00A3E575 /* OGAMonitoringConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAMonitoringConstants.h; sourceTree = "<group>"; };
@@ -1740,11 +1739,10 @@
 		58DB921128996C4200C0D3DC /* OGALogFormatterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGALogFormatterTests.m; sourceTree = "<group>"; };
 		58DB921328996C4200C0D3DC /* OGAAdLogMessageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAAdLogMessageTests.m; sourceTree = "<group>"; };
 		58DB921428996C4200C0D3DC /* OGAMraidLogMessageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAMraidLogMessageTests.m; sourceTree = "<group>"; };
+		5FAA78BAB6A3C700006DAA7F /* Pods-OguryAdsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAdsTests.release.xcconfig"; path = "Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests.release.xcconfig"; sourceTree = "<group>"; };
 		7351785C0D23E0F4B2FDF437 /* Pods_OguryAds_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OguryAds_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AC9F752E5E24BC8668BC9D1 /* Pods-OguryAds-Release.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAds-Release.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryAds-Release/Pods-OguryAds-Release.release.xcconfig"; sourceTree = "<group>"; };
-		A337E0A385D3BA1434504215 /* Pods-OguryAds-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAds-art.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryAds-art/Pods-OguryAds-art.debug.xcconfig"; sourceTree = "<group>"; };
-		AF1FF1FCD33EF4199AF1606C /* Pods-OguryAds-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAds-art.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryAds-art/Pods-OguryAds-art.release.xcconfig"; sourceTree = "<group>"; };
-		C406CC6516CC2C7E608B2017 /* Pods-OguryAds-Release.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAds-Release.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryAds-Release/Pods-OguryAds-Release.debug.xcconfig"; sourceTree = "<group>"; };
+		767B4E6F92425A60CDB79323 /* Pods-OguryAdsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAdsTests.debug.xcconfig"; path = "Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9645BD1E9DBC8CFBA794E3F1 /* Pods-OguryAds-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAds-art.debug.xcconfig"; path = "Target Support Files/Pods-OguryAds-art/Pods-OguryAds-art.debug.xcconfig"; sourceTree = "<group>"; };
 		C4E38449D5386BBCF1367C6A /* OGAWebViewCleanupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAWebViewCleanupManager.h; sourceTree = "<group>"; };
 		C4E38508C1B88F0E4B4E846B /* OGAAdExposureControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAAdExposureControllerTests.m; sourceTree = "<group>"; };
 		C4E38A16C5EF918BF6059874 /* UIViewController+OGAThumbnailAdRestrictions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+OGAThumbnailAdRestrictions.h"; sourceTree = "<group>"; };
@@ -1793,7 +1791,6 @@
 		D5EBAD21E062EFBB85C93DB4 /* Pods_OguryAdsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OguryAdsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEF1BF73213917AA0004BAD1 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEF1BF7C213917AA0004BAD1 /* OguryAdsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OguryAdsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E1F1B5A747DDC0768EEBCC5B /* Pods-OguryAdsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAdsTests.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED0DD8DD25ECE51B000FB0C6 /* OGAIsExpiredChecker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAIsExpiredChecker.h; sourceTree = "<group>"; };
 		ED0DD8DE25ECE51B000FB0C6 /* OGAIsExpiredChecker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAIsExpiredChecker.m; sourceTree = "<group>"; };
 		ED12D19825A60623002F640E /* OGAMRAIDAdDisplayer+Testing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OGAMRAIDAdDisplayer+Testing.h"; sourceTree = "<group>"; };
@@ -3348,6 +3345,18 @@
 			path = Errors;
 			sourceTree = "<group>";
 		};
+		46B4CA14670784F9EBBB2E86 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9645BD1E9DBC8CFBA794E3F1 /* Pods-OguryAds-art.debug.xcconfig */,
+				18B9F49BCA2774BBD547ED42 /* Pods-OguryAds-art.release.xcconfig */,
+				767B4E6F92425A60CDB79323 /* Pods-OguryAdsTests.debug.xcconfig */,
+				5FAA78BAB6A3C700006DAA7F /* Pods-OguryAdsTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../Pods;
+			sourceTree = "<group>";
+		};
 		502477232B0D0E03006386BF /* Dsp */ = {
 			isa = PBXGroup;
 			children = (
@@ -3501,19 +3510,6 @@
 			path = Format;
 			sourceTree = "<group>";
 		};
-		AA721214C79BB877754AE033 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				4762507994EC33D730BD4E44 /* Pods-OguryAdsTests.debug.xcconfig */,
-				E1F1B5A747DDC0768EEBCC5B /* Pods-OguryAdsTests.release.xcconfig */,
-				C406CC6516CC2C7E608B2017 /* Pods-OguryAds-Release.debug.xcconfig */,
-				9AC9F752E5E24BC8668BC9D1 /* Pods-OguryAds-Release.release.xcconfig */,
-				A337E0A385D3BA1434504215 /* Pods-OguryAds-art.debug.xcconfig */,
-				AF1FF1FCD33EF4199AF1606C /* Pods-OguryAds-art.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		C4E3808D8550C1664DE4FA6D /* WebViewCleanupManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -3552,13 +3548,12 @@
 		DEF1BF69213917AA0004BAD1 = {
 			isa = PBXGroup;
 			children = (
-				AA721214C79BB877754AE033 /* Pods */,
 				DEF1BF74213917AA0004BAD1 /* Products */,
 				351A1F349C321F0E4EA1DE35 /* Sources */,
 				351A18F47D63B6818EAC7124 /* Configurations */,
 				ED007E4425503BD800CA402E /* Tests */,
 				28825141F949A4E042BA558A /* Frameworks */,
-				43A9F4A02C37E6B40085EF6F /* OguryAds copy-Info.plist */,
+				46B4CA14670784F9EBBB2E86 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -4666,7 +4661,7 @@
 				43A9F2F32C37E6B40085EF6F /* OGAAdDisplayerUpdatePlacementInformation.m in Sources */,
 				43A9F2F42C37E6B40085EF6F /* OGAAdDisplayerUpdateCurrentPositionInformation.m in Sources */,
 				43A9F2F52C37E6B40085EF6F /* OGAAdDisplayerSystemCloseInformation.m in Sources */,
-				43A9F2F62C37E6B40085EF6F /* (null) in Sources */,
+				43A9F2F62C37E6B40085EF6F /* BuildFile in Sources */,
 				43A9F2F72C37E6B40085EF6F /* OGAEventHeaderBuilder.m in Sources */,
 				43A9F2F82C37E6B40085EF6F /* OGAMRAIDAdDisplayer.m in Sources */,
 				43A9F2F92C37E6B40085EF6F /* OGAIsExpiredChecker.m in Sources */,
@@ -4890,7 +4885,7 @@
 				351A19125C513DEABA8AEA9C /* OGAAdDisplayerUpdatePlacementInformation.m in Sources */,
 				351A16969CEE33B1BEFE03E0 /* OGAAdDisplayerUpdateCurrentPositionInformation.m in Sources */,
 				351A1698A0AF9EBCDE7BF234 /* OGAAdDisplayerSystemCloseInformation.m in Sources */,
-				C99D2D7D26FE04DB007882DF /* (null) in Sources */,
+				C99D2D7D26FE04DB007882DF /* BuildFile in Sources */,
 				C95C8E9B2805CFEA00736B3F /* OGAEventHeaderBuilder.m in Sources */,
 				351A161DCA9427DF18A040CD /* OGAMRAIDAdDisplayer.m in Sources */,
 				ED0DD8E025ECE51B000FB0C6 /* OGAIsExpiredChecker.m in Sources */,
@@ -5235,7 +5230,7 @@
 /* Begin XCBuildConfiguration section */
 		43A9F49D2C37E6B40085EF6F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A337E0A385D3BA1434504215 /* Pods-OguryAds-art.debug.xcconfig */;
+			baseConfigurationReference = 9645BD1E9DBC8CFBA794E3F1 /* Pods-OguryAds-art.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -5279,7 +5274,7 @@
 		};
 		43A9F49E2C37E6B40085EF6F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AF1FF1FCD33EF4199AF1606C /* Pods-OguryAds-art.release.xcconfig */;
+			baseConfigurationReference = 18B9F49BCA2774BBD547ED42 /* Pods-OguryAds-art.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -5554,7 +5549,7 @@
 		};
 		DEF1BF8B213917AA0004BAD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4762507994EC33D730BD4E44 /* Pods-OguryAdsTests.debug.xcconfig */;
+			baseConfigurationReference = 767B4E6F92425A60CDB79323 /* Pods-OguryAdsTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -5604,7 +5599,7 @@
 		};
 		DEF1BF8C213917AA0004BAD1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E1F1B5A747DDC0768EEBCC5B /* Pods-OguryAdsTests.release.xcconfig */;
+			baseConfigurationReference = 5FAA78BAB6A3C700006DAA7F /* Pods-OguryAdsTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;

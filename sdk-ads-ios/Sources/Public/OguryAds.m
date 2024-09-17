@@ -30,10 +30,6 @@
 
 #pragma mark - Initialization
 
-- (NSString *)sdkVersion {
-    return [self.internal getVersion];
-}
-
 - (instancetype)init {
     return [self initWithInternal:[OGAInternal shared]];
 }
@@ -43,15 +39,6 @@
         _internal = internal;
     }
     return self;
-}
-
-#pragma mark - Methods
-- (void)setupWithAssetKey:(NSString *)assetKey completionHandler:(SetupCompletionBlock)completionHandler {
-    [self.internal startWithAssetKey:assetKey completionHandler:completionHandler];
-}
-
-- (void)setupWithAssetKey:(NSString *)assetKey {
-    [self.internal startWithAssetKey:assetKey completionHandler:nil];
 }
 
 @end

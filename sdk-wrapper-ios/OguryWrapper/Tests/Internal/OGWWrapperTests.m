@@ -73,7 +73,7 @@
         XCTAssertEqualObjects(error.localizedDescription, OGWErrorNoSdkModuleFoundMessage);
         XCTAssertEqual(error.code, OGWErrorNoSdkModuleFound);
         XCTAssertFalse(success);
-        [expectation fulfill];
+        [expectation fulfill]; 
     }];
     [self waitForExpectationsWithTimeout:1.0 handler:nil];
     OCMVerifyAll(self.log);

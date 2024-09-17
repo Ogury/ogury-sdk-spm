@@ -83,7 +83,7 @@
 
 #pragma mark - methods
 
-- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetupCompletionBlock __nullable)completionHandler {
+- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetupCompletionBlock)completionHandler {
     self.setupBlock = completionHandler;
     [self.log log:OguryLogLevelInfo message:@"Module started"];
 
@@ -94,6 +94,7 @@
 
     } else {
         [self.log log:OguryLogLevelWarning message:@"Ogury Ads only need to be started once. Additional calls are ignored."];
+        completionHandler(true, nil);
     }
 }
 

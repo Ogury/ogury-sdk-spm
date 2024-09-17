@@ -228,7 +228,9 @@ class AdConfigController {
                 guard let assetKey = AdConfigController.shared.assetKey(), !assetKey.isEmpty else {
                     fatalError("Asset key must not be nil nor empty.")
                 }
-                OGAInternal.shared().start(withAssetKey: assetKey)
+                OGAInternal.shared().start(withAssetKey: assetKey) { succes, error in
+                    
+                }
                 OGAInternal.shared().setLogLevel(.all)
             }
         }

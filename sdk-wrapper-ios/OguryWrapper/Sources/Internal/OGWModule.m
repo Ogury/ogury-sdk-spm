@@ -50,7 +50,7 @@ NSString *const OGWModuleGetVersionSelector = @"getVersion";
    }
 }
 
-- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetupCompletionBlock _Nullable)completionHandler {
+- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetupCompletionBlock)completionHandler {
     SEL startWithAssetKeyCompletionHandlerSelector = NSSelectorFromString(OGWModuleStartWithAssetKeyCompletionHandlerSelector);
     if ([self.module respondsToSelector:startWithAssetKeyCompletionHandlerSelector]) {
         [[OGWLog shared] logAssetKeyFormat:OguryLogLevelDebug assetKey:assetKey format:@"performing selector %@-%@-%@", self.className, OGWModuleSharedSelector, OGWModuleStartWithAssetKeyCompletionHandlerSelector];
