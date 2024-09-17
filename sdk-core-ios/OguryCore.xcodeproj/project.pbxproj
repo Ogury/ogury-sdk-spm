@@ -29,6 +29,7 @@
 		22951EB32551AF4F0032A04F /* NSStringOGCHashTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22951EB22551AF4F0032A04F /* NSStringOGCHashTests.m */; };
 		22951EBC2551B27C0032A04F /* NSString+OGCHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 22951E512551A3590032A04F /* NSString+OGCHash.m */; };
 		430120CD2C99673300892B18 /* OguryLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 430120CC2C99673300892B18 /* OguryLogFormatter.m */; };
+		430120CF2C99875F00892B18 /* OguryLogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 430120CE2C99875F00892B18 /* OguryLogMessage.m */; };
 		437D16DB2C946774007AD2E2 /* OguryLogType.h in Headers */ = {isa = PBXBuildFile; fileRef = 437D16DA2C946774007AD2E2 /* OguryLogType.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		437D16DE2C9800D2007AD2E2 /* OguryNSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 437D16DD2C9800D2007AD2E2 /* OguryNSLogger.m */; };
 		437D16DF2C9800D2007AD2E2 /* OguryNSLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 437D16DC2C9800D2007AD2E2 /* OguryNSLogger.h */; };
@@ -122,6 +123,7 @@
 		22951EAA2551AE070032A04F /* OGCAdIdentifierManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGCAdIdentifierManagerTests.m; sourceTree = "<group>"; };
 		22951EB22551AF4F0032A04F /* NSStringOGCHashTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSStringOGCHashTests.m; sourceTree = "<group>"; };
 		430120CC2C99673300892B18 /* OguryLogFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryLogFormatter.m; sourceTree = "<group>"; };
+		430120CE2C99875F00892B18 /* OguryLogMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryLogMessage.m; sourceTree = "<group>"; };
 		437D16DA2C946774007AD2E2 /* OguryLogType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryLogType.h; sourceTree = "<group>"; };
 		437D16DC2C9800D2007AD2E2 /* OguryNSLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryNSLogger.h; sourceTree = "<group>"; };
 		437D16DD2C9800D2007AD2E2 /* OguryNSLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryNSLogger.m; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				437D16DA2C946774007AD2E2 /* OguryLogType.h */,
 				437D16E02C983636007AD2E2 /* OguryLogType.m */,
 				EDFDB493271EF6B30065FA95 /* OguryLogMessage.h */,
+				430120CE2C99875F00892B18 /* OguryLogMessage.m */,
 				ED3F88622721700D007C6A6D /* OguryAbstractLogMessage.h */,
 				ED3F88632721700D007C6A6D /* OguryAbstractLogMessage.m */,
 			);
@@ -750,6 +753,7 @@
 				58F80ECD28855DD40084D5FE /* OGCSetLogLevelNotificationManager.m in Sources */,
 				22951E492551A29F0032A04F /* OGCInstanceToken.m in Sources */,
 				437D16E12C983636007AD2E2 /* OguryLogType.m in Sources */,
+				430120CF2C99875F00892B18 /* OguryLogMessage.m in Sources */,
 				58FF27A5281A8CC600281067 /* OGCEventLogMessage.m in Sources */,
 				58FF27A3281A8B2200281067 /* OGCLogFormatter.m in Sources */,
 				22951E532551A3590032A04F /* NSString+OGCHash.m in Sources */,

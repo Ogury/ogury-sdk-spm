@@ -44,7 +44,7 @@
     return _logger;
 }
 
-- (void)logMessage:(id<OguryLogMessage>)message {
+- (void)logMessage:(OguryLogMessage *)message {
     NSString *formattedMessage = message.formattedMessage;
     
     if (!formattedMessage || formattedMessage.length == 0) {

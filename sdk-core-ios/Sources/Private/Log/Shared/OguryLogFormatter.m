@@ -22,11 +22,11 @@
     return self;
 }
 
-- (nullable NSString *)formatLogMessage:(nonnull id<OguryLogMessage>)logMessage {
+- (nullable NSString *)formatLogMessage:(OguryLogMessage *)logMessage {
     return [self formatAttributedLogMessage:logMessage].string;
 }
 
-- (nullable NSAttributedString *)formatAttributedLogMessage:(id<OguryLogMessage>)logMessage {
+- (nullable NSAttributedString *)formatAttributedLogMessage:(OguryLogMessage *)logMessage {
    
     NSMutableAttributedString *log = [NSMutableAttributedString new];
     if (displayOptions & OguryLogDisplayDate) {

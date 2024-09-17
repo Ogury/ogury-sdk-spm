@@ -55,6 +55,7 @@
 - (void)logMessage:(OguryLogLevel)logLevel message:(NSString *)message {
     [self.oguryLog logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:logLevel
                                                                      logType:OguryLogTypeInternal
+                                                                         sdk:OguryLogSDKCore
                                                                      message:message]];
 }
 

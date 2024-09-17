@@ -55,7 +55,7 @@
     }
 }
 
-- (void)logMessage:(id<OguryLogMessage>)message {
+- (void)logMessage:(OguryLogMessage *)message {
     @synchronized (self.loggers) {
         for (id<OguryLogger> currentLogger in self.loggers) {
             if ([self canSendMessage:message to:currentLogger]) {
@@ -65,7 +65,7 @@
     }
 }
 
-- (BOOL)canSendMessage:(id<OguryLogMessage>)message to:(id<OguryLogger>)logger {
+- (BOOL)canSendMessage:(OguryLogMessage *)message to:(id<OguryLogger>)logger {
     if (message.level > logger.logLevel) {
         return NO;
     }

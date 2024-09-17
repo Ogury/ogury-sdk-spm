@@ -13,35 +13,48 @@ NS_ASSUME_NONNULL_BEGIN
 @interface OguryLogTag: NSObject
 @property (nonatomic, retain) NSString* key;
 @property (nonatomic, retain) id value;
++(instancetype)tagWithKey:(NSString *)key value:(id)value;
 @end
 
-@implementation OguryLogTag
-@end
+typedef NSString *OguryLogSDK NS_TYPED_EXTENSIBLE_ENUM;
+
+extern OguryLogSDK const OguryLogSDKCore;
 
 #pragma mark - LogMessage protocol
-@protocol OguryLogMessage
+@interface OguryLogMessage: NSObject
 
 #pragma mark Properties
 /// The level of the message
-@property (nonatomic, assign, readonly) OguryLogLevel level;
+@property (nonatomic, assign) OguryLogLevel level;
 /// The type of message (internal, request, ...)
-@property (nonatomic, assign, readonly) OguryLogType logType;
+@property (nonatomic, assign) OguryLogType logType;
 /// The origin (i.e. id) of the message
-@property (nonatomic, copy, readonly, nullable) NSString *origin;
+@property (nonatomic, copy, nullable) NSString *origin;
 /// The SDK that emitted the message
-@property (nonatomic, copy, readonly) NSString *sdk;
+@property (nonatomic, copy) OguryLogSDK sdk;
 /// The date the message was created
-@property (nonatomic, copy, readonly) NSDate *messageDate;
+@property (nonatomic, assign) NSDate *messageDate;
 /// The message itself
-@property (nonatomic, copy, readonly) NSString *message;
+@property (nonatomic, copy) NSString *message;
 /// a list of tags, rendered in the same ordre as the array
-@property (nonatomic, assign, nullable) NSArray<OguryLogTag *> *tags;
+@property (nonatomic, strong) NSArray<OguryLogTag *> *tags;
 /// The formatter to use
 @property (nonatomic, strong) OguryLogFormatter *logFormatter;
 
 #pragma mark Initialization
-- (instancetype)initWithLevel:(OguryLogLevel)level logType:(OguryLogType)logType message:(NSString *)message;
-- (instancetype)initWithLevel:(OguryLogLevel)level logType:(OguryLogType)logType message:(NSString *)message tags:(NSArray<OguryLogTag *> *_Nullable)tags;
+- (instancetype)initWithLevel:(OguryLogLevel)level
+                      logType:(OguryLogType)logType
+                          sdk:(OguryLogSDK _Nonnull)sdk
+                      message:(NSString *)message;
+
+- (instancetype)initWithLevel:(OguryLogLevel)level
+                      logType:(OguryLogType _Nonnull)logType
+                       origin:(NSString *_Nullable)origin
+                          sdk:(OguryLogSDK _Nonnull)sdk
+                  messageDate:(NSDate *_Nullable)messageDate
+                      message:(NSString *_Nonnull)message
+                         tags:(NSArray<OguryLogTag *> *_Nullable)tags;
+
 - (NSString *)formattedMessage;
 
 @end

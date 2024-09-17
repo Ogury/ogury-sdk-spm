@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Methods
 
-- (void)logMessage:(id<OguryLogMessage>)message;
+- (void)logMessage:(OguryLogMessage *)message;
 
 @end
 

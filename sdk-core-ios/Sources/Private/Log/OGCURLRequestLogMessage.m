@@ -3,6 +3,7 @@
 //
 
 #import "OGCURLRequestLogMessage.h"
+#import "OguryLogMessage.h"
 
 @implementation OGCURLRequestLogMessage
 
@@ -11,20 +12,16 @@
 - (instancetype)initWithLevel:(OguryLogLevel)level 
                       message:(NSString *)message
                       request:(NSURLRequest *)request {
-    if (self = [super initWithLevel:level logType:OguryLogTypeRequests message:message]) {
+    if (self = [super initWithLevel:level
+                            logType:OguryLogTypeRequests
+                                sdk:OguryLogSDKCore
+                            message:message]) {
         _request = request;
+        self.tags = @[[OguryLogTag tagWithKey:@"Method" value:request.HTTPMethod],
+                      [OguryLogTag tagWithKey:@"URL" value:request.URL.description]];
     }
 
     return self;
-}
-
-#pragma mark - OguryStringFormattable
-
-- (NSString *)formattedString {
-    return [NSString stringWithFormat:@" %@|%@ -- %@",
-            [self.request HTTPMethod],
-            [self.request.URL description],
-            self.message];
 }
 
 @end

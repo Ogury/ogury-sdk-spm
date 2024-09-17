@@ -14,7 +14,7 @@
     return self;
 }
 
-- (void)logMessage:(nonnull id<OguryLogMessage>)message { 
+- (void)logMessage:(OguryLogMessage *)message { 
     NSLog(@"💻 %@", message.formattedMessage);
 }
 
