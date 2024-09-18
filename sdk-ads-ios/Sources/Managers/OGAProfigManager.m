@@ -132,7 +132,11 @@ static NSString *const OGAHashConsentKey = @"OGY-HashConsentKeys";
         [self.log logError:error message:@"[Setup] Failed to synchronize configuration"];
     } else {
         if (error) {
-            [self.log log:OguryLogLevelError message:[NSString stringWithFormat:@"[Setup] Failed to retrieved configuration (%@)", error.localizedDescription]];
+            [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                 adConfiguration:nil
+                                                         logType:OguryLogTypePublisher
+                                                         message:[NSString stringWithFormat:@"[Setup] Failed to retrieved configuration (%@)", error.localizedDescription]
+                                                            tags:nil]];
             [self.profigDao updateWithFullProfig:response];
         } else {
             [self.log log:OguryLogLevelInfo message:@"[Setup] Configuration synchronized"];

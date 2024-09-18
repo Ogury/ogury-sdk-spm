@@ -66,7 +66,11 @@
             return nil;
         }
     } @catch (NSException *exception) {
-        [[OGALog shared] logAdFormat:OguryLogLevelError forAdConfiguration:adConfig format:@"Failed to parse ad content. Caused by %@.", exception.reason];
+        [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                    adConfiguration:nil
+                                                            logType:OguryLogTypePublisher
+                                                            message:[NSString stringWithFormat:@"Failed to parse ad content. Caused by %@.", exception.reason]
+                                                               tags:nil]];
     }
 }
 
@@ -78,9 +82,11 @@
     }
 
     if (![[adConfig getAdTypeString] isEqualToString:ad.adUnit.type]) {
-        [[OGALog shared] logAdFormat:OguryLogLevelError
-                  forAdConfiguration:adConfig
-                              format:@"ad.adUnit type [%@] not equalt to expected adConfiguration with type [%@]", ad.adUnit.type, [adConfig getAdTypeString]];
+        [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                    adConfiguration:adConfig
+                                                            logType:OguryLogTypePublisher
+                                                            message:[NSString stringWithFormat:@"ad.adUnit type [%@] not equalt to expected adConfiguration with type [%@]", ad.adUnit.type, [adConfig getAdTypeString]]
+                                                               tags:nil]];
         *error = [OguryAdsError adParsingFailedWithStackTrace:[NSString stringWithFormat:@"Type mismatch. Awaited (%@) - received (%@)",
                                                                                          [adConfig getAdTypeString],
                                                                                          ad.adUnit.type]];

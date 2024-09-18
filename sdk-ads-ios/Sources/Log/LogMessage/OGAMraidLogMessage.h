@@ -20,7 +20,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithLevel:(OguryLogLevel)level
               adConfiguration:(OGAAdConfiguration *)adConfiguration
                     webviewId:(NSString *)webViewId
-                      message:(NSString *)message;
+                      message:(NSString *)message
+                         tags:(NSArray<OguryLogTag *> *_Nullable)tags;
+
+- (instancetype)initWithLevel:(OguryLogLevel)level
+              adConfiguration:(OGAAdConfiguration *)adConfiguration
+                    webviewId:(NSString *)webViewId
+                        error:(NSError *)error
+                         tags:(NSArray<OguryLogTag *> *_Nullable)tags;
 
 @end
 

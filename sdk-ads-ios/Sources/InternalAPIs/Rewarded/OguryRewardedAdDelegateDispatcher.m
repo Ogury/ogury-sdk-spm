@@ -12,8 +12,8 @@
     [self.log logFormat:OguryLogLevelInfo
                 logType:OguryLogTypePublisher
                  format:@"[%@][%@] callback ad clicked called",
-     OGAAdConfigurationAdTypeRewarded,
-     self.optinVideo.adUnitId];
+                        OGAAdConfigurationAdTypeRewarded,
+                        self.optinVideo.adUnitId];
 
     if ([self.delegate respondsToSelector:@selector(didClickOguryRewardedAd:)] && self.optinVideo != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
@@ -26,7 +26,8 @@
     [self.log logFormat:OguryLogLevelInfo
                 logType:OguryLogTypePublisher
                  format:@"[%@][%@] callback ad closed called",
-     OGAAdConfigurationAdTypeRewarded, self.optinVideo.adUnitId];
+                        OGAAdConfigurationAdTypeRewarded,
+                        self.optinVideo.adUnitId];
 
     if ([self.delegate respondsToSelector:@selector(didCloseOguryRewardedAd:)] && self.optinVideo != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
@@ -48,7 +49,7 @@
 }
 
 - (void)loaded {
-    [self.log logFormat:OguryLogLevelInfo 
+    [self.log logFormat:OguryLogLevelInfo
                 logType:OguryLogTypePublisher
                  format:@"[%@][%@] callback ad loaded called", OGAAdConfigurationAdTypeRewarded, self.optinVideo.adUnitId];
 
@@ -60,7 +61,7 @@
 }
 
 - (void)rewarded:(OGARewardItem *)item {
-    [self.log logFormat:OguryLogLevelInfo 
+    [self.log logFormat:OguryLogLevelInfo
                 logType:OguryLogTypePublisher
                  format:@"[%@][%@] callback ad rewarded with item[%@]x%@ called", OGAAdConfigurationAdTypeRewarded, self.optinVideo.adUnitId, item.rewardName, item.rewardValue];
 
@@ -72,7 +73,7 @@
 }
 
 - (void)adImpression {
-    [self.log logFormat:OguryLogLevelInfo 
+    [self.log logFormat:OguryLogLevelInfo
                 logType:OguryLogTypePublisher
                  format:@"[%@][%@] callback ad impression called", OGAAdConfigurationAdTypeRewarded, self.optinVideo.adUnitId];
 

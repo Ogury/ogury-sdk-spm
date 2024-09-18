@@ -35,7 +35,11 @@
     if ([self.adManager isExpired:sequence]) {
         if (error) {
             *error = [OguryAdsError adExpired];
-            [self.log logAd:OguryLogLevelError forAdConfiguration:sequence.configuration message:@" Failed to show (ad is expired)"];
+            [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                 adConfiguration:sequence.configuration
+                                                         logType:OguryLogTypePublisher
+                                                         message:@" Failed to show (ad is expired)"
+                                                            tags:nil]];
         }
         return NO;
     }

@@ -40,7 +40,11 @@
     if ([[self profigDao].profigFullResponse isAdsEnabled] == NO) {
         sequence.status = OGAAdSequenceStatusError;
         *error = [OguryAdsError adDisabled:[[self profigDao].profigFullResponse disablingReason] from:self.origin];
-        [self.log logAd:OguryLogLevelError forAdConfiguration:sequence.configuration message:@" Failed to show (ad is disabled)"];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                             adConfiguration:sequence.configuration
+                                                     logType:OguryLogTypePublisher
+                                                     message:@" Failed to show (ad is disabled)"
+                                                        tags:nil]];
         return NO;
     }
     return YES;

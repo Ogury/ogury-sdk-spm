@@ -22,6 +22,7 @@
 #import "OGAMraidVerificationOperation.h"
 #import "OGAMRAIDWebViewDelegate.h"
 #import "OGAMraidBaseWebView+PrivateHeader.h"
+#import "OGAMraidLogMessage.h"
 #import "OGAMonitoringDispatcher.h"
 
 #define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
@@ -142,10 +143,11 @@ static NSString *const OGAadLoadingStateKey = @"adLoadingState";
             if (self.isCommunicatingWithMraid) {
                 [self.mraidCommandsHandler sendLoadCommands];
             } else {
-                [self.log logMraid:OguryLogLevelError
-                    forAdConfiguration:self.ad.adConfiguration
-                             webViewId:self.webViewId
-                               message:@"MRAID has not been initialized for webview"];
+                [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                        adConfiguration:self.ad.adConfiguration
+                                                              webviewId:self.webViewId
+                                                                message:@"MRAID has not been initialized for webview"
+                                                                   tags:nil]];
                 [self.mraidCommandsHandler handleMraidCommand:[OGAMraidCommand mraidTimeoutUnloadCommand]];
             }
         });
@@ -156,10 +158,11 @@ static NSString *const OGAadLoadingStateKey = @"adLoadingState";
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     if ([self.displayer webViewLoaded:self.webViewId] == NO) {
-        [self.log logMraid:OguryLogLevelError
-            forAdConfiguration:self.ad.adConfiguration
-                     webViewId:self.webViewId
-                       message:@"BunaZiua not received before ad finishes to load."];
+        [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                adConfiguration:self.ad.adConfiguration
+                                                      webviewId:self.webViewId
+                                                        message:@"BunaZiua not received before ad finishes to load."
+                                                           tags:nil]];
         return;
     }
 }

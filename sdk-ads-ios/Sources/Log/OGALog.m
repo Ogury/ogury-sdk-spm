@@ -4,10 +4,10 @@
 
 #import "OGALog.h"
 #import <OguryCore/OguryOSLogger.h>
-#import "OGALogFormatter.h"
 #import "OguryLog+Ads.h"
 #import "NSString+OGAUtility.h"
 #import "OguryLogConstants.h"
+#import "OGAAdLogMessage.h"
 #import <Foundation/Foundation.h>
 
 @interface OGALog ()
@@ -34,18 +34,26 @@
 
 - (instancetype)init {
     return [self init:[[OguryLog alloc] init]
-             oSLogger:[[OguryOSLogger alloc] initWithSubSystem:OGABundleIdentifier
-                                                      category:OGALogOgury]
-         logFormatter:[[OGALogFormatter alloc] init]];
+             oSLogger:[[OguryOSLogger alloc] initWithSubSystem:OGABundleIdentifier category:OGALogOgury]];
 }
 
-- (instancetype)init:(OguryLog *)oguryLog oSLogger:(OguryOSLogger *)logger logFormatter:(OGALogFormatter *)formatter {
+- (instancetype)init:(OguryLog *)oguryLog
+            oSLogger:(OguryOSLogger *)logger {
     if (self = [super init]) {
         _oguryLog = oguryLog;
-//        logger.logFormatter = formatter;
         [_oguryLog addLogger:logger];
     }
     return self;
+}
+
+NSString *logErrorMessage(NSError *error) {
+    if (error.localizedRecoverySuggestion) {
+        return [NSString stringWithFormat:@"[Error] #%ld %@ (%@)",
+                                          error.code,
+                                          error.localizedDescription,
+                                          error.localizedRecoverySuggestion];
+    }
+    return [NSString stringWithFormat:@"[Error] #%ld %@", error.code, error.localizedDescription];
 }
 
 #pragma mark - Methods
@@ -58,100 +66,8 @@
     [self.oguryLog addLogger:logger];
 }
 
-- (void)log:(OguryLogLevel)logLevel message:(NSString *)message {
-//    [self.oguryLog logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:logLevel message:message]];
-}
-
-- (void)logFormat:(OguryLogLevel)logLevel logType:(OguryLogType)logType format:(NSString *)format, ... {
-    va_list args;
-    va_start(args, format);
-    NSString *message = [[NSString alloc] initWithFormat:format arguments:args];
-    [self log:logLevel message:message];
-    if (self.testCompletionBlock != nil) {
-        self.testCompletionBlock(message, logLevel);
-    }
-    va_end(args);
-}
-
-- (void)logError:(NSError *)error message:(NSString *)message {
-    [self log:OguryLogLevelError message:[NSString stringWithFormat:@"%@ - Error: %@", message, [self formatError:error]]];
-}
-
-- (void)logErrorFormat:(NSError *)error format:(NSString *)format, ... {
-    va_list arguments;
-    va_start(arguments, format);
-    [self logError:error message:[[NSString alloc] initWithFormat:format arguments:arguments]];
-    va_end(arguments);
-}
-
-- (void)logAd:(OguryLogLevel)logLevel
-    forAdConfiguration:(OGAAdConfiguration *)adConfiguration
-               message:(NSString *)message {
-    [self.oguryLog ogaLogAdMessage:logLevel adConfiguration:adConfiguration message:message];
-}
-
-- (void)logAdFormat:(OguryLogLevel)logLevel
-    forAdConfiguration:(OGAAdConfiguration *)adConfiguration
-                format:(NSString *)format, ... {
-    va_list arguments;
-    va_start(arguments, format);
-    [self logAd:logLevel forAdConfiguration:adConfiguration message:[[NSString alloc] initWithFormat:format arguments:arguments]];
-    va_end(arguments);
-}
-
-- (void)logAdError:(NSError *)error forAdConfiguration:(OGAAdConfiguration *)adConfiguration message:(NSString *)message {
-    [self logAd:OguryLogLevelError forAdConfiguration:adConfiguration message:[NSString stringWithFormat:@"%@ - Error: %@", message, [self formatError:error]]];
-}
-
-- (void)logAdErrorFormat:(NSError *)error
-      forAdConfiguration:(OGAAdConfiguration *)adConfiguration
-                  format:(NSString *)format, ... {
-    va_list arguments;
-    va_start(arguments, format);
-    [self logAdError:error forAdConfiguration:adConfiguration message:[[NSString alloc] initWithFormat:format arguments:arguments]];
-    va_end(arguments);
-}
-
-- (void)logMraid:(OguryLogLevel)logLevel
-    forAdConfiguration:(OGAAdConfiguration *)adConfiguration
-             webViewId:(NSString *)webViewId
-               message:(NSString *)message {
-    [self.oguryLog ogaLogMraidMessage:logLevel adConfiguration:adConfiguration webViewId:webViewId message:message];
-}
-
-- (void)logMraidFormat:(OguryLogLevel)logLevel
-    forAdConfiguration:(OGAAdConfiguration *)adConfiguration
-             webViewId:(NSString *)webViewId
-                format:(NSString *)format, ... {
-    va_list arguments;
-    va_start(arguments, format);
-    [self logMraid:logLevel forAdConfiguration:adConfiguration webViewId:webViewId message:[[NSString alloc] initWithFormat:format arguments:arguments]];
-    va_end(arguments);
-}
-
-- (void)logMraidError:(NSError *)error
-    forAdConfiguration:(OGAAdConfiguration *)adConfiguration
-             webViewId:(NSString *)webViewId
-               message:(NSString *)message {
-    [self logMraid:OguryLogLevelError forAdConfiguration:adConfiguration webViewId:webViewId message:[NSString stringWithFormat:@"%@ - Error: %@", message, [self formatError:error]]];
-}
-
-- (void)logMraidErrorFormat:(NSError *)error
-         forAdConfiguration:(OGAAdConfiguration *)adConfiguration
-                  webViewId:(NSString *)webViewId
-                     format:(NSString *)format, ... {
-    va_list arguments;
-    va_start(arguments, format);
-    [self logMraidError:error forAdConfiguration:adConfiguration webViewId:webViewId message:[[NSString alloc] initWithFormat:format arguments:arguments]];
-    va_end(arguments);
-}
-
-- (NSString *)formatError:(NSError *)error {
-    if ([NSString ogaIsNilOrEmpty:error.localizedDescription]) {
-        return [NSString stringWithFormat:@"Caused by error with code %ld and domain '%@'.", error.code, error.domain];
-    } else {
-        return [NSString stringWithFormat:@"Caused by %@ (code: %ld, domain: '%@').", error.localizedDescription, error.code, error.domain];
-    }
+- (void)log:(OGAAdLogMessage *)message {
+    [self.oguryLog logMessage:message];
 }
 
 @end

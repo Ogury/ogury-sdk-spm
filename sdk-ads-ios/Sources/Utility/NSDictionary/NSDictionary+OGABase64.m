@@ -12,9 +12,19 @@
 - (NSString *)ogaEncodeToBase64 {
     NSError *error;
     NSData *jsonConverted = [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingFragmentsAllowed error:&error];
-    if (error || jsonConverted == nil) {
-        [[OGALog shared] log:OguryLogLevelError message:@"An error occurred while encoding NSObject to Base64"];
-
+    if (error) {
+        [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                    adConfiguration:nil
+                                                            logType:OguryLogTypePublisher
+                                                              error:error
+                                                               tags:nil]];
+        return @"";
+    } else if (jsonConverted == nil) {
+        [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                    adConfiguration:nil
+                                                            logType:OguryLogTypePublisher
+                                                            message:@"An error occurred while encoding NSObject to Base64"
+                                                               tags:nil]];
         return @"";
     } else {
         NSString *jsonString = [[NSString alloc] initWithData:jsonConverted encoding:NSUTF8StringEncoding];
@@ -35,8 +45,12 @@
     }
     id jsonConverted = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&parseError];
     if (parseError || jsonConverted == nil) {
-        [[OGALog shared] log:OguryLogLevelError message:@"An error occurred while decoding Base64 to NSSObject"];
         *error = [OguryAdsError adParsingFailedWithStackTrace:[NSString stringWithFormat:@"Base64 contained invalid JSON (%@)", parseError.localizedDescription]];
+        [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                    adConfiguration:nil
+                                                            logType:OguryLogTypePublisher
+                                                              error:parseError
+                                                               tags:nil]];
         return nil;
     } else {
         return jsonConverted;

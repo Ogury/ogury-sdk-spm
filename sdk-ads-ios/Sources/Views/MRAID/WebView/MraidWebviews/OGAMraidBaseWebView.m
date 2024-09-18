@@ -10,6 +10,7 @@
 #import "OGAMRAIDUrlChangeHandler.h"
 #import "OGAMetricsService.h"
 #import "OGAAdHistoryEvent.h"
+#import "OGAMraidLogMessage.h"
 #import "OGAOMIDService.h"
 #import "OGAWKWebView.h"
 #import "OGAUserDefaultsStore.h"
@@ -306,7 +307,11 @@ static int const maximumNumberOfMRAIDVerifications = 8;
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
-    [self.log logMraid:OguryLogLevelError forAdConfiguration:self.ad.adConfiguration webViewId:self.webViewId message:@"Failed to navigate"];
+    [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelError
+                                            adConfiguration:self.ad.adConfiguration
+                                                  webviewId:self.webViewId
+                                                    message:@"Failed to navigate"
+                                                       tags:nil]];
     [self sendNavigationEvent:OGAFinishedEvent webViewIdentifier:self.webViewId wkWebView:self.wkWebView];
     [self sendPrecachingFailEvent];
 }

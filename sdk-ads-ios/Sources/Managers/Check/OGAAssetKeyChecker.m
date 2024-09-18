@@ -38,7 +38,11 @@
     BOOL isAssetKeyValid = [self.assetKeyManager checkAssetKeyIsValid:error origin:self.origin];
 
     if (!isAssetKeyValid) {
-        [self.log logFormat:OguryLogLevelError format:@"Assetkey '%@' is not valid", self.assetKeyManager.assetKey];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypePublisher
+                                                     message:[NSString stringWithFormat:@"Assetkey '%@' is not valid", self.assetKeyManager.assetKey]
+                                                        tags:nil]];
     }
 
     return isAssetKeyValid;

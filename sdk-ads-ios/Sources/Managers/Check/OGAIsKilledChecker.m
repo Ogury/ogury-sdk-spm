@@ -35,7 +35,11 @@
         if (error) {
             *error = [OguryAdsError webviewTerminatedBySystem];
 
-            [self.log logAd:OguryLogLevelError forAdConfiguration:sequence.configuration message:@"Failed to show (ad killed by the OS)"];
+            [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                 adConfiguration:sequence.configuration
+                                                         logType:OguryLogTypePublisher
+                                                         message:@"Failed to show (ad killed by the OS)"
+                                                            tags:nil]];
         }
         return NO;
     }

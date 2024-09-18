@@ -124,7 +124,11 @@ static NSString *_Nonnull OGASKAdNetworkIdentifierKey = @"SKAdNetworkIdentifier"
         if (@available(iOS 16.0, *)) {
             impression.sourceIdentifier = sourceIdentifier;
         } else {
-            [[OGALog shared] log:OguryLogLevelError message:@"[SKAdNetwork] Not compatible campaign id with version"];
+            [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                        adConfiguration:nil
+                                                                logType:OguryLogTypePublisher
+                                                                message:@"[SKAdNetwork] Not compatible campaign id with version"
+                                                                   tags:nil]];
         }
     }
 
@@ -137,7 +141,11 @@ static NSString *_Nonnull OGASKAdNetworkIdentifierKey = @"SKAdNetworkIdentifier"
     [SKAdNetwork startImpression:impression
                completionHandler:^(NSError *_Nullable error) {
                    if (error != NULL) {
-                       [[OGALog shared] log:OguryLogLevelError message:[NSString stringWithFormat:@"[SKAdNetwork] failed to start impression : %@", error.description]];
+                       [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                                   adConfiguration:nil
+                                                                           logType:OguryLogTypePublisher
+                                                                           message:[NSString stringWithFormat:@"[SKAdNetwork] failed to start impression : %@", error.description]
+                                                                              tags:nil]];
                        [monitoringDispatcher sendSKNetworkFailedImpressionEvent:OGASKNetworkShowErrorEventFailedToStartImpression
                                                advertisedAppStoreItemIdentifier:impression.advertisedAppStoreItemIdentifier
                                                                 adConfiguration:adConfiguration];
@@ -153,7 +161,11 @@ static NSString *_Nonnull OGASKAdNetworkIdentifierKey = @"SKAdNetworkIdentifier"
     [SKAdNetwork endImpression:impression
              completionHandler:^(NSError *_Nullable error) {
                  if (error != NULL) {
-                     [[OGALog shared] log:OguryLogLevelError message:[NSString stringWithFormat:@"[SKAdNetwork] failed to end impression : %@", error.description]];
+                     [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                                 adConfiguration:nil
+                                                                         logType:OguryLogTypePublisher
+                                                                         message:[NSString stringWithFormat:@"[SKAdNetwork] failed to end impression : %@", error.description]
+                                                                            tags:nil]];
                      [monitoringDispatcher sendSKNetworkFailedImpressionEvent:OGASKNetworkShowErrorEventFailedToStopImpression
                                              advertisedAppStoreItemIdentifier:impression.advertisedAppStoreItemIdentifier
                                                               adConfiguration:adConfiguration];
