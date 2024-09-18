@@ -22,7 +22,7 @@ final class BannerAdController: NSObject, BannerFormatController {
     // MARK: - Functions
 
     func getAd(adUnitId: String) -> OguryBannerAd {
-        let instance = OguryBannerAd(adUnitId: adUnitId)
+        let instance = OguryBannerAd(adUnitId: adUnitId, size: .small_banner_320x50())
         instance.delegate = self
         banner = instance
         return instance
@@ -92,7 +92,7 @@ final class BannerAdController: NSObject, BannerFormatController {
 
             banner = bannerAd
         } else {
-            bannerAd.load(with: maxSize)
+            bannerAd.load()
         }
     }
 
@@ -142,7 +142,7 @@ extension BannerAdController {
                             }
                             
                             view?.bringSubviewToFront(bannerAd)
-                            bannerAd.load(withAdMarkup: adMarkup, size: maxSize)
+                            bannerAd.load(withAdMarkup: adMarkup)
                     
                     case .failure(let error):
                             self.didFailOguryBannerAdWithError(OguryError.createOguryError(withCode: -1, localizedDescription: error.localizedDescription), for: bannerAd)

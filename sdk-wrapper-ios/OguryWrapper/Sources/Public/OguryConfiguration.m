@@ -7,16 +7,14 @@
 @interface OguryConfiguration ()
 
 @property (nonatomic, copy, readwrite) NSString *assetKey;
-@property (nonatomic, strong, readwrite) OGWMonitoringInfo *monitoringInfo;
 
 @end
 
 @implementation OguryConfiguration
 
-- (instancetype)initWithAssetKey:(NSString *)assetKey monitoringInfo:(OGWMonitoringInfo *)monitoringInfo {
+- (instancetype)initWithAssetKey:(NSString *)assetKey {
     if (self = [super init]) {
         _assetKey = assetKey;
-        _monitoringInfo = monitoringInfo;
     }
     return self;
 }

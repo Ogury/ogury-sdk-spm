@@ -6,8 +6,48 @@ import os.log
 import UIKit
 import OgurySdk
 import OguryAds
+import InMobiCMP
+import SwiftMessages
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, ChoiceCmpDelegate {
+   func cmpDidLoad(info: InMobiCMP.PingResponse) {
+      
+   }
+   
+   func cmpDidShow(info: InMobiCMP.PingResponse) {
+      
+   }
+   
+   func didReceiveIABVendorConsent(gdprData: InMobiCMP.GDPRData, updated: Bool) {
+      
+   }
+   
+   func didReceiveNonIABVendorConsent(nonIabData: InMobiCMP.NonIABData, updated: Bool) {
+      
+   }
+   
+   func didReceiveAdditionalConsent(acData: InMobiCMP.ACData, updated: Bool) {
+      
+   }
+   
+   func cmpDidError(error: any Error) {
+      let view = MessageView.viewFromNib(layout: .cardView)
+      view.configureTheme(.error)
+      view.configureDropShadow()
+      view.configureContent(title: "Error", body: error.localizedDescription, iconText: "🙄")
+      view.layoutMarginAdditions = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+      (view.backgroundView as? CornerRoundingView)?.cornerRadius = 10
+      SwiftMessages.show(view: view)
+   }
+   
+   func didReceiveUSRegulationsConsent(usRegData: InMobiCMP.USRegulationsData) {
+      
+   }
+   
+   func userDidMoveToOtherState() {
+      
+   }
+   
     
     @IBOutlet weak var interstitialAdUnitIdText: UITextField!
     let mediation = OguryMediation(name: "WrapperTestApp", version: "1.0.0")
@@ -19,21 +59,21 @@ class HomeViewController: UIViewController {
         
         // Load defaults from environment
         interstitialAdUnitIdText.text = getEnvironment().interstitialAdUnitId
+       ChoiceCmp.shared.startChoice(pcode: "f2N9N2QnAYZz8", delegate: self)
     }
     
     @IBAction func startButtonClicked() {
         let config = OguryConfigurationBuilder(assetKey: getEnvironment().assetKey)
             .build()
-        Ogury.start(with: config)
-        Ogury.setLogLevel(OguryLogLevel.all)
+        Ogury.setLogLevel(.all)
+        Ogury.start(with: config, completionHandler: { success, error in
+            print("success \(success)")
+            print("error \(String(describing: error))")
+        })
     }
     
     @IBAction func askButtonClicked() {
-       //TODO: Add new CMP
-    }
-    
-    @IBAction func editButtonClicked() {
-        //TODO: Add new CMP
+       ChoiceCmp.shared.forceDisplayUI()
     }
     
     @IBAction func interstitialLoadButtonClicked() {

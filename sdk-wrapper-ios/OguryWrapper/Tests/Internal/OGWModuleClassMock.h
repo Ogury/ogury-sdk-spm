@@ -4,6 +4,7 @@
 
 #import <Foundation/Foundation.h>
 #import <OguryCore/OguryLogLevel.h>
+#import "Ogury.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)shared;
 
-- (void)startWithAssetKey:(NSString *_Nullable)assetKey;
+- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetupCompletionBlock _Nullable)completionHandler;
 
 - (void)setLogLevel:(OguryLogLevel)logLevel;
 

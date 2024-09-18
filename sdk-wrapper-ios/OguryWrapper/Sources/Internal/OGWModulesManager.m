@@ -2,24 +2,23 @@
 //  Copyright © 2021 Ogury Ltd. All rights reserved.
 //
 
-#import "OGWModules.h"
+#import "OGWModulesManager.h"
 
-@interface OGWModules ()
+@interface OGWModulesManager ()
 
 @property (nonatomic, strong) NSArray<OGWModule *> *modules;
 
 @end
 
 static NSString * const OGWModulesCoreModuleClassName = @"OGCInternal";
-static NSString * const OGWModulesChoiceManagerModuleClassName = @"OGYInternal";
 static NSString * const OGWModulesAdsModuleClassName = @"OGAInternal";
 
-@implementation OGWModules
+@implementation OGWModulesManager
 
 #pragma mark - Initialization
 
-+ (OGWModules *)shared {
-    static OGWModules *instance = nil;
++ (OGWModulesManager *)shared {
+    static OGWModulesManager *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[self alloc] init];
@@ -32,7 +31,6 @@ static NSString * const OGWModulesAdsModuleClassName = @"OGAInternal";
         NSMutableArray *modules = [[NSMutableArray alloc] init];
         for (NSString *moduleClassName in @[
                 OGWModulesCoreModuleClassName,
-                OGWModulesChoiceManagerModuleClassName,
                 OGWModulesAdsModuleClassName
         ]) {
             [modules addObject:[[OGWModule alloc] initWithClassName:moduleClassName]];
@@ -50,10 +48,6 @@ static NSString * const OGWModulesAdsModuleClassName = @"OGAInternal";
 
 - (OGWModule *)adsModule {
     return [self moduleByClassName:OGWModulesAdsModuleClassName];
-}
-
-- (OGWModule *)choiceManagerModule {
-    return [self moduleByClassName:OGWModulesChoiceManagerModuleClassName];
 }
 
 #pragma mark - Methods

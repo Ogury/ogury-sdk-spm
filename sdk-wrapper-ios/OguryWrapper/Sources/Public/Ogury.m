@@ -9,8 +9,12 @@
 
 @implementation Ogury
 
++ (void)startWithConfiguration:(OguryConfiguration *)configuration completionHandler:(SetupCompletionBlock)completionHandler {
+    [[OGWWrapper shared] startWithConfiguration:configuration completionHandler:completionHandler];
+}
+
 + (void)startWithConfiguration:(OguryConfiguration *)configuration {
-   [[OGWWrapper shared] startWithConfiguration:configuration];
+    [self startWithConfiguration:configuration completionHandler:nil];
 }
 
 + (void)setLogLevel:(OguryLogLevel)logLevel {
@@ -37,4 +41,5 @@
 + (void)storePrivacyData:(NSString *)key string:(NSString *)value {
    [[OGCInternal shared] storePrivacyData:key string:value];
 }
+
 @end

@@ -5,19 +5,14 @@
 #import <Foundation/Foundation.h>
 
 #import "OguryConfiguration.h"
-#import "OGWMonitoringInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OguryConfiguration (Private)
 
-#pragma mark - Properties
-
-@property (nonatomic, strong, readonly) OGWMonitoringInfo *monitoringInfo;
-
 #pragma mark - Initialization
 
-- (instancetype)initWithAssetKey:(NSString *)assetKey monitoringInfo:(OGWMonitoringInfo *)monitoringInfo;
+- (instancetype)initWithAssetKey:(NSString *)assetKey;
 
 @end
 

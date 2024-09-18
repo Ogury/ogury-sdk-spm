@@ -16,8 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - methods
 
-- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetUpCompletionBlock __nullable)completionHandler;
-- (void)startWithAssetKey:(NSString *)assetKey;
+- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetupCompletionBlock)completionHandler;
 - (void)setLogLevel:(OguryLogLevel)logLevel;
 - (NSString *)getVersion;
 - (NSString *)getBuildVersion;
