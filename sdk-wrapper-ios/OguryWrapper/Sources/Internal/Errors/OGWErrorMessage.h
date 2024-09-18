@@ -7,5 +7,4 @@
 
 #pragma mark - Token Constants
 
-extern NSString *const OGWErrorFailedStartingOguryModuleMessage;
 extern NSString *const OGWErrorNoSdkModuleFoundMessage;
