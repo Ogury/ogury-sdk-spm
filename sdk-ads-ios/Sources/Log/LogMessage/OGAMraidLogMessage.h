@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
               adConfiguration:(OGAAdConfiguration *)adConfiguration
                     webviewId:(NSString *)webViewId
                         error:(NSError *)error
+                      message:(NSString *_Nullable)message
                          tags:(NSArray<OguryLogTag *> *_Nullable)tags;
 
 @end

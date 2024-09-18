@@ -6,7 +6,6 @@
 #import <OguryCore/OguryLogLevel.h>
 #import <OguryCore/OguryLog.h>
 #import "OGAAdConfiguration.h"
-#import "OGALogType.h"
 #import "OGAAdLogMessage.h"
 
 NS_ASSUME_NONNULL_BEGIN

@@ -4,7 +4,6 @@
 
 #import "OGALog.h"
 #import <OguryCore/OguryOSLogger.h>
-#import "OguryLog+Ads.h"
 #import "NSString+OGAUtility.h"
 #import "OguryLogConstants.h"
 #import "OGAAdLogMessage.h"
@@ -62,7 +61,7 @@ NSString *logErrorMessage(NSError *error) {
     [self.oguryLog setLogLevel:logLevel];
 }
 
-- (void)addLogger:(id<OguryAdsLogger>)logger {
+- (void)addLogger:(id<OguryLogger>)logger {
     [self.oguryLog addLogger:logger];
 }
 

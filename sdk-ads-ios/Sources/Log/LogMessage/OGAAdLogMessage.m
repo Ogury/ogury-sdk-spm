@@ -27,9 +27,12 @@ OguryLogType const OguryLogTypeDelegate = @"Callbacks";
         NSMutableArray *computeTags = [(tags == nil ? @[] : tags) mutableCopy];
         if (adConfiguration != nil) {
             [computeTags addObjectsFromArray:@[
-                [OguryLogTag tagWithKey:@"AdType" value:[adConfiguration getAdTypeString]],
-                [OguryLogTag tagWithKey:@"AdUnitId" value:adConfiguration.adUnitId],
-                [OguryLogTag tagWithKey:@"CampaignId" value:adConfiguration.campaignId ?: @""]
+                [OguryLogTag tagWithKey:@"AdType"
+                                  value:[adConfiguration getAdTypeString]],
+                [OguryLogTag tagWithKey:@"AdUnitId"
+                                  value:adConfiguration.adUnitId],
+                [OguryLogTag tagWithKey:@"CampaignId"
+                                  value:adConfiguration.campaignId ?: @""]
             ]];
         }
         self.tags = computeTags;
@@ -41,11 +44,12 @@ OguryLogType const OguryLogTypeDelegate = @"Callbacks";
               adConfiguration:(OGAAdConfiguration *_Nullable)adConfiguration
                       logType:(OguryLogType)logType
                         error:(NSError *)error
+                      message:(NSString *_Nullable)message
                          tags:(NSArray<OguryLogTag *> *_Nullable)tags {
     return [self initWithLevel:level
                adConfiguration:adConfiguration
                        logType:logType
-                       message:logErrorMessage(error)
+                       message:message == nil ? logErrorMessage(error) : [logErrorMessage(error) stringByAppendingFormat:@" - %@", message]
                           tags:tags];
 }
 

@@ -48,7 +48,11 @@
         NSError *parseError;
         OGAAd *ad = [[OGAAd alloc] initWithDictionary:adJSON error:&parseError];
         if (parseError) {
-            [[OGALog shared] logAdError:parseError forAdConfiguration:adConfig message:@"Failed to parse ad content."];
+            [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                        adConfiguration:adConfig
+                                                                logType:OguryLogTypeInternal
+                                                                message:@"Failed to parse ad content."
+                                                                   tags:nil]];
             return nil;
         }
         if ([self shouldParseAd:ad withConfiguration:adConfig error:error]) {
@@ -76,7 +80,11 @@
 
 + (BOOL)shouldParseAd:(OGAAd *)ad withConfiguration:(OGAAdConfiguration *)adConfig error:(NSError *_Nonnull *_Nonnull)error {
     if ([NSString ogaIsNilOrEmpty:ad.adUnit.identifier] || [NSString ogaIsNilOrEmpty:ad.adUnit.type]) {
-        [[OGALog shared] logAdFormat:OguryLogLevelInfo forAdConfiguration:adConfig format:@"adUnit on ad object is empty"];
+        [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                    adConfiguration:adConfig
+                                                            logType:OguryLogTypeInternal
+                                                            message:@"adUnit on ad object is empty"
+                                                               tags:nil]];
         *error = [OguryAdsError adParsingFailedWithStackTrace:@"No adUnit on Ad object"];
         return NO;
     }

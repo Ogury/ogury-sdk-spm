@@ -70,7 +70,11 @@ static NSString *const OGAadLoadingStateKey = @"adLoadingState";
 
 #pragma mark - Methods
 - (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView {
-    [self.log logMraid:OguryLogLevelWarning forAdConfiguration:self.ad.adConfiguration webViewId:self.webViewId message:@"webViewWebContentProcessDidTerminate ☣️"];
+    [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                            adConfiguration:self.ad.adConfiguration
+                                                  webviewId:self.webViewId
+                                                    message:@"webViewWebContentProcessDidTerminate ☣️"
+                                                       tags:nil]];
     [self.displayer webkitProcessDidTerminate];
 }
 
@@ -87,10 +91,11 @@ static NSString *const OGAadLoadingStateKey = @"adLoadingState";
 /// Start the MRAID initialisation process for the WKWebView
 - (void)startMRAIDProcessForContent:(NSString *)content {
     if (self.isPerformingMRAIDInitialization) {
-        [self.log logMraid:OguryLogLevelWarning
-            forAdConfiguration:self.ad.adConfiguration
-                     webViewId:self.webViewId
-                       message:@"Trying to perform a dual MRAID initialization"];
+        [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                                adConfiguration:self.ad.adConfiguration
+                                                      webviewId:self.webViewId
+                                                        message:@"Trying to perform a dual MRAID initialization"
+                                                           tags:nil]];
         return;
     }
 
@@ -108,10 +113,11 @@ static NSString *const OGAadLoadingStateKey = @"adLoadingState";
         [self.wkWebView evaluateJavaScript:mraidFile
                          completionHandler:^(id _Nullable result, NSError *_Nullable error) {
                              if (error) {
-                                 [self.log logMraidError:error
-                                      forAdConfiguration:self.ad.adConfiguration
-                                               webViewId:self.webViewId
-                                                 message:@"An error occurred during MRAID evaluation in webview"];
+                                 [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                                                         adConfiguration:self.ad.adConfiguration
+                                                                               webviewId:self.webViewId
+                                                                                 message:[NSString stringWithFormat:@"An error occurred during MRAID evaluation in webview - %@", error.localizedDescription]
+                                                                                    tags:nil]];
                              }
                          }];
     });

@@ -9,11 +9,11 @@
 @implementation OguryRewardedAdDelegateDispatcher
 
 - (void)clicked {
-    [self.log logFormat:OguryLogLevelInfo
-                logType:OguryLogTypePublisher
-                 format:@"[%@][%@] callback ad clicked called",
-                        OGAAdConfigurationAdTypeRewarded,
-                        self.optinVideo.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Rewarded] Ad clicked"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.optinVideo.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(didClickOguryRewardedAd:)] && self.optinVideo != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
@@ -23,11 +23,11 @@
 }
 
 - (void)closed {
-    [self.log logFormat:OguryLogLevelInfo
-                logType:OguryLogTypePublisher
-                 format:@"[%@][%@] callback ad closed called",
-                        OGAAdConfigurationAdTypeRewarded,
-                        self.optinVideo.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Rewarded] Ad closed"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.optinVideo.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(didCloseOguryRewardedAd:)] && self.optinVideo != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
@@ -38,7 +38,12 @@
 }
 
 - (void)failedWithError:(OguryError *)error {
-    [self.log logErrorFormat:error format:@"[%@][%@] callback ad failed with error called", OGAAdConfigurationAdTypeRewarded, self.optinVideo.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeDelegate
+                                                   error:error
+                                                 message:@"[Rewarded] Ad failed"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.optinVideo.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(didFailOguryRewardedAdWithError:forAd:)] && self.optinVideo != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
@@ -49,9 +54,11 @@
 }
 
 - (void)loaded {
-    [self.log logFormat:OguryLogLevelInfo
-                logType:OguryLogTypePublisher
-                 format:@"[%@][%@] callback ad loaded called", OGAAdConfigurationAdTypeRewarded, self.optinVideo.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Rewarded] Ad loaded"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.optinVideo.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(didLoadOguryRewardedAd:)] && self.optinVideo != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
@@ -61,9 +68,16 @@
 }
 
 - (void)rewarded:(OGARewardItem *)item {
-    [self.log logFormat:OguryLogLevelInfo
-                logType:OguryLogTypePublisher
-                 format:@"[%@][%@] callback ad rewarded with item[%@]x%@ called", OGAAdConfigurationAdTypeRewarded, self.optinVideo.adUnitId, item.rewardName, item.rewardValue];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Rewarded] reward received"
+                                                    tags:@[
+                                                        [OguryLogTag tagWithKey:@"AdUnitId"
+                                                                          value:self.optinVideo.adUnitId],
+                                                        [OguryLogTag tagWithKey:@"Item"
+                                                                          value:[NSString stringWithFormat:@"name: %@, value:%@", item.rewardName, item.rewardValue]]
+                                                    ]]];
 
     if ([self.delegate respondsToSelector:@selector(didRewardOguryRewardedAdWithItem:forAd:)] && self.optinVideo != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
@@ -73,9 +87,11 @@
 }
 
 - (void)adImpression {
-    [self.log logFormat:OguryLogLevelInfo
-                logType:OguryLogTypePublisher
-                 format:@"[%@][%@] callback ad impression called", OGAAdConfigurationAdTypeRewarded, self.optinVideo.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Rewarded] Ad impression"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.optinVideo.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(didTriggerImpressionOguryRewardedAd:)] && self.optinVideo != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {

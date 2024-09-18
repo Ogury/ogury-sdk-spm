@@ -32,6 +32,7 @@ extern OguryLogType const OguryLogTypeDelegate;
               adConfiguration:(OGAAdConfiguration *_Nullable)adConfiguration
                       logType:(OguryLogType)logType
                         error:(NSError *)error
+                      message:(NSString *_Nullable)message
                          tags:(NSArray<OguryLogTag *> *_Nullable)tags;
 
 @end

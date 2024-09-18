@@ -91,11 +91,19 @@ static NSString *_Nonnull OGASKAdNetworkIdentifierKey = @"SKAdNetworkIdentifier"
 + (BOOL)sdkIsCompatibleWithSKAdNetwork {
     NSString *SKAdNetworkVersion = [OGASKAdNetworkService getSKAdNetworkVersion];
     if (SKAdNetworkVersion == NULL) {
-        [[OGALog shared] log:OguryLogLevelDebug message:@"[SKAdNetwork] Not compatible with SKAdNetwork due to version number"];
+        [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                    adConfiguration:nil
+                                                            logType:OguryLogTypeInternal
+                                                            message:@"[SKAdNetwork] Not compatible with SKAdNetwork due to version number"
+                                                               tags:nil]];
         return NO;
     }
     if ([SKAdNetworkVersion isEqualToString:@"adNetworkPayloadVersion"] || [SKAdNetworkVersion hasPrefix:@"1"] || [SKAdNetworkVersion hasPrefix:@"2.0"] || [SKAdNetworkVersion hasPrefix:@"2.1"]) {
-        [[OGALog shared] log:OguryLogLevelDebug message:@"[SKAdNetwork] Not compatible with SKAdNetwork due to version number"];
+        [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                    adConfiguration:nil
+                                                            logType:OguryLogTypeInternal
+                                                            message:@"[SKAdNetwork] Not compatible with SKAdNetwork due to version number"
+                                                               tags:nil]];
         return NO;
     }
     return YES;

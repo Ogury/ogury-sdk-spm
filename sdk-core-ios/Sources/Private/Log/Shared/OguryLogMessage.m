@@ -2,6 +2,7 @@
 //  Copyright © 2024 Ogury. All rights reserved.
 //
 #import "OguryLogMessage.h"
+
 @implementation OguryLogTag
 @synthesize key, value;
 +(instancetype)tagWithKey:(NSString *)key value:(id)value {

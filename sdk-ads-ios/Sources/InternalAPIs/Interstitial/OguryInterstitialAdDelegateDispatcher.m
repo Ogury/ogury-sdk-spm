@@ -10,7 +10,11 @@
 @implementation OguryInterstitialAdDelegateDispatcher
 
 - (void)clicked {
-    [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad clicked called", OGAAdConfigurationAdTypeInterstitial, self.interstitial.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Inter] Ad clicked"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.interstitial.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(didClickOguryInterstitialAd:)]) {
         [self dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
@@ -20,7 +24,11 @@
 }
 
 - (void)closed {
-    [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad closed called", OGAAdConfigurationAdTypeInterstitial, self.interstitial.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Inter] Ad closed"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.interstitial.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(didCloseOguryInterstitialAd:)]) {
         [self dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
@@ -31,7 +39,12 @@
 }
 
 - (void)failedWithError:(OguryError *)error {
-    [self.log logErrorFormat:error format:@"[%@][%@] callback ad failed with error called", OGAAdConfigurationAdTypeInterstitial, self.interstitial.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeDelegate
+                                                   error:error
+                                                 message:@"[Inter] Ad failed"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.interstitial.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(didFailOguryInterstitialAdWithError:forAd:)]) {
         [self dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
@@ -42,7 +55,11 @@
 }
 
 - (void)loaded {
-    [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad loaded called", OGAAdConfigurationAdTypeInterstitial, self.interstitial.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Inter] Ad loaded"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.interstitial.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(didLoadOguryInterstitialAd:)]) {
         [self dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
@@ -52,7 +69,11 @@
 }
 
 - (void)adImpression {
-    [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad ad impression called", OGAAdConfigurationAdTypeInterstitial, self.interstitial.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Inter] Ad impression"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.interstitial.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(didTriggerImpressionOguryInterstitialAd:)]) {
         [self dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {

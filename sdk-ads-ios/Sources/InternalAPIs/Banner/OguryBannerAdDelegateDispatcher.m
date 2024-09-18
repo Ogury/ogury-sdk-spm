@@ -9,7 +9,11 @@
 @implementation OguryBannerAdDelegateDispatcher
 
 - (void)clicked {
-    [self.log logFormat:OguryLogLevelInfo format:@"[banner][%@] callback ad clicked called", self.banner.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Banner] Ad clicked"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.banner.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(didClickOguryBannerAd:)]) {
         [self dispatch:^(id<OguryBannerAdDelegate> _Nonnull delegate) {
@@ -19,7 +23,11 @@
 }
 
 - (void)closed {
-    [self.log logFormat:OguryLogLevelInfo format:@"[banner][%@] callback ad closed called", self.banner.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Banner] Ad closed"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.banner.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(didCloseOguryBannerAd:)]) {
         [self dispatch:^(id<OguryBannerAdDelegate> _Nonnull delegate) {
@@ -30,7 +38,12 @@
 }
 
 - (void)failedWithError:(OguryError *)error {
-    [self.log logErrorFormat:error format:@"[banner][%@] calldback failed with error called", self.banner.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeDelegate
+                                                   error:error
+                                                 message:@"[Banner] Ad failed"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.banner.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(didFailOguryBannerAdWithError:forAd:)]) {
         [self dispatch:^(id<OguryBannerAdDelegate> _Nonnull delegate) {
@@ -41,7 +54,11 @@
 }
 
 - (void)loaded {
-    [self.log logFormat:OguryLogLevelInfo format:@"[banner][%@] calldback ad loaded called", self.banner.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Banner] Ad loaded"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.banner.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(didLoadOguryBannerAd:)]) {
         [self dispatch:^(id<OguryBannerAdDelegate> _Nonnull delegate) {
@@ -51,7 +68,11 @@
 }
 
 - (void)adImpression {
-    [self.log logFormat:OguryLogLevelInfo format:@"[banner][%@] calldback ad impression called", self.banner.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Banner] Ad impression"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.banner.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(didTriggerImpressionOguryBannerAd:)]) {
         [self dispatch:^(id<OguryBannerAdDelegate> _Nonnull delegate) {
@@ -62,6 +83,11 @@
 
 - (UIViewController *)bannerViewController {
     if ([self.delegate respondsToSelector:@selector(presentingViewControllerForOguryAdsBannerAd:)]) {
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypeDelegate
+                                                     message:@"[Banner] Ad bannerViewController"
+                                                        tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.banner.adUnitId] ]]];
         return [self.delegate presentingViewControllerForOguryAdsBannerAd:self.banner];
     }
     return nil;

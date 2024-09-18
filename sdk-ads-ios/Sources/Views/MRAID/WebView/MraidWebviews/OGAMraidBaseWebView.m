@@ -23,6 +23,7 @@
 #import "OGAAdDisplayerCallEventListenersInformation.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGAAdConfiguration.h"
+#import <OguryCore/OguryLogMessage.h>
 
 #pragma mark - Constants
 
@@ -128,7 +129,11 @@ static int const maximumNumberOfMRAIDVerifications = 8;
 /// Start the MRAID initialisation process for the WKWebView
 - (void)startMRAIDProcessForContent:(NSString *)content {
     if (self.isPerformingMRAIDInitialization) {
-        [self.log logMraid:OguryLogLevelWarning forAdConfiguration:self.ad.adConfiguration webViewId:self.webViewId message:@"Trying to perform a dual MRAID initialization"];
+        [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                                adConfiguration:self.ad.adConfiguration
+                                                      webviewId:self.webViewId
+                                                        message:@"Trying to perform a dual MRAID initialization"
+                                                           tags:nil]];
         return;
     }
 
@@ -282,12 +287,19 @@ static int const maximumNumberOfMRAIDVerifications = 8;
 
 - (void)mraidAction:(OGAMraidCommand *)action {
     if (self.isWebviewClosed && ![action.method isEqual:@"close"]) {
-        [self.log logMraidFormat:OguryLogLevelWarning forAdConfiguration:self.ad.adConfiguration webViewId:self.webViewId format:@"Failed to perform %@ sent to closed webview", action.method];
+        [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                                adConfiguration:self.ad.adConfiguration
+                                                      webviewId:self.webViewId
+                                                        message:[NSString stringWithFormat:@"Failed to perform %@ sent to closed webview", action.method]
+                                                           tags:nil]];
         return;
     }
 
-    [self.log logMraidFormat:OguryLogLevelDebug forAdConfiguration:self.ad.adConfiguration webViewId:self.webViewId format:@"Received mraid action: [%@]", action.method];
-
+    [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                            adConfiguration:self.ad.adConfiguration
+                                                  webviewId:self.webViewId
+                                                    message:[NSString stringWithFormat:@"Received mraid action: [%@]", action.method]
+                                                       tags:nil]];
     // Pre-cache?
     if (!self.mraidCommandsHandler) {
         self.mraidCommandsHandler = [[OGAMraidCommandsHandler alloc] initWithDelegate:self mraidWebView:self];
@@ -297,7 +309,11 @@ static int const maximumNumberOfMRAIDVerifications = 8;
 }
 
 - (void)mraidUnknownCommand:(NSString *)url {
-    [self.log logMraidFormat:OguryLogLevelWarning forAdConfiguration:self.ad.adConfiguration webViewId:self.webViewId format:@"Received unknown MRAID action: %@", url];
+    [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                            adConfiguration:self.ad.adConfiguration
+                                                  webviewId:self.webViewId
+                                                    message:[NSString stringWithFormat:@"Received unknown MRAID action: %@", url]
+                                                       tags:nil]];
 }
 
 #pragma mark - WeView protocols implementation
@@ -320,7 +336,13 @@ static int const maximumNumberOfMRAIDVerifications = 8;
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
-    [self.log logMraidError:error forAdConfiguration:self.ad.adConfiguration webViewId:self.webViewId message:@"fail navigation with error"];
+    [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                            adConfiguration:self.ad.adConfiguration
+                                                  webviewId:self.webViewId
+                                                      error:error
+                                                    message:@"DidFailProvisionalNavigation"
+                                                       tags:nil]];
+
     [self sendNavigationEvent:OGAFinishedEvent webViewIdentifier:self.webViewId wkWebView:self.wkWebView];
     [self sendPrecachingFailEvent];
 }
@@ -348,13 +370,25 @@ static int const maximumNumberOfMRAIDVerifications = 8;
         }
     }
 
-    [self.log logMraidFormat:OguryLogLevelDebug forAdConfiguration:self.ad.adConfiguration webViewId:self.webViewId format:@"decide policy navigation for %@ --> %@", url.absoluteString, canLoad ? @"true" : @"false"];
+    [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                            adConfiguration:self.ad.adConfiguration
+                                                  webviewId:self.webViewId
+                                                    message:@"decide policy navigation"
+                                                       tags:@[ [OguryLogTag tagWithKey:@"URL"
+                                                                                 value:url.absoluteString],
+                                                               [OguryLogTag tagWithKey:@"Can load"
+                                                                                 value:canLoad ? @"true" : @"false"] ]]];
 
     [self interceptRequest:url];
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
-    [self.log logMraidFormat:OguryLogLevelDebug forAdConfiguration:self.ad.adConfiguration webViewId:self.webViewId format:@"decide policy response for %@", (NSHTTPURLResponse *)navigationResponse.response.URL.absoluteString];
+    [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                            adConfiguration:self.ad.adConfiguration
+                                                  webviewId:self.webViewId
+                                                    message:@"decide policy response"
+                                                       tags:@[ [OguryLogTag tagWithKey:@"URL"
+                                                                                 value:(NSHTTPURLResponse *)navigationResponse.response.URL.absoluteString] ]]];
 
     if (((NSHTTPURLResponse *)navigationResponse.response).statusCode != 200) {
         decisionHandler(WKNavigationResponsePolicyCancel);
@@ -376,7 +410,11 @@ static int const maximumNumberOfMRAIDVerifications = 8;
     NSString *responseURL = (NSString *)body[OGAGoogleAnalyticsResponseURLKey];
 
     if (responseURL != NULL && ![responseURL isKindOfClass:[NSNull class]]) {
-        [self.log logMraidFormat:OguryLogLevelDebug forAdConfiguration:self.ad.adConfiguration webViewId:self.webViewId format:@"received url script message for %@ ", responseURL];
+        [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                adConfiguration:self.ad.adConfiguration
+                                                      webviewId:self.webViewId
+                                                        message:@"received url script message"
+                                                           tags:@[ [OguryLogTag tagWithKey:@"URL" value:responseURL] ]]];
 
         [self interceptRequest:[[NSURL alloc] initWithString:responseURL]];
     }
@@ -405,7 +443,12 @@ static int const maximumNumberOfMRAIDVerifications = 8;
         NSRegularExpression *clientTrackerPattern = [[NSRegularExpression alloc] initWithPattern:adClientTrackerPattern options:0 error:&error];
 
         if (error) {
-            [self.log logMraidErrorFormat:error forAdConfiguration:self.ad.adConfiguration webViewId:self.webViewId format:@"NSRegularExpression with pattern fail"];
+            [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                    adConfiguration:self.ad.adConfiguration
+                                                          webviewId:self.webViewId
+                                                              error:error
+                                                            message:@"NSRegularExpression with pattern fail"
+                                                               tags:nil]];
             return;
         }
 
@@ -441,7 +484,11 @@ static int const maximumNumberOfMRAIDVerifications = 8;
     if (!navigationAction.targetFrame) {
         [self.wkWebView loadRequest:navigationAction.request];
 
-        [self.log logMraidFormat:OguryLogLevelDebug forAdConfiguration:self.ad.adConfiguration webViewId:self.webViewId format:@"navigation to %@ with target='blank'", navigationAction.request.URL];
+        [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                adConfiguration:self.ad.adConfiguration
+                                                      webviewId:self.webViewId
+                                                        message:@"navigation with target='blank"
+                                                           tags:@[ [OguryLogTag tagWithKey:@"URL" value:navigationAction.request.URL] ]]];
     }
 }
 

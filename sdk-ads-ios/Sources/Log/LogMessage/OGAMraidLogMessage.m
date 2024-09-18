@@ -29,11 +29,12 @@
               adConfiguration:(OGAAdConfiguration *)adConfiguration
                     webviewId:(NSString *)webViewId
                         error:(NSError *)error
+                      message:(NSString *_Nullable)message
                          tags:(NSArray<OguryLogTag *> *_Nullable)tags {
     return [self initWithLevel:level
                adConfiguration:adConfiguration
                      webviewId:webViewId
-                       message:logErrorMessage(error)
+                       message:message == nil ? logErrorMessage(error) : [logErrorMessage(error) stringByAppendingFormat:@" - %@", message]
                           tags:tags];
 }
 
