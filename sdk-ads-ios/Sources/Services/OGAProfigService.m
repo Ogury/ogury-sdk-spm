@@ -72,7 +72,15 @@
                                    break;
                            }
                        } else {
-                           [self.log logFormat:OguryLogLevelDebug format:@"[Setup] profig raw response: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
+                           [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                                adConfiguration:nil
+                                                                        logType:OguryLogTypeInternal
+                                                                        message:@"[Setup] profig raw response"
+                                                                           tags:@[
+                                                                               [OguryLogTag tagWithKey:@"response"
+                                                                                                 value:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]
+                                                                           ]]];
+
                            if (response) {
                                if (profigResponse.errorType || profigResponse.errorMessage) {
                                    completion(profigResponse, [OGAConfigurationUtils errorForServerProfigError:profigResponse]);

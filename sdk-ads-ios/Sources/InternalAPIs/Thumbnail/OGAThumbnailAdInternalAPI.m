@@ -128,7 +128,18 @@ static OguryRectCorner const OguryAdsThumbnailDefaultConer = OguryBottomRight;
              dspCreativeId:(NSString *_Nullable)dspCreativeId
                  dspRegion:(NSString *_Nullable)dspRegion
              thumbnailSize:(CGSize)thumbnailSize {
-    [self.log logAdFormat:OguryLogLevelDebug forAdConfiguration:self.configuration format:@" loadWithCampaignId called: [campaignId:%@][creativeId:%@][dspCreativeId:%@][dspRegion:%@][thumbnailSize:%dx%d]", campaignId, creativeId, dspCreativeId, dspRegion, thumbnailSize.height, thumbnailSize.width];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:self.configuration
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"loadWithCampaignId... called:"
+                                                    tags:@[
+                                                        [OguryLogTag tagWithKey:@"DspCreative"
+                                                                          value:dspCreativeId == nil ? @"" : dspCreativeId],
+                                                        [OguryLogTag tagWithKey:@"DspRegion"
+                                                                          value:dspRegion == nil ? @"" : dspRegion],
+                                                        [OguryLogTag tagWithKey:@"Size"
+                                                                          value:[NSString stringWithFormat:@"w:%f h:%f", thumbnailSize.width, thumbnailSize.height]]
+                                                    ]]];
     self.configuration.size = thumbnailSize;
     self.configuration.campaignId = campaignId;
     self.configuration.creativeId = creativeId;
@@ -157,20 +168,37 @@ static OguryRectCorner const OguryAdsThumbnailDefaultConer = OguryBottomRight;
 }
 
 - (void)show {
-    [self.log logAdFormat:OguryLogLevelDebug forAdConfiguration:self.configuration format:@"Show called"];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:self.configuration
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"show"
+                                                    tags:nil]];
 
     OguryOffset offset = OguryOffsetMake(OGAThumbnailDefaultXOffset, OGAThumbnailDefaultYOffset);
     [self showWithOguryRectCorner:OguryAdsThumbnailDefaultConer margin:offset];
 }
 
 - (void)show:(CGPoint)position {
-    [self.log logAdFormat:OguryLogLevelDebug forAdConfiguration:self.configuration format:@"Show called [position:%d x %d]", position.x, position.y];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:self.configuration
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"show"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"Position" value:[NSString stringWithFormat:@"x:%f y:%f", position.x, position.y]] ]]];
 
     [self showWithOguryRectCorner:OguryTopLeft margin:OguryOffsetMake(position.x, position.y)];
 }
 
 - (void)showWithOguryRectCorner:(OguryRectCorner)rectCorner margin:(OguryOffset)offset {
-    [self.log logAdFormat:OguryLogLevelDebug forAdConfiguration:self.configuration format:@"showWithOguryRectCorner:margin: called [rectCorner:%@][offset:%d x %d]", @(rectCorner), offset.x, offset.y];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:self.configuration
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"show"
+                                                    tags:@[
+                                                        [OguryLogTag tagWithKey:@"Corner"
+                                                                          value:[NSString stringWithFormat:@"%ld", (long)rectCorner]],
+                                                        [OguryLogTag tagWithKey:@"Offset"
+                                                                          value:[NSString stringWithFormat:@"x:%f y:%f", offset.x, offset.y]]
+                                                    ]]];
 
     if (self.sequence == nil) {
         self.sequence = [[OGAAdSequence alloc] initWithAdConfiguration:self.configuration];
@@ -182,29 +210,48 @@ static OguryRectCorner const OguryAdsThumbnailDefaultConer = OguryBottomRight;
 }
 
 - (void)showInScene:(UIWindowScene *)scene API_AVAILABLE(ios(13.0)) {
-    [self.log logAdFormat:OguryLogLevelDebug forAdConfiguration:self.configuration format:@"showInScene called"];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:self.configuration
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"showInScene"
+                                                    tags:nil]];
 
     OguryOffset offset = OguryOffsetMake(OGAThumbnailDefaultXOffset, OGAThumbnailDefaultYOffset);
     [self showInScene:scene withOguryRectCorner:OguryAdsThumbnailDefaultConer margin:offset];
 }
 
 - (void)showInScene:(UIWindowScene *)scene atPosition:(CGPoint)position API_AVAILABLE(ios(13.0)) {
-    [self.log logAdFormat:OguryLogLevelDebug forAdConfiguration:self.configuration format:@"showInScene:atPosition called [position:%@]", NSStringFromCGPoint(position)];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:self.configuration
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"showInScene"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"Position" value:[NSString stringWithFormat:@"x:%f y:%f", position.x, position.y]] ]]];
 
     [self showInScene:scene withOguryRectCorner:OguryTopLeft margin:OguryOffsetMake(position.x, position.y)];
 }
 
 - (void)showInScene:(UIWindowScene *)scene withOguryRectCorner:(OguryRectCorner)rectCorner margin:(OguryOffset)offset API_AVAILABLE(ios(13.0)) {
-    [self.log logAdFormat:OguryLogLevelDebug
-        forAdConfiguration:self.configuration
-                    format:@" showInScene:withOguryRectCorner:margin called [rectCorner:%@][offset:%d x %d]", @(rectCorner), offset.x, offset.y];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:self.configuration
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"showInScene"
+                                                    tags:@[
+                                                        [OguryLogTag tagWithKey:@"Corner"
+                                                                          value:[NSString stringWithFormat:@"%ld", (long)rectCorner]],
+                                                        [OguryLogTag tagWithKey:@"Offset"
+                                                                          value:[NSString stringWithFormat:@"x:%f y:%f", offset.x, offset.y]]
+                                                    ]]];
 
     self.sequence.configuration.scene = scene;
     [self showWithOguryRectCorner:rectCorner margin:offset];
 }
 
 - (void)setBlacklistViewControllers:(NSArray<NSString *> *_Nullable)viewControllers {
-    [self.log logAdFormat:OguryLogLevelDebug forAdConfiguration:self.configuration format:@"setBlacklistViewControllers: called [viewControllers:%@]", viewControllers];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:self.configuration
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"blacklist controllers"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"Controllers" value:viewControllers] ]]];
 
     self.configuration.blackListViewControllers = viewControllers;
     if (self.sequence) {
@@ -213,7 +260,11 @@ static OguryRectCorner const OguryAdsThumbnailDefaultConer = OguryBottomRight;
 }
 
 - (void)setWhitelistBundleIdentifiers:(NSArray<NSString *> *_Nullable)bundleIdentifiers {
-    [self.log logAdFormat:OguryLogLevelDebug forAdConfiguration:self.configuration format:@"[thumbnail] setWhitelistBundleIdentifiers: called [bundleIdentifiers:%@]", bundleIdentifiers];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:self.configuration
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"whitelist bundles"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"bundleIdentifiers" value:bundleIdentifiers] ]]];
 
     self.configuration.whitelistBundleIdentifiers = bundleIdentifiers;
     if (self.sequence) {

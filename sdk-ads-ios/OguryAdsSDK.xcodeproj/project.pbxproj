@@ -459,6 +459,10 @@
 		351A1FDDD17F543C6D0DFD1A /* OGAAdImpressionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A152AAD13C26CD4252B1A /* OGAAdImpressionManager.h */; };
 		351A1FF3D29F8716FA9C13AB /* OGAAdSyncService.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A10D9364D08F0E54C49DC /* OGAAdSyncService.h */; };
 		351A1FF56F8C28C401FBB1CB /* OGAFullscreenAdContainerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1E053B3EA1F0331CE925 /* OGAFullscreenAdContainerState.m */; };
+		430120D22C9BF8CB00892B18 /* OGAMonitoringLogMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 430120D02C9BF8CB00892B18 /* OGAMonitoringLogMessage.h */; };
+		430120D32C9BF8CB00892B18 /* OGAMonitoringLogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 430120D12C9BF8CB00892B18 /* OGAMonitoringLogMessage.m */; };
+		430120D42C9BF8CB00892B18 /* OGAMonitoringLogMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 430120D02C9BF8CB00892B18 /* OGAMonitoringLogMessage.h */; };
+		430120D52C9BF8CB00892B18 /* OGAMonitoringLogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 430120D12C9BF8CB00892B18 /* OGAMonitoringLogMessage.m */; };
 		43127C1D2A28CA720034B11A /* OGAEventHeaderBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43127C1C2A28CA720034B11A /* OGAEventHeaderBuilderTests.m */; };
 		4316834129D58B450066932B /* OGAAdServerMonitorRequestBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4316834029D58B450066932B /* OGAAdServerMonitorRequestBuilderTests.m */; };
 		4316834329D5C5A60066932B /* OGAMonitoringDispatcherJSONTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4316834229D5C5A60066932B /* OGAMonitoringDispatcherJSONTests.m */; };
@@ -1630,6 +1634,8 @@
 		351A1FE857BB468D701E4F0F /* OGAMRAIDAdDisplayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAMRAIDAdDisplayer.h; sourceTree = "<group>"; };
 		351A1FF24EC7CE9396994243 /* UIDevice+Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Orientation.h"; sourceTree = "<group>"; };
 		351A1FFC5A16B3ADA67C04A9 /* OGAAdParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAAdParserTests.m; sourceTree = "<group>"; };
+		430120D02C9BF8CB00892B18 /* OGAMonitoringLogMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAMonitoringLogMessage.h; sourceTree = "<group>"; };
+		430120D12C9BF8CB00892B18 /* OGAMonitoringLogMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAMonitoringLogMessage.m; sourceTree = "<group>"; };
 		43127C1C2A28CA720034B11A /* OGAEventHeaderBuilderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAEventHeaderBuilderTests.m; sourceTree = "<group>"; };
 		4316834029D58B450066932B /* OGAAdServerMonitorRequestBuilderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAAdServerMonitorRequestBuilderTests.m; sourceTree = "<group>"; };
 		4316834229D5C5A60066932B /* OGAMonitoringDispatcherJSONTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAMonitoringDispatcherJSONTests.m; sourceTree = "<group>"; };
@@ -3446,6 +3452,8 @@
 				ED3F885F27216546007C6A6D /* OGAAdLogMessage.m */,
 				5890DD6E282004F500B3CDE7 /* OGAMraidLogMessage.h */,
 				5890DD702820050D00B3CDE7 /* OGAMraidLogMessage.m */,
+				430120D02C9BF8CB00892B18 /* OGAMonitoringLogMessage.h */,
+				430120D12C9BF8CB00892B18 /* OGAMonitoringLogMessage.m */,
 			);
 			path = LogMessage;
 			sourceTree = "<group>";
@@ -4062,6 +4070,7 @@
 				43A9F4582C37E6B40085EF6F /* OGAThumbnailAdViewController+Position.h in Headers */,
 				43A9F4592C37E6B40085EF6F /* OGAThumbnailAdViewController+Exposure.h in Headers */,
 				43A9F45A2C37E6B40085EF6F /* OGAAdExpirationManager.h in Headers */,
+				430120D42C9BF8CB00892B18 /* OGAMonitoringLogMessage.h in Headers */,
 				43A9F45B2C37E6B40085EF6F /* NSString+OGABase64.h in Headers */,
 				43A9F45C2C37E6B40085EF6F /* OGAInvalidThumbnailAdPositions.h in Headers */,
 				43A9F45E2C37E6B40085EF6F /* OGAThumbnailAdViewController.h in Headers */,
@@ -4305,6 +4314,7 @@
 				351A1F5B6A25FE6E62D32C7C /* OGAThumbnailAdViewController+Position.h in Headers */,
 				351A1FBD1EC44B518937831C /* OGAThumbnailAdViewController+Exposure.h in Headers */,
 				ED618F3B25EE3D7100F774A5 /* OGAAdExpirationManager.h in Headers */,
+				430120D22C9BF8CB00892B18 /* OGAMonitoringLogMessage.h in Headers */,
 				2295393426E912620021605A /* NSString+OGABase64.h in Headers */,
 				351A145D478ED9031B5ADA97 /* OGAInvalidThumbnailAdPositions.h in Headers */,
 				351A1FD6D75DDCA18292C9AF /* OGAThumbnailAdViewController.h in Headers */,
@@ -4728,6 +4738,7 @@
 				43A9F3522C37E6B40085EF6F /* OGAIsKilledChecker.m in Sources */,
 				43A9F3532C37E6B40085EF6F /* OGAEnvironmentManager.m in Sources */,
 				43A9F3542C37E6B40085EF6F /* OGAWebViewUserAgentService.m in Sources */,
+				430120D52C9BF8CB00892B18 /* OGAMonitoringLogMessage.m in Sources */,
 				43A9F3552C37E6B40085EF6F /* OGAOMIDService.m in Sources */,
 				43A9F3562C37E6B40085EF6F /* OGAUserDefaultsStore.m in Sources */,
 				43A9F3572C37E6B40085EF6F /* UIWindowScene+OGAActiveScene.m in Sources */,
@@ -4950,6 +4961,7 @@
 				1ED5B2992A4B2F0900C85A84 /* OGAIsKilledChecker.m in Sources */,
 				351A1873DDDE3265DB2E1EFB /* OGAEnvironmentManager.m in Sources */,
 				351A1483AC79A47F34B5ACF2 /* OGAWebViewUserAgentService.m in Sources */,
+				430120D32C9BF8CB00892B18 /* OGAMonitoringLogMessage.m in Sources */,
 				351A1C8AC4386A9A1C335207 /* OGAOMIDService.m in Sources */,
 				351A167315A6F0A9EFD57162 /* OGAUserDefaultsStore.m in Sources */,
 				351A1D45304A0EA035500240 /* UIWindowScene+OGAActiveScene.m in Sources */,

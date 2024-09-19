@@ -15,6 +15,7 @@
 #import "OGALog.h"
 #import "OGAProfigDao.h"
 #import "OGAWebViewUserAgentService.h"
+#import "OGAMonitoringLogMessage.h"
 #import "UIDevice+Orientation.h"
 #import "OguryAdsError+Internal.h"
 
@@ -111,11 +112,15 @@ static NSString *const MonitoringServiceBodyDeviceAssetType = @"ios";
     NSError *serializationError;
     NSData *payload = [NSJSONSerialization dataWithJSONObject:body options:0 error:&serializationError];
     if (serializationError) {
-        [self.log logError:serializationError message:@"Monitoring - Failed to serialize metrics in [buildRequestWithEvent]"];
+        [self.log log:[[OGAMonitoringLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                               error:serializationError
+                                                             message:@"Failed to serialize metrics"
+                                                               event:events.firstObject]];
         return nil;
     } else if (payload == nil) {
-        [self.log logError:[OguryError createOguryErrorWithCode:OGAInternalUnknownError] message:@"Monitoring - Failed to serialize metrics in [buildRequestWithEvent] - Payload is nil"];
-        return nil;
+        [self.log log:[[OGAMonitoringLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                             message:@"Failed to serialize metrics (nil payload)"
+                                                               event:events.firstObject]];
     }
 
     [requestBuilder setPayload:payload];

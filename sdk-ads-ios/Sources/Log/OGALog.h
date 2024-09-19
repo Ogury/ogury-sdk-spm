@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addLogger:(id<OguryLogger>)logger;
 
 #pragma mark - Logs
-- (void)log:(OGAAdLogMessage *)message;
+- (void)log:(OguryLogMessage *)message;
 
 NSString *logErrorMessage(NSError *error);
 

@@ -5,6 +5,7 @@
 #import "OGAMraidInitializationOperation.h"
 #import "OGALog.h"
 #import "OGAAd.h"
+#import "OGAMraidLogMessage.h"
 #import "OGAMraidCommandsHandler.h"
 
 @interface OGAMraidInitializationOperation ()
@@ -80,7 +81,14 @@
         [self.baseView.wkWebView evaluateJavaScript:self.initializationScript
                                   completionHandler:^(id _Nullable result, NSError *_Nullable error) {
                                       if (error) {
-                                          [self.log logMraidError:error forAdConfiguration:self.baseView.ad.adConfiguration webViewId:self.baseView.webViewId message:@"An error occurred during MRAID evaluation in webview"];
+                                          [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                                                  adConfiguration:self.baseView.ad.adConfiguration
+                                                                                        webviewId:self.baseView.webViewId
+                                                                                          message:@"An error occurred during MRAID evaluation in webview"
+                                                                                             tags:@[
+                                                                                                 [OguryLogTag tagWithKey:@"Script"
+                                                                                                                   value:self.initializationScript]
+                                                                                             ]]];
                                       }
 
                                       self.isRunning = NO;

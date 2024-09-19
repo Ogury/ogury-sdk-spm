@@ -17,6 +17,7 @@
                                                     adConfiguration:nil
                                                             logType:OguryLogTypePublisher
                                                               error:error
+                                                            message:nil
                                                                tags:nil]];
         return @"";
     } else if (jsonConverted == nil) {
@@ -50,6 +51,7 @@
                                                     adConfiguration:nil
                                                             logType:OguryLogTypePublisher
                                                               error:parseError
+                                                            message:nil
                                                                tags:nil]];
         return nil;
     } else {

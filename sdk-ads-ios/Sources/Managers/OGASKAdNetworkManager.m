@@ -49,13 +49,19 @@
     if (ad.skAdNetworkResponse == NULL) {
         return;
     }
-    [self.log logAd:OguryLogLevelInfo
-        forAdConfiguration:ad.adConfiguration
-                   message:@"[SKAdNetwork] SKAdNetwork configuration found"];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:ad.adConfiguration
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"[SKAdNetwork] configuration found"
+                                                    tags:nil]];
+
     if (ad.skAdNetworkResponse.isStoreKitDisplay) {
-        [self.log logAd:OguryLogLevelInfo
-            forAdConfiguration:ad.adConfiguration
-                       message:@"[SKAdNetwork] SKimpression display by Store Kit"];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                             adConfiguration:ad.adConfiguration
+                                                     logType:OguryLogTypeInternal
+                                                     message:@"[SKAdNetwork] SKimpression display by Store Kit"
+                                                        tags:nil]];
+
         return;
     }
     [self.monitoringDispatcher sendSKNetworkImpressionEvent:OGASKNetworkShowEventStartingImpression
@@ -63,9 +69,12 @@
                                             adConfiguration:ad.adConfiguration];
 
     if (@available(iOS 14.5, *)) {
-        [self.log logAd:OguryLogLevelInfo
-            forAdConfiguration:ad.adConfiguration
-                       message:@"[SKAdNetwork] Impression SKAdNetwork created"];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                             adConfiguration:ad.adConfiguration
+                                                     logType:OguryLogTypeInternal
+                                                     message:@"[SKAdNetwork] Impression SKAdNetwork created"
+                                                        tags:nil]];
+
         self.impression = [OGASKAdNetworkService createImpression:ad.skAdNetworkResponse.signature
                                      sourceAppStoreItemIdentifier:ad.skAdNetworkResponse.sourceAppId
                                  advertisedAppStoreItemIdentifier:ad.skAdNetworkResponse.itunesItemId
@@ -78,9 +87,12 @@
         [OGASKAdNetworkService startImpression:self.impression
                           monitoringDispatcher:self.monitoringDispatcher
                                adConfiguration:ad.adConfiguration];
-        [self.log logAd:OguryLogLevelInfo
-            forAdConfiguration:ad.adConfiguration
-                       message:@"[SKAdNetwork] Impression SKAdNetwork started"];
+
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                             adConfiguration:ad.adConfiguration
+                                                     logType:OguryLogTypeInternal
+                                                     message:@"[SKAdNetwork] Impression SKAdNetwork started"
+                                                        tags:nil]];
     } else {
         [self.monitoringDispatcher sendSKNetworkImpressionEvent:OGASKNetworkShowEventIncompatibleIOSVersionToStartImpression
                                advertisedAppStoreItemIdentifier:ad.skAdNetworkResponse.itunesItemId
@@ -102,8 +114,12 @@
         if (self.impression == NULL) {
             return;
         }
-        [self.log log:OguryLogLevelInfo
-              message:@"[SKAdNetwork] Impression SKAdNetwork end"];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                             adConfiguration:ad.adConfiguration
+                                                     logType:OguryLogTypeInternal
+                                                     message:@"[SKAdNetwork] Impression SKAdNetwork end"
+                                                        tags:nil]];
+
         [OGASKAdNetworkService endImpression:self.impression
                         monitoringDispatcher:self.monitoringDispatcher
                              adConfiguration:ad.adConfiguration];

@@ -113,9 +113,16 @@
                 creativeId:(NSString *_Nullable)creativeId
              dspCreativeId:(NSString *_Nullable)dspCreativeId
                  dspRegion:(NSString *_Nullable)dspRegion {
-    [self.log logAdFormat:OguryLogLevelDebug
-        forAdConfiguration:self.configuration
-                    format:@"loadWithCampaignId:campaignId called [campaignId:%@][creativeId:%@][dspCreativeId:%@][dspRegion:%@]", campaignId, creativeId, dspCreativeId, dspRegion];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:self.configuration
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"loadWithCampaignId... called:"
+                                                    tags:@[
+                                                        [OguryLogTag tagWithKey:@"DspCreative"
+                                                                          value:dspCreativeId == nil ? @"" : dspCreativeId],
+                                                        [OguryLogTag tagWithKey:@"DspRegion"
+                                                                          value:dspRegion == nil ? @"" : dspRegion]
+                                                    ]]];
     self.configuration.campaignId = campaignId;
     self.configuration.creativeId = creativeId;
     if (dspCreativeId && dspRegion) {
@@ -139,7 +146,11 @@
 }
 
 - (void)loadWithAdMarkup:(NSString *)adMarkup {
-    [self.log logAdFormat:OguryLogLevelInfo forAdConfiguration:self.configuration format:@"loadWithAdMarkup called with AdMarkup [%@]", adMarkup];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:self.configuration
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"loadWithAdMarkup:"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"adMarkup" value:adMarkup] ]]];
 
     self.configuration.campaignId = nil;
     self.configuration.isHeaderBidding = true;
@@ -152,7 +163,11 @@
 }
 
 - (void)showAdInViewController:(UIViewController *)viewController {
-    [self.log logAd:OguryLogLevelInfo forAdConfiguration:self.configuration message:@"showAdInViewController:viewController called"];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:self.configuration
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"showAdInViewController:viewController called"
+                                                    tags:nil]];
 
     self.viewController = viewController;
 

@@ -88,7 +88,11 @@
 
 - (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetUpCompletionBlock __nullable)completionHandler {
     self.setupBlock = completionHandler;
-    [self.log log:OguryLogLevelInfo message:@"Module started"];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"Module started"
+                                                    tags:nil]];
 
     // if ([self.assetKeyManager shouldResetSDKFor:assetKey]) {
     //    [self resetSDK];
@@ -100,7 +104,11 @@
         [self.webViewUserAgentService syncWebViewUserAgent];
 
     } else {
-        [self.log log:OguryLogLevelWarning message:@"Ogury Ads only need to be started once. Additional calls are ignored."];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypeInternal
+                                                     message:@"Ogury Ads only need to be started once. Additional calls are ignored."
+                                                        tags:nil]];
     }
 }
 
@@ -112,7 +120,11 @@
     [self.profigManager syncProfigWithCompletion:^(OGAProfigFullResponse *response, NSError *error) {
         [self.assetKeyManager sdkIsReady];
         if (!response) {
-            [self.log logError:error message:@"Failed to initialize Ogury Ads"];
+            [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                                 adConfiguration:nil
+                                                         logType:OguryLogTypeInternal
+                                                         message:@"Failed to initialize Ogury Ads"
+                                                            tags:nil]];
         }
         if (self.setupBlock != nil) {
             self.setupBlock(response != nil, error);
@@ -124,7 +136,7 @@
     [self.log setLogLevel:logLevel];
 }
 
-- (void)addLogger:(id<OguryAdsLogger>)logger {
+- (void)addLogger:(id<OguryLogger>)logger {
     [self.log addLogger:logger];
 }
 
@@ -157,7 +169,11 @@
 }
 
 - (void)maxWebViewUserAgentRetryReached {
-    [self.log log:OguryLogLevelWarning message:@"Ogury Ads is unable to retreive webview User Agent."];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"Ogury Ads is unable to retreive webview User Agent."
+                                                    tags:nil]];
     [self syncProfig];
 }
 

@@ -67,7 +67,11 @@
 #pragma mark - Methods
 
 - (void)activateOMID {
-    [self.log log:OguryLogLevelDebug message:@"[OMID] Activating"];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"[OMID] Activating"
+                                                    tags:nil]];
 
     [self.omidSDK activate];
 }

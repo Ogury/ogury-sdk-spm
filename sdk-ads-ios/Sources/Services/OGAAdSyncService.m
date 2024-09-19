@@ -272,9 +272,12 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
     NSData *payload = [NSJSONSerialization dataWithJSONObject:jsonPayload options:0 error:&serializationError];
 
     if (serializationError || payload == nil) {
-        [self.log logAdError:serializationError ?: [OguryError createOguryErrorWithCode:OGAInternalUnknownError]
-            forAdConfiguration:adConfiguration
-                       message:@"Failed to serialize ad sync"];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                             adConfiguration:adConfiguration
+                                                     logType:OguryLogTypeInternal
+                                                       error:serializationError ?: [OguryError createOguryErrorWithCode:OGAInternalUnknownError]
+                                                     message:@"Failed to serialize ad sync"
+                                                        tags:nil]];
         return nil;
     }
 

@@ -82,8 +82,13 @@ NSString *const OGAMetricsRequestBuilderContentKey = @"content";
     NSError *serializationError;
     NSData *payload = [NSJSONSerialization dataWithJSONObject:bodyContent options:0 error:&serializationError];
     if (serializationError || payload == nil) {
-        [self.log logError:serializationError ?: [OguryError createOguryErrorWithCode:OGAInternalUnknownError]
-                   message:@"Failed to serialize metrics"];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypeInternal
+                                                       error:serializationError ?: [OguryError createOguryErrorWithCode:OGAInternalUnknownError]
+                                                     message:@"Failed to serialize metrics"
+                                                        tags:nil]];
+
         return nil;
     }
 

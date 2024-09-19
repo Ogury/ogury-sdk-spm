@@ -366,6 +366,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
                                                  adConfiguration:sequence.configuration
                                                          logType:OguryLogTypePublisher
                                                            error:ogyError
+                                                         message:nil
                                                             tags:nil]];
             [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventAdMarkUpParsingError
                                                stackTrace:ogyError.localizedDescription

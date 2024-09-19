@@ -120,7 +120,11 @@
 }
 
 - (void)sendLoadedTracker {
-    [self.log logAd:OguryLogLevelInfo forAdConfiguration:self.ad.adConfiguration message:@"Sending LOADED track"];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:self.ad.adConfiguration
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"Sending LOADED track"
+                                                    tags:nil]];
 
     [self.metricsService sendEvent:[[OGATrackEvent alloc] initWithAd:self.ad event:OGAMetricsEventLoaded]];
 }
@@ -128,7 +132,12 @@
 - (void)forceClose {
     OguryError *error = nil;
     if (![self performAction:[[OGAForceCloseAdAction alloc] init] error:&error]) {
-        [self.log logAdError:error forAdConfiguration:self.ad.adConfiguration message:@"Failed to close ad due to internal error"];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                             adConfiguration:self.ad.adConfiguration
+                                                     logType:OguryLogTypeInternal
+                                                       error:error
+                                                     message:@"Force close failed"
+                                                        tags:nil]];
     }
 }
 
