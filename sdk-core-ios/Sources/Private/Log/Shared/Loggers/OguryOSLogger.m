@@ -29,6 +29,7 @@
         _category = category;
         _logLevel = OguryLogLevelError;
         _allowedLogTypes = @[OguryLogTypeAll];
+        _logFormatter = [[OguryLogFormatter alloc] init];
     }
     return self;
 }
@@ -45,7 +46,7 @@
 }
 
 - (void)logMessage:(OguryLogMessage *)message {
-    NSString *formattedMessage = message.formattedMessage;
+    NSString *formattedMessage = [self.logFormatter formatLogMessage:message];
     
     if (!formattedMessage || formattedMessage.length == 0) {
         return;

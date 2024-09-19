@@ -69,6 +69,7 @@
     if (message.level > logger.logLevel) {
         return NO;
     }
+    
     if (![logger.allowedLogTypes containsObject:message.logType] && ![logger.allowedLogTypes containsObject:OguryLogTypeAll]) {
         return NO;
     }

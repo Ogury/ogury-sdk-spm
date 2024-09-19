@@ -15,9 +15,10 @@
             dateFormatter:[[NSDateFormatter alloc] init]];
 }
 
-- (instancetype)initWithOptions:(OguryLogDisplay)options dateFormatter:(NSDateFormatter *_Nullable)dateFOrmatter {
+- (instancetype)initWithOptions:(OguryLogDisplay)options dateFormatter:(NSDateFormatter *_Nullable)dateFormatter {
     if (self = [super init]) {
-        
+        displayOptions = options;
+        self.dateFormatter = dateFormatter;
     }
     return self;
 }
@@ -47,7 +48,8 @@ NSString* levelAsString(OguryLogLevel level) {
                                            includeBrackets:NO]];
     }
     if (displayOptions & OguryLogDisplaySDK) {
-        [log appendAttributedString:[self attributedString:logMessage.sdk
+        NSString *logStr = [NSString stringWithFormat:@"[%@]", logMessage.sdk];
+        [log appendAttributedString:[self attributedString:logStr
                                                     option:OguryLogDisplaySDK
                                            includeBrackets:YES]];
     }
@@ -64,7 +66,8 @@ NSString* levelAsString(OguryLogLevel level) {
                                            includeBrackets:NO]];
     }
     if ((displayOptions & OguryLogDisplayOrigin) && logMessage.origin != nil) {
-        [log appendAttributedString:[self attributedString:logMessage.origin
+        NSString *logStr = [NSString stringWithFormat:@"[%@]", logMessage.origin];
+        [log appendAttributedString:[self attributedString:logStr
                                                     option:OguryLogDisplayDate
                                            includeBrackets:YES]];
     }

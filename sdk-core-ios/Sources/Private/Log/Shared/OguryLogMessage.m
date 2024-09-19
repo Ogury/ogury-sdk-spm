@@ -21,7 +21,7 @@
 OguryLogSDK const OguryLogSDKCore = @"Core";
 
 @implementation OguryLogMessage
-@synthesize tags, level, logType, origin, sdk, messageDate, message, logFormatter;
+@synthesize tags, level, logType, origin, sdk, messageDate, message;
 
 - (nonnull instancetype)initWithLevel:(OguryLogLevel)level
                               logType:(nonnull OguryLogType)logType
@@ -53,10 +53,6 @@ OguryLogSDK const OguryLogSDKCore = @"Core";
         self.messageDate = messageDate == nil ? [NSDate date] : messageDate;
     }
     return self;
-}
-
-- (nonnull NSString *)formattedMessage {
-    return [self.logFormatter formatLogMessage:self];
 }
 
 @end

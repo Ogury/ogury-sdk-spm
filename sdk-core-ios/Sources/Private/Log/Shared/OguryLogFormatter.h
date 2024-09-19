@@ -3,7 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OguryLogLevel.h"
+#import <OguryCore/OguryLogLevel.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,7 +16,7 @@ typedef NS_OPTIONS(NSUInteger, OguryLogDisplay) {
     OguryLogDisplayTags      = 1 << 4
 };
 
-@protocol OguryLogMessage;
+@class OguryLogMessage;
 
 @interface OguryLogFormatter: NSObject
 /// Options used to format the message
@@ -26,8 +26,8 @@ typedef NS_OPTIONS(NSUInteger, OguryLogDisplay) {
 - (instancetype)init;
 - (instancetype)initWithOptions:(OguryLogDisplay)options dateFormatter:(NSDateFormatter *_Nullable)dateFOrmatter;
 
-- (nullable NSString *)formatLogMessage:(id<OguryLogMessage>)logMessage;
-- (nullable NSAttributedString *)formatAttributedLogMessage:(id<OguryLogMessage>)logMessage;
+- (nullable NSString *)formatLogMessage:(OguryLogMessage *)logMessage;
+- (nullable NSAttributedString *)formatAttributedLogMessage:(OguryLogMessage *)logMessage;
 
 NSString* levelAsString(OguryLogLevel level);
 @end

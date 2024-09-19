@@ -11,18 +11,18 @@ typedef NS_ENUM(NSInteger, OguryLogLevel);
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OguryOSLogger : NSObject <OguryLogger>
+@interface OguryOSLogger : NSObject<OguryLogger>
 
 #pragma mark - Properties
 
-@property (nonatomic, assign, readwrite) OguryLogLevel logLevel;
-@property (nonatomic, assign, readwrite) NSArray<OguryLogType> *allowedLogTypes;
+@property (nonatomic, assign) OguryLogLevel logLevel;
+@property (nonatomic, strong) NSArray<OguryLogType> *allowedLogTypes;
+/// The formatter to use
+@property (nonatomic, strong) OguryLogFormatter *logFormatter;
 
 #pragma mark - Initialization
 
 - (instancetype)initWithSubSystem:(nullable NSString *)subSystem category:(nullable NSString *)category NS_DESIGNATED_INITIALIZER;
-
-- (void)logMessage:(OguryLogMessage *)message;
 
 @end
 

@@ -10,12 +10,13 @@
     if (self = [super init]) {
         _logLevel = level;
         _allowedLogTypes = @[OguryLogTypePublisher];
+        _logFormatter = [[OguryLogFormatter alloc] init];
     }
     return self;
 }
 
 - (void)logMessage:(OguryLogMessage *)message { 
-    NSLog(@"💻 %@", message.formattedMessage);
+    NSLog(@"💻 %@", [self.logFormatter formatLogMessage:message]);
 }
 
 @end

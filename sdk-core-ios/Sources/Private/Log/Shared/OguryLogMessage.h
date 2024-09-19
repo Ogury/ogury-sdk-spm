@@ -38,8 +38,6 @@ extern OguryLogSDK const OguryLogSDKCore;
 @property (nonatomic, copy) NSString *message;
 /// a list of tags, rendered in the same ordre as the array
 @property (nonatomic, strong) NSArray<OguryLogTag *> *tags;
-/// The formatter to use
-@property (nonatomic, strong) OguryLogFormatter *logFormatter;
 
 #pragma mark Initialization
 - (instancetype)initWithLevel:(OguryLogLevel)level
@@ -54,8 +52,6 @@ extern OguryLogSDK const OguryLogSDKCore;
                   messageDate:(NSDate *_Nullable)messageDate
                       message:(NSString *_Nonnull)message
                          tags:(NSArray<OguryLogTag *> *_Nullable)tags;
-
-- (NSString *)formattedMessage;
 
 @end
 
