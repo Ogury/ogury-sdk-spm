@@ -150,9 +150,9 @@
     privacy[OGARequestBodyPrivacyGPPKey] = [self gppConsentString];
     privacy[OGARequestBodyPrivacyGPPSIDKey] = [self gppSidConsentString];
     NSDictionary *privacyDatas = [self privacyDatas];
-    [privacyDatas enumerateKeysAndObjectsUsingBlock:^(id _Nonnull key, id _Nonnull obj, BOOL *_Nonnull stop) {
-        privacy[key] = obj;
-    }];
+    if ([privacyDatas count] > 0) {
+        privacy[OGARequestBodyPrivacyPublisherDataKey] = privacyDatas;
+    }
     token[OGARequestBodyPrivacyComplianceKey] = privacy;
 
     /// device
