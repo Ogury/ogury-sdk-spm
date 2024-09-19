@@ -22,6 +22,17 @@
     return self;
 }
 
+NSString* levelAsString(OguryLogLevel level) {
+    switch (level) {
+        case OguryLogLevelOff: return @"NONE";
+        case OguryLogLevelError: return @"ERROR";
+        case OguryLogLevelWarning: return @"WARNING";
+        case OguryLogLevelInfo: return @"INFO";
+        case OguryLogLevelDebug: return @"DEBUG";
+        case OguryLogLevelAll: return @"ALL";
+    }
+}
+
 - (nullable NSString *)formatLogMessage:(OguryLogMessage *)logMessage {
     return [self formatAttributedLogMessage:logMessage].string;
 }

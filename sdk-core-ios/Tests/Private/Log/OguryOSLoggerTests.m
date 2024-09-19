@@ -61,7 +61,7 @@
      */
     OCMReject([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_ERROR]).ignoringNonObjectArgs();
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelError message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelError logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 }
 
 - (void)testOguryLogLevelOffWithWarningMessage {
@@ -70,7 +70,7 @@
     id mock = OCMPartialMock(self.oguryOSLogger);
     OCMReject([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_ERROR]).ignoringNonObjectArgs();
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelWarning message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelWarning logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 }
 
 - (void)testOguryLogLevelOffWithInfoMessage {
@@ -79,7 +79,7 @@
     id mock = OCMPartialMock(self.oguryOSLogger);
     OCMReject([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_ERROR]).ignoringNonObjectArgs();
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelInfo message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelInfo logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 }
 
 - (void)testOguryLogLevelOffWithDebugMessage {
@@ -88,7 +88,7 @@
     id mock = OCMPartialMock(self.oguryOSLogger);
     OCMReject([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_ERROR]).ignoringNonObjectArgs();
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelDebug message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelDebug logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 }
 
 /*
@@ -100,7 +100,7 @@
     self.oguryOSLogger.logLevel = OguryLogLevelError;
     id mock = OCMPartialMock(self.oguryOSLogger);
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelError message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelError logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 
     OCMVerify([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_ERROR]);
 }
@@ -111,7 +111,7 @@
     id mock = OCMPartialMock(self.oguryOSLogger);
     OCMReject([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_ERROR]).ignoringNonObjectArgs();
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelWarning message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelWarning logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 }
 
 - (void)testOguryLogLevelErrorWithInfoMessage {
@@ -120,7 +120,7 @@
     id mock = OCMPartialMock(self.oguryOSLogger);
     OCMReject([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_ERROR]).ignoringNonObjectArgs();
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelInfo message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelInfo logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 }
 
 - (void)testOguryLogLevelErrorWithDebugMessage {
@@ -129,7 +129,7 @@
     id mock = OCMPartialMock(self.oguryOSLogger);
     OCMReject([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_ERROR]).ignoringNonObjectArgs();
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelDebug message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelDebug logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 }
 
 /*
@@ -141,7 +141,7 @@
     self.oguryOSLogger.logLevel = OguryLogLevelWarning;
     id mock = OCMPartialMock(self.oguryOSLogger);
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelError message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelError logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 
     OCMVerify([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_ERROR]);
 }
@@ -150,7 +150,7 @@
     self.oguryOSLogger.logLevel = OguryLogLevelWarning;
     id mock = OCMPartialMock(self.oguryOSLogger);
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelWarning message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelWarning logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 
     OCMVerify([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_INFO]);
 }
@@ -161,7 +161,7 @@
     id mock = OCMPartialMock(self.oguryOSLogger);
     OCMReject([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_ERROR]).ignoringNonObjectArgs();
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelInfo message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelInfo logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 }
 
 - (void)testOguryLogLevelWarningWithDebugMessage {
@@ -170,7 +170,7 @@
     id mock = OCMPartialMock(self.oguryOSLogger);
     OCMReject([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_ERROR]).ignoringNonObjectArgs();
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelDebug message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelDebug logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 }
 
 /*
@@ -182,7 +182,7 @@
     self.oguryOSLogger.logLevel = OguryLogLevelInfo;
     id mock = OCMPartialMock(self.oguryOSLogger);
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelError message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelError logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 
     OCMVerify([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_ERROR]);
 }
@@ -191,7 +191,7 @@
     self.oguryOSLogger.logLevel = OguryLogLevelInfo;
     id mock = OCMPartialMock(self.oguryOSLogger);
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelWarning message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelWarning logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 
     OCMVerify([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_INFO]);
 }
@@ -200,7 +200,7 @@
     self.oguryOSLogger.logLevel = OguryLogLevelInfo;
     id mock = OCMPartialMock(self.oguryOSLogger);
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelInfo message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelInfo logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 
     OCMVerify([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_INFO]);
 }
@@ -211,7 +211,7 @@
     id mock = OCMPartialMock(self.oguryOSLogger);
     OCMReject([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_ERROR]).ignoringNonObjectArgs();
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelDebug message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelDebug logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 }
 
 /*
@@ -223,7 +223,7 @@
     self.oguryOSLogger.logLevel = OguryLogLevelDebug;
     id mock = OCMPartialMock(self.oguryOSLogger);
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelError message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelError logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 
     OCMVerify([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_ERROR]);
 }
@@ -232,7 +232,7 @@
     self.oguryOSLogger.logLevel = OguryLogLevelDebug;
     id mock = OCMPartialMock(self.oguryOSLogger);
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelWarning message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelWarning logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 
     OCMVerify([mock logToOSLevel:[OCMArg any] forType: OS_LOG_TYPE_INFO]);
 }
@@ -241,7 +241,7 @@
     self.oguryOSLogger.logLevel = OguryLogLevelDebug;
     id mock = OCMPartialMock(self.oguryOSLogger);
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelInfo message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelInfo logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 
     OCMVerify([mock logToOSLevel:[OCMArg any] forType: OS_LOG_TYPE_INFO]);
 }
@@ -250,7 +250,7 @@
     self.oguryOSLogger.logLevel = OguryLogLevelDebug;
     id mock = OCMPartialMock(self.oguryOSLogger);
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelDebug message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelDebug logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 
     OCMVerify([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_DEBUG]);
 }
@@ -264,7 +264,7 @@
     self.oguryOSLogger.logLevel = OguryLogLevelAll;
     id mock = OCMPartialMock(self.oguryOSLogger);
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelError message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelError logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 
     OCMVerify([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_ERROR]);
 }
@@ -273,7 +273,7 @@
     self.oguryOSLogger.logLevel = OguryLogLevelAll;
     id mock = OCMPartialMock(self.oguryOSLogger);
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelWarning message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelWarning logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 
     OCMVerify([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_INFO]);
 }
@@ -282,7 +282,7 @@
     self.oguryOSLogger.logLevel = OguryLogLevelAll;
     id mock = OCMPartialMock(self.oguryOSLogger);
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelInfo message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelInfo logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 
     OCMVerify([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_INFO]);
 }
@@ -291,7 +291,7 @@
     self.oguryOSLogger.logLevel = OguryLogLevelAll;
     id mock = OCMPartialMock(self.oguryOSLogger);
 
-    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelDebug message:@"Lorem ipsum dolor sit amet"]];
+    [mock logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelDebug logType:OguryLogTypeInternal sdk:OguryLogSDKCore message:@"Lorem ipsum dolor sit amet"]];
 
     OCMVerify([mock logToOSLevel:[OCMArg any] forType:OS_LOG_TYPE_DEBUG]);
 }

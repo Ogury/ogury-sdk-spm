@@ -976,10 +976,6 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Tests/OCMock",
-				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "$(SRCROOT)/Sources/Private/OguryCore.Private.modulemap";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1007,10 +1003,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Tests/OCMock",
 				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "$(SRCROOT)/Sources/Private/OguryCore.Private.modulemap";

@@ -3,6 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OguryLogLevel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,6 +28,8 @@ typedef NS_OPTIONS(NSUInteger, OguryLogDisplay) {
 
 - (nullable NSString *)formatLogMessage:(id<OguryLogMessage>)logMessage;
 - (nullable NSAttributedString *)formatAttributedLogMessage:(id<OguryLogMessage>)logMessage;
+
+NSString* levelAsString(OguryLogLevel level);
 @end
 
 NS_ASSUME_NONNULL_END

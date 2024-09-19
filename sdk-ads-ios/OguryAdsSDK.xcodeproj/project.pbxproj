@@ -1008,9 +1008,6 @@
 		58BDDA7A288ECE1B000A4A12 /* OGADarwinNotificationStringFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BDDA79288ECE1B000A4A12 /* OGADarwinNotificationStringFormatterTests.m */; };
 		58D93AD229782CBE00086B3F /* OGAMonitoringEventFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D93AD129782CBE00086B3F /* OGAMonitoringEventFormatterTests.m */; };
 		58D93AD429793C4F00086B3F /* OGAMonitoringDispatcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D93AD329793C4F00086B3F /* OGAMonitoringDispatcherTests.m */; };
-		58DB921528996C4200C0D3DC /* OGALogFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DB921128996C4200C0D3DC /* OGALogFormatterTests.m */; };
-		58DB921728996C4200C0D3DC /* OGAAdLogMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DB921328996C4200C0D3DC /* OGAAdLogMessageTests.m */; };
-		58DB921828996C4200C0D3DC /* OGAMraidLogMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DB921428996C4200C0D3DC /* OGAMraidLogMessageTests.m */; };
 		6A1E0992BED1EC98FD7A4DCB /* Pods_OguryAdsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5EBAD21E062EFBB85C93DB4 /* Pods_OguryAdsTests.framework */; };
 		C4E381481C7661EDF2AF7B5A /* OGAWebViewCleanupManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C4E38449D5386BBCF1367C6A /* OGAWebViewCleanupManager.h */; };
 		C4E383E062BE72C0D389BDB2 /* OGAAdExposureControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E38508C1B88F0E4B4E846B /* OGAAdExposureControllerTests.m */; };
@@ -1735,9 +1732,6 @@
 		58BDDA79288ECE1B000A4A12 /* OGADarwinNotificationStringFormatterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGADarwinNotificationStringFormatterTests.m; sourceTree = "<group>"; };
 		58D93AD129782CBE00086B3F /* OGAMonitoringEventFormatterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAMonitoringEventFormatterTests.m; sourceTree = "<group>"; };
 		58D93AD329793C4F00086B3F /* OGAMonitoringDispatcherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAMonitoringDispatcherTests.m; sourceTree = "<group>"; };
-		58DB921128996C4200C0D3DC /* OGALogFormatterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGALogFormatterTests.m; sourceTree = "<group>"; };
-		58DB921328996C4200C0D3DC /* OGAAdLogMessageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAAdLogMessageTests.m; sourceTree = "<group>"; };
-		58DB921428996C4200C0D3DC /* OGAMraidLogMessageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAMraidLogMessageTests.m; sourceTree = "<group>"; };
 		7351785C0D23E0F4B2FDF437 /* Pods_OguryAds_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OguryAds_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC9F752E5E24BC8668BC9D1 /* Pods-OguryAds-Release.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAds-Release.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryAds-Release/Pods-OguryAds-Release.release.xcconfig"; sourceTree = "<group>"; };
 		A337E0A385D3BA1434504215 /* Pods-OguryAds-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAds-art.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryAds-art/Pods-OguryAds-art.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3490,9 +3484,6 @@
 		58DB921028996C0200C0D3DC /* Format */ = {
 			isa = PBXGroup;
 			children = (
-				58DB921328996C4200C0D3DC /* OGAAdLogMessageTests.m */,
-				58DB921428996C4200C0D3DC /* OGAMraidLogMessageTests.m */,
-				58DB921128996C4200C0D3DC /* OGALogFormatterTests.m */,
 			);
 			path = Format;
 			sourceTree = "<group>";
@@ -5034,7 +5025,6 @@
 			files = (
 				58D93AD429793C4F00086B3F /* OGAMonitoringDispatcherTests.m in Sources */,
 				EDDC40DC2552BDD600A8BE51 /* OGAThumbnailAdContainerStateTests.m in Sources */,
-				58DB921828996C4200C0D3DC /* OGAMraidLogMessageTests.m in Sources */,
 				229BBF77256EB3CF00B9C26C /* OGAMraidDownloadHeaderBuilderTests.m in Sources */,
 				43C1D1512B7CC46B006F2D23 /* OGAMonitoringEventTestsHelper.m in Sources */,
 				EDD0538725E6A6FF002DD7EF /* OGAClosedAdContainerStateTests.m in Sources */,
@@ -5112,7 +5102,6 @@
 				ED556BA325CBF0F7000E42E5 /* OGAAdDisplayerUpdatePlacementInformationTests.m in Sources */,
 				229BBFA125710CDD00B9C26C /* OGAProfigDaoTests.m in Sources */,
 				22AF831425B1E3850034A3D9 /* OGAAdDisplayerUpdateCurrentPositionInformationTests.m in Sources */,
-				58DB921728996C4200C0D3DC /* OGAAdLogMessageTests.m in Sources */,
 				4316834329D5C5A60066932B /* OGAMonitoringDispatcherJSONTests.m in Sources */,
 				ED8BBE5A258CFC1100676EFA /* OGAAdDisplayerUpdateViewabilityInformationTests.m in Sources */,
 				22725B282571513E00097349 /* OGAProfigManagerTests.m in Sources */,
@@ -5131,7 +5120,6 @@
 				1E65E5F42A128EE300703FB0 /* OGASKOverlayStatesTests.m in Sources */,
 				ED646A91257A831E00005484 /* UIDevice+OrientationTests.m in Sources */,
 				1E65E5FA2A1E659600703FB0 /* OGACloseSKAdToCloseTransitionTests.m in Sources */,
-				58DB921528996C4200C0D3DC /* OGALogFormatterTests.m in Sources */,
 				228C65D525925BD20078759E /* OguryThumbnailAdTests.m in Sources */,
 				224A7AEA268E209C00031491 /* OGAThumbnailAdCachedPositionObjectTests.m in Sources */,
 				50D4FD912B56D753002289C7 /* OGAMonitoringEventPermissionHandlerTests.m in Sources */,
