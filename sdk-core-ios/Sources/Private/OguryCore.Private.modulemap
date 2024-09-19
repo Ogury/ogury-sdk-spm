@@ -6,5 +6,9 @@ framework module OguryCore {
     module Private {
        export *
        header "OGCInternal.h"
+       header "OguryLogMessage.h"
+       header "OguryLogType.h"
+       header "OguryLogFormatter.h"
+       header "OguryLogger.h"
     }
 }
