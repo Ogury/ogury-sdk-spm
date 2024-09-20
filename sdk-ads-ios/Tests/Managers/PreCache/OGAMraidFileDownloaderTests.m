@@ -54,8 +54,8 @@
     NSString *downloadURL = @"https://mraid.presage.io/ec9d014/mraid.js";
 
     OCMStub(self.ad.mraidDownloadUrl).andReturn(downloadURL);
-    OCMStub([self.monitoringDispatcher sendLoadEvent:OGALoadEventMraidRequest adConfiguration:[OCMArg any] details:[OCMArg any]]);
-    OCMStub([self.log logAd:OguryLogLevelDebug forAdConfiguration:[OCMArg any] message:[OCMArg any]]);
+    //    OCMStub([self.monitoringDispatcher sendLoadEvent:OGALoadEventMraidRequest adConfiguration:[OCMArg any] details:[OCMArg any]]);
+    //    OCMStub([self.log logAd:OguryLogLevelDebug forAdConfiguration:[OCMArg any] message:[OCMArg any]]);
 
     [self.mraidFileDownloader downloadMraidJSFromURL:self.ad
                                           completion:^(NSString *response, NSError *error) {
@@ -65,7 +65,7 @@
                                           }];
 
     OCMVerify([self.monitoringDispatcher sendLoadEvent:OGALoadEventMraidRequest adConfiguration:[OCMArg any] details:[OCMArg any]]);
-    OCMVerify([self.log logAd:OguryLogLevelDebug forAdConfiguration:[OCMArg any] message:[OCMArg any]]);
+    OCMVerify([self.log log:[OCMArg any]]);
     /*
      [self waitForExpectationsWithTimeout:50.0f handler:^(NSError * _Nullable error) {
      XCTAssertNotNil(responseBlock,"Should not be nil");
@@ -76,7 +76,7 @@
 - (void)testDownloadMraidInvalidUrl {
     XCTestExpectation *expect = [self expectationWithDescription:@"mraidFileDownloader"];
     OCMReject([self.monitoringDispatcher sendLoadEvent:OGALoadEventMraidRequest adConfiguration:[OCMArg any] details:[OCMArg any]]);
-    OCMReject([self.log logAd:OguryLogLevelDebug forAdConfiguration:[OCMArg any] message:[OCMArg any]]);
+    OCMReject([self.log log:[OCMArg any]]);
     NSString *downloadURL = nil;
     OCMStub(self.ad.mraidDownloadUrl).andReturn(downloadURL);
     [self.mraidFileDownloader downloadMraidJSFromURL:self.ad

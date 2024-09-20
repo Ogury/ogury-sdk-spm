@@ -130,7 +130,11 @@
     OCMStub([self.internal syncProfig]);
     [self.internal maxWebViewUserAgentRetryReached];
     OCMVerify([self.internal syncProfig]);
-    OCMVerify([self.log log:OguryLogLevelWarning message:@"Ogury Ads is unable to retreive webview User Agent."]);
+    OCMVerify([self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                                   adConfiguration:nil
+                                                           logType:OguryLogTypeInternal
+                                                           message:@"Ogury Ads is unable to retreive webview User Agent."
+                                                              tags:nil]]);
 }
 
 - (void)testReceivedWebViewUserAgent {

@@ -16,6 +16,21 @@
     }
     return self;
 }
+
+- (BOOL)isEqual:(id)object {
+    OguryLogTag *rhsTag = (OguryLogTag*)object;
+    if (rhsTag == nil) {
+        return NO;
+    }
+    if (![self.key isEqualToString:rhsTag.key]) {
+        return NO;
+    }
+    if ([self.value class] != [rhsTag.value class]) {
+        return NO;
+    }
+    return [self.value isEqual:rhsTag.value];
+}
+
 @end
 
 OguryLogSDK const OguryLogSDKCore = @"Core";

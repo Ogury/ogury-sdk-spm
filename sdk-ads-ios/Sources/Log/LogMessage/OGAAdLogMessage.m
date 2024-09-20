@@ -28,9 +28,9 @@ OguryLogType const OguryLogTypeDelegate = @"Callbacks";
         if (adConfiguration != nil) {
             [computeTags addObjectsFromArray:@[
                 [OguryLogTag tagWithKey:@"AdType"
-                                  value:[adConfiguration getAdTypeString]],
+                                  value:[adConfiguration getAdTypeString] ?: @""],
                 [OguryLogTag tagWithKey:@"AdUnitId"
-                                  value:adConfiguration.adUnitId],
+                                  value:adConfiguration.adUnitId ?: @""],
                 [OguryLogTag tagWithKey:@"CampaignId"
                                   value:adConfiguration.campaignId ?: @""]
             ]];
@@ -51,6 +51,22 @@ OguryLogType const OguryLogTypeDelegate = @"Callbacks";
                        logType:logType
                        message:message == nil ? logErrorMessage(error) : [logErrorMessage(error) stringByAppendingFormat:@" - %@", message]
                           tags:tags];
+}
+
+- (BOOL)isEqual:(id)object {
+    // clang-format off
+    OGAAdLogMessage *rhsMessage = (OGAAdLogMessage *)object;
+    if (rhsMessage == nil) {
+        return NO;
+    }
+    return self.level == rhsMessage.level
+    && [self.logType isEqualToString:rhsMessage.logType]
+    && ((self.origin == nil && rhsMessage.origin == nil) || [self.origin isEqualToString:rhsMessage.origin])
+    && [self.sdk isEqualToString:rhsMessage.sdk]
+    && ((self.tags == nil && rhsMessage.tags == nil) || [self.tags isEqualToArray:rhsMessage.tags])
+    && [self.message isEqualToString:rhsMessage.message]
+    && self.adConfiguration == rhsMessage.adConfiguration;
+    // clang-format on
 }
 
 @end

@@ -168,7 +168,12 @@ static NSString *const TestInstanceToken = @"TestInstanceToken";
     OCMStub(error.localizedDescription).andReturn(@"ERROR_TYPE : ERROR_MESSAGE");
     OGAProfigFullResponse *response = OCMClassMock([OGAProfigFullResponse class]);
     [self.profigManager onProfigResponse:response error:error completionBlocks:self.profigManager.waitingCompletionBlocks];
-    OCMVerify([self.log log:OguryLogLevelError message:@"[Setup] Failed to retrieved configuration (ERROR_TYPE : ERROR_MESSAGE)"]);
+    OGAAdLogMessage *message = [[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                      adConfiguration:nil
+                                                              logType:OguryLogTypePublisher
+                                                              message:@"[Setup] Failed to retrieved configuration (ERROR_TYPE : ERROR_MESSAGE)"
+                                                                 tags:nil];
+    OCMVerify([self.log log:message]);
 }
 
 - (void)testWhenProfigContainsErrorThenProfigIsSaved {
