@@ -110,6 +110,11 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
         configuration.webviewLoadTimeout = self.profigPersistence.profigFullResponse.webviewLoadTimeout;
     }
     if (configuration.isHeaderBidding) {
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                             adConfiguration:configuration
+                                                     logType:OguryLogTypeInternal
+                                                     message:@"AdSync with adMarkUp"
+                                                        tags:nil]];
         [self.monitoringDispatcher sendLoadEvent:OGALoadEventAdParseStarted adConfiguration:configuration];
         NSError *error = nil;
         NSDictionary *decodedAdMarkup = [NSDictionary ogaDecodeFromBase64:configuration.encodedAdMarkup error:&error];
@@ -144,7 +149,15 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
             return;
         }
     }
-    NSURLRequest *urlRequest = [self adSyncURLRequestForURL:self.environment.adSyncURL adConfiguration:configuration privacyConfiguration:privacyConfiguration];
+
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:configuration
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"AdSync requested"
+                                                    tags:nil]];
+    NSURLRequest *urlRequest = [self adSyncURLRequestForURL:self.environment.adSyncURL
+                                            adConfiguration:configuration
+                                       privacyConfiguration:privacyConfiguration];
     if (!urlRequest) {
         completionHandler(nil, nil);
         return;
@@ -191,12 +204,26 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
                                          error:(NSError *_Nullable)error
                              completionHandler:(void (^)(NSArray<OGAAd *> *ads, NSError *_Nullable error))completionHandler {
     if (((NSHTTPURLResponse *)response).statusCode == 204) {
-        completionHandler(nil, [OguryAdsError noFillFrom:adConfiguration.isHeaderBidding ? OguryAdsIntegrationTypeHeaderBidding : OguryAdsIntegrationTypeDirect]);
+        OguryAdsError *adError = [OguryAdsError noFillFrom:adConfiguration.isHeaderBidding
+                                                    ? OguryAdsIntegrationTypeHeaderBidding
+                                                    : OguryAdsIntegrationTypeDirect];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                             adConfiguration:adConfiguration
+                                                     logType:OguryLogTypeInternal
+                                                       error:adError
+                                                     message:nil
+                                                        tags:nil]];
+        completionHandler(nil, adError);
         return;
     }
 
     // these tracks are sent only if there is a parse (i.e. status 200, even if there is an error (i.e. parsing error in this case))
     if (((NSHTTPURLResponse *)response).statusCode == 200) {
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                             adConfiguration:adConfiguration
+                                                     logType:OguryLogTypeInternal
+                                                     message:@"AdSync response received"
+                                                        tags:nil]];
         [self.monitoringDispatcher sendLoadEvent:OGALoadEventLoadAdSyncResponseReceived adConfiguration:adConfiguration details:nil];
         [self.monitoringDispatcher sendLoadEvent:OGALoadEventAdParseStarted adConfiguration:adConfiguration];
     }
@@ -205,26 +232,65 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
         NSUInteger code = ((NSHTTPURLResponse *)response).statusCode ?: 200;
         switch (code) {
             case 400 ... 499:
-            case 500 ... 599:
-                completionHandler(nil, [OguryAdsError adRequestFailedWithCode:code]);
+            case 500 ... 599: {
+                OguryAdsError *adError = [OguryAdsError adRequestFailedWithCode:code];
+                [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                     adConfiguration:adConfiguration
+                                                             logType:OguryLogTypeRequests
+                                                               error:adError
+                                                             message:@"AdSync request Failed"
+                                                                tags:nil]];
+                completionHandler(nil, adError);
                 break;
+            }
 
-            default:
+            default: {
+                [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                     adConfiguration:adConfiguration
+                                                             logType:OguryLogTypeRequests
+                                                               error:error
+                                                             message:@"AdSync request Failed"
+                                                                tags:nil]];
                 completionHandler(nil, error);
                 break;
+            }
         }
         return;
     }
 
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:adConfiguration
+                                                 logType:OguryLogTypeRequests
+                                                 message:@"AdSync request succeed"
+                                                    tags:nil]];
     NSError *parseError;
-    NSArray<OGAAd *> *ads = [self parseAdsFromData:result adConfiguration:adConfiguration privacyConfiguration:privacyConfiguration error:&parseError];
+    NSArray<OGAAd *> *ads = [self parseAdsFromData:result
+                                   adConfiguration:adConfiguration
+                              privacyConfiguration:privacyConfiguration
+                                             error:&parseError];
     if (parseError) {
-        completionHandler(nil, [parseError isKindOfClass:[OguryError class]] ? parseError : [OguryAdsError adParsingFailedWithStackTrace:parseError.localizedDescription]);
+        OguryAdsError *adError = [parseError isKindOfClass:[OguryAdsError class]]
+        ? parseError
+        : [OguryAdsError adParsingFailedWithStackTrace:parseError.localizedDescription];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                             adConfiguration:adConfiguration
+                                                     logType:OguryLogTypeRequests
+                                                       error:adError
+                                                     message:@"AdSync parsing failed"
+                                                        tags:nil]];
+        completionHandler(nil, adError);
         return;
     }
 
     if (!ads) {
-        completionHandler(nil, [OguryAdsError adParsingFailedWithStackTrace:@"The ad's array is empty, that should not happen"]);
+        OguryAdsError *adError = [OguryAdsError adParsingFailedWithStackTrace:@"The ad's array is empty, that should not happen"];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                             adConfiguration:adConfiguration
+                                                     logType:OguryLogTypeRequests
+                                                       error:adError
+                                                     message:@"AdSync parsing failed"
+                                                        tags:nil]];
+        completionHandler(nil, adError);
         return;
     }
 
