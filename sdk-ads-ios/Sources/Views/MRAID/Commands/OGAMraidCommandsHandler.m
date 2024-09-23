@@ -256,8 +256,10 @@ static NSArray<NSString *> *commandsToHandleImmedialtely;
                                                                   webviewId:self.mraidWebView.webViewId
                                                                     message:@"openURL"
                                                                        tags:@[
-                                                                           [OguryLogTag tagWithKey:@"URL" value:customURL],
-                                                                           [OguryLogTag tagWithKey:@"Success" value:@(success)]
+                                                                           [OguryLogTag tagWithKey:@"URL"
+                                                                                             value:customURL],
+                                                                           [OguryLogTag tagWithKey:@"Success"
+                                                                                             value:@(success)]
                                                                        ]]];
                 }];
     } else {
@@ -266,7 +268,8 @@ static NSArray<NSString *> *commandsToHandleImmedialtely;
                                                       webviewId:self.mraidWebView.webViewId
                                                         message:@"openURL failed"
                                                            tags:@[
-                                                               [OguryLogTag tagWithKey:@"URL" value:customURL]
+                                                               [OguryLogTag tagWithKey:@"URL"
+                                                                                 value:customURL]
                                                            ]]];
     }
 }

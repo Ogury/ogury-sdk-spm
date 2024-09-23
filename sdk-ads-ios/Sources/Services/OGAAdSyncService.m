@@ -270,8 +270,8 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
                                              error:&parseError];
     if (parseError) {
         OguryAdsError *adError = [parseError isKindOfClass:[OguryAdsError class]]
-        ? parseError
-        : [OguryAdsError adParsingFailedWithStackTrace:parseError.localizedDescription];
+            ? parseError
+            : [OguryAdsError adParsingFailedWithStackTrace:parseError.localizedDescription];
         [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
                                              adConfiguration:adConfiguration
                                                      logType:OguryLogTypeRequests
