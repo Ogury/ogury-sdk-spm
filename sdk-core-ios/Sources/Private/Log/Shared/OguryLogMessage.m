@@ -70,4 +70,19 @@ OguryLogSDK const OguryLogSDKCore = @"Core";
     return self;
 }
 
+- (BOOL)isEqual:(id)object {
+    // clang-format off
+    OguryLogMessage *rhsMessage = (OguryLogMessage *)object;
+    if (rhsMessage == nil) {
+        return NO;
+    }
+    return self.level == rhsMessage.level
+    && [self.logType isEqualToString:rhsMessage.logType]
+    && ((self.origin == nil && rhsMessage.origin == nil) || [self.origin isEqualToString:rhsMessage.origin])
+    && [self.sdk isEqualToString:rhsMessage.sdk]
+    && ((self.tags == nil && rhsMessage.tags == nil) || [self.tags isEqualToArray:rhsMessage.tags])
+    && [self.message isEqualToString:rhsMessage.message];
+    // clang-format on
+}
+
 @end

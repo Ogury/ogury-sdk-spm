@@ -59,13 +59,7 @@ OguryLogType const OguryLogTypeDelegate = @"Callbacks";
     if (rhsMessage == nil) {
         return NO;
     }
-    return self.level == rhsMessage.level
-    && [self.logType isEqualToString:rhsMessage.logType]
-    && ((self.origin == nil && rhsMessage.origin == nil) || [self.origin isEqualToString:rhsMessage.origin])
-    && [self.sdk isEqualToString:rhsMessage.sdk]
-    && ((self.tags == nil && rhsMessage.tags == nil) || [self.tags isEqualToArray:rhsMessage.tags])
-    && [self.message isEqualToString:rhsMessage.message]
-    && self.adConfiguration == rhsMessage.adConfiguration;
+    return [super isEqual:rhsMessage] && self.adConfiguration == rhsMessage.adConfiguration;
     // clang-format on
 }
 

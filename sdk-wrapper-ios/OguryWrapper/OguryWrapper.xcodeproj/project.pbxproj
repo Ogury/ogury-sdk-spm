@@ -57,13 +57,7 @@
 		58BDDA90288FDB45000A4A12 /* OGWActivateLogNotificationManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BDDA8F288FDB45000A4A12 /* OGWActivateLogNotificationManagerTests.m */; };
 		58BDDA92288FDC1F000A4A12 /* OGWDarwinNotificationStringFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BDDA91288FDC1F000A4A12 /* OGWDarwinNotificationStringFormatterTests.m */; };
 		58D79EF728587AAF00E94E70 /* OGWLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D79EEB28587AAF00E94E70 /* OGWLog.h */; };
-		58D79EF828587AAF00E94E70 /* OGWLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D79EEC28587AAF00E94E70 /* OGWLogFormatter.m */; };
-		58D79EFA28587AAF00E94E70 /* OGWAssetKeyLogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D79EEF28587AAF00E94E70 /* OGWAssetKeyLogMessage.m */; };
-		58D79EFB28587AAF00E94E70 /* OGWAssetKeyLogMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D79EF028587AAF00E94E70 /* OGWAssetKeyLogMessage.h */; };
-		58D79EFD28587AAF00E94E70 /* OguryLog+Wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D79EF228587AAF00E94E70 /* OguryLog+Wrapper.m */; };
 		58D79EFE28587AAF00E94E70 /* OGWLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D79EF328587AAF00E94E70 /* OGWLog.m */; };
-		58D79F0028587AAF00E94E70 /* OGWLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D79EF528587AAF00E94E70 /* OGWLogFormatter.h */; };
-		58D79F0128587AAF00E94E70 /* OguryLog+Wrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D79EF628587AAF00E94E70 /* OguryLog+Wrapper.h */; };
 		58D79F05285892F900E94E70 /* OGWLogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D79F04285892F900E94E70 /* OGWLogTests.m */; };
 		A1FD0A11CC2688416E4436A5 /* Pods_OguryWrapper_OguryWrapperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2D0C46BDDC6F733C9CF0DB /* Pods_OguryWrapper_OguryWrapperTests.framework */; };
 		A990CEAAAB80C3A49FFFA417 /* Pods_OguryWrapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19053D2C619E7411C4691A80 /* Pods_OguryWrapper.framework */; };
@@ -138,13 +132,7 @@
 		58BDDA8F288FDB45000A4A12 /* OGWActivateLogNotificationManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGWActivateLogNotificationManagerTests.m; sourceTree = "<group>"; };
 		58BDDA91288FDC1F000A4A12 /* OGWDarwinNotificationStringFormatterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGWDarwinNotificationStringFormatterTests.m; sourceTree = "<group>"; };
 		58D79EEB28587AAF00E94E70 /* OGWLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGWLog.h; sourceTree = "<group>"; };
-		58D79EEC28587AAF00E94E70 /* OGWLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGWLogFormatter.m; sourceTree = "<group>"; };
-		58D79EEF28587AAF00E94E70 /* OGWAssetKeyLogMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGWAssetKeyLogMessage.m; sourceTree = "<group>"; };
-		58D79EF028587AAF00E94E70 /* OGWAssetKeyLogMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGWAssetKeyLogMessage.h; sourceTree = "<group>"; };
-		58D79EF228587AAF00E94E70 /* OguryLog+Wrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OguryLog+Wrapper.m"; sourceTree = "<group>"; };
 		58D79EF328587AAF00E94E70 /* OGWLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGWLog.m; sourceTree = "<group>"; };
-		58D79EF528587AAF00E94E70 /* OGWLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGWLogFormatter.h; sourceTree = "<group>"; };
-		58D79EF628587AAF00E94E70 /* OguryLog+Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OguryLog+Wrapper.h"; sourceTree = "<group>"; };
 		58D79F04285892F900E94E70 /* OGWLogTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGWLogTests.m; sourceTree = "<group>"; };
 		6043BB444A8A8562A998EA7F /* Pods-OguryWrapper-OguryWrapperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryWrapper-OguryWrapperTests.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryWrapper-OguryWrapperTests/Pods-OguryWrapper-OguryWrapperTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E7228C55F5A0E84014235C39 /* Pods-OguryWrapper-OguryWrapperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryWrapper-OguryWrapperTests.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryWrapper-OguryWrapperTests/Pods-OguryWrapper-OguryWrapperTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -366,24 +354,10 @@
 		58D79EEA28587AAF00E94E70 /* Log */ = {
 			isa = PBXGroup;
 			children = (
-				58D79EED28587AAF00E94E70 /* LogMessage */,
 				58D79EEB28587AAF00E94E70 /* OGWLog.h */,
 				58D79EF328587AAF00E94E70 /* OGWLog.m */,
-				58D79EF528587AAF00E94E70 /* OGWLogFormatter.h */,
-				58D79EEC28587AAF00E94E70 /* OGWLogFormatter.m */,
-				58D79EF628587AAF00E94E70 /* OguryLog+Wrapper.h */,
-				58D79EF228587AAF00E94E70 /* OguryLog+Wrapper.m */,
 			);
 			path = Log;
-			sourceTree = "<group>";
-		};
-		58D79EED28587AAF00E94E70 /* LogMessage */ = {
-			isa = PBXGroup;
-			children = (
-				58D79EEF28587AAF00E94E70 /* OGWAssetKeyLogMessage.m */,
-				58D79EF028587AAF00E94E70 /* OGWAssetKeyLogMessage.h */,
-			);
-			path = LogMessage;
 			sourceTree = "<group>";
 		};
 		CBDB22D73E61D29720B7696C /* Pods */ = {
@@ -415,10 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05FDDE23255AE37F000F4C8B /* Ogury.h in Headers */,
-				58D79EFB28587AAF00E94E70 /* OGWAssetKeyLogMessage.h in Headers */,
 				05FDDE24255AE37F000F4C8B /* OguryConfiguration.h in Headers */,
-				58D79F0028587AAF00E94E70 /* OGWLogFormatter.h in Headers */,
-				58D79F0128587AAF00E94E70 /* OguryLog+Wrapper.h in Headers */,
 				05FDDE25255AE37F000F4C8B /* OguryConfigurationBuilder.h in Headers */,
 				05FDDE2A255AE38C000F4C8B /* OguryConfigurationPrivate.h in Headers */,
 				351A1A168A09A89BCC2B8993 /* OGWModule.h in Headers */,
@@ -603,7 +574,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				05FDDE20255AE373000F4C8B /* Ogury.m in Sources */,
-				58D79EF828587AAF00E94E70 /* OGWLogFormatter.m in Sources */,
 				58BDDA8A288EE8FB000A4A12 /* OGWSetLogLevelNotificationManager.m in Sources */,
 				05FDDE21255AE373000F4C8B /* OguryConfiguration.m in Sources */,
 				05FDDE22255AE373000F4C8B /* OguryConfigurationBuilder.m in Sources */,
@@ -612,11 +582,9 @@
 				351A1FF36DFB8ECB8FB3B8B1 /* OGWWrapper.m in Sources */,
 				58BDDA8B288EE8FB000A4A12 /* OGWDarwinNotificationStringFormatter.m in Sources */,
 				351A1E62969980A058A39C10 /* OGWMonitoringInfo.m in Sources */,
-				58D79EFD28587AAF00E94E70 /* OguryLog+Wrapper.m in Sources */,
 				351A10BB6842547E12AD4FB4 /* OGWMonitoringInfoFetcher.m in Sources */,
 				351A173093D0478FACD5B24E /* OGWModules.m in Sources */,
 				351A1698A6C36E477451FAE6 /* OGWMonitoringInfoSender.m in Sources */,
-				58D79EFA28587AAF00E94E70 /* OGWAssetKeyLogMessage.m in Sources */,
 				351A1B6E10A0350E66BC31A5 /* OGWMonitoringInfoHeadersBuilder.m in Sources */,
 				58D79EFE28587AAF00E94E70 /* OGWLog.m in Sources */,
 				351A1B40894BAD165A3875A9 /* OGWMonitoringInfoSerializer.m in Sources */,

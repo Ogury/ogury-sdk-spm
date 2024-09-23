@@ -65,13 +65,15 @@ static int ogcMaxNumberOfConvertionValue = 63;
    int numberOfModulesPresent = 0;
    for (OGWModule *module in self.modules.modules) {
       if (module.isPresent) {
-         [[OGWLog shared] logAssetKeyFormat:OguryLogLevelDebug assetKey:configuration.assetKey format:@"Module [%@] initialization...", module.className];
+          [[OGWLog shared] log:OguryLogLevelDebug message:[NSString stringWithFormat:@"Module [%@] initialization...", module.className]];
          [module startWithAssetKey:configuration.assetKey];
          numberOfModulesPresent++;
       }
    }
    if (numberOfModulesPresent == 0) {
-      [[OGWLog shared] logAssetKey:OguryLogLevelError assetKey:configuration.assetKey message:@"No Ogury module found in your application. Make sure you have the -ObjC flag in your OTHER_LINKER_FLAGS build setting."];
+       [[OGWLog shared] log:OguryLogLevelDebug
+                    logType:OguryLogTypePublisher
+                    message:@"No Ogury module found in your application. Make sure you have the -ObjC flag in your OTHER_LINKER_FLAGS build setting."];
    }
 
    [self.monitoringInfoManager appendMonitoringInfoAndSendIfNecessary:configuration];
@@ -86,28 +88,31 @@ static int ogcMaxNumberOfConvertionValue = 63;
       }
    }
    if (numberOfModulesPresent == 0) {
-      [[OGWLog shared] logAssetKey:OguryLogLevelError assetKey:@"" message:@"SetLogLevel - No Ogury module found in your application. Make sure you have the -ObjC flag in your OTHER_LINKER_FLAGS build setting."];
+       [[OGWLog shared] log:OguryLogLevelDebug
+                    logType:OguryLogTypePublisher
+                    message:@"SetLogLevel - No Ogury module found in your application. Make sure you have the -ObjC flag in your OTHER_LINKER_FLAGS build setting."];
    }
 }
 
 - (void)registerAttributionForSKAdNetwork {
    NSInteger convertionValue = [self.userDefault integerForKey:ogcConvertionValueKey];
    if (convertionValue > ogcMaxNumberOfConvertionValue) {
-      [[OGWLog shared] logAssetKey:OguryLogLevelInfo assetKey:@"" message:@"Number of conversion Value maximun, It's not possible to register for SKAdNetwork anymore"];
+       [[OGWLog shared] log:OguryLogLevelDebug
+                    message:@"Number of conversion Value maximun, It's not possible to register for SKAdNetwork anymore"];
       return;
    }
    if (@available(iOS 15.4, *)) {
       [SKAdNetwork updatePostbackConversionValue:convertionValue
                                completionHandler:^(NSError *_Nullable error) {
                                  if (error != NULL) {
-                                    [[OGWLog shared] logAssetKey:OguryLogLevelError assetKey:@"" message:@"Error during updatePostbackConversionValue"];
+                                     [[OGWLog shared] log:OguryLogLevelDebug message:@"Error during updatePostbackConversionValue"];
                                  } else {
-                                    [[OGWLog shared] logAssetKey:OguryLogLevelDebug assetKey:@"" message:@"updatePostbackConversionValue Success"];
+                                     [[OGWLog shared] log:OguryLogLevelDebug message:@"updatePostbackConversionValue Success"];
                                  }
                                }];
    } else if (@available(iOS 14.0, *)) {
       [SKAdNetwork updateConversionValue:convertionValue];
-      [[OGWLog shared] logAssetKey:OguryLogLevelDebug assetKey:@"" message:@"updateConversionValue Success"];
+       [[OGWLog shared] log:OguryLogLevelDebug message:@"updateConversionValue Success"];
    }
    convertionValue++;
    [self.userDefault setInteger:convertionValue forKey:ogcConvertionValueKey];

@@ -110,7 +110,7 @@ NSInteger const OGWMonitoringInfoSenderErrorFailedToBuildRequest = 1;
    } else if ([OGWMonitoringInfoSenderDevcEnvironment isEqualToString:env]) {
       rawUrl = OGWMonitoringInfoSenderDevcURL;
    } else {
-      [[OGWLog shared] logFormat:OguryLogLevelError format:@"Failed to determine the url for environment '%@'.", env];
+       [[OGWLog shared] log:OguryLogLevelDebug message:[NSString stringWithFormat:@"Failed to determine the url for environment '%@'.", env]];
       return nil;
    }
    return [[NSURL alloc] initWithString:rawUrl];

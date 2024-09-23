@@ -47,7 +47,6 @@
    __block OGWMonitoringInfo *storedMonitoringInfo = [self createOrLoadMonitoringInfo];
    if (![storedMonitoringInfo containsAll:monitoringInfo]) {
       [storedMonitoringInfo putAll:monitoringInfo];
-      [[OGWLog shared] logAssetKeyFormat:OguryLogLevelDebug assetKey:configuration.assetKey format:@"Sending monitoring info to server: %@", storedMonitoringInfo.debugDescription];
       [self sendAndStoreMonitoringInfo:storedMonitoringInfo];
    }
 }
@@ -69,12 +68,10 @@
                       return;
                    }
                    if (error) {
-                      [[OGWLog shared] logError:error message:@"Failed to send monitoring info to server."];
                       return;
                    }
                    NSError *saveError;
                    if (![strongSelf.monitoringInfoStore save:monitoringInfo error:&saveError]) {
-                      [[OGWLog shared] logError:saveError message:@"Failed to store monitoring info to server."];
                    }
                  }];
 }

@@ -28,6 +28,12 @@ typedef NS_OPTIONS(NSUInteger, OguryLogDisplay) {
 
 - (nullable NSString *)formatLogMessage:(OguryLogMessage *)logMessage;
 - (nullable NSAttributedString *)formatAttributedLogMessage:(OguryLogMessage *)logMessage;
+// returns the attributed version of `str` depending on the `options` and if attributed attributes should be applied to brackets
+- (NSAttributedString *_Nonnull)attributedString:(NSString *)str
+                                          option:(OguryLogDisplay)option
+                                 includeBrackets:(BOOL)includeBrackets;
+// returns the attributes for an option
+- (NSDictionary<NSAttributedStringKey, id> *_Nullable)attributesFor:(OguryLogDisplay)option;
 
 NSString* levelAsString(OguryLogLevel level);
 @end
