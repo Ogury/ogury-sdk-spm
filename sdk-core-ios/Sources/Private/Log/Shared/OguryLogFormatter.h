@@ -8,12 +8,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_OPTIONS(NSUInteger, OguryLogDisplay) {
-    OguryLogDisplayDate      = 0,
-    OguryLogDisplaySDK       = 1 << 0,
-    OguryLogDisplayLevel     = 1 << 1,
-    OguryLogDisplayType      = 1 << 2,
-    OguryLogDisplayOrigin    = 1 << 3,
-    OguryLogDisplayTags      = 1 << 4
+    OguryLogDisplayDate      = 1 << 0,
+    OguryLogDisplaySDK       = 1 << 1,
+    OguryLogDisplayLevel     = 1 << 2,
+    OguryLogDisplayType      = 1 << 3,
+    OguryLogDisplayOrigin    = 1 << 4,
+    OguryLogDisplayTags      = 1 << 5
 };
 
 @class OguryLogMessage;
