@@ -11,11 +11,6 @@ public struct AdView: View {
     
     public var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-            ZStack {
-                if viewStore.showQALabelInput {
-                    Color.black.opacity(0.3).ignoresSafeArea()
-                }
-                
                 VStack(spacing:2) {
                     HStack(alignment: .center) {
                         if #available(iOS 16.0, *) {
@@ -213,7 +208,6 @@ public struct AdView: View {
                 }
                 .frame(minWidth: 280)
             .shadow(color: Color(AdColorPalette.Background.shadow.color), radius: 5, x: 0, y: 8)
-            }
         }
     }
     
