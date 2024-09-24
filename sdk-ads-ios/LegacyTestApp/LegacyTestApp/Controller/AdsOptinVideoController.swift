@@ -111,7 +111,7 @@ extension AdsOptinVideoController: OguryRewardedAdDelegate {
         LogsController.shared.addLogs("Opt-in video ad loaded.");
     }
 
-    func didFailOguryRewardedAdWithError(_ error: OguryError, for optinVideo: OguryRewardedAd) {
+    func didFailOguryRewardedAdWithError(_ error: OguryAdError, for optinVideo: OguryRewardedAd) {
         delegate?.didFail()
 
         LogsController.shared.addLogs(String(format: "Opt-in video ad failed with error code %ld: %@", error.code, error.localizedDescription));
@@ -131,7 +131,7 @@ extension AdsOptinVideoController: OguryRewardedAdDelegate {
         LogsController.shared.addLogs("Opt-in video ad closed.")
     }
 
-    func didRewardOguryRewardedAd(with item: OGARewardItem, for optinVideo: OguryRewardedAd) {
+    func didRewardOguryRewardedAd(with item: OguryRewardItem, for optinVideo: OguryRewardedAd) {
         LogsController.shared.addLogs("Opt-in video ad rewarded with \(item.rewardName) - value : \(item.rewardValue).")
     }
     

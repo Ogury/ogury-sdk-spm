@@ -2,8 +2,7 @@
 //  Copyright © 2020 Ogury Ltd. All rights reserved.
 //
 #import <Foundation/Foundation.h>
-#import <OguryCore/OguryError.h>
-#import "OguryAdsError.h"
+#import "OguryAdError.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)didLoadOguryThumbnailAd:(OguryThumbnailAd *)thumbnail;
 - (void)didClickOguryThumbnailAd:(OguryThumbnailAd *)thumbnail;
 - (void)didCloseOguryThumbnailAd:(OguryThumbnailAd *)thumbnail;
-- (void)didFailOguryThumbnailAdWithError:(OguryError *)error forAd:(OguryThumbnailAd *)thumbnail;
+- (void)didFailOguryThumbnailAdWithError:(OguryAdError *)error forAd:(OguryThumbnailAd *)thumbnail;
 - (void)didTriggerImpressionOguryThumbnailAd:(OguryThumbnailAd *)thumbnail;
 @end
 

@@ -10,7 +10,7 @@
 #import "OGATrackEvent.h"
 #import "OguryAdsError.h"
 #import "OguryError+utility.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 
 NSString *const TestAdIdentifier = @"ad-identifier";
 NSString *const TestMraidDownloadUrl = @"https://example.com/mraid.js";
@@ -190,12 +190,12 @@ NSString *const TestMraidDownloadUrl2 = @"https://example.com/mraid2.js";
     [self.manager downloadMraidScripts:ads
                      completionHandler:^(OguryError *error) {
                          completionHandlerCount++;
-                         XCTAssertEqualObjects(error, [OguryAdsError adPrecachingFailedWithStackTrace:@"Mraid download error"]);
+                         XCTAssertEqualObjects(error, [OguryAdError adPrecachingFailedWithStackTrace:@"Mraid download error"]);
                      }];
 
     OCMVerify([self.monitoringDispatcher sendLoadEvent:OGALoadEventLoadAdPrecache adConfiguration:[OCMArg any]]);
     MraidDownloadCompletionHandler completionHandler = completionHandlers[0];
-    completionHandler(TestMraidDownloadUrl, [OguryAdsError noAdLoaded]);
+    completionHandler(TestMraidDownloadUrl, [OguryAdError noAdLoaded]);
     XCTAssertEqual(completionHandlerCount, 1);
     OCMVerify([self.manager sendLoadedErrorEventsAfterFailingToDownload:TestMraidDownloadUrl ads:[OCMArg any]]);
 
@@ -238,7 +238,7 @@ NSString *const TestMraidDownloadUrl2 = @"https://example.com/mraid2.js";
     OGAAd *ad = OCMClassMock([OGAAd class]);
     OCMStub(ad.identifier).andReturn(TestAdIdentifier);
 
-    OguryError *error = [OguryAdsError makeError];
+    OguryError *error = [OguryAdError makeError];
     [self.manager sendLoadedErrorEventForAd:ad];
 
     __block OGATrackEvent *trackEvent;

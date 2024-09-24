@@ -89,7 +89,7 @@
 }
 
 - (void)testGenerateBidderTokenCampaignIdCreativeIdDspCreativeIdDspRegion {
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(YES);
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
     [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:YES instanceTokenEnabled:YES lowBatteryMode:YES];
     [self.tokenGenerator bidderTokenWithCampaignId:@"campaign"
                                         creativeId:@"creativeId"
@@ -110,7 +110,7 @@
 }
 
 - (void)testGenerateBidderTokenWithCampaignId {
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(YES);
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
     [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:YES instanceTokenEnabled:YES lowBatteryMode:YES];
     [self.tokenGenerator bidderTokenWithCampaignId:@"campaign"
                                         completion:^(NSString *_Nullable encodedBidderToken, NSError *_Nullable error) {
@@ -126,7 +126,7 @@
 }
 
 - (void)testWhenLowBatteryModeIsOnThenTrueIsSet {
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(YES);
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
     [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:YES instanceTokenEnabled:YES lowBatteryMode:YES];
     [self.tokenGenerator bidderToken:^(NSString *_Nullable encodedBidderToken, NSError *_Nullable error) {
         NSError *decodeError = nil;
@@ -180,19 +180,19 @@
 }
 
 - (void)testWhenAdAssetNotInitAndAdsDisabled {
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(NO);
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(NO);
     OCMStub([self.profigResponse adsEnabled]).andReturn(NO);
     XCTAssertNotNil([self.tokenGenerator tokenGenerationDenied]);
 }
 
 - (void)testWhenAdAssetInitAndAdsDisabled {
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(YES);
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
     OCMStub([self.profigResponse adsEnabled]).andReturn(NO);
     XCTAssertNotNil([self.tokenGenerator tokenGenerationDenied]);
 }
 
 - (void)testWhenAdAssetInitAndAdsEnabled {
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(YES);
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
     OCMStub([self.profigResponse adsEnabled]).andReturn(YES);
     XCTAssertNil([self.tokenGenerator tokenGenerationDenied]);
 }
@@ -244,7 +244,7 @@
 }
 
 - (void)testWhenAllPermissionsAreSetThenTokenEnvelopeIsValid {
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(YES);
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
     NSDictionary *token = [self fullyMockedTokenWithPermissions:[self fullPermissions] skanEnabled:YES];
     // App
     XCTAssertEqualObjects(token[@"app"][@"asset_key"], @"AssetKey");
@@ -274,7 +274,7 @@
 }
 
 - (void)testWhenNoPermissionsAreSetThenTokenEnvelopeIsValid {
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(YES);
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
     NSDictionary *token = [self fullyMockedTokenWithPermissions:OGAAdPrivacyPermissionAdTracking skanEnabled:YES];
     // App
     XCTAssertNotNil(token[@"app"][@"asset_key"]);
@@ -307,7 +307,7 @@
 }
 
 - (void)checkTokenWithPermissionMask:(NSUInteger)permission assertMessage:(NSString *)message {
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(YES);
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
     NSDictionary *token = [self fullyMockedTokenWithPermissions:permission skanEnabled:YES];
     if (permission & 1) {
         XCTAssertNotNil(token[@"device"][@"settings"][@"device_id"], @"%@", message);
@@ -471,7 +471,7 @@
     OCMStub([self.tokenGenerator tcfConsentString]).andReturn(@"tcfConsentString");
     NSDictionary *privacyDatas = @{@"us_optout" : @(YES), @"customKey" : @"customValue"};
     OCMStub([self.tokenGenerator privacyDatas]).andReturn(privacyDatas);
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(YES);
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
     [self mockDataWithPermissions:0 skanEnabled:NO assetKeyEnabled:NO instanceTokenEnabled:NO lowBatteryMode:NO];
     NSDictionary *token = [self.tokenGenerator computeBidderTokenDataWithCampaignId:nil creativeId:nil dspCreativeId:nil dspRegion:nil];
     XCTAssertNotNil(token[@"privacy_compliancy"][@"tcf"]);

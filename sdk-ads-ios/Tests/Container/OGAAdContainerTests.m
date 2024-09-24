@@ -6,7 +6,7 @@
 #import <OCMock/OCMock.h>
 #import "OGAAdContainer+Testing.h"
 #import "OguryAdsError.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAAdContainerTests : XCTestCase
 
@@ -91,7 +91,7 @@
 }
 
 - (void)testPerformAction_shouldNotPerform {
-    OguryError *delegateError = OCMClassMock([OguryAdsError class]);
+    OguryError *delegateError = OCMClassMock([OguryAdError class]);
     id<OGAAdContainerDelegate> delegate = OCMProtocolMock(@protocol(OGAAdContainerDelegate));
     OCMStub([delegate shouldTransitionTo:[OCMArg any] from:[OCMArg any] error:[OCMArg anyObjectRef]]).andDo(^(NSInvocation *invocation) {
                                                                                                          OguryError *__autoreleasing *errorPointer = nil;
@@ -107,7 +107,7 @@
 }
 
 - (void)testPerformAction_failedToDisplay {
-    OguryError *displayError = [OguryAdsError viewControllerPreventsAdFromBeingDisplayed];
+    OguryError *displayError = [OguryAdError viewControllerPreventsAdFromBeingDisplayed];
     OCMStub([self.transition performTransition:[OCMArg anyObjectRef]]).andDo(^(NSInvocation *invocation) {
                                                                           OguryError *__autoreleasing *errorPointer = nil;
                                                                           [invocation getArgument:&errorPointer atIndex:2];

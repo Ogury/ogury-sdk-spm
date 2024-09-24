@@ -191,7 +191,7 @@ struct AdViewFeature: Reducer {
         case resetReward
         case resetBanner
         case bannerReady(_: OguryBannerAd)
-        case rewardReady(_: OGARewardItem)
+        case rewardReady(_: OguryRewardItem)
         case thumbnailOptionsAction(_: ThumbnailOptionFeature.Action)
         case showOptionToggle
         case showAfterLoad

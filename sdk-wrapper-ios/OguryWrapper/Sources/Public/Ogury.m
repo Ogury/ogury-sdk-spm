@@ -22,7 +22,7 @@
    [[OGWLog shared] setLogLevel:logLevel];
 }
 
-+ (NSString *)getSdkVersion {
++ (NSString *)sdkVersion {
    return SDK_VERSION;
 }
 

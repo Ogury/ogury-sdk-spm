@@ -68,7 +68,7 @@
         _monitoringDispatcher = monitoringDispatcher;
         _log = log;
         _internal = internal;
-        @weakify(self) _configuration = [[OGAAdConfiguration alloc] initWithType:OguryAdsTypeOptinVideo
+        @weakify(self) _configuration = [[OGAAdConfiguration alloc] initWithType:OguryAdsTypeRewardedAd
                                                                         adUnitId:adUnitId
                                                               delegateDispatcher:_delegateDispatcher
                                                           viewControllerProvider:^UIViewController * {

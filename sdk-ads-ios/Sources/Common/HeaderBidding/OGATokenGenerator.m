@@ -21,7 +21,7 @@
 #import "OGAOMIDService.h"
 #import "OGAProfigDao.h"
 #import "OGADevice.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGATokenGenerator ()
 
@@ -64,12 +64,12 @@
 
 - (OguryError *_Nullable)tokenGenerationDenied {
     OguryError *error = nil;
-    if (![self.assetKeyManager checkAssetKeyIsValid:&error origin:OguryInternalAdsErrorOriginLoad]) {
-        return [OguryAdsError headerBiddingWithStacktrace:error.localizedDescription ?: @"Invalid Assetkey"];
+    if (![self.assetKeyManager checkAssetKeyIsValid:&error type:OguryAdErrorTypeLoad]) {
+        return [OguryAdError headerBiddingWithStacktrace:error.localizedDescription ?: @"Invalid Assetkey"];
     }
 
     if (!self.profigDao.profigFullResponse.adsEnabled) {
-        return [OguryAdsError headerBiddingWithStacktrace:[NSString stringWithFormat:@"Ads are disabled (%@)", self.profigDao.profigFullResponse.disablingReason ?: @"Unknown reason"]];
+        return [OguryAdError headerBiddingWithStacktrace:[NSString stringWithFormat:@"Ads are disabled (%@)", self.profigDao.profigFullResponse.disablingReason ?: @"Unknown reason"]];
     }
 
     return nil;
@@ -121,9 +121,9 @@
                                dspCreativeId:(NSString *_Nullable)dspCreativeId
                                    dspRegion:(NSString *_Nullable)dspRegion
                                   completion:(HeaderBiddingCompletionBlock)completion {
-    OguryError *denied = [self tokenGenerationDenied];
-    if (denied != nil) {
-        completion(nil, denied);
+    OguryError *deniedError = [self tokenGenerationDenied];
+    if (deniedError != nil) {
+        completion(nil, deniedError);
         return;
     }
     completion([[self computeBidderTokenDataWithCampaignId:campaignId

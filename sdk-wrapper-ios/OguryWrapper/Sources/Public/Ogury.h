@@ -19,7 +19,7 @@ typedef void (^SetupCompletionBlock)(BOOL success, OguryError * _Nullable error)
 
 + (void)setLogLevel:(OguryLogLevel)logLevel;
 
-+ (NSString *)getSdkVersion;
++ (NSString *)sdkVersion;
 
 + (void)registerAttributionForSKAdNetwork;
 

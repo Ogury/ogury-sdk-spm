@@ -69,7 +69,7 @@ public enum AdLifeCycleEvent {
    case adDidFailToDisplay(_: Error)
    case adDidFail(_: Error)
    case bannerReady(_: OguryBannerAd)
-   case rewardReady(_: OGARewardItem)
+   case rewardReady(_: OguryRewardItem)
 }
 
 public struct AdLifeCycleEventHistory {

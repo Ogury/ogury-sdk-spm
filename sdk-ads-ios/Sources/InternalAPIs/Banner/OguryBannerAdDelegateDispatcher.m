@@ -29,7 +29,7 @@
     self.hasSentDisplayedDelegate = NO;
 }
 
-- (void)failedWithError:(OguryError *)error {
+- (void)failedWithError:(OguryAdError *)error {
     [self.log logErrorFormat:error format:@"[banner][%@] calldback failed with error called", self.banner.adUnitId];
 
     if ([self.delegate respondsToSelector:@selector(didFailOguryBannerAdWithError:forAd:)]) {

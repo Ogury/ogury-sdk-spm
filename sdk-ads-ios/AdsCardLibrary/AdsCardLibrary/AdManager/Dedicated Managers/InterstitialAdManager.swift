@@ -179,7 +179,7 @@ internal class InterstitialProxyDelegate: AdDelegateProxy<InterstitialAdManager>
       adManager.append(.adClosed)
    }
    
-   func didFailOguryInterstitialAdWithError(_ error: OguryError, for interstitial: OguryInterstitialAd) {
+   func didFailOguryInterstitialAdWithError(_ error: OguryAdError, for interstitial: OguryInterstitialAd) {
       handle(error, for: interstitial)
    }
    

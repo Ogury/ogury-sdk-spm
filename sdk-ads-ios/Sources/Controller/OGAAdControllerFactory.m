@@ -74,7 +74,7 @@
 - (void)addTransitionsForAd:(OGAAd *)ad configuration:(OGAAdConfiguration *)configuration builder:(OGAAdContainerBuilder *)builder {
     switch (configuration.adType) {
         case OguryAdsTypeInterstitial:
-        case OguryAdsTypeOptinVideo:
+        case OguryAdsTypeRewardedAd:
             [self addTransitionsForFullscreenAd:ad configuration:configuration builder:builder];
             break;
         case OguryAdsTypeBanner: {

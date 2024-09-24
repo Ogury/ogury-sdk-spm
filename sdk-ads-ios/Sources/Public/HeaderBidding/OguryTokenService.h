@@ -3,10 +3,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <OguryCore/OguryError.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^HeaderBiddingCompletionBlock)(NSString *_Nullable token, NSError *_Nullable error);
+typedef void (^HeaderBiddingCompletionBlock)(NSString *_Nullable token, OguryError *_Nullable error);
 
 @interface OguryTokenService : NSObject
 

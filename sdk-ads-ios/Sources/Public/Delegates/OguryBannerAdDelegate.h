@@ -3,8 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <OguryCore/OguryError.h>
-#import "OguryAdsError.h"
+#import "OguryAdError.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)didLoadOguryBannerAd:(OguryBannerAd *)banner;
 - (void)didClickOguryBannerAd:(OguryBannerAd *)banner;
 - (void)didCloseOguryBannerAd:(OguryBannerAd *)banner;
-- (void)didFailOguryBannerAdWithError:(OguryError *)error forAd:(OguryBannerAd *)banner;
+- (void)didFailOguryBannerAdWithError:(OguryAdError *)error forAd:(OguryBannerAd *)banner;
 - (void)didTriggerImpressionOguryBannerAd:(OguryBannerAd *)banner;
 - (UIViewController *_Nullable)presentingViewControllerForOguryAdsBannerAd:(OguryBannerAd *)banner;
 @end

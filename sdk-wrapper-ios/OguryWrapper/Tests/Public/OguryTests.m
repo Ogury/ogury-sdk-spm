@@ -51,8 +51,8 @@
     OCMVerifyAll(self.mockOGWLog);
 }
 
-- (void)testGetSdkVersion {
-    XCTAssertEqual([Ogury getSdkVersion], SDK_VERSION);
+- (void)testSdkVersion {
+    XCTAssertEqual([Ogury sdkVersion], SDK_VERSION);
 }
 
 - (void)testRegisterAttributionForSKAdNetwork {

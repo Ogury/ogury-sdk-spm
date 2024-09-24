@@ -142,7 +142,7 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
         }
         case OguryAdsTypeThumbnailAd:
             return OGAAdConfigurationAdTypeThumbnailAd;
-        case OguryAdsTypeOptinVideo:
+        case OguryAdsTypeRewardedAd:
             return OGAAdConfigurationAdTypeRewarded;
         case OguryAdsTypeInterstitial:
             return OGAAdConfigurationAdTypeInterstitial;

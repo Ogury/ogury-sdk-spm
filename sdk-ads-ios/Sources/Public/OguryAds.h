@@ -4,9 +4,9 @@
 #import "OguryRewardedAd.h"
 #import "OguryBannerAd.h"
 #import "OguryThumbnailAd.h"
-#import "OGARewardItem.h"
+#import "OguryRewardItem.h"
 #import "OguryTokenService.h"
-#import "OguryAdsError.h"
+#import "OguryAdError.h"
 
 typedef void (^SetupCompletionBlock)(BOOL success, NSError *error);
 

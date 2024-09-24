@@ -100,7 +100,7 @@ NSString *const OGAEncodedAdMarkup = @"encoded-adMarkup";
 }
 
 - (void)testGetAdTypeString_RewardedAd {
-    OGAAdConfiguration *configuration = [[OGAAdConfiguration alloc] initWithType:OguryAdsTypeOptinVideo adUnitId:OGAAdConfigurationTestsAdUnitId delegateDispatcher:self.delegateDispatcher viewControllerProvider:nil viewProvider:nil];
+    OGAAdConfiguration *configuration = [[OGAAdConfiguration alloc] initWithType:OguryAdsTypeRewardedAd adUnitId:OGAAdConfigurationTestsAdUnitId delegateDispatcher:self.delegateDispatcher viewControllerProvider:nil viewProvider:nil];
 
     XCTAssertEqualObjects(configuration.getAdTypeString, @"optin_video");
 }

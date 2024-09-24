@@ -211,7 +211,7 @@ internal class MrecProxyDelegate: AdDelegateProxy<BannerAdManager>, OguryBannerA
       adManager.append(.adClosed)
    }
    
-   func didFailOguryBannerAdWithError(_ error: OguryError, for banner: OguryBannerAd) {
+   func didFailOguryBannerAdWithError(_ error: OguryAdError, for banner: OguryBannerAd) {
       handle(error, for: banner)
    }
    
