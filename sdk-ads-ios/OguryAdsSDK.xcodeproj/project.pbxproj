@@ -916,7 +916,7 @@
 		43A9F4742C37E6B40085EF6F /* OGASKAdNetworkResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = C99E2476290685F200480E3F /* OGASKAdNetworkResponse.h */; };
 		43A9F4752C37E6B40085EF6F /* OGAJavascriptCommandExecutor.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A1C269A6BC93BF3B460C8 /* OGAJavascriptCommandExecutor.h */; };
 		43A9F4762C37E6B40085EF6F /* OGASizeSafeAreaController.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A11A318F23857CA39D729 /* OGASizeSafeAreaController.h */; };
-		43A9F4772C37E6B40085EF6F /* OGAAdLogMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = ED3F885E27216546007C6A6D /* OGAAdLogMessage.h */; };
+		43A9F4772C37E6B40085EF6F /* OGAAdLogMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = ED3F885E27216546007C6A6D /* OGAAdLogMessage.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		43A9F4782C37E6B40085EF6F /* OGASafeAreaDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A148DBE1B04E7822C458C /* OGASafeAreaDelegate.h */; };
 		43A9F4792C37E6B40085EF6F /* OGAMetricsRequestBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A128E27969FFFD2C1E6D4 /* OGAMetricsRequestBuilder.h */; };
 		43A9F47A2C37E6B40085EF6F /* OGAMetricsService.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A1E8C1579F7783E9859D7 /* OGAMetricsService.h */; };
@@ -1051,7 +1051,7 @@
 		ED0DD8E025ECE51B000FB0C6 /* OGAIsExpiredChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0DD8DE25ECE51B000FB0C6 /* OGAIsExpiredChecker.m */; };
 		ED1D2ED12551628700D874FE /* OGAAdManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1D2ED02551628700D874FE /* OGAAdManagerTests.m */; };
 		ED360EB0274E78F50072A1E8 /* OGAAdLandingPagePrefetcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED360EAF274E78F50072A1E8 /* OGAAdLandingPagePrefetcherTests.m */; };
-		ED3F886027216546007C6A6D /* OGAAdLogMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = ED3F885E27216546007C6A6D /* OGAAdLogMessage.h */; };
+		ED3F886027216546007C6A6D /* OGAAdLogMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = ED3F885E27216546007C6A6D /* OGAAdLogMessage.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		ED3F886127216546007C6A6D /* OGAAdLogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = ED3F885F27216546007C6A6D /* OGAAdLogMessage.m */; };
 		ED3F887027219893007C6A6D /* OGALog.h in Headers */ = {isa = PBXBuildFile; fileRef = ED3F886E27219893007C6A6D /* OGALog.h */; };
 		ED3F887127219893007C6A6D /* OGALog.m in Sources */ = {isa = PBXBuildFile; fileRef = ED3F886F27219893007C6A6D /* OGALog.m */; };

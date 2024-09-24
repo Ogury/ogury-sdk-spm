@@ -5,6 +5,7 @@
 #import <Foundation/Foundation.h>
 #import <OguryCore/OguryLog.h>
 #import <OguryAds/OguryAds.h>
+#import <OguryAds/OGAAdLogMessage.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

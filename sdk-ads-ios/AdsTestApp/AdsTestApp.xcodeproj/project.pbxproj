@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -473,6 +473,10 @@
 		FFF9A770567053190890F99A /* Pods-AdsTestApp-Release-Staging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Release-Staging.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Release-Staging/Pods-AdsTestApp-Release-Staging.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		43BE10492CA30F3B00FF0467 /* Logs */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Logs; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		434F84CC2ACFE4FE005077F5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -819,6 +823,7 @@
 		43F788BC2B4EDDC60022157E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				43BE10492CA30F3B00FF0467 /* Logs */,
 				43B713E52B4D54A2007C8D21 /* Consent */,
 				43F788BD2B4EDDDD0022157E /* Module */,
 				43AE85D62B5017720010C812 /* Settings */,
@@ -892,6 +897,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				43BE10492CA30F3B00FF0467 /* Logs */,
+			);
 			name = "AdsTestApp-Staging";
 			packageProductDependencies = (
 				1E5BE6282B21CD040010B995 /* SnapKit */,
@@ -917,6 +925,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				43BE10492CA30F3B00FF0467 /* Logs */,
 			);
 			name = "AdsTestApp-Prod";
 			packageProductDependencies = (
@@ -944,6 +955,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				43BE10492CA30F3B00FF0467 /* Logs */,
+			);
 			name = "AdsTestApp-Devc";
 			packageProductDependencies = (
 				1E5BE62C2B21CD0E0010B995 /* SnapKit */,
@@ -969,6 +983,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				43BE10492CA30F3B00FF0467 /* Logs */,
 			);
 			name = "AdsTestApp-Devc-art";
 			packageProductDependencies = (
@@ -996,6 +1013,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				43BE10492CA30F3B00FF0467 /* Logs */,
+			);
 			name = "AdsTestApp-Staging-art";
 			packageProductDependencies = (
 				43BCB0D72C22DD59002FB0B1 /* SnapKit */,
@@ -1021,6 +1041,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				43BE10492CA30F3B00FF0467 /* Logs */,
 			);
 			name = "AdsTestApp-Prod-art";
 			packageProductDependencies = (
