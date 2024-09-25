@@ -65,6 +65,10 @@ NSString *logErrorMessage(NSError *error) {
     [self.oguryLog addLogger:logger];
 }
 
+- (void)removeLogger:(id<OguryLogger>)logger {
+    [self.oguryLog removeLogger:logger];
+}
+
 - (void)log:(OGAAdLogMessage *)message {
     [self.oguryLog logMessage:message];
 }

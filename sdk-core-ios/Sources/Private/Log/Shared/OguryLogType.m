@@ -4,8 +4,8 @@
 
 #import "OguryLogType.h"
 
-OguryLogType const OguryLogTypePublisher = @"OguryLogTypePublisher";
-OguryLogType const OguryLogTypeRequests = @"OguryLogTypeRequests";
-OguryLogType const OguryLogTypeInternal = @"OguryLogTypeInternal";
-OguryLogType const OguryLogTypeAll = @"OguryLogTypeAll";
+OguryLogType const OguryLogTypePublisher = @"Publisher";
+OguryLogType const OguryLogTypeRequests = @"Requests";
+OguryLogType const OguryLogTypeInternal = @"Internal";
+OguryLogType const OguryLogTypeAll = @"All";
 

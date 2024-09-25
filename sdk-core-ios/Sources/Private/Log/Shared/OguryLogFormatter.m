@@ -11,11 +11,14 @@
 @synthesize displayOptions;
 
 - (instancetype)init {
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateStyle:NSDateFormatterMediumStyle];
+    [df setTimeStyle:NSDateFormatterMediumStyle];
     return [self initWithOptions:OguryLogDisplaySDK | OguryLogDisplayOrigin | OguryLogDisplayType | OguryLogDisplayLevel
-            dateFormatter:[[NSDateFormatter alloc] init]];
+            dateFormatter:df];
 }
 
-- (instancetype)initWithOptions:(OguryLogDisplay)options dateFormatter:(NSDateFormatter *_Nullable)dateFormatter {
+- (instancetype)initWithOptions:(OguryLogDisplay)options dateFormatter:(NSDateFormatter *_Nonnull)dateFormatter {
     if (self = [super init]) {
         displayOptions = options;
         self.dateFormatter = dateFormatter;
@@ -63,7 +66,7 @@ NSString* levelAsString(OguryLogLevel level) {
                                            originalMessage:logMessage]];
     }
     if (displayOptions & OguryLogDisplayType) {
-        NSString *logStr = [NSString stringWithFormat:@"[%@]", [self loggableType:logMessage.logType]];
+        NSString *logStr = [NSString stringWithFormat:@"[%@]", logMessage.logType];
         [log appendAttributedString:[self attributedString:logStr
                                                     option:OguryLogDisplayType
                                            includeBrackets:NO
@@ -88,6 +91,12 @@ NSString* levelAsString(OguryLogLevel level) {
                                            includeBrackets:NO
                                            originalMessage:logMessage]];
     }
+    
+    // main message
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:logMessage.message];
+    [attr addAttributes:[self attributesForMessage] range:NSMakeRange(0, attr.string.length)];
+    [log appendAttributedString:attr];
+    
     return log;
 }
 
@@ -99,19 +108,6 @@ NSString* levelAsString(OguryLogLevel level) {
     NSRange range = includeBrackets ? NSMakeRange(0, str.length) : NSMakeRange(1, str.length-2);
     [attr addAttributes:[self attributesFor:option originalMessage:logMessage] range:range];
     return attr;
-}
-
-- (NSString *_Nullable)loggableType:(OguryLogType)logType {
-    if ([logType isEqualToString:OguryLogTypeAll]) {
-        return @"All";
-    } else if ([logType isEqualToString:OguryLogTypeInternal]) {
-        return @"Internal";
-    } else if ([logType isEqualToString:OguryLogTypeRequests]) {
-        return @"Request";
-    } else if ([logType isEqualToString:OguryLogTypePublisher]) {
-        return @"Publisher";
-    }
-    return nil;
 }
 
 - (NSDictionary<NSAttributedStringKey, id> *_Nullable)attributesFor:(OguryLogDisplay)option originalMessage:(OguryLogMessage *)logMessage {
@@ -140,6 +136,10 @@ NSString* levelAsString(OguryLogLevel level) {
             return nil;
             break;
     }
+}
+
+- (NSDictionary<NSAttributedStringKey, id> *_Nullable)attributesForMessage {
+    return @{ NSFontAttributeName : [UIFont systemFontOfSize:12] };
 }
 
 @end

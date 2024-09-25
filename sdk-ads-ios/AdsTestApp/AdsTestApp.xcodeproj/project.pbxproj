@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -100,6 +100,12 @@
 		438ED4202AA5D0C300486AF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41F2AA5D0C300486AF2 /* Assets.xcassets */; };
 		438ED4232AA5D0C300486AF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
 		438ED42B2AA5D0E100486AF2 /* AdSdkLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED42A2AA5D0E100486AF2 /* AdSdkLauncher.swift */; };
+		4394F73F2CA3F4B2001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogger.swift */; };
+		4394F7402CA3F4B2001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogger.swift */; };
+		4394F7412CA3F4B2001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogger.swift */; };
+		4394F7422CA3F4B2001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogger.swift */; };
+		4394F7432CA3F4B2001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogger.swift */; };
+		4394F7442CA3F4B2001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogger.swift */; };
 		43AE85D82B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
 		43AE85D92B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
 		43AE85DA2B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
@@ -423,6 +429,7 @@
 		438ED4242AA5D0C300486AF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		438ED42A2AA5D0E100486AF2 /* AdSdkLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdSdkLauncher.swift; sourceTree = "<group>"; };
 		438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OMSDK_Ogury.xcframework; path = ../OMSDK_Ogury.xcframework; sourceTree = "<group>"; };
+		4394F73E2CA3F4B2001086FE /* TestAppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAppLogger.swift; sourceTree = "<group>"; };
 		43AE85C72B4FD19C0010C812 /* OguryChoiceManager.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = OguryChoiceManager.xcframework; sourceTree = "<group>"; };
 		43AE85CF2B4FD28C0010C812 /* OguryCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OguryCore.xcframework; path = ../Pods/OguryCore/OguryCore.xcframework; sourceTree = "<group>"; };
 		43AE85D72B5017860010C812 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -472,10 +479,6 @@
 		F6AFD8E97E1CBEEDAF2058CD /* Pods-AdsTestApp-Staging-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Staging-art.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art.release.xcconfig"; sourceTree = "<group>"; };
 		FFF9A770567053190890F99A /* Pods-AdsTestApp-Release-Staging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Release-Staging.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Release-Staging/Pods-AdsTestApp-Release-Staging.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		43BE10492CA30F3B00FF0467 /* Logs */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Logs; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		434F84CC2ACFE4FE005077F5 /* Frameworks */ = {
@@ -793,6 +796,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4394F7232CA3F391001086FE /* Logs */ = {
+			isa = PBXGroup;
+			children = (
+				4394F73E2CA3F4B2001086FE /* TestAppLogger.swift */,
+			);
+			path = Logs;
+			sourceTree = "<group>";
+		};
 		43AE85D62B5017720010C812 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -823,7 +834,7 @@
 		43F788BC2B4EDDC60022157E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				43BE10492CA30F3B00FF0467 /* Logs */,
+				4394F7232CA3F391001086FE /* Logs */,
 				43B713E52B4D54A2007C8D21 /* Consent */,
 				43F788BD2B4EDDDD0022157E /* Module */,
 				43AE85D62B5017720010C812 /* Settings */,
@@ -897,9 +908,6 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				43BE10492CA30F3B00FF0467 /* Logs */,
-			);
 			name = "AdsTestApp-Staging";
 			packageProductDependencies = (
 				1E5BE6282B21CD040010B995 /* SnapKit */,
@@ -925,9 +933,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				43BE10492CA30F3B00FF0467 /* Logs */,
 			);
 			name = "AdsTestApp-Prod";
 			packageProductDependencies = (
@@ -955,9 +960,6 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				43BE10492CA30F3B00FF0467 /* Logs */,
-			);
 			name = "AdsTestApp-Devc";
 			packageProductDependencies = (
 				1E5BE62C2B21CD0E0010B995 /* SnapKit */,
@@ -983,9 +985,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				43BE10492CA30F3B00FF0467 /* Logs */,
 			);
 			name = "AdsTestApp-Devc-art";
 			packageProductDependencies = (
@@ -1013,9 +1012,6 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				43BE10492CA30F3B00FF0467 /* Logs */,
-			);
 			name = "AdsTestApp-Staging-art";
 			packageProductDependencies = (
 				43BCB0D72C22DD59002FB0B1 /* SnapKit */,
@@ -1041,9 +1037,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				43BE10492CA30F3B00FF0467 /* Logs */,
 			);
 			name = "AdsTestApp-Prod-art";
 			packageProductDependencies = (
@@ -1458,6 +1451,7 @@
 				43B713E82B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
 				434F84C42ACFE4FE005077F5 /* AppDelegate.swift in Sources */,
 				43B714092B4D6075007C8D21 /* HeaderBiddingExt.swift in Sources */,
+				4394F7412CA3F4B2001086FE /* TestAppLogger.swift in Sources */,
 				43AE85D92B5017860010C812 /* SettingsController.swift in Sources */,
 				434F84C52ACFE4FE005077F5 /* AppSettingsView.swift in Sources */,
 				434F84C62ACFE4FE005077F5 /* SceneDelegate.swift in Sources */,
@@ -1495,6 +1489,7 @@
 				43B713E92B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
 				434F84E02ACFE50A005077F5 /* AppDelegate.swift in Sources */,
 				43B7140A2B4D6075007C8D21 /* HeaderBiddingExt.swift in Sources */,
+				4394F7432CA3F4B2001086FE /* TestAppLogger.swift in Sources */,
 				43AE85DA2B5017860010C812 /* SettingsController.swift in Sources */,
 				434F84E12ACFE50A005077F5 /* AppSettingsView.swift in Sources */,
 				434F84E22ACFE50A005077F5 /* SceneDelegate.swift in Sources */,
@@ -1532,6 +1527,7 @@
 				43B713E72B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
 				438ED4172AA5D0C200486AF2 /* AppDelegate.swift in Sources */,
 				43B714082B4D6075007C8D21 /* HeaderBiddingExt.swift in Sources */,
+				4394F7442CA3F4B2001086FE /* TestAppLogger.swift in Sources */,
 				43AE85D82B5017860010C812 /* SettingsController.swift in Sources */,
 				434F84AA2AC2DF0C005077F5 /* AppSettingsView.swift in Sources */,
 				438ED4192AA5D0C200486AF2 /* SceneDelegate.swift in Sources */,
@@ -1569,6 +1565,7 @@
 				43BCB0AB2C22DD45002FB0B1 /* ConsentManager.swift in Sources */,
 				43BCB0AC2C22DD45002FB0B1 /* AppDelegate.swift in Sources */,
 				43BCB0AD2C22DD45002FB0B1 /* HeaderBiddingExt.swift in Sources */,
+				4394F7402CA3F4B2001086FE /* TestAppLogger.swift in Sources */,
 				43BCB0AE2C22DD45002FB0B1 /* SettingsController.swift in Sources */,
 				43BCB0AF2C22DD45002FB0B1 /* AppSettingsView.swift in Sources */,
 				43BCB0B02C22DD45002FB0B1 /* SceneDelegate.swift in Sources */,
@@ -1606,6 +1603,7 @@
 				43BCB0EE2C22DD59002FB0B1 /* ConsentManager.swift in Sources */,
 				43BCB0EF2C22DD59002FB0B1 /* AppDelegate.swift in Sources */,
 				43BCB0F02C22DD59002FB0B1 /* HeaderBiddingExt.swift in Sources */,
+				4394F7422CA3F4B2001086FE /* TestAppLogger.swift in Sources */,
 				43BCB0F12C22DD59002FB0B1 /* SettingsController.swift in Sources */,
 				43BCB0F22C22DD59002FB0B1 /* AppSettingsView.swift in Sources */,
 				43BCB0F32C22DD59002FB0B1 /* SceneDelegate.swift in Sources */,
@@ -1643,6 +1641,7 @@
 				43BCB1312C22DD60002FB0B1 /* ConsentManager.swift in Sources */,
 				43BCB1322C22DD60002FB0B1 /* AppDelegate.swift in Sources */,
 				43BCB1332C22DD60002FB0B1 /* HeaderBiddingExt.swift in Sources */,
+				4394F73F2CA3F4B2001086FE /* TestAppLogger.swift in Sources */,
 				43BCB1342C22DD60002FB0B1 /* SettingsController.swift in Sources */,
 				43BCB1352C22DD60002FB0B1 /* AppSettingsView.swift in Sources */,
 				43BCB1362C22DD60002FB0B1 /* SceneDelegate.swift in Sources */,

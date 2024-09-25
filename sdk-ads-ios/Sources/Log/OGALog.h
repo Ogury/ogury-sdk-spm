@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Management
 - (void)setLogLevel:(OguryLogLevel)logLevel;
 - (void)addLogger:(id<OguryLogger>)logger;
+- (void)removeLogger:(id<OguryLogger>)logger;
 
 #pragma mark - Logs
 - (void)log:(OguryLogMessage *)message;

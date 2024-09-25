@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)startWithAssetKey:(NSString *)assetKey;
 - (void)setLogLevel:(OguryLogLevel)logLevel;
 - (void)addLogger:(id<OguryLogger>)logger;
+- (void)removeLogger:(id<OguryLogger>)logger;
 - (NSString *)getVersion;
 - (NSString *)getBuildVersion;
 - (void)defineSDKType:(NSUInteger)sdkType;

@@ -9,7 +9,7 @@ import OguryAds.Private
 
 struct AdSdkLauncher {
     static let shared = AdSdkLauncher()
-    let adsCardLogger = AdsCardLogger()
+    let logger = TestAppLogger()
     
     private init() {}
     
@@ -21,7 +21,6 @@ struct AdSdkLauncher {
         if SettingsController().startSDKWithApplication || forceStart {
             forceAdsEnvironment()
             startModule(from: "OGAInternal")
-            OGAInternal.shared().add(adsCardLogger)
         }
     }
     
