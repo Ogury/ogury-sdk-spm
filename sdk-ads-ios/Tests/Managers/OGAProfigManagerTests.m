@@ -5,6 +5,7 @@
 #import <XCTest/XCTest.h>
 
 #import <OCMock/OCMock.h>
+#import <OguryAds/OGAAdLogMessage.h>
 #import "OGAProfigManager+Testing.h"
 #import "OGAAdIdentifierService.h"
 #import "OGALog.h"
