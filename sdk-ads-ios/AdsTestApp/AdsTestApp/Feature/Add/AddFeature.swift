@@ -7,39 +7,6 @@ import SwiftUI
 import ComposableArchitecture
 import AdsCardLibrary
 
-internal protocol TypeErasing {
-    var underlyingValue: Any { get }
-}
-
-private struct TypeEraser<V: AdManager>: TypeErasing {
-    let orinal: AdType<V>
-    var underlyingValue: Any {
-        return self.orinal
-    }
-}
-
-struct AnyAdType: Identifiable, Hashable {
-    let id = UUID()
-    typealias Value = Any
-    private let eraser: TypeErasing
-    init<V>(_ adType: AdType<V>) where V:AdManager {
-        eraser = TypeEraser(orinal: adType)
-    }
-    
-    var adType: Any {
-        return eraser.underlyingValue
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-}
-
-extension AnyAdType: Equatable {
-    static func == (lhs: Self, rhs: Self) -> Bool {
-        return String(describing: lhs) == String(describing: rhs)
-    }
-}
 
 struct AdFormat: Equatable, Identifiable, Hashable {
     let id: Int

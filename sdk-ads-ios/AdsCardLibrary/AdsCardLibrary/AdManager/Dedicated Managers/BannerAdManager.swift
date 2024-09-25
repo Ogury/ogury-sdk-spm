@@ -16,6 +16,7 @@ public final class BannerAdManager: AdManager {
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
     lazy var store = Store(
         initialState: AdViewFeature.State(from: self.options,
+                                          adType: AnyAdType(self.adType),
                                           bannerContainer: BannerContainer(bannerType: adType)),
         reducer: {
             AdViewFeature(adManager: self)

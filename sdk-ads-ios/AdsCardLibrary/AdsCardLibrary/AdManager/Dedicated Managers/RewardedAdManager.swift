@@ -15,6 +15,7 @@ public final class RewardedAdManager: AdManager {
     
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
     lazy var store = Store(initialState: AdViewFeature.State(from: self.options,
+                                                             adType: AnyAdType(self.adType),
                                                              rewardedOptions: RewardedOptions()), reducer: {
         AdViewFeature(adManager: self)
     })

@@ -246,6 +246,13 @@ public indirect enum AdType<T: AdManager> {
             case .unityLevelPlayHeaderBidding: return [.unityLevelPlay, .headerBidding, .bypass]
         }
     }
+    
+    public var isHeaderBidding: Bool {
+        switch self {
+            case .interstitial, .rewarded, .thumbnail, .banner, .mpu: return false
+            default: return true
+        }
+    }
 }
 
 extension AdType: Equatable {
@@ -323,5 +330,39 @@ public enum AdTag: String, Equatable {
             case .direct, .headerBidding, .rtbTestMode, .oguryTestMode: return .black
             default: return .white
         }
+    }
+}
+
+public protocol TypeErasing {
+    var underlyingValue: Any { get }
+}
+
+public struct TypeEraser<V: AdManager>: TypeErasing {
+    let orinal: AdType<V>
+    public var underlyingValue: Any {
+        return self.orinal
+    }
+}
+
+public struct AnyAdType: Identifiable, Hashable {
+    public let id = UUID()
+    typealias Value = Any
+    private let eraser: TypeErasing
+    public init<V>(_ adType: AdType<V>) where V:AdManager {
+        eraser = TypeEraser(orinal: adType)
+    }
+    
+    public var adType: Any {
+        return eraser.underlyingValue
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
+extension AnyAdType: Equatable {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        return String(describing: lhs) == String(describing: rhs)
     }
 }

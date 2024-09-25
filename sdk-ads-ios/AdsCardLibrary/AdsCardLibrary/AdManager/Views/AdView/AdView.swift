@@ -85,7 +85,7 @@ public struct AdView: View {
                                           : "wand.and.stars")
                                 }
                             }
-                            .disabled(!viewStore.showTestModeButton)
+                            .disabled(!viewStore.showTestModeButton || !viewStore.isHeaderBidding)
                             
                             Button {
                                 viewStore.send(.showQALabelTapped)
@@ -242,7 +242,8 @@ struct InterstitialView_Previews: PreviewProvider {
                                                                         showCreativeId:true,
                                                                         adDisplayName: "Card#1",
                                                                         adUnitId: "test_test",
-                                                                        campaignId: "campaignId")),
+                                                                        campaignId: "campaignId"),
+                                                  adType: AnyAdType(AdType<InterstitialAdManager>.interstitial)),
                 reducer: {
                     AdViewFeature(adManager: InterstitialAdManager(adType: .interstitial))
                 }))

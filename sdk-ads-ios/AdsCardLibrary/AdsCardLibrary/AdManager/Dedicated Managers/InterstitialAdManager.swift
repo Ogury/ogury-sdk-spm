@@ -14,7 +14,8 @@ public final class InterstitialAdManager: AdManager {
     }
     
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
-    lazy var store = Store(initialState: AdViewFeature.State(from: self.options), reducer: {
+    lazy var store = Store(initialState: AdViewFeature.State(from: self.options,
+                                                             adType: AnyAdType(self.adType)), reducer: {
         AdViewFeature(adManager: self)
     })
     public typealias Ad = OguryInterstitialAd
