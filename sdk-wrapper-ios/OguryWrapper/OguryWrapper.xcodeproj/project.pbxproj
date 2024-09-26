@@ -28,6 +28,7 @@
 		43B7E7652B86326D00B845E6 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 43B7E7642B86326D00B845E6 /* PrivacyInfo.xcprivacy */; };
 		505059382C7763FD007B29EA /* OguryErrorOGWWrapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 505059372C7763FD007B29EA /* OguryErrorOGWWrapperTests.m */; };
 		5050593A2C77663C007B29EA /* OguryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 505059392C77663C007B29EA /* OguryTests.m */; };
+		506D755F2CA450550050B345 /* OguryStartErrorCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 506D755E2CA450510050B345 /* OguryStartErrorCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50744AA22C7625AA004B9701 /* OguryError+OGWWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 50744AA02C7625AA004B9701 /* OguryError+OGWWrapper.h */; };
 		50744AA32C7625AA004B9701 /* OguryError+OGWWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 50744AA12C7625AA004B9701 /* OguryError+OGWWrapper.m */; };
 		50744AA82C762733004B9701 /* OGWErrorMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50744AA72C762733004B9701 /* OGWErrorMessage.m */; };
@@ -93,6 +94,7 @@
 		43B7E7642B86326D00B845E6 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		505059372C7763FD007B29EA /* OguryErrorOGWWrapperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryErrorOGWWrapperTests.m; sourceTree = "<group>"; };
 		505059392C77663C007B29EA /* OguryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryTests.m; sourceTree = "<group>"; };
+		506D755E2CA450510050B345 /* OguryStartErrorCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryStartErrorCode.h; sourceTree = "<group>"; };
 		50744AA02C7625AA004B9701 /* OguryError+OGWWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OguryError+OGWWrapper.h"; sourceTree = "<group>"; };
 		50744AA12C7625AA004B9701 /* OguryError+OGWWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "OguryError+OGWWrapper.m"; sourceTree = "<group>"; };
 		50744AA62C762733004B9701 /* OGWErrorMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGWErrorMessage.h; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		05FDDDBF25599AA2000F4C8B /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				506D755E2CA450510050B345 /* OguryStartErrorCode.h */,
 				05FDDDCD2559A048000F4C8B /* Ogury.h */,
 				05FDDDCE2559A048000F4C8B /* Ogury.m */,
 				05FDDDD42559A14C000F4C8B /* OguryConfiguration.h */,
@@ -367,6 +370,7 @@
 				58D79F0028587AAF00E94E70 /* OGWLogFormatter.h in Headers */,
 				58D79F0128587AAF00E94E70 /* OguryLog+Wrapper.h in Headers */,
 				05FDDE25255AE37F000F4C8B /* OguryConfigurationBuilder.h in Headers */,
+				506D755F2CA450550050B345 /* OguryStartErrorCode.h in Headers */,
 				05FDDE2A255AE38C000F4C8B /* OguryConfigurationPrivate.h in Headers */,
 				50744AA92C762733004B9701 /* OGWErrorMessage.h in Headers */,
 				351A1A168A09A89BCC2B8993 /* OGWModule.h in Headers */,

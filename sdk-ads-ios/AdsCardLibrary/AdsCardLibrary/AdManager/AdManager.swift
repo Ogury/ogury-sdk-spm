@@ -68,7 +68,7 @@ public enum AdLifeCycleEvent {
    case adDidFailToLoad(_: Error)
    case adDidFailToDisplay(_: Error)
    case adDidFail(_: Error)
-   case bannerReady(_: OguryBannerAd)
+   case bannerReady(_: OguryBannerAdView)
    case rewardReady(_: OguryRewardItem)
 }
 

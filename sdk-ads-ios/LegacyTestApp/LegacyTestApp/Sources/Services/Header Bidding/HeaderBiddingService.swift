@@ -178,62 +178,61 @@ struct HeaderBiddingService {
         formattedBody = formattedBody.replacingOccurrences(of: "$AD_UNIT_ID", with: adUnitId)
         formattedBody = formattedBody.replacingOccurrences(of: "$GEO_OBJECT", with: self.buildGeoObject(with: country))
         
+        let semaphore = DispatchSemaphore(value: 0)
+        
         if let campaignId = campaignId, !campaignId.isEmpty, let creativeId = creativeId, !creativeId.isEmpty, let dspCreativeId = dspCreativeId, !dspCreativeId.isEmpty, let dspRegion = dspRegion, !dspRegion.isEmpty {
             let cls:AnyClass = object_getClass(OguryTokenService.self)!
-            let sel = NSSelectorFromString("getBidderTokenWithCampaignId:creativeId:dspCreativeId:dspRegion:")
+            
+            let sel = NSSelectorFromString("bidderTokenWithCampaignId:creativeId:dspCreativeId:dspRegion:completion:")
             let meth = class_getClassMethod(cls, sel)
             let imp = method_getImplementation(meth!)
-            typealias ClosureType = @convention(c) (AnyClass, Selector, String, String?, String?, String?) -> String
+            typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?, String?, String?, @escaping (NSString?, NSError?) -> Void) -> Void
             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-            let tokenforCampaign = sayHiTo(OguryTokenService.classForCoder(), sel, campaignId, creativeId, dspCreativeId, dspRegion)
-            formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(tokenforCampaign)\"")
+            sayHiTo(OguryTokenService.classForCoder(), sel, campaignId, creativeId, dspCreativeId, dspRegion) { token, error in
+                if let error = error {
+                    completionHandler(.failure(.networkError(subError: error)))
+                } else {
+                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(token ?? "null")\"")
+                }
+                semaphore.signal()
+            }
         } else if let campaignId = campaignId, !campaignId.isEmpty, let creativeId = creativeId, !creativeId.isEmpty {
             let cls:AnyClass = object_getClass(OguryTokenService.self)!
-            let sel = NSSelectorFromString("getBidderTokenWithCampaignId:creativeId:")
+            let sel = NSSelectorFromString("bidderTokenWithCampaignId:creativeId:completion:")
             let meth = class_getClassMethod(cls, sel)
             let imp = method_getImplementation(meth!)
-            typealias ClosureType = @convention(c) (AnyClass, Selector, String, String?) -> String
+            typealias ClosureType = @convention(c) (AnyClass, Selector, String, String?, @escaping (NSString?, NSError?) -> Void) -> Void
             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-            let tokenforCampaign = sayHiTo(OguryTokenService.classForCoder(), sel, campaignId, creativeId)
-            formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(tokenforCampaign)\"")
+            sayHiTo(OguryTokenService.classForCoder(), sel, campaignId, creativeId) { token, error in
+                if let error = error {
+                    completionHandler(.failure(.networkError(subError: error)))
+                } else {
+                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(token ?? "null")\"")
+                }
+                semaphore.signal()
+            }
         } else if let campaignId = campaignId, !campaignId.isEmpty {
             let cls:AnyClass = object_getClass(OguryTokenService.self)!
-            let sel = NSSelectorFromString("getBidderTokenWithCampaignId:")
+            let sel = NSSelectorFromString("bidderTokenWithCampaignId:completion:")
             let meth = class_getClassMethod(cls, sel)
             let imp = method_getImplementation(meth!)
-            typealias ClosureType = @convention(c) (AnyClass, Selector, String) -> String
+            typealias ClosureType = @convention(c) (AnyClass, Selector, String, @escaping (NSString?, NSError?) -> Void) -> Void
             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-            let tokenforCampaign = sayHiTo(OguryTokenService.classForCoder(), sel, campaignId)
-            formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(tokenforCampaign)\"")
+            sayHiTo(OguryTokenService.classForCoder(), sel, campaignId) { token, error in
+                formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(token ?? "null")\"")
+                semaphore.signal()
+            }
         } else {
-            let token = OguryTokenService.getBidderToken()
-            if let token {
-                formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(token)\"")
-            } else {
-                formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "null")
+            OguryTokenService.bidderToken { token, error in
+                if let error = error {
+                    completionHandler(.failure(.networkError(subError: error)))
+                } else {
+                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(token ?? "null")\"")
+                }
+                semaphore.signal()
             }
         }
-        
-        /*
-         if let campaignId = campaignId, !campaignId.isEmpty, let creativeId = creativeId, !creativeId.isEmpty, let dspCreativeId = dspCreativeId, !dspCreativeId.isEmpty, let dspRegion = dspRegion, !dspRegion.isEmpty {
-             let obj = self.interstitialAd
-             let sel = NSSelectorFromString("loadWithCampaignId:creativeId:dspCreativeId:dspRegion:")
-             let meth = class_getInstanceMethod(object_getClass(obj), sel)
-             let imp = method_getImplementation(meth!)
-             typealias ClosureType = @convention(c) (AnyObject, Selector, String, String, String, String) -> Void
-             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-             sayHiTo(obj, sel, campaignId, creativeId, dspCreativeId, dspRegion)
-         } else if let campaignId = campaignId, !campaignId.isEmpty, let creativeId = creativeId, !creativeId.isEmpty {
-             let obj = self.interstitialAd
-             let sel = NSSelectorFromString("loadWithCampaignId:creativeId:")
-             let meth = class_getInstanceMethod(object_getClass(obj), sel)
-             let imp = method_getImplementation(meth!)
-             typealias ClosureType = @convention(c) (AnyObject, Selector, String, String) -> Void
-             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-             sayHiTo(obj, sel, campaignId, creativeId)
-         }
-         */
-
+        semaphore.wait()
         request.httpBody = formattedBody.data(using: .utf8)
 
         URLSession.shared

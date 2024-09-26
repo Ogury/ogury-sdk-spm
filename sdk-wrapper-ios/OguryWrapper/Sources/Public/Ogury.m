@@ -9,7 +9,7 @@
 
 @implementation Ogury
 
-+ (void)startWithConfiguration:(OguryConfiguration *)configuration completionHandler:(SetupCompletionBlock)completionHandler {
++ (void)startWithConfiguration:(OguryConfiguration *)configuration completionHandler:(StartCompletionBlock)completionHandler {
     [[OGWWrapper shared] startWithConfiguration:configuration completionHandler:completionHandler];
 }
 
@@ -30,16 +30,16 @@
    [[OGWWrapper shared] registerAttributionForSKAdNetwork];
 }
 
-+ (void)storePrivacyData:(NSString *)key boolean:(BOOL)value {
-   [[OGCInternal shared] storePrivacyData:key boolean:value];
++ (void)setPrivacyData:(NSString *)key boolean:(BOOL)value {
+   [[OGCInternal shared] setPrivacyData:key boolean:value];
 }
 
-+ (void)storePrivacyData:(NSString *)key integer:(NSInteger)value {
-   [[OGCInternal shared] storePrivacyData:key integer:value];
++ (void)setPrivacyData:(NSString *)key integer:(NSInteger)value {
+   [[OGCInternal shared] setPrivacyData:key integer:value];
 }
 
-+ (void)storePrivacyData:(NSString *)key string:(NSString *)value {
-   [[OGCInternal shared] storePrivacyData:key string:value];
++ (void)setPrivacyData:(NSString *)key string:(NSString *)value {
+   [[OGCInternal shared] setPrivacyData:key string:value];
 }
 
 @end

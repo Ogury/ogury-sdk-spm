@@ -8,7 +8,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OGABannerAdContainerState : OGABaseAdContainerState <OGAAdExposureDelegate>
+@interface OGABannerAdViewContainerState : OGABaseAdContainerState <OGAAdExposureDelegate>
 
 #pragma mark - Initialization
 

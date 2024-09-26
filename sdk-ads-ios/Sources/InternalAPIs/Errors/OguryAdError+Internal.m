@@ -59,6 +59,7 @@ NSString *const AnotherAdIsAlreadyDisplayedSugg = @"Try not to show two ads at t
 NSString *const WebviewTerminatedBySystemDesc = @"The iOS webview was killed by the system because the app consumes too much memory";
 NSString *const WebviewTerminatedBySystemSugg = @"Try to reduce your app memory footprint";
 NSString *const HeaderBiddingFormatDesc = @"OgurySDK can't generate HB token : %@";
+NSString *const HeaderBiddingFormatSugg = @"Check if the OgurySDK has started coorectly";
 
 @implementation OguryAdError (internal)
 
@@ -82,7 +83,7 @@ NSString *const HeaderBiddingFormatDesc = @"OgurySDK can't generate HB token : %
 
 - (NSString *)descriptionFor:(OguryAdErrorCode)code stacktrace:(NSString *)stacktrace {
     switch (code) {
-        case OguryAdErrorCodeSDKNotInitialized:
+        case OguryAdErrorCodeSDKNotCalled:
             return stacktrace == nil
                 ? SDKNotProperlyInitializedDesc
                 : [NSString stringWithFormat:SDKNotInitializedFormatDesc, stacktrace];
@@ -92,13 +93,13 @@ NSString *const HeaderBiddingFormatDesc = @"OgurySDK can't generate HB token : %
                 ? SDKNotProperlyInitializedDesc
                 : [NSString stringWithFormat:SDKNotProperlyInitializedFormatDesc, stacktrace];
             break;
-        case OguryAdErrorCodeNoInternetConnection:
+        case OguryAdErrorCodeNoActiveInternetConnection:
             return NoInternetConnectionDesc;
             break;
         case OguryAdErrorCodeInvalidConfiguration:
             return InvalidConfigurationDesc;
             break;
-        case OguryAdErrorCodeAdDisabledUnopenedCountry:
+        case OguryAdErrorCodeAdDisabledCountryNotOpened:
             return AdDisabledUnopenedCountryDesc;
             break;
         case OguryAdErrorCodeAdDisabledConsentDenied:
@@ -107,7 +108,7 @@ NSString *const HeaderBiddingFormatDesc = @"OgurySDK can't generate HB token : %
         case OguryAdErrorCodeAdDisabledConsentMissing:
             return AdDisabledConsentMissingDesc;
             break;
-        case OguryAdErrorCodeAdDisabledOtherReason:
+        case OguryAdErrorCodeAdDisabledUnspecifiedReason:
             return AdDisabledOtherReasonDesc;
             break;
         case OguryAdErrorCodeAdRequestFailed:
@@ -141,32 +142,36 @@ NSString *const HeaderBiddingFormatDesc = @"OgurySDK can't generate HB token : %
         case OguryAdErrorCodeViewInBackground:
             return ViewInBackgroundDesc;
             break;
-        case OguryAdErrorCodeAnotherAdIsAlreadyDisplayed:
+        case OguryAdErrorCodeAnotherAdAlreadyDisplayed:
             return AnotherAdIsAlreadyDisplayedDesc;
             break;
         case OguryAdErrorCodeWebviewTerminatedBySystem:
             return WebviewTerminatedBySystemDesc;
             break;
-        default:
+        case OguryAdErrorCodeViewControllerPreventsAdFromBeingDisplayed:
             return @"";
+            break;
+        case OguryAdErrorCodeHeaderBidding:
+            return HeaderBiddingFormatDesc;
             break;
     }
 }
+
 - (NSString *)suggestionFor:(OguryAdErrorCode)code {
     switch (code) {
-        case OguryAdErrorCodeSDKNotInitialized:
+        case OguryAdErrorCodeSDKNotCalled:
             return SDKNotInitializedSugg;
             break;
         case OguryAdErrorCodeSDKNotProperlyInitialized:
             return SDKNotProperlyInitializedSugg;
             break;
-        case OguryAdErrorCodeNoInternetConnection:
+        case OguryAdErrorCodeNoActiveInternetConnection:
             return NoInternetConnectionSugg;
             break;
         case OguryAdErrorCodeInvalidConfiguration:
             return InvalidConfigurationSugg;
             break;
-        case OguryAdErrorCodeAdDisabledUnopenedCountry:
+        case OguryAdErrorCodeAdDisabledCountryNotOpened:
             return AdDisabledUnopenedCountrySugg;
             break;
         case OguryAdErrorCodeAdDisabledConsentDenied:
@@ -175,7 +180,7 @@ NSString *const HeaderBiddingFormatDesc = @"OgurySDK can't generate HB token : %
         case OguryAdErrorCodeAdDisabledConsentMissing:
             return AdDisabledConsentMissingSugg;
             break;
-        case OguryAdErrorCodeAdDisabledOtherReason:
+        case OguryAdErrorCodeAdDisabledUnspecifiedReason:
             return AdDisabledOtherReasonSugg;
             break;
         case OguryAdErrorCodeAdRequestFailed:
@@ -202,11 +207,17 @@ NSString *const HeaderBiddingFormatDesc = @"OgurySDK can't generate HB token : %
         case OguryAdErrorCodeViewInBackground:
             return ViewInBackgroundSugg;
             break;
-        case OguryAdErrorCodeAnotherAdIsAlreadyDisplayed:
+        case OguryAdErrorCodeAnotherAdAlreadyDisplayed:
             return AnotherAdIsAlreadyDisplayedSugg;
             break;
         case OguryAdErrorCodeWebviewTerminatedBySystem:
             return WebviewTerminatedBySystemSugg;
+            break;
+        case OguryAdErrorCodeViewControllerPreventsAdFromBeingDisplayed:
+            return @"";
+            break;
+        case OguryAdErrorCodeHeaderBidding:
+            return @"";
             break;
         default:
             return @"";
@@ -215,13 +226,13 @@ NSString *const HeaderBiddingFormatDesc = @"OgurySDK can't generate HB token : %
 }
 
 + (OguryAdError *)sdkNotInitializedFrom:(OguryAdErrorType)type stackTrace:(NSString *)stackTrace {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeSDKNotInitialized stacktrace:stackTrace type:type];
+    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeSDKNotCalled stacktrace:stackTrace type:type];
 }
 + (OguryAdError *)sdkNotProperlyInitializedFrom:(OguryAdErrorType)type stackTrace:(NSString *)stackTrace {
     return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeSDKNotProperlyInitialized stacktrace:stackTrace type:type];
 }
 + (OguryAdError *)noInternetConnectionFrom:(OguryAdErrorType)type {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeNoInternetConnection type:type];
+    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeNoActiveInternetConnection type:type];
 }
 + (OguryAdError *)invalidConfigurationFrom:(OguryAdErrorType)type {
     return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeInvalidConfiguration type:type];
@@ -237,7 +248,7 @@ NSString *const HeaderBiddingFormatDesc = @"OgurySDK can't generate HB token : %
     return [self adDisabledOtherReasonFrom:type];
 }
 + (OguryAdError *)adDisabledUnopenedCountryFrom:(OguryAdErrorType)type {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeAdDisabledUnopenedCountry type:type];
+    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeAdDisabledCountryNotOpened type:type];
 }
 + (OguryAdError *)adDisabledConsentDeniedFrom:(OguryAdErrorType)type {
     return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeAdDisabledConsentDenied type:type];
@@ -246,7 +257,7 @@ NSString *const HeaderBiddingFormatDesc = @"OgurySDK can't generate HB token : %
     return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeAdDisabledConsentMissing type:type];
 }
 + (OguryAdError *)adDisabledOtherReasonFrom:(OguryAdErrorType)type {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeAdDisabledOtherReason type:type];
+    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeAdDisabledUnspecifiedReason type:type];
 }
 + (OguryAdError *)adRequestFailedWithCode:(NSUInteger)requestStatusCode {
     return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeAdRequestFailed
@@ -285,7 +296,7 @@ NSString *const HeaderBiddingFormatDesc = @"OgurySDK can't generate HB token : %
                                               type:OguryAdErrorTypeShow];
 }
 + (OguryAdError *)anotherAdIsAlreadyDisplayed {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeAnotherAdIsAlreadyDisplayed
+    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeAnotherAdAlreadyDisplayed
                                               type:OguryAdErrorTypeShow];
 }
 + (OguryAdError *)webviewTerminatedBySystem {

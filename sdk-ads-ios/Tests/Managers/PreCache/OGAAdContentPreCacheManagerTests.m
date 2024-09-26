@@ -8,7 +8,7 @@
 #import "OGAAdContentPreCacheManager+Testing.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGATrackEvent.h"
-#import "OguryAdsError.h"
+#import "OguryAdError.h"
 #import "OguryError+utility.h"
 #import "OguryAdError+Internal.h"
 

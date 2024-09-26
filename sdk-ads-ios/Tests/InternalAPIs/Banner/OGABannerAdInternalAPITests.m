@@ -4,8 +4,8 @@
 
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
-#import "OguryBannerAd.h"
-#import "OGABannerAdInternalAPI.h"
+#import "OguryBannerAdView.h"
+#import "OGABannerAdViewInternalAPI.h"
 #import "OGABannerAdInternalAPI+Testing.h"
 #import "OGAAdManager.h"
 #import "OGALog.h"
@@ -18,8 +18,8 @@
 
 @property(nonatomic, strong) OGADelegateDispatcher *delegateDispatcher;
 @property(nonatomic, strong) OGAAdManager *adManager;
-@property(nonatomic, strong) OGABannerAdInternalAPI *smallBannerInternalAPI;
-@property(nonatomic, strong) OGABannerAdInternalAPI *mrecInternalAPI;
+@property(nonatomic, strong) OGABannerAdViewInternalAPI *smallBannerInternalAPI;
+@property(nonatomic, strong) OGABannerAdViewInternalAPI *mrecInternalAPI;
 @property(nonatomic, strong) NSNotificationCenter *notificationCenter;
 @property(nonatomic, strong) OGAMonitoringDispatcher *monitoringDispatcher;
 @property(nonatomic, strong) OGALog *log;
@@ -47,27 +47,27 @@ static NSString *const DefaultDspRegion = @"dspRegion";
     self.notificationCenter = OCMClassMock([NSNotificationCenter class]);
     self.monitoringDispatcher = OCMClassMock([OGAMonitoringDispatcher class]);
 
-    self.smallBannerInternalAPI = [[OGABannerAdInternalAPI alloc] initWithAdUnitId:DefaultAdUnitId
-                                                                        bannerView:nil
-                                                                              size:OguryAdsBannerSize.small_banner_320x50
-                                                                delegateDispatcher:self.delegateDispatcher
-                                                                         adManager:self.adManager
-                                                                notificationCenter:self.notificationCenter
-                                                              monitoringDispatcher:self.monitoringDispatcher
-                                                                          internal:self.internal
-                                                                         mediation:nil
-                                                                               log:self.log];
+    self.smallBannerInternalAPI = [[OGABannerAdViewInternalAPI alloc] initWithAdUnitId:DefaultAdUnitId
+                                                                            bannerView:nil
+                                                                                  size:OguryAdsBannerSize.small_banner_320x50
+                                                                    delegateDispatcher:self.delegateDispatcher
+                                                                             adManager:self.adManager
+                                                                    notificationCenter:self.notificationCenter
+                                                                  monitoringDispatcher:self.monitoringDispatcher
+                                                                              internal:self.internal
+                                                                             mediation:nil
+                                                                                   log:self.log];
 
-    self.mrecInternalAPI = [[OGABannerAdInternalAPI alloc] initWithAdUnitId:DefaultAdUnitId
-                                                                 bannerView:nil
-                                                                       size:OguryAdsBannerSize.mrec_300x250
-                                                         delegateDispatcher:self.delegateDispatcher
-                                                                  adManager:self.adManager
-                                                         notificationCenter:self.notificationCenter
-                                                       monitoringDispatcher:self.monitoringDispatcher
-                                                                   internal:self.internal
-                                                                  mediation:nil
-                                                                        log:self.log];
+    self.mrecInternalAPI = [[OGABannerAdViewInternalAPI alloc] initWithAdUnitId:DefaultAdUnitId
+                                                                     bannerView:nil
+                                                                           size:OguryAdsBannerSize.mrec_300x250
+                                                             delegateDispatcher:self.delegateDispatcher
+                                                                      adManager:self.adManager
+                                                             notificationCenter:self.notificationCenter
+                                                           monitoringDispatcher:self.monitoringDispatcher
+                                                                       internal:self.internal
+                                                                      mediation:nil
+                                                                            log:self.log];
 }
 
 - (void)testLoadInit300x250 {
@@ -195,7 +195,7 @@ static NSString *const DefaultDspRegion = @"dspRegion";
 }
 
 - (void)testShouldShowBannerIfLoaded {
-    OGABannerAdInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
+    OGABannerAdViewInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
     internalAPI.adManager = self.adManager;
 
     UIWindow *windowParentView = OCMClassMock(UIWindow.class);
@@ -219,7 +219,7 @@ static NSString *const DefaultDspRegion = @"dspRegion";
 }
 
 - (void)testShouldShowBannerWhenMovedToAnotherSuperview {
-    OGABannerAdInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
+    OGABannerAdViewInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
 
     OCMExpect([internalAPI showBannerIfLoaded]);
 
@@ -229,7 +229,7 @@ static NSString *const DefaultDspRegion = @"dspRegion";
 }
 
 - (void)testShouldShowBannerWhenMovedToAnotherWindow {
-    OGABannerAdInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
+    OGABannerAdViewInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
 
     [self.smallBannerInternalAPI didMoveToWindow];
 
@@ -248,7 +248,7 @@ static NSString *const DefaultDspRegion = @"dspRegion";
 }
 
 - (void)testShouldShowBannerAfterLoadIsCompleted {
-    OGABannerAdInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
+    OGABannerAdViewInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
     internalAPI.adManager = self.adManager;
 
     UIWindow *windowParentView = OCMClassMock(UIWindow.class);
@@ -262,45 +262,45 @@ static NSString *const DefaultDspRegion = @"dspRegion";
     OCMStub(windowParentView.rootViewController).andReturn(viewcontrollerParentView);
     OCMStub([internalAPI isLoaded]).andReturn(YES);
 
-    OguryBannerAd *bannerAd = OCMClassMock([OguryBannerAd class]);
+    OguryBannerAdView *bannerAd = OCMClassMock([OguryBannerAdView class]);
 
     OCMExpect([internalAPI.delegateDispatcher loaded]);
     OCMExpect([internalAPI.adManager show:OCMOCK_ANY additionalConditions:[OCMArg any]]);
 
-    [internalAPI didLoadOguryBannerAd:bannerAd];
+    [internalAPI didLoadOguryBannerAdView:bannerAd];
 
     OCMVerify([internalAPI.delegateDispatcher loaded]);
     OCMVerify([internalAPI.adManager show:OCMOCK_ANY additionalConditions:[OCMArg any]]);
 }
 
 - (void)testShouldDispatchDidClick {
-    OGABannerAdInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
+    OGABannerAdViewInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
 
-    OguryBannerAd *bannerAd = OCMClassMock([OguryBannerAd class]);
+    OguryBannerAdView *bannerAd = OCMClassMock([OguryBannerAdView class]);
 
     OCMExpect([internalAPI.delegateDispatcher clicked]);
 
-    [internalAPI didClickOguryBannerAd:bannerAd];
+    [internalAPI didClickOguryBannerAdView:bannerAd];
 
     OCMVerify([internalAPI.delegateDispatcher clicked]);
 }
 
 - (void)testShouldDispatchDidClose {
-    OGABannerAdInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
+    OGABannerAdViewInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
 
-    OguryBannerAd *bannerAd = OCMClassMock([OguryBannerAd class]);
+    OguryBannerAdView *bannerAd = OCMClassMock([OguryBannerAdView class]);
 
     OCMExpect([internalAPI.delegateDispatcher closed]);
 
-    [internalAPI didCloseOguryBannerAd:bannerAd];
+    [internalAPI didCloseOguryBannerAdView:bannerAd];
 
     OCMVerify([internalAPI.delegateDispatcher closed]);
 }
 
 - (void)testShouldDispatchDidFailWithError {
-    OGABannerAdInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
+    OGABannerAdViewInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
 
-    OguryBannerAd *bannerAd = OCMClassMock([OguryBannerAd class]);
+    OguryBannerAdView *bannerAd = OCMClassMock([OguryBannerAdView class]);
 
     OCMExpect([internalAPI.delegateDispatcher failedWithError:OCMOCK_ANY]);
 
@@ -310,7 +310,7 @@ static NSString *const DefaultDspRegion = @"dspRegion";
 }
 
 - (void)testHaveParentViewcontrollerSuperView {
-    OGABannerAdInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
+    OGABannerAdViewInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
     internalAPI.adManager = self.adManager;
 
     UIWindow *windowParentView = OCMClassMock(UIWindow.class);
@@ -327,7 +327,7 @@ static NSString *const DefaultDspRegion = @"dspRegion";
 }
 
 - (void)testHaveParentViewcontrollerdelegate {
-    OGABannerAdInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
+    OGABannerAdViewInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
     internalAPI.adManager = self.adManager;
 
     UIViewController *viewcontrollerParentView = OCMClassMock(UIViewController.class);
@@ -340,7 +340,7 @@ static NSString *const DefaultDspRegion = @"dspRegion";
 }
 
 - (void)testHaveParentViewcontrollerNoParent {
-    OGABannerAdInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
+    OGABannerAdViewInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
     internalAPI.adManager = self.adManager;
 
     UIView *bannerView = OCMClassMock(UIView.class);
@@ -373,8 +373,8 @@ static NSString *const DefaultDspRegion = @"dspRegion";
 }
 
 - (void)testDidTriggerImpressionOguryBannerAd {
-    OguryBannerAd *banner = OCMClassMock([OguryBannerAd class]);
-    [self.smallBannerInternalAPI didTriggerImpressionOguryBannerAd:banner];
+    OguryBannerAdView *banner = OCMClassMock([OguryBannerAdView class]);
+    [self.smallBannerInternalAPI didTriggerImpressionOguryBannerAdView:banner];
     OCMVerify([self.smallBannerInternalAPI.delegateDispatcher adImpression]);
 }
 

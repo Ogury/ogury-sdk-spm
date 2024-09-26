@@ -4,7 +4,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "OguryAdsError.h"
+#import "OguryAdError.h"
 #import "OGAAssetKeyManager.h"
 #import "OguryAdError+Internal.h"
 
@@ -45,7 +45,7 @@ NSString *const AnotherTestAssetKey = @"OGY-XXXXXXXX2";
 
 - (void)testCheckAssetKey_errorIfInitNotCalled {
     OguryError *error = nil;
-    XCTAssertFalse([self.assetKeyManager checkAssetKeyIsValid:&error origin:OguryAdErrorTypeLoad]);
+    XCTAssertFalse([self.assetKeyManager checkAssetKeyIsValid:&error type:OguryAdErrorTypeLoad]);
     XCTAssertEqualObjects(error, [OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeLoad stackTrace:@"AssetKey not found"]);
 }
 
@@ -53,7 +53,7 @@ NSString *const AnotherTestAssetKey = @"OGY-XXXXXXXX2";
     [self.assetKeyManager configureAssetKey:@""];
 
     OguryError *error = nil;
-    XCTAssertFalse([self.assetKeyManager checkAssetKeyIsValid:&error origin:OguryAdErrorTypeLoad]);
+    XCTAssertFalse([self.assetKeyManager checkAssetKeyIsValid:&error type:OguryAdErrorTypeLoad]);
     XCTAssertEqualObjects(error, [OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeLoad stackTrace:@"invalid AssetKey"]);
 }
 
@@ -61,7 +61,7 @@ NSString *const AnotherTestAssetKey = @"OGY-XXXXXXXX2";
     [self.assetKeyManager configureAssetKey:TestAssetKey];
 
     OguryError *error = nil;
-    XCTAssertTrue([self.assetKeyManager checkAssetKeyIsValid:&error origin:OguryAdErrorTypeLoad]);
+    XCTAssertTrue([self.assetKeyManager checkAssetKeyIsValid:&error type:OguryAdErrorTypeLoad]);
     XCTAssertNil(error);
 }
 

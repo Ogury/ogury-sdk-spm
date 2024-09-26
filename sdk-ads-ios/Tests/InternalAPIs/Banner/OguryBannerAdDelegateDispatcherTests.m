@@ -4,9 +4,9 @@
 
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
-#import "OguryBannerAdDelegateDispatcher.h"
-#import "OguryBannerAd.h"
-#import "OguryAdsError.h"
+#import "OguryBannerAdViewDelegateDispatcher.h"
+#import "OguryBannerAdView.h"
+#import "OguryAdError.h"
 #import "OguryAdError+Internal.h"
 
 @interface OguryBannerAdDelegateDispatcherTests : XCTestCase
@@ -14,8 +14,8 @@
 #pragma mark - Properties
 
 @property(nonatomic, strong) id<OguryBannerAdDelegate> delegate;
-@property(nonatomic, strong) OguryBannerAdDelegateDispatcher *delegateDispatcher;
-@property(nonatomic, strong) OguryBannerAd *banner;
+@property(nonatomic, strong) OguryBannerAdViewDelegateDispatcher *delegateDispatcher;
+@property(nonatomic, strong) OguryBannerAdView *banner;
 
 @end
 
@@ -27,9 +27,9 @@
     [OGADelegateDispatcher setAlwaysDispatchInMainThread:NO];
 
     self.delegate = OCMProtocolMock(@protocol(OguryBannerAdDelegate));
-    self.banner = OCMClassMock([OguryBannerAd class]);
+    self.banner = OCMClassMock([OguryBannerAdView class]);
 
-    self.delegateDispatcher = [[OguryBannerAdDelegateDispatcher alloc] init];
+    self.delegateDispatcher = [[OguryBannerAdViewDelegateDispatcher alloc] init];
     self.delegateDispatcher.delegate = self.delegate;
     self.delegateDispatcher.banner = self.banner;
 }
@@ -49,7 +49,7 @@
 - (void)testOguryAdsBannerAdLoaded {
     [self.delegateDispatcher loaded];
 
-    OCMVerify([self.delegate didLoadOguryBannerAd:self.banner]);
+    OCMVerify([self.delegate didLoadOguryBannerAdView:self.banner]);
 }
 
 - (void)testOguryAdsBannerAdNotLoaded {
@@ -63,7 +63,7 @@
 - (void)testOguryAdsBannerAdClosed {
     [self.delegateDispatcher closed];
 
-    OCMVerify([self.delegate didCloseOguryBannerAd:self.banner]);
+    OCMVerify([self.delegate didCloseOguryBannerAdView:self.banner]);
 }
 
 - (void)testOguryAdsBannerAdDisableError {
@@ -123,13 +123,13 @@
 - (void)testOguryAdsBannerAdClicked {
     [self.delegateDispatcher clicked];
 
-    OCMVerify([self.delegate didClickOguryBannerAd:self.banner]);
+    OCMVerify([self.delegate didClickOguryBannerAdView:self.banner]);
 }
 
 - (void)testShouldTriggerOnAdImpression {
     [self.delegateDispatcher adImpression];
 
-    OCMVerify([self.delegate didTriggerImpressionOguryBannerAd:self.banner]);
+    OCMVerify([self.delegate didTriggerImpressionOguryBannerAdView:self.banner]);
 }
 
 @end

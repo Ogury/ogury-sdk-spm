@@ -192,7 +192,7 @@ NSString *const OGAAdSequenceCoordinatorTestsNextAdId = @"next-ad-id";
     OguryError *error = nil;
     XCTAssertFalse([self.sequenceCoordinator show:&error]);
     XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, OguryAdErrorCodeAnotherAdIsAlreadyDisplayed);
+    XCTAssertEqual(error.code, OguryAdErrorCodeAnotherAdAlreadyDisplayed);
 }
 
 - (void)testShow_alreadyClosed {

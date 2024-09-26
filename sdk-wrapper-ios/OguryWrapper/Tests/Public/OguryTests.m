@@ -37,7 +37,7 @@
 
 - (void)testStartWithConfigurationCompletionHandler {
     OguryConfiguration *mockConfiguration = OCMClassMock([OguryConfiguration class]);
-    SetupCompletionBlock mockCompletionHandler = ^(BOOL success, NSError *error) {};
+    StartCompletionBlock mockCompletionHandler = ^(BOOL success, NSError *error) {};
     OCMExpect([self.mockOGWWrapper startWithConfiguration:mockConfiguration completionHandler:mockCompletionHandler]);
     [Ogury startWithConfiguration:mockConfiguration completionHandler:mockCompletionHandler];
     OCMVerifyAll(self.mockOGWWrapper);
@@ -62,22 +62,22 @@
 }
 
 - (void)testStorePrivacyDataBoolean {
-    OCMExpect([self.mockOGCInternal storePrivacyData:@"key" boolean:true]);
-    [Ogury storePrivacyData:@"key" boolean:true];
+    OCMExpect([self.mockOGCInternal setPrivacyData:@"key" boolean:true]);
+    [Ogury setPrivacyData:@"key" boolean:true];
     OCMVerifyAll(self.mockOGCInternal);
 }
 
 - (void)testStorePrivacyDataInteger {
     NSInteger value = 10;
-    OCMExpect([self.mockOGCInternal storePrivacyData:@"key" integer:value]);
-    [Ogury storePrivacyData:@"key" integer:value];
+    OCMExpect([self.mockOGCInternal setPrivacyData:@"key" integer:value]);
+    [Ogury setPrivacyData:@"key" integer:value];
     OCMVerifyAll(self.mockOGCInternal);
 }
 
 - (void)testStorePrivacyDataString {
     NSString *value = @"value";
-    OCMExpect([self.mockOGCInternal storePrivacyData:@"key" string:value]);
-    [Ogury storePrivacyData:@"key" string:value];
+    OCMExpect([self.mockOGCInternal setPrivacyData:@"key" string:value]);
+    [Ogury setPrivacyData:@"key" string:value];
     OCMVerifyAll(self.mockOGCInternal);
 }
 

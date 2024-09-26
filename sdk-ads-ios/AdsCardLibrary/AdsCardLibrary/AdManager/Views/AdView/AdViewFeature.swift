@@ -57,7 +57,7 @@ struct BaseOptions: Equatable {
 }
 
 struct BannerContainer: Equatable {
-    var bannerAd: OguryBannerAd?
+    var bannerAd: OguryBannerAdView?
     var bannerType: AdType<BannerAdManager>
 }
 
@@ -190,7 +190,7 @@ struct AdViewFeature: Reducer {
         case rewardedAction(_: RewardedFeature.Action)
         case resetReward
         case resetBanner
-        case bannerReady(_: OguryBannerAd)
+        case bannerReady(_: OguryBannerAdView)
         case rewardReady(_: OguryRewardItem)
         case thumbnailOptionsAction(_: ThumbnailOptionFeature.Action)
         case showOptionToggle

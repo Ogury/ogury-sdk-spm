@@ -11,7 +11,7 @@
 #import "OGAMRAIDAdDisplayer.h"
 #import "OGAAdContainer.h"
 #import "OGAInitialAdContainerState.h"
-#import "OGABannerAdContainerState.h"
+#import "OGABannerAdViewContainerState.h"
 #import "OGAClosedAdContainerState.h"
 #import "OGAFullscreenAdContainerState.h"
 #import "OGAThumbnailAdContainerState.h"
@@ -120,7 +120,7 @@
 }
 
 - (void)addTransitionsForBannerAd:(OGAAd *)ad configuration:(OGAAdConfiguration *)configuration builder:(OGAAdContainerBuilder *)builder {
-    OGABannerAdContainerState *bannerState = [[OGABannerAdContainerState alloc] initWithViewProvider:configuration.viewProvider viewControllerProvider:configuration.viewControllerProvider];
+    OGABannerAdViewContainerState *bannerState = [[OGABannerAdViewContainerState alloc] initWithViewProvider:configuration.viewProvider viewControllerProvider:configuration.viewControllerProvider];
     OGAFullscreenAdContainerState *fullscreenState = [[OGAFullscreenAdContainerState alloc] initWithViewControllerProvider:configuration.viewControllerProvider];
     OGAStoreKitState *storeKitState = [[OGAStoreKitState alloc] initWithAd:ad viewControllerProvider:configuration.viewControllerProvider];
 

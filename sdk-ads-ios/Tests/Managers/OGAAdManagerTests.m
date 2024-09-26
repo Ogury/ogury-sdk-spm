@@ -466,7 +466,7 @@
 
 - (void)testShow_showFailsCheck {
     OGAAdSequence *sequence = OCMClassMock([OGAAdSequence class]);
-    OguryError *checkConditionsError = OCMClassMock([OguryError class]);
+    OguryAdError *checkConditionsError = OCMClassMock([OguryAdError class]);
     OCMStub([self.adManager checkConditions:[OCMArg any] sequence:[OCMArg any] error:[OCMArg anyObjectRef]])
         .andDo(^(NSInvocation *invocation) {
             OguryError *__autoreleasing *errorPointer = nil;
@@ -561,7 +561,7 @@
 }
 
 - (void)testWhenIsKillerCheckFailsThenProperErrorAndMonitoringEventsAreDispatched {
-    OguryError *checkConditionsError = OCMClassMock([OguryError class]);
+    OguryAdError *checkConditionsError = OCMClassMock([OguryAdError class]);
     OCMStub(checkConditionsError.code).andReturn(OguryAdErrorCodeWebviewTerminatedBySystem);
     OCMStub([self.isKilledChecker checkForSequence:[OCMArg any] error:[OCMArg anyObjectRef]])
         .andDo(^(NSInvocation *invocation) {

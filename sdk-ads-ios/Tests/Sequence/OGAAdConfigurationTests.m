@@ -6,7 +6,7 @@
 
 #import <OCMock/OCMock.h>
 #import "OGAAdConfiguration.h"
-#import "OguryBannerAdDelegateDispatcher.h"
+#import "OguryBannerAdViewDelegateDispatcher.h"
 #import "OguryAdsBannerSize.h"
 
 NSString *const OGAAdConfigurationTestsAdUnitId = @"ad-unit-id";
@@ -133,7 +133,7 @@ NSString *const OGAEncodedAdMarkup = @"encoded-adMarkup";
 }
 
 - (void)testShouldReturnBannerView {
-    OguryBannerAdDelegateDispatcher *delegateDispatcher = OCMClassMock([OguryBannerAdDelegateDispatcher class]);
+    OguryBannerAdViewDelegateDispatcher *delegateDispatcher = OCMClassMock([OguryBannerAdViewDelegateDispatcher class]);
 
     UIViewController *viewController = [[UIViewController alloc] init];
     UIView *bannerView = [[UIView alloc] init];

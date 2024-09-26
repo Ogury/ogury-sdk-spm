@@ -50,7 +50,7 @@
     OguryError *error;
     XCTAssertFalse([check checkForSequence:OCMClassMock([OGAAdSequence class]) error:&error]);
 
-    XCTAssertEqual(error.code, OguryAdErrorCodeNoInternetConnection);
+    XCTAssertEqual(error.code, OguryAdErrorCodeNoActiveInternetConnection);
 }
 
 @end

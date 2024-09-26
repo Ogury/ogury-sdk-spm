@@ -5,7 +5,7 @@
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
 #import "OGAAdContainer+Testing.h"
-#import "OguryAdsError.h"
+#import "OguryAdError.h"
 #import "OguryAdError+Internal.h"
 
 @interface OGAAdContainerTests : XCTestCase

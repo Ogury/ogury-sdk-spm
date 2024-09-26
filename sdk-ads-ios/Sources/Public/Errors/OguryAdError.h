@@ -10,18 +10,20 @@ typedef NS_ENUM(NSInteger, OguryAdErrorType) {
 };
 
 @interface OguryAdError : OguryError
+
 @property(nonatomic) OguryAdErrorType type;
+
 @end
 
 typedef NS_ENUM(NSInteger, OguryAdErrorCode) {
-    OguryAdErrorCodeSDKNotInitialized = 2000,
+    OguryAdErrorCodeSDKNotCalled = 2000,
     OguryAdErrorCodeSDKNotProperlyInitialized = 2001,
-    OguryAdErrorCodeNoInternetConnection = 2002,
+    OguryAdErrorCodeNoActiveInternetConnection = 2002,
     OguryAdErrorCodeInvalidConfiguration = 2100,
-    OguryAdErrorCodeAdDisabledUnopenedCountry = 2101,
+    OguryAdErrorCodeAdDisabledCountryNotOpened = 2101,
     OguryAdErrorCodeAdDisabledConsentDenied = 2102,
     OguryAdErrorCodeAdDisabledConsentMissing = 2103,
-    OguryAdErrorCodeAdDisabledOtherReason = 2104,
+    OguryAdErrorCodeAdDisabledUnspecifiedReason = 2104,
     OguryAdErrorCodeAdRequestFailed = 2200,
     OguryAdErrorCodeNoFill = 2201,
     OguryAdErrorCodeAdParsingFailed = 2202,
@@ -30,7 +32,7 @@ typedef NS_ENUM(NSInteger, OguryAdErrorCode) {
     OguryAdErrorCodeAdExpired = 2400,
     OguryAdErrorCodeNoAdLoaded = 2401,
     OguryAdErrorCodeViewInBackground = 2402,
-    OguryAdErrorCodeAnotherAdIsAlreadyDisplayed = 2403,
+    OguryAdErrorCodeAnotherAdAlreadyDisplayed = 2403,
     OguryAdErrorCodeWebviewTerminatedBySystem = 2404,
     OguryAdErrorCodeViewControllerPreventsAdFromBeingDisplayed = 2405,
     OguryAdErrorCodeHeaderBidding = 2500

@@ -11,6 +11,9 @@
 		351A124D3B382C7CCFF8B44B /* AdsFullscreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351A16660272F38F3279B421 /* AdsFullscreenController.swift */; };
 		393D067380175864ACD6ED9B /* Pods_LegacyTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F501599943F878CA9FD609 /* Pods_LegacyTestApp.framework */; };
 		436A80E7295072580021EA32 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A80E6295072580021EA32 /* String+Ext.swift */; };
+		506D75532CA40AC30050B345 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506D75522CA40AC30050B345 /* OguryAds.framework */; };
+		506D75552CA40AED0050B345 /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506D75542CA40AED0050B345 /* OguryCore.framework */; };
+		506D75572CA40D500050B345 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506D75562CA40D500050B345 /* OMSDK_Ogury.xcframework */; };
 		C907356224A3CCDD000EF992 /* LogsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C907356124A3CCDD000EF992 /* LogsController.swift */; };
 		C907356524A3D034000EF992 /* LogsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C907356424A3D034000EF992 /* LogsCell.swift */; };
 		C907356724A3D045000EF992 /* LogsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C907356624A3D045000EF992 /* LogsCell.xib */; };
@@ -109,7 +112,11 @@
 		435C560F2A433987004186FF /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		436A80E6295072580021EA32 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		43D0E5A82C5BD61B00AF9CF6 /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		506D75522CA40AC30050B345 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		506D75542CA40AED0050B345 /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		506D75562CA40D500050B345 /* OMSDK_Ogury.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OMSDK_Ogury.xcframework; path = "/Users/neroxe-mac/projects/sdk-ios/sdk-ads-ios/AdsTestApp/../OMSDK_Ogury.xcframework"; sourceTree = "<absolute>"; };
 		59F501599943F878CA9FD609 /* Pods_LegacyTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LegacyTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7D140AD0F0D0031B693E0B3 /* Pods-LegacyTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LegacyTestApp.release.xcconfig"; path = "Target Support Files/Pods-LegacyTestApp/Pods-LegacyTestApp.release.xcconfig"; sourceTree = "<group>"; };
 		C907356124A3CCDD000EF992 /* LogsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsController.swift; sourceTree = "<group>"; };
 		C907356424A3D034000EF992 /* LogsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsCell.swift; sourceTree = "<group>"; };
 		C907356624A3D045000EF992 /* LogsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogsCell.xib; sourceTree = "<group>"; };
@@ -175,8 +182,7 @@
 		C9E8AA9D2492B9D600147961 /* ThumbnailCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailCollectionCell.swift; sourceTree = "<group>"; };
 		C9E8AA9E2492B9D600147961 /* ThumbnailCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThumbnailCollectionCell.xib; sourceTree = "<group>"; };
 		C9E8AAA12492C1EB00147961 /* AdThumbnailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdThumbnailController.swift; sourceTree = "<group>"; };
-		D0C20E7F32BC05567D0EE8E0 /* Pods-LegacyTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LegacyTestApp.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-LegacyTestApp/Pods-LegacyTestApp.release.xcconfig"; sourceTree = "<group>"; };
-		D61D54F054E3DF02D47A82B4 /* Pods-LegacyTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LegacyTestApp.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-LegacyTestApp/Pods-LegacyTestApp.debug.xcconfig"; sourceTree = "<group>"; };
+		E8372717DE0C2EB8BD999420 /* Pods-LegacyTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LegacyTestApp.debug.xcconfig"; path = "Target Support Files/Pods-LegacyTestApp/Pods-LegacyTestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		ED0A181125FFAA7E00509201 /* AdController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdController.swift; sourceTree = "<group>"; };
 		ED0E40B52743B30B00D3009E /* HeaderBiddingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBiddingResponse.swift; sourceTree = "<group>"; };
 		ED0E40B92743C25900D3009E /* HeaderBiddingSeatBid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBiddingSeatBid.swift; sourceTree = "<group>"; };
@@ -198,6 +204,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				506D75572CA40D500050B345 /* OMSDK_Ogury.xcframework in Frameworks */,
+				506D75552CA40AED0050B345 /* OguryCore.framework in Frameworks */,
+				506D75532CA40AC30050B345 /* OguryAds.framework in Frameworks */,
 				393D067380175864ACD6ED9B /* Pods_LegacyTestApp.framework in Frameworks */,
 				C94DAA0A28F59CC5008BFAB1 /* StoreKit.framework in Frameworks */,
 				1E3D78CF2B23181000FCD4CA /* SnapKit in Frameworks */,
@@ -210,6 +219,9 @@
 		3E89C737BA898E957C8C33F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				506D75562CA40D500050B345 /* OMSDK_Ogury.xcframework */,
+				506D75542CA40AED0050B345 /* OguryCore.framework */,
+				506D75522CA40AC30050B345 /* OguryAds.framework */,
 				43D0E5A82C5BD61B00AF9CF6 /* OguryCore.framework */,
 				435C560F2A433987004186FF /* AdsCardLibrary.framework */,
 				1ED3C27C29F03974007604BF /* StoreKitTest.framework */,
@@ -220,6 +232,16 @@
 				59F501599943F878CA9FD609 /* Pods_LegacyTestApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		742ED32698309B3691701E2E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E8372717DE0C2EB8BD999420 /* Pods-LegacyTestApp.debug.xcconfig */,
+				A7D140AD0F0D0031B693E0B3 /* Pods-LegacyTestApp.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../../Pods;
 			sourceTree = "<group>";
 		};
 		C907356324A3D01F000EF992 /* LogsCell */ = {
@@ -504,8 +526,8 @@
 			children = (
 				C9A5E772241A51660093E79B /* LegacyTestApp */,
 				C9A5E771241A51660093E79B /* Products */,
-				F4E802600099A88DEDB1FAC8 /* Pods */,
 				3E89C737BA898E957C8C33F1 /* Frameworks */,
+				742ED32698309B3691701E2E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -587,16 +609,6 @@
 				ED0E40B42743B2F100D3009E /* Header Bidding */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		F4E802600099A88DEDB1FAC8 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				D61D54F054E3DF02D47A82B4 /* Pods-LegacyTestApp.debug.xcconfig */,
-				D0C20E7F32BC05567D0EE8E0 /* Pods-LegacyTestApp.release.xcconfig */,
-			);
-			name = Pods;
-			path = ../Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -950,7 +962,7 @@
 		};
 		C9A5E785241A51680093E79B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D61D54F054E3DF02D47A82B4 /* Pods-LegacyTestApp.debug.xcconfig */;
+			baseConfigurationReference = E8372717DE0C2EB8BD999420 /* Pods-LegacyTestApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -984,7 +996,7 @@
 		};
 		C9A5E786241A51680093E79B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0C20E7F32BC05567D0EE8E0 /* Pods-LegacyTestApp.release.xcconfig */;
+			baseConfigurationReference = A7D140AD0F0D0031B693E0B3 /* Pods-LegacyTestApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";

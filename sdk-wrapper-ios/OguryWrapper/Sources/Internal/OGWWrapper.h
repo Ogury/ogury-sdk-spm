@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)shared;
 
-- (void)startWithConfiguration:(OguryConfiguration *)configuration completionHandler:(SetupCompletionBlock _Nullable)completionHandler;
+- (void)startWithConfiguration:(OguryConfiguration *)configuration completionHandler:(StartCompletionBlock _Nullable)completionHandler;
 
 - (void)setLogLevel:(OguryLogLevel)logLevel;
 

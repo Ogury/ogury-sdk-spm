@@ -2,7 +2,7 @@
 //  Copyright © 2020 Ogury Ltd. All rights reserved.
 //
 
-#import "OGABannerAdContainerState.h"
+#import "OGABannerAdViewContainerState.h"
 #import "OGAAdDisplayer.h"
 #import "OGAAdExposureController.h"
 #import "OGAAd.h"
@@ -11,7 +11,7 @@
 #import "OGAAdDisplayerUpdateStateInformation.h"
 #import "OGAAdDisplayerUpdateViewabilityInformation.h"
 #import "OGAAdDisplayerUpdateExposureInformation.h"
-#import "OGABannerAdInternalAPI.h"
+#import "OGABannerAdViewInternalAPI.h"
 #import "OguryAdError+Internal.h"
 
 #pragma mark - Constants
@@ -23,7 +23,7 @@ static NSString *const OGABannerAdContainerStateKeyValueObservationHiddenKey = @
 
 static int const OGABannerAdContainerStateMaximumNumberOfParentTraversals = 16;
 
-@interface OGABannerAdContainerState ()
+@interface OGABannerAdViewContainerState ()
 
 #pragma mark - Properties
 
@@ -35,7 +35,7 @@ static int const OGABannerAdContainerStateMaximumNumberOfParentTraversals = 16;
 
 @end
 
-@implementation OGABannerAdContainerState
+@implementation OGABannerAdViewContainerState
 
 #pragma mark - Properties
 

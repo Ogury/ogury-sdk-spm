@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)continueLoadAdAfterAdContentsPrepared:(OGAAdSequence *)sequence ads:(NSArray<OGAAd *> *_Nullable)ads error:(OguryError *_Nullable)error;
 
-- (void)dispatchError:(OguryError *)error sequence:(OGAAdSequence *)sequence;
+- (void)dispatchError:(OguryAdError *)error sequence:(OGAAdSequence *)sequence;
 
 - (BOOL)isAnotherAdInOverlayState:(OGAAdSequence *)sequence;
 

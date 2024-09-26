@@ -12,7 +12,7 @@
 @interface OGAAssetKeyChecker ()
 
 - (instancetype)initWithAssetKeyManager:(OGAAssetKeyManager *)assetKeyManager
-                                 origin:(OguryAdErrorType)type
+                                   type:(OguryAdErrorType)type
                                     log:(OGALog *)log;
 
 @end
@@ -31,7 +31,7 @@
     self.log = OCMClassMock([OGALog class]);
     self.assetKeyManager = OCMClassMock([OGAAssetKeyManager class]);
     self.checker = [[OGAAssetKeyChecker alloc] initWithAssetKeyManager:self.assetKeyManager
-                                                                origin:OguryAdErrorTypeLoad
+                                                                  type:OguryAdErrorTypeLoad
                                                                    log:self.log];
 }
 

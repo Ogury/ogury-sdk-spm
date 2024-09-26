@@ -7,7 +7,7 @@
 #import <OCMock/OCMock.h>
 #import "OguryInterstitialAdDelegateDispatcher.h"
 #import "OguryInterstitialAd.h"
-#import "OguryAdsError.h"
+#import "OguryAdError.h"
 #import "OguryAdError+Internal.h"
 
 @interface OguryInterstitialAdDelegateDispatcherTests : XCTestCase

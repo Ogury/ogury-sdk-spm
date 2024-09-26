@@ -3,7 +3,7 @@
 //
 
 #import "OGABannerToFullscreenAdContainerTransition.h"
-#import "OGABannerAdContainerState.h"
+#import "OGABannerAdViewContainerState.h"
 #import "OGAFullscreenAdContainerState.h"
 #import "OGAExpandAdAction.h"
 #import "OGAAdDisplayerUpdateStateInformation.h"

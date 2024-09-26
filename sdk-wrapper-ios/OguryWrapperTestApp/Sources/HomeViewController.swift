@@ -67,8 +67,21 @@ class HomeViewController: UIViewController, ChoiceCmpDelegate {
             .build()
         Ogury.setLogLevel(.all)
         Ogury.start(with: config, completionHandler: { success, error in
-            print("success \(success)")
-            print("error \(String(describing: error))")
+            print("success : \(success)")
+            if let error = error {
+                switch (error.code) {
+                case OguryStartErrorCode.failedStartingOguryModule.rawValue :
+                    print("\(error.localizedDescription)")
+                    break
+                case OguryStartErrorCode.noModuleFound.rawValue :
+                    print("\(error.localizedDescription)")
+                    break
+                default:
+                    break
+                }
+            }
+            
+            
         })
     }
     

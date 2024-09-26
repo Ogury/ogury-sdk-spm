@@ -13,7 +13,7 @@ protocol OguryErrorConvertible {
     var readableError: String? { get }
 }
 
-extension OguryAdsErrorType: OguryErrorConvertible {
+extension OguryAdErrorCode: OguryErrorConvertible {
     var readableError: String? {
         switch self {
             case .adDisabledOtherReason: return "Ad is disabled"
@@ -30,13 +30,13 @@ extension OguryAdsErrorType: OguryErrorConvertible {
             case .sdkNotInitialized: return "SDK was not initialized"
             case .sdkNotProperlyInitialized: return "SDK was not properly initialized"
             case .anotherAdIsAlreadyDisplayed: return "Another ad is already being display"
-//            case .assetKeyNotValidError: return "Asset Key is not valid"
             case .noFill: return "Ad is not available"
             case .noAdLoaded: return "Ad is not loaded"
             case .viewControllerPreventsAdFromBeingDisplayed: return "We were unable to show the ad in the current presenting view controller"
             case .viewInBackground: return "Try to present an ad while app is in background"
             case .webviewTerminatedBySystem: return "iOS killed the webview due to memory pressure"
-            @unknown default: return nil
+            case .headerBidding: return "OgurySDK can't generate HB token"
+        @unknown default: return nil
         }
     }
 }

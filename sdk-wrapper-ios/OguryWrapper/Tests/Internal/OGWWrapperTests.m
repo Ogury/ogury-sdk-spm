@@ -71,7 +71,7 @@
     [self.wrapper startWithConfiguration:self.configuration completionHandler:^(BOOL success, OguryError * _Nullable error) {
         XCTAssertNotNil(error);
         XCTAssertEqualObjects(error.localizedDescription, OGWErrorNoSdkModuleFoundMessage);
-        XCTAssertEqual(error.code, OGWErrorNoSdkModuleFound);
+        XCTAssertEqual(error.code, OguryStartErrorCodeNoModuleFound);
         XCTAssertFalse(success);
         [expectation fulfill]; 
     }];

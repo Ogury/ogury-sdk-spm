@@ -4,7 +4,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import <OguryAds/OGARewardItem.h>
+#import <OguryAds/OguryAds.h>
 
 @interface OGARewardItemTests : XCTestCase
 

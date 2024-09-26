@@ -91,7 +91,7 @@ final class BannerAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didLoad?(OguryBannerAd())
+            adManager.ad?.delegate?.didLoad?(OguryBannerAdView())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -110,7 +110,7 @@ final class BannerAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didClick?(OguryBannerAd())
+            adManager.ad?.delegate?.didClick?(OguryBannerAdView())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -130,7 +130,7 @@ final class BannerAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didClose?(OguryBannerAd())
+            adManager.ad?.delegate?.didClose?(OguryBannerAdView())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -150,7 +150,7 @@ final class BannerAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didTriggerImpressionOguryBannerAd?(OguryBannerAd())
+            adManager.ad?.delegate?.didTriggerImpressionOguryBannerAdView?(OguryBannerAdView())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -171,7 +171,7 @@ final class BannerAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didFailOguryBannerAdWithError?(error, for: OguryBannerAd())
+            adManager.ad?.delegate?.didFailOguryBannerAdWithError?(error, for: OguryBannerAdView())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -203,7 +203,7 @@ final class BannerAdManagerTests: XCTestCase {
                     }
                 }
                 .store(in: &self.storables)
-                adManager.ad?.delegate?.didFailOguryBannerAdWithError?(error, for: OguryBannerAd())
+                adManager.ad?.delegate?.didFailOguryBannerAdWithError?(error, for: OguryBannerAdView())
                 self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
             }
         }
@@ -237,7 +237,7 @@ final class BannerAdManagerTests: XCTestCase {
                }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didFailOguryBannerAdWithError?(error, for: OguryBannerAd())
+            adManager.ad?.delegate?.didFailOguryBannerAdWithError?(error, for: OguryBannerAdView())
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
          }
       }
@@ -274,7 +274,7 @@ final class BannerAdManagerTests: XCTestCase {
                     }
                 }
                 .store(in: &self.storables)
-                adManager.ad?.delegate?.didFailOguryBannerAdWithError?(error, for: OguryBannerAd())
+                adManager.ad?.delegate?.didFailOguryBannerAdWithError?(error, for: OguryBannerAdView())
                 self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
             }
         }
@@ -303,7 +303,7 @@ final class BannerAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            proxy.handle(AdManagerError.loadNotCalledBeforeShow, for: OguryBannerAd())
+            proxy.handle(AdManagerError.loadNotCalledBeforeShow, for: OguryBannerAdView())
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
         }
     }

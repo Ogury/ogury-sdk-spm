@@ -60,7 +60,7 @@ static int ogcMaxNumberOfConvertionValue = 63;
    return self;
 }
 
-- (void)startWithConfiguration:(OguryConfiguration *)configuration completionHandler:(SetupCompletionBlock)completionHandler {
+- (void)startWithConfiguration:(OguryConfiguration *)configuration completionHandler:(StartCompletionBlock)completionHandler {
     int numberOfModulesPresent = 0;
     __block NSMutableString *errorMessage = [NSMutableString string];
     __block NSMutableString *modulesMessage = [NSMutableString string];

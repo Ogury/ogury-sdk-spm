@@ -472,7 +472,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         [self dispatchError:error sequence:sequence];
 
         // to make difference with no internet error on load
-        if (error.code == OguryCoreErrorTypeNoInternetConnection || error.code == OguryAdErrorCodeNoInternetConnection) {
+        if (error.code == OguryCoreErrorTypeNoInternetConnection || error.code == OguryAdErrorCodeNoActiveInternetConnection) {
             [self.monitoringDispatcher sendShowErrorEvent:OGAShowErrorEventNoInternetConnection
                                           adConfiguration:sequence.monitoringAdConfiguration
                                           customSessionId:sessionId];
@@ -510,7 +510,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
     sequence.status = OGAAdSequenceStatusClosed;
 }
 
-- (void)dispatchError:(OguryError *_Nullable)error sequence:(OGAAdSequence *_Nullable)sequence {
+- (void)dispatchError:(OguryAdError *_Nullable)error sequence:(OGAAdSequence *_Nullable)sequence {
     if (!sequence) {
         return;
     }
@@ -553,10 +553,10 @@ static NSString *const OGADisablingReason = @"disabling_reason";
 
     switch (error.code) {
         case OguryCoreErrorTypeNoInternetConnection:
-        case OguryAdErrorCodeNoInternetConnection:
+        case OguryAdErrorCodeNoActiveInternetConnection:
             [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventNoInternetConnection adConfiguration:configuration customSessionId:sessionId];
             break;
-        case OguryAdErrorCodeSDKNotInitialized:
+        case OguryAdErrorCodeSDKNotCalled:
             [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventSdkNotInitialized adConfiguration:configuration customSessionId:sessionId];
             break;
         case OguryAdErrorCodeSDKNotProperlyInitialized:
@@ -566,16 +566,16 @@ static NSString *const OGADisablingReason = @"disabling_reason";
             [self.monitoringDispatcher sendShowErrorEventAdExpired:configuration context:sequence.coordinator.adControllers[0].expirationContext];
             break;
         }
-        case OguryAdErrorCodeAdDisabledOtherReason:
+        case OguryAdErrorCodeAdDisabledUnspecifiedReason:
         case OguryAdErrorCodeAdDisabledConsentMissing:
         case OguryAdErrorCodeAdDisabledConsentDenied:
-        case OguryAdErrorCodeAdDisabledUnopenedCountry:
+        case OguryAdErrorCodeAdDisabledCountryNotOpened:
             [self.monitoringDispatcher sendShowErrorEvent:OGAShowErrorEventAdDisabled adConfiguration:configuration customSessionId:sessionId];
             break;
         case OguryAdErrorCodeNoAdLoaded:
             [self.monitoringDispatcher sendShowErrorEvent:OGAShowErrorEventNoAdLoaded adConfiguration:configuration customSessionId:sessionId];
             break;
-        case OguryAdErrorCodeAnotherAdIsAlreadyDisplayed:
+        case OguryAdErrorCodeAnotherAdAlreadyDisplayed:
             [self.monitoringDispatcher sendShowErrorEvent:OGAShowErrorEventAnotherAdAlreadyDisplayed adConfiguration:configuration customSessionId:sessionId];
             break;
         case OguryAdErrorCodeViewControllerPreventsAdFromBeingDisplayed:

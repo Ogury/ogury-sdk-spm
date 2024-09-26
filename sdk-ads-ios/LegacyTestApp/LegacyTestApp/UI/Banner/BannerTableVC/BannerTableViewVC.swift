@@ -15,8 +15,8 @@ final class BannerTableViewVC: BaseViewController {
     let viewModel = BannerViewModel(displayType: .tableView)
     
     var addbannerObserver: Disposable?
-    var bottomBanner: OguryBannerAd?
-    var topBanner: OguryBannerAd?
+    var bottomBanner: OguryBannerAdView?
+    var topBanner: OguryBannerAdView?
     let disposeBag = DisposeBag()
 
     // MARK: - Lifecycle
@@ -129,13 +129,13 @@ final class BannerTableViewVC: BaseViewController {
         updateFrame()
     }
 
-    func idForBanner(_ bannerAds: OguryBannerAd) -> Int? {
+    func idForBanner(_ bannerAds: OguryBannerAdView) -> Int? {
         let config = banners.first { BannerAdControllerStore.shared.getInstance(for: $0.bannerId)?.banner == bannerAds }
 
         return config?.bannerId
     }
 
-    func removeBannerFromScreen(_ bannerAds: OguryBannerAd) {
+    func removeBannerFromScreen(_ bannerAds: OguryBannerAdView) {
         banners.removeAll { BannerAdControllerStore.shared.getInstance(for: $0.bannerId)?.banner == bannerAds }
 
         updateView()
@@ -176,7 +176,7 @@ extension BannerTableViewVC: UIPopoverPresentationControllerDelegate {
 
 extension BannerTableViewVC: OguryBannerAdDelegate {
 
-    func didLoad(_ banner: OguryBannerAd) {
+    func didLoad(_ banner: OguryBannerAdView) {
         if let bottomBanner = self.bottomBanner {
             bannerBottomView.addSubview(bottomBanner)
         }
@@ -188,21 +188,21 @@ extension BannerTableViewVC: OguryBannerAdDelegate {
         LogsController.shared.addLogs("Banner n°\(idForBanner(banner)) loaded")
     }
 
-    func didDisplay(_ banner: OguryBannerAd) {
+    func didDisplay(_ banner: OguryBannerAdView) {
         LogsController.shared.addLogs("Banner n°\(idForBanner(banner)) displayed")
     }
 
 
-    func didClick(_ banner: OguryBannerAd) {
+    func didClick(_ banner: OguryBannerAdView) {
         LogsController.shared.addLogs("Banner n°\(idForBanner(banner)) clicked")
     }
 
-    func didClose(_ banner: OguryBannerAd) {
+    func didClose(_ banner: OguryBannerAdView) {
         LogsController.shared.addLogs("Banner n°\(idForBanner(banner)) closed")
         removeBannerFromScreen(banner)
     }
 
-    func didFailOguryBannerAdWithError(_ error: OguryError, for banner: OguryBannerAd) {
+    func didFailOguryBannerAdWithError(_ error: OguryError, for banner: OguryBannerAdView) {
         LogsController.shared.addLogs("Banner n°\(idForBanner(banner)) error : \(error.localizedDescription)")
 
         if (error.code != 2004) {

@@ -2,13 +2,13 @@
 //  Copyright © 2020 Ogury Ltd. All rights reserved.
 //
 
-#import "OGABannerAdInternalAPI.h"
+#import "OGABannerAdViewInternalAPI.h"
 #import "NSDictionary+OGABase64.h"
 #import "OGAAdManager.h"
 #import "OGAInternalAPIConstants.h"
 #import "OGALog.h"
 #import "OGAMonitoringDispatcher.h"
-#import "OguryBannerAdDelegateDispatcher.h"
+#import "OguryBannerAdViewDelegateDispatcher.h"
 #import "OGAAdSequenceCoordinator.h"
 #import "OGAAdController.h"
 #import "OGAInternal.h"
@@ -17,7 +17,7 @@
 
 NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName";
 
-@interface OGABannerAdInternalAPI () <OguryBannerAdDelegate>
+@interface OGABannerAdViewInternalAPI () <OguryBannerAdDelegate>
 
 #pragma mark - Properties
 
@@ -33,7 +33,7 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
 
 @end
 
-@implementation OGABannerAdInternalAPI
+@implementation OGABannerAdViewInternalAPI
 
 #pragma mark - Initialization
 
@@ -80,7 +80,7 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
         _size = size;
 
         // Use a proxy to intercept lifecycle messages and resend them to the original delegate dispatcher
-        _dispatcherProxy = [[OguryBannerAdDelegateDispatcher alloc] init];
+        _dispatcherProxy = [[OguryBannerAdViewDelegateDispatcher alloc] init];
         _dispatcherProxy.delegate = self;
 
         _adManager = adManager;
@@ -110,6 +110,10 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
 
 - (BOOL)isExpanded {
     return [self.adManager isExpanded:self.sequence];
+}
+
+- (BOOL)isLoaded {
+    return [self.adManager isLoaded:self.sequence];
 }
 
 #pragma mark - Methods
@@ -184,10 +188,6 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
     [self.adManager close:self.sequence];
 }
 
-- (BOOL)isLoaded {
-    return [self.adManager isLoaded:self.sequence];
-}
-
 - (void)didMoveToSuperview {
     [self.log logAd:OguryLogLevelDebug forAdConfiguration:self.configuration message:@"Successfully attached to the super view"];
 
@@ -213,7 +213,7 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
 
 #pragma mark - OguryBannerAdDelegate
 
-- (void)didLoadOguryBannerAd:(OguryBannerAd *)banner {
+- (void)didLoadOguryBannerAdView:(OguryBannerAdView *)banner {
     [self.delegateDispatcher loaded];
 
     // Banner must be shown as soon as it is loaded
@@ -222,19 +222,19 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
     }
 }
 
-- (void)didClickOguryBannerAd:(OguryBannerAd *)banner {
+- (void)didClickOguryBannerAdView:(OguryBannerAdView *)banner {
     [self.delegateDispatcher clicked];
 }
 
-- (void)didCloseOguryBannerAd:(OguryBannerAd *)banner {
+- (void)didCloseOguryBannerAdView:(OguryBannerAdView *)banner {
     [self.delegateDispatcher closed];
 }
 
-- (void)didFailOguryBannerAdWithError:(OguryAdError *)error forAd:(OguryBannerAd *)banner {
+- (void)didFailOguryBannerAdWithError:(OguryAdError *)error forAd:(OguryBannerAdView *)banner {
     [self.delegateDispatcher failedWithError:error];
 }
 
-- (void)didTriggerImpressionOguryBannerAd:(OguryBannerAd *)banner {
+- (void)didTriggerImpressionOguryBannerAdView:(OguryBannerAdView *)banner {
     [self.delegateDispatcher adImpression];
 }
 

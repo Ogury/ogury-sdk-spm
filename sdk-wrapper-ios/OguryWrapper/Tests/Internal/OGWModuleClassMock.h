@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)shared;
 
-- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetupCompletionBlock _Nullable)completionHandler;
+- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(StartCompletionBlock _Nullable)completionHandler;
 
 - (void)setLogLevel:(OguryLogLevel)logLevel;
 
