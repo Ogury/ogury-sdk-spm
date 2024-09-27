@@ -16,7 +16,8 @@ struct BannerPlaceholderFeature: Reducer {
             switch bannerType {
                 case .mpu,
                      .maxHeaderBidding(.mpu, _),
-                     .dtFairBidHeaderBidding(.mpu, _):
+                     .dtFairBidHeaderBidding(.mpu, _),
+                     .unityLevelPlayHeaderBidding(.mpu, _):
                     return true
                 default: return false
             }

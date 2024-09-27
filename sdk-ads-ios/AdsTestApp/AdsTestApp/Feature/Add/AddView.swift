@@ -47,7 +47,7 @@ struct AddView: View {
 
 #Preview {
     AddView(
-      store: Store(initialState: AddFeature.State(maxHeaderBidable: MaxBidder(), dtFairBidHeaderBidable: DTFairBidBidder()),
+        store: Store(initialState: AddFeature.State(maxHeaderBidable: MaxBidder(), dtFairBidHeaderBidable: DTFairBidBidder(), unityLevelPlayBidable: UnityLevelPlayBidder()),
                      reducer: {
                          AddFeature()
                      }))

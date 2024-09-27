@@ -6,97 +6,10 @@ import Foundation
 import AdsCardLibrary
 import OguryAds
 
-struct RTBBidder {
+class RTBBidder: HeaderBidable {
     // MARK: - Constants
-    let fakeBody = """
-        {
-          "app": {
-            "bundle": "$BUNDLE",
-            "cat": [
-              "IAB1",
-              "IAB1-1",
-              "IAB3",
-              "books",
-              "business"
-            ],
-            "id": "$ASSET_KEY",
-            "publisher": {
-              "id": "04241e0b1cc98976858ce16377c7eef4"
-            },
-            "ver": "1.0"
-          },
-          "at": 1,
-          "badv": [],
-          "bcat": [
-            "IAB25",
-            "IAB26",
-            "IAB9-9",
-            "IAB3-7"
-          ],
-          "device": {
-            "connectiontype": 2,
-            "dnt": 0,
-            "geo": $GEO_OBJECT,
-            "h": 1334,
-            "ifa": "6abe796f-0eed-4130-b416-99939422dc77",
-            "ip": "8.25.196.26",
-            "js": 1,
-            "language": "en",
-            "make": "Apple",
-            "model": "iPhone 11",
-            "os": "ios",
-            "osv": "11.4.1",
-            "pxratio": 2.0,
-            "ua": "Mozilla/5.0 (Linux; Android 11; Android SDK built for x86 Build/RSR1.210210.001.A1; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.106 Mobile Safari/537.36",
-            "w": 750
-          },
-          "id": "$AD_UNIT_ID",
-          "imp": [
-            {
-              "banner": {
-                "battr": [
-                  3,
-                  8,
-                  9,
-                  10,
-                  14,
-                  17,
-                  6,
-                  7
-                ],
-                "btype": [],
-                "h": 240,
-                "pos": 1,
-                "w": 320
-              },
-              "bidfloor": 1.12,
-              "displaymanager": "max",
-              "displaymanagerver": "5.3.0",
-              "exp": 14400,
-              "id": "1",
-              "instl": 0,
-              "secure": 1,
-              "tagid": "$AD_UNIT_ID"
-            }
-          ],
-          "regs": {
-            "ext": {}
-          },
-          "tmax": 550,
-          "user": {
-            "data": [
-              {
-                "segment": [
-                  {
-                    "signal": $TOKEN
-                  }
-                ]
-              }
-            ],
-            "id": "$AD_UNIT_ID"
-          }
-        }
-        """
+    var body = RTBidderBody()
+    var url: URL! { fatalError() }
     
     enum HeaderBiddingServiceError: LocalizedError {
         case invalidURL
@@ -179,11 +92,12 @@ struct RTBBidder {
                           creativeId: String?,
                           dspCreative: String?,
                           dspRegion: DspRegion?,
+                          rtbTestModeEnabled: Bool,
                           url: URL?,
                           completionHandler: @escaping HeaderBiddingServiceCompletionHandler) {
         // call on Main Thread because of an Xcode warning : bidder token access UIWindowsScene connectedScene
         // which is a Main UI Thread access
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [self] in
             guard let headerBiddingURL = url else {
                 completionHandler(.failure(.invalidURL))
                 return
@@ -197,74 +111,86 @@ struct RTBBidder {
             request.addValue("keep-alive", forHTTPHeaderField: "Connection")
             
             // Replace placeholders
-            var formattedBody = fakeBody
-            formattedBody = formattedBody.replacingOccurrences(of: "$ASSET_KEY", with: assetKey)
-            formattedBody = formattedBody.replacingOccurrences(of: "$AD_UNIT_ID", with: adUnitId)
-            formattedBody = formattedBody.replacingOccurrences(of: "$GEO_OBJECT", with: self.buildGeoObject(with: country))
-            formattedBody = formattedBody.replacingOccurrences(of: "$BUNDLE", with: Bundle.main.bundleIdentifier ?? "co.ogury.sdk.ads.app.devc")
-            
+            var token:String?
             if (campaignId != nil && !campaignId!.isEmpty && dspCreative != nil && !dspCreative!.isEmpty && dspRegion != nil) {
                 let cls:AnyClass = OguryTokenService.self
                 let sel = NSSelectorFromString("bidderTokenWithCampaignId:creativeId:dspCreativeId:dspRegion:completion:")
                 let meth = class_getClassMethod(cls, sel)
                 let imp = method_getImplementation(meth!)
-                typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?, String?, String?, @escaping (NSString?, NSError?) -> Void) -> Void
+                typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?, String?, String?, @escaping (String?, NSError?) -> Void) -> Void
                 let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-                sayHiTo(OguryTokenService.classForCoder(), sel, campaignId!, creativeId, dspCreative, dspRegion!.displayName) { token, error in
+                sayHiTo(OguryTokenService.classForCoder(), sel, campaignId!, creativeId, dspCreative, dspRegion!.displayName)  { token, error in
                     guard error == nil else  {
                         completionHandler(.failure(.tokenError(error!)))
                         return
                     }
-                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(token ?? "null")\"")
-                    performRequest(with: &request, body: formattedBody, completion: completionHandler)
+                    self.performRequest(with: &request,
+                                        adUnit:adUnitId,
+                                        assetKey:assetKey,
+                                        country:country,
+                                        token:token,
+                                        rtbTestModeEnabled: rtbTestModeEnabled,
+                                        completion: completionHandler)
                 }
             } else if (campaignId != nil && !campaignId!.isEmpty) {
                 let cls:AnyClass = OguryTokenService.self
                 let sel = NSSelectorFromString("bidderTokenWithCampaignId:creativeId:completion:")
                 let meth = class_getClassMethod(cls, sel)
                 let imp = method_getImplementation(meth!)
-                typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?, @escaping (NSString?, NSError?) -> Void) -> Void
+                typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?, @escaping (String?, NSError?) -> Void) -> Void
                 let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
                 sayHiTo(OguryTokenService.classForCoder(), sel, campaignId!, creativeId) { token, error in
                     guard error == nil else  {
                         completionHandler(.failure(.tokenError(error!)))
                         return
                     }
-                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(token ?? "null")\"")
-                    performRequest(with: &request, body: formattedBody, completion: completionHandler)
+                    self.performRequest(with: &request,
+                                        adUnit:adUnitId,
+                                        assetKey:assetKey,
+                                        country:country,
+                                        token:token,
+                                        rtbTestModeEnabled: rtbTestModeEnabled,
+                                        completion: completionHandler)
                 }
             } else {
-                OguryTokenService.bidderToken { token, error in
+                OguryTokenService.bidderToken  { token, error in
                     guard error == nil else  {
                         completionHandler(.failure(.tokenError(error!)))
                         return
                     }
-                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(token ?? "null")\"")
-                    performRequest(with: &request, body: formattedBody, completion: completionHandler)
+                    self.performRequest(with: &request,
+                                        adUnit:adUnitId,
+                                        assetKey:assetKey,
+                                        country:country,
+                                        token:token,
+                                        rtbTestModeEnabled: rtbTestModeEnabled,
+                                        completion: completionHandler)
                 }
             }
         }
     }
     
-    private func performRequest(with request:inout URLRequest, body: String, completion: @escaping HeaderBiddingServiceCompletionHandler) {
-        request.httpBody = body.data(using: .utf8)
+    private func performRequest(with request:inout URLRequest,
+                                adUnit adUnitId: String,
+                                assetKey: String,
+                                country: String?,
+                                token: String?,
+                                rtbTestModeEnabled: Bool,
+                                completion: @escaping HeaderBiddingServiceCompletionHandler) {
+        updateJson(withAdUnit: adUnitId, assetKey: assetKey, country: country, token: token, rtbTestModeEnabled: rtbTestModeEnabled)
+        request.httpBody = try? JSONEncoder().encode(body)
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            handle(data: data, response: response, error: error, completionHandler: completion)
+            self.handle(data: data, response: response, error: error, completionHandler: completion)
         }.resume()
     }
     
-    private func buildGeoObject(with country: String?) -> String {
+    private func buildGeoObject(with country: String?) -> [String: String] {
         switch country {
-            case "USA":
-                return "{\"country\":\"USA\",\"city\":\"NewYork\"}"
-            case "FRA":
-                return "{\"country\":\"FRA\",\"city\":\"Paris\"}"
-            case "SRB":
-                return "{\"country\":\"SRB\",\"city\":\"Belgrade\"}"
-            case "JPN":
-                return "{\"country\":\"JPN\",\"city\":\"Tokyo\"}"
-            default:
-                return "{\"country\":\"USA\",\"city\":\"NewYork\"}"
+            case "USA": return ["country":"USA","city":"NewYork"]
+            case "FRA": return ["country":"FRA","city":"Paris"]
+            case "SRB": return ["country":"SRB","city":"Belgrade"]
+            case "JPN": return ["country":"JPN","city":"Tokyo"]
+            default: return ["country":"USA","city":"NewYork"]
         }
     }
     
@@ -288,12 +214,16 @@ struct RTBBidder {
                 
                 guard
                     let bidResponse = try? JSONDecoder().decode(HeaderBiddingResponse.self, from: data),
-                    let firstSeatBid = bidResponse.seatbid.first, let firstExt = firstSeatBid.bid.first else {
+                    let firstSeatBid = bidResponse.seatbid.first, let firstBid = firstSeatBid.bid.first else {
                     completionHandler(.failure(.invalidData))
                     return
                 }
                 
-                completionHandler(.success(firstExt.ext.signaldata))
+                guard let token = adMarkUp(from: firstBid) else {
+                    completionHandler(.failure(.invalidResponse))
+                    return
+                }
+                completionHandler(.success(token))
                 
             case 300..<400:
                 completionHandler(.failure(.redirection(code: urlResponse.statusCode)))
@@ -309,12 +239,26 @@ struct RTBBidder {
         }
     }
     
+    func adMarkUp(from response: HeaderBiddingBid) -> String? {
+        fatalError("should be overriden")
+    }
+    
+    func updateJson(withAdUnit adUnit: String, assetKey: String, country: String?, token: String?, rtbTestModeEnabled: Bool) {
+        body.app.bundle = Bundle.main.bundleIdentifier ?? "co.ogury.sdk.ads.app.devc"
+        body.app.id = assetKey
+        body.imp[0].tagid = adUnit
+        body.device.geo = buildGeoObject(with: country)
+        if rtbTestModeEnabled {
+            body.test = 1
+        }
+    }
+    
     func adMarkUp(adUnitId: String,
                   campaignId: String?,
                   creativeId: String?,
                   dspCreative: String?,
                   dspRegion: DspRegion?,
-                  url: URL?) async throws -> String? {
+                  rtbTestModeEnabled: Bool) async throws -> String? {
         try await withUnsafeThrowingContinuation { continuation in
             retrieveAdMarkup(assetKey: AdSdkLauncher.shared.assetKey,
                              adUnitId: adUnitId,
@@ -322,8 +266,9 @@ struct RTBBidder {
                              campaignId: campaignId,
                              creativeId: creativeId,
                              dspCreative: dspCreative,
-                             dspRegion: dspRegion, url: url) { result in
-                print("👀 \(result)")
+                             dspRegion: dspRegion,
+                             rtbTestModeEnabled: rtbTestModeEnabled,
+                             url: url) { result in
                 switch result {
                     case let .success(adMarkUp): continuation.resume(returning: adMarkUp)
                     case let .failure(error): continuation.resume(throwing: error)
@@ -331,5 +276,4 @@ struct RTBBidder {
             }
         }
     }
-    
 }

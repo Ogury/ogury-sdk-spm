@@ -82,5 +82,32 @@
             "creativeId" : "",
             "dspCreativeId" : ""
         }
+    },
+    "UnityLevelPlayHeaderBidding" : {
+        "url" : "https://inapp-unitylevelplay.presage.io/api/header-bidding-request",
+        "interstitial" : {
+            "adUnitId" : "368441d2-44eb-417f-8b72-19da8cdf9365",
+            "campaignId" : "",
+            "creativeId" : "",
+            "dspCreativeId" : ""
+        },
+        "optIn" : {
+            "adUnitId" : "3938ed26-e66e-4323-9441-f34878329847",
+            "campaignId" : "",
+            "creativeId" : "",
+            "dspCreativeId" : ""
+        },
+        "banner" : {
+            "adUnitId" : "12b66e5e-1a87-4324-be38-3e958f01ed5b",
+            "campaignId" : "",
+            "creativeId" : "",
+            "dspCreativeId" : ""
+        },
+        "mpu" : {
+            "adUnitId" : "a0040211-fbfa-4808-924b-521afd11a9d7",
+            "campaignId" : "",
+            "creativeId" : "",
+            "dspCreativeId" : ""
+        }
     }
 }

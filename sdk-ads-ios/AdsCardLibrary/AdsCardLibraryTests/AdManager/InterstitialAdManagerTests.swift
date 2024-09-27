@@ -44,6 +44,22 @@ final class InterstitialAdManagerTests: XCTestCase {
         wait(for: [ex], timeout: 0.5)
     }
     
+    func testWhenUnityLevelPlayInterstitialIsUsedThenUnityLevelPlayHeaderBiddingIsCalled() {
+        let retriever = UnityLevelPlayRetriever(adMarkUpToReturn: "")
+        let inter: AdType<InterstitialAdManager> = .unityLevelPlayHeaderBidding(adType: .interstitial, adMarkUpRetriever: retriever)
+        let adManager = InterstitialAdManager(adType: inter)
+        adManager.options = AdManagerOptions(viewController: UIViewController(), adDisplayName: "", adUnitId: "")
+        let ex = XCTestExpectation(description: "The ad did not load")
+        adManager.events.sink { event in
+            if event == .adLoading {
+                ex.fulfill()
+            }
+        }
+        .store(in: &storables)
+        try? adManager.loadAd(from: adManager.options.baseOptions)
+        wait(for: [ex], timeout: 0.5)
+    }
+    
     func testWhenMaxInterstitialIsUsedAndBidderReturnNilThenErrorIsDispatched() {
         let retriever = MaxRetriever(adMarkUpToReturn: nil)
         let inter: AdType<InterstitialAdManager> = .maxHeaderBidding(adType: .interstitial, adMarkUpRetriever: retriever)
@@ -63,6 +79,22 @@ final class InterstitialAdManagerTests: XCTestCase {
     func testWhenDTFairBidInterstitialIsUsedAndBidderReturnNilThenErrorIsDispatched() {
         let retriever = BTFairBidRetriever(adMarkUpToReturn: nil)
         let inter: AdType<InterstitialAdManager> = .dtFairBidHeaderBidding(adType: .interstitial, adMarkUpRetriever: retriever)
+        let adManager = InterstitialAdManager(adType: inter)
+        adManager.options = AdManagerOptions(viewController: UIViewController(), adDisplayName: "", adUnitId: "")
+        let ex = XCTestExpectation(description: "The ad did not load")
+        adManager.events.sink { event in
+            if event == .adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")) {
+                ex.fulfill()
+            }
+        }
+        .store(in: &storables)
+        try? adManager.loadAd(from: adManager.options.baseOptions)
+        wait(for: [ex], timeout: 2)
+    }
+    
+    func testWhenUnityLevelPlayInterstitialIsUsedAndBidderReturnNilThenErrorIsDispatched() {
+        let retriever = UnityLevelPlayRetriever(adMarkUpToReturn: nil)
+        let inter: AdType<InterstitialAdManager> = .unityLevelPlayHeaderBidding(adType: .interstitial, adMarkUpRetriever: retriever)
         let adManager = InterstitialAdManager(adType: inter)
         adManager.options = AdManagerOptions(viewController: UIViewController(), adDisplayName: "", adUnitId: "")
         let ex = XCTestExpectation(description: "The ad did not load")

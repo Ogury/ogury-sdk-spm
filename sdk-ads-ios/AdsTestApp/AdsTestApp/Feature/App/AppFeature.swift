@@ -13,6 +13,7 @@ struct AppFeature: Reducer {
     let cardManager = AdsCardManager()
     let maxHeaderBidable = MaxBidder()
     let dtFairBidHeaderBidable = DTFairBidBidder()
+    let unityLevelPlayBidable = UnityLevelPlayBidder()
     
     struct State: Equatable {
         var path = StackState<Path.State>()
@@ -95,6 +96,7 @@ struct AppFeature: Reducer {
                     state.main.adFormats = container.retrieveAds(cardManager: cardManager,
                                                                  maxHeaderBidable: maxHeaderBidable, 
                                                                  dtFairBidHeaderBidable: dtFairBidHeaderBidable,
+                                                                 unityLevelPlayBidable: unityLevelPlayBidable,
                                                                  viewController: adHostingViewController,
                                                                  view: nil,
                                                                  adDelegate: adDelegate)
@@ -121,6 +123,7 @@ struct AppFeature: Reducer {
                         let adFormats = container.retrieveAds(cardManager: cardManager,
                                                               maxHeaderBidable: maxHeaderBidable, 
                                                               dtFairBidHeaderBidable: dtFairBidHeaderBidable,
+                                                              unityLevelPlayBidable: unityLevelPlayBidable,
                                                               viewController: adHostingViewController,
                                                               view: nil,
                                                               adDelegate: adDelegate) 

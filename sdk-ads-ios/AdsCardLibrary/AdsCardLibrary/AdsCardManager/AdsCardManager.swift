@@ -77,6 +77,7 @@ public indirect enum AdType<T: AdManager> {
     case mpu
     case maxHeaderBidding(adType: AdType, adMarkUpRetriever: MaxHeaderBidable?)
     case dtFairBidHeaderBidding(adType: AdType, adMarkUpRetriever: DTFairBidHeaderBidable?)
+    case unityLevelPlayHeaderBidding(adType: AdType, adMarkUpRetriever: UnityLevelPlayBidable?)
     
     /// returns the proper adManager handled by the AdType
     /// if no suitable adManager is found ``AdManagerError/adManagerMismatch`` is thrown
@@ -167,6 +168,33 @@ public indirect enum AdType<T: AdManager> {
                    }
                    return BannerAdManager(adType: .dtFairBidHeaderBidding(adType: .mpu, adMarkUpRetriever: adMarkUpRetriever)) as! T
 
+                case .unityLevelPlayHeaderBidding(.thumbnail, _):
+                       fatalError("Thumbnail is not supported on HB")
+                       
+                case let .unityLevelPlayHeaderBidding(.interstitial, adMarkUpRetriever):
+                   guard T.self == InterstitialAdManager.self else {
+                       throw AdManagerError.adManagerMismatch
+                   }
+                   return InterstitialAdManager(adType: .unityLevelPlayHeaderBidding(adType: .interstitial, adMarkUpRetriever: adMarkUpRetriever)) as! T
+                   
+                case let .unityLevelPlayHeaderBidding(.rewarded, adMarkUpRetriever):
+                   guard T.self == RewardedAdManager.self else {
+                       throw AdManagerError.adManagerMismatch
+                   }
+                   return RewardedAdManager(adType: .unityLevelPlayHeaderBidding(adType: .rewarded, adMarkUpRetriever: adMarkUpRetriever)) as! T
+                   
+                case let .unityLevelPlayHeaderBidding(.banner, adMarkUpRetriever):
+                   guard T.self == BannerAdManager.self else {
+                       throw AdManagerError.adManagerMismatch
+                   }
+                   return BannerAdManager(adType: .unityLevelPlayHeaderBidding(adType: .banner, adMarkUpRetriever: adMarkUpRetriever)) as! T
+                   
+                case let .unityLevelPlayHeaderBidding(.mpu, adMarkUpRetriever):
+                   guard T.self == BannerAdManager.self else {
+                       throw AdManagerError.adManagerMismatch
+                   }
+                   return BannerAdManager(adType: .unityLevelPlayHeaderBidding(adType: .mpu, adMarkUpRetriever: adMarkUpRetriever)) as! T
+
                 default: throw AdManagerError.adManagerMismatch
             }
         }
@@ -181,6 +209,7 @@ public indirect enum AdType<T: AdManager> {
             case .banner: return AdTypeTitle.banner.rawValue
             case let .maxHeaderBidding(innerType, _): return innerType.displayTitle
             case let .dtFairBidHeaderBidding(innerType, _): return innerType.displayTitle
+            case let .unityLevelPlayHeaderBidding(innerType, _): return innerType.displayTitle
         }
     }
     
@@ -193,6 +222,7 @@ public indirect enum AdType<T: AdManager> {
             case .banner: return AdTypeTitle.banner.rawValue
             case let .maxHeaderBidding(innerType, _): return innerType.displayTitle
             case let .dtFairBidHeaderBidding(innerType, _): return innerType.displayTitle
+            case let .unityLevelPlayHeaderBidding(innerType, _): return innerType.displayTitle
         }
     }
     
@@ -205,6 +235,7 @@ public indirect enum AdType<T: AdManager> {
             case .banner: return displayTitle.hashValue
             case let .maxHeaderBidding(inner, _): return ("maxHeaderBidding" + inner.displayTitle).hashValue
             case let .dtFairBidHeaderBidding(inner, _): return ("dtFairBidHeaderBidding" + inner.displayTitle).hashValue
+            case let .unityLevelPlayHeaderBidding(inner, _): return ("unityLevelPlayHeaderBidding" + inner.displayTitle).hashValue
         }
     }
     
@@ -213,6 +244,14 @@ public indirect enum AdType<T: AdManager> {
             case .interstitial, .rewarded, .thumbnail, .banner, .mpu: return [.ogury, .direct]
             case .maxHeaderBidding: return [.max, .headerBidding, .bypass]
             case .dtFairBidHeaderBidding: return [.dtFairbid, .headerBidding, .bypass]
+            case .unityLevelPlayHeaderBidding: return [.unityLevelPlay, .headerBidding, .bypass]
+        }
+    }
+    
+    public var isHeaderBidding: Bool {
+        switch self {
+            case .interstitial, .rewarded, .thumbnail, .banner, .mpu: return false
+            default: return true
         }
     }
 }
@@ -240,8 +279,8 @@ extension AdType {
     }
 }
 
-public enum AdTag: String {
-    case ogury, max, dtFairbid, direct, bypass, waterfall, headerBidding
+public enum AdTag: String, Equatable {
+    case ogury, max, dtFairbid, unityLevelPlay, direct, bypass, waterfall, headerBidding, oguryTestMode, rtbTestMode
     
     public var name: String {
         switch self {
@@ -252,6 +291,9 @@ public enum AdTag: String {
             case .bypass: return "Bypass"
             case .waterfall: return "Waterfall"
             case .headerBidding: return "HB"
+            case .unityLevelPlay: return "Unity LevelPlay"
+            case .oguryTestMode: return "Ogury Test Mode"
+            case .rtbTestMode: return "RTB Test Mode"
         }
     }
     public var description: String {
@@ -259,10 +301,13 @@ public enum AdTag: String {
             case .ogury: return "Ogury"
             case .max: return "AppLovin Max"
             case .dtFairbid: return "Fyber"
+            case .unityLevelPlay: return "Unity LevelPlay"
             case .direct: return "Direct integration"
             case .bypass: return "The mediation's SDK is bypassed when loading the ad. In header bidding mediation case, the test app directly calls the ms-bidder endpoint of the mediation to retrieve an ad"
             case .waterfall: return "Waterfall auction integration"
             case .headerBidding: return "Header bidding integration"
+            case .oguryTestMode: return "Add _test to the ad unit"
+            case .rtbTestMode: return "Add test=1 to bid request"
         }
     }
     
@@ -271,17 +316,54 @@ public enum AdTag: String {
             case .ogury: return Color(#colorLiteral(red: 0.1051147357, green: 0.2970786095, blue: 0.4525763392, alpha: 1))
             case .max: return Color(#colorLiteral(red: 0.5056632757, green: 0.4479025602, blue: 0.9351767898, alpha: 1))
             case .dtFairbid: return Color(#colorLiteral(red: 0.8326988816, green: 0.2894239128, blue: 0.3478675783, alpha: 1))
+            case .unityLevelPlay: return Color(#colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1))
             case .direct: return Color(#colorLiteral(red: 0.6542432308, green: 0.8769065142, blue: 0.9881662726, alpha: 1))
             case .bypass:  return Color(#colorLiteral(red: 0, green: 0.4201652408, blue: 0.4244114757, alpha: 1))
             case .waterfall: return Color(#colorLiteral(red: 0, green: 0.5913378596, blue: 1, alpha: 1))
             case .headerBidding: return Color(#colorLiteral(red: 0, green: 0.8673904538, blue: 0.2728650272, alpha: 1))
+            case .oguryTestMode: return Color(#colorLiteral(red: 0.6542432308, green: 0.8769065142, blue: 0.9881662726, alpha: 1))
+            case .rtbTestMode: return Color(#colorLiteral(red: 0.6542432308, green: 0.8769065142, blue: 0.9881662726, alpha: 1))
         }
     }
     
     internal var textColor: Color {
         switch self {
-            case .direct, .headerBidding: return .black
+            case .direct, .headerBidding, .rtbTestMode, .oguryTestMode: return .black
             default: return .white
         }
+    }
+}
+
+public protocol TypeErasing {
+    var underlyingValue: Any { get }
+}
+
+public struct TypeEraser<V: AdManager>: TypeErasing {
+    let orinal: AdType<V>
+    public var underlyingValue: Any {
+        return self.orinal
+    }
+}
+
+public struct AnyAdType: Identifiable, Hashable {
+    public let id = UUID()
+    typealias Value = Any
+    private let eraser: TypeErasing
+    public init<V>(_ adType: AdType<V>) where V:AdManager {
+        eraser = TypeEraser(orinal: adType)
+    }
+    
+    public var adType: Any {
+        return eraser.underlyingValue
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
+extension AnyAdType: Equatable {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        return String(describing: lhs) == String(describing: rhs)
     }
 }

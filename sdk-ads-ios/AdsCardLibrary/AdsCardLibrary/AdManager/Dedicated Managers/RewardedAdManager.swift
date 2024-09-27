@@ -8,27 +8,24 @@ import OguryAds
 import ComposableArchitecture
 import Combine
 
-public final class BannerAdManager: AdManager {
-    public static func == (lhs: BannerAdManager, rhs: BannerAdManager) -> Bool {
+public final class RewardedAdManager: AdManager {
+    public static func == (lhs: RewardedAdManager, rhs: RewardedAdManager) -> Bool {
         return lhs.adType == rhs.adType && lhs.ad == rhs.ad
     }
     
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
-    lazy var store = Store(
-        initialState: AdViewFeature.State(from: self.options,
-                                          adType: AnyAdType(self.adType),
-                                          bannerContainer: BannerContainer(bannerType: adType)),
-        reducer: {
-            AdViewFeature(adManager: self)
-        })
-    
-    public typealias Ad = OguryBannerAd
-    public typealias Options = BannerAdManagerOptions
+    lazy var store = Store(initialState: AdViewFeature.State(from: self.options,
+                                                             adType: AnyAdType(self.adType),
+                                                             rewardedOptions: RewardedOptions()), reducer: {
+        AdViewFeature(adManager: self)
+    })
+    public typealias Ad = OguryRewardedAd
+    public typealias Options = AdManagerOptions
     public var adOptionView: (any View)? { nil }
     //MARK: Variables
-    public var options: BannerAdManagerOptions!
-    public private(set) var ad: OguryBannerAd!
-    public private(set) var adType: AdType<BannerAdManager>
+    public var options: AdManagerOptions!
+    public private(set) var ad: OguryRewardedAd!
+    public private(set) var adType: AdType<RewardedAdManager>
     public var adView: AdView { AdView(store: self.store) }
     public var adDelegate: AdLifeCycleDelegate? {
         set {
@@ -39,16 +36,16 @@ public final class BannerAdManager: AdManager {
             proxyDelegate.adDelegate
         }
     }
-    internal let proxyDelegate: MrecProxyDelegate!
+    internal let proxyDelegate: RewardedProxyDelegate!
     public var lifeCycleEvents: [AdLifeCycleEventHistory] = []
     internal var bidder: HeaderBidable?
     public let id: UUID = UUID()
     
     //MARK: Initializer
-    public init(adType: AdType<BannerAdManager>, adDelegate: AdLifeCycleDelegate? = nil) {
+    public init(adType: AdType<RewardedAdManager>, adDelegate: AdLifeCycleDelegate? = nil) {
         events = PassthroughSubject<AdLifeCycleEvent, Never>()
         self.adType = adType
-        proxyDelegate = MrecProxyDelegate(adDelegate: adDelegate)
+        proxyDelegate = RewardedProxyDelegate(adDelegate: adDelegate)
         proxyDelegate.adManager = self
         switch adType {
             case let .maxHeaderBidding(_, adMarkUpRetriever): bidder = adMarkUpRetriever
@@ -68,45 +65,32 @@ public final class BannerAdManager: AdManager {
     //MARK: Ad Management
     public func loadAd(from options: BaseAdOptions) throws {
         self.options.baseOptions = options
-        DispatchQueue.main.async {
-            if (self.ad == nil) {
-                self.ad = OguryBannerAd(adUnitId: options.adUnitId,
-                                        size: self.adType == .banner ? .small_banner_320x50() : .mrec_300x250(),
-                                        mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
-            } else {
-                self.ad?.destroy()
-            }
-            self.ad.delegate = self.proxyDelegate
-            self.append(.adLoading)
-            guard let bidder = self.bidder else {
-                self.load()
-                return
-            }
-            Task {
-                do {
-                    let adMakUp = try await bidder.adMarkUp(adUnitId: options.adUnitId,
-                                                            campaignId: options.campaignId,
-                                                            creativeId: options.creativeId,
-                                                            dspCreative: options.dspCreativeId,
-                                                            dspRegion: options.dspRegion,
-                                                            rtbTestModeEnabled: options.rtbTestModeEnabled)
-                    guard let adMakUp else {
-                        self.append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")))
-                        return
-                    }
-                    self.load(from: adMakUp)
-                } catch {
-                    self.append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed(bidder.description(for: error))))
+        if (ad == nil) {
+            ad = OguryRewardedAd(adUnitId: options.adUnitId, mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
+        }
+        ad.delegate = proxyDelegate
+        append(.adLoading)
+        guard let bidder else {
+            load()
+            return
+        }
+        Task {
+            do {
+                let adMakUp = try await bidder.adMarkUp(adUnitId: options.adUnitId,
+                                                        campaignId: options.campaignId,
+                                                        creativeId: options.creativeId,
+                                                        dspCreative: options.dspCreativeId,
+                                                        dspRegion: options.dspRegion,
+                                                        rtbTestModeEnabled:options.rtbTestModeEnabled)
+                guard let adMakUp else {
+                    append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")))
                     return
                 }
+                load(from: adMakUp)
+            } catch {
+                append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed(bidder.description(for: error))))
+                return
             }
-        }
-    }
-    
-    private var isMpu: Bool {
-        switch adType {
-            case .mpu, .maxHeaderBidding(.mpu, _), .dtFairBidHeaderBidding(.mpu, _), .unityLevelPlayHeaderBidding(.mpu, _): return true
-            default: return false
         }
     }
     
@@ -119,7 +103,7 @@ public final class BannerAdManager: AdManager {
            let campaignId = options.baseOptions.campaignId, !campaignId.isEmpty,
            let creativeId = options.baseOptions.creativeId,
            let dspRegion = options.baseOptions.dspRegion?.displayName, !dspRegion.isEmpty {
-            let obj = ad as OguryBannerAd
+            let obj = ad as OguryRewardedAd
             let sel = NSSelectorFromString("loadWithCampaignId:creativeId:dspCreativeId:dspRegion:")
             let meth = class_getInstanceMethod(object_getClass(obj), sel)
             let imp = method_getImplementation(meth!)
@@ -130,7 +114,7 @@ public final class BannerAdManager: AdManager {
                   !campaignId.isEmpty,
                   let creativeId = options.baseOptions.creativeId,
                   !creativeId.isEmpty {
-            let obj = ad as OguryBannerAd
+            let obj = ad as OguryRewardedAd
             let sel = NSSelectorFromString("loadWithCampaignId:creativeId:")
             let meth = class_getInstanceMethod(object_getClass(obj), sel)
             let imp = method_getImplementation(meth!)
@@ -139,7 +123,7 @@ public final class BannerAdManager: AdManager {
             sayHiTo(obj, sel, campaignId, creativeId)
         } else if let campaignId = options.baseOptions.campaignId,
                   !campaignId.isEmpty {
-            let obj = ad as OguryBannerAd
+            let obj = ad as OguryRewardedAd
             let sel = NSSelectorFromString("loadWithCampaignId:")
             let meth = class_getInstanceMethod(object_getClass(obj), sel)
             let imp = method_getImplementation(meth!)
@@ -147,39 +131,32 @@ public final class BannerAdManager: AdManager {
             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
             sayHiTo(obj, sel, campaignId)
         } else {
-            self.ad.load()
+            ad.load()
         }
     }
     
     public func loadAdFromAdMarkUp(from options: BaseAdOptions) throws {
         self.options.baseOptions = options
         guard let adMarkUp = options.adMarkUp else { throw AdManagerError.noOptions }
-        DispatchQueue.main.async {
-            self.ad = OguryBannerAd(adUnitId: options.adUnitId,
-                                    size: self.adType == .banner ? .small_banner_320x50() : .mrec_300x250(),
-                                    mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
-            self.ad.delegate = self.proxyDelegate
-            self.ad.load(withAdMarkup: adMarkUp)
-            self.append(.adLoading)
-        }
+        ad = OguryRewardedAd(adUnitId: options.adUnitId)
+        ad.delegate = proxyDelegate
+        ad.load(withAdMarkup: adMarkUp)
+        append(.adLoading)
     }
     
     public func showAd() throws {
         guard let options else { throw AdManagerError.noOptions }
         if ad == nil {
-            self.ad = OguryBannerAd(adUnitId: options.baseOptions.adUnitId,
-                                    size: self.adType == .banner ? .small_banner_320x50() : .mrec_300x250(),
-                                    mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
+            ad = OguryRewardedAd(adUnitId: options.baseOptions.adUnitId)
             ad.delegate = proxyDelegate
         }
-        append(.bannerReady(ad))
+        DispatchQueue.main.async {
+            self.ad?.show(in: options.viewController)
+        }
+        append(.adDisplaying)
     }
     
-    internal func closeAd() {
-        ad?.destroy()
-    }
-    
-    internal func update(ad: OguryBannerAd) {
+    internal func update(ad: OguryRewardedAd) {
         self.ad = ad
         ad.delegate = self.proxyDelegate
     }
@@ -197,38 +174,38 @@ public final class BannerAdManager: AdManager {
 // We have to use a proxy object because otherwise, we would have to make InterstitialAdManager a final class that inherits from NSObject
 // and for some reasons, that leads to unexpected compilation fail
 // To overcome easily this, we use a proxy object
-internal class MrecProxyDelegate: AdDelegateProxy<BannerAdManager>, OguryBannerAdDelegate {
-    func didLoad(_ ad: OguryBannerAd) {
+internal class RewardedProxyDelegate: AdDelegateProxy<RewardedAdManager>, OguryRewardedAdDelegate {
+    func didLoad(_ ad: OguryRewardedAd) {
         guard let adManager else { return }
-        adManager.append(.adLoaded(canShow:true))
+        adManager.append(.adLoaded(canShow: true))
     }
     
-    func didClick(_ ad: OguryBannerAd) {
+    func didClick(_ ad: OguryRewardedAd) {
         guard let adManager else { return }
         adManager.append(.adClicked)
     }
     
-    func didClose(_ ad: OguryBannerAd) {
+    func didClose(_ ad: OguryRewardedAd) {
         guard let adManager else { return }
         adManager.append(.adClosed)
     }
     
-    func didFailOguryBannerAdWithError(_ error: OguryError, for banner: OguryBannerAd) {
-        handle(error, for: banner)
+    func didFailOguryRewardedAdWithError(_ error: OguryError, for optinVideo: OguryRewardedAd) {
+        handle(error, for: optinVideo)
     }
     
-    func didTriggerImpressionOguryBannerAd(_ banner: OguryBannerAd) {
+    func didTriggerImpressionOguryRewardedAd(_ optinVideo: OguryRewardedAd) {
         guard let adManager else { return }
         adManager.append(.adDidTriggerImpression)
     }
     
-    func presentingViewController(forOguryAdsBannerAd banner: OguryBannerAd) -> UIViewController? {
-        guard let adManager else { return nil }
-        return adDelegate?.viewController(forBanner: banner, adManager: adManager)
+    func didRewardOguryRewardedAd(with item: OGARewardItem, for optinVideo: OguryRewardedAd) {
+        guard let adManager else { return }
+        adManager.append(.rewardReady(item))
     }
 }
 
-extension BannerAdManager: Storable {
+extension RewardedAdManager: Storable {
     public convenience init(from data: StorableAdManager) {
         fatalError()
     }

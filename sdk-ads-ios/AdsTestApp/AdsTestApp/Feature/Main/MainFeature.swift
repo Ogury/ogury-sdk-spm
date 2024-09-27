@@ -16,6 +16,7 @@ struct MainFeature: Reducer {
     let cardManager = AdsCardManager(logger: TestAppLogController.shared.logger)
    let maxHeaderBidable = MaxBidder()
    let dtFairBidHeaderBidable = DTFairBidBidder()
+   let unityLevelPlayBidable = UnityLevelPlayBidder()
    
    struct State: Equatable {
       static func == (lhs: MainFeature.State, rhs: MainFeature.State) -> Bool {
@@ -160,7 +161,7 @@ struct MainFeature: Reducer {
                return .none
                
             case .addButtonTapped:
-               state.destination = .add(.init(maxHeaderBidable: maxHeaderBidable, dtFairBidHeaderBidable: dtFairBidHeaderBidable))
+             state.destination = .add(.init(maxHeaderBidable: maxHeaderBidable, dtFairBidHeaderBidable: dtFairBidHeaderBidable, unityLevelPlayBidable: unityLevelPlayBidable))
                return .none
                
             case .addFormatButtonTapped:
@@ -421,6 +422,7 @@ extension AdType {
          case .banner: return "Banner"
          case let .maxHeaderBidding(innerFormat, _): return "MAX HB - \(innerFormat.sectionName)"
          case let .dtFairBidHeaderBidding(innerFormat, _): return "DT Fair Bid HB - \(innerFormat.sectionName)"
+         case let .unityLevelPlayHeaderBidding(innerFormat, _): return "Unity LevelPlay HB - \(innerFormat.sectionName)"
          @unknown default:
             fatalError()
       }
