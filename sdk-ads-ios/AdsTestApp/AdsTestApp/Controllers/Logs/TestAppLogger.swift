@@ -1,50 +1,22 @@
 //
-//  TestAppLogger.swift
-//  AdsTestApp
+//  AdsCardLogger.swift
+//  AdsCardLibrary
 //
-//  Created by Jerome TONNELIER on 25/09/2024.
+//  Created by Jerome TONNELIER on 24/09/2024.
 //
 
-import Foundation
-import AdsCardLibrary
 import OguryAds.Private
+import UIKit
+import Combine
 
-struct TestAppLogger {
-    var adsCardLogger: AdsCardLogger?
+public class TestAppLogger: NSObject, OguryLogger {
+    public let logs: PassthroughSubject<NSAttributedString, Never> = PassthroughSubject<NSAttributedString, Never>()
+    public var logLevel: OguryLogLevel = .all
+    public var allowedLogTypes: [OguryLogType] = [.all]
+    public var logFormatter: OguryLogFormatter = TestAppLogFormatter()
     
-    init() {
-        addLogger()
-    }
-    
-    mutating func addLogger() {
-        guard adsCardLogger == nil else { return }
-        adsCardLogger = .init()
-        OGAInternal.shared().add(adsCardLogger!)
-    }
-    
-    mutating func removeLogger() {
-        guard let adsCardLogger else { return }
-        OGAInternal.shared().remove(adsCardLogger)
-        self.adsCardLogger = nil
-    }
-    
-    func enable(_ option: OguryLogDisplay) {
-        guard let adsCardLogger else { return }
-        (adsCardLogger.logFormatter as? AdsCardLogFormatter)?.displayOptions.insert(option)
-    }
-    
-    func disable(_ option: OguryLogDisplay) {
-        guard let adsCardLogger else { return }
-        (adsCardLogger.logFormatter as? AdsCardLogFormatter)?.displayOptions.remove(option)
-    }
-    
-    func enable(_ logType: OguryLogType) {
-        guard let adsCardLogger else { return }
-        adsCardLogger.allowedLogTypes.append(logType)
-    }
-    
-    func disable(_ logType: OguryLogType) {
-        guard let adsCardLogger else { return }
-        adsCardLogger.allowedLogTypes.removeAll(where: { $0 == logType })
+    public func logMessage(_ message: OguryLogMessage) {
+        guard let attr = logFormatter.formatAttributedLogMessage(message) else { return }
+        logs.send(attr)
     }
 }

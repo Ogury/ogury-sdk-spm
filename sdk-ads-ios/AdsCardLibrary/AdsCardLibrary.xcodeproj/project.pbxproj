@@ -55,10 +55,6 @@
 		438ED3D62AA0C2BA00486AF2 /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C42AA0C2BA00486AF2 /* AdView.swift */; };
 		438ED3D72AA0C2BA00486AF2 /* AdViewFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C52AA0C2BA00486AF2 /* AdViewFeature.swift */; };
 		438ED3D82AA0C2BA00486AF2 /* AdManagerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C62AA0C2BA00486AF2 /* AdManagerOptions.swift */; };
-		4394F7272CA3F3A7001086FE /* AdsCardLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7242CA3F3A7001086FE /* AdsCardLogFormatter.swift */; };
-		4394F7282CA3F3A7001086FE /* AdsCardLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7252CA3F3A7001086FE /* AdsCardLogger.swift */; };
-		4394F7292CA3F3A7001086FE /* AdsCardLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7242CA3F3A7001086FE /* AdsCardLogFormatter.swift */; };
-		4394F72A2CA3F3A7001086FE /* AdsCardLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7252CA3F3A7001086FE /* AdsCardLogger.swift */; };
 		43A78A6E2A52ABF30004A613 /* AdManagerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */; };
 		43A9F4A52C37E7800085EF6F /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A9F4A42C37E7800085EF6F /* OguryCore.framework */; };
 		43A9F4A62C37E7800085EF6F /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43A9F4A42C37E7800085EF6F /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -187,8 +183,6 @@
 		438ED3C52AA0C2BA00486AF2 /* AdViewFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdViewFeature.swift; sourceTree = "<group>"; };
 		438ED3C62AA0C2BA00486AF2 /* AdManagerOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdManagerOptions.swift; sourceTree = "<group>"; };
 		438ED4392AA8565800486AF2 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4394F7242CA3F3A7001086FE /* AdsCardLogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCardLogFormatter.swift; sourceTree = "<group>"; };
-		4394F7252CA3F3A7001086FE /* AdsCardLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCardLogger.swift; sourceTree = "<group>"; };
 		43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManagerOptionsTests.swift; sourceTree = "<group>"; };
 		43A9F4A42C37E7800085EF6F /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43ACBB6F2B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift"; sourceTree = "<group>"; };
@@ -304,7 +298,6 @@
 				43E349422A49BA040060B41F /* AdManager */,
 				43788F2A2B5FBA000041A9C1 /* Fonts */,
 				4328B2892ADFBD88003C7F91 /* Serialization */,
-				4394F7262CA3F3A7001086FE /* AdsCardLogger */,
 				436E97262A6A7BC30074E922 /* Assets.xcassets */,
 			);
 			path = AdsCardLibrary;
@@ -437,15 +430,6 @@
 				431F6F072C0F403400DBFFAA /* AdTag */,
 			);
 			path = AdView;
-			sourceTree = "<group>";
-		};
-		4394F7262CA3F3A7001086FE /* AdsCardLogger */ = {
-			isa = PBXGroup;
-			children = (
-				4394F7242CA3F3A7001086FE /* AdsCardLogFormatter.swift */,
-				4394F7252CA3F3A7001086FE /* AdsCardLogger.swift */,
-			);
-			path = AdsCardLogger;
 			sourceTree = "<group>";
 		};
 		43ACBB6E2B304B37003FBF35 /* MockingbirdMocks */ = {
@@ -730,8 +714,6 @@
 				434F851B2AD534A5005077F5 /* MaxHeaderBidable.swift in Sources */,
 				434F84982AC1AF9B005077F5 /* RewardedView.swift in Sources */,
 				4328B28B2ADFBDA9003C7F91 /* Storable.swift in Sources */,
-				4394F7272CA3F3A7001086FE /* AdsCardLogFormatter.swift in Sources */,
-				4394F7282CA3F3A7001086FE /* AdsCardLogger.swift in Sources */,
 				434F851D2AD535B2005077F5 /* HeaderBidable.swift in Sources */,
 				435C55E42A42EAEF004186FF /* AdsCardLibrary.docc in Sources */,
 				438ED3CD2AA0C2BA00486AF2 /* OguryErrorConvertible.swift in Sources */,
@@ -788,8 +770,6 @@
 				43BCB16F2C22FBF0002FB0B1 /* MaxHeaderBidable.swift in Sources */,
 				43BCB1702C22FBF0002FB0B1 /* RewardedView.swift in Sources */,
 				43BCB1712C22FBF0002FB0B1 /* Storable.swift in Sources */,
-				4394F7292CA3F3A7001086FE /* AdsCardLogFormatter.swift in Sources */,
-				4394F72A2CA3F3A7001086FE /* AdsCardLogger.swift in Sources */,
 				43BCB1722C22FBF0002FB0B1 /* HeaderBidable.swift in Sources */,
 				43BCB1732C22FBF0002FB0B1 /* AdsCardLibrary.docc in Sources */,
 				43BCB1742C22FBF0002FB0B1 /* OguryErrorConvertible.swift in Sources */,

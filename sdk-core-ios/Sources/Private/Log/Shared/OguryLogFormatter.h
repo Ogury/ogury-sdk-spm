@@ -37,6 +37,8 @@ typedef NS_OPTIONS(NSUInteger, OguryLogDisplay) {
 - (NSDictionary<NSAttributedStringKey, id> *_Nullable)attributesFor:(OguryLogDisplay)option originalMessage:(OguryLogMessage *)logMessage;
 // these are the attributes for the main logMessage
 - (NSDictionary<NSAttributedStringKey, id> *_Nullable)attributesForMessage;
+- (void)add:(OguryLogDisplay)option;
+- (void)remove:(OguryLogDisplay)option;
 
 NSString* levelAsString(OguryLogLevel level);
 @end

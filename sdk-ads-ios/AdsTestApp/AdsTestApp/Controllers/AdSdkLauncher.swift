@@ -9,7 +9,7 @@ import OguryAds.Private
 
 struct AdSdkLauncher {
     static let shared = AdSdkLauncher()
-    let logger = TestAppLogger()
+    let logger = TestAppLogController.shared
     
     private init() {}
     

@@ -16,294 +16,315 @@ struct AppSettingsView: View {
                 .primaryGradient
                 .ignoresSafeArea()
             
-            WithViewStore(self.store, observe: { $0 }) { viewStore in
-                List {
-                    
-                    //MARK: - SDK start
-                    Section {
-                        Button {
-                            viewStore.send(.startSDKToggleTapped)
-                        } label: {
-                            HStack {
-                                Text("Start SDK with application")
-                                    .layoutPriority(1)
-                                
-                                Toggle("", isOn:
-                                        viewStore.binding(
-                                            get: \.settings.startSDKWithApplication,
-                                            send: .startSDKToggleTapped)
-                                )
-                            }
-                        }
-                        Button {
-                            viewStore.send(.toggleEnableFeedbacks)
-                        } label: {
-                            HStack {
-                                Text("Enable vibration feedbacks")
-                                    .layoutPriority(1)
-                                
-                                Toggle("", isOn:
-                                        viewStore.binding(
-                                            get: \.settings.enableFeedbacks,
-                                            send: .toggleEnableFeedbacks)
-                                )
-                            }
-                        }
-                    } header: {
-                        Text("APPLICATION")
-                            .font(.adsBody)
-                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                            .padding(.horizontal, -16)
-                    }
-                    .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                    .listRowBackground(Color(AdColorPalette.Background.secondary.color))
-                    
-                    //MARK: - Hide settings
-                    Section {
-                        if viewStore.showShowSection {
-                            Group {
-                                Button {
-                                    viewStore.send(.enableAdUnitEditingToggleTapped)
-                                } label: {
-                                    HStack {
-                                        Text("Allow AdUnit editing")
-                                            .layoutPriority(1)
-                                      
-                                        Toggle("", isOn:
-                                                viewStore.binding(
-                                                    get: \.enableAdUnitEditing,
-                                                    send: .enableAdUnitEditingToggleTapped)
-                                        )
-                                    }
-                                }
-                                
-                                Button {
-                                    viewStore.send(.showCampaignToggleTapped)
-                                } label: {
-                                    HStack {
-                                        Text("Show campaign field")
-                                            .layoutPriority(1)
-                                      
-                                        Toggle("", isOn:
-                                                viewStore.binding(
-                                                    get: \.showCampaignId,
-                                                    send: .showCampaignToggleTapped)
-                                        )
-                                    }
-                                }
-                                
-                                Button {
-                                    viewStore.send(.showCreativeToggleTapped)
-                                } label: {
-                                    HStack {
-                                        Text("Show creative field")
-                                            .layoutPriority(1)
-
-                                        Toggle("", isOn:
-                                                viewStore.binding(
-                                                    get: \.showCreativeId,
-                                                    send: .showCreativeToggleTapped))
-                                    }
-                                }
-                                Button {
-                                    viewStore.send(.showDspFieldsToggleTapped)
-                                } label: {
-                                    HStack {
-                                        Text("Show dsp creative field")
-                                            .layoutPriority(1)
-
-                                        Toggle("", isOn:
-                                                viewStore.binding(
-                                                    get: \.showDspFields,
-                                                    send: .showDspFieldsToggleTapped))
-                                    }
-                                }
-                            }
-                            
+            NavigationView {
+                WithViewStore(self.store, observe: { $0 }) { viewStore in
+                    List {
+                        
+                        //MARK: - SDK start
+                        Section {
                             Button {
-                                viewStore.send(.showSpecificOptionsToggleTapped)
+                                viewStore.send(.startSDKToggleTapped)
                             } label: {
                                 HStack {
-                                    Text("Show specific options")
-                                        .layoutPriority(1)
-
-                                    Toggle("", isOn:
-                                            viewStore.binding(
-                                                get: \.showSpecificOptions,
-                                                send: .showSpecificOptionsToggleTapped)
-                                    )
-                                }
-                            }
-                            
-                            Button {
-                                viewStore.send(.showTestModeToggleTapped)
-                            } label: {
-                                HStack {
-                                    Text("Show Test Mode")
+                                    Text("Start SDK with application")
                                         .layoutPriority(1)
                                     
                                     Toggle("", isOn:
                                             viewStore.binding(
-                                                get: \.showTestMode,
-                                                send: .showTestModeToggleTapped)
+                                                get: \.settings.startSDKWithApplication,
+                                                send: .startSDKToggleTapped)
                                     )
                                 }
                             }
-                        }
-                        
-                        if !viewStore.showShowSection {
-                            Divider()
-                                .listRowBackground(Color.clear)
-                        }
-                        
-                    } header: {
-                        Button {
-                            toggleHideSection(from: viewStore)
-                        } label :{
-                            HStack {
-                                Text("Cards")
-                                    .font(.adsBody)
-                                    .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                            Button {
+                                viewStore.send(.toggleEnableFeedbacks)
+                            } label: {
+                                HStack {
+                                    Text("Enable vibration feedbacks")
+                                        .layoutPriority(1)
+                                    
+                                    Toggle("", isOn:
+                                            viewStore.binding(
+                                                get: \.settings.enableFeedbacks,
+                                                send: .toggleEnableFeedbacks)
+                                    )
+                                }
+                            }
+                        } header: {
+                            Text("APPLICATION")
+                                .font(.adsBody)
+                                .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
                                 .padding(.horizontal, -16)
-                                Spacer()
-                                Image(systemName: !viewStore.showShowSection ? "chevron.up" : "chevron.down")
-                            }
                         }
-                    }
-                    .listRowSeparator(.hidden)
-                    .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                    .listRowBackground(Color(AdColorPalette.Background.secondary.color))
-                    
-                    //MARK: - Profig settings
-                    Section {
-                        Button {
-                            viewStore.send(.bulkModeToggleTapped)
-                        } label: {
-                            HStack {
-                                Text("Enable bulk mode")
-                                Toggle("", isOn:
-                                        viewStore.binding(
-                                            get: \.settings.bulkModeEnabled,
-                                            send: .bulkModeToggleTapped)
-                                )
+                        .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                        .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                        
+                        //MARK: - Hide settings
+                        Section {
+                            if viewStore.showShowSection {
+                                Group {
+                                    Button {
+                                        viewStore.send(.enableAdUnitEditingToggleTapped)
+                                    } label: {
+                                        HStack {
+                                            Text("Allow AdUnit editing")
+                                                .layoutPriority(1)
+                                            
+                                            Toggle("", isOn:
+                                                    viewStore.binding(
+                                                        get: \.enableAdUnitEditing,
+                                                        send: .enableAdUnitEditingToggleTapped)
+                                            )
+                                        }
+                                    }
+                                    
+                                    Button {
+                                        viewStore.send(.showCampaignToggleTapped)
+                                    } label: {
+                                        HStack {
+                                            Text("Show campaign field")
+                                                .layoutPriority(1)
+                                            
+                                            Toggle("", isOn:
+                                                    viewStore.binding(
+                                                        get: \.showCampaignId,
+                                                        send: .showCampaignToggleTapped)
+                                            )
+                                        }
+                                    }
+                                    
+                                    Button {
+                                        viewStore.send(.showCreativeToggleTapped)
+                                    } label: {
+                                        HStack {
+                                            Text("Show creative field")
+                                                .layoutPriority(1)
+                                            
+                                            Toggle("", isOn:
+                                                    viewStore.binding(
+                                                        get: \.showCreativeId,
+                                                        send: .showCreativeToggleTapped))
+                                        }
+                                    }
+                                    Button {
+                                        viewStore.send(.showDspFieldsToggleTapped)
+                                    } label: {
+                                        HStack {
+                                            Text("Show dsp creative field")
+                                                .layoutPriority(1)
+                                            
+                                            Toggle("", isOn:
+                                                    viewStore.binding(
+                                                        get: \.showDspFields,
+                                                        send: .showDspFieldsToggleTapped))
+                                        }
+                                    }
+                                }
+                                
+                                Button {
+                                    viewStore.send(.showSpecificOptionsToggleTapped)
+                                } label: {
+                                    HStack {
+                                        Text("Show specific options")
+                                            .layoutPriority(1)
+                                        
+                                        Toggle("", isOn:
+                                                viewStore.binding(
+                                                    get: \.showSpecificOptions,
+                                                    send: .showSpecificOptionsToggleTapped)
+                                        )
+                                    }
+                                }
+                                
+                                Button {
+                                    viewStore.send(.showTestModeToggleTapped)
+                                } label: {
+                                    HStack {
+                                        Text("Show Test Mode")
+                                            .layoutPriority(1)
+                                        
+                                        Toggle("", isOn:
+                                                viewStore.binding(
+                                                    get: \.showTestMode,
+                                                    send: .showTestModeToggleTapped)
+                                        )
+                                    }
+                                }
                             }
-                        }
-                    } header: {
-                        Text("Bulk mode")
-                            .font(.adsBody)
-                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                            .padding(.horizontal, -16)
-                    }
-                    .disabled(true)
-                    .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                    .listRowBackground(Color(AdColorPalette.Background.secondary.color))
-                    
-                    //MARK: - Test Mode
-                    Section {
-                        HStack {
-                            Button{
-                                viewStore.send(.enabledTestModeButtonTapped)
-                            } label : {
-                                Text("Enable for all cards")
-                                    .padding(.vertical, 4)
-                                    .frame(maxWidth: .infinity)
-                            }
-                            .buttonStyle(AdsSecondaryButton())
                             
+                            if !viewStore.showShowSection {
+                                Divider()
+                                    .listRowBackground(Color.clear)
+                            }
+                            
+                        } header: {
+                            Button {
+                                toggleHideSection(from: viewStore)
+                            } label :{
+                                HStack {
+                                    Text("Cards")
+                                        .font(.adsBody)
+                                        .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                                        .padding(.horizontal, -16)
+                                    Spacer()
+                                    Image(systemName: !viewStore.showShowSection ? "chevron.up" : "chevron.down")
+                                }
+                            }
+                        }
+                        .listRowSeparator(.hidden)
+                        .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                        .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                        
+                        //MARK: - Profig settings
+                        Section {
+                            Button {
+                                viewStore.send(.bulkModeToggleTapped)
+                            } label: {
+                                HStack {
+                                    Text("Enable bulk mode")
+                                    Toggle("", isOn:
+                                            viewStore.binding(
+                                                get: \.settings.bulkModeEnabled,
+                                                send: .bulkModeToggleTapped)
+                                    )
+                                }
+                            }
+                        } header: {
+                            Text("Bulk mode")
+                                .font(.adsBody)
+                                .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                                .padding(.horizontal, -16)
+                        }
+                        .disabled(true)
+                        .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                        .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                        
+                        //MARK: - Test Mode
+                        Section {
+                            HStack {
+                                Button{
+                                    viewStore.send(.enabledTestModeButtonTapped)
+                                } label : {
+                                    Text("Enable for all cards")
+                                        .padding(.vertical, 4)
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(AdsSecondaryButton())
+                                
+                                Button{
+                                    viewStore.send(.disabledTestModeButtonTapped)
+                                } label : {
+                                    Text("Disable for all cards")
+                                        .padding(.vertical, 4)
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(AdsSecondaryButton())
+                            }
+                            .padding(.horizontal, -20)
+                        } header: {
+                            Text("Test Mode")
+                                .font(.adsBody)
+                                .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                                .padding(.horizontal, -16)
+                        }
+                        .listRowBackground(Color.clear)
+                        
+                        //MARK: - Profig settings
+                        Section {
+                            Button("Reset Ads config file (profig)") {
+                                viewStore.send(.resetAdConfigButtonTapped)
+                            }
+                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: true).color))
+                        } header: {
+                            Text("Ads config")
+                                .font(.adsBody)
+                                .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                                .padding(.horizontal, -16)
+                        }
+                        .listRowBackground(Color(AdColorPalette.State.failure.color))
+                        .disabled(true)
+                        
+                        //MARK: - Profig settings
+                        Section {
+                            Button {
+                                viewStore.send(.usOptoutTapped)
+                            } label: {
+                                HStack {
+                                    Text("US Opt-out")
+                                    Toggle("", isOn:
+                                            viewStore.binding(
+                                                get: \.usOptout,
+                                                send: .usOptoutTapped)
+                                    )
+                                }
+                            }
+                            Button {
+                                viewStore.send(.usOptoutPartnerTapped)
+                            } label: {
+                                HStack {
+                                    Text("US Opt-out Partner")
+                                    Toggle("", isOn:
+                                            viewStore.binding(
+                                                get: \.usOptoutPartner,
+                                                send: .usOptoutPartnerTapped)
+                                    )
+                                }
+                            }
                             Button{
-                                viewStore.send(.disabledTestModeButtonTapped)
+                                viewStore.send(.showPrivacyDataTapped)
                             } label : {
-                                Text("Disable for all cards")
+                                Text("Retrieve Privacy data")
                                     .padding(.vertical, 4)
                                     .frame(maxWidth: .infinity)
                             }
                             .buttonStyle(AdsSecondaryButton())
+                        } header: {
+                            Text("Privacy")
+                                .font(.adsBody)
+                                .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                                .padding(.horizontal, -16)
                         }
-                        .padding(.horizontal, -20)
-                    } header: {
-                        Text("Test Mode")
-                            .font(.adsBody)
-                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                            .padding(.horizontal, -16)
-                    }
-                    .listRowBackground(Color.clear)
-                    
-                    //MARK: - Profig settings
-                    Section {
-                        Button("Reset Ads config file (profig)") {
-                            viewStore.send(.resetAdConfigButtonTapped)
+                        .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                        .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                        
+                        //MARK: - Logs settings
+                        Section {
+                            NavigationLink(
+                                destination: LogOptionView().navigationTitle("Log options")
+                            ) {
+                                Text("Show options")
+                            }
+                        } header: {
+                            Text("Logs")
+                                .font(.adsBody)
+                                .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                                .padding(.horizontal, -16)
                         }
-                        .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: true).color))
-                    } header: {
-                        Text("Ads config")
-                            .font(.adsBody)
-                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                            .padding(.horizontal, -16)
-                    }
-                    .listRowBackground(Color(AdColorPalette.State.failure.color))
-                    .disabled(true)
-                   
-                    //MARK: - Profig settings
-                    Section {
-                        Button {
-                           viewStore.send(.usOptoutTapped)
-                        } label: {
-                           HStack {
-                               Text("US Opt-out")
-                               Toggle("", isOn:
-                                       viewStore.binding(
-                                           get: \.usOptout,
-                                           send: .usOptoutTapped)
-                               )
-                           }
+                        .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                        .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                        
+                        Spacer()
+                            .listRowBackground(Color.clear)
+                        
+                        //MARK: - settings
+                        VStack(alignment: .center) {
+                            Text("App Version : \(viewStore.appVersion)")
+                            Text("Ads SDK Version : \(viewStore.sdkVersion)")
+                            Text("Environment : \(viewStore.environment)")
                         }
-                        Button {
-                           viewStore.send(.usOptoutPartnerTapped)
-                        } label: {
-                           HStack {
-                              Text("US Opt-out Partner")
-                              Toggle("", isOn:
-                                      viewStore.binding(
-                                          get: \.usOptoutPartner,
-                                          send: .usOptoutPartnerTapped)
-                              )
-                           }
-                        }
-                        Button{
-                            viewStore.send(.showPrivacyDataTapped)
-                        } label : {
-                           Text("Retrieve Privacy data")
-                               .padding(.vertical, 4)
-                               .frame(maxWidth: .infinity)
-                        }
-                        .buttonStyle(AdsSecondaryButton())
-                   } header: {
-                       Text("Privacy")
-                           .font(.adsBody)
-                           .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                           .padding(.horizontal, -16)
-                   }
-                   .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                   .listRowBackground(Color(AdColorPalette.Background.secondary.color))
-                    
-                    Spacer()
+                        .frame(maxWidth: .infinity)
                         .listRowBackground(Color.clear)
-                    
-                    //MARK: - settings
-                    VStack(alignment: .center) {
-                        Text("App Version : \(viewStore.appVersion)")
-                        Text("Ads SDK Version : \(viewStore.sdkVersion)")
-                        Text("Environment : \(viewStore.environment)")
+                        .foregroundStyle(Color(AdColorPalette.Text.placeholder.color))
+                        .font(.caption)
                     }
-                    .frame(maxWidth: .infinity)
-                    .listRowBackground(Color.clear)
-                    .foregroundStyle(Color(AdColorPalette.Text.placeholder.color))
-                    .font(.caption)
+                    .safeScrollContentBackground(.hidden)
+                    .listStyle(.insetGrouped)
                 }
-                .safeScrollContentBackground(.hidden)
-                .listStyle(.insetGrouped)
+                .tint(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                .navigationTitle("Settings")
+                .navigationBarTitleDisplayMode(.large)
+                .navigationViewStyle(StackNavigationViewStyle())
             }
-            .tint(Color(AdColorPalette.Text.primary(onAccent: false).color))
         }
     }
     
