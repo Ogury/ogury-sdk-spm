@@ -76,7 +76,7 @@
         return NO;
     }
     
-    if (![logger.allowedLogTypes containsObject:message.logType] && ![logger.allowedLogTypes containsObject:OguryLogTypeAll]) {
+    if (![logger.allowedLogTypes containsObject:message.logType]) {
         return NO;
     }
     return YES;

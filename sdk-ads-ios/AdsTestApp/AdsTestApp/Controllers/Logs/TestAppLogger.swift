@@ -8,15 +8,22 @@
 import OguryAds.Private
 import UIKit
 import Combine
+import UserDefault
 
 public class TestAppLogger: NSObject, OguryLogger {
     public let logs: PassthroughSubject<NSAttributedString, Never> = PassthroughSubject<NSAttributedString, Never>()
     public var logLevel: OguryLogLevel = .all
-    public var allowedLogTypes: [OguryLogType] = [.all]
+    
+    @UserDefault("TestAppAllowedLogTypes")
+    public var allowedLogTypes: [OguryLogType] = [.publisher, .internal]
     public var logFormatter: OguryLogFormatter = TestAppLogFormatter()
     
     public func logMessage(_ message: OguryLogMessage) {
         guard let attr = logFormatter.formatAttributedLogMessage(message) else { return }
         logs.send(attr)
     }
+}
+
+extension OguryLogType: @retroactive DefaultsValueConvertible {
+    
 }

@@ -27,12 +27,12 @@ struct LogOptionFeature {
         var logDisplayOriginEnabled: Bool { displayOptions.contains(.origin) }
         var logDisplayTagsEnabled: Bool { displayOptions.contains(.tags) }
         // Logtypes
-        var logTypeInternalEnabled: Bool { allowedTypes.contains(.internal) || allowedTypes.contains(.all) }
-        var logTypeRequestEnabled: Bool { allowedTypes.contains(.requests) || allowedTypes.contains(.all) }
-        var logTypePublisherEnabled: Bool { allowedTypes.contains(.publisher) || allowedTypes.contains(.all) }
-        var logTypeMraidEnabled: Bool { allowedTypes.contains(.mraid) || allowedTypes.contains(.all) }
-        var logTypeMonitoringEnabled: Bool { allowedTypes.contains(.monitoring) || allowedTypes.contains(.all) }
-        var logTypeDelegateEnabled: Bool { allowedTypes.contains(.delegate) || allowedTypes.contains(.all) }
+        var logTypeInternalEnabled: Bool { allowedTypes.contains(.internal) }
+        var logTypeRequestEnabled: Bool { allowedTypes.contains(.requests) }
+        var logTypePublisherEnabled: Bool { allowedTypes.contains(.publisher) }
+        var logTypeMraidEnabled: Bool { allowedTypes.contains(.mraid) }
+        var logTypeMonitoringEnabled: Bool { allowedTypes.contains(.monitoring) }
+        var logTypeDelegateEnabled: Bool { allowedTypes.contains(.delegate) }
         // colors
         var logTypeInternalColor: Color {
             get { Color((TestAppLogController.shared.logger.logFormatter as! TestAppLogFormatter).logTypeColor[.internal]!) }
@@ -155,21 +155,27 @@ struct LogOptionFeature {
                     return .none
                     
                 case .logTypeInternalButtonTapped:
+                    state.toggle(.internal)
                     return .none
                     
                 case .logTypeRequestButtonTapped:
+                    state.toggle(.requests)
                     return .none
                     
                 case .logTypePublisherButtonTapped:
+                    state.toggle(.publisher)
                     return .none
                     
                 case .logTypeMraidButtonTapped:
+                    state.toggle(.mraid)
                     return .none
                     
                 case .logTypeMonitoringButtonTapped:
+                    state.toggle(.monitoring)
                     return .none
                     
                 case .logTypeDelegateButtonTapped:
+                    state.toggle(.delegate)
                     return .none
                     
                 case let .selectColor(color):
