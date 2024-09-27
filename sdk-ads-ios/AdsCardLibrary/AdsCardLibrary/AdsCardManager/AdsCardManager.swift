@@ -10,9 +10,10 @@ import SwiftUI
 //MARK: - AdsCardManager
 public struct AdsCardManager {
     public static let testModeSuffix = "_test"
+    internal static var logger: OguryLogger?
     
-    public init() {
-        
+    public init(logger: OguryLogger? = nil) {
+        AdsCardManager.logger = logger  
     }
     
     /// Returns the dedicated adManager associated with the ``AdType``

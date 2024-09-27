@@ -10,7 +10,7 @@ import UIKit
 import Combine
 import UserDefault
 
-public class TestAppLogger: NSObject, OguryLogger {
+public class TestAppLogger: NSObject, OguryLogger {    
     public let logs: PassthroughSubject<NSAttributedString, Never> = PassthroughSubject<NSAttributedString, Never>()
     public var logLevel: OguryLogLevel = .all
     
