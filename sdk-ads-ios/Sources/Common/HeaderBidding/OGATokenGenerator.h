@@ -9,20 +9,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OGATokenGenerator : NSObject
 
-- (void)bidderToken:(HeaderBiddingCompletionBlock)completion;
+- (void)bidToken:(BidTokenCompletionBlock)completion;
 
-- (void)bidderTokenWithCampaignId:(NSString *)campaignId
-                       completion:(HeaderBiddingCompletionBlock)completion;
+- (void)bidTokenWithCampaignId:(NSString *)campaignId
+                    completion:(BidTokenCompletionBlock)completion;
 
-- (void)bidderTokenWithCampaignId:(NSString *)campaignId
-                       creativeId:(NSString *_Nullable)creativeId
-                       completion:(HeaderBiddingCompletionBlock)completion;
+- (void)bidTokenWithCampaignId:(NSString *)campaignId
+                    creativeId:(NSString *_Nullable)creativeId
+                    completion:(BidTokenCompletionBlock)completion;
 
-- (void)bidderTokenWithCampaignId:(NSString *_Nullable)campaignId
-                       creativeId:(NSString *_Nullable)creativeId
-                    dspCreativeId:(NSString *_Nullable)dspCreativeId
-                        dspRegion:(NSString *_Nullable)dspRegion
-                       completion:(HeaderBiddingCompletionBlock)completion;
+- (void)bidTokenWithCampaignId:(NSString *_Nullable)campaignId
+                    creativeId:(NSString *_Nullable)creativeId
+                 dspCreativeId:(NSString *_Nullable)dspCreativeId
+                     dspRegion:(NSString *_Nullable)dspRegion
+                    completion:(BidTokenCompletionBlock)completion;
 
 @end
 

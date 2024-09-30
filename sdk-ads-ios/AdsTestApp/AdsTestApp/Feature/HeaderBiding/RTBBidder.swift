@@ -205,7 +205,7 @@ struct RTBBidder {
             
             if (campaignId != nil && !campaignId!.isEmpty && dspCreative != nil && !dspCreative!.isEmpty && dspRegion != nil) {
                 let cls:AnyClass = OguryTokenService.self
-                let sel = NSSelectorFromString("bidderTokenWithCampaignId:creativeId:dspCreativeId:dspRegion:completion:")
+                let sel = NSSelectorFromString("bidTokenWithCampaignId:creativeId:dspCreativeId:dspRegion:completion:")
                 let meth = class_getClassMethod(cls, sel)
                 let imp = method_getImplementation(meth!)
                 typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?, String?, String?, @escaping (NSString?, NSError?) -> Void) -> Void
@@ -220,7 +220,7 @@ struct RTBBidder {
                 }
             } else if (campaignId != nil && !campaignId!.isEmpty) {
                 let cls:AnyClass = OguryTokenService.self
-                let sel = NSSelectorFromString("bidderTokenWithCampaignId:creativeId:completion:")
+                let sel = NSSelectorFromString("bidTokenWithCampaignId:creativeId:completion:")
                 let meth = class_getClassMethod(cls, sel)
                 let imp = method_getImplementation(meth!)
                 typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?, @escaping (NSString?, NSError?) -> Void) -> Void
@@ -234,7 +234,7 @@ struct RTBBidder {
                     performRequest(with: &request, body: formattedBody, completion: completionHandler)
                 }
             } else {
-                OguryTokenService.bidderToken { token, error in
+                OguryTokenService.bidToken { token, error in
                     guard error == nil else  {
                         completionHandler(.failure(.tokenError(error!)))
                         return

@@ -81,6 +81,10 @@ NSString *const HeaderBiddingFormatSugg = @"Check if the OgurySDK has started co
     return self;
 }
 
+- (void)setCode:(OguryAdErrorCode)code {
+    self.code = code;
+}
+
 - (NSString *)descriptionFor:(OguryAdErrorCode)code stacktrace:(NSString *)stacktrace {
     switch (code) {
         case OguryAdErrorCodeSDKStartNotCalled:

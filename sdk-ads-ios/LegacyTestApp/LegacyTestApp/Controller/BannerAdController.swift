@@ -107,7 +107,7 @@ final class BannerAdController: NSObject, BannerFormatController {
             return false
         }
 
-        return banner.isLoaded()
+        return banner.isLoaded
     }
 }
 
