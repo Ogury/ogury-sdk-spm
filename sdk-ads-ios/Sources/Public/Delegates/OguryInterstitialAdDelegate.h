@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)didLoadOguryInterstitialAd:(OguryInterstitialAd *)interstitial;
 - (void)didClickOguryInterstitialAd:(OguryInterstitialAd *)interstitial;
 - (void)didCloseOguryInterstitialAd:(OguryInterstitialAd *)interstitial;
-- (void)didFailOguryInterstitialAdWithError:(OguryAdError *)error forAd:(OguryInterstitialAd *)interstitial;
+- (void)didFailOguryInterstitialAd:(OguryInterstitialAd *)interstitial error:(OguryAdError *)error;
 - (void)didTriggerImpressionOguryInterstitialAd:(OguryInterstitialAd *)interstitial;
 @end
 

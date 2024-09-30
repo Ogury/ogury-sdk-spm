@@ -70,7 +70,7 @@ class HomeViewController: UIViewController, ChoiceCmpDelegate {
             print("success : \(success)")
             if let error = error {
                 switch (error.code) {
-                case OguryStartErrorCode.failedStartingOguryModule.rawValue :
+                case OguryStartErrorCode.failedStartingModule.rawValue :
                     print("\(error.localizedDescription)")
                     break
                 case OguryStartErrorCode.noModuleFound.rawValue :
@@ -123,7 +123,7 @@ extension HomeViewController : OguryInterstitialAdDelegate {
         os_log("Interstitial ad loaded.")
     }
     
-    func didFailOguryInterstitialAdWithError(_ error: OguryError, for interstitial: OguryInterstitialAd) {
+    func didFail(_ interstitial: OguryInterstitialAd, error: OguryAdError) {
         os_log("Interstitial ad failed with error: %@", String(describing: error))
     }
     
