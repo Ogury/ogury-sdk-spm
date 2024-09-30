@@ -4,7 +4,7 @@
 
 #import <XCTest/XCTest.h>
 #import "OGAEnvironmentManager.h"
-#import <OguryAds/OGAAdLogMessage.h>
+#import "OGAAdLogMessage.h"
 #import <OCMock/OCMock.h>
 #import "OguryError+utility.h"
 #import "OGALog.h"
