@@ -103,39 +103,39 @@ extension AdsOptinVideoController {
 
 extension AdsOptinVideoController: OguryRewardedAdDelegate {
 
-    func didLoad(_ optinVideo: OguryRewardedAd) {
+    func didLoad(_ rewardedAd: OguryRewardedAd) {
         if let viewController = viewController {
-            show(in: viewController)
+                show(in: viewController)
         }
         viewController = nil
         LogsController.shared.addLogs("Opt-in video ad loaded.");
     }
 
-    func didFailOguryRewardedAdWithError(_ error: OguryAdError, for optinVideo: OguryRewardedAd) {
+    func didFail(_ rewardedAd: OguryRewardedAd, error: OguryAdError) {
         delegate?.didFail()
 
         LogsController.shared.addLogs(String(format: "Opt-in video ad failed with error code %ld: %@", error.code, error.localizedDescription));
     }
 
-    func didDisplay(_ optinVideo: OguryRewardedAd) {
+    func didDisplay(_ rewardedAd: OguryRewardedAd) {
         delegate?.didDisplay()
 
         LogsController.shared.addLogs("Opt-in video ad displayed.")
     }
 
-    func didClick(_ optinVideo: OguryRewardedAd) {
+    func didClick(_ rewardedAd: OguryRewardedAd) {
         LogsController.shared.addLogs("Opt-in video ad clicked.")
     }
 
-    func didClose(_ optinVideo: OguryRewardedAd) {
+    func didClose(_ rewardedAd: OguryRewardedAd) {
         LogsController.shared.addLogs("Opt-in video ad closed.")
     }
 
-    func didRewardOguryRewardedAd(with item: OguryRewardItem, for optinVideo: OguryRewardedAd) {
+    func didRewardOguryRewardedAd(with item: OguryRewardItem, for rewardedAd: OguryRewardedAd) {
         LogsController.shared.addLogs("Opt-in video ad rewarded with \(item.rewardName) - value : \(item.rewardValue).")
     }
     
-    func didTriggerImpressionOguryRewardedAd(_ optinVideo: OguryRewardedAd) {
+    func didTriggerImpressionOguryRewardedAd(_ rewardedAd: OguryRewardedAd) {
         LogsController.shared.addLogs("Opt-in impression")
     }
 }
