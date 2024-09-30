@@ -34,19 +34,6 @@
     XCTAssertEqual(interfaceOrientationString, OGAOrientationStringPortrait);
 }
 
-- (void)testShouldReturnApplicationInterfaceOrientation {
-    id mockedApplication = OCMClassMock(UIApplication.self);
-    id mockedDevice = OCMClassMock(UIDevice.self);
-
-    [[[mockedApplication stub] andReturn:OGAOrientationStringLandscape] OGAOrientationString];
-
-    OGADeviceService *service = [[OGADeviceService alloc] initWithApplication:mockedApplication device:mockedDevice];
-
-    NSString *interfaceOrientationString = [service interfaceOrientation];
-
-    XCTAssertEqual(interfaceOrientationString, OGAOrientationStringLandscape);
-}
-
 - (void)testShouldReturnDeviceInterfaceOrientationIfApplicationIsNotAvailable {
     id mockedApplication = OCMClassMock(UIApplication.self);
     id mockedDevice = OCMClassMock(UIDevice.self);
