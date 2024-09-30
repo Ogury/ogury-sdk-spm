@@ -556,7 +556,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         case OguryAdErrorCodeNoActiveInternetConnection:
             [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventNoInternetConnection adConfiguration:configuration customSessionId:sessionId];
             break;
-        case OguryAdErrorCodeSDKNotCalled:
+        case OguryAdErrorCodeSDKStartNotCalled:
             [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventSdkNotInitialized adConfiguration:configuration customSessionId:sessionId];
             break;
         case OguryAdErrorCodeSDKNotProperlyInitialized:

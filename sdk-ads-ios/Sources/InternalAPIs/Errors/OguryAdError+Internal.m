@@ -16,24 +16,24 @@
 @end
 
 NSString *const OguryAdsErrorDomain = @"OguryAdsSDK";
-NSString *const SDKNotInitializedDesc = @"SDK not initialized";
-NSString *const SDKNotInitializedFormatDesc = @"SDK not initialized (%@)";
-NSString *const SDKNotInitializedSugg = @"It seems that Ogury.start() was not called";
+NSString *const SDKStartNotCalledDesc = @"SDK not started";
+NSString *const SDKStartNotCalledFormatDesc = @"SDK not started (%@)";
+NSString *const SDKStartNotCalledSugg = @"It seems that Ogury.start() was not called";
 NSString *const SDKNotProperlyInitializedDesc = @"SDK not properly initialized";
 NSString *const SDKNotProperlyInitializedFormatDesc = @"SDK not properly initialized (%@)";
 NSString *const SDKNotProperlyInitializedSugg = @"Check your AssetKey";
-NSString *const NoInternetConnectionDesc = @"No active Internet connection";
-NSString *const NoInternetConnectionSugg = @"Try again later";
+NSString *const NoActiveInternetConnectionDesc = @"No active Internet connection";
+NSString *const NoActiveInternetConnectionSugg = @"Try again later";
 NSString *const InvalidConfigurationDesc = @"Invalid configuration";
 NSString *const InvalidConfigurationSugg = @"The ad configuration was not properly initialized. Try to restart the SDK";
-NSString *const AdDisabledUnopenedCountryDesc = @"Ads are disabled because this country is not opened yet";
-NSString *const AdDisabledUnopenedCountrySugg = @"";
+NSString *const AdDisabledCountryNotOpenedDesc = @"Ads are disabled because this country is not opened";
+NSString *const AdDisabledCountryNotOpenedSugg = @"";
 NSString *const AdDisabledConsentDeniedDesc = @"Ads are disabled because the consent was denied";
 NSString *const AdDisabledConsentDeniedSugg = @"Make sure to ask for proper consent before loading an ad";
 NSString *const AdDisabledConsentMissingDesc = @"Ads are disabled because the consent is missing";
 NSString *const AdDisabledConsentMissingSugg = @"Make sure to ask for proper consent before loading an ad";
-NSString *const AdDisabledOtherReasonDesc = @"Ads are disabled";
-NSString *const AdDisabledOtherReasonSugg = @"";
+NSString *const AdDisabledUnspecifiedReasonDesc = @"Ads are disabled";
+NSString *const AdDisabledUnspecifiedReasonSugg = @"";
 NSString *const AdRequestFailedFormatDesc = @"Ad request failed. Received %@ from the server";
 NSString *const AdRequestFailedSugg = @"";
 NSString *const NoFillFormatDesc = @"%@";
@@ -54,8 +54,8 @@ NSString *const NoAdLoadedDesc = @"There is no loaded ad";
 NSString *const NoAdLoadedSugg = @"";
 NSString *const ViewInBackgroundDesc = @"Can't display an ad while your application is in background";
 NSString *const ViewInBackgroundSugg = @"Plese check viewability before showing an ad";
-NSString *const AnotherAdIsAlreadyDisplayedDesc = @"Another ad is already displayed";
-NSString *const AnotherAdIsAlreadyDisplayedSugg = @"Try not to show two ads at the time or wait for the previous to end";
+NSString *const AnotherAdAlreadyDisplayedDesc = @"Another ad is already displayed";
+NSString *const AnotherAdAlreadyDisplayedSugg = @"Try not to show two ads at the time or wait for the previous to end";
 NSString *const WebviewTerminatedBySystemDesc = @"The iOS webview was killed by the system because the app consumes too much memory";
 NSString *const WebviewTerminatedBySystemSugg = @"Try to reduce your app memory footprint";
 NSString *const HeaderBiddingFormatDesc = @"OgurySDK can't generate HB token : %@";
@@ -83,10 +83,10 @@ NSString *const HeaderBiddingFormatSugg = @"Check if the OgurySDK has started co
 
 - (NSString *)descriptionFor:(OguryAdErrorCode)code stacktrace:(NSString *)stacktrace {
     switch (code) {
-        case OguryAdErrorCodeSDKNotCalled:
+        case OguryAdErrorCodeSDKStartNotCalled:
             return stacktrace == nil
                 ? SDKNotProperlyInitializedDesc
-                : [NSString stringWithFormat:SDKNotInitializedFormatDesc, stacktrace];
+                : [NSString stringWithFormat:SDKStartNotCalledFormatDesc, stacktrace];
             break;
         case OguryAdErrorCodeSDKNotProperlyInitialized:
             return stacktrace == nil
@@ -94,13 +94,13 @@ NSString *const HeaderBiddingFormatSugg = @"Check if the OgurySDK has started co
                 : [NSString stringWithFormat:SDKNotProperlyInitializedFormatDesc, stacktrace];
             break;
         case OguryAdErrorCodeNoActiveInternetConnection:
-            return NoInternetConnectionDesc;
+            return NoActiveInternetConnectionDesc;
             break;
         case OguryAdErrorCodeInvalidConfiguration:
             return InvalidConfigurationDesc;
             break;
         case OguryAdErrorCodeAdDisabledCountryNotOpened:
-            return AdDisabledUnopenedCountryDesc;
+            return AdDisabledCountryNotOpenedDesc;
             break;
         case OguryAdErrorCodeAdDisabledConsentDenied:
             return AdDisabledConsentDeniedDesc;
@@ -109,7 +109,7 @@ NSString *const HeaderBiddingFormatSugg = @"Check if the OgurySDK has started co
             return AdDisabledConsentMissingDesc;
             break;
         case OguryAdErrorCodeAdDisabledUnspecifiedReason:
-            return AdDisabledOtherReasonDesc;
+            return AdDisabledUnspecifiedReasonDesc;
             break;
         case OguryAdErrorCodeAdRequestFailed:
             return [NSString stringWithFormat:AdRequestFailedFormatDesc, stacktrace];
@@ -143,7 +143,7 @@ NSString *const HeaderBiddingFormatSugg = @"Check if the OgurySDK has started co
             return ViewInBackgroundDesc;
             break;
         case OguryAdErrorCodeAnotherAdAlreadyDisplayed:
-            return AnotherAdIsAlreadyDisplayedDesc;
+            return AnotherAdAlreadyDisplayedDesc;
             break;
         case OguryAdErrorCodeWebviewTerminatedBySystem:
             return WebviewTerminatedBySystemDesc;
@@ -159,20 +159,20 @@ NSString *const HeaderBiddingFormatSugg = @"Check if the OgurySDK has started co
 
 - (NSString *)suggestionFor:(OguryAdErrorCode)code {
     switch (code) {
-        case OguryAdErrorCodeSDKNotCalled:
-            return SDKNotInitializedSugg;
+        case OguryAdErrorCodeSDKStartNotCalled:
+            return SDKStartNotCalledSugg;
             break;
         case OguryAdErrorCodeSDKNotProperlyInitialized:
             return SDKNotProperlyInitializedSugg;
             break;
         case OguryAdErrorCodeNoActiveInternetConnection:
-            return NoInternetConnectionSugg;
+            return NoActiveInternetConnectionSugg;
             break;
         case OguryAdErrorCodeInvalidConfiguration:
             return InvalidConfigurationSugg;
             break;
         case OguryAdErrorCodeAdDisabledCountryNotOpened:
-            return AdDisabledUnopenedCountrySugg;
+            return AdDisabledCountryNotOpenedSugg;
             break;
         case OguryAdErrorCodeAdDisabledConsentDenied:
             return AdDisabledConsentDeniedSugg;
@@ -181,7 +181,7 @@ NSString *const HeaderBiddingFormatSugg = @"Check if the OgurySDK has started co
             return AdDisabledConsentMissingSugg;
             break;
         case OguryAdErrorCodeAdDisabledUnspecifiedReason:
-            return AdDisabledOtherReasonSugg;
+            return AdDisabledUnspecifiedReasonSugg;
             break;
         case OguryAdErrorCodeAdRequestFailed:
             return AdRequestFailedSugg;
@@ -208,7 +208,7 @@ NSString *const HeaderBiddingFormatSugg = @"Check if the OgurySDK has started co
             return ViewInBackgroundSugg;
             break;
         case OguryAdErrorCodeAnotherAdAlreadyDisplayed:
-            return AnotherAdIsAlreadyDisplayedSugg;
+            return AnotherAdAlreadyDisplayedSugg;
             break;
         case OguryAdErrorCodeWebviewTerminatedBySystem:
             return WebviewTerminatedBySystemSugg;
@@ -226,7 +226,7 @@ NSString *const HeaderBiddingFormatSugg = @"Check if the OgurySDK has started co
 }
 
 + (OguryAdError *)sdkNotInitializedFrom:(OguryAdErrorType)type stackTrace:(NSString *)stackTrace {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeSDKNotCalled stacktrace:stackTrace type:type];
+    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeSDKStartNotCalled stacktrace:stackTrace type:type];
 }
 + (OguryAdError *)sdkNotProperlyInitializedFrom:(OguryAdErrorType)type stackTrace:(NSString *)stackTrace {
     return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeSDKNotProperlyInitialized stacktrace:stackTrace type:type];

@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, OguryAdErrorType) {
 @end
 
 typedef NS_ENUM(NSInteger, OguryAdErrorCode) {
-    OguryAdErrorCodeSDKNotCalled = 2000,
+    OguryAdErrorCodeSDKStartNotCalled = 2000,
     OguryAdErrorCodeSDKNotProperlyInitialized = 2001,
     OguryAdErrorCodeNoActiveInternetConnection = 2002,
     OguryAdErrorCodeInvalidConfiguration = 2100,
