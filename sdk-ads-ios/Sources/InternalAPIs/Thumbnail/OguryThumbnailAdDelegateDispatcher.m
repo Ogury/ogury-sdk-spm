@@ -42,9 +42,9 @@
 - (void)failedWithError:(OguryAdError *)error {
     [self.log logErrorFormat:error format:@"[%@][%@] callback failed with error called", OGAAdConfigurationAdTypeThumbnailAd, self.thumbnail.adUnitId];
 
-    if ([self.delegate respondsToSelector:@selector(didFailOguryThumbnailAdWithError:forAd:)] && self.thumbnail != nil) {
+    if ([self.delegate respondsToSelector:@selector(didFailOguryThumbnailAd:error:)] && self.thumbnail != nil) {
         [self dispatch:^(id<OguryThumbnailAdDelegate> _Nonnull delegate) {
-            [delegate didFailOguryThumbnailAdWithError:error forAd:self.thumbnail];
+            [delegate didFailOguryThumbnailAd:self.thumbnail error:error];
         }];
     }
     self.hasSentDisplayedDelegate = NO;

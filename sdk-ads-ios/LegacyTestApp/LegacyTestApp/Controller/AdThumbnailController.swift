@@ -174,9 +174,7 @@ extension AdsThumbnailController: OguryThumbnailAdDelegate {
         LogsController.shared.addLogs("Thumbnail ad is expanded at load ? [\(thumbnail.isExpanded)]")
     }
 
-    func didFailOguryThumbnailAdWithError(_ error: OguryAdError, for thumbnail: OguryThumbnailAd) {
-        delegate?.didFail()
-
+    func didFail(_ thumbnail: OguryThumbnailAd, error: OguryAdError) {
         LogsController.shared.addLogs(String(format: "thumbnail failed with error code %ld: %@", error.code, error.localizedDescription));
     }
 

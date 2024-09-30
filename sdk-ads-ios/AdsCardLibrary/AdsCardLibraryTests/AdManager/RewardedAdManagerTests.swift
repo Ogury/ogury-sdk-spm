@@ -12,15 +12,15 @@ final class RewardedAdManagerTests: XCTestCase {
     var storables: [AnyCancellable] = []
     
     func testWhenReceivingDisplayErrorsThenProperDelegateShouldBeCalled() {
-        [OguryAdsErrorType.adExpiredError.rawValue,
-         OguryAdsErrorType.anotherAdAlreadyDisplayedError.rawValue,
-         OguryAdsErrorType.cantShowAdsInPresentingViewControllerError.rawValue].forEach { errorCode in
+        [OguryAdErrorCode.adExpired.rawValue,
+         OguryAdErrorCode.anotherAdAlreadyDisplayed.rawValue,
+         OguryAdErrorCode.viewControllerPreventsAdFromBeingDisplayed.rawValue].forEach { errorCode in
            let ad: AdType<RewardedAdManager> = .rewarded
            let adManager = RewardedAdManager(adType: ad)
            let vc = UIViewController()
            adManager.options = AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: "")
            try? adManager.loadAd(from: adManager.options.baseOptions)
-            let error = OguryError.createOguryError(withCode: errorCode as! Int)
+            let error = OguryAdError.createOguryError(withCode: errorCode)
             let loadFailEx = expectation(description: "adDidFailToLoad called")
             loadFailEx.isInverted = true
             let failEx = expectation(description: "adDidFail called")
@@ -38,23 +38,24 @@ final class RewardedAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &storables)
-            adManager.ad?.delegate?.didFailOguryRewardedAdWithError?(error, for: OguryRewardedAd())
+            adManager.ad?.delegate?.didFail?(OguryRewardedAd(), error: error)
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
         }
     }
     
     func testWhenReceivingGenericErrorsThenProperDelegateShouldBeCalled() {
-        [OguryAdsErrorType.adDisabledError.rawValue,
-         OguryAdsErrorType.assetKeyNotValidError.rawValue,
-         OguryAdsErrorType.notAvailableError.rawValue,
-         OguryAdsErrorType.sdkInitNotCalledError.rawValue,
-         OguryAdsErrorType.unknownError.rawValue].forEach { errorCode in
+        [OguryAdErrorCode.adDisabledConsentDenied.rawValue,
+         OguryAdErrorCode.sdkStartNotCalled.rawValue,
+         OguryAdErrorCode.invalidConfiguration.rawValue,
+         OguryAdErrorCode.adDisabledConsentMissing.rawValue,
+         OguryAdErrorCode.adDisabledCountryNotOpened.rawValue,
+         OguryAdErrorCode.adDisabledUnspecifiedReason.rawValue].forEach { errorCode in
            let ad: AdType<RewardedAdManager> = .rewarded
            let adManager = RewardedAdManager(adType: ad)
            let vc = UIViewController()
            adManager.options = AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: "")
            try? adManager.loadAd(from: adManager.options.baseOptions)
-            let error = OguryError.createOguryError(withCode: errorCode as! Int)
+            let error = OguryAdError.createOguryError(withCode: errorCode)
             let loadFailEx = expectation(description: "adDidFailToLoad called")
             loadFailEx.isInverted = true
             let failEx = expectation(description: "adDidFail called")
@@ -72,7 +73,7 @@ final class RewardedAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &storables)
-            adManager.ad?.delegate?.didFailOguryRewardedAdWithError?(error, for: OguryRewardedAd())
+            adManager.ad?.delegate?.didFail?(OguryRewardedAd(), error: error)
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
         }
     }
@@ -225,7 +226,7 @@ final class RewardedAdManagerTests: XCTestCase {
         let vc = UIViewController()
         adManager.options = AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: "")
         try? adManager.loadAd(from: adManager.options.baseOptions)
-        let error = OguryError.createOguryError(withCode: 666)
+        let error = OguryAdError.createOguryError(withCode: 666)
         let ex = expectation(description: "")
         adManager.events.sink { event in
             if event == .adDidFail(error) {
@@ -233,19 +234,19 @@ final class RewardedAdManagerTests: XCTestCase {
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didFailOguryRewardedAdWithError?(error, for: OguryRewardedAd())
+        adManager.ad?.delegate?.didFail?(OguryRewardedAd(), error: error)
         wait(for: [ex], timeout: 0.5)
     }
     
     func testWhenReceivingLoadingErrorsThenProperDelegateShouldBeCalled() {
-        [OguryAdsErrorType.profigNotSyncedError.rawValue,
-         OguryAdsErrorType.notLoadedError.rawValue].forEach { errorCode in
+        [OguryAdErrorCode.sdkNotProperlyInitialized.rawValue,
+         OguryAdErrorCode.noAdLoaded.rawValue].forEach { errorCode in
            let ad: AdType<RewardedAdManager> = .rewarded
            var adManager = RewardedAdManager(adType: ad)
            let vc = UIViewController()
            adManager.options = AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: "")
            try? adManager.loadAd(from: adManager.options.baseOptions)
-            let error = OguryError.createOguryError(withCode: errorCode as! Int)
+            let error = OguryAdError.createOguryError(withCode: errorCode)
             let loadFailEx = expectation(description: "adDidFailToLoad called")
             let failEx = expectation(description: "adDidFail called")
             failEx.isInverted = true
@@ -263,7 +264,7 @@ final class RewardedAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &storables)
-            adManager.ad?.delegate?.didFailOguryRewardedAdWithError?(error, for: OguryRewardedAd())
+            adManager.ad?.delegate?.didFail?(OguryRewardedAd(), error: error)
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
         }
     }

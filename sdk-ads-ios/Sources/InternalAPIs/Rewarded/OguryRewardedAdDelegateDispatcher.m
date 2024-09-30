@@ -32,9 +32,9 @@
 - (void)failedWithError:(OguryAdError *)error {
     [self.log logErrorFormat:error format:@"[%@][%@] callback ad failed with error called", OGAAdConfigurationAdTypeRewarded, self.rewardedAd.adUnitId];
 
-    if ([self.delegate respondsToSelector:@selector(didFailOguryRewardedAdWithError:forAd:)] && self.rewardedAd != nil) {
+    if ([self.delegate respondsToSelector:@selector(didFailOguryRewardedAd:error:)] && self.rewardedAd != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
-            [delegate didFailOguryRewardedAdWithError:error forAd:self.rewardedAd];
+            [delegate didFailOguryRewardedAd:self.rewardedAd error:error];
         }];
     }
     self.hasSentDisplayedDelegate = NO;

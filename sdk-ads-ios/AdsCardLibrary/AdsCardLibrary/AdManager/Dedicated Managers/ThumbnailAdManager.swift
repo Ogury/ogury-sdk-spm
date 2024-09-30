@@ -235,10 +235,10 @@ internal class ThumbnailProxyDelegate: AdDelegateProxy<ThumbnailAdManager>, Ogur
       adManager.append(.adClosed)
    }
    
-   func didFailOguryThumbnailAdWithError(_ error: OguryAdError, for thumbnail: OguryThumbnailAd) {
-      handle(error, for: thumbnail)
-   }
-   
+    func didFail(_ thumbnail: OguryThumbnailAd, error: OguryAdError) {
+        handle(error, for: thumbnail)
+    }
+    
    func didTriggerImpressionOguryThumbnailAd(_ thumbnail: OguryThumbnailAd) {
       guard let adManager else { return }
       adManager.append(.adDidTriggerImpression)

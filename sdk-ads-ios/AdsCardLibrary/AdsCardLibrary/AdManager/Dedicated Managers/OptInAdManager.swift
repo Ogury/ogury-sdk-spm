@@ -188,9 +188,9 @@ internal class RewardedProxyDelegate: AdDelegateProxy<RewardedAdManager>, OguryR
       adManager.append(.adClosed)
    }
    
-   func didFailOguryRewardedAdWithError(_ error: OguryAdError, for optinVideo: OguryRewardedAd) {
-      handle(error, for: optinVideo)
-   }
+    func didFail(_ rewardedAd: OguryRewardedAd, error: OguryAdError) {
+        handle(error, for: rewardedAd)
+    }
    
    func didTriggerImpressionOguryRewardedAd(_ optinVideo: OguryRewardedAd) {
       guard let adManager else { return }

@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)didLoadOguryThumbnailAd:(OguryThumbnailAd *)thumbnail;
 - (void)didClickOguryThumbnailAd:(OguryThumbnailAd *)thumbnail;
 - (void)didCloseOguryThumbnailAd:(OguryThumbnailAd *)thumbnail;
-- (void)didFailOguryThumbnailAdWithError:(OguryAdError *)error forAd:(OguryThumbnailAd *)thumbnail;
+- (void)didFailOguryThumbnailAd:(OguryThumbnailAd *)thumbnail error:(OguryAdError *)error;
 - (void)didTriggerImpressionOguryThumbnailAd:(OguryThumbnailAd *)thumbnail;
 @end
 

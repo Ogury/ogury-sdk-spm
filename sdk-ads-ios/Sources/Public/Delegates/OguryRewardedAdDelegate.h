@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)didClickOguryRewardedAd:(OguryRewardedAd *)rewardedAd;
 - (void)didCloseOguryRewardedAd:(OguryRewardedAd *)rewardedAd;
 - (void)didRewardOguryRewardedAdWithItem:(OguryRewardItem *)item forAd:(OguryRewardedAd *)rewardedAd;
-- (void)didFailOguryRewardedAdWithError:(OguryAdError *)error forAd:(OguryRewardedAd *)rewardedAd;
+- (void)didFailOguryRewardedAd:(OguryRewardedAd *)rewardedAd error:(OguryAdError *)error;
 - (void)didTriggerImpressionOguryRewardedAd:(OguryRewardedAd *)rewardedAd;
 @end
 

@@ -26,7 +26,7 @@ class AdDelegateProxy<T: AdManager>: NSObject {
            adManager.append(.adDidFailToLoad(error))
             
        case OguryAdErrorCode.adExpired.rawValue,
-           OguryAdErrorCode.anotherAdIsAlreadyDisplayed.rawValue,
+           OguryAdErrorCode.anotherAdAlreadyDisplayed.rawValue,
            OguryAdErrorCode.viewControllerPreventsAdFromBeingDisplayed.rawValue:
            adManager.append(.adDidFailToDisplay(error))
             
