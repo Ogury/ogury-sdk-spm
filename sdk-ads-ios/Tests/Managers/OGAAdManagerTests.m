@@ -3,7 +3,7 @@
 //
 
 #import <OCMock/OCMock.h>
-#import <OguryAds/OGAAdLogMessage.h>
+#import "OGAAdLogMessage.h"
 #import <XCTest/XCTest.h>
 #import "OGAAdConfiguration.h"
 #import "OGAAdManager+Testing.h"
