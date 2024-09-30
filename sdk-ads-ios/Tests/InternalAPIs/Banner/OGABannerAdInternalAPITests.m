@@ -304,9 +304,9 @@ static NSString *const DefaultDspRegion = @"dspRegion";
 
     OCMExpect([internalAPI.delegateDispatcher failedWithError:OCMOCK_ANY]);
 
-    [internalAPI didFailOguryBannerAdWithError:OCMOCK_ANY forAd:bannerAd];
+    [internalAPI didFailOguryBannerAdView:bannerAd error:OCMOCK_ANY];
 
-    OCMVerify([internalAPI.delegateDispatcher failedWithError:(OguryError *)OCMOCK_ANY]);
+    OCMVerify([internalAPI.delegateDispatcher failedWithError:(OguryAdError *)OCMOCK_ANY]);
 }
 
 - (void)testHaveParentViewcontrollerSuperView {

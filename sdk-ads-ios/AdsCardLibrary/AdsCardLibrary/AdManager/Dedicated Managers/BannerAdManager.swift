@@ -210,20 +210,20 @@ internal class MrecProxyDelegate: AdDelegateProxy<BannerAdManager>, OguryBannerA
       guard let adManager else { return }
       adManager.append(.adClosed)
    }
-   
-   func didFailOguryBannerAdWithError(_ error: OguryAdError, for banner: OguryBannerAdView) {
-      handle(error, for: banner)
-   }
+    
+    func didFail(_ banner: OguryBannerAdView, error: OguryAdError) {
+        handle(error, for: banner)
+    }
    
    func didTriggerImpressionOguryBannerAdView(_ banner: OguryBannerAdView) {
       guard let adManager else { return }
       adManager.append(.adDidTriggerImpression)
    }
    
-   func presentingViewController(forOguryAdsBannerAd banner: OguryBannerAdView) -> UIViewController? {
+    func presentingViewController(forOguryAdsBannerAdView banner: OguryBannerAdView) -> UIViewController? {
       guard let adManager else { return nil }
       return adDelegate?.viewController(forBanner: banner, adManager: adManager)
-   }
+    }
 }
 
 extension BannerAdManager: Storable {

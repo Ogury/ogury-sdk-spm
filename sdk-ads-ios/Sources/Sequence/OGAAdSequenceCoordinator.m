@@ -358,7 +358,7 @@
         [self close];
         return;
     }
-    OguryError *error = nil;
+    OguryAdError *error = nil;
     if (![nextController show:&error]) {
         [self.sequence.configuration.delegateDispatcher failedWithError:error];
         [self close];
@@ -369,7 +369,7 @@
 - (void)controller:(OGAAdController *)controller didUnLoadWithNextAd:(OGANextAd *)nextAd {
     if (self.sequence.status == OGAAdSequenceStatusShown) {
         OGAAdController *nextController = [self controllerForNextAd:nextAd closingController:controller];
-        OguryError *error = nil;
+        OguryAdError *error = nil;
         if (!nextController) {
             [self close];
             [self dispatchClosedIfNecessary];

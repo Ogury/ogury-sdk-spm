@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)didLoadOguryBannerAdView:(OguryBannerAdView *)banner;
 - (void)didClickOguryBannerAdView:(OguryBannerAdView *)banner;
 - (void)didCloseOguryBannerAdView:(OguryBannerAdView *)banner;
-- (void)didFailOguryBannerAdWithError:(OguryAdError *)error forAd:(OguryBannerAdView *)banner;
+- (void)didFailOguryBannerAdView:(OguryBannerAdView *)banner error:(OguryAdError *)error;
 - (void)didTriggerImpressionOguryBannerAdView:(OguryBannerAdView *)banner;
 - (UIViewController *_Nullable)presentingViewControllerForOguryAdsBannerAdView:(OguryBannerAdView *)banner;
 @end

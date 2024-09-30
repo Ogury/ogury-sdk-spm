@@ -32,9 +32,9 @@
 - (void)failedWithError:(OguryAdError *)error {
     [self.log logErrorFormat:error format:@"[banner][%@] calldback failed with error called", self.banner.adUnitId];
 
-    if ([self.delegate respondsToSelector:@selector(didFailOguryBannerAdWithError:forAd:)]) {
+    if ([self.delegate respondsToSelector:@selector(didFailOguryBannerAdView:error:)]) {
         [self dispatch:^(id<OguryBannerAdDelegate> _Nonnull delegate) {
-            [delegate didFailOguryBannerAdWithError:error forAd:self.banner];
+            [delegate didFailOguryBannerAdView:self.banner error:error];
         }];
     }
     self.hasSentDisplayedDelegate = NO;

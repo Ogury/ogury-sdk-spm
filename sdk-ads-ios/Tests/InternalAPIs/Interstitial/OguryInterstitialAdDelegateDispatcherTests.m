@@ -76,7 +76,7 @@
 }
 
 - (void)testOguryAdsInterstitialAnotherAdAlreadyDisplayedError {
-    OguryError *error = [OguryAdError anotherAdIsAlreadyDisplayed];
+    OguryAdError *error = [OguryAdError anotherAdIsAlreadyDisplayed];
     [self.delegateDispatcher failedWithError:error];
     OCMVerify([self.delegate didFailOguryInterstitialAd:self.interstitial error:error]);
 }

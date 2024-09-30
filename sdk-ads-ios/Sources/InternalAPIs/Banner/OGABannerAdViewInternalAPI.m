@@ -230,7 +230,7 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
     [self.delegateDispatcher closed];
 }
 
-- (void)didFailOguryBannerAdWithError:(OguryAdError *)error forAd:(OguryBannerAdView *)banner {
+- (void)didFailOguryBannerAdView:(OguryBannerAdView *)banner error:(OguryAdError *)error {
     [self.delegateDispatcher failedWithError:error];
 }
 

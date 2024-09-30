@@ -206,7 +206,7 @@ extension BannerCollectionViewVC: OguryBannerAdDelegate {
         removeBannerFromScreen(banner)
     }
 
-    func didFailOguryBannerAdWithError(_ error: OguryError, for banner: OguryBannerAdView) {
+    func didFail(_ banner: OguryBannerAdView, error: OguryAdError) {
         LogsController.shared.addLogs("Banner n°\(idForBanner(banner)) error : \(error.localizedDescription)")
 
         if (error.code != 2004) {

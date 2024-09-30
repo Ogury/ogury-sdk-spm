@@ -39,11 +39,11 @@
 }
 
 - (void)testOguryAdsBannerAdNotAvailable {
-    OguryError *error = [OguryAdError noFillFrom:OguryAdIntegrationTypeDirect];
+    OguryAdError *error = [OguryAdError noFillFrom:OguryAdIntegrationTypeDirect];
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
+    OCMVerify([self.delegate didFailOguryBannerAdView:self.banner error:error]);
 }
 
 - (void)testOguryAdsBannerAdLoaded {
@@ -53,11 +53,11 @@
 }
 
 - (void)testOguryAdsBannerAdNotLoaded {
-    OguryError *error = [OguryAdError noAdLoaded];
+    OguryAdError *error = [OguryAdError noAdLoaded];
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
+    OCMVerify([self.delegate didFailOguryBannerAdView:self.banner error:error]);
 }
 
 - (void)testOguryAdsBannerAdClosed {
@@ -67,57 +67,57 @@
 }
 
 - (void)testOguryAdsBannerAdDisableError {
-    OguryError *error = [OguryAdError adDisabledOtherReasonFrom:OguryAdErrorTypeLoad];
+    OguryAdError *error = [OguryAdError adDisabledOtherReasonFrom:OguryAdErrorTypeLoad];
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
+    OCMVerify([self.delegate didFailOguryBannerAdView:self.banner error:error]);
 }
 
 - (void)testOguryAdsBannerProfigNotSyncedError {
-    OguryError *error = [OguryAdError invalidConfigurationFrom:OguryAdErrorTypeLoad];
+    OguryAdError *error = [OguryAdError invalidConfigurationFrom:OguryAdErrorTypeLoad];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
+    OCMVerify([self.delegate didFailOguryBannerAdView:self.banner error:error]);
 }
 
 - (void)testOguryAdsBannerSdkInitNotCalledError {
-    OguryError *error = [OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeLoad stackTrace:@""];
+    OguryAdError *error = [OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeLoad stackTrace:@""];
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
+    OCMVerify([self.delegate didFailOguryBannerAdView:self.banner error:error]);
 }
 
 - (void)testOguryAdsBannerAnotherAdAlreadyDisplayedError {
-    OguryError *error = [OguryAdError anotherAdIsAlreadyDisplayed];
+    OguryAdError *error = [OguryAdError anotherAdIsAlreadyDisplayed];
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
+    OCMVerify([self.delegate didFailOguryBannerAdView:self.banner error:error]);
 }
 
 - (void)testOguryAdsBannerCantShowAdsInPresentingViewControllerError {
-    OguryError *error = [OguryAdError viewControllerPreventsAdFromBeingDisplayed];
+    OguryAdError *error = [OguryAdError viewControllerPreventsAdFromBeingDisplayed];
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
+    OCMVerify([self.delegate didFailOguryBannerAdView:self.banner error:error]);
 }
 
 - (void)testOguryAdsBannerAdExpiredError {
-    OguryError *error = [OguryAdError adExpired];
+    OguryAdError *error = [OguryAdError adExpired];
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
+    OCMVerify([self.delegate didFailOguryBannerAdView:self.banner error:error]);
 }
 
 - (void)testOguryAdsBannerUnknownError {
-    OguryError *error = [OguryAdError createOguryErrorWithCode:OGAInternalUnknownError];
+    OguryAdError *error = [OguryAdError createOguryErrorWithCode:OGAInternalUnknownError];
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
+    OCMVerify([self.delegate didFailOguryBannerAdView:self.banner error:error]);
 }
 
 - (void)testOguryAdsBannerAdClicked {

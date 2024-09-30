@@ -194,17 +194,16 @@ extension BannerTableViewVC: OguryBannerAdDelegate {
 
 
     func didClick(_ banner: OguryBannerAdView) {
-        LogsController.shared.addLogs("Banner n°\(idForBanner(banner)) clicked")
+        LogsController.shared.addLogs("Banner clicked")
     }
 
     func didClose(_ banner: OguryBannerAdView) {
-        LogsController.shared.addLogs("Banner n°\(idForBanner(banner)) closed")
+        LogsController.shared.addLogs("Banner closed")
         removeBannerFromScreen(banner)
     }
 
-    func didFailOguryBannerAdWithError(_ error: OguryError, for banner: OguryBannerAdView) {
-        LogsController.shared.addLogs("Banner n°\(idForBanner(banner)) error : \(error.localizedDescription)")
-
+    func didFail(_ banner: OguryBannerAdView, error: OguryAdError) {
+        LogsController.shared.addLogs("Banner error : \(error.localizedDescription)")
         if (error.code != 2004) {
             removeBannerFromScreen(banner)
         }

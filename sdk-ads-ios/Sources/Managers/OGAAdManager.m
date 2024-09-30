@@ -194,7 +194,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
 }
 
 - (void)loadSequence:(OGAAdSequence *)sequence {
-    OguryError *error = nil;
+    OguryAdError *error = nil;
 
     if (self.assetKeyManager.sdkState == OgurySDKStateError) {
         sequence.status = OGAAdSequenceStatusInitError;

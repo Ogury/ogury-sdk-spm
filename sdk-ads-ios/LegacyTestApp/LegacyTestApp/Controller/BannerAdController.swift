@@ -145,8 +145,8 @@ extension BannerAdController {
                             bannerAd.load(withAdMarkup: adMarkup)
                     
                     case .failure(let error):
-                            self.didFailOguryBannerAdWithError(OguryError.createOguryError(withCode: -1, localizedDescription: error.localizedDescription), for: bannerAd)
-                            LogsController.shared.addLogs("Header bidding for Interstitial failed. [\(error.localizedDescription)]")
+                            self.didFail(bannerAd, error: OguryAdError.createOguryError(withCode: -1, localizedDescription: error.localizedDescription))
+                                    LogsController.shared.addLogs("Header bidding for Interstitial failed. [\(error.localizedDescription)]")
                 }
             }
         }
@@ -163,7 +163,7 @@ extension BannerAdController: OguryBannerAdDelegate {
         LogsController.shared.addLogs("Banner ad is expanded at load ? [\(banner.isExpanded)]")
     }
 
-    func didFailOguryBannerAdWithError(_ error: OguryError, for banner: OguryBannerAdView) {
+    func didFail(_ banner: OguryBannerAdView, error: OguryAdError) {
         LogsController.shared.addLogs("Banner ad failed with error code \(error.code): \(error.localizedDescription)");
         banner.removeFromSuperview()
     }
