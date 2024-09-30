@@ -7,6 +7,7 @@ import SwiftUI
 import ComposableArchitecture
 import UserDefault
 import OguryAds
+import OguryAds.Private
 import AdsCardLibrary
 import SwiftMessages
 import OguryCore.Private
@@ -60,7 +61,7 @@ struct AppSettingsFeature: Reducer {
         }
         var sdkVersion: String {
             let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
-            return "\(OguryAds().sdkVersion ?? "n/a") (\(origin == "Pod" ? "Release" : "Development"))"
+            return "\(OGAInternal.shared().getVersion()) (\(origin == "Pod" ? "Release" : "Development"))"
         }
         var environment: String { Bundle.main.object(forInfoDictionaryKey: "DefaultEnv") as? String ?? "" }
     }
