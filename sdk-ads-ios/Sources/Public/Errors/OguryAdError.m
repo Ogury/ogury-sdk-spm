@@ -6,12 +6,7 @@
 //  Copyright © 2024 Ogury Ltd. All rights reserved.
 //
 
-#ifndef OguryAdsError_h
-#define OguryAdsError_h
 #import "OguryAdError.h"
 
 @implementation OguryAdError
-
 @end
-
-#endif /* OguryAdsError_h */

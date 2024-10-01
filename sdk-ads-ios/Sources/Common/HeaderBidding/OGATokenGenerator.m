@@ -88,7 +88,7 @@
                     completion:(BidTokenCompletionBlock)completion {
     OguryError *error = nil;
     if (![self.assetKeyManager checkAssetKeyIsValid:&error type:OguryAdErrorTypeLoad]) {
-        completion(nil, [OguryAdError headerBiddingWithStacktrace:error.localizedDescription ?: @"Invalid Assetkey"]);
+        completion(nil, [OguryAdError headerBiddingFrom:error.code stacktrace:error.localizedDescription ?: @"Invalid Assetkey"]);
         return;
     }
     if ([[self profigManager] shouldSync]) {
@@ -108,13 +108,26 @@
     }
 }
 
+- (OguryAdErrorCode)disabledReasonCode {
+    if ([self.profigDao.profigFullResponse.disablingReason isEqualToString:OGAAdConfigurationDisablingReasonCountryUnopened]) {
+        return OguryAdErrorCodeAdDisabledCountryNotOpened;
+    } else if ([self.profigDao.profigFullResponse.disablingReason isEqualToString:OGAAdConfigurationDisablingReasonConsentDenied]) {
+        return OguryAdErrorCodeAdDisabledConsentDenied;
+    } else if ([self.profigDao.profigFullResponse.disablingReason isEqualToString:OGAAdConfigurationDisablingReasonConsentMissing]) {
+        return OguryAdErrorCodeAdDisabledConsentMissing;
+    } else {
+        return OguryAdErrorCodeAdDisabledUnspecifiedReason;
+    }
+}
+
 - (void)collectBidTokenDataWithCampaignId:(NSString *_Nullable)campaignId
                                creativeId:(NSString *_Nullable)creativeId
                             dspCreativeId:(NSString *_Nullable)dspCreativeId
                                 dspRegion:(NSString *_Nullable)dspRegion
                                completion:(BidTokenCompletionBlock)completion {
     if (!self.profigDao.profigFullResponse.adsEnabled) {
-        completion(nil, [OguryAdError headerBiddingWithStacktrace:[NSString stringWithFormat:@"Ads are disabled (%@)", self.profigDao.profigFullResponse.disablingReason ?: @"Unknown reason"]]);
+        completion(nil, [OguryAdError headerBiddingFrom:[self disabledReasonCode]
+                                             stacktrace:[NSString stringWithFormat:@"Ads are disabled (%@)", self.profigDao.profigFullResponse.disablingReason ?: @"Unknown reason"]]);
         return;
     }
     completion([[self computeBidTokenDataWithCampaignId:campaignId

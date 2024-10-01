@@ -16,6 +16,7 @@
 #import "OGAProfigFullResponse.h"
 #import "OGAAdEnabledChecker.h"
 #import "OGAAdController.h"
+#import "OguryBidTokenErrorCode.h"
 #import "OguryAdError+Internal.h"
 
 @interface OGAAdManagerTests : XCTestCase
@@ -562,7 +563,7 @@
 
 - (void)testWhenIsKillerCheckFailsThenProperErrorAndMonitoringEventsAreDispatched {
     OguryAdError *checkConditionsError = OCMClassMock([OguryAdError class]);
-    OCMStub(checkConditionsError.code).andReturn(OguryAdErrorCodeWebviewTerminatedBySystem);
+    OCMStub(checkConditionsError.code).andReturn(OguryShowErrorCodeWebviewTerminatedBySystem);
     OCMStub([self.isKilledChecker checkForSequence:[OCMArg any] error:[OCMArg anyObjectRef]])
         .andDo(^(NSInvocation *invocation) {
             OguryError *__autoreleasing *errorPointer = nil;
@@ -609,7 +610,14 @@
     OCMStub([coordinator isExpired]).andReturn(YES);
     OCMStub([coordinator isLoaded]).andReturn(YES);
     OCMStub([coordinator isClosed]).andReturn(NO);
-    OCMStub([self.adManager checkConditions:[OCMArg any] sequence:[OCMArg any] error:[OCMArg anyObjectRef]]).andReturn(YES);
+    OguryAdError *error = [OguryAdError adExpired];
+    OCMStub([self.adManager checkConditions:[OCMArg any] sequence:[OCMArg any] error:[OCMArg anyObjectRef]])
+        .andDo(^(NSInvocation *invocation) {
+            OguryError *__autoreleasing *errorPointer = nil;
+            [invocation getArgument:&errorPointer atIndex:4];
+            *errorPointer = error;
+        })
+        .andReturn(NO);
     OGAProfigDao *mockedDao = OCMClassMock([OGAProfigDao class]);
     OCMStub([self.adManager profigDao]).andReturn(mockedDao);
     OGAProfigFullResponse *profigResponse = OCMClassMock([OGAProfigFullResponse class]);
