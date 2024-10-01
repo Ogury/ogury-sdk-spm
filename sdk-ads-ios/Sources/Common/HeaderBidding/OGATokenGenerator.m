@@ -108,15 +108,15 @@
     }
 }
 
-- (OguryAdErrorCode)disabledReasonCode {
+- (NSInteger)disabledReasonCode {
     if ([self.profigDao.profigFullResponse.disablingReason isEqualToString:OGAAdConfigurationDisablingReasonCountryUnopened]) {
-        return OguryAdErrorCodeAdDisabledCountryNotOpened;
+        return OguryShowErrorCodeAdDisabledCountryNotOpened;
     } else if ([self.profigDao.profigFullResponse.disablingReason isEqualToString:OGAAdConfigurationDisablingReasonConsentDenied]) {
-        return OguryAdErrorCodeAdDisabledConsentDenied;
+        return OguryShowErrorCodeAdDisabledConsentDenied;
     } else if ([self.profigDao.profigFullResponse.disablingReason isEqualToString:OGAAdConfigurationDisablingReasonConsentMissing]) {
-        return OguryAdErrorCodeAdDisabledConsentMissing;
+        return OguryShowErrorCodeAdDisabledConsentMissing;
     } else {
-        return OguryAdErrorCodeAdDisabledUnspecifiedReason;
+        return OguryShowErrorCodeAdDisabledUnspecifiedReason;
     }
 }
 

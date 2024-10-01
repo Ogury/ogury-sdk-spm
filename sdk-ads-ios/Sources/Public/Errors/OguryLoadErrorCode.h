@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, OguryLoadErrorCode) {
     OguryLoadErrorCodeAdDisabledUnspecifiedReason = 2104,
     OguryLoadErrorCodeAdRequestFailed = 2200,
     OguryLoadErrorCodeNoFill = 2201,
-    OguryLoadErrorCodeAdPardingFailed = 2202,
+    OguryLoadErrorCodeAdParsingFailed = 2202,
     OguryLoadErrorCodeAdPrecachingFailed = 2300,
     OguryLoadErrorCodeAdPrecachingTimeout = 2301
 };

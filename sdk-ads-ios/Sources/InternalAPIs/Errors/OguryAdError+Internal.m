@@ -12,7 +12,7 @@
 #import <OguryCore/OguryError.h>
 
 @interface OguryAdError (private)
-- (instancetype)initWithErrorCode:(OguryAdErrorCode)code type:(OguryAdErrorType)type;
+- (instancetype)initWithErrorCode:(NSInteger)code type:(OguryAdErrorType)type;
 @end
 
 NSString *const OguryAdsErrorDomain = @"OguryAdsSDK";
@@ -63,175 +63,203 @@ NSString *const HeaderBiddingFormatSugg = @"Check if the OgurySDK has started co
 
 @implementation OguryAdError (internal)
 
-- (instancetype)initWithErrorCode:(OguryAdErrorCode)code
+- (instancetype)initWithErrorCode:(NSInteger)code
                              type:(OguryAdErrorType)type {
     return [self initWithErrorCode:code stacktrace:nil type:type];
 }
 
-- (instancetype)initWithErrorCode:(OguryAdErrorCode)code
+- (instancetype)initWithErrorCode:(NSInteger)code
                        stacktrace:(NSString *)stacktrace
                              type:(OguryAdErrorType)type {
     NSDictionary *userInfo = @{
         NSLocalizedDescriptionKey : [self descriptionFor:code stacktrace:stacktrace],
         NSLocalizedRecoverySuggestionErrorKey : [self suggestionFor:code]
     };
-    if (self = [super initWithDomain:OguryAdsErrorDomain
-                                code:[OguryAdError publicErrorCodeFrom:code type:type]
-                            userInfo:userInfo]) {
+    if (self = [super initWithDomain:OguryAdsErrorDomain code:code userInfo:userInfo]) {
         self.type = type;
     }
     return self;
 }
 
-- (NSString *)descriptionFor:(OguryAdErrorCode)code stacktrace:(NSString *)stacktrace {
+- (NSString *)descriptionFor:(NSInteger)code stacktrace:(NSString *)stacktrace {
     switch (code) {
-        case OguryAdErrorCodeSDKStartNotCalled:
+        case OguryLoadErrorCodeSDKNeverStarted:
+        case OguryShowErrorCodeSDKNeverStarted:
             return stacktrace == nil
                 ? SDKNotProperlyInitializedDesc
                 : [NSString stringWithFormat:SDKStartNotCalledFormatDesc, stacktrace];
-            break;
-        case OguryAdErrorCodeSDKNotProperlyInitialized:
+
+        case OguryLoadErrorCodeSDKNotProperlyInitialized:
+        case OguryShowErrorCodeSDKNotProperlyInitialized:
             return stacktrace == nil
                 ? SDKNotProperlyInitializedDesc
                 : [NSString stringWithFormat:SDKNotProperlyInitializedFormatDesc, stacktrace];
-            break;
-        case OguryAdErrorCodeNoActiveInternetConnection:
+
+        case OguryLoadErrorCodeNoActiveInternetConnection:
+        case OguryShowErrorCodeNoActiveInternetConnection:
             return NoActiveInternetConnectionDesc;
-            break;
-        case OguryAdErrorCodeInvalidConfiguration:
+
+        case OguryLoadErrorCodeInvalidConfiguration:
+        case OguryShowErrorCodeInvalidConfiguration:
             return InvalidConfigurationDesc;
-            break;
-        case OguryAdErrorCodeAdDisabledCountryNotOpened:
+
+        case OguryLoadErrorCodeAdDisabledCountryNotOpened:
+        case OguryShowErrorCodeAdDisabledCountryNotOpened:
             return AdDisabledCountryNotOpenedDesc;
-            break;
-        case OguryAdErrorCodeAdDisabledConsentDenied:
+
+        case OguryLoadErrorCodeAdDisabledConsentDenied:
+        case OguryShowErrorCodeAdDisabledConsentDenied:
             return AdDisabledConsentDeniedDesc;
-            break;
-        case OguryAdErrorCodeAdDisabledConsentMissing:
+
+        case OguryLoadErrorCodeAdDisabledConsentMissing:
+        case OguryShowErrorCodeAdDisabledConsentMissing:
             return AdDisabledConsentMissingDesc;
-            break;
-        case OguryAdErrorCodeAdDisabledUnspecifiedReason:
+
+        case OguryLoadErrorCodeAdDisabledUnspecifiedReason:
+        case OguryShowErrorCodeAdDisabledUnspecifiedReason:
             return AdDisabledUnspecifiedReasonDesc;
-            break;
-        case OguryAdErrorCodeAdRequestFailed:
+
+        case OguryLoadErrorCodeAdRequestFailed:
             return [NSString stringWithFormat:AdRequestFailedFormatDesc, stacktrace];
-            break;
-        case OguryAdErrorCodeNoFill:
+
+        case OguryLoadErrorCodeNoFill:
             return stacktrace == nil
                 ? NoFillDesc
                 : [NSString stringWithFormat:NoFillFormatDesc, stacktrace];
-            break;
-            break;
-        case OguryAdErrorCodeAdParsingFailed:
+
+        case OguryLoadErrorCodeAdParsingFailed:
             return stacktrace == nil
                 ? AdParsingFailedDesc
                 : [NSString stringWithFormat:AdParsingFailedFormatDesc, stacktrace];
-            break;
-        case OguryAdErrorCodeAdPrecachingFailed:
+
+        case OguryLoadErrorCodeAdPrecachingFailed:
             return stacktrace == nil
                 ? AdPrecachingFailedDesc
                 : [NSString stringWithFormat:AdPrecachingFailedFormatDesc, stacktrace];
-            break;
-        case OguryAdErrorCodeAdPrecachingTimeout:
+
+        case OguryLoadErrorCodeAdPrecachingTimeout:
             return AdPrecachingTimeoutDesc;
-            break;
-        case OguryAdErrorCodeAdExpired:
+
+        case OguryShowErrorCodeAdExpired:
             return AdExpiredDesc;
-            break;
-        case OguryAdErrorCodeNoAdLoaded:
+
+        case OguryShowErrorCodeNoAdLoaded:
             return NoAdLoadedDesc;
-            break;
-        case OguryAdErrorCodeViewInBackground:
+
+        case OguryShowErrorCodeViewInBackground:
             return ViewInBackgroundDesc;
-            break;
-        case OguryAdErrorCodeAnotherAdAlreadyDisplayed:
+
+        case OguryShowErrorCodeAnotherAdAlreadyDisplayed:
             return AnotherAdAlreadyDisplayedDesc;
-            break;
-        case OguryAdErrorCodeWebviewTerminatedBySystem:
+
+        case OguryShowErrorCodeWebviewTerminatedBySystem:
             return WebviewTerminatedBySystemDesc;
-            break;
-        case OguryAdErrorCodeViewControllerPreventsAdFromBeingDisplayed:
+
+        case OguryShowErrorCodeViewControllerPreventsAdFromBeingDisplayed:
             return @"";
-            break;
+
+        default:
+            return @"";
     }
 }
 
-- (NSString *)suggestionFor:(OguryAdErrorCode)code {
+- (NSString *)suggestionFor:(NSInteger)code {
     switch (code) {
-        case OguryAdErrorCodeSDKStartNotCalled:
+        case OguryLoadErrorCodeSDKNeverStarted:
+        case OguryShowErrorCodeSDKNeverStarted:
             return SDKStartNotCalledSugg;
-            break;
-        case OguryAdErrorCodeSDKNotProperlyInitialized:
+
+        case OguryLoadErrorCodeSDKNotProperlyInitialized:
+        case OguryShowErrorCodeSDKNotProperlyInitialized:
             return SDKNotProperlyInitializedSugg;
-            break;
-        case OguryAdErrorCodeNoActiveInternetConnection:
+
+        case OguryLoadErrorCodeNoActiveInternetConnection:
+        case OguryShowErrorCodeNoActiveInternetConnection:
             return NoActiveInternetConnectionSugg;
-            break;
-        case OguryAdErrorCodeInvalidConfiguration:
+
+        case OguryLoadErrorCodeInvalidConfiguration:
+        case OguryShowErrorCodeInvalidConfiguration:
             return InvalidConfigurationSugg;
-            break;
-        case OguryAdErrorCodeAdDisabledCountryNotOpened:
+
+        case OguryLoadErrorCodeAdDisabledCountryNotOpened:
+        case OguryShowErrorCodeAdDisabledCountryNotOpened:
             return AdDisabledCountryNotOpenedSugg;
-            break;
-        case OguryAdErrorCodeAdDisabledConsentDenied:
+
+        case OguryLoadErrorCodeAdDisabledConsentDenied:
+        case OguryShowErrorCodeAdDisabledConsentDenied:
             return AdDisabledConsentDeniedSugg;
-            break;
-        case OguryAdErrorCodeAdDisabledConsentMissing:
+
+        case OguryLoadErrorCodeAdDisabledConsentMissing:
+        case OguryShowErrorCodeAdDisabledConsentMissing:
             return AdDisabledConsentMissingSugg;
-            break;
-        case OguryAdErrorCodeAdDisabledUnspecifiedReason:
+
+        case OguryLoadErrorCodeAdDisabledUnspecifiedReason:
+        case OguryShowErrorCodeAdDisabledUnspecifiedReason:
             return AdDisabledUnspecifiedReasonSugg;
-            break;
-        case OguryAdErrorCodeAdRequestFailed:
+
+        case OguryLoadErrorCodeAdRequestFailed:
             return AdRequestFailedSugg;
-            break;
-        case OguryAdErrorCodeNoFill:
+
+        case OguryLoadErrorCodeNoFill:
             return NoFillSugg;
-            break;
-        case OguryAdErrorCodeAdParsingFailed:
+
+        case OguryLoadErrorCodeAdParsingFailed:
             return AdParsingFailedSugg;
-            break;
-        case OguryAdErrorCodeAdPrecachingFailed:
+
+        case OguryLoadErrorCodeAdPrecachingFailed:
             return AdPrecachingFailedSugg;
-            break;
-        case OguryAdErrorCodeAdPrecachingTimeout:
+
+        case OguryLoadErrorCodeAdPrecachingTimeout:
             return AdPrecachingTimeoutSugg;
-            break;
-        case OguryAdErrorCodeAdExpired:
+
+        case OguryShowErrorCodeAdExpired:
             return AdExpiredSugg;
-            break;
-        case OguryAdErrorCodeNoAdLoaded:
+
+        case OguryShowErrorCodeNoAdLoaded:
             return NoAdLoadedSugg;
-            break;
-        case OguryAdErrorCodeViewInBackground:
+
+        case OguryShowErrorCodeViewInBackground:
             return ViewInBackgroundSugg;
-            break;
-        case OguryAdErrorCodeAnotherAdAlreadyDisplayed:
+
+        case OguryShowErrorCodeAnotherAdAlreadyDisplayed:
             return AnotherAdAlreadyDisplayedSugg;
-            break;
-        case OguryAdErrorCodeWebviewTerminatedBySystem:
+
+        case OguryShowErrorCodeWebviewTerminatedBySystem:
             return WebviewTerminatedBySystemSugg;
-            break;
-        case OguryAdErrorCodeViewControllerPreventsAdFromBeingDisplayed:
+
+        case OguryShowErrorCodeViewControllerPreventsAdFromBeingDisplayed:
             return @"";
-            break;
+
         default:
             return @"";
-            break;
     }
 }
 
 + (OguryAdError *)sdkNotInitializedFrom:(OguryAdErrorType)type stackTrace:(NSString *)stackTrace {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeSDKStartNotCalled stacktrace:stackTrace type:type];
+    return [[OguryAdError alloc] initWithErrorCode:type == OguryAdErrorTypeLoad
+                                     ? OguryLoadErrorCodeSDKNeverStarted
+                                     : OguryShowErrorCodeSDKNeverStarted
+                                        stacktrace:stackTrace
+                                              type:type];
 }
 + (OguryAdError *)sdkNotProperlyInitializedFrom:(OguryAdErrorType)type stackTrace:(NSString *)stackTrace {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeSDKNotProperlyInitialized stacktrace:stackTrace type:type];
+    return [[OguryAdError alloc] initWithErrorCode:type == OguryAdErrorTypeLoad
+                                     ? OguryLoadErrorCodeSDKNotProperlyInitialized
+                                     : OguryShowErrorCodeSDKNotProperlyInitialized
+                                        stacktrace:stackTrace
+                                              type:type];
 }
 + (OguryAdError *)noInternetConnectionFrom:(OguryAdErrorType)type {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeNoActiveInternetConnection type:type];
+    return [[OguryAdError alloc] initWithErrorCode:type == OguryAdErrorTypeLoad
+                                     ? OguryLoadErrorCodeNoActiveInternetConnection
+                                     : OguryShowErrorCodeNoActiveInternetConnection
+                                              type:type];
 }
 + (OguryAdError *)invalidConfigurationFrom:(OguryAdErrorType)type {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeInvalidConfiguration type:type];
+    return [[OguryAdError alloc] initWithErrorCode:type == OguryAdErrorTypeLoad
+                                     ? OguryLoadErrorCodeInvalidConfiguration
+                                     : OguryShowErrorCodeInvalidConfiguration
+                                              type:type];
 }
 + (OguryAdError *)adDisabled:(NSString *)reason from:(OguryAdErrorType)type {
     if ([reason isEqualToString:OGAAdConfigurationDisablingReasonCountryUnopened]) {
@@ -244,151 +272,118 @@ NSString *const HeaderBiddingFormatSugg = @"Check if the OgurySDK has started co
     return [self adDisabledOtherReasonFrom:type];
 }
 + (OguryAdError *)adDisabledUnopenedCountryFrom:(OguryAdErrorType)type {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeAdDisabledCountryNotOpened type:type];
+    return [[OguryAdError alloc] initWithErrorCode:type == OguryAdErrorTypeLoad
+                                     ? OguryLoadErrorCodeAdDisabledCountryNotOpened
+                                     : OguryShowErrorCodeAdDisabledCountryNotOpened
+                                              type:type];
 }
 + (OguryAdError *)adDisabledConsentDeniedFrom:(OguryAdErrorType)type {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeAdDisabledConsentDenied type:type];
+    return [[OguryAdError alloc] initWithErrorCode:type == OguryAdErrorTypeLoad
+                                     ? OguryLoadErrorCodeAdDisabledConsentDenied
+                                     : OguryShowErrorCodeAdDisabledConsentDenied
+                                              type:type];
 }
 + (OguryAdError *)adDisabledConsentMissingFrom:(OguryAdErrorType)type {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeAdDisabledConsentMissing type:type];
+    return [[OguryAdError alloc] initWithErrorCode:type == OguryAdErrorTypeLoad
+                                     ? OguryLoadErrorCodeAdDisabledConsentMissing
+                                     : OguryShowErrorCodeAdDisabledConsentMissing
+                                              type:type];
 }
 + (OguryAdError *)adDisabledOtherReasonFrom:(OguryAdErrorType)type {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeAdDisabledUnspecifiedReason type:type];
+    return [[OguryAdError alloc] initWithErrorCode:type == OguryAdErrorTypeLoad
+                                     ? OguryLoadErrorCodeAdDisabledUnspecifiedReason
+                                     : OguryShowErrorCodeAdDisabledUnspecifiedReason
+                                              type:type];
 }
 + (OguryAdError *)adRequestFailedWithCode:(NSUInteger)requestStatusCode {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeAdRequestFailed
+    return [[OguryAdError alloc] initWithErrorCode:OguryLoadErrorCodeAdRequestFailed
                                         stacktrace:[NSString stringWithFormat:@"%ld", requestStatusCode]
                                               type:OguryAdErrorTypeLoad];
 }
 + (OguryAdError *)noFillFrom:(OguryAdIntegrationType)integration {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeNoFill
+    return [[OguryAdError alloc] initWithErrorCode:OguryLoadErrorCodeNoFill
                                         stacktrace:integration == OguryAdIntegrationTypeDirect ? NoFillDesc : NoFillHBDesc
                                               type:OguryAdErrorTypeLoad];
 }
 + (OguryAdError *)adParsingFailedWithStackTrace:(NSString *)stackTrace {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeAdParsingFailed
+    return [[OguryAdError alloc] initWithErrorCode:OguryLoadErrorCodeAdParsingFailed
                                         stacktrace:stackTrace
                                               type:OguryAdErrorTypeLoad];
 }
 + (OguryAdError *)adPrecachingFailedWithStackTrace:(NSString *)stackTrace {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeAdPrecachingFailed
+    return [[OguryAdError alloc] initWithErrorCode:OguryLoadErrorCodeAdPrecachingFailed
                                         stacktrace:stackTrace
                                               type:OguryAdErrorTypeLoad];
 }
 + (OguryAdError *)adPrecachingTimeout {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeAdPrecachingTimeout
+    return [[OguryAdError alloc] initWithErrorCode:OguryLoadErrorCodeAdPrecachingTimeout
                                               type:OguryAdErrorTypeLoad];
 }
 + (OguryAdError *)adExpired {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeAdExpired
+    return [[OguryAdError alloc] initWithErrorCode:OguryShowErrorCodeAdExpired
                                               type:OguryAdErrorTypeShow];
 }
 + (OguryAdError *)noAdLoaded {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeNoAdLoaded
+    return [[OguryAdError alloc] initWithErrorCode:OguryShowErrorCodeNoAdLoaded
                                               type:OguryAdErrorTypeShow];
 }
 + (OguryAdError *)viewInBackground {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeViewInBackground
+    return [[OguryAdError alloc] initWithErrorCode:OguryShowErrorCodeViewInBackground
                                               type:OguryAdErrorTypeShow];
 }
 + (OguryAdError *)anotherAdIsAlreadyDisplayed {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeAnotherAdAlreadyDisplayed
+    return [[OguryAdError alloc] initWithErrorCode:OguryShowErrorCodeAnotherAdAlreadyDisplayed
                                               type:OguryAdErrorTypeShow];
 }
 + (OguryAdError *)webviewTerminatedBySystem {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeWebviewTerminatedBySystem
+    return [[OguryAdError alloc] initWithErrorCode:OguryShowErrorCodeWebviewTerminatedBySystem
                                               type:OguryAdErrorTypeShow];
 }
 + (OguryAdError *)viewControllerPreventsAdFromBeingDisplayed {
-    return [[OguryAdError alloc] initWithErrorCode:OguryAdErrorCodeViewControllerPreventsAdFromBeingDisplayed
+    return [[OguryAdError alloc] initWithErrorCode:OguryShowErrorCodeViewControllerPreventsAdFromBeingDisplayed
                                               type:OguryAdErrorTypeShow];
 }
-+ (OguryError *)headerBiddingFrom:(OguryAdErrorCode)originalErrorCode stacktrace:(NSString *)stacktrace {
++ (OguryError *)headerBiddingFrom:(NSInteger)originalErrorCode stacktrace:(NSString *)stacktrace {
     return [OguryError createOguryErrorWithCode:[self publicBidTokenErrorCodeFrom:originalErrorCode]
                            localizedDescription:[NSString stringWithFormat:HeaderBiddingFormatDesc, stacktrace]];
 }
 
-+ (NSInteger)publicBidTokenErrorCodeFrom:(OguryAdErrorCode)code {
++ (NSInteger)publicBidTokenErrorCodeFrom:(NSInteger)code {
     switch (code) {
-        case OguryAdErrorCodeSDKStartNotCalled:
+        case OguryLoadErrorCodeSDKNeverStarted:
+        case OguryShowErrorCodeSDKNeverStarted:
             return OguryBidTokenErrorCodeSDKNeverStarted;
-        case OguryAdErrorCodeSDKNotProperlyInitialized:
+
+        case OguryLoadErrorCodeSDKNotProperlyInitialized:
+        case OguryShowErrorCodeSDKNotProperlyInitialized:
             return OguryBidTokenErrorCodeSDKNotProperlyInitialized;
-        case OguryAdErrorCodeNoActiveInternetConnection:
+
+        case OguryLoadErrorCodeNoActiveInternetConnection:
+        case OguryShowErrorCodeNoActiveInternetConnection:
             return OguryBidTokenErrorCodeNoActiveInternetConnection;
-        case OguryAdErrorCodeInvalidConfiguration:
+
+        case OguryLoadErrorCodeInvalidConfiguration:
+        case OguryShowErrorCodeInvalidConfiguration:
             return OguryBidTokenErrorCodeInvalidConfiguration;
-        case OguryAdErrorCodeAdDisabledCountryNotOpened:
+
+        case OguryLoadErrorCodeAdDisabledCountryNotOpened:
+        case OguryShowErrorCodeAdDisabledCountryNotOpened:
             return OguryBidTokenErrorCodeAdDisabledCountryNotOpened;
-        case OguryAdErrorCodeAdDisabledConsentDenied:
+
+        case OguryLoadErrorCodeAdDisabledConsentDenied:
+        case OguryShowErrorCodeAdDisabledConsentDenied:
             return OguryBidTokenErrorCodeAdDisabledConsentDenied;
-        case OguryAdErrorCodeAdDisabledConsentMissing:
+
+        case OguryLoadErrorCodeAdDisabledConsentMissing:
+        case OguryShowErrorCodeAdDisabledConsentMissing:
             return OguryBidTokenErrorCodeAdDisabledConsentMissing;
-        case OguryAdErrorCodeAdDisabledUnspecifiedReason:
+
+        case OguryLoadErrorCodeAdDisabledUnspecifiedReason:
+        case OguryShowErrorCodeAdDisabledUnspecifiedReason:
             return OguryBidTokenErrorCodeAdDisabledUnspecifiedReason;
+
         default:
             return code;
-    }
-}
-
-+ (NSInteger)publicErrorCodeFrom:(OguryAdErrorCode)code type:(OguryAdErrorType)type {
-    switch (code) {
-        case OguryAdErrorCodeSDKStartNotCalled:
-            return type == OguryAdErrorTypeLoad ? OguryLoadErrorCodeSDKNeverStarted : OguryShowErrorCodeSDKNeverStarted;
-
-        case OguryAdErrorCodeSDKNotProperlyInitialized:
-            return type == OguryAdErrorTypeLoad ? OguryLoadErrorCodeSDKNotProperlyInitialized : OguryShowErrorCodeSDKNotProperlyInitialized;
-
-        case OguryAdErrorCodeNoActiveInternetConnection:
-            return type == OguryAdErrorTypeLoad ? OguryLoadErrorCodeNoActiveInternetConnection : OguryShowErrorCodeNoActiveInternetConnection;
-
-        case OguryAdErrorCodeInvalidConfiguration:
-            return type == OguryAdErrorTypeLoad ? OguryLoadErrorCodeInvalidConfiguration : OguryShowErrorCodeInvalidConfiguration;
-
-        case OguryAdErrorCodeAdDisabledCountryNotOpened:
-            return type == OguryAdErrorTypeLoad ? OguryLoadErrorCodeAdDisabledCountryNotOpened : OguryShowErrorCodeAdDisabledCountryNotOpened;
-
-        case OguryAdErrorCodeAdDisabledConsentDenied:
-            return type == OguryAdErrorTypeLoad ? OguryLoadErrorCodeAdDisabledConsentDenied : OguryShowErrorCodeAdDisabledConsentDenied;
-
-        case OguryAdErrorCodeAdDisabledConsentMissing:
-            return type == OguryAdErrorTypeLoad ? OguryLoadErrorCodeAdDisabledConsentMissing : OguryShowErrorCodeAdDisabledConsentMissing;
-
-        case OguryAdErrorCodeAdDisabledUnspecifiedReason:
-            return type == OguryAdErrorTypeLoad ? OguryLoadErrorCodeAdDisabledUnspecifiedReason : OguryShowErrorCodeAdDisabledUnspecifiedReason;
-
-        case OguryAdErrorCodeAdRequestFailed:
-            return OguryLoadErrorCodeAdRequestFailed;
-
-        case OguryAdErrorCodeNoFill:
-            return OguryLoadErrorCodeNoFill;
-
-        case OguryAdErrorCodeAdParsingFailed:
-            return OguryLoadErrorCodeAdPardingFailed;
-
-        case OguryAdErrorCodeAdPrecachingFailed:
-            return OguryLoadErrorCodeAdPrecachingFailed;
-
-        case OguryAdErrorCodeAdPrecachingTimeout:
-            return OguryLoadErrorCodeAdPrecachingTimeout;
-
-        case OguryAdErrorCodeAdExpired:
-            return OguryShowErrorCodeAdExpired;
-
-        case OguryAdErrorCodeNoAdLoaded:
-            return OguryShowErrorCodeNoAdLoaded;
-
-        case OguryAdErrorCodeViewInBackground:
-            return OguryShowErrorCodeViewInBackground;
-
-        case OguryAdErrorCodeAnotherAdAlreadyDisplayed:
-            return OguryShowErrorCodeAnotherAdAlreadyDisplayed;
-
-        case OguryAdErrorCodeWebviewTerminatedBySystem:
-            return OguryShowErrorCodeWebviewTerminatedBySystem;
-
-        case OguryAdErrorCodeViewControllerPreventsAdFromBeingDisplayed:
-            return OguryShowErrorCodeViewControllerPreventsAdFromBeingDisplayed;
     }
 }
 

@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "OguryAdError.h"
-#import "OguryAdErrorCode.h"
 #import <OguryCore/OguryError.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -44,7 +43,7 @@ typedef NS_ENUM(NSInteger, OguryAdIntegrationType) {
 + (OguryAdError *)anotherAdIsAlreadyDisplayed;
 + (OguryAdError *)webviewTerminatedBySystem;
 + (OguryAdError *)viewControllerPreventsAdFromBeingDisplayed;
-+ (OguryError *)headerBiddingFrom:(OguryAdErrorCode)originalErrorCode stacktrace:(NSString *)stacktrace;
++ (OguryError *)headerBiddingFrom:(NSInteger)originalErrorCode stacktrace:(NSString *)stacktrace;
 
 @end
 

@@ -16,7 +16,7 @@
 #import "OGAProfigFullResponse.h"
 #import "OGAAdEnabledChecker.h"
 #import "OGAAdController.h"
-#import "OguryBidTokenErrorCode.h"
+#import "OguryLoadErrorCode.h"
 #import "OguryAdError+Internal.h"
 
 @interface OGAAdManagerTests : XCTestCase
@@ -405,7 +405,7 @@
 
 - (void)testShow_ProfigNotSynced {
     OguryError *checkConditionsError = OCMClassMock([OguryError class]);
-    OCMStub(checkConditionsError.code).andReturn(OguryAdErrorCodeWebviewTerminatedBySystem);
+    OCMStub(checkConditionsError.code).andReturn(OguryShowErrorCodeWebviewTerminatedBySystem);
     OCMStub([self.isKilledChecker checkForSequence:[OCMArg any] error:[OCMArg anyObjectRef]])
         .andDo(^(NSInvocation *invocation) {
             OguryError *__autoreleasing *errorPointer = nil;

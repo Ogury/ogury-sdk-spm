@@ -331,7 +331,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
                     [self dispatchError:(OguryAdError *)error sequence:sequence];
                     break;
 
-                case OguryLoadErrorCodeAdPardingFailed:
+                case OguryLoadErrorCodeAdParsingFailed:
                     [self.monitoringDispatcher sendLoadErrorEventParsingFailWithStackTrace:error.localizedDescription
                                                                            adConfiguration:sequence.monitoringAdConfiguration];
                     [self dispatchError:(OguryAdError *)error sequence:sequence];
