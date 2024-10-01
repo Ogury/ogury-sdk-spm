@@ -95,7 +95,7 @@ class AdsInterstitialController: NSObject, AdsFullscreenController {
     }
     
     func isLoaded() -> Bool {
-        return interstitialAd.isLoaded()
+        return interstitialAd.isLoaded
     }
 }
 

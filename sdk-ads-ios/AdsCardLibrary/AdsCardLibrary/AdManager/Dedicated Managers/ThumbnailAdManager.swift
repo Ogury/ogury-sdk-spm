@@ -133,15 +133,6 @@ public final class ThumbnailAdManager: AdManager {
       }
    }
    
-   public func loadAdFromAdMarkUp(from options: BaseAdOptions) throws {
-      self.options.baseOptions = options
-      guard let adMarkUp = options.adMarkUp else { throw AdManagerError.noOptions }
-      ad = OguryThumbnailAd(adUnitId: options.adUnitId)
-      ad.delegate = proxyDelegate
-      append(.adLoading)
-      ad.load(withAdMarkup: adMarkUp, size: self.options.thumbnailOptions.size ?? CGSize(width: 180, height: 180))
-   }
-   
    internal func updateOptions(from options: ThumbnailDisplayOptions) {
       var size = self.options.thumbnailOptions.size ?? .zero
       if let width = Float(options.width) {
@@ -181,19 +172,22 @@ public final class ThumbnailAdManager: AdManager {
       DispatchQueue.main.async {
          switch (thumbOptions?.scene, thumbOptions?.corner, thumbOptions?.offset, thumbOptions?.position) {
             case (let scene, let corner, let offset, _) where scene != nil && corner != nil && offset != nil:
-               self.ad?.show(in: scene!, with: corner!, margin: offset!)
+               self.ad.scene = scene!
+               self.ad?.show(with: corner!, offset: offset!)
                
             case (let scene, _, _, let position) where scene != nil && position != nil:
-               self.ad?.show(in: scene!, atPosition: position!)
+               self.ad.scene = scene!
+               self.ad?.show(at: position!)
                
             case (let scene, _, _, _) where scene != nil:
-               self.ad?.show(in: scene!)
+               self.ad.scene = scene!
+               self.ad?.show()
                
             case (_, let corner, let offset, _) where corner != nil && offset != nil:
-               self.ad?.show(with: corner!, margin: offset!)
+               self.ad?.show(with: corner!, offset: offset!)
                
             case (_, _, _, let position) where position != nil:
-               self.ad?.show(position!)
+               self.ad?.show(at: position!)
                
             default: self.ad?.show()
          }

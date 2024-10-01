@@ -10,6 +10,6 @@ FOUNDATION_EXPORT const unsigned char OguryAdsVersionString[];
 #import <OguryAds/OguryRewardedAd.h>
 #import <OguryAds/OguryBannerAdView.h>
 #import <OguryAds/OguryThumbnailAd.h>
-#import <OguryAds/OguryTokenService.h>
+#import <OguryAds/OguryBidTokenService.h>
 #import <OguryAds/OguryAdError.h>
 #import <OguryAds/OguryInterstitialAdDelegate.h>

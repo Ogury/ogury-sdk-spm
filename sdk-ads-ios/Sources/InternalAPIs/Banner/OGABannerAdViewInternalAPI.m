@@ -238,6 +238,4 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
     [self.delegateDispatcher adImpression];
 }
 
-@synthesize mediation;
-
 @end

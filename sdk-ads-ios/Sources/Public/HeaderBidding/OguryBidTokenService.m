@@ -2,10 +2,10 @@
 //  Copyright © 2021 Ogury Ltd. All rights reserved.
 //
 
-#import "OguryTokenService.h"
+#import "OguryBidTokenService.h"
 #import "OGATokenGenerator.h"
 
-@implementation OguryTokenService
+@implementation OguryBidTokenService
 
 + (void)bidToken:(BidTokenCompletionBlock)completion {
     OGATokenGenerator *tokenGenerator = [[OGATokenGenerator alloc] init];
