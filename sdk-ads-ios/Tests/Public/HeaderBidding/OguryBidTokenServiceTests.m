@@ -3,7 +3,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "OguryAds/OguryTokenService.h"
+#import "OguryAds/OguryBidTokenService.h"
 #import "NSDictionary+OGABase64.h"
 #import "OGAConfigurationUtils.h"
 #import "OGAConstants.h"
@@ -20,7 +20,7 @@ static NSString *const DefaultCreativeId = @"creativeId";
 static NSString *const DefaultDspCreativeId = @"dspCreativeId";
 static NSString *const DefaultDspRegion = @"dspRegion";
 
-@interface OguryTokenService ()
+@interface OguryBidTokenService ()
 
 + (void)bidTokenFrom:(OGATokenGenerator *)tokenGenerator completion:(BidTokenCompletionBlock)completion;
 
@@ -52,13 +52,13 @@ static NSString *const DefaultDspRegion = @"dspRegion";
 
 @end
 
-@interface OguryTokenServiceTests : XCTestCase
+@interface OguryBidTokenServiceTests : XCTestCase
 
 @property(nonatomic, strong) OGATokenGenerator *tokenGenerator;
 
 @end
 
-@implementation OguryTokenServiceTests
+@implementation OguryBidTokenServiceTests
 
 - (void)setUp {
     self.tokenGenerator = OCMPartialMock([[OGATokenGenerator alloc] init]);
@@ -73,34 +73,34 @@ static NSString *const DefaultDspRegion = @"dspRegion";
 }
 
 - (void)testGetBidToken {
-    [OguryTokenService bidTokenFrom:self.tokenGenerator
-                         completion:^(NSString *_Nullable token, NSError *_Nullable error) {
-                             XCTAssertNotNil(token);
-                         }];
+    [OguryBidTokenService bidTokenFrom:self.tokenGenerator
+                            completion:^(NSString *_Nullable token, NSError *_Nullable error) {
+                                XCTAssertNotNil(token);
+                            }];
 }
 
 - (void)testTokenHasAppVersion {
-    [OguryTokenService bidTokenFrom:self.tokenGenerator
-                         completion:^(NSString *_Nullable bidToken, NSError *_Nullable error) {
-                             NSError *decodeError = nil;
-                             NSDictionary *token = [NSDictionary ogaDecodeFromBase64:bidToken error:&decodeError];
-                             NSDictionary *app = token[OGARequestBodyAppKey];
-                             XCTAssertNotNil(app, @"app key not found");
-                             NSString *version = app[OGARequestBodyAppVersionKey];
-                             XCTAssertNotNil(version, @"version key not found");
-                             XCTAssertTrue([version isEqualToString:[OGAConfigurationUtils getAppMarketingVersion]]);
-                         }];
+    [OguryBidTokenService bidTokenFrom:self.tokenGenerator
+                            completion:^(NSString *_Nullable bidToken, NSError *_Nullable error) {
+                                NSError *decodeError = nil;
+                                NSDictionary *token = [NSDictionary ogaDecodeFromBase64:bidToken error:&decodeError];
+                                NSDictionary *app = token[OGARequestBodyAppKey];
+                                XCTAssertNotNil(app, @"app key not found");
+                                NSString *version = app[OGARequestBodyAppVersionKey];
+                                XCTAssertNotNil(version, @"version key not found");
+                                XCTAssertTrue([version isEqualToString:[OGAConfigurationUtils getAppMarketingVersion]]);
+                            }];
 }
 
 - (void)testGetBidTokenWithCampaignIdCreativeIdDspCreativeIdDspRegion {
-    [OguryTokenService bidTokenFrom:self.tokenGenerator
-                         campaignId:DefaultCampaignId
-                         creativeId:DefaultCreativeId
-                      dspCreativeId:DefaultDspCreativeId
-                          dspRegion:DefaultDspRegion
-                         completion:^(NSString *_Nullable token, NSError *_Nullable error) {
-                             XCTAssertNotNil(token);
-                         }];
+    [OguryBidTokenService bidTokenFrom:self.tokenGenerator
+                            campaignId:DefaultCampaignId
+                            creativeId:DefaultCreativeId
+                         dspCreativeId:DefaultDspCreativeId
+                             dspRegion:DefaultDspRegion
+                            completion:^(NSString *_Nullable token, NSError *_Nullable error) {
+                                XCTAssertNotNil(token);
+                            }];
 }
 
 - (void)testWhenProfigShouldBeUpdatedThenItIsUpdatedBeforeComputingToken {

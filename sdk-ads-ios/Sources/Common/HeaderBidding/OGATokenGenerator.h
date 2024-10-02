@@ -3,7 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OguryTokenService.h"
+#import "OguryBidTokenService.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -181,14 +181,14 @@ struct HeaderBiddingService {
         let semaphore = DispatchSemaphore(value: 0)
         
         if let campaignId = campaignId, !campaignId.isEmpty, let creativeId = creativeId, !creativeId.isEmpty, let dspCreativeId = dspCreativeId, !dspCreativeId.isEmpty, let dspRegion = dspRegion, !dspRegion.isEmpty {
-            let cls:AnyClass = object_getClass(OguryTokenService.self)!
+            let cls:AnyClass = object_getClass(OguryBidTokenService.self)!
             
             let sel = NSSelectorFromString("bidTokenWithCampaignId:creativeId:dspCreativeId:dspRegion:completion:")
             let meth = class_getClassMethod(cls, sel)
             let imp = method_getImplementation(meth!)
             typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?, String?, String?, @escaping (NSString?, NSError?) -> Void) -> Void
             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-            sayHiTo(OguryTokenService.classForCoder(), sel, campaignId, creativeId, dspCreativeId, dspRegion) { token, error in
+            sayHiTo(OguryBidTokenService.classForCoder(), sel, campaignId, creativeId, dspCreativeId, dspRegion) { token, error in
                 if let error = error {
                     completionHandler(.failure(.networkError(subError: error)))
                 } else {
@@ -197,13 +197,13 @@ struct HeaderBiddingService {
                 semaphore.signal()
             }
         } else if let campaignId = campaignId, !campaignId.isEmpty, let creativeId = creativeId, !creativeId.isEmpty {
-            let cls:AnyClass = object_getClass(OguryTokenService.self)!
+            let cls:AnyClass = object_getClass(OguryBidTokenService.self)!
             let sel = NSSelectorFromString("bidTokenWithCampaignId:creativeId:completion:")
             let meth = class_getClassMethod(cls, sel)
             let imp = method_getImplementation(meth!)
             typealias ClosureType = @convention(c) (AnyClass, Selector, String, String?, @escaping (NSString?, NSError?) -> Void) -> Void
             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-            sayHiTo(OguryTokenService.classForCoder(), sel, campaignId, creativeId) { token, error in
+            sayHiTo(OguryBidTokenService.classForCoder(), sel, campaignId, creativeId) { token, error in
                 if let error = error {
                     completionHandler(.failure(.networkError(subError: error)))
                 } else {
@@ -212,18 +212,18 @@ struct HeaderBiddingService {
                 semaphore.signal()
             }
         } else if let campaignId = campaignId, !campaignId.isEmpty {
-            let cls:AnyClass = object_getClass(OguryTokenService.self)!
+            let cls:AnyClass = object_getClass(OguryBidTokenService.self)!
             let sel = NSSelectorFromString("bidTokenWithCampaignId:completion:")
             let meth = class_getClassMethod(cls, sel)
             let imp = method_getImplementation(meth!)
             typealias ClosureType = @convention(c) (AnyClass, Selector, String, @escaping (NSString?, NSError?) -> Void) -> Void
             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-            sayHiTo(OguryTokenService.classForCoder(), sel, campaignId) { token, error in
+            sayHiTo(OguryBidTokenService.classForCoder(), sel, campaignId) { token, error in
                 formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(token ?? "null")\"")
                 semaphore.signal()
             }
         } else {
-            OguryTokenService.bidToken { token, error in
+            OguryBidTokenService.bidToken { token, error in
                 if let error = error {
                     completionHandler(.failure(.networkError(subError: error)))
                 } else {

@@ -115,7 +115,7 @@ class AdsThumbnailController: NSObject, ThumbnailController {
                 }
             } else {
                 if maxSize != nil {
-                    self.thumbnail.load(maxSize!)
+                    self.thumbnail.load(withMaxSize: maxSize!)
                 } else {
                     self.thumbnail.load()
                 }
@@ -126,13 +126,13 @@ class AdsThumbnailController: NSObject, ThumbnailController {
     func show(at point: CGPoint? = nil, withCorner corner: OguryRectCorner? = nil) {
         if corner != nil && point != nil {
             DispatchQueue.main.async {
-                self.thumbnail.show(with: corner!, margin: OguryOffset(x: point!.x, y: point!.y))
+                self.thumbnail.show(with: corner!, offset: OguryOffset(x: point!.x, y: point!.y))
             }
             return
         }
         if point != nil {
             DispatchQueue.main.async {
-                self.thumbnail.show(point!)
+                self.thumbnail.show(at: point!)
             }
             return
         }
@@ -156,7 +156,7 @@ class AdsThumbnailController: NSObject, ThumbnailController {
     }
 
     func isLoaded() -> Bool {
-        self.thumbnail.isLoaded()
+        self.thumbnail.isLoaded
     }
 }
 

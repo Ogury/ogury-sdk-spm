@@ -7,9 +7,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^BidTokenCompletionBlock)(NSString *_Nullable token, OguryError *_Nullable error);
+typedef void (^BidTokenCompletionBlock)(NSString *_Nullable bidToken, OguryError *_Nullable error);
 
-@interface OguryTokenService : NSObject
+@interface OguryBidTokenService : NSObject
 
 + (void)bidToken:(BidTokenCompletionBlock)completion;
 

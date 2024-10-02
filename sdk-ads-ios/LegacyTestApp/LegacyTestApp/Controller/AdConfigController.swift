@@ -223,14 +223,20 @@ class AdConfigController {
         if resetSDK {
             DispatchQueue.main.async {
                 let sel = NSSelectorFromString("resetSDK")
-                //OGAInternal.shared().perform(sel)
+                OGAInternal.shared().perform(sel)
 
                 guard let assetKey = AdConfigController.shared.assetKey(), !assetKey.isEmpty else {
                     fatalError("Asset key must not be nil nor empty.")
                 }
-                //OGAInternal.shared().start(withAssetKey: assetKey) { succes, error in
-                    
-                //}
+                OGAInternal.shared().start(withAssetKey: assetKey) { success, error in
+                    if success {
+                        print("Ogury SDK started successfully.")
+                    } else if let error = error {
+                        print("Error starting Ogury SDK: \(error.localizedDescription)")
+                    } else {
+                        print("Ogury SDK failed to start for an unknown reason.")
+                    }
+                }
                 OGAInternal.shared().setLogLevel(.all)
             }
         }

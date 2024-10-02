@@ -67,21 +67,15 @@ class HomeViewController: UIViewController, ChoiceCmpDelegate {
             .build()
         Ogury.setLogLevel(.all)
         Ogury.start(with: config, completionHandler: { success, error in
-            print("success : \(success)")
-            if let error = error {
-                switch (error.code) {
-                case OguryStartErrorCode.failedStartingModule.rawValue :
-                    print("\(error.localizedDescription)")
-                    break
-                case OguryStartErrorCode.noModuleFound.rawValue :
-                    print("\(error.localizedDescription)")
-                    break
-                default:
-                    break
+            Ogury.start(with: config) { success, error in
+                if success {
+                    print("Ogury SDK started successfully.")
+                } else if let error = error {
+                    print("Error starting Ogury SDK: \(error.localizedDescription)")
+                } else {
+                    print("Ogury SDK failed to start for an unknown reason.")
                 }
             }
-            
-            
         })
     }
     
