@@ -11,12 +11,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol OguryBannerAdDelegate <NSObject>
 @optional
-- (void)oguryBannerAdViewDidLoad:(OguryBannerAdView *)banner;
-- (void)oguryBannerAdViewDidClick:(OguryBannerAdView *)banner;
-- (void)oguryBannerAdViewDidClose:(OguryBannerAdView *)banner;
-- (void)oguryBannerAdView:(OguryBannerAdView *)banner didFailWithError:(OguryAdError *)error;
-- (void)oguryBannerAdViewDidTriggerImpression:(OguryBannerAdView *)banner;
-- (UIViewController *_Nullable)presentingViewControllerForOguryAdsBannerAdView:(OguryBannerAdView *)banner;
+- (void)bannerAdViewDidLoad:(OguryBannerAdView *)bannerAd NS_SWIFT_NAME(bannerAdViewDidLoad(_:));
+- (void)bannerAdViewDidClick:(OguryBannerAdView *)bannerAd NS_SWIFT_NAME(bannerAdViewDidClick(_:));
+- (void)bannerAdViewDidClose:(OguryBannerAdView *)bannerAd NS_SWIFT_NAME(bannerAdViewDidClose(_:));
+- (void)bannerAdView:(OguryBannerAdView *)bannerAd didFailWithError:(OguryAdError *)error NS_SWIFT_NAME(bannerAdView(_:didFailWithError:));
+- (void)bannerAdViewDidTriggerImpression:(OguryBannerAdView *)bannerAd NS_SWIFT_NAME(bannerAdViewDidTriggerImpression(_:));
+- (UIViewController *_Nullable)presentingViewControllerForOguryAdsBannerAdView:(OguryBannerAdView *)bannerAd NS_SWIFT_NAME(presentingViewController(forBannerAdView:));
 @end
 
 NS_ASSUME_NONNULL_END

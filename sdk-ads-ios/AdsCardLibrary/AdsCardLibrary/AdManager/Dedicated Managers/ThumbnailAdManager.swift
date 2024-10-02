@@ -214,26 +214,26 @@ public final class ThumbnailAdManager: AdManager {
 // and for some reasons, that leads to unexpected compilation fail
 // To overcome easily this, we use a proxy object
 internal class ThumbnailProxyDelegate: AdDelegateProxy<ThumbnailAdManager>, OguryThumbnailAdDelegate {
-    func oguryThumbnailAdDidLoad(_ thumbnail: OguryThumbnailAd) {
+    func thumbnailAdDidLoad(_ thumbnailAd: OguryThumbnailAd) {
         guard let adManager else { return }
         adManager.append(.adLoaded(canShow: true))
     }
     
-    func oguryThumbnailAdDidClick(_ thumbnail: OguryThumbnailAd) {
+    func thumbnailAdDidClick(_ thumbnailAd: OguryThumbnailAd) {
         guard let adManager else { return }
         adManager.append(.adClicked)
     }
     
-    func oguryThumbnailAdDidClose(_ thumbnail: OguryThumbnailAd) {
+    func thumbnailAdDidClose(_ thumbnailAd: OguryThumbnailAd) {
         guard let adManager else { return }
         adManager.append(.adClosed)
     }
     
-    func oguryThumbnailAd(_ thumbnail: OguryThumbnailAd, didFailWithError error: OguryAdError) {
-        handle(error, for: thumbnail)
+    func thumbnailAd(_ thumbnailAd: OguryThumbnailAd, didFailWithError error: OguryAdError) {
+        handle(error, for: thumbnailAd)
     }
     
-    func oguryThumbnailAdDidTriggerImpression(_ thumbnail: OguryThumbnailAd) {
+    func thumbnailAdDidTriggerImpression(_ thumbnailAd: OguryThumbnailAd) {
         guard let adManager else { return }
         adManager.append(.adDidTriggerImpression)
     }

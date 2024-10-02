@@ -173,31 +173,31 @@ public final class RewardedAdManager: AdManager {
 // and for some reasons, that leads to unexpected compilation fail
 // To overcome easily this, we use a proxy object
 internal class RewardedProxyDelegate: AdDelegateProxy<RewardedAdManager>, OguryRewardedAdDelegate {
-    func oguryRewardedAdDidLoad(_ rewardedAd: OguryRewardedAd) {
+    func rewardedAdDidLoad(_ rewardedAd: OguryRewardedAd) {
         guard let adManager else { return }
         adManager.append(.adLoaded(canShow: true))
     }
     
-    func oguryRewardedAdDidClick(_ rewardedAd: OguryRewardedAd) {
+    func rewardedAdDidClick(_ rewardedAd: OguryRewardedAd) {
         guard let adManager else { return }
         adManager.append(.adClicked)
     }
     
-    func oguryRewardedAdDidClose(_ rewardedAd: OguryRewardedAd) {
+    func rewardedAdDidClose(_ rewardedAd: OguryRewardedAd) {
         guard let adManager else { return }
         adManager.append(.adClosed)
     }
     
-    func oguryRewardedAd(_ rewardedAd: OguryRewardedAd, didFailWithError error: OguryAdError) {
+    func rewardedAd(_ rewardedAd: OguryRewardedAd, didFailWithError error: OguryAdError) {
         handle(error, for: rewardedAd)
     }
     
-    func oguryRewardedAdDidTriggerImpression(_ rewardedAd: OguryRewardedAd) {
+    func rewardedAdDidTriggerImpression(_ rewardedAd: OguryRewardedAd) {
         guard let adManager else { return }
         adManager.append(.adDidTriggerImpression)
     }
     
-    func oguryRewardedAd(_ rewardedAd: OguryRewardedAd, didReceiveReward item: OguryRewardItem) {
+    func rewardedAd(_ rewardedAd: OguryRewardedAd, didReceive item: OguryRewardItem) {
         guard let adManager else { return }
         adManager.append(.rewardReady(item))
     }

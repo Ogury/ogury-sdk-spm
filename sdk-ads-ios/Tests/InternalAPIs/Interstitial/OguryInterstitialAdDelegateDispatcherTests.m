@@ -38,76 +38,76 @@
 - (void)testOguryAdsInterstitialAdNotAvailable {
     OguryAdError *error = [OguryAdError noFillFrom:OguryAdIntegrationTypeDirect];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate oguryInterstitialAd:self.interstitial didFailWithError:error]);
+    OCMVerify([self.delegate interstitialAd:self.interstitial didFailWithError:error]);
 }
 
 - (void)testOguryAdsInterstitialAdLoaded {
     [self.delegateDispatcher loaded];
-    OCMVerify([self.delegate oguryInterstitialAdDidLoad:self.interstitial]);
+    OCMVerify([self.delegate interstitialAdDidLoad:self.interstitial]);
 }
 
 - (void)testOguryAdsInterstitialAdNotLoaded {
     OguryAdError *error = [OguryAdError noAdLoaded];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate oguryInterstitialAd:self.interstitial didFailWithError:error]);
+    OCMVerify([self.delegate interstitialAd:self.interstitial didFailWithError:error]);
 }
 
 - (void)testOguryAdsInterstitialAdClosed {
     [self.delegateDispatcher closed];
-    OCMVerify([self.delegate oguryInterstitialAdDidClose:self.interstitial]);
+    OCMVerify([self.delegate interstitialAdDidClose:self.interstitial]);
 }
 
 - (void)testOguryAdsInterstitialAdDisableError {
     OguryAdError *error = [OguryAdError adDisabledOtherReasonFrom:OguryAdErrorTypeLoad];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate oguryInterstitialAd:self.interstitial didFailWithError:error]);
+    OCMVerify([self.delegate interstitialAd:self.interstitial didFailWithError:error]);
 }
 
 - (void)testOguryAdsInterstitialProfigNotSyncedError {
     OguryAdError *error = [OguryAdError invalidConfigurationFrom:OguryAdErrorTypeLoad];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate oguryInterstitialAd:self.interstitial didFailWithError:error]);
+    OCMVerify([self.delegate interstitialAd:self.interstitial didFailWithError:error]);
 }
 
 - (void)testOguryAdsInterstitialSdkInitNotCalledError {
     OguryAdError *error = [OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeLoad stackTrace:@""];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate oguryInterstitialAd:self.interstitial didFailWithError:error]);
+    OCMVerify([self.delegate interstitialAd:self.interstitial didFailWithError:error]);
 }
 
 - (void)testOguryAdsInterstitialAnotherAdAlreadyDisplayedError {
     OguryAdError *error = [OguryAdError anotherAdIsAlreadyDisplayed];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate oguryInterstitialAd:self.interstitial didFailWithError:error]);
+    OCMVerify([self.delegate interstitialAd:self.interstitial didFailWithError:error]);
 }
 
 - (void)testOguryAdsInterstitialCantShowAdsInPresentingViewControllerError {
     OguryAdError *error = [OguryAdError viewControllerPreventsAdFromBeingDisplayed];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate oguryInterstitialAd:self.interstitial didFailWithError:error]);
+    OCMVerify([self.delegate interstitialAd:self.interstitial didFailWithError:error]);
 }
 
 - (void)testOguryAdsInterstitialAdExpiredError {
     OguryAdError *error = [OguryAdError adExpired];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate oguryInterstitialAd:self.interstitial didFailWithError:error]);
+    OCMVerify([self.delegate interstitialAd:self.interstitial didFailWithError:error]);
 }
 
 - (void)testOguryAdsInterstitialUnknownError {
     OguryAdError *error = [OguryAdError createOguryErrorWithCode:OGAInternalUnknownError];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate oguryInterstitialAd:self.interstitial didFailWithError:error]);
+    OCMVerify([self.delegate interstitialAd:self.interstitial didFailWithError:error]);
 }
 
 - (void)testOguryAdsInterstitialAdClicked {
     [self.delegateDispatcher clicked];
-    OCMVerify([self.delegate oguryInterstitialAdDidClick:self.interstitial]);
+    OCMVerify([self.delegate interstitialAdDidClick:self.interstitial]);
 }
 
 - (void)testShouldTriggerOnAdImpression {
     [self.delegateDispatcher adImpression];
 
-    OCMVerify([self.delegate oguryInterstitialAdDidTriggerImpression:self.interstitial]);
+    OCMVerify([self.delegate interstitialAdDidTriggerImpression:self.interstitial]);
 }
 
 @end

@@ -12,9 +12,9 @@
 - (void)clicked {
     [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad clicked called", OGAAdConfigurationAdTypeInterstitial, self.interstitial.adUnitId];
 
-    if ([self.delegate respondsToSelector:@selector(oguryInterstitialAdDidClick:)]) {
+    if ([self.delegate respondsToSelector:@selector(interstitialAdDidClick:)]) {
         [self dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
-            [delegate oguryInterstitialAdDidClick:self.interstitial];
+            [delegate interstitialAdDidClick:self.interstitial];
         }];
     }
 }
@@ -22,9 +22,9 @@
 - (void)closed {
     [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad closed called", OGAAdConfigurationAdTypeInterstitial, self.interstitial.adUnitId];
 
-    if ([self.delegate respondsToSelector:@selector(oguryInterstitialAdDidClose:)]) {
+    if ([self.delegate respondsToSelector:@selector(interstitialAdDidClose:)]) {
         [self dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
-            [delegate oguryInterstitialAdDidClose:self.interstitial];
+            [delegate interstitialAdDidClose:self.interstitial];
         }];
     }
     self.hasSentDisplayedDelegate = NO;
@@ -33,9 +33,9 @@
 - (void)failedWithError:(OguryAdError *)error {
     [self.log logErrorFormat:error format:@"[%@][%@] callback ad failed with error called", OGAAdConfigurationAdTypeInterstitial, self.interstitial.adUnitId];
 
-    if ([self.delegate respondsToSelector:@selector(oguryInterstitialAd:didFailWithError:)]) {
+    if ([self.delegate respondsToSelector:@selector(interstitialAd:didFailWithError:)]) {
         [self dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
-            [delegate oguryInterstitialAd:self.interstitial didFailWithError:error];
+            [delegate interstitialAd:self.interstitial didFailWithError:error];
         }];
     }
     self.hasSentDisplayedDelegate = NO;
@@ -44,9 +44,9 @@
 - (void)loaded {
     [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad loaded called", OGAAdConfigurationAdTypeInterstitial, self.interstitial.adUnitId];
 
-    if ([self.delegate respondsToSelector:@selector(oguryInterstitialAdDidLoad:)]) {
+    if ([self.delegate respondsToSelector:@selector(interstitialAdDidLoad:)]) {
         [self dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
-            [delegate oguryInterstitialAdDidLoad:self.interstitial];
+            [delegate interstitialAdDidLoad:self.interstitial];
         }];
     }
 }
@@ -54,9 +54,9 @@
 - (void)adImpression {
     [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad ad impression called", OGAAdConfigurationAdTypeInterstitial, self.interstitial.adUnitId];
 
-    if ([self.delegate respondsToSelector:@selector(oguryInterstitialAdDidTriggerImpression:)]) {
+    if ([self.delegate respondsToSelector:@selector(interstitialAdDidTriggerImpression:)]) {
         [self dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
-            [delegate oguryInterstitialAdDidTriggerImpression:self.interstitial];
+            [delegate interstitialAdDidTriggerImpression:self.interstitial];
         }];
     }
 }

@@ -28,13 +28,13 @@
 
 - (void)testDispatch_notCalledWhenDelegateIsNil {
     id delegate = OCMProtocolMock(@protocol(OguryInterstitialAdDelegate));
-    OCMReject([delegate oguryInterstitialAdDidLoad:[OCMArg any]]);
+    OCMReject([delegate interstitialAdDidLoad:[OCMArg any]]);
 
     OGADelegateDispatcher *dispatcher = [[OGADelegateDispatcher alloc] initWithAlwaysDispatchInMainThread:NO log:self.log];
     dispatcher.delegate = nil;
 
     [dispatcher dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
-        [delegate oguryInterstitialAdDidLoad:[OCMArg any]];
+        [delegate interstitialAdDidLoad:[OCMArg any]];
     }];
 
     OCMVerifyAll(delegate);
@@ -47,21 +47,21 @@
     dispatcher.delegate = delegate;
 
     [dispatcher dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
-        [delegate oguryInterstitialAdDidLoad:[OCMArg any]];
+        [delegate interstitialAdDidLoad:[OCMArg any]];
     }];
 
-    OCMVerify([delegate oguryInterstitialAdDidLoad:[OCMArg any]]);
+    OCMVerify([delegate interstitialAdDidLoad:[OCMArg any]]);
 }
 
 - (void)testDispatch_dispatchedInMainThread {
     id delegate = OCMProtocolMock(@protocol(OguryInterstitialAdDelegate));
-    OCMExpect([delegate oguryInterstitialAdDidLoad:[OCMArg any]]);
+    OCMExpect([delegate interstitialAdDidLoad:[OCMArg any]]);
 
     OGADelegateDispatcher *dispatcher = [[OGADelegateDispatcher alloc] initWithAlwaysDispatchInMainThread:YES log:self.log];
     dispatcher.delegate = delegate;
 
     [dispatcher dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
-        [delegate oguryInterstitialAdDidLoad:[OCMArg any]];
+        [delegate interstitialAdDidLoad:[OCMArg any]];
     }];
 
     // Verify with delay because it was pushed on the main queue.

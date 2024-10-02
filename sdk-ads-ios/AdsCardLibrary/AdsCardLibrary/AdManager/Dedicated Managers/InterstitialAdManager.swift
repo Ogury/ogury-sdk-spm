@@ -164,26 +164,27 @@ public final class InterstitialAdManager: AdManager {
 // and for some reasons, that leads to unexpected compilation fail
 // To overcome easily this, we use a proxy object
 internal class InterstitialProxyDelegate: AdDelegateProxy<InterstitialAdManager>, OguryInterstitialAdDelegate {
-    func oguryInterstitialAdDidLoad(_ interstitial: OguryInterstitialAd) {
+    func interstitialAdDidLoad(_ interstitialAd: OguryInterstitialAd) {
         guard let adManager else { return }
         adManager.append(.adLoaded(canShow: true))
     }
     
-    func oguryInterstitialAdDidClick(_ interstitial: OguryInterstitialAd) {
+    func interstitialAdDidClick(_ interstitialAd: OguryInterstitialAd) {
         guard let adManager else { return }
         adManager.append(.adClicked)
     }
     
-    func oguryInterstitialAdDidClose(_ interstitial: OguryInterstitialAd) {
+    func interstitialAdDidClose(_ interstitialAd: OguryInterstitialAd) {
         guard let adManager else { return }
         adManager.append(.adClosed)
     }
     
-    func oguryInterstitialAd(_ interstitial: OguryInterstitialAd, didFailWithError error: OguryAdError) {
-        handle(error, for: interstitial)
+    
+    func interstitialAd(_ interstitialAd: OguryInterstitialAd, didFailWithEerror error: OguryAdError) {
+        handle(error, for: interstitialAd)
     }
     
-    func oguryInterstitialAdDidTriggerImpression(_ interstitial: OguryInterstitialAd) {
+    func interstitialAdDidTriggerImpression(_ interstitialAd: OguryInterstitialAd) {
         guard let adManager else { return }
         adManager.append(.adDidTriggerImpression)
     }

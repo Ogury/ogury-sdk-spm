@@ -366,6 +366,7 @@ struct AdViewFeature: Reducer {
                     return .none
                     
                 case let .updateEvent(event):
+                    print("☠️ \(event)")
                     state.adStateEvent = event
                     if event == .adClosed {
                         state.bannerContainer?.bannerAd = nil

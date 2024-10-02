@@ -100,7 +100,7 @@ class AdsInterstitialController: NSObject, AdsFullscreenController {
 }
 
 extension AdsInterstitialController: OguryInterstitialAdDelegate {
-    func oguryInterstitialAdDidLoad(_ interstitial: OguryInterstitialAd) {
+    func interstitialAdDidLoad(_ interstitial: OguryInterstitialAd) {
         if let viewController = viewController {
             show(in: viewController)
         }
@@ -108,19 +108,19 @@ extension AdsInterstitialController: OguryInterstitialAdDelegate {
         LogsController.shared.addLogs("Interstitial ad loaded.")
     }
 
-    func oguryInterstitialAd(_ interstitial: OguryInterstitialAd, didFailWithError error: OguryAdError) {
+    func interstitialAd(_ interstitial: OguryInterstitialAd, didFailWithEerror error: OguryAdError) {
         LogsController.shared.addLogs(String(format: "Interstitial ad failed with error code %ld: %@", error.code, error.localizedDescription));
     }
 
-    func oguryInterstitialAdDidClick(_ interstitial: OguryInterstitialAd) {
+    func interstitialAdDidClick(_ interstitial: OguryInterstitialAd) {
         LogsController.shared.addLogs("Interstitial ad clicked.")
     }
 
-    func oguryInterstitialAdDidClose(_ interstitial: OguryInterstitialAd) {
+    func interstitialAdDidClose(_ interstitial: OguryInterstitialAd) {
         LogsController.shared.addLogs("Interstitial ad closed.")
     }
     
-    func oguryInterstitialAdDidTriggerImpression(_ interstitial: OguryInterstitialAd) {
+    func interstitialAdDidTriggerImpression(_ interstitial: OguryInterstitialAd) {
         LogsController.shared.addLogs("Interstitial ad impression")
     }
 }

@@ -196,33 +196,33 @@ public final class BannerAdManager: AdManager {
 // and for some reasons, that leads to unexpected compilation fail
 // To overcome easily this, we use a proxy object
 internal class MrecProxyDelegate: AdDelegateProxy<BannerAdManager>, OguryBannerAdDelegate {
-    func oguryBannerAdViewDidLoad(_ banner: OguryBannerAdView) {
+    func bannerAdViewDidLoad(_ bannerAd: OguryBannerAdView) {
         guard let adManager else { return }
         adManager.append(.adLoaded(canShow:true))
     }
     
-    func oguryBannerAdViewDidClick(_ banner: OguryBannerAdView) {
+    func bannerAdViewDidClick(_ bannerAd: OguryBannerAdView) {
         guard let adManager else { return }
         adManager.append(.adClicked)
     }
     
-    func oguryBannerAdViewDidClose(_ banner: OguryBannerAdView) {
+    func bannerAdViewDidClose(_ bannerAd: OguryBannerAdView) {
         guard let adManager else { return }
         adManager.append(.adClosed)
     }
     
-    func oguryBannerAdView(_ banner: OguryBannerAdView, didFailWithError error: OguryAdError) {
-        handle(error, for: banner)
+    func bannerAdView(_ bannerAd: OguryBannerAdView, didFailWithError error: OguryAdError) {
+        handle(error, for: bannerAd)
     }
     
-    func oguryBannerAdViewDidTriggerImpression(_ banner: OguryBannerAdView) {
+    func bannerAdViewDidTriggerImpression(_ bannerAd: OguryBannerAdView) {
         guard let adManager else { return }
         adManager.append(.adDidTriggerImpression)
     }
     
-    func presentingViewController(forOguryAdsBannerAdView banner: OguryBannerAdView) -> UIViewController? {
+    func presentingViewController(forBannerAdView bannerAd: OguryBannerAdView) -> UIViewController? {
         guard let adManager else { return nil }
-        return adDelegate?.viewController(forBanner: banner, adManager: adManager)
+        return adDelegate?.viewController(forBanner: bannerAd, adManager: adManager)
     }
 }
 

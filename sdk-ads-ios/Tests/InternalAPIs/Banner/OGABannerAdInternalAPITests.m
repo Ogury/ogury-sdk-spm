@@ -267,7 +267,7 @@ static NSString *const DefaultDspRegion = @"dspRegion";
     OCMExpect([internalAPI.delegateDispatcher loaded]);
     OCMExpect([internalAPI.adManager show:OCMOCK_ANY additionalConditions:[OCMArg any]]);
 
-    [internalAPI oguryBannerAdViewDidLoad:bannerAd];
+    [internalAPI bannerAdViewDidLoad:bannerAd];
 
     OCMVerify([internalAPI.delegateDispatcher loaded]);
     OCMVerify([internalAPI.adManager show:OCMOCK_ANY additionalConditions:[OCMArg any]]);
@@ -280,7 +280,7 @@ static NSString *const DefaultDspRegion = @"dspRegion";
 
     OCMExpect([internalAPI.delegateDispatcher clicked]);
 
-    [internalAPI oguryBannerAdViewDidClick:bannerAd];
+    [internalAPI bannerAdViewDidClick:bannerAd];
 
     OCMVerify([internalAPI.delegateDispatcher clicked]);
 }
@@ -292,7 +292,7 @@ static NSString *const DefaultDspRegion = @"dspRegion";
 
     OCMExpect([internalAPI.delegateDispatcher closed]);
 
-    [internalAPI oguryBannerAdViewDidClose:bannerAd];
+    [internalAPI bannerAdViewDidClose:bannerAd];
 
     OCMVerify([internalAPI.delegateDispatcher closed]);
 }
@@ -304,7 +304,7 @@ static NSString *const DefaultDspRegion = @"dspRegion";
 
     OCMExpect([internalAPI.delegateDispatcher failedWithError:OCMOCK_ANY]);
 
-    [internalAPI oguryBannerAdView:bannerAd didFailWithError:OCMOCK_ANY];
+    [internalAPI bannerAdView:bannerAd didFailWithError:OCMOCK_ANY];
 
     OCMVerify([internalAPI.delegateDispatcher failedWithError:(OguryAdError *)OCMOCK_ANY]);
 }
@@ -374,7 +374,7 @@ static NSString *const DefaultDspRegion = @"dspRegion";
 
 - (void)testDidTriggerImpressionOguryBannerAd {
     OguryBannerAdView *banner = OCMClassMock([OguryBannerAdView class]);
-    [self.smallBannerInternalAPI oguryBannerAdViewDidTriggerImpression:banner];
+    [self.smallBannerInternalAPI bannerAdViewDidTriggerImpression:banner];
     OCMVerify([self.smallBannerInternalAPI.delegateDispatcher adImpression]);
 }
 

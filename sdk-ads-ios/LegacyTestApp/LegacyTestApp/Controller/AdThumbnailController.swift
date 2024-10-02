@@ -162,7 +162,7 @@ class AdsThumbnailController: NSObject, ThumbnailController {
 
 extension AdsThumbnailController: OguryThumbnailAdDelegate {
 
-    func oguryThumbnailAdDidLoad(_ thumbnail: OguryThumbnailAd) {
+    func thumbnailAdDidLoad(_ thumbnail: OguryThumbnailAd) {
         LogsController.shared.addLogs("thumbnail loaded.");
         if (showAfterLoad) {
             show(at: self.showAt, withCorner: self.corner)
@@ -174,11 +174,11 @@ extension AdsThumbnailController: OguryThumbnailAdDelegate {
         LogsController.shared.addLogs("Thumbnail ad is expanded at load ? [\(thumbnail.isExpanded)]")
     }
 
-    func oguryThumbnailAd(_ thumbnail: OguryThumbnailAd, didFailWithError error: OguryAdError) {
+    func thumbnailAd(_ thumbnail: OguryThumbnailAd, didFailWithError error: OguryAdError) {
         LogsController.shared.addLogs(String(format: "thumbnail failed with error code %ld: %@", error.code, error.localizedDescription));
     }
 
-    func oguryThumbnailAdDidClick(_ thumbnail: OguryThumbnailAd) {
+    func thumbnailAdDidClick(_ thumbnail: OguryThumbnailAd) {
         LogsController.shared.addLogs("thumbnail clicked.")
 
         DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime.now() + 1) { [unowned thumbnail] in
@@ -186,13 +186,13 @@ extension AdsThumbnailController: OguryThumbnailAdDelegate {
         }
     }
 
-    func oguryThumbnailAdDidClose(_ thumbnail: OguryThumbnailAd) {
+    func thumbnailAdDidClose(_ thumbnail: OguryThumbnailAd) {
         LogsController.shared.addLogs("thumbnail closed.")
 
         LogsController.shared.addLogs("Thumbnail ad is expanded at close ? [\(thumbnail.isExpanded)]")
     }
     
-    func oguryThumbnailAdDidTriggerImpression(_ thumbnail: OguryThumbnailAd) {
+    func thumbnailAdDidTriggerImpression(_ thumbnail: OguryThumbnailAd) {
         LogsController.shared.addLogs("thumbnail impression.")
     }
 }

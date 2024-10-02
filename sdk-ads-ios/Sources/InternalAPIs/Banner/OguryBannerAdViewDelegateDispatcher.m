@@ -11,9 +11,9 @@
 - (void)clicked {
     [self.log logFormat:OguryLogLevelInfo format:@"[banner][%@] callback ad clicked called", self.banner.adUnitId];
 
-    if ([self.delegate respondsToSelector:@selector(oguryBannerAdViewDidClick:)]) {
+    if ([self.delegate respondsToSelector:@selector(bannerAdViewDidClick:)]) {
         [self dispatch:^(id<OguryBannerAdDelegate> _Nonnull delegate) {
-            [delegate oguryBannerAdViewDidClick:self.banner];
+            [delegate bannerAdViewDidClick:self.banner];
         }];
     }
 }
@@ -21,9 +21,9 @@
 - (void)closed {
     [self.log logFormat:OguryLogLevelInfo format:@"[banner][%@] callback ad closed called", self.banner.adUnitId];
 
-    if ([self.delegate respondsToSelector:@selector(oguryBannerAdViewDidClose:)]) {
+    if ([self.delegate respondsToSelector:@selector(bannerAdViewDidClose:)]) {
         [self dispatch:^(id<OguryBannerAdDelegate> _Nonnull delegate) {
-            [delegate oguryBannerAdViewDidClose:self.banner];
+            [delegate bannerAdViewDidClose:self.banner];
         }];
     }
     self.hasSentDisplayedDelegate = NO;
@@ -32,9 +32,9 @@
 - (void)failedWithError:(OguryAdError *)error {
     [self.log logErrorFormat:error format:@"[banner][%@] calldback failed with error called", self.banner.adUnitId];
 
-    if ([self.delegate respondsToSelector:@selector(oguryBannerAdView:didFailWithError:)]) {
+    if ([self.delegate respondsToSelector:@selector(bannerAdView:didFailWithError:)]) {
         [self dispatch:^(id<OguryBannerAdDelegate> _Nonnull delegate) {
-            [delegate oguryBannerAdView:self.banner didFailWithError:error];
+            [delegate bannerAdView:self.banner didFailWithError:error];
         }];
     }
     self.hasSentDisplayedDelegate = NO;
@@ -43,9 +43,9 @@
 - (void)loaded {
     [self.log logFormat:OguryLogLevelInfo format:@"[banner][%@] calldback ad loaded called", self.banner.adUnitId];
 
-    if ([self.delegate respondsToSelector:@selector(oguryBannerAdViewDidLoad:)]) {
+    if ([self.delegate respondsToSelector:@selector(bannerAdViewDidLoad:)]) {
         [self dispatch:^(id<OguryBannerAdDelegate> _Nonnull delegate) {
-            [delegate oguryBannerAdViewDidLoad:self.banner];
+            [delegate bannerAdViewDidLoad:self.banner];
         }];
     }
 }
@@ -53,9 +53,9 @@
 - (void)adImpression {
     [self.log logFormat:OguryLogLevelInfo format:@"[banner][%@] calldback ad impression called", self.banner.adUnitId];
 
-    if ([self.delegate respondsToSelector:@selector(oguryBannerAdViewDidTriggerImpression:)]) {
+    if ([self.delegate respondsToSelector:@selector(bannerAdViewDidTriggerImpression:)]) {
         [self dispatch:^(id<OguryBannerAdDelegate> _Nonnull delegate) {
-            [delegate oguryBannerAdViewDidTriggerImpression:self.banner];
+            [delegate bannerAdViewDidTriggerImpression:self.banner];
         }];
     }
 }
