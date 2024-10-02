@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Methods
 
-- (void)startWithAssetKey:(NSString *)assetKey;
+- (void)startWith:(NSString *)assetKey;
 
 @end
 

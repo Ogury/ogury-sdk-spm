@@ -228,7 +228,7 @@ class AdConfigController {
                 guard let assetKey = AdConfigController.shared.assetKey(), !assetKey.isEmpty else {
                     fatalError("Asset key must not be nil nor empty.")
                 }
-                OGAInternal.shared().start(withAssetKey: assetKey) { success, error in
+                OGAInternal.shared().start(with: assetKey) { success, error in
                     if success {
                         print("Ogury SDK started successfully.")
                     } else if let error = error {

@@ -60,7 +60,7 @@ static int ogcMaxNumberOfConvertionValue = 63;
    return self;
 }
 
-- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(StartCompletionBlock _Nullable)completionHandler {
+- (void)startWith:(NSString *)assetKey completionHandler:(StartCompletionBlock _Nullable)completionHandler {
     int numberOfModulesPresent = 0;
     __block NSMutableString *errorMessage = [NSMutableString string];
     __block NSMutableString *modulesMessage = [NSMutableString string];
@@ -71,7 +71,7 @@ static int ogcMaxNumberOfConvertionValue = 63;
         if (module.isPresent) {
             dispatch_group_enter(startGroup);
             [self.log logAssetKeyFormat:OguryLogLevelDebug assetKey:assetKey format:@"Module [%@] initialization...", module.className];
-            [module startWithAssetKey:assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
+            [module startWith:assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
                 if (error && !success) {
                     @synchronized (errorMessage) {
                         [errorMessage appendString:[NSString stringWithFormat:@"\n%@", error.localizedDescription]];

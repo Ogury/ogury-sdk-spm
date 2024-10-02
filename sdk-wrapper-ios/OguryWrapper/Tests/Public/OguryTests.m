@@ -29,17 +29,17 @@
     OCMStub([self.mockOGCInternal shared]).andReturn(self.mockOGCInternal);
 }
 
-- (void)testStartWithAssetKey {
+- (void)testStartWith {
     id mockOgury = OCMClassMock([Ogury class]);
     OCMExpect([mockOgury startWith:self.assetKey completionHandler:nil]);
     [Ogury startWith:self.assetKey];
     OCMVerifyAll(mockOgury);
 }
 
-- (void)testStartWithAssetKeyCompletionHandler {
+- (void)testStartWithCompletionHandler {
     StartCompletionBlock mockCompletionHandler = ^(BOOL success, NSError *error) {};
     OCMExpect([self.mockOGWWrapper startWith:self.assetKey completionHandler:mockCompletionHandler]);
-    [Ogury startWith:@"ASSET_KEY" completionHandler:mockCompletionHandler];
+    [Ogury startWith:self.assetKey completionHandler:mockCompletionHandler];
     OCMVerifyAll(self.mockOGWWrapper);
 }
 

@@ -14,7 +14,7 @@
 }
 
 + (void)startWith:(NSString *)assetKey completionHandler:(StartCompletionBlock _Nullable)completionHandler {
-    [[OGWWrapper shared] startWithAssetKey:assetKey completionHandler:completionHandler];
+    [[OGWWrapper shared] startWith:assetKey completionHandler:completionHandler];
 }
 
 + (void)setLogLevel:(OguryLogLevel)logLevel {

@@ -61,7 +61,7 @@
                                    assetKey:self.assetKey
                                     message:@"No Ogury module found in your application."]);
         
-    [self.wrapper startWithAssetKey:self.assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
+    [self.wrapper startWith:self.assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
         XCTAssertNotNil(error);
         XCTAssertEqualObjects(error.localizedDescription, OGWErrorNoSdkModuleFoundMessage);
         XCTAssertEqual(error.code, OguryStartErrorCodeNoModuleFound);
@@ -94,11 +94,11 @@
                                 assetKey:self.assetKey
                                   format:@"Ogury Start() ended succesfully for modules :%@" ,@"\nModule1\nModule2"];
     
-    OCMStub([module1 startWithAssetKey:self.assetKey
+    OCMStub([module1 startWith:self.assetKey
                      completionHandler:([OCMArg invokeBlockWithArgs:@(YES), [NSNull null], nil])]);
-    OCMStub([module2 startWithAssetKey:self.assetKey
+    OCMStub([module2 startWith:self.assetKey
                      completionHandler:([OCMArg invokeBlockWithArgs:@(YES), [NSNull null], nil])]);
-    [self.wrapper startWithAssetKey:self.assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
+    [self.wrapper startWith:self.assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
         XCTAssertTrue(success);
         XCTAssertNil(error);
         [expectation fulfill];
@@ -133,9 +133,9 @@
                                                 code:6002
                                             userInfo:@{NSLocalizedDescriptionKey: @"Module2 failed to start."}];
     
-    OCMStub([module1 startWithAssetKey:self.assetKey
+    OCMStub([module1 startWith:self.assetKey
                      completionHandler:([OCMArg invokeBlockWithArgs:@(NO), error1, nil])]);
-    OCMStub([module2 startWithAssetKey:self.assetKey
+    OCMStub([module2 startWith:self.assetKey
                      completionHandler:([OCMArg invokeBlockWithArgs:@(NO), error2, nil])]);
     
     
@@ -143,7 +143,7 @@
                                 assetKey:self.assetKey
                                   format:@"Error found during the Ogury Start() call :%@" ,@"\nModule1 failed\nModule2 failed"];
         
-    [self.wrapper startWithAssetKey:self.assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
+    [self.wrapper startWith:self.assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
         XCTAssertFalse(success);
         XCTAssertNotNil(error);
         XCTAssertTrue([error.localizedDescription containsString:error1.localizedDescription]);
@@ -189,14 +189,14 @@
     
     
     
-    OCMStub([module1 startWithAssetKey:self.assetKey
+    OCMStub([module1 startWith:self.assetKey
                      completionHandler:([OCMArg invokeBlockWithArgs:@(YES), [NSNull null], nil])]);
-    OCMStub([module2 startWithAssetKey:self.assetKey
+    OCMStub([module2 startWith:self.assetKey
                      completionHandler:([OCMArg invokeBlockWithArgs:@(YES), [NSNull null], nil])]);
-    OCMStub([module3 startWithAssetKey:self.assetKey
+    OCMStub([module3 startWith:self.assetKey
                      completionHandler:([OCMArg invokeBlockWithArgs:@(NO), errorModule3, nil])]);
     
-    [self.wrapper startWithAssetKey:self.assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
+    [self.wrapper startWith:self.assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
         XCTAssertFalse(success);
         XCTAssertNotNil(error);
         XCTAssertTrue([error.localizedDescription containsString:errorModule3.localizedDescription]);
@@ -217,10 +217,10 @@
                                 assetKey:self.assetKey
                                   format:@"Module [%@] initialization..." ,@"Module"];
     
-    OCMStub([module startWithAssetKey:self.assetKey
+    OCMStub([module startWith:self.assetKey
                      completionHandler:([OCMArg invokeBlockWithArgs:@(YES), [NSNull null], nil])]);
     
-    [self.wrapper startWithAssetKey:self.assetKey completionHandler:nil];
+    [self.wrapper startWith:self.assetKey completionHandler:nil];
     OCMVerifyAll(self.log);
 }
 
