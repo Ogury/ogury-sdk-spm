@@ -104,7 +104,7 @@ NSString *const OGAssetKeyStoreKey = @"OGAssetKeyStoreKey";
 
     if (!self.assetKey || [self.assetKey isEqualToString:@""]) {
         if (error) {
-            *error = [OguryAdError sdkNotInitializedFrom:type stackTrace:@"invalid AssetKey"];
+            *error = [OguryAdError sdkNotProperlyInitializedFrom:type stackTrace:@"invalid AssetKey"];
         }
         self.sdkState = OgurySDKStateError;
         return NO;

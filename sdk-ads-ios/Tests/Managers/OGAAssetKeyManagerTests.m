@@ -54,7 +54,7 @@ NSString *const AnotherTestAssetKey = @"OGY-XXXXXXXX2";
 
     OguryError *error = nil;
     XCTAssertFalse([self.assetKeyManager checkAssetKeyIsValid:&error type:OguryAdErrorTypeLoad]);
-    XCTAssertEqualObjects(error, [OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeLoad stackTrace:@"invalid AssetKey"]);
+    XCTAssertEqualObjects(error, [OguryAdError sdkNotProperlyInitializedFrom:OguryAdErrorTypeLoad stackTrace:@"invalid AssetKey"]);
 }
 
 - (void)testCheckAssetKey {

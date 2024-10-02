@@ -184,10 +184,11 @@
 }
 
 - (void)testWhenAdAssetNotInit {
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(NO);
+    NSError *error = nil;
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:&error type:OguryAdErrorTypeLoad]).andReturn(NO);
     [self.tokenGenerator bidToken:^(NSString *_Nullable token, OguryError *_Nullable error) {
         XCTAssertNil(token);
-        XCTAssertEqual(error.code, 2500);
+        XCTAssertEqual(error.code, 4000);
     }];
 }
 
@@ -199,7 +200,7 @@
                                                  dspRegion:nil
                                                 completion:^(NSString *_Nullable token, OguryError *_Nullable error) {
                                                     XCTAssertNil(token);
-                                                    XCTAssertEqual(error.code, 2500);
+                                                    XCTAssertEqual(error.code, 4104);
                                                 }];
 }
 

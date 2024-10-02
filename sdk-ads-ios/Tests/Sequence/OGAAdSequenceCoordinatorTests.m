@@ -180,7 +180,7 @@ NSString *const OGAAdSequenceCoordinatorTestsNextAdId = @"next-ad-id";
     OguryError *error = nil;
     XCTAssertFalse([self.sequenceCoordinator show:&error]);
     XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, OguryAdErrorCodeNoAdLoaded);
+    XCTAssertEqual(error.code, OguryShowErrorCodeNoAdLoaded);
 }
 
 - (void)testShow_alreadyDisplayed {
@@ -192,7 +192,7 @@ NSString *const OGAAdSequenceCoordinatorTestsNextAdId = @"next-ad-id";
     OguryError *error = nil;
     XCTAssertFalse([self.sequenceCoordinator show:&error]);
     XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, OguryAdErrorCodeAnotherAdAlreadyDisplayed);
+    XCTAssertEqual(error.code, OguryShowErrorCodeAnotherAdAlreadyDisplayed);
 }
 
 - (void)testShow_alreadyClosed {
@@ -206,7 +206,7 @@ NSString *const OGAAdSequenceCoordinatorTestsNextAdId = @"next-ad-id";
     OguryError *error = nil;
     XCTAssertFalse([self.sequenceCoordinator show:&error]);
     XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, OguryAdErrorCodeNoAdLoaded);
+    XCTAssertEqual(error.code, OguryShowErrorCodeNoAdLoaded);
 }
 
 - (void)testShow_controllerShowFailed {
@@ -455,7 +455,7 @@ NSString *const OGAAdSequenceCoordinatorTestsNextAdId = @"next-ad-id";
     NSError *error;
     [self.sequenceCoordinator show:&error];
     XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, OguryAdErrorCodeAdExpired);
+    XCTAssertEqual(error.code, OguryShowErrorCodeAdExpired);
 }
 
 - (void)testWhenDidUnloadIsCalledAndAdIsNotLoadedYetThenPreCachingErrorIsMonitored {

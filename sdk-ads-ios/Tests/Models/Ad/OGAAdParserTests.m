@@ -290,7 +290,7 @@ NSString *const OGAAdParserConfigurationAdUnitId = @"interstitial";
     [OGAAdParser shouldParseAd:ad withConfiguration:configuration error:&error];
     XCTAssertNotNil(error);
     XCTAssertEqualObjects(error.localizedDescription, @"The parsing of the ad failed : No adUnit on Ad object");
-    XCTAssertEqual(error.code, OguryAdErrorCodeAdParsingFailed);
+    XCTAssertEqual(error.code, OguryLoadErrorCodeAdParsingFailed);
 }
 
 - (void)testWhenThereIsATypeMismatchThenMonitoringTrackShouldBeSent {
@@ -305,7 +305,7 @@ NSString *const OGAAdParserConfigurationAdUnitId = @"interstitial";
     [OGAAdParser shouldParseAd:ad withConfiguration:configuration error:&error];
     XCTAssertNotNil(error);
     XCTAssertEqualObjects(error.localizedDescription, @"The parsing of the ad failed : Type mismatch. Awaited (interstitial) - received (overlay_thumbnail)");
-    XCTAssertEqual(error.code, OguryAdErrorCodeAdParsingFailed);
+    XCTAssertEqual(error.code, OguryLoadErrorCodeAdParsingFailed);
 }
 
 - (void)testWhenAdIsParsedThenProperMonitoringTracksAreSent {
