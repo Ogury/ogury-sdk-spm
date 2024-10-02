@@ -145,7 +145,7 @@ extension BannerAdController {
                             bannerAd.load(withAdMarkup: adMarkup)
                     
                     case .failure(let error):
-                            self.didFail(bannerAd, error: OguryAdError.createOguryError(withCode: -1, localizedDescription: error.localizedDescription))
+                        self.oguryBannerAdView(bannerAd, didFailWithError: OguryAdError.createOguryError(withCode: -1, localizedDescription: error.localizedDescription))
                                     LogsController.shared.addLogs("Header bidding for Interstitial failed. [\(error.localizedDescription)]")
                 }
             }
@@ -157,22 +157,18 @@ extension BannerAdController {
 
 extension BannerAdController: OguryBannerAdDelegate {
 
-    func didLoad(_ banner: OguryBannerAdView) {
+    func oguryBannerAdViewDidLoad(_ banner: OguryBannerAdView) {
         LogsController.shared.addLogs("Banner ad loaded")
 
         LogsController.shared.addLogs("Banner ad is expanded at load ? [\(banner.isExpanded)]")
     }
 
-    func didFail(_ banner: OguryBannerAdView, error: OguryAdError) {
+    func oguryBannerAdView(_ banner: OguryBannerAdView, didFailWithError error: OguryAdError) {
         LogsController.shared.addLogs("Banner ad failed with error code \(error.code): \(error.localizedDescription)");
         banner.removeFromSuperview()
     }
 
-    func didDisplay(_ banner: OguryBannerAdView) {
-        LogsController.shared.addLogs("Banner ad displayed")
-    }
-
-    func didClick(_ banner: OguryBannerAdView) {
+    func oguryBannerAdViewDidClick(_ banner: OguryBannerAdView) {
         LogsController.shared.addLogs("Banner ad clicked")
 
         DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime.now() + 1) { [unowned banner] in
@@ -180,12 +176,12 @@ extension BannerAdController: OguryBannerAdDelegate {
         }
     }
 
-    func didClose(_ banner: OguryBannerAdView) {
+    func oguryBannerAdViewDidClose(_ banner: OguryBannerAdView) {
         LogsController.shared.addLogs("Banner ad closed")
         banner.removeFromSuperview()
     }
     
-    func didTriggerImpressionOguryBannerAdView(_ banner: OguryBannerAdView) {
+    func oguryBannerAdViewDidTriggerImpression(_ banner: OguryBannerAdView) {
         LogsController.shared.addLogs("Banner ad impression")
     }
     

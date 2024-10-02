@@ -162,7 +162,7 @@ class AdsThumbnailController: NSObject, ThumbnailController {
 
 extension AdsThumbnailController: OguryThumbnailAdDelegate {
 
-    func didLoad(_ thumbnail: OguryThumbnailAd) {
+    func oguryThumbnailAdDidLoad(_ thumbnail: OguryThumbnailAd) {
         LogsController.shared.addLogs("thumbnail loaded.");
         if (showAfterLoad) {
             show(at: self.showAt, withCorner: self.corner)
@@ -174,19 +174,11 @@ extension AdsThumbnailController: OguryThumbnailAdDelegate {
         LogsController.shared.addLogs("Thumbnail ad is expanded at load ? [\(thumbnail.isExpanded)]")
     }
 
-    func didFail(_ thumbnail: OguryThumbnailAd, error: OguryAdError) {
+    func oguryThumbnailAd(_ thumbnail: OguryThumbnailAd, didFailWithError error: OguryAdError) {
         LogsController.shared.addLogs(String(format: "thumbnail failed with error code %ld: %@", error.code, error.localizedDescription));
     }
 
-    func didDisplay(_ thumbnail: OguryThumbnailAd) {
-        delegate?.didDisplay()
-
-        LogsController.shared.addLogs("thumbnail displayed.")
-
-        LogsController.shared.addLogs("Thumbnail ad is expanded at display ? [\(thumbnail.isExpanded)]")
-    }
-
-    func didClick(_ thumbnail: OguryThumbnailAd) {
+    func oguryThumbnailAdDidClick(_ thumbnail: OguryThumbnailAd) {
         LogsController.shared.addLogs("thumbnail clicked.")
 
         DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime.now() + 1) { [unowned thumbnail] in
@@ -194,13 +186,13 @@ extension AdsThumbnailController: OguryThumbnailAdDelegate {
         }
     }
 
-    func didClose(_ thumbnail: OguryThumbnailAd) {
+    func oguryThumbnailAdDidClose(_ thumbnail: OguryThumbnailAd) {
         LogsController.shared.addLogs("thumbnail closed.")
 
         LogsController.shared.addLogs("Thumbnail ad is expanded at close ? [\(thumbnail.isExpanded)]")
     }
     
-    func didTriggerImpressionOguryThumbnailAd(_ thumbnail: OguryThumbnailAd) {
+    func oguryThumbnailAdDidTriggerImpression(_ thumbnail: OguryThumbnailAd) {
         LogsController.shared.addLogs("thumbnail impression.")
     }
 }
