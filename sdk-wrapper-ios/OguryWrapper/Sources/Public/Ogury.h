@@ -3,8 +3,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <OgurySdk/OguryConfiguration.h>
-#import <OgurySdk/OguryConfigurationBuilder.h>
 #import <OgurySdk/OguryStartErrorCode.h>
 #import <OguryCore/OguryLogLevel.h>
 
@@ -14,9 +12,9 @@ typedef void (^StartCompletionBlock)(BOOL success, OguryError * _Nullable error)
 
 @interface Ogury : NSObject
 
-+ (void)startWithConfiguration:(OguryConfiguration *)configuration;
++ (void)startWith:(NSString *)assetKey;
 
-+ (void)startWithConfiguration:(OguryConfiguration *)configuration completionHandler:(StartCompletionBlock _Nullable)completionHandler;
++ (void)startWith:(NSString *)assetKey completionHandler:(StartCompletionBlock _Nullable)completionHandler;
 
 + (void)setLogLevel:(OguryLogLevel)logLevel;
 

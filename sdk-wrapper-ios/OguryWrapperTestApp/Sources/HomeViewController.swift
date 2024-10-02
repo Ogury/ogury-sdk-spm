@@ -63,11 +63,8 @@ class HomeViewController: UIViewController, ChoiceCmpDelegate {
     }
     
     @IBAction func startButtonClicked() {
-        let config = OguryConfigurationBuilder(assetKey: getEnvironment().assetKey)
-            .build()
         Ogury.setLogLevel(.all)
-        Ogury.start(with: config, completionHandler: { success, error in
-            Ogury.start(with: config) { success, error in
+        Ogury.start(with:getEnvironment().assetKey, completionHandler: { success, error in
                 if success {
                     print("Ogury SDK started successfully.")
                 } else if let error = error {
@@ -75,7 +72,6 @@ class HomeViewController: UIViewController, ChoiceCmpDelegate {
                 } else {
                     print("Ogury SDK failed to start for an unknown reason.")
                 }
-            }
         })
     }
     

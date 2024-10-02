@@ -60,7 +60,7 @@ static int ogcMaxNumberOfConvertionValue = 63;
    return self;
 }
 
-- (void)startWithConfiguration:(OguryConfiguration *)configuration completionHandler:(StartCompletionBlock)completionHandler {
+- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(StartCompletionBlock _Nullable)completionHandler {
     int numberOfModulesPresent = 0;
     __block NSMutableString *errorMessage = [NSMutableString string];
     __block NSMutableString *modulesMessage = [NSMutableString string];
@@ -70,8 +70,8 @@ static int ogcMaxNumberOfConvertionValue = 63;
     for (OGWModule *module in self.modulesManager.modules) {
         if (module.isPresent) {
             dispatch_group_enter(startGroup);
-            [self.log logAssetKeyFormat:OguryLogLevelDebug assetKey:configuration.assetKey format:@"Module [%@] initialization...", module.className];
-            [module startWithAssetKey:configuration.assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
+            [self.log logAssetKeyFormat:OguryLogLevelDebug assetKey:assetKey format:@"Module [%@] initialization...", module.className];
+            [module startWithAssetKey:assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
                 if (error && !success) {
                     @synchronized (errorMessage) {
                         [errorMessage appendString:[NSString stringWithFormat:@"\n%@", error.localizedDescription]];
@@ -87,7 +87,7 @@ static int ogcMaxNumberOfConvertionValue = 63;
         }
     }
     if (numberOfModulesPresent == 0) {
-        [self.log logAssetKey:OguryLogLevelError assetKey:configuration.assetKey message:@"No Ogury module found in your application."];
+        [self.log logAssetKey:OguryLogLevelError assetKey:assetKey message:@"No Ogury module found in your application."];
         if (completionHandler) {
             OguryError *noSDKModuleFound = [OguryError createNoSDKModuleFoundError];
             completionHandler(false, noSDKModuleFound);
@@ -95,14 +95,14 @@ static int ogcMaxNumberOfConvertionValue = 63;
     } else {
         dispatch_group_notify(startGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             if (errorMessage && errorMessage.length > 0) {
-                [self.log logAssetKeyFormat:OguryLogLevelError assetKey:configuration.assetKey format:@"Error found during the Ogury Start() call :%@", errorMessage];
+                [self.log logAssetKeyFormat:OguryLogLevelError assetKey:assetKey format:@"Error found during the Ogury Start() call :%@", errorMessage];
                 if (completionHandler) {
                     OguryError *failedStartingError = [OguryError createFailedStartingOguryModuleError:errorMessage];
                     completionHandler(false, failedStartingError);
                 }
             } else {
                 if (modulesMessage && modulesMessage.length > 0) {
-                    [self.log logAssetKeyFormat:OguryLogLevelDebug assetKey:configuration.assetKey format:@"Ogury Start() ended succesfully for modules :%@", modulesMessage];
+                    [self.log logAssetKeyFormat:OguryLogLevelDebug assetKey:assetKey format:@"Ogury Start() ended succesfully for modules :%@", modulesMessage];
                 }
                 if (completionHandler) {
                     completionHandler(true, nil);
