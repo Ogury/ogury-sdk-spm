@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)bannerAdViewDidClose:(OguryBannerAdView *)bannerAd NS_SWIFT_NAME(bannerAdViewDidClose(_:));
 - (void)bannerAdView:(OguryBannerAdView *)bannerAd didFailWithError:(OguryAdError *)error NS_SWIFT_NAME(bannerAdView(_:didFailWithError:));
 - (void)bannerAdViewDidTriggerImpression:(OguryBannerAdView *)bannerAd NS_SWIFT_NAME(bannerAdViewDidTriggerImpression(_:));
-- (UIViewController *_Nullable)presentingViewControllerForOguryAdsBannerAdView:(OguryBannerAdView *)bannerAd NS_SWIFT_NAME(presentingViewController(forBannerAdView:));
+- (UIViewController *_Nullable)presentingViewControllerForBannerAdView:(OguryBannerAdView *)bannerAd NS_SWIFT_NAME(presentingViewController(forBannerAdView:));
 @end
 
 NS_ASSUME_NONNULL_END

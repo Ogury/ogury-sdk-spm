@@ -61,8 +61,8 @@
 }
 
 - (UIViewController *)bannerViewController {
-    if ([self.delegate respondsToSelector:@selector(presentingViewControllerForOguryAdsBannerAdView:)]) {
-        return [self.delegate presentingViewControllerForOguryAdsBannerAdView:self.banner];
+    if ([self.delegate respondsToSelector:@selector(presentingViewControllerForBannerAdView:)]) {
+        return [self.delegate presentingViewControllerForBannerAdView:self.banner];
     }
     return nil;
 }
