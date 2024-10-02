@@ -38,88 +38,88 @@
 - (void)testOguryAdsRewardedAdNotAvailable {
     OguryAdError *error = [OguryAdError noFillFrom:OguryAdIntegrationTypeDirect];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate didFailOguryRewardedAd:self.rewardedAd error:error]);
+    OCMVerify([self.delegate oguryRewardedAd:self.rewardedAd didFailWithError:error]);
 }
 
 - (void)testOguryAdsRewardedAdLoaded {
     [self.delegateDispatcher loaded];
-    OCMVerify([self.delegate didLoadOguryRewardedAd:self.rewardedAd]);
+    OCMVerify([self.delegate oguryRewardedAdDidLoad:self.rewardedAd]);
 }
 
 - (void)testOguryAdsRewardedAdNotLoaded {
     OguryAdError *error = [OguryAdError noAdLoaded];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate didFailOguryRewardedAd:self.rewardedAd error:error]);
+    OCMVerify([self.delegate oguryRewardedAd:self.rewardedAd didFailWithError:error]);
 }
 
 - (void)testOguryAdsRewardedAdClosed {
     [self.delegateDispatcher closed];
-    OCMVerify([self.delegate didCloseOguryRewardedAd:self.rewardedAd]);
+    OCMVerify([self.delegate oguryRewardedAdDidClose:self.rewardedAd]);
 }
 
 - (void)testOguryAdsRewardedAdRewarded {
     OguryRewardItem *rewardItem = OCMClassMock([OguryRewardItem class]);
 
     [self.delegateDispatcher rewarded:rewardItem];
-    OCMVerify([self.delegate didRewardOguryRewardedAdWithItem:rewardItem forAd:self.rewardedAd]);
+    OCMVerify([self.delegate oguryRewardedAd:self.rewardedAd didReceiveReward:rewardItem]);
 }
 
 - (void)testOguryAdsRewardedAdDisableError {
     OguryAdError *error = [OguryAdError adDisabledOtherReasonFrom:OguryAdErrorTypeLoad];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate didFailOguryRewardedAd:self.rewardedAd error:error]);
+    OCMVerify([self.delegate oguryRewardedAd:self.rewardedAd didFailWithError:error]);
 }
 
 - (void)testOguryAdsRewardedAdUnknownError {
     OguryAdError *error = [OguryAdError createOguryErrorWithCode:OGAInternalUnknownError];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate didFailOguryRewardedAd:self.rewardedAd error:error]);
+    OCMVerify([self.delegate oguryRewardedAd:self.rewardedAd didFailWithError:error]);
 }
 
 - (void)testOguryAdsRewardedAdExpiredError {
     OguryAdError *error = [OguryAdError adExpired];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate didFailOguryRewardedAd:self.rewardedAd error:error]);
+    OCMVerify([self.delegate oguryRewardedAd:self.rewardedAd didFailWithError:error]);
 }
 
 - (void)testOguryAdsRewardedAdProfigNotSyncedError {
     OguryAdError *error = [OguryAdError invalidConfigurationFrom:OguryAdErrorTypeLoad];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate didFailOguryRewardedAd:self.rewardedAd error:error]);
+    OCMVerify([self.delegate oguryRewardedAd:self.rewardedAd didFailWithError:error]);
 }
 
 - (void)testOguryAdsRewardedAdNoInternetConnectionError {
     OguryAdError *error = [OguryAdError noInternetConnectionError];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate didFailOguryRewardedAd:self.rewardedAd error:error]);
+    OCMVerify([self.delegate oguryRewardedAd:self.rewardedAd didFailWithError:error]);
 }
 
 - (void)testOguryAdsRewardedAdSdkInitNotCalledError {
     OguryAdError *error = [OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeLoad stackTrace:@""];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate didFailOguryRewardedAd:self.rewardedAd error:error]);
+    OCMVerify([self.delegate oguryRewardedAd:self.rewardedAd didFailWithError:error]);
 }
 
 - (void)testOguryAdsRewardedAdAnotherAdAlreadyDisplayedError {
     OguryAdError *error = [OguryAdError anotherAdIsAlreadyDisplayed];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate didFailOguryRewardedAd:self.rewardedAd error:error]);
+    OCMVerify([self.delegate oguryRewardedAd:self.rewardedAd didFailWithError:error]);
 }
 
 - (void)testOguryAdsRewardedAdCantShowAdsInPresentingViewControllerError {
     OguryAdError *error = [OguryAdError viewControllerPreventsAdFromBeingDisplayed];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate didFailOguryRewardedAd:self.rewardedAd error:error]);
+    OCMVerify([self.delegate oguryRewardedAd:self.rewardedAd didFailWithError:error]);
 }
 
 - (void)testOguryAdsRewardedAdClicked {
     [self.delegateDispatcher clicked];
-    OCMVerify([self.delegate didClickOguryRewardedAd:self.rewardedAd]);
+    OCMVerify([self.delegate oguryRewardedAdDidClick:self.rewardedAd]);
 }
 
 - (void)testShouldTriggerOnAdImpression {
     [self.delegateDispatcher adImpression];
-    OCMVerify([self.delegate didTriggerImpressionOguryRewardedAd:self.rewardedAd]);
+    OCMVerify([self.delegate oguryRewardedAdDidTriggerImpression:self.rewardedAd]);
 }
 
 @end

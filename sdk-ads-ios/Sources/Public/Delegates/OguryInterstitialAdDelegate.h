@@ -11,11 +11,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol OguryInterstitialAdDelegate <NSObject>
 @optional
-- (void)didLoadOguryInterstitialAd:(OguryInterstitialAd *)interstitial;
-- (void)didClickOguryInterstitialAd:(OguryInterstitialAd *)interstitial;
-- (void)didCloseOguryInterstitialAd:(OguryInterstitialAd *)interstitial;
-- (void)didFailOguryInterstitialAd:(OguryInterstitialAd *)interstitial error:(OguryAdError *)error;
-- (void)didTriggerImpressionOguryInterstitialAd:(OguryInterstitialAd *)interstitial;
+- (void)oguryInterstitialAdDidLoad:(OguryInterstitialAd *)interstitial;
+- (void)oguryInterstitialAdDidClick:(OguryInterstitialAd *)interstitial;
+- (void)oguryInterstitialAdDidClose:(OguryInterstitialAd *)interstitial;
+- (void)oguryInterstitialAd:(OguryInterstitialAd *)interstitial didFailWithError:(OguryAdError *)error;
+- (void)oguryInterstitialAdDidTriggerImpression:(OguryInterstitialAd *)interstitial;
 @end
 
 NS_ASSUME_NONNULL_END

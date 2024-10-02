@@ -11,9 +11,9 @@
 - (void)loaded {
     [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad loaded called", OGAAdConfigurationAdTypeThumbnailAd, self.thumbnail.adUnitId];
 
-    if ([self.delegate respondsToSelector:@selector(didLoadOguryThumbnailAd:)] && self.thumbnail != nil) {
+    if ([self.delegate respondsToSelector:@selector(oguryThumbnailAdDidLoad:)] && self.thumbnail != nil) {
         [self dispatch:^(id<OguryThumbnailAdDelegate> _Nonnull delegate) {
-            [delegate didLoadOguryThumbnailAd:self.thumbnail];
+            [delegate oguryThumbnailAdDidLoad:self.thumbnail];
         }];
     }
 }
@@ -21,9 +21,9 @@
 - (void)clicked {
     [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad clicked called", OGAAdConfigurationAdTypeThumbnailAd, self.thumbnail.adUnitId];
 
-    if ([self.delegate respondsToSelector:@selector(didClickOguryThumbnailAd:)] && self.thumbnail != nil) {
+    if ([self.delegate respondsToSelector:@selector(oguryThumbnailAdDidClick:)] && self.thumbnail != nil) {
         [self dispatch:^(id<OguryThumbnailAdDelegate> _Nonnull delegate) {
-            [delegate didClickOguryThumbnailAd:self.thumbnail];
+            [delegate oguryThumbnailAdDidClick:self.thumbnail];
         }];
     }
 }
@@ -31,9 +31,9 @@
 - (void)closed {
     [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad closed called", OGAAdConfigurationAdTypeThumbnailAd, self.thumbnail.adUnitId];
 
-    if ([self.delegate respondsToSelector:@selector(didCloseOguryThumbnailAd:)] && self.thumbnail != nil) {
+    if ([self.delegate respondsToSelector:@selector(oguryThumbnailAdDidClose:)] && self.thumbnail != nil) {
         [self dispatch:^(id<OguryThumbnailAdDelegate> _Nonnull delegate) {
-            [delegate didCloseOguryThumbnailAd:self.thumbnail];
+            [delegate oguryThumbnailAdDidClose:self.thumbnail];
         }];
     }
     self.hasSentDisplayedDelegate = NO;
@@ -42,9 +42,9 @@
 - (void)failedWithError:(OguryAdError *)error {
     [self.log logErrorFormat:error format:@"[%@][%@] callback failed with error called", OGAAdConfigurationAdTypeThumbnailAd, self.thumbnail.adUnitId];
 
-    if ([self.delegate respondsToSelector:@selector(didFailOguryThumbnailAd:error:)] && self.thumbnail != nil) {
+    if ([self.delegate respondsToSelector:@selector(oguryThumbnailAd:didFailWithError:)] && self.thumbnail != nil) {
         [self dispatch:^(id<OguryThumbnailAdDelegate> _Nonnull delegate) {
-            [delegate didFailOguryThumbnailAd:self.thumbnail error:error];
+            [delegate oguryThumbnailAd:self.thumbnail didFailWithError:error];
         }];
     }
     self.hasSentDisplayedDelegate = NO;
@@ -53,9 +53,9 @@
 - (void)adImpression {
     [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad impression called", OGAAdConfigurationAdTypeThumbnailAd, self.thumbnail.adUnitId];
 
-    if ([self.delegate respondsToSelector:@selector(didTriggerImpressionOguryThumbnailAd:)] && self.thumbnail != nil) {
+    if ([self.delegate respondsToSelector:@selector(oguryThumbnailAdDidTriggerImpression:)] && self.thumbnail != nil) {
         [self dispatch:^(id<OguryThumbnailAdDelegate> _Nonnull delegate) {
-            [delegate didTriggerImpressionOguryThumbnailAd:self.thumbnail];
+            [delegate oguryThumbnailAdDidTriggerImpression:self.thumbnail];
         }];
     }
 }

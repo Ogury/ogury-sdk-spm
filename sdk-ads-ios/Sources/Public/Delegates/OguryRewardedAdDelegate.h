@@ -12,12 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol OguryRewardedAdDelegate <NSObject>
 @optional
-- (void)didLoadOguryRewardedAd:(OguryRewardedAd *)rewardedAd;
-- (void)didClickOguryRewardedAd:(OguryRewardedAd *)rewardedAd;
-- (void)didCloseOguryRewardedAd:(OguryRewardedAd *)rewardedAd;
-- (void)didRewardOguryRewardedAdWithItem:(OguryRewardItem *)item forAd:(OguryRewardedAd *)rewardedAd;
-- (void)didFailOguryRewardedAd:(OguryRewardedAd *)rewardedAd error:(OguryAdError *)error;
-- (void)didTriggerImpressionOguryRewardedAd:(OguryRewardedAd *)rewardedAd;
+- (void)oguryRewardedAdDidLoad:(OguryRewardedAd *)rewardedAd;
+- (void)oguryRewardedAdDidClick:(OguryRewardedAd *)rewardedAd;
+- (void)oguryRewardedAdDidClose:(OguryRewardedAd *)rewardedAd;
+- (void)oguryRewardedAd:(OguryRewardedAd *)rewardedAd didReceiveReward:(OguryRewardItem *)item;
+- (void)oguryRewardedAd:(OguryRewardedAd *)rewardedAd didFailWithError:(OguryAdError *)error;
+- (void)oguryRewardedAdDidTriggerImpression:(OguryRewardedAd *)rewardedAd;
 @end
 
 NS_ASSUME_NONNULL_END

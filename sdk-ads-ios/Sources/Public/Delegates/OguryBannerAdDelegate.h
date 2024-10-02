@@ -11,11 +11,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol OguryBannerAdDelegate <NSObject>
 @optional
-- (void)didLoadOguryBannerAdView:(OguryBannerAdView *)banner;
-- (void)didClickOguryBannerAdView:(OguryBannerAdView *)banner;
-- (void)didCloseOguryBannerAdView:(OguryBannerAdView *)banner;
-- (void)didFailOguryBannerAdView:(OguryBannerAdView *)banner error:(OguryAdError *)error;
-- (void)didTriggerImpressionOguryBannerAdView:(OguryBannerAdView *)banner;
+- (void)oguryBannerAdViewDidLoad:(OguryBannerAdView *)banner;
+- (void)oguryBannerAdViewDidClick:(OguryBannerAdView *)banner;
+- (void)oguryBannerAdViewDidClose:(OguryBannerAdView *)banner;
+- (void)oguryBannerAdView:(OguryBannerAdView *)banner didFailWithError:(OguryAdError *)error;
+- (void)oguryBannerAdViewDidTriggerImpression:(OguryBannerAdView *)banner;
 - (UIViewController *_Nullable)presentingViewControllerForOguryAdsBannerAdView:(OguryBannerAdView *)banner;
 @end
 

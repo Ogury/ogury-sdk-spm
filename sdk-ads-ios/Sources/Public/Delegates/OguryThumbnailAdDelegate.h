@@ -10,11 +10,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol OguryThumbnailAdDelegate <NSObject>
 @optional
-- (void)didLoadOguryThumbnailAd:(OguryThumbnailAd *)thumbnail;
-- (void)didClickOguryThumbnailAd:(OguryThumbnailAd *)thumbnail;
-- (void)didCloseOguryThumbnailAd:(OguryThumbnailAd *)thumbnail;
-- (void)didFailOguryThumbnailAd:(OguryThumbnailAd *)thumbnail error:(OguryAdError *)error;
-- (void)didTriggerImpressionOguryThumbnailAd:(OguryThumbnailAd *)thumbnail;
+- (void)oguryThumbnailAdDidLoad:(OguryThumbnailAd *)thumbnail;
+- (void)oguryThumbnailAdDidClick:(OguryThumbnailAd *)thumbnail;
+- (void)oguryThumbnailAdDidClose:(OguryThumbnailAd *)thumbnail;
+- (void)oguryThumbnailAd:(OguryThumbnailAd *)thumbnail didFailWithError:(OguryAdError *)error;
+- (void)oguryThumbnailAdDidTriggerImpression:(OguryThumbnailAd *)thumbnail;
 @end
 
 NS_ASSUME_NONNULL_END
