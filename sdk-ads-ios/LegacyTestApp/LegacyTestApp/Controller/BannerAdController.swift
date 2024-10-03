@@ -21,24 +21,24 @@ final class BannerAdController: NSObject, BannerFormatController {
 
     // MARK: - Functions
 
-    func getAd(adUnitId: String) -> OguryBannerAdView {
-        let instance = OguryBannerAdView(adUnitId: adUnitId, size: .small_banner_320x50())
+    func getAd(adUnitId: String, maxSize: OguryAdsBannerSize) -> OguryBannerAdView {
+        let instance = OguryBannerAdView(adUnitId: adUnitId, size: maxSize)
         instance.delegate = self
         banner = instance
         return instance
     }
 
     func load(adUnitId: String, campaignId: String? = nil, creativeId:String? = nil, dspCreativeId:String? = nil, dspRegion:String? = nil, maxSize: OguryAdsBannerSize, inView view: UIView?, withWidth width: CGFloat? = nil) {
-        let bannerAd = getAd(adUnitId: adUnitId)
+        let bannerAd = getAd(adUnitId: adUnitId, maxSize: maxSize)
 
         if let campaignId = campaignId, !campaignId.isEmpty, let creativeId = creativeId, !creativeId.isEmpty, let dspCreativeId = dspCreativeId, !dspCreativeId.isEmpty, let dspRegion = dspRegion, !dspRegion.isEmpty {
             let obj = bannerAd
-            let sel = NSSelectorFromString("loadWithCampaignId:creativeId:dspCreativeId:dspRegion:size:")
+            let sel = NSSelectorFromString("loadWithCampaignId:creativeId:dspCreativeId:dspRegion:")
             let meth = class_getInstanceMethod(object_getClass(obj), sel)
             let imp = method_getImplementation(meth!)
-            typealias ClosureType = @convention(c) (AnyObject, Selector, String, String, String, String, OguryAdsBannerSize) -> Void
+            typealias ClosureType = @convention(c) (AnyObject, Selector, String, String, String, String) -> Void
             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-            sayHiTo(obj, sel, campaignId, creativeId, dspCreativeId, dspRegion, maxSize)
+            sayHiTo(obj, sel, campaignId, creativeId, dspCreativeId, dspRegion)
 
             if bannerAd.frame.equalTo(CGRect.zero) {
                 bannerAd.frame = CGRect(x: 0, y: 0, width: width ?? maxSize.getSize().width, height: maxSize.getSize().height)
@@ -53,12 +53,12 @@ final class BannerAdController: NSObject, BannerFormatController {
             banner = bannerAd
         } else if let campaignId = campaignId, !campaignId.isEmpty, let creativeId = creativeId, !creativeId.isEmpty {
             let obj = bannerAd
-            let sel = NSSelectorFromString("loadWithCampaignId:creativeId:size:")
+            let sel = NSSelectorFromString("loadWithCampaignId:creativeId:")
             let meth = class_getInstanceMethod(object_getClass(obj), sel)
             let imp = method_getImplementation(meth!)
-            typealias ClosureType = @convention(c) (AnyObject, Selector, String, String, OguryAdsBannerSize) -> Void
+            typealias ClosureType = @convention(c) (AnyObject, Selector, String, String) -> Void
             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-            sayHiTo(obj, sel, campaignId, creativeId, maxSize)
+            sayHiTo(obj, sel, campaignId, creativeId)
 
             if bannerAd.frame.equalTo(CGRect.zero) {
                 bannerAd.frame = CGRect(x: 0, y: 0, width: width ?? maxSize.getSize().width, height: maxSize.getSize().height)
@@ -73,12 +73,12 @@ final class BannerAdController: NSObject, BannerFormatController {
             banner = bannerAd
         } else if let campaignId = campaignId, !campaignId.isEmpty {
             let obj = bannerAd
-            let sel = NSSelectorFromString("loadWithCampaignId:size:")
+            let sel = NSSelectorFromString("loadWithCampaignId:")
             let meth = class_getInstanceMethod(object_getClass(obj), sel)
             let imp = method_getImplementation(meth!)
-            typealias ClosureType = @convention(c) (AnyObject, Selector, String, OguryAdsBannerSize) -> Void
+            typealias ClosureType = @convention(c) (AnyObject, Selector, String) -> Void
             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-            sayHiTo(obj, sel, campaignId, maxSize)
+            sayHiTo(obj, sel, campaignId)
 
             if bannerAd.frame.equalTo(CGRect.zero) {
                 bannerAd.frame = CGRect(x: 0, y: 0, width: width ?? maxSize.getSize().width, height: maxSize.getSize().height)
@@ -129,7 +129,7 @@ extension BannerAdController {
         HeaderBiddingService.retrieveAdMarkup(assetKey: assetKey, adUnitId: adUnitId, country: country, campaignId: campaignId, creativeId: creativeId, dspCreativeId: dspCreativeId, dspRegion: dspRegion) { result in
             
             DispatchQueue.main.async {
-                let bannerAd = self.getAd(adUnitId: adUnitId)
+                let bannerAd = self.getAd(adUnitId: adUnitId, maxSize: maxSize)
                 switch result {
                     case .success(let adMarkup):
                         

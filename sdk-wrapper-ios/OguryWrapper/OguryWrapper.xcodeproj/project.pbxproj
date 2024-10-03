@@ -8,14 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		05FDDE20255AE373000F4C8B /* Ogury.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FDDDCE2559A048000F4C8B /* Ogury.m */; };
-		05FDDE21255AE373000F4C8B /* OguryConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FDDDD52559A14C000F4C8B /* OguryConfiguration.m */; };
-		05FDDE22255AE373000F4C8B /* OguryConfigurationBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FDDDE5255AD641000F4C8B /* OguryConfigurationBuilder.m */; };
 		05FDDE23255AE37F000F4C8B /* Ogury.h in Headers */ = {isa = PBXBuildFile; fileRef = 05FDDDCD2559A048000F4C8B /* Ogury.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		05FDDE24255AE37F000F4C8B /* OguryConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 05FDDDD42559A14C000F4C8B /* OguryConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		05FDDE25255AE37F000F4C8B /* OguryConfigurationBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 05FDDDE4255AD641000F4C8B /* OguryConfigurationBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		05FDDE2A255AE38C000F4C8B /* OguryConfigurationPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 05FDDDE9255ADBE7000F4C8B /* OguryConfigurationPrivate.h */; };
 		05FDDE44255AE449000F4C8B /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FDDE11255AE2D5000F4C8B /* OgurySdk.framework */; };
-		05FDDE5A255AE66F000F4C8B /* OguryConfigurationBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FDDE59255AE66F000F4C8B /* OguryConfigurationBuilderTests.m */; };
 		05FFA0F025BB0BD80047EFCD /* NSString+OGWUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 05FFA0EE25BB0BD80047EFCD /* NSString+OGWUtility.h */; };
 		05FFA0F125BB0BD80047EFCD /* NSString+OGWUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FFA0EF25BB0BD80047EFCD /* NSString+OGWUtility.m */; };
 		05FFA0F625BB0CD70047EFCD /* NSString+OGWUtilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FFA0F525BB0CD70047EFCD /* NSString+OGWUtilityTests.m */; };
@@ -69,14 +63,8 @@
 		05FDDDBA2555A350000F4C8B /* Configuration.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Configuration.xcconfig; sourceTree = "<group>"; };
 		05FDDDCD2559A048000F4C8B /* Ogury.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ogury.h; sourceTree = "<group>"; };
 		05FDDDCE2559A048000F4C8B /* Ogury.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ogury.m; sourceTree = "<group>"; };
-		05FDDDD42559A14C000F4C8B /* OguryConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryConfiguration.h; sourceTree = "<group>"; };
-		05FDDDD52559A14C000F4C8B /* OguryConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryConfiguration.m; sourceTree = "<group>"; };
-		05FDDDE4255AD641000F4C8B /* OguryConfigurationBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryConfigurationBuilder.h; sourceTree = "<group>"; };
-		05FDDDE5255AD641000F4C8B /* OguryConfigurationBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryConfigurationBuilder.m; sourceTree = "<group>"; };
-		05FDDDE9255ADBE7000F4C8B /* OguryConfigurationPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryConfigurationPrivate.h; sourceTree = "<group>"; };
 		05FDDE11255AE2D5000F4C8B /* OgurySdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OgurySdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05FDDE3F255AE449000F4C8B /* OgurySdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OgurySdkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		05FDDE59255AE66F000F4C8B /* OguryConfigurationBuilderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryConfigurationBuilderTests.m; sourceTree = "<group>"; };
 		05FFA03225B9BFAD0047EFCD /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		05FFA0EE25BB0BD80047EFCD /* NSString+OGWUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+OGWUtility.h"; sourceTree = "<group>"; };
 		05FFA0EF25BB0BD80047EFCD /* NSString+OGWUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+OGWUtility.m"; sourceTree = "<group>"; };
@@ -190,10 +178,6 @@
 				506D755E2CA450510050B345 /* OguryStartErrorCode.h */,
 				05FDDDCD2559A048000F4C8B /* Ogury.h */,
 				05FDDDCE2559A048000F4C8B /* Ogury.m */,
-				05FDDDD42559A14C000F4C8B /* OguryConfiguration.h */,
-				05FDDDD52559A14C000F4C8B /* OguryConfiguration.m */,
-				05FDDDE4255AD641000F4C8B /* OguryConfigurationBuilder.h */,
-				05FDDDE5255AD641000F4C8B /* OguryConfigurationBuilder.m */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -204,7 +188,6 @@
 				50744A992C7624C2004B9701 /* Errors */,
 				58BDDA7F288EE8FB000A4A12 /* DarwinNotification */,
 				58D79EEA28587AAF00E94E70 /* Log */,
-				05FDDDE9255ADBE7000F4C8B /* OguryConfigurationPrivate.h */,
 				351A101D9CF4DBF6D70F6042 /* OGWModule.h */,
 				351A1BFF658819D0DFD194D9 /* OGWModule.m */,
 				351A1C9175D1D2715C50A630 /* OGWWrapper.h */,
@@ -228,7 +211,6 @@
 		05FDDE01255ADE78000F4C8B /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				05FDDE59255AE66F000F4C8B /* OguryConfigurationBuilderTests.m */,
 				505059392C77663C007B29EA /* OguryTests.m */,
 			);
 			path = Public;
@@ -366,12 +348,9 @@
 			files = (
 				05FDDE23255AE37F000F4C8B /* Ogury.h in Headers */,
 				58D79EFB28587AAF00E94E70 /* OGWAssetKeyLogMessage.h in Headers */,
-				05FDDE24255AE37F000F4C8B /* OguryConfiguration.h in Headers */,
 				58D79F0028587AAF00E94E70 /* OGWLogFormatter.h in Headers */,
 				58D79F0128587AAF00E94E70 /* OguryLog+Wrapper.h in Headers */,
-				05FDDE25255AE37F000F4C8B /* OguryConfigurationBuilder.h in Headers */,
 				506D755F2CA450550050B345 /* OguryStartErrorCode.h in Headers */,
-				05FDDE2A255AE38C000F4C8B /* OguryConfigurationPrivate.h in Headers */,
 				50744AA92C762733004B9701 /* OGWErrorMessage.h in Headers */,
 				351A1A168A09A89BCC2B8993 /* OGWModule.h in Headers */,
 				50744AA22C7625AA004B9701 /* OguryError+OGWWrapper.h in Headers */,
@@ -552,8 +531,6 @@
 				05FDDE20255AE373000F4C8B /* Ogury.m in Sources */,
 				58D79EF828587AAF00E94E70 /* OGWLogFormatter.m in Sources */,
 				58BDDA8A288EE8FB000A4A12 /* OGWSetLogLevelNotificationManager.m in Sources */,
-				05FDDE21255AE373000F4C8B /* OguryConfiguration.m in Sources */,
-				05FDDE22255AE373000F4C8B /* OguryConfigurationBuilder.m in Sources */,
 				05FFA0F125BB0BD80047EFCD /* NSString+OGWUtility.m in Sources */,
 				50744AA82C762733004B9701 /* OGWErrorMessage.m in Sources */,
 				351A1BB4636065EFAC6EFA20 /* OGWModule.m in Sources */,
@@ -573,7 +550,6 @@
 			files = (
 				58BDDA8D288EEC5B000A4A12 /* OGWWrapperTests.m in Sources */,
 				05FFA0F625BB0CD70047EFCD /* NSString+OGWUtilityTests.m in Sources */,
-				05FDDE5A255AE66F000F4C8B /* OguryConfigurationBuilderTests.m in Sources */,
 				505059382C7763FD007B29EA /* OguryErrorOGWWrapperTests.m in Sources */,
 				580AF64C28758CD1006A829A /* OGWModuleTests.m in Sources */,
 				58BDDA90288FDB45000A4A12 /* OGWActivateLogNotificationManagerTests.m in Sources */,

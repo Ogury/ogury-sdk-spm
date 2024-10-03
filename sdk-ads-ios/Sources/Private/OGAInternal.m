@@ -83,7 +83,7 @@
 
 #pragma mark - methods
 
-- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(StartCompletionBlock)completionHandler {
+- (void)startWith:(NSString *)assetKey completionHandler:(StartCompletionBlock)completionHandler {
     self.setupBlock = completionHandler;
     [self.log log:OguryLogLevelInfo message:@"Module started"];
 

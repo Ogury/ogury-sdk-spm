@@ -9,12 +9,12 @@
 
 @implementation Ogury
 
-+ (void)startWithConfiguration:(OguryConfiguration *)configuration completionHandler:(StartCompletionBlock)completionHandler {
-    [[OGWWrapper shared] startWithConfiguration:configuration completionHandler:completionHandler];
++ (void)startWith:(NSString *)assetKey {
+    [self startWith:assetKey completionHandler:nil];
 }
 
-+ (void)startWithConfiguration:(OguryConfiguration *)configuration {
-    [self startWithConfiguration:configuration completionHandler:nil];
++ (void)startWith:(NSString *)assetKey completionHandler:(StartCompletionBlock _Nullable)completionHandler {
+    [[OGWWrapper shared] startWith:assetKey completionHandler:completionHandler];
 }
 
 + (void)setLogLevel:(OguryLogLevel)logLevel {

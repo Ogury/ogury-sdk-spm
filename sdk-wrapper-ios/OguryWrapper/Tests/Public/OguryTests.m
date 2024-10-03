@@ -13,12 +13,14 @@
 @property (nonatomic, strong) id mockOGWWrapper;
 @property (nonatomic, strong) id mockOGWLog;
 @property (nonatomic, strong) id mockOGCInternal;
+@property (nonatomic, strong) NSString *assetKey;
 
 @end
 
 @implementation OguryTests
 
 - (void)setUp {
+    self.assetKey = @"ASSET_KEY";
     self.mockOGWWrapper = OCMClassMock([OGWWrapper class]);
     OCMStub([self.mockOGWWrapper shared]).andReturn(self.mockOGWWrapper);
     self.mockOGWLog = OCMClassMock([OGWLog class]);
@@ -27,19 +29,17 @@
     OCMStub([self.mockOGCInternal shared]).andReturn(self.mockOGCInternal);
 }
 
-- (void)testStartWithConfiguration {
+- (void)testStartWith {
     id mockOgury = OCMClassMock([Ogury class]);
-    OguryConfiguration *mockConfiguration = OCMClassMock([OguryConfiguration class]);
-    OCMExpect([mockOgury startWithConfiguration:mockConfiguration completionHandler:nil]);
-    [Ogury startWithConfiguration:mockConfiguration];
+    OCMExpect([mockOgury startWith:self.assetKey completionHandler:nil]);
+    [Ogury startWith:self.assetKey];
     OCMVerifyAll(mockOgury);
 }
 
-- (void)testStartWithConfigurationCompletionHandler {
-    OguryConfiguration *mockConfiguration = OCMClassMock([OguryConfiguration class]);
+- (void)testStartWithCompletionHandler {
     StartCompletionBlock mockCompletionHandler = ^(BOOL success, NSError *error) {};
-    OCMExpect([self.mockOGWWrapper startWithConfiguration:mockConfiguration completionHandler:mockCompletionHandler]);
-    [Ogury startWithConfiguration:mockConfiguration completionHandler:mockCompletionHandler];
+    OCMExpect([self.mockOGWWrapper startWith:self.assetKey completionHandler:mockCompletionHandler]);
+    [Ogury startWith:self.assetKey completionHandler:mockCompletionHandler];
     OCMVerifyAll(self.mockOGWWrapper);
 }
 

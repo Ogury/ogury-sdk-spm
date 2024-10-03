@@ -5,7 +5,6 @@
 #import <Foundation/Foundation.h>
 #import <OguryCore/OguryAbstractLogMessage.h>
 #import <OguryCore/OguryStringFormattable.h>
-#import "OguryConfiguration.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

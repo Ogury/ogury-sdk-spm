@@ -18,7 +18,7 @@ typedef void (^StartCompletionBlock)(BOOL success, OguryError *_Nullable error);
 
 #pragma mark - methods
 
-- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(StartCompletionBlock)completionHandler;
+- (void)startWith:(NSString *)assetKey completionHandler:(StartCompletionBlock)completionHandler;
 - (void)setLogLevel:(OguryLogLevel)logLevel;
 - (NSString *)getVersion;
 - (NSString *)getBuildVersion;
