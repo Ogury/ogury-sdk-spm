@@ -70,7 +70,7 @@
 }
 
 - (void)testOguryAdsInterstitialSdkInitNotCalledError {
-    OguryAdError *error = [OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeLoad stackTrace:@""];
+    OguryAdError *error = [OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeLoad];
     [self.delegateDispatcher failedWithError:error];
     OCMVerify([self.delegate interstitialAd:self.interstitial didFailWithError:error]);
 }

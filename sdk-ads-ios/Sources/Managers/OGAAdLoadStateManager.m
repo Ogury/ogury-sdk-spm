@@ -6,6 +6,7 @@
 #import "OGAAd.h"
 #import "OGAMraidAdWebView.h"
 #import "OGAMraidCommand.h"
+#import "OguryAdError+Internal.h"
 #import "OGAMonitoringDispatcher.h"
 
 #pragma mark - Enums and constants
@@ -176,6 +177,8 @@ NSString *const OGAAccomplishedOnAdLoaded = @"format";
     [self.monitoringDispatcher sendLoadErrorEventPrecacheFail:OGAMonitoringPrecacheErrorTimeOut
                                               adConfiguration:self.ad.adConfiguration
                                                     arguments:args];
+    // JTO uncomment if needed
+    //    [self.ad.adConfiguration.delegateDispatcher failedWithError:[OguryAdError adPrecachingTimeout]];
 }
 
 - (BOOL)webViewLoaded:(NSString *)webViewId {

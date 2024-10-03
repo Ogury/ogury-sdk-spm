@@ -81,7 +81,7 @@
 }
 
 - (void)testOguryAdsBannerSdkInitNotCalledError {
-    OguryAdError *error = [OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeLoad stackTrace:@""];
+    OguryAdError *error = [OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeLoad];
 
     [self.delegateDispatcher failedWithError:error];
 

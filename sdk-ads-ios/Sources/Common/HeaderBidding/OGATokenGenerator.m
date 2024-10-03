@@ -88,7 +88,7 @@
                     completion:(BidTokenCompletionBlock)completion {
     OguryError *error = nil;
     if (![self.assetKeyManager checkAssetKeyIsValid:&error type:OguryAdErrorTypeLoad]) {
-        completion(nil, [OguryAdError headerBiddingFrom:error.code stacktrace:error.localizedDescription ?: @"Invalid Assetkey"]);
+        completion(nil, [OguryAdError headerBiddingFrom:error.code]);
         return;
     }
     if ([[self profigManager] shouldSync]) {
@@ -126,8 +126,7 @@
                                 dspRegion:(NSString *_Nullable)dspRegion
                                completion:(BidTokenCompletionBlock)completion {
     if (!self.profigDao.profigFullResponse.adsEnabled) {
-        completion(nil, [OguryAdError headerBiddingFrom:[self disabledReasonCode]
-                                             stacktrace:[NSString stringWithFormat:@"Ads are disabled (%@)", self.profigDao.profigFullResponse.disablingReason ?: @"Unknown reason"]]);
+        completion(nil, [OguryAdError headerBiddingFrom:[self disabledReasonCode]]);
         return;
     }
     completion([[self computeBidTokenDataWithCampaignId:campaignId

@@ -23,8 +23,8 @@ typedef NS_ENUM(NSInteger, OguryAdIntegrationType) {
 
 @interface OguryAdError (internal)
 
-+ (OguryAdError *)sdkNotInitializedFrom:(OguryAdErrorType)type stackTrace:(NSString *)stackTrace;
-+ (OguryAdError *)sdkNotProperlyInitializedFrom:(OguryAdErrorType)type stackTrace:(NSString *)stackTrace;
++ (OguryAdError *)sdkNotInitializedFrom:(OguryAdErrorType)type;
++ (OguryAdError *)sdkNotProperlyInitializedFrom:(OguryAdErrorType)type;
 + (OguryAdError *)noInternetConnectionFrom:(OguryAdErrorType)type;
 + (OguryAdError *)invalidConfigurationFrom:(OguryAdErrorType)type;
 + (OguryAdError *)adDisabled:(NSString *)reason from:(OguryAdErrorType)type;
@@ -43,7 +43,7 @@ typedef NS_ENUM(NSInteger, OguryAdIntegrationType) {
 + (OguryAdError *)anotherAdIsAlreadyDisplayed;
 + (OguryAdError *)webviewTerminatedBySystem;
 + (OguryAdError *)viewControllerPreventsAdFromBeingDisplayed;
-+ (OguryError *)headerBiddingFrom:(NSInteger)originalErrorCode stacktrace:(NSString *)stacktrace;
++ (OguryError *)headerBiddingFrom:(NSInteger)originalErrorCode;
 
 @end
 

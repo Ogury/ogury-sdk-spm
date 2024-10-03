@@ -174,8 +174,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         [self.assetKeyManager setSdkState:OgurySDKStateError];
         [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventSdkNeverInitialized
                                       adConfiguration:sequence.monitoringAdConfiguration];
-        [sequence.configuration.delegateDispatcher failedWithError:[OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeLoad
-                                                                                            stackTrace:@"AssetKey not found"]];
+        [sequence.configuration.delegateDispatcher failedWithError:[OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeLoad]];
         return sequence;
     }
 
@@ -183,8 +182,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         sequence.status = OGAAdSequenceStatusInitError;
         [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventSdkNotInitialized
                                       adConfiguration:sequence.monitoringAdConfiguration];
-        [sequence.configuration.delegateDispatcher failedWithError:[OguryAdError sdkNotProperlyInitializedFrom:OguryAdErrorTypeLoad
-                                                                                                    stackTrace:@"SDK Not ready"]];
+        [sequence.configuration.delegateDispatcher failedWithError:[OguryAdError sdkNotProperlyInitializedFrom:OguryAdErrorTypeLoad]];
         return sequence;
     }
 
@@ -201,8 +199,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventSdkNotInitialized
                                            stackTrace:@"SDK initialization failed"
                                       adConfiguration:sequence.monitoringAdConfiguration];
-        [sequence.configuration.delegateDispatcher failedWithError:[OguryAdError sdkNotProperlyInitializedFrom:OguryAdErrorTypeLoad
-                                                                                                    stackTrace:@"SDK initialization failed"]];
+        [sequence.configuration.delegateDispatcher failedWithError:[OguryAdError sdkNotProperlyInitializedFrom:OguryAdErrorTypeLoad]];
         return;
     }
 
@@ -437,7 +434,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         [self.monitoringDispatcher sendShowErrorEvent:OGAShowErrorEventSdkNeverInitialized
                                       adConfiguration:sequence.monitoringAdConfiguration
                                       customSessionId:sessionId];
-        [self dispatchError:[OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeShow stackTrace:@"AssetKey not found"] sequence:sequence];
+        [self dispatchError:[OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeShow] sequence:sequence];
         return;
     }
 
@@ -446,7 +443,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         [self.monitoringDispatcher sendShowErrorEvent:OGAShowErrorEventSdkNotInitialized
                                       adConfiguration:sequence.monitoringAdConfiguration
                                       customSessionId:sessionId];
-        [self dispatchError:[OguryAdError sdkNotProperlyInitializedFrom:OguryAdErrorTypeShow stackTrace:@"SDK not ready"] sequence:sequence];
+        [self dispatchError:[OguryAdError sdkNotProperlyInitializedFrom:OguryAdErrorTypeShow] sequence:sequence];
         return;
     }
 
