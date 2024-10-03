@@ -43,13 +43,13 @@
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdView:self.banner error:error]);
+    OCMVerify([self.delegate bannerAdView:self.banner didFailWithError:error]);
 }
 
 - (void)testOguryAdsBannerAdLoaded {
     [self.delegateDispatcher loaded];
 
-    OCMVerify([self.delegate didLoadOguryBannerAdView:self.banner]);
+    OCMVerify([self.delegate bannerAdViewDidLoad:self.banner]);
 }
 
 - (void)testOguryAdsBannerAdNotLoaded {
@@ -57,13 +57,13 @@
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdView:self.banner error:error]);
+    OCMVerify([self.delegate bannerAdView:self.banner didFailWithError:error]);
 }
 
 - (void)testOguryAdsBannerAdClosed {
     [self.delegateDispatcher closed];
 
-    OCMVerify([self.delegate didCloseOguryBannerAdView:self.banner]);
+    OCMVerify([self.delegate bannerAdViewDidClose:self.banner]);
 }
 
 - (void)testOguryAdsBannerAdDisableError {
@@ -71,21 +71,21 @@
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdView:self.banner error:error]);
+    OCMVerify([self.delegate bannerAdView:self.banner didFailWithError:error]);
 }
 
 - (void)testOguryAdsBannerProfigNotSyncedError {
     OguryAdError *error = [OguryAdError invalidConfigurationFrom:OguryAdErrorTypeLoad];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate didFailOguryBannerAdView:self.banner error:error]);
+    OCMVerify([self.delegate bannerAdView:self.banner didFailWithError:error]);
 }
 
 - (void)testOguryAdsBannerSdkInitNotCalledError {
-    OguryAdError *error = [OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeLoad stackTrace:@""];
+    OguryAdError *error = [OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeLoad];
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdView:self.banner error:error]);
+    OCMVerify([self.delegate bannerAdView:self.banner didFailWithError:error]);
 }
 
 - (void)testOguryAdsBannerAnotherAdAlreadyDisplayedError {
@@ -93,7 +93,7 @@
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdView:self.banner error:error]);
+    OCMVerify([self.delegate bannerAdView:self.banner didFailWithError:error]);
 }
 
 - (void)testOguryAdsBannerCantShowAdsInPresentingViewControllerError {
@@ -101,7 +101,7 @@
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdView:self.banner error:error]);
+    OCMVerify([self.delegate bannerAdView:self.banner didFailWithError:error]);
 }
 
 - (void)testOguryAdsBannerAdExpiredError {
@@ -109,7 +109,7 @@
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdView:self.banner error:error]);
+    OCMVerify([self.delegate bannerAdView:self.banner didFailWithError:error]);
 }
 
 - (void)testOguryAdsBannerUnknownError {
@@ -117,19 +117,19 @@
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdView:self.banner error:error]);
+    OCMVerify([self.delegate bannerAdView:self.banner didFailWithError:error]);
 }
 
 - (void)testOguryAdsBannerAdClicked {
     [self.delegateDispatcher clicked];
 
-    OCMVerify([self.delegate didClickOguryBannerAdView:self.banner]);
+    OCMVerify([self.delegate bannerAdViewDidClick:self.banner]);
 }
 
 - (void)testShouldTriggerOnAdImpression {
     [self.delegateDispatcher adImpression];
 
-    OCMVerify([self.delegate didTriggerImpressionOguryBannerAdView:self.banner]);
+    OCMVerify([self.delegate bannerAdViewDidTriggerImpression:self.banner]);
 }
 
 @end

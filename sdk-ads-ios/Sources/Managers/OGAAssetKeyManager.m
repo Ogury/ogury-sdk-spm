@@ -94,7 +94,7 @@ NSString *const OGAssetKeyStoreKey = @"OGAssetKeyStoreKey";
 - (BOOL)checkAssetKeyIsValid:(OguryError *_Nullable *_Nullable)error type:(OguryAdErrorType)type {
     if (!self.assetKeyHasBeenSet) {
         if (error) {
-            *error = [OguryAdError sdkNotInitializedFrom:type stackTrace:@"AssetKey not found"];
+            *error = [OguryAdError sdkNotInitializedFrom:type];
         }
 
         [self.log log:OguryLogLevelError message:@"[setup] Asset key has not been set"];
@@ -104,7 +104,7 @@ NSString *const OGAssetKeyStoreKey = @"OGAssetKeyStoreKey";
 
     if (!self.assetKey || [self.assetKey isEqualToString:@""]) {
         if (error) {
-            *error = [OguryAdError sdkNotInitializedFrom:type stackTrace:@"invalid AssetKey"];
+            *error = [OguryAdError sdkNotProperlyInitializedFrom:type];
         }
         self.sdkState = OgurySDKStateError;
         return NO;

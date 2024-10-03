@@ -212,8 +212,7 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
 }
 
 #pragma mark - OguryBannerAdDelegate
-
-- (void)didLoadOguryBannerAdView:(OguryBannerAdView *)banner {
+- (void)bannerAdViewDidLoad:(OguryBannerAdView *)bannerAd {
     [self.delegateDispatcher loaded];
 
     // Banner must be shown as soon as it is loaded
@@ -222,19 +221,19 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
     }
 }
 
-- (void)didClickOguryBannerAdView:(OguryBannerAdView *)banner {
+- (void)bannerAdViewDidClick:(OguryBannerAdView *)bannerAd {
     [self.delegateDispatcher clicked];
 }
 
-- (void)didCloseOguryBannerAdView:(OguryBannerAdView *)banner {
+- (void)bannerAdViewDidClose:(OguryBannerAdView *)bannerAd {
     [self.delegateDispatcher closed];
 }
 
-- (void)didFailOguryBannerAdView:(OguryBannerAdView *)banner error:(OguryAdError *)error {
+- (void)bannerAdView:(OguryBannerAdView *)bannerAd didFailWithError:(OguryAdError *)error {
     [self.delegateDispatcher failedWithError:error];
 }
 
-- (void)didTriggerImpressionOguryBannerAdView:(OguryBannerAdView *)banner {
+- (void)bannerAdViewDidTriggerImpression:(OguryBannerAdView *)bannerAd {
     [self.delegateDispatcher adImpression];
 }
 

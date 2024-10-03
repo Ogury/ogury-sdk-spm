@@ -42,7 +42,7 @@
 		43788F3C2B5FBA360041A9C1 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3B2B5FBA360041A9C1 /* Font+Extension.swift */; };
 		438ED3C72AA0C2BA00486AF2 /* ThumbnailAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3AF2AA0C2B900486AF2 /* ThumbnailAdManager.swift */; };
 		438ED3C82AA0C2BA00486AF2 /* InterstitialAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B02AA0C2B900486AF2 /* InterstitialAdManager.swift */; };
-		438ED3CA2AA0C2BA00486AF2 /* OptInAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B22AA0C2B900486AF2 /* OptInAdManager.swift */; };
+		438ED3CA2AA0C2BA00486AF2 /* RewardedAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B22AA0C2B900486AF2 /* RewardedAdManager.swift */; };
 		438ED3CB2AA0C2BA00486AF2 /* AdDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B32AA0C2B900486AF2 /* AdDelegateProxy.swift */; };
 		438ED3CC2AA0C2BA00486AF2 /* AdManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B42AA0C2BA00486AF2 /* AdManagerDelegate.swift */; };
 		438ED3CD2AA0C2BA00486AF2 /* OguryErrorConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B62AA0C2BA00486AF2 /* OguryErrorConvertible.swift */; };
@@ -71,7 +71,7 @@
 		43BCB16A2C22FBF0002FB0B1 /* AdActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C12AA0C2BA00486AF2 /* AdActionBar.swift */; };
 		43BCB16B2C22FBF0002FB0B1 /* BannerAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127F2AB888D900766D99 /* BannerAdManager.swift */; };
 		43BCB16C2C22FBF0002FB0B1 /* AdViewFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C52AA0C2BA00486AF2 /* AdViewFeature.swift */; };
-		43BCB16D2C22FBF0002FB0B1 /* OptInAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B22AA0C2B900486AF2 /* OptInAdManager.swift */; };
+		43BCB16D2C22FBF0002FB0B1 /* RewardedAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B22AA0C2B900486AF2 /* RewardedAdManager.swift */; };
 		43BCB16E2C22FBF0002FB0B1 /* DTFairBidHeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */; };
 		43BCB16F2C22FBF0002FB0B1 /* MaxHeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F851A2AD534A5005077F5 /* MaxHeaderBidable.swift */; };
 		43BCB1702C22FBF0002FB0B1 /* RewardedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84962AC1AF9B005077F5 /* RewardedView.swift */; };
@@ -154,7 +154,7 @@
 		43788F3D2B5FBB260041A9C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		438ED3AF2AA0C2B900486AF2 /* ThumbnailAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailAdManager.swift; sourceTree = "<group>"; };
 		438ED3B02AA0C2B900486AF2 /* InterstitialAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterstitialAdManager.swift; sourceTree = "<group>"; };
-		438ED3B22AA0C2B900486AF2 /* OptInAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptInAdManager.swift; sourceTree = "<group>"; };
+		438ED3B22AA0C2B900486AF2 /* RewardedAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardedAdManager.swift; sourceTree = "<group>"; };
 		438ED3B32AA0C2B900486AF2 /* AdDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdDelegateProxy.swift; sourceTree = "<group>"; };
 		438ED3B42AA0C2BA00486AF2 /* AdManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdManagerDelegate.swift; sourceTree = "<group>"; };
 		438ED3B62AA0C2BA00486AF2 /* OguryErrorConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OguryErrorConvertible.swift; sourceTree = "<group>"; };
@@ -361,7 +361,7 @@
 				438ED3B32AA0C2B900486AF2 /* AdDelegateProxy.swift */,
 				43DA127F2AB888D900766D99 /* BannerAdManager.swift */,
 				438ED3B02AA0C2B900486AF2 /* InterstitialAdManager.swift */,
-				438ED3B22AA0C2B900486AF2 /* OptInAdManager.swift */,
+				438ED3B22AA0C2B900486AF2 /* RewardedAdManager.swift */,
 				438ED3AF2AA0C2B900486AF2 /* ThumbnailAdManager.swift */,
 			);
 			path = "Dedicated Managers";
@@ -693,7 +693,7 @@
 				438ED3D42AA0C2BA00486AF2 /* AdActionBar.swift in Sources */,
 				43DA12802AB888D900766D99 /* BannerAdManager.swift in Sources */,
 				438ED3D72AA0C2BA00486AF2 /* AdViewFeature.swift in Sources */,
-				438ED3CA2AA0C2BA00486AF2 /* OptInAdManager.swift in Sources */,
+				438ED3CA2AA0C2BA00486AF2 /* RewardedAdManager.swift in Sources */,
 				1E373D562BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift in Sources */,
 				434F851B2AD534A5005077F5 /* MaxHeaderBidable.swift in Sources */,
 				434F84982AC1AF9B005077F5 /* RewardedView.swift in Sources */,
@@ -749,7 +749,7 @@
 				43BCB16A2C22FBF0002FB0B1 /* AdActionBar.swift in Sources */,
 				43BCB16B2C22FBF0002FB0B1 /* BannerAdManager.swift in Sources */,
 				43BCB16C2C22FBF0002FB0B1 /* AdViewFeature.swift in Sources */,
-				43BCB16D2C22FBF0002FB0B1 /* OptInAdManager.swift in Sources */,
+				43BCB16D2C22FBF0002FB0B1 /* RewardedAdManager.swift in Sources */,
 				43BCB16E2C22FBF0002FB0B1 /* DTFairBidHeaderBidable.swift in Sources */,
 				43BCB16F2C22FBF0002FB0B1 /* MaxHeaderBidable.swift in Sources */,
 				43BCB1702C22FBF0002FB0B1 /* RewardedView.swift in Sources */,

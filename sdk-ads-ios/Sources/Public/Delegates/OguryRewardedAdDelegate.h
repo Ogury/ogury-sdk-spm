@@ -12,12 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol OguryRewardedAdDelegate <NSObject>
 @optional
-- (void)didLoadOguryRewardedAd:(OguryRewardedAd *)rewardedAd;
-- (void)didClickOguryRewardedAd:(OguryRewardedAd *)rewardedAd;
-- (void)didCloseOguryRewardedAd:(OguryRewardedAd *)rewardedAd;
-- (void)didRewardOguryRewardedAdWithItem:(OguryRewardItem *)item forAd:(OguryRewardedAd *)rewardedAd;
-- (void)didFailOguryRewardedAd:(OguryRewardedAd *)rewardedAd error:(OguryAdError *)error;
-- (void)didTriggerImpressionOguryRewardedAd:(OguryRewardedAd *)rewardedAd;
+- (void)rewardedAdDidLoad:(OguryRewardedAd *)rewardedAd NS_SWIFT_NAME(rewardedAdDidLoad(_:));
+- (void)rewardedAdDidClick:(OguryRewardedAd *)rewardedAd NS_SWIFT_NAME(rewardedAdDidClick(_:));
+- (void)rewardedAdDidClose:(OguryRewardedAd *)rewardedAd NS_SWIFT_NAME(rewardedAdDidClose(_:));
+- (void)rewardedAd:(OguryRewardedAd *)rewardedAd didReceiveReward:(OguryRewardItem *)item NS_SWIFT_NAME(rewardedAd(_:didReceive:));
+- (void)rewardedAd:(OguryRewardedAd *)rewardedAd didFailWithError:(OguryAdError *)error NS_SWIFT_NAME(rewardedAd(_:didFailWithError:));
+- (void)rewardedAdDidTriggerImpression:(OguryRewardedAd *)rewardedAd NS_SWIFT_NAME(rewardedAdDidTriggerImpression(_:));
 @end
 
 NS_ASSUME_NONNULL_END
