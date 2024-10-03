@@ -35,9 +35,10 @@ DerivedData/
 # We recommend against adding the Pods directory to your .gitignore. However
 # you should judge for yourself, the pros and cons are mentioned at:
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-#
-# Pods/
-#
+Pods/
+podfile
+podfile.lock
+
 # Add this line if you want to avoid checking in source code from the Xcode workspace
 # *.xcworkspace
 
@@ -59,6 +60,7 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+jenkins/**
 
 # Code Injection
 #
@@ -66,3 +68,13 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+
+fastlane/.DS_Store
+
+.DS_Store
+
+OgurySdks.xcworkspace/xcshareddata/swiftpm/Package.resolved
+
+sdk-ads-ios/AdsCardLibrary/AdsCardLibrary.xcodeproj/MockingbirdCache/AdsCardLibrary-AdsCardLibraryTests.lock
+
+sdk-ads-ios/AdsCardLibrary/AdsCardLibrary.xcodeproj/MockingbirdCache/AdsCardLibraryTests-AdsCardLibraryTests.lock

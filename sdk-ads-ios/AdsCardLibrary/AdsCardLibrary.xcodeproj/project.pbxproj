@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12E481270B7DBDC9D9DC6980 /* Pods_AdsCardLibrary_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EBD10A0783A9C4D4A62AFFB /* Pods_AdsCardLibrary_art.framework */; };
 		1E373D562BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */; };
 		1E373D612BFCF7CA00E2EF25 /* BTFairBidRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */; };
 		1E8256442B2380B4001DFBA4 /* AdsCardLibrary.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 1E8256432B2380B4001DFBA4 /* AdsCardLibrary.xctestplan */; };
@@ -104,9 +105,6 @@
 		43DA127D2AB888D300766D99 /* AdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127A2AB888D300766D99 /* AdBannerView.swift */; };
 		43DA127E2AB888D300766D99 /* BannerPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */; };
 		43DA12802AB888D900766D99 /* BannerAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127F2AB888D900766D99 /* BannerAdManager.swift */; };
-		7F385E25C7DBDC9D529417A9 /* Pods_AdsCardLibrary_Release.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E6B6490D55C3C0FEDB34FF7 /* Pods_AdsCardLibrary_Release.framework */; };
-		8953E489A7F8331EA044BBF1 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
-		F742226A354C28BA8DB140A7 /* Pods_AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E39D208810A6569411ED157A /* Pods_AdsCardLibrary.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +114,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 435C55DE2A42EAEF004186FF;
 			remoteInfo = AdsCardLibrary;
+		};
+		436C917A2C5BB4E600114555 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 436C91762C5BB4E600114555 /* LegacyTestApp.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C9A5E770241A51660093E79B;
+			remoteInfo = LegacyTestApp;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -137,6 +142,8 @@
 		1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTFairBidHeaderBidable.swift; sourceTree = "<group>"; };
 		1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTFairBidRetriever.swift; sourceTree = "<group>"; };
 		1E8256432B2380B4001DFBA4 /* AdsCardLibrary.xctestplan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AdsCardLibrary.xctestplan; sourceTree = "<group>"; };
+		26C0AEAF1B91EB6AA20B7E18 /* Pods-AdsCardLibrary-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-art.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-art/Pods-AdsCardLibrary-art.debug.xcconfig"; sourceTree = "<group>"; };
+		2EBD10A0783A9C4D4A62AFFB /* Pods_AdsCardLibrary_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsCardLibrary_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		430B6F022A65377900A6EFA4 /* OptinVideoAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptinVideoAdManagerTests.swift; sourceTree = "<group>"; };
 		431441182A6539780067AD47 /* ThumbnailAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailAdManagerTests.swift; sourceTree = "<group>"; };
 		4314411A2A653B060067AD47 /* BannerAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdManagerTests.swift; sourceTree = "<group>"; };
@@ -158,6 +165,7 @@
 		435C55FC2A42F451004186FF /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OMSDK_Ogury.xcframework; path = ../OMSDK_Ogury.xcframework; sourceTree = "<absolute>"; };
 		435F7BCE2A601F990077843A /* InterstitialAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdManagerTests.swift; sourceTree = "<group>"; };
+		436C91762C5BB4E600114555 /* LegacyTestApp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LegacyTestApp.xcodeproj; path = ../LegacyTestApp/LegacyTestApp.xcodeproj; sourceTree = "<group>"; };
 		436E97262A6A7BC30074E922 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43788F282B5FB7980041A9C1 /* AdsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsTextField.swift; sourceTree = "<group>"; };
 		43788F2B2B5FBA1A0041A9C1 /* PPTelegraf-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PPTelegraf-Semibold.ttf"; sourceTree = "<group>"; };
@@ -191,11 +199,8 @@
 		43DA127A2AB888D300766D99 /* AdBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdBannerView.swift; sourceTree = "<group>"; };
 		43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerPlaceholderView.swift; sourceTree = "<group>"; };
 		43DA127F2AB888D900766D99 /* BannerAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdManager.swift; sourceTree = "<group>"; };
-		6A11D6CA90315458587BADB3 /* Pods-AdsCardLibrary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary/Pods-AdsCardLibrary.debug.xcconfig"; sourceTree = "<group>"; };
-		8E6B6490D55C3C0FEDB34FF7 /* Pods_AdsCardLibrary_Release.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsCardLibrary_Release.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93E41BC933C7C059FD62B2FB /* Pods-AdsCardLibrary-Release.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-Release.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-Release/Pods-AdsCardLibrary-Release.debug.xcconfig"; sourceTree = "<group>"; };
-		E39D208810A6569411ED157A /* Pods_AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7AFA38E59DDD72885696215 /* Pods-AdsCardLibrary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary/Pods-AdsCardLibrary.release.xcconfig"; sourceTree = "<group>"; };
+		B53EB2B505F1F4CEAAD6AC64 /* Pods-AdsCardLibrary-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-art.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-art/Pods-AdsCardLibrary-art.release.xcconfig"; sourceTree = "<group>"; };
 		FD61C3C1BAEA09E61B64842E /* Pods-AdsCardLibrary-Release.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-Release.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-Release/Pods-AdsCardLibrary-Release.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -208,8 +213,6 @@
 				43AE68042AAB25B1002E7C46 /* OguryAds.framework in Frameworks */,
 				43A9F4A52C37E7800085EF6F /* OguryCore.framework in Frameworks */,
 				435F7BCA2A5EE3970077843A /* ComposableArchitecture in Frameworks */,
-				8953E489A7F8331EA044BBF1 /* (null) in Frameworks */,
-				F742226A354C28BA8DB140A7 /* Pods_AdsCardLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,7 +232,7 @@
 			files = (
 				43BCB1832C22FBF0002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43BCB1852C22FBF0002FB0B1 /* ComposableArchitecture in Frameworks */,
-				7F385E25C7DBDC9D529417A9 /* Pods_AdsCardLibrary_Release.framework in Frameworks */,
+				12E481270B7DBDC9D9DC6980 /* Pods_AdsCardLibrary_art.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +278,7 @@
 		435C55D52A42EAEF004186FF = {
 			isa = PBXGroup;
 			children = (
+				436C91762C5BB4E600114555 /* LegacyTestApp.xcodeproj */,
 				435C55E12A42EAEF004186FF /* AdsCardLibrary */,
 				435C55ED2A42EAEF004186FF /* AdsCardLibraryTests */,
 				435C55E02A42EAEF004186FF /* Products */,
@@ -326,8 +330,7 @@
 				438ED4392AA8565800486AF2 /* OguryAds.framework */,
 				435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */,
 				435C55FC2A42F451004186FF /* OguryAds.framework */,
-				8E6B6490D55C3C0FEDB34FF7 /* Pods_AdsCardLibrary_Release.framework */,
-				E39D208810A6569411ED157A /* Pods_AdsCardLibrary.framework */,
+				2EBD10A0783A9C4D4A62AFFB /* Pods_AdsCardLibrary_art.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -353,6 +356,14 @@
 				1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */,
 			);
 			path = AdManager;
+			sourceTree = "<group>";
+		};
+		436C91772C5BB4E600114555 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				436C917B2C5BB4E600114555 /* OguryTestApp.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		43788F272B5FB77A0041A9C1 /* TextFields */ = {
@@ -481,10 +492,10 @@
 		A85F5428F6AAA851ED4CCD45 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6A11D6CA90315458587BADB3 /* Pods-AdsCardLibrary.debug.xcconfig */,
-				E7AFA38E59DDD72885696215 /* Pods-AdsCardLibrary.release.xcconfig */,
 				93E41BC933C7C059FD62B2FB /* Pods-AdsCardLibrary-Release.debug.xcconfig */,
 				FD61C3C1BAEA09E61B64842E /* Pods-AdsCardLibrary-Release.release.xcconfig */,
+				26C0AEAF1B91EB6AA20B7E18 /* Pods-AdsCardLibrary-art.debug.xcconfig */,
+				B53EB2B505F1F4CEAAD6AC64 /* Pods-AdsCardLibrary-art.release.xcconfig */,
 			);
 			name = Pods;
 			path = ../Pods;
@@ -516,7 +527,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 435C55F32A42EAEF004186FF /* Build configuration list for PBXNativeTarget "AdsCardLibrary" */;
 			buildPhases = (
-				0E95E17B9138A2F04EEBA73F /* [CP] Check Pods Manifest.lock */,
 				435C55DA2A42EAEF004186FF /* Headers */,
 				435C55DB2A42EAEF004186FF /* Sources */,
 				435C55DC2A42EAEF004186FF /* Frameworks */,
@@ -558,9 +568,9 @@
 			productReference = 435C55E92A42EAEF004186FF /* AdsCardLibraryTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		43BCB15C2C22FBF0002FB0B1 /* AdsCardLibrary-Release */ = {
+		43BCB15C2C22FBF0002FB0B1 /* AdsCardLibrary-art */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43BCB18E2C22FBF0002FB0B1 /* Build configuration list for PBXNativeTarget "AdsCardLibrary-Release" */;
+			buildConfigurationList = 43BCB18E2C22FBF0002FB0B1 /* Build configuration list for PBXNativeTarget "AdsCardLibrary-art" */;
 			buildPhases = (
 				43BCB15F2C22FBF0002FB0B1 /* [CP] Check Pods Manifest.lock */,
 				43BCB1602C22FBF0002FB0B1 /* Headers */,
@@ -572,7 +582,7 @@
 			);
 			dependencies = (
 			);
-			name = "AdsCardLibrary-Release";
+			name = "AdsCardLibrary-art";
 			packageProductDependencies = (
 				43BCB15D2C22FBF0002FB0B1 /* ComposableArchitecture */,
 			);
@@ -614,14 +624,30 @@
 			);
 			productRefGroup = 435C55E02A42EAEF004186FF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 436C91772C5BB4E600114555 /* Products */;
+					ProjectRef = 436C91762C5BB4E600114555 /* LegacyTestApp.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				435C55DE2A42EAEF004186FF /* AdsCardLibrary */,
-				43BCB15C2C22FBF0002FB0B1 /* AdsCardLibrary-Release */,
+				43BCB15C2C22FBF0002FB0B1 /* AdsCardLibrary-art */,
 				435C55E82A42EAEF004186FF /* AdsCardLibraryTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		436C917B2C5BB4E600114555 /* OguryTestApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = OguryTestApp.app;
+			remoteRef = 436C917A2C5BB4E600114555 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		435C55DD2A42EAEF004186FF /* Resources */ = {
@@ -661,28 +687,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0E95E17B9138A2F04EEBA73F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AdsCardLibrary-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		43BCB15F2C22FBF0002FB0B1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -698,7 +702,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AdsCardLibrary-Release-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-AdsCardLibrary-art-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -952,7 +956,6 @@
 		};
 		435C55F42A42EAEF004186FF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A11D6CA90315458587BADB3 /* Pods-AdsCardLibrary.debug.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -995,7 +998,6 @@
 		};
 		435C55F52A42EAEF004186FF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E7AFA38E59DDD72885696215 /* Pods-AdsCardLibrary.release.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -1072,15 +1074,15 @@
 		};
 		43BCB18F2C22FBF0002FB0B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93E41BC933C7C059FD62B2FB /* Pods-AdsCardLibrary-Release.debug.xcconfig */;
+			baseConfigurationReference = 26C0AEAF1B91EB6AA20B7E18 /* Pods-AdsCardLibrary-art.debug.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1116,15 +1118,15 @@
 		};
 		43BCB1902C22FBF0002FB0B1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD61C3C1BAEA09E61B64842E /* Pods-AdsCardLibrary-Release.release.xcconfig */;
+			baseConfigurationReference = B53EB2B505F1F4CEAAD6AC64 /* Pods-AdsCardLibrary-art.release.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1188,7 +1190,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43BCB18E2C22FBF0002FB0B1 /* Build configuration list for PBXNativeTarget "AdsCardLibrary-Release" */ = {
+		43BCB18E2C22FBF0002FB0B1 /* Build configuration list for PBXNativeTarget "AdsCardLibrary-art" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43BCB18F2C22FBF0002FB0B1 /* Debug */,

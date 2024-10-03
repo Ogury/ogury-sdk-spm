@@ -1,0 +1,40 @@
+{
+  "name": "OgurySdk<%= framework_suffix %>",
+  "summary": "Ogury SDK",
+  "description": "Ogury SDK.",
+  "version": "<%= version %>",
+  "authors": {
+    "Ogury Ltd.": "contact-paris@ogury.co"
+  },
+  "homepage": "https://www.ogury.com",
+  "documentation_url": "https://docs.ogury.co/",
+  "social_media_url": "https://www.facebook.com/weareogury",
+  "license": {
+    "type": "COMMERCIAL",
+    "text": "\tCopyright (c) Ogury Ltd. All rights reserved.\n"
+  },
+  "platforms": {
+    "ios": "12.0"
+  },
+  "requires_arc": true,
+  "vendored_frameworks": ["OgurySdk.xcframework"],
+  "dependencies": {
+    "OguryCore<%= framework_suffix %>": [
+      "<%= ogury_core_version %>"
+    ]
+  },
+  "default_subspecs": ["OguryAds"],
+  "subspecs": [
+    {
+      "name": "OguryAds",
+      "dependencies": {
+        "OguryAds<%= framework_suffix %>": [
+          "<%= ogury_ads_version %>"
+        ]
+      }
+    }
+  ],
+  "source": {
+    "http": "<%= source_url %>"
+  }
+}

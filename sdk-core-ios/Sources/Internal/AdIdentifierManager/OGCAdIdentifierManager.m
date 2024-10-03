@@ -17,7 +17,6 @@
 @property (nonatomic, strong) OGCAdIdentifierPrivacyLayer *privacyLayer;
 @property (nonatomic, strong) OGCAdIdentifierDataLayer *dataLayer;
 @property (nonatomic, strong) OGCInstanceToken *instanceToken;
-@property (nonatomic, copy) NSString *consentToken;
 @property (nonatomic, strong) NSProcessInfo *processInfo;
 @property (nonatomic, strong) OGCLog *log;
 
@@ -36,7 +35,6 @@
 - (id)init {
     OGCAdIdentifierPrivacyLayer *privacyLayer = [[OGCAdIdentifierPrivacyLayer alloc] init];
     OGCAdIdentifierDataLayer *dataLayer = [[OGCAdIdentifierDataLayer alloc] init];
-
     return [self initWithPrivacyLayer:privacyLayer andDataLayer:dataLayer andProcessInfo:[NSProcessInfo processInfo] log:[OGCLog shared]];
 }
 
@@ -90,6 +88,18 @@
     return [self.privacyLayer vendorIdentifier];
 }
 
+- (NSString * _Nullable) retrieveGPPConsentString {
+   return [self.dataLayer getGPPConsentString];
+}
+
+- (NSString * _Nullable) retrieveGPPSID {
+   return [self.dataLayer getGPPSID];
+}
+
+- (NSString * _Nullable) retrieveTCFConsentString {
+   return [self.dataLayer getTCFConsentString];
+}
+
 - (NSString *)getInstanceToken {
     [NSKeyedUnarchiver setClass:[OGCInstanceToken class] forClassName:@"OGYInstanceToken"];
     OGCInstanceToken *storedInstanceToken = [NSKeyedUnarchiver unarchiveObjectWithData:[self.dataLayer getInstanceToken]];
@@ -102,21 +112,6 @@
     }
 }
 
-- (NSString *)getConsentToken {
-    NSString *storedConsentToken = [[NSString alloc] initWithData:[self.dataLayer getConsentToken] encoding:NSUTF8StringEncoding];
-
-    if (storedConsentToken && storedConsentToken.length > 0) {
-        return storedConsentToken;
-    }
-
-    // Generate and store a new consent token
-    self.consentToken = [self.privacyLayer generateToken];
-
-    [self.dataLayer storeConsentToken:[self.consentToken dataUsingEncoding:NSUTF8StringEncoding]];
-
-    return self.consentToken;
-}
-
 - (BOOL)isAdOptin {
     return ![self.privacyLayer isEmptyIDFA];
 }
@@ -126,10 +121,12 @@
     [self.log logMessage:OguryLogLevelDebug message:@"Update instance token"];
 }
 
-- (void)updateConsentToken {
-    self.consentToken = [self.privacyLayer generateToken];
-    [self.log logMessage:OguryLogLevelDebug message:@"Update consent token"];
+- (void)storePrivacyData:(id)value forKey:(NSString *)key {
+   [self.dataLayer storePrivacyData:value forKey:key];
 }
 
+- (NSDictionary<NSString *, id> *)retrieveDataPrivacy {
+   return [self.dataLayer retrieveDataPrivacy];
+}
 
 @end

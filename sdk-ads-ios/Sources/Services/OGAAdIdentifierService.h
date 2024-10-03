@@ -11,11 +11,15 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getAdIdentifier;
 + (NSString *)getVendorIdentifier;
 + (NSString *)getInstanceToken;
-+ (NSString *)getConsentToken;
 + (BOOL)isAdOptin;
 + (BOOL)isFakeAaid;
 + (NSString *)getUserAgent;
 + (void)updateInstanceToken;
+// GPP
++ (NSString *_Nullable)gppConsentString;
++ (NSString *_Nullable)gppSID;
++ (NSString *_Nullable)tcfConsentString;
++ (NSDictionary<NSString *, id> *)privacyDatas;
 
 @end
 

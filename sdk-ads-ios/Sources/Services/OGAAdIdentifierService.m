@@ -23,10 +23,6 @@
     return [[OGCInternal shared] getInstanceToken];
 }
 
-+ (NSString *)getConsentToken {
-    return [[OGCInternal shared] getConsentToken];
-}
-
 + (BOOL)isAdOptin {
     return [[OGCInternal shared] isAdOptin];
 }
@@ -42,6 +38,22 @@
 + (NSString *)getUserAgent {
     NSString *systemVersion = UIDevice.currentDevice.systemVersion;
     return [NSString stringWithFormat:@"%@/%@/%@", OGA_SDK_VERSION, OGAAssetKeyManager.shared.assetKey, systemVersion];
+}
+// GPP
++ (NSString *_Nullable)gppConsentString {
+    return [[OGCInternal shared] gppConsentString];
+}
+
++ (NSString *_Nullable)gppSID {
+    return [[OGCInternal shared] gppSID];
+}
+
++ (NSString *_Nullable)tcfConsentString {
+    return [[OGCInternal shared] tcfConsentString];
+}
+
++ (NSDictionary<NSString *, id> *)privacyDatas {
+    return [[OGCInternal shared] retrieveDataPrivacy];
 }
 
 @end

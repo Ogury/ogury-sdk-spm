@@ -14,7 +14,7 @@
 @implementation OGWModule
 
 NSString *const OGWModuleSharedSelector = @"shared";
-NSString *const OGWModuleStartWithAssetKeySelector = @"startWithAssetKey:persistentEventBus:broadcastEventBus:";
+NSString *const OGWModuleStartWithAssetKeySelector = @"startWithAssetKey:";
 NSString *const OGWModuleSetLogLevelSelector = @"setLogLevel:";
 NSString *const OGWModuleGetVersionSelector = @"getVersion";
 
@@ -50,9 +50,7 @@ NSString *const OGWModuleGetVersionSelector = @"getVersion";
    }
 }
 
-- (void)startWithAssetKey:(NSString *)assetKey
-       persistentEventBus:(OguryPersistentEventBus *)persistentEventBus
-        broadcastEventBus:(OguryEventBus *)broadcastEventBus {
+- (void)startWithAssetKey:(NSString *)assetKey {
    SEL startWithAssetKeySelector = NSSelectorFromString(OGWModuleStartWithAssetKeySelector);
    if ([self.module respondsToSelector:startWithAssetKeySelector]) {
       [[OGWLog shared] logAssetKeyFormat:OguryLogLevelDebug assetKey:assetKey format:@"performing selector %@-%@-%@", self.className, OGWModuleSharedSelector, OGWModuleStartWithAssetKeySelector];
@@ -63,8 +61,6 @@ NSString *const OGWModuleGetVersionSelector = @"getVersion";
       [invocation setSelector:startWithAssetKeySelector];
       [invocation setTarget:self.module];
       [invocation setArgument:&assetKey atIndex:2];
-      [invocation setArgument:&persistentEventBus atIndex:3];
-      [invocation setArgument:&broadcastEventBus atIndex:4];
       [invocation invoke];
    }
 }

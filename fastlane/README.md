@@ -13,10 +13,42 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
+### prepare_for_deployment
+
+```sh
+[bundle exec] fastlane prepare_for_deployment
+```
+
+
+
+### prepare_core_for_deployment
+
+```sh
+[bundle exec] fastlane prepare_core_for_deployment
+```
+
+
+
 ### prepare_ads_for_deployment
 
 ```sh
 [bundle exec] fastlane prepare_ads_for_deployment
+```
+
+
+
+### prepare_adsLibrary_for_deployment
+
+```sh
+[bundle exec] fastlane prepare_adsLibrary_for_deployment
+```
+
+
+
+### prepare_wrapper_for_deployment
+
+```sh
+[bundle exec] fastlane prepare_wrapper_for_deployment
 ```
 
 
@@ -34,14 +66,6 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
-### ios deploy_ads_framework
-
-```sh
-[bundle exec] fastlane ios deploy_ads_framework
-```
-
-Proceed to deploy a new version of a framewok passed as parameter for the specified environment
-
 ### ios update_internal_cocoapods
 
 ```sh
@@ -57,6 +81,94 @@ Install cocoapods internal repository for environment and update it.
 ```
 
 Generates a new Podilfe based on the environment and the configuration file
+
+### ios test
+
+```sh
+[bundle exec] fastlane ios test
+```
+
+test framework for different SDKs
+
+### ios deploy_frameworks
+
+```sh
+[bundle exec] fastlane ios deploy_frameworks
+```
+
+
+
+### ios deploy_core_framework
+
+```sh
+[bundle exec] fastlane ios deploy_core_framework
+```
+
+Proceed to deploy a new version of a framewok passed as parameter for the specified environment
+
+### ios deploy_ads_framework
+
+```sh
+[bundle exec] fastlane ios deploy_ads_framework
+```
+
+Proceed to deploy a new version of a framewok passed as parameter for the specified environment
+
+### ios deploy_adsLibrary_framework
+
+```sh
+[bundle exec] fastlane ios deploy_adsLibrary_framework
+```
+
+Proceed to deploy a new version of a framewok passed as parameter for the specified environment
+
+### ios deploy_wrapper_framework
+
+```sh
+[bundle exec] fastlane ios deploy_wrapper_framework
+```
+
+Proceed to deploy a new version of a framewok passed as parameter for the specified environment
+
+### ios generate_test_app
+
+```sh
+[bundle exec] fastlane ios generate_test_app
+```
+
+Proceed to deploy a new version of a framewok passed as parameter for the specified environment
+
+### ios deploy_podspec
+
+```sh
+[bundle exec] fastlane ios deploy_podspec
+```
+
+Proceed to deploy a new version of the framewok for the specified environment
+
+### ios deploy_core_podspec
+
+```sh
+[bundle exec] fastlane ios deploy_core_podspec
+```
+
+Proceed to deploy a new version of the core framewok for the specified environment
+
+### ios deploy_ads_podspec
+
+```sh
+[bundle exec] fastlane ios deploy_ads_podspec
+```
+
+Proceed to deploy a new version of the ads framewok for the specified environment
+
+### ios deploy_wrapper_podspec
+
+```sh
+[bundle exec] fastlane ios deploy_wrapper_podspec
+```
+
+Proceed to deploy a new version of the ads framewok for the specified environment
 
 ----
 

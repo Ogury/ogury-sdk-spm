@@ -5,7 +5,6 @@
 #import <Foundation/Foundation.h>
 #import "OGAProfigService.h"
 
-@class OGABroadcastEventBus;
 @class OGAAdPrivacyConfiguration;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -15,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - properties
 
 @property(nonatomic, copy) NSString *currentUserAgent;
-@property(nonatomic, strong) OGABroadcastEventBus *broadcastEventBus;
 
 #pragma mark - Class methods
 
@@ -27,7 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)syncProfigWithCompletion:(ProfigCompletionBlock)completion;
 - (BOOL)profigParametersWereUpdated;
 - (BOOL)shouldSync;
-- (void)registerToBroadcastEventBus;
 - (OGAAdPrivacyConfiguration *_Nonnull)currentPrivacyConfiguration;
 
 @end

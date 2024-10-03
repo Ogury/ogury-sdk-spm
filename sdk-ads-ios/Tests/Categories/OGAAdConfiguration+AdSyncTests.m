@@ -39,6 +39,10 @@
 - (NSInteger)secondsFromGMT;
 - (NSLocale *)locale;
 - (NSString *)requestId;
+- (NSString *)gppConsentString;
+- (NSString *)gppSidConsentString;
+- (NSString *)tcfConsentString;
+- (NSDictionary<NSString *, NSString *> *)privacyDatas;
 
 @end
 
@@ -210,7 +214,6 @@ static NSString *const DefaultUserID = @"User";
     OCMStub(OCMClassMethod([adIdentifierService getInstanceToken])).andReturn(@"XXXXX-XXXX-XXXXX-XX-XXX-XXXXX");
     OCMStub(OCMClassMethod([adIdentifierService getAdIdentifier])).andReturn(@"XXXX-XXXXX-XX-XXX-XXXXX");
     OCMStub(OCMClassMethod([adIdentifierService getVendorIdentifier])).andReturn(@"XXXXX-XX-XXX-XXXXX");
-    OCMStub(OCMClassMethod([adIdentifierService getConsentToken])).andReturn(@"XXXXX-XX-XXXXXX-XXXXX");
     OCMStub(OCMClassMethod([adIdentifierService isAdOptin])).andReturn(YES);
     OCMStub([configuration sdkVersion]).andReturn(@"1.2.3.4.5");
     id deviceMock = OCMClassMock([OGADevice class]);
@@ -301,8 +304,6 @@ static NSString *const DefaultUserID = @"User";
     XCTAssertEqualObjects(payload[@"device"][@"network"][@"mobile_country"], @"FR");
     // webview user agent
     XCTAssertEqualObjects(payload[@"device"][@"webview"][@"user_agent"], @"USER_AGENT");
-    // privacy_compliancy
-    XCTAssertEqualObjects(payload[@"privacy_compliancy"][@"consent_token"], @"XXXXX-XX-XXXXXX-XXXXX");
     // ad_sync
     XCTAssertEqualObjects(payload[@"ad_sync"][@"name"], @"overlay_thumbnail");
     XCTAssertEqualObjects(payload[@"ad_sync"][@"type"], @"load");
@@ -525,6 +526,36 @@ static NSString *const DefaultUserID = @"User";
     NSString *requestId = payload[@"request_id"];
     NSString *requestId2 = payload2[@"request_id"];
     XCTAssertFalse([requestId isEqualToString:requestId2]);
+}
+
+- (void)testWhenRetrievingGPPDataThenAllDataIsSetCorrectly {
+    OGAAdConfiguration *configuration = [self fullyMockedConfiguration];
+    OCMStub([configuration gppConsentString]).andReturn(@"gppConsentString");
+    OCMStub([configuration gppSidConsentString]).andReturn(@"gppSidConsentString");
+    OCMStub([configuration tcfConsentString]).andReturn(@"tcfConsentString");
+    NSDictionary *privacyDatas = @{@"us_optout" : @(YES), @"customKey" : @"customValue"};
+    OCMStub([configuration privacyDatas]).andReturn(privacyDatas);
+    OGAProfigDao *dao = OCMPartialMock([[OGAProfigDao alloc] init]);
+    OGAProfigFullResponse *profig = OCMClassMock([OGAProfigFullResponse class]);
+    OGAAdPrivacyConfiguration *privacy = OCMClassMock([OGAAdPrivacyConfiguration class]);
+    OCMStub([dao profigFullResponse]).andReturn(profig);
+    OGAWebViewUserAgentService *userAgentService = OCMClassMock([OGAWebViewUserAgentService class]);
+    OCMStub([userAgentService webViewUserAgent]).andReturn(@"Mozilla/5.0");
+    NSDictionary *payload = [configuration payloadForAdSyncWithAssetKeyManager:self.assetKeyManager
+                                                                  reachability:self.reachability
+                                                             profigPersistence:dao
+                                                        isOmidFrameworkPresent:YES
+                                                              userAgentService:userAgentService];
+    XCTAssertNotNil(payload[@"privacy_compliancy"][@"tcf"]);
+    XCTAssertNotNil(payload[@"privacy_compliancy"][@"gpp"]);
+    XCTAssertNotNil(payload[@"privacy_compliancy"][@"gpp_sid"]);
+    XCTAssertNotNil(payload[@"privacy_compliancy"][@"publisher_data"][@"us_optout"]);
+    XCTAssertNotNil(payload[@"privacy_compliancy"][@"publisher_data"][@"customKey"]);
+    XCTAssertEqualObjects(payload[@"privacy_compliancy"][@"tcf"], @"tcfConsentString");
+    XCTAssertEqualObjects(payload[@"privacy_compliancy"][@"gpp"], @"gppConsentString");
+    XCTAssertEqualObjects(payload[@"privacy_compliancy"][@"gpp_sid"], @"gppSidConsentString");
+    XCTAssertTrue(payload[@"privacy_compliancy"][@"publisher_data"][@"us_optout"]);
+    XCTAssertEqualObjects(payload[@"privacy_compliancy"][@"publisher_data"][@"customKey"], @"customValue");
 }
 
 @end
