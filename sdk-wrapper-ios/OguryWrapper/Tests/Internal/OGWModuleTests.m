@@ -29,12 +29,12 @@
    XCTAssertEqual(OGWModuleClassMock.shared.storedLogLevel, OguryLogLevelDebug);  // expected
 }
 
-- (void)testStartWithAssetKeyAndCompletionHandler {
+- (void)testStartWithAndCompletionHandler {
     OGWModule *module = OCMPartialMock([[OGWModule alloc] initWithClassName:@"OGWModuleClassMock"]);
     NSString *assetKey = @"test";
     XCTAssertNil(OGWModuleClassMock.shared.storedAssetKey);
     XCTestExpectation *expectation = [self expectationWithDescription:@"Completion handler called"];
-    [module startWithAssetKey:assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
+    [module startWith:assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
         XCTAssertTrue(success);
         XCTAssertNil(error);
         [expectation fulfill];

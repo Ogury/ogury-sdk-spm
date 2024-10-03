@@ -4,9 +4,9 @@
 
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
-#import "OguryBannerAdDelegateDispatcher.h"
-#import "OGABannerAdInternalAPI.h"
-#import "OguryBannerAd.h"
+#import "OguryBannerAdViewDelegateDispatcher.h"
+#import "OGABannerAdViewInternalAPI.h"
+#import "OguryBannerAdView.h"
 #import "OguryBannerAd+Testing.h"
 #import "OguryAdsBannerSize.h"
 
@@ -14,9 +14,9 @@
 
 #pragma mark - Properties
 
-@property(nonatomic, strong) OguryBannerAdDelegateDispatcher *delegateDispatcher;
-@property(nonatomic, strong) OGABannerAdInternalAPI *internalAPI;
-@property(nonatomic, strong) OguryBannerAd *banner;
+@property(nonatomic, strong) OguryBannerAdViewDelegateDispatcher *delegateDispatcher;
+@property(nonatomic, strong) OGABannerAdViewInternalAPI *internalAPI;
+@property(nonatomic, strong) OguryBannerAdView *banner;
 
 @end
 
@@ -34,14 +34,14 @@ static NSString *const TestDelegate = @"DELEGATE";
 #pragma mark - Methods
 
 - (void)setUp {
-    self.delegateDispatcher = OCMClassMock([OguryBannerAdDelegateDispatcher class]);
-    self.internalAPI = OCMClassMock([OGABannerAdInternalAPI class]);
+    self.delegateDispatcher = OCMClassMock([OguryBannerAdViewDelegateDispatcher class]);
+    self.internalAPI = OCMClassMock([OGABannerAdViewInternalAPI class]);
     OCMStub([self.internalAPI delegateDispatcher]).andReturn(self.delegateDispatcher);
-    self.banner = [[OguryBannerAd alloc] initWithInternalAPI:self.internalAPI];
+    self.banner = [[OguryBannerAdView alloc] initWithInternalAPI:self.internalAPI];
 }
 
 - (void)testShouldInstantiateWithAdUnitId {
-    OguryBannerAd *banner = [[OguryBannerAd alloc] initWithAdUnitId:TestAdUnitId size:OguryAdsBannerSize.mrec_300x250];
+    OguryBannerAdView *banner = [[OguryBannerAdView alloc] initWithAdUnitId:TestAdUnitId size:OguryAdsBannerSize.mrec_300x250];
 
     XCTAssertNotNil(banner.adUnitId);
     XCTAssertNotNil(banner.delegateDispatcher);
@@ -151,9 +151,9 @@ static NSString *const TestDelegate = @"DELEGATE";
 
 - (void)testWhenCreatingAnAdWithMediationThenMediationIsSavedInInternalApi {
     OguryMediation *mediation = [[OguryMediation alloc] initWithName:@"name" version:@"version"];
-    OguryBannerAd *ad = [[OguryBannerAd alloc] initWithAdUnitId:@"adUnit"
-                                                           size:OguryAdsBannerSize.mrec_300x250
-                                                      mediation:mediation];
+    OguryBannerAdView *ad = [[OguryBannerAdView alloc] initWithAdUnitId:@"adUnit"
+                                                                   size:OguryAdsBannerSize.mrec_300x250
+                                                              mediation:mediation];
     XCTAssertEqualObjects(ad.internalAPI.configuration.mediation, mediation);
 }
 

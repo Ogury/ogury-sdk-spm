@@ -56,6 +56,6 @@ struct AdSdkLauncher {
     
     private func startModule(from moduleClass: String) {
         let module = InternalModule(className: moduleClass)
-        module.start(withAssetKey: assetKey)
+        module.start(with: assetKey)
     }
 }

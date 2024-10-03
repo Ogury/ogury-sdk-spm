@@ -3,21 +3,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <OguryCore/OguryError.h>
-#import "OguryAdsError.h"
+#import "OguryAdError.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class OguryBannerAd;
+@class OguryBannerAdView;
 
 @protocol OguryBannerAdDelegate <NSObject>
 @optional
-- (void)didLoadOguryBannerAd:(OguryBannerAd *)banner;
-- (void)didClickOguryBannerAd:(OguryBannerAd *)banner;
-- (void)didCloseOguryBannerAd:(OguryBannerAd *)banner;
-- (void)didFailOguryBannerAdWithError:(OguryError *)error forAd:(OguryBannerAd *)banner;
-- (void)didTriggerImpressionOguryBannerAd:(OguryBannerAd *)banner;
-- (UIViewController *_Nullable)presentingViewControllerForOguryAdsBannerAd:(OguryBannerAd *)banner;
+- (void)didLoadOguryBannerAdView:(OguryBannerAdView *)banner;
+- (void)didClickOguryBannerAdView:(OguryBannerAdView *)banner;
+- (void)didCloseOguryBannerAdView:(OguryBannerAdView *)banner;
+- (void)didFailOguryBannerAdView:(OguryBannerAdView *)banner error:(OguryAdError *)error;
+- (void)didTriggerImpressionOguryBannerAdView:(OguryBannerAdView *)banner;
+- (UIViewController *_Nullable)presentingViewControllerForOguryAdsBannerAdView:(OguryBannerAdView *)banner;
 @end
 
 NS_ASSUME_NONNULL_END

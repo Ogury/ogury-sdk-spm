@@ -13,12 +13,14 @@
 @property (nonatomic, strong) id mockOGWWrapper;
 @property (nonatomic, strong) id mockOGWLog;
 @property (nonatomic, strong) id mockOGCInternal;
+@property (nonatomic, strong) NSString *assetKey;
 
 @end
 
 @implementation OguryTests
 
 - (void)setUp {
+    self.assetKey = @"ASSET_KEY";
     self.mockOGWWrapper = OCMClassMock([OGWWrapper class]);
     OCMStub([self.mockOGWWrapper shared]).andReturn(self.mockOGWWrapper);
     self.mockOGWLog = OCMClassMock([OGWLog class]);
@@ -27,19 +29,17 @@
     OCMStub([self.mockOGCInternal shared]).andReturn(self.mockOGCInternal);
 }
 
-- (void)testStartWithConfiguration {
+- (void)testStartWith {
     id mockOgury = OCMClassMock([Ogury class]);
-    OguryConfiguration *mockConfiguration = OCMClassMock([OguryConfiguration class]);
-    OCMExpect([mockOgury startWithConfiguration:mockConfiguration completionHandler:nil]);
-    [Ogury startWithConfiguration:mockConfiguration];
+    OCMExpect([mockOgury startWith:self.assetKey completionHandler:nil]);
+    [Ogury startWith:self.assetKey];
     OCMVerifyAll(mockOgury);
 }
 
-- (void)testStartWithConfigurationCompletionHandler {
-    OguryConfiguration *mockConfiguration = OCMClassMock([OguryConfiguration class]);
-    SetupCompletionBlock mockCompletionHandler = ^(BOOL success, NSError *error) {};
-    OCMExpect([self.mockOGWWrapper startWithConfiguration:mockConfiguration completionHandler:mockCompletionHandler]);
-    [Ogury startWithConfiguration:mockConfiguration completionHandler:mockCompletionHandler];
+- (void)testStartWithCompletionHandler {
+    StartCompletionBlock mockCompletionHandler = ^(BOOL success, NSError *error) {};
+    OCMExpect([self.mockOGWWrapper startWith:self.assetKey completionHandler:mockCompletionHandler]);
+    [Ogury startWith:self.assetKey completionHandler:mockCompletionHandler];
     OCMVerifyAll(self.mockOGWWrapper);
 }
 
@@ -51,8 +51,8 @@
     OCMVerifyAll(self.mockOGWLog);
 }
 
-- (void)testGetSdkVersion {
-    XCTAssertEqual([Ogury getSdkVersion], SDK_VERSION);
+- (void)testSdkVersion {
+    XCTAssertEqual([Ogury sdkVersion], SDK_VERSION);
 }
 
 - (void)testRegisterAttributionForSKAdNetwork {
@@ -62,22 +62,22 @@
 }
 
 - (void)testStorePrivacyDataBoolean {
-    OCMExpect([self.mockOGCInternal storePrivacyData:@"key" boolean:true]);
-    [Ogury storePrivacyData:@"key" boolean:true];
+    OCMExpect([self.mockOGCInternal setPrivacyData:@"key" boolean:true]);
+    [Ogury setPrivacyData:@"key" boolean:true];
     OCMVerifyAll(self.mockOGCInternal);
 }
 
 - (void)testStorePrivacyDataInteger {
     NSInteger value = 10;
-    OCMExpect([self.mockOGCInternal storePrivacyData:@"key" integer:value]);
-    [Ogury storePrivacyData:@"key" integer:value];
+    OCMExpect([self.mockOGCInternal setPrivacyData:@"key" integer:value]);
+    [Ogury setPrivacyData:@"key" integer:value];
     OCMVerifyAll(self.mockOGCInternal);
 }
 
 - (void)testStorePrivacyDataString {
     NSString *value = @"value";
-    OCMExpect([self.mockOGCInternal storePrivacyData:@"key" string:value]);
-    [Ogury storePrivacyData:@"key" string:value];
+    OCMExpect([self.mockOGCInternal setPrivacyData:@"key" string:value]);
+    [Ogury setPrivacyData:@"key" string:value];
     OCMVerifyAll(self.mockOGCInternal);
 }
 

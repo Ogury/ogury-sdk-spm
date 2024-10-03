@@ -8,12 +8,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, OGWErrorCode) {
-    OGWErrorFailedStartingOguryModule = 1000,
-    OGWErrorNoSdkModuleFound = 1001
-};
-
-@interface OguryError(OGWWrapper)
+@interface OguryError (OGWWrapper)
 
 + (instancetype)createFailedStartingOguryModuleError:(NSString *)errorMessage;
 + (instancetype)createNoSDKModuleFoundError;

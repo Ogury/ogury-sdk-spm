@@ -3,10 +3,10 @@
 //
 
 #import "OGAAssetKeyManager.h"
-#import "OguryAdsError.h"
+#import "OguryAdError.h"
 #import "OGALog.h"
 #import "OGAUserDefaultsStore.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAAssetKeyManager ()
 
@@ -91,10 +91,10 @@ NSString *const OGAssetKeyStoreKey = @"OGAssetKeyStoreKey";
     self.sdkState = OgurySDKStateError;
 }
 
-- (BOOL)checkAssetKeyIsValid:(OguryError *_Nullable *_Nullable)error origin:(OguryInternalAdsErrorOrigin)origin {
+- (BOOL)checkAssetKeyIsValid:(OguryError *_Nullable *_Nullable)error type:(OguryAdErrorType)type {
     if (!self.assetKeyHasBeenSet) {
         if (error) {
-            *error = [OguryAdsError sdkNotInitializedFrom:origin stackTrace:@"AssetKey not found"];
+            *error = [OguryAdError sdkNotInitializedFrom:type stackTrace:@"AssetKey not found"];
         }
 
         [self.log log:OguryLogLevelError message:@"[setup] Asset key has not been set"];
@@ -104,7 +104,7 @@ NSString *const OGAssetKeyStoreKey = @"OGAssetKeyStoreKey";
 
     if (!self.assetKey || [self.assetKey isEqualToString:@""]) {
         if (error) {
-            *error = [OguryAdsError sdkNotInitializedFrom:origin stackTrace:@"invalid AssetKey"];
+            *error = [OguryAdError sdkNotInitializedFrom:type stackTrace:@"invalid AssetKey"];
         }
         self.sdkState = OgurySDKStateError;
         return NO;

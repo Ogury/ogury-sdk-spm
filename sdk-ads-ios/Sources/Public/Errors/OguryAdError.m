@@ -8,9 +8,9 @@
 
 #ifndef OguryAdsError_h
 #define OguryAdsError_h
-#import "OguryAdsError.h"
+#import "OguryAdError.h"
 
-@implementation OguryAdsError
+@implementation OguryAdError
 
 @end
 

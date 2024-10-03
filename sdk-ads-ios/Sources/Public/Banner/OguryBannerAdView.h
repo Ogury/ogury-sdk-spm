@@ -9,13 +9,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OguryBannerAd : UIView
+@interface OguryBannerAdView : UIView
 
 #pragma mark - Properties
 
 @property(nonatomic, strong, readonly) NSString *adUnitId;
 @property(nonatomic, weak, nullable) id<OguryBannerAdDelegate> delegate;
 @property(nonatomic, assign, readonly) BOOL isExpanded;
+@property(nonatomic, assign, readonly) BOOL isLoaded;
 
 #pragma mark - Initialization
 
@@ -29,8 +30,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)loadWithAdMarkup:(NSString *)adMarkup;
 
 - (void)destroy;
-
-- (BOOL)isLoaded;
 
 @end
 

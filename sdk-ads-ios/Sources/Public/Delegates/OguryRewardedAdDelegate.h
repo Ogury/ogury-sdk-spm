@@ -3,10 +3,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <OguryCore/OguryError.h>
-
-#import "OGARewardItem.h"
-#import "OguryAdsError.h"
+#import "OguryRewardItem.h"
+#import "OguryAdError.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,12 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol OguryRewardedAdDelegate <NSObject>
 @optional
-- (void)didLoadOguryRewardedAd:(OguryRewardedAd *)optinVideo;
-- (void)didClickOguryRewardedAd:(OguryRewardedAd *)optinVideo;
-- (void)didCloseOguryRewardedAd:(OguryRewardedAd *)optinVideo;
-- (void)didRewardOguryRewardedAdWithItem:(OGARewardItem *)item forAd:(OguryRewardedAd *)optinVideo;
-- (void)didFailOguryRewardedAdWithError:(OguryError *)error forAd:(OguryRewardedAd *)optinVideo;
-- (void)didTriggerImpressionOguryRewardedAd:(OguryRewardedAd *)optinVideo;
+- (void)didLoadOguryRewardedAd:(OguryRewardedAd *)rewardedAd;
+- (void)didClickOguryRewardedAd:(OguryRewardedAd *)rewardedAd;
+- (void)didCloseOguryRewardedAd:(OguryRewardedAd *)rewardedAd;
+- (void)didRewardOguryRewardedAdWithItem:(OguryRewardItem *)item forAd:(OguryRewardedAd *)rewardedAd;
+- (void)didFailOguryRewardedAd:(OguryRewardedAd *)rewardedAd error:(OguryAdError *)error;
+- (void)didTriggerImpressionOguryRewardedAd:(OguryRewardedAd *)rewardedAd;
 @end
 
 NS_ASSUME_NONNULL_END

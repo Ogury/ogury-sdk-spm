@@ -101,8 +101,8 @@ static NSString *const TestDelegate = @"DELEGATE";
 }
 
 - (void)testLoadWiththumbnailSize {
-    [self.thumbnail load:CGSizeMake(180, 180)];
-    OCMVerify([self.internalAPI load:CGSizeMake(180, 180)]);
+    [self.thumbnail loadWithMaxSize:CGSizeMake(180, 180)];
+    OCMVerify([self.internalAPI loadWithMaxSize:CGSizeMake(180, 180)]);
 }
 
 - (void)testLoadWithCampaignId {
@@ -141,31 +141,27 @@ static NSString *const TestDelegate = @"DELEGATE";
 }
 
 - (void)testShowWithPosition {
-    [self.thumbnail show:CGPointMake(10, 10)];
+    [self.thumbnail showAt:CGPointMake(10, 10)];
     OCMVerify([self.internalAPI show:CGPointMake(10, 10)]);
 }
 
 - (void)testShowWithOguryRectCornerAndMargin {
-    [self.thumbnail showWithOguryRectCorner:OguryTopLeft margin:OguryOffsetMake(10, 10)];
-    OCMVerify([self.internalAPI showWithOguryRectCorner:OguryTopLeft margin:OguryOffsetMake(10, 10)]);
-}
-
-- (void)testShowInScene API_AVAILABLE(ios(13.0)) {
-    UIWindowScene *scene = OCMClassMock([UIWindowScene class]);
-    [self.thumbnail showInScene:scene];
-    OCMVerify([self.internalAPI showInScene:scene]);
+    [self.thumbnail showWithOguryRectCorner:OguryRectCornerTopLeft offset:OguryOffsetMake(10, 10)];
+    OCMVerify([self.internalAPI showWithOguryRectCorner:OguryRectCornerTopLeft margin:OguryOffsetMake(10, 10)]);
 }
 
 - (void)testShowInSceneAtPosition API_AVAILABLE(ios(13.0)) {
     UIWindowScene *scene = OCMClassMock([UIWindowScene class]);
-    [self.thumbnail showInScene:scene atPosition:CGPointMake(10, 10)];
-    OCMVerify([self.internalAPI showInScene:scene atPosition:CGPointMake(10, 10)]);
+    self.thumbnail.scene = scene;
+    [self.thumbnail showAt:CGPointMake(10, 10)];
+    OCMVerify([self.internalAPI show:CGPointMake(10, 10)]);
 }
 
 - (void)testShowInSceneWithOguryRectCornerMargin API_AVAILABLE(ios(13.0)) {
     UIWindowScene *scene = OCMClassMock([UIWindowScene class]);
-    [self.thumbnail showInScene:scene withOguryRectCorner:OguryTopLeft margin:OguryOffsetMake(10, 10)];
-    OCMVerify([self.internalAPI showInScene:scene withOguryRectCorner:OguryTopLeft margin:OguryOffsetMake(10, 10)]);
+    self.thumbnail.scene = scene;
+    [self.thumbnail showWithOguryRectCorner:OguryRectCornerTopLeft offset:OguryOffsetMake(10, 10)];
+    OCMVerify([self.internalAPI showWithOguryRectCorner:OguryRectCornerTopLeft margin:OguryOffsetMake(10, 10)]);
 }
 
 - (void)testSetBlacklistViewControllers API_AVAILABLE(ios(13.0)) {

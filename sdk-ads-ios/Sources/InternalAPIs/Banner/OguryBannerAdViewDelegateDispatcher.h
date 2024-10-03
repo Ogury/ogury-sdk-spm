@@ -8,11 +8,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OguryBannerAdDelegateDispatcher : OGADelegateDispatcher <id <OguryBannerAdDelegate>>
+@interface OguryBannerAdViewDelegateDispatcher : OGADelegateDispatcher <id <OguryBannerAdDelegate>>
 
 #pragma mark - Properties
 
-@property(nonatomic, weak, nullable) OguryBannerAd *banner;
+@property(nonatomic, weak, nullable) OguryBannerAdView *banner;
 
 @end
 

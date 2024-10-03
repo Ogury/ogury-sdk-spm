@@ -6,7 +6,7 @@
 #import <UIKit/UIKit.h>
 #import <OCMock/OCMock.h>
 #import "OGAAdDisplayer.h"
-#import "OGABannerAdContainerState.h"
+#import "OGABannerAdViewContainerState.h"
 #import "OGABannerAdContainerState+Testing.h"
 #import "OGABaseAdContainerState+Testing.h"
 #import "OGAAdExposureController.h"
@@ -24,7 +24,7 @@
 #pragma mark - Methods
 
 - (void)testShouldInstantiate {
-    OGABannerAdContainerState *state = [[OGABannerAdContainerState alloc] init];
+    OGABannerAdViewContainerState *state = [[OGABannerAdViewContainerState alloc] init];
 
     XCTAssertNotNil(state);
     XCTAssertEqualObjects(state.name, @"banner");
@@ -32,7 +32,7 @@
 }
 
 - (void)test_ShouldReturnIsExpandedAsFalse {
-    OGABannerAdContainerState *state = [[OGABannerAdContainerState alloc] init];
+    OGABannerAdViewContainerState *state = [[OGABannerAdViewContainerState alloc] init];
 
     XCTAssertFalse(state.isExpanded);
 }
@@ -50,7 +50,7 @@
 
     OCMStub([ad bannerAdResponse]).andReturn(bannerAdResponse);
 
-    OGABannerAdContainerState *state = OCMPartialMock([[OGABannerAdContainerState alloc]
+    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
         initWithViewProvider:^UIView *_Nonnull {
             return bannerView;
         }
@@ -79,7 +79,7 @@
 
     OCMStub([displayer.ad bannerAdResponse]).andReturn(nil);
 
-    OGABannerAdContainerState *state = OCMPartialMock([[OGABannerAdContainerState alloc]
+    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
         initWithViewProvider:^UIView *_Nonnull {
             return nil;
         }
@@ -97,7 +97,7 @@
 - (void)testShouldNotDisplayWithoutViewProvider {
     id<OGAAdDisplayer> displayer = OCMProtocolMock(@protocol(OGAAdDisplayer));
 
-    OGABannerAdContainerState *state = OCMPartialMock([[OGABannerAdContainerState alloc]
+    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
         initWithViewProvider:^UIView *_Nonnull {
             return nil;
         }
@@ -113,7 +113,7 @@
 - (void)testShouldCleanUp {
     UIView *parentView = [[UIView alloc] init];
 
-    OGABannerAdContainerState *state = OCMPartialMock([[OGABannerAdContainerState alloc]
+    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
         initWithViewProvider:^UIView *_Nonnull {
             return nil;
         }
@@ -149,7 +149,7 @@
 
     OCMStub([displayer view]).andReturn(bannerView);
 
-    OGABannerAdContainerState *state = OCMPartialMock([[OGABannerAdContainerState alloc]
+    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
         initWithViewProvider:^UIView *_Nonnull {
             return bannerView;
         }
@@ -174,7 +174,7 @@
 
     UIView *bannerView = OCMPartialMock([[UIView alloc] init]);
 
-    OGABannerAdContainerState *state = OCMPartialMock([[OGABannerAdContainerState alloc]
+    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
         initWithViewProvider:^UIView *_Nonnull {
             return bannerView;
         }
@@ -202,7 +202,7 @@
 
     [parentView addSubview:bannerView];
 
-    OGABannerAdContainerState *state = OCMPartialMock([[OGABannerAdContainerState alloc]
+    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
         initWithViewProvider:^UIView *_Nonnull {
             return bannerView;
         }
@@ -228,7 +228,7 @@
 
     [parentView addSubview:bannerView];
 
-    OGABannerAdContainerState *state = OCMPartialMock([[OGABannerAdContainerState alloc]
+    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
         initWithViewProvider:^UIView *_Nonnull {
             return bannerView;
         }
@@ -260,7 +260,7 @@
 
     UIView *bannerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 500, 500)];
 
-    OGABannerAdContainerState *state = [[OGABannerAdContainerState alloc]
+    OGABannerAdViewContainerState *state = [[OGABannerAdViewContainerState alloc]
         initWithViewProvider:^UIView *_Nonnull {
             return bannerView;
         }
@@ -278,7 +278,7 @@
 }
 
 - (void)testShouldComputeExposureWhenWindowDidBecomeVisible {
-    OGABannerAdContainerState *state = OCMPartialMock([[OGABannerAdContainerState alloc]
+    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
         initWithViewProvider:^UIView *_Nonnull {
             return nil;
         }
@@ -294,7 +294,7 @@
 }
 
 - (void)testShouldComputeExposureWhenWindowDidBecomeHidden {
-    OGABannerAdContainerState *state = OCMPartialMock([[OGABannerAdContainerState alloc]
+    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
         initWithViewProvider:^UIView *_Nonnull {
             return nil;
         }
@@ -310,7 +310,7 @@
 }
 
 - (void)testShouldComputeExposureWhenWindowDidBecomeKey {
-    OGABannerAdContainerState *state = OCMPartialMock([[OGABannerAdContainerState alloc]
+    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
         initWithViewProvider:^UIView *_Nonnull {
             return nil;
         }
@@ -326,7 +326,7 @@
 }
 
 - (void)testShouldComputeExposureWhenWindowDidResignKey {
-    OGABannerAdContainerState *state = OCMPartialMock([[OGABannerAdContainerState alloc]
+    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
         initWithViewProvider:^UIView *_Nonnull {
             return nil;
         }
@@ -344,7 +344,7 @@
 - (void)testShouldSendZeroExposureWhenApplicationWillResignActive {
     id<OGAAdDisplayer> displayer = OCMProtocolMock(@protocol(OGAAdDisplayer));
 
-    OGABannerAdContainerState *state = OCMPartialMock([[OGABannerAdContainerState alloc]
+    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
         initWithViewProvider:^UIView *_Nonnull {
             return nil;
         }
@@ -374,7 +374,7 @@
     UIView *bannerView = OCMPartialMock([[UIView alloc] initWithFrame:CGRectMake(0, 0, 500, 500)]);
     OCMStub(bannerView.window).andReturn(OCMClassMock(UIWindow.self));
 
-    OGABannerAdContainerState *state = OCMPartialMock([[OGABannerAdContainerState alloc]
+    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
         initWithViewProvider:^UIView *_Nonnull {
             return bannerView;
         }
@@ -405,7 +405,7 @@
 
     UIView *bannerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 500, 500)];
 
-    OGABannerAdContainerState *state = OCMPartialMock([[OGABannerAdContainerState alloc]
+    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
         initWithViewProvider:^UIView *_Nonnull {
             return bannerView;
         }
@@ -436,7 +436,7 @@
     UIView *bannerView = OCMPartialMock([[UIView alloc] init]);
     OCMStub(bannerView.window).andReturn(OCMClassMock(UIWindow.self));
 
-    OGABannerAdContainerState *state = OCMPartialMock([[OGABannerAdContainerState alloc]
+    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
         initWithViewProvider:^UIView *_Nonnull {
             return bannerView;
         }
@@ -464,7 +464,7 @@
 
     UIView *bannerView = [[UIView alloc] init];
 
-    OGABannerAdContainerState *state = OCMPartialMock([[OGABannerAdContainerState alloc]
+    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
         initWithViewProvider:^UIView *_Nonnull {
             return bannerView;
         }
@@ -497,7 +497,7 @@
 
     UIView *bannerView = [[UIView alloc] init];
 
-    OGABannerAdContainerState *state = OCMPartialMock([[OGABannerAdContainerState alloc]
+    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
         initWithViewProvider:^UIView *_Nonnull {
             return bannerView;
         }

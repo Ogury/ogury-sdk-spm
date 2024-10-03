@@ -95,7 +95,7 @@ class AdsInterstitialController: NSObject, AdsFullscreenController {
     }
     
     func isLoaded() -> Bool {
-        return interstitialAd.isLoaded()
+        return interstitialAd.isLoaded
     }
 }
 
@@ -109,9 +109,7 @@ extension AdsInterstitialController: OguryInterstitialAdDelegate {
         LogsController.shared.addLogs("Interstitial ad loaded.")
     }
 
-    func didFailOguryInterstitialAdWithError(_ error: OguryError, for interstitial: OguryInterstitialAd) {
-        delegate?.didFail()
-
+    func didFail(_ interstitial: OguryInterstitialAd, error: OguryAdError) {
         LogsController.shared.addLogs(String(format: "Interstitial ad failed with error code %ld: %@", error.code, error.localizedDescription));
     }
 

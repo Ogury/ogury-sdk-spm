@@ -2,41 +2,41 @@
 //  Copyright © 2021 Ogury. All rights reserved.
 //
 
-#import "OguryBannerAd.h"
-#import "OguryBannerAdDelegateDispatcher.h"
-#import "OGABannerAdInternalAPI.h"
+#import "OguryBannerAdView.h"
+#import "OguryBannerAdViewDelegateDispatcher.h"
+#import "OGABannerAdViewInternalAPI.h"
 
-@interface OguryBannerAd ()
+@interface OguryBannerAdView ()
 
-@property(nonatomic, strong) OguryBannerAdDelegateDispatcher *delegateDispatcher;
-@property(nonatomic, strong) OGABannerAdInternalAPI *internalAPI;
+@property(nonatomic, strong) OguryBannerAdViewDelegateDispatcher *delegateDispatcher;
+@property(nonatomic, strong) OGABannerAdViewInternalAPI *internalAPI;
 
 @end
 
-@implementation OguryBannerAd
+@implementation OguryBannerAdView
 
 #pragma mark - Initialization
 
 - (instancetype)initWithAdUnitId:(NSString *)adUnitId size:(OguryAdsBannerSize *)size mediation:(OguryMediation *_Nonnull)mediation {
-    return [self initWithInternalAPI:[[OGABannerAdInternalAPI alloc] initWithAdUnitId:adUnitId
-                                                                           bannerView:self
-                                                                                 size:size
-                                                                   delegateDispatcher:[[OguryBannerAdDelegateDispatcher alloc] init]
-                                                                            mediation:mediation]];
+    return [self initWithInternalAPI:[[OGABannerAdViewInternalAPI alloc] initWithAdUnitId:adUnitId
+                                                                               bannerView:self
+                                                                                     size:size
+                                                                       delegateDispatcher:[[OguryBannerAdViewDelegateDispatcher alloc] init]
+                                                                                mediation:mediation]];
 }
 
 - (instancetype)initWithAdUnitId:(NSString *_Nonnull)adUnitId size:(OguryAdsBannerSize *)size {
-    return [self initWithInternalAPI:[[OGABannerAdInternalAPI alloc] initWithAdUnitId:adUnitId
-                                                                           bannerView:self
-                                                                                 size:size
-                                                                   delegateDispatcher:[[OguryBannerAdDelegateDispatcher alloc] init]
-                                                                            mediation:nil]];
+    return [self initWithInternalAPI:[[OGABannerAdViewInternalAPI alloc] initWithAdUnitId:adUnitId
+                                                                               bannerView:self
+                                                                                     size:size
+                                                                       delegateDispatcher:[[OguryBannerAdViewDelegateDispatcher alloc] init]
+                                                                                mediation:nil]];
 }
 
-- (instancetype)initWithInternalAPI:(OGABannerAdInternalAPI *_Nonnull)internalAPI {
+- (instancetype)initWithInternalAPI:(OGABannerAdViewInternalAPI *_Nonnull)internalAPI {
     if (self = [super init]) {
         _internalAPI = internalAPI;
-        _delegateDispatcher = (OguryBannerAdDelegateDispatcher *)internalAPI.delegateDispatcher;
+        _delegateDispatcher = (OguryBannerAdViewDelegateDispatcher *)internalAPI.delegateDispatcher;
         _delegateDispatcher.banner = self;
     }
 
@@ -59,6 +59,10 @@
 
 - (BOOL)isExpanded {
     return self.internalAPI.isExpanded;
+}
+
+- (BOOL)isLoaded {
+    return self.internalAPI.isLoaded;
 }
 
 #pragma mark - Public Methods
@@ -88,10 +92,6 @@
 
 - (void)destroy {
     [self.internalAPI destroy];
-}
-
-- (BOOL)isLoaded {
-    return [self.internalAPI isLoaded];
 }
 
 - (void)didMoveToSuperview {

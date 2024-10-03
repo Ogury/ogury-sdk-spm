@@ -2,7 +2,7 @@
 //  Copyright © 2020 Ogury Ltd. All rights reserved.
 //
 
-#import "OGABannerAdContainerState.h"
+#import "OGABannerAdViewContainerState.h"
 #import "OGAAdDisplayer.h"
 #import "OGAAdExposureController.h"
 #import "OGAAd.h"
@@ -11,8 +11,8 @@
 #import "OGAAdDisplayerUpdateStateInformation.h"
 #import "OGAAdDisplayerUpdateViewabilityInformation.h"
 #import "OGAAdDisplayerUpdateExposureInformation.h"
-#import "OGABannerAdInternalAPI.h"
-#import "OguryAdsError+Internal.h"
+#import "OGABannerAdViewInternalAPI.h"
+#import "OguryAdError+Internal.h"
 
 #pragma mark - Constants
 
@@ -23,7 +23,7 @@ static NSString *const OGABannerAdContainerStateKeyValueObservationHiddenKey = @
 
 static int const OGABannerAdContainerStateMaximumNumberOfParentTraversals = 16;
 
-@interface OGABannerAdContainerState ()
+@interface OGABannerAdViewContainerState ()
 
 #pragma mark - Properties
 
@@ -35,7 +35,7 @@ static int const OGABannerAdContainerStateMaximumNumberOfParentTraversals = 16;
 
 @end
 
-@implementation OGABannerAdContainerState
+@implementation OGABannerAdViewContainerState
 
 #pragma mark - Properties
 
@@ -62,14 +62,14 @@ static int const OGABannerAdContainerStateMaximumNumberOfParentTraversals = 16;
 
 #pragma mark - Methods
 
-- (BOOL)display:(nonnull id<OGAAdDisplayer>)displayer error:(OguryError *_Nullable *_Nullable)error {
+- (BOOL)display:(nonnull id<OGAAdDisplayer>)displayer error:(OguryAdError *_Nullable *_Nullable)error {
     if (![super display:displayer error:error]) {
         return NO;
     }
 
     if (!self.displayer.ad.bannerAdResponse) {
         if (error) {
-            *error = [OguryError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"Missing banner configuration."];
+            *error = [OguryAdError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"Missing banner configuration."];
         }
 
         return NO;
@@ -79,7 +79,7 @@ static int const OGABannerAdContainerStateMaximumNumberOfParentTraversals = 16;
 
     if (!self.bannerView) {
         if (error) {
-            *error = [OguryError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"Missing banner view to present."];
+            *error = [OguryAdError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"Missing banner view to present."];
         }
 
         return NO;

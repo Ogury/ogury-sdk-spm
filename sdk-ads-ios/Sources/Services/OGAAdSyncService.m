@@ -21,7 +21,7 @@
 #import "NSDictionary+OGABase64.h"
 #import "OGAPreCacheEvent.h"
 #import "OGAMetricsService.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAAdSyncService ()
 
@@ -191,7 +191,7 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
                                          error:(NSError *_Nullable)error
                              completionHandler:(void (^)(NSArray<OGAAd *> *ads, NSError *_Nullable error))completionHandler {
     if (((NSHTTPURLResponse *)response).statusCode == 204) {
-        completionHandler(nil, [OguryAdsError noFillFrom:adConfiguration.isHeaderBidding ? OguryAdsIntegrationTypeHeaderBidding : OguryAdsIntegrationTypeDirect]);
+        completionHandler(nil, [OguryAdError noFillFrom:adConfiguration.isHeaderBidding ? OguryAdIntegrationTypeHeaderBidding : OguryAdIntegrationTypeDirect]);
         return;
     }
 
@@ -206,7 +206,7 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
         switch (code) {
             case 400 ... 499:
             case 500 ... 599:
-                completionHandler(nil, [OguryAdsError adRequestFailedWithCode:code]);
+                completionHandler(nil, [OguryAdError adRequestFailedWithCode:code]);
                 break;
 
             default:
@@ -219,12 +219,12 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
     NSError *parseError;
     NSArray<OGAAd *> *ads = [self parseAdsFromData:result adConfiguration:adConfiguration privacyConfiguration:privacyConfiguration error:&parseError];
     if (parseError) {
-        completionHandler(nil, [parseError isKindOfClass:[OguryError class]] ? parseError : [OguryAdsError adParsingFailedWithStackTrace:parseError.localizedDescription]);
+        completionHandler(nil, [parseError isKindOfClass:[OguryError class]] ? parseError : [OguryAdError adParsingFailedWithStackTrace:parseError.localizedDescription]);
         return;
     }
 
     if (!ads) {
-        completionHandler(nil, [OguryAdsError adParsingFailedWithStackTrace:@"The ad's array is empty, that should not happen"]);
+        completionHandler(nil, [OguryAdError adParsingFailedWithStackTrace:@"The ad's array is empty, that should not happen"]);
         return;
     }
 
@@ -253,7 +253,7 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
                                        error:error
                         monitoringDispatcher:self.monitoringDispatcher];
     } else {
-        *error = [OguryAdsError adParsingFailedWithStackTrace:@"No ad received"];
+        *error = [OguryAdError adParsingFailedWithStackTrace:@"No ad received"];
         return nil;
     }
 

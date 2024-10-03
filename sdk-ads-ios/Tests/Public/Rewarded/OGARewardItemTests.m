@@ -4,7 +4,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import <OguryAds/OGARewardItem.h>
+#import <OguryAds/OguryAds.h>
 
 @interface OGARewardItemTests : XCTestCase
 
@@ -13,7 +13,7 @@
 @implementation OGARewardItemTests
 
 - (void)testInitWithRewardNameRewardValue {
-    OGARewardItem *item = [[OGARewardItem alloc] initWithRewardName:@"rewardNameTest" rewardValue:@"RewardValue123"];
+    OguryRewardItem *item = [[OguryRewardItem alloc] initWithRewardName:@"rewardNameTest" rewardValue:@"RewardValue123"];
 
     XCTAssertEqualObjects(item.rewardName, @"rewardNameTest");
     XCTAssertEqualObjects(item.rewardValue, @"RewardValue123");

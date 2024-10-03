@@ -17,13 +17,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 extern NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName;
 
-@interface OGABannerAdInternalAPI : NSObject <OGAAdInternalAPI>
+@interface OGABannerAdViewInternalAPI : NSObject <OGAAdInternalAPI>
 
 #pragma mark - properties
 
 @property(nonatomic, strong, readonly) OGADelegateDispatcher *delegateDispatcher;
 @property(nonatomic, weak, readonly) UIView *bannerView;
 @property(nonatomic, assign, readonly) BOOL isExpanded;
+@property(nonatomic, assign, readonly) BOOL isLoaded;
 
 #pragma mark - Initialization
 
@@ -49,8 +50,6 @@ extern NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationNa
                  dspRegion:(NSString *_Nullable)dspRegion;
 
 - (void)destroy;
-
-- (BOOL)isLoaded;
 
 - (void)didMoveToSuperview;
 

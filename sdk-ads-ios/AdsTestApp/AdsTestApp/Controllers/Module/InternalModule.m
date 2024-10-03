@@ -13,7 +13,7 @@
 @implementation InternalModule
 
 NSString *const InternalModuleSharedSelector = @"shared";
-NSString *const InternalModuleStartWithAssetKeySelector = @"startWithAssetKey:";
+NSString *const InternalModuleStartWithSelector = @"startWith:";
 
 #pragma mark - Initialization
 
@@ -35,13 +35,13 @@ NSString *const InternalModuleStartWithAssetKeySelector = @"startWithAssetKey:";
 
 #pragma mark - Methods
 
-- (void)startWithAssetKey:(NSString *)assetKey {
-    SEL startWithAssetKeySelector = NSSelectorFromString(InternalModuleStartWithAssetKeySelector);
-    if ([self.module respondsToSelector:startWithAssetKeySelector]) {
-        NSMethodSignature *signature = [self methodSignatureForSelector:startWithAssetKeySelector];
+- (void)startWith:(NSString *)assetKey {
+    SEL startWithSelector = NSSelectorFromString(InternalModuleStartWithSelector);
+    if ([self.module respondsToSelector:startWithSelector]) {
+        NSMethodSignature *signature = [self methodSignatureForSelector:startWithSelector];
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
 
-        [invocation setSelector:startWithAssetKeySelector];
+        [invocation setSelector:startWithSelector];
         [invocation setTarget:self.module];
         [invocation setArgument:&assetKey atIndex:2];
         [invocation invoke];

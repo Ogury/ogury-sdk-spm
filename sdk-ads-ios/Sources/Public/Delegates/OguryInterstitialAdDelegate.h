@@ -3,9 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <OguryCore/OguryError.h>
-
-#import "OguryAdsError.h"
+#import "OguryAdError.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)didLoadOguryInterstitialAd:(OguryInterstitialAd *)interstitial;
 - (void)didClickOguryInterstitialAd:(OguryInterstitialAd *)interstitial;
 - (void)didCloseOguryInterstitialAd:(OguryInterstitialAd *)interstitial;
-- (void)didFailOguryInterstitialAdWithError:(OguryError *)error forAd:(OguryInterstitialAd *)interstitial;
+- (void)didFailOguryInterstitialAd:(OguryInterstitialAd *)interstitial error:(OguryAdError *)error;
 - (void)didTriggerImpressionOguryInterstitialAd:(OguryInterstitialAd *)interstitial;
 @end
 

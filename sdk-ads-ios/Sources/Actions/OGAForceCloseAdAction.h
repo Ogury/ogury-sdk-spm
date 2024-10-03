@@ -19,7 +19,7 @@ extern NSString *const OGAForceCloseAdActionName;
 
 #pragma mark - Methods
 
-- (BOOL)performAction:(OGAAdContainer *)adContainer error:(OguryError *_Nullable *_Nullable)error;
+- (BOOL)performAction:(OGAAdContainer *)adContainer error:(OguryAdError *_Nullable *_Nullable)error;
 
 @end
 

@@ -79,7 +79,7 @@ static NSString *const defaultUserId = @"";
     OGAAd *ad = [[OGAAd alloc] init];
     OGAAdConfiguration *configuration = OCMClassMock([OGAAdConfiguration class]);
     OGAAdContainerBuilder *builder = OCMClassMock([OGAAdContainerBuilder class]);
-    OCMStub(configuration.adType).andReturn(OguryAdsTypeOptinVideo);
+    OCMStub(configuration.adType).andReturn(OguryAdsTypeRewardedAd);
 
     [self.factory addTransitionsForAd:ad configuration:configuration builder:builder];
 
