@@ -34,10 +34,7 @@
 #pragma mark - Methods
 
 - (NSString *)interfaceOrientation {
-    NSString *orientationString = [self.application OGAOrientationString] ?: [self.device ogaOrientationString];
-
-    // If we still don't have a value by now, we align with Android and send the portrait orientation
-    return orientationString ?: OGAOrientationStringPortrait;
+    return [self.device ogaOrientationString] ?: OGAOrientationStringPortrait;
 }
 
 @end
