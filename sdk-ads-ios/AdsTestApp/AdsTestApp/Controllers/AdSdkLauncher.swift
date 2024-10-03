@@ -19,7 +19,7 @@ struct AdSdkLauncher {
     func startAds(forceStart: Bool = false) {
         if SettingsController().startSDKWithApplication || forceStart {
             forceAdsEnvironment()
-            OGAInternal.shared().start(withAssetKey: assetKey) {
+            OGAInternal.shared().start(with: assetKey) {
                 print("start(withAssetKey \($0), \($1)")
             }
         }
