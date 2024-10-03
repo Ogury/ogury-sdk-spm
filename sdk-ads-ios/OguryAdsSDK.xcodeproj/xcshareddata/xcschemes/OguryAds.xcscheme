@@ -15,7 +15,7 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "A9CF061B1F6DC7CF0FE6FE96A274F578"
+                     BlueprintIdentifier = "DEF1BF72213917AA0004BAD1"
                      BuildableName = "OguryAds.framework"
                      BlueprintName = "OguryAds"
                      ReferencedContainer = "container:OguryAdsSDK.xcodeproj">
@@ -33,7 +33,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A9CF061B1F6DC7CF0FE6FE96A274F578"
+               BlueprintIdentifier = "DEF1BF72213917AA0004BAD1"
                BuildableName = "OguryAds.framework"
                BlueprintName = "OguryAds"
                ReferencedContainer = "container:OguryAdsSDK.xcodeproj">
@@ -52,7 +52,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AA025B7DD34D91A97E44E395AAD46B6E"
+               BlueprintIdentifier = "DEF1BF7B213917AA0004BAD1"
                BuildableName = "OguryAdsTests.xctest"
                BlueprintName = "OguryAdsTests"
                ReferencedContainer = "container:OguryAdsSDK.xcodeproj">
@@ -91,7 +91,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A9CF061B1F6DC7CF0FE6FE96A274F578"
+            BlueprintIdentifier = "DEF1BF72213917AA0004BAD1"
             BuildableName = "OguryAds.framework"
             BlueprintName = "OguryAds"
             ReferencedContainer = "container:OguryAdsSDK.xcodeproj">

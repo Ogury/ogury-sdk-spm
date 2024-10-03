@@ -265,6 +265,11 @@
 		43BCB1982C23255C002FB0B1 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43BCB1962C23255C002FB0B1 /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43BCB19A2C232565002FB0B1 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BCB1992C232565002FB0B1 /* AdsCardLibrary.framework */; };
 		43BCB19B2C232565002FB0B1 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43BCB1992C232565002FB0B1 /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43BE104A2CA311E800FF0467 /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F961682C6CD2160088F4A7 /* RTBidderBody.swift */; };
+		43BE104B2CA311F100FF0467 /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F961682C6CD2160088F4A7 /* RTBidderBody.swift */; };
+		43BE104C2CA311FE00FF0467 /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F961682C6CD2160088F4A7 /* RTBidderBody.swift */; };
+		43BE104D2CA3120000FF0467 /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F961682C6CD2160088F4A7 /* RTBidderBody.swift */; };
+		43BE104E2CA3120300FF0467 /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F961682C6CD2160088F4A7 /* RTBidderBody.swift */; };
 		43C1D1552B7E566C006F2D23 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43C1D1542B7E566C006F2D23 /* SwiftMessages */; };
 		43C1D1572B7E567A006F2D23 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43C1D1562B7E567A006F2D23 /* SwiftMessages */; };
 		43C1D1592B7E5684006F2D23 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43C1D1582B7E5684006F2D23 /* SwiftMessages */; };
@@ -1453,6 +1458,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43B714032B4D6075007C8D21 /* HeaderBiddingBid.swift in Sources */,
+				43BE104A2CA311E800FF0467 /* RTBidderBody.swift in Sources */,
 				4301B1E92B56D3930076065D /* UTType+Extension(stag).swift in Sources */,
 				433B4A8C2B34259900037FE1 /* AdsStorableContainer.swift in Sources */,
 				1E373D5E2BFC9F5C00E2EF25 /* DTFairBidBidder.swift in Sources */,
@@ -1491,6 +1497,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43B714042B4D6075007C8D21 /* HeaderBiddingBid.swift in Sources */,
+				43BE104B2CA311F100FF0467 /* RTBidderBody.swift in Sources */,
 				433B4A8D2B34259900037FE1 /* AdsStorableContainer.swift in Sources */,
 				434F84DB2ACFE50A005077F5 /* AddFeature.swift in Sources */,
 				1E373D5F2BFC9F5C00E2EF25 /* DTFairBidBidder.swift in Sources */,
@@ -1569,6 +1576,7 @@
 			files = (
 				43BCB09E2C22DD45002FB0B1 /* HeaderBiddingBid.swift in Sources */,
 				43BCB09F2C22DD45002FB0B1 /* AdsStorableContainer.swift in Sources */,
+				43BE104C2CA311FE00FF0467 /* RTBidderBody.swift in Sources */,
 				43BCB0A02C22DD45002FB0B1 /* AddFeature.swift in Sources */,
 				43BCB0A12C22DD45002FB0B1 /* DTFairBidBidder.swift in Sources */,
 				43BCB0A22C22DD45002FB0B1 /* AppFeature.swift in Sources */,
@@ -1609,6 +1617,7 @@
 				43BCB0E22C22DD59002FB0B1 /* UTType+Extension(stag).swift in Sources */,
 				43BCB0E32C22DD59002FB0B1 /* AdsStorableContainer.swift in Sources */,
 				43BCB0E42C22DD59002FB0B1 /* DTFairBidBidder.swift in Sources */,
+				43BE104D2CA3120000FF0467 /* RTBidderBody.swift in Sources */,
 				43BCB0E52C22DD59002FB0B1 /* AddFeature.swift in Sources */,
 				43BCB0E62C22DD59002FB0B1 /* AppFeature.swift in Sources */,
 				43BCB0E72C22DD59002FB0B1 /* Configuration.swift in Sources */,
@@ -1646,6 +1655,7 @@
 				43BCB1242C22DD60002FB0B1 /* HeaderBiddingBid.swift in Sources */,
 				43BCB1252C22DD60002FB0B1 /* AdsStorableContainer.swift in Sources */,
 				43BCB1262C22DD60002FB0B1 /* AddFeature.swift in Sources */,
+				43BE104E2CA3120300FF0467 /* RTBidderBody.swift in Sources */,
 				43BCB1272C22DD60002FB0B1 /* DTFairBidBidder.swift in Sources */,
 				43BCB1282C22DD60002FB0B1 /* AppFeature.swift in Sources */,
 				43BCB1292C22DD60002FB0B1 /* Configuration.swift in Sources */,

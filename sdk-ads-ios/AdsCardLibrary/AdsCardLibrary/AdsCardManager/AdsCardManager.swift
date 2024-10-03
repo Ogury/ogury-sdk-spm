@@ -246,6 +246,13 @@ public indirect enum AdType<T: AdManager> {
             case .unityLevelPlayHeaderBidding: return [.unityLevelPlay, .headerBidding, .bypass]
         }
     }
+    
+    public var isHeaderBidding: Bool {
+        switch self {
+            case .interstitial, .rewarded, .thumbnail, .banner, .mpu: return false
+            default: return true
+        }
+    }
 }
 
 extension AdType: Equatable {
@@ -271,8 +278,8 @@ extension AdType {
     }
 }
 
-public enum AdTag: String {
-    case ogury, max, dtFairbid, unityLevelPlay, direct, bypass, waterfall, headerBidding
+public enum AdTag: String, Equatable {
+    case ogury, max, dtFairbid, unityLevelPlay, direct, bypass, waterfall, headerBidding, oguryTestMode, rtbTestMode
     
     public var name: String {
         switch self {
@@ -284,6 +291,8 @@ public enum AdTag: String {
             case .waterfall: return "Waterfall"
             case .headerBidding: return "HB"
             case .unityLevelPlay: return "Unity LevelPlay"
+            case .oguryTestMode: return "Ogury Test Mode"
+            case .rtbTestMode: return "RTB Test Mode"
         }
     }
     public var description: String {
@@ -296,6 +305,8 @@ public enum AdTag: String {
             case .bypass: return "The mediation's SDK is bypassed when loading the ad. In header bidding mediation case, the test app directly calls the ms-bidder endpoint of the mediation to retrieve an ad"
             case .waterfall: return "Waterfall auction integration"
             case .headerBidding: return "Header bidding integration"
+            case .oguryTestMode: return "Add _test to the ad unit"
+            case .rtbTestMode: return "Add test=1 to bid request"
         }
     }
     
@@ -309,13 +320,49 @@ public enum AdTag: String {
             case .bypass:  return Color(#colorLiteral(red: 0, green: 0.4201652408, blue: 0.4244114757, alpha: 1))
             case .waterfall: return Color(#colorLiteral(red: 0, green: 0.5913378596, blue: 1, alpha: 1))
             case .headerBidding: return Color(#colorLiteral(red: 0, green: 0.8673904538, blue: 0.2728650272, alpha: 1))
+            case .oguryTestMode: return Color(#colorLiteral(red: 0.6542432308, green: 0.8769065142, blue: 0.9881662726, alpha: 1))
+            case .rtbTestMode: return Color(#colorLiteral(red: 0.6542432308, green: 0.8769065142, blue: 0.9881662726, alpha: 1))
         }
     }
     
     internal var textColor: Color {
         switch self {
-            case .direct, .headerBidding: return .black
+            case .direct, .headerBidding, .rtbTestMode, .oguryTestMode: return .black
             default: return .white
         }
+    }
+}
+
+public protocol TypeErasing {
+    var underlyingValue: Any { get }
+}
+
+public struct TypeEraser<V: AdManager>: TypeErasing {
+    let orinal: AdType<V>
+    public var underlyingValue: Any {
+        return self.orinal
+    }
+}
+
+public struct AnyAdType: Identifiable, Hashable {
+    public let id = UUID()
+    typealias Value = Any
+    private let eraser: TypeErasing
+    public init<V>(_ adType: AdType<V>) where V:AdManager {
+        eraser = TypeEraser(orinal: adType)
+    }
+    
+    public var adType: Any {
+        return eraser.underlyingValue
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
+extension AnyAdType: Equatable {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        return String(describing: lhs) == String(describing: rhs)
     }
 }

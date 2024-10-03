@@ -39,6 +39,9 @@ struct BaseOptions: Equatable {
     var showSpecificOptions: Bool = true
     var bulkModeEnabled = false
     var isSelected = false
+    var oguryTestModeEnabled: Bool = false
+    var rtbTestModeEnabled: Bool = false
+    var qaLabel: String = UUID().uuidString
     
     init(from options: any AdOptions) {
         showCampaignId = options.showCampaignId
@@ -53,6 +56,9 @@ struct BaseOptions: Equatable {
         dspRegion = options.baseOptions.dspRegion ?? .euWest1
         bulkModeEnabled = options.baseOptions.bulkModeEnabled
         isSelected = options.baseOptions.isSelected
+        oguryTestModeEnabled = options.baseOptions.oguryTestModeEnabled
+        rtbTestModeEnabled = options.baseOptions.rtbTestModeEnabled
+        qaLabel = options.baseOptions.qaLabel
     }
 }
 
@@ -84,34 +90,77 @@ struct AdViewFeature: Reducer {
         var thumbnailOptions: ThumbnailDisplayOptions?
         var bannerContainer: BannerContainer?
         var rewardedOptions: RewardedOptions?
-        var testModeEnabled = false
+        var testModeEnabled: Bool {
+            get {
+                baseOptions.oguryTestModeEnabled
+            }
+            set {
+                baseOptions.oguryTestModeEnabled = newValue
+            }
+        }
+        var rtbTestModeEnabled: Bool {
+            get {
+                baseOptions.rtbTestModeEnabled
+            }
+            set {
+                baseOptions.rtbTestModeEnabled = newValue
+            }
+        }
         var showTestModeButton = true
         var enableAdUnitEditing = true
         var enableFeedbacks = true
+        @BindingState var showQALabelInput = false
         let id: UUID = UUID()
+        let adType: AnyAdType!
+        var isHeaderBidding: Bool {
+            if let ad = (adType.adType as? AdType<InterstitialAdManager>) {
+                return ad.isHeaderBidding
+            }
+            if let ad = (adType.adType as? AdType<RewardedAdManager>) {
+                return ad.isHeaderBidding
+            }
+            if let ad = (adType.adType as? AdType<ThumbnailAdManager>) {
+                return ad.isHeaderBidding
+            }
+            if let ad = (adType.adType as? AdType<BannerAdManager>) {
+                return ad.isHeaderBidding
+            }
+            return false
+        }
         // this field is used to show the content od the various fields when the test mode is enabled
         // since we need a Binding to a String, we wille use this property
         @BindingState var fakeTextState = ""
         @PresentationState var alert: AlertState<Action.Alert>?
+        var tags: Set<AdTag> = Set()
         
         private var adUnitIsInTestMode: Bool { baseOptions.adUnitId.isTestModeOn }
-        mutating func updateTestMode() -> Bool {
+        
+        @discardableResult mutating func updateTestMode() -> Bool {
             let previousMode = testModeEnabled
             testModeEnabled = adUnitIsInTestMode
+            if testModeEnabled {
+                tags.insert(.oguryTestMode)
+            } else {
+                tags.remove(.oguryTestMode)
+            }
             return previousMode != testModeEnabled
         }
         mutating func toggleTestMode() {
             if adUnitIsInTestMode {
                 baseOptions.adUnitId.removeLast(5)
+                tags.remove(.oguryTestMode)
             } else {
                 baseOptions.adUnitId.append(AdsCardManager.testModeSuffix)
+                tags.insert(.oguryTestMode)
             }
         }
         mutating func forceTestMode(_ enable: Bool) {
             if !adUnitIsInTestMode && enable {
                 baseOptions.adUnitId.append(AdsCardManager.testModeSuffix)
+                tags.insert(.oguryTestMode)
             } else if adUnitIsInTestMode && !enable {
                 baseOptions.adUnitId.removeLast(5)
+                tags.remove(.oguryTestMode)
             }
         }
         
@@ -153,6 +202,7 @@ struct AdViewFeature: Reducer {
         }
         
         init(from options: any AdOptions,
+             adType: AnyAdType,
              bannerContainer: BannerContainer? = nil,
              rewardedOptions: RewardedOptions? = nil) {
             baseOptions = BaseOptions(from: options)
@@ -162,10 +212,24 @@ struct AdViewFeature: Reducer {
             }
             self.bannerContainer = bannerContainer
             self.rewardedOptions = rewardedOptions
-            updateTestMode()
+            self.adType = adType
+            updateTags()
             UISegmentedControl.appearance().selectedSegmentTintColor = AdColorPalette.Primary.accent.color
             UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
             UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: AdColorPalette.Primary.accent.color], for: .normal)
+        }
+        
+        mutating func updateTags() {
+            updateTestMode()
+            updateRTBTag()
+        }
+        
+        mutating func updateRTBTag() {
+            if rtbTestModeEnabled {
+                tags.insert(.rtbTestMode)
+            } else {
+                tags.remove(.rtbTestMode)
+            }
         }
     }
     
@@ -207,9 +271,11 @@ struct AdViewFeature: Reducer {
         // test mode
         case showTestModeButton(_: Bool)
         case checkForTestMode
-        case testModeButtonTapped
+        case oguryTestModeButtonTapped
+        case rtbTestModeButtonTapped
         case forceTestMode(_: Bool)
         case enableFeedbacks(_: Bool)
+        case showQALabelTapped
         
         enum Alert {
             case confirmDelete
@@ -282,7 +348,10 @@ struct AdViewFeature: Reducer {
                                                 creativeId: options.creativeId,
                                                 adMarkUp: "",
                                                 isSelected: options.isSelected,
-                                                bulkModeEnabled: options.bulkModeEnabled))
+                                                bulkModeEnabled: options.bulkModeEnabled,
+                                                oguryTestModeEnabled:options.oguryTestModeEnabled,
+                                                rtbTestModeEnabled:options.rtbTestModeEnabled,
+                                                qaLabel:options.qaLabel))
     }
     
     var body: some ReducerOf<Self> {
@@ -494,9 +563,15 @@ struct AdViewFeature: Reducer {
                     }
                     return .none
                     
-                case .testModeButtonTapped:
+                case .oguryTestModeButtonTapped:
                     state.toggleTestMode()
                     return .send(.checkForTestMode)
+                    
+                case .rtbTestModeButtonTapped:
+                    state.rtbTestModeEnabled.toggle()
+                    state.updateRTBTag()
+                    updateAdManager(options: state.baseOptions)
+                    return .none
                     
                 case let .forceTestMode(enable):
                     state.forceTestMode(enable)
@@ -508,6 +583,10 @@ struct AdViewFeature: Reducer {
                     
                 case let .enableAdUnitEditing(value):
                     state.enableAdUnitEditing = value
+                    return .none
+                    
+                case .showQALabelTapped:
+                    state.showQALabelInput.toggle()
                     return .none
             }
         }

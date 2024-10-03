@@ -207,6 +207,7 @@ struct AdContainer: Codable {
         let adUnitId: String
         let campaignId: String?
         let creativeId: String?
+        let settings: CardSettings
     }
     struct ThumbnailOptionsContainer: Codable {
         let thumbnailPosition: Int
@@ -214,6 +215,11 @@ struct AdContainer: Codable {
         let thumbnailY: Int
         let thumbnailWidth: Int
         let thumbnailHeight: Int
+    }
+    struct CardSettings: Codable {
+        let oguryTestModeEnabled: Bool
+        let rtbTestModeEnabled: Bool
+        let qaLabel: String
     }
     let name: String
     let adType: Int
@@ -223,19 +229,25 @@ struct AdContainer: Codable {
     fileprivate static func from(adFormat: AdFormat, managers: [any AdManager]) -> [Self] {
         managers
             .compactMap { manager in
-                guard let adType = try? adFormat.innerAdType else { return nil }
+                guard let adType = try? adFormat.innerAdType else {
+                    fatalError("Unkown inner ad type \(adFormat.adType)")
+                }
                 let thumbnailOptions = (manager.options as? ThumbnailAdManagerOptions)?.thumbnailOptions
                 return AdContainer.init(name: manager.options.baseOptions.adDisplayName,
                                         adType: adType,
                                         adInformations: .init(adUnitId: manager.options.baseOptions.adUnitId,
                                                               campaignId: manager.options.baseOptions.campaignId,
-                                                              creativeId: manager.options.baseOptions.creativeId),
-                                        thumbnailOptions: thumbnailOptions == nil ? nil :
-                        .init(thumbnailPosition: thumbnailOptions!.rawCorner,
-                              thumbnailX: thumbnailOptions!.x,
-                              thumbnailY: thumbnailOptions!.y,
-                              thumbnailWidth: thumbnailOptions!.width,
-                              thumbnailHeight: thumbnailOptions!.height))
+                                                              creativeId: manager.options.baseOptions.creativeId,
+                                                              settings: .init(oguryTestModeEnabled: manager.options.baseOptions.oguryTestModeEnabled,
+                                                                              rtbTestModeEnabled: manager.options.baseOptions.rtbTestModeEnabled,
+                                                                              qaLabel: manager.options.baseOptions.qaLabel)),
+                                        thumbnailOptions: thumbnailOptions == nil
+                                        ? nil
+                                        : .init(thumbnailPosition: thumbnailOptions!.rawCorner,
+                                                thumbnailX: thumbnailOptions!.x,
+                                                thumbnailY: thumbnailOptions!.y,
+                                                thumbnailWidth: thumbnailOptions!.width,
+                                                thumbnailHeight: thumbnailOptions!.height))
             }
     }
     
@@ -317,7 +329,10 @@ struct AdContainer: Codable {
                          creativeId: adInformations.creativeId,
                          adMarkUp: nil,
                          isSelected: false,
-                         bulkModeEnabled: settings.bulkModeEnabled)
+                         bulkModeEnabled: settings.bulkModeEnabled,
+                         oguryTestModeEnabled: adInformations.settings.oguryTestModeEnabled,
+                         rtbTestModeEnabled: adInformations.settings.rtbTestModeEnabled,
+                         qaLabel: adInformations.settings.qaLabel)
     }
     fileprivate func bannerOptions<T: AdManager>(adType: AdType<T>, settings: SettingsContainer, view: UIView) -> BannerAdManagerOptions {
         BannerAdManagerOptions(showCampaignId: settings.showCampaignId,
@@ -333,7 +348,10 @@ struct AdContainer: Codable {
                                creativeId: adInformations.creativeId,
                                adMarkUp: nil,
                                isSelected: false,
-                               bulkModeEnabled: settings.bulkModeEnabled)
+                               bulkModeEnabled: settings.bulkModeEnabled,
+                               oguryTestModeEnabled: adInformations.settings.oguryTestModeEnabled,
+                               rtbTestModeEnabled: adInformations.settings.rtbTestModeEnabled,
+                               qaLabel: adInformations.settings.qaLabel)
     }
     fileprivate func thumbnailOptions<T: AdManager>(adType: AdType<T>, settings: SettingsContainer, viewController: UIViewController) -> ThumbnailAdManagerOptions {
         let corner: OguryRectCorner? = thumbnailOptions?.thumbnailPosition != nil
@@ -361,7 +379,10 @@ struct AdContainer: Codable {
                                          creativeId: adInformations.creativeId,
                                          adMarkUp: nil,
                                          isSelected: false,
-                                         bulkModeEnabled: settings.bulkModeEnabled)
+                                         bulkModeEnabled: settings.bulkModeEnabled,
+                                         oguryTestModeEnabled: adInformations.settings.oguryTestModeEnabled,
+                                         rtbTestModeEnabled: adInformations.settings.rtbTestModeEnabled,
+                                         qaLabel: adInformations.settings.qaLabel)
     }
 }
 
