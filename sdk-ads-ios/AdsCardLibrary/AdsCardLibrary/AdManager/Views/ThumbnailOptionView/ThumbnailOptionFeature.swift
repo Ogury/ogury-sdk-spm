@@ -57,7 +57,7 @@ enum ThumbnailPosition: Hashable, CaseIterable, Identifiable {
     var corner: OguryRectCorner? {
         switch self {
         case .topleft: return .topLeft
-        case .topright: return .bottomLeft
+        case .topright: return .topRight
         case .bottomleft: return .bottomLeft
         case .bottomright: return .bottomRight
         case .position: return .none
