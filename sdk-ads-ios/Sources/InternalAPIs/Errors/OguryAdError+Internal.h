@@ -23,6 +23,10 @@ typedef NS_ENUM(NSInteger, OguryAdIntegrationType) {
 
 @interface OguryAdError (internal)
 
+- (instancetype)initWithErrorCode:(NSInteger)code type:(OguryAdErrorType)type;
+- (instancetype)initWithErrorCode:(NSInteger)code
+                       stacktrace:(NSString *_Nullable)stacktrace
+                             type:(OguryAdErrorType)type;
 + (OguryAdError *)sdkNotInitializedFrom:(OguryAdErrorType)type;
 + (OguryAdError *)sdkNotProperlyInitializedFrom:(OguryAdErrorType)type;
 + (OguryAdError *)noInternetConnectionFrom:(OguryAdErrorType)type;

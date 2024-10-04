@@ -286,10 +286,11 @@ NSString *const OGAAdParserConfigurationAdUnitId = @"interstitial";
     ad.adUnit.identifier = OGAAdParserAdAdUnitId;
     ad.adUnit.type = @"";
     OGAAdConfiguration *configuration = OCMClassMock([OGAAdConfiguration class]);
-    NSError *error = nil;
+    OguryAdError *error = nil;
     [OGAAdParser shouldParseAd:ad withConfiguration:configuration error:&error];
     XCTAssertNotNil(error);
-    XCTAssertEqualObjects(error.localizedDescription, @"The ad could not be loaded due to a failure in parsing (No adUnit on Ad object)");
+    XCTAssertEqualObjects(error.localizedDescription, @"The ad could not be loaded due to a failure in parsing.");
+    XCTAssertEqualObjects(error.additionalInformation, @"No adUnit on Ad object");
     XCTAssertEqual(error.code, OguryLoadErrorCodeAdParsingFailed);
 }
 
@@ -301,10 +302,11 @@ NSString *const OGAAdParserConfigurationAdUnitId = @"interstitial";
     OGAAdConfiguration *configuration = OCMClassMock([OGAAdConfiguration class]);
     OCMStub(configuration.adType).andReturn(OguryAdsTypeInterstitial);
     OCMStub([configuration getAdTypeString]).andReturn(@"interstitial");
-    NSError *error = nil;
+    OguryAdError *error = nil;
     [OGAAdParser shouldParseAd:ad withConfiguration:configuration error:&error];
     XCTAssertNotNil(error);
-    XCTAssertEqualObjects(error.localizedDescription, @"The ad could not be loaded due to a failure in parsing (Type mismatch. Awaited (interstitial) - received (overlay_thumbnail))");
+    XCTAssertEqualObjects(error.localizedDescription, @"The ad could not be loaded due to a failure in parsing.");
+    XCTAssertEqualObjects(error.additionalInformation, @"Type mismatch. Awaited (interstitial) - received (overlay_thumbnail)");
     XCTAssertEqual(error.code, OguryLoadErrorCodeAdParsingFailed);
 }
 

@@ -36,7 +36,7 @@
     id jsonConverted = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&parseError];
     if (parseError || jsonConverted == nil) {
         [[OGALog shared] log:OguryLogLevelError message:@"An error occurred while decoding Base64 to NSSObject"];
-        *error = [OguryAdError adParsingFailedWithStackTrace:[NSString stringWithFormat:@"Base64 contained invalid JSON (%@)", parseError.localizedDescription]];
+        *error = [OguryAdError adParsingFailedWithStackTrace:[NSString stringWithFormat:@"Base64 contained invalid JSON (%ld)", parseError.code]];
         return nil;
     } else {
         return jsonConverted;

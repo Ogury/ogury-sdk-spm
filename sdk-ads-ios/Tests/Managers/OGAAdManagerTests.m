@@ -312,7 +312,7 @@
     OCMVerify([self.adManager dispatchError:[OguryAdError adParsingFailedWithStackTrace:@"stack"] sequence:sequence]);
     OCMVerify([self.log logAd:OguryLogLevelError forAdConfiguration:configuration message:@"failed to decode ad markup"]);
     OCMVerify([self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventAdMarkUpParsingError
-                                                 stackTrace:@"The ad could not be loaded due to a failure in parsing (stack)"
+                                                 stackTrace:@"stack"
                                             adConfiguration:sequence.monitoringAdConfiguration]);
 }
 

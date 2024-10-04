@@ -13,7 +13,6 @@ typedef NS_ENUM(NSInteger, OguryAdErrorType) {
 };
 
 @interface OguryAdError : OguryError
-
 @property(nonatomic) OguryAdErrorType type;
-
+@property(nonatomic, copy, nullable) NSString *additionalInformation;
 @end

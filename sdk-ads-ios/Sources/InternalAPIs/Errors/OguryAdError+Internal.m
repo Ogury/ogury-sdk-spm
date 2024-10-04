@@ -12,10 +12,6 @@
 #import "OguryAdError+Message.h"
 #import <OguryCore/OguryError.h>
 
-@interface OguryAdError (private)
-- (instancetype)initWithErrorCode:(NSInteger)code type:(OguryAdErrorType)type;
-@end
-
 @implementation OguryAdError (internal)
 
 - (instancetype)initWithErrorCode:(NSInteger)code
@@ -24,13 +20,14 @@
 }
 
 - (instancetype)initWithErrorCode:(NSInteger)code
-                       stacktrace:(NSString *)stacktrace
+                       stacktrace:(NSString *_Nullable)stacktrace
                              type:(OguryAdErrorType)type {
     NSDictionary *userInfo = @{
         NSLocalizedDescriptionKey : [self descriptionFor:code stacktrace:stacktrace]
     };
     if (self = [super initWithDomain:OguryAdsErrorDomain code:code userInfo:userInfo]) {
         self.type = type;
+        self.additionalInformation = stacktrace ?: @"";
     }
     return self;
 }
@@ -70,20 +67,13 @@
         case OguryShowErrorCodeAdDisabledUnspecifiedReason:
             return AdDisabledUnspecifiedReasonShowString;
         case OguryLoadErrorCodeAdRequestFailed:
-            return [NSString stringWithFormat:AdRequestFailedFormatLoadString, stacktrace];
+            return AdRequestFailedFormatLoadString;
         case OguryLoadErrorCodeNoFill:
             return NoFillLoadString;
-
         case OguryLoadErrorCodeAdParsingFailed:
-            return stacktrace == nil
-                ? AdParsingFailedLoadString
-                : [NSString stringWithFormat:AdParsingFailedLoadStringFormat, stacktrace];
-
+            return AdParsingFailedLoadString;
         case OguryLoadErrorCodeAdPrecachingFailed:
-            return stacktrace == nil
-                ? AdPrecachingFailedLoadString
-                : [NSString stringWithFormat:AdPrecachingFailedLoadStringFormat, stacktrace];
-
+            return AdPrecachingFailedLoadString;
         case OguryLoadErrorCodeAdPrecachingTimeout:
             return AdPrecachingTimeoutLoadString;
         case OguryShowErrorCodeAdExpired:
@@ -164,7 +154,7 @@
 }
 + (OguryAdError *)adRequestFailedWithCode:(NSUInteger)requestStatusCode {
     return [[OguryAdError alloc] initWithErrorCode:OguryLoadErrorCodeAdRequestFailed
-                                        stacktrace:[NSString stringWithFormat:@"%ld", requestStatusCode]
+                                        stacktrace:[NSString stringWithFormat:@"Request error code : %ld", requestStatusCode]
                                               type:OguryAdErrorTypeLoad];
 }
 + (OguryAdError *)noFillFrom:(OguryAdIntegrationType)integration {

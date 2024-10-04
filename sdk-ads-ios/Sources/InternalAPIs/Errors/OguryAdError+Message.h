@@ -42,9 +42,7 @@ extern NSString *const AdDisabledUnspecifiedReasonBidString;
 extern NSString *const AdRequestFailedFormatLoadString;
 extern NSString *const NoFillLoadString;
 extern NSString *const AdParsingFailedLoadString;
-extern NSString *const AdParsingFailedLoadStringFormat;
 extern NSString *const AdPrecachingFailedLoadString;
-extern NSString *const AdPrecachingFailedLoadStringFormat;
 extern NSString *const AdPrecachingTimeoutLoadString;
 // Show
 extern NSString *const AdExpiredShowString;

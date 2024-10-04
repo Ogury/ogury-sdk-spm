@@ -36,12 +36,10 @@ NSString *const AdDisabledUnspecifiedReasonLoadString = @"The load could not pro
 NSString *const AdDisabledUnspecifiedReasonShowString = @"The ad could not be displayed because ads are disabled for an unspecified reason.";
 NSString *const AdDisabledUnspecifiedReasonBidString = @"The bid token could not be generated because ads are disabled for an unspecified reason.";
 // Load
-NSString *const AdRequestFailedFormatLoadString = @"The load failed because the ad request encountered an error, and the server returned an unexpected response: %@";
+NSString *const AdRequestFailedFormatLoadString = @"The load failed because the ad request encountered an error, and the server returned an unexpected response";
 NSString *const NoFillLoadString = @"No ad is currently available for this placement (no fill).";
 NSString *const AdParsingFailedLoadString = @"The ad could not be loaded due to a failure in parsing.";
-NSString *const AdParsingFailedLoadStringFormat = @"The ad could not be loaded due to a failure in parsing (%@)";
 NSString *const AdPrecachingFailedLoadString = @"The ad could not be loaded due to a failure in ad precaching.";
-NSString *const AdPrecachingFailedLoadStringFormat = @"The ad could not be loaded due to a failure in ad precaching (%@)";
 NSString *const AdPrecachingTimeoutLoadString = @"The ad could not be loaded as precaching exceeded the time limit and timed out.";
 // Show
 NSString *const AdExpiredShowString = @"The ad could not be displayed because the retention time of the loaded ad has expired.";

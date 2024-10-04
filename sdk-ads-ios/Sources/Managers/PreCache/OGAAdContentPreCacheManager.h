@@ -4,13 +4,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import <OguryCore/OguryError.h>
+#import "OguryAdError.h"
 
 #import "OGAAd.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^OGAPrepareAdContentsCompletionHandler)(OguryError *_Nullable error);
+typedef void (^OGAPrepareAdContentsCompletionHandler)(OguryAdError *_Nullable error);
 
 @interface OGAAdContentPreCacheManager : NSObject
 
