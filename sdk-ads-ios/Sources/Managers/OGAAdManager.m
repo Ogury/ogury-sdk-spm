@@ -238,7 +238,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
             sequence.status = OGAAdSequenceStatusError;
             [self dispatchError:[self errorForProfigError:error] sequence:sequence];
             [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventProfigFailToSync
-                                               stackTrace:@"Network error"
+                                               stackTrace:[NSString stringWithFormat:@"Network error (%ld)", error.code]
                                           adConfiguration:sequence.monitoringAdConfiguration];
             return;
         } else if (response == nil) {
@@ -267,7 +267,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
     }];
 }
 
-- (OguryError *)errorForProfigError:(NSError *)error {
+- (OguryAdError *)errorForProfigError:(NSError *)error {
     if (error.code == OGAProfigExternalErrorNoInternet) {
         return [OguryAdError noInternetConnectionError];
     }
@@ -328,40 +328,45 @@ static NSString *const OGADisablingReason = @"disabling_reason";
                     [self dispatchError:(OguryAdError *)error sequence:sequence];
                     break;
 
-                case OguryLoadErrorCodeAdParsingFailed:
-                    [self.monitoringDispatcher sendLoadErrorEventParsingFailWithStackTrace:error.localizedDescription
+                case OguryLoadErrorCodeAdParsingFailed: {
+                    NSString *stacktrace = ((OguryAdError *)error).additionalInformation ?: [NSString stringWithFormat:@"Ad parsing failed (%ld)", error.code];
+                    [self.monitoringDispatcher sendLoadErrorEventParsingFailWithStackTrace:stacktrace
                                                                            adConfiguration:sequence.monitoringAdConfiguration];
                     [self dispatchError:(OguryAdError *)error sequence:sequence];
                     break;
+                }
 
-                case OguryLoadErrorCodeAdRequestFailed:
+                case OguryLoadErrorCodeAdRequestFailed: {
+                    NSString *stacktrace = ((OguryAdError *)error).additionalInformation ?: [NSString stringWithFormat:@"Ad request failed (%ld)", error.code];
                     [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventAdSyncRequestFail
-                                                       stackTrace:error.localizedDescription
+                                                       stackTrace:stacktrace
                                                   adConfiguration:sequence.monitoringAdConfiguration];
                     [self dispatchError:(OguryAdError *)error sequence:sequence];
                     break;
+                }
 
                 default:
-                    if ([error isKindOfClass:[OguryError class]]) {
-                        [self.monitoringDispatcher sendLoadErrorEventParsingFailWithStackTrace:[NSString stringWithFormat:@"AdParseError (%@)", error.localizedDescription]
+                    if ([error isKindOfClass:[OguryAdError class]]) {
+                        [self.monitoringDispatcher sendLoadErrorEventParsingFailWithStackTrace:((OguryAdError *)error).additionalInformation
                                                                                adConfiguration:sequence.monitoringAdConfiguration];
                         [self dispatchError:(OguryAdError *)error sequence:sequence];
                     } else {
+                        OguryAdError *adError = [OguryAdError adParsingFailedWithStackTrace:[NSString stringWithFormat:@"Unknown error (%ld)", error.code]];
                         [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventAdSyncRequestFail
-                                                           stackTrace:error.localizedDescription
+                                                           stackTrace:adError.additionalInformation
                                                       adConfiguration:sequence.monitoringAdConfiguration];
-                        [self dispatchError:[OguryAdError adParsingFailedWithStackTrace:error.localizedDescription] sequence:sequence];
+                        [self dispatchError:adError sequence:sequence];
                     }
                     break;
             }
         } else {
-            OguryError *ogyError = [OguryAdError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"failed to decode base64 from ad markup"];
-            if ([error isKindOfClass:[OguryError class]]) {
-                ogyError = (OguryError *)error;
+            OguryAdError *ogyError = [OguryAdError adParsingFailedWithStackTrace:@"Could not decode AdMarkup"];
+            if ([error isKindOfClass:[OguryAdError class]]) {
+                ogyError = (OguryAdError *)error;
             }
             [self.log logAd:OguryLogLevelError forAdConfiguration:sequence.configuration message:@"failed to decode ad markup"];
             [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventAdMarkUpParsingError
-                                               stackTrace:ogyError.localizedDescription
+                                               stackTrace:ogyError.additionalInformation
                                           adConfiguration:sequence.monitoringAdConfiguration];
             [self dispatchError:ogyError sequence:sequence];
         }
@@ -369,7 +374,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
     }
     // mraid script precache
     @weakify(self, sequence)[self.adContentPreCacheManager prepareAdContents:ads
-                                                           completionHandler:^(OguryError *error) {
+                                                           completionHandler:^(OguryAdError *error) {
                                                                @strongify(self, sequence) if (!self || !sequence) {
                                                                    return;
                                                                }
@@ -377,7 +382,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
                                                            }];
 }
 
-- (void)continueLoadAdAfterAdContentsPrepared:(OGAAdSequence *)sequence ads:(NSArray<OGAAd *> *)ads error:(OguryError *)error {
+- (void)continueLoadAdAfterAdContentsPrepared:(OGAAdSequence *)sequence ads:(NSArray<OGAAd *> *)ads error:(OguryAdError *)error {
     if (error) {
         sequence.status = OGAAdSequenceStatusError;
         [self dispatchError:error sequence:sequence];
@@ -463,7 +468,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
     }
     [conditions addObject:self.internetConnectionChecker];
     self.internetConnectionChecker.type = OguryAdErrorTypeShow;
-    OguryError *error = nil;
+    OguryAdError *error = nil;
     if (![self checkConditions:conditions sequence:sequence error:&error]) {
         sequence.status = OGAAdSequenceStatusError;
         [self dispatchError:error sequence:sequence];
