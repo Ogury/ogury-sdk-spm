@@ -87,6 +87,13 @@
     self.setupBlock = completionHandler;
     [self.log log:OguryLogLevelInfo message:@"Module started"];
 
+    [self.adManager registerToPersistentEventBus];
+    [self.profigManager registerToBroadcastEventBus];
+
+    // if ([self.assetKeyManager shouldResetSDKFor:assetKey]) {
+    //    [self resetSDK];
+    // }
+
     if ([self.assetKeyManager configureAssetKey:assetKey]) {
         // Setup notifier otherwise further call to the internetReachability will return invalid statuses.
         [self.internetReachability startNotifier];
