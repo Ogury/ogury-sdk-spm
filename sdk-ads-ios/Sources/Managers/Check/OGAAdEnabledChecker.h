@@ -9,7 +9,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OGAAdEnabledChecker : NSObject <OGAConditionChecker>
-
+@property(nonatomic) OguryAdErrorType type;
+- (instancetype)initFrom:(OguryAdErrorType)type;
 @end
 
 NS_ASSUME_NONNULL_END

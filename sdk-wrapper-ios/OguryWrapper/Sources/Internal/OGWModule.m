@@ -14,7 +14,7 @@
 @implementation OGWModule
 
 NSString *const OGWModuleSharedSelector = @"shared";
-NSString *const OGWModuleStartWithAssetKeySelector = @"startWithAssetKey:persistentEventBus:broadcastEventBus:";
+NSString *const OGWModuleStartWithCompletionHandlerSelector = @"startWith:completionHandler:";
 NSString *const OGWModuleSetLogLevelSelector = @"setLogLevel:";
 NSString *const OGWModuleGetVersionSelector = @"getVersion";
 
@@ -50,23 +50,23 @@ NSString *const OGWModuleGetVersionSelector = @"getVersion";
    }
 }
 
-- (void)startWithAssetKey:(NSString *)assetKey
-       persistentEventBus:(OguryPersistentEventBus *)persistentEventBus
-        broadcastEventBus:(OguryEventBus *)broadcastEventBus {
-   SEL startWithAssetKeySelector = NSSelectorFromString(OGWModuleStartWithAssetKeySelector);
-   if ([self.module respondsToSelector:startWithAssetKeySelector]) {
-      [[OGWLog shared] logAssetKeyFormat:OguryLogLevelDebug assetKey:assetKey format:@"performing selector %@-%@-%@", self.className, OGWModuleSharedSelector, OGWModuleStartWithAssetKeySelector];
-
-      NSMethodSignature *signature = [self methodSignatureForSelector:startWithAssetKeySelector];
-      NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-
-      [invocation setSelector:startWithAssetKeySelector];
-      [invocation setTarget:self.module];
-      [invocation setArgument:&assetKey atIndex:2];
-      [invocation setArgument:&persistentEventBus atIndex:3];
-      [invocation setArgument:&broadcastEventBus atIndex:4];
-      [invocation invoke];
-   }
+- (void)startWith:(NSString *)assetKey completionHandler:(StartCompletionBlock)completionHandler {
+    SEL startWithCompletionHandlerSelector = NSSelectorFromString(OGWModuleStartWithCompletionHandlerSelector);
+    if ([self.module respondsToSelector:startWithCompletionHandlerSelector]) {
+        [[OGWLog shared] logAssetKeyFormat:OguryLogLevelDebug assetKey:assetKey format:@"performing selector %@-%@-%@", self.className, OGWModuleSharedSelector, OGWModuleStartWithCompletionHandlerSelector];
+        
+        NSMethodSignature *signature = [self methodSignatureForSelector:startWithCompletionHandlerSelector];
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+        
+        [invocation setSelector:startWithCompletionHandlerSelector];
+        [invocation setTarget:self.module];
+        [invocation setArgument:&assetKey atIndex:2];
+        [invocation setArgument:&completionHandler atIndex:3];
+        [invocation invoke];
+    } else {
+        [[OGWLog shared] logAssetKeyFormat:OguryLogLevelDebug assetKey:assetKey format:@"selector not found %@-%@-%@", self.className, OGWModuleSharedSelector, OGWModuleStartWithCompletionHandlerSelector];
+        completionHandler(true, nil);
+    }
 }
 
 - (NSString *)getVersion {

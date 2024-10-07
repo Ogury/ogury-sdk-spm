@@ -3,11 +3,11 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
 #import "OGCAdIdentifierDataLayer.h"
 #import "OGCNSUserDefaultsMock.h"
 
 static NSString * const OguryInstanceTokenKey = @"OGURY_INSTANCE_TOKEN";
-static NSString * const OguryConsentTokenKey = @"OGURY_CONSENT_TOKEN";
 
 @interface OGCAdIdentifierDataLayerTests : XCTestCase
 
@@ -18,6 +18,8 @@ static NSString * const OguryConsentTokenKey = @"OGURY_CONSENT_TOKEN";
 @interface OGCAdIdentifierDataLayer()
 
 - (id)initWithUserDefaults:(NSUserDefaults *)userDefault;
+- (NSData *)globalConsentData;
+- (void)checkChangeOfConsent;
 
 @end
 
@@ -150,6 +152,25 @@ static NSString *NoIDFA = @"00000000-0000-0000-0000-000000000000";
     [dataLayer migrateDeprecatedOGYDeviceSettingsWithInstanceTokenID:instanceToken];
     XCTAssertEqual([self.mockedUserDefault.dict count], 1);
     XCTAssertNotNil([self.mockedUserDefault objectForKey:@"DeviceSettings"]);
+}
+
+- (void)testStoreAndRetrievePrivacyData {
+    OGCAdIdentifierDataLayer *dataLayer = [[OGCAdIdentifierDataLayer alloc] initWithUserDefaults:self.mockedUserDefault];
+    XCTAssertEqual([self.mockedUserDefault.dict count], 0);
+    [dataLayer setPrivacyData:@"testValue" forKey:@"testKey"];
+    XCTAssertEqual([self.mockedUserDefault.dict count], 2);
+    XCTAssertEqual([[dataLayer retrieveDataPrivacy] count], 1);
+    [dataLayer setPrivacyData:@"testValue" forKey:@"testKey"];
+    XCTAssertEqual([self.mockedUserDefault.dict count], 2);
+    XCTAssertEqual([[dataLayer retrieveDataPrivacy] count], 1);
+    [dataLayer setPrivacyData:[NSNumber numberWithBool:false] forKey:@"testKeyBool"];
+    [dataLayer setPrivacyData:[NSNumber numberWithBool:false] forKey:@"testKeyBool"];
+    XCTAssertEqual([self.mockedUserDefault.dict count], 3);
+    XCTAssertEqual([[dataLayer retrieveDataPrivacy] count], 2);
+    [dataLayer setPrivacyData:[NSNumber  numberWithInt:12] forKey:@"testKeyInt"];
+    [dataLayer setPrivacyData:[NSNumber  numberWithInt:12] forKey:@"testKeyInt"];
+    XCTAssertEqual([self.mockedUserDefault.dict count], 4);
+    XCTAssertEqual([[dataLayer retrieveDataPrivacy] count], 3);
 }
 
 @end

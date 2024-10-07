@@ -6,7 +6,7 @@
 
 typedef NS_ENUM(NSInteger, OguryAdsADType) {
     OguryAdsTypeInterstitial = 0,
-    OguryAdsTypeOptinVideo = 1,
+    OguryAdsTypeRewardedAd = 1,
     OguryAdsTypeThumbnailAd = 2,
     OguryAdsTypeBanner = 3
 };

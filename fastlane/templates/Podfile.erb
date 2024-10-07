@@ -50,28 +50,31 @@ end
 #Ads Test Apps
 target "AdsTestApp-Devc" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
+  pod 'InMobiCMP', '2.0.1'
 end
 target "AdsTestApp-Staging" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
+  pod 'InMobiCMP', '2.0.1'
 end
 target "AdsTestApp-Prod" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
+  pod 'InMobiCMP', '2.0.1'
 end
 
 target "AdsTestApp-Devc-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
+  pod 'InMobiCMP', '2.0.1'
 end
 target "AdsTestApp-Staging-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
+  pod 'InMobiCMP', '2.0.1'
 end
 target "AdsTestApp-Prod-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
+  pod 'InMobiCMP', '2.0.1'
 end
 
 
@@ -91,7 +94,7 @@ target 'OguryWrapperTestApp' do
   project "sdk-wrapper-ios/OguryWrapperTestApp/OguryWrapperTestApp.xcodeproj"
   pod 'OguryCore<%= framework_suffix %>', '<%= ogury_core_version %>'
   pod 'OguryAds<%= framework_suffix %>', '<%= ogury_ads_version %>'
-  pod 'OguryChoiceManager<%= framework_suffix %>', '<%= ogury_choice_manager_version %>'
+  pod 'InMobiCMP', '2.0.1'
 end
 
 

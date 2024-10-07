@@ -14,6 +14,7 @@
 @property (nonatomic, strong) OGCAdIdentifierManager *adIdentifierManager;
 @property (nonatomic, strong) OGCLog *log;
 @property (nonatomic, strong) OGCSetLogLevelNotificationManager *logNotificationManager;
+- (void)updateInstanceToken;
 
 @end
 
@@ -67,10 +68,6 @@
     return [self.adIdentifierManager getInstanceToken];
 }
 
-- (NSString *)getConsentToken {
-    return [self.adIdentifierManager getConsentToken];
-}
-
 - (BOOL)isAdOptin {
     return [self.adIdentifierManager isAdOptin];
 }
@@ -81,6 +78,35 @@
 
 - (OGCSDKType)getFrameworkType {
     return [OGCUtils getFrameworkType];
+}
+
+// GPP
+- (NSString * _Nullable)gppConsentString {
+    return [self.adIdentifierManager retrieveGPPConsentString];
+}
+
+- (NSString * _Nullable)gppSID {
+    return [self.adIdentifierManager retrieveGPPSID];
+}
+
+- (NSString * _Nullable)tcfConsentString {
+    return [self.adIdentifierManager retrieveTCFConsentString];
+}
+
+- (void)setPrivacyData:(NSString *)key boolean:(BOOL)value {
+   [self.adIdentifierManager setPrivacyData:[NSNumber numberWithBool:value]  forKey:[key stringByAppendingString:@"_bool"]];
+}
+
+- (void)setPrivacyData:(NSString *)key integer:(NSInteger)value {
+   [self.adIdentifierManager setPrivacyData:[NSNumber numberWithInteger:value] forKey:[key stringByAppendingString:@"_int"]];
+}
+
+- (void)setPrivacyData:(NSString *)key string:(NSString *)value {
+   [self.adIdentifierManager setPrivacyData:value forKey:[key stringByAppendingString:@"_string"]];
+}
+
+- (NSDictionary<NSString *, id> *)retrieveDataPrivacy {
+   return [self.adIdentifierManager retrieveDataPrivacy];
 }
 
 @end

@@ -10,7 +10,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (OguryAdsBannerSize *)small_banner_320x50;
 
-+ (OguryAdsBannerSize *)mpu_300x250;
++ (OguryAdsBannerSize *)mrec_300x250;
 
 @end
 

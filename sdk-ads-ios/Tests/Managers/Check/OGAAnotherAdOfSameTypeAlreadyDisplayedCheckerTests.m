@@ -69,7 +69,7 @@
     OguryError *error;
     XCTAssertFalse([self.checker checkForSequence:sequence error:&error]);
 
-    XCTAssertEqual(error.code, OguryAdsAnotherAdAlreadyDisplayedError);
+    XCTAssertEqual(error.code, OguryShowErrorCodeAnotherAdAlreadyDisplayed);
 }
 
 - (void)testIsAnotherAdOfSameTypeAlreadyDisplayed_noOtherAd {
@@ -100,7 +100,7 @@
 
 - (void)testIsAnotherAdOfSameTypeAlreadyDisplayed_anotherAdDisplayedButNotOfTheSameType {
     OCMStub(self.configuration.adType).andReturn(OguryAdsTypeInterstitial);
-    OCMStub(self.anotherConfiguration.adType).andReturn(OguryAdsTypeOptinVideo);
+    OCMStub(self.anotherConfiguration.adType).andReturn(OguryAdsTypeRewardedAd);
     OGAAdSequenceCoordinator *coordinator = OCMClassMock([OGAAdSequenceCoordinator class]);
     OCMStub(coordinator.isDisplayed).andReturn(NO);
     OCMStub(self.anotherSequence.coordinator).andReturn(coordinator);

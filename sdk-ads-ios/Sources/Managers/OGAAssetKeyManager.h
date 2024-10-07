@@ -5,6 +5,7 @@
 #import <Foundation/Foundation.h>
 #include <OguryCore/OguryError.h>
 #include "OGAAssetKeyManagerDelegate.h"
+#import "OguryAdError.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,7 +29,7 @@ typedef NS_ENUM(NSInteger, OgurySDKState) {
 
 - (BOOL)configureAssetKey:(NSString *_Nullable)assetKey;
 
-- (BOOL)checkAssetKeyIsValid:(OguryError *_Nullable *_Nullable)error;
+- (BOOL)checkAssetKeyIsValid:(OguryError *_Nullable *_Nullable)error type:(OguryAdErrorType)type;
 
 - (void)reset;
 

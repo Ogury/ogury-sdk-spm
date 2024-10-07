@@ -16,6 +16,7 @@ struct MainFeature: Reducer {
    let cardManager = AdsCardManager()
    let maxHeaderBidable = MaxBidder()
    let dtFairBidHeaderBidable = DTFairBidBidder()
+   let unityLevelPlayBidable = UnityLevelPlayBidder()
    
    struct State: Equatable {
       static func == (lhs: MainFeature.State, rhs: MainFeature.State) -> Bool {
@@ -160,7 +161,7 @@ struct MainFeature: Reducer {
                return .none
                
             case .addButtonTapped:
-               state.destination = .add(.init(maxHeaderBidable: maxHeaderBidable, dtFairBidHeaderBidable: dtFairBidHeaderBidable))
+             state.destination = .add(.init(maxHeaderBidable: maxHeaderBidable, dtFairBidHeaderBidable: dtFairBidHeaderBidable, unityLevelPlayBidable: unityLevelPlayBidable))
                return .none
                
             case .addFormatButtonTapped:
@@ -291,8 +292,8 @@ struct MainFeature: Reducer {
                                                                          adDelegate: adDelegate)
                adsManager.append(interstitialManager!)
                
-            case is AdType<OptInAdManager>:
-               let optin: AdType<OptInAdManager> =  section.adType.adType as! AdType<OptInAdManager>
+            case is AdType<RewardedAdManager>:
+               let optin: AdType<RewardedAdManager> =  section.adType.adType as! AdType<RewardedAdManager>
                let options = Configuration.shared.options(for: optin, index: index + startIndex + 1)
                options.viewController = adHostingViewController
                let optinManager = try? self.cardManager.adManager(for: optin,
@@ -415,12 +416,13 @@ extension AdType {
    var sectionName: String {
       switch self {
          case .interstitial: return "Interstitial"
-         case .optInVideo: return "Rewarded Video"
+         case .rewarded: return "Rewarded Video"
          case .thumbnail: return "Thumbnail"
          case .mpu: return "Mpu"
          case .banner: return "Banner"
          case let .maxHeaderBidding(innerFormat, _): return "MAX HB - \(innerFormat.sectionName)"
          case let .dtFairBidHeaderBidding(innerFormat, _): return "DT Fair Bid HB - \(innerFormat.sectionName)"
+         case let .unityLevelPlayHeaderBidding(innerFormat, _): return "Unity LevelPlay HB - \(innerFormat.sectionName)"
          @unknown default:
             fatalError()
       }

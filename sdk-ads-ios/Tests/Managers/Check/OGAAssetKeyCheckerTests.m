@@ -11,7 +11,9 @@
 
 @interface OGAAssetKeyChecker ()
 
-- (instancetype)initWithAssetKeyManager:(OGAAssetKeyManager *)assetKeyManager log:(OGALog *)log;
+- (instancetype)initWithAssetKeyManager:(OGAAssetKeyManager *)assetKeyManager
+                                   type:(OguryAdErrorType)type
+                                    log:(OGALog *)log;
 
 @end
 
@@ -28,14 +30,16 @@
 - (void)setUp {
     self.log = OCMClassMock([OGALog class]);
     self.assetKeyManager = OCMClassMock([OGAAssetKeyManager class]);
-    self.checker = [[OGAAssetKeyChecker alloc] initWithAssetKeyManager:self.assetKeyManager log:self.log];
+    self.checker = [[OGAAssetKeyChecker alloc] initWithAssetKeyManager:self.assetKeyManager
+                                                                  type:OguryAdErrorTypeLoad
+                                                                   log:self.log];
 }
 
 #pragma mark - Methods
 
 - (void)testCheckForSequence_validAssetKey {
     OGAAdSequence *sequence = OCMClassMock([OGAAdSequence class]);
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef]]).andReturn(YES);
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
 
     OguryError *error;
     XCTAssertTrue([self.checker checkForSequence:sequence error:&error]);
@@ -45,12 +49,12 @@
 
 - (void)testCheckForSequence_wrongAssetKey {
     OGAAdSequence *sequence = OCMClassMock([OGAAdSequence class]);
-    OguryError *assetKeyError = OCMClassMock([OguryError class]);
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef]]).andDo(^(NSInvocation *invocation) {
-                                                                                  OguryError *__autoreleasing *errorPointer = nil;
-                                                                                  [invocation getArgument:&errorPointer atIndex:2];
-                                                                                  *errorPointer = assetKeyError;
-                                                                              })
+    OguryError *assetKeyError = OCMClassMock([OguryAdError class]);
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andDo(^(NSInvocation *invocation) {
+                                                                                                            OguryError *__autoreleasing *errorPointer = nil;
+                                                                                                            [invocation getArgument:&errorPointer atIndex:2];
+                                                                                                            *errorPointer = assetKeyError;
+                                                                                                        })
         .andReturn(NO);
 
     OguryError *error;

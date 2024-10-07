@@ -9,11 +9,11 @@
 
 #pragma mark - Constants
 
-static NSString *const OGAOptinVideo = @"optin_video";
+static NSString *const OGARewardedAd = @"optin_video";
 
 #pragma mark - Methods
 
-+ (NSString *)buildMraidEnvironmentOptinVideo:(OGAAdUnit *)adUnit {
++ (NSString *)buildMraidEnvironmentRewardedAd:(OGAAdUnit *)adUnit {
     return [NSString stringWithFormat:@"window.MRAID_ENV =  { version: '%@', sdk: 'Presage', sdkVersion: '%@',adUnit: { type: '%@', reward : { name: '%@', value: '%@', launch: '%@'}}};",
                                       OGA_SDK_VERSION,
                                       OGA_SDK_VERSION,
@@ -28,8 +28,8 @@ static NSString *const OGAOptinVideo = @"optin_video";
 }
 
 + (NSString *)generateMraidEnviroment:(OGAAdUnit *)adUnit {
-    if (adUnit && [adUnit.type isEqualToString:OGAOptinVideo]) {
-        return [self buildMraidEnvironmentOptinVideo:adUnit];
+    if (adUnit && [adUnit.type isEqualToString:OGARewardedAd]) {
+        return [self buildMraidEnvironmentRewardedAd:adUnit];
     } else {
         return [self buildMraidEnviromentInterstitial];
     }

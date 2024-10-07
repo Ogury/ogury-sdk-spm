@@ -8,9 +8,8 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithLevel:(OguryLogLevel)level message:(NSString *)message eventEntry:(OguryEventEntry *)eventEntry {
+- (instancetype)initWithLevel:(OguryLogLevel)level message:(NSString *)message {
     if (self = [super initWithLevel:level message:message]) {
-        _eventEntry = eventEntry;
     }
 
     return self;
@@ -19,7 +18,7 @@
 #pragma mark - OguryStringFormattable
 
 - (NSString *)formattedString {
-    return [NSString stringWithFormat:@"[EventBus][%@] %@ - %@", self.eventEntry.event, self.message, self.eventEntry.message];
+    return [NSString stringWithFormat:@"%@", self.message];
 }
 
 @end

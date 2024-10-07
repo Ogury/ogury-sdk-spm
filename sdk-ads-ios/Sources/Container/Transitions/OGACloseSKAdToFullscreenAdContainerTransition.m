@@ -18,7 +18,7 @@
 
 #pragma mark - Methods
 
-- (BOOL)performTransition:(OguryError *_Nullable *_Nullable)error {
+- (BOOL)performTransition:(OguryAdError *_Nullable *_Nullable)error {
     [self.initialState cleanUp];
     return YES;
 }

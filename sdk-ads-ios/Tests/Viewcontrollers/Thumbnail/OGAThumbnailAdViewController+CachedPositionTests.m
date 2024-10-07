@@ -89,7 +89,7 @@
     self.log = OCMClassMock([OGALog class]);
 
     OCMStub([self.safeAreaController getUsableFullscreenFrameWithWindow:[OCMArg any]]).andReturn(CGRectMake(0, 0, 100, 100));
-    OCMStub([self.config corner]).andReturn(OguryTopLeft);
+    OCMStub([self.config corner]).andReturn(OguryRectCornerTopLeft);
     OCMStub([self.config offset]).andReturn(OguryOffsetMake(10, 10));
     OCMStub([self.ad thumbnailAdResponse]).andReturn(self.thumbnailAdResponse);
     OCMStub([self.displayer ad]).andReturn(self.ad);
@@ -109,19 +109,19 @@
     self.thumbnailController.displayer = self.displayer;
     self.thumbnailController.thumbnailSize = CGSizeMake(24, 24);
     self.thumbnailController.offsetRatio = OguryOffsetMake(10, 10);
-    self.thumbnailController.rectCorner = OguryTopLeft;
+    self.thumbnailController.rectCorner = OguryRectCornerTopLeft;
     self.cachedThumbnailAdPosition = OCMClassMock([OGAThumbnailAdCachedPositionObject class]);
     OCMStub(self.cachedThumbnailAdPosition.offsetRatio).andReturn(OguryOffsetMake(50, 50));
-    OCMStub(self.cachedThumbnailAdPosition.rectCorner).andReturn(OguryTopLeft);
+    OCMStub(self.cachedThumbnailAdPosition.rectCorner).andReturn(OguryRectCornerTopLeft);
     self.thumbnailController.cachedThumbnailAdPosition = self.cachedThumbnailAdPosition;
 }
 
 - (void)testCacheThumbnailAdPosition {
     OCMStub(self.thumbnailController.offsetRatio).andReturn(OguryOffsetMake(50, 50));
-    OCMStub(self.thumbnailController.rectCorner).andReturn(OguryTopLeft);
-    OCMStub([self.thumbnailController cacheThumbnailAdPositionWithOffsetRatio:OguryOffsetMake(50, 50) rectCorner:OguryTopLeft]);
+    OCMStub(self.thumbnailController.rectCorner).andReturn(OguryRectCornerTopLeft);
+    OCMStub([self.thumbnailController cacheThumbnailAdPositionWithOffsetRatio:OguryOffsetMake(50, 50) rectCorner:OguryRectCornerTopLeft]);
     [self.thumbnailController cacheThumbnailAdPosition];
-    OCMVerify([self.thumbnailController cacheThumbnailAdPositionWithOffsetRatio:OguryOffsetMake(50, 50) rectCorner:OguryTopLeft]);
+    OCMVerify([self.thumbnailController cacheThumbnailAdPositionWithOffsetRatio:OguryOffsetMake(50, 50) rectCorner:OguryRectCornerTopLeft]);
 }
 
 - (void)testUpdateToCachedThumbnailAdPositionWithAdUnitIdFalse {
@@ -165,81 +165,81 @@
 - (void)testApplyCachedThumbnailAdPositionToCurrentPositionOguryTopLeft {
     self.cachedThumbnailAdPosition = OCMClassMock([OGAThumbnailAdCachedPositionObject class]);
     OCMStub(self.cachedThumbnailAdPosition.offsetRatio).andReturn(OguryOffsetMake(50, 30));
-    OCMStub(self.cachedThumbnailAdPosition.rectCorner).andReturn(OguryTopLeft);
+    OCMStub(self.cachedThumbnailAdPosition.rectCorner).andReturn(OguryRectCornerTopLeft);
     self.thumbnailController.cachedThumbnailAdPosition = self.cachedThumbnailAdPosition;
     [self.thumbnailController applyCachedThumbnailAdPositionToCurrentPosition];
-    OCMVerify([self.thumbnailController setRectCorner:OguryTopLeft]);
+    OCMVerify([self.thumbnailController setRectCorner:OguryRectCornerTopLeft]);
     OCMVerify([self.thumbnailController setOffsetRatio:OguryOffsetMake(50, 30)]);
 }
 
 - (void)testApplyCachedThumbnailAdPositionToCurrentPositionOguryTopRight {
     self.cachedThumbnailAdPosition = OCMClassMock([OGAThumbnailAdCachedPositionObject class]);
     OCMStub(self.cachedThumbnailAdPosition.offsetRatio).andReturn(OguryOffsetMake(30, 50));
-    OCMStub(self.cachedThumbnailAdPosition.rectCorner).andReturn(OguryTopRight);
+    OCMStub(self.cachedThumbnailAdPosition.rectCorner).andReturn(OguryRectCornerTopRight);
     self.thumbnailController.cachedThumbnailAdPosition = self.cachedThumbnailAdPosition;
     [self.thumbnailController applyCachedThumbnailAdPositionToCurrentPosition];
-    OCMVerify([self.thumbnailController setRectCorner:OguryTopRight]);
+    OCMVerify([self.thumbnailController setRectCorner:OguryRectCornerTopRight]);
     OCMVerify([self.thumbnailController setOffsetRatio:OguryOffsetMake(30, 50)]);
 }
 
 - (void)testApplyCachedThumbnailAdPositionToCurrentPositionBottomRight {
     self.cachedThumbnailAdPosition = OCMClassMock([OGAThumbnailAdCachedPositionObject class]);
     OCMStub(self.cachedThumbnailAdPosition.offsetRatio).andReturn(OguryOffsetMake(130, 130));
-    OCMStub(self.cachedThumbnailAdPosition.rectCorner).andReturn(OguryBottomRight);
+    OCMStub(self.cachedThumbnailAdPosition.rectCorner).andReturn(OguryRectCornerBottomRight);
     self.thumbnailController.cachedThumbnailAdPosition = self.cachedThumbnailAdPosition;
     [self.thumbnailController applyCachedThumbnailAdPositionToCurrentPosition];
-    OCMVerify([self.thumbnailController setRectCorner:OguryBottomRight]);
+    OCMVerify([self.thumbnailController setRectCorner:OguryRectCornerBottomRight]);
     OCMVerify([self.thumbnailController setOffsetRatio:OguryOffsetMake(130, 130)]);
 }
 
 - (void)testApplyCachedThumbnailAdPositionToCurrentPositionBottomLeft {
     self.cachedThumbnailAdPosition = OCMClassMock([OGAThumbnailAdCachedPositionObject class]);
     OCMStub(self.cachedThumbnailAdPosition.offsetRatio).andReturn(OguryOffsetMake(70, 70));
-    OCMStub(self.cachedThumbnailAdPosition.rectCorner).andReturn(OguryBottomLeft);
+    OCMStub(self.cachedThumbnailAdPosition.rectCorner).andReturn(OguryRectCornerBottomLeft);
     self.thumbnailController.cachedThumbnailAdPosition = self.cachedThumbnailAdPosition;
     [self.thumbnailController applyCachedThumbnailAdPositionToCurrentPosition];
-    OCMVerify([self.thumbnailController setRectCorner:OguryBottomLeft]);
+    OCMVerify([self.thumbnailController setRectCorner:OguryRectCornerBottomLeft]);
     OCMVerify([self.thumbnailController setOffsetRatio:OguryOffsetMake(70, 70)]);
 }
 
 - (void)testCacheThumbnailAdPositionWithOffsetRatioOguryTopLeft {
     id classMock = OCMClassMock([NSKeyedArchiver class]);
     OCMStub(ClassMethod([classMock archivedDataWithRootObject:[OCMArg any]]));
-    [self.thumbnailController cacheThumbnailAdPositionWithOffsetRatio:OguryOffsetMake(130, 50) rectCorner:OguryTopLeft];
+    [self.thumbnailController cacheThumbnailAdPositionWithOffsetRatio:OguryOffsetMake(130, 50) rectCorner:OguryRectCornerTopLeft];
     XCTAssertNotNil(self.thumbnailController.cachedThumbnailAdPosition);
     XCTAssertEqual(self.thumbnailController.cachedThumbnailAdPosition.offsetRatio.x, 130);
     XCTAssertEqual(self.thumbnailController.cachedThumbnailAdPosition.offsetRatio.y, 50);
-    XCTAssertEqual(self.thumbnailController.cachedThumbnailAdPosition.rectCorner, OguryTopLeft);
+    XCTAssertEqual(self.thumbnailController.cachedThumbnailAdPosition.rectCorner, OguryRectCornerTopLeft);
 }
 
 - (void)testCacheThumbnailAdPositionWithOffsetRatioOguryTopRight {
     id classMock = OCMClassMock([NSKeyedArchiver class]);
     OCMStub(ClassMethod([classMock archivedDataWithRootObject:[OCMArg any]]));
-    [self.thumbnailController cacheThumbnailAdPositionWithOffsetRatio:OguryOffsetMake(70, 40) rectCorner:OguryTopRight];
+    [self.thumbnailController cacheThumbnailAdPositionWithOffsetRatio:OguryOffsetMake(70, 40) rectCorner:OguryRectCornerTopRight];
     XCTAssertNotNil(self.thumbnailController.cachedThumbnailAdPosition);
     XCTAssertEqual(self.thumbnailController.cachedThumbnailAdPosition.offsetRatio.x, 70);
     XCTAssertEqual(self.thumbnailController.cachedThumbnailAdPosition.offsetRatio.y, 40);
-    XCTAssertEqual(self.thumbnailController.cachedThumbnailAdPosition.rectCorner, OguryTopRight);
+    XCTAssertEqual(self.thumbnailController.cachedThumbnailAdPosition.rectCorner, OguryRectCornerTopRight);
 }
 
 - (void)testCacheThumbnailAdPositionWithOffsetRatioOguryBottomLeft {
     id classMock = OCMClassMock([NSKeyedArchiver class]);
     OCMStub(ClassMethod([classMock archivedDataWithRootObject:[OCMArg any]]));
-    [self.thumbnailController cacheThumbnailAdPositionWithOffsetRatio:OguryOffsetMake(30, 60) rectCorner:OguryBottomLeft];
+    [self.thumbnailController cacheThumbnailAdPositionWithOffsetRatio:OguryOffsetMake(30, 60) rectCorner:OguryRectCornerBottomLeft];
     XCTAssertNotNil(self.thumbnailController.cachedThumbnailAdPosition);
     XCTAssertEqual(self.thumbnailController.cachedThumbnailAdPosition.offsetRatio.x, 30);
     XCTAssertEqual(self.thumbnailController.cachedThumbnailAdPosition.offsetRatio.y, 60);
-    XCTAssertEqual(self.thumbnailController.cachedThumbnailAdPosition.rectCorner, OguryBottomLeft);
+    XCTAssertEqual(self.thumbnailController.cachedThumbnailAdPosition.rectCorner, OguryRectCornerBottomLeft);
 }
 
 - (void)testCacheThumbnailAdPositionWithOffsetRatioOguryBottomRight {
     id classMock = OCMClassMock([NSKeyedArchiver class]);
     OCMStub(ClassMethod([classMock archivedDataWithRootObject:[OCMArg any]]));
-    [self.thumbnailController cacheThumbnailAdPositionWithOffsetRatio:OguryOffsetMake(20, 90) rectCorner:OguryBottomRight];
+    [self.thumbnailController cacheThumbnailAdPositionWithOffsetRatio:OguryOffsetMake(20, 90) rectCorner:OguryRectCornerBottomRight];
     XCTAssertNotNil(self.thumbnailController.cachedThumbnailAdPosition);
     XCTAssertEqual(self.thumbnailController.cachedThumbnailAdPosition.offsetRatio.x, 20);
     XCTAssertEqual(self.thumbnailController.cachedThumbnailAdPosition.offsetRatio.y, 90);
-    XCTAssertEqual(self.thumbnailController.cachedThumbnailAdPosition.rectCorner, OguryBottomRight);
+    XCTAssertEqual(self.thumbnailController.cachedThumbnailAdPosition.rectCorner, OguryRectCornerBottomRight);
 }
 
 - (void)testDefineCustomThumbnailCachedPositionKeyWithAdUnitId {

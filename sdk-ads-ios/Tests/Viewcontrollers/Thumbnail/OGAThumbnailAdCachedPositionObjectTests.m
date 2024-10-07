@@ -14,10 +14,10 @@
 @implementation OGAThumbnailAdCachedPositionObjectTests
 
 - (void)testInitWithOguryOffsetRatio {
-    OGAThumbnailAdCachedPositionObject *thumbnailAdCachedPositionObject = [[OGAThumbnailAdCachedPositionObject alloc] initWithOguryOffsetRatio:OguryOffsetMake(10, 11) rectCorner:OguryTopLeft];
+    OGAThumbnailAdCachedPositionObject *thumbnailAdCachedPositionObject = [[OGAThumbnailAdCachedPositionObject alloc] initWithOguryOffsetRatio:OguryOffsetMake(10, 11) rectCorner:OguryRectCornerTopLeft];
     XCTAssertEqual(thumbnailAdCachedPositionObject.offsetRatio.x, 10);
     XCTAssertEqual(thumbnailAdCachedPositionObject.offsetRatio.y, 11);
-    XCTAssertEqual(thumbnailAdCachedPositionObject.rectCorner, OguryTopLeft);
+    XCTAssertEqual(thumbnailAdCachedPositionObject.rectCorner, OguryRectCornerTopLeft);
 }
 
 - (void)testSupportsSecureCoding {

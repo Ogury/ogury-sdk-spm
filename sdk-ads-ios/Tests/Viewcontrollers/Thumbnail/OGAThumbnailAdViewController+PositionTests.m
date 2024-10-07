@@ -82,7 +82,7 @@
     self.log = OCMClassMock([OGALog class]);
 
     OCMStub([self.safeAreaController getUsableFullscreenFrameWithWindow:[OCMArg any]]).andReturn(CGRectMake(0, 0, 100, 100));
-    OCMStub([self.config corner]).andReturn(OguryTopLeft);
+    OCMStub([self.config corner]).andReturn(OguryRectCornerTopLeft);
     OCMStub([self.config offset]).andReturn(OguryOffsetMake(10, 10));
     OCMStub([self.ad thumbnailAdResponse]).andReturn(self.thumbnailAdResponse);
     OCMStub([self.displayer ad]).andReturn(self.ad);
@@ -102,7 +102,7 @@
     self.thumbnailController.displayer = self.displayer;
     self.thumbnailController.thumbnailSize = CGSizeMake(24, 24);
     self.thumbnailController.offsetRatio = OguryOffsetMake(0, 0);
-    self.thumbnailController.rectCorner = OguryTopLeft;
+    self.thumbnailController.rectCorner = OguryRectCornerTopLeft;
 }
 
 - (void)testUpdateOffsetRatioZero {
@@ -120,7 +120,7 @@
     [self.thumbnailController updateOffsetRatio];
     XCTAssertEqual(self.thumbnailController.offsetRatio.x, -0.1);
     XCTAssertEqual(self.thumbnailController.offsetRatio.y, -0.1);
-    XCTAssertEqual(self.thumbnailController.rectCorner, OguryTopLeft);
+    XCTAssertEqual(self.thumbnailController.rectCorner, OguryRectCornerTopLeft);
 }
 
 - (void)testUpdateOffsetTopLeft {
@@ -130,7 +130,7 @@
     [self.thumbnailController updateOffsetRatio];
     XCTAssertEqual(self.thumbnailController.offsetRatio.x, 0.1);
     XCTAssertEqual(self.thumbnailController.offsetRatio.y, 0.1);
-    XCTAssertEqual(self.thumbnailController.rectCorner, OguryTopLeft);
+    XCTAssertEqual(self.thumbnailController.rectCorner, OguryRectCornerTopLeft);
 }
 
 - (void)testUpdateOffsetTopRight {
@@ -140,7 +140,7 @@
     [self.thumbnailController updateOffsetRatio];
     XCTAssertEqual(self.thumbnailController.offsetRatio.x, 0.1);
     XCTAssertEqual(self.thumbnailController.offsetRatio.y, 0.1);
-    XCTAssertEqual(self.thumbnailController.rectCorner, OguryTopRight);
+    XCTAssertEqual(self.thumbnailController.rectCorner, OguryRectCornerTopRight);
 }
 
 - (void)testUpdateOffsetBottomLeft {
@@ -150,7 +150,7 @@
     [self.thumbnailController updateOffsetRatio];
     XCTAssertEqual(self.thumbnailController.offsetRatio.x, 0.1);
     XCTAssertEqual(self.thumbnailController.offsetRatio.y, 0.1);
-    XCTAssertEqual(self.thumbnailController.rectCorner, OguryBottomLeft);
+    XCTAssertEqual(self.thumbnailController.rectCorner, OguryRectCornerBottomLeft);
 }
 
 - (void)testUpdateOffsetBottomRight {
@@ -160,7 +160,7 @@
     [self.thumbnailController updateOffsetRatio];
     XCTAssertEqual(self.thumbnailController.offsetRatio.x, 0.1);
     XCTAssertEqual(self.thumbnailController.offsetRatio.y, 0.1);
-    XCTAssertEqual(self.thumbnailController.rectCorner, OguryBottomRight);
+    XCTAssertEqual(self.thumbnailController.rectCorner, OguryRectCornerBottomRight);
 }
 
 - (void)testApplyOffsetToPositionTopLeft {
@@ -176,7 +176,7 @@
     OCMStub([self.thumbnailController getDeviceWidth]).andReturn(100);
     OCMStub([self.thumbnailController getVisibleHeight]).andReturn(100);
     self.thumbnailController.offsetRatio = OguryOffsetMake(0.1, 0.1);
-    self.thumbnailController.rectCorner = OguryTopRight;
+    self.thumbnailController.rectCorner = OguryRectCornerTopRight;
     [self.thumbnailController applyOffsetToPosition];
     XCTAssertEqual(self.thumbnailController.thumbnailPosition.x, 66);
     XCTAssertEqual(self.thumbnailController.thumbnailPosition.y, 10);
@@ -186,7 +186,7 @@
     OCMStub([self.thumbnailController getDeviceWidth]).andReturn(100);
     OCMStub([self.thumbnailController getVisibleHeight]).andReturn(100);
     self.thumbnailController.offsetRatio = OguryOffsetMake(0.1, 0.1);
-    self.thumbnailController.rectCorner = OguryBottomLeft;
+    self.thumbnailController.rectCorner = OguryRectCornerBottomLeft;
     [self.thumbnailController applyOffsetToPosition];
     XCTAssertEqual(self.thumbnailController.thumbnailPosition.x, 10);
     XCTAssertEqual(self.thumbnailController.thumbnailPosition.y, 66);
@@ -196,7 +196,7 @@
     OCMStub([self.thumbnailController getDeviceWidth]).andReturn(100);
     OCMStub([self.thumbnailController getVisibleHeight]).andReturn(100);
     self.thumbnailController.offsetRatio = OguryOffsetMake(0.1, 0.1);
-    self.thumbnailController.rectCorner = OguryBottomRight;
+    self.thumbnailController.rectCorner = OguryRectCornerBottomRight;
     [self.thumbnailController applyOffsetToPosition];
     XCTAssertEqual(self.thumbnailController.thumbnailPosition.x, 66);
     XCTAssertEqual(self.thumbnailController.thumbnailPosition.y, 66);
@@ -206,7 +206,7 @@
     OCMStub([self.thumbnailController getDeviceWidth]).andReturn(0);
     OCMStub([self.thumbnailController getVisibleHeight]).andReturn(100);
     [self.thumbnailController initThumbnailPosition];
-    XCTAssertEqual(self.thumbnailController.rectCorner, OguryTopLeft);
+    XCTAssertEqual(self.thumbnailController.rectCorner, OguryRectCornerTopLeft);
     XCTAssertEqual(self.thumbnailController.thumbnailSize.width, 24);
     XCTAssertEqual(self.thumbnailController.thumbnailSize.height, 24);
     XCTAssertEqual(self.thumbnailController.offsetRatio.x, 0);
@@ -217,7 +217,7 @@
     OCMStub([self.thumbnailController getDeviceWidth]).andReturn(100);
     OCMStub([self.thumbnailController getVisibleHeight]).andReturn(100);
     [self.thumbnailController initThumbnailPosition];
-    XCTAssertEqual(self.thumbnailController.rectCorner, OguryTopLeft);
+    XCTAssertEqual(self.thumbnailController.rectCorner, OguryRectCornerTopLeft);
     XCTAssertEqual(self.thumbnailController.offsetRatio.x, 0.1);
     XCTAssertEqual(self.thumbnailController.offsetRatio.y, 0.1);
 }

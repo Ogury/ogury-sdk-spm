@@ -5,10 +5,11 @@
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
 #import "OGAMraidFileDownloader.h"
-#import "OguryError+Ads.h"
+#import "OguryAdError.h"
 #import "OGAAd.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGALog.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAMraidFileDownloader ()
 
@@ -80,7 +81,7 @@
     OCMStub(self.ad.mraidDownloadUrl).andReturn(downloadURL);
     [self.mraidFileDownloader downloadMraidJSFromURL:self.ad
                                           completion:^(NSString *response, NSError *error) {
-                                              XCTAssertEqualObjects(error, [OguryError createNotLoadedError]);
+                                              XCTAssertEqualObjects(error, [OguryAdError adPrecachingFailedWithStackTrace:@"No mraidDownloadUrl found on ad"]);
                                               [expect fulfill];
                                           }];
     [self waitForExpectations:@[ expect ] timeout:1.0];

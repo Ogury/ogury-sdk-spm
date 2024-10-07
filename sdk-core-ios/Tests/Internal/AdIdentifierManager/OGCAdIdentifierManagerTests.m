@@ -439,16 +439,33 @@ NSString *tokenId2= @"00000000-2222-3333-1598-000000000000";
     XCTAssertEqual([modelLayer getInstanceToken].length, 36);
 }
 
-- (void)test_shouldUpdateConsentToken {
-    OGCNSProcessInfoMock *processInfo = [[OGCNSProcessInfoMock alloc] initWithMajorVersion:14];
-    OGCAdIdentifierManager *modelLayer = [[OGCAdIdentifierManager alloc] initWithPrivacyLayer:self.privacyLayer andDataLayer:self.dataLayer andProcessInfo:processInfo log:self.log];
-    NSString *consentToken = [modelLayer getConsentToken];
+- (void)testRetrievedGPPConsentString {
+   [self.mockedUserDefault unlockUserDefault];
+   [self.mockedUserDefault setObject:@"2-3" forKey:@"IABGPP_GppSID"];
+   [self.mockedUserDefault setObject:@"DBABM~CPXxRfAPXxRfAAfKABENB-CgAAAAAAAAAAYgAAAAAAAA" forKey:@"IABGPP_HDR_GppString"];
+   [self.mockedUserDefault setObject:@"CPokAsAPokAsABEACBENC7CgAP_AAH_AAAwIAAAAAAAA" forKey:@"IABTCF_TCString"];
+   OGCNSProcessInfoMock *processInfo = [[OGCNSProcessInfoMock alloc] initWithMajorVersion:13];
+   OGCAdIdentifierManager *modelLayer = [[OGCAdIdentifierManager alloc] initWithPrivacyLayer:self.privacyLayer andDataLayer:self.dataLayer andProcessInfo:processInfo log:self.log];
+   XCTAssertTrue([[modelLayer retrieveGPPSID] isEqualToString: @"2-3"]);
+   XCTAssertTrue([[modelLayer retrieveGPPConsentString] isEqualToString: @"DBABM~CPXxRfAPXxRfAAfKABENB-CgAAAAAAAAAAYgAAAAAAAA"]);
+   XCTAssertTrue([[modelLayer retrieveTCFConsentString] isEqualToString: @"CPokAsAPokAsABEACBENC7CgAP_AAH_AAAwIAAAAAAAA"]);
+}
 
-    XCTAssertEqual(consentToken.length, 36);
-
-    [modelLayer updateConsentToken];
-
-    XCTAssertEqual([modelLayer getConsentToken].length, 36);
+- (void)testWhenCallingGppConsentGettersThenProperInternalMethodAreForwarded {
+    OGCNSProcessInfoMock *processInfo = [[OGCNSProcessInfoMock alloc] initWithMajorVersion:13];
+    OGCAdIdentifierDataLayer* dataLayer = OCMPartialMock([[OGCAdIdentifierDataLayer alloc] initWithUserDefaults:self.mockedUserDefault]);
+    OGCAdIdentifierManager *modelLayer = [[OGCAdIdentifierManager alloc] initWithPrivacyLayer:self.privacyLayer
+                                                                                 andDataLayer:dataLayer
+                                                                               andProcessInfo:processInfo
+                                                                                          log:self.log];
+    [modelLayer retrieveGPPSID];
+    OCMVerify([dataLayer getGPPSID]);
+    [modelLayer retrieveGPPConsentString];
+    OCMVerify([dataLayer getGPPConsentString]);
+    [modelLayer retrieveTCFConsentString];
+    OCMVerify([dataLayer getTCFConsentString]);
+    [modelLayer retrieveDataPrivacy];
+    OCMVerify([dataLayer retrieveDataPrivacy]);
 }
 
 @end

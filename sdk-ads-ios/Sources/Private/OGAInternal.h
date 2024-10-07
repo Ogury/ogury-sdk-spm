@@ -3,10 +3,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <OguryCore/OguryPersistentEventBus.h>
 #import <OguryCore/OguryLogLevel.h>
+#import <OguryAds/OguryAds.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+typedef void (^StartCompletionBlock)(BOOL success, OguryError *_Nullable error);
 
 @interface OGAInternal : NSObject
 
@@ -16,10 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - methods
 
-- (void)startWithAssetKey:(NSString *)assetKey
-       persistentEventBus:(OguryPersistentEventBus *_Nullable)persistentEventBus
-        broadcastEventBus:(OguryEventBus *_Nullable)broadcastEventBus;
-
+- (void)startWith:(NSString *)assetKey completionHandler:(StartCompletionBlock)completionHandler;
 - (void)setLogLevel:(OguryLogLevel)logLevel;
 - (NSString *)getVersion;
 - (NSString *)getBuildVersion;
