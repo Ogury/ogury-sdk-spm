@@ -6,7 +6,7 @@
 
 #import <OCMock/OCMock.h>
 #import "OGAAdConfiguration.h"
-#import "OguryBannerAdDelegateDispatcher.h"
+#import "OguryBannerAdViewDelegateDispatcher.h"
 #import "OguryAdsBannerSize.h"
 
 NSString *const OGAAdConfigurationTestsAdUnitId = @"ad-unit-id";
@@ -63,7 +63,7 @@ NSString *const OGAEncodedAdMarkup = @"encoded-adMarkup";
     configuration.userId = OGAAdConfigurationTestsUserId;
     configuration.creativeId = OGAAdConfigurationTestsCreativeId;
     configuration.adDsp = [[OGAAdDsp alloc] initWithCreativeId:OGAAdConfigurationTestsDspCreativeId region:OGAAdConfigurationTestsDspRegion];
-    configuration.corner = OguryBottomLeft;
+    configuration.corner = OguryRectCornerBottomLeft;
     configuration.offset = OguryOffsetMake(50, 20);
     configuration.encodedAdMarkup = OGAEncodedAdMarkup;
     configuration.isHeaderBidding = true;
@@ -81,7 +81,7 @@ NSString *const OGAEncodedAdMarkup = @"encoded-adMarkup";
     XCTAssertTrue(CGSizeEqualToSize(copiedConfiguration.size, CGSizeMake(180, 120)));
     XCTAssertEqualObjects(copiedConfiguration.campaignId, OGAAdConfigurationTestsCampaignId);
     XCTAssertEqualObjects(copiedConfiguration.userId, OGAAdConfigurationTestsUserId);
-    XCTAssertEqual(copiedConfiguration.corner, OguryBottomLeft);
+    XCTAssertEqual(copiedConfiguration.corner, OguryRectCornerBottomLeft);
     XCTAssertEqual(copiedConfiguration.offset.x, 50);
     XCTAssertEqual(copiedConfiguration.offset.y, 20);
     XCTAssertEqual(copiedConfiguration.locale, locale);
@@ -100,7 +100,7 @@ NSString *const OGAEncodedAdMarkup = @"encoded-adMarkup";
 }
 
 - (void)testGetAdTypeString_RewardedAd {
-    OGAAdConfiguration *configuration = [[OGAAdConfiguration alloc] initWithType:OguryAdsTypeOptinVideo adUnitId:OGAAdConfigurationTestsAdUnitId delegateDispatcher:self.delegateDispatcher viewControllerProvider:nil viewProvider:nil];
+    OGAAdConfiguration *configuration = [[OGAAdConfiguration alloc] initWithType:OguryAdsTypeRewardedAd adUnitId:OGAAdConfigurationTestsAdUnitId delegateDispatcher:self.delegateDispatcher viewControllerProvider:nil viewProvider:nil];
 
     XCTAssertEqualObjects(configuration.getAdTypeString, @"optin_video");
 }
@@ -133,7 +133,7 @@ NSString *const OGAEncodedAdMarkup = @"encoded-adMarkup";
 }
 
 - (void)testShouldReturnBannerView {
-    OguryBannerAdDelegateDispatcher *delegateDispatcher = OCMClassMock([OguryBannerAdDelegateDispatcher class]);
+    OguryBannerAdViewDelegateDispatcher *delegateDispatcher = OCMClassMock([OguryBannerAdViewDelegateDispatcher class]);
 
     UIViewController *viewController = [[UIViewController alloc] init];
     UIView *bannerView = [[UIView alloc] init];

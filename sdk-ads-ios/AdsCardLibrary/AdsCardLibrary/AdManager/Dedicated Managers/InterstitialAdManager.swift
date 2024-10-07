@@ -14,8 +14,7 @@ public final class InterstitialAdManager: AdManager {
     }
     
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
-    lazy var store = Store(initialState: AdViewFeature.State(from: self.options,
-                                                             adType: AnyAdType(self.adType)), reducer: {
+    lazy var store = Store(initialState: AdViewFeature.State(from: self.options), reducer: {
         AdViewFeature(adManager: self)
     })
     public typealias Ad = OguryInterstitialAd
@@ -46,11 +45,14 @@ public final class InterstitialAdManager: AdManager {
         self.adType = adType
         proxyDelegate = InterstitialProxyDelegate(adDelegate: adDelegate)
         proxyDelegate.adManager = self
-        switch adType {
-            case let .maxHeaderBidding(_, adMarkUpRetriever): bidder = adMarkUpRetriever
-            case let .dtFairBidHeaderBidding(_, adMarkUpRetriever): bidder = adMarkUpRetriever
-            case let .unityLevelPlayHeaderBidding(_, adMarkUpRetriever): bidder = adMarkUpRetriever
-            default: ()
+        if case let .maxHeaderBidding(_, adMarkUpRetriever) = adType {
+            bidder = adMarkUpRetriever
+        }
+        else if case let .dtFairBidHeaderBidding(_, adMarkUpRetriever) = adType {
+            bidder = adMarkUpRetriever
+        }
+        else if case let .unityLevelPlayHeaderBidding(_, adMarkUpRetriever) = adType {
+            bidder = adMarkUpRetriever
         }
     }
     
@@ -80,7 +82,7 @@ public final class InterstitialAdManager: AdManager {
                                                         campaignId: options.campaignId,
                                                         creativeId: options.creativeId,
                                                         dspCreative: options.dspCreativeId,
-                                                        dspRegion: options.dspRegion,
+                                                        dspRegion: options.dspRegion
                                                         rtbTestModeEnabled: options.rtbTestModeEnabled)
                 guard let adMakUp else {
                     append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")))
@@ -166,26 +168,27 @@ public final class InterstitialAdManager: AdManager {
 // and for some reasons, that leads to unexpected compilation fail
 // To overcome easily this, we use a proxy object
 internal class InterstitialProxyDelegate: AdDelegateProxy<InterstitialAdManager>, OguryInterstitialAdDelegate {
-    func didLoad(_ interstitial: OguryInterstitialAd) {
+    func interstitialAdDidLoad(_ interstitialAd: OguryInterstitialAd) {
         guard let adManager else { return }
         adManager.append(.adLoaded(canShow: true))
     }
     
-    func didClick(_ interstitial: OguryInterstitialAd) {
+    func interstitialAdDidClick(_ interstitialAd: OguryInterstitialAd) {
         guard let adManager else { return }
         adManager.append(.adClicked)
     }
     
-    func didClose(_ interstitial: OguryInterstitialAd) {
+    func interstitialAdDidClose(_ interstitialAd: OguryInterstitialAd) {
         guard let adManager else { return }
         adManager.append(.adClosed)
     }
     
-    func didFailOguryInterstitialAdWithError(_ error: OguryError, for interstitial: OguryInterstitialAd) {
-        handle(error, for: interstitial)
+    
+    func interstitialAd(_ interstitialAd: OguryInterstitialAd, didFailWithEerror error: OguryAdError) {
+        handle(error, for: interstitialAd)
     }
     
-    func didTriggerImpressionOguryInterstitialAd(_ interstitial: OguryInterstitialAd) {
+    func interstitialAdDidTriggerImpression(_ interstitialAd: OguryInterstitialAd) {
         guard let adManager else { return }
         adManager.append(.adDidTriggerImpression)
     }

@@ -43,7 +43,7 @@
     OguryError *error;
     XCTAssertFalse([self.checker checkForSequence:sequence error:&error]);
 
-    XCTAssertEqual(error.code, OguryAdsErrorTypeNoAdLoaded);
+    XCTAssertEqual(error.code, OguryShowErrorCodeNoAdLoaded);
 }
 
 @end

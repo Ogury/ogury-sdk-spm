@@ -6,5 +6,6 @@ framework module OguryCore {
     module Private {
        export *
        header "OGCInternal.h"
+       header "OguryError+Internal.h"
     }
 }

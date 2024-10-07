@@ -23,7 +23,7 @@
 @property(nonatomic, strong) OGAAdManager *adManager;
 @property(nonatomic, strong) OGALog *log;
 @property(nonatomic, strong) OGASetLogLevelNotificationManager *logNotificationManager;
-@property(nonatomic, copy) SetUpCompletionBlock setupBlock;
+@property(nonatomic, copy) StartCompletionBlock setupBlock;
 
 @end
 
@@ -82,17 +82,10 @@
 }
 
 #pragma mark - methods
-- (void)startWithAssetKey:(NSString *)assetKey {
-    [self startWithAssetKey:assetKey completionHandler:nil];
-}
 
-- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetUpCompletionBlock __nullable)completionHandler {
+- (void)startWith:(NSString *)assetKey completionHandler:(StartCompletionBlock)completionHandler {
     self.setupBlock = completionHandler;
     [self.log log:OguryLogLevelInfo message:@"Module started"];
-
-    // if ([self.assetKeyManager shouldResetSDKFor:assetKey]) {
-    //    [self resetSDK];
-    // }
 
     if ([self.assetKeyManager configureAssetKey:assetKey]) {
         // Setup notifier otherwise further call to the internetReachability will return invalid statuses.
@@ -101,6 +94,7 @@
 
     } else {
         [self.log log:OguryLogLevelWarning message:@"Ogury Ads only need to be started once. Additional calls are ignored."];
+        completionHandler(true, nil);
     }
 }
 

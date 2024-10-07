@@ -18,7 +18,7 @@
 
 #pragma mark - Methods
 
-- (BOOL)performTransition:(OguryError *_Nullable *_Nullable)error {
+- (BOOL)performTransition:(OguryAdError *_Nullable *_Nullable)error {
     id<OGAAdDisplayer> displayer = self.initialState.displayer;
     if (![self.finalState display:displayer error:error]) {
         return NO;

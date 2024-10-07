@@ -43,7 +43,13 @@ public struct AdsCardManager {
         DispatchQueue.main.async {
             let sel = NSSelectorFromString("changeServerEnvironment:")
             OGAInternal.shared().perform(sel, with: environment)
-            OguryAds.shared().setup(withAssetKey: assetKey)
+            OGAInternal.shared().start(with: assetKey) { success, error in
+                if (success && error == nil) {
+                    print("OguryAds Start Done")
+                } else {
+                    print("OguryAds failed to start with error : \(error?.localizedDescription ?? "Error description is nil")")
+                }
+            }
         }
     }
 }

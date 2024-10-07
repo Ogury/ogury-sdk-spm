@@ -34,7 +34,7 @@
     if (self = [super init]) {
         _internalAPI = internalAPI;
         _delegateDispatcher = (OguryRewardedAdDelegateDispatcher *)internalAPI.delegateDispatcher;
-        _delegateDispatcher.optinVideo = self;
+        _delegateDispatcher.rewardedAd = self;
     }
     return self;
 }

@@ -19,7 +19,9 @@ struct AdSdkLauncher {
     func startAds(forceStart: Bool = false) {
         if SettingsController().startSDKWithApplication || forceStart {
             forceAdsEnvironment()
-            startModule(from: "OGAInternal")
+            OGAInternal.shared().start(with: assetKey) {
+                print("start(withAssetKey \($0), \($1)")
+            }
         }
     }
     
@@ -52,10 +54,5 @@ struct AdSdkLauncher {
     private func forceAdsEnvironment() {
         let sel = NSSelectorFromString("changeServerEnvironment:")
         OGAInternal.shared().perform(sel, with: environment)
-    }
-    
-    private func startModule(from moduleClass: String) {
-        let module = InternalModule(className: moduleClass)
-        module.start(withAssetKey: assetKey)
     }
 }

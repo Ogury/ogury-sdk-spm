@@ -113,13 +113,13 @@ class RTBBidder: HeaderBidable {
             // Replace placeholders
             var token:String?
             if (campaignId != nil && !campaignId!.isEmpty && dspCreative != nil && !dspCreative!.isEmpty && dspRegion != nil) {
-                let cls:AnyClass = OguryTokenService.self
-                let sel = NSSelectorFromString("bidderTokenWithCampaignId:creativeId:dspCreativeId:dspRegion:completion:")
+                let cls:AnyClass = OguryBidTokenService.self
+                let sel = NSSelectorFromString("bidTokenWithCampaignId:creativeId:dspCreativeId:dspRegion:completion:")
                 let meth = class_getClassMethod(cls, sel)
                 let imp = method_getImplementation(meth!)
                 typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?, String?, String?, @escaping (String?, NSError?) -> Void) -> Void
                 let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-                sayHiTo(OguryTokenService.classForCoder(), sel, campaignId!, creativeId, dspCreative, dspRegion!.displayName)  { token, error in
+                sayHiTo(OguryBidTokenService.classForCoder(), sel, campaignId!, creativeId, dspCreative, dspRegion!.displayName) { token, error in
                     guard error == nil else  {
                         completionHandler(.failure(.tokenError(error!)))
                         return
@@ -133,13 +133,13 @@ class RTBBidder: HeaderBidable {
                                         completion: completionHandler)
                 }
             } else if (campaignId != nil && !campaignId!.isEmpty) {
-                let cls:AnyClass = OguryTokenService.self
-                let sel = NSSelectorFromString("bidderTokenWithCampaignId:creativeId:completion:")
+                let cls:AnyClass = OguryBidTokenService.self
+                let sel = NSSelectorFromString("bidTokenWithCampaignId:creativeId:completion:")
                 let meth = class_getClassMethod(cls, sel)
                 let imp = method_getImplementation(meth!)
                 typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?, @escaping (String?, NSError?) -> Void) -> Void
                 let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-                sayHiTo(OguryTokenService.classForCoder(), sel, campaignId!, creativeId) { token, error in
+                sayHiTo(OguryBidTokenService.classForCoder(), sel, campaignId!, creativeId) { token, error in
                     guard error == nil else  {
                         completionHandler(.failure(.tokenError(error!)))
                         return
@@ -153,7 +153,7 @@ class RTBBidder: HeaderBidable {
                                         completion: completionHandler)
                 }
             } else {
-                OguryTokenService.bidderToken  { token, error in
+                OguryBidTokenService.bidToken { token, error in
                     guard error == nil else  {
                         completionHandler(.failure(.tokenError(error!)))
                         return
