@@ -15,7 +15,7 @@ public final class BannerAdManager: AdManager {
     
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
     lazy var store = Store(
-        initialState: AdViewFeature.State(from: self.options,
+      initialState: AdViewFeature.State(from: self.options, adType: AnyAdType(self.adType),
                                           bannerContainer: BannerContainer(bannerType: adType)),
         reducer: {
             AdViewFeature(adManager: self)
@@ -55,6 +55,9 @@ public final class BannerAdManager: AdManager {
         else if case let .dtFairBidHeaderBidding(_, adMarkUpRetriever) = adType {
             bidder = adMarkUpRetriever
         }
+        else if case let .unityLevelPlayHeaderBidding(_, adMarkUpRetriever) = adType {
+            bidder = adMarkUpRetriever
+        }
     }
     
     public func update(options: BaseAdOptions) {
@@ -87,7 +90,8 @@ public final class BannerAdManager: AdManager {
                                                             campaignId: options.campaignId,
                                                             creativeId: options.creativeId,
                                                             dspCreative: options.dspCreativeId,
-                                                            dspRegion: options.dspRegion)
+                                                            dspRegion: options.dspRegion,
+                                                            rtbTestModeEnabled: options.rtbTestModeEnabled)
                     guard let adMakUp else {
                         self.append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")))
                         return
@@ -103,7 +107,7 @@ public final class BannerAdManager: AdManager {
     
     private var isMpu: Bool {
         switch adType {
-            case .mpu, .maxHeaderBidding(.mpu, _): return true
+            case .mpu, .maxHeaderBidding(.mpu, _), .dtFairBidHeaderBidding(.mpu, _), .unityLevelPlayHeaderBidding(.mpu, _): return true
             default: return false
         }
     }
@@ -190,6 +194,7 @@ public final class BannerAdManager: AdManager {
     public func updateCard(events: [AdOptionsEvent]) {
         adView.updateCard(events: events)
     }
+            
 }
 
 // We have to use a proxy object because otherwise, we would have to make InterstitialAdManager a final class that inherits from NSObject

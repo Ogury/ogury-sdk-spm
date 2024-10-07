@@ -14,8 +14,9 @@ public final class RewardedAdManager: AdManager {
     }
     
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
-    lazy var store = Store(initialState: AdViewFeature.State(from: self.options,
-                                                             rewardedOptions: RewardedOptions()), reducer: {
+   lazy var store = Store(initialState: AdViewFeature.State(from: self.options,
+                                                            adType: AnyAdType(self.adType),
+                                                            rewardedOptions: RewardedOptions()), reducer: {
         AdViewFeature(adManager: self)
     })
     public typealias Ad = OguryRewardedAd
@@ -52,6 +53,9 @@ public final class RewardedAdManager: AdManager {
         else if case let .dtFairBidHeaderBidding(_, adMarkUpRetriever) = adType {
             bidder = adMarkUpRetriever
         }
+        else if case let .unityLevelPlayHeaderBidding(_, adMarkUpRetriever) = adType {
+            bidder = adMarkUpRetriever
+        }
     }
     
     public func update(options: BaseAdOptions) {
@@ -79,7 +83,8 @@ public final class RewardedAdManager: AdManager {
                                                         campaignId: options.campaignId,
                                                         creativeId: options.creativeId,
                                                         dspCreative: options.dspCreativeId,
-                                                        dspRegion: options.dspRegion)
+                                                        dspRegion: options.dspRegion,
+                                                        rtbTestModeEnabled: options.rtbTestModeEnabled)
                 guard let adMakUp else {
                     append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")))
                     return

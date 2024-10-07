@@ -301,6 +301,22 @@ final class RewardedAdManagerTests: XCTestCase {
         wait(for: [ex], timeout: 0.5)
     }
     
+    func testWhenUnityLevelPlayOptInVideoIsUsedThenMaxBiddableIsCalled() {
+        let retriever = UnityLevelPlayRetriever(adMarkUpToReturn: "")
+        let ad: AdType<OptInAdManager> = .unityLevelPlayHeaderBidding(adType: .optInVideo, adMarkUpRetriever: retriever)
+        let adManager = OptInAdManager(adType: ad)
+        adManager.options = AdManagerOptions(viewController: UIViewController(), adDisplayName: "", adUnitId: "")
+        let ex = XCTestExpectation(description: "The ad did not load")
+        adManager.events.sink { event in
+            if event == .adLoading {
+                ex.fulfill()
+            }
+        }
+        .store(in: &storables)
+        try? adManager.loadAd(from: adManager.options.baseOptions)
+        wait(for: [ex], timeout: 0.5)
+    }
+    
     func testWhenMaxOptInVideoIsUsedAndBidderReturnNilThenErrorIsDispatched() {
         let retriever = MaxRetriever(adMarkUpToReturn: nil)
         let ad: AdType<RewardedAdManager> = .maxHeaderBidding(adType: .rewarded, adMarkUpRetriever: retriever)
@@ -321,6 +337,22 @@ final class RewardedAdManagerTests: XCTestCase {
         let retriever = BTFairBidRetriever(adMarkUpToReturn: nil)
         let ad: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType: .rewarded, adMarkUpRetriever: retriever)
         let adManager = RewardedAdManager(adType: ad)
+        adManager.options = AdManagerOptions(viewController: UIViewController(), adDisplayName: "", adUnitId: "")
+        let ex = XCTestExpectation(description: "The ad did not load")
+        adManager.events.sink { event in
+           if event == .adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")) {
+               ex.fulfill()
+           }
+       }
+       .store(in: &storables)
+       try? adManager.loadAd(from: adManager.options.baseOptions)
+       wait(for: [ex], timeout: 1)
+    }
+    
+    func testWhenUnityLevelPlayOptInVideoIsUsedAndBidderReturnNilThenErrorIsDispatched() {
+        let retriever = UnityLevelPlayRetriever(adMarkUpToReturn: nil)
+        let ad: AdType<OptInAdManager> = .unityLevelPlayHeaderBidding(adType: .optInVideo, adMarkUpRetriever: retriever)
+        let adManager = OptInAdManager(adType: ad)
         adManager.options = AdManagerOptions(viewController: UIViewController(), adDisplayName: "", adUnitId: "")
         let ex = XCTestExpectation(description: "The ad did not load")
         adManager.events.sink { event in

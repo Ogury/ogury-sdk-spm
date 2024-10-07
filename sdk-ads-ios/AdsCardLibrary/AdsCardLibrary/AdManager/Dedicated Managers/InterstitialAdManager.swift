@@ -14,7 +14,7 @@ public final class InterstitialAdManager: AdManager {
     }
     
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
-    lazy var store = Store(initialState: AdViewFeature.State(from: self.options), reducer: {
+    lazy var store = Store(initialState: AdViewFeature.State(from: self.options, adType: AnyAdType(self.adType)), reducer: {
         AdViewFeature(adManager: self)
     })
     public typealias Ad = OguryInterstitialAd
@@ -51,6 +51,9 @@ public final class InterstitialAdManager: AdManager {
         else if case let .dtFairBidHeaderBidding(_, adMarkUpRetriever) = adType {
             bidder = adMarkUpRetriever
         }
+        else if case let .unityLevelPlayHeaderBidding(_, adMarkUpRetriever) = adType {
+            bidder = adMarkUpRetriever
+        }
     }
     
     public func update(options: BaseAdOptions) {
@@ -79,7 +82,8 @@ public final class InterstitialAdManager: AdManager {
                                                         campaignId: options.campaignId,
                                                         creativeId: options.creativeId,
                                                         dspCreative: options.dspCreativeId,
-                                                        dspRegion: options.dspRegion)
+                                                        dspRegion: options.dspRegion,
+                                                        rtbTestModeEnabled: options.rtbTestModeEnabled)
                 guard let adMakUp else {
                     append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")))
                     return
