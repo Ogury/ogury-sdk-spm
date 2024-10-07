@@ -10,8 +10,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OguryError (OGWWrapper)
 
-+ (instancetype)createFailedStartingOguryModuleError:(NSString *)errorMessage;
-+ (instancetype)createNoSDKModuleFoundError;
++ (instancetype)createModuleMissingError;
++ (instancetype)createModuleFailedToStartError:(NSString *)errorMessage;
 
 @end
 

@@ -63,8 +63,8 @@
         
     [self.wrapper startWith:self.assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
         XCTAssertNotNil(error);
-        XCTAssertEqualObjects(error.localizedDescription, OGWErrorNoSdkModuleFoundMessage);
-        XCTAssertEqual(error.code, OguryStartErrorCodeNoModuleFound);
+        XCTAssertEqualObjects(error.localizedDescription, OguryStartErrorCodeModuleMissingDescription);
+        XCTAssertEqual(error.code, OguryStartErrorCodeModuleMissing);
         XCTAssertFalse(success);
         [expectation fulfill]; 
     }];
@@ -199,6 +199,7 @@
     [self.wrapper startWith:self.assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
         XCTAssertFalse(success);
         XCTAssertNotNil(error);
+        XCTAssertEqual(error.code, OguryStartErrorCodeModuleFailedToStart);
         XCTAssertTrue([error.localizedDescription containsString:errorModule3.localizedDescription]);
         [expectation fulfill];
     }];

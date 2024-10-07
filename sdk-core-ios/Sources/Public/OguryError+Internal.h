@@ -4,6 +4,10 @@
 
 #import <OguryCore/OguryError.h>
 
+typedef NS_ENUM(NSInteger, OguryCoreErrorType) {
+    OguryCoreErrorTypeNoInternetConnection = 0
+};
+
 @interface OguryError (Internal)
 
 + (instancetype)createOguryErrorWithCode:(NSInteger)code;
