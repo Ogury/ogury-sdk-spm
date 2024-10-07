@@ -15,7 +15,7 @@ public final class BannerAdManager: AdManager {
     
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
     lazy var store = Store(
-        initialState: AdViewFeature.State(from: self.options,
+      initialState: AdViewFeature.State(from: self.options, adType: AnyAdType(self.adType),
                                           bannerContainer: BannerContainer(bannerType: adType)),
         reducer: {
             AdViewFeature(adManager: self)
@@ -90,7 +90,7 @@ public final class BannerAdManager: AdManager {
                                                             campaignId: options.campaignId,
                                                             creativeId: options.creativeId,
                                                             dspCreative: options.dspCreativeId,
-                                                            dspRegion: options.dspRegion
+                                                            dspRegion: options.dspRegion,
                                                             rtbTestModeEnabled: options.rtbTestModeEnabled)
                     guard let adMakUp else {
                         self.append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")))
