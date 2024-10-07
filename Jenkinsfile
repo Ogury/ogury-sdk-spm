@@ -1,5 +1,5 @@
   
-@Library('ogury-jenkins-lib@v4.0.0') _
+@Library('ogury-jenkins-lib@v7.5.1') _
 
 pipeline {
     agent {
