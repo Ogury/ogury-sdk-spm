@@ -130,7 +130,6 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
     [self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:self.delegateDispatcher];
     XCTAssertTrue(self.impressionManager.hasSentImpressionTrackByAdId[OGAAdImpressionControllerTestsLocalIdentifier].boolValue);
     OCMVerify([self.impressionManager sendCustomImpressionTracker:self.ad]);
-    OCMVerify([self.delegateDispatcher displayed]);
 }
 
 - (void)testSendImpressionTracker_sendCustomImpressionTrackerSDK {
@@ -150,7 +149,6 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
     [self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:self.delegateDispatcher];
     XCTAssertTrue(self.impressionManager.hasSentImpressionTrackByAdId[OGAAdImpressionControllerTestsLocalIdentifier].boolValue);
     OCMVerify([self.impressionManager sendCustomImpressionTracker:self.ad]);
-    OCMVerify([self.delegateDispatcher displayed]);
     OCMVerify([self.delegateDispatcher adImpression]);
 }
 

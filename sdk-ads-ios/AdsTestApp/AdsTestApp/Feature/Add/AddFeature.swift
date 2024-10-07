@@ -47,7 +47,7 @@ struct AdFormat: Equatable, Identifiable, Hashable {
         if let ad = (adType.adType as? AdType<InterstitialAdManager>) {
             return ad.headerTitle
         }
-        if let ad = (adType.adType as? AdType<OptInAdManager>) {
+        if let ad = (adType.adType as? AdType<RewardedAdManager>) {
             return ad.headerTitle
         }
         if let ad = (adType.adType as? AdType<ThumbnailAdManager>) {
@@ -62,7 +62,7 @@ struct AdFormat: Equatable, Identifiable, Hashable {
         if let ad = (adType.adType as? AdType<InterstitialAdManager>) {
             return ad.displayTitle
         }
-        if let ad = (adType.adType as? AdType<OptInAdManager>) {
+        if let ad = (adType.adType as? AdType<RewardedAdManager>) {
             return ad.displayTitle
         }
         if let ad = (adType.adType as? AdType<ThumbnailAdManager>) {
@@ -89,7 +89,7 @@ struct AdFormat: Equatable, Identifiable, Hashable {
             if let ad = (adType.adType as? AdType<InterstitialAdManager>) {
                 return ad.innerType
             }
-            if let ad = (adType.adType as? AdType<OptInAdManager>) {
+            if let ad = (adType.adType as? AdType<RewardedAdManager>) {
                 return ad.innerType
             }
             if let ad = (adType.adType as? AdType<ThumbnailAdManager>) {
@@ -110,7 +110,7 @@ struct AdFormat: Equatable, Identifiable, Hashable {
         if let ad = (adType.adType as? AdType<InterstitialAdManager>) {
             return Image(systemName: "iphone").symbolRenderingMode(.monochrome)
         }
-        if let ad = (adType.adType as? AdType<OptInAdManager>) {
+        if let ad = (adType.adType as? AdType<RewardedAdManager>) {
             return Image(systemName: "iphone.gen3.badge.play")
         }
         if let ad = (adType.adType as? AdType<ThumbnailAdManager>) {
@@ -126,7 +126,7 @@ struct AdFormat: Equatable, Identifiable, Hashable {
         if let ad = (adType.adType as? AdType<InterstitialAdManager>) {
             return ad.tags
         }
-        if let ad = (adType.adType as? AdType<OptInAdManager>) {
+        if let ad = (adType.adType as? AdType<RewardedAdManager>) {
             return ad.tags
         }
         if let ad = (adType.adType as? AdType<ThumbnailAdManager>) {
@@ -150,7 +150,7 @@ extension AdFormat: Codable {
         let rawAdType: Int = try container.decode(Int.self, forKey: .adType)
        if let adType = try? AdType<InterstitialAdManager>.adType(from: rawAdType, adMarkUpRetriever: nil) {
             self.adType = AnyAdType(adType)
-        } else if let adType = try? AdType<OptInAdManager>.adType(from: rawAdType, adMarkUpRetriever: nil) {
+        } else if let adType = try? AdType<RewardedAdManager>.adType(from: rawAdType, adMarkUpRetriever: nil) {
             self.adType = AnyAdType(adType)
         } else if let adType = try? AdType<BannerAdManager>.adType(from: rawAdType, adMarkUpRetriever: nil) {
             self.adType = AnyAdType(adType)
@@ -188,16 +188,16 @@ struct AddFeature: Reducer {
             self.maxHeaderBidable = maxHeaderBidable
             self.dtFairBidHeaderBidable = dtFairBidHeaderBidable
             let inter: AdType<InterstitialAdManager> = .interstitial
-            let optIn: AdType<OptInAdManager> = .optInVideo
+            let optIn: AdType<RewardedAdManager> = .rewarded
             let mpu: AdType<BannerAdManager> = .mpu
             let banner: AdType<BannerAdManager> = .banner
             let thumb: AdType<ThumbnailAdManager> = .thumbnail
             let interMax: AdType<InterstitialAdManager> = .maxHeaderBidding(adType: .interstitial, adMarkUpRetriever: maxHeaderBidable)
-            let optInMax: AdType<OptInAdManager> = .maxHeaderBidding(adType: .optInVideo, adMarkUpRetriever: maxHeaderBidable)
+            let optInMax: AdType<RewardedAdManager> = .maxHeaderBidding(adType: .rewarded, adMarkUpRetriever: maxHeaderBidable)
             let mpuMax: AdType<BannerAdManager> = .maxHeaderBidding(adType: .mpu, adMarkUpRetriever: maxHeaderBidable)
             let bannerMax: AdType<BannerAdManager> = .maxHeaderBidding(adType: .banner, adMarkUpRetriever: maxHeaderBidable)
             let interDTFairBid: AdType<InterstitialAdManager> = .dtFairBidHeaderBidding(adType: .interstitial, adMarkUpRetriever: dtFairBidHeaderBidable)
-            let optInDTFairBid: AdType<OptInAdManager> = .dtFairBidHeaderBidding(adType: .optInVideo, adMarkUpRetriever: dtFairBidHeaderBidable)
+            let optInDTFairBid: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType: .rewarded, adMarkUpRetriever: dtFairBidHeaderBidable)
             let mpuDTFairBid: AdType<BannerAdManager> = .dtFairBidHeaderBidding(adType: .mpu, adMarkUpRetriever: dtFairBidHeaderBidable)
             let bannerDTFairBid: AdType<BannerAdManager> = .dtFairBidHeaderBidding(adType: .banner, adMarkUpRetriever: dtFairBidHeaderBidable)
             

@@ -3,10 +3,13 @@
 //
 
 #import "OGAConditionChecker.h"
+#import "OguryAdError.h"
 
 @interface OGAInternetConnectionChecker : NSObject <OGAConditionChecker>
 
 #pragma mark - Initialization
+
+@property(nonatomic) OguryAdErrorType type;
 
 + (instancetype _Nonnull)shared;
 

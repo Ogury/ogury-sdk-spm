@@ -12,7 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getVendorIdentifier;
 + (NSString *)getInstanceToken;
 + (BOOL)isAdOptin;
-+ (BOOL)isFakeAaid;
 + (NSString *)getUserAgent;
 + (void)updateInstanceToken;
 // GPP

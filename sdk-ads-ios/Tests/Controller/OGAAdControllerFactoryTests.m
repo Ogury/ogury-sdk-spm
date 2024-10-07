@@ -75,11 +75,11 @@ static NSString *const defaultUserId = @"";
     OCMVerify([self.factory addTransitionsForFullscreenAd:ad configuration:configuration builder:builder]);
 }
 
-- (void)testAddTransitionsForAd_optinVideoAd {
+- (void)testAddTransitionsForAd_RewardedAd {
     OGAAd *ad = [[OGAAd alloc] init];
     OGAAdConfiguration *configuration = OCMClassMock([OGAAdConfiguration class]);
     OGAAdContainerBuilder *builder = OCMClassMock([OGAAdContainerBuilder class]);
-    OCMStub(configuration.adType).andReturn(OguryAdsTypeOptinVideo);
+    OCMStub(configuration.adType).andReturn(OguryAdsTypeRewardedAd);
 
     [self.factory addTransitionsForAd:ad configuration:configuration builder:builder];
 

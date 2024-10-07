@@ -101,6 +101,7 @@ struct RTBBidder {
     enum HeaderBiddingServiceError: LocalizedError {
         case invalidURL
         case networkError(subError: Error)
+        case tokenError(_: Error)
         case invalidResponse
         case noData
         case invalidData
@@ -117,6 +118,8 @@ struct RTBBidder {
                     errorDescription = "Invalid URL"
                 case .networkError(let subError):
                     errorDescription = "Network error \(subError)"
+                case let .tokenError(error):
+                    errorDescription = error.localizedDescription
                 case .invalidResponse:
                     errorDescription = "Invalid response"
                 case .noData:
@@ -198,43 +201,56 @@ struct RTBBidder {
             formattedBody = formattedBody.replacingOccurrences(of: "$ASSET_KEY", with: assetKey)
             formattedBody = formattedBody.replacingOccurrences(of: "$AD_UNIT_ID", with: adUnitId)
             formattedBody = formattedBody.replacingOccurrences(of: "$GEO_OBJECT", with: self.buildGeoObject(with: country))
-           formattedBody = formattedBody.replacingOccurrences(of: "$BUNDLE", with: Bundle.main.bundleIdentifier ?? "co.ogury.sdk.ads.app.devc")
+            formattedBody = formattedBody.replacingOccurrences(of: "$BUNDLE", with: Bundle.main.bundleIdentifier ?? "co.ogury.sdk.ads.app.devc")
             
-           if (campaignId != nil && !campaignId!.isEmpty && dspCreative != nil && !dspCreative!.isEmpty && dspRegion != nil) {
-              let cls:AnyClass = OguryTokenService.self
-              let sel = NSSelectorFromString("getBidderTokenWithCampaignId:creativeId:dspCreativeId:dspRegion:")
-              let meth = class_getClassMethod(cls, sel)
-              let imp = method_getImplementation(meth!)
-              typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?, String?, String?) -> String
-              let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-              let tokenforCampaign = sayHiTo(OguryTokenService.classForCoder(), sel, campaignId!, creativeId, dspCreative, dspRegion!.displayName)
-              formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(tokenforCampaign)\"")
-           } else if (campaignId != nil && !campaignId!.isEmpty) {
-                let cls:AnyClass = OguryTokenService.self
-                let sel = NSSelectorFromString("getBidderTokenWithCampaignId:creativeId:")
+            if (campaignId != nil && !campaignId!.isEmpty && dspCreative != nil && !dspCreative!.isEmpty && dspRegion != nil) {
+                let cls:AnyClass = OguryBidTokenService.self
+                let sel = NSSelectorFromString("bidTokenWithCampaignId:creativeId:dspCreativeId:dspRegion:completion:")
                 let meth = class_getClassMethod(cls, sel)
                 let imp = method_getImplementation(meth!)
-                typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?) -> String
+                typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?, String?, String?, @escaping (NSString?, NSError?) -> Void) -> Void
                 let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-                let tokenforCampaign = sayHiTo(OguryTokenService.classForCoder(), sel, campaignId!, creativeId)
-                formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(tokenforCampaign)\"")
+                sayHiTo(OguryBidTokenService.classForCoder(), sel, campaignId!, creativeId, dspCreative, dspRegion!.displayName) { token, error in
+                    guard error == nil else  {
+                        completionHandler(.failure(.tokenError(error!)))
+                        return
+                    }
+                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(token ?? "null")\"")
+                    performRequest(with: &request, body: formattedBody, completion: completionHandler)
+                }
+            } else if (campaignId != nil && !campaignId!.isEmpty) {
+                let cls:AnyClass = OguryBidTokenService.self
+                let sel = NSSelectorFromString("bidTokenWithCampaignId:creativeId:completion:")
+                let meth = class_getClassMethod(cls, sel)
+                let imp = method_getImplementation(meth!)
+                typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?, @escaping (NSString?, NSError?) -> Void) -> Void
+                let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
+                sayHiTo(OguryBidTokenService.classForCoder(), sel, campaignId!, creativeId) { token, error in
+                    guard error == nil else  {
+                        completionHandler(.failure(.tokenError(error!)))
+                        return
+                    }
+                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(token ?? "null")\"")
+                    performRequest(with: &request, body: formattedBody, completion: completionHandler)
+                }
             } else {
-                let token = OguryTokenService.getBidderToken()
-                if let token {
-                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(token)\"")
-                } else {
-                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "null")
+                OguryBidTokenService.bidToken { token, error in
+                    guard error == nil else  {
+                        completionHandler(.failure(.tokenError(error!)))
+                        return
+                    }
+                    formattedBody = formattedBody.replacingOccurrences(of: "$TOKEN", with: "\"\(token ?? "null")\"")
+                    performRequest(with: &request, body: formattedBody, completion: completionHandler)
                 }
             }
-            
-            request.httpBody = formattedBody.data(using: .utf8)
-            
-            URLSession.shared
-                .dataTask(with: request) { (data, response, error) in
-                    handle(data: data, response: response, error: error, completionHandler: completionHandler)
-                }
-                .resume()
         }
+    }
+    
+    private func performRequest(with request:inout URLRequest, body: String, completion: @escaping HeaderBiddingServiceCompletionHandler) {
+        request.httpBody = body.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            handle(data: data, response: response, error: error, completionHandler: completion)
+        }.resume()
     }
     
     private func buildGeoObject(with country: String?) -> String {
@@ -293,12 +309,12 @@ struct RTBBidder {
         }
     }
     
-   func adMarkUp(adUnitId: String,
-                 campaignId: String?,
-                 creativeId: String?,
-                 dspCreative: String?,
-                 dspRegion: DspRegion?,
-                 url: URL?) async throws -> String? {
+    func adMarkUp(adUnitId: String,
+                  campaignId: String?,
+                  creativeId: String?,
+                  dspCreative: String?,
+                  dspRegion: DspRegion?,
+                  url: URL?) async throws -> String? {
         try await withUnsafeThrowingContinuation { continuation in
             retrieveAdMarkup(assetKey: AdSdkLauncher.shared.assetKey,
                              adUnitId: adUnitId,

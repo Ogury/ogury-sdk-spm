@@ -2,20 +2,20 @@
 //  Copyright © 2020 Ogury Ltd. All rights reserved.
 //
 
-#import "OguryError+Ads.h"
+#import "OguryAdError.h"
+#import "OguryRewardItem.h"
 #import <UIKit/UIKit.h>
 
 @protocol OGAAdDelegate <NSObject>
 
 - (void)loaded;
-- (void)displayed;
 - (void)clicked;
 - (void)adImpression;
 - (void)closed;
-- (void)failedWithError:(OguryError *)error;
+- (void)failedWithError:(OguryAdError *)error;
 
 @optional
-- (void)rewarded:(OGARewardItem *)item;
+- (void)rewarded:(OguryRewardItem *)item;
 - (UIViewController *)bannerViewController;
 
 @end

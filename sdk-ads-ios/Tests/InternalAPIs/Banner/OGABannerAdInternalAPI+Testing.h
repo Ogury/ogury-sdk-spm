@@ -2,7 +2,7 @@
 //  Copyright © 2021 Ogury Ltd. All rights reserved.
 //
 
-#import "OGABannerAdInternalAPI.h"
+#import "OGABannerAdViewInternalAPI.h"
 #import "OGAAdSequence.h"
 #import "OguryBannerAdDelegate.h"
 #import "OGAInternal.h"
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OGABannerAdInternalAPI (Testing) <OguryBannerAdDelegate>
+@interface OGABannerAdViewInternalAPI (Testing) <OguryBannerAdDelegate>
 
 @property(nonatomic, strong) OGAAdSequence *sequence;
 @property(nonatomic, strong) OGAAdConfiguration *configuration;
@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithAdUnitId:(NSString *)adUnitId
                       bannerView:(UIView *_Nullable)bannerView
+                            size:(OguryAdsBannerSize *)size
               delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher
                        adManager:(OGAAdManager *)adManager
               notificationCenter:(NSNotificationCenter *)notificationCenter

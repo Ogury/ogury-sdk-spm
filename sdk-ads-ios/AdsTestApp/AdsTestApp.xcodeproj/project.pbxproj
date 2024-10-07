@@ -137,7 +137,6 @@
 		43BCB0A42C22DD45002FB0B1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A12AC2CD2B005077F5 /* MainView.swift */; };
 		43BCB0A52C22DD45002FB0B1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED41A2AA5D0C200486AF2 /* MainViewController.swift */; };
 		43BCB0A62C22DD45002FB0B1 /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
-		43BCB0A72C22DD45002FB0B1 /* InternalModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F788C22B4EDDF00022157E /* InternalModule.m */; };
 		43BCB0A82C22DD45002FB0B1 /* UTType+Extension(devc).swift in Sources */ = {isa = PBXBuildFile; fileRef = 4301B1E62B56D3630076065D /* UTType+Extension(devc).swift */; };
 		43BCB0A92C22DD45002FB0B1 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43BCB0AA2C22DD45002FB0B1 /* HeaderBiddingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FD2B4D6075007C8D21 /* HeaderBiddingResponse.swift */; };
@@ -180,7 +179,6 @@
 		43BCB0E82C22DD59002FB0B1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A12AC2CD2B005077F5 /* MainView.swift */; };
 		43BCB0E92C22DD59002FB0B1 /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
 		43BCB0EA2C22DD59002FB0B1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED41A2AA5D0C200486AF2 /* MainViewController.swift */; };
-		43BCB0EB2C22DD59002FB0B1 /* InternalModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F788C22B4EDDF00022157E /* InternalModule.m */; };
 		43BCB0EC2C22DD59002FB0B1 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43BCB0ED2C22DD59002FB0B1 /* HeaderBiddingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FD2B4D6075007C8D21 /* HeaderBiddingResponse.swift */; };
 		43BCB0EE2C22DD59002FB0B1 /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* ConsentManager.swift */; };
@@ -222,7 +220,6 @@
 		43BCB12B2C22DD60002FB0B1 /* UTType+Extension(prod).swift in Sources */ = {isa = PBXBuildFile; fileRef = 4301B1EA2B56D3A80076065D /* UTType+Extension(prod).swift */; };
 		43BCB12C2C22DD60002FB0B1 /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
 		43BCB12D2C22DD60002FB0B1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED41A2AA5D0C200486AF2 /* MainViewController.swift */; };
-		43BCB12E2C22DD60002FB0B1 /* InternalModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F788C22B4EDDF00022157E /* InternalModule.m */; };
 		43BCB12F2C22DD60002FB0B1 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43BCB1302C22DD60002FB0B1 /* HeaderBiddingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FD2B4D6075007C8D21 /* HeaderBiddingResponse.swift */; };
 		43BCB1312C22DD60002FB0B1 /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* ConsentManager.swift */; };
@@ -279,9 +276,6 @@
 		43F788B22B4E882B0022157E /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B12B4E882B0022157E /* AdsCardLibrary.framework */; };
 		43F788B32B4E882B0022157E /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B12B4E882B0022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43F788B52B4E882F0022157E /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B42B4E882F0022157E /* AdsCardLibrary.framework */; };
-		43F788C32B4EDDF00022157E /* InternalModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F788C22B4EDDF00022157E /* InternalModule.m */; };
-		43F788C42B4EDDF00022157E /* InternalModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F788C22B4EDDF00022157E /* InternalModule.m */; };
-		43F788C52B4EDDF00022157E /* InternalModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F788C22B4EDDF00022157E /* InternalModule.m */; };
 		43FC85612B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43FC85622B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43FC85632B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
@@ -449,9 +443,6 @@
 		43F788AE2B4E88250022157E /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F788B12B4E882B0022157E /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F788B42B4E882F0022157E /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		43F788BE2B4EDDF00022157E /* AdsTestApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AdsTestApp-Bridging-Header.h"; sourceTree = "<group>"; };
-		43F788C12B4EDDF00022157E /* InternalModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternalModule.h; sourceTree = "<group>"; };
-		43F788C22B4EDDF00022157E /* InternalModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternalModule.m; sourceTree = "<group>"; };
 		43FC85602B0F5E0900EABA43 /* MaxBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxBidder.swift; sourceTree = "<group>"; };
 		47C0E4A5A6B569012BC88AE1 /* Pods-AdsTestApp-Prod-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod-art.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art.debug.xcconfig"; sourceTree = "<group>"; };
 		492D0E907FA4EAC9174ADA6D /* Pods_AdsTestApp_Staging_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Staging_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -820,21 +811,10 @@
 			isa = PBXGroup;
 			children = (
 				43B713E52B4D54A2007C8D21 /* Consent */,
-				43F788BD2B4EDDDD0022157E /* Module */,
 				43AE85D62B5017720010C812 /* Settings */,
 				438ED42A2AA5D0E100486AF2 /* AdSdkLauncher.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		43F788BD2B4EDDDD0022157E /* Module */ = {
-			isa = PBXGroup;
-			children = (
-				43F788C12B4EDDF00022157E /* InternalModule.h */,
-				43F788C22B4EDDF00022157E /* InternalModule.m */,
-				43F788BE2B4EDDF00022157E /* AdsTestApp-Bridging-Header.h */,
-			);
-			path = Module;
 			sourceTree = "<group>";
 		};
 		43FC855F2B0F5DF500EABA43 /* HeaderBiding */ = {
@@ -1429,7 +1409,6 @@
 				434F84C12ACFE4FE005077F5 /* MainView.swift in Sources */,
 				43788F412B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */,
 				434F84C22ACFE4FE005077F5 /* MainViewController.swift in Sources */,
-				43F788C42B4EDDF00022157E /* InternalModule.m in Sources */,
 				43FC85622B0F5E0900EABA43 /* MaxBidder.swift in Sources */,
 				43B714062B4D6075007C8D21 /* HeaderBiddingResponse.swift in Sources */,
 				43B713E82B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
@@ -1466,7 +1445,6 @@
 				4301B1EB2B56D3A80076065D /* UTType+Extension(prod).swift in Sources */,
 				43788F422B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */,
 				434F84DE2ACFE50A005077F5 /* MainViewController.swift in Sources */,
-				43F788C52B4EDDF00022157E /* InternalModule.m in Sources */,
 				43FC85632B0F5E0900EABA43 /* MaxBidder.swift in Sources */,
 				43B714072B4D6075007C8D21 /* HeaderBiddingResponse.swift in Sources */,
 				43B713E92B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
@@ -1502,7 +1480,6 @@
 				434F84A32AC2CD2B005077F5 /* MainView.swift in Sources */,
 				438ED41B2AA5D0C200486AF2 /* MainViewController.swift in Sources */,
 				43788F402B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */,
-				43F788C32B4EDDF00022157E /* InternalModule.m in Sources */,
 				4301B1E72B56D3630076065D /* UTType+Extension(devc).swift in Sources */,
 				43FC85612B0F5E0900EABA43 /* MaxBidder.swift in Sources */,
 				43B714052B4D6075007C8D21 /* HeaderBiddingResponse.swift in Sources */,
@@ -1539,7 +1516,6 @@
 				43BCB0A42C22DD45002FB0B1 /* MainView.swift in Sources */,
 				43BCB0A52C22DD45002FB0B1 /* MainViewController.swift in Sources */,
 				43BCB0A62C22DD45002FB0B1 /* AddFormatsView.swift in Sources */,
-				43BCB0A72C22DD45002FB0B1 /* InternalModule.m in Sources */,
 				43BCB0A82C22DD45002FB0B1 /* UTType+Extension(devc).swift in Sources */,
 				43BCB0A92C22DD45002FB0B1 /* MaxBidder.swift in Sources */,
 				43BCB0AA2C22DD45002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
@@ -1577,7 +1553,6 @@
 				43BCB0E82C22DD59002FB0B1 /* MainView.swift in Sources */,
 				43BCB0E92C22DD59002FB0B1 /* AddFormatsView.swift in Sources */,
 				43BCB0EA2C22DD59002FB0B1 /* MainViewController.swift in Sources */,
-				43BCB0EB2C22DD59002FB0B1 /* InternalModule.m in Sources */,
 				43BCB0EC2C22DD59002FB0B1 /* MaxBidder.swift in Sources */,
 				43BCB0ED2C22DD59002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
 				43BCB0EE2C22DD59002FB0B1 /* ConsentManager.swift in Sources */,
@@ -1614,7 +1589,6 @@
 				43BCB12B2C22DD60002FB0B1 /* UTType+Extension(prod).swift in Sources */,
 				43BCB12C2C22DD60002FB0B1 /* AddFormatsView.swift in Sources */,
 				43BCB12D2C22DD60002FB0B1 /* MainViewController.swift in Sources */,
-				43BCB12E2C22DD60002FB0B1 /* InternalModule.m in Sources */,
 				43BCB12F2C22DD60002FB0B1 /* MaxBidder.swift in Sources */,
 				43BCB1302C22DD60002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
 				43BCB1312C22DD60002FB0B1 /* ConsentManager.swift in Sources */,
@@ -1696,7 +1670,6 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/Module/AdsTestApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1740,7 +1713,6 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/Module/AdsTestApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1783,7 +1755,6 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/Module/AdsTestApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1827,7 +1798,6 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/Module/AdsTestApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1986,7 +1956,6 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/Module/AdsTestApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2032,7 +2001,6 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/Module/AdsTestApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2077,7 +2045,6 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/Module/AdsTestApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2123,7 +2090,6 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/Module/AdsTestApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2166,7 +2132,6 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/Module/AdsTestApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2210,7 +2175,6 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/Module/AdsTestApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2253,7 +2217,6 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/Module/AdsTestApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2297,7 +2260,6 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/Module/AdsTestApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

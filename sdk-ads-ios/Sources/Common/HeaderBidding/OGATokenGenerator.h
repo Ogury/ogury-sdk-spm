@@ -3,15 +3,26 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OguryBidTokenService.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OGATokenGenerator : NSObject
 
-- (NSString *_Nullable)generateBidderToken;
-- (NSString *_Nullable)generateBidderToken:(NSString *)campaignId;
-- (NSString *_Nullable)generateBidderToken:(NSString *)campaignId creativeId:(NSString *_Nullable)creativeId;
-- (NSString *_Nullable)generateBidderToken:(NSString *)campaignId creativeId:(NSString *_Nullable)creativeId dspCreativeId:(NSString *_Nullable)dspCreativeId dspRegion:(NSString *_Nullable)dspRegion;
+- (void)bidToken:(BidTokenCompletionBlock)completion;
+
+- (void)bidTokenWithCampaignId:(NSString *)campaignId
+                    completion:(BidTokenCompletionBlock)completion;
+
+- (void)bidTokenWithCampaignId:(NSString *)campaignId
+                    creativeId:(NSString *_Nullable)creativeId
+                    completion:(BidTokenCompletionBlock)completion;
+
+- (void)bidTokenWithCampaignId:(NSString *_Nullable)campaignId
+                    creativeId:(NSString *_Nullable)creativeId
+                 dspCreativeId:(NSString *_Nullable)dspCreativeId
+                     dspRegion:(NSString *_Nullable)dspRegion
+                    completion:(BidTokenCompletionBlock)completion;
 
 @end
 

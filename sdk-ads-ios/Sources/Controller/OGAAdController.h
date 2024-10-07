@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Methods
 
-- (BOOL)show:(OguryError *_Nullable *_Nullable)error;
+- (BOOL)show:(OguryAdError *_Nullable *_Nullable)error;
 
 - (BOOL)hasNextAd;
 

@@ -3,22 +3,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <OguryCore/OguryError.h>
-#import "OguryAdsError.h"
+#import "OguryAdError.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class OguryBannerAd;
+@class OguryBannerAdView;
 
 @protocol OguryBannerAdDelegate <NSObject>
 @optional
-- (void)didLoadOguryBannerAd:(OguryBannerAd *)banner;
-- (void)didDisplayOguryBannerAd:(OguryBannerAd *)banner;
-- (void)didClickOguryBannerAd:(OguryBannerAd *)banner;
-- (void)didCloseOguryBannerAd:(OguryBannerAd *)banner;
-- (void)didFailOguryBannerAdWithError:(OguryError *)error forAd:(OguryBannerAd *)banner;
-- (void)didTriggerImpressionOguryBannerAd:(OguryBannerAd *)banner;
-- (UIViewController *_Nullable)presentingViewControllerForOguryAdsBannerAd:(OguryBannerAd *)banner;
+- (void)bannerAdViewDidLoad:(OguryBannerAdView *)bannerAd NS_SWIFT_NAME(bannerAdViewDidLoad(_:));
+- (void)bannerAdViewDidClick:(OguryBannerAdView *)bannerAd NS_SWIFT_NAME(bannerAdViewDidClick(_:));
+- (void)bannerAdViewDidClose:(OguryBannerAdView *)bannerAd NS_SWIFT_NAME(bannerAdViewDidClose(_:));
+- (void)bannerAdView:(OguryBannerAdView *)bannerAd didFailWithError:(OguryAdError *)error NS_SWIFT_NAME(bannerAdView(_:didFailWithError:));
+- (void)bannerAdViewDidTriggerImpression:(OguryBannerAdView *)bannerAd NS_SWIFT_NAME(bannerAdViewDidTriggerImpression(_:));
+- (UIViewController *_Nullable)presentingViewControllerForBannerAdView:(OguryBannerAdView *)bannerAd NS_SWIFT_NAME(presentingViewController(forBannerAdView:));
 @end
 
 NS_ASSUME_NONNULL_END

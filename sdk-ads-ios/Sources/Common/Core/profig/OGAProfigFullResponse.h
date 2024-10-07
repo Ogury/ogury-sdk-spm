@@ -9,6 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+extern NSString *const OGAAdConfigurationDisablingReasonConsentDenied;
+extern NSString *const OGAAdConfigurationDisablingReasonConsentMissing;
+extern NSString *const OGAAdConfigurationDisablingReasonCountryUnopened;
+
 @interface OGAProfigFullResponse : OGAJSONModel
 
 + (NSArray<NSString *> *)defaultBlackList;

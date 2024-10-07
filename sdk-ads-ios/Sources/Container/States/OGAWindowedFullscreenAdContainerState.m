@@ -4,10 +4,11 @@
 
 #import "OGAWindowedFullscreenAdContainerState.h"
 
-#import "OguryAdsError.h"
+#import "OguryAdError.h"
 #import "OGASizeSafeAreaController.h"
 #import "OGAAdDisplayerUpdateCurrentPositionInformation.h"
 #import "OGAAdDisplayerUpdateStateInformation.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAWindowedFullscreenAdContainerState ()
 
@@ -63,7 +64,7 @@
 
 #pragma mark - Methods
 
-- (BOOL)display:(nonnull id<OGAAdDisplayer>)displayer error:(OguryError *_Nullable *_Nullable)error {
+- (BOOL)display:(nonnull id<OGAAdDisplayer>)displayer error:(OguryAdError *_Nullable *_Nullable)error {
     if (![super display:displayer error:error]) {
         return NO;
     }
@@ -71,7 +72,7 @@
     self.thumbnailAdWindow = [self.thumbnailAdWindowFactory createThumbnailAdWindowWithDisplayer:displayer];
     if (!self.thumbnailAdWindow) {
         if (error) {
-            *error = [OguryError createOguryErrorWithCode:OguryAdsUnknownError localizedDescription:@"Missing window."];
+            *error = [OguryAdError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"Missing window."];
         }
         return NO;
     }

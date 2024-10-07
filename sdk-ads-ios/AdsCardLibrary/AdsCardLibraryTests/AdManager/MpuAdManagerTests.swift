@@ -92,7 +92,7 @@ final class MpuAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didLoad?(OguryBannerAd())
+            adManager.ad?.delegate?.didLoad?(OguryBannerAdView())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -112,27 +112,7 @@ final class MpuAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didClick?(OguryBannerAd())
-            self.wait(for: [ex], timeout: 0.5)
-        }
-    }
-    
-    func testWhenAdDisplayedDelegateIsCalledThenItIsForwardedToProxy() {
-        let ad: AdType<BannerAdManager> = .mpu
-        
-        let adManager = BannerAdManager(adType: ad)
-        let vc = UIView()
-        adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
-        try? adManager.loadAd(from: adManager.options.baseOptions)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            let ex = self.expectation(description: "")
-            adManager.events.sink { event in
-                if event == .adDisplayed {
-                    ex.fulfill()
-                }
-            }
-            .store(in: &self.storables)
-            adManager.ad?.delegate?.didDisplay?(OguryBannerAd())
+            adManager.ad?.delegate?.didClick?(OguryBannerAdView())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -152,7 +132,7 @@ final class MpuAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didClose?(OguryBannerAd())
+            adManager.ad?.delegate?.didClose?(OguryBannerAdView())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -172,7 +152,7 @@ final class MpuAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didTriggerImpressionOguryBannerAd?(OguryBannerAd())
+            adManager.ad?.delegate?.didTriggerImpressionOguryBannerAdView?(OguryBannerAdView())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -185,7 +165,7 @@ final class MpuAdManagerTests: XCTestCase {
         adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
         try? adManager.loadAd(from: adManager.options.baseOptions)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            let error = OguryError.createOguryError(withCode: 666)
+            let error = OguryAdError.createOguryError(withCode: 666)
             let ex = self.expectation(description: "")
             adManager.events.sink { event in
                 if event == .adDidFail(error) {
@@ -193,21 +173,21 @@ final class MpuAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didFailOguryBannerAdWithError?(error, for: OguryBannerAd())
+            adManager.ad?.delegate?.didFail?(OguryBannerAdView(), error: error)
             self.wait(for: [ex], timeout: 0.5)
         }
     }
     
     func testWhenReceivingLoadingErrorsThenProperDelegateShouldBeCalled() {
-            [OguryAdsError.profigNotSyncedError.rawValue,
-             OguryAdsError.notLoadedError.rawValue].forEach { errorCode in
+        [OguryAdErrorCode.sdkNotProperlyInitialized.rawValue,
+         OguryAdErrorCode.noAdLoaded.rawValue].forEach { errorCode in
                let ad: AdType<BannerAdManager> = .mpu
                var adManager = BannerAdManager(adType: ad)
                let vc = UIView()
                adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
                try? adManager.loadAd(from: adManager.options.baseOptions)
                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                let error = OguryError.createOguryError(withCode: errorCode)
+                let error = OguryAdError.createOguryError(withCode: errorCode)
                 let loadFailEx = self.expectation(description: "adDidFailToLoad called")
                 let failEx = self.expectation(description: "adDidFail called")
                 failEx.isInverted = true
@@ -225,23 +205,23 @@ final class MpuAdManagerTests: XCTestCase {
                     }
                 }
                 .store(in: &self.storables)
-                adManager.ad?.delegate?.didFailOguryBannerAdWithError?(error, for: OguryBannerAd())
+                adManager.ad?.delegate?.didFail?(OguryBannerAdView(), error: error)
                 self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
             }
         }
     }
     
     func testWhenReceivingDisplayErrorsThenProperDelegateShouldBeCalled() {
-            [OguryAdsError.adExpiredError.rawValue,
-             OguryAdsError.anotherAdAlreadyDisplayedError.rawValue,
-             OguryAdsError.cantShowAdsInPresentingViewControllerError.rawValue].forEach { errorCode in
+        [OguryAdErrorCode.adExpired.rawValue,
+         OguryAdErrorCode.anotherAdAlreadyDisplayed.rawValue,
+         OguryAdErrorCode.viewControllerPreventsAdFromBeingDisplayed.rawValue].forEach { errorCode in
                let ad: AdType<BannerAdManager> = .mpu
                let adManager = BannerAdManager(adType: ad)
                let vc = UIView()
                adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
                try? adManager.loadAd(from: adManager.options.baseOptions)
                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                let error = OguryError.createOguryError(withCode: errorCode)
+                let error = OguryAdError.createOguryError(withCode: errorCode)
                 let loadFailEx = self.expectation(description: "adDidFailToLoad called")
                 loadFailEx.isInverted = true
                 let failEx = self.expectation(description: "adDidFail called")
@@ -259,18 +239,19 @@ final class MpuAdManagerTests: XCTestCase {
                     }
                 }
                 .store(in: &self.storables)
-                adManager.ad?.delegate?.didFailOguryBannerAdWithError?(error, for: OguryBannerAd())
+                adManager.ad?.delegate?.didFail?(OguryBannerAdView(), error: error)
                 self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
             }
         }
     }
     
     func testWhenReceivingGenericErrorsThenProperDelegateShouldBeCalled() {
-            [OguryAdsError.adDisabledError.rawValue,
-             OguryAdsError.assetKeyNotValidError.rawValue,
-             OguryAdsError.notAvailableError.rawValue,
-             OguryAdsError.sdkInitNotCalledError.rawValue,
-             OguryAdsError.unknownError.rawValue].forEach { errorCode in
+        [OguryAdErrorCode.adDisabledConsentDenied.rawValue,
+         OguryAdErrorCode.sdkStartNotCalled.rawValue,
+         OguryAdErrorCode.invalidConfiguration.rawValue,
+         OguryAdErrorCode.adDisabledUnspecifiedReason.rawValue,
+         OguryAdErrorCode.adDisabledCountryNotOpened.rawValue,
+         OguryAdErrorCode.adDisabledConsentMissing.rawValue].forEach { errorCode in
                let ad: AdType<BannerAdManager> = .mpu
                
                let adManager = BannerAdManager(adType: ad)
@@ -278,7 +259,7 @@ final class MpuAdManagerTests: XCTestCase {
                adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
                try? adManager.loadAd(from: adManager.options.baseOptions)
                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                let error = OguryError.createOguryError(withCode: errorCode)
+                let error = OguryAdError.createOguryError(withCode: errorCode)
                 let loadFailEx = self.expectation(description: "adDidFailToLoad called")
                 loadFailEx.isInverted = true
                 let failEx = self.expectation(description: "adDidFail called")
@@ -296,7 +277,7 @@ final class MpuAdManagerTests: XCTestCase {
                     }
                 }
                 .store(in: &self.storables)
-                adManager.ad?.delegate?.didFailOguryBannerAdWithError?(error, for: OguryBannerAd())
+                adManager.ad?.delegate?.didFail?(OguryBannerAdView(), error: error)
                 self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
             }
         }
@@ -325,7 +306,7 @@ final class MpuAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            proxy.handle(AdManagerError.loadNotCalledBeforeShow, for: OguryBannerAd())
+            proxy.handle(AdManagerError.loadNotCalledBeforeShow, for: OguryBannerAdView())
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
         }
     }

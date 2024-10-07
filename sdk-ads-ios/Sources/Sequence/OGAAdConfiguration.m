@@ -9,7 +9,7 @@
 NSString *const OGAAdConfigurationAdTypeSmallBanner = @"banner_320x50";
 NSString *const OGAAdConfigurationAdTypeMPU = @"medium_rectangle";
 NSString *const OGAAdConfigurationAdTypeThumbnailAd = @"overlay_thumbnail";
-NSString *const OGAAdConfigurationAdTypeOptinVideo = @"optin_video";
+NSString *const OGAAdConfigurationAdTypeRewarded = @"optin_video";
 NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
 
 @interface OGAAdConfiguration ()
@@ -135,15 +135,15 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
             if (CGSizeEqualToSize(self.size, [[OguryAdsBannerSize small_banner_320x50] getSize])) {
                 return OGAAdConfigurationAdTypeSmallBanner;
             }
-            if (CGSizeEqualToSize(self.size, [[OguryAdsBannerSize mpu_300x250] getSize])) {
+            if (CGSizeEqualToSize(self.size, [[OguryAdsBannerSize mrec_300x250] getSize])) {
                 return OGAAdConfigurationAdTypeMPU;
             }
             return @"";
         }
         case OguryAdsTypeThumbnailAd:
             return OGAAdConfigurationAdTypeThumbnailAd;
-        case OguryAdsTypeOptinVideo:
-            return OGAAdConfigurationAdTypeOptinVideo;
+        case OguryAdsTypeRewardedAd:
+            return OGAAdConfigurationAdTypeRewarded;
         case OguryAdsTypeInterstitial:
             return OGAAdConfigurationAdTypeInterstitial;
         default:

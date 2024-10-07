@@ -41,7 +41,7 @@ class AdConfigController {
     func adConfigObservable(for type: AvailableType) -> Observable<AdConfig> {
         switch type {
             case .interstitial: return adInterConfig.asObserver()
-            case .optinVideo: return adOptInConfig.asObserver()
+            case .rewarded: return adOptInConfig.asObserver()
             case .thumbnail: return adThumbnailConfig.asObserver()
             case .banner(type: .mpu): return adMpuConfig.asObserver()
             case .banner(type: .smallBanner): return adSmallBannerConfig.asObserver()
@@ -50,7 +50,7 @@ class AdConfigController {
             case .headerBidding(let nestedType):
                 switch nestedType {
                     case .interstitial: return headerBiddingInterConfig.asObservable()
-                    case .optinVideo: return headerBiddingOptInConfig.asObservable()
+                    case .rewarded: return headerBiddingOptInConfig.asObservable()
                     case .banner(type: .mpu): return headerBiddingMpuConfig.asObservable()
                     case .banner(type: .smallBanner): return headerBiddingSmallBannerConfig.asObservable()
                     default: fatalError()
@@ -132,12 +132,12 @@ class AdConfigController {
 
     func updateRxConfig() {
         adInterConfig.on(.next((self.adConfig(for: .interstitial)!)))
-        adOptInConfig.on(.next(self.adConfig(for: .optinVideo)!))
+        adOptInConfig.on(.next(self.adConfig(for: .rewarded)!))
         adMpuConfig.on(.next(self.adConfig(for: .banner(type: .mpu))!))
         adSmallBannerConfig.on(.next(self.adConfig(for: .banner(type: .smallBanner))!))
         adThumbnailConfig.on(.next(self.adConfig(for: .thumbnail)!))
         headerBiddingInterConfig.on(.next((self.adConfig(for: .headerBidding(.interstitial))!)))
-        headerBiddingOptInConfig.on(.next(self.adConfig(for: .headerBidding(.optinVideo))!))
+        headerBiddingOptInConfig.on(.next(self.adConfig(for: .headerBidding(.rewarded))!))
         headerBiddingMpuConfig.on(.next(self.adConfig(for: .headerBidding(.banner(type: .mpu)))!))
         headerBiddingSmallBannerConfig.on(.next(self.adConfig(for: .headerBidding(.banner(type: .smallBanner)))!))
     }
@@ -217,8 +217,8 @@ class AdConfigController {
             fatalError("Server url must not be nil nor empty.")
         }
         ///
-        let sel = NSSelectorFromString("changeServerEnvironment:")
-        OGAInternal.shared().perform(sel, with: serverBaseUrl)
+        //let sel = NSSelectorFromString("changeServerEnvironment:")
+        //OGAInternal.shared().perform(sel, with: serverBaseUrl)
         // TODO: Add a button to reset the SDK instead
         if resetSDK {
             DispatchQueue.main.async {
@@ -228,7 +228,15 @@ class AdConfigController {
                 guard let assetKey = AdConfigController.shared.assetKey(), !assetKey.isEmpty else {
                     fatalError("Asset key must not be nil nor empty.")
                 }
-                OGAInternal.shared().start(withAssetKey: assetKey)
+                OGAInternal.shared().start(with: assetKey) { success, error in
+                    if success {
+                        print("Ogury SDK started successfully.")
+                    } else if let error = error {
+                        print("Error starting Ogury SDK: \(error.localizedDescription)")
+                    } else {
+                        print("Ogury SDK failed to start for an unknown reason.")
+                    }
+                }
                 OGAInternal.shared().setLogLevel(.all)
             }
         }

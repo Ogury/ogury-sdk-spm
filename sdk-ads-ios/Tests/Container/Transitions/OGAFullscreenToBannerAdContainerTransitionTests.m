@@ -6,7 +6,7 @@
 #import <OCMock/OCMock.h>
 #import "OGAFullscreenToBannerAdContainerTransition.h"
 #import "OGAFullscreenAdContainerState.h"
-#import "OGABannerAdContainerState.h"
+#import "OGABannerAdViewContainerState.h"
 #import "OGAAdDisplayerUpdateExposureInformation.h"
 #import "OGAAdDisplayerUpdateViewabilityInformation.h"
 
@@ -25,11 +25,11 @@ static NSString *const defaultAction = @"";
 - (void)testShouldInstantiate {
     OGAFullscreenToBannerAdContainerTransition *transition = [[OGAFullscreenToBannerAdContainerTransition alloc] initWithAction:defaultAction
                                                                                                                    initialState:[[OGAFullscreenAdContainerState alloc] init]
-                                                                                                                     finalState:[[OGABannerAdContainerState alloc] init]];
+                                                                                                                     finalState:[[OGABannerAdViewContainerState alloc] init]];
 
     XCTAssertNotNil(transition);
     XCTAssertTrue([transition.initialState isKindOfClass:OGAFullscreenAdContainerState.self]);
-    XCTAssertTrue([transition.finalState isKindOfClass:OGABannerAdContainerState.self]);
+    XCTAssertTrue([transition.finalState isKindOfClass:OGABannerAdViewContainerState.self]);
 }
 
 - (void)testShouldPerfomTransition {
@@ -40,7 +40,7 @@ static NSString *const defaultAction = @"";
     OCMStub([initialState exposureController]).andReturn(fullscreenExposureController);
 
     OGAAdExposureController *bannerExposureController = OCMClassMock(OGAAdExposureController.self);
-    OGABannerAdContainerState *finalState = OCMClassMock(OGABannerAdContainerState.self);
+    OGABannerAdViewContainerState *finalState = OCMClassMock(OGABannerAdViewContainerState.self);
     OCMStub([finalState exposureController]).andReturn(bannerExposureController);
 
     OGAFullscreenToBannerAdContainerTransition *transition = OCMPartialMock([[OGAFullscreenToBannerAdContainerTransition alloc] initWithAction:defaultAction
