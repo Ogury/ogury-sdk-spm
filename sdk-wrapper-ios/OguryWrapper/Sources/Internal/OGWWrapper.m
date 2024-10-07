@@ -89,16 +89,16 @@ static int ogcMaxNumberOfConvertionValue = 63;
     if (numberOfModulesPresent == 0) {
         [self.log logAssetKey:OguryLogLevelError assetKey:assetKey message:@"No Ogury module found in your application."];
         if (completionHandler) {
-            OguryError *noSDKModuleFound = [OguryError createNoSDKModuleFoundError];
-            completionHandler(false, noSDKModuleFound);
+            OguryError *moduleMissingError = [OguryError createModuleMissingError];
+            completionHandler(false, moduleMissingError);
         }
     } else {
         dispatch_group_notify(startGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             if (errorMessage && errorMessage.length > 0) {
                 [self.log logAssetKeyFormat:OguryLogLevelError assetKey:assetKey format:@"Error found during the Ogury Start() call :%@", errorMessage];
                 if (completionHandler) {
-                    OguryError *failedStartingError = [OguryError createFailedStartingOguryModuleError:errorMessage];
-                    completionHandler(false, failedStartingError);
+                    OguryError *failedToStartError = [OguryError createModuleFailedToStartError:errorMessage];
+                    completionHandler(false, failedToStartError);
                 }
             } else {
                 if (modulesMessage && modulesMessage.length > 0) {

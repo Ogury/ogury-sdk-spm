@@ -8,14 +8,14 @@
 
 @implementation OguryError (OGWErrorCode)
 
-+ (instancetype)createFailedStartingOguryModuleError:(NSString *)errorMessage {
-    return [OguryError createOguryErrorWithCode:OguryStartErrorCodeFailedStartingModule
-                           localizedDescription:errorMessage];
++ (instancetype)createModuleMissingError {
+    return [OguryError createOguryErrorWithCode:OguryStartErrorCodeModuleMissing
+                           localizedDescription:OguryStartErrorCodeModuleMissingDescription];
 }
 
-+ (instancetype)createNoSDKModuleFoundError {
-    return [OguryError createOguryErrorWithCode:OguryStartErrorCodeNoModuleFound
-                           localizedDescription:OGWErrorNoSdkModuleFoundMessage];
++ (instancetype)createModuleFailedToStartError:(NSString *)errorMessage {
+    return [OguryError createOguryErrorWithCode:OguryStartErrorCodeModuleFailedToStart
+                           localizedDescription:errorMessage];
 }
 
 @end
