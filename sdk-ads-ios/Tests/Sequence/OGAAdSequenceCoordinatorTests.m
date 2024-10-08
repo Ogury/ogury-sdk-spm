@@ -473,4 +473,12 @@ NSString *const OGAAdSequenceCoordinatorTestsNextAdId = @"next-ad-id";
     OCMReject([self.sequence.configuration.delegateDispatcher failedWithError:[OguryAdError noAdLoaded]]);
 }
 
+- (void)testWhenTimeoutUnloadIsReceivedThenProperErrorIsDispatched {
+    OCMStub(self.sequenceCoordinator.isLoaded).andReturn(NO);
+    OCMStub(self.sequenceCoordinator.isClosed).andReturn(NO);
+    OCMStub(self.sequenceCoordinator.isNotLoadedYet).andReturn(YES);
+    [self.sequenceCoordinator controller:self.controllerOne didUnLoadAd:OCMClassMock([OGAAd class]) origin:UnloadOriginTimeout];
+    OCMVerify([self.sequence.configuration.delegateDispatcher failedWithError:[OguryAdError adPrecachingTimeout]]);
+}
+
 @end

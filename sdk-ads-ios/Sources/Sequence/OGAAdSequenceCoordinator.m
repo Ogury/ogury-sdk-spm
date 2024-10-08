@@ -314,7 +314,9 @@
         [self.metricService sendEvent:[[OGATrackEvent alloc] initWithAd:ad event:OGAMetricsEventLoadedError]];
     } else if (self.isNotLoadedYet) {
         self.sequence.status = OGAAdSequenceStatusError;
-        [self.sequence.configuration.delegateDispatcher failedWithError:[OguryAdError noAdLoaded]];
+        [self.sequence.configuration.delegateDispatcher failedWithError:unloadOrigin == UnloadOriginTimeout
+                                                            ? [OguryAdError adPrecachingTimeout]
+                                                            : [OguryAdError noAdLoaded]];
         [self.metricService sendEvent:[[OGATrackEvent alloc] initWithAd:ad event:OGAMetricsEventLoadedError]];
         if (unloadOrigin == UnloadOriginFormat) {
             [self.monitoringDispatcher sendLoadErrorEventPrecacheFail:OGAMonitoringPrecacheErrorUnload
