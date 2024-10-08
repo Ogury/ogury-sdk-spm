@@ -86,14 +86,6 @@
     return self.configuration.adUnitId;
 }
 
-- (NSString *)userId {
-    return self.configuration.userId;
-}
-
-- (void)setUserId:(NSString *)userId {
-    self.configuration.userId = userId;
-}
-
 #pragma mark - Methods
 
 - (void)load {

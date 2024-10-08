@@ -16,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Properties
 
-@property(nonatomic, copy, nullable) NSString *userId;
 @property(nonatomic, strong, readonly) OGADelegateDispatcher *delegateDispatcher;
 @property(nonatomic, assign, readonly) BOOL isLoaded;
 

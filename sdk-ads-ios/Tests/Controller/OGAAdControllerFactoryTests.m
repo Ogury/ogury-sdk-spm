@@ -26,7 +26,6 @@
 
 static NSString *const defaultCampaignId = @"";
 static NSString *const defaultAdUnitId = @"";
-static NSString *const defaultUserId = @"";
 
 #pragma mark - Methods
 
