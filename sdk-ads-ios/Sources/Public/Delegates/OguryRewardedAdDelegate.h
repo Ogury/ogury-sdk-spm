@@ -3,7 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OguryRewardItem.h"
+#import "OguryReward.h"
 #import "OguryAdError.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)rewardedAdDidLoad:(OguryRewardedAd *)rewardedAd NS_SWIFT_NAME(rewardedAdDidLoad(_:));
 - (void)rewardedAdDidClick:(OguryRewardedAd *)rewardedAd NS_SWIFT_NAME(rewardedAdDidClick(_:));
 - (void)rewardedAdDidClose:(OguryRewardedAd *)rewardedAd NS_SWIFT_NAME(rewardedAdDidClose(_:));
-- (void)rewardedAd:(OguryRewardedAd *)rewardedAd didReceiveReward:(OguryRewardItem *)item NS_SWIFT_NAME(rewardedAd(_:didReceive:));
+- (void)rewardedAd:(OguryRewardedAd *)rewardedAd didReceiveReward:(OguryReward *)reward NS_SWIFT_NAME(rewardedAd(_:didReceive:));
 - (void)rewardedAd:(OguryRewardedAd *)rewardedAd didFailWithError:(OguryAdError *)error NS_SWIFT_NAME(rewardedAd(_:didFailWithError:));
 - (void)rewardedAdDidTriggerImpression:(OguryRewardedAd *)rewardedAd NS_SWIFT_NAME(rewardedAdDidTriggerImpression(_:));
 @end

@@ -2,9 +2,9 @@
 //  Copyright © 2020 Ogury Ltd. All rights reserved.
 //
 
-#import "OguryRewardItem.h"
+#import "OguryReward.h"
 
-@implementation OguryRewardItem
+@implementation OguryReward
 
 - (instancetype)initWithRewardName:(NSString *)rewardName rewardValue:(NSString *)rewardValue {
     if (self = [super init]) {

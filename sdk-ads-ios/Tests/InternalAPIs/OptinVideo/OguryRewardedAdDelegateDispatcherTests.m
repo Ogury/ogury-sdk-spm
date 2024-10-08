@@ -58,10 +58,10 @@
 }
 
 - (void)testOguryAdsRewardedAdRewarded {
-    OguryRewardItem *rewardItem = OCMClassMock([OguryRewardItem class]);
+    OguryReward *reward = OCMClassMock([OguryReward class]);
 
-    [self.delegateDispatcher rewarded:rewardItem];
-    OCMVerify([self.delegate rewardedAd:self.rewardedAd didReceiveReward:rewardItem]);
+    [self.delegateDispatcher rewarded:reward];
+    OCMVerify([self.delegate rewardedAd:self.rewardedAd didReceiveReward:reward]);
 }
 
 - (void)testOguryAdsRewardedAdDisableError {

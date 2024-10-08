@@ -3,7 +3,7 @@
 //
 
 #import "OguryAdError.h"
-#import "OguryRewardItem.h"
+#import "OguryReward.h"
 #import <UIKit/UIKit.h>
 
 @protocol OGAAdDelegate <NSObject>
@@ -15,7 +15,7 @@
 - (void)failedWithError:(OguryAdError *)error;
 
 @optional
-- (void)rewarded:(OguryRewardItem *)item;
+- (void)rewarded:(OguryReward *)item;
 - (UIViewController *)bannerViewController;
 
 @end
