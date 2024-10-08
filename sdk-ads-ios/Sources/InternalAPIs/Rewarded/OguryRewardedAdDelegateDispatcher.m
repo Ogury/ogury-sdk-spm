@@ -50,12 +50,12 @@
     }
 }
 
-- (void)rewarded:(OguryRewardItem *)item {
-    [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad rewarded with item[%@]x%@ called", OGAAdConfigurationAdTypeRewarded, self.rewardedAd.adUnitId, item.rewardName, item.rewardValue];
+- (void)rewarded:(OguryReward *)reward {
+    [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad rewarded with item[%@]x%@ called", OGAAdConfigurationAdTypeRewarded, self.rewardedAd.adUnitId, reward.rewardName, reward.rewardValue];
 
     if ([self.delegate respondsToSelector:@selector(rewardedAd:didReceiveReward:)] && self.rewardedAd != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
-            [delegate rewardedAd:self.rewardedAd didReceiveReward:item];
+            [delegate rewardedAd:self.rewardedAd didReceiveReward:reward];
         }];
     }
 }

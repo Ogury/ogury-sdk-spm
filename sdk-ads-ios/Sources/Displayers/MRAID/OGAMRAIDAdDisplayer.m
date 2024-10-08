@@ -712,10 +712,10 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
 
 - (void)rewardWasReceived {
     if ([self.configuration.delegateDispatcher respondsToSelector:@selector(rewarded:)]) {
-        OguryRewardItem *rewardItem = [[OguryRewardItem alloc] initWithRewardName:self.ad.adUnit.rewardName rewardValue:self.ad.adUnit.rewardValue];
+        OguryReward *reward = [[OguryReward alloc] initWithRewardName:self.ad.adUnit.rewardName rewardValue:self.ad.adUnit.rewardValue];
 
-        if (rewardItem && self.configuration.adType == OguryAdsTypeRewardedAd) {
-            [self.configuration.delegateDispatcher rewarded:rewardItem];
+        if (reward && self.configuration.adType == OguryAdsTypeRewardedAd) {
+            [self.configuration.delegateDispatcher rewarded:reward];
         }
     }
 }

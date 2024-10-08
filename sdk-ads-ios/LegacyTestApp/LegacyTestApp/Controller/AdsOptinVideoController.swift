@@ -124,7 +124,7 @@ extension AdsOptinVideoController: OguryRewardedAdDelegate {
         LogsController.shared.addLogs("Opt-in video ad closed.")
     }
 
-    func rewardedAd(_ rewardedAd: OguryRewardedAd, didReceive item: OguryRewardItem) {
+    func rewardedAd(_ rewardedAd: OguryRewardedAd, didReceive item: OguryReward) {
         LogsController.shared.addLogs("Opt-in video ad rewarded with \(item.rewardName) - value : \(item.rewardValue).")
     }
     

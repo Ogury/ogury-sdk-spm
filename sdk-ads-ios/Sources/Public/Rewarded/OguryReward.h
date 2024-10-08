@@ -6,7 +6,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OguryRewardItem : NSObject
+@interface OguryReward : NSObject
 
 @property(nonatomic, strong) NSString *rewardName;
 @property(nonatomic, strong) NSString *rewardValue;
