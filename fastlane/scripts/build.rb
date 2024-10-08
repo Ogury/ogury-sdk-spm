@@ -61,7 +61,7 @@ private_lane :build_ads_framework do |options|
   configuration = options[:configuration]
   sdk = options[:sdk]
   artifactory = options[:artifactory] ? options[:artifactory] : false
-  scheme = artifactory ? configuration.targets.ads.scheme : configuration.targets.ads.artScheme
+  scheme = artifactory ? configuration.targets.ads.artScheme : configuration.targets.ads.scheme
 
   puts "Compiling OguryAds".blue
 
@@ -84,7 +84,7 @@ private_lane :build_card_library do |options|
   configuration = options[:configuration]
   sdk = options[:sdk]
   artifactory = options[:artifactory] ? options[:artifactory] : false
-  scheme = artifactory ? configuration.targets.adsLibrary.scheme : configuration.targets.adsLibrary.artScheme
+  scheme = artifactory ? configuration.targets.adsLibrary.artScheme : configuration.targets.adsLibrary.scheme
   
   puts "Compiling AdsCardLibrary".yellow
 

@@ -32,62 +32,30 @@ pipeline {
                 beforeAgent true
                 not { changeRequest() }
             }
-            stages {
-                stage('Build local from tag') {
-                    when {
-                        beforeAgent true
-                        buildingTag()
-                        expression {
-                            def elements = "${env.TAG_NAME}".split("-")
-                            return !elements.contains("art")
-                        }
+            steps {
+                script {
+                    // Default to false
+                    def isArtifactory = false
+                    
+                    // Check if a tag exists and contains '-art'
+                    if (env.GIT_TAG && env.GIT_TAG.contains('-art')) {
+                        isArtifactory = true
                     }
-                    steps {
-                        sh """#!/bin/zsh -l
-                        source ~/.zshrc
-                        rvm --default use 2.7.7
-                        """
-                        sh """#!/bin/zsh -l
-                        source ~/.zshrc
-                        bundle exec fastlane build environment:'prod' artifactory:false
-                        """
-                    }
-                }
-                stage('Build') {
-                    when {
-                        beforeAgent true
-                        not { changeRequest() }
-                    }
-                    steps {
-                        sh """#!/bin/zsh -l
-                        source ~/.zshrc
-                        rvm --default use 2.7.7
-                        """
-                        sh """#!/bin/zsh -l
-                        source ~/.zshrc
-                        bundle exec fastlane build environment:'prod' artifactory:false
-                        """
-                    }
-                }
-                stage('Build art from tag') {
-                    when {
-                        beforeAgent true
-                        buildingTag()
-                        expression {
-                            def elements = "${env.TAG_NAME}".split("-")
-                            return elements.contains("art")
-                        }
-                    }
-                    steps {
-                        sh """#!/bin/zsh -l
-                        source ~/.zshrc
-                        rvm --default use 2.7.7
-                        """
-                        sh """#!/bin/zsh -l
-                        source ~/.zshrc
-                        bundle exec fastlane build environment:'prod' artifactory:true
-                        """
-                    }
+        
+                    // Log the value of isArtifactory for debugging
+                    echo "Artifactory is set to: ${isArtifactory}"
+        
+                    // Run the first shell script (setting up environment)
+                    sh """#!/bin/zsh -l
+                    source ~/.zshrc
+                    rvm --default use 2.7.7
+                    """
+        
+                    // Run the Fastlane build with artifactory set based on the tag
+                    sh """#!/bin/zsh -l
+                    source ~/.zshrc
+                    bundle exec fastlane build environment:'prod' artifactory:${isArtifactory}
+                    """
                 }
             }
         }
