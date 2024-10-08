@@ -93,7 +93,11 @@
     }
     if ([[self profigManager] shouldSync]) {
         [[self profigManager] syncProfigWithCompletion:^(OGAProfigFullResponse *response, NSError *error) {
-            [self collectBidTokenDataWithCampaignId:campaignId
+           if (error) {
+              completion(nil, [OguryAdError headerBiddingFrom:OguryBidTokenErrorCodeInvalidConfiguration]);
+              return;
+           }
+           [self collectBidTokenDataWithCampaignId:campaignId
                                          creativeId:creativeId
                                       dspCreativeId:dspCreativeId
                                           dspRegion:dspRegion
