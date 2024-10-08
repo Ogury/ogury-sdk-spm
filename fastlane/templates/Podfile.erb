@@ -79,15 +79,16 @@ end
 
 
 #Wrapper
-target 'OguryWrapper' do
+target 'OguryWrapperTests' do
+  project "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj/"
+    inherit! :complete
+    pod 'OCMock', :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
+end
+
+target 'OguryWrapper-art' do
   project "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj/"
   pod 'OguryCore<%= framework_suffix %>', '<%= ogury_core_version %>'
-
-  target 'OguryWrapperTests' do
-    inherit! :complete
-
-    pod 'OCMock', :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
-  end
+  pod "OguryAds<%= framework_suffix %>", "<%= ogury_ads_version %>"
 end
 
 target 'OguryWrapperTestApp' do

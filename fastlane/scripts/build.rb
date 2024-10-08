@@ -106,6 +106,8 @@ private_lane :build_wrapper do |options|
 
   configuration = options[:configuration]
   sdk = options[:sdk]
+  artifactory = options[:artifactory] ? options[:artifactory] : false
+  scheme = artifactory ? configuration.targets.wrapper.artScheme : configuration.targets.wrapper.scheme
   
   puts "Compiling OgurySdk".green
 
@@ -113,7 +115,7 @@ private_lane :build_wrapper do |options|
     configuration: configuration,
     sdk: sdk,
     workspace: configuration.workspace.file_path,
-    scheme: configuration.targets.wrapper.scheme
+    scheme: scheme
     )
 end
 
