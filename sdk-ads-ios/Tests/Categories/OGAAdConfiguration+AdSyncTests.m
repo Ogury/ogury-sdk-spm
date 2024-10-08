@@ -65,7 +65,6 @@ static NSString *const DefaultCreativeID = @"Creative";
 static NSString *const DefaultDspRegion = @"dspRegion";
 static NSString *const DefaultDspCreativeID = @"dspCreative";
 static NSString *const DefaultAdUnitID = @"AdUnit";
-static NSString *const DefaultUserID = @"User";
 
 #pragma mark - Methods
 
@@ -94,7 +93,6 @@ static NSString *const DefaultUserID = @"User";
                                                               delegateDispatcher:delegateDispatcher
                                                           viewControllerProvider:nil
                                                                     viewProvider:nil];
-    configuration.userId = DefaultUserID;
 
     NSDictionary *payload = [configuration payloadForAdSyncWithAssetKeyManager:self.assetKeyManager
                                                                   reachability:self.reachability
@@ -112,7 +110,6 @@ static NSString *const DefaultUserID = @"User";
                                                                          viewControllerProvider:nil
                                                                                    viewProvider:nil
                                                                                          locale:locale]);
-    configuration.userId = DefaultUserID;
     OGAProfigDao *dao = OCMPartialMock([[OGAProfigDao alloc] init]);
     OGAProfigFullResponse *profig = OCMClassMock([OGAProfigFullResponse class]);
     OGAAdPrivacyConfiguration *privacy = OCMClassMock([OGAAdPrivacyConfiguration class]);
@@ -137,7 +134,6 @@ static NSString *const DefaultUserID = @"User";
                                                                          viewControllerProvider:nil
                                                                                    viewProvider:nil
                                                                                          locale:locale]);
-    configuration.userId = DefaultUserID;
     OGAProfigDao *dao = OCMPartialMock([[OGAProfigDao alloc] init]);
     OGAProfigFullResponse *profig = OCMClassMock([OGAProfigFullResponse class]);
     OGAAdPrivacyConfiguration *privacy = OCMClassMock([OGAAdPrivacyConfiguration class]);
@@ -174,7 +170,6 @@ static NSString *const DefaultUserID = @"User";
                                                                          viewControllerProvider:nil
                                                                                    viewProvider:nil
                                                                                          locale:locale]);
-    configuration.userId = DefaultUserID;
     id configurationUtilsMock = OCMClassMock([OGAConfigurationUtils class]);
     if (@available(iOS 14.0, *)) {
         OCMStub(OCMClassMethod([configurationUtilsMock isiOSAppOnMac])).andReturn(YES);
@@ -198,7 +193,6 @@ static NSString *const DefaultUserID = @"User";
                                                                          viewControllerProvider:nil
                                                                                    viewProvider:nil
                                                                                          locale:locale]);
-    configuration.userId = DefaultUserID;
     id configurationUtilsMock = OCMClassMock([OGAConfigurationUtils class]);
     OCMStub(OCMClassMethod([configurationUtilsMock getDeviceOS])).andReturn(@"deviceOS");
     OCMStub(OCMClassMethod([configurationUtilsMock getManufacturer])).andReturn(@"deviceManufacturer");

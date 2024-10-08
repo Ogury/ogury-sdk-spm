@@ -53,14 +53,6 @@
     self.delegateDispatcher.delegate = delegate;
 }
 
-- (NSString *)userId {
-    return self.internalAPI.userId;
-}
-
-- (void)setUserId:(NSString *)userId {
-    self.internalAPI.userId = userId;
-}
-
 #pragma mark - Public Methods
 
 - (void)load {
@@ -87,7 +79,7 @@
 }
 
 - (BOOL)isLoaded {
-    return [self.internalAPI isLoaded];
+    return self.internalAPI.isLoaded;
 }
 
 - (void)showAdInViewController:(UIViewController *)viewController {

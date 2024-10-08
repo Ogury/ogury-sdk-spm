@@ -14,7 +14,6 @@ NSString *const OGAAdConfigurationTestsCampaignId = @"campaign-id";
 NSString *const OGAAdConfigurationTestsCreativeId = @"creative-id";
 NSString *const OGAAdConfigurationTestsDspCreativeId = @"dsp-creative-id";
 NSString *const OGAAdConfigurationTestsDspRegion = @"region";
-NSString *const OGAAdConfigurationTestsUserId = @"user-id";
 NSString *const OGAEncodedAdMarkup = @"encoded-adMarkup";
 
 @interface OGAAdConfiguration ()
@@ -60,7 +59,6 @@ NSString *const OGAEncodedAdMarkup = @"encoded-adMarkup";
                                                                           locale:locale];
     configuration.size = CGSizeMake(180, 120);
     configuration.campaignId = OGAAdConfigurationTestsCampaignId;
-    configuration.userId = OGAAdConfigurationTestsUserId;
     configuration.creativeId = OGAAdConfigurationTestsCreativeId;
     configuration.adDsp = [[OGAAdDsp alloc] initWithCreativeId:OGAAdConfigurationTestsDspCreativeId region:OGAAdConfigurationTestsDspRegion];
     configuration.corner = OguryRectCornerBottomLeft;
@@ -80,7 +78,6 @@ NSString *const OGAEncodedAdMarkup = @"encoded-adMarkup";
     XCTAssertEqual(copiedConfiguration.viewProvider, viewProvider);
     XCTAssertTrue(CGSizeEqualToSize(copiedConfiguration.size, CGSizeMake(180, 120)));
     XCTAssertEqualObjects(copiedConfiguration.campaignId, OGAAdConfigurationTestsCampaignId);
-    XCTAssertEqualObjects(copiedConfiguration.userId, OGAAdConfigurationTestsUserId);
     XCTAssertEqual(copiedConfiguration.corner, OguryRectCornerBottomLeft);
     XCTAssertEqual(copiedConfiguration.offset.x, 50);
     XCTAssertEqual(copiedConfiguration.offset.y, 20);
