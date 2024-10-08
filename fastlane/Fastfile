@@ -20,14 +20,16 @@ platform :ios do
     environment = options[:environment]
 
     # Install Cocoapods dependencies
-    update_internal_cocoapods environment: environment
-    generate_podfile environment: environment
     artifactory = options[:artifactory] ? options[:artifactory] : false
-
-    cocoapods(
-      podfile: "./Podfile",
-      repo_update: true
+    if artifactory
+      update_internal_cocoapods environment: environment
+      generate_podfile environment: environment
+      cocoapods(
+        podfile: "./Podfile",
+        repo_update: true
       )
+    end
+
 
     configuration.sdks.defaults.each do |sdk|
       build_core_framework(

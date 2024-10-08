@@ -30,18 +30,48 @@ pipeline {
         stage('Build') {
             when {
                 beforeAgent true
+                buildingTag()
                 not { changeRequest() }
             }
-
-            steps {
-                sh """#!/bin/zsh -l
-                    source ~/.zshrc
-                    rvm --default use 2.7.7
-                """
-                sh """#!/bin/zsh -l
-                    source ~/.zshrc
-                    bundle exec fastlane build environment:'prod'
-                """
+            stages {
+                stage('Build not art') {
+                    when {
+                        beforeAgent true
+                        expression {
+                            def elements = "${env.TAG_NAME}".split("-")
+                            return !elements.contains("art")
+                        }
+                    }
+                    steps {
+                        sh """#!/bin/zsh -l
+                        source ~/.zshrc
+                        rvm --default use 2.7.7
+                        """
+                        sh """#!/bin/zsh -l
+                        source ~/.zshrc
+                        bundle exec fastlane build environment:'prod' artifactory:false
+                        """
+                    }
+                }
+                stage('Build art') {
+                    when {
+                        beforeAgent true
+                        expression {
+                            def elements = "${env.TAG_NAME}".split("-")
+                            return elements.contains("art")
+                        }
+                    }
+                    steps {
+                        sh """#!/bin/zsh -l
+                        source ~/.zshrc
+                        rvm --default use 2.7.7
+                        """
+                        sh """#!/bin/zsh -l
+                        source ~/.zshrc
+                        bundle exec fastlane build environment:'prod' artifactory:true
+                        """
+                    }
+                }
             }
         }
 
