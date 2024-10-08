@@ -30,7 +30,10 @@ pipeline {
         stage('Build') {
             when {
                 beforeAgent true
-                not { changeRequest() }
+                anyOf {
+                    not { changeRequest() }
+                    buildingTag()
+                }
             }
             steps {
                 script {
