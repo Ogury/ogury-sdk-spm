@@ -30,13 +30,13 @@ pipeline {
         stage('Build') {
             when {
                 beforeAgent true
-                buildingTag()
                 not { changeRequest() }
             }
             stages {
-                stage('Build not art') {
+                stage('Build local from tag') {
                     when {
                         beforeAgent true
+                        buildingTag()
                         expression {
                             def elements = "${env.TAG_NAME}".split("-")
                             return !elements.contains("art")
@@ -53,9 +53,26 @@ pipeline {
                         """
                     }
                 }
-                stage('Build art') {
+                stage('Build') {
                     when {
                         beforeAgent true
+                        not { changeRequest() }
+                    }
+                    steps {
+                        sh """#!/bin/zsh -l
+                        source ~/.zshrc
+                        rvm --default use 2.7.7
+                        """
+                        sh """#!/bin/zsh -l
+                        source ~/.zshrc
+                        bundle exec fastlane build environment:'prod' artifactory:false
+                        """
+                    }
+                }
+                stage('Build art from tag') {
+                    when {
+                        beforeAgent true
+                        buildingTag()
                         expression {
                             def elements = "${env.TAG_NAME}".split("-")
                             return elements.contains("art")
