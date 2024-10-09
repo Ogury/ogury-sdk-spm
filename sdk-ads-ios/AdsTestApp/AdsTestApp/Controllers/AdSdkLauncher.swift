@@ -4,11 +4,11 @@
 
 
 import AdsCardLibrary
-import Foundation 
-import OguryAds.Private
+import Foundation
 
 struct AdSdkLauncher {
     static let shared = AdSdkLauncher()
+    let launcher = OguryAdsPrivateLauncher()
     
     private init() {}
     
@@ -19,9 +19,7 @@ struct AdSdkLauncher {
     func startAds(forceStart: Bool = false) {
         if SettingsController().startSDKWithApplication || forceStart {
             forceAdsEnvironment()
-            OGAInternal.shared().start(with: assetKey) {
-                print("start(withAssetKey \($0), \($1)")
-            }
+            launcher.start(with: assetKey)
         }
     }
     
@@ -53,6 +51,6 @@ struct AdSdkLauncher {
     
     private func forceAdsEnvironment() {
         let sel = NSSelectorFromString("changeServerEnvironment:")
-        OGAInternal.shared().perform(sel, with: environment)
+        launcher.changeEnvironment(to: environment)
     }
 }

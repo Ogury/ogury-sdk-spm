@@ -27,7 +27,6 @@
 		1E6D20C22C6A6DF800DF24AB /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20C12C6A6DF800DF24AB /* OguryCore.framework */; };
 		1EF117692AF95052004BE519 /* DetailListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF117682AF95052004BE519 /* DetailListFeature.swift */; };
 		2419B11388DFA06C12DD3144 /* Pods_AdsTestApp_Devc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6B2195DC2CFCCA048F35F62 /* Pods_AdsTestApp_Devc.framework */; };
-		2F8168E64896CC3ECCFABE52 /* Pods_AdsTestApp_Staging_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5063C1B8978620A3C844F3BF /* Pods_AdsTestApp_Staging_art.framework */; };
 		4301B1E72B56D3630076065D /* UTType+Extension(devc).swift in Sources */ = {isa = PBXBuildFile; fileRef = 4301B1E62B56D3630076065D /* UTType+Extension(devc).swift */; };
 		4301B1E92B56D3930076065D /* UTType+Extension(stag).swift in Sources */ = {isa = PBXBuildFile; fileRef = 4301B1E82B56D3930076065D /* UTType+Extension(stag).swift */; };
 		4301B1EB2B56D3A80076065D /* UTType+Extension(prod).swift in Sources */ = {isa = PBXBuildFile; fileRef = 4301B1EA2B56D3A80076065D /* UTType+Extension(prod).swift */; };
@@ -287,10 +286,13 @@
 		43F788B22B4E882B0022157E /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B12B4E882B0022157E /* AdsCardLibrary.framework */; };
 		43F788B32B4E882B0022157E /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B12B4E882B0022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43F788B52B4E882F0022157E /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B42B4E882F0022157E /* AdsCardLibrary.framework */; };
-		43F788C32B4EDDF00022157E /* InternalModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F788C22B4EDDF00022157E /* InternalModule.m */; };
-		43F788C42B4EDDF00022157E /* InternalModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F788C22B4EDDF00022157E /* InternalModule.m */; };
-		43F788C52B4EDDF00022157E /* InternalModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F788C22B4EDDF00022157E /* InternalModule.m */; };
 		43F961692C6CD2160088F4A7 /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F961682C6CD2160088F4A7 /* RTBidderBody.swift */; };
+		43FA4E942CB6B6240029B928 /* OguryAdsPrivateLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 43FA4E932CB6B6240029B928 /* OguryAdsPrivateLauncher.m */; };
+		43FA4E952CB6B6240029B928 /* OguryAdsPrivateLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 43FA4E932CB6B6240029B928 /* OguryAdsPrivateLauncher.m */; };
+		43FA4E962CB6B6240029B928 /* OguryAdsPrivateLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 43FA4E932CB6B6240029B928 /* OguryAdsPrivateLauncher.m */; };
+		43FA4E972CB6B6240029B928 /* OguryAdsPrivateLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 43FA4E932CB6B6240029B928 /* OguryAdsPrivateLauncher.m */; };
+		43FA4E982CB6B6240029B928 /* OguryAdsPrivateLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 43FA4E932CB6B6240029B928 /* OguryAdsPrivateLauncher.m */; };
+		43FA4E992CB6B6240029B928 /* OguryAdsPrivateLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 43FA4E932CB6B6240029B928 /* OguryAdsPrivateLauncher.m */; };
 		43FC85612B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43FC85622B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43FC85632B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
@@ -458,10 +460,10 @@
 		43F788AE2B4E88250022157E /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F788B12B4E882B0022157E /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F788B42B4E882F0022157E /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		43F788BE2B4EDDF00022157E /* AdsTestApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AdsTestApp-Bridging-Header.h"; sourceTree = "<group>"; };
-		43F788C12B4EDDF00022157E /* InternalModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternalModule.h; sourceTree = "<group>"; };
-		43F788C22B4EDDF00022157E /* InternalModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternalModule.m; sourceTree = "<group>"; };
 		43F961682C6CD2160088F4A7 /* RTBidderBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTBidderBody.swift; sourceTree = "<group>"; };
+		43FA4E8C2CB6B6240029B928 /* AdsTestApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AdsTestApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		43FA4E922CB6B6240029B928 /* OguryAdsPrivateLauncher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryAdsPrivateLauncher.h; sourceTree = "<group>"; };
+		43FA4E932CB6B6240029B928 /* OguryAdsPrivateLauncher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryAdsPrivateLauncher.m; sourceTree = "<group>"; };
 		43FC85602B0F5E0900EABA43 /* MaxBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxBidder.swift; sourceTree = "<group>"; };
 		47C0E4A5A6B569012BC88AE1 /* Pods-AdsTestApp-Prod-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod-art.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art.debug.xcconfig"; sourceTree = "<group>"; };
 		492D0E907FA4EAC9174ADA6D /* Pods_AdsTestApp_Staging_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Staging_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -835,18 +837,11 @@
 				43B713E52B4D54A2007C8D21 /* Consent */,
 				43AE85D62B5017720010C812 /* Settings */,
 				438ED42A2AA5D0E100486AF2 /* AdSdkLauncher.swift */,
+				43FA4E922CB6B6240029B928 /* OguryAdsPrivateLauncher.h */,
+				43FA4E932CB6B6240029B928 /* OguryAdsPrivateLauncher.m */,
+				43FA4E8C2CB6B6240029B928 /* AdsTestApp-Bridging-Header.h */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		43F788BD2B4EDDDD0022157E /* Module */ = {
-			isa = PBXGroup;
-			children = (
-				43F788C12B4EDDF00022157E /* InternalModule.h */,
-				43F788C22B4EDDF00022157E /* InternalModule.m */,
-				43F788BE2B4EDDF00022157E /* AdsTestApp-Bridging-Header.h */,
-			);
-			path = Module;
 			sourceTree = "<group>";
 		};
 		43F9616F2C6CD6F40088F4A7 /* AppLovin */ = {
@@ -1079,14 +1074,23 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					434F84BC2ACFE4FE005077F5 = {
-						LastSwiftMigration = 1520;
+						LastSwiftMigration = 1600;
 					};
 					434F84D82ACFE50A005077F5 = {
-						LastSwiftMigration = 1520;
+						LastSwiftMigration = 1600;
 					};
 					438ED4122AA5D0C200486AF2 = {
 						CreatedOnToolsVersion = 14.3.1;
-						LastSwiftMigration = 1520;
+						LastSwiftMigration = 1600;
+					};
+					43BCB0932C22DD45002FB0B1 = {
+						LastSwiftMigration = 1600;
+					};
+					43BCB0D62C22DD59002FB0B1 = {
+						LastSwiftMigration = 1600;
+					};
+					43BCB1192C22DD60002FB0B1 = {
+						LastSwiftMigration = 1600;
 					};
 				};
 			};
@@ -1469,6 +1473,7 @@
 				439A64E42C8F25EB00A180A4 /* UnityLevelPlayBidder.swift in Sources */,
 				43B714062B4D6075007C8D21 /* HeaderBiddingResponse.swift in Sources */,
 				43B713E82B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
+				43FA4E992CB6B6240029B928 /* OguryAdsPrivateLauncher.m in Sources */,
 				434F84C42ACFE4FE005077F5 /* AppDelegate.swift in Sources */,
 				43B714092B4D6075007C8D21 /* HeaderBiddingExt.swift in Sources */,
 				43AE85D92B5017860010C812 /* SettingsController.swift in Sources */,
@@ -1507,6 +1512,7 @@
 				43B714072B4D6075007C8D21 /* HeaderBiddingResponse.swift in Sources */,
 				43B713E92B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
 				434F84E02ACFE50A005077F5 /* AppDelegate.swift in Sources */,
+				43FA4E952CB6B6240029B928 /* OguryAdsPrivateLauncher.m in Sources */,
 				43B7140A2B4D6075007C8D21 /* HeaderBiddingExt.swift in Sources */,
 				43AE85DA2B5017860010C812 /* SettingsController.swift in Sources */,
 				50CFA8672C63AB5200E64D20 /* UnityLevelPlayBidder.swift in Sources */,
@@ -1545,6 +1551,7 @@
 				43FC85612B0F5E0900EABA43 /* MaxBidder.swift in Sources */,
 				43B714052B4D6075007C8D21 /* HeaderBiddingResponse.swift in Sources */,
 				43B713E72B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
+				43FA4E942CB6B6240029B928 /* OguryAdsPrivateLauncher.m in Sources */,
 				438ED4172AA5D0C200486AF2 /* AppDelegate.swift in Sources */,
 				43B714082B4D6075007C8D21 /* HeaderBiddingExt.swift in Sources */,
 				43AE85D82B5017860010C812 /* SettingsController.swift in Sources */,
@@ -1583,6 +1590,7 @@
 				439A64E52C8F25EB00A180A4 /* UnityLevelPlayBidder.swift in Sources */,
 				43BCB0AA2C22DD45002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
 				43BCB0AB2C22DD45002FB0B1 /* ConsentManager.swift in Sources */,
+				43FA4E962CB6B6240029B928 /* OguryAdsPrivateLauncher.m in Sources */,
 				43BCB0AC2C22DD45002FB0B1 /* AppDelegate.swift in Sources */,
 				43BCB0AD2C22DD45002FB0B1 /* HeaderBiddingExt.swift in Sources */,
 				43BCB0AE2C22DD45002FB0B1 /* SettingsController.swift in Sources */,
@@ -1621,6 +1629,7 @@
 				439A64E62C8F25EC00A180A4 /* UnityLevelPlayBidder.swift in Sources */,
 				43BCB0ED2C22DD59002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
 				43BCB0EE2C22DD59002FB0B1 /* ConsentManager.swift in Sources */,
+				43FA4E982CB6B6240029B928 /* OguryAdsPrivateLauncher.m in Sources */,
 				43BCB0EF2C22DD59002FB0B1 /* AppDelegate.swift in Sources */,
 				43BCB0F02C22DD59002FB0B1 /* HeaderBiddingExt.swift in Sources */,
 				43BCB0F12C22DD59002FB0B1 /* SettingsController.swift in Sources */,
@@ -1659,6 +1668,7 @@
 				439A64E72C8F25EC00A180A4 /* UnityLevelPlayBidder.swift in Sources */,
 				43BCB1302C22DD60002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
 				43BCB1312C22DD60002FB0B1 /* ConsentManager.swift in Sources */,
+				43FA4E972CB6B6240029B928 /* OguryAdsPrivateLauncher.m in Sources */,
 				43BCB1322C22DD60002FB0B1 /* AppDelegate.swift in Sources */,
 				43BCB1332C22DD60002FB0B1 /* HeaderBiddingExt.swift in Sources */,
 				43BCB1342C22DD60002FB0B1 /* SettingsController.swift in Sources */,
@@ -1737,6 +1747,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/AdsTestApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1780,6 +1791,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/AdsTestApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1822,6 +1834,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/AdsTestApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1865,6 +1878,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/AdsTestApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2023,6 +2037,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/AdsTestApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2068,6 +2083,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/AdsTestApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2112,6 +2128,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/AdsTestApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2157,6 +2174,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/AdsTestApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2199,6 +2217,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/AdsTestApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2242,6 +2261,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/AdsTestApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2284,6 +2304,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/AdsTestApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2327,6 +2348,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AdsTestApp/Controllers/AdsTestApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

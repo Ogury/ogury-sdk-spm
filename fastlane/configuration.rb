@@ -9,8 +9,10 @@ class Configuration
     wrapper = Target.new("OguryWrapper", "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj", "OguryWrapper", nil, "OgurySdk", Dependency.new(core: true, ads: true, hasPodspec: true), "wrapper", "wrapper-ios")
     testApp = Target.new("AdsTestApp", "sdk-ads-ios/AdsTestApp/AdsTestApp.xcodeproj", "AdsTestApp", nil, nil, Dependency.new(core: true, ads: true), "testApp", "testApp-ios")
     @targets = Targets.new(ads, adsLibrary, core, wrapper, testApp)
-    @sdks = Sdks.new(["iphoneos", "iphonesimulator"], ["iphonesimulator"])
-    @test_devices = ["iPhone 15"]
+    iosSdk = Sdk.new("iphoneos", "generic/platform=iOS")
+    simulatorSdk = Sdk.new("iphonesimulator", "generic/platform=iOS Simulator")
+    @sdks = Sdks.new([iosSdk, simulatorSdk], [simulatorSdk])
+    @test_devices = ["iPhone 16"]
     @allowed_environments = ["devc", "staging", "prod", "beta", "release"]
     @firebase = Firebase.new("sdk-tester-group")
     @artifactory = Artifactory.new("https://ogury.jfrog.io/artifactory")
@@ -74,6 +76,9 @@ module TestAppVariant
 end
 
 Sdks = Struct.new(:defaults, :tests) do
+end
+
+Sdk = Struct.new(:platform, :destination) do
 end
 
 Firebase = Struct.new(:test_group) do

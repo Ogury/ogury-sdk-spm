@@ -22,10 +22,11 @@ private_lane :build_framework do |options|
     workspace: workspace,
     configuration: "Debug",
     scheme: scheme,
-    sdk: sdk,
+    sdk: sdk.platform,
+    destination: sdk.destination,
     clean: true,
     skip_archive: true,
-    skip_package_ipa: true,
+    skip_package_ipa: true
   )
 end
 
