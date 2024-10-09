@@ -52,6 +52,8 @@
 		43FA4E862CB6AEF10029B928 /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4E7B2CB6AC180029B928 /* OguryCore.framework */; };
 		43FA4EA72CB6D0210029B928 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4EA52CB6D0210029B928 /* OguryAds.framework */; };
 		43FA4EA92CB6D0210029B928 /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4EA62CB6D0210029B928 /* OguryCore.framework */; };
+		43FA4EAD2CB6D46A0029B928 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4EAC2CB6D46A0029B928 /* OMSDK_Ogury.xcframework */; };
+		43FA4EAE2CB6D46A0029B928 /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4EAC2CB6D46A0029B928 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		505059382C7763FD007B29EA /* OguryErrorOGWWrapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 505059372C7763FD007B29EA /* OguryErrorOGWWrapperTests.m */; };
 		5050593A2C77663C007B29EA /* OguryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 505059392C77663C007B29EA /* OguryTests.m */; };
 		506D755F2CA450550050B345 /* OguryStartErrorCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 506D755E2CA450510050B345 /* OguryStartErrorCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -90,6 +92,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		43FA4EAF2CB6D46A0029B928 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				43FA4EAE2CB6D46A0029B928 /* OMSDK_Ogury.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		05FDDDBA2555A350000F4C8B /* Configuration.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Configuration.xcconfig; sourceTree = "<group>"; };
 		05FDDDCD2559A048000F4C8B /* Ogury.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ogury.h; sourceTree = "<group>"; };
@@ -117,6 +133,7 @@
 		43FA4E7B2CB6AC180029B928 /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43FA4EA52CB6D0210029B928 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43FA4EA62CB6D0210029B928 /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43FA4EAC2CB6D46A0029B928 /* OMSDK_Ogury.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OMSDK_Ogury.xcframework; path = "../../sdk-ads-ios/OMSDK_Ogury.xcframework"; sourceTree = "<group>"; };
 		505059372C7763FD007B29EA /* OguryErrorOGWWrapperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryErrorOGWWrapperTests.m; sourceTree = "<group>"; };
 		505059392C77663C007B29EA /* OguryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryTests.m; sourceTree = "<group>"; };
 		506D755E2CA450510050B345 /* OguryStartErrorCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryStartErrorCode.h; sourceTree = "<group>"; };
@@ -167,6 +184,7 @@
 				ED5CDE1C3E442237F473AAFC /* Pods_OguryWrapperTests.framework in Frameworks */,
 				43FA4EA92CB6D0210029B928 /* OguryCore.framework in Frameworks */,
 				43FA4EA72CB6D0210029B928 /* OguryAds.framework in Frameworks */,
+				43FA4EAD2CB6D46A0029B928 /* OMSDK_Ogury.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +402,7 @@
 		E3183CF8A318ADE10E85DE89 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43FA4EAC2CB6D46A0029B928 /* OMSDK_Ogury.xcframework */,
 				43FA4EA52CB6D0210029B928 /* OguryAds.framework */,
 				43FA4EA62CB6D0210029B928 /* OguryCore.framework */,
 				43FA4E7A2CB6AC180029B928 /* OguryAds.framework */,
@@ -471,6 +490,7 @@
 				05FDDE3C255AE449000F4C8B /* Frameworks */,
 				05FDDE3D255AE449000F4C8B /* Resources */,
 				6A6F57C45A41E0F4E3CCE5AB /* [CP] Embed Pods Frameworks */,
+				43FA4EAF2CB6D46A0029B928 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
