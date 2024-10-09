@@ -36,8 +36,6 @@ end
 
 target "OguryAdsTests" do
   project "sdk-ads-ios/OguryAdsSDK"
-
-  pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
   pod "OCMock", :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
 end
 

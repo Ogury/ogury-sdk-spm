@@ -103,6 +103,8 @@
 		43DA127D2AB888D300766D99 /* AdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127A2AB888D300766D99 /* AdBannerView.swift */; };
 		43DA127E2AB888D300766D99 /* BannerPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */; };
 		43DA12802AB888D900766D99 /* BannerAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127F2AB888D900766D99 /* BannerAdManager.swift */; };
+		43FA4EA02CB6D00D0029B928 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4E9E2CB6D00D0029B928 /* OguryAds.framework */; };
+		43FA4EA22CB6D00D0029B928 /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4E9F2CB6D00D0029B928 /* OguryCore.framework */; };
 		50CFA85F2C63776200E64D20 /* UnityLevelPlayBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA85D2C63774B00E64D20 /* UnityLevelPlayBidable.swift */; };
 		50CFA8602C63776200E64D20 /* UnityLevelPlayBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA85D2C63774B00E64D20 /* UnityLevelPlayBidable.swift */; };
 		50CFA8622C637F0B00E64D20 /* UnityLevelPlayRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8612C637F0A00E64D20 /* UnityLevelPlayRetriever.swift */; };
@@ -178,6 +180,8 @@
 		43DA127A2AB888D300766D99 /* AdBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdBannerView.swift; sourceTree = "<group>"; };
 		43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerPlaceholderView.swift; sourceTree = "<group>"; };
 		43DA127F2AB888D900766D99 /* BannerAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdManager.swift; sourceTree = "<group>"; };
+		43FA4E9E2CB6D00D0029B928 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43FA4E9F2CB6D00D0029B928 /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4925EF716018B487E9F91C3B /* Pods_AdsCardLibrary_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsCardLibrary_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50CFA85D2C63774B00E64D20 /* UnityLevelPlayBidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityLevelPlayBidable.swift; sourceTree = "<group>"; };
 		50CFA8612C637F0A00E64D20 /* UnityLevelPlayRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityLevelPlayRetriever.swift; sourceTree = "<group>"; };
@@ -202,6 +206,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43FA4EA02CB6D00D0029B928 /* OguryAds.framework in Frameworks */,
+				43FA4EA22CB6D00D0029B928 /* OguryCore.framework in Frameworks */,
 				435C55EA2A42EAEF004186FF /* AdsCardLibrary.framework in Frameworks */,
 				4314411E2A653CA70067AD47 /* CwlPreconditionTesting in Frameworks */,
 				43ACBB6D2B304AB9003FBF35 /* Mockingbird in Frameworks */,
@@ -308,6 +314,8 @@
 		435C55FB2A42F451004186FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43FA4E9E2CB6D00D0029B928 /* OguryAds.framework */,
+				43FA4E9F2CB6D00D0029B928 /* OguryCore.framework */,
 				43A9F4A42C37E7800085EF6F /* OguryCore.framework */,
 				438ED4392AA8565800486AF2 /* OguryAds.framework */,
 				435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */,
@@ -1007,7 +1015,6 @@
 		435C55F72A42EAEF004186FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
@@ -1025,7 +1032,6 @@
 		435C55F82A42EAEF004186FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W7JZNL3R6G;

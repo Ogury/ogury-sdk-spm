@@ -117,9 +117,12 @@ platform :ios do
     end
 
     environment = options[:environment]
+    testTarget = options[:testTarget] ? options[:testTarget] : false
     targetThreshold = options[:targetThreshold] ? options[:targetThreshold] : "all"
     templatePath = "./fastlane/templates/Podfile.erb"
-    if targetThreshold == "core"
+    if testTarget
+      templatePath = "./fastlane/templates/PodfileTest.erb"
+    elsif targetThreshold == "core"
       templatePath = "./fastlane/templates/PodfileCore.erb"
     elsif targetThreshold == "ads"
       templatePath = "./fastlane/templates/PodfileAds.erb"
@@ -152,13 +155,13 @@ lane :test do |options|
 
   environment = options[:environment]
 
-    # Install Cocoapods dependencies
-    #update_internal_cocoapods environment: environment
-    #generate_podfile environment: environment
-#
-    #cocoapods(
-    #  podfile: "./Podfile",
-    #  )
+    #Install Cocoapods dependencies
+    update_internal_cocoapods environment: environment
+    generate_podfile(environment:environment, testTarget:true)
+  
+    cocoapods(
+      podfile: "./Podfile",
+      )
 
     configuration.sdks.tests.each do |sdk|
       test_core_framework(
