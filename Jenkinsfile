@@ -30,18 +30,45 @@ pipeline {
         stage('Build') {
             when {
                 beforeAgent true
-                not { changeRequest() }
+                anyOf {
+                    not { changeRequest() }
+                    buildingTag()
+                }
             }
-
             steps {
-                sh """#!/bin/zsh -l
+                script {
+                    // Default to false
+                    def isArtifactory = false
+                    def targetThreshold = "all"
+                    
+                    // Check if a tag exists and contains '-art'
+                    if (env.GIT_TAG && (env.GIT_TAG.contains('-art') || env.GIT_TAG.contains('release-') )) {
+                        isArtifactory = true
+                    }
+
+                    if (env.GIT_TAG && env.GIT_TAG.contains('-core-')) {
+                        targetThreshold = "core"
+                    }
+                    if (env.GIT_TAG && env.GIT_TAG.contains('-ads-')) {
+                        targetThreshold = "ads"
+                    }
+        
+                    // Log the value of isArtifactory for debugging
+                    echo "Artifactory is set to: ${isArtifactory}"
+                    echo "Target Threshold is set to: ${targetThreshold}"
+        
+                    // Run the first shell script (setting up environment)
+                    sh """#!/bin/zsh -l
                     source ~/.zshrc
                     rvm --default use 2.7.7
-                """
-                sh """#!/bin/zsh -l
+                    """
+        
+                    // Run the Fastlane build with artifactory set based on the tag
+                    sh """#!/bin/zsh -l
                     source ~/.zshrc
-                    bundle exec fastlane build environment:'prod'
-                """
+                    bundle exec fastlane build environment:'prod' artifactory:${isArtifactory} targetThreshold:${targetThreshold}
+                    """
+                }
             }
         }
 

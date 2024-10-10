@@ -5,6 +5,7 @@
 #import <Foundation/Foundation.h>
 #import <OgurySdk/OguryStartErrorCode.h>
 #import <OguryCore/OguryLogLevel.h>
+#import <OguryCore/OguryError.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
