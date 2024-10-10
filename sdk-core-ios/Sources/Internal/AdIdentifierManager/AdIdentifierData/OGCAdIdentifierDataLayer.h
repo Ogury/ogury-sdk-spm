@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)getTCFConsentString;
 
-- (void)storePrivacyData:(id)value forKey:(NSString *)key;
+- (void)setPrivacyData:(id)value forKey:(NSString *)key;
 
 - (NSDictionary<NSString *, id> *)retrieveDataPrivacy;
 

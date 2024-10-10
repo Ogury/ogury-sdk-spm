@@ -47,7 +47,6 @@
 static NSString *const DefaultURL = @"https://www.github.com";
 static NSString *const DefaultCampaignID = @"Campaign";
 static NSString *const DefaultAdUnitID = @"Default";
-static NSString *const DefaultUserID = @"User";
 
 #pragma mark - Methods
 
@@ -61,7 +60,6 @@ static NSString *const DefaultUserID = @"User";
     OCMStub(self.configuration.adType).andReturn(OguryAdsTypeInterstitial);
     OCMStub(self.configuration.adUnitId).andReturn(DefaultAdUnitID);
     OCMStub(self.configuration.campaignId).andReturn(DefaultCampaignID);
-    OCMStub(self.configuration.userId).andReturn(DefaultUserID);
 
     self.adSyncManager = [[OGAAdSyncManager alloc] initWithProfigManager:self.profigManager
                                                            adSyncService:self.adSyncService

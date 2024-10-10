@@ -10,7 +10,8 @@ import OguryAds
 import OguryAds.Private
 import AdsCardLibrary
 import SwiftMessages
-import OguryCore.Private
+
+
 
 struct AppSettingsFeature: Reducer {
     struct State: Equatable {
@@ -61,7 +62,7 @@ struct AppSettingsFeature: Reducer {
         }
         var sdkVersion: String {
             let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
-            return "\(OGAInternal.shared().getVersion()) (\(origin == "Pod" ? "Release" : "Development"))"
+            return "\(OguryAdsPrivateLauncher().sdkVersion) (\(origin == "Pod" ? "Release" : "Development"))"
         }
         var environment: String { Bundle.main.object(forInfoDictionaryKey: "DefaultEnv") as? String ?? "" }
     }
@@ -129,12 +130,12 @@ struct AppSettingsFeature: Reducer {
                
                 case .usOptoutTapped:
                     state.settings.usOptout.toggle()
-                    OGCInternal.shared().storePrivacyData("us_optout", boolean: state.settings.usOptout)
+                    OGCInternal.shared().setPrivacyData("us_optout", boolean: state.settings.usOptout)
                     return .none
                
                 case .usOptoutPartnerTapped:
                     state.settings.usOptoutPartner.toggle()
-                    OGCInternal.shared().storePrivacyData("us_optout_partner", boolean: state.settings.usOptoutPartner)
+                    OGCInternal.shared().setPrivacyData("us_optout_partner", boolean: state.settings.usOptoutPartner)
                     return .none
                
                 case .showPrivacyDataTapped:

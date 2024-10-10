@@ -13,30 +13,45 @@ protocol OguryErrorConvertible {
     var readableError: String? { get }
 }
 
-extension OguryAdsErrorType: OguryErrorConvertible {
+extension OguryShowErrorCode: OguryErrorConvertible {
     var readableError: String? {
         switch self {
-            case .adDisabledOtherReason: return "Ad is disabled"
+            case .adDisabledUnspecifiedReason: return "Ad is disabled"
             case .adDisabledConsentMissing: return "Ad is disabled (Missing consent)"
             case .adDisabledConsentDenied: return "Ad is disabled (consent denied)"
-            case .adDisabledUnopenedCountry: return "Ad is disabled (unopened country)"
+            case .adDisabledCountryNotOpened: return "Ad is disabled (unopened country)"
             case .invalidConfiguration: return "Profig is not Synced"
             case .adExpired: return "Ad is expired"
-            case .adParsingFailed: return "Ad parsing failed"
-            case .adPrecachingFailed: return "Ad precaching failed"
-            case .adPrecachingTimeout: return "Ad precaching timed out"
-            case .noInternetConnection: return "No internet connection"
-            case .adRequestFailed: return "Ad request failed"
-            case .sdkNotInitialized: return "SDK was not initialized"
+            case .noActiveInternetConnection: return "No internet connection"
+            case .sdkNeverStarted: return "SDK was not initialized"
             case .sdkNotProperlyInitialized: return "SDK was not properly initialized"
-            case .anotherAdIsAlreadyDisplayed: return "Another ad is already being display"
-//            case .assetKeyNotValidError: return "Asset Key is not valid"
-            case .noFill: return "Ad is not available"
+            case .anotherAdAlreadyDisplayed: return "Another ad is already being display"
             case .noAdLoaded: return "Ad is not loaded"
             case .viewControllerPreventsAdFromBeingDisplayed: return "We were unable to show the ad in the current presenting view controller"
             case .viewInBackground: return "Try to present an ad while app is in background"
             case .webviewTerminatedBySystem: return "iOS killed the webview due to memory pressure"
-            @unknown default: return nil
+        @unknown default: return nil
+        }
+    }
+}
+
+extension OguryLoadErrorCode: OguryErrorConvertible {
+    var readableError: String? {
+        switch self {
+            case .adDisabledUnspecifiedReason: return "Ad is disabled"
+            case .adDisabledConsentMissing: return "Ad is disabled (Missing consent)"
+            case .adDisabledConsentDenied: return "Ad is disabled (consent denied)"
+            case .adDisabledCountryNotOpened: return "Ad is disabled (unopened country)"
+            case .invalidConfiguration: return "Profig is not Synced"
+            case .adParsingFailed: return "Ad parsing failed"
+            case .adPrecachingFailed: return "Ad precaching failed"
+            case .adPrecachingTimeout: return "Ad precaching timed out"
+            case .noActiveInternetConnection: return "No internet connection"
+            case .adRequestFailed: return "Ad request failed"
+            case .sdkNeverStarted: return "SDK was not initialized"
+            case .sdkNotProperlyInitialized: return "SDK was not properly initialized"
+            case .noFill: return "Ad is not available"
+        @unknown default: return nil
         }
     }
 }

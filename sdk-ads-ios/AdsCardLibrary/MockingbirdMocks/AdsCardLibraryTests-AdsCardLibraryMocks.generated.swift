@@ -12,7 +12,6 @@ import Combine
 import ComposableArchitecture
 import Foundation
 import OguryAds
-import OguryAds.Private
 import Swift
 import SwiftUI
 import UIKit

@@ -9,8 +9,10 @@ class Configuration
     wrapper = Target.new("OguryWrapper", "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj", "OguryWrapper", nil, "OgurySdk", Dependency.new(core: true, ads: true, hasPodspec: true), "wrapper", "wrapper-ios")
     testApp = Target.new("AdsTestApp", "sdk-ads-ios/AdsTestApp/AdsTestApp.xcodeproj", "AdsTestApp", nil, nil, Dependency.new(core: true, ads: true), "testApp", "testApp-ios")
     @targets = Targets.new(ads, adsLibrary, core, wrapper, testApp)
-    @sdks = Sdks.new(["iphoneos", "iphonesimulator"], ["iphonesimulator"])
-    @test_devices = ["iPhone 15"]
+    iosSdk = Sdk.new("iphoneos", "generic/platform=iOS")
+    simulatorSdk = Sdk.new("iphonesimulator", "generic/platform=iOS Simulator")
+    @sdks = Sdks.new([iosSdk, simulatorSdk], [simulatorSdk])
+    @test_devices = ["iPhone 16"]
     @allowed_environments = ["devc", "staging", "prod", "beta", "release"]
     @firebase = Firebase.new("sdk-tester-group")
     @artifactory = Artifactory.new("https://ogury.jfrog.io/artifactory")
@@ -18,8 +20,8 @@ class Configuration
     @slack = Slack.new("https://hooks.slack.com/services/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", "#sdk-ios-ci-update")
     @cocoapods = Cocoapods.new("git@github.com:Ogury/ogury-cocoapods-repository.git")
     @frameworks = Frameworks.new("./OMSDK_Ogury.xcframework")
-    @frameworks.ogury_core = Framework.new("1.4.1-RC-1.0.7", "1.4.0", "1.4.1")
-    @frameworks.ogury_ads = Framework.new("3.7.0-rc-3", "3.7.0-rc-3", "3.7.0")
+    @frameworks.ogury_core = Framework.new("2.0.0-int-1.0.4", "1.4.0", "1.4.1")
+    @frameworks.ogury_ads = Framework.new("4.0.0-int-1.0.8", "3.7.0-rc-3", "3.7.0")
     @frameworks.ogury_choice_manager = Framework.new("4.3.0-rc-2", "4.1.0-beta-1.0.0", "4.3.0")
     @directories = Directories.new("./jenkins/build", "./jenkins/output", "./jenkins/test_derived_data", "./jenkins/testApp")
   end
@@ -74,6 +76,9 @@ module TestAppVariant
 end
 
 Sdks = Struct.new(:defaults, :tests) do
+end
+
+Sdk = Struct.new(:platform, :destination) do
 end
 
 Firebase = Struct.new(:test_group) do

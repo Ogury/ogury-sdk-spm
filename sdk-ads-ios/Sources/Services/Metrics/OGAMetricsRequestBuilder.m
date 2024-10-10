@@ -15,10 +15,8 @@
 #import "OGAProfigDao.h"
 #import "NSDate+OGAFormatter.h"
 #import "OGAConfigurationUtils.h"
-#import "OguryAdsError.h"
-#import "OguryAdsError+Internal.h"
-
-#warning FIXME - Implements unit tests
+#import "OguryAdError.h"
+#import "OguryAdError+Internal.h"
 
 NSString *const OGAMetricsRequestBuilderConnectivityKey = @"connectivity";
 NSString *const OGAMetricsRequestBuilderAtKey = @"at";

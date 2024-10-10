@@ -25,19 +25,13 @@
 
 @end
 
-@interface OguryConfiguration (Testing)
-
-@property (nonatomic, copy, readwrite) NSString *assetKey;
-
-@end
-
 @interface OGWWrapperTests : XCTestCase
 
 @property(nonatomic, strong) OGWModulesManager *modulesManager;
 @property(nonatomic, strong) NSUserDefaults *userDefault;
 @property(nonatomic, strong) id log;
 @property(nonatomic, strong) OGWSetLogLevelNotificationManager *logNotificationManager;
-@property(nonatomic, strong) OguryConfiguration *configuration;
+@property(nonatomic, strong) NSString *assetKey;
 @property(nonatomic, strong) OGWWrapper *wrapper;
 
 @end
@@ -49,8 +43,7 @@
     self.userDefault = OCMClassMock([NSUserDefaults class]);
     self.log = OCMClassMock([OGWLog class]);
     self.logNotificationManager = OCMClassMock([OGWSetLogLevelNotificationManager class]);
-    self.configuration = [[OguryConfiguration alloc] init];
-    self.configuration.assetKey = @"TestAssetKey";
+    self.assetKey = @"TestAssetKey";
     self.wrapper = OCMPartialMock([[OGWWrapper alloc] initWithModules:self.modulesManager
                                                logNotificationManager:self.logNotificationManager
                                                           userDefault:self.userDefault
@@ -65,13 +58,13 @@
 - (void)testStartWithNoModulesPresent {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Completion handler called"];
     OCMExpect([self.log logAssetKey:OguryLogLevelError
-                                   assetKey:self.configuration.assetKey
+                                   assetKey:self.assetKey
                                     message:@"No Ogury module found in your application."]);
         
-    [self.wrapper startWithConfiguration:self.configuration completionHandler:^(BOOL success, OguryError * _Nullable error) {
+    [self.wrapper startWith:self.assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
         XCTAssertNotNil(error);
-        XCTAssertEqualObjects(error.localizedDescription, OGWErrorNoSdkModuleFoundMessage);
-        XCTAssertEqual(error.code, OGWErrorNoSdkModuleFound);
+        XCTAssertEqualObjects(error.localizedDescription, OguryStartErrorCodeModuleMissingDescription);
+        XCTAssertEqual(error.code, OguryStartErrorCodeModuleMissing);
         XCTAssertFalse(success);
         [expectation fulfill]; 
     }];
@@ -92,20 +85,20 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Completion handler called"];
     
     [[self.log expect] logAssetKeyFormat:OguryLogLevelDebug
-                                assetKey:self.configuration.assetKey
+                                assetKey:self.assetKey
                                   format:@"Module [%@] initialization..." ,@"Module1"];
     [[self.log expect] logAssetKeyFormat:OguryLogLevelDebug
-                                assetKey:self.configuration.assetKey
+                                assetKey:self.assetKey
                                   format:@"Module [%@] initialization..." ,@"Module2"];
     [[self.log expect] logAssetKeyFormat:OguryLogLevelDebug
-                                assetKey:self.configuration.assetKey
+                                assetKey:self.assetKey
                                   format:@"Ogury Start() ended succesfully for modules :%@" ,@"\nModule1\nModule2"];
     
-    OCMStub([module1 startWithAssetKey:self.configuration.assetKey
+    OCMStub([module1 startWith:self.assetKey
                      completionHandler:([OCMArg invokeBlockWithArgs:@(YES), [NSNull null], nil])]);
-    OCMStub([module2 startWithAssetKey:self.configuration.assetKey
+    OCMStub([module2 startWith:self.assetKey
                      completionHandler:([OCMArg invokeBlockWithArgs:@(YES), [NSNull null], nil])]);
-    [self.wrapper startWithConfiguration:self.configuration completionHandler:^(BOOL success, OguryError * _Nullable error) {
+    [self.wrapper startWith:self.assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
         XCTAssertTrue(success);
         XCTAssertNil(error);
         [expectation fulfill];
@@ -127,10 +120,10 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Completion handler called"];
     
     [[self.log expect] logAssetKeyFormat:OguryLogLevelDebug
-                                assetKey:self.configuration.assetKey
+                                assetKey:self.assetKey
                                   format:@"Module [%@] initialization..." ,@"Module1"];
     [[self.log expect] logAssetKeyFormat:OguryLogLevelDebug
-                                assetKey:self.configuration.assetKey
+                                assetKey:self.assetKey
                                   format:@"Module [%@] initialization..." ,@"Module2"];
     
     OguryError *error1 = [OguryError errorWithDomain:@"OguryErrorDomain"
@@ -140,17 +133,17 @@
                                                 code:6002
                                             userInfo:@{NSLocalizedDescriptionKey: @"Module2 failed to start."}];
     
-    OCMStub([module1 startWithAssetKey:self.configuration.assetKey
+    OCMStub([module1 startWith:self.assetKey
                      completionHandler:([OCMArg invokeBlockWithArgs:@(NO), error1, nil])]);
-    OCMStub([module2 startWithAssetKey:self.configuration.assetKey
+    OCMStub([module2 startWith:self.assetKey
                      completionHandler:([OCMArg invokeBlockWithArgs:@(NO), error2, nil])]);
     
     
     [[self.log expect] logAssetKeyFormat:OguryLogLevelError
-                                assetKey:self.configuration.assetKey
+                                assetKey:self.assetKey
                                   format:@"Error found during the Ogury Start() call :%@" ,@"\nModule1 failed\nModule2 failed"];
         
-    [self.wrapper startWithConfiguration:self.configuration completionHandler:^(BOOL success, OguryError * _Nullable error) {
+    [self.wrapper startWith:self.assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
         XCTAssertFalse(success);
         XCTAssertNotNil(error);
         XCTAssertTrue([error.localizedDescription containsString:error1.localizedDescription]);
@@ -177,13 +170,13 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Completion handler called"];
     
     [[self.log expect] logAssetKeyFormat:OguryLogLevelDebug
-                                assetKey:self.configuration.assetKey
+                                assetKey:self.assetKey
                                   format:@"Module [%@] initialization..." ,@"Module1"];
     [[self.log expect] logAssetKeyFormat:OguryLogLevelDebug
-                                assetKey:self.configuration.assetKey
+                                assetKey:self.assetKey
                                   format:@"Module [%@] initialization..." ,@"Module2"];
     [[self.log expect] logAssetKeyFormat:OguryLogLevelDebug
-                                assetKey:self.configuration.assetKey
+                                assetKey:self.assetKey
                                   format:@"Module [%@] initialization..." ,@"Module3"];
     
     OguryError *errorModule3 = [OguryError errorWithDomain:@"OguryErrorDomain"
@@ -191,21 +184,22 @@
                                             userInfo:@{NSLocalizedDescriptionKey: @"Module3 failed"}];
     
     [[self.log expect] logAssetKeyFormat:OguryLogLevelError
-                                assetKey:self.configuration.assetKey
+                                assetKey:self.assetKey
                                   format:@"Error found during the Ogury Start() call :%@" ,[OCMArg any]];
     
     
     
-    OCMStub([module1 startWithAssetKey:self.configuration.assetKey
+    OCMStub([module1 startWith:self.assetKey
                      completionHandler:([OCMArg invokeBlockWithArgs:@(YES), [NSNull null], nil])]);
-    OCMStub([module2 startWithAssetKey:self.configuration.assetKey
+    OCMStub([module2 startWith:self.assetKey
                      completionHandler:([OCMArg invokeBlockWithArgs:@(YES), [NSNull null], nil])]);
-    OCMStub([module3 startWithAssetKey:self.configuration.assetKey
+    OCMStub([module3 startWith:self.assetKey
                      completionHandler:([OCMArg invokeBlockWithArgs:@(NO), errorModule3, nil])]);
     
-    [self.wrapper startWithConfiguration:self.configuration completionHandler:^(BOOL success, OguryError * _Nullable error) {
+    [self.wrapper startWith:self.assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
         XCTAssertFalse(success);
         XCTAssertNotNil(error);
+        XCTAssertEqual(error.code, OguryStartErrorCodeModuleFailedToStart);
         XCTAssertTrue([error.localizedDescription containsString:errorModule3.localizedDescription]);
         [expectation fulfill];
     }];
@@ -221,13 +215,13 @@
     OCMStub(self.modulesManager.modules).andReturn(modules);
     
     [[self.log expect] logAssetKeyFormat:OguryLogLevelDebug
-                                assetKey:self.configuration.assetKey
+                                assetKey:self.assetKey
                                   format:@"Module [%@] initialization..." ,@"Module"];
     
-    OCMStub([module startWithAssetKey:self.configuration.assetKey
+    OCMStub([module startWith:self.assetKey
                      completionHandler:([OCMArg invokeBlockWithArgs:@(YES), [NSNull null], nil])]);
     
-    [self.wrapper startWithConfiguration:self.configuration completionHandler:nil];
+    [self.wrapper startWith:self.assetKey completionHandler:nil];
     OCMVerifyAll(self.log);
 }
 

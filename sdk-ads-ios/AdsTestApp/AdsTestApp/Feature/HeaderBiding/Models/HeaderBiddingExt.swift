@@ -3,5 +3,5 @@
 //
 
 struct HeaderBiddingExt: Codable {
-    let signaldata: String
+    let signaldata: String?
 }

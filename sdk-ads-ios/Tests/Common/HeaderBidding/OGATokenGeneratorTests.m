@@ -37,11 +37,15 @@
 @end
 
 @interface OGATokenGenerator ()
-- (NSError *)tokenGenerationDenied;
 - (NSString *)gppConsentString;
 - (NSString *)gppSidConsentString;
 - (NSString *)tcfConsentString;
 - (NSDictionary<NSString *, NSString *> *)privacyDatas;
+- (void)collectBidTokenDataWithCampaignId:(NSString *_Nullable)campaignId
+                               creativeId:(NSString *_Nullable)creativeId
+                            dspCreativeId:(NSString *_Nullable)dspCreativeId
+                                dspRegion:(NSString *_Nullable)dspRegion
+                               completion:(BidTokenCompletionBlock)completion;
 @end
 
 @interface OGAAdPrivacyConfiguration ()
@@ -88,113 +92,124 @@
     XCTAssertNotNil(tokenGenerator);
 }
 
-- (void)testGenerateBidderTokenCampaignIdCreativeIdDspCreativeIdDspRegion {
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(YES);
+- (void)testGenerateBidTokenCampaignIdCreativeIdDspCreativeIdDspRegion {
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
     [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:YES instanceTokenEnabled:YES lowBatteryMode:YES];
-    [self.tokenGenerator bidderTokenWithCampaignId:@"campaign"
-                                        creativeId:@"creativeId"
-                                     dspCreativeId:@"dspCreativeId"
-                                         dspRegion:@"dspRegion"
-                                        completion:^(NSString *_Nullable encodedBidderToken, NSError *_Nullable error) {
-                                            XCTAssertNotNil(encodedBidderToken);
-                                            NSError *decodeError = nil;
-                                            NSDictionary *token = [NSDictionary ogaDecodeFromBase64:encodedBidderToken error:&decodeError];
-                                            XCTAssertNotNil(token);
-                                            XCTAssertNotNil(token[@"ad_sync"][@"ad"][@"campaign_id"]);
-                                            XCTAssertNotNil(token[@"ad_sync"][@"ad"][@"creative_id"]);
-                                            XCTAssertEqualObjects(token[@"ad_sync"][@"ad"][@"campaign_id"], @"campaign");
-                                            XCTAssertEqualObjects(token[@"ad_sync"][@"ad"][@"creative_id"], @"creativeId");
-                                            XCTAssertEqualObjects(token[@"ad_sync"][@"ad"][@"dsp"][@"creative_id"], @"dspCreativeId");
-                                            XCTAssertEqualObjects(token[@"ad_sync"][@"ad"][@"dsp"][@"region"], @"dspRegion");
-                                        }];
+    [self.tokenGenerator bidTokenWithCampaignId:@"campaign"
+                                     creativeId:@"creativeId"
+                                  dspCreativeId:@"dspCreativeId"
+                                      dspRegion:@"dspRegion"
+                                     completion:^(NSString *_Nullable encodedBidToken, NSError *_Nullable error) {
+                                         XCTAssertNotNil(encodedBidToken);
+                                         NSError *decodeError = nil;
+                                         NSDictionary *token = [NSDictionary ogaDecodeFromBase64:encodedBidToken error:&decodeError];
+                                         XCTAssertNotNil(token);
+                                         XCTAssertNotNil(token[@"ad_sync"][@"ad"][@"campaign_id"]);
+                                         XCTAssertNotNil(token[@"ad_sync"][@"ad"][@"creative_id"]);
+                                         XCTAssertEqualObjects(token[@"ad_sync"][@"ad"][@"campaign_id"], @"campaign");
+                                         XCTAssertEqualObjects(token[@"ad_sync"][@"ad"][@"creative_id"], @"creativeId");
+                                         XCTAssertEqualObjects(token[@"ad_sync"][@"ad"][@"dsp"][@"creative_id"], @"dspCreativeId");
+                                         XCTAssertEqualObjects(token[@"ad_sync"][@"ad"][@"dsp"][@"region"], @"dspRegion");
+                                     }];
 }
 
-- (void)testGenerateBidderTokenWithCampaignId {
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(YES);
+- (void)testGenerateBidTokenWithCampaignId {
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
     [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:YES instanceTokenEnabled:YES lowBatteryMode:YES];
-    [self.tokenGenerator bidderTokenWithCampaignId:@"campaign"
-                                        completion:^(NSString *_Nullable encodedBidderToken, NSError *_Nullable error) {
-                                            XCTAssertNotNil(encodedBidderToken);
-                                            NSError *decodeError = nil;
-                                            NSDictionary *token = [NSDictionary ogaDecodeFromBase64:encodedBidderToken error:&decodeError];
-                                            XCTAssertNotNil(token);
-                                            XCTAssertNotNil(token[@"ad_sync"][@"ad"][@"campaign_id"]);
-                                            XCTAssertNil(token[@"ad_sync"][@"ad"][@"creative_id"]);
-                                            XCTAssertEqualObjects(token[@"ad_sync"][@"ad"][@"campaign_id"], @"campaign");
-                                            XCTAssertNil(token[@"ad_sync"][@"ad"][@"dsp"]);
-                                        }];
+    [self.tokenGenerator bidTokenWithCampaignId:@"campaign"
+                                     completion:^(NSString *_Nullable encodedBidToken, NSError *_Nullable error) {
+                                         XCTAssertNotNil(encodedBidToken);
+                                         NSError *decodeError = nil;
+                                         NSDictionary *token = [NSDictionary ogaDecodeFromBase64:encodedBidToken error:&decodeError];
+                                         XCTAssertNotNil(token);
+                                         XCTAssertNotNil(token[@"ad_sync"][@"ad"][@"campaign_id"]);
+                                         XCTAssertNil(token[@"ad_sync"][@"ad"][@"creative_id"]);
+                                         XCTAssertEqualObjects(token[@"ad_sync"][@"ad"][@"campaign_id"], @"campaign");
+                                         XCTAssertNil(token[@"ad_sync"][@"ad"][@"dsp"]);
+                                     }];
 }
 
 - (void)testWhenLowBatteryModeIsOnThenTrueIsSet {
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(YES);
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
     [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:YES instanceTokenEnabled:YES lowBatteryMode:YES];
-    [self.tokenGenerator bidderToken:^(NSString *_Nullable encodedBidderToken, NSError *_Nullable error) {
+    [self.tokenGenerator bidToken:^(NSString *_Nullable encodedBidToken, NSError *_Nullable error) {
         NSError *decodeError = nil;
-        NSDictionary *token = [NSDictionary ogaDecodeFromBase64:encodedBidderToken error:&decodeError];
+        NSDictionary *token = [NSDictionary ogaDecodeFromBase64:encodedBidToken error:&decodeError];
         XCTAssertEqual([token[@"device"][@"settings"][@"low_power_mode"] intValue], 1);
     }];
 }
 
 - (void)testWhenLowBatteryModeIsOffThenFalseIsSet {
     [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:YES instanceTokenEnabled:YES lowBatteryMode:NO];
-    [self.tokenGenerator bidderToken:^(NSString *_Nullable encodedBidderToken, NSError *_Nullable error) {
+    [self.tokenGenerator bidToken:^(NSString *_Nullable encodedBidToken, NSError *_Nullable error) {
         NSError *decodeError = nil;
-        NSDictionary *token = [NSDictionary ogaDecodeFromBase64:encodedBidderToken error:&decodeError];
+        NSDictionary *token = [NSDictionary ogaDecodeFromBase64:encodedBidToken error:&decodeError];
         XCTAssertEqual([token[@"device"][@"settings"][@"low_power_mode"] intValue], 0);
     }];
 }
 
-- (void)testCollectBidderTokenDataNoAssetKey {
+- (void)testCollectBidTokenDataNoAssetKey {
     [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:NO instanceTokenEnabled:YES lowBatteryMode:YES];
-    [self.tokenGenerator bidderToken:^(NSString *_Nullable encodedBidderToken, NSError *_Nullable error) {
+    [self.tokenGenerator bidToken:^(NSString *_Nullable encodedBidToken, NSError *_Nullable error) {
         NSError *decodeError = nil;
-        NSDictionary *token = [NSDictionary ogaDecodeFromBase64:encodedBidderToken error:&decodeError];
+        NSDictionary *token = [NSDictionary ogaDecodeFromBase64:encodedBidToken error:&decodeError];
         XCTAssertNil(token[@"app"][@"asset_key"]);
     }];
 }
 
-- (void)testCollectBidderTokenDataNoInstanceToken {
+- (void)testCollectBidTokenDataNoInstanceToken {
     [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:YES instanceTokenEnabled:NO lowBatteryMode:YES];
-    [self.tokenGenerator bidderToken:^(NSString *_Nullable encodedBidderToken, NSError *_Nullable error) {
+    [self.tokenGenerator bidToken:^(NSString *_Nullable encodedBidToken, NSError *_Nullable error) {
         NSError *decodeError = nil;
-        NSDictionary *token = [NSDictionary ogaDecodeFromBase64:encodedBidderToken error:&decodeError];
+        NSDictionary *token = [NSDictionary ogaDecodeFromBase64:encodedBidToken error:&decodeError];
         XCTAssertNil(token[@"app"][@"instance_token"]);
     }];
 }
 
-- (void)testCollectBidderTokenDataNoInstanceTokenNoAssetKey {
+- (void)testCollectBidTokenDataNoInstanceTokenNoAssetKey {
     [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:NO instanceTokenEnabled:NO lowBatteryMode:YES];
-    [self.tokenGenerator bidderToken:^(NSString *_Nullable encodedBidderToken, NSError *_Nullable error) {
+    [self.tokenGenerator bidToken:^(NSString *_Nullable encodedBidToken, NSError *_Nullable error) {
         NSError *decodeError = nil;
-        NSDictionary *token = [NSDictionary ogaDecodeFromBase64:encodedBidderToken error:&decodeError];
+        NSDictionary *token = [NSDictionary ogaDecodeFromBase64:encodedBidToken error:&decodeError];
         XCTAssertNil(token[@"app"][@"asset_key"]);
         XCTAssertNil(token[@"app"][@"instance_token"]);
     }];
 }
 
-- (void)testWhenAdTrackingIsDisabledThenNoBidderTokenIsGenerated {
+- (void)testWhenAdTrackingIsDisabledThenNoBidTokenIsGenerated {
     OCMStub([self.profigResponse adsEnabled]).andReturn(NO);
-    [self.tokenGenerator bidderToken:^(NSString *_Nullable encodedBidderToken, NSError *_Nullable error) {
-        XCTAssertNil(encodedBidderToken);
+    [self.tokenGenerator bidToken:^(NSString *_Nullable encodedBidToken, NSError *_Nullable error) {
+        XCTAssertNil(encodedBidToken);
     }];
 }
 
-- (void)testWhenAdAssetNotInitAndAdsDisabled {
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(NO);
-    OCMStub([self.profigResponse adsEnabled]).andReturn(NO);
-    XCTAssertNotNil([self.tokenGenerator tokenGenerationDenied]);
+- (void)testWhenAdAssetNotInit {
+    NSError *error = nil;
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:&error type:OguryAdErrorTypeLoad]).andReturn(NO);
+    [self.tokenGenerator bidToken:^(NSString *_Nullable token, OguryError *_Nullable error) {
+        XCTAssertNil(token);
+        XCTAssertEqual(error.code, 4000);
+    }];
 }
 
-- (void)testWhenAdAssetInitAndAdsDisabled {
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(YES);
+- (void)testWhenAdsDisabled {
     OCMStub([self.profigResponse adsEnabled]).andReturn(NO);
-    XCTAssertNotNil([self.tokenGenerator tokenGenerationDenied]);
+    [self.tokenGenerator collectBidTokenDataWithCampaignId:nil
+                                                creativeId:nil
+                                             dspCreativeId:nil
+                                                 dspRegion:nil
+                                                completion:^(NSString *_Nullable token, OguryError *_Nullable error) {
+                                                    XCTAssertNil(token);
+                                                    XCTAssertEqual(error.code, 4104);
+                                                }];
 }
 
-- (void)testWhenAdAssetInitAndAdsEnabled {
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(YES);
+- (void)testWhenAdsEnabled {
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
     OCMStub([self.profigResponse adsEnabled]).andReturn(YES);
-    XCTAssertNil([self.tokenGenerator tokenGenerationDenied]);
+    [self.tokenGenerator bidToken:^(NSString *_Nullable token, OguryError *_Nullable error){
+
+    }];
 }
 
 - (NSUInteger)fullPermissions {
@@ -237,14 +252,14 @@
 
 - (NSDictionary *)fullyMockedTokenWithPermissions:(NSUInteger)permissions skanEnabled:(BOOL)skanEnabled {
     [self mockDataWithPermissions:permissions skanEnabled:skanEnabled assetKeyEnabled:YES instanceTokenEnabled:YES lowBatteryMode:YES];
-    return [self.tokenGenerator computeBidderTokenDataWithCampaignId:nil
-                                                          creativeId:nil
-                                                       dspCreativeId:nil
-                                                           dspRegion:nil];
+    return [self.tokenGenerator computeBidTokenDataWithCampaignId:nil
+                                                       creativeId:nil
+                                                    dspCreativeId:nil
+                                                        dspRegion:nil];
 }
 
 - (void)testWhenAllPermissionsAreSetThenTokenEnvelopeIsValid {
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(YES);
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
     NSDictionary *token = [self fullyMockedTokenWithPermissions:[self fullPermissions] skanEnabled:YES];
     // App
     XCTAssertEqualObjects(token[@"app"][@"asset_key"], @"AssetKey");
@@ -274,7 +289,7 @@
 }
 
 - (void)testWhenNoPermissionsAreSetThenTokenEnvelopeIsValid {
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(YES);
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
     NSDictionary *token = [self fullyMockedTokenWithPermissions:OGAAdPrivacyPermissionAdTracking skanEnabled:YES];
     // App
     XCTAssertNotNil(token[@"app"][@"asset_key"]);
@@ -307,7 +322,7 @@
 }
 
 - (void)checkTokenWithPermissionMask:(NSUInteger)permission assertMessage:(NSString *)message {
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(YES);
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
     NSDictionary *token = [self fullyMockedTokenWithPermissions:permission skanEnabled:YES];
     if (permission & 1) {
         XCTAssertNotNil(token[@"device"][@"settings"][@"device_id"], @"%@", message);
@@ -471,9 +486,9 @@
     OCMStub([self.tokenGenerator tcfConsentString]).andReturn(@"tcfConsentString");
     NSDictionary *privacyDatas = @{@"us_optout" : @(YES), @"customKey" : @"customValue"};
     OCMStub([self.tokenGenerator privacyDatas]).andReturn(privacyDatas);
-    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] origin:OguryInternalAdsErrorOriginLoad]).andReturn(YES);
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
     [self mockDataWithPermissions:0 skanEnabled:NO assetKeyEnabled:NO instanceTokenEnabled:NO lowBatteryMode:NO];
-    NSDictionary *token = [self.tokenGenerator computeBidderTokenDataWithCampaignId:nil creativeId:nil dspCreativeId:nil dspRegion:nil];
+    NSDictionary *token = [self.tokenGenerator computeBidTokenDataWithCampaignId:nil creativeId:nil dspCreativeId:nil dspRegion:nil];
     XCTAssertNotNil(token[@"privacy_compliancy"][@"tcf"]);
     XCTAssertNotNil(token[@"privacy_compliancy"][@"gpp"]);
     XCTAssertNotNil(token[@"privacy_compliancy"][@"gpp_sid"]);

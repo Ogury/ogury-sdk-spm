@@ -57,26 +57,26 @@
                                                         webViewUserAgentService:self.webViewUserAgentService]);
 }
 
-- (void)testStartWithAssetKey {
+- (void)testStartWith {
     OCMStub([self.assetKeyManager configureAssetKey:[OCMArg any]]).andReturn(YES);
 
-    [self.internal startWithAssetKey:@"OGY-XXXXXXXX"
-                   completionHandler:^(BOOL success, NSError *error){
-                   }];
+    [self.internal startWith:@"OGY-XXXXXXXX"
+           completionHandler:^(BOOL success, NSError *error){
+           }];
 
     OCMVerify([self.assetKeyManager configureAssetKey:@"OGY-XXXXXXXX"]);
     OCMVerify([self.internetReachability startNotifier]);
     OCMVerify([self.webViewUserAgentService syncWebViewUserAgent]);
 }
 
-- (void)testStartWithAssetKey_cannotReconfigureAssetKey {
+- (void)testStartWith_cannotReconfigureAssetKey {
     OCMStub([self.assetKeyManager configureAssetKey:[OCMArg any]]).andReturn(NO);
     OCMReject([self.internetReachability startNotifier]);
     OCMReject([self.profigManager syncProfigWithCompletion:[OCMArg any]]);
 
-    [self.internal startWithAssetKey:@"OGY-XXXXXXXX"
-                   completionHandler:^(BOOL success, NSError *error){
-                   }];
+    [self.internal startWith:@"OGY-XXXXXXXX"
+           completionHandler:^(BOOL success, NSError *error){
+           }];
 }
 
 - (void)testSetLogLevel {

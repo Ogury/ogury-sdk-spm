@@ -5,7 +5,7 @@
 #import "NSDictionary+OGABase64.h"
 #import "NSString+OGABase64.h"
 #import "OGALog.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 
 @implementation NSDictionary (OGABase64)
 
@@ -24,19 +24,19 @@
 
 + (NSDictionary *)ogaDecodeFromBase64:(NSString *)jsonString error:(NSError **)error {
     if (!jsonString) {
-        *error = [OguryAdsError adParsingFailedWithStackTrace:[NSString stringWithFormat:@"Base64 string is empty"]];
+        *error = [OguryAdError adParsingFailedWithStackTrace:[NSString stringWithFormat:@"Base64 string is empty"]];
         return nil;
     }
     NSError *parseError;
     NSData *data = [[NSData alloc] initWithBase64EncodedString:jsonString options:NSDataBase64DecodingIgnoreUnknownCharacters];
     if (!data) {
-        *error = [OguryAdsError adParsingFailedWithStackTrace:@"Could not decode Base64"];
+        *error = [OguryAdError adParsingFailedWithStackTrace:@"Could not decode Base64"];
         return nil;
     }
     id jsonConverted = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&parseError];
     if (parseError || jsonConverted == nil) {
         [[OGALog shared] log:OguryLogLevelError message:@"An error occurred while decoding Base64 to NSSObject"];
-        *error = [OguryAdsError adParsingFailedWithStackTrace:[NSString stringWithFormat:@"Base64 contained invalid JSON (%@)", parseError.localizedDescription]];
+        *error = [OguryAdError adParsingFailedWithStackTrace:[NSString stringWithFormat:@"Base64 contained invalid JSON (%ld)", parseError.code]];
         return nil;
     } else {
         return jsonConverted;

@@ -4,17 +4,18 @@
 
 #import "OguryError+OGWWrapper.h"
 #import "OGWErrorMessage.h"
+#import "OguryStartErrorCode.h"
 
 @implementation OguryError (OGWErrorCode)
 
-+ (instancetype)createFailedStartingOguryModuleError:(NSString *)errorMessage {
-    return [OguryError createOguryErrorWithCode:OGWErrorFailedStartingOguryModule
-                           localizedDescription:errorMessage];
++ (instancetype)createModuleMissingError {
+    return [OguryError createOguryErrorWithCode:OguryStartErrorCodeModuleMissing
+                           localizedDescription:OguryStartErrorCodeModuleMissingDescription];
 }
 
-+ (instancetype)createNoSDKModuleFoundError {
-    return [OguryError createOguryErrorWithCode:OGWErrorNoSdkModuleFound
-                           localizedDescription:OGWErrorNoSdkModuleFoundMessage];
++ (instancetype)createModuleFailedToStartError:(NSString *)errorMessage {
+    return [OguryError createOguryErrorWithCode:OguryStartErrorCodeModuleFailedToStart
+                           localizedDescription:errorMessage];
 }
 
 @end

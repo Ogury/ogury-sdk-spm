@@ -15,7 +15,7 @@ static OGWModuleClassMock *_storedShared = nil;
    return [self storedShared];
 }
 
-- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetupCompletionBlock _Nullable)completionHandler {
+- (void)startWith:(NSString *)assetKey completionHandler:(StartCompletionBlock _Nullable)completionHandler {
     self.storedAssetKey = assetKey;
     completionHandler(true, nil);
 }

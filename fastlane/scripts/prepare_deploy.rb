@@ -108,23 +108,16 @@ private_lane :build_frameworks do |options|
   scheme = artifactory ? target.artScheme : target.scheme
 
   configuration.sdks.defaults.each do |sdk|
-    case sdk
-    when "iphonesimulator"
-      destination = "generic/platform=iOS Simulator"
-    when "iphoneos"
-      destination = "generic/platform=iOS"
-    end
-
     puts "Compiling #{target.scheme}".green
     xcodebuild(
       archive: true,
       workspace: configuration.workspace.file_path,
       scheme: scheme,
-      sdk: sdk,
+      sdk: sdk.platform,
+      destination: sdk.destination,
       clean: true,
-      destination: destination,
       xcargs: "CLANG_ENABLE_CODE_COVERAGE=NO SKIP_INSTALL=NO MARKETING_VERSION=#{version} ENV_URL=#{options[:environment_url]}",
-      archive_path: "#{configuration.directories.build}/archives/#{target.name}-#{sdk}",
+      archive_path: "#{configuration.directories.build}/archives/#{target.name}-#{sdk.platform}",
       )
   end
 end
@@ -143,7 +136,7 @@ private_lane :combine_framework do |options|
   puts "Creating #{target.name} XCFramework"
   inputs = ""
   configuration.sdks.defaults.each do |sdk|
-    inputs += "-framework '#{configuration.directories.build}/archives/#{target.name}-#{sdk}.xcarchive/Products/Library/Frameworks/#{target.publicName}.framework' "
+    inputs += "-framework '#{configuration.directories.build}/archives/#{target.name}-#{sdk.platform}.xcarchive/Products/Library/Frameworks/#{target.publicName}.framework' "
   end
 
   output_file = "#{configuration.directories.output}/#{target.publicName}.xcframework"
@@ -260,6 +253,7 @@ private_lane :generate_podspec do |options|
   end
 
   puts "#{Dir.pwd}/templates/#{target.name}.podspec.json.erb"
+  puts "podspec placeholders #{placeholders}".red
 
   erb(
     template: "#{Dir.pwd}/templates/#{target.publicName}.podspec.json.erb",

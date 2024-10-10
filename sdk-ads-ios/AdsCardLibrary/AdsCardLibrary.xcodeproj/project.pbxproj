@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		12E481270B7DBDC9D9DC6980 /* Pods_AdsCardLibrary_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EBD10A0783A9C4D4A62AFFB /* Pods_AdsCardLibrary_art.framework */; };
 		1E373D562BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */; };
 		1E373D612BFCF7CA00E2EF25 /* BTFairBidRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */; };
 		1E8256442B2380B4001DFBA4 /* AdsCardLibrary.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 1E8256432B2380B4001DFBA4 /* AdsCardLibrary.xctestplan */; };
@@ -42,7 +41,7 @@
 		43788F3C2B5FBA360041A9C1 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3B2B5FBA360041A9C1 /* Font+Extension.swift */; };
 		438ED3C72AA0C2BA00486AF2 /* ThumbnailAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3AF2AA0C2B900486AF2 /* ThumbnailAdManager.swift */; };
 		438ED3C82AA0C2BA00486AF2 /* InterstitialAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B02AA0C2B900486AF2 /* InterstitialAdManager.swift */; };
-		438ED3CA2AA0C2BA00486AF2 /* OptInAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B22AA0C2B900486AF2 /* OptInAdManager.swift */; };
+		438ED3CA2AA0C2BA00486AF2 /* RewardedAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B22AA0C2B900486AF2 /* RewardedAdManager.swift */; };
 		438ED3CB2AA0C2BA00486AF2 /* AdDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B32AA0C2B900486AF2 /* AdDelegateProxy.swift */; };
 		438ED3CC2AA0C2BA00486AF2 /* AdManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B42AA0C2BA00486AF2 /* AdManagerDelegate.swift */; };
 		438ED3CD2AA0C2BA00486AF2 /* OguryErrorConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B62AA0C2BA00486AF2 /* OguryErrorConvertible.swift */; };
@@ -57,7 +56,6 @@
 		438ED3D82AA0C2BA00486AF2 /* AdManagerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C62AA0C2BA00486AF2 /* AdManagerOptions.swift */; };
 		43A78A6E2A52ABF30004A613 /* AdManagerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */; };
 		43A9F4A52C37E7800085EF6F /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A9F4A42C37E7800085EF6F /* OguryCore.framework */; };
-		43A9F4A62C37E7800085EF6F /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43A9F4A42C37E7800085EF6F /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43ACBB6D2B304AB9003FBF35 /* Mockingbird in Frameworks */ = {isa = PBXBuildFile; productRef = 43ACBB6C2B304AB9003FBF35 /* Mockingbird */; };
 		43ACBB702B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ACBB6F2B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift */; };
 		43AE68042AAB25B1002E7C46 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED4392AA8565800486AF2 /* OguryAds.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -72,7 +70,7 @@
 		43BCB16A2C22FBF0002FB0B1 /* AdActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C12AA0C2BA00486AF2 /* AdActionBar.swift */; };
 		43BCB16B2C22FBF0002FB0B1 /* BannerAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127F2AB888D900766D99 /* BannerAdManager.swift */; };
 		43BCB16C2C22FBF0002FB0B1 /* AdViewFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C52AA0C2BA00486AF2 /* AdViewFeature.swift */; };
-		43BCB16D2C22FBF0002FB0B1 /* OptInAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B22AA0C2B900486AF2 /* OptInAdManager.swift */; };
+		43BCB16D2C22FBF0002FB0B1 /* RewardedAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B22AA0C2B900486AF2 /* RewardedAdManager.swift */; };
 		43BCB16E2C22FBF0002FB0B1 /* DTFairBidHeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */; };
 		43BCB16F2C22FBF0002FB0B1 /* MaxHeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F851A2AD534A5005077F5 /* MaxHeaderBidable.swift */; };
 		43BCB1702C22FBF0002FB0B1 /* RewardedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84962AC1AF9B005077F5 /* RewardedView.swift */; };
@@ -105,6 +103,12 @@
 		43DA127D2AB888D300766D99 /* AdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127A2AB888D300766D99 /* AdBannerView.swift */; };
 		43DA127E2AB888D300766D99 /* BannerPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */; };
 		43DA12802AB888D900766D99 /* BannerAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127F2AB888D900766D99 /* BannerAdManager.swift */; };
+		43FA4EA02CB6D00D0029B928 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4E9E2CB6D00D0029B928 /* OguryAds.framework */; };
+		43FA4EA22CB6D00D0029B928 /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4E9F2CB6D00D0029B928 /* OguryCore.framework */; };
+		50CFA85F2C63776200E64D20 /* UnityLevelPlayBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA85D2C63774B00E64D20 /* UnityLevelPlayBidable.swift */; };
+		50CFA8602C63776200E64D20 /* UnityLevelPlayBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA85D2C63774B00E64D20 /* UnityLevelPlayBidable.swift */; };
+		50CFA8622C637F0B00E64D20 /* UnityLevelPlayRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8612C637F0A00E64D20 /* UnityLevelPlayRetriever.swift */; };
+		ACA5E9FA7E59514EB048ED47 /* Pods_AdsCardLibrary_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4925EF716018B487E9F91C3B /* Pods_AdsCardLibrary_art.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,26 +121,11 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		43A9F4A72C37E7800085EF6F /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				43A9F4A62C37E7800085EF6F /* OguryCore.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTFairBidHeaderBidable.swift; sourceTree = "<group>"; };
 		1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTFairBidRetriever.swift; sourceTree = "<group>"; };
 		1E8256432B2380B4001DFBA4 /* AdsCardLibrary.xctestplan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AdsCardLibrary.xctestplan; sourceTree = "<group>"; };
-		26C0AEAF1B91EB6AA20B7E18 /* Pods-AdsCardLibrary-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-art.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-art/Pods-AdsCardLibrary-art.debug.xcconfig"; sourceTree = "<group>"; };
-		2EBD10A0783A9C4D4A62AFFB /* Pods_AdsCardLibrary_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsCardLibrary_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		26C0AEAF1B91EB6AA20B7E18 /* Pods-AdsCardLibrary-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-art.debug.xcconfig"; path = "Target Support Files/Pods-AdsCardLibrary-art/Pods-AdsCardLibrary-art.debug.xcconfig"; sourceTree = "<group>"; };
 		430B6F022A65377900A6EFA4 /* RewardedAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardedAdManagerTests.swift; sourceTree = "<group>"; };
 		431441182A6539780067AD47 /* ThumbnailAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailAdManagerTests.swift; sourceTree = "<group>"; };
 		4314411A2A653B060067AD47 /* BannerAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdManagerTests.swift; sourceTree = "<group>"; };
@@ -169,7 +158,7 @@
 		43788F3D2B5FBB260041A9C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		438ED3AF2AA0C2B900486AF2 /* ThumbnailAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailAdManager.swift; sourceTree = "<group>"; };
 		438ED3B02AA0C2B900486AF2 /* InterstitialAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterstitialAdManager.swift; sourceTree = "<group>"; };
-		438ED3B22AA0C2B900486AF2 /* OptInAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptInAdManager.swift; sourceTree = "<group>"; };
+		438ED3B22AA0C2B900486AF2 /* RewardedAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardedAdManager.swift; sourceTree = "<group>"; };
 		438ED3B32AA0C2B900486AF2 /* AdDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdDelegateProxy.swift; sourceTree = "<group>"; };
 		438ED3B42AA0C2BA00486AF2 /* AdManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdManagerDelegate.swift; sourceTree = "<group>"; };
 		438ED3B62AA0C2BA00486AF2 /* OguryErrorConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OguryErrorConvertible.swift; sourceTree = "<group>"; };
@@ -191,8 +180,13 @@
 		43DA127A2AB888D300766D99 /* AdBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdBannerView.swift; sourceTree = "<group>"; };
 		43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerPlaceholderView.swift; sourceTree = "<group>"; };
 		43DA127F2AB888D900766D99 /* BannerAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdManager.swift; sourceTree = "<group>"; };
+		43FA4E9E2CB6D00D0029B928 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43FA4E9F2CB6D00D0029B928 /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4925EF716018B487E9F91C3B /* Pods_AdsCardLibrary_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsCardLibrary_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50CFA85D2C63774B00E64D20 /* UnityLevelPlayBidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityLevelPlayBidable.swift; sourceTree = "<group>"; };
+		50CFA8612C637F0A00E64D20 /* UnityLevelPlayRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityLevelPlayRetriever.swift; sourceTree = "<group>"; };
 		93E41BC933C7C059FD62B2FB /* Pods-AdsCardLibrary-Release.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-Release.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-Release/Pods-AdsCardLibrary-Release.debug.xcconfig"; sourceTree = "<group>"; };
-		B53EB2B505F1F4CEAAD6AC64 /* Pods-AdsCardLibrary-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-art.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-art/Pods-AdsCardLibrary-art.release.xcconfig"; sourceTree = "<group>"; };
+		B53EB2B505F1F4CEAAD6AC64 /* Pods-AdsCardLibrary-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-art.release.xcconfig"; path = "Target Support Files/Pods-AdsCardLibrary-art/Pods-AdsCardLibrary-art.release.xcconfig"; sourceTree = "<group>"; };
 		FD61C3C1BAEA09E61B64842E /* Pods-AdsCardLibrary-Release.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-Release.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-Release/Pods-AdsCardLibrary-Release.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -212,6 +206,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43FA4EA02CB6D00D0029B928 /* OguryAds.framework in Frameworks */,
+				43FA4EA22CB6D00D0029B928 /* OguryCore.framework in Frameworks */,
 				435C55EA2A42EAEF004186FF /* AdsCardLibrary.framework in Frameworks */,
 				4314411E2A653CA70067AD47 /* CwlPreconditionTesting in Frameworks */,
 				43ACBB6D2B304AB9003FBF35 /* Mockingbird in Frameworks */,
@@ -224,7 +220,7 @@
 			files = (
 				43BCB1832C22FBF0002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43BCB1852C22FBF0002FB0B1 /* ComposableArchitecture in Frameworks */,
-				12E481270B7DBDC9D9DC6980 /* Pods_AdsCardLibrary_art.framework in Frameworks */,
+				ACA5E9FA7E59514EB048ED47 /* Pods_AdsCardLibrary_art.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +256,7 @@
 		434F85192AD53392005077F5 /* HeaderBiding */ = {
 			isa = PBXGroup;
 			children = (
+				50CFA85D2C63774B00E64D20 /* UnityLevelPlayBidable.swift */,
 				434F851A2AD534A5005077F5 /* MaxHeaderBidable.swift */,
 				1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */,
 				434F851C2AD535B2005077F5 /* HeaderBidable.swift */,
@@ -274,7 +271,7 @@
 				435C55ED2A42EAEF004186FF /* AdsCardLibraryTests */,
 				435C55E02A42EAEF004186FF /* Products */,
 				435C55FB2A42F451004186FF /* Frameworks */,
-				A85F5428F6AAA851ED4CCD45 /* Pods */,
+				EF5C3C579273150CBA537921 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -317,11 +314,13 @@
 		435C55FB2A42F451004186FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43FA4E9E2CB6D00D0029B928 /* OguryAds.framework */,
+				43FA4E9F2CB6D00D0029B928 /* OguryCore.framework */,
 				43A9F4A42C37E7800085EF6F /* OguryCore.framework */,
 				438ED4392AA8565800486AF2 /* OguryAds.framework */,
 				435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */,
 				435C55FC2A42F451004186FF /* OguryAds.framework */,
-				2EBD10A0783A9C4D4A62AFFB /* Pods_AdsCardLibrary_art.framework */,
+				4925EF716018B487E9F91C3B /* Pods_AdsCardLibrary_art.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -343,6 +342,7 @@
 				431441182A6539780067AD47 /* ThumbnailAdManagerTests.swift */,
 				4314411A2A653B060067AD47 /* BannerAdManagerTests.swift */,
 				434F85242AD6D9EF005077F5 /* MpuAdManagerTests.swift */,
+				50CFA8612C637F0A00E64D20 /* UnityLevelPlayRetriever.swift */,
 				4328B2822AD7CF44003C7F91 /* MaxRetriever.swift */,
 				1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */,
 			);
@@ -376,7 +376,7 @@
 				438ED3B32AA0C2B900486AF2 /* AdDelegateProxy.swift */,
 				43DA127F2AB888D900766D99 /* BannerAdManager.swift */,
 				438ED3B02AA0C2B900486AF2 /* InterstitialAdManager.swift */,
-				438ED3B22AA0C2B900486AF2 /* OptInAdManager.swift */,
+				438ED3B22AA0C2B900486AF2 /* RewardedAdManager.swift */,
 				438ED3AF2AA0C2B900486AF2 /* ThumbnailAdManager.swift */,
 			);
 			path = "Dedicated Managers";
@@ -472,7 +472,7 @@
 			path = AdManager;
 			sourceTree = "<group>";
 		};
-		A85F5428F6AAA851ED4CCD45 /* Pods */ = {
+		EF5C3C579273150CBA537921 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				93E41BC933C7C059FD62B2FB /* Pods-AdsCardLibrary-Release.debug.xcconfig */,
@@ -481,7 +481,7 @@
 				B53EB2B505F1F4CEAAD6AC64 /* Pods-AdsCardLibrary-art.release.xcconfig */,
 			);
 			name = Pods;
-			path = ../Pods;
+			path = ../../Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -514,7 +514,6 @@
 				435C55DB2A42EAEF004186FF /* Sources */,
 				435C55DC2A42EAEF004186FF /* Frameworks */,
 				435C55DD2A42EAEF004186FF /* Resources */,
-				43A9F4A72C37E7800085EF6F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -585,9 +584,13 @@
 				TargetAttributes = {
 					435C55DE2A42EAEF004186FF = {
 						CreatedOnToolsVersion = 14.3.1;
+						LastSwiftMigration = 1600;
 					};
 					435C55E82A42EAEF004186FF = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					43BCB15C2C22FBF0002FB0B1 = {
+						LastSwiftMigration = 1600;
 					};
 				};
 			};
@@ -709,7 +712,7 @@
 				438ED3D42AA0C2BA00486AF2 /* AdActionBar.swift in Sources */,
 				43DA12802AB888D900766D99 /* BannerAdManager.swift in Sources */,
 				438ED3D72AA0C2BA00486AF2 /* AdViewFeature.swift in Sources */,
-				438ED3CA2AA0C2BA00486AF2 /* OptInAdManager.swift in Sources */,
+				438ED3CA2AA0C2BA00486AF2 /* RewardedAdManager.swift in Sources */,
 				1E373D562BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift in Sources */,
 				434F851B2AD534A5005077F5 /* MaxHeaderBidable.swift in Sources */,
 				434F84982AC1AF9B005077F5 /* RewardedView.swift in Sources */,
@@ -725,6 +728,7 @@
 				43DA127E2AB888D300766D99 /* BannerPlaceholderView.swift in Sources */,
 				438ED3CE2AA0C2BA00486AF2 /* AdManager.swift in Sources */,
 				438ED3CC2AA0C2BA00486AF2 /* AdManagerDelegate.swift in Sources */,
+				50CFA85F2C63776200E64D20 /* UnityLevelPlayBidable.swift in Sources */,
 				431F6F092C0F403F00DBFFAA /* AdTagFeature.swift in Sources */,
 				438ED3D62AA0C2BA00486AF2 /* AdView.swift in Sources */,
 				438ED3D62AA0C2BA00486AF2 /* AdView.swift in Sources */,
@@ -745,6 +749,7 @@
 				43A78A6E2A52ABF30004A613 /* AdManagerOptionsTests.swift in Sources */,
 				43ACBB702B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift in Sources */,
 				4314411B2A653B060067AD47 /* BannerAdManagerTests.swift in Sources */,
+				50CFA8622C637F0B00E64D20 /* UnityLevelPlayRetriever.swift in Sources */,
 				435C55EF2A42EAEF004186FF /* AdsCardManagerTests.swift in Sources */,
 				430B6F032A65377900A6EFA4 /* RewardedAdManagerTests.swift in Sources */,
 				434F85252AD6D9EF005077F5 /* MpuAdManagerTests.swift in Sources */,
@@ -765,7 +770,7 @@
 				43BCB16A2C22FBF0002FB0B1 /* AdActionBar.swift in Sources */,
 				43BCB16B2C22FBF0002FB0B1 /* BannerAdManager.swift in Sources */,
 				43BCB16C2C22FBF0002FB0B1 /* AdViewFeature.swift in Sources */,
-				43BCB16D2C22FBF0002FB0B1 /* OptInAdManager.swift in Sources */,
+				43BCB16D2C22FBF0002FB0B1 /* RewardedAdManager.swift in Sources */,
 				43BCB16E2C22FBF0002FB0B1 /* DTFairBidHeaderBidable.swift in Sources */,
 				43BCB16F2C22FBF0002FB0B1 /* MaxHeaderBidable.swift in Sources */,
 				43BCB1702C22FBF0002FB0B1 /* RewardedView.swift in Sources */,
@@ -781,6 +786,7 @@
 				43BCB17A2C22FBF0002FB0B1 /* BannerPlaceholderView.swift in Sources */,
 				43BCB17B2C22FBF0002FB0B1 /* AdManager.swift in Sources */,
 				43BCB17C2C22FBF0002FB0B1 /* AdManagerDelegate.swift in Sources */,
+				50CFA8602C63776200E64D20 /* UnityLevelPlayBidable.swift in Sources */,
 				43BCB17D2C22FBF0002FB0B1 /* AdTagFeature.swift in Sources */,
 				43BCB17E2C22FBF0002FB0B1 /* AdView.swift in Sources */,
 				43BCB17E2C22FBF0002FB0B1 /* AdView.swift in Sources */,
@@ -926,6 +932,7 @@
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -957,7 +964,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -968,6 +975,7 @@
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -999,7 +1007,6 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1008,11 +1015,11 @@
 		435C55F72A42EAEF004186FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ogury.AdsCardLibraryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1025,11 +1032,11 @@
 		435C55F82A42EAEF004186FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ogury.AdsCardLibraryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1045,6 +1052,7 @@
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1078,6 +1086,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1089,6 +1098,7 @@
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;

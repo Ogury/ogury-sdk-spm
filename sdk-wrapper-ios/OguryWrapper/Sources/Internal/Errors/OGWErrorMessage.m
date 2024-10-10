@@ -6,4 +6,4 @@
 
 #import "OGWErrorMessage.h"
 
-NSString *const OGWErrorNoSdkModuleFoundMessage = @"No Ogury module found in your application.";
+NSString *const OguryStartErrorCodeModuleMissingDescription = @"No Ogury module found in your application.";

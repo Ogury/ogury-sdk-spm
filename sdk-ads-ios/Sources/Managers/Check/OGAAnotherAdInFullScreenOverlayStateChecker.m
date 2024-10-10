@@ -6,7 +6,7 @@
 
 #import "OGAAdManager+Check.h"
 #import "OGAAdSequenceCoordinator.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAAnotherAdInFullScreenOverlayStateChecker ()
 
@@ -43,7 +43,7 @@
 - (BOOL)checkForSequence:(OGAAdSequence *)sequence error:(OguryError **)error {
     if ([self isAnotherAdInFullScreenOverlayState:sequence]) {
         if (error) {
-            *error = [OguryAdsError anotherAdIsAlreadyDisplayed];
+            *error = [OguryAdError anotherAdIsAlreadyDisplayed];
         }
         return NO;
     }

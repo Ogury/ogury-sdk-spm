@@ -31,7 +31,7 @@
 
 @property(nonatomic, strong) OguryRewardedAdDelegateDispatcher *delegateDispatcher;
 @property(nonatomic, strong) OGARewardedAdInternalAPI *internalAPI;
-@property(nonatomic, strong) OguryRewardedAd *optinVideo;
+@property(nonatomic, strong) OguryRewardedAd *rewardedAd;
 
 @end
 
@@ -48,50 +48,50 @@ static NSString *const TestDelegate = @"DELEGATE";
     self.delegateDispatcher = OCMClassMock([OguryRewardedAdDelegateDispatcher class]);
     self.internalAPI = OCMClassMock([OGARewardedAdInternalAPI class]);
     OCMStub([self.internalAPI delegateDispatcher]).andReturn(self.delegateDispatcher);
-    self.optinVideo = [[OguryRewardedAd alloc] initWithInternalAPI:self.internalAPI];
+    self.rewardedAd = [[OguryRewardedAd alloc] initWithInternalAPI:self.internalAPI];
 }
 
 - (void)testLoad {
-    [self.optinVideo load];
+    [self.rewardedAd load];
     OCMVerify([self.internalAPI load]);
 }
 
 - (void)testLoadWithAdMarkUp {
-    [self.optinVideo loadWithAdMarkup:@"AdMarkup"];
+    [self.rewardedAd loadWithAdMarkup:@"AdMarkup"];
     OCMVerify([self.internalAPI loadWithAdMarkup:@"AdMarkup"]);
 }
 
 - (void)testIsLoaded {
     OCMStub([self.internalAPI isLoaded]).andReturn(YES);
-    XCTAssertTrue([self.optinVideo isLoaded]);
+    XCTAssertTrue([self.rewardedAd isLoaded]);
     OCMVerify([self.internalAPI isLoaded]);
 }
 
 - (void)testShowAdInViewController {
     UIViewController *viewController = OCMClassMock([UIViewController class]);
-    [self.optinVideo showAdInViewController:viewController];
+    [self.rewardedAd showAdInViewController:viewController];
     OCMVerify([self.internalAPI showAdInViewController:viewController]);
 }
 
 - (void)testLoadWithCampaignId {
-    [self.optinVideo loadWithCampaignId:TestCampaignId];
+    [self.rewardedAd loadWithCampaignId:TestCampaignId];
     OCMVerify([self.internalAPI loadWithCampaignId:TestCampaignId]);
 }
 
 - (void)testLoadWithCampaignIdAndCreativeId {
-    [self.optinVideo loadWithCampaignId:TestCampaignId creativeId:TestCreativeId];
+    [self.rewardedAd loadWithCampaignId:TestCampaignId creativeId:TestCreativeId];
     OCMVerify([self.internalAPI loadWithCampaignId:TestCampaignId creativeId:TestCreativeId]);
 }
 
 - (void)testLoadWithCampaignIdAndCreativeIdDspCreativeIdDspRegion {
-    [self.optinVideo loadWithCampaignId:TestCampaignId creativeId:TestCreativeId dspCreativeId:TestDspCreativeId dspRegion:TestDspRegion];
+    [self.rewardedAd loadWithCampaignId:TestCampaignId creativeId:TestCreativeId dspCreativeId:TestDspCreativeId dspRegion:TestDspRegion];
     OCMVerify([self.internalAPI loadWithCampaignId:TestCampaignId creativeId:TestCreativeId dspCreativeId:TestDspCreativeId dspRegion:TestDspRegion]);
 }
 
 - (void)testAdUnitId {
     NSString *expectedAdUnit = TestAdUnitId;
     OCMStub([self.internalAPI adUnitId]).andReturn(expectedAdUnit);
-    NSString *adUnit = [self.optinVideo adUnitId];
+    NSString *adUnit = [self.rewardedAd adUnitId];
     OCMVerify([self.internalAPI adUnitId]);
     XCTAssertEqualObjects(expectedAdUnit, adUnit);
 }
@@ -99,14 +99,14 @@ static NSString *const TestDelegate = @"DELEGATE";
 - (void)testDelegate {
     NSString *expectedDelegate = TestDelegate;
     OCMStub([self.delegateDispatcher delegate]).andReturn(expectedDelegate);
-    id delegate = [self.optinVideo delegate];
+    id delegate = [self.rewardedAd delegate];
     OCMVerify([self.delegateDispatcher delegate]);
     XCTAssertEqualObjects(expectedDelegate, delegate);
 }
 
 - (void)testSetDelegate {
     id delegate = OCMStrictProtocolMock(@protocol(OguryRewardedAdDelegate));
-    [self.optinVideo setDelegate:delegate];
+    [self.rewardedAd setDelegate:delegate];
     OCMVerify([self.delegateDispatcher setDelegate:delegate]);
 }
 

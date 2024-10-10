@@ -9,12 +9,12 @@
 
 @implementation Ogury
 
-+ (void)startWithConfiguration:(OguryConfiguration *)configuration completionHandler:(SetupCompletionBlock)completionHandler {
-    [[OGWWrapper shared] startWithConfiguration:configuration completionHandler:completionHandler];
++ (void)startWith:(NSString *)assetKey {
+    [self startWith:assetKey completionHandler:nil];
 }
 
-+ (void)startWithConfiguration:(OguryConfiguration *)configuration {
-    [self startWithConfiguration:configuration completionHandler:nil];
++ (void)startWith:(NSString *)assetKey completionHandler:(StartCompletionBlock _Nullable)completionHandler {
+    [[OGWWrapper shared] startWith:assetKey completionHandler:completionHandler];
 }
 
 + (void)setLogLevel:(OguryLogLevel)logLevel {
@@ -22,7 +22,7 @@
    [[OGWLog shared] setLogLevel:logLevel];
 }
 
-+ (NSString *)getSdkVersion {
++ (NSString *)sdkVersion {
    return SDK_VERSION;
 }
 
@@ -30,16 +30,16 @@
    [[OGWWrapper shared] registerAttributionForSKAdNetwork];
 }
 
-+ (void)storePrivacyData:(NSString *)key boolean:(BOOL)value {
-   [[OGCInternal shared] storePrivacyData:key boolean:value];
++ (void)setPrivacyData:(NSString *)key boolean:(BOOL)value {
+   [[OGCInternal shared] setPrivacyData:key boolean:value];
 }
 
-+ (void)storePrivacyData:(NSString *)key integer:(NSInteger)value {
-   [[OGCInternal shared] storePrivacyData:key integer:value];
++ (void)setPrivacyData:(NSString *)key integer:(NSInteger)value {
+   [[OGCInternal shared] setPrivacyData:key integer:value];
 }
 
-+ (void)storePrivacyData:(NSString *)key string:(NSString *)value {
-   [[OGCInternal shared] storePrivacyData:key string:value];
++ (void)setPrivacyData:(NSString *)key string:(NSString *)value {
+   [[OGCInternal shared] setPrivacyData:key string:value];
 }
 
 @end

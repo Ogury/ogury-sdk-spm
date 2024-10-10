@@ -23,7 +23,7 @@
 @property(nonatomic, strong) OGAAdManager *adManager;
 @property(nonatomic, strong) OGALog *log;
 @property(nonatomic, strong) OGASetLogLevelNotificationManager *logNotificationManager;
-@property(nonatomic, copy) SetupCompletionBlock setupBlock;
+@property(nonatomic, copy) StartCompletionBlock setupBlock;
 
 @end
 
@@ -83,7 +83,7 @@
 
 #pragma mark - methods
 
-- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetupCompletionBlock)completionHandler {
+- (void)startWith:(NSString *)assetKey completionHandler:(StartCompletionBlock)completionHandler {
     self.setupBlock = completionHandler;
     [self.log log:OguryLogLevelInfo message:@"Module started"];
 

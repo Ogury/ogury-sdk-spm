@@ -63,12 +63,15 @@ class HomeViewController: UIViewController, ChoiceCmpDelegate {
     }
     
     @IBAction func startButtonClicked() {
-        let config = OguryConfigurationBuilder(assetKey: getEnvironment().assetKey)
-            .build()
         Ogury.setLogLevel(.all)
-        Ogury.start(with: config, completionHandler: { success, error in
-            print("success \(success)")
-            print("error \(String(describing: error))")
+        Ogury.start(with:getEnvironment().assetKey, completionHandler: { success, error in
+                if success {
+                    print("Ogury SDK started successfully.")
+                } else if let error = error {
+                    print("Error starting Ogury SDK: \(error.localizedDescription)")
+                } else {
+                    print("Ogury SDK failed to start for an unknown reason.")
+                }
         })
     }
     
@@ -110,7 +113,7 @@ extension HomeViewController : OguryInterstitialAdDelegate {
         os_log("Interstitial ad loaded.")
     }
     
-    func didFailOguryInterstitialAdWithError(_ error: OguryError, for interstitial: OguryInterstitialAd) {
+    func didFail(_ interstitial: OguryInterstitialAd, error: OguryAdError) {
         os_log("Interstitial ad failed with error: %@", String(describing: error))
     }
     

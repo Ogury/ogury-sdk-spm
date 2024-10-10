@@ -68,7 +68,7 @@
         _monitoringDispatcher = monitoringDispatcher;
         _log = log;
         _internal = internal;
-        @weakify(self) _configuration = [[OGAAdConfiguration alloc] initWithType:OguryAdsTypeOptinVideo
+        @weakify(self) _configuration = [[OGAAdConfiguration alloc] initWithType:OguryAdsTypeRewardedAd
                                                                         adUnitId:adUnitId
                                                               delegateDispatcher:_delegateDispatcher
                                                           viewControllerProvider:^UIViewController * {
@@ -84,14 +84,6 @@
 
 - (NSString *)adUnitId {
     return self.configuration.adUnitId;
-}
-
-- (NSString *)userId {
-    return self.configuration.userId;
-}
-
-- (void)setUserId:(NSString *)userId {
-    self.configuration.userId = userId;
 }
 
 #pragma mark - Methods

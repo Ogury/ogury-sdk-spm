@@ -5,12 +5,12 @@
 #import "OGAMraidFileDownloader.h"
 #import <OguryCore/OguryNetworkRequestBuilder.h>
 #import <OguryCore/OguryNetworkClient.h>
-#import "OguryAdsError.h"
+#import "OguryAdError.h"
 #import "OGAMraidDownloadHeaderBuilder.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGALog.h"
 #import "OGAAd.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAMraidFileDownloader ()
 
@@ -45,7 +45,7 @@ static NSString *const OGAMonitoringEventMraidURL = @"url";
     NSURL *url = [NSURL URLWithString:ad.mraidDownloadUrl];
 
     if (url == nil) {
-        completion(@"", [OguryAdsError adPrecachingFailedWithStackTrace:@"No mraidDownloadUrl found on ad"]);
+        completion(@"", [OguryAdError adPrecachingFailedWithStackTrace:@"No mraidDownloadUrl found on ad"]);
         return;
     }
     [self.monitoringDispatcher sendLoadEvent:OGALoadEventMraidRequest adConfiguration:ad.adConfiguration details:@{OGAMonitoringEventMraidURL : ad.mraidDownloadUrl}];
@@ -61,7 +61,7 @@ static NSString *const OGAMonitoringEventMraidURL = @"url";
     // check request build
     NSURLRequest *request = [requestBuilder build];
     if (request == nil) {
-        completion(@"", [OguryAdsError adPrecachingFailedWithStackTrace:@"Mraid download error (request builder failed)"]);
+        completion(@"", [OguryAdError adPrecachingFailedWithStackTrace:@"Mraid download error (request builder failed)"]);
         return;
     }
 

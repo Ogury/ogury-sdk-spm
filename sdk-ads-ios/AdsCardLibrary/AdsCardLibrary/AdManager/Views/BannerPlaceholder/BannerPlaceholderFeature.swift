@@ -10,13 +10,14 @@ import OguryAds
 
 struct BannerPlaceholderFeature: Reducer {
     struct State: Equatable {
-        var bannerAd: OguryBannerAd? = nil
+        var bannerAd: OguryBannerAdView? = nil
         var bannerType: AdType<BannerAdManager>
         var isMpuFormat: Bool {
             switch bannerType {
                 case .mpu,
                      .maxHeaderBidding(.mpu, _),
-                     .dtFairBidHeaderBidding(.mpu, _):
+                     .dtFairBidHeaderBidding(.mpu, _),
+                     .unityLevelPlayHeaderBidding(.mpu, _):
                     return true
                 default: return false
             }

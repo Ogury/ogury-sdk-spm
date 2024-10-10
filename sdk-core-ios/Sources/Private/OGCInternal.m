@@ -93,16 +93,16 @@
     return [self.adIdentifierManager retrieveTCFConsentString];
 }
 
-- (void)storePrivacyData:(NSString *)key boolean:(BOOL)value {
-   [self.adIdentifierManager storePrivacyData:[NSNumber numberWithBool:value]  forKey:[key stringByAppendingString:@"_bool"]];
+- (void)setPrivacyData:(NSString *)key boolean:(BOOL)value {
+   [self.adIdentifierManager setPrivacyData:[NSNumber numberWithBool:value]  forKey:[key stringByAppendingString:@"_bool"]];
 }
 
-- (void)storePrivacyData:(NSString *)key integer:(NSInteger)value {
-   [self.adIdentifierManager storePrivacyData:[NSNumber numberWithInteger:value] forKey:[key stringByAppendingString:@"_int"]];
+- (void)setPrivacyData:(NSString *)key integer:(NSInteger)value {
+   [self.adIdentifierManager setPrivacyData:[NSNumber numberWithInteger:value] forKey:[key stringByAppendingString:@"_int"]];
 }
 
-- (void)storePrivacyData:(NSString *)key string:(NSString *)value {
-   [self.adIdentifierManager storePrivacyData:value forKey:[key stringByAppendingString:@"_string"]];
+- (void)setPrivacyData:(NSString *)key string:(NSString *)value {
+   [self.adIdentifierManager setPrivacyData:value forKey:[key stringByAppendingString:@"_string"]];
 }
 
 - (NSDictionary<NSString *, id> *)retrieveDataPrivacy {

@@ -105,7 +105,7 @@ static NSString * const OGCDataPrivacyKey = @"OGY-PrivacyDataKeys";
    return [self.userDefaults objectForKey:OGCTCStringKey];
 }
 
-- (void)storePrivacyData:(id)value forKey:(NSString *)key; {
+- (void)setPrivacyData:(id)value forKey:(NSString *)key; {
    [self.userDefaults setValue:value forKey:[OGCPrefixKey stringByAppendingString: key]];
    [self addPrivacyDataKey:key];
 }
