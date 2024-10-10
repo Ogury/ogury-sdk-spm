@@ -7,7 +7,6 @@ import SwiftUI
 import ComposableArchitecture
 import UserDefault
 import OguryAds
-import OguryAds.Private
 import AdsCardLibrary
 import SwiftMessages
 
