@@ -30,7 +30,7 @@ lane :prepare_for_deployment do |options|
   case environment
   when "devc", "staging", "prod"
     # Artifactory
-    source_url = "#{configuration.artifactory.url}/sdk-cocoapods-#{environment}/#{target.name}#{framework_suffix}"
+    source_url = "#{configuration.artifactory.url}/sdk-cocoapods-#{environment}/#{target.publicName}#{framework_suffix}"
   when "beta", "release"
     # S3 release / beta buckets
     source_url = "#{configuration.amazon.url}/#{environment}/#{target.amazon}/#{version}"
@@ -229,7 +229,7 @@ private_lane :generate_podspec do |options|
   target = options[:target]
   
   framework_suffix = get_framework_suffix(environment)
-  archive_filename = get_archive_filename(target.name, framework_suffix, version)
+  archive_filename = get_archive_filename(target.publicName, framework_suffix, version)
   output_file = get_podspec_filename(target.publicName, framework_suffix)
 
   placeholders = {
