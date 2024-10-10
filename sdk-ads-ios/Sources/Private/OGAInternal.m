@@ -87,7 +87,7 @@
     self.setupBlock = completionHandler;
     [self.log log:OguryLogLevelInfo message:@"Module started"];
 
-    if ([self.assetKeyManager configureAssetKey:assetKey]) {
+    if ([self.assetKeyManager configureAssetKey:assetKey] && [self.profigManager shouldSync]) {
         // Setup notifier otherwise further call to the internetReachability will return invalid statuses.
         [self.internetReachability startNotifier];
         [self.webViewUserAgentService syncWebViewUserAgent];
