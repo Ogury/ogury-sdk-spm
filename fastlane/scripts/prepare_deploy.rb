@@ -253,6 +253,7 @@ private_lane :generate_podspec do |options|
   end
 
   puts "#{Dir.pwd}/templates/#{target.name}.podspec.json.erb"
+  puts "podspec placeholders #{placeholders}".red
 
   erb(
     template: "#{Dir.pwd}/templates/#{target.publicName}.podspec.json.erb",
