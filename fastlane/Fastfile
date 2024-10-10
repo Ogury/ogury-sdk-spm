@@ -133,6 +133,9 @@ platform :ios do
     ogury_ads_version = get_module_version(environment, configuration.frameworks.ogury_ads.internal_version, configuration.frameworks.ogury_ads.beta_version, configuration.frameworks.ogury_ads.release_version)
     ogury_choice_manager_version = get_module_version(environment, configuration.frameworks.ogury_choice_manager.internal_version, configuration.frameworks.ogury_choice_manager.beta_version, configuration.frameworks.ogury_choice_manager.release_version)
 
+    puts "ogury_core_version #{ogury_core_version}".red
+    puts "ogury_ads_version #{ogury_ads_version}".red
+
     erb(
       template: templatePath,
       destination: "./Podfile",
