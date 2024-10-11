@@ -11,7 +11,6 @@
 #import "OGAAdDisplayerUpdateCurrentPositionInformation.h"
 #import "OGAAdDisplayerUpdateCurrentAppOrientationInformation.h"
 #import "OGAAdDisplayerUpdateScreenSizeInformation.h"
-#import "UIApplication+Orientation.h"
 #import "UIDevice+Orientation.h"
 #import "OGADeviceOrientationConstants.h"
 #import "OGASizeSafeAreaController.h"

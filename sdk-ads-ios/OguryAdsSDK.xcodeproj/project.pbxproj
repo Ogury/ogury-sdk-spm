@@ -268,13 +268,11 @@
 		351A16BC22F28CF4962C960F /* OGAJavascriptCommandExecutor.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A1C269A6BC93BF3B460C8 /* OGAJavascriptCommandExecutor.h */; };
 		351A16BEF5F2C52D40EB10A3 /* OGAInternetConnectionChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A14021400FE7AC106DEC2 /* OGAInternetConnectionChecker.m */; };
 		351A16CEAB2F7DCF982CB2AF /* OguryRewardedAdDelegateDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1C56E5B0704A869DA14F /* OguryRewardedAdDelegateDispatcher.m */; };
-		351A16E24D908931FA12EACA /* UIApplication+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A178E3CEB2FEEA21C4021 /* UIApplication+Orientation.m */; };
 		351A16FAD1F876863E0AEAA2 /* OGAAdControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1B7D4AD7E8DCFD71209B /* OGAAdControllerFactory.m */; };
 		351A17248CEED7FD752DFAF9 /* OguryBannerAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1538C4F685879B1B0F7C /* OguryBannerAdView.m */; };
 		351A173F1DD46C67AD2FA7ED /* OGAWindowedFullscreenAdContainerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A188C70D89442E6F9A3FE /* OGAWindowedFullscreenAdContainerState.m */; };
 		351A175529A128CE11B26DCF /* OguryAdError.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A154EF207C8A8E9FB38CA /* OguryAdError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		351A1757D7A98929C887E70D /* OGADeviceService.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A1F492F5685FE352B9E4E /* OGADeviceService.h */; };
-		351A175D2D828CE8661EB281 /* UIApplication+Orientation.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A169EA536B3EBC676EF3D /* UIApplication+Orientation.h */; };
 		351A176327E679D42245038F /* OguryInterstitialAdDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A12765C17E16A82F60A38 /* OguryInterstitialAdDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		351A176A55BBCD86C8769205 /* OGAMraidEnviromentBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A16F1C69743FB5A19CD0D /* OGAMraidEnviromentBuilder.h */; };
 		351A177DD3E042AFCE9F688B /* OGAThumbnailAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1249FF8F100A2D3816F2 /* OGAThumbnailAdViewController.m */; };
@@ -494,7 +492,6 @@
 		43A9F2B52C37E6B40085EF6F /* OGAShowAdAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A19F8F8DB774E19E80ABF /* OGAShowAdAction.m */; };
 		43A9F2B62C37E6B40085EF6F /* OGAAdConfiguration+AdSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1A0BDD774103D4391638 /* OGAAdConfiguration+AdSync.m */; };
 		43A9F2B72C37E6B40085EF6F /* OGAAdExposure+MRAID.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1C8B6165904F298D170E /* OGAAdExposure+MRAID.m */; };
-		43A9F2B82C37E6B40085EF6F /* UIApplication+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A178E3CEB2FEEA21C4021 /* UIApplication+Orientation.m */; };
 		43A9F2B92C37E6B40085EF6F /* OGAViewControllerOrientationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 438AF74928DC54A6000DCB49 /* OGAViewControllerOrientationHelper.m */; };
 		43A9F2BA2C37E6B40085EF6F /* UIDevice+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1261CD31088652DC6B54 /* UIDevice+Orientation.m */; };
 		43A9F2BB2C37E6B40085EF6F /* OGAMetricsServiceSendEventOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = ED63DBF327562D1900554750 /* OGAMetricsServiceSendEventOperation.m */; };
@@ -715,7 +712,6 @@
 		43A9F3A52C37E6B40085EF6F /* OGAEnvironmentURLBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 223A62EE29F7D7430022FFE0 /* OGAEnvironmentURLBuilder.h */; };
 		43A9F3A62C37E6B40085EF6F /* OGAAdConfiguration+AdSync.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A198426C53A19632CFCDF /* OGAAdConfiguration+AdSync.h */; };
 		43A9F3A72C37E6B40085EF6F /* OGAAdExposure+MRAID.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A18DBA646265749C3DB79 /* OGAAdExposure+MRAID.h */; };
-		43A9F3A82C37E6B40085EF6F /* UIApplication+Orientation.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A169EA536B3EBC676EF3D /* UIApplication+Orientation.h */; };
 		43A9F3A92C37E6B40085EF6F /* UIDevice+Orientation.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A1FF24EC7CE9396994243 /* UIDevice+Orientation.h */; };
 		43A9F3AA2C37E6B40085EF6F /* OGAConfigurationUtils+Profig.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A188665322857AFBEADBF /* OGAConfigurationUtils+Profig.h */; };
 		43A9F3AB2C37E6B40085EF6F /* OGAProfigFullResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A143AF9219228F5FA364F /* OGAProfigFullResponse.h */; };
@@ -1010,6 +1006,7 @@
 		58BDDA74288ECB00000A4A12 /* OGADarwinNotificationStringFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 58BDDA70288ECB00000A4A12 /* OGADarwinNotificationStringFormatter.h */; };
 		58BDDA78288ECCCB000A4A12 /* OGAActivateLogNotificationManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BDDA76288ECC5F000A4A12 /* OGAActivateLogNotificationManagerTest.m */; };
 		58BDDA7A288ECE1B000A4A12 /* OGADarwinNotificationStringFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BDDA79288ECE1B000A4A12 /* OGADarwinNotificationStringFormatterTests.m */; };
+		58C82B509ABA5AA87F37E31B /* Pods_OguryAds_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73C0118560FF79CA088FB19F /* Pods_OguryAds_art.framework */; };
 		58D93AD229782CBE00086B3F /* OGAMonitoringEventFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D93AD129782CBE00086B3F /* OGAMonitoringEventFormatterTests.m */; };
 		58D93AD429793C4F00086B3F /* OGAMonitoringDispatcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D93AD329793C4F00086B3F /* OGAMonitoringDispatcherTests.m */; };
 		58DB921528996C4200C0D3DC /* OGALogFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DB921128996C4200C0D3DC /* OGALogFormatterTests.m */; };
@@ -1078,7 +1075,6 @@
 		ED58D02D25DC2381002C4738 /* OGAMetamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = ED58D02A25DC2381002C4738 /* OGAMetamacros.h */; };
 		ED58D02E25DC2381002C4738 /* OGAEXTScope.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58D02B25DC2381002C4738 /* OGAEXTScope.m */; };
 		ED58D02F25DC2381002C4738 /* OGAEXTScope.h in Headers */ = {isa = PBXBuildFile; fileRef = ED58D02C25DC2381002C4738 /* OGAEXTScope.h */; };
-		ED5BB62F2592174500AB9A92 /* UIApplication+OrientationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5BB62E2592174500AB9A92 /* UIApplication+OrientationTests.m */; };
 		ED5BB64125921A0500AB9A92 /* OGADeviceServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5BB64025921A0500AB9A92 /* OGADeviceServiceTests.m */; };
 		ED618F3B25EE3D7100F774A5 /* OGAAdExpirationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = ED618F3925EE3D7100F774A5 /* OGAAdExpirationManager.h */; };
 		ED618F3C25EE3D7100F774A5 /* OGAAdExpirationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED618F3A25EE3D7100F774A5 /* OGAAdExpirationManager.m */; };
@@ -1423,7 +1419,6 @@
 		351A16621E21ABC0CF0F744B /* OGAOMIDService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAOMIDService.m; sourceTree = "<group>"; };
 		351A1690E5098A97EBB812F9 /* NSString+OGAUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OGAUtility.h"; sourceTree = "<group>"; };
 		351A16988EDBC95C2AA74454 /* OGAConfigurationUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAConfigurationUtils.m; sourceTree = "<group>"; };
-		351A169EA536B3EBC676EF3D /* UIApplication+Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+Orientation.h"; sourceTree = "<group>"; };
 		351A16BD2F8C4CF80CF27C0C /* OGAAdDisplayerUpdateScreenSizeInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAAdDisplayerUpdateScreenSizeInformation.h; sourceTree = "<group>"; };
 		351A16C21544FA7E67894E70 /* OGARewardedAdInternalAPI+Testing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OGARewardedAdInternalAPI+Testing.h"; sourceTree = "<group>"; };
 		351A16F1C69743FB5A19CD0D /* OGAMraidEnviromentBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAMraidEnviromentBuilder.h; sourceTree = "<group>"; };
@@ -1441,7 +1436,6 @@
 		351A1785AE00661054D60EFD /* OGAThumbnailToFullscreenAdContainerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAThumbnailToFullscreenAdContainerTransition.h; sourceTree = "<group>"; };
 		351A17895A11C961F83D774C /* OGAReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAReachability.h; sourceTree = "<group>"; };
 		351A178D3D21346F1A048784 /* OGAMetricsServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAMetricsServiceTests.m; sourceTree = "<group>"; };
-		351A178E3CEB2FEEA21C4021 /* UIApplication+Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+Orientation.m"; sourceTree = "<group>"; };
 		351A179522292AE3BCF96683 /* OGAFullscreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAFullscreenViewController.h; sourceTree = "<group>"; };
 		351A17A2E5C7BC9119D80FC4 /* OGABannerAdViewInternalAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGABannerAdViewInternalAPI.m; sourceTree = "<group>"; };
 		351A17A66D51C16C770EB23D /* OGAReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAReachability.m; sourceTree = "<group>"; };
@@ -1736,8 +1730,11 @@
 		58DB921128996C4200C0D3DC /* OGALogFormatterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGALogFormatterTests.m; sourceTree = "<group>"; };
 		58DB921328996C4200C0D3DC /* OGAAdLogMessageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAAdLogMessageTests.m; sourceTree = "<group>"; };
 		58DB921428996C4200C0D3DC /* OGAMraidLogMessageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAMraidLogMessageTests.m; sourceTree = "<group>"; };
+		5A6B59C757A179723A32FEAD /* Pods-OguryAds-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAds-art.release.xcconfig"; path = "Target Support Files/Pods-OguryAds-art/Pods-OguryAds-art.release.xcconfig"; sourceTree = "<group>"; };
 		5FAA78BAB6A3C700006DAA7F /* Pods-OguryAdsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAdsTests.release.xcconfig"; path = "Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests.release.xcconfig"; sourceTree = "<group>"; };
+		73C0118560FF79CA088FB19F /* Pods_OguryAds_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OguryAds_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		767B4E6F92425A60CDB79323 /* Pods-OguryAdsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAdsTests.debug.xcconfig"; path = "Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A5E8E378C9D1749D2715EABF /* Pods-OguryAds-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAds-art.debug.xcconfig"; path = "Target Support Files/Pods-OguryAds-art/Pods-OguryAds-art.debug.xcconfig"; sourceTree = "<group>"; };
 		8C171E7A0F08EAA28966E2CA /* Pods-OguryAds-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAds-art.release.xcconfig"; path = "Target Support Files/Pods-OguryAds-art/Pods-OguryAds-art.release.xcconfig"; sourceTree = "<group>"; };
 		C4E38449D5386BBCF1367C6A /* OGAWebViewCleanupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAWebViewCleanupManager.h; sourceTree = "<group>"; };
 		C4E38508C1B88F0E4B4E846B /* OGAAdExposureControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAAdExposureControllerTests.m; sourceTree = "<group>"; };
@@ -1813,7 +1810,6 @@
 		ED58D02A25DC2381002C4738 /* OGAMetamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAMetamacros.h; sourceTree = "<group>"; };
 		ED58D02B25DC2381002C4738 /* OGAEXTScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAEXTScope.m; sourceTree = "<group>"; };
 		ED58D02C25DC2381002C4738 /* OGAEXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAEXTScope.h; sourceTree = "<group>"; };
-		ED5BB62E2592174500AB9A92 /* UIApplication+OrientationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+OrientationTests.m"; sourceTree = "<group>"; };
 		ED5BB64025921A0500AB9A92 /* OGADeviceServiceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGADeviceServiceTests.m; sourceTree = "<group>"; };
 		ED618F3925EE3D7100F774A5 /* OGAAdExpirationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAAdExpirationManager.h; sourceTree = "<group>"; };
 		ED618F3A25EE3D7100F774A5 /* OGAAdExpirationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAAdExpirationManager.m; sourceTree = "<group>"; };
@@ -2536,8 +2532,6 @@
 				351A1A0BDD774103D4391638 /* OGAAdConfiguration+AdSync.m */,
 				351A18DBA646265749C3DB79 /* OGAAdExposure+MRAID.h */,
 				351A1C8B6165904F298D170E /* OGAAdExposure+MRAID.m */,
-				351A169EA536B3EBC676EF3D /* UIApplication+Orientation.h */,
-				351A178E3CEB2FEEA21C4021 /* UIApplication+Orientation.m */,
 				351A1FF24EC7CE9396994243 /* UIDevice+Orientation.h */,
 				351A1261CD31088652DC6B54 /* UIDevice+Orientation.m */,
 			);
@@ -3696,7 +3690,6 @@
 			children = (
 				ED8815A8256BF695000AFD52 /* OGAAdConfiguration+AdSyncTests.m */,
 				ED8BBE47258CE90600676EFA /* OGAAdExposure+MRAIDTests.m */,
-				ED5BB62E2592174500AB9A92 /* UIApplication+OrientationTests.m */,
 				ED646A90257A831E00005484 /* UIDevice+OrientationTests.m */,
 			);
 			path = Categories;
@@ -3909,7 +3902,6 @@
 				43A9F3A52C37E6B40085EF6F /* OGAEnvironmentURLBuilder.h in Headers */,
 				43A9F3A62C37E6B40085EF6F /* OGAAdConfiguration+AdSync.h in Headers */,
 				43A9F3A72C37E6B40085EF6F /* OGAAdExposure+MRAID.h in Headers */,
-				43A9F3A82C37E6B40085EF6F /* UIApplication+Orientation.h in Headers */,
 				43A9F3A92C37E6B40085EF6F /* UIDevice+Orientation.h in Headers */,
 				43A9F3AA2C37E6B40085EF6F /* OGAConfigurationUtils+Profig.h in Headers */,
 				43A9F3AB2C37E6B40085EF6F /* OGAProfigFullResponse.h in Headers */,
@@ -4157,7 +4149,6 @@
 				223A62F029F7D7430022FFE0 /* OGAEnvironmentURLBuilder.h in Headers */,
 				351A1AB6A118A02BB00BE2A6 /* OGAAdConfiguration+AdSync.h in Headers */,
 				351A124CA9183DFCCFCB04F3 /* OGAAdExposure+MRAID.h in Headers */,
-				351A175D2D828CE8661EB281 /* UIApplication+Orientation.h in Headers */,
 				351A1B202E859278031CF82C /* UIDevice+Orientation.h in Headers */,
 				351A1D835AC58268ECD25D24 /* OGAConfigurationUtils+Profig.h in Headers */,
 				351A189419E9541742ACF352 /* OGAProfigFullResponse.h in Headers */,
@@ -4591,6 +4582,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FBC6039330BEA7D61DC7487D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OguryAds-art-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -4607,7 +4620,6 @@
 				43A9F2B52C37E6B40085EF6F /* OGAShowAdAction.m in Sources */,
 				43A9F2B62C37E6B40085EF6F /* OGAAdConfiguration+AdSync.m in Sources */,
 				43A9F2B72C37E6B40085EF6F /* OGAAdExposure+MRAID.m in Sources */,
-				43A9F2B82C37E6B40085EF6F /* UIApplication+Orientation.m in Sources */,
 				43A9F2B92C37E6B40085EF6F /* OGAViewControllerOrientationHelper.m in Sources */,
 				43A9F2BA2C37E6B40085EF6F /* UIDevice+Orientation.m in Sources */,
 				43A9F2BB2C37E6B40085EF6F /* OGAMetricsServiceSendEventOperation.m in Sources */,
@@ -4831,7 +4843,6 @@
 				351A184E207DD1A312CF1685 /* OGAShowAdAction.m in Sources */,
 				351A1EB2809E8072561C7CD1 /* OGAAdConfiguration+AdSync.m in Sources */,
 				351A1D0906D014CD57C6B3C9 /* OGAAdExposure+MRAID.m in Sources */,
-				351A16E24D908931FA12EACA /* UIApplication+Orientation.m in Sources */,
 				438AF74B28DC54A6000DCB49 /* OGAViewControllerOrientationHelper.m in Sources */,
 				351A1AE9FCBA4837716A954B /* UIDevice+Orientation.m in Sources */,
 				ED63DBF527562D1900554750 /* OGAMetricsServiceSendEventOperation.m in Sources */,
@@ -5104,7 +5115,6 @@
 				224A7AE8268B73F200031491 /* OGAThumbnailAdViewController+CachedPositionTests.m in Sources */,
 				EDDC409E2552B77000A8BE51 /* OGAAdContainerTests.m in Sources */,
 				43D3C0DB28E482C300E3B8F5 /* OGAAdLoadStateManagerTests.m in Sources */,
-				ED5BB62F2592174500AB9A92 /* UIApplication+OrientationTests.m in Sources */,
 				ED46A2DD25BF16400045DC31 /* OGABannerAdContainerState+Testing.m in Sources */,
 				22FAEBAB299D4B9D00BA88B8 /* OGAMonitoringDispatcherSKNetworkTests.m in Sources */,
 				EDDC410C2552F39600A8BE51 /* OGAAdSequenceCoordinatorTests.m in Sources */,

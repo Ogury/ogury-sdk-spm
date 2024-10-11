@@ -8,7 +8,6 @@
 #import "OGAAssetKeyManager.h"
 #import "OGAAdIdentifierService.h"
 #import "OGAConfigurationUtils.h"
-#import "UIApplication+Orientation.h"
 #import "OGADeviceService.h"
 #import "OGATokenConstants.h"
 #import "OGAAdConfiguration.h"
@@ -93,11 +92,11 @@
     }
     if ([[self profigManager] shouldSync]) {
         [[self profigManager] syncProfigWithCompletion:^(OGAProfigFullResponse *response, NSError *error) {
-           if (error) {
-              completion(nil, [OguryAdError headerBiddingFrom:OguryBidTokenErrorCodeInvalidConfiguration]);
-              return;
-           }
-           [self collectBidTokenDataWithCampaignId:campaignId
+            if (error) {
+                completion(nil, [OguryAdError headerBiddingFrom:OguryBidTokenErrorCodeInvalidConfiguration]);
+                return;
+            }
+            [self collectBidTokenDataWithCampaignId:campaignId
                                          creativeId:creativeId
                                       dspCreativeId:dspCreativeId
                                           dspRegion:dspRegion
