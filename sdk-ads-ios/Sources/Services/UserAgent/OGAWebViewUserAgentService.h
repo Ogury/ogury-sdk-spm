@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)shared;
 
 - (void)syncWebViewUserAgent;
+- (void)syncWebViewUserAgentForSync;
 - (void)reset;
 
 @end
