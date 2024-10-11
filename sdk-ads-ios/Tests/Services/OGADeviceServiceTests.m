@@ -6,12 +6,11 @@
 #import <XCTest/XCTest.h>
 #import "OGADeviceOrientationConstants.h"
 #import "OGADeviceService.h"
-#import "UIApplication+Orientation.h"
 #import "UIDevice+Orientation.h"
 
 @interface OGADeviceService (Testing)
 
-- (instancetype)initWithApplication:(UIApplication *)application device:(UIDevice *)device;
+- (instancetype)initWithDevice:(UIDevice *)device;
 
 @end
 
@@ -22,12 +21,9 @@
 @implementation OGADeviceServiceTests
 
 - (void)testShouldReturnUnknownInterfaceOrientationIfApplicationAndDeviceAreNotAvailable {
-    id mockedApplication = OCMClassMock(UIApplication.self);
     id mockedDevice = OCMClassMock(UIDevice.self);
 
-    [[[mockedApplication stub] andReturn:nil] OGAOrientationString];
-
-    OGADeviceService *service = [[OGADeviceService alloc] initWithApplication:mockedApplication device:mockedDevice];
+    OGADeviceService *service = [[OGADeviceService alloc] initWithDevice:mockedDevice];
 
     NSString *interfaceOrientationString = [service interfaceOrientation];
 
@@ -35,13 +31,11 @@
 }
 
 - (void)testShouldReturnDeviceInterfaceOrientationIfApplicationIsNotAvailable {
-    id mockedApplication = OCMClassMock(UIApplication.self);
     id mockedDevice = OCMClassMock(UIDevice.self);
 
-    [[[mockedApplication stub] andReturn:nil] OGAOrientationString];
     [[[mockedDevice stub] andReturn:OGAOrientationStringLandscape] ogaOrientationString];
 
-    OGADeviceService *service = [[OGADeviceService alloc] initWithApplication:mockedApplication device:mockedDevice];
+    OGADeviceService *service = [[OGADeviceService alloc] initWithDevice:mockedDevice];
 
     NSString *interfaceOrientationString = [service interfaceOrientation];
 

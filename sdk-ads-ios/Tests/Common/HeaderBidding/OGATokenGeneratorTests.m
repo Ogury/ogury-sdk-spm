@@ -8,7 +8,6 @@
 #import "OGAAssetKeyManager.h"
 #import "OGAAdIdentifierService.h"
 #import "OGAConfigurationUtils.h"
-#import "UIApplication+Orientation.h"
 #import "OGADeviceService.h"
 #import <OCMock/OCMock.h>
 #import "OGATokenConstants.h"
