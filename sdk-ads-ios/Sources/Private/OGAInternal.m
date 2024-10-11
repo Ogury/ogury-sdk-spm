@@ -87,11 +87,11 @@
     self.setupBlock = completionHandler;
     [self.log log:OguryLogLevelInfo message:@"Module started"];
 
-    if ([self.assetKeyManager configureAssetKey:assetKey]) {
+    if ([self.assetKeyManager configureAssetKey:assetKey] || [self.profigManager shouldSync]) {
         // Setup notifier otherwise further call to the internetReachability will return invalid statuses.
+        [self.log log:OguryLogLevelInfo message:@"Invalid/No profig found, start profig sync."];
         [self.internetReachability startNotifier];
-        [self.webViewUserAgentService syncWebViewUserAgent];
-
+        [self.webViewUserAgentService syncWebViewUserAgentAndDispatchDelegate];
     } else {
         [self.log log:OguryLogLevelWarning message:@"Ogury Ads only need to be started once. Additional calls are ignored."];
         completionHandler(true, nil);

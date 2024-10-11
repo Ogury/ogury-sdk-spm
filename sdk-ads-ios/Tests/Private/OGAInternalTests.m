@@ -66,7 +66,7 @@
 
     OCMVerify([self.assetKeyManager configureAssetKey:@"OGY-XXXXXXXX"]);
     OCMVerify([self.internetReachability startNotifier]);
-    OCMVerify([self.webViewUserAgentService syncWebViewUserAgent]);
+    OCMVerify([self.webViewUserAgentService syncWebViewUserAgentAndDispatchDelegate]);
 }
 
 - (void)testStartWith_cannotReconfigureAssetKey {
