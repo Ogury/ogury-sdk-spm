@@ -199,6 +199,17 @@
     return [[OguryAdError alloc] initWithErrorCode:OguryShowErrorCodeViewControllerPreventsAdFromBeingDisplayed
                                               type:OguryAdErrorTypeShow];
 }
+
++ (OguryAdError *)createOguryErrorWithCode:(NSInteger)code {
+    return [[OguryAdError alloc] initWithErrorCode:code type:OguryAdErrorTypeLoad];
+}
++ (OguryAdError *)createOguryErrorWithCode:(NSInteger)code localizedDescription:(NSString *)localizedDescription {
+    return [[OguryAdError alloc] initWithErrorCode:code stacktrace:localizedDescription type:OguryAdErrorTypeLoad];
+}
++ (OguryAdError *)createOguryErrorWithCode:(NSInteger)code localizedDescription:(NSString *)localizedDescription localizedRecoverySuggestion:(NSString *)localizedRecoverySuggestion {
+    return [[OguryAdError alloc] initWithErrorCode:code stacktrace:localizedDescription type:OguryAdErrorTypeLoad];
+}
+
 + (OguryError *)headerBiddingFrom:(NSInteger)originalErrorCode {
     NSInteger bidCode = [self publicBidTokenErrorCodeFrom:originalErrorCode];
     return [OguryError createOguryErrorWithCode:bidCode localizedDescription:[self bidDescriptionFor:bidCode]];
