@@ -127,5 +127,5 @@ extension HomeViewController : OguryInterstitialAdDelegate {
     
     func interstitialAdDidTriggerImpression(_ interstitialAd: OguryInterstitialAd) {
         print("interstitialAdDidTriggerImpression")
-    }    
+    }
 }
