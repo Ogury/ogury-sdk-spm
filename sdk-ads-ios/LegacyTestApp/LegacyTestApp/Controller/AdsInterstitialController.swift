@@ -108,7 +108,7 @@ extension AdsInterstitialController: OguryInterstitialAdDelegate {
         LogsController.shared.addLogs("Interstitial ad loaded.")
     }
 
-    func interstitialAd(_ interstitial: OguryInterstitialAd, didFailWithEerror error: OguryAdError) {
+    func interstitialAd(_ interstitial: OguryInterstitialAd, didFailWithError error: OguryAdError) {
         LogsController.shared.addLogs(String(format: "Interstitial ad failed with error code %ld: %@", error.code, error.localizedDescription));
     }
 
