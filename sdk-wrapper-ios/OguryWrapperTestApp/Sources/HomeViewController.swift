@@ -109,23 +109,23 @@ class HomeViewController: UIViewController, ChoiceCmpDelegate {
 
 extension HomeViewController : OguryInterstitialAdDelegate {
     
-    func didLoad(_ interstitial: OguryInterstitialAd) {
-        os_log("Interstitial ad loaded.")
+    func interstitialAdDidLoad(_ interstitialAd: OguryInterstitialAd) {
+        print("interstitialAdDidLoad \(interstitialAd.adUnitId)")
     }
     
-    func didFail(_ interstitial: OguryInterstitialAd, error: OguryAdError) {
-        os_log("Interstitial ad failed with error: %@", String(describing: error))
+    func interstitialAdDidClick(_ interstitialAd: OguryInterstitialAd) {
+        print("interstitialAdDidClick")
     }
     
-    func didDisplay(_ interstitial: OguryInterstitialAd) {
-        os_log("Interstitial ad displayed.")
+    func interstitialAd(_ interstitialAd: OguryInterstitialAd, didFailWithError error: OguryAdError) {
+        print("interstitialAd didFailWithError: type:\(error.type)  code: \(error.code) description: \(error.localizedDescription)")
     }
     
-    func didClick(_ interstitial: OguryInterstitialAd) {
-        os_log("Interstitial ad clicked.")
+    func interstitialAdDidClose(_ interstitialAd: OguryInterstitialAd) {
+        print("interstitialAdDidClose")
     }
     
-    func didClose(_ interstitial: OguryInterstitialAd) {
-        os_log("Interstitial ad closed.")
-    }
+    func interstitialAdDidTriggerImpression(_ interstitialAd: OguryInterstitialAd) {
+        print("interstitialAdDidTriggerImpression")
+    }    
 }
