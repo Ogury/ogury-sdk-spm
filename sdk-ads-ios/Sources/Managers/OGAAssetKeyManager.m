@@ -65,8 +65,8 @@ NSString *const OGAssetKeyStoreKey = @"OGAssetKeyStoreKey";
 }
 
 - (BOOL)configureAssetKey:(NSString *)assetKey {
+    self.sdkState = OgurySDKStateStarting;
     if (!self.assetKeyHasBeenSet) {
-        self.sdkState = OgurySDKStateStarting;
         self.assetKey = assetKey;
         [self.userDefaultsStore setObject:assetKey forKey:OGAssetKeyStoreKey];
         self.assetKeyHasBeenSet = YES;

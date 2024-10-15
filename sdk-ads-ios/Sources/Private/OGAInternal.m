@@ -104,12 +104,16 @@
 
 - (void)syncProfig {
     [self.profigManager syncProfigWithCompletion:^(OGAProfigFullResponse *response, NSError *error) {
-        [self.assetKeyManager sdkIsReady];
         if (!response) {
             [self.log logError:error message:@"Failed to initialize Ogury Ads"];
         }
         if (self.setupBlock != nil) {
             self.setupBlock(response != nil, error);
+        }
+        if (error) {
+            [self.assetKeyManager setSdkState:OgurySDKStateError];
+        } else {
+            [self.assetKeyManager sdkIsReady];
         }
     }];
 }
