@@ -606,14 +606,14 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
     } else if ([self.delegate isKindOfClass:[OGAAdController class]] && [(OGAAdController *)self.delegate isLoaded]) {
         [self.monitoringDispatcher sendLoadEvent:OGALoadEventLoadAdBackgroundUnloaded adConfiguration:self.ad.adConfiguration];
         if ([self.configuration.delegateDispatcher respondsToSelector:@selector(failedWithError:)]) {
-            [self.configuration.delegateDispatcher failedWithError:[OguryAdError createOguryErrorWithCode:OGAInternalUnknownError]];
+            [self.configuration.delegateDispatcher failedWithError:[OguryAdError adPrecachingFailedWithStackTrace:@"Unload"]];
         }
         // unload received while the load has not yet finish -> Load Error
     } else if (origin == UnloadOriginFormat) {
         [self.monitoringDispatcher sendLoadErrorEventPrecacheFail:OGAMonitoringPrecacheErrorUnload
                                                   adConfiguration:self.ad.adConfiguration];
         if ([self.configuration.delegateDispatcher respondsToSelector:@selector(failedWithError:)]) {
-            [self.configuration.delegateDispatcher failedWithError:[OguryAdError createOguryErrorWithCode:OGAInternalUnknownError]];
+            [self.configuration.delegateDispatcher failedWithError:[OguryAdError adPrecachingFailedWithStackTrace:@"Unload"]];
         }
     }
     [self safeDelegateCallWithAction:[[OGAUnloadAdAction alloc] initWithNextAd:[OGANextAd nextAdTrue]]];
