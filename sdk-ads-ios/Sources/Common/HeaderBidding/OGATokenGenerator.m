@@ -90,10 +90,14 @@
         completion(nil, [OguryAdError headerBiddingFrom:error.code]);
         return;
     }
-    if ([[self profigManager] shouldSync]) {
-        [[self profigManager] syncProfigWithCompletion:^(OGAProfigFullResponse *response, NSError *error) {
+    if ([self.profigManager shouldSync]) {
+        [self.profigManager syncProfigWithCompletion:^(OGAProfigFullResponse *response, NSError *error) {
             if (error) {
-                completion(nil, [OguryAdError headerBiddingFrom:OguryBidTokenErrorCodeInvalidConfiguration]);
+                if (self.assetKeyManager.sdkState != OgurySDKStateReady) {
+                    completion(nil, [OguryAdError headerBiddingFrom:OguryBidTokenErrorCodeSDKNotProperlyInitialized]);
+                } else {
+                    completion(nil, [OguryAdError headerBiddingFrom:OguryBidTokenErrorCodeInvalidConfiguration]);
+                }
                 return;
             }
             [self collectBidTokenDataWithCampaignId:campaignId
