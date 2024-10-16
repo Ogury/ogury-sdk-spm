@@ -128,6 +128,32 @@
                                      }];
 }
 
+- (void)testBidTokenFailStateReady {
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
+    self.assetKeyManager.sdkState = OgurySDKStateReady;
+    OCMStub([self.profigManager shouldSync]).andReturn(YES);
+    NSError *profigError = [NSError new];
+    OCMStub([self.profigManager syncProfigWithCompletion:([OCMArg invokeBlockWithArgs:[NSNull null], profigError, nil])]);
+    [self.tokenGenerator bidToken:^(NSString *_Nullable bidToken, OguryError *_Nullable error) {
+        XCTAssertNotNil(error);
+        XCTAssertNil(bidToken);
+        XCTAssertEqual(error.code, OguryBidTokenErrorCodeInvalidConfiguration);
+    }];
+}
+
+- (void)testBidTokenFailStateNotReady {
+    OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
+    self.assetKeyManager.sdkState = OgurySDKStateError;
+    OCMStub([self.profigManager shouldSync]).andReturn(YES);
+    NSError *profigError = [NSError new];
+    OCMStub([self.profigManager syncProfigWithCompletion:([OCMArg invokeBlockWithArgs:[NSNull null], profigError, nil])]);
+    [self.tokenGenerator bidToken:^(NSString *_Nullable bidToken, OguryError *_Nullable error) {
+        XCTAssertNotNil(error);
+        XCTAssertNil(bidToken);
+        XCTAssertEqual(error.code, OguryBidTokenErrorCodeSDKNotProperlyInitialized);
+    }];
+}
+
 - (void)testWhenLowBatteryModeIsOnThenTrueIsSet {
     OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
     [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:YES instanceTokenEnabled:YES lowBatteryMode:YES];
