@@ -102,11 +102,6 @@
 		438ED4202AA5D0C300486AF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41F2AA5D0C300486AF2 /* Assets.xcassets */; };
 		438ED4232AA5D0C300486AF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
 		438ED42B2AA5D0E100486AF2 /* AdSdkLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED42A2AA5D0E100486AF2 /* AdSdkLauncher.swift */; };
-		439A64E32C8F25EA00A180A4 /* UnityLevelPlayBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8662C63AB4600E64D20 /* UnityLevelPlayBidder.swift */; };
-		439A64E42C8F25EB00A180A4 /* UnityLevelPlayBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8662C63AB4600E64D20 /* UnityLevelPlayBidder.swift */; };
-		439A64E52C8F25EB00A180A4 /* UnityLevelPlayBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8662C63AB4600E64D20 /* UnityLevelPlayBidder.swift */; };
-		439A64E62C8F25EC00A180A4 /* UnityLevelPlayBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8662C63AB4600E64D20 /* UnityLevelPlayBidder.swift */; };
-		439A64E72C8F25EC00A180A4 /* UnityLevelPlayBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8662C63AB4600E64D20 /* UnityLevelPlayBidder.swift */; };
 		4394F73F2CA3F4B2001086FE /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
 		4394F7402CA3F4B2001086FE /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
 		4394F7412CA3F4B2001086FE /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
@@ -137,6 +132,11 @@
 		4394F7602CA44BC5001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
 		4394F7612CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7552CA44BC5001086FE /* TestAppLogFormatter.swift */; };
 		4394F7622CA44BC5001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
+		439A64E32C8F25EA00A180A4 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		439A64E42C8F25EB00A180A4 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		439A64E52C8F25EB00A180A4 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		439A64E62C8F25EC00A180A4 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		439A64E72C8F25EC00A180A4 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		43AE85D82B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
 		43AE85D92B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
 		43AE85DA2B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
@@ -294,11 +294,11 @@
 		43BCB1982C23255C002FB0B1 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43BCB1962C23255C002FB0B1 /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43BCB19A2C232565002FB0B1 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BCB1992C232565002FB0B1 /* AdsCardLibrary.framework */; };
 		43BCB19B2C232565002FB0B1 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43BCB1992C232565002FB0B1 /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		43BE104A2CA311E800FF0467 /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F961682C6CD2160088F4A7 /* RTBidderBody.swift */; };
-		43BE104B2CA311F100FF0467 /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F961682C6CD2160088F4A7 /* RTBidderBody.swift */; };
-		43BE104C2CA311FE00FF0467 /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F961682C6CD2160088F4A7 /* RTBidderBody.swift */; };
-		43BE104D2CA3120000FF0467 /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F961682C6CD2160088F4A7 /* RTBidderBody.swift */; };
-		43BE104E2CA3120300FF0467 /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F961682C6CD2160088F4A7 /* RTBidderBody.swift */; };
+		43BE104A2CA311E800FF0467 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		43BE104B2CA311F100FF0467 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		43BE104C2CA311FE00FF0467 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		43BE104D2CA3120000FF0467 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		43BE104E2CA3120300FF0467 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		43C1D1552B7E566C006F2D23 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43C1D1542B7E566C006F2D23 /* SwiftMessages */; };
 		43C1D1572B7E567A006F2D23 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43C1D1562B7E567A006F2D23 /* SwiftMessages */; };
 		43C1D1592B7E5684006F2D23 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43C1D1582B7E5684006F2D23 /* SwiftMessages */; };
@@ -321,7 +321,7 @@
 		43FC85612B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43FC85622B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43FC85632B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
-		50CFA8672C63AB5200E64D20 /* UnityLevelPlayBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8662C63AB4600E64D20 /* UnityLevelPlayBidder.swift */; };
+		50CFA8672C63AB5200E64D20 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		674BCBAC82FBD4EBB2A4A8E7 /* Pods_AdsTestApp_Devc_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB3C78894E080AB4A6A149C /* Pods_AdsTestApp_Devc_art.framework */; };
 		67DA85977E194EA300BC00BE /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC679F282C18E34F4992CD02 /* RTBidderBody.swift */; };
 		6DA4741832749AC511D60F61 /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC679F282C18E34F4992CD02 /* RTBidderBody.swift */; };
@@ -425,7 +425,6 @@
 		1E6D20BE2C6A6C7F00DF24AB /* OgurySdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OgurySdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E6D20C12C6A6DF800DF24AB /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF117682AF95052004BE519 /* DetailListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListFeature.swift; sourceTree = "<group>"; };
-		2C5CCD964251EE624EC4B94E /* Pods-AdsTestApp-Prod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod.release.xcconfig"; sourceTree = "<group>"; };
 		4301B1E62B56D3630076065D /* UTType+Extension(devc).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Extension(devc).swift"; sourceTree = "<group>"; };
 		4301B1E82B56D3930076065D /* UTType+Extension(stag).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Extension(stag).swift"; sourceTree = "<group>"; };
 		4301B1EA2B56D3A80076065D /* UTType+Extension(prod).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Extension(prod).swift"; sourceTree = "<group>"; };
@@ -879,8 +878,6 @@
 		43B713BA2B4BCEC4007C8D21 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1E373D582BFC9CB600E2EF25 /* RTBBidder.swift */,
-				43F961682C6CD2160088F4A7 /* RTBidderBody.swift */,
 				43B713FC2B4D6075007C8D21 /* HeaderBiddingBid.swift */,
 				43B713FE2B4D6075007C8D21 /* HeaderBiddingExt.swift */,
 				43B713FD2B4D6075007C8D21 /* HeaderBiddingResponse.swift */,
@@ -1517,7 +1514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43B714032B4D6075007C8D21 /* HeaderBiddingBid.swift in Sources */,
-				43BE104A2CA311E800FF0467 /* RTBidderBody.swift in Sources */,
+				43BE104A2CA311E800FF0467 /* (null) in Sources */,
 				4301B1E92B56D3930076065D /* UTType+Extension(stag).swift in Sources */,
 				433B4A8C2B34259900037FE1 /* AdsStorableContainer.swift in Sources */,
 				1E373D5E2BFC9F5C00E2EF25 /* DTFairBidBidder.swift in Sources */,
@@ -1528,7 +1525,7 @@
 				43788F412B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */,
 				434F84C22ACFE4FE005077F5 /* MainViewController.swift in Sources */,
 				43FC85622B0F5E0900EABA43 /* MaxBidder.swift in Sources */,
-				439A64E42C8F25EB00A180A4 /* UnityLevelPlayBidder.swift in Sources */,
+				439A64E42C8F25EB00A180A4 /* (null) in Sources */,
 				43B714062B4D6075007C8D21 /* HeaderBiddingResponse.swift in Sources */,
 				43B713E82B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
 				434F84C42ACFE4FE005077F5 /* AppDelegate.swift in Sources */,
@@ -1562,7 +1559,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43B714042B4D6075007C8D21 /* HeaderBiddingBid.swift in Sources */,
-				43BE104B2CA311F100FF0467 /* RTBidderBody.swift in Sources */,
+				43BE104B2CA311F100FF0467 /* (null) in Sources */,
 				433B4A8D2B34259900037FE1 /* AdsStorableContainer.swift in Sources */,
 				434F84DB2ACFE50A005077F5 /* AddFeature.swift in Sources */,
 				1E373D5F2BFC9F5C00E2EF25 /* DTFairBidBidder.swift in Sources */,
@@ -1579,7 +1576,7 @@
 				43B7140A2B4D6075007C8D21 /* HeaderBiddingExt.swift in Sources */,
 				4394F7432CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
 				43AE85DA2B5017860010C812 /* SettingsController.swift in Sources */,
-				50CFA8672C63AB5200E64D20 /* UnityLevelPlayBidder.swift in Sources */,
+				50CFA8672C63AB5200E64D20 /* (null) in Sources */,
 				434F84E12ACFE50A005077F5 /* AppSettingsView.swift in Sources */,
 				434F84E22ACFE50A005077F5 /* SceneDelegate.swift in Sources */,
 				1E5BE6352B21F40F0010B995 /* DetailListView.swift in Sources */,
@@ -1612,12 +1609,11 @@
 				1E373D5D2BFC9F5C00E2EF25 /* DTFairBidBidder.swift in Sources */,
 				434F849E2AC2CC54005077F5 /* AppFeature.swift in Sources */,
 				434F85072AD00349005077F5 /* Configuration.swift in Sources */,
-				439A64E32C8F25EA00A180A4 /* UnityLevelPlayBidder.swift in Sources */,
+				439A64E32C8F25EA00A180A4 /* (null) in Sources */,
 				434F84A32AC2CD2B005077F5 /* MainView.swift in Sources */,
 				438ED41B2AA5D0C200486AF2 /* MainViewController.swift in Sources */,
 				43788F402B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */,
 				4301B1E72B56D3630076065D /* UTType+Extension(devc).swift in Sources */,
-				43F961692C6CD2160088F4A7 /* RTBidderBody.swift in Sources */,
 				43FC85612B0F5E0900EABA43 /* MaxBidder.swift in Sources */,
 				43B714052B4D6075007C8D21 /* HeaderBiddingResponse.swift in Sources */,
 				43B713E72B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
@@ -1653,7 +1649,7 @@
 			files = (
 				43BCB09E2C22DD45002FB0B1 /* HeaderBiddingBid.swift in Sources */,
 				43BCB09F2C22DD45002FB0B1 /* AdsStorableContainer.swift in Sources */,
-				43BE104C2CA311FE00FF0467 /* RTBidderBody.swift in Sources */,
+				43BE104C2CA311FE00FF0467 /* (null) in Sources */,
 				43BCB0A02C22DD45002FB0B1 /* AddFeature.swift in Sources */,
 				43BCB0A12C22DD45002FB0B1 /* DTFairBidBidder.swift in Sources */,
 				43BCB0A22C22DD45002FB0B1 /* AppFeature.swift in Sources */,
@@ -1663,7 +1659,7 @@
 				43BCB0A62C22DD45002FB0B1 /* AddFormatsView.swift in Sources */,
 				43BCB0A82C22DD45002FB0B1 /* UTType+Extension(devc).swift in Sources */,
 				43BCB0A92C22DD45002FB0B1 /* MaxBidder.swift in Sources */,
-				439A64E52C8F25EB00A180A4 /* UnityLevelPlayBidder.swift in Sources */,
+				439A64E52C8F25EB00A180A4 /* (null) in Sources */,
 				43BCB0AA2C22DD45002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
 				43BCB0AB2C22DD45002FB0B1 /* ConsentManager.swift in Sources */,
 				43BCB0AC2C22DD45002FB0B1 /* AppDelegate.swift in Sources */,
@@ -1700,7 +1696,7 @@
 				43BCB0E22C22DD59002FB0B1 /* UTType+Extension(stag).swift in Sources */,
 				43BCB0E32C22DD59002FB0B1 /* AdsStorableContainer.swift in Sources */,
 				43BCB0E42C22DD59002FB0B1 /* DTFairBidBidder.swift in Sources */,
-				43BE104D2CA3120000FF0467 /* RTBidderBody.swift in Sources */,
+				43BE104D2CA3120000FF0467 /* (null) in Sources */,
 				43BCB0E52C22DD59002FB0B1 /* AddFeature.swift in Sources */,
 				43BCB0E62C22DD59002FB0B1 /* AppFeature.swift in Sources */,
 				43BCB0E72C22DD59002FB0B1 /* Configuration.swift in Sources */,
@@ -1708,7 +1704,7 @@
 				43BCB0E92C22DD59002FB0B1 /* AddFormatsView.swift in Sources */,
 				43BCB0EA2C22DD59002FB0B1 /* MainViewController.swift in Sources */,
 				43BCB0EC2C22DD59002FB0B1 /* MaxBidder.swift in Sources */,
-				439A64E62C8F25EC00A180A4 /* UnityLevelPlayBidder.swift in Sources */,
+				439A64E62C8F25EC00A180A4 /* (null) in Sources */,
 				43BCB0ED2C22DD59002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
 				43BCB0EE2C22DD59002FB0B1 /* ConsentManager.swift in Sources */,
 				43BCB0EF2C22DD59002FB0B1 /* AppDelegate.swift in Sources */,
@@ -1744,7 +1740,7 @@
 				43BCB1242C22DD60002FB0B1 /* HeaderBiddingBid.swift in Sources */,
 				43BCB1252C22DD60002FB0B1 /* AdsStorableContainer.swift in Sources */,
 				43BCB1262C22DD60002FB0B1 /* AddFeature.swift in Sources */,
-				43BE104E2CA3120300FF0467 /* RTBidderBody.swift in Sources */,
+				43BE104E2CA3120300FF0467 /* (null) in Sources */,
 				43BCB1272C22DD60002FB0B1 /* DTFairBidBidder.swift in Sources */,
 				43BCB1282C22DD60002FB0B1 /* AppFeature.swift in Sources */,
 				43BCB1292C22DD60002FB0B1 /* Configuration.swift in Sources */,
@@ -1753,7 +1749,7 @@
 				43BCB12C2C22DD60002FB0B1 /* AddFormatsView.swift in Sources */,
 				43BCB12D2C22DD60002FB0B1 /* MainViewController.swift in Sources */,
 				43BCB12F2C22DD60002FB0B1 /* MaxBidder.swift in Sources */,
-				439A64E72C8F25EC00A180A4 /* UnityLevelPlayBidder.swift in Sources */,
+				439A64E72C8F25EC00A180A4 /* (null) in Sources */,
 				43BCB1302C22DD60002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
 				43BCB1312C22DD60002FB0B1 /* ConsentManager.swift in Sources */,
 				43BCB1322C22DD60002FB0B1 /* AppDelegate.swift in Sources */,
@@ -2110,7 +2106,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2155,7 +2151,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2199,7 +2195,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2244,7 +2240,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
