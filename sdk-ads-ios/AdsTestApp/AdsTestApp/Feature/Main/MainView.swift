@@ -157,16 +157,34 @@ extension View {
                         state: \.$destination,
                         action: MainFeature.Action.destination
                     ),
-                    state: /MainFeature.Destination.State.add,
-                    action: MainFeature.Destination.Action.add) { store in
-                        if #available(iOS 16.0, *) {
-                            AddSheetView(store: store, viewStore: viewStore)
-                                .presentationDetents([.fraction(0.7)])
-                        } else {
-                            AddSheetView(store: store, viewStore: viewStore)
-                        }
+                    state: /MainFeature.Destination.State.log,
+                    action: MainFeature.Destination.Action.log) { store in
+                  Text("Logs")
+                      .presentationDetents([.fraction(0.1), .fraction(0.5), .fraction(1)])
+                      .interactiveDismissDisabled()
+                      .presentationBackgroundInteraction(.enabled)
+                      .presentationDragIndicator(.visible)
+                }
+                .sheet(
+                  store: store.scope(
+                     state: \.$destination,
+                     action: MainFeature.Action.destination
+                  ),
+                  state: /MainFeature.Destination.State.add,
+                  action: MainFeature.Destination.Action.add,
+                  onDismiss: {
+                     viewStore.send(.reloadLogView)
+                  },
+                  content: { store in
+                    if #available(iOS 16.0, *) {
+                        AddSheetView(store: store, viewStore: viewStore)
+                            .presentationDetents([.fraction(0.7)])
+                            .presentationBackgroundInteraction(.disabled)
+                    } else {
+                        AddSheetView(store: store, viewStore: viewStore)
                     }
-                    .blur(radius: viewStore.destination != nil ? 5 : 0)
+                 })
+                    
     }
 }
 
