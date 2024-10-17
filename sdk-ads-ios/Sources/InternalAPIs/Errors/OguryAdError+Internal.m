@@ -34,9 +34,9 @@
 
 - (NSString *)descriptionFor:(NSInteger)code stacktrace:(NSString *)stacktrace {
     switch (code) {
-        case OguryLoadErrorCodeSDKNeverStarted:
+        case OguryLoadErrorCodeSDKNotStarted:
             return SDKStartNotCalledLoadString;
-        case OguryShowErrorCodeSDKNeverStarted:
+        case OguryShowErrorCodeSDKNotStarted:
             return SDKStartNotCalledShowString;
         case OguryLoadErrorCodeSDKNotProperlyInitialized:
             return SDKNotProperlyInitializedLoadString;
@@ -96,8 +96,8 @@
 
 + (OguryAdError *)sdkNotInitializedFrom:(OguryAdErrorType)type {
     return [[OguryAdError alloc] initWithErrorCode:type == OguryAdErrorTypeLoad
-                                     ? OguryLoadErrorCodeSDKNeverStarted
-                                     : OguryShowErrorCodeSDKNeverStarted
+                                     ? OguryLoadErrorCodeSDKNotStarted
+                                     : OguryShowErrorCodeSDKNotStarted
                                               type:type];
 }
 + (OguryAdError *)sdkNotProperlyInitializedFrom:(OguryAdErrorType)type {
@@ -217,7 +217,7 @@
 
 + (NSString *)bidDescriptionFor:(NSInteger)code {
     switch (code) {
-        case OguryBidTokenErrorCodeSDKNeverStarted:
+        case OguryBidTokenErrorCodeSDKNotStarted:
             return SDKStartNotCalledBidString;
         case OguryBidTokenErrorCodeSDKNotProperlyInitialized:
             return SDKNotProperlyInitializedBidString;
@@ -238,9 +238,9 @@
 
 + (NSInteger)publicBidTokenErrorCodeFrom:(NSInteger)code {
     switch (code) {
-        case OguryLoadErrorCodeSDKNeverStarted:
-        case OguryShowErrorCodeSDKNeverStarted:
-            return OguryBidTokenErrorCodeSDKNeverStarted;
+        case OguryLoadErrorCodeSDKNotStarted:
+        case OguryShowErrorCodeSDKNotStarted:
+            return OguryBidTokenErrorCodeSDKNotStarted;
 
         case OguryLoadErrorCodeSDKNotProperlyInitialized:
         case OguryShowErrorCodeSDKNotProperlyInitialized:

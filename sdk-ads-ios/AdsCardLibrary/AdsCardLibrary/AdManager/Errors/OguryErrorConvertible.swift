@@ -23,7 +23,7 @@ extension OguryShowErrorCode: OguryErrorConvertible {
             case .invalidConfiguration: return "Profig is not Synced"
             case .adExpired: return "Ad is expired"
             case .noActiveInternetConnection: return "No internet connection"
-            case .sdkNeverStarted: return "SDK was not initialized"
+            case .sdkNotStarted: return "SDK was not initialized"
             case .sdkNotProperlyInitialized: return "SDK was not properly initialized"
             case .anotherAdAlreadyDisplayed: return "Another ad is already being display"
             case .noAdLoaded: return "Ad is not loaded"
@@ -48,7 +48,7 @@ extension OguryLoadErrorCode: OguryErrorConvertible {
             case .adPrecachingTimeout: return "Ad precaching timed out"
             case .noActiveInternetConnection: return "No internet connection"
             case .adRequestFailed: return "Ad request failed"
-            case .sdkNeverStarted: return "SDK was not initialized"
+            case .sdkNotStarted: return "SDK was not initialized"
             case .sdkNotProperlyInitialized: return "SDK was not properly initialized"
             case .noFill: return "Ad is not available"
         @unknown default: return nil
