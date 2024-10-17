@@ -4,7 +4,7 @@
 
 #import <XCTest/XCTest.h>
 #import "OGAThumbnailAdContainerState.h"
-#import "OguryAdsError.h"
+#import "OguryAdError.h"
 #import "OGAThumbnailAdWindow.h"
 #import "OGAThumbnailAdWindowFactory.h"
 #import <OCMock/OCMock.h>

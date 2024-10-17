@@ -16,9 +16,9 @@
                                                  message:@"[Inter] Ad clicked"
                                                     tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.interstitial.adUnitId] ]]];
 
-    if ([self.delegate respondsToSelector:@selector(didClickOguryInterstitialAd:)]) {
+    if ([self.delegate respondsToSelector:@selector(interstitialAdDidClick:)]) {
         [self dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
-            [delegate didClickOguryInterstitialAd:self.interstitial];
+            [delegate interstitialAdDidClick:self.interstitial];
         }];
     }
 }
@@ -30,15 +30,15 @@
                                                  message:@"[Inter] Ad closed"
                                                     tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.interstitial.adUnitId] ]]];
 
-    if ([self.delegate respondsToSelector:@selector(didCloseOguryInterstitialAd:)]) {
+    if ([self.delegate respondsToSelector:@selector(interstitialAdDidClose:)]) {
         [self dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
-            [delegate didCloseOguryInterstitialAd:self.interstitial];
+            [delegate interstitialAdDidClose:self.interstitial];
         }];
     }
     self.hasSentDisplayedDelegate = NO;
 }
 
-- (void)failedWithError:(OguryError *)error {
+- (void)failedWithError:(OguryAdError *)error {
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
                                          adConfiguration:nil
                                                  logType:OguryLogTypeDelegate
@@ -46,9 +46,9 @@
                                                  message:@"[Inter] Ad failed"
                                                     tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.interstitial.adUnitId] ]]];
 
-    if ([self.delegate respondsToSelector:@selector(didFailOguryInterstitialAdWithError:forAd:)]) {
+    if ([self.delegate respondsToSelector:@selector(interstitialAd:didFailWithError:)]) {
         [self dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
-            [delegate didFailOguryInterstitialAdWithError:error forAd:self.interstitial];
+            [delegate interstitialAd:self.interstitial didFailWithError:error];
         }];
     }
     self.hasSentDisplayedDelegate = NO;
@@ -61,9 +61,9 @@
                                                  message:@"[Inter] Ad loaded"
                                                     tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.interstitial.adUnitId] ]]];
 
-    if ([self.delegate respondsToSelector:@selector(didLoadOguryInterstitialAd:)]) {
+    if ([self.delegate respondsToSelector:@selector(interstitialAdDidLoad:)]) {
         [self dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
-            [delegate didLoadOguryInterstitialAd:self.interstitial];
+            [delegate interstitialAdDidLoad:self.interstitial];
         }];
     }
 }
@@ -75,9 +75,9 @@
                                                  message:@"[Inter] Ad impression"
                                                     tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.interstitial.adUnitId] ]]];
 
-    if ([self.delegate respondsToSelector:@selector(didTriggerImpressionOguryInterstitialAd:)]) {
+    if ([self.delegate respondsToSelector:@selector(interstitialAdDidTriggerImpression:)]) {
         [self dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
-            [delegate didTriggerImpressionOguryInterstitialAd:self.interstitial];
+            [delegate interstitialAdDidTriggerImpression:self.interstitial];
         }];
     }
 }

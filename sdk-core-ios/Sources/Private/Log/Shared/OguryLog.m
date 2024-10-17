@@ -8,6 +8,7 @@
 #import "OguryLogLevel.h"
 #import "OGCURLRequestLogMessage.h"
 #import "OGCEventLogMessage.h"
+#import <OguryCore/OguryLogMessage.h>
 
 @interface OguryLog ()
 

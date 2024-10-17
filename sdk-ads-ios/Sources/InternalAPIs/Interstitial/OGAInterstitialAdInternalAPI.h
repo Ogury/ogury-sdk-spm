@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - properties
 
 @property(nonatomic, strong, readonly) OGADelegateDispatcher *delegateDispatcher;
+@property(nonatomic, assign, readonly) BOOL isLoaded;
 
 #pragma mark - Initialization
 
@@ -35,8 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)loadWithCampaignId:(NSString *_Nullable)campaignId creativeId:(NSString *_Nullable)creativeId;
 
 - (void)loadWithCampaignId:(NSString *_Nullable)campaignId creativeId:(NSString *_Nullable)creativeId dspCreativeId:(NSString *_Nullable)dspCreativeId dspRegion:(NSString *_Nullable)dspRegion;
-
-- (BOOL)isLoaded;
 
 - (void)showAdInViewController:(UIViewController *)viewController;
 

@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, readonly) NSString *adUnitId;
 @property(nonatomic, weak, nullable) id<OguryThumbnailAdDelegate> delegate;
 @property(nonatomic, assign, readonly) BOOL isExpanded;
+@property(nonatomic, assign, readonly) BOOL isLoaded;
+@property(nonatomic, assign) UIWindowScene *scene API_AVAILABLE(ios(13.0));
 
 - (instancetype)initWithAdUnitId:(NSString *_Nonnull)adUnitId;
 - (instancetype)initWithAdUnitId:(NSString *)adUnitId mediation:(OguryMediation *_Nonnull)mediation;
@@ -23,23 +25,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)load;
 
-- (void)load:(CGSize)thumbnailSize;
-
-- (void)loadWithAdMarkup:(NSString *)adMarkup size:(CGSize)thumbnailSize;
-
-- (BOOL)isLoaded;
+- (void)loadWithMaxSize:(CGSize)thumbnailSize;
 
 - (void)show;
 
-- (void)show:(CGPoint)position;
+- (void)showAt:(CGPoint)position;
 
-- (void)showWithOguryRectCorner:(OguryRectCorner)rectCorner margin:(OguryOffset)offset;
-
-- (void)showInScene:(UIWindowScene *)scene API_AVAILABLE(ios(13.0));
-
-- (void)showInScene:(UIWindowScene *)scene atPosition:(CGPoint)position API_AVAILABLE(ios(13.0));
-
-- (void)showInScene:(UIWindowScene *)scene withOguryRectCorner:(OguryRectCorner)rectCorner margin:(OguryOffset)offset API_AVAILABLE(ios(13.0));
+- (void)showWithOguryRectCorner:(OguryRectCorner)rectCorner offset:(OguryOffset)offset;
 
 - (void)setBlacklistViewControllers:(NSArray<NSString *> *_Nullable)viewControllers;
 

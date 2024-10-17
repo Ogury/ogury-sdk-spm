@@ -11,7 +11,6 @@
 #import "OGAAdDisplayerUpdateCurrentPositionInformation.h"
 #import "OGAAdDisplayerUpdateCurrentAppOrientationInformation.h"
 #import "OGAAdDisplayerUpdateScreenSizeInformation.h"
-#import "UIApplication+Orientation.h"
 #import "UIDevice+Orientation.h"
 #import "OGADeviceOrientationConstants.h"
 #import "OGASizeSafeAreaController.h"
@@ -65,16 +64,16 @@
     float bottomOffset = [self getVisibleHeight] - self.thumbnailSize.height - topOffset;
 
     switch (self.rectCorner) {
-        case OguryTopLeft:
+        case OguryRectCornerTopLeft:
             self.thumbnailPosition = CGPointMake(leftOffset, topOffset);
             break;
-        case OguryTopRight:
+        case OguryRectCornerTopRight:
             self.thumbnailPosition = CGPointMake(rightOffset, topOffset);
             break;
-        case OguryBottomLeft:
+        case OguryRectCornerBottomLeft:
             self.thumbnailPosition = CGPointMake(leftOffset, bottomOffset);
             break;
-        case OguryBottomRight:
+        case OguryRectCornerBottomRight:
             self.thumbnailPosition = CGPointMake(rightOffset, bottomOffset);
             break;
     }
@@ -89,22 +88,22 @@
     if (self.thumbnailPosition.x + self.thumbnailSize.width / 2 < [self getDeviceWidth] / 2) {
         if (self.thumbnailPosition.y + self.thumbnailSize.height / 2 < [self getVisibleHeight] / 2) {
             self.offsetRatio = OguryOffsetMake(self.thumbnailPosition.x / [self getDeviceWidth], self.thumbnailPosition.y / [self getVisibleHeight]);
-            self.rectCorner = OguryTopLeft;
+            self.rectCorner = OguryRectCornerTopLeft;
         } else {
             CGFloat convertedYOffsetRatio = ([self getVisibleHeight] - self.thumbnailPosition.y - self.thumbnailSize.height) / [self getVisibleHeight];
             self.offsetRatio = OguryOffsetMake(self.thumbnailPosition.x / [self getDeviceWidth], convertedYOffsetRatio);
-            self.rectCorner = OguryBottomLeft;
+            self.rectCorner = OguryRectCornerBottomLeft;
         }
     } else {
         if (self.thumbnailPosition.y + self.thumbnailSize.height / 2 < [self getVisibleHeight] / 2) {
             CGFloat convertedXOffsetRatio = ([self getDeviceWidth] - self.thumbnailPosition.x - self.thumbnailSize.width) / [self getDeviceWidth];
             self.offsetRatio = OguryOffsetMake(convertedXOffsetRatio, self.thumbnailPosition.y / [self getVisibleHeight]);
-            self.rectCorner = OguryTopRight;
+            self.rectCorner = OguryRectCornerTopRight;
         } else {
             CGFloat convertedXOffsetRatio = ([self getDeviceWidth] - self.thumbnailPosition.x - self.thumbnailSize.width) / [self getDeviceWidth];
             CGFloat convertedYOffsetRatio = ([self getVisibleHeight] - self.thumbnailPosition.y - self.thumbnailSize.height) / [self getVisibleHeight];
             self.offsetRatio = OguryOffsetMake(convertedXOffsetRatio, convertedYOffsetRatio);
-            self.rectCorner = OguryBottomRight;
+            self.rectCorner = OguryRectCornerBottomRight;
         }
     }
 }

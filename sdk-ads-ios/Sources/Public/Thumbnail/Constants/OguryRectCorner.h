@@ -3,8 +3,8 @@
 //
 
 typedef NS_ENUM(NSInteger, OguryRectCorner) {
-    OguryTopRight,
-    OguryTopLeft,
-    OguryBottomLeft,
-    OguryBottomRight
+    OguryRectCornerTopRight,
+    OguryRectCornerTopLeft,
+    OguryRectCornerBottomLeft,
+    OguryRectCornerBottomRight
 };

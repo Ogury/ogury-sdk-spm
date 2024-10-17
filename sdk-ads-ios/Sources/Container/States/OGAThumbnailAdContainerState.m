@@ -4,13 +4,13 @@
 
 #import "OGAThumbnailAdContainerState.h"
 
-#import "OguryAdsError.h"
+#import "OguryAdError.h"
 #import "OGAThumbnailAdWindow.h"
 #import "OGAThumbnailAdWindowFactory.h"
 #import "OGAAdDisplayerUpdateStateInformation.h"
 #import "OGAProfigDao.h"
 #import "OGAThumbnailAdConstants.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAThumbnailAdContainerState ()
 
@@ -53,7 +53,7 @@
     return self;
 }
 
-- (BOOL)display:(nonnull id<OGAAdDisplayer>)displayer error:(OguryError *_Nullable *_Nullable)error {
+- (BOOL)display:(nonnull id<OGAAdDisplayer>)displayer error:(OguryAdError *_Nullable *_Nullable)error {
     if (![super display:displayer error:error]) {
         return NO;
     }
@@ -61,7 +61,7 @@
     self.thumbnailAdWindow = [self.thumbnailAdWindowFactory createThumbnailAdWindowWithDisplayer:displayer];
     if (!self.thumbnailAdWindow) {
         if (error) {
-            *error = [OguryError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"Missing window."];
+            *error = [OguryAdError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"Missing window."];
         }
         return NO;
     }

@@ -35,6 +35,20 @@ final class AdsCardManagerTests: XCTestCase {
         }
    }
     
+   struct HBUnityLevelPlayRetriever: UnityLevelPlayBidable {
+        func description(for error: Error) -> String {
+            ""
+        }
+       
+        func adMarkUp(adUnitId: String,
+                    campaignId: String?,
+                    creativeId: String?,
+                    dspCreative: String?,
+                    dspRegion: DspRegion?) async -> String? {
+            return ""
+        }
+   }
+    
     //MARK: AdsCardManager init
     func testWhenInstanciatingNewManagerThenObjectIsNotNil() {
         let manager = AdsCardManager()
@@ -119,6 +133,12 @@ final class AdsCardManagerTests: XCTestCase {
         XCTAssertNotNil(manager)
     }
     
+    func testGivenHBUnityLevelPlayInterstitialAdTypesWhenRetrievingAdManagerThenProperManagerIsReturned() {
+        let inter: AdType<InterstitialAdManager> = .unityLevelPlayHeaderBidding(adType: .interstitial, adMarkUpRetriever: HBUnityLevelPlayRetriever())
+        let manager = try? inter.adManager
+        XCTAssertNotNil(manager)
+    }
+    
     func testWhenInstanciatingHBInterstitialAdTypeWithWrongManagerThenErrorIsThrown() {
         let inter: AdType<RewardedAdManager> = .maxHeaderBidding(adType: .interstitial, adMarkUpRetriever: HBRetriever())
         let manager = try? inter.adManager
@@ -133,6 +153,13 @@ final class AdsCardManagerTests: XCTestCase {
        XCTAssertThrowsError(try inter.adManager)
     }
     
+    func testGivenHBUnityLevelPlayInterstitialAdTypeWithWrongManagerThenErrorIsThrown() {
+        let inter: AdType<OptInAdManager> = .unityLevelPlayHeaderBidding(adType: .interstitial, adMarkUpRetriever: HBUnityLevelPlayRetriever())
+        let manager = try? inter.adManager
+       XCTAssertNil(manager)
+       XCTAssertThrowsError(try inter.adManager)
+    }
+    
     func testGivenHBOptInAdTypesWhenRetrievingAdManagerThenProperManagerIsReturned() {
         let inter: AdType<RewardedAdManager> = .maxHeaderBidding(adType: .rewarded, adMarkUpRetriever: HBRetriever())
         let manager = try? inter.adManager
@@ -141,6 +168,12 @@ final class AdsCardManagerTests: XCTestCase {
    
     func testGivenHBDTFairBidOptInAdTypesWhenRetrievingAdManagerThenProperManagerIsReturned() {
         let inter: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType: .rewarded, adMarkUpRetriever: HBDTFairBidRetriever())
+        let manager = try? inter.adManager
+        XCTAssertNotNil(manager)
+    }
+    
+    func testGivenHBUnityLevelPlayOptInAdTypesWhenRetrievingAdManagerThenProperManagerIsReturned() {
+        let inter: AdType<OptInAdManager> = .unityLevelPlayHeaderBidding(adType: .optInVideo, adMarkUpRetriever: HBUnityLevelPlayRetriever())
         let manager = try? inter.adManager
         XCTAssertNotNil(manager)
     }
@@ -159,6 +192,13 @@ final class AdsCardManagerTests: XCTestCase {
         XCTAssertThrowsError(try inter.adManager)
     }
     
+    func testWhenInstanciatingHBUnityLevelPlayOptInAdTypeWithWrongManagerThenErrorIsThrown() {
+        let inter: AdType<InterstitialAdManager> = .unityLevelPlayHeaderBidding(adType: .optInVideo, adMarkUpRetriever: HBUnityLevelPlayRetriever())
+        let manager = try? inter.adManager
+        XCTAssertNil(manager)
+        XCTAssertThrowsError(try inter.adManager)
+    }
+    
     func testGivenHBBannerAdTypesWhenRetrievingAdManagerThenProperManagerIsReturned() {
         let inter: AdType<BannerAdManager> = .maxHeaderBidding(adType: .banner, adMarkUpRetriever: HBRetriever())
         let manager = try? inter.adManager
@@ -167,6 +207,12 @@ final class AdsCardManagerTests: XCTestCase {
    
     func testGivenHBDTFairBidBannerAdTypesWhenRetrievingAdManagerThenProperManagerIsReturned() {
         let inter: AdType<BannerAdManager> = .dtFairBidHeaderBidding(adType: .banner, adMarkUpRetriever: HBDTFairBidRetriever())
+        let manager = try? inter.adManager
+        XCTAssertNotNil(manager)
+    }
+    
+    func testGivenHBUnityLevelPlayBannerAdTypesWhenRetrievingAdManagerThenProperManagerIsReturned() {
+        let inter: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType: .banner, adMarkUpRetriever: HBUnityLevelPlayRetriever())
         let manager = try? inter.adManager
         XCTAssertNotNil(manager)
     }
@@ -185,6 +231,13 @@ final class AdsCardManagerTests: XCTestCase {
         XCTAssertThrowsError(try inter.adManager)
     }
     
+    func testWhenInstanciatingHBUnityLevelPlayBannerAdTypeWithWrongManagerThenErrorIsThrown() {
+        let inter: AdType<InterstitialAdManager> = .unityLevelPlayHeaderBidding(adType: .banner, adMarkUpRetriever: HBUnityLevelPlayRetriever())
+        let manager = try? inter.adManager
+        XCTAssertNil(manager)
+        XCTAssertThrowsError(try inter.adManager)
+    }
+    
     func testGivenHBMpuAdTypesWhenRetrievingAdManagerThenProperManagerIsReturned() {
         let inter: AdType<BannerAdManager> = .maxHeaderBidding(adType: .mpu, adMarkUpRetriever: HBRetriever())
         let manager = try? inter.adManager
@@ -193,6 +246,12 @@ final class AdsCardManagerTests: XCTestCase {
    
     func testGivenHBDTFairBidMpuAdTypesWhenRetrievingAdManagerThenProperManagerIsReturned() {
         let inter: AdType<BannerAdManager> = .dtFairBidHeaderBidding(adType: .mpu, adMarkUpRetriever: HBDTFairBidRetriever())
+        let manager = try? inter.adManager
+        XCTAssertNotNil(manager)
+    }
+    
+    func testGivenUnityLevelPlayMpuAdTypesWhenRetrievingAdManagerThenProperManagerIsReturned() {
+        let inter: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType: .mpu, adMarkUpRetriever: HBUnityLevelPlayRetriever())
         let manager = try? inter.adManager
         XCTAssertNotNil(manager)
     }
@@ -206,6 +265,13 @@ final class AdsCardManagerTests: XCTestCase {
    
     func testWhenInstanciatingHBDTFairBidMpuAdTypeWithWrongManagerThenErrorIsThrown() {
         let inter: AdType<InterstitialAdManager> = .dtFairBidHeaderBidding(adType: .mpu, adMarkUpRetriever: HBDTFairBidRetriever())
+        let manager = try? inter.adManager
+        XCTAssertNil(manager)
+        XCTAssertThrowsError(try inter.adManager)
+    }
+    
+    func testWhenInstanciatingHBUnityLevelPlayMpuAdTypeWithWrongManagerThenErrorIsThrown() {
+        let inter: AdType<InterstitialAdManager> = .unityLevelPlayHeaderBidding(adType: .mpu, adMarkUpRetriever: HBUnityLevelPlayRetriever())
         let manager = try? inter.adManager
         XCTAssertNil(manager)
         XCTAssertThrowsError(try inter.adManager)

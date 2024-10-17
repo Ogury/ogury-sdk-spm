@@ -121,8 +121,8 @@
     [self.log logMessage:OguryLogLevelDebug message:@"Update instance token"];
 }
 
-- (void)storePrivacyData:(id)value forKey:(NSString *)key {
-   [self.dataLayer storePrivacyData:value forKey:key];
+- (void)setPrivacyData:(id)value forKey:(NSString *)key {
+   [self.dataLayer setPrivacyData:value forKey:key];
 }
 
 - (NSDictionary<NSString *, id> *)retrieveDataPrivacy {

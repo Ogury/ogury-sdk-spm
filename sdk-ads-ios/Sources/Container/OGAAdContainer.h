@@ -5,6 +5,7 @@
 #import <Foundation/Foundation.h>
 #import "OGAAdContainerDelegate.h"
 #import "OGAAdContainerTransition.h"
+#import "OguryAdError.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Methods
 
-- (BOOL)performAction:(NSString *)action error:(OguryError *_Nullable *_Nullable)error;
+- (BOOL)performAction:(NSString *)action error:(OguryAdError *_Nullable *_Nullable)error;
 
 @end
 

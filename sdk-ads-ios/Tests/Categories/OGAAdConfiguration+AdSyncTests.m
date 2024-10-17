@@ -65,7 +65,6 @@ static NSString *const DefaultCreativeID = @"Creative";
 static NSString *const DefaultDspRegion = @"dspRegion";
 static NSString *const DefaultDspCreativeID = @"dspCreative";
 static NSString *const DefaultAdUnitID = @"AdUnit";
-static NSString *const DefaultUserID = @"User";
 
 #pragma mark - Methods
 
@@ -94,7 +93,6 @@ static NSString *const DefaultUserID = @"User";
                                                               delegateDispatcher:delegateDispatcher
                                                           viewControllerProvider:nil
                                                                     viewProvider:nil];
-    configuration.userId = DefaultUserID;
 
     NSDictionary *payload = [configuration payloadForAdSyncWithAssetKeyManager:self.assetKeyManager
                                                                   reachability:self.reachability
@@ -112,7 +110,6 @@ static NSString *const DefaultUserID = @"User";
                                                                          viewControllerProvider:nil
                                                                                    viewProvider:nil
                                                                                          locale:locale]);
-    configuration.userId = DefaultUserID;
     OGAProfigDao *dao = OCMPartialMock([[OGAProfigDao alloc] init]);
     OGAProfigFullResponse *profig = OCMClassMock([OGAProfigFullResponse class]);
     OGAAdPrivacyConfiguration *privacy = OCMClassMock([OGAAdPrivacyConfiguration class]);
@@ -137,7 +134,6 @@ static NSString *const DefaultUserID = @"User";
                                                                          viewControllerProvider:nil
                                                                                    viewProvider:nil
                                                                                          locale:locale]);
-    configuration.userId = DefaultUserID;
     OGAProfigDao *dao = OCMPartialMock([[OGAProfigDao alloc] init]);
     OGAProfigFullResponse *profig = OCMClassMock([OGAProfigFullResponse class]);
     OGAAdPrivacyConfiguration *privacy = OCMClassMock([OGAAdPrivacyConfiguration class]);
@@ -174,7 +170,6 @@ static NSString *const DefaultUserID = @"User";
                                                                          viewControllerProvider:nil
                                                                                    viewProvider:nil
                                                                                          locale:locale]);
-    configuration.userId = DefaultUserID;
     id configurationUtilsMock = OCMClassMock([OGAConfigurationUtils class]);
     if (@available(iOS 14.0, *)) {
         OCMStub(OCMClassMethod([configurationUtilsMock isiOSAppOnMac])).andReturn(YES);
@@ -198,7 +193,6 @@ static NSString *const DefaultUserID = @"User";
                                                                          viewControllerProvider:nil
                                                                                    viewProvider:nil
                                                                                          locale:locale]);
-    configuration.userId = DefaultUserID;
     id configurationUtilsMock = OCMClassMock([OGAConfigurationUtils class]);
     OCMStub(OCMClassMethod([configurationUtilsMock getDeviceOS])).andReturn(@"deviceOS");
     OCMStub(OCMClassMethod([configurationUtilsMock getManufacturer])).andReturn(@"deviceManufacturer");
@@ -549,13 +543,13 @@ static NSString *const DefaultUserID = @"User";
     XCTAssertNotNil(payload[@"privacy_compliancy"][@"tcf"]);
     XCTAssertNotNil(payload[@"privacy_compliancy"][@"gpp"]);
     XCTAssertNotNil(payload[@"privacy_compliancy"][@"gpp_sid"]);
-    XCTAssertNotNil(payload[@"privacy_compliancy"][@"us_optout"]);
-    XCTAssertNotNil(payload[@"privacy_compliancy"][@"customKey"]);
+    XCTAssertNotNil(payload[@"privacy_compliancy"][@"publisher_data"][@"us_optout"]);
+    XCTAssertNotNil(payload[@"privacy_compliancy"][@"publisher_data"][@"customKey"]);
     XCTAssertEqualObjects(payload[@"privacy_compliancy"][@"tcf"], @"tcfConsentString");
     XCTAssertEqualObjects(payload[@"privacy_compliancy"][@"gpp"], @"gppConsentString");
     XCTAssertEqualObjects(payload[@"privacy_compliancy"][@"gpp_sid"], @"gppSidConsentString");
-    XCTAssertTrue(payload[@"privacy_compliancy"][@"us_optout"]);
-    XCTAssertEqualObjects(payload[@"privacy_compliancy"][@"customKey"], @"customValue");
+    XCTAssertTrue(payload[@"privacy_compliancy"][@"publisher_data"][@"us_optout"]);
+    XCTAssertEqualObjects(payload[@"privacy_compliancy"][@"publisher_data"][@"customKey"], @"customValue");
 }
 
 @end

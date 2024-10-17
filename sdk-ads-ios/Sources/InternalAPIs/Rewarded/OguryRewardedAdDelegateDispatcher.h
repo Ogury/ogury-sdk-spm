@@ -10,7 +10,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OguryRewardedAdDelegateDispatcher : OGADelegateDispatcher <id <OguryRewardedAdDelegate>>
 
-@property(nonatomic, strong, nullable) OguryRewardedAd *optinVideo;
+@property(nonatomic, strong, nullable) OguryRewardedAd *rewardedAd;
 
 @end
 

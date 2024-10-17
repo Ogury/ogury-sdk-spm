@@ -9,7 +9,7 @@
 #import "OGAAdSequenceRetainController.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGAAdController+Testing.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 
 NSString *const OGAAdSequenceCoordinatorTestsAdIdOne = @"one";
 NSString *const OGAAdSequenceCoordinatorTestsAdIdTwo = @"two";
@@ -180,7 +180,7 @@ NSString *const OGAAdSequenceCoordinatorTestsNextAdId = @"next-ad-id";
     OguryError *error = nil;
     XCTAssertFalse([self.sequenceCoordinator show:&error]);
     XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, OguryAdsErrorTypeNoAdLoaded);
+    XCTAssertEqual(error.code, OguryShowErrorCodeNoAdLoaded);
 }
 
 - (void)testShow_alreadyDisplayed {
@@ -192,7 +192,7 @@ NSString *const OGAAdSequenceCoordinatorTestsNextAdId = @"next-ad-id";
     OguryError *error = nil;
     XCTAssertFalse([self.sequenceCoordinator show:&error]);
     XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, OguryAdsErrorTypeAnotherAdIsAlreadyDisplayed);
+    XCTAssertEqual(error.code, OguryShowErrorCodeAnotherAdAlreadyDisplayed);
 }
 
 - (void)testShow_alreadyClosed {
@@ -206,14 +206,14 @@ NSString *const OGAAdSequenceCoordinatorTestsNextAdId = @"next-ad-id";
     OguryError *error = nil;
     XCTAssertFalse([self.sequenceCoordinator show:&error]);
     XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, OguryAdsErrorTypeNoAdLoaded);
+    XCTAssertEqual(error.code, OguryShowErrorCodeNoAdLoaded);
 }
 
 - (void)testShow_controllerShowFailed {
     OCMStub(self.controllerOne.isLoaded).andReturn(YES);
     OCMStub(self.controllerTwo.isLoaded).andReturn(YES);
     OCMStub(self.controllerThree.isLoaded).andReturn(YES);
-    OguryError *controllerError = OCMClassMock([OguryAdsError class]);
+    OguryError *controllerError = OCMClassMock([OguryAdError class]);
     OCMStub([self.controllerOne show:[OCMArg anyObjectRef]])
         .andDo(^(NSInvocation *invocation) {
             OguryError *__autoreleasing *errorPointer = nil;
@@ -392,7 +392,7 @@ NSString *const OGAAdSequenceCoordinatorTestsNextAdId = @"next-ad-id";
 - (void)testControllerDidCloseWithNextAd_failedToDisplayNextAd {
     OGANextAd *nextAd = [OGANextAd nextAdTrue];
     OCMStub([self.sequenceCoordinator controllerForNextAd:[OCMArg any] closingController:[OCMArg any]]).andReturn(self.controllerTwo);
-    OguryError *showError = OCMClassMock([OguryAdsError class]);
+    OguryError *showError = OCMClassMock([OguryAdError class]);
     OCMStub([self.controllerTwo show:[OCMArg anyObjectRef]])
         .andDo(^(NSInvocation *invocation) {
             OguryError *__autoreleasing *errorPointer = nil;
@@ -455,7 +455,7 @@ NSString *const OGAAdSequenceCoordinatorTestsNextAdId = @"next-ad-id";
     NSError *error;
     [self.sequenceCoordinator show:&error];
     XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, OguryAdsErrorTypeAdExpired);
+    XCTAssertEqual(error.code, OguryShowErrorCodeAdExpired);
 }
 
 - (void)testWhenDidUnloadIsCalledAndAdIsNotLoadedYetThenPreCachingErrorIsMonitored {
@@ -470,7 +470,15 @@ NSString *const OGAAdSequenceCoordinatorTestsNextAdId = @"next-ad-id";
     OCMStub(self.sequence.status).andReturn(OGAAdSequenceStatusLoaded);
     OCMStub([self.sequenceCoordinator continueLoadingSequenceWithClosingController:[OCMArg any]]).andReturn(NO);
     [self.sequenceCoordinator controller:self.controllerOne didUnLoadWithNextAd:[OCMArg any]];
-    OCMReject([self.sequence.configuration.delegateDispatcher failedWithError:[OguryAdsError noAdLoaded]]);
+    OCMReject([self.sequence.configuration.delegateDispatcher failedWithError:[OguryAdError noAdLoaded]]);
+}
+
+- (void)testWhenTimeoutUnloadIsReceivedThenProperErrorIsDispatched {
+    OCMStub(self.sequenceCoordinator.isLoaded).andReturn(NO);
+    OCMStub(self.sequenceCoordinator.isClosed).andReturn(NO);
+    OCMStub(self.sequenceCoordinator.isNotLoadedYet).andReturn(YES);
+    [self.sequenceCoordinator controller:self.controllerOne didUnLoadAd:OCMClassMock([OGAAd class]) origin:UnloadOriginTimeout];
+    OCMVerify([self.sequence.configuration.delegateDispatcher failedWithError:[OguryAdError adPrecachingTimeout]]);
 }
 
 @end

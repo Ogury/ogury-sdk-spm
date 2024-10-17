@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) OGADelegateDispatcher *delegateDispatcher;
 
 @property(nonatomic, assign, readonly) BOOL isExpanded;
+@property(nonatomic, assign, readonly) BOOL isLoaded;
+@property(nonatomic, assign) UIWindowScene *scene API_AVAILABLE(ios(13.0));
 
 #pragma mark - Initialization
 
@@ -29,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)load;
 
-- (void)load:(CGSize)thumbnailSize;
+- (void)loadWithMaxSize:(CGSize)thumbnailSize;
 
 - (void)loadWithCampaignId:(NSString *_Nullable)campaignId;
 
@@ -43,19 +45,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)loadWithCampaignId:(NSString *_Nullable)campaignId creativeId:(NSString *_Nullable)creativeId dspCreativeId:(NSString *_Nullable)dspCreativeId dspRegion:(NSString *_Nullable)dspRegion thumbnailSize:(CGSize)thumbnailSize;
 
-- (BOOL)isLoaded;
-
 - (void)show;
 
 - (void)show:(CGPoint)position;
 
 - (void)showWithOguryRectCorner:(OguryRectCorner)rectCorner margin:(OguryOffset)offset;
-
-- (void)showInScene:(UIWindowScene *)scene atPosition:(CGPoint)position API_AVAILABLE(ios(13.0));
-
-- (void)showInScene:(UIWindowScene *)scene API_AVAILABLE(ios(13.0));
-
-- (void)showInScene:(UIWindowScene *)scene withOguryRectCorner:(OguryRectCorner)rectCorner margin:(OguryOffset)offset API_AVAILABLE(ios(13.0));
 
 - (void)setBlacklistViewControllers:(NSArray<NSString *> *_Nullable)viewControllers;
 

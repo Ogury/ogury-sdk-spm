@@ -3,7 +3,7 @@
 //
 
 #import "OGAInternetConnectionChecker.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 #import "OGAReachability.h"
 
 @interface OGAInternetConnectionChecker ()
@@ -32,7 +32,7 @@
 - (instancetype)initWithInternetReachability:(OGAReachability *)internetReachability {
     if (self = [super init]) {
         _internetReachability = internetReachability;
-        _origin = OguryInternalAdsErrorOriginLoad;
+        _type = OguryAdErrorTypeLoad;
     }
     return self;
 }
@@ -46,7 +46,7 @@
     [self updateReachabilityStatus];
     if (self.internetReachability.currentReachabilityStatus == NotReachable) {
         if (error) {
-            *error = [OguryAdsError noInternetConnectionFrom:self.origin];
+            *error = [OguryAdError noInternetConnectionFrom:self.type];
         }
         return NO;
     }

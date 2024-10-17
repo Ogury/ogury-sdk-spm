@@ -37,9 +37,9 @@ static NSString *const OGAProfigBodyDeviceModuleVersion = @"module_version";
     content[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyGPPKey] = [self gppConsentString];
     content[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyGPPSIDKey] = [self gppSidConsentString];
     NSDictionary *privacyDatas = [self privacyDatas];
-    [privacyDatas enumerateKeysAndObjectsUsingBlock:^(id _Nonnull key, id _Nonnull obj, BOOL *_Nonnull stop) {
-        content[OGARequestBodyPrivacyComplianceKey][key] = obj;
-    }];
+    if ([privacyDatas count] > 0) {
+        content[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyPublisherDataKey] = privacyDatas;
+    }
 
     return content;
 }

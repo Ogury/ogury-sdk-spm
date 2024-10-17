@@ -3,11 +3,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OguryLogMessage.h"
 
 typedef NS_ENUM(NSInteger, OguryLogLevel);
 
 @protocol OguryLogger;
+@class OguryLogMessage;
 
 NS_ASSUME_NONNULL_BEGIN
 

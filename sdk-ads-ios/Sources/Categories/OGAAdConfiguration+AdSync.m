@@ -113,9 +113,9 @@ static NSString *const AdSyncServiceBodyContentOverlayMaximumSizeScaleKey = @"sc
     body[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyGPPKey] = [self gppConsentString];
     body[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyGPPSIDKey] = [self gppSidConsentString];
     NSDictionary *privacyDatas = [self privacyDatas];
-    [privacyDatas enumerateKeysAndObjectsUsingBlock:^(id _Nonnull key, id _Nonnull obj, BOOL *_Nonnull stop) {
-        body[OGARequestBodyPrivacyComplianceKey][key] = obj;
-    }];
+    if ([privacyDatas count] > 0) {
+        body[OGARequestBodyPrivacyComplianceKey][OGARequestBodyPrivacyPublisherDataKey] = privacyDatas;
+    }
 
     // app
     body[AdSyncServiceBodyAppKey] = [@{} mutableCopy];

@@ -91,7 +91,7 @@ final class BannerAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didLoad?(OguryBannerAd())
+            adManager.ad?.delegate?.didLoad?(OguryBannerAdView())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -110,7 +110,7 @@ final class BannerAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didClick?(OguryBannerAd())
+            adManager.ad?.delegate?.didClick?(OguryBannerAdView())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -130,7 +130,7 @@ final class BannerAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didClose?(OguryBannerAd())
+            adManager.ad?.delegate?.didClose?(OguryBannerAdView())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -150,7 +150,7 @@ final class BannerAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didTriggerImpressionOguryBannerAd?(OguryBannerAd())
+            adManager.ad?.delegate?.didTriggerImpressionOguryBannerAdView?(OguryBannerAdView())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -163,7 +163,7 @@ final class BannerAdManagerTests: XCTestCase {
         adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
         try? adManager.loadAd(from: adManager.options.baseOptions)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            let error = OguryError.createOguryError(withCode: 666)
+            let error = OguryAdError.createOguryError(withCode: 666)
             let ex = self.expectation(description: "")
             adManager.events.sink { event in
                 if event == .adDidFail(error) {
@@ -171,21 +171,21 @@ final class BannerAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didFailOguryBannerAdWithError?(error, for: OguryBannerAd())
+            adManager.ad?.delegate?.didFail?(OguryBannerAdView(), error: error)
             self.wait(for: [ex], timeout: 0.5)
         }
     }
     
     func testWhenReceivingLoadingErrorsThenProperDelegateShouldBeCalled() {
-            [OguryAdsErrorType.profigNotSyncedError.rawValue,
-             OguryAdsErrorType.notLoadedError.rawValue].forEach { errorCode in
+        [OguryAdErrorCode.sdkNotProperlyInitialized.rawValue,
+         OguryAdErrorCode.noAdLoaded.rawValue].forEach { errorCode in
                let ad: AdType<BannerAdManager> = .banner
                var adManager = BannerAdManager(adType: ad)
                let vc = UIView()
                adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
                try? adManager.loadAd(from: adManager.options.baseOptions)
                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                let error = OguryError.createOguryError(withCode: errorCode)
+                let error = OguryAdError.createOguryError(withCode: errorCode)
                 let loadFailEx = self.expectation(description: "adDidFailToLoad called")
                 let failEx = self.expectation(description: "adDidFail called")
                 failEx.isInverted = true
@@ -203,23 +203,23 @@ final class BannerAdManagerTests: XCTestCase {
                     }
                 }
                 .store(in: &self.storables)
-                adManager.ad?.delegate?.didFailOguryBannerAdWithError?(error, for: OguryBannerAd())
+                adManager.ad?.delegate?.didFail?(OguryBannerAdView(), error: error)
                 self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
             }
         }
     }
     
    func testWhenReceivingDisplayErrorsThenProperDelegateShouldBeCalled() {
-      [OguryAdsErrorType.adExpiredError.rawValue,
-       OguryAdsErrorType.anotherAdAlreadyDisplayedError.rawValue,
-       OguryAdsErrorType.cantShowAdsInPresentingViewControllerError.rawValue].forEach { errorCode in
+       [OguryAdErrorCode.adExpired.rawValue,
+        OguryAdErrorCode.anotherAdAlreadyDisplayed.rawValue,
+        OguryAdErrorCode.viewControllerPreventsAdFromBeingDisplayed.rawValue].forEach { errorCode in
          let ad: AdType<BannerAdManager> = .banner
          let adManager = BannerAdManager(adType: ad)
          let vc = UIView()
          adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
          try? adManager.loadAd(from: adManager.options.baseOptions)
          DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            let error = OguryError.createOguryError(withCode: errorCode)
+            let error = OguryAdError.createOguryError(withCode: errorCode)
             let loadFailEx = self.expectation(description: "adDidFailToLoad called")
             loadFailEx.isInverted = true
             let failEx = self.expectation(description: "adDidFail called")
@@ -237,18 +237,19 @@ final class BannerAdManagerTests: XCTestCase {
                }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didFailOguryBannerAdWithError?(error, for: OguryBannerAd())
+            adManager.ad?.delegate?.didFail?(OguryBannerAdView(), error: error)
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
          }
       }
     }
     
     func testWhenReceivingGenericErrorsThenProperDelegateShouldBeCalled() {
-            [OguryAdsErrorType.adDisabledError.rawValue,
-             OguryAdsErrorType.assetKeyNotValidError.rawValue,
-             OguryAdsErrorType.notAvailableError.rawValue,
-             OguryAdsErrorType.sdkInitNotCalledError.rawValue,
-             OguryAdsErrorType.unknownError.rawValue].forEach { errorCode in
+        [OguryAdErrorCode.adDisabledConsentDenied.rawValue,
+         OguryAdErrorCode.invalidConfiguration.rawValue,
+         OguryAdErrorCode.adDisabledUnspecifiedReason.rawValue,
+         OguryAdErrorCode.adDisabledCountryNotOpened.rawValue,
+         OguryAdErrorCode.invalidConfiguration.rawValue,
+         OguryAdErrorCode.sdkStartNotCalled.rawValue].forEach { errorCode in
                let ad: AdType<BannerAdManager> = .banner
                
                let adManager = BannerAdManager(adType: ad)
@@ -256,7 +257,7 @@ final class BannerAdManagerTests: XCTestCase {
                adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                try? adManager.loadAd(from: adManager.options.baseOptions)
-                let error = OguryError.createOguryError(withCode: errorCode)
+                let error = OguryAdError.createOguryError(withCode: errorCode)
                 let loadFailEx = self.expectation(description: "adDidFailToLoad called")
                 loadFailEx.isInverted = true
                 let failEx = self.expectation(description: "adDidFail called")
@@ -274,7 +275,7 @@ final class BannerAdManagerTests: XCTestCase {
                     }
                 }
                 .store(in: &self.storables)
-                adManager.ad?.delegate?.didFailOguryBannerAdWithError?(error, for: OguryBannerAd())
+                adManager.ad?.delegate?.didFail?(OguryBannerAdView(), error: error)
                 self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
             }
         }
@@ -303,7 +304,7 @@ final class BannerAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            proxy.handle(AdManagerError.loadNotCalledBeforeShow, for: OguryBannerAd())
+            proxy.handle(AdManagerError.loadNotCalledBeforeShow, for: OguryBannerAdView())
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
         }
     }
@@ -328,6 +329,23 @@ final class BannerAdManagerTests: XCTestCase {
     func testWhenDTFairBidBannerIsUsedThenMaxBiddableIsCalled() {
         let retriever = BTFairBidRetriever(adMarkUpToReturn: "")
         let ad: AdType<BannerAdManager> = .dtFairBidHeaderBidding(adType: .banner, adMarkUpRetriever: retriever)
+        let adManager = BannerAdManager(adType: ad)
+        let vc = UIView()
+        adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
+        let ex = XCTestExpectation(description: "The ad did not load")
+        adManager.events.sink { event in
+            if event == .adLoading {
+                ex.fulfill()
+            }
+        }
+        .store(in: &storables)
+        try? adManager.loadAd(from: adManager.options.baseOptions)
+        wait(for: [ex], timeout: 0.5)
+    }
+    
+    func testWhenUnityLevelPlayBannerIsUsedThenMaxBiddableIsCalled() {
+        let retriever = UnityLevelPlayRetriever(adMarkUpToReturn: "")
+        let ad: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType: .banner, adMarkUpRetriever: retriever)
         let adManager = BannerAdManager(adType: ad)
         let vc = UIView()
         adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
@@ -376,6 +394,23 @@ final class BannerAdManagerTests: XCTestCase {
         wait(for: [ex], timeout: 1)
     }
     
+    func testWhenUnityLevelPlayBannerIsUsedAndBidderReturnNilThenErrorIsDispatched() {
+        let retriever = UnityLevelPlayRetriever(adMarkUpToReturn: nil)
+        let ad: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType: .banner, adMarkUpRetriever: retriever)
+        let adManager = BannerAdManager(adType: ad)
+        let vc = UIView()
+        adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
+        let ex = XCTestExpectation(description: "The ad did not load")
+        adManager.events.sink { event in
+            if event == .adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")) {
+                ex.fulfill()
+            }
+        }
+        .store(in: &storables)
+        try? adManager.loadAd(from: adManager.options.baseOptions)
+        wait(for: [ex], timeout: 1)
+    }
+    
     func testWhenMaxMpuIsUsedThenMaxBiddableIsCalled() {
         let retriever = MaxRetriever(adMarkUpToReturn: "")
         let ad: AdType<BannerAdManager> = .maxHeaderBidding(adType: .mpu, adMarkUpRetriever: retriever)
@@ -396,6 +431,23 @@ final class BannerAdManagerTests: XCTestCase {
     func testWhenDTFairBidMpuIsUsedThenMaxBiddableIsCalled() {
         let retriever = BTFairBidRetriever(adMarkUpToReturn: "")
         let ad: AdType<BannerAdManager> = .dtFairBidHeaderBidding(adType: .mpu, adMarkUpRetriever: retriever)
+        let adManager = BannerAdManager(adType: ad)
+        let vc = UIView()
+        adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
+        let ex = XCTestExpectation(description: "The ad did not load")
+        adManager.events.sink { event in
+            if event == .adLoading {
+                ex.fulfill()
+            }
+        }
+        .store(in: &storables)
+        try? adManager.loadAd(from: adManager.options.baseOptions)
+        wait(for: [ex], timeout: 0.5)
+    }
+    
+    func testWhenUnityLevelPlayMpuIsUsedThenMaxBiddableIsCalled() {
+        let retriever = UnityLevelPlayRetriever(adMarkUpToReturn: "")
+        let ad: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType: .mpu, adMarkUpRetriever: retriever)
         let adManager = BannerAdManager(adType: ad)
         let vc = UIView()
         adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
@@ -443,4 +495,22 @@ final class BannerAdManagerTests: XCTestCase {
         try? adManager.loadAd(from: adManager.options.baseOptions)
         wait(for: [ex], timeout: 1)
     }
+    
+    func testWhenUnityLevelPlayMpuIsUsedAndBidderReturnNilThenErrorIsDispatched() {
+        let retriever = UnityLevelPlayRetriever(adMarkUpToReturn: nil)
+        let ad: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType: .mpu, adMarkUpRetriever: retriever)
+        let adManager = BannerAdManager(adType: ad)
+        let vc = UIView()
+        adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
+        let ex = XCTestExpectation(description: "The ad did not load")
+        adManager.events.sink { event in
+            if event == .adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")) {
+                ex.fulfill()
+            }
+        }
+        .store(in: &storables)
+        try? adManager.loadAd(from: adManager.options.baseOptions)
+        wait(for: [ex], timeout: 1)
+    }
+    
 }
