@@ -15,7 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Properties
 
 @property(nonatomic, copy, readonly) NSString *adUnitId;
-@property(nonatomic, copy, readonly, nullable) OguryMediation *mediation;
 
 #pragma mark - Initialization
 

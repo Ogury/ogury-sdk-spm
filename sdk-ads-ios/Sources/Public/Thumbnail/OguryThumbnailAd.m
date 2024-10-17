@@ -60,14 +60,18 @@
     return self.internalAPI.isExpanded;
 }
 
+- (void)setScene:(UIWindowScene *)scene {
+    self.internalAPI.scene = scene;
+}
+
 #pragma mark - Public Methods
 
 - (void)load {
     [self.internalAPI load];
 }
 
-- (void)load:(CGSize)thumbnailSize {
-    [self.internalAPI load:thumbnailSize];
+- (void)loadWithMaxSize:(CGSize)thumbnailSize {
+    [self.internalAPI loadWithMaxSize:thumbnailSize];
 }
 
 - (BOOL)isLoaded {
@@ -102,24 +106,12 @@
     [self.internalAPI show];
 }
 
-- (void)show:(CGPoint)position {
+- (void)showAt:(CGPoint)position {
     [self.internalAPI show:position];
 }
 
-- (void)showWithOguryRectCorner:(OguryRectCorner)rectCorner margin:(OguryOffset)offset {
+- (void)showWithOguryRectCorner:(OguryRectCorner)rectCorner offset:(OguryOffset)offset {
     [self.internalAPI showWithOguryRectCorner:rectCorner margin:offset];
-}
-
-- (void)showInScene:(UIWindowScene *)scene API_AVAILABLE(ios(13.0)) {
-    [self.internalAPI showInScene:scene];
-}
-
-- (void)showInScene:(UIWindowScene *)scene atPosition:(CGPoint)position API_AVAILABLE(ios(13.0)) {
-    [self.internalAPI showInScene:scene atPosition:position];
-}
-
-- (void)showInScene:(UIWindowScene *)scene withOguryRectCorner:(OguryRectCorner)rectCorner margin:(OguryOffset)offset API_AVAILABLE(ios(13.0)) {
-    [self.internalAPI showInScene:scene withOguryRectCorner:rectCorner margin:offset];
 }
 
 - (void)setBlacklistViewControllers:(NSArray<NSString *> *_Nullable)viewControllers {

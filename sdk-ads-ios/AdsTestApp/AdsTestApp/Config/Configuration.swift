@@ -12,6 +12,7 @@ protocol MediationOptions: Codable {
     var banner: Configuration.DefaultBaseOptions { get }
     var thumbnail: Configuration.DefaultBaseOptions? { get }
     var url: URL? { get }
+    var displayManager: String? { get }
 }
 
 struct Configuration: Decodable {
@@ -29,6 +30,7 @@ struct Configuration: Decodable {
         let banner: DefaultBaseOptions
         let thumbnail: DefaultBaseOptions?
         let url: URL?
+        var displayManager: String?
     }
     struct DefaultMaxOptions: MediationOptions {
         let interstitial: DefaultBaseOptions
@@ -37,6 +39,7 @@ struct Configuration: Decodable {
         let banner: DefaultBaseOptions
         let thumbnail: DefaultBaseOptions?
         let url: URL?
+        var displayManager: String? { "max" }
     }
     struct DefaultDTFairBidOptions: MediationOptions {
         let interstitial: DefaultBaseOptions
@@ -45,14 +48,26 @@ struct Configuration: Decodable {
         let banner: DefaultBaseOptions
         let thumbnail: DefaultBaseOptions?
         let url: URL?
+        var displayManager: String? { "fyber" }
+    }
+    struct DefaultUnityLevelPlayOptions: MediationOptions {
+        let interstitial: DefaultBaseOptions
+        let optIn: DefaultBaseOptions
+        let mpu: DefaultBaseOptions
+        let banner: DefaultBaseOptions
+        let thumbnail: DefaultBaseOptions?
+        let url: URL?
+        var displayManager: String? { "unity levelplay" }
     }
     let options: DefaultOptions
     let maxOptions: DefaultMaxOptions
     let dtFairBidOptions: DefaultDTFairBidOptions
+    let unityLevelPlayOptions: DefaultUnityLevelPlayOptions
     
     enum CodingKeys: String, CodingKey {
         case max = "maxHeaderBidding"
         case dtFairBid = "DTFairBidHeaderBidding"
+        case unityLevelPlay = "UnityLevelPlayHeaderBidding"
     }
     
     init(from decoder: Decoder) throws {
@@ -61,6 +76,7 @@ struct Configuration: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         maxOptions = try container.decode(DefaultMaxOptions.self, forKey: .max)
         dtFairBidOptions = try container.decode(DefaultDTFairBidOptions.self, forKey: .dtFairBid)
+        unityLevelPlayOptions = try container.decode(DefaultUnityLevelPlayOptions.self, forKey: .unityLevelPlay)
     }
     
     static let shared: Configuration = {
@@ -253,8 +269,60 @@ struct Configuration: Decodable {
                    default: fatalError("There should not be HB with thumbnail")
                }
                 
-            @unknown default:
-                fatalError("Options for AdType \"\(adType)\" not handled")
-        }
+               case let .unityLevelPlayHeaderBidding(innerType, _):
+                   switch innerType {
+                       case .interstitial:
+                           return AdManagerOptions(showCampaignId:settings.showCampaignId,
+                                                   showCreativeId:settings.showCreativeId,
+                                                   showDspFields: settings.showDspFields,
+                                                   showSpecificOptions:settings.showSpecificOptions,
+                                                   viewController: UIViewController(),
+                                                   adDisplayName: index == nil ? "" : "Card #\(index!)",
+                                                   adUnitId: unityLevelPlayOptions.interstitial.adUnitId,
+                                                   campaignId: unityLevelPlayOptions.interstitial.campaignId,
+                                                   creativeId: unityLevelPlayOptions.interstitial.creativeId,
+                                                   bulkModeEnabled: settings.bulkModeEnabled) as! T.Options
+                           
+                       case .rewarded:
+                           return AdManagerOptions(showCampaignId:settings.showCampaignId,
+                                                   showCreativeId:settings.showCreativeId,
+                                                   showDspFields: settings.showDspFields,
+                                                   showSpecificOptions:settings.showSpecificOptions,
+                                                   viewController: UIViewController(),
+                                                   adDisplayName: index == nil ? "" : "Card #\(index!)",
+                                                   adUnitId: unityLevelPlayOptions.optIn.adUnitId,
+                                                   campaignId: unityLevelPlayOptions.optIn.campaignId,
+                                                   creativeId: unityLevelPlayOptions.optIn.creativeId,
+                                                   bulkModeEnabled: settings.bulkModeEnabled) as! T.Options
+                           
+                       case .mpu:
+                           return BannerAdManagerOptions(showCampaignId:settings.showCampaignId,
+                                                         showCreativeId:settings.showCreativeId,
+                                                         showDspFields: settings.showDspFields,
+                                                         showSpecificOptions:settings.showSpecificOptions,
+                                                         view: UIView(),
+                                                         adDisplayName: index == nil ? "" : "Card #\(index!)",
+                                                         adUnitId: unityLevelPlayOptions.mpu.adUnitId,
+                                                         campaignId: unityLevelPlayOptions.mpu.campaignId,
+                                                         creativeId: unityLevelPlayOptions.mpu.creativeId,
+                                                         bulkModeEnabled: settings.bulkModeEnabled) as! T.Options
+                           
+                       case .banner:
+                           return BannerAdManagerOptions(showCampaignId:settings.showCampaignId,
+                                                         showCreativeId:settings.showCreativeId,
+                                                         showDspFields: settings.showDspFields,
+                                                         showSpecificOptions:settings.showSpecificOptions,
+                                                         view: UIView(),
+                                                         adDisplayName: index == nil ? "" : "Card #\(index!)",
+                                                         adUnitId: unityLevelPlayOptions.banner.adUnitId,
+                                                         campaignId: unityLevelPlayOptions.banner.campaignId,
+                                                         creativeId: unityLevelPlayOptions.banner.creativeId,
+                                                         bulkModeEnabled: settings.bulkModeEnabled) as! T.Options
+                           
+                       default: fatalError("There should not be HB with thumbnail")
+                   }
+                @unknown default:
+                        fatalError("Options for AdType \"\(adType)\" not handled")
+                }
     }
 }

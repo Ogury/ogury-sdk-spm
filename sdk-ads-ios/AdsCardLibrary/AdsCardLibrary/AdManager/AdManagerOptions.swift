@@ -30,9 +30,9 @@ public struct BaseAdOptions: Equatable, Codable {
     /// The campaignId used to load the ad
     public internal(set) var campaignId: String?
     /// The dsp creativeId used to load the ad
-    public internal(set) var  dspCreativeId: String?
+    public internal(set) var dspCreativeId: String?
     /// The dsp region used to load the ad
-    public internal(set) var  dspRegion: DspRegion?
+    public internal(set) var dspRegion: DspRegion?
     /// The creativeId used to load the ad
     public internal(set) var creativeId: String?
     /// The adMarkUp JSON object for HB
@@ -41,10 +41,18 @@ public struct BaseAdOptions: Equatable, Codable {
     public internal(set) var isSelected: Bool
     /// indicates if we should show the action bar or not
     public internal(set) var bulkModeEnabled: Bool
+    /// indicates if we should use _test mode
+    public internal(set) var oguryTestModeEnabled: Bool
+    /// indicates if we should use the RTB test mode (test=1 in bid request)
+    public internal(set) var rtbTestModeEnabled: Bool
+    /// The card accessibilityLabel
+    public internal(set) var qaLabel: String
     
-    mutating public
-    func update(name: String) {
+    mutating public func update(name: String) {
         adDisplayName = name
+    }
+    mutating public func update(accessibilityLabel: String) {
+        qaLabel = accessibilityLabel
     }
 }
 
@@ -82,7 +90,10 @@ public class BaseAdManagerOptions: AdOptions, Codable {
                 dspRegion: DspRegion? = nil,
                 adMarkUp: String? = nil,
                 isSelected: Bool = false,
-                bulkModeEnabled: Bool = false) {
+                bulkModeEnabled: Bool = false,
+                oguryTestModeEnabled: Bool = false,
+                rtbTestModeEnabled: Bool = false,
+                qaLabel: String = UUID().uuidString) {
         self.showCampaignId = showCampaignId
         self.showCreativeId = showCreativeId
         self.showDspFields = showDspFields
@@ -95,7 +106,10 @@ public class BaseAdManagerOptions: AdOptions, Codable {
                                     creativeId: creativeId,
                                     adMarkUp: adMarkUp,
                                     isSelected: isSelected,
-                                    bulkModeEnabled: bulkModeEnabled)
+                                    bulkModeEnabled: bulkModeEnabled,
+                                    oguryTestModeEnabled: oguryTestModeEnabled,
+                                    rtbTestModeEnabled: rtbTestModeEnabled,
+                                    qaLabel: qaLabel)
     }
     
     public func isEqual(_ options: any AdOptions) -> Bool {
@@ -133,7 +147,10 @@ public class BannerAdManagerOptions: BaseAdManagerOptions {
                 dspRegion: DspRegion? = nil,
                 adMarkUp: String? = nil,
                 isSelected: Bool = false,
-                bulkModeEnabled: Bool = false) {
+                bulkModeEnabled: Bool = false,
+                oguryTestModeEnabled: Bool = false,
+                rtbTestModeEnabled: Bool = false,
+                qaLabel: String = UUID().uuidString) {
         super.init(showCampaignId: showCampaignId,
                    showCreativeId: showCreativeId,
                    showDspFields: showDspFields,
@@ -146,7 +163,10 @@ public class BannerAdManagerOptions: BaseAdManagerOptions {
                    dspRegion: dspRegion,
                    adMarkUp: adMarkUp,
                    isSelected: isSelected,
-                   bulkModeEnabled: bulkModeEnabled)
+                   bulkModeEnabled: bulkModeEnabled,
+                   oguryTestModeEnabled: oguryTestModeEnabled,
+                   rtbTestModeEnabled: rtbTestModeEnabled,
+                   qaLabel: qaLabel)
         self.view = view
     }
     
@@ -163,7 +183,10 @@ public class BannerAdManagerOptions: BaseAdManagerOptions {
                    dspRegion: options.baseOptions.dspRegion,
                    adMarkUp: options.baseOptions.adMarkUp,
                    isSelected: options.baseOptions.isSelected,
-                   bulkModeEnabled: options.baseOptions.bulkModeEnabled)
+                   bulkModeEnabled: options.baseOptions.bulkModeEnabled,
+                   oguryTestModeEnabled: options.baseOptions.oguryTestModeEnabled,
+                   rtbTestModeEnabled: options.baseOptions.rtbTestModeEnabled,
+                   qaLabel: options.baseOptions.qaLabel)
     }
     
     required init(from decoder: Decoder) throws {
@@ -195,7 +218,10 @@ public class AdManagerOptions: BaseAdManagerOptions {
                 dspRegion: DspRegion? = nil,
                 adMarkUp: String? = nil,
                 isSelected: Bool = false,
-                bulkModeEnabled: Bool = false) {
+                bulkModeEnabled: Bool = false,
+                oguryTestModeEnabled: Bool = false,
+                rtbTestModeEnabled: Bool = false,
+                qaLabel: String = UUID().uuidString) {
         super.init(showCampaignId: showCampaignId,
                    showCreativeId: showCreativeId,
                    showDspFields: showDspFields,
@@ -208,7 +234,10 @@ public class AdManagerOptions: BaseAdManagerOptions {
                    dspRegion: dspRegion,
                    adMarkUp: adMarkUp,
                    isSelected: isSelected,
-                   bulkModeEnabled: bulkModeEnabled)
+                   bulkModeEnabled: bulkModeEnabled,
+                   oguryTestModeEnabled: oguryTestModeEnabled,
+                   rtbTestModeEnabled: rtbTestModeEnabled,
+                   qaLabel: qaLabel)
         self.viewController = viewController
     }
     
@@ -225,7 +254,10 @@ public class AdManagerOptions: BaseAdManagerOptions {
                    dspRegion: options.baseOptions.dspRegion,
                    adMarkUp: options.baseOptions.adMarkUp,
                    isSelected: options.baseOptions.isSelected,
-                   bulkModeEnabled: options.baseOptions.bulkModeEnabled)
+                   bulkModeEnabled: options.baseOptions.bulkModeEnabled,
+                   oguryTestModeEnabled: options.baseOptions.oguryTestModeEnabled,
+                   rtbTestModeEnabled: options.baseOptions.rtbTestModeEnabled,
+                   qaLabel: options.baseOptions.qaLabel)
     }
     
     required init(from decoder: Decoder) throws {
@@ -258,7 +290,10 @@ public class ThumbnailAdManagerOptions: AdManagerOptions {
                 dspRegion: DspRegion? = nil,
                 adMarkUp: String? = nil,
                 isSelected: Bool = false,
-                bulkModeEnabled: Bool = false) {
+                bulkModeEnabled: Bool = false,
+                oguryTestModeEnabled: Bool = false,
+                rtbTestModeEnabled: Bool = false,
+                qaLabel: String = UUID().uuidString) {
         super.init(showCampaignId: showCampaignId,
                    showCreativeId: showCreativeId,
                    showDspFields: showDspFields,
@@ -272,7 +307,10 @@ public class ThumbnailAdManagerOptions: AdManagerOptions {
                    dspRegion: dspRegion,
                    adMarkUp: adMarkUp,
                    isSelected: isSelected,
-                   bulkModeEnabled: bulkModeEnabled)
+                   bulkModeEnabled: bulkModeEnabled,
+                   oguryTestModeEnabled: oguryTestModeEnabled,
+                   rtbTestModeEnabled: rtbTestModeEnabled,
+                   qaLabel: qaLabel)
         self.thumbnailOptions = thumbnailOptions
     }
     
@@ -290,7 +328,10 @@ public class ThumbnailAdManagerOptions: AdManagerOptions {
                    dspRegion: options.baseOptions.dspRegion,
                    adMarkUp: options.baseOptions.adMarkUp,
                    isSelected: options.baseOptions.isSelected,
-                   bulkModeEnabled: options.baseOptions.bulkModeEnabled)
+                   bulkModeEnabled: options.baseOptions.bulkModeEnabled,
+                   oguryTestModeEnabled: options.baseOptions.oguryTestModeEnabled,
+                   rtbTestModeEnabled: options.baseOptions.rtbTestModeEnabled,
+                   qaLabel: options.baseOptions.qaLabel)
         self.thumbnailOptions = thumbnailOptions
     }
     

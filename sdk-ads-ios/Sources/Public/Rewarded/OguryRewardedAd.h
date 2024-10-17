@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, weak, nullable) id<OguryRewardedAdDelegate> delegate;
 @property(nonatomic, strong, readonly) NSString *adUnitId;
-@property(nonatomic, strong, nullable) NSString *userId;
+@property(nonatomic, assign, readonly) BOOL isLoaded;
 
 - (instancetype)initWithAdUnitId:(NSString *)adUnitId;
 - (instancetype)initWithAdUnitId:(NSString *)adUnitId mediation:(OguryMediation *_Nonnull)mediation;
@@ -20,8 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)load;
 
 - (void)loadWithAdMarkup:(NSString *)adMarkup;
-
-- (BOOL)isLoaded;
 
 - (void)showAdInViewController:(UIViewController *)viewController;
 

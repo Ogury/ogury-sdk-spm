@@ -16,7 +16,7 @@
 #import "OGAProfigDao.h"
 #import "OGAWebViewUserAgentService.h"
 #import "UIDevice+Orientation.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAAdServerMonitorRequestBuilder ()
 

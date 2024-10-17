@@ -2,7 +2,7 @@
 //  Copyright © 2020-present Ogury. All rights reserved.
 //
 
-#import "OguryError.h"
+#import "OguryError+Internal.h"
 #import "OGCConstants.h"
 
 @implementation OguryError

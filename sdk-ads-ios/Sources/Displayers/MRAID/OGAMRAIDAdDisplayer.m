@@ -48,7 +48,7 @@
 #import "OGAWKWebView.h"
 #import "OGAWebViewCleanupManager.h"
 #import "OGAAdController.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 
 #pragma mark - Constants
 
@@ -214,7 +214,7 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
         return;
     }
     // if no internet then we set the ad as killed to avoid failed reload
-    [OGAInternetConnectionChecker shared].origin = OguryInternalAdsErrorOriginLoad;
+    [OGAInternetConnectionChecker shared].type = OguryAdErrorTypeLoad;
     if (![[OGAInternetConnectionChecker shared] checkForSequence:NULL error:NULL]) {
         self.mraidDisplayerState = OGAAdMraidDisplayerStateKilled;
         return;
@@ -385,7 +385,7 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
 }
 
 - (void)createWebView:(OGAMraidCommand *)command {
-    [OGAInternetConnectionChecker shared].origin = OguryInternalAdsErrorOriginLoad;
+    [OGAInternetConnectionChecker shared].type = OguryAdErrorTypeLoad;
     if (![[OGAInternetConnectionChecker shared] checkForSequence:NULL error:NULL]) {
         [self forceClose:[OGAMraidCommand MraidCloseCommandWithNextAdFalse]];
         return;
@@ -606,14 +606,14 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
     } else if ([self.delegate isKindOfClass:[OGAAdController class]] && [(OGAAdController *)self.delegate isLoaded]) {
         [self.monitoringDispatcher sendLoadEvent:OGALoadEventLoadAdBackgroundUnloaded adConfiguration:self.ad.adConfiguration];
         if ([self.configuration.delegateDispatcher respondsToSelector:@selector(failedWithError:)]) {
-            [self.configuration.delegateDispatcher failedWithError:[OguryError createOguryErrorWithCode:OGAInternalUnknownError]];
+            [self.configuration.delegateDispatcher failedWithError:[OguryAdError adPrecachingFailedWithStackTrace:@"Unload"]];
         }
         // unload received while the load has not yet finish -> Load Error
     } else if (origin == UnloadOriginFormat) {
         [self.monitoringDispatcher sendLoadErrorEventPrecacheFail:OGAMonitoringPrecacheErrorUnload
                                                   adConfiguration:self.ad.adConfiguration];
         if ([self.configuration.delegateDispatcher respondsToSelector:@selector(failedWithError:)]) {
-            [self.configuration.delegateDispatcher failedWithError:[OguryError createOguryErrorWithCode:OGAInternalUnknownError]];
+            [self.configuration.delegateDispatcher failedWithError:[OguryAdError adPrecachingFailedWithStackTrace:@"Unload"]];
         }
     }
     [self safeDelegateCallWithAction:[[OGAUnloadAdAction alloc] initWithNextAd:[OGANextAd nextAdTrue]]];
@@ -712,10 +712,10 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
 
 - (void)rewardWasReceived {
     if ([self.configuration.delegateDispatcher respondsToSelector:@selector(rewarded:)]) {
-        OGARewardItem *rewardItem = [[OGARewardItem alloc] initWithRewardName:self.ad.adUnit.rewardName rewardValue:self.ad.adUnit.rewardValue];
+        OguryReward *reward = [[OguryReward alloc] initWithRewardName:self.ad.adUnit.rewardName rewardValue:self.ad.adUnit.rewardValue];
 
-        if (rewardItem && self.configuration.adType == OguryAdsTypeOptinVideo) {
-            [self.configuration.delegateDispatcher rewarded:rewardItem];
+        if (reward && self.configuration.adType == OguryAdsTypeRewardedAd) {
+            [self.configuration.delegateDispatcher rewarded:reward];
         }
     }
 }

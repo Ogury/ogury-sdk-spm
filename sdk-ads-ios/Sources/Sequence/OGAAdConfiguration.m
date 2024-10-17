@@ -108,7 +108,6 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
     configuration.campaignId = self.campaignId;
     configuration.creativeId = self.creativeId;
     configuration.adDsp = [self.adDsp copy];
-    configuration.userId = self.userId;
     configuration.size = self.size;
     configuration.corner = self.corner;
     configuration.offset = self.offset;
@@ -142,7 +141,7 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
         }
         case OguryAdsTypeThumbnailAd:
             return OGAAdConfigurationAdTypeThumbnailAd;
-        case OguryAdsTypeOptinVideo:
+        case OguryAdsTypeRewardedAd:
             return OGAAdConfigurationAdTypeRewarded;
         case OguryAdsTypeInterstitial:
             return OGAAdConfigurationAdTypeInterstitial;

@@ -14,7 +14,6 @@ static NSString *const DefaultCampaignId = @"CAMPAIGN-ID";
 static NSString *const DefaultCreativeId = @"creativeId";
 static NSString *const DefaultDspCreativeId = @"dspCreativeId";
 static NSString *const DefaultDspRegion = @"dspRegion";
-static NSString *const DefaultUserId = @"USER-ID";
 
 @interface OGARewardedAdInternalAPITests : XCTestCase
 
@@ -122,11 +121,6 @@ static NSString *const DefaultUserId = @"USER-ID";
 
 - (void)testAdUnitId {
     XCTAssertEqualObjects(self.internalAPI.adUnitId, DefaultAdUnitId);
-}
-
-- (void)testUserId {
-    self.internalAPI.userId = DefaultUserId;
-    XCTAssertEqualObjects(self.internalAPI.userId, DefaultUserId);
 }
 
 - (void)testLoadWithCampaignIdCreativeId {

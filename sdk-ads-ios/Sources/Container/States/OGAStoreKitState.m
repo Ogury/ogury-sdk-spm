@@ -3,14 +3,14 @@
 //
 
 #import "OGAStoreKitState.h"
-#import "OguryAdsError.h"
+#import "OguryAdError.h"
 #import "OGAAdConfiguration.h"
 #import <StoreKit/StoreKit.h>
 #import "OGAAdDisplayerUserCloseStoreKitInformation.h"
 #import "OGAFullscreenViewController.h"
 #import "OGAMonitoringDispatcher+SKNetwork.h"
 #import "OGASKAdNetworkService.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAStoreKitState () <SKStoreProductViewControllerDelegate>
 
@@ -101,12 +101,12 @@
 }
 
 - (BOOL)display:(nonnull id<OGAAdDisplayer>)displayer
-          error:(OguryError *_Nullable *_Nullable)error {
+          error:(OguryAdError *_Nullable *_Nullable)error {
     self.displayer = displayer;
 
     if (!self.viewControllerProvider) {
         if (error) {
-            *error = [OguryError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"[SKAdNetwork] Missing root view controller to present."];
+            *error = [OguryAdError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"[SKAdNetwork] Missing root view controller to present."];
         }
         [self sendGenericError];
         return NO;
@@ -118,7 +118,7 @@
 
     if (!rootViewController) {
         if (error) {
-            *error = [OguryError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"[SKAdNetwork] Missing root view controller to present."];
+            *error = [OguryAdError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"[SKAdNetwork] Missing root view controller to present."];
         }
         [self sendGenericError];
         return NO;
@@ -126,7 +126,7 @@
 
     if (!displayer.ad.skAdNetworkResponse) {
         if (error) {
-            *error = [OguryError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"[SKAdNetwork] Missing SKAN information to present Store Kit rendered ads."];
+            *error = [OguryAdError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"[SKAdNetwork] Missing SKAN information to present Store Kit rendered ads."];
         }
         [self sendGenericError];
         return NO;
@@ -134,7 +134,7 @@
 
     if (!displayer.ad.skAdNetworkResponse.isStoreKitDisplay) {
         if (error) {
-            *error = [OguryError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"[SKAdNetwork] SKAN should not be rendered with StoreKit."];
+            *error = [OguryAdError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"[SKAdNetwork] SKAN should not be rendered with StoreKit."];
         }
         [self sendGenericError];
         return NO;
@@ -145,11 +145,11 @@
             [rootViewController presentViewController:self.storeProductViewController animated:YES completion:nil];
         } else {
             [displayer dispatchInformation:[[OGAAdDisplayerUserCloseStoreKitInformation alloc] initWithErrorCode:@(self.loadError.code)]];
-            *error = [OguryError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"[SKAdNetwork] Error during presentation of StoreKit"];
+            *error = [OguryAdError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"[SKAdNetwork] Error during presentation of StoreKit"];
             return NO;
         }
     } else {
-        *error = [OguryError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"[SKAdNetwork] [SKAdNetwork] This version of iOS is not compatible with StoreKit"];
+        *error = [OguryAdError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"[SKAdNetwork] [SKAdNetwork] This version of iOS is not compatible with StoreKit"];
         [self sendGenericError];
         return NO;
     }
