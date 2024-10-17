@@ -14,7 +14,7 @@
 
 @implementation OGAMraidEnviromentBuilderTests
 
-- (void)testbuildMraidEnvironmentOptinVideo {
+- (void)testbuildMraidEnvironmentRewardedAdVideo {
     NSString *type = OGAAdConfigurationAdTypeRewarded;
     NSString *rewardName = @"rewardName";
     NSString *rewardValue = @"rewardValue";

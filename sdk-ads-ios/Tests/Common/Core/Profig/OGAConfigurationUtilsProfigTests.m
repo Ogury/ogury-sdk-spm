@@ -51,8 +51,8 @@
     XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"tcf"]);
     XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"gpp"]);
     XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"gpp_sid"]);
-    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"us_optout"]);
-    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"customKey"]);
+    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"publisher_data"][@"us_optout"]);
+    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"publisher_data"][@"customKey"]);
 }
 
 - (void)testErrorForServerProfigError {
@@ -123,13 +123,13 @@
     XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"tcf"]);
     XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"gpp"]);
     XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"gpp_sid"]);
-    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"us_optout"]);
-    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"customKey"]);
+    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"publisher_data"][@"us_optout"]);
+    XCTAssertNotNil(profigParam[@"privacy_compliancy"][@"publisher_data"][@"customKey"]);
     XCTAssertEqualObjects(profigParam[@"privacy_compliancy"][@"tcf"], @"tcfConsentString");
     XCTAssertEqualObjects(profigParam[@"privacy_compliancy"][@"gpp"], @"gppConsentString");
     XCTAssertEqualObjects(profigParam[@"privacy_compliancy"][@"gpp_sid"], @"gppSidConsentString");
-    XCTAssertTrue(profigParam[@"privacy_compliancy"][@"us_optout"]);
-    XCTAssertEqualObjects(profigParam[@"privacy_compliancy"][@"customKey"], @"customValue");
+    XCTAssertTrue(profigParam[@"privacy_compliancy"][@"publisher_data"][@"us_optout"]);
+    XCTAssertEqualObjects(profigParam[@"privacy_compliancy"][@"publisher_data"][@"customKey"], @"customValue");
 }
 
 @end

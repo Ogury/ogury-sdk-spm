@@ -5,10 +5,11 @@
 #import <Foundation/Foundation.h>
 #import <OguryCore/OguryLogLevel.h>
 #import <OguryCore/OguryLog.h>
-#import "OGAAdConfiguration.h"
 #import "OGAAdLogMessage.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class OGAAdConfiguration;
 
 @interface OGALog : NSObject
 

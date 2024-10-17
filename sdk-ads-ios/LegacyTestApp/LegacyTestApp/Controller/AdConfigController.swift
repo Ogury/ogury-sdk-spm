@@ -217,8 +217,8 @@ class AdConfigController {
             fatalError("Server url must not be nil nor empty.")
         }
         ///
-        let sel = NSSelectorFromString("changeServerEnvironment:")
-        OGAInternal.shared().perform(sel, with: serverBaseUrl)
+        //let sel = NSSelectorFromString("changeServerEnvironment:")
+        //OGAInternal.shared().perform(sel, with: serverBaseUrl)
         // TODO: Add a button to reset the SDK instead
         if resetSDK {
             DispatchQueue.main.async {
@@ -228,7 +228,15 @@ class AdConfigController {
                 guard let assetKey = AdConfigController.shared.assetKey(), !assetKey.isEmpty else {
                     fatalError("Asset key must not be nil nor empty.")
                 }
-                OGAInternal.shared().start(withAssetKey: assetKey)
+                OGAInternal.shared().start(with: assetKey) { success, error in
+                    if success {
+                        print("Ogury SDK started successfully.")
+                    } else if let error = error {
+                        print("Error starting Ogury SDK: \(error.localizedDescription)")
+                    } else {
+                        print("Ogury SDK failed to start for an unknown reason.")
+                    }
+                }
                 OGAInternal.shared().setLogLevel(.all)
             }
         }

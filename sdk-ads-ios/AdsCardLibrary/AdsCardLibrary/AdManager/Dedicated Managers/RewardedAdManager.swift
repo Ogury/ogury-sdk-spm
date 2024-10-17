@@ -14,9 +14,9 @@ public final class RewardedAdManager: AdManager {
     }
     
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
-    lazy var store = Store(initialState: AdViewFeature.State(from: self.options,
-                                                             adType: AnyAdType(self.adType),
-                                                             rewardedOptions: RewardedOptions()), reducer: {
+   lazy var store = Store(initialState: AdViewFeature.State(from: self.options,
+                                                            adType: AnyAdType(self.adType),
+                                                            rewardedOptions: RewardedOptions()), reducer: {
         AdViewFeature(adManager: self)
     })
     public typealias Ad = OguryRewardedAd
@@ -47,11 +47,14 @@ public final class RewardedAdManager: AdManager {
         self.adType = adType
         proxyDelegate = RewardedProxyDelegate(adDelegate: adDelegate)
         proxyDelegate.adManager = self
-        switch adType {
-            case let .maxHeaderBidding(_, adMarkUpRetriever): bidder = adMarkUpRetriever
-            case let .dtFairBidHeaderBidding(_, adMarkUpRetriever): bidder = adMarkUpRetriever
-            case let .unityLevelPlayHeaderBidding(_, adMarkUpRetriever): bidder = adMarkUpRetriever
-            default: ()
+        if case let .maxHeaderBidding(_, adMarkUpRetriever) = adType {
+            bidder = adMarkUpRetriever
+        }
+        else if case let .dtFairBidHeaderBidding(_, adMarkUpRetriever) = adType {
+            bidder = adMarkUpRetriever
+        }
+        else if case let .unityLevelPlayHeaderBidding(_, adMarkUpRetriever) = adType {
+            bidder = adMarkUpRetriever
         }
     }
     
@@ -81,7 +84,7 @@ public final class RewardedAdManager: AdManager {
                                                         creativeId: options.creativeId,
                                                         dspCreative: options.dspCreativeId,
                                                         dspRegion: options.dspRegion,
-                                                        rtbTestModeEnabled:options.rtbTestModeEnabled)
+                                                        rtbTestModeEnabled: options.rtbTestModeEnabled)
                 guard let adMakUp else {
                     append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")))
                     return
@@ -175,31 +178,31 @@ public final class RewardedAdManager: AdManager {
 // and for some reasons, that leads to unexpected compilation fail
 // To overcome easily this, we use a proxy object
 internal class RewardedProxyDelegate: AdDelegateProxy<RewardedAdManager>, OguryRewardedAdDelegate {
-    func didLoad(_ ad: OguryRewardedAd) {
+    func rewardedAdDidLoad(_ rewardedAd: OguryRewardedAd) {
         guard let adManager else { return }
         adManager.append(.adLoaded(canShow: true))
     }
     
-    func didClick(_ ad: OguryRewardedAd) {
+    func rewardedAdDidClick(_ rewardedAd: OguryRewardedAd) {
         guard let adManager else { return }
         adManager.append(.adClicked)
     }
     
-    func didClose(_ ad: OguryRewardedAd) {
+    func rewardedAdDidClose(_ rewardedAd: OguryRewardedAd) {
         guard let adManager else { return }
         adManager.append(.adClosed)
     }
     
-    func didFailOguryRewardedAdWithError(_ error: OguryError, for optinVideo: OguryRewardedAd) {
-        handle(error, for: optinVideo)
+    func rewardedAd(_ rewardedAd: OguryRewardedAd, didFailWithError error: OguryAdError) {
+        handle(error, for: rewardedAd)
     }
     
-    func didTriggerImpressionOguryRewardedAd(_ optinVideo: OguryRewardedAd) {
+    func rewardedAdDidTriggerImpression(_ rewardedAd: OguryRewardedAd) {
         guard let adManager else { return }
         adManager.append(.adDidTriggerImpression)
     }
     
-    func didRewardOguryRewardedAd(with item: OGARewardItem, for optinVideo: OguryRewardedAd) {
+    func rewardedAd(_ rewardedAd: OguryRewardedAd, didReceive item: OguryReward) {
         guard let adManager else { return }
         adManager.append(.rewardReady(item))
     }

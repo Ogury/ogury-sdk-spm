@@ -23,7 +23,7 @@ private_lane :test_framework do |options|
     configuration: "Debug",
     scheme: scheme,
     devices: configuration.test_devices,
-    sdk: sdk,
+    sdk: sdk.platform,
     clean: true,
     derived_data_path: configuration.directories.test_derived_data,
     slack_url: configuration.slack.url,

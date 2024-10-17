@@ -21,14 +21,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @optional
 
-- (BOOL)shouldTransitionTo:(id<OGAAdContainerState>)toState from:(id<OGAAdContainerState>)fromState error:(OguryError *_Nullable __autoreleasing *_Nullable)error;
+- (BOOL)shouldTransitionTo:(id<OGAAdContainerState>)toState from:(id<OGAAdContainerState>)fromState error:(OguryAdError *_Nullable __autoreleasing *_Nullable)error;
 
 - (void)willTransitionTo:(id<OGAAdContainerState>)toState from:(id<OGAAdContainerState>)fromState;
 
 - (void)didTransitionTo:(id<OGAAdContainerState>)toState from:(id<OGAAdContainerState>)fromState action:(NSString *)action;
 
 #warning Not yet implemented anywhere
-- (void)didFailToTransitionTo:(id<OGAAdContainerState>)toState error:(OguryError *_Nullable)error;
+- (void)didFailToTransitionTo:(id<OGAAdContainerState>)toState error:(OguryAdError *_Nullable)error;
 
 @end
 

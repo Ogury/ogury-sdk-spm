@@ -7,7 +7,8 @@
 //
 
 #import "OGAAdLogMessage.h"
-#import "OGMEventMonitorable.h"
+
+@protocol OGMEventMonitorable;
 
 NS_ASSUME_NONNULL_BEGIN
 

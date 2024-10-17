@@ -15,7 +15,7 @@
 
 #pragma mark - Methods
 
-- (BOOL)performTransition:(OguryError *_Nullable *_Nullable)error {
+- (BOOL)performTransition:(OguryAdError *_Nullable *_Nullable)error {
     id<OGAAdDisplayer> displayer = self.initialState.displayer;
 
     [self.initialState unregisterForApplicationLifecycleNotifications];

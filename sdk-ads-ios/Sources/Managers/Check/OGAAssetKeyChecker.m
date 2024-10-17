@@ -17,17 +17,17 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initFrom:(OguryInternalAdsErrorOrigin)origin {
-    return [self initWithAssetKeyManager:[OGAAssetKeyManager shared] origin:origin log:[OGALog shared]];
+- (instancetype)initFrom:(OguryAdErrorType)type {
+    return [self initWithAssetKeyManager:[OGAAssetKeyManager shared] type:type log:[OGALog shared]];
 }
 
 - (instancetype)initWithAssetKeyManager:(OGAAssetKeyManager *)assetKeyManager
-                                 origin:(OguryInternalAdsErrorOrigin)origin
+                                   type:(OguryAdErrorType)type
                                     log:(OGALog *)log {
     if (self = [super init]) {
         _assetKeyManager = assetKeyManager;
         _log = log;
-        _origin = origin;
+        _type = type;
     }
     return self;
 }
@@ -35,7 +35,7 @@
 #pragma mark - Methods
 
 - (BOOL)checkForSequence:(OGAAdSequence *)sequence error:(OguryError **)error {
-    BOOL isAssetKeyValid = [self.assetKeyManager checkAssetKeyIsValid:error origin:self.origin];
+    BOOL isAssetKeyValid = [self.assetKeyManager checkAssetKeyIsValid:error type:self.type];
 
     if (!isAssetKeyValid) {
         [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError

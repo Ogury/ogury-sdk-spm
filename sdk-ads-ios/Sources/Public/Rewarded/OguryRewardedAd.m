@@ -34,7 +34,7 @@
     if (self = [super init]) {
         _internalAPI = internalAPI;
         _delegateDispatcher = (OguryRewardedAdDelegateDispatcher *)internalAPI.delegateDispatcher;
-        _delegateDispatcher.optinVideo = self;
+        _delegateDispatcher.rewardedAd = self;
     }
     return self;
 }
@@ -51,14 +51,6 @@
 
 - (void)setDelegate:(id<OguryRewardedAdDelegate>)delegate {
     self.delegateDispatcher.delegate = delegate;
-}
-
-- (NSString *)userId {
-    return self.internalAPI.userId;
-}
-
-- (void)setUserId:(NSString *)userId {
-    self.internalAPI.userId = userId;
 }
 
 #pragma mark - Public Methods
@@ -87,7 +79,7 @@
 }
 
 - (BOOL)isLoaded {
-    return [self.internalAPI isLoaded];
+    return self.internalAPI.isLoaded;
 }
 
 - (void)showAdInViewController:(UIViewController *)viewController {

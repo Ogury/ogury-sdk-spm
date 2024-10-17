@@ -9,8 +9,6 @@
 #import <OguryCore/OguryOSLogger.h>
 #import "OGAAdConfiguration.h"
 
-@import OguryAds.Private;
-
 @interface OGALog ()
 
 @property(nonatomic, strong) OguryLog *oguryLog;

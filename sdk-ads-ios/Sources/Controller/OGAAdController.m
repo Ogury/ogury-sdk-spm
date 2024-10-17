@@ -111,7 +111,7 @@
 
 #pragma mark - Methods
 
-- (BOOL)show:(OguryError *_Nullable *_Nullable)error {
+- (BOOL)show:(OguryAdError *_Nullable *_Nullable)error {
     // adController transition succeed
     [self.monitoringDispatcher sendShowEvent:OGAShowEventDisplaying
                              adConfiguration:self.ad.adConfiguration];
@@ -130,7 +130,7 @@
 }
 
 - (void)forceClose {
-    OguryError *error = nil;
+    OguryAdError *error = nil;
     if (![self performAction:[[OGAForceCloseAdAction alloc] init] error:&error]) {
         [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
                                              adConfiguration:self.ad.adConfiguration
@@ -164,7 +164,7 @@
     }
 }
 
-- (BOOL)performAction:(id<OGAAdAction>)action error:(OguryError **)error {
+- (BOOL)performAction:(id<OGAAdAction>)action error:(OguryAdError **)error {
     if ([action isKindOfClass:[OGAForceCloseAdAction class]]) {
         self.nextAd = [OGANextAd nextAdFalse];
     } else if ([action isKindOfClass:[OGAUnloadAdAction class]]) {

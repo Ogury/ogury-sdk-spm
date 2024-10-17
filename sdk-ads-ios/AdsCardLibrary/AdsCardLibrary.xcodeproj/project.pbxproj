@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -56,7 +56,6 @@
 		438ED3D82AA0C2BA00486AF2 /* AdManagerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C62AA0C2BA00486AF2 /* AdManagerOptions.swift */; };
 		43A78A6E2A52ABF30004A613 /* AdManagerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */; };
 		43A9F4A52C37E7800085EF6F /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A9F4A42C37E7800085EF6F /* OguryCore.framework */; };
-		43A9F4A62C37E7800085EF6F /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43A9F4A42C37E7800085EF6F /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43ACBB6D2B304AB9003FBF35 /* Mockingbird in Frameworks */ = {isa = PBXBuildFile; productRef = 43ACBB6C2B304AB9003FBF35 /* Mockingbird */; };
 		43ACBB702B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ACBB6F2B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift */; };
 		43AE68042AAB25B1002E7C46 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED4392AA8565800486AF2 /* OguryAds.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -119,20 +118,6 @@
 			remoteInfo = AdsCardLibrary;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		43A9F4A72C37E7800085EF6F /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				43A9F4A62C37E7800085EF6F /* OguryCore.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTFairBidHeaderBidable.swift; sourceTree = "<group>"; };
@@ -200,10 +185,6 @@
 		B53EB2B505F1F4CEAAD6AC64 /* Pods-AdsCardLibrary-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-art.release.xcconfig"; path = "Target Support Files/Pods-AdsCardLibrary-art/Pods-AdsCardLibrary-art.release.xcconfig"; sourceTree = "<group>"; };
 		FD61C3C1BAEA09E61B64842E /* Pods-AdsCardLibrary-Release.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-Release.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-Release/Pods-AdsCardLibrary-Release.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		437FD43F2CA6B6FB00CA8A1C /* Logs */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Logs; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		435C55DC2A42EAEF004186FF /* Frameworks */ = {
@@ -308,7 +289,6 @@
 				43E349422A49BA040060B41F /* AdManager */,
 				43788F2A2B5FBA000041A9C1 /* Fonts */,
 				4328B2892ADFBD88003C7F91 /* Serialization */,
-				437FD43F2CA6B6FB00CA8A1C /* Logs */,
 				436E97262A6A7BC30074E922 /* Assets.xcassets */,
 			);
 			path = AdsCardLibrary;
@@ -526,14 +506,10 @@
 				435C55DB2A42EAEF004186FF /* Sources */,
 				435C55DC2A42EAEF004186FF /* Frameworks */,
 				435C55DD2A42EAEF004186FF /* Resources */,
-				43A9F4A72C37E7800085EF6F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				437FD43F2CA6B6FB00CA8A1C /* Logs */,
 			);
 			name = AdsCardLibrary;
 			packageProductDependencies = (
@@ -580,9 +556,6 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				437FD43F2CA6B6FB00CA8A1C /* Logs */,
-			);
 			name = "AdsCardLibrary-art";
 			packageProductDependencies = (
 				43BCB15D2C22FBF0002FB0B1 /* ComposableArchitecture */,
@@ -603,9 +576,13 @@
 				TargetAttributes = {
 					435C55DE2A42EAEF004186FF = {
 						CreatedOnToolsVersion = 14.3.1;
+						LastSwiftMigration = 1600;
 					};
 					435C55E82A42EAEF004186FF = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					43BCB15C2C22FBF0002FB0B1 = {
+						LastSwiftMigration = 1600;
 					};
 				};
 			};
@@ -947,6 +924,7 @@
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -978,7 +956,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -989,6 +967,7 @@
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1020,7 +999,6 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1029,7 +1007,6 @@
 		435C55F72A42EAEF004186FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
@@ -1047,7 +1024,6 @@
 		435C55F82A42EAEF004186FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
@@ -1068,6 +1044,7 @@
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1101,6 +1078,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1112,6 +1090,7 @@
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;

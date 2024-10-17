@@ -9,6 +9,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^StartCompletionBlock)(BOOL success, OguryError *_Nullable error);
+
 @interface OGAInternal : NSObject
 
 #pragma mark - Class methods
@@ -17,8 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - methods
 
-- (void)startWithAssetKey:(NSString *)assetKey completionHandler:(SetUpCompletionBlock __nullable)completionHandler;
-- (void)startWithAssetKey:(NSString *)assetKey;
+- (void)startWith:(NSString *)assetKey completionHandler:(StartCompletionBlock)completionHandler;
 - (void)setLogLevel:(OguryLogLevel)logLevel;
 - (void)addLogger:(id<OguryLogger>)logger;
 - (void)removeLogger:(id<OguryLogger>)logger;

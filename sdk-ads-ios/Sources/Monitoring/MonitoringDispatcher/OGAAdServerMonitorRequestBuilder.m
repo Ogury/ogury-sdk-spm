@@ -9,6 +9,7 @@
 #import "NSDate+OGAFormatter.h"
 #import "OGAAdPrivacyConfiguration.h"
 #import "OGAAssetKeyManager.h"
+#import "OGAAdConfiguration.h"
 #import "OGAConfigurationUtils.h"
 #import "OGADevice.h"
 #import "OGADeviceOrientationConstants.h"
@@ -17,7 +18,7 @@
 #import "OGAWebViewUserAgentService.h"
 #import "OGAMonitoringLogMessage.h"
 #import "UIDevice+Orientation.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAAdServerMonitorRequestBuilder ()
 

@@ -1,21 +1,15 @@
 #import <Foundation/Foundation.h>
 
-#import "OguryInterstitialAd.h"
-#import "OguryRewardedAd.h"
-#import "OguryBannerAd.h"
-#import "OguryThumbnailAd.h"
-#import "OGARewardItem.h"
-#import "OguryTokenService.h"
-#import "OguryAdsError.h"
+//! Project version number for OguryAds.
+FOUNDATION_EXPORT double OguryAdsVersionNumber;
 
-typedef void (^SetUpCompletionBlock)(BOOL success, NSError *error);
+//! Project version string for OguryAds.
+FOUNDATION_EXPORT const unsigned char OguryAdsVersionString[];
 
-@interface OguryAds : NSObject
-
-+ (instancetype)shared;
-@property(nonatomic, strong) NSString *sdkVersion __deprecated_msg("Use 'Ogury.getSdkVersion' method instead");
-
-- (void)setupWithAssetKey:(NSString *)assetKey;
-- (void)setupWithAssetKey:(NSString *)assetKey completionHandler:(SetUpCompletionBlock)completionHandler;
-
-@end
+#import <OguryAds/OguryInterstitialAd.h>
+#import <OguryAds/OguryRewardedAd.h>
+#import <OguryAds/OguryBannerAdView.h>
+#import <OguryAds/OguryThumbnailAd.h>
+#import <OguryAds/OguryBidTokenService.h>
+#import <OguryAds/OguryAdError.h>
+#import <OguryAds/OguryInterstitialAdDelegate.h>

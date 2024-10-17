@@ -3,6 +3,7 @@
 //
 
 #import "OGAMraidLogMessage.h"
+#import "OGAAdConfiguration.h"
 #import "OGALog.h"
 
 @implementation OGAMraidLogMessage

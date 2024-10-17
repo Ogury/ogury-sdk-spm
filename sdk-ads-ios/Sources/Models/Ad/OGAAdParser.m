@@ -6,7 +6,7 @@
 #import "NSString+OGAUtility.h"
 #import "OGAAdConfiguration.h"
 #import "OGALog.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 
 @implementation OGAAdParser
 
@@ -19,7 +19,7 @@
     NSArray<NSDictionary *> *adsJSON = json[@"ad"];
 
     if ([adsJSON count] == 0) {
-        *error = [OguryAdsError adParsingFailedWithStackTrace:@"No ad received"];
+        *error = [OguryAdError adParsingFailedWithStackTrace:@"No ad received"];
         return adsJSON;
     }
 
@@ -85,7 +85,7 @@
                                                             logType:OguryLogTypeInternal
                                                             message:@"adUnit on ad object is empty"
                                                                tags:nil]];
-        *error = [OguryAdsError adParsingFailedWithStackTrace:@"No adUnit on Ad object"];
+        *error = [OguryAdError adParsingFailedWithStackTrace:@"No adUnit on Ad object"];
         return NO;
     }
 
@@ -95,9 +95,9 @@
                                                             logType:OguryLogTypePublisher
                                                             message:[NSString stringWithFormat:@"ad.adUnit type [%@] not equalt to expected adConfiguration with type [%@]", ad.adUnit.type, [adConfig getAdTypeString]]
                                                                tags:nil]];
-        *error = [OguryAdsError adParsingFailedWithStackTrace:[NSString stringWithFormat:@"Type mismatch. Awaited (%@) - received (%@)",
-                                                                                         [adConfig getAdTypeString],
-                                                                                         ad.adUnit.type]];
+        *error = [OguryAdError adParsingFailedWithStackTrace:[NSString stringWithFormat:@"Type mismatch. Awaited (%@) - received (%@)",
+                                                                                        [adConfig getAdTypeString],
+                                                                                        ad.adUnit.type]];
         return NO;
     }
 

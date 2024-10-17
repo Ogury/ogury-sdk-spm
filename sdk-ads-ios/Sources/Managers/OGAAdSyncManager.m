@@ -10,7 +10,7 @@
 #import "OGAEXTScope.h"
 #import "OGAWebViewUserAgentService.h"
 #import "OGALog.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAAdSyncManager ()
 
@@ -65,7 +65,7 @@
                 privacyConfiguration:(OGAAdPrivacyConfiguration *)privacyConfiguration
                    completionHandler:(OGAAdSyncCompletionHandler)completionHandler {
     if ([self.profigManager shouldSync]) {
-        completionHandler(nil, [OguryAdsError invalidConfigurationFrom:OguryInternalAdsErrorOriginLoad]);
+        completionHandler(nil, [OguryAdError invalidConfigurationFrom:OguryAdErrorTypeLoad]);
         return;
     }
 

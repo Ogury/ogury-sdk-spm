@@ -8,6 +8,7 @@
 
 #import "OGAMonitoringLogMessage.h"
 #import "OGAMonitoringConstants.h"
+#import "OGMEventMonitorable.h"
 #import "OGALog.h"
 
 @implementation OGAMonitoringLogMessage
