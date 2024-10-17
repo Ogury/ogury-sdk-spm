@@ -3,7 +3,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <OguryCore/OguryError.h>
 
 #import "OGAAdDisplayer.h"
 #import "OGAProfigDao.h"
@@ -37,7 +36,7 @@ typedef NS_ENUM(NSInteger, OGAAdContainerStateType) {
 
 #pragma mark - Methods
 
-- (BOOL)display:(id<OGAAdDisplayer>)displayer error:(OguryError *_Nullable *_Nullable)error;
+- (BOOL)display:(id<OGAAdDisplayer>)displayer error:(OguryAdError *_Nullable *_Nullable)error;
 
 - (void)cleanUp;
 

@@ -88,7 +88,6 @@ static NSString *const OGAHashConsentKey = @"OGY-HashConsentKeys";
             [self.waitingCompletionBlocks addObject:completion];
         } else if ([self shouldSync]) {
             [self.waitingCompletionBlocks addObject:completion];
-            [self.userDefaultStore setObject:[self retrieveConsentData] forKey:OGAHashConsentKey];
             [self fetchProfig];
         } else {
             if (self.profigDao.profigFullResponse.isOmidEnabled) {
@@ -163,6 +162,7 @@ static NSString *const OGAHashConsentKey = @"OGY-HashConsentKeys";
 
             [self updateMonitoringTrackingAndBlacklistedTracks:response];
             [self.profigDao updateWithFullProfig:response];
+            [self.userDefaultStore setObject:[self retrieveConsentData] forKey:OGAHashConsentKey];
             if (response.isOmidEnabled) {
                 [self.omidService activateOMID];
             }

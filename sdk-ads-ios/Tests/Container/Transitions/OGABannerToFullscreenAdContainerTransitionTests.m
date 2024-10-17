@@ -5,7 +5,7 @@
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
 #import "OGABannerToFullscreenAdContainerTransition.h"
-#import "OGABannerAdContainerState.h"
+#import "OGABannerAdViewContainerState.h"
 #import "OGAFullscreenAdContainerState.h"
 #import "OGAAdExposureController.h"
 #import "OGAAdDisplayerUpdateExposureInformation.h"
@@ -28,11 +28,11 @@ static NSString *const defaultAction = @"expand";
 #pragma mark - Methods
 
 - (void)testShouldInstantiate {
-    OGABannerToFullscreenAdContainerTransition *transition = [[OGABannerToFullscreenAdContainerTransition alloc] initWithInitialState:[[OGABannerAdContainerState alloc] init]
+    OGABannerToFullscreenAdContainerTransition *transition = [[OGABannerToFullscreenAdContainerTransition alloc] initWithInitialState:[[OGABannerAdViewContainerState alloc] init]
                                                                                                                            finalState:[[OGAFullscreenAdContainerState alloc] init]];
 
     XCTAssertNotNil(transition);
-    XCTAssertTrue([transition.initialState isKindOfClass:OGABannerAdContainerState.self]);
+    XCTAssertTrue([transition.initialState isKindOfClass:OGABannerAdViewContainerState.self]);
     XCTAssertTrue([transition.finalState isKindOfClass:OGAFullscreenAdContainerState.self]);
 }
 
@@ -40,7 +40,7 @@ static NSString *const defaultAction = @"expand";
     id<OGAAdDisplayer> displayer = OCMProtocolMock(@protocol(OGAAdDisplayer));
 
     // Initial state
-    self.initialState = OCMClassMock([OGABannerAdContainerState class]);
+    self.initialState = OCMClassMock([OGABannerAdViewContainerState class]);
     OCMStub(self.initialState.displayer).andReturn(displayer);
 
     OGAAdExposureController *initialExposureController = OCMClassMock(OGAAdExposureController.self);
@@ -62,7 +62,7 @@ static NSString *const defaultAction = @"expand";
     OCMReject([self.finalState cleanUp]);
     OCMStub([self.finalState display:[OCMArg any] error:[OCMArg anyObjectRef]]).andReturn(YES);
 
-    XCTAssertTrue([transition.initialState isKindOfClass:OGABannerAdContainerState.self]);
+    XCTAssertTrue([transition.initialState isKindOfClass:OGABannerAdViewContainerState.self]);
     XCTAssertTrue([transition.finalState isKindOfClass:OGAFullscreenAdContainerState.self]);
     XCTAssertTrue([transition performTransition:&error]);
     XCTAssertNil(error);
@@ -78,7 +78,7 @@ static NSString *const defaultAction = @"expand";
 }
 
 - (void)testShouldPerformActionWithError {
-    self.initialState = OCMClassMock([OGABannerAdContainerState class]);
+    self.initialState = OCMClassMock([OGABannerAdViewContainerState class]);
     self.finalState = OCMClassMock([OGAFullscreenAdContainerState class]);
 
     OGABannerToFullscreenAdContainerTransition *transition = [[OGABannerToFullscreenAdContainerTransition alloc] initWithAction:defaultAction
@@ -86,7 +86,7 @@ static NSString *const defaultAction = @"expand";
                                                                                                                      finalState:self.finalState];
 
     NSError *error;
-    OguryError *displayError = OCMClassMock([OguryAdsError class]);
+    OguryError *displayError = OCMClassMock([OguryAdError class]);
     OCMStub([self.finalState display:[OCMArg any] error:[OCMArg anyObjectRef]]).andDo(^(NSInvocation *invocation) {
                                                                                    OguryError *__autoreleasing *errorPointer = nil;
                                                                                    [invocation getArgument:&errorPointer atIndex:3];

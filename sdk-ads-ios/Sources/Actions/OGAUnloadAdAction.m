@@ -24,7 +24,7 @@ NSString *const OGAUnloadAdActionName = @"unload";
 
 #pragma mark - Methods
 
-- (BOOL)performAction:(OGAAdContainer *)adContainer error:(OguryError **)error {
+- (BOOL)performAction:(OGAAdContainer *)adContainer error:(OguryAdError **)error {
     return [adContainer performAction:self.name error:error];
 }
 

@@ -43,7 +43,15 @@ NSInteger const OGAMaxRetry = 10;
     return self;
 }
 
+- (void)syncWebViewUserAgentAndDispatchDelegate {
+    [self syncWebViewUserAgentAndDispatchDelegate:YES];
+}
+
 - (void)syncWebViewUserAgent {
+    [self syncWebViewUserAgentAndDispatchDelegate:NO];
+}
+
+- (void)syncWebViewUserAgentAndDispatchDelegate:(BOOL)alwaysSendDelegate {
     if (!self.webViewUserAgent || self.webViewUserAgent.length == 0) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.webViewForUserAgent = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
@@ -51,7 +59,7 @@ NSInteger const OGAMaxRetry = 10;
             [self.webViewForUserAgent loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:OGAEmptyURL]]];
         });
         // when the SDK is reseted and a new assetKey is set
-    } else if (self.webViewUserAgent.length > 0 && !self.delegateFired) {
+    } else if (self.webViewUserAgent.length > 0 && (!self.delegateFired || alwaysSendDelegate)) {
         [self.delegate receivedWebViewUserAgent:self.webViewUserAgent];
         self.delegateFired = YES;
     }

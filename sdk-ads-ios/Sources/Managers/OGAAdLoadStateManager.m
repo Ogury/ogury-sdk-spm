@@ -6,6 +6,7 @@
 #import "OGAAd.h"
 #import "OGAMraidAdWebView.h"
 #import "OGAMraidCommand.h"
+#import "OguryAdError+Internal.h"
 #import "OGAMonitoringDispatcher.h"
 
 #pragma mark - Enums and constants

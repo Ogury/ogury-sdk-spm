@@ -8,6 +8,7 @@
 #import "OguryLogConstants.h"
 #import "OGAAdLogMessage.h"
 #import <Foundation/Foundation.h>
+#import "OGAAdConfiguration.h"
 
 @interface OGALog ()
 

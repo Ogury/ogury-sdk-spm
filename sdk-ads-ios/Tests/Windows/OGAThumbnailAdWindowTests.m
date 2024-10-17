@@ -127,16 +127,16 @@
 }
 
 - (void)testDisplay_failedToDisplayDisplayer {
-    OguryError *displayError = OCMClassMock([OguryAdsError class]);
+    OguryError *displayError = OCMClassMock([OguryAdError class]);
     OCMStub([self.thumbnailAdWindow makeKeyWindow]);
     OCMStub([self.thumbnailViewController display:self.displayer error:[OCMArg anyObjectRef]]).andDo(^(NSInvocation *invocation) {
-                                                                                                  OguryError *__autoreleasing *errorPointer = nil;
+                                                                                                  OguryAdError *__autoreleasing *errorPointer = nil;
                                                                                                   [invocation getArgument:&errorPointer atIndex:3];
                                                                                                   *errorPointer = displayError;
                                                                                               })
         .andReturn(NO);
 
-    OguryError *error;
+    OguryAdError *error;
     XCTAssertFalse([self.thumbnailAdWindow display:self.displayer error:&error]);
 
     XCTAssertEqual(error, displayError);

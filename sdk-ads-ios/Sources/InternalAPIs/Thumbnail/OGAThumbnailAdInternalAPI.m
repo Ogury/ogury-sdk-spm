@@ -32,7 +32,7 @@
 
 @implementation OGAThumbnailAdInternalAPI
 
-static OguryRectCorner const OguryAdsThumbnailDefaultConer = OguryBottomRight;
+static OguryRectCorner const OguryAdsThumbnailDefaultConer = OguryRectCornerBottomRight;
 
 #pragma mark - Initialization
 
@@ -92,10 +92,10 @@ static OguryRectCorner const OguryAdsThumbnailDefaultConer = OguryBottomRight;
 #pragma mark - Methods
 - (void)load {
     CGSize defaultThumbnailSize = CGSizeMake(OGAThumbnailDefaultWidth, OGAThumbnailDefaultHeight);
-    [self load:defaultThumbnailSize];
+    [self loadWithMaxSize:defaultThumbnailSize];
 }
 
-- (void)load:(CGSize)thumbnailSize {
+- (void)loadWithMaxSize:(CGSize)thumbnailSize {
     [self loadWithCampaignId:nil creativeId:nil thumbnailSize:thumbnailSize];
 }
 
@@ -185,7 +185,7 @@ static OguryRectCorner const OguryAdsThumbnailDefaultConer = OguryBottomRight;
                                                  message:@"show"
                                                     tags:@[ [OguryLogTag tagWithKey:@"Position" value:[NSString stringWithFormat:@"x:%f y:%f", position.x, position.y]] ]]];
 
-    [self showWithOguryRectCorner:OguryTopLeft margin:OguryOffsetMake(position.x, position.y)];
+    [self showWithOguryRectCorner:OguryRectCornerTopLeft margin:OguryOffsetMake(position.x, position.y)];
 }
 
 - (void)showWithOguryRectCorner:(OguryRectCorner)rectCorner margin:(OguryOffset)offset {
@@ -205,45 +205,12 @@ static OguryRectCorner const OguryAdsThumbnailDefaultConer = OguryBottomRight;
     }
     self.sequence.configuration.corner = rectCorner;
     self.sequence.configuration.offset = offset;
-
+    if (@available(iOS 13.0, *)) {
+        if (self.scene) {
+            self.sequence.configuration.scene = self.scene;
+        }
+    }
     [self.adManager show:self.sequence additionalConditions:@[ self.anotherAdOfSameTypeAlreadyDisplayedChecker ]];
-}
-
-- (void)showInScene:(UIWindowScene *)scene API_AVAILABLE(ios(13.0)) {
-    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
-                                         adConfiguration:self.configuration
-                                                 logType:OguryLogTypeInternal
-                                                 message:@"showInScene"
-                                                    tags:nil]];
-
-    OguryOffset offset = OguryOffsetMake(OGAThumbnailDefaultXOffset, OGAThumbnailDefaultYOffset);
-    [self showInScene:scene withOguryRectCorner:OguryAdsThumbnailDefaultConer margin:offset];
-}
-
-- (void)showInScene:(UIWindowScene *)scene atPosition:(CGPoint)position API_AVAILABLE(ios(13.0)) {
-    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
-                                         adConfiguration:self.configuration
-                                                 logType:OguryLogTypeInternal
-                                                 message:@"showInScene"
-                                                    tags:@[ [OguryLogTag tagWithKey:@"Position" value:[NSString stringWithFormat:@"x:%f y:%f", position.x, position.y]] ]]];
-
-    [self showInScene:scene withOguryRectCorner:OguryTopLeft margin:OguryOffsetMake(position.x, position.y)];
-}
-
-- (void)showInScene:(UIWindowScene *)scene withOguryRectCorner:(OguryRectCorner)rectCorner margin:(OguryOffset)offset API_AVAILABLE(ios(13.0)) {
-    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
-                                         adConfiguration:self.configuration
-                                                 logType:OguryLogTypeInternal
-                                                 message:@"showInScene"
-                                                    tags:@[
-                                                        [OguryLogTag tagWithKey:@"Corner"
-                                                                          value:[NSString stringWithFormat:@"%ld", (long)rectCorner]],
-                                                        [OguryLogTag tagWithKey:@"Offset"
-                                                                          value:[NSString stringWithFormat:@"x:%f y:%f", offset.x, offset.y]]
-                                                    ]]];
-
-    self.sequence.configuration.scene = scene;
-    [self showWithOguryRectCorner:rectCorner margin:offset];
 }
 
 - (void)setBlacklistViewControllers:(NSArray<NSString *> *_Nullable)viewControllers {

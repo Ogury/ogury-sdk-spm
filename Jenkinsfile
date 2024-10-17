@@ -1,5 +1,5 @@
   
-@Library('ogury-jenkins-lib@v4.0.0') _
+@Library('ogury-jenkins-lib@v7.5.1') _
 
 pipeline {
     agent {
@@ -30,18 +30,45 @@ pipeline {
         stage('Build') {
             when {
                 beforeAgent true
-                not { changeRequest() }
+                anyOf {
+                    not { changeRequest() }
+                    buildingTag()
+                }
             }
-
             steps {
-                sh """#!/bin/zsh -l
+                script {
+                    // Default to false
+                    def isArtifactory = false
+                    def targetThreshold = "all"
+                    
+                    // Check if a tag exists and contains '-art'
+                    if (env.GIT_TAG && (env.GIT_TAG.contains('-art') || env.GIT_TAG.contains('release-') )) {
+                        isArtifactory = true
+                    }
+
+                    if (env.GIT_TAG && env.GIT_TAG.contains('-core-')) {
+                        targetThreshold = "core"
+                    }
+                    if (env.GIT_TAG && env.GIT_TAG.contains('-ads-')) {
+                        targetThreshold = "ads"
+                    }
+        
+                    // Log the value of isArtifactory for debugging
+                    echo "Artifactory is set to: ${isArtifactory}"
+                    echo "Target Threshold is set to: ${targetThreshold}"
+        
+                    // Run the first shell script (setting up environment)
+                    sh """#!/bin/zsh -l
                     source ~/.zshrc
                     rvm --default use 2.7.7
-                """
-                sh """#!/bin/zsh -l
+                    """
+        
+                    // Run the Fastlane build with artifactory set based on the tag
+                    sh """#!/bin/zsh -l
                     source ~/.zshrc
-                    bundle exec fastlane build environment:'prod'
-                """
+                    bundle exec fastlane build environment:'prod' artifactory:${isArtifactory} targetThreshold:${targetThreshold}
+                    """
+                }
             }
         }
 
@@ -91,9 +118,8 @@ pipeline {
                     when {
                         beforeAgent true
                         expression {
-                            // Check if the current tag matches the pattern "internal-core-<digits separated by dots>-<description>"
-                            def tagPattern = ~/^internal-core-(\d+(\.\d+)*?)-.*$/
-                            return env.GIT_TAG ==~ tagPattern
+                            def elements = "${env.TAG_NAME}".split("-")
+                            return elements.contains("core") && !elements.contains("art") && elements.contains("internal")
                         }
                     }
                     steps {
@@ -119,9 +145,8 @@ pipeline {
                     when {
                         beforeAgent true
                         expression {
-                            // Check if the current tag matches the pattern "internal-ads-<digits separated by dots>-<description>"
-                            def tagPattern = ~/^internal-ads-(\d+(\.\d+)*)-.*$/
-                            return env.GIT_TAG ==~ tagPattern
+                            def elements = "${env.TAG_NAME}".split("-")
+                            return elements.contains("ads") && !elements.contains("art") && elements.contains("internal")
                         }
                     }
                     steps {
@@ -147,9 +172,8 @@ pipeline {
                     when {
                         beforeAgent true
                         expression {
-                            // Check if the current tag matches the pattern "internal-wrapper-<digits separated by dots>-<description>"
-                            def tagPattern = ~/^internal-wrapper-(\d+(\.\d+)*)-.*$/
-                            return env.GIT_TAG ==~ tagPattern
+                            def elements = "${env.TAG_NAME}".split("-")
+                            return elements.contains("wrapper") && !elements.contains("art") && elements.contains("internal")
                         }
                     }
                     steps {
@@ -180,9 +204,8 @@ pipeline {
                     when {
                         beforeAgent true
                         expression {
-                            // Check if the current tag matches the pattern "internal-core-<digits separated by dots>-<description>"
-                            def tagPattern = ~/^beta-core-(\d+(\.\d+)*)-.*$/
-                            return env.GIT_TAG ==~ tagPattern
+                            def elements = "${env.TAG_NAME}".split("-")
+                            return elements.contains("core") && !elements.contains("art") && elements.contains("beta")
                         }
                     }
                     steps {
@@ -244,9 +267,8 @@ pipeline {
                     when {
                         beforeAgent true
                         expression {
-                            // Check if the current tag matches the pattern "internal-ads-<digits separated by dots>-<description>"
-                            def tagPattern = ~/^beta-ads-(\d+(\.\d+)*)-.*$/
-                            return env.GIT_TAG ==~ tagPattern
+                            def elements = "${env.TAG_NAME}".split("-")
+                            return elements.contains("ads") && !elements.contains("art") && elements.contains("beta")
                         }
                     }
                     steps {
@@ -308,9 +330,8 @@ pipeline {
                     when {
                         beforeAgent true
                         expression {
-                            // Check if the current tag matches the pattern "internal-wrapper-<digits separated by dots>-<description>"
-                            def tagPattern = ~/^beta-wrapper-(\d+(\.\d+)*)-.*$/
-                            return env.GIT_TAG ==~ tagPattern
+                            def elements = "${env.TAG_NAME}".split("-")
+                            return elements.contains("wrapper") && !elements.contains("art") && elements.contains("beta")
                         }
                     }
                     steps {

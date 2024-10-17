@@ -13,11 +13,11 @@
                                          adConfiguration:nil
                                                  logType:OguryLogTypeDelegate
                                                  message:@"[Rewarded] Ad clicked"
-                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.optinVideo.adUnitId] ]]];
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.rewardedAd.adUnitId] ]]];
 
-    if ([self.delegate respondsToSelector:@selector(didClickOguryRewardedAd:)] && self.optinVideo != nil) {
+    if ([self.delegate respondsToSelector:@selector(rewardedAdDidClick:)] && self.rewardedAd != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
-            [delegate didClickOguryRewardedAd:self.optinVideo];
+            [delegate rewardedAdDidClick:self.rewardedAd];
         }];
     }
 }
@@ -27,27 +27,27 @@
                                          adConfiguration:nil
                                                  logType:OguryLogTypeDelegate
                                                  message:@"[Rewarded] Ad closed"
-                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.optinVideo.adUnitId] ]]];
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.rewardedAd.adUnitId] ]]];
 
-    if ([self.delegate respondsToSelector:@selector(didCloseOguryRewardedAd:)] && self.optinVideo != nil) {
+    if ([self.delegate respondsToSelector:@selector(rewardedAdDidClose:)] && self.rewardedAd != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
-            [delegate didCloseOguryRewardedAd:self.optinVideo];
+            [delegate rewardedAdDidClose:self.rewardedAd];
         }];
     }
     self.hasSentDisplayedDelegate = NO;
 }
 
-- (void)failedWithError:(OguryError *)error {
+- (void)failedWithError:(OguryAdError *)error {
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
                                          adConfiguration:nil
                                                  logType:OguryLogTypeDelegate
                                                    error:error
                                                  message:@"[Rewarded] Ad failed"
-                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.optinVideo.adUnitId] ]]];
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.rewardedAd.adUnitId] ]]];
 
-    if ([self.delegate respondsToSelector:@selector(didFailOguryRewardedAdWithError:forAd:)] && self.optinVideo != nil) {
+    if ([self.delegate respondsToSelector:@selector(rewardedAd:didFailWithError:)] && self.rewardedAd != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
-            [delegate didFailOguryRewardedAdWithError:error forAd:self.optinVideo];
+            [delegate rewardedAd:self.rewardedAd didFailWithError:error];
         }];
     }
     self.hasSentDisplayedDelegate = NO;
@@ -58,30 +58,30 @@
                                          adConfiguration:nil
                                                  logType:OguryLogTypeDelegate
                                                  message:@"[Rewarded] Ad loaded"
-                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.optinVideo.adUnitId] ]]];
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.rewardedAd.adUnitId] ]]];
 
-    if ([self.delegate respondsToSelector:@selector(didLoadOguryRewardedAd:)] && self.optinVideo != nil) {
+    if ([self.delegate respondsToSelector:@selector(rewardedAdDidLoad:)] && self.rewardedAd != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
-            [delegate didLoadOguryRewardedAd:self.optinVideo];
+            [delegate rewardedAdDidLoad:self.rewardedAd];
         }];
     }
 }
 
-- (void)rewarded:(OGARewardItem *)item {
+- (void)rewarded:(OguryReward *)reward {
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
                                          adConfiguration:nil
                                                  logType:OguryLogTypeDelegate
                                                  message:@"[Rewarded] reward received"
                                                     tags:@[
                                                         [OguryLogTag tagWithKey:@"AdUnitId"
-                                                                          value:self.optinVideo.adUnitId],
+                                                                          value:self.rewardedAd.adUnitId],
                                                         [OguryLogTag tagWithKey:@"Item"
-                                                                          value:[NSString stringWithFormat:@"name: %@, value:%@", item.rewardName, item.rewardValue]]
+                                                                          value:[NSString stringWithFormat:@"name: %@, value:%@", reward.rewardName, reward.rewardValue]]
                                                     ]]];
 
-    if ([self.delegate respondsToSelector:@selector(didRewardOguryRewardedAdWithItem:forAd:)] && self.optinVideo != nil) {
+    if ([self.delegate respondsToSelector:@selector(rewardedAd:didReceiveReward:)] && self.rewardedAd != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
-            [delegate didRewardOguryRewardedAdWithItem:item forAd:self.optinVideo];
+            [delegate rewardedAd:self.rewardedAd didReceiveReward:reward];
         }];
     }
 }
@@ -91,11 +91,11 @@
                                          adConfiguration:nil
                                                  logType:OguryLogTypeDelegate
                                                  message:@"[Rewarded] Ad impression"
-                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.optinVideo.adUnitId] ]]];
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.rewardedAd.adUnitId] ]]];
 
-    if ([self.delegate respondsToSelector:@selector(didTriggerImpressionOguryRewardedAd:)] && self.optinVideo != nil) {
+    if ([self.delegate respondsToSelector:@selector(rewardedAdDidTriggerImpression:)] && self.rewardedAd != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
-            [delegate didTriggerImpressionOguryRewardedAd:self.optinVideo];
+            [delegate rewardedAdDidTriggerImpression:self.rewardedAd];
         }];
     }
 }

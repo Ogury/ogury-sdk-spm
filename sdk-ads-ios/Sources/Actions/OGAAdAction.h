@@ -3,7 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <OguryCore/OguryError.h>
+#import "OguryAdError.h"
 
 @class OGAAdContainer;
 
@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param adContainer The ad container to perform the action against.
  @param error An error that will be populated if something went wrong while performing the action.
  */
-- (BOOL)performAction:(OGAAdContainer *)adContainer error:(OguryError *_Nullable *_Nullable)error;
+- (BOOL)performAction:(OGAAdContainer *)adContainer error:(OguryAdError *_Nullable *_Nullable)error;
 
 @end
 

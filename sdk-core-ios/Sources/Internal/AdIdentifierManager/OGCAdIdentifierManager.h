@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateInstanceToken;
 
-- (void)storePrivacyData:(id)value forKey:(NSString *)key;
+- (void)setPrivacyData:(id)value forKey:(NSString *)key;
 
 - (NSDictionary<NSString *, id> *)retrieveDataPrivacy;
 

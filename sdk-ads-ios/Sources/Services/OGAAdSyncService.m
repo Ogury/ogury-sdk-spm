@@ -21,7 +21,7 @@
 #import "NSDictionary+OGABase64.h"
 #import "OGAPreCacheEvent.h"
 #import "OGAMetricsService.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAAdSyncService ()
 
@@ -204,9 +204,7 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
                                          error:(NSError *_Nullable)error
                              completionHandler:(void (^)(NSArray<OGAAd *> *ads, NSError *_Nullable error))completionHandler {
     if (((NSHTTPURLResponse *)response).statusCode == 204) {
-        OguryAdsError *adError = [OguryAdsError noFillFrom:adConfiguration.isHeaderBidding
-                                                    ? OguryAdsIntegrationTypeHeaderBidding
-                                                    : OguryAdsIntegrationTypeDirect];
+        OguryAdError *adError = [OguryAdError noFillFrom:adConfiguration.isHeaderBidding ? OguryAdIntegrationTypeHeaderBidding : OguryAdIntegrationTypeDirect];
         [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
                                              adConfiguration:adConfiguration
                                                      logType:OguryLogTypeInternal
@@ -233,7 +231,7 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
         switch (code) {
             case 400 ... 499:
             case 500 ... 599: {
-                OguryAdsError *adError = [OguryAdsError adRequestFailedWithCode:code];
+                OguryAdError *adError = [OguryAdError adRequestFailedWithCode:code];
                 [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
                                                      adConfiguration:adConfiguration
                                                              logType:OguryLogTypeRequests
@@ -269,9 +267,10 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
                               privacyConfiguration:privacyConfiguration
                                              error:&parseError];
     if (parseError) {
-        OguryAdsError *adError = [parseError isKindOfClass:[OguryAdsError class]]
+        OguryAdError *adError = [parseError isKindOfClass:[OguryAdError class]]
             ? parseError
-            : [OguryAdsError adParsingFailedWithStackTrace:parseError.localizedDescription];
+            : [OguryAdError adParsingFailedWithStackTrace:
+                                [NSString stringWithFormat:@"Ad parsing failed (%ld)", parseError.code]];
         [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
                                              adConfiguration:adConfiguration
                                                      logType:OguryLogTypeRequests
@@ -279,11 +278,12 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
                                                      message:@"AdSync parsing failed"
                                                         tags:nil]];
         completionHandler(nil, adError);
+
         return;
     }
 
     if (!ads) {
-        OguryAdsError *adError = [OguryAdsError adParsingFailedWithStackTrace:@"The ad's array is empty, that should not happen"];
+        OguryAdError *adError = [OguryAdError adParsingFailedWithStackTrace:@"The ad's array is empty, that should not happen"];
         [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
                                              adConfiguration:adConfiguration
                                                      logType:OguryLogTypeRequests
@@ -319,7 +319,7 @@ static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_prec
                                        error:error
                         monitoringDispatcher:self.monitoringDispatcher];
     } else {
-        *error = [OguryAdsError adParsingFailedWithStackTrace:@"No ad received"];
+        *error = [OguryAdError adParsingFailedWithStackTrace:@"No ad received"];
         return nil;
     }
 

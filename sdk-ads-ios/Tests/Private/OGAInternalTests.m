@@ -57,22 +57,26 @@
                                                         webViewUserAgentService:self.webViewUserAgentService]);
 }
 
-- (void)testStartWithAssetKey {
+- (void)testStartWith {
     OCMStub([self.assetKeyManager configureAssetKey:[OCMArg any]]).andReturn(YES);
 
-    [self.internal startWithAssetKey:@"OGY-XXXXXXXX" completionHandler:nil];
+    [self.internal startWith:@"OGY-XXXXXXXX"
+           completionHandler:^(BOOL success, NSError *error){
+           }];
 
     OCMVerify([self.assetKeyManager configureAssetKey:@"OGY-XXXXXXXX"]);
     OCMVerify([self.internetReachability startNotifier]);
-    OCMVerify([self.webViewUserAgentService syncWebViewUserAgent]);
+    OCMVerify([self.webViewUserAgentService syncWebViewUserAgentAndDispatchDelegate]);
 }
 
-- (void)testStartWithAssetKey_cannotReconfigureAssetKey {
+- (void)testStartWith_cannotReconfigureAssetKey {
     OCMStub([self.assetKeyManager configureAssetKey:[OCMArg any]]).andReturn(NO);
     OCMReject([self.internetReachability startNotifier]);
     OCMReject([self.profigManager syncProfigWithCompletion:[OCMArg any]]);
 
-    [self.internal startWithAssetKey:@"OGY-XXXXXXXX" completionHandler:nil];
+    [self.internal startWith:@"OGY-XXXXXXXX"
+           completionHandler:^(BOOL success, NSError *error){
+           }];
 }
 
 - (void)testSetLogLevel {
@@ -143,34 +147,5 @@
     OCMVerify([self.internal syncProfig]);
     OCMStub([self.internal syncProfig]);
 }
-
-//- (void)testWhenStartingSDKForTheFirstTimeThenSDKShoudNotBeReset {
-//    OguryPersistentEventBus *persistentEventBus = OCMClassMock([OguryPersistentEventBus class]);
-//    OguryEventBus *broadcastEventBus = OCMClassMock([OguryEventBus class]);
-//    OCMStub(self.assetKeyManager.assetKey).andReturn(nil);
-//    OCMStub(self.assetKeyManager.assetKeyHasBeenSet).andReturn(NO);
-//    [self.internal startWithAssetKey:@"OGY-XXXXXXXX"];
-//    OCMReject([self.internal resetSDK]);
-//}
-//
-//- (void)testWhenStartingSDKForTheSecondTimeWithTheSameAssetKeyThenSDKShoudNotBeReset {
-//    OguryPersistentEventBus *persistentEventBus = OCMClassMock([OguryPersistentEventBus class]);
-//    OguryEventBus *broadcastEventBus = OCMClassMock([OguryEventBus class]);
-//    OCMStub(self.assetKeyManager.assetKey).andReturn(nil);
-//    OCMStub(self.assetKeyManager.assetKeyHasBeenSet).andReturn(NO);
-//    [self.internal startWithAssetKey:@"OGY-XXXXXXXX"];
-//    [self.internal startWithAssetKey:@"OGY-XXXXXXXX"];
-//    OCMReject([self.internal resetSDK]);
-//}
-//
-//- (void)testWhenStartingSDKForTheSecondTimeWithADifferentAssetKeyThenSDKShoudNotBeReset {
-//    OguryPersistentEventBus *persistentEventBus = OCMClassMock([OguryPersistentEventBus class]);
-//    OguryEventBus *broadcastEventBus = OCMClassMock([OguryEventBus class]);
-//    OGAAssetKeyManager* assetKeyManager = OCMPartialMock([OGAAssetKeyManager new]);
-//    OCMStub(self.internal.assetKeyManager).andReturn(assetKeyManager);
-//    [self.internal startWithAssetKey:@"OGY-XXXXXXXX"];
-//    [self.internal startWithAssetKey:@"OGY-YYYYYYYY"];
-//    OCMVerify([self.internal resetSDK]);
-//}
 
 @end

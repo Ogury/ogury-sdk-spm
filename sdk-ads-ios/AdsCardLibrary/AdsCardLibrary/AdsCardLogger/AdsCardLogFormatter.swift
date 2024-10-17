@@ -6,6 +6,7 @@
 //
 
 import OguryAds.Private
+import OguryCore.Private
 import SwiftUI
 
 public class AdsCardLogFormatter: OguryLogFormatter {
