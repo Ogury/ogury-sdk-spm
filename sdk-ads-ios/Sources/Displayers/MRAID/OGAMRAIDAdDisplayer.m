@@ -182,31 +182,34 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
 
 #pragma mark - Methods
 - (void)webkitProcessDidTerminate {
-    NSUInteger maxNumberOfReloadWebView = OGADefaultMaxNumberWebviewReload;
-    if (self.ad.maxNumberOfReloadWebView != NULL) {
-        maxNumberOfReloadWebView = [self.ad.maxNumberOfReloadWebView intValue];
-    }
-    BOOL maxReloadAttemptsReached = self.numberOfReloadAttempts >= maxNumberOfReloadWebView;
-
     if (self.mraidDisplayerState == OGAAdMraidDisplayerStateBrowserOpened || self.mraidDisplayerState == OGAAdMraidDisplayerStateDefault) {
         OGAMraidCommand *close = [[OGAMraidCommand alloc] init];
         [self closeFullAd:close];
         [self.monitoringDispatcher sendShowEvent:OGAShowEventWebviewTerminatedByOS adConfiguration:self.ad.adConfiguration];
         return;
     }
+    NSUInteger maxNumberOfReloadWebView = OGADefaultMaxNumberWebviewReload;
+    if (self.ad.maxNumberOfReloadWebView != NULL) {
+        maxNumberOfReloadWebView = [self.ad.maxNumberOfReloadWebView intValue];
+    }
 
+    BOOL maxReloadAttemptsReached = self.numberOfReloadAttempts >= maxNumberOfReloadWebView;
     [self.monitoringDispatcher sendLoadEvent:OGALoadEventWebviewTerminatedByOS
                              adConfiguration:self.ad.adConfiguration
                                      details:@{
                                          OGAMonitoringEventDetailMaxReloadAttemptsReached : @(maxReloadAttemptsReached),
                                          OGAMonitoringEventDetailWebviewTermination : @(self.numberOfReloadAttempts + 1)
                                      }];
-
+    if (self.mraidDisplayerState == OGAAdMraidDisplayerStateLoading) {
+        [self.delegate webkitProcessDidTerminate];
+        [self.stateManager invalidateTimer];
+        [self isKilled];
+        return;
+    }
     if (self.mraidDisplayerState == OGAAdMraidDisplayerStateEnded) {
         return;
     }
 
-    // we start by cleaninv everything in memory
     [self cleanWebView];
     // if the max is reached then we set the ad as killed
     if (maxReloadAttemptsReached) {

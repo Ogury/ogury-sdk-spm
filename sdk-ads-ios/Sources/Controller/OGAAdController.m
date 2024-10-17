@@ -149,6 +149,12 @@
     }
 }
 
+- (void)webkitProcessDidTerminate {
+    if ([self.delegate respondsToSelector:@selector(controller:webkitProcessDidTerminateForAd:)]) {
+        [self.delegate controller:self webkitProcessDidTerminateForAd:self.ad];
+    }
+}
+
 - (void)didUnLoadFrom:(UnloadOrigin)unloadOrigin {
     if ([self.delegate respondsToSelector:@selector(controller:didUnLoadAd:origin:)]) {
         [self.delegate controller:self didUnLoadAd:self.ad origin:unloadOrigin];
