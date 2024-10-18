@@ -131,7 +131,7 @@ static NSString *const TestDelegate = @"DELEGATE";
 }
 
 - (void)testShouldSetDelegate {
-    id delegate = OCMStrictProtocolMock(@protocol(OguryBannerAdDelegate));
+    id delegate = OCMStrictProtocolMock(@protocol(OguryBannerAdViewDelegate));
     OCMExpect([self.delegateDispatcher setDelegate:delegate]);
     [self.banner setDelegate:delegate];
     OCMVerify([self.delegateDispatcher setDelegate:delegate]);

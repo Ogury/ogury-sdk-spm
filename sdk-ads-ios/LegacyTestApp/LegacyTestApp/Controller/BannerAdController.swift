@@ -153,9 +153,9 @@ extension BannerAdController {
     }
 }
 
-// MARK: - OguryBannerAdDelegate
+// MARK: - OguryBannerAdViewDelegate
 
-extension BannerAdController: OguryBannerAdDelegate {
+extension BannerAdController: OguryBannerAdViewDelegate {
 
     func bannerAdViewDidLoad(_ bannerAd: OguryBannerAdView) {
         LogsController.shared.addLogs("Banner ad loaded")

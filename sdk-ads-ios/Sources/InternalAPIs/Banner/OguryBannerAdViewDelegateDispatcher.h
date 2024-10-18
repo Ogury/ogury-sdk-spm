@@ -3,12 +3,12 @@
 //
 
 #import "OGADelegateDispatcher.h"
-#import "OguryBannerAdDelegate.h"
+#import "OguryBannerAdViewDelegate.h"
 #import "OGAAdDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OguryBannerAdViewDelegateDispatcher : OGADelegateDispatcher <id <OguryBannerAdDelegate>>
+@interface OguryBannerAdViewDelegateDispatcher : OGADelegateDispatcher <id <OguryBannerAdViewDelegate>>
 
 #pragma mark - Properties
 

@@ -4,14 +4,14 @@
 
 #import "OGABannerAdViewInternalAPI.h"
 #import "OGAAdSequence.h"
-#import "OguryBannerAdDelegate.h"
+#import "OguryBannerAdViewDelegate.h"
 #import "OGAInternal.h"
 
 @class OGAMonitoringDispatcher;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OGABannerAdViewInternalAPI (Testing) <OguryBannerAdDelegate>
+@interface OGABannerAdViewInternalAPI (Testing) <OguryBannerAdViewDelegate>
 
 @property(nonatomic, strong) OGAAdSequence *sequence;
 @property(nonatomic, strong) OGAAdConfiguration *configuration;
