@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, UnloadOrigin) {
 - (void)didUnLoadFrom:(UnloadOrigin)unloadOrigin;
 - (BOOL)performAction:(id<OGAAdAction>)action error:(OguryAdError *_Nullable *_Nullable)error;
 - (BOOL)adIsDisplayed;
+- (void)webkitProcessDidTerminate;
 
 @end
 
