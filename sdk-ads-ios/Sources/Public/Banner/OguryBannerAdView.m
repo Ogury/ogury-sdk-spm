@@ -49,11 +49,11 @@
     return self.internalAPI.adUnitId;
 }
 
-- (id<OguryBannerAdDelegate>)delegate {
+- (id<OguryBannerAdViewDelegate>)delegate {
     return self.delegateDispatcher.delegate;
 }
 
-- (void)setDelegate:(id<OguryBannerAdDelegate>)delegate {
+- (void)setDelegate:(id<OguryBannerAdViewDelegate>)delegate {
     self.delegateDispatcher.delegate = delegate;
 }
 

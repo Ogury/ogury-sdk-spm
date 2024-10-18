@@ -176,9 +176,9 @@ extension BannerCollectionViewVC: UIPopoverPresentationControllerDelegate {
     }
 }
 
-// MARK: - OguryBannerAdDelegate
+// MARK: - OguryBannerAdViewDelegate
 
-extension BannerCollectionViewVC: OguryBannerAdDelegate {
+extension BannerCollectionViewVC: OguryBannerAdViewDelegate {
 
     func bannerAdViewDidLoad(_ bannerAd: OguryBannerAdView) {
         if let bottomBanner = self.bottomBanner {
