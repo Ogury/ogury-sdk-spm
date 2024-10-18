@@ -201,9 +201,10 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
                                          OGAMonitoringEventDetailWebviewTermination : @(self.numberOfReloadAttempts + 1)
                                      }];
     if (self.mraidDisplayerState == OGAAdMraidDisplayerStateLoading) {
+        self.mraidDisplayerState = OGAAdMraidDisplayerStateKilled;
         [self.delegate webkitProcessDidTerminate];
         [self.stateManager invalidateTimer];
-        [self isKilled];
+        [self.stateManager reset];
         return;
     }
     if (self.mraidDisplayerState == OGAAdMraidDisplayerStateEnded) {

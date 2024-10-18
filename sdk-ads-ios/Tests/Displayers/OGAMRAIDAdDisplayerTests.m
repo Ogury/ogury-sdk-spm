@@ -1186,14 +1186,13 @@
                                                                        monitoringDispatcher:self.monitoringDispatcher
                                                                               profigManager:self.profigManager
                                                                                         log:self.log]);
-
-    OCMStub([displayer isKilled]);
     displayer.delegate = OCMProtocolMock(@protocol(OGAAdDisplayerDelegate));
     displayer.mraidDisplayerState = OGAAdMraidDisplayerStateLoading;
     [displayer webkitProcessDidTerminate];
     OCMVerify([displayer.delegate webkitProcessDidTerminate]);
     OCMVerify([displayer.stateManager invalidateTimer]);
-    OCMVerify([displayer isKilled]);
+    OCMVerify([displayer.stateManager reset]);
+    XCTAssertEqual(displayer.mraidDisplayerState, OGAAdMraidDisplayerStateKilled);
 }
 
 @end
