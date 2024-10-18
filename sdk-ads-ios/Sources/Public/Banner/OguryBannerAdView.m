@@ -17,7 +17,7 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithAdUnitId:(NSString *)adUnitId size:(OguryAdsBannerSize *)size mediation:(OguryMediation *_Nonnull)mediation {
+- (instancetype)initWithAdUnitId:(NSString *)adUnitId size:(OguryBannerAdSize *)size mediation:(OguryMediation *_Nonnull)mediation {
     return [self initWithInternalAPI:[[OGABannerAdViewInternalAPI alloc] initWithAdUnitId:adUnitId
                                                                                bannerView:self
                                                                                      size:size
@@ -25,7 +25,7 @@
                                                                                 mediation:mediation]];
 }
 
-- (instancetype)initWithAdUnitId:(NSString *_Nonnull)adUnitId size:(OguryAdsBannerSize *)size {
+- (instancetype)initWithAdUnitId:(NSString *_Nonnull)adUnitId size:(OguryBannerAdSize *)size {
     return [self initWithInternalAPI:[[OGABannerAdViewInternalAPI alloc] initWithAdUnitId:adUnitId
                                                                                bannerView:self
                                                                                      size:size
