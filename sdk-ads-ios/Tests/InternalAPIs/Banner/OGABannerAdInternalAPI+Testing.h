@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) OGAAdSequence *sequence;
 @property(nonatomic, strong) OGAAdConfiguration *configuration;
 @property(nonatomic, strong) OGAAdManager *adManager;
-@property(nonatomic, strong) OguryAdsBannerSize *size;
+@property(nonatomic, strong) OguryBannerAdSize *size;
 
 - (instancetype)initWithAdUnitId:(NSString *)adUnitId
                       bannerView:(UIView *_Nullable)bannerView
@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithAdUnitId:(NSString *)adUnitId
                       bannerView:(UIView *_Nullable)bannerView
-                            size:(OguryAdsBannerSize *)size
+                            size:(OguryBannerAdSize *)size
               delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher
                        adManager:(OGAAdManager *)adManager
               notificationCenter:(NSNotificationCenter *)notificationCenter

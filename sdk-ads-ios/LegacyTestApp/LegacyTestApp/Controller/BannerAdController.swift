@@ -21,14 +21,14 @@ final class BannerAdController: NSObject, BannerFormatController {
 
     // MARK: - Functions
 
-    func getAd(adUnitId: String, maxSize: OguryAdsBannerSize) -> OguryBannerAdView {
+    func getAd(adUnitId: String, maxSize: OguryBannerAdSize) -> OguryBannerAdView {
         let instance = OguryBannerAdView(adUnitId: adUnitId, size: maxSize)
         instance.delegate = self
         banner = instance
         return instance
     }
 
-    func load(adUnitId: String, campaignId: String? = nil, creativeId:String? = nil, dspCreativeId:String? = nil, dspRegion:String? = nil, maxSize: OguryAdsBannerSize, inView view: UIView?, withWidth width: CGFloat? = nil) {
+    func load(adUnitId: String, campaignId: String? = nil, creativeId:String? = nil, dspCreativeId:String? = nil, dspRegion:String? = nil, maxSize: OguryBannerAdSize, inView view: UIView?, withWidth width: CGFloat? = nil) {
         let bannerAd = getAd(adUnitId: adUnitId, maxSize: maxSize)
 
         if let campaignId = campaignId, !campaignId.isEmpty, let creativeId = creativeId, !creativeId.isEmpty, let dspCreativeId = dspCreativeId, !dspCreativeId.isEmpty, let dspRegion = dspRegion, !dspRegion.isEmpty {
@@ -118,7 +118,7 @@ extension BannerAdController {
                                creativeId: String?,
                                dspCreativeId: String?,
                                dspRegion: String?,
-                               maxSize: OguryAdsBannerSize,
+                               maxSize: OguryBannerAdSize,
                                preferredWidth width: CGFloat? = nil,
                                in view: UIView?) {
         guard let assetKey = AdConfigController.shared.assetKey() else {

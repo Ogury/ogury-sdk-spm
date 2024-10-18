@@ -243,7 +243,7 @@
 		351A15871EDCC31C59D96F99 /* OGAInternetConnectionChecker.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A1260FCD331DAD62FBC13 /* OGAInternetConnectionChecker.h */; };
 		351A158CC63CD3C1EDEEC721 /* OguryBannerAdDelegateDispatcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1297C6FE479DD6C155D1 /* OguryBannerAdDelegateDispatcherTests.m */; };
 		351A158ECCAC7EA8DD6542D3 /* OGAThumbnailAdViewController+Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1F42F0A397E55FD3B270 /* OGAThumbnailAdViewController+Position.m */; };
-		351A159440B50E167CE6F4DA /* OguryAdsBannerSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1FC2145452F8CAD46BC8 /* OguryAdsBannerSize.m */; };
+		351A159440B50E167CE6F4DA /* OguryBannerAdSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1FC2145452F8CAD46BC8 /* OguryBannerAdSize.m */; };
 		351A15A066E514A715DE0497 /* OGARewardedAdInternalAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A12308D75A625BCC98CE0 /* OGARewardedAdInternalAPI.h */; };
 		351A15A15945A618CD35E988 /* OGADeviceOrientationConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A1BE3B7AB5005B0FC11C3 /* OGADeviceOrientationConstants.h */; };
 		351A15D3748692CB4867DA8C /* OGAFullscreenToBannerAdContainerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1F40B1E813D3EE76F4C9 /* OGAFullscreenToBannerAdContainerTransition.m */; };
@@ -332,7 +332,7 @@
 		351A19E0544B776402D8D9AF /* OGAAdManager+Check.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A1BD5717D35556EFF6EC4 /* OGAAdManager+Check.h */; };
 		351A19E507FD63102EBF6712 /* OguryReward.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1E7238A27BECEDC11680 /* OguryReward.m */; };
 		351A19F75607982659BF8F8B /* OGABannerAdResponseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1A479BC38E06E8D8F876 /* OGABannerAdResponseTests.m */; };
-		351A19F7792201E66F9FA238 /* OguryAdsBannerSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A15E5C14E82C4A4A41E25 /* OguryAdsBannerSize.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		351A19F7792201E66F9FA238 /* OguryBannerAdSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A15E5C14E82C4A4A41E25 /* OguryBannerAdSize.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		351A1A0120A88BC598E3282C /* OGAAdDisplayerUpdateExposureInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A112CA7403D7C3D3E49C9 /* OGAAdDisplayerUpdateExposureInformation.m */; };
 		351A1A4BD6890208CD73A543 /* OGAProfigFullResponse+Parser.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A174587054B27F60DBA5F /* OGAProfigFullResponse+Parser.h */; };
 		351A1A4E9DC9E09DD76BC5F9 /* OGAMraidAdWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A18222FD710A89994D27C /* OGAMraidAdWebView.m */; };
@@ -604,7 +604,7 @@
 		43A9F32F2C37E6B40085EF6F /* OGAScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A147412BE01362E3301F9 /* OGAScreen.m */; };
 		43A9F3302C37E6B40085EF6F /* OGASKAdNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E247C2906EEF400480E3F /* OGASKAdNetworkManager.m */; };
 		43A9F3312C37E6B40085EF6F /* OGAInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1C3EF272F9C3DFA521D9 /* OGAInternal.m */; };
-		43A9F3322C37E6B40085EF6F /* OguryAdsBannerSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1FC2145452F8CAD46BC8 /* OguryAdsBannerSize.m */; };
+		43A9F3322C37E6B40085EF6F /* OguryBannerAdSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1FC2145452F8CAD46BC8 /* OguryBannerAdSize.m */; };
 		43A9F3332C37E6B40085EF6F /* OGAMonitoringConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5057B68A2B5025CB00A3E575 /* OGAMonitoringConstants.m */; };
 		43A9F3342C37E6B40085EF6F /* OguryBannerAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1538C4F685879B1B0F7C /* OguryBannerAdView.m */; };
 		43A9F3352C37E6B40085EF6F /* OGAProfigConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 223A63082A010E030022FFE0 /* OGAProfigConstants.m */; };
@@ -817,7 +817,7 @@
 		43A9F4172C37E6B40085EF6F /* OguryAdsADType.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A13246D2324E5D47F8DB8 /* OguryAdsADType.h */; };
 		43A9F4182C37E6B40085EF6F /* OGAInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A118E190ACB87F06F8CEC /* OGAInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		43A9F4192C37E6B40085EF6F /* OGAMraidInitializationOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = C9C5233E2910971D00C44A49 /* OGAMraidInitializationOperation.h */; };
-		43A9F41B2C37E6B40085EF6F /* OguryAdsBannerSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A15E5C14E82C4A4A41E25 /* OguryAdsBannerSize.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43A9F41B2C37E6B40085EF6F /* OguryBannerAdSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A15E5C14E82C4A4A41E25 /* OguryBannerAdSize.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43A9F41C2C37E6B40085EF6F /* OGAUnloadAdAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 221FEC0027D6106F0039F141 /* OGAUnloadAdAction.h */; };
 		43A9F41D2C37E6B40085EF6F /* OGAMonitoringDispatcher+SKNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 22FAEBA4299A69D800BA88B8 /* OGAMonitoringDispatcher+SKNetwork.h */; };
 		43A9F41E2C37E6B40085EF6F /* OGMMonitorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 436A811129545C280021EA32 /* OGMMonitorManager.h */; };
@@ -1403,7 +1403,7 @@
 		351A15AA2897F42611E4A2A4 /* OGAAssetKeyCheckerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAAssetKeyCheckerTests.m; sourceTree = "<group>"; };
 		351A15B664B1F01FAF6E45A4 /* OGAAdContentPreCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAAdContentPreCacheManager.h; sourceTree = "<group>"; };
 		351A15C9D58DB093A5E027C3 /* OGAThumbnailAdWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAThumbnailAdWindow.h; sourceTree = "<group>"; };
-		351A15E5C14E82C4A4A41E25 /* OguryAdsBannerSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OguryAdsBannerSize.h; sourceTree = "<group>"; };
+		351A15E5C14E82C4A4A41E25 /* OguryBannerAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OguryBannerAdSize.h; sourceTree = "<group>"; };
 		351A15EA49B36EFC1B1A9590 /* OGAExpandAdAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAExpandAdAction.m; sourceTree = "<group>"; };
 		351A161191D22F3A274985EF /* OGAAssetKeyManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAAssetKeyManagerTests.m; sourceTree = "<group>"; };
 		351A161D9152A786D1969FC0 /* badAdResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = badAdResponse.json; sourceTree = "<group>"; };
@@ -1613,7 +1613,7 @@
 		351A1F8A851E39FBE9F13058 /* OGAAdInternalAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAAdInternalAPI.h; sourceTree = "<group>"; };
 		351A1F9A2A218F9E9BA9C16C /* OGAThumbnailAdResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAThumbnailAdResponse.h; sourceTree = "<group>"; };
 		351A1FB031C34E91B2530781 /* OGARewardTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGARewardTests.m; sourceTree = "<group>"; };
-		351A1FC2145452F8CAD46BC8 /* OguryAdsBannerSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OguryAdsBannerSize.m; sourceTree = "<group>"; };
+		351A1FC2145452F8CAD46BC8 /* OguryBannerAdSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OguryBannerAdSize.m; sourceTree = "<group>"; };
 		351A1FC46C1C314A8D1E41A3 /* OGAThumbnailAdViewController+Exposure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OGAThumbnailAdViewController+Exposure.h"; sourceTree = "<group>"; };
 		351A1FC6E70C7ED24307F8FB /* fakeAdResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fakeAdResponse.json; sourceTree = "<group>"; };
 		351A1FC81C950E2B68A07216 /* OGAWebViewUserAgentService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAWebViewUserAgentService.m; sourceTree = "<group>"; };
@@ -2590,8 +2590,8 @@
 		351A1799D7FCC0B6028649CA /* Banner */ = {
 			isa = PBXGroup;
 			children = (
-				351A15E5C14E82C4A4A41E25 /* OguryAdsBannerSize.h */,
-				351A1FC2145452F8CAD46BC8 /* OguryAdsBannerSize.m */,
+				351A15E5C14E82C4A4A41E25 /* OguryBannerAdSize.h */,
+				351A1FC2145452F8CAD46BC8 /* OguryBannerAdSize.m */,
 				351A1125BD013631DEC9EA59 /* OguryBannerAdView.h */,
 				351A1538C4F685879B1B0F7C /* OguryBannerAdView.m */,
 			);
@@ -4005,7 +4005,7 @@
 				43A9F4172C37E6B40085EF6F /* OguryAdsADType.h in Headers */,
 				43A9F4182C37E6B40085EF6F /* OGAInternal.h in Headers */,
 				43A9F4192C37E6B40085EF6F /* OGAMraidInitializationOperation.h in Headers */,
-				43A9F41B2C37E6B40085EF6F /* OguryAdsBannerSize.h in Headers */,
+				43A9F41B2C37E6B40085EF6F /* OguryBannerAdSize.h in Headers */,
 				43A9F41C2C37E6B40085EF6F /* OGAUnloadAdAction.h in Headers */,
 				43A9F41D2C37E6B40085EF6F /* OGAMonitoringDispatcher+SKNetwork.h in Headers */,
 				43A9F41E2C37E6B40085EF6F /* OGMMonitorManager.h in Headers */,
@@ -4252,7 +4252,7 @@
 				351A1B2A54CA2564570D7381 /* OguryAdsADType.h in Headers */,
 				351A14BC835143E3E1F686D7 /* OGAInternal.h in Headers */,
 				C9C523442910971F00C44A49 /* OGAMraidInitializationOperation.h in Headers */,
-				351A19F7792201E66F9FA238 /* OguryAdsBannerSize.h in Headers */,
+				351A19F7792201E66F9FA238 /* OguryBannerAdSize.h in Headers */,
 				221FEC0227D6106F0039F141 /* OGAUnloadAdAction.h in Headers */,
 				22FAEBA6299A69D800BA88B8 /* OGAMonitoringDispatcher+SKNetwork.h in Headers */,
 				436A811329545C280021EA32 /* OGMMonitorManager.h in Headers */,
@@ -4708,7 +4708,7 @@
 				43A9F32F2C37E6B40085EF6F /* OGAScreen.m in Sources */,
 				43A9F3302C37E6B40085EF6F /* OGASKAdNetworkManager.m in Sources */,
 				43A9F3312C37E6B40085EF6F /* OGAInternal.m in Sources */,
-				43A9F3322C37E6B40085EF6F /* OguryAdsBannerSize.m in Sources */,
+				43A9F3322C37E6B40085EF6F /* OguryBannerAdSize.m in Sources */,
 				43A9F3332C37E6B40085EF6F /* OGAMonitoringConstants.m in Sources */,
 				43A9F3342C37E6B40085EF6F /* OguryBannerAdView.m in Sources */,
 				43A9F3352C37E6B40085EF6F /* OGAProfigConstants.m in Sources */,
@@ -4931,7 +4931,7 @@
 				351A1EFACA0BA2D1FD8D7B64 /* OGAScreen.m in Sources */,
 				C99E247D2906EEF400480E3F /* OGASKAdNetworkManager.m in Sources */,
 				351A10B4D5BAD72BE3917FB2 /* OGAInternal.m in Sources */,
-				351A159440B50E167CE6F4DA /* OguryAdsBannerSize.m in Sources */,
+				351A159440B50E167CE6F4DA /* OguryBannerAdSize.m in Sources */,
 				5057B68C2B5025CB00A3E575 /* OGAMonitoringConstants.m in Sources */,
 				351A17248CEED7FD752DFAF9 /* OguryBannerAdView.m in Sources */,
 				223A630A2A010E030022FFE0 /* OGAProfigConstants.m in Sources */,

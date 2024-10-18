@@ -4,7 +4,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OguryBannerAdViewDelegate.h"
-#import "OguryAdsBannerSize.h"
+#import "OguryBannerAdSize.h"
 #import "OguryMediation.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -20,8 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Initialization
 
-- (instancetype)initWithAdUnitId:(NSString *)adUnitId size:(OguryAdsBannerSize *)size;
-- (instancetype)initWithAdUnitId:(NSString *)adUnitId size:(OguryAdsBannerSize *)size mediation:(OguryMediation *_Nonnull)mediation;
+- (instancetype)initWithAdUnitId:(NSString *)adUnitId size:(OguryBannerAdSize *)size;
+- (instancetype)initWithAdUnitId:(NSString *)adUnitId size:(OguryBannerAdSize *)size mediation:(OguryMediation *_Nonnull)mediation;
 
 #pragma mark - Methods
 

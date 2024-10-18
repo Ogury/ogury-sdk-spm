@@ -7,7 +7,7 @@
 #import <OCMock/OCMock.h>
 #import "OGAAdConfiguration.h"
 #import "OguryBannerAdViewDelegateDispatcher.h"
-#import "OguryAdsBannerSize.h"
+#import "OguryBannerAdSize.h"
 
 NSString *const OGAAdConfigurationTestsAdUnitId = @"ad-unit-id";
 NSString *const OGAAdConfigurationTestsCampaignId = @"campaign-id";
@@ -110,14 +110,14 @@ NSString *const OGAEncodedAdMarkup = @"encoded-adMarkup";
 
 - (void)testGetAdTypeString_bannerAd_smallBanner {
     OGAAdConfiguration *configuration = [[OGAAdConfiguration alloc] initWithType:OguryAdsTypeBanner adUnitId:OGAAdConfigurationTestsAdUnitId delegateDispatcher:self.delegateDispatcher viewControllerProvider:nil viewProvider:nil];
-    configuration.size = [[OguryAdsBannerSize small_banner_320x50] getSize];
+    configuration.size = [[OguryBannerAdSize small_banner_320x50] getSize];
 
     XCTAssertEqualObjects(configuration.getAdTypeString, @"banner_320x50");
 }
 
 - (void)testGetAdTypeString_bannerAd_mpu {
     OGAAdConfiguration *configuration = [[OGAAdConfiguration alloc] initWithType:OguryAdsTypeBanner adUnitId:OGAAdConfigurationTestsAdUnitId delegateDispatcher:self.delegateDispatcher viewControllerProvider:nil viewProvider:nil];
-    configuration.size = [[OguryAdsBannerSize mrec_300x250] getSize];
+    configuration.size = [[OguryBannerAdSize mrec_300x250] getSize];
 
     XCTAssertEqualObjects(configuration.getAdTypeString, @"medium_rectangle");
 }

@@ -8,7 +8,7 @@
 #import "OGABannerAdViewInternalAPI.h"
 #import "OguryBannerAdView.h"
 #import "OguryBannerAd+Testing.h"
-#import "OguryAdsBannerSize.h"
+#import "OguryBannerAdSize.h"
 
 @interface OguryBannerAdTests : XCTestCase
 
@@ -41,7 +41,7 @@ static NSString *const TestDelegate = @"DELEGATE";
 }
 
 - (void)testShouldInstantiateWithAdUnitId {
-    OguryBannerAdView *banner = [[OguryBannerAdView alloc] initWithAdUnitId:TestAdUnitId size:OguryAdsBannerSize.mrec_300x250];
+    OguryBannerAdView *banner = [[OguryBannerAdView alloc] initWithAdUnitId:TestAdUnitId size:OguryBannerAdSize.mrec_300x250];
 
     XCTAssertNotNil(banner.adUnitId);
     XCTAssertNotNil(banner.delegateDispatcher);
@@ -77,7 +77,7 @@ static NSString *const TestDelegate = @"DELEGATE";
 }
 
 - (void)testLoadWithCampaignIdCreativeIdDspCreativeIdDspRegionSize {
-    OguryAdsBannerSize *size = [OguryAdsBannerSize mrec_300x250];
+    OguryBannerAdSize *size = [OguryBannerAdSize mrec_300x250];
 
     OCMExpect([self.internalAPI loadWithCampaignId:TestCampaignId
                                         creativeId:TestCreativeId
@@ -96,7 +96,7 @@ static NSString *const TestDelegate = @"DELEGATE";
 }
 
 - (void)testLoadWithCampaignIdCreativeId {
-    OguryAdsBannerSize *size = [OguryAdsBannerSize mrec_300x250];
+    OguryBannerAdSize *size = [OguryBannerAdSize mrec_300x250];
 
     OCMExpect([self.internalAPI loadWithCampaignId:TestCampaignId
                                         creativeId:TestCreativeId]);
@@ -152,7 +152,7 @@ static NSString *const TestDelegate = @"DELEGATE";
 - (void)testWhenCreatingAnAdWithMediationThenMediationIsSavedInInternalApi {
     OguryMediation *mediation = [[OguryMediation alloc] initWithName:@"name" version:@"version"];
     OguryBannerAdView *ad = [[OguryBannerAdView alloc] initWithAdUnitId:@"adUnit"
-                                                                   size:OguryAdsBannerSize.mrec_300x250
+                                                                   size:OguryBannerAdSize.mrec_300x250
                                                               mediation:mediation];
     XCTAssertEqualObjects(ad.internalAPI.configuration.mediation, mediation);
 }
