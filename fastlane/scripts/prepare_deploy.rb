@@ -136,7 +136,7 @@ private_lane :combine_framework do |options|
   puts "Creating #{target.name} XCFramework"
   inputs = ""
   configuration.sdks.defaults.each do |sdk|
-    inputs += "-framework '#{configuration.directories.build}/archives/#{target.name}-#{sdk.platform}.xcarchive/Products/Library/Frameworks/#{target.publicName}.framework' "
+    inputs += "-framework '#{configuration.directories.build}/archives/#{target.publicName}-#{sdk.platform}.xcarchive/Products/Library/Frameworks/#{target.publicName}.framework' "
   end
 
   output_file = "#{configuration.directories.output}/#{target.publicName}.xcframework"
