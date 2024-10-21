@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "43FA4E402CB57E2E0029B928"
-               BuildableName = "OguryWrapper-art.framework"
+               BuildableName = "OgurySdk.framework"
                BlueprintName = "OguryWrapper-art"
                ReferencedContainer = "container:OguryWrapper.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "43FA4E402CB57E2E0029B928"
-            BuildableName = "OguryWrapper-art.framework"
+            BuildableName = "OgurySdk.framework"
             BlueprintName = "OguryWrapper-art"
             ReferencedContainer = "container:OguryWrapper.xcodeproj">
          </BuildableReference>
