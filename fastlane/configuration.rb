@@ -6,7 +6,7 @@ class Configuration
     core = Target.new("OguryCore", "sdk-core-ios/OguryCore.xcodeproj", "OguryCore", "OguryCore", nil, Dependency.new(hasPodspec: true), "core", "core-ios")
     ads = Target.new("OguryAds", "sdk-ads-ios/OguryAdsSDK.xcodeproj", "OguryAds", nil, nil, Dependency.new(core: true, omid: true, hasPodspec: true), "ads", "ads-ios")
     adsLibrary = Target.new("AdsCardLibrary", "sdk-ads-ios/AdsCardLibrary/AdsCardLibrary.xcodeproj", "AdsCardLibrary", nil, nil, Dependency.new(core: true, ads: true), "adsLibrary", "adsLibrary-ios")
-    wrapper = Target.new("OguryWrapper", "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj", "OguryWrapper", nil, "OgurySdk", Dependency.new(core: true, ads: true, hasPodspec: true), "wrapper", "wrapper-ios")
+    wrapper = Target.new("OguryWrapper", "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj", "OguryWrapper", nil, "OgurySdk", Dependency.new(core: true, ads: true, hasPodspec: true), "wrapper", "ios")
     testApp = Target.new("AdsTestApp", "sdk-ads-ios/AdsTestApp/AdsTestApp.xcodeproj", "AdsTestApp", nil, nil, Dependency.new(core: true, ads: true), "testApp", "testApp-ios")
     @targets = Targets.new(ads, adsLibrary, core, wrapper, testApp)
     iosSdk = Sdk.new("iphoneos", "generic/platform=iOS")
