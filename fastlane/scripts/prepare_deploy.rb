@@ -108,7 +108,7 @@ private_lane :build_frameworks do |options|
   scheme = artifactory ? target.artScheme : target.scheme
 
   configuration.sdks.defaults.each do |sdk|
-    puts "Compiling #{target.scheme}".green
+    puts "Compiling #{target.scheme} to".green
     xcodebuild(
       archive: true,
       workspace: configuration.workspace.file_path,
@@ -117,7 +117,7 @@ private_lane :build_frameworks do |options|
       destination: sdk.destination,
       clean: true,
       xcargs: "CLANG_ENABLE_CODE_COVERAGE=NO SKIP_INSTALL=NO MARKETING_VERSION=#{version} ENV_URL=#{options[:environment_url]}",
-      archive_path: "#{configuration.directories.build}/archives/#{target.name}-#{sdk.platform}",
+      archive_path: "#{configuration.directories.build}/archives/#{target.publicName}-#{sdk.platform}",
       )
   end
 end
