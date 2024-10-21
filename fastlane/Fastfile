@@ -305,6 +305,13 @@ lane :test do |options|
     tag = options[:tag]
     artifactory = options[:artifactory] ? options[:artifactory] : false
 
+    update_internal_cocoapods environment: environment
+    generate_podfile(environment:environment, targetThreshold:"ads")
+    cocoapods(
+      podfile: "./Podfile",
+      repo_update: true
+    )
+
     deploy_framework(environment: environment, tag: tag, target: configuration.targets.ads, artifactory: artifactory)
   end
 
@@ -338,6 +345,13 @@ lane :test do |options|
     environment = options[:environment]
     tag = options[:tag]
     artifactory = options[:artifactory] ? options[:artifactory] : false
+
+    update_internal_cocoapods environment: environment
+    generate_podfile(environment:environment, targetThreshold:"all")
+    cocoapods(
+      podfile: "./Podfile",
+      repo_update: true
+    )
 
     deploy_framework(environment: environment, tag: tag, target: configuration.targets.wrapper, artifactory: artifactory)
   end
