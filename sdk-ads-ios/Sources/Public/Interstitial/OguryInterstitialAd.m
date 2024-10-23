@@ -79,7 +79,7 @@
 }
 
 - (BOOL)isLoaded {
-    return [self.internalAPI isLoaded];
+    return self.internalAPI.isLoaded;
 }
 
 - (void)showAdInViewController:(UIViewController *)viewController {

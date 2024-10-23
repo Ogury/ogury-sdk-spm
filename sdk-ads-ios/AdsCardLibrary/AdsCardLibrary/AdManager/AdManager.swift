@@ -12,7 +12,7 @@ public protocol AdManager: Storable, Equatable, Identifiable where ID == UUID {
    /// The underlying ad implementation associated with this manager
    associatedtype Ad
    /// the ad associate with this ad format. Mandatory
-     ad: Ad! { get }
+   var ad: Ad! { get }
    /// the type of ad to load
    var adType: AdType<Self> { get }
    /// The underlying ad implementation associated with this manager
@@ -62,15 +62,14 @@ public enum AdLifeCycleEvent {
    // False in case of banners/mpu, true otherwise
    case adLoaded(canShow: Bool)
    case adDisplaying
-   case adDisplayed
    case adClicked
    case adClosed
    case adDidTriggerImpression
    case adDidFailToLoad(_: Error)
    case adDidFailToDisplay(_: Error)
    case adDidFail(_: Error)
-   case bannerReady(_: OguryBannerAd)
-   case rewardReady(_: OGARewardItem)
+   case bannerReady(_: OguryBannerAdView)
+   case rewardReady(_: OguryReward)
 }
 
 public struct AdLifeCycleEventHistory {
@@ -91,7 +90,6 @@ extension AdLifeCycleEvent: Equatable {
          case (.adLoading, .adLoading): return true
          case (.adLoaded, .adLoaded): return true
          case (.adDisplaying, .adDisplaying): return true
-         case (.adDisplayed, .adDisplayed): return true
          case (.adClicked, .adClicked): return true
          case (.adClosed, .adClosed): return true
          case (.adDidTriggerImpression, .adDidTriggerImpression): return true

@@ -5,6 +5,10 @@
 #import "OGAProfigFullResponse.h"
 #import "OGAAdPrivacyConfiguration.h"
 
+NSString *const OGAAdConfigurationDisablingReasonConsentDenied = @"CONSENT_DENIED";
+NSString *const OGAAdConfigurationDisablingReasonConsentMissing = @"CONSENT_MISSING";
+NSString *const OGAAdConfigurationDisablingReasonCountryUnopened = @"COUNTRY_NOT_OPEN";
+
 @implementation OGAProfigFullResponse
 
 + (OGAJSONKeyMapper *)keyMapper {

@@ -8,7 +8,6 @@
 #import "OGAAdSyncManager.h"
 #import "OGAAdSyncService.h"
 #import "OGALog.h"
-#import "OGAPersistentEventBus.h"
 #import "OGAProfigDao.h"
 #import "OGAProfigManager.h"
 #import "OGAWebViewUserAgentService.h"
@@ -33,8 +32,6 @@
 @property(nonatomic, strong) OGAProfigManager *profigManager;
 @property(nonatomic, strong) OGAAdSyncService *adSyncService;
 @property(nonatomic, strong) OGAWebViewUserAgentService *webViewUserAgentService;
-@property(nonatomic, strong) OGAPersistentEventBus *consentEventBus;
-@property(nonatomic, strong) OguryPersistentEventBus *persistentEventBus;
 @property(nonatomic, strong) OGALog *log;
 
 @property(nonatomic, strong) OGAAdConfiguration *configuration;
@@ -50,7 +47,6 @@
 static NSString *const DefaultURL = @"https://www.github.com";
 static NSString *const DefaultCampaignID = @"Campaign";
 static NSString *const DefaultAdUnitID = @"Default";
-static NSString *const DefaultUserID = @"User";
 
 #pragma mark - Methods
 
@@ -59,15 +55,11 @@ static NSString *const DefaultUserID = @"User";
     self.adSyncService = OCMClassMock([OGAAdSyncService class]);
     self.webViewUserAgentService = OCMClassMock([OGAWebViewUserAgentService class]);
     self.profigManager = OCMClassMock([OGAProfigManager class]);
-    self.persistentEventBus = [[OguryPersistentEventBus alloc] init];
-    self.consentEventBus = [[OGAPersistentEventBus alloc] init];
-    [self.consentEventBus setCorePersistentEventBus:self.persistentEventBus];
 
     self.configuration = OCMClassMock([OGAAdConfiguration class]);
     OCMStub(self.configuration.adType).andReturn(OguryAdsTypeInterstitial);
     OCMStub(self.configuration.adUnitId).andReturn(DefaultAdUnitID);
     OCMStub(self.configuration.campaignId).andReturn(DefaultCampaignID);
-    OCMStub(self.configuration.userId).andReturn(DefaultUserID);
 
     self.adSyncManager = [[OGAAdSyncManager alloc] initWithProfigManager:self.profigManager
                                                            adSyncService:self.adSyncService
@@ -85,8 +77,6 @@ static NSString *const DefaultUserID = @"User";
                                                capturedCompletionHandler = obj;
                                                return YES;
                                            }]]);
-
-    [self.persistentEventBus dispatchOguryEvent:[[OguryEventEntry alloc] initWithEvent:@"CM-status" andMessage:@"COMPLETE"]];
 
     // Dispatch the test to wait for the event bus to dispatch the message.
     dispatch_async(dispatch_get_main_queue(), ^{

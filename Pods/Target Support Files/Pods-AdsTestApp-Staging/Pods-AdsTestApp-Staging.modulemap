@@ -1,6 +1,0 @@
-framework module Pods_AdsTestApp_Staging {
-  umbrella header "Pods-AdsTestApp-Staging-umbrella.h"
-
-  export *
-  module * { export * }
-}

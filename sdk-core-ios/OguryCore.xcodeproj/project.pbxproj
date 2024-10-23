@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,26 +28,16 @@
 		22951EAB2551AE070032A04F /* OGCAdIdentifierManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22951EAA2551AE070032A04F /* OGCAdIdentifierManagerTests.m */; };
 		22951EB32551AF4F0032A04F /* NSStringOGCHashTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22951EB22551AF4F0032A04F /* NSStringOGCHashTests.m */; };
 		22951EBC2551B27C0032A04F /* NSString+OGCHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 22951E512551A3590032A04F /* NSString+OGCHash.m */; };
+		43FA4E322CAE8BD10029B928 /* OguryError+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FA4E312CAE8BD10029B928 /* OguryError+Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		5806AFA3286AEE9D00044C76 /* OguryStringFormattable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5806AFA2286AEE9D00044C76 /* OguryStringFormattable.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		5870D6472886AB0D0015162F /* OGCActivateLogNotificationManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5870D6462886AB0D0015162F /* OGCActivateLogNotificationManagerTests.m */; };
 		587BE676282EA3E9009E094B /* OGCLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 58FF279D281A89D000281067 /* OGCLog.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		587BE677282EA3F6009E094B /* OGCEventLogMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 58FF27A6281A8D1100281067 /* OGCEventLogMessage.h */; };
-		587BE67A2832A161009E094B /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E9AB9827CD164600537BCC /* libOCMock.a */; };
 		5890DD69281AC63E00B3CDE7 /* OGCLogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5890DD68281AC63E00B3CDE7 /* OGCLogTests.m */; };
 		5890DD6B281AEDD800B3CDE7 /* OGCURLRequestLogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5890DD6A281AEDD800B3CDE7 /* OGCURLRequestLogMessage.m */; };
 		5890DD6D281AEDED00B3CDE7 /* OGCURLRequestLogMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 5890DD6C281AEDED00B3CDE7 /* OGCURLRequestLogMessage.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		58BDDA6A288948F6000A4A12 /* OGCDarwinNotificationStringFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BDDA69288948F6000A4A12 /* OGCDarwinNotificationStringFormatterTests.m */; };
 		58E9AB9627CD11A100537BCC /* OguryLogLevel.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E9AB9527CD024700537BCC /* OguryLogLevel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		58E9ABA527CD164700537BCC /* OCMockObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E9AB9A27CD164600537BCC /* OCMockObject.h */; };
-		58E9ABA627CD164700537BCC /* OCMMacroState.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E9AB9B27CD164600537BCC /* OCMMacroState.h */; };
-		58E9ABA727CD164700537BCC /* OCMock.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E9AB9C27CD164600537BCC /* OCMock.h */; };
-		58E9ABA827CD164700537BCC /* NSNotificationCenter+OCMAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E9AB9D27CD164600537BCC /* NSNotificationCenter+OCMAdditions.h */; };
-		58E9ABA927CD164700537BCC /* OCMFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E9AB9E27CD164600537BCC /* OCMFunctions.h */; };
-		58E9ABAA27CD164700537BCC /* OCMStubRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E9AB9F27CD164600537BCC /* OCMStubRecorder.h */; };
-		58E9ABAB27CD164700537BCC /* OCMRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E9ABA027CD164600537BCC /* OCMRecorder.h */; };
-		58E9ABAC27CD164700537BCC /* OCMLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E9ABA127CD164600537BCC /* OCMLocation.h */; };
-		58E9ABAD27CD164700537BCC /* OCMConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E9ABA227CD164600537BCC /* OCMConstraint.h */; };
-		58E9ABAE27CD164700537BCC /* OCMArg.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E9ABA327CD164600537BCC /* OCMArg.h */; };
 		58E9ABB127CE4BF800537BCC /* OguryOSLoggerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E9ABAF27CE4BC600537BCC /* OguryOSLoggerTests.m */; };
 		58F80ECB2881683F0084D5FE /* OGCSetLogLevelNotificationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 58F80ECA2881683D0084D5FE /* OGCSetLogLevelNotificationManager.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		58F80ECD28855DD40084D5FE /* OGCSetLogLevelNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F80ECC28855DD40084D5FE /* OGCSetLogLevelNotificationManager.m */; };
@@ -56,6 +46,7 @@
 		58FF27A1281A8B1800281067 /* OGCLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 58FF27A0281A8B1800281067 /* OGCLogFormatter.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		58FF27A3281A8B2200281067 /* OGCLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58FF27A2281A8B2200281067 /* OGCLogFormatter.m */; };
 		58FF27A5281A8CC600281067 /* OGCEventLogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 58FF27A4281A8CC600281067 /* OGCEventLogMessage.m */; };
+		591D1B057A2F247BEC429FF2 /* Pods_OguryCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A1D10D7F350A9A3808199F /* Pods_OguryCoreTests.framework */; };
 		971D4A542449FB5100327701 /* OGCConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 971D4A532449FB4300327701 /* OGCConstants.h */; };
 		977348C1243F6E2E0002EBA4 /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 977348B7243F6E2E0002EBA4 /* OguryCore.framework */; };
 		977348C8243F6E2F0002EBA4 /* OguryCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 977348BA243F6E2E0002EBA4 /* OguryCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -66,11 +57,6 @@
 		977348EF24409EDD0002EBA4 /* OguryErrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 977348EE24409EDD0002EBA4 /* OguryErrorTests.m */; };
 		C98F6E7927DB835A0069ECEA /* OGCUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = C98F6E7727DB7C400069ECEA /* OGCUtils.h */; };
 		C98F6E7F27DBA6AD0069ECEA /* OGCUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C98F6E7827DB7C550069ECEA /* OGCUtils.m */; };
-		ED057DF624E27D87008784C4 /* OguryEventBus.h in Headers */ = {isa = PBXBuildFile; fileRef = ED057DF424E27D87008784C4 /* OguryEventBus.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		ED057DF724E27D87008784C4 /* OguryEventBus.m in Sources */ = {isa = PBXBuildFile; fileRef = ED057DF524E27D87008784C4 /* OguryEventBus.m */; };
-		ED057DFE24E27E17008784C4 /* OguryEventEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = ED057DFC24E27E17008784C4 /* OguryEventEntry.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		ED057DFF24E27E17008784C4 /* OguryEventEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = ED057DFD24E27E17008784C4 /* OguryEventEntry.m */; };
-		ED0E91AA24E29C2E00264CB7 /* OguryPersistentEventBusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0E91A924E29C2E00264CB7 /* OguryPersistentEventBusTests.m */; };
 		ED174D10255A882500904297 /* OguryNetworkClient.h in Headers */ = {isa = PBXBuildFile; fileRef = ED174D0E255A882500904297 /* OguryNetworkClient.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		ED174D11255A882500904297 /* OguryNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = ED174D0F255A882500904297 /* OguryNetworkClient.m */; };
 		ED174D18255A896300904297 /* OguryNetworkRequestBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = ED174D16255A896300904297 /* OguryNetworkRequestBuilder.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -79,17 +65,11 @@
 		ED174D24255A8E2F00904297 /* OguryNetworkClientError.m in Sources */ = {isa = PBXBuildFile; fileRef = ED174D22255A8E2F00904297 /* OguryNetworkClientError.m */; };
 		ED174D2F255A9B9900904297 /* OguryNetworkClientErrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED174D2E255A9B9900904297 /* OguryNetworkClientErrorTests.m */; };
 		ED174D35255A9F9000904297 /* OguryNetworkRequestBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED174D34255A9F9000904297 /* OguryNetworkRequestBuilderTests.m */; };
-		ED2F76A524E290200041F4F2 /* OguryPersistentEventBus.h in Headers */ = {isa = PBXBuildFile; fileRef = ED2F76A324E290200041F4F2 /* OguryPersistentEventBus.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		ED2F76A624E290200041F4F2 /* OguryPersistentEventBus.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2F76A424E290200041F4F2 /* OguryPersistentEventBus.m */; };
-		ED2F76A924E296CF0041F4F2 /* OguryEventEntryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2F76A824E296CF0041F4F2 /* OguryEventEntryTests.m */; };
-		ED2F76AB24E297A10041F4F2 /* OguryEventBusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2F76AA24E297A10041F4F2 /* OguryEventBusTests.m */; };
-		ED2F76AF24E298220041F4F2 /* OguryEventSubscriberMock.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2F76AE24E298220041F4F2 /* OguryEventSubscriberMock.m */; };
 		ED3DF255255DA7F300C42FBC /* OguryNetworkClientPrivateProperties.h in Headers */ = {isa = PBXBuildFile; fileRef = ED3DF253255DA7F300C42FBC /* OguryNetworkClientPrivateProperties.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		ED3DF272255DA88A00C42FBC /* OguryNetworkClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED3DF271255DA88A00C42FBC /* OguryNetworkClientTests.m */; };
 		ED3F88642721700D007C6A6D /* OguryAbstractLogMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = ED3F88622721700D007C6A6D /* OguryAbstractLogMessage.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		ED3F88652721700D007C6A6D /* OguryAbstractLogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = ED3F88632721700D007C6A6D /* OguryAbstractLogMessage.m */; };
 		ED92F5F1258A3E880043856C /* OGCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = ED92F5F0258A3E880043856C /* OGCConstants.m */; };
-		ED9681CD24E282100048E284 /* OguryEventSubscriber.h in Headers */ = {isa = PBXBuildFile; fileRef = ED9681CB24E280F30048E284 /* OguryEventSubscriber.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EDA0D9132563E1EC00660DE9 /* OGCInternalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA0D9122563E1EC00660DE9 /* OGCInternalTests.m */; };
 		EDA0D91C2563E21F00660DE9 /* URLProtocolMock.m in Sources */ = {isa = PBXBuildFile; fileRef = ED3DF27A255DA9E300C42FBC /* URLProtocolMock.m */; };
 		EDA0D9232563E4E300660DE9 /* OGCNSUserDefaultsMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 22951E8F2551AA7D0032A04F /* OGCNSUserDefaultsMock.m */; };
@@ -115,6 +95,7 @@
 
 /* Begin PBXFileReference section */
 		1E308B392B839FB500DFC6E3 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		1E6D20C42C6A70B000DF24AB /* OguryCore.Private.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = OguryCore.Private.modulemap; sourceTree = "<group>"; };
 		22951E462551A29F0032A04F /* OGCInstanceToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGCInstanceToken.h; sourceTree = "<group>"; };
 		22951E472551A29F0032A04F /* OGCInstanceToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGCInstanceToken.m; sourceTree = "<group>"; };
 		22951E502551A3590032A04F /* NSString+OGCHash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+OGCHash.h"; sourceTree = "<group>"; };
@@ -136,6 +117,8 @@
 		22951EA22551ADA10032A04F /* OGCInstanceTokenTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGCInstanceTokenTest.m; sourceTree = "<group>"; };
 		22951EAA2551AE070032A04F /* OGCAdIdentifierManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGCAdIdentifierManagerTests.m; sourceTree = "<group>"; };
 		22951EB22551AF4F0032A04F /* NSStringOGCHashTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSStringOGCHashTests.m; sourceTree = "<group>"; };
+		43FA4E312CAE8BD10029B928 /* OguryError+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "OguryError+Internal.h"; path = "Sources/Public/OguryError+Internal.h"; sourceTree = SOURCE_ROOT; };
+		4BFB006EEAC67C4A30D0BAF8 /* Pods-OguryCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryCoreTests.debug.xcconfig"; path = "Target Support Files/Pods-OguryCoreTests/Pods-OguryCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5806AFA2286AEE9D00044C76 /* OguryStringFormattable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryStringFormattable.h; sourceTree = "<group>"; };
 		5870D6462886AB0D0015162F /* OGCActivateLogNotificationManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OGCActivateLogNotificationManagerTests.m; path = Tests/Private/OGCActivateLogNotificationManagerTests.m; sourceTree = SOURCE_ROOT; };
 		5890DD68281AC63E00B3CDE7 /* OGCLogTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGCLogTests.m; sourceTree = "<group>"; };
@@ -143,17 +126,6 @@
 		5890DD6C281AEDED00B3CDE7 /* OGCURLRequestLogMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGCURLRequestLogMessage.h; sourceTree = "<group>"; };
 		58BDDA69288948F6000A4A12 /* OGCDarwinNotificationStringFormatterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGCDarwinNotificationStringFormatterTests.m; sourceTree = "<group>"; };
 		58E9AB9527CD024700537BCC /* OguryLogLevel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryLogLevel.h; sourceTree = "<group>"; };
-		58E9AB9827CD164600537BCC /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
-		58E9AB9A27CD164600537BCC /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
-		58E9AB9B27CD164600537BCC /* OCMMacroState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMMacroState.h; sourceTree = "<group>"; };
-		58E9AB9C27CD164600537BCC /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
-		58E9AB9D27CD164600537BCC /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
-		58E9AB9E27CD164600537BCC /* OCMFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMFunctions.h; sourceTree = "<group>"; };
-		58E9AB9F27CD164600537BCC /* OCMStubRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMStubRecorder.h; sourceTree = "<group>"; };
-		58E9ABA027CD164600537BCC /* OCMRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMRecorder.h; sourceTree = "<group>"; };
-		58E9ABA127CD164600537BCC /* OCMLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMLocation.h; sourceTree = "<group>"; };
-		58E9ABA227CD164600537BCC /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
-		58E9ABA327CD164600537BCC /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
 		58E9ABAF27CE4BC600537BCC /* OguryOSLoggerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryOSLoggerTests.m; sourceTree = "<group>"; };
 		58F80ECA2881683D0084D5FE /* OGCSetLogLevelNotificationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGCSetLogLevelNotificationManager.h; sourceTree = "<group>"; };
 		58F80ECC28855DD40084D5FE /* OGCSetLogLevelNotificationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGCSetLogLevelNotificationManager.m; sourceTree = "<group>"; };
@@ -178,11 +150,8 @@
 		977348EE24409EDD0002EBA4 /* OguryErrorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryErrorTests.m; sourceTree = "<group>"; };
 		C98F6E7727DB7C400069ECEA /* OGCUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGCUtils.h; sourceTree = "<group>"; };
 		C98F6E7827DB7C550069ECEA /* OGCUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGCUtils.m; sourceTree = "<group>"; };
-		ED057DF424E27D87008784C4 /* OguryEventBus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryEventBus.h; sourceTree = "<group>"; };
-		ED057DF524E27D87008784C4 /* OguryEventBus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryEventBus.m; sourceTree = "<group>"; };
-		ED057DFC24E27E17008784C4 /* OguryEventEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryEventEntry.h; sourceTree = "<group>"; };
-		ED057DFD24E27E17008784C4 /* OguryEventEntry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryEventEntry.m; sourceTree = "<group>"; };
-		ED0E91A924E29C2E00264CB7 /* OguryPersistentEventBusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryPersistentEventBusTests.m; sourceTree = "<group>"; };
+		CE692C3841CF8D177988BC43 /* Pods-OguryCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryCoreTests.release.xcconfig"; path = "Target Support Files/Pods-OguryCoreTests/Pods-OguryCoreTests.release.xcconfig"; sourceTree = "<group>"; };
+		D7A1D10D7F350A9A3808199F /* Pods_OguryCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OguryCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED174D0E255A882500904297 /* OguryNetworkClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryNetworkClient.h; sourceTree = "<group>"; };
 		ED174D0F255A882500904297 /* OguryNetworkClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryNetworkClient.m; sourceTree = "<group>"; };
 		ED174D16255A896300904297 /* OguryNetworkRequestBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryNetworkRequestBuilder.h; sourceTree = "<group>"; };
@@ -191,12 +160,6 @@
 		ED174D22255A8E2F00904297 /* OguryNetworkClientError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryNetworkClientError.m; sourceTree = "<group>"; };
 		ED174D2E255A9B9900904297 /* OguryNetworkClientErrorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryNetworkClientErrorTests.m; sourceTree = "<group>"; };
 		ED174D34255A9F9000904297 /* OguryNetworkRequestBuilderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryNetworkRequestBuilderTests.m; sourceTree = "<group>"; };
-		ED2F76A324E290200041F4F2 /* OguryPersistentEventBus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryPersistentEventBus.h; sourceTree = "<group>"; };
-		ED2F76A424E290200041F4F2 /* OguryPersistentEventBus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryPersistentEventBus.m; sourceTree = "<group>"; };
-		ED2F76A824E296CF0041F4F2 /* OguryEventEntryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryEventEntryTests.m; sourceTree = "<group>"; };
-		ED2F76AA24E297A10041F4F2 /* OguryEventBusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryEventBusTests.m; sourceTree = "<group>"; };
-		ED2F76AD24E298220041F4F2 /* OguryEventSubscriberMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryEventSubscriberMock.h; sourceTree = "<group>"; };
-		ED2F76AE24E298220041F4F2 /* OguryEventSubscriberMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryEventSubscriberMock.m; sourceTree = "<group>"; };
 		ED3DF253255DA7F300C42FBC /* OguryNetworkClientPrivateProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryNetworkClientPrivateProperties.h; sourceTree = "<group>"; };
 		ED3DF271255DA88A00C42FBC /* OguryNetworkClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryNetworkClientTests.m; sourceTree = "<group>"; };
 		ED3DF279255DA9E300C42FBC /* URLProtocolMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLProtocolMock.h; sourceTree = "<group>"; };
@@ -204,7 +167,6 @@
 		ED3F88622721700D007C6A6D /* OguryAbstractLogMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryAbstractLogMessage.h; sourceTree = "<group>"; };
 		ED3F88632721700D007C6A6D /* OguryAbstractLogMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryAbstractLogMessage.m; sourceTree = "<group>"; };
 		ED92F5F0258A3E880043856C /* OGCConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGCConstants.m; sourceTree = "<group>"; };
-		ED9681CB24E280F30048E284 /* OguryEventSubscriber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryEventSubscriber.h; sourceTree = "<group>"; };
 		EDA0D9122563E1EC00660DE9 /* OGCInternalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGCInternalTests.m; sourceTree = "<group>"; };
 		EDFDB480271EB9700065FA95 /* OguryLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OguryLog.h; sourceTree = "<group>"; };
 		EDFDB481271EB9700065FA95 /* OguryLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OguryLog.m; sourceTree = "<group>"; };
@@ -228,28 +190,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				587BE67A2832A161009E094B /* libOCMock.a in Frameworks */,
 				977348C1243F6E2E0002EBA4 /* OguryCore.framework in Frameworks */,
+				591D1B057A2F247BEC429FF2 /* Pods_OguryCoreTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		22951E442551A0260032A04F /* EventBus */ = {
-			isa = PBXGroup;
-			children = (
-				ED057DF424E27D87008784C4 /* OguryEventBus.h */,
-				ED057DF524E27D87008784C4 /* OguryEventBus.m */,
-				ED057DFC24E27E17008784C4 /* OguryEventEntry.h */,
-				ED057DFD24E27E17008784C4 /* OguryEventEntry.m */,
-				ED9681CB24E280F30048E284 /* OguryEventSubscriber.h */,
-				ED2F76A324E290200041F4F2 /* OguryPersistentEventBus.h */,
-				ED2F76A424E290200041F4F2 /* OguryPersistentEventBus.m */,
-			);
-			path = EventBus;
-			sourceTree = "<group>";
-		};
 		22951E452551A0530032A04F /* AdIdentifierManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,34 +308,9 @@
 		587BE6782832A101009E094B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D7A1D10D7F350A9A3808199F /* Pods_OguryCoreTests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		58E9AB9727CD164600537BCC /* OCMock */ = {
-			isa = PBXGroup;
-			children = (
-				58E9AB9827CD164600537BCC /* libOCMock.a */,
-				58E9AB9927CD164600537BCC /* OCMock */,
-			);
-			path = OCMock;
-			sourceTree = "<group>";
-		};
-		58E9AB9927CD164600537BCC /* OCMock */ = {
-			isa = PBXGroup;
-			children = (
-				58E9AB9A27CD164600537BCC /* OCMockObject.h */,
-				58E9AB9B27CD164600537BCC /* OCMMacroState.h */,
-				58E9AB9C27CD164600537BCC /* OCMock.h */,
-				58E9AB9D27CD164600537BCC /* NSNotificationCenter+OCMAdditions.h */,
-				58E9AB9E27CD164600537BCC /* OCMFunctions.h */,
-				58E9AB9F27CD164600537BCC /* OCMStubRecorder.h */,
-				58E9ABA027CD164600537BCC /* OCMRecorder.h */,
-				58E9ABA127CD164600537BCC /* OCMLocation.h */,
-				58E9ABA227CD164600537BCC /* OCMConstraint.h */,
-				58E9ABA327CD164600537BCC /* OCMArg.h */,
-			);
-			path = OCMock;
 			sourceTree = "<group>";
 		};
 		58F80EC9288168260084D5FE /* DarwinNotification */ = {
@@ -424,6 +347,7 @@
 				977348C4243F6E2E0002EBA4 /* Tests */,
 				977348B8243F6E2E0002EBA4 /* Products */,
 				587BE6782832A101009E094B /* Frameworks */,
+				D6D083059A1A64AB302F6253 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -449,7 +373,6 @@
 		977348C4243F6E2E0002EBA4 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				58E9AB9727CD164600537BCC /* OCMock */,
 				977348D6243F70BD0002EBA4 /* Internal */,
 				ED2F76AC24E298070041F4F2 /* Mock */,
 				ED2F76A724E296AE0041F4F2 /* Private */,
@@ -461,7 +384,7 @@
 		977348D1243F6FC00002EBA4 /* Internal */ = {
 			isa = PBXGroup;
 			children = (
-				977348BA243F6E2E0002EBA4 /* OguryCore.h */,
+				43FA4E312CAE8BD10029B928 /* OguryError+Internal.h */,
 				22951E452551A0530032A04F /* AdIdentifierManager */,
 				22951E4E2551A30F0032A04F /* Utility */,
 				977348F92440C0EE0002EBA4 /* Constants */,
@@ -481,6 +404,7 @@
 		977348D9243F72EC0002EBA4 /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				977348BA243F6E2E0002EBA4 /* OguryCore.h */,
 				977348DD244077ED0002EBA4 /* OguryError.h */,
 				977348DE244077ED0002EBA4 /* OguryError.m */,
 				58E9AB9527CD024700537BCC /* OguryLogLevel.h */,
@@ -515,6 +439,16 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		D6D083059A1A64AB302F6253 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4BFB006EEAC67C4A30D0BAF8 /* Pods-OguryCoreTests.debug.xcconfig */,
+				CE692C3841CF8D177988BC43 /* Pods-OguryCoreTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../Pods;
+			sourceTree = "<group>";
+		};
 		ED174D1E255A897400904297 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -544,11 +478,11 @@
 			children = (
 				5806AFA2286AEE9D00044C76 /* OguryStringFormattable.h */,
 				58F80EC9288168260084D5FE /* DarwinNotification */,
-				22951E442551A0260032A04F /* EventBus */,
 				EDFDB47D271EB7770065FA95 /* Log */,
 				ED174D1E255A897400904297 /* Network */,
 				977348D2243F70AC0002EBA4 /* OGCInternal.h */,
 				977348D3243F70AC0002EBA4 /* OGCInternal.m */,
+				1E6D20C42C6A70B000DF24AB /* OguryCore.Private.modulemap */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -561,9 +495,6 @@
 				EDA0D9122563E1EC00660DE9 /* OGCInternalTests.m */,
 				5870D6462886AB0D0015162F /* OGCActivateLogNotificationManagerTests.m */,
 				58BDDA69288948F6000A4A12 /* OGCDarwinNotificationStringFormatterTests.m */,
-				ED2F76AA24E297A10041F4F2 /* OguryEventBusTests.m */,
-				ED2F76A824E296CF0041F4F2 /* OguryEventEntryTests.m */,
-				ED0E91A924E29C2E00264CB7 /* OguryPersistentEventBusTests.m */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -571,8 +502,6 @@
 		ED2F76AC24E298070041F4F2 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
-				ED2F76AD24E298220041F4F2 /* OguryEventSubscriberMock.h */,
-				ED2F76AE24E298220041F4F2 /* OguryEventSubscriberMock.m */,
 				ED3DF279255DA9E300C42FBC /* URLProtocolMock.h */,
 				ED3DF27A255DA9E300C42FBC /* URLProtocolMock.m */,
 			);
@@ -628,42 +557,29 @@
 				58E9AB9627CD11A100537BCC /* OguryLogLevel.h in Headers */,
 				977348DF244077ED0002EBA4 /* OguryError.h in Headers */,
 				ED174D10255A882500904297 /* OguryNetworkClient.h in Headers */,
-				58E9ABA827CD164700537BCC /* NSNotificationCenter+OCMAdditions.h in Headers */,
-				ED057DF624E27D87008784C4 /* OguryEventBus.h in Headers */,
-				58E9ABA927CD164700537BCC /* OCMFunctions.h in Headers */,
-				ED057DFE24E27E17008784C4 /* OguryEventEntry.h in Headers */,
 				22951E482551A29F0032A04F /* OGCInstanceToken.h in Headers */,
-				ED9681CD24E282100048E284 /* OguryEventSubscriber.h in Headers */,
 				22951E722551A5490032A04F /* OGCAdIdentifierPrivacyLayer.h in Headers */,
+				43FA4E322CAE8BD10029B928 /* OguryError+Internal.h in Headers */,
 				22951E522551A3590032A04F /* NSString+OGCHash.h in Headers */,
-				58E9ABAB27CD164700537BCC /* OCMRecorder.h in Headers */,
 				22951E962551AB050032A04F /* OGCNSProcessInfoMock.h in Headers */,
 				22951E8A2551AA330032A04F /* OGCASIdentifierManagerMock.h in Headers */,
-				58E9ABAD27CD164700537BCC /* OCMConstraint.h in Headers */,
-				ED2F76A524E290200041F4F2 /* OguryPersistentEventBus.h in Headers */,
-				58E9ABAC27CD164700537BCC /* OCMLocation.h in Headers */,
 				EDFDB498271F00B30065FA95 /* OguryLogFormatter.h in Headers */,
 				22951E7E2551A6CD0032A04F /* OGCAdIdentifierManager.h in Headers */,
 				5806AFA3286AEE9D00044C76 /* OguryStringFormattable.h in Headers */,
 				587BE677282EA3F6009E094B /* OGCEventLogMessage.h in Headers */,
-				58E9ABA527CD164700537BCC /* OCMockObject.h in Headers */,
 				EDFDB48A271EC5A30065FA95 /* OguryOSLogger.h in Headers */,
 				EDFDB48C271EC5EF0065FA95 /* OguryLogger.h in Headers */,
 				58FF27A1281A8B1800281067 /* OGCLogFormatter.h in Headers */,
 				ED3DF255255DA7F300C42FBC /* OguryNetworkClientPrivateProperties.h in Headers */,
 				971D4A542449FB5100327701 /* OGCConstants.h in Headers */,
 				EDFDB495271EF6B30065FA95 /* OguryLogMessage.h in Headers */,
-				58E9ABAE27CD164700537BCC /* OCMArg.h in Headers */,
 				58F80ECB2881683F0084D5FE /* OGCSetLogLevelNotificationManager.h in Headers */,
 				22951E782551A5660032A04F /* OGCAdIdentifierDataLayer.h in Headers */,
 				EDFDB482271EB9700065FA95 /* OguryLog.h in Headers */,
-				58E9ABAA27CD164700537BCC /* OCMStubRecorder.h in Headers */,
 				ED3F88642721700D007C6A6D /* OguryAbstractLogMessage.h in Headers */,
 				977348D4243F70AC0002EBA4 /* OGCInternal.h in Headers */,
-				58E9ABA727CD164700537BCC /* OCMock.h in Headers */,
 				C98F6E7927DB835A0069ECEA /* OGCUtils.h in Headers */,
 				ED174D18255A896300904297 /* OguryNetworkRequestBuilder.h in Headers */,
-				58E9ABA627CD164700537BCC /* OCMMacroState.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,9 +608,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 977348CE243F6E2F0002EBA4 /* Build configuration list for PBXNativeTarget "OguryCoreTests" */;
 			buildPhases = (
+				9A43DCC825F44F9E11DE4C9D /* [CP] Check Pods Manifest.lock */,
 				977348BC243F6E2E0002EBA4 /* Sources */,
 				977348BD243F6E2E0002EBA4 /* Frameworks */,
 				977348BE243F6E2E0002EBA4 /* Resources */,
+				F1457D27839C9284345273E0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -761,6 +679,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9A43DCC825F44F9E11DE4C9D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OguryCoreTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1457D27839C9284345273E0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OguryCoreTests/Pods-OguryCoreTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OguryCoreTests/Pods-OguryCoreTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OguryCoreTests/Pods-OguryCoreTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		977348B3243F6E2E0002EBA4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -781,17 +741,14 @@
 				C98F6E7F27DBA6AD0069ECEA /* OGCUtils.m in Sources */,
 				22951E732551A5490032A04F /* OGCAdIdentifierPrivacyLayer.m in Sources */,
 				ED174D19255A896300904297 /* OguryNetworkRequestBuilder.m in Sources */,
-				ED2F76A624E290200041F4F2 /* OguryPersistentEventBus.m in Sources */,
 				22951E8B2551AA330032A04F /* OGCASIdentifierManagerMock.m in Sources */,
 				EDFDB483271EB9700065FA95 /* OguryLog.m in Sources */,
 				22951E7F2551A6CD0032A04F /* OGCAdIdentifierManager.m in Sources */,
-				ED057DFF24E27E17008784C4 /* OguryEventEntry.m in Sources */,
 				EDFDB48B271EC5A30065FA95 /* OguryOSLogger.m in Sources */,
 				58F80ED0288560CC0084D5FE /* OGCDarwinNotificationStringFormatter.m in Sources */,
 				ED174D24255A8E2F00904297 /* OguryNetworkClientError.m in Sources */,
 				ED3F88652721700D007C6A6D /* OguryAbstractLogMessage.m in Sources */,
 				ED174D11255A882500904297 /* OguryNetworkClient.m in Sources */,
-				ED057DF724E27D87008784C4 /* OguryEventBus.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,23 +761,19 @@
 				22951E9B2551AC710032A04F /* OGCAdIdentifierDataLayerTests.m in Sources */,
 				ED174D2F255A9B9900904297 /* OguryNetworkClientErrorTests.m in Sources */,
 				EDFDB486271EC1DB0065FA95 /* OguryLogTests.m in Sources */,
-				ED2F76AB24E297A10041F4F2 /* OguryEventBusTests.m in Sources */,
 				ED3DF272255DA88A00C42FBC /* OguryNetworkClientTests.m in Sources */,
 				58BDDA6A288948F6000A4A12 /* OGCDarwinNotificationStringFormatterTests.m in Sources */,
 				5870D6472886AB0D0015162F /* OGCActivateLogNotificationManagerTests.m in Sources */,
 				EDA0D9132563E1EC00660DE9 /* OGCInternalTests.m in Sources */,
-				ED0E91AA24E29C2E00264CB7 /* OguryPersistentEventBusTests.m in Sources */,
 				22951EA32551ADA10032A04F /* OGCInstanceTokenTest.m in Sources */,
 				22951EB32551AF4F0032A04F /* NSStringOGCHashTests.m in Sources */,
 				977348EF24409EDD0002EBA4 /* OguryErrorTests.m in Sources */,
 				22951EAB2551AE070032A04F /* OGCAdIdentifierManagerTests.m in Sources */,
 				EDA0D91C2563E21F00660DE9 /* URLProtocolMock.m in Sources */,
 				22951E9F2551AD100032A04F /* OGCAdIdentifierPrivacyLayerTests.m in Sources */,
-				ED2F76AF24E298220041F4F2 /* OguryEventSubscriberMock.m in Sources */,
 				5890DD69281AC63E00B3CDE7 /* OGCLogTests.m in Sources */,
 				58E9ABB127CE4BF800537BCC /* OguryOSLoggerTests.m in Sources */,
 				ED174D35255A9F9000904297 /* OguryNetworkRequestBuilderTests.m in Sources */,
-				ED2F76A924E296CF0041F4F2 /* OguryEventEntryTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -991,9 +944,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1008,6 +961,7 @@
 					"$(PROJECT_DIR)/Tests/OCMock",
 				);
 				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "$(SRCROOT)/Sources/Private/OguryCore.Private.modulemap";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1022,9 +976,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1039,6 +993,7 @@
 					"$(PROJECT_DIR)/Tests/OCMock",
 				);
 				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "$(SRCROOT)/Sources/Private/OguryCore.Private.modulemap";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
@@ -1048,13 +1003,13 @@
 		};
 		977348CF243F6E2F0002EBA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4BFB006EEAC67C4A30D0BAF8 /* Pods-OguryCoreTests.debug.xcconfig */;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Tests/OCMock\"/**";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Tests/OCMock",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)Tests";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_MODULE_NAME)Tests";
 				PRODUCT_NAME = "$(PRODUCT_NAME)Tests";
@@ -1063,13 +1018,13 @@
 		};
 		977348D0243F6E2F0002EBA4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE692C3841CF8D177988BC43 /* Pods-OguryCoreTests.release.xcconfig */;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Tests/OCMock\"/**";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Tests/OCMock",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)Tests";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_MODULE_NAME)Tests";
 				PRODUCT_NAME = "$(PRODUCT_NAME)Tests";

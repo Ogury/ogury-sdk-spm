@@ -16,7 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)getInstanceToken;
 
-- (NSString *)getConsentToken;
+- (NSString * _Nullable)retrieveGPPConsentString;
+
+- (NSString * _Nullable)retrieveGPPSID;
+
+- (NSString * _Nullable)retrieveTCFConsentString;
 
 - (void)migrateDeprecatedUserDefaultKeys;
 
@@ -26,7 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateInstanceToken;
 
-- (void)updateConsentToken;
+- (void)setPrivacyData:(id)value forKey:(NSString *)key;
+
+- (NSDictionary<NSString *, id> *)retrieveDataPrivacy;
 
 @end
 

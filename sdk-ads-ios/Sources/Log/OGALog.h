@@ -6,8 +6,6 @@
 #import <OguryCore/OguryLogLevel.h>
 #import "OGAAdConfiguration.h"
 
-@class OguryEventEntry;
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OGALog : NSObject
@@ -57,14 +55,6 @@ NS_ASSUME_NONNULL_BEGIN
          forAdConfiguration:(OGAAdConfiguration *)adConfiguration
                   webViewId:(NSString *)webViewId
                      format:(NSString *)format, ...;
-
-- (void)logEventBus:(OguryLogLevel)logLevel eventEntry:(OguryEventEntry *)eventEntry message:(NSString *)message;
-
-- (void)logEventBusFormat:(OguryLogLevel)logLevel eventEntry:(OguryEventEntry *)eventEntry format:(NSString *)format, ...;
-
-- (void)logEventBusError:(NSError *)error eventEntry:(OguryEventEntry *)eventEntry message:(NSString *)message;
-
-- (void)logEventBusErrorFormat:(NSError *)error eventEntry:(OguryEventEntry *)eventEntry format:(NSString *)format, ...;
 
 @end
 

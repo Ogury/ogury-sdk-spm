@@ -52,7 +52,7 @@ def get_version(environment, xcodeproj, target, tag)
     return project_version
   end
 
-  tag_version = tag[/internal-(.+)/, 1]
+  tag_version = tag[/internal-\w+-(\d+\.\d+\.\d+(-\w+(-?\d+)?(\.\d+\.\d+)?)?)/, 1]
 
   return tag_version
 end
@@ -66,4 +66,11 @@ def get_module_version(environment, internal_version, beta_version, staging_vers
   when "release"
     return staging_version
   end
+end
+
+private_lane :setup_xcode do
+  # Run the defaults write command
+  sh("defaults write com.apple.dt.Xcode IDESkipMacroFingerprintValidation -bool YES")
+
+  # Additional setup steps can be added here
 end

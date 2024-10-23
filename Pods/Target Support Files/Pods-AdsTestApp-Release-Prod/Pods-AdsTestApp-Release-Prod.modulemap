@@ -1,6 +1,0 @@
-framework module Pods_AdsTestApp_Release_Prod {
-  umbrella header "Pods-AdsTestApp-Release-Prod-umbrella.h"
-
-  export *
-  module * { export * }
-}

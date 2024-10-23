@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)controller:(OGAAdController *)controller didUnLoadAd:(OGAAd *)ad origin:(UnloadOrigin)unloadOrigin;
 
+- (void)controller:(OGAAdController *)controller webkitProcessDidTerminateForAd:(OGAAd *)ad;
+
 - (void)controller:(OGAAdController *)controller didOpenOverlayForAd:(OGAAd *)ad;
 
 - (void)controller:(OGAAdController *)controller didCloseOverlayForAd:(OGAAd *)ad;

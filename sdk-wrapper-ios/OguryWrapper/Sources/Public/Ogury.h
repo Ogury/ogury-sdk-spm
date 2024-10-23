@@ -3,21 +3,31 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <OgurySdk/OguryConfiguration.h>
-#import <OgurySdk/OguryConfigurationBuilder.h>
+#import <OgurySdk/OguryStartErrorCode.h>
 #import <OguryCore/OguryLogLevel.h>
+#import <OguryCore/OguryError.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^StartCompletionBlock)(BOOL success, OguryError * _Nullable error);
+
 @interface Ogury : NSObject
 
-+ (void)startWithConfiguration:(OguryConfiguration *)configuration;
++ (void)startWith:(NSString *)assetKey;
+
++ (void)startWith:(NSString *)assetKey completionHandler:(StartCompletionBlock _Nullable)completionHandler;
 
 + (void)setLogLevel:(OguryLogLevel)logLevel;
 
-+ (NSString *)getSdkVersion;
++ (NSString *)sdkVersion;
 
 + (void)registerAttributionForSKAdNetwork;
+
++ (void)setPrivacyData:(NSString *)key boolean:(BOOL)value;
+
++ (void)setPrivacyData:(NSString *)key integer:(NSInteger)value;
+
++ (void)setPrivacyData:(NSString *)key string:(NSString *)value;
 
 @end
 

@@ -13,8 +13,6 @@
 #import "OGAAssetKeyManager.h"
 #import "OGAConfigurationUtils+Profig.h"
 #import "OGAEXTScope.h"
-#import "OGAEventBusConstants.h"
-#import "OGAEventSubscriber.h"
 #import "OGAExpirationContext.h"
 #import "OGAInternetConnectionChecker.h"
 #import "OGAIsExpiredChecker.h"
@@ -24,14 +22,14 @@
 #import "OGALog.h"
 #import "OGAMetricsService.h"
 #import "OGAMonitoringDispatcher.h"
-#import "OGAPersistentEventBus.h"
 #import "OGAPreCacheEvent.h"
 #import "OGAProfigDao.h"
 #import "OGAProfigManager.h"
 #import "OGAReachability.h"
-#import "OguryError+Ads.h"
+#import "OguryAdError.h"
 #import "OGAOrderedDictionary.h"
 #import "OGAAdEnabledChecker.h"
+#import "OguryAdError+Internal.h"
 
 static NSString *const OGAHeaderBiddingTrackingURLOverrides = @"ad_track_urls";
 static NSString *const OGAHeaderBiddingTrackingPreCachingURLOverride = @"ad_precache_url";
@@ -53,14 +51,9 @@ static NSString *const OGADisablingReason = @"disabling_reason";
 @property(nonatomic, strong) OGAIsExpiredChecker *isExpiredChecker;
 @property(nonatomic, strong) OGAAdEnabledChecker *adEnabledChecker;
 
-@property(nonatomic, strong) OGAEventSubscriber *eventSubscriber;
-@property(nonatomic, strong) OguryEventEntry *lastConsentEventEntry;
-
-@property(nonatomic, strong) NSHashTable *sequencesWaitingForConsent;
 @property(nonatomic, strong) NSHashTable *sequencesWaitingForInit;
 @property(nonatomic, strong) OGAMonitoringDispatcher *monitoringDispatcher;
 @property(nonatomic, strong) OGALog *log;
-@property(nonatomic, strong) NSTimer *eventBusExprirationTimer;
 @property(nonatomic, strong, readwrite) NSHashTable *sequencesShowing;
 
 @end
@@ -127,7 +120,6 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         _isLoadedChecker.adManager = self;
         _isExpiredChecker = isExpiredChecker;
         _internetConnectionChecker = internetConnectionChecker;
-        _sequencesWaitingForConsent = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
         _sequencesWaitingForInit = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
         _sequencesShowing = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
         _monitoringDispatcher = monitoringDispatcher;
@@ -139,23 +131,6 @@ static NSString *const OGADisablingReason = @"disabling_reason";
 }
 
 #pragma mark - Methods
-
-- (void)registerToPersistentEventBus {
-    @weakify(self)[self registerToPersistentEventBus:self.persistentEventBus
-                                     eventSubscriber:[[OGAEventSubscriber alloc] initWithEvent:OGAAdsChoiceManagerEventBusEvent
-                                                                                    andHandler:^(OguryEventEntry *eventEntry) {
-                                                                                        @strongify(self)[self.log logEventBus:OguryLogLevelDebug
-                                                                                                                   eventEntry:eventEntry
-                                                                                                                      message:@"AdManager received event"];
-                                                                                        [self handleConsentChange:eventEntry];
-                                                                                    }]];
-}
-
-- (void)registerToPersistentEventBus:(OGAPersistentEventBus *)persistentEventBus eventSubscriber:(OGAEventSubscriber *)eventSubscriber {
-    self.eventSubscriber = eventSubscriber;
-    [persistentEventBus registerOguryEventSubscriber:eventSubscriber];
-}
-
 - (OGAAdSequence *)loadAdConfiguration:(OGAAdConfiguration *)configuration previousSequence:(OGAAdSequence *)previousSequence {
     // Copy configuration to prevent any mutation on parameters that may impact the result of the load.
     // ex. campaign id.
@@ -199,7 +174,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         [self.assetKeyManager setSdkState:OgurySDKStateError];
         [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventSdkNeverInitialized
                                       adConfiguration:sequence.monitoringAdConfiguration];
-        [sequence.configuration.delegateDispatcher failedWithError:[OguryError createSdkInitNotCalledError]];
+        [sequence.configuration.delegateDispatcher failedWithError:[OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeLoad]];
         return sequence;
     }
 
@@ -207,7 +182,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         sequence.status = OGAAdSequenceStatusInitError;
         [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventSdkNotInitialized
                                       adConfiguration:sequence.monitoringAdConfiguration];
-        [sequence.configuration.delegateDispatcher failedWithError:[OguryError createSdkInitNotCalledError]];
+        [sequence.configuration.delegateDispatcher failedWithError:[OguryAdError sdkNotProperlyInitializedFrom:OguryAdErrorTypeLoad]];
         return sequence;
     }
 
@@ -217,17 +192,18 @@ static NSString *const OGADisablingReason = @"disabling_reason";
 }
 
 - (void)loadSequence:(OGAAdSequence *)sequence {
-    OguryError *error = nil;
+    OguryAdError *error = nil;
 
     if (self.assetKeyManager.sdkState == OgurySDKStateError) {
         sequence.status = OGAAdSequenceStatusInitError;
         [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventSdkNotInitialized
                                            stackTrace:@"SDK initialization failed"
                                       adConfiguration:sequence.monitoringAdConfiguration];
-        [sequence.configuration.delegateDispatcher failedWithError:[OguryError createUnknownError]];
+        [sequence.configuration.delegateDispatcher failedWithError:[OguryAdError sdkNotProperlyInitializedFrom:OguryAdErrorTypeLoad]];
         return;
     }
 
+    self.internetConnectionChecker.type = OguryAdErrorTypeLoad;
     if (![self.internetConnectionChecker checkForSequence:sequence error:&error]) {
         sequence.status = OGAAdSequenceStatusInitError;
         [self sendMonitoringEventFor:sequence oguryError:error customSessionId:nil];
@@ -235,13 +211,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         return;
     }
 
-    // Wait for consent
-    @synchronized(self) {
-        if (![self.persistentEventBus shouldContinueLoadingAdWith:self.lastConsentEventEntry]) {
-            [self.sequencesWaitingForConsent addObject:sequence];
-            return;
-        }
-    }
+    // TODO: Add wait for consent here
 
     // Otherwise continue loading
     [self continueLoadAdSequenceAfterConsentEventReceived:sequence];
@@ -268,20 +238,20 @@ static NSString *const OGADisablingReason = @"disabling_reason";
             sequence.status = OGAAdSequenceStatusError;
             [self dispatchError:[self errorForProfigError:error] sequence:sequence];
             [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventProfigFailToSync
-                                               stackTrace:@"Network error"
+                                               stackTrace:[NSString stringWithFormat:@"Network error (%ld)", error.code]
                                           adConfiguration:sequence.monitoringAdConfiguration];
             return;
         } else if (response == nil) {
             [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventProfigIsNull
                                           adConfiguration:sequence.monitoringAdConfiguration];
             sequence.status = OGAAdSequenceStatusError;
-            [self dispatchError:[OguryError createProfigNotSyncedError] sequence:sequence];
+            [self dispatchError:[OguryAdError invalidConfigurationFrom:OguryAdErrorTypeLoad] sequence:sequence];
             return;
         }
 
         if ([response isAdsEnabled] == NO) {
             sequence.status = OGAAdSequenceStatusError;
-            [self dispatchError:[OguryError createAdDisabledError] sequence:sequence];
+            [self dispatchError:[OguryAdError adDisabled:[response disablingReason] from:OguryAdErrorTypeLoad] sequence:sequence];
             OGAMutableOrderedDictionary *disablingReasonErrorContent = [[OGAMutableOrderedDictionary alloc] init];
             if (response.disablingReason) {
                 disablingReasonErrorContent[OGADisablingReason] = response.disablingReason;
@@ -297,11 +267,11 @@ static NSString *const OGADisablingReason = @"disabling_reason";
     }];
 }
 
-- (OguryError *)errorForProfigError:(NSError *)error {
+- (OguryAdError *)errorForProfigError:(NSError *)error {
     if (error.code == OGAProfigExternalErrorNoInternet) {
-        return [OguryError createOguryErrorWithCode:OguryCoreErrorTypeNoInternetConnection];
+        return [OguryAdError noInternetConnectionError];
     }
-    return [OguryError createProfigNotSyncedError];
+    return [OguryAdError invalidConfigurationFrom:OguryAdErrorTypeLoad];
 }
 
 - (void)continueLoadAdSequenceAfterProfigSynced:(OGAAdSequence *)sequence {
@@ -345,58 +315,66 @@ static NSString *const OGADisablingReason = @"disabling_reason";
 
 - (void)continueLoadAdAfterAdSynced:(OGAAdSequence *)sequence ads:(NSArray<OGAAd *> *)ads error:(NSError *)error {
     if (error == nil && ads.count == 0) {
-        error = sequence.configuration.isHeaderBidding
-            ? [OguryError createHBNoFillError]
-            : [OguryError createAdSyncNoFillError];
+        error = [OguryAdError noFillFrom:sequence.configuration.isHeaderBidding
+                                  ? OguryAdIntegrationTypeHeaderBidding
+                                  : OguryAdIntegrationTypeDirect];
     }
     if (error != nil) {
         sequence.status = OGAAdSequenceStatusError;
         if (!sequence.configuration.isHeaderBidding) {
             switch (error.code) {
-                case OGAInternalErrorAdSyncNoFill:
+                case OguryLoadErrorCodeNoFill:
                     [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventNoFill adConfiguration:sequence.monitoringAdConfiguration];
+                    [self dispatchError:(OguryAdError *)error sequence:sequence];
                     break;
 
-                case OGAInternalErrorAdSyncParsingError:
-                    [self.monitoringDispatcher sendLoadErrorEventParsingFailWithStackTrace:error.localizedDescription
+                case OguryLoadErrorCodeAdParsingFailed: {
+                    NSString *stacktrace = ((OguryAdError *)error).additionalInformation ?: [NSString stringWithFormat:@"Ad parsing failed (%ld)", error.code];
+                    [self.monitoringDispatcher sendLoadErrorEventParsingFailWithStackTrace:stacktrace
                                                                            adConfiguration:sequence.monitoringAdConfiguration];
+                    [self dispatchError:(OguryAdError *)error sequence:sequence];
                     break;
+                }
 
-                case OGAInternalClientError:
-                case OGAInternalServerError:
+                case OguryLoadErrorCodeAdRequestFailed: {
+                    NSString *stacktrace = ((OguryAdError *)error).additionalInformation ?: [NSString stringWithFormat:@"Ad request failed (%ld)", error.code];
                     [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventAdSyncRequestFail
-                                                       stackTrace:error.localizedDescription
+                                                       stackTrace:stacktrace
                                                   adConfiguration:sequence.monitoringAdConfiguration];
+                    [self dispatchError:(OguryAdError *)error sequence:sequence];
                     break;
+                }
 
                 default:
-                    if ([error isKindOfClass:[OguryError class]]) {
-                        [self.monitoringDispatcher sendLoadErrorEventParsingFailWithStackTrace:[NSString stringWithFormat:@"AdParseError (%@)", error.localizedDescription]
+                    if ([error isKindOfClass:[OguryAdError class]]) {
+                        [self.monitoringDispatcher sendLoadErrorEventParsingFailWithStackTrace:((OguryAdError *)error).additionalInformation
                                                                                adConfiguration:sequence.monitoringAdConfiguration];
+                        [self dispatchError:(OguryAdError *)error sequence:sequence];
                     } else {
+                        OguryAdError *adError = [OguryAdError adParsingFailedWithStackTrace:[NSString stringWithFormat:@"Unknown error (%ld)", error.code]];
                         [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventAdSyncRequestFail
-                                                           stackTrace:error.localizedDescription
+                                                           stackTrace:adError.additionalInformation
                                                       adConfiguration:sequence.monitoringAdConfiguration];
+                        [self dispatchError:adError sequence:sequence];
                     }
                     break;
             }
-            [self dispatchError:[self errorForAdSyncError:error ads:ads] sequence:sequence];
         } else {
-            NSString *errorMessage = @"failed to decode base64 from ad markup";
-            if ([error isKindOfClass:[OguryError class]]) {
-                errorMessage = error.localizedDescription;
+            OguryAdError *ogyError = [OguryAdError adParsingFailedWithStackTrace:@"Could not decode AdMarkup"];
+            if ([error isKindOfClass:[OguryAdError class]]) {
+                ogyError = (OguryAdError *)error;
             }
             [self.log logAd:OguryLogLevelError forAdConfiguration:sequence.configuration message:@"failed to decode ad markup"];
             [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventAdMarkUpParsingError
-                                               stackTrace:errorMessage
+                                               stackTrace:ogyError.additionalInformation
                                           adConfiguration:sequence.monitoringAdConfiguration];
-            [self dispatchError:[OguryError createNotLoadedError] sequence:sequence];
+            [self dispatchError:ogyError sequence:sequence];
         }
         return;
     }
     // mraid script precache
     @weakify(self, sequence)[self.adContentPreCacheManager prepareAdContents:ads
-                                                           completionHandler:^(OguryError *error) {
+                                                           completionHandler:^(OguryAdError *error) {
                                                                @strongify(self, sequence) if (!self || !sequence) {
                                                                    return;
                                                                }
@@ -404,15 +382,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
                                                            }];
 }
 
-- (OguryError *)errorForAdSyncError:(NSError *_Nullable)error ads:(NSArray<OGAAd *> *_Nullable)ads {
-    if (error.code == OGAInternalErrorAdSyncNoFill) {
-        return [OguryError createNotAvailableError];
-    } else {
-        return [OguryError createUnknownError];
-    }
-}
-
-- (void)continueLoadAdAfterAdContentsPrepared:(OGAAdSequence *)sequence ads:(NSArray<OGAAd *> *)ads error:(OguryError *)error {
+- (void)continueLoadAdAfterAdContentsPrepared:(OGAAdSequence *)sequence ads:(NSArray<OGAAd *> *)ads error:(OguryAdError *)error {
     if (error) {
         sequence.status = OGAAdSequenceStatusError;
         [self dispatchError:error sequence:sequence];
@@ -469,7 +439,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         [self.monitoringDispatcher sendShowErrorEvent:OGAShowErrorEventSdkNeverInitialized
                                       adConfiguration:sequence.monitoringAdConfiguration
                                       customSessionId:sessionId];
-        [self dispatchError:[OguryError createSdkInitNotCalledError] sequence:sequence];
+        [self dispatchError:[OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeShow] sequence:sequence];
         return;
     }
 
@@ -478,7 +448,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         [self.monitoringDispatcher sendShowErrorEvent:OGAShowErrorEventSdkNotInitialized
                                       adConfiguration:sequence.monitoringAdConfiguration
                                       customSessionId:sessionId];
-        [self dispatchError:[OguryError createSdkInitNotCalledError] sequence:sequence];
+        [self dispatchError:[OguryAdError sdkNotProperlyInitializedFrom:OguryAdErrorTypeShow] sequence:sequence];
         return;
     }
 
@@ -487,22 +457,24 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         [self.monitoringDispatcher sendShowErrorEvent:OGAShowErrorEventProfigNotSync
                                       adConfiguration:sequence.monitoringAdConfiguration
                                       customSessionId:sessionId];
-        [self dispatchError:[OguryError createSdkInitNotCalledError] sequence:sequence];
+        [self dispatchError:[OguryAdError invalidConfigurationFrom:OguryAdErrorTypeShow] sequence:sequence];
         return;
     }
+    self.adEnabledChecker.type = OguryAdErrorTypeShow;
 
     NSMutableArray<id<OGAConditionChecker>> *conditions = [@[ self.isKilledChecker, self.isExpiredChecker, self.isLoadedChecker, self.adEnabledChecker ] mutableCopy];
     if (additionalConditions) {
         [conditions addObjectsFromArray:additionalConditions];
     }
     [conditions addObject:self.internetConnectionChecker];
-    OguryError *error = nil;
+    self.internetConnectionChecker.type = OguryAdErrorTypeShow;
+    OguryAdError *error = nil;
     if (![self checkConditions:conditions sequence:sequence error:&error]) {
         sequence.status = OGAAdSequenceStatusError;
         [self dispatchError:error sequence:sequence];
 
         // to make difference with no internet error on load
-        if (error.code == OguryCoreErrorTypeNoInternetConnection) {
+        if (error.code == OguryCoreErrorTypeNoInternetConnection || error.code == OguryLoadErrorCodeNoActiveInternetConnection || error.code == OguryShowErrorCodeNoActiveInternetConnection) {
             [self.monitoringDispatcher sendShowErrorEvent:OGAShowErrorEventNoInternetConnection
                                           adConfiguration:sequence.monitoringAdConfiguration
                                           customSessionId:sessionId];
@@ -518,17 +490,20 @@ static NSString *const OGADisablingReason = @"disabling_reason";
 
     [self.metricsService enqueueEvent:preCacheEvent];
 
-    if (![sequence.coordinator show:&error]) {
-        sequence.status = OGAAdSequenceStatusError;
-        [self dispatchError:error sequence:sequence];
-        [self sendMonitoringEventFor:sequence oguryError:error customSessionId:sessionId];
-        return;
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        OguryError *error = nil;
+        if (![sequence.coordinator show:&error]) {
+            sequence.status = OGAAdSequenceStatusError;
+            [self dispatchError:error sequence:sequence];
+            [self sendMonitoringEventFor:sequence oguryError:error customSessionId:sessionId];
+            return;
+        }
 
-    @synchronized(self.sequencesShowing) {
-        [self.sequencesShowing addObject:sequence];
-    }
-    sequence.status = OGAAdSequenceStatusShown;
+        @synchronized(self.sequencesShowing) {
+            [self.sequencesShowing addObject:sequence];
+        }
+        sequence.status = OGAAdSequenceStatusShown;
+    });
 }
 
 - (OGAProfigDao *)profigDao {
@@ -540,48 +515,13 @@ static NSString *const OGADisablingReason = @"disabling_reason";
     sequence.status = OGAAdSequenceStatusClosed;
 }
 
-- (void)handleConsentChange:(OguryEventEntry *)event {
-    if (self.eventBusExprirationTimer) {
-        [self.eventBusExprirationTimer invalidate];
-        self.eventBusExprirationTimer = nil;
-    }
-    NSMutableArray<OGAAdSequence *> *sequencesToLoad = [NSMutableArray array];
-    @synchronized(self) {
-        if ([self.persistentEventBus shouldContinueLoadingAdWith:event]) {
-            for (OGAAdSequence *sequence in self.sequencesWaitingForConsent) {
-                [sequencesToLoad addObject:sequence];
-            }
-            [self.sequencesWaitingForConsent removeAllObjects];
-        } else {
-            [self handleEventBusAfterEventExpiration:event];
-        }
-        self.lastConsentEventEntry = event;
-    }
-
-    for (OGAAdSequence *sequence in sequencesToLoad) {
-        [self continueLoadAdSequenceAfterConsentEventReceived:sequence];
-    }
-}
-
-- (void)handleEventBusAfterEventExpiration:(OguryEventEntry *)event {
-    NSTimeInterval timeInterval = [[event.timestamp dateByAddingTimeInterval:OguryChoiceManagerEventBusExpirationWindow] timeIntervalSinceDate:[NSDate date]];
-    self.eventBusExprirationTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(timerHasExpiredFor:) userInfo:@{OGAEventEntry : event} repeats:NO];
-    [[NSRunLoop currentRunLoop] addTimer:self.eventBusExprirationTimer forMode:NSRunLoopCommonModes];
-}
-
-- (void)timerHasExpiredFor:(NSTimer *)timer {
-    OguryEventEntry *event = [[OguryEventEntry alloc] initWithEvent:OGAAdsChoiceManagerEventBusEvent andMessage:OGAChoiceManagerEventBusStatusError];
-    [self.log logEventBus:OguryLogLevelDebug eventEntry:event message:@"AdManager received event expired"];
-    [self handleConsentChange:event];
-}
-
-- (void)dispatchError:(OguryError *_Nullable)error sequence:(OGAAdSequence *_Nullable)sequence {
+- (void)dispatchError:(OguryAdError *_Nullable)error sequence:(OGAAdSequence *_Nullable)sequence {
     if (!sequence) {
         return;
     }
 
     if (!error) {
-        error = [OguryError createUnknownError];
+        error = [OguryAdError createOguryErrorWithCode:OGAInternalUnknownError];
     }
 
     [sequence.configuration.delegateDispatcher failedWithError:error];
@@ -618,31 +558,42 @@ static NSString *const OGADisablingReason = @"disabling_reason";
 
     switch (error.code) {
         case OguryCoreErrorTypeNoInternetConnection:
+        case OguryShowErrorCodeNoActiveInternetConnection:
+        case OguryLoadErrorCodeNoActiveInternetConnection:
             [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventNoInternetConnection adConfiguration:configuration customSessionId:sessionId];
             break;
-        case OguryAdsSdkInitNotCalledError:
+        case OguryLoadErrorCodeSDKNotStarted:
+        case OguryShowErrorCodeSDKNotStarted:
             [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventSdkNotInitialized adConfiguration:configuration customSessionId:sessionId];
             break;
-        case OguryAdsAssetKeyNotValidError:
+        case OguryLoadErrorCodeSDKNotProperlyInitialized:
+        case OguryShowErrorCodeSDKNotProperlyInitialized:
             [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventEmptyAssetKey adConfiguration:configuration customSessionId:sessionId];
             break;
-        case OguryAdsAdExpiredError: {
+        case OguryShowErrorCodeAdExpired: {
             [self.monitoringDispatcher sendShowErrorEventAdExpired:configuration context:sequence.coordinator.adControllers[0].expirationContext];
             break;
         }
-        case OguryAdsErrorAdDisable:
+        case OguryLoadErrorCodeAdDisabledUnspecifiedReason:
+        case OguryLoadErrorCodeAdDisabledConsentMissing:
+        case OguryLoadErrorCodeAdDisabledConsentDenied:
+        case OguryLoadErrorCodeAdDisabledCountryNotOpened:
+        case OguryShowErrorCodeAdDisabledUnspecifiedReason:
+        case OguryShowErrorCodeAdDisabledConsentMissing:
+        case OguryShowErrorCodeAdDisabledConsentDenied:
+        case OguryShowErrorCodeAdDisabledCountryNotOpened:
             [self.monitoringDispatcher sendShowErrorEvent:OGAShowErrorEventAdDisabled adConfiguration:configuration customSessionId:sessionId];
             break;
-        case OguryAdsNotLoadedError:
+        case OguryShowErrorCodeNoAdLoaded:
             [self.monitoringDispatcher sendShowErrorEvent:OGAShowErrorEventNoAdLoaded adConfiguration:configuration customSessionId:sessionId];
             break;
-        case OguryAdsAnotherAdAlreadyDisplayedError:
+        case OguryShowErrorCodeAnotherAdAlreadyDisplayed:
             [self.monitoringDispatcher sendShowErrorEvent:OGAShowErrorEventAnotherAdAlreadyDisplayed adConfiguration:configuration customSessionId:sessionId];
             break;
-        case OguryAdsCantShowAdsInPresentingViewControllerError:
+        case OguryShowErrorCodeViewControllerPreventsAdFromBeingDisplayed:
             [self.monitoringDispatcher sendShowErrorEvent:OGAShowErrorEventViewInBackground adConfiguration:configuration customSessionId:sessionId];
             break;
-        case OguryAdsWebViewKilledError:
+        case OguryShowErrorCodeWebviewTerminatedBySystem:
             [self.monitoringDispatcher sendShowErrorEvent:OGAShowErrorEventWebviewTerminatedByOS adConfiguration:configuration];
             break;
         default:

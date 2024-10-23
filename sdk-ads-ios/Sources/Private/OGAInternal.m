@@ -5,10 +5,8 @@
 #import "OGAInternal.h"
 #import "OGAAdManager.h"
 #import "OGAAssetKeyManager.h"
-#import "OGABroadcastEventBus.h"
 #import "OGAEnvironmentManager.h"
 #import "OGALog.h"
-#import "OGAPersistentEventBus.h"
 #import "OGAProfigManager.h"
 #import "OGAReachability.h"
 #import "OGASetLogLevelNotificationManager.h"
@@ -25,8 +23,7 @@
 @property(nonatomic, strong) OGAAdManager *adManager;
 @property(nonatomic, strong) OGALog *log;
 @property(nonatomic, strong) OGASetLogLevelNotificationManager *logNotificationManager;
-@property(nonatomic, strong) OGABroadcastEventBus *broadcastEventBus;
-@property(nonatomic, strong) OGAPersistentEventBus *persistentEventBus;
+@property(nonatomic, copy) StartCompletionBlock setupBlock;
 
 @end
 
@@ -51,38 +48,30 @@
 #pragma mark - Initilization
 
 - (instancetype)init {
-    return [self initWithPersistentEventBus:[[OGAPersistentEventBus alloc] init]
-                          broadcastEventBus:[[OGABroadcastEventBus alloc] init]
-                            assetKeyManager:[OGAAssetKeyManager shared]
-                              profigManager:[OGAProfigManager shared]
-                         environmentManager:[OGAEnvironmentManager shared]
-                       internetReachability:[OGAReachability reachabilityForInternetConnection]
-                                  adManager:[OGAAdManager sharedManager]
-                                        log:[OGALog shared]
-                     logNotificationManager:[[OGASetLogLevelNotificationManager alloc] init]
-                    webViewUserAgentService:[OGAWebViewUserAgentService shared]];
+    return [self initWithAssetKeyManager:[OGAAssetKeyManager shared]
+                           profigManager:[OGAProfigManager shared]
+                      environmentManager:[OGAEnvironmentManager shared]
+                    internetReachability:[OGAReachability reachabilityForInternetConnection]
+                               adManager:[OGAAdManager sharedManager]
+                                     log:[OGALog shared]
+                  logNotificationManager:[[OGASetLogLevelNotificationManager alloc] init]
+                 webViewUserAgentService:[OGAWebViewUserAgentService shared]];
 }
 
-- (instancetype)initWithPersistentEventBus:(OGAPersistentEventBus *)consentEventBus
-                         broadcastEventBus:(OGABroadcastEventBus *)broadcastEventBus
-                           assetKeyManager:(OGAAssetKeyManager *)assetKeyManager
-                             profigManager:(OGAProfigManager *)profigManager
-                        environmentManager:(OGAEnvironmentManager *)environmentManager
-                      internetReachability:(OGAReachability *)internetReachability
-                                 adManager:(OGAAdManager *)adManager
-                                       log:(OGALog *)log
-                    logNotificationManager:(OGASetLogLevelNotificationManager *)logNotificationManager
-                   webViewUserAgentService:(OGAWebViewUserAgentService *)webViewUserAgentService {
+- (instancetype)initWithAssetKeyManager:(OGAAssetKeyManager *)assetKeyManager
+                          profigManager:(OGAProfigManager *)profigManager
+                     environmentManager:(OGAEnvironmentManager *)environmentManager
+                   internetReachability:(OGAReachability *)internetReachability
+                              adManager:(OGAAdManager *)adManager
+                                    log:(OGALog *)log
+                 logNotificationManager:(OGASetLogLevelNotificationManager *)logNotificationManager
+                webViewUserAgentService:(OGAWebViewUserAgentService *)webViewUserAgentService {
     if (self = [super init]) {
-        _persistentEventBus = consentEventBus;
-        _broadcastEventBus = broadcastEventBus;
         _assetKeyManager = assetKeyManager;
         _profigManager = profigManager;
-        _profigManager.broadcastEventBus = broadcastEventBus;
         _environmentManager = environmentManager;
         _internetReachability = internetReachability;
         _adManager = adManager;
-        _adManager.persistentEventBus = consentEventBus;
         _log = log;
         _logNotificationManager = logNotificationManager;
         _webViewUserAgentService = webViewUserAgentService;
@@ -94,32 +83,18 @@
 
 #pragma mark - methods
 
-- (void)startWithAssetKey:(NSString *)assetKey
-       persistentEventBus:(OguryPersistentEventBus *)persistentEventBus
-        broadcastEventBus:(OguryEventBus *)broadcastEventBus {
+- (void)startWith:(NSString *)assetKey completionHandler:(StartCompletionBlock)completionHandler {
+    self.setupBlock = completionHandler;
     [self.log log:OguryLogLevelInfo message:@"Module started"];
-    if (persistentEventBus) {
-        self.persistentEventBus.corePersistentEventBus = persistentEventBus;
-    }
-    if (broadcastEventBus) {
-        self.broadcastEventBus.coreBroadcastEventBus = broadcastEventBus;
-    }
 
-    [self.adManager registerToPersistentEventBus];
-    [self.profigManager registerToBroadcastEventBus];
-
-    // if ([self.assetKeyManager shouldResetSDKFor:assetKey]) {
-    //    [self resetSDK];
-    // }
-
-    if ([self.assetKeyManager configureAssetKey:assetKey]) {
+    if ([self.assetKeyManager configureAssetKey:assetKey] || [self.profigManager shouldSync]) {
         // Setup notifier otherwise further call to the internetReachability will return invalid statuses.
+        [self.log log:OguryLogLevelInfo message:@"Invalid/No profig found, start profig sync."];
         [self.internetReachability startNotifier];
-
-        [self.webViewUserAgentService syncWebViewUserAgent];
-
+        [self.webViewUserAgentService syncWebViewUserAgentAndDispatchDelegate];
     } else {
         [self.log log:OguryLogLevelWarning message:@"Ogury Ads only need to be started once. Additional calls are ignored."];
+        completionHandler(true, nil);
     }
 }
 
@@ -129,9 +104,16 @@
 
 - (void)syncProfig {
     [self.profigManager syncProfigWithCompletion:^(OGAProfigFullResponse *response, NSError *error) {
-        [self.assetKeyManager sdkIsReady];
         if (!response) {
             [self.log logError:error message:@"Failed to initialize Ogury Ads"];
+        }
+        if (self.setupBlock != nil) {
+            self.setupBlock(response != nil, error);
+        }
+        if (error) {
+            [self.assetKeyManager setSdkState:OgurySDKStateError];
+        } else {
+            [self.assetKeyManager sdkIsReady];
         }
     }];
 }

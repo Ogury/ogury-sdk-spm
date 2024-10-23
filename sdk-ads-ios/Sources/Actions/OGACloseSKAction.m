@@ -23,7 +23,7 @@ NSString *const OGACloseSKToFullscreenActionName = @"closeStoreKitToFullscreen";
 
 #pragma mark - Methods
 
-- (BOOL)performAction:(OGAAdContainer *)adContainer error:(OguryError **)error {
+- (BOOL)performAction:(OGAAdContainer *)adContainer error:(OguryAdError **)error {
     if (adContainer.previousStateType == OGAAdContainerStateTypeFullScreenOverlay) {
         return [adContainer performAction:OGACloseSKToFullscreenActionName error:error];
     }

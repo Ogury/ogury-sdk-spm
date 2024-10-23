@@ -9,8 +9,6 @@
 
 @interface OguryLog (Core)
 
-- (void)ogcLogEventBusMessage:(OguryLogLevel)level message:(NSString *)message eventEntry:(OguryEventEntry *)eventEntry;
-
 - (void)ogcLogRequestMessage:(OguryLogLevel)level message:(NSString *)message request:(NSURLRequest *)request;
 
 @end
@@ -57,17 +55,6 @@
     va_list arguments;
     va_start(arguments, format);
     [self logMessage:logLevel message:[[NSString alloc] initWithFormat:format arguments:arguments]];
-    va_end(arguments);
-}
-
-- (void)logEventBusMessage:(OguryLogLevel)logLevel message:(NSString *)message eventEntry:(OguryEventEntry *)eventEntry {
-    [self.oguryLog ogcLogEventBusMessage:logLevel message:message eventEntry:eventEntry];
-}
-
-- (void)logEventBusMessageFormat:(OguryLogLevel)logLevel eventEntry:(OguryEventEntry *)eventEntry format:(NSString *)format, ... {
-    va_list arguments;
-    va_start(arguments, format);
-    [self logEventBusMessage:logLevel message:[[NSString alloc] initWithFormat:format arguments:arguments] eventEntry:eventEntry];
     va_end(arguments);
 }
 

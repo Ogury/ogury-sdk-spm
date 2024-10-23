@@ -1,12 +1,16 @@
-//
-//  Copyright © 2023 Ogury Ltd. All rights reserved.
-//
-
-explicit module OguryAds.Private {
-
-    header "OGAInternal.h"
-    header "OGAPersistentEventBus.h"
-    header "OGABroadcastEventBus.h"
+framework module OguryAds {
+    umbrella header "OguryAds.h"
     
     export *
+    
+    // Module public (accessible à l'extérieur du framework)
+    module Public {
+        export *
+    }
+    
+    // Module privé (accessible uniquement au sein des autres frameworks)
+    module Private {
+        // Headers internes qui ne doivent pas être accessibles publiquement
+        header "OGAInternal.h"
+    }
 }

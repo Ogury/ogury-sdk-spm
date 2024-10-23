@@ -3,13 +3,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OguryAdsThumbnailAd.h"
 #import "OGADelegateDispatcher.h"
 #import "OguryAdsADType.h"
 #import "OGAExpirationContext.h"
 #import "OGAMonitoringDetails.h"
 #import "OGAAdDsp.h"
 #import "OguryMediation.h"
+#import "OGAThumbnailAdConstants.h"
+#import "OguryOffset.h"
+#import "OguryRectCorner.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,7 +21,7 @@ typedef UIView *_Nonnull (^OGAViewProvider)(void);
 extern NSString *const OGAAdConfigurationAdTypeSmallBanner;
 extern NSString *const OGAAdConfigurationAdTypeMPU;
 extern NSString *const OGAAdConfigurationAdTypeThumbnailAd;
-extern NSString *const OGAAdConfigurationAdTypeOptinVideo;
+extern NSString *const OGAAdConfigurationAdTypeRewarded;
 extern NSString *const OGAAdConfigurationAdTypeInterstitial;
 
 @interface OGAAdConfiguration : NSObject <NSCopying>
@@ -36,7 +38,6 @@ extern NSString *const OGAAdConfigurationAdTypeInterstitial;
 @property(nonatomic, copy, nullable) NSString *creativeId;
 @property(nonatomic, copy, nullable) OGAAdDsp *adDsp;
 
-@property(nonatomic, copy, nullable) NSString *userId;
 @property(nonatomic, assign) CGSize size;
 @property(nonatomic, strong) OGAExpirationContext *expirationContext;
 @property(nonatomic, strong, nullable) NSArray *adMarkupSync;

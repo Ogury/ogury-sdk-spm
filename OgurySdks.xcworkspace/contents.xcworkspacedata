@@ -2,10 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:sdk-ads-ios/OguryAdsSDK.xcodeproj">
+      location = "group:sdk-core-ios/OguryCore.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:sdk-core-ios/OguryCore.xcodeproj">
+      location = "group:sdk-ads-ios/OguryAdsSDK.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:sdk-ads-ios/AdsCardLibrary/AdsCardLibrary.xcodeproj">
@@ -18,6 +18,9 @@
    </FileRef>
    <FileRef
       location = "group:sdk-wrapper-ios/OguryWrapperTestApp/OguryWrapperTestApp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:sdk-ads-ios/AdsCardLibrary/../LegacyTestApp/LegacyTestApp.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

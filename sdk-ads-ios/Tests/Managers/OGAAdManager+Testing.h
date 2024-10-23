@@ -11,7 +11,6 @@
 #import "OGAAdContentPreCacheManager.h"
 #import "OGAAdControllerFactory.h"
 #import "OGAMetricsService.h"
-#import "OGAPersistentEventBus.h"
 #import "OGAReachability.h"
 #import "OGAAssetKeyChecker.h"
 #import "OGAInternetConnectionChecker.h"
@@ -20,9 +19,7 @@
 #import "OGAKeyboardObserver.h"
 #import "OGAIsKilledChecker.h"
 #import "OGALog.h"
-#import "OGAEventSubscriber.h"
 #import "OGAMonitoringDispatcher.h"
-#import "OGAEventSubscriber.h"
 #import "OGAAdEnabledChecker.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -31,11 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Properties
 
-@property(nonatomic, strong) OguryEventEntry *lastConsentEventEntry;
-@property(nonatomic, strong) OGAEventSubscriber *eventSubscriber;
-@property(nonatomic, strong) NSHashTable *sequencesWaitingForConsent;
 @property(nonatomic, strong) NSHashTable *sequencesShowing;
-@property(nonatomic, strong) NSTimer *eventBusExprirationTimer;
 
 #pragma mark - Initialization
 
@@ -68,24 +61,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)continueLoadAdAfterAdSynced:(OGAAdSequence *)sequence ads:(NSArray<OGAAd *> *_Nullable)ads error:(OguryError *_Nullable)error;
 
-- (OguryError *)errorForAdSyncError:(NSString *_Nullable)error ads:(NSArray<OGAAd *> *_Nullable)ads;
-
 - (void)continueLoadAdAfterAdContentsPrepared:(OGAAdSequence *)sequence ads:(NSArray<OGAAd *> *_Nullable)ads error:(OguryError *_Nullable)error;
 
-- (void)dispatchError:(OguryError *)error sequence:(OGAAdSequence *)sequence;
+- (void)dispatchError:(OguryAdError *)error sequence:(OGAAdSequence *)sequence;
 
 - (BOOL)isAnotherAdInOverlayState:(OGAAdSequence *)sequence;
 
 - (NSURL *_Nullable)preCacheEventTrackingURLFromAdConfiguration:(OGAAdConfiguration *)adConfiguration;
-
-- (void)registerToPersistentEventBus:(OGAPersistentEventBus *)persistentEventBus
-                     eventSubscriber:(OGAEventSubscriber *)eventSubscriber;
-
-- (void)handleEventBusAfterEventExpiration:(OguryEventEntry *)event;
-
-- (void)timerHasExpiredFor:(NSTimer *)timer;
-
-- (void)handleConsentChange:(OguryEventEntry *)event;
 
 @end
 

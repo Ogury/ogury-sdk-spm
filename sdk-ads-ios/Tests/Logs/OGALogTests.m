@@ -7,11 +7,8 @@
 #import "OGALog.h"
 #import <OguryCore/OguryLog.h>
 #import <OguryCore/OguryOSLogger.h>
-#import <OguryCore/OguryEventEntry.h>
 #import "OGAAdConfiguration.h"
 #import "OguryLog+Ads.h"
-
-@import OguryAds.Private;
 
 @interface OGALog ()
 
@@ -26,7 +23,6 @@
 
 @property(nonatomic, strong) NSError *expectedError;
 @property(nonatomic, strong) OGAAdConfiguration *adConfig;
-@property(nonatomic, strong) OguryEventEntry *eventEntry;
 @property(nonatomic, strong) NSString *webviewId;
 @property(nonatomic, strong) OGALog *log;
 @property(nonatomic, strong) OguryLog *oguryLog;
@@ -46,7 +42,6 @@
                                           return OCMClassMock([UIViewController class]);
                                           ;
                                       }];
-    self.eventEntry = [[OguryEventEntry alloc] initWithEvent:@"event" andMessage:@"message"];
     self.webviewId = @"webviewId";
     self.log = OCMPartialMock([[OGALog alloc] init]);
     self.oguryLog = OCMClassMock([OguryLog class]);
@@ -100,17 +95,6 @@
 - (void)testMraidLog {
     [self.log logMraid:OguryLogLevelError forAdConfiguration:self.adConfig webViewId:self.webviewId message:@"my message"];
     OCMVerify([self.oguryLog ogaLogMraidMessage:OguryLogLevelError adConfiguration:self.adConfig webViewId:self.webviewId message:@"my message"]);
-}
-
-- (void)testEventBusLog {
-    [self.log logEventBus:OguryLogLevelError eventEntry:self.eventEntry message:@"my message"];
-    OCMVerify([self.oguryLog ogaLogEventBusMessage:OguryLogLevelError eventEntry:self.eventEntry message:@"my message"]);
-}
-
-- (void)testEventBusLogFormat {
-    OCMStub([self.log logEventBus:OguryLogLevelError eventEntry:self.eventEntry message:@"test"]);
-    [self.log logEventBusFormat:OguryLogLevelError eventEntry:self.eventEntry format:@"test"];
-    OCMVerify([self.log logEventBus:OguryLogLevelError eventEntry:self.eventEntry message:@"test"]);
 }
 
 @end

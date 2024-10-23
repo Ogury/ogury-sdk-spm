@@ -7,10 +7,16 @@
 #pragma mark - Constants
 
 static NSString * const OGCInstanceTokenKey = @"OGURY_INSTANCE_TOKEN";
-static NSString * const OGCConsentTokenKey = @"OGURY_CONSENT_TOKEN";
 static NSString * const OGCLastProfigParamsKey = @"LastProfigParams";
 static NSString * const OGCDeprecatedOGYDeviceSettingsKey = @"DeviceSettings";
 static NSString * const OGCCMDeviceSettingsKey = @"OGYDeviceSettings";
+
+static NSString * const OGCGPPConsentStringKey = @"IABGPP_HDR_GppString";
+static NSString * const OGCGPPSIDKey = @"IABGPP_GppSID";
+static NSString * const OGCTCStringKey = @"IABTCF_TCString";
+
+static NSString * const OGCPrefixKey = @"OGY-";
+static NSString * const OGCDataPrivacyKey = @"OGY-PrivacyDataKeys";
 
 @interface OGCAdIdentifierDataLayer()
 
@@ -31,6 +37,7 @@ static NSString * const OGCCMDeviceSettingsKey = @"OGYDeviceSettings";
 - (id)initWithUserDefaults:(NSUserDefaults *)userDefault {
     if (self = [super init]) {
         _userDefaults = userDefault;
+        [_userDefaults synchronize];
     }
     
     return self;
@@ -52,7 +59,6 @@ static NSString * const OGCCMDeviceSettingsKey = @"OGYDeviceSettings";
 
 - (void)resetPrivacyDefaults {
     [self.userDefaults removeObjectForKey:OGCInstanceTokenKey];
-    [self.userDefaults removeObjectForKey:OGCConsentTokenKey];
 }
 
 - (void)removeOldProfigParam {
@@ -87,16 +93,47 @@ static NSString * const OGCCMDeviceSettingsKey = @"OGYDeviceSettings";
     return [self dataForKey:OGCInstanceTokenKey];
 }
 
-- (NSData *)getConsentToken {
-    return [self dataForKey:OGCConsentTokenKey];
+- (NSString *)getGPPConsentString {
+   return [self.userDefaults objectForKey:OGCGPPConsentStringKey];
+}
+
+- (NSString *)getGPPSID {
+   return [self.userDefaults objectForKey:OGCGPPSIDKey];
+}
+
+- (NSData *)getTCFConsentString {
+   return [self.userDefaults objectForKey:OGCTCStringKey];
+}
+
+- (void)setPrivacyData:(id)value forKey:(NSString *)key; {
+   [self.userDefaults setValue:value forKey:[OGCPrefixKey stringByAppendingString: key]];
+   [self addPrivacyDataKey:key];
+}
+
+- (void)addPrivacyDataKey:(NSString *)key {
+   if ([[self.userDefaults objectForKey:OGCDataPrivacyKey] isKindOfClass:[NSArray class]]) {
+      NSArray<NSString *> *dataPrivacyKeys = [self.userDefaults objectForKey:OGCDataPrivacyKey];
+      if (![dataPrivacyKeys containsObject:key]) {
+         NSMutableArray *dataPrivacyKeysMutable =  [dataPrivacyKeys mutableCopy];
+         [dataPrivacyKeysMutable addObject:key];
+         [self.userDefaults setObject:dataPrivacyKeysMutable forKey:OGCDataPrivacyKey];
+      }
+      return;
+   }
+   [self.userDefaults setObject:@[key] forKey:OGCDataPrivacyKey];
+}
+
+- (NSDictionary<NSString *, id> *)retrieveDataPrivacy {
+   NSMutableDictionary *dataPrivacy = [NSMutableDictionary new];
+   NSArray *dataPrivacyKeys = [self.userDefaults objectForKey:OGCDataPrivacyKey];
+   for (NSString *key in dataPrivacyKeys) {
+      dataPrivacy[key] = [self.userDefaults objectForKey:[OGCPrefixKey stringByAppendingString: key]];
+   }
+   return dataPrivacy;
 }
 
 - (void)storeInstanceToken:(NSData *)instanceToken {
     [self storeData:instanceToken key:OGCInstanceTokenKey];
-}
-
-- (void)storeConsentToken:(NSData *)consentToken {
-    [self storeData:consentToken key:OGCConsentTokenKey];
 }
 
 - (void)storeData:(NSData *)data key:(NSString *)key {

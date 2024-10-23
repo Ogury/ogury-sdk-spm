@@ -27,9 +27,12 @@ NS_ASSUME_NONNULL_BEGIN
            profigDao:(OGAProfigDao *)profigDao
          omidService:(OGAOMIDService *)omidService;
 
-- (NSString *)generateBidderToken;
+- (NSString *)bidToken;
 
-- (NSDictionary *)collectBidderTokenData;
+- (NSDictionary *)computeBidTokenDataWithCampaignId:(NSString *_Nullable)campaignId
+                                         creativeId:(NSString *_Nullable)creativeId
+                                      dspCreativeId:(NSString *_Nullable)dspCreativeId
+                                          dspRegion:(NSString *_Nullable)dspRegion;
 
 - (OGADevice *)currentDevice;
 

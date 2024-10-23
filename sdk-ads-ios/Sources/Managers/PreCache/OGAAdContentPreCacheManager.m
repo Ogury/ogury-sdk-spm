@@ -10,7 +10,8 @@
 #import "OGAMraidFileDownloader.h"
 #import "OGATrackEvent.h"
 #import "OGAUserDefaultsStore.h"
-#import "OguryError+Ads.h"
+#import "OguryAdError.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAAdContentPreCacheManager ()
 
@@ -61,7 +62,7 @@
 
     // if all ads are empty
     if (htmlEmptyCount == ads.count) {
-        completionHandler([OguryError createOguryErrorWithCode:OguryAdsUnknownError localizedDescription:@"Ad Html is empty"]);
+        completionHandler([OguryAdError adPrecachingFailedWithStackTrace:@"Ad Html is empty"]);
         return;
     }
 
@@ -96,25 +97,30 @@
         [mraidUrlsToDownload addObject:ad.mraidDownloadUrl];
 
         [self downloadMraidScript:ad
-                completionHandler:^(NSString *mraidDownloadUrl, OguryError *error) {
+                completionHandler:^(NSString *mraidDownloadUrl, OguryAdError *error) {
                     @synchronized(mraidUrlsToDownload) {
                         [mraidUrlsToDownload removeObject:mraidDownloadUrl];
                         if (error) {
                             [self.monitoringDispatcher sendLoadErrorEventPrecacheFail:OGAMonitoringPrecacheErrorMraidDownloadFailed
                                                                       adConfiguration:ad.adConfiguration
-                                                                            arguments:@[ mraidDownloadUrl, error.localizedDescription ]];
+                                                                            arguments:@[ mraidDownloadUrl, error.additionalInformation ]];
                             [self sendLoadedErrorEventsAfterFailingToDownload:mraidDownloadUrl ads:ads];
                         }
                         if ((error || mraidUrlsToDownload.count == 0) && !dispatched) {
                             dispatched = YES;
-                            completionHandler(error ? [OguryError createNotLoadedError] : nil);
+                            if (error) {
+                                completionHandler(error ?: [OguryAdError adPrecachingFailedWithStackTrace:@"Mraid download error"]);
+                            } else {
+                                completionHandler(nil);
+                            }
                         }
                     }
                 }];
     }
 }
 
-- (void)downloadMraidScript:(OGAAd *)ad completionHandler:(void (^)(NSString *mraidDownloadUrl, OguryError *_Nullable error))completionHandler {
+- (void)downloadMraidScript:(OGAAd *)ad
+          completionHandler:(void (^)(NSString *mraidDownloadUrl, OguryAdError *_Nullable error))completionHandler {
     if ([self.userDefaultsStore stringForKey:ad.mraidDownloadUrl]) {
         completionHandler(ad.mraidDownloadUrl, nil);
         return;
@@ -123,12 +129,14 @@
     @weakify(self)[self.mraidFileDownloader downloadMraidJSFromURL:ad
                                                         completion:^(NSString *response, NSError *error) {
                                                             @strongify(self) if (error) {
-                                                                completionHandler(ad.mraidDownloadUrl, [OguryError createOguryErrorWithCode:-1 localizedDescription:error.localizedDescription]);
+                                                                NSString *additionalInformation = [NSString stringWithFormat:@"Mraid download error (%ld)", error.code];
+                                                                OguryAdError *adError = [OguryAdError adPrecachingFailedWithStackTrace:additionalInformation];
+                                                                completionHandler(ad.mraidDownloadUrl, adError);
                                                                 return;
                                                             }
 
                                                             if (!response || [response isEqualToString:@""]) {
-                                                                completionHandler(ad.mraidDownloadUrl, [OguryError createNotLoadedError]);
+                                                                completionHandler(ad.mraidDownloadUrl, [OguryAdError adPrecachingFailedWithStackTrace:@"Mraid download error (response is empty)"]);
                                                                 return;
                                                             }
 

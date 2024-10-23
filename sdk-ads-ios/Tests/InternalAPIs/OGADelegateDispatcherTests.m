@@ -4,7 +4,7 @@
 
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
-#import "OguryAdsDelegate.h"
+#import "OguryInterstitialAdDelegate.h"
 #import "OGADelegateDispatcher.h"
 #import "OGALog.h"
 
@@ -27,41 +27,41 @@
 }
 
 - (void)testDispatch_notCalledWhenDelegateIsNil {
-    id delegate = OCMProtocolMock(@protocol(OguryAdsInterstitialDelegate));
-    OCMReject([delegate oguryAdsInterstitialAdLoaded]);
+    id delegate = OCMProtocolMock(@protocol(OguryInterstitialAdDelegate));
+    OCMReject([delegate interstitialAdDidLoad:[OCMArg any]]);
 
     OGADelegateDispatcher *dispatcher = [[OGADelegateDispatcher alloc] initWithAlwaysDispatchInMainThread:NO log:self.log];
     dispatcher.delegate = nil;
 
-    [dispatcher dispatch:^(id<OguryAdsInterstitialDelegate> _Nonnull delegate) {
-        [delegate oguryAdsInterstitialAdLoaded];
+    [dispatcher dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
+        [delegate interstitialAdDidLoad:[OCMArg any]];
     }];
 
     OCMVerifyAll(delegate);
 }
 
 - (void)testDispatch_inCallingThread {
-    id delegate = OCMProtocolMock(@protocol(OguryAdsInterstitialDelegate));
+    id delegate = OCMProtocolMock(@protocol(OguryInterstitialAdDelegate));
 
     OGADelegateDispatcher *dispatcher = [[OGADelegateDispatcher alloc] initWithAlwaysDispatchInMainThread:NO log:self.log];
     dispatcher.delegate = delegate;
 
-    [dispatcher dispatch:^(id<OguryAdsInterstitialDelegate> _Nonnull delegate) {
-        [delegate oguryAdsInterstitialAdLoaded];
+    [dispatcher dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
+        [delegate interstitialAdDidLoad:[OCMArg any]];
     }];
 
-    OCMVerify([delegate oguryAdsInterstitialAdLoaded]);
+    OCMVerify([delegate interstitialAdDidLoad:[OCMArg any]]);
 }
 
 - (void)testDispatch_dispatchedInMainThread {
-    id delegate = OCMProtocolMock(@protocol(OguryAdsInterstitialDelegate));
-    OCMExpect([delegate oguryAdsInterstitialAdLoaded]);
+    id delegate = OCMProtocolMock(@protocol(OguryInterstitialAdDelegate));
+    OCMExpect([delegate interstitialAdDidLoad:[OCMArg any]]);
 
     OGADelegateDispatcher *dispatcher = [[OGADelegateDispatcher alloc] initWithAlwaysDispatchInMainThread:YES log:self.log];
     dispatcher.delegate = delegate;
 
-    [dispatcher dispatch:^(id<OguryAdsInterstitialDelegate> _Nonnull delegate) {
-        [delegate oguryAdsInterstitialAdLoaded];
+    [dispatcher dispatch:^(id<OguryInterstitialAdDelegate> _Nonnull delegate) {
+        [delegate interstitialAdDidLoad:[OCMArg any]];
     }];
 
     // Verify with delay because it was pushed on the main queue.

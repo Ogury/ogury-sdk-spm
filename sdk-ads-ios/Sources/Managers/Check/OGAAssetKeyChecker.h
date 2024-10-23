@@ -7,5 +7,6 @@
 #import "OGAConditionChecker.h"
 
 @interface OGAAssetKeyChecker : NSObject <OGAConditionChecker>
-
+@property(nonatomic) OguryAdErrorType type;
+- (instancetype)initFrom:(OguryAdErrorType)type;
 @end

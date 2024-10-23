@@ -338,7 +338,7 @@
                 [[OGAMonitorEventConfiguration alloc] initWithEventCode:@"SE-011"
                                                               eventName:@"SDK_EVENT_SHOW_ERROR"
                                                               errorType:@"CONDITIONS_NOT_MET"
-                                                       errorDescription:@"Webview terminated by iOS"
+                                                       errorDescription:@"Webview terminated by the OS"
                                                          permissionMask:OGAAdIdMaskCampaignId | OGAAdIdMaskCreativeId | OGAAdIdMaskExtras],
 #pragma mark - Show Error SKNetwork
             @(OGASKNetworkShowErrorEventFailedToStartImpression) :
