@@ -10,6 +10,7 @@
 #import "OGAMonitoringDispatcher.h"
 #import "OGAAdController+Testing.h"
 #import "OguryAdError+Internal.h"
+#import "OGAAdDelegate.h"
 
 NSString *const OGAAdSequenceCoordinatorTestsAdIdOne = @"one";
 NSString *const OGAAdSequenceCoordinatorTestsAdIdTwo = @"two";
@@ -36,6 +37,12 @@ NSString *const OGAAdSequenceCoordinatorTestsAdIdThree = @"three";
 @end
 
 NSString *const OGAAdSequenceCoordinatorTestsNextAdId = @"next-ad-id";
+
+@interface OGAAdConfiguration ()
+
+@property(nonatomic, strong, readwrite) OGADelegateDispatcher *delegateDispatcher;
+
+@end
 
 @implementation OGAAdSequenceCoordinatorTests
 
@@ -479,6 +486,17 @@ NSString *const OGAAdSequenceCoordinatorTestsNextAdId = @"next-ad-id";
     OCMStub(self.sequenceCoordinator.isNotLoadedYet).andReturn(YES);
     [self.sequenceCoordinator controller:self.controllerOne didUnLoadAd:OCMClassMock([OGAAd class]) origin:UnloadOriginTimeout];
     OCMVerify([self.sequence.configuration.delegateDispatcher failedWithError:[OguryAdError adPrecachingTimeout]]);
+}
+
+- (void)testControllerwebkitProcessDidTerminateForAd {
+    OGAAdConfiguration *configuration = OCMPartialMock([[OGAAdConfiguration alloc] init]);
+    configuration.delegateDispatcher = OCMProtocolMock(@protocol(OGAAdDelegate));
+    self.adOne.adConfiguration = configuration;
+    [self.sequenceCoordinator controller:self.controllerOne webkitProcessDidTerminateForAd:self.adOne];
+
+    OCMVerify([self.adOne.adConfiguration.delegateDispatcher failedWithError:[OCMArg any]]);
+    OCMVerify([self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventPrecacheError adConfiguration:self.adOne.adConfiguration errorContent:[OCMArg any]]);
+    XCTAssertEqual(self.sequence.status, OGAAdSequenceStatusError);
 }
 
 @end

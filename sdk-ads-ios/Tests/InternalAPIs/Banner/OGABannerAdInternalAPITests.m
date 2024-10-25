@@ -49,7 +49,7 @@ static NSString *const DefaultDspRegion = @"dspRegion";
 
     self.smallBannerInternalAPI = [[OGABannerAdViewInternalAPI alloc] initWithAdUnitId:DefaultAdUnitId
                                                                             bannerView:nil
-                                                                                  size:OguryAdsBannerSize.small_banner_320x50
+                                                                                  size:OguryBannerAdSize.small_banner_320x50
                                                                     delegateDispatcher:self.delegateDispatcher
                                                                              adManager:self.adManager
                                                                     notificationCenter:self.notificationCenter
@@ -60,7 +60,7 @@ static NSString *const DefaultDspRegion = @"dspRegion";
 
     self.mrecInternalAPI = [[OGABannerAdViewInternalAPI alloc] initWithAdUnitId:DefaultAdUnitId
                                                                      bannerView:nil
-                                                                           size:OguryAdsBannerSize.mrec_300x250
+                                                                           size:OguryBannerAdSize.mrec_300x250
                                                              delegateDispatcher:self.delegateDispatcher
                                                                       adManager:self.adManager
                                                              notificationCenter:self.notificationCenter
@@ -73,16 +73,16 @@ static NSString *const DefaultDspRegion = @"dspRegion";
 - (void)testLoadInit300x250 {
     OCMStub(self.internal.sdkInitialized).andReturn(YES);
     [self.mrecInternalAPI load];
-    XCTAssertTrue(CGSizeEqualToSize([self.mrecInternalAPI.size getSize], [[OguryAdsBannerSize mrec_300x250] getSize]));
-    XCTAssertTrue(CGSizeEqualToSize(self.mrecInternalAPI.configuration.size, [[OguryAdsBannerSize mrec_300x250] getSize]));
+    XCTAssertTrue(CGSizeEqualToSize([self.mrecInternalAPI.size getSize], [[OguryBannerAdSize mrec_300x250] getSize]));
+    XCTAssertTrue(CGSizeEqualToSize(self.mrecInternalAPI.configuration.size, [[OguryBannerAdSize mrec_300x250] getSize]));
 }
 
 - (void)testLoadInit320x50 {
     OCMStub(self.internal.sdkInitialized).andReturn(YES);
     [self.smallBannerInternalAPI load];
 
-    XCTAssertTrue(CGSizeEqualToSize([self.smallBannerInternalAPI.size getSize], [[OguryAdsBannerSize small_banner_320x50] getSize]));
-    XCTAssertTrue(CGSizeEqualToSize(self.smallBannerInternalAPI.configuration.size, [[OguryAdsBannerSize small_banner_320x50] getSize]));
+    XCTAssertTrue(CGSizeEqualToSize([self.smallBannerInternalAPI.size getSize], [[OguryBannerAdSize small_banner_320x50] getSize]));
+    XCTAssertTrue(CGSizeEqualToSize(self.smallBannerInternalAPI.configuration.size, [[OguryBannerAdSize small_banner_320x50] getSize]));
 }
 
 - (void)testShouldLoad {
@@ -97,7 +97,7 @@ static NSString *const DefaultDspRegion = @"dspRegion";
     [self.smallBannerInternalAPI load];
 
     XCTAssertEqual(self.smallBannerInternalAPI.sequence, sequence);
-    XCTAssertTrue(CGSizeEqualToSize(self.smallBannerInternalAPI.configuration.size, [[OguryAdsBannerSize small_banner_320x50] getSize]));
+    XCTAssertTrue(CGSizeEqualToSize(self.smallBannerInternalAPI.configuration.size, [[OguryBannerAdSize small_banner_320x50] getSize]));
     XCTAssertNil(self.smallBannerInternalAPI.configuration.campaignId);
     OCMVerify([self.adManager loadAdConfiguration:self.smallBannerInternalAPI.configuration previousSequence:previousSequence]);
 }
@@ -115,7 +115,7 @@ static NSString *const DefaultDspRegion = @"dspRegion";
     [self.smallBannerInternalAPI loadWithCampaignId:DefaultCampaignId];
 
     XCTAssertEqual(self.smallBannerInternalAPI.sequence, sequence);
-    XCTAssertTrue(CGSizeEqualToSize(self.smallBannerInternalAPI.configuration.size, [[OguryAdsBannerSize small_banner_320x50] getSize]));
+    XCTAssertTrue(CGSizeEqualToSize(self.smallBannerInternalAPI.configuration.size, [[OguryBannerAdSize small_banner_320x50] getSize]));
     XCTAssertEqualObjects(self.smallBannerInternalAPI.configuration.campaignId, DefaultCampaignId);
     OCMVerify([self.adManager loadAdConfiguration:self.smallBannerInternalAPI.configuration previousSequence:previousSequence]);
 }
@@ -132,7 +132,7 @@ static NSString *const DefaultDspRegion = @"dspRegion";
     [self.smallBannerInternalAPI loadWithCampaignId:DefaultCampaignId creativeId:DefaultCreativeId];
 
     XCTAssertEqual(self.smallBannerInternalAPI.sequence, sequence);
-    XCTAssertTrue(CGSizeEqualToSize(self.smallBannerInternalAPI.configuration.size, [[OguryAdsBannerSize small_banner_320x50] getSize]));
+    XCTAssertTrue(CGSizeEqualToSize(self.smallBannerInternalAPI.configuration.size, [[OguryBannerAdSize small_banner_320x50] getSize]));
     XCTAssertEqualObjects(self.smallBannerInternalAPI.configuration.campaignId, DefaultCampaignId);
     XCTAssertEqualObjects(self.smallBannerInternalAPI.configuration.creativeId, DefaultCreativeId);
     OCMVerify([self.adManager loadAdConfiguration:self.smallBannerInternalAPI.configuration previousSequence:previousSequence]);
@@ -153,7 +153,7 @@ static NSString *const DefaultDspRegion = @"dspRegion";
                                           dspRegion:DefaultDspRegion];
 
     XCTAssertEqual(self.smallBannerInternalAPI.sequence, sequence);
-    XCTAssertTrue(CGSizeEqualToSize(self.smallBannerInternalAPI.configuration.size, [[OguryAdsBannerSize small_banner_320x50] getSize]));
+    XCTAssertTrue(CGSizeEqualToSize(self.smallBannerInternalAPI.configuration.size, [[OguryBannerAdSize small_banner_320x50] getSize]));
     XCTAssertEqualObjects(self.smallBannerInternalAPI.configuration.campaignId, DefaultCampaignId);
     XCTAssertEqualObjects(self.smallBannerInternalAPI.configuration.creativeId, DefaultCreativeId);
     XCTAssertEqualObjects(self.smallBannerInternalAPI.configuration.adDsp.region, DefaultDspRegion);
@@ -168,7 +168,7 @@ static NSString *const DefaultDspRegion = @"dspRegion";
     OCMStub(previousSequence.monitoringAdConfiguration).andReturn(self.smallBannerInternalAPI.configuration);
     [self.smallBannerInternalAPI loadWithAdMarkup:@"eyJhZCI6W3siZm9ybWF0Ijp7InBhcmFtcyI6W3sibmFtZSI6InpvbmVzIiwidmFsdWUiOlt7Im5hbWUiOiJjb250cm9sbGVyIiwidXJsIjoiaHR0cHM6XC9cL3N0YWdpbmcubGl0ZWNkbi5jb21cLzIwMjEtMTAtMTMtYTgyZWIwYThcL2Zvcm1hdHNcL21yYWlkLXdyYXBwZXJcL2luZGV4Lmh0bWwiLCJzaXplIjp7IndpZHRoIjotMSwiaGVpZ2h0IjotMX19XX1dLCJ3ZWJ2aWV3X2Jhc2VfdXJsIjoiaHR0cDpcL1wvd3d3Lm9neWZtdHMuY29tXC8iLCJtcmFpZF9kb3dubG9hZF91cmwiOiJodHRwczpcL1wvbXJhaWQucHJlc2FnZS5pb1wvYmY2YWJiNlwvbXJhaWQuanMifSwiY2FtcGFpZ25faWQiOjM0NzE3LCJwYXJhbXMiOltdLCJhZF9jb250ZW50IjoiPGh0bWw+ICA8aGVhZD4gIDxtZXRhIGNoYXJzZXQ9XCJVVEYtOFwiPiAgPG1ldGEgbmFtZT1cInZpZXdwb3J0XCIgY29udGVudD1cIndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAsIHVzZXItc2NhbGFibGU9bm9cIj4gIDxsaW5rIHJlbD1cImljb25cIiB0eXBlPVwiaW1hZ2VcL3BuZ1wiIGhyZWY9XCJkYXRhOmltYWdlXC9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvPVwiPiAgPFwvaGVhZD4gIDxib2R5PiAgPGRpdiBpZD1cInJvb3RcIj4gIDxcL2Rpdj4gIDxzY3JpcHQgc3JjPVwibXJhaWQuanNcIj48XC9zY3JpcHQ+ICA8c2NyaXB0IHNyYz1cImh0dHBzOlwvXC9tcy1hZHMuc3RhZ2luZy5wcmVzYWdlLmlvXC9tcmFpZD9kc3A9b2d1cnkmdD1mMDZkOTQyMS04MGJkLTQwZjEtYTBjYi1mMTEwZGQxZGYzMTImaW1wPWYzMzgxNGJlLWM2YzQtNGI0Yi1hM2ZlLTkzMDViNmUzNTQxMSZvY191dWlkPWJhNGU4NGQ1LTUwZGItNDIxNi04OWZiLTg0NTRiZTU2MTljYSZhaz0yNzI1MDYmdV9kbz1mYWxzZSZ1X2lkPTAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMCZhX3Nkaz0zLjAuMC1iZXRhLTEuMi4wJmF1aWQ9MjcyNTA2X2RlZmF1bHQmY29ubj1BTEwmdV9vcz1pb3MmYV9iPWNvLm9ndXJ5LmFkcy5Td2lmdFByZXNhZ2VUZXN0JmFfbj1pT1MlMjBOZXclMjBUZXN0JTIwQXBwJmF1dHlwZT1pbnRlcnN0aXRpYWwmYV9leD1vZ3VyeSZ0X2E9dHJ1ZSZiaWRfaGFzaD0mZG1uPSZwZz0mZF9tPXg4Nl82NCZkX3R5PW1vYmlsZSZ1X3RrPTVmYmIzNTNmLTBiNGUtNGZiMi04YTUyLTgzMmRhZGIxZDFiZCZhdWQ9dHJ1ZSZkdWFsYWQ9Jmc9JmNfcz1cIj48XC9zY3JpcHQ+ICA8XC9ib2R5PiAgPFwvaHRtbD4iLCJpZCI6ImYzMzgxNGJlLWM2YzQtNGI0Yi1hM2ZlLTkzMDViNmUzNTQxMSIsImlzX2ltcHJlc3Npb24iOnRydWUsImFkdmVydGlzZXIiOnsiaWQiOjEzNywibmFtZSI6IlBoaWxpcHMifSwiYWRfa2VlcF9hbGl2ZSI6dHJ1ZSwiYWRfdW5pdCI6eyJpZCI6IjI3MjUwNl9kZWZhdWx0IiwidHlwZSI6ImludGVyc3RpdGlhbCJ9LCJzZGtfY2xvc2VfYnV0dG9uX3VybCI6Imh0dHBzOlwvXC9tcy1hZHMtZXZlbnRzLnN0YWdpbmcucHJlc2FnZS5pb1wvY3JlYXRpdmU/ZT1zZGtfY2xvc2VfYnV0dG9uJmltcD1mMzM4MTRiZS1jNmM0LTRiNGItYTNmZS05MzA1YjZlMzU0MTEmb2NfaWQ9MzQ3MTcmYWs9MjcyNTA2JnVfaWQ9MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwJmFfc2RrPTMuMC4wLWJldGEtMS4yLjAmdV9vcz1pb3MmYV9iPWNvLm9ndXJ5LmFkcy5Td2lmdFByZXNhZ2VUZXN0JmFfbj1pT1MlMjBOZXclMjBUZXN0JTIwQXBwIiwic2RrX2JhY2tncm91bmRfY29sb3IiOiIjMDAwMDAwIn1dfQ=="];
     XCTAssertNotNil(self.smallBannerInternalAPI.configuration.encodedAdMarkup);
-    XCTAssertTrue(CGSizeEqualToSize(self.smallBannerInternalAPI.configuration.size, [[OguryAdsBannerSize small_banner_320x50] getSize]));
+    XCTAssertTrue(CGSizeEqualToSize(self.smallBannerInternalAPI.configuration.size, [[OguryBannerAdSize small_banner_320x50] getSize]));
     XCTAssertNil(self.smallBannerInternalAPI.configuration.campaignId);
     OCMVerify([self.adManager loadAdConfiguration:self.smallBannerInternalAPI.configuration previousSequence:previousSequence]);
     XCTAssertEqualObjects(self.smallBannerInternalAPI.configuration.encodedAdMarkup, @"eyJhZCI6W3siZm9ybWF0Ijp7InBhcmFtcyI6W3sibmFtZSI6InpvbmVzIiwidmFsdWUiOlt7Im5hbWUiOiJjb250cm9sbGVyIiwidXJsIjoiaHR0cHM6XC9cL3N0YWdpbmcubGl0ZWNkbi5jb21cLzIwMjEtMTAtMTMtYTgyZWIwYThcL2Zvcm1hdHNcL21yYWlkLXdyYXBwZXJcL2luZGV4Lmh0bWwiLCJzaXplIjp7IndpZHRoIjotMSwiaGVpZ2h0IjotMX19XX1dLCJ3ZWJ2aWV3X2Jhc2VfdXJsIjoiaHR0cDpcL1wvd3d3Lm9neWZtdHMuY29tXC8iLCJtcmFpZF9kb3dubG9hZF91cmwiOiJodHRwczpcL1wvbXJhaWQucHJlc2FnZS5pb1wvYmY2YWJiNlwvbXJhaWQuanMifSwiY2FtcGFpZ25faWQiOjM0NzE3LCJwYXJhbXMiOltdLCJhZF9jb250ZW50IjoiPGh0bWw+ICA8aGVhZD4gIDxtZXRhIGNoYXJzZXQ9XCJVVEYtOFwiPiAgPG1ldGEgbmFtZT1cInZpZXdwb3J0XCIgY29udGVudD1cIndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAsIHVzZXItc2NhbGFibGU9bm9cIj4gIDxsaW5rIHJlbD1cImljb25cIiB0eXBlPVwiaW1hZ2VcL3BuZ1wiIGhyZWY9XCJkYXRhOmltYWdlXC9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvPVwiPiAgPFwvaGVhZD4gIDxib2R5PiAgPGRpdiBpZD1cInJvb3RcIj4gIDxcL2Rpdj4gIDxzY3JpcHQgc3JjPVwibXJhaWQuanNcIj48XC9zY3JpcHQ+ICA8c2NyaXB0IHNyYz1cImh0dHBzOlwvXC9tcy1hZHMuc3RhZ2luZy5wcmVzYWdlLmlvXC9tcmFpZD9kc3A9b2d1cnkmdD1mMDZkOTQyMS04MGJkLTQwZjEtYTBjYi1mMTEwZGQxZGYzMTImaW1wPWYzMzgxNGJlLWM2YzQtNGI0Yi1hM2ZlLTkzMDViNmUzNTQxMSZvY191dWlkPWJhNGU4NGQ1LTUwZGItNDIxNi04OWZiLTg0NTRiZTU2MTljYSZhaz0yNzI1MDYmdV9kbz1mYWxzZSZ1X2lkPTAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMCZhX3Nkaz0zLjAuMC1iZXRhLTEuMi4wJmF1aWQ9MjcyNTA2X2RlZmF1bHQmY29ubj1BTEwmdV9vcz1pb3MmYV9iPWNvLm9ndXJ5LmFkcy5Td2lmdFByZXNhZ2VUZXN0JmFfbj1pT1MlMjBOZXclMjBUZXN0JTIwQXBwJmF1dHlwZT1pbnRlcnN0aXRpYWwmYV9leD1vZ3VyeSZ0X2E9dHJ1ZSZiaWRfaGFzaD0mZG1uPSZwZz0mZF9tPXg4Nl82NCZkX3R5PW1vYmlsZSZ1X3RrPTVmYmIzNTNmLTBiNGUtNGZiMi04YTUyLTgzMmRhZGIxZDFiZCZhdWQ9dHJ1ZSZkdWFsYWQ9Jmc9JmNfcz1cIj48XC9zY3JpcHQ+ICA8XC9ib2R5PiAgPFwvaHRtbD4iLCJpZCI6ImYzMzgxNGJlLWM2YzQtNGI0Yi1hM2ZlLTkzMDViNmUzNTQxMSIsImlzX2ltcHJlc3Npb24iOnRydWUsImFkdmVydGlzZXIiOnsiaWQiOjEzNywibmFtZSI6IlBoaWxpcHMifSwiYWRfa2VlcF9hbGl2ZSI6dHJ1ZSwiYWRfdW5pdCI6eyJpZCI6IjI3MjUwNl9kZWZhdWx0IiwidHlwZSI6ImludGVyc3RpdGlhbCJ9LCJzZGtfY2xvc2VfYnV0dG9uX3VybCI6Imh0dHBzOlwvXC9tcy1hZHMtZXZlbnRzLnN0YWdpbmcucHJlc2FnZS5pb1wvY3JlYXRpdmU/ZT1zZGtfY2xvc2VfYnV0dG9uJmltcD1mMzM4MTRiZS1jNmM0LTRiNGItYTNmZS05MzA1YjZlMzU0MTEmb2NfaWQ9MzQ3MTcmYWs9MjcyNTA2JnVfaWQ9MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwJmFfc2RrPTMuMC4wLWJldGEtMS4yLjAmdV9vcz1pb3MmYV9iPWNvLm9ndXJ5LmFkcy5Td2lmdFByZXNhZ2VUZXN0JmFfbj1pT1MlMjBOZXclMjBUZXN0JTIwQXBwIiwic2RrX2JhY2tncm91bmRfY29sb3IiOiIjMDAwMDAwIn1dfQ==");
@@ -365,10 +365,10 @@ static NSString *const DefaultDspRegion = @"dspRegion";
     [self.smallBannerInternalAPI loadWithCampaignId:@"campaignId" creativeId:@"creativeId"];
     XCTAssertEqualObjects(self.smallBannerInternalAPI.configuration.campaignId, @"campaignId");
     XCTAssertEqualObjects(self.smallBannerInternalAPI.configuration.creativeId, @"creativeId");
-    XCTAssertEqual(self.smallBannerInternalAPI.size.getSize.width, [OguryAdsBannerSize small_banner_320x50].getSize.width);
-    XCTAssertEqual(self.smallBannerInternalAPI.size.getSize.height, [OguryAdsBannerSize small_banner_320x50].getSize.height);
-    XCTAssertEqual(self.smallBannerInternalAPI.configuration.size.width, [OguryAdsBannerSize small_banner_320x50].getSize.width);
-    XCTAssertEqual(self.smallBannerInternalAPI.configuration.size.height, [OguryAdsBannerSize small_banner_320x50].getSize.height);
+    XCTAssertEqual(self.smallBannerInternalAPI.size.getSize.width, [OguryBannerAdSize small_banner_320x50].getSize.width);
+    XCTAssertEqual(self.smallBannerInternalAPI.size.getSize.height, [OguryBannerAdSize small_banner_320x50].getSize.height);
+    XCTAssertEqual(self.smallBannerInternalAPI.configuration.size.width, [OguryBannerAdSize small_banner_320x50].getSize.width);
+    XCTAssertEqual(self.smallBannerInternalAPI.configuration.size.height, [OguryBannerAdSize small_banner_320x50].getSize.height);
     XCTAssertEqual(self.smallBannerInternalAPI.sequence, sequence);
 }
 

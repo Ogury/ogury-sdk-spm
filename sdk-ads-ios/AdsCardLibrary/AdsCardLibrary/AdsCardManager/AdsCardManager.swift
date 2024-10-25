@@ -5,6 +5,7 @@
 import Foundation
 import OguryAds
 import SwiftUI
+import OguryCore.Private
 
 //MARK: - AdsCardManager
 public struct AdsCardManager {

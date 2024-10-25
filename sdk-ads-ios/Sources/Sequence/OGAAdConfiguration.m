@@ -3,7 +3,7 @@
 //
 
 #import "OGAAdConfiguration.h"
-#import "OguryAdsBannerSize.h"
+#import "OguryBannerAdSize.h"
 #import <Foundation/NSProcessInfo.h>
 
 NSString *const OGAAdConfigurationAdTypeSmallBanner = @"banner_320x50";
@@ -131,10 +131,10 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
 - (NSString *)getAdTypeString {
     switch (self.adType) {
         case OguryAdsTypeBanner: {
-            if (CGSizeEqualToSize(self.size, [[OguryAdsBannerSize small_banner_320x50] getSize])) {
+            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize small_banner_320x50] getSize])) {
                 return OGAAdConfigurationAdTypeSmallBanner;
             }
-            if (CGSizeEqualToSize(self.size, [[OguryAdsBannerSize mrec_300x250] getSize])) {
+            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize mrec_300x250] getSize])) {
                 return OGAAdConfigurationAdTypeMPU;
             }
             return @"";

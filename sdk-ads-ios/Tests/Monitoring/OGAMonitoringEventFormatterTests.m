@@ -199,7 +199,7 @@
     XCTAssertEqual([self.formatter errorDescriptionFromEvent:OGAShowErrorEventViewInBackground], @"View in background");
     XCTAssertEqual([self.formatter errorDescriptionFromEvent:OGAShowErrorEventAnotherAdAlreadyDisplayed], @"Another ad already displayed");
     XCTAssertEqual([self.formatter errorDescriptionFromEvent:OGAShowErrorEventNoInternetConnection], @"No Internet connection");
-    XCTAssertEqual([self.formatter errorDescriptionFromEvent:OGAShowErrorEventWebviewTerminatedByOS], @"Webview terminated by iOS");
+    XCTAssertEqual([self.formatter errorDescriptionFromEvent:OGAShowErrorEventWebviewTerminatedByOS], @"Webview terminated by the OS");
 }
 
 @end
