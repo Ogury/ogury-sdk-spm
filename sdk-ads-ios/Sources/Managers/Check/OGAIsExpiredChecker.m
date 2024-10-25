@@ -4,7 +4,7 @@
 
 #import "OGAIsExpiredChecker.h"
 #import "OGALog.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAIsExpiredChecker ()
 
@@ -34,7 +34,7 @@
 - (BOOL)checkForSequence:(OGAAdSequence *)sequence error:(OguryError *_Nullable __autoreleasing *)error {
     if ([self.adManager isExpired:sequence]) {
         if (error) {
-            *error = [OguryAdsError adExpired];
+            *error = [OguryAdError adExpired];
             [self.log logAd:OguryLogLevelError forAdConfiguration:sequence.configuration message:@" Failed to show (ad is expired)"];
         }
         return NO;

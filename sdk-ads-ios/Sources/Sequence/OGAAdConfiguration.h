@@ -38,7 +38,6 @@ extern NSString *const OGAAdConfigurationAdTypeInterstitial;
 @property(nonatomic, copy, nullable) NSString *creativeId;
 @property(nonatomic, copy, nullable) OGAAdDsp *adDsp;
 
-@property(nonatomic, copy, nullable) NSString *userId;
 @property(nonatomic, assign) CGSize size;
 @property(nonatomic, strong) OGAExpirationContext *expirationContext;
 @property(nonatomic, strong, nullable) NSArray *adMarkupSync;

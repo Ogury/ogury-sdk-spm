@@ -72,11 +72,11 @@ static NSString *const TestCampaignId2 = @"CAMPAIGN-ID2";
 
 - (void)testLoad {
     OGAThumbnailAdInternalAPI *internal = OCMPartialMock(self.internalAPI);
-    OCMStub([internal load:CGSizeMake(180, 180)]);
+    OCMStub([internal loadWithMaxSize:CGSizeMake(180, 180)]);
 
     [internal load];
 
-    OCMVerify([internal load:CGSizeMake(180, 180)]);
+    OCMVerify([internal loadWithMaxSize:CGSizeMake(180, 180)]);
 }
 
 - (void)testLoad_withThumbnailSize {
@@ -88,7 +88,7 @@ static NSString *const TestCampaignId2 = @"CAMPAIGN-ID2";
     OCMStub([self.adManager loadAdConfiguration:[OCMArg any] previousSequence:[OCMArg any]]).andReturn(sequence);
     OCMStub(previousSequence.monitoringAdConfiguration).andReturn(self.internalAPI.configuration);
 
-    [self.internalAPI load:size];
+    [self.internalAPI loadWithMaxSize:size];
 
     XCTAssertEqual(self.internalAPI.sequence, sequence);
     XCTAssertTrue(CGSizeEqualToSize(self.internalAPI.configuration.size, size));
@@ -117,10 +117,10 @@ static NSString *const TestCampaignId2 = @"CAMPAIGN-ID2";
     OGAAdConfiguration *configuration = OCMClassMock([OGAAdConfiguration class]);
     OGAAdSequence *sequence = [[OGAAdSequence alloc] initWithAdConfiguration:configuration];
     self.internalAPI.sequence = sequence;
-    [self.internalAPI showWithOguryRectCorner:OguryTopLeft margin:OguryOffsetMake(10, 20)];
+    [self.internalAPI showWithOguryRectCorner:OguryRectCornerTopLeft margin:OguryOffsetMake(10, 20)];
 
     OCMVerify([configuration setOffset:OguryOffsetMake(10, 20)]);
-    OCMVerify([configuration setCorner:OguryTopLeft]);
+    OCMVerify([configuration setCorner:OguryRectCornerTopLeft]);
 
     __block NSArray<id<OGAConditionChecker>> *additionalConditions;
     OCMVerify([self.adManager show:sequence
@@ -143,47 +143,36 @@ static NSString *const TestCampaignId2 = @"CAMPAIGN-ID2";
 
 - (void)testShow {
     OGAThumbnailAdInternalAPI *internal = OCMPartialMock(self.internalAPI);
-    OCMStub([internal showWithOguryRectCorner:OguryTopLeft margin:OguryOffsetMake(OGAThumbnailDefaultXOffset, OGAThumbnailDefaultYOffset)]);
+    OCMStub([internal showWithOguryRectCorner:OguryRectCornerTopLeft margin:OguryOffsetMake(OGAThumbnailDefaultXOffset, OGAThumbnailDefaultYOffset)]);
     [internal show];
-    OCMVerify([internal showWithOguryRectCorner:OguryBottomRight margin:OguryOffsetMake(OGAThumbnailDefaultXOffset, OGAThumbnailDefaultYOffset)]);
+    OCMVerify([internal showWithOguryRectCorner:OguryRectCornerBottomRight margin:OguryOffsetMake(OGAThumbnailDefaultXOffset, OGAThumbnailDefaultYOffset)]);
 }
 
 - (void)testShowWithPosition {
     OGAThumbnailAdInternalAPI *internal = OCMPartialMock(self.internalAPI);
-    OCMStub([internal showWithOguryRectCorner:OguryTopLeft margin:OguryOffsetMake(10, 20)]);
+    OCMStub([internal showWithOguryRectCorner:OguryRectCornerTopLeft margin:OguryOffsetMake(10, 20)]);
     [internal show:CGPointMake(10, 20)];
-    OCMVerify([internal showWithOguryRectCorner:OguryTopLeft margin:OguryOffsetMake(10, 20)]);
-}
-
-- (void)testShowInScene API_AVAILABLE(ios(13.0)) {
-    OGAThumbnailAdInternalAPI *internal = OCMPartialMock(self.internalAPI);
-    OCMStub([internal showWithOguryRectCorner:OguryBottomRight margin:OguryOffsetMake(OGAThumbnailDefaultXOffset, OGAThumbnailDefaultYOffset)]);
-    OGAAdConfiguration *configuration = OCMClassMock([OGAAdConfiguration class]);
-    OGAAdSequence *sequence = [[OGAAdSequence alloc] initWithAdConfiguration:configuration];
-    self.internalAPI.sequence = sequence;
-    UIWindowScene *scene = OCMClassMock([UIWindowScene class]);
-    [internal showInScene:scene];
-    OCMVerify([internal showWithOguryRectCorner:OguryBottomRight margin:OguryOffsetMake(OGAThumbnailDefaultXOffset, OGAThumbnailDefaultYOffset)]);
-    OCMVerify([configuration setScene:scene]);
+    OCMVerify([internal showWithOguryRectCorner:OguryRectCornerTopLeft margin:OguryOffsetMake(10, 20)]);
 }
 
 - (void)testShowInSceneWithOguryRectCornerWithMargin API_AVAILABLE(ios(13.0)) {
     OGAThumbnailAdInternalAPI *internal = OCMPartialMock(self.internalAPI);
-    OCMStub([internal showWithOguryRectCorner:OguryBottomRight margin:OguryOffsetMake(OGAThumbnailDefaultXOffset, OGAThumbnailDefaultYOffset)]);
     OGAAdConfiguration *configuration = OCMClassMock([OGAAdConfiguration class]);
     OGAAdSequence *sequence = [[OGAAdSequence alloc] initWithAdConfiguration:configuration];
     self.internalAPI.sequence = sequence;
     UIWindowScene *scene = OCMClassMock([UIWindowScene class]);
-    [internal showInScene:scene withOguryRectCorner:OguryBottomRight margin:OguryOffsetMake(OGAThumbnailDefaultXOffset, OGAThumbnailDefaultYOffset)];
-    OCMVerify([internal showWithOguryRectCorner:OguryBottomRight margin:OguryOffsetMake(OGAThumbnailDefaultXOffset, OGAThumbnailDefaultYOffset)]);
+    internal.scene = scene;
+    [internal showWithOguryRectCorner:OguryRectCornerBottomRight margin:OguryOffsetMake(OGAThumbnailDefaultXOffset, OGAThumbnailDefaultYOffset)];
+    OCMVerify([internal showWithOguryRectCorner:OguryRectCornerBottomRight margin:OguryOffsetMake(OGAThumbnailDefaultXOffset, OGAThumbnailDefaultYOffset)]);
     OCMVerify([configuration setScene:scene]);
 }
 
 - (void)testShowInSceneAtPosition API_AVAILABLE(ios(13.0)) {
     OGAThumbnailAdInternalAPI *internal = OCMPartialMock(self.internalAPI);
     UIWindowScene *scene = OCMClassMock([UIWindowScene class]);
-    [internal showInScene:scene atPosition:CGPointMake(10, 20)];
-    OCMVerify([internal showWithOguryRectCorner:OguryTopLeft margin:OguryOffsetMake(10, 20)]);
+    internal.scene = scene;
+    [internal show:CGPointMake(10, 20)];
+    OCMVerify([internal showWithOguryRectCorner:OguryRectCornerTopLeft margin:OguryOffsetMake(10, 20)]);
 }
 
 - (void)testSetBlacklistViewControllers_WithoutSequence {

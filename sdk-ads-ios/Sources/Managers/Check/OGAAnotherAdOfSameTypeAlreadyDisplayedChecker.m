@@ -5,7 +5,7 @@
 #import "OGAAnotherAdOfSameTypeAlreadyDisplayedChecker.h"
 #import "OGAAdManager+Check.h"
 #import "OGAAdSequenceCoordinator.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAAnotherAdOfSameTypeAlreadyDisplayedChecker ()
 
@@ -42,7 +42,7 @@
 - (BOOL)checkForSequence:(OGAAdSequence *)sequence error:(OguryError **)error {
     if ([self isAnotherAdOfSameTypeAlreadyDisplayed:sequence]) {
         if (error) {
-            *error = [OguryAdsError anotherAdIsAlreadyDisplayed];
+            *error = [OguryAdError anotherAdIsAlreadyDisplayed];
         }
         return NO;
     }

@@ -80,7 +80,7 @@
 
 #pragma mark - Methods
 
-- (BOOL)display:(id<OGAAdDisplayer>)displayer error:(OguryError **)error {
+- (BOOL)display:(id<OGAAdDisplayer>)displayer error:(OguryAdError **)error {
     self.displayer = displayer;
     [self.displayer setupCloseButtonTimer];
     return YES;

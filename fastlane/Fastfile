@@ -15,44 +15,63 @@ platform :ios do
   lane :build do |options|
     if !options[:environment]
       raise "No environment specified!".red
-    end
+    end    
 
     environment = options[:environment]
+    targetThreshold = options[:targetThreshold] ? options[:targetThreshold] : "all"
 
     # Install Cocoapods dependencies
-    update_internal_cocoapods environment: environment
-    generate_podfile environment: environment
     artifactory = options[:artifactory] ? options[:artifactory] : false
-
-    cocoapods(
-      podfile: "./Podfile",
-      repo_update: true
+    if artifactory
+      update_internal_cocoapods environment: environment
+      generate_podfile(environment:environment, targetThreshold:targetThreshold)
+      cocoapods(
+        podfile: "./Podfile",
+        repo_update: true
       )
+    end
+
 
     configuration.sdks.defaults.each do |sdk|
-      build_core_framework(
-        configuration: configuration,
-        sdk: sdk,
-        artifactory: artifactory
-        )
+      if targetThreshold == "core" 
+        build_core_framework(
+          configuration: configuration,
+          sdk: sdk,
+          artifactory: artifactory
+          )
+      end
 
-      build_ads_framework(
-        configuration: configuration,
-        sdk: sdk,
-        artifactory: artifactory
-        )
+      if targetThreshold == "ads" 
+        build_ads_framework(
+          configuration: configuration,
+          sdk: sdk,
+          artifactory: artifactory
+          )
 
-      build_card_library(
-        configuration: configuration,
-        sdk: sdk,
-        artifactory: artifactory
-        )
+        if !artifactory
+          build_card_library(
+            configuration: configuration,
+            sdk: sdk,
+            artifactory: artifactory
+            )
+        end
+      end
 
-      build_wrapper(
-        configuration: configuration,
-        sdk: sdk,
-        artifactory: artifactory
-        )
+      if targetThreshold == "all"
+        build_wrapper(
+          configuration: configuration,
+          sdk: sdk,
+          artifactory: artifactory
+          )
+
+        if artifactory
+          build_card_library(
+            configuration: configuration,
+            sdk: sdk,
+            artifactory: artifactory
+            )
+        end
+    end
 
       # build_test_app(
       #   configuration: configuration,
@@ -98,6 +117,16 @@ platform :ios do
     end
 
     environment = options[:environment]
+    testTarget = options[:testTarget] ? options[:testTarget] : false
+    targetThreshold = options[:targetThreshold] ? options[:targetThreshold] : "all"
+    templatePath = "./fastlane/templates/Podfile.erb"
+    if testTarget
+      templatePath = "./fastlane/templates/PodfileTest.erb"
+    elsif targetThreshold == "core"
+      templatePath = "./fastlane/templates/PodfileCore.erb"
+    elsif targetThreshold == "ads"
+      templatePath = "./fastlane/templates/PodfileAds.erb"
+    end
     
     artifactory_repository_name = get_artifactory_repository_name(environment)
     ogury_core_version = get_module_version(environment, configuration.frameworks.ogury_core.internal_version, configuration.frameworks.ogury_core.beta_version, configuration.frameworks.ogury_core.release_version)
@@ -105,7 +134,7 @@ platform :ios do
     ogury_choice_manager_version = get_module_version(environment, configuration.frameworks.ogury_choice_manager.internal_version, configuration.frameworks.ogury_choice_manager.beta_version, configuration.frameworks.ogury_choice_manager.release_version)
 
     erb(
-      template: "./fastlane/templates/Podfile.erb",
+      template: templatePath,
       destination: "./Podfile",
       placeholders: {
         :environment => environment,
@@ -126,10 +155,10 @@ lane :test do |options|
 
   environment = options[:environment]
 
-    # Install Cocoapods dependencies
+    #Install Cocoapods dependencies
     update_internal_cocoapods environment: environment
-    generate_podfile environment: environment
-
+    generate_podfile(environment:environment, testTarget:true)
+  
     cocoapods(
       podfile: "./Podfile",
       )
@@ -276,6 +305,13 @@ lane :test do |options|
     tag = options[:tag]
     artifactory = options[:artifactory] ? options[:artifactory] : false
 
+    update_internal_cocoapods environment: environment
+    generate_podfile(environment:environment, targetThreshold:"ads")
+    cocoapods(
+      podfile: "./Podfile",
+      repo_update: true
+    )
+
     deploy_framework(environment: environment, tag: tag, target: configuration.targets.ads, artifactory: artifactory)
   end
 
@@ -309,6 +345,13 @@ lane :test do |options|
     environment = options[:environment]
     tag = options[:tag]
     artifactory = options[:artifactory] ? options[:artifactory] : false
+
+    update_internal_cocoapods environment: environment
+    generate_podfile(environment:environment, targetThreshold:"all")
+    cocoapods(
+      podfile: "./Podfile",
+      repo_update: true
+    )
 
     deploy_framework(environment: environment, tag: tag, target: configuration.targets.wrapper, artifactory: artifactory)
   end
@@ -344,7 +387,7 @@ lane :test do |options|
     framework_suffix = get_framework_suffix(environment)
 
     # Retrieve project version
-    version = get_version(environment, target.path, target.publicName, tag)
+    version = get_version(environment, target.path, target.name, tag)
 
     case environment
     when "beta"

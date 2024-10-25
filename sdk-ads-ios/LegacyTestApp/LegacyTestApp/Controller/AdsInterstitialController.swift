@@ -95,13 +95,12 @@ class AdsInterstitialController: NSObject, AdsFullscreenController {
     }
     
     func isLoaded() -> Bool {
-        return interstitialAd.isLoaded()
+        return interstitialAd.isLoaded
     }
 }
 
 extension AdsInterstitialController: OguryInterstitialAdDelegate {
-
-    func didLoad(_ interstitial: OguryInterstitialAd) {
+    func interstitialAdDidLoad(_ interstitial: OguryInterstitialAd) {
         if let viewController = viewController {
             show(in: viewController)
         }
@@ -109,27 +108,19 @@ extension AdsInterstitialController: OguryInterstitialAdDelegate {
         LogsController.shared.addLogs("Interstitial ad loaded.")
     }
 
-    func didFailOguryInterstitialAdWithError(_ error: OguryError, for interstitial: OguryInterstitialAd) {
-        delegate?.didFail()
-
-        LogsController.shared.addLogs(String(format: "Interstitial ad failed with error code %ld: %@", error.code, error.localizedDescription));
+    func interstitialAd(_ interstitial: OguryInterstitialAd, didFailWithError error: OguryAdError) {
+        LogsController.shared.addLogs(String(format: "Interstitial ad failed with error code %ld\nDescription:%@\nAdditional information:%@", error.code, error.localizedDescription, error.additionalInformation ?? ""));
     }
 
-    func didDisplay(_ interstitial: OguryInterstitialAd) {
-        delegate?.didDisplay()
-
-        LogsController.shared.addLogs("Interstitial ad displayed.")
-    }
-
-    func didClick(_ interstitial: OguryInterstitialAd) {
+    func interstitialAdDidClick(_ interstitial: OguryInterstitialAd) {
         LogsController.shared.addLogs("Interstitial ad clicked.")
     }
 
-    func didClose(_ interstitial: OguryInterstitialAd) {
+    func interstitialAdDidClose(_ interstitial: OguryInterstitialAd) {
         LogsController.shared.addLogs("Interstitial ad closed.")
     }
     
-    func didTriggerImpressionOguryInterstitialAd(_ interstitial: OguryInterstitialAd) {
+    func interstitialAdDidTriggerImpression(_ interstitial: OguryInterstitialAd) {
         LogsController.shared.addLogs("Interstitial ad impression")
     }
 }

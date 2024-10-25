@@ -48,6 +48,7 @@ extern NSString *const OGAMonitoringErrorEventContentAccomplished;
 extern NSString *const OGAMonitoringErrorEventContentTimeSpan;
 extern NSString *const OGAMonitoringErrorEventContentTimeoutDuration;
 extern NSString *const OGAMonitoringErrorEventContentUrl;
+extern NSString *const OGAMonitoringErrorEventWebviewDidTerminateStackTrace;
 
 #pragma mark Enums
 

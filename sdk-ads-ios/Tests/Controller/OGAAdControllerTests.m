@@ -139,8 +139,14 @@ double const OGAAdControllerTestsDefaultExpirationTime = 14400;
                                        error:[OCMArg anyObjectRef]]);
 }
 
+- (void)testWebkitProcessDidTerminate {
+    self.controller.delegate = OCMProtocolMock(@protocol(OGAAdControllerDelegate));
+    [self.controller webkitProcessDidTerminate];
+    OCMVerify([self.controller.delegate controller:self.controller webkitProcessDidTerminateForAd:self.ad]);
+}
+
 - (void)testShow_performActionFails {
-    OguryError *performActionError = OCMClassMock([OguryAdsError class]);
+    OguryError *performActionError = OCMClassMock([OguryAdError class]);
     OCMStub([self.controller performAction:[OCMArg any] error:[OCMArg anyObjectRef]]).andDo(^(NSInvocation *invocation) {
                                                                                          OguryError *__autoreleasing *errorPointer = nil;
                                                                                          [invocation getArgument:&errorPointer atIndex:3];
@@ -211,7 +217,7 @@ double const OGAAdControllerTestsDefaultExpirationTime = 14400;
 
 - (void)testPerformAction_failedToPerformAction {
     id<OGAAdAction> action = OCMProtocolMock(@protocol(OGAAdAction));
-    OguryError *actionError = OCMClassMock([OguryAdsError class]);
+    OguryError *actionError = OCMClassMock([OguryAdError class]);
     OCMStub([action performAction:[OCMArg any] error:[OCMArg anyObjectRef]]).andDo(^(NSInvocation *invocation) {
                                                                                 OguryError *__autoreleasing *errorPointer = nil;
                                                                                 [invocation getArgument:&errorPointer atIndex:3];

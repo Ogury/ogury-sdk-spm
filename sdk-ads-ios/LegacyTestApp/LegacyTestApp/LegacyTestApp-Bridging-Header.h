@@ -3,4 +3,4 @@
 //
 
 #import <OguryAds/OGAInternal.h>
-#import <OguryAds/OguryTokenService.h>
+#import <OguryAds/OguryBidTokenService.h>

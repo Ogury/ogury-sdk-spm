@@ -4,32 +4,32 @@
 
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
-#import "OguryBannerAdDelegateDispatcher.h"
-#import "OguryBannerAd.h"
-#import "OguryAdsError.h"
-#import "OguryAdsError+Internal.h"
+#import "OguryBannerAdViewDelegateDispatcher.h"
+#import "OguryBannerAdView.h"
+#import "OguryAdError.h"
+#import "OguryAdError+Internal.h"
 
-@interface OguryBannerAdDelegateDispatcherTests : XCTestCase
+@interface OguryBannerAdViewDelegateDispatcherTests : XCTestCase
 
 #pragma mark - Properties
 
-@property(nonatomic, strong) id<OguryBannerAdDelegate> delegate;
-@property(nonatomic, strong) OguryBannerAdDelegateDispatcher *delegateDispatcher;
-@property(nonatomic, strong) OguryBannerAd *banner;
+@property(nonatomic, strong) id<OguryBannerAdViewDelegate> delegate;
+@property(nonatomic, strong) OguryBannerAdViewDelegateDispatcher *delegateDispatcher;
+@property(nonatomic, strong) OguryBannerAdView *banner;
 
 @end
 
-@implementation OguryBannerAdDelegateDispatcherTests
+@implementation OguryBannerAdViewDelegateDispatcherTests
 
 #pragma mark - Methods
 
 - (void)setUp {
     [OGADelegateDispatcher setAlwaysDispatchInMainThread:NO];
 
-    self.delegate = OCMProtocolMock(@protocol(OguryBannerAdDelegate));
-    self.banner = OCMClassMock([OguryBannerAd class]);
+    self.delegate = OCMProtocolMock(@protocol(OguryBannerAdViewDelegate));
+    self.banner = OCMClassMock([OguryBannerAdView class]);
 
-    self.delegateDispatcher = [[OguryBannerAdDelegateDispatcher alloc] init];
+    self.delegateDispatcher = [[OguryBannerAdViewDelegateDispatcher alloc] init];
     self.delegateDispatcher.delegate = self.delegate;
     self.delegateDispatcher.banner = self.banner;
 }
@@ -39,97 +39,97 @@
 }
 
 - (void)testOguryAdsBannerAdNotAvailable {
-    OguryError *error = [OguryAdsError noFillFrom:OguryAdsIntegrationTypeDirect];
+    OguryAdError *error = [OguryAdError noFillFrom:OguryAdIntegrationTypeDirect];
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
+    OCMVerify([self.delegate bannerAdView:self.banner didFailWithError:error]);
 }
 
 - (void)testOguryAdsBannerAdLoaded {
     [self.delegateDispatcher loaded];
 
-    OCMVerify([self.delegate didLoadOguryBannerAd:self.banner]);
+    OCMVerify([self.delegate bannerAdViewDidLoad:self.banner]);
 }
 
 - (void)testOguryAdsBannerAdNotLoaded {
-    OguryError *error = [OguryAdsError noAdLoaded];
+    OguryAdError *error = [OguryAdError noAdLoaded];
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
+    OCMVerify([self.delegate bannerAdView:self.banner didFailWithError:error]);
 }
 
 - (void)testOguryAdsBannerAdClosed {
     [self.delegateDispatcher closed];
 
-    OCMVerify([self.delegate didCloseOguryBannerAd:self.banner]);
+    OCMVerify([self.delegate bannerAdViewDidClose:self.banner]);
 }
 
 - (void)testOguryAdsBannerAdDisableError {
-    OguryError *error = [OguryAdsError adDisabledOtherReasonFrom:OguryInternalAdsErrorOriginLoad];
+    OguryAdError *error = [OguryAdError adDisabledOtherReasonFrom:OguryAdErrorTypeLoad];
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
+    OCMVerify([self.delegate bannerAdView:self.banner didFailWithError:error]);
 }
 
 - (void)testOguryAdsBannerProfigNotSyncedError {
-    OguryError *error = [OguryAdsError invalidConfigurationFrom:OguryInternalAdsErrorOriginLoad];
+    OguryAdError *error = [OguryAdError invalidConfigurationFrom:OguryAdErrorTypeLoad];
     [self.delegateDispatcher failedWithError:error];
-    OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
+    OCMVerify([self.delegate bannerAdView:self.banner didFailWithError:error]);
 }
 
 - (void)testOguryAdsBannerSdkInitNotCalledError {
-    OguryError *error = [OguryAdsError sdkNotInitializedFrom:OguryInternalAdsErrorOriginLoad stackTrace:@""];
+    OguryAdError *error = [OguryAdError sdkNotInitializedFrom:OguryAdErrorTypeLoad];
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
+    OCMVerify([self.delegate bannerAdView:self.banner didFailWithError:error]);
 }
 
 - (void)testOguryAdsBannerAnotherAdAlreadyDisplayedError {
-    OguryError *error = [OguryAdsError anotherAdIsAlreadyDisplayed];
+    OguryAdError *error = [OguryAdError anotherAdIsAlreadyDisplayed];
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
+    OCMVerify([self.delegate bannerAdView:self.banner didFailWithError:error]);
 }
 
 - (void)testOguryAdsBannerCantShowAdsInPresentingViewControllerError {
-    OguryError *error = [OguryAdsError viewControllerPreventsAdFromBeingDisplayed];
+    OguryAdError *error = [OguryAdError viewControllerPreventsAdFromBeingDisplayed];
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
+    OCMVerify([self.delegate bannerAdView:self.banner didFailWithError:error]);
 }
 
 - (void)testOguryAdsBannerAdExpiredError {
-    OguryError *error = [OguryAdsError adExpired];
+    OguryAdError *error = [OguryAdError adExpired];
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
+    OCMVerify([self.delegate bannerAdView:self.banner didFailWithError:error]);
 }
 
 - (void)testOguryAdsBannerUnknownError {
-    OguryError *error = [OguryAdsError createOguryErrorWithCode:OGAInternalUnknownError];
+    OguryAdError *error = [OguryAdError createOguryErrorWithCode:OGAInternalUnknownError];
 
     [self.delegateDispatcher failedWithError:error];
 
-    OCMVerify([self.delegate didFailOguryBannerAdWithError:error forAd:self.banner]);
+    OCMVerify([self.delegate bannerAdView:self.banner didFailWithError:error]);
 }
 
 - (void)testOguryAdsBannerAdClicked {
     [self.delegateDispatcher clicked];
 
-    OCMVerify([self.delegate didClickOguryBannerAd:self.banner]);
+    OCMVerify([self.delegate bannerAdViewDidClick:self.banner]);
 }
 
 - (void)testShouldTriggerOnAdImpression {
     [self.delegateDispatcher adImpression];
 
-    OCMVerify([self.delegate didTriggerImpressionOguryBannerAd:self.banner]);
+    OCMVerify([self.delegate bannerAdViewDidTriggerImpression:self.banner]);
 }
 
 @end

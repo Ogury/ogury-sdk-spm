@@ -515,7 +515,7 @@
         case OGAShowErrorEventNoInternetConnection:
             return @"No Internet connection";
         case OGAShowErrorEventWebviewTerminatedByOS:
-            return @"Webview terminated by iOS";
+            return @"Webview terminated by the OS";
 
             // Show Error SKNetwork
         case OGASKNetworkShowErrorEventFailedToStartImpression:
