@@ -9,19 +9,52 @@ import AdsCardLibrary
 
 struct MainView: View {
     let store: StoreOf<MainFeature>
+   @State private var logsHeight: CGFloat = 100
+   
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            ZStack {
-                Color(AdColorPalette.Background.secondary.color).ignoresSafeArea()
-                
-                if viewStore.adFormats.isEmpty {
-                    EmptyManagersView(viewStore: viewStore)
-                } else {
-                    ListManagersView(store: store)
-                        .listStyle(InsetListStyle())
-                        .frame(width: UIScreen.main.bounds.size.width, alignment: .center)
-                }
-            }
+           VStack(spacing:0) {
+              ZStack {
+                   Color(AdColorPalette.Background.secondary.color).ignoresSafeArea()
+                   
+                   if viewStore.adFormats.isEmpty {
+                       EmptyManagersView(viewStore: viewStore)
+                   } else {
+                       ListManagersView(store: store)
+                           .listStyle(InsetListStyle())
+                           .frame(width: UIScreen.main.bounds.size.width, alignment: .center)
+                   }
+               }
+               VStack {
+                  VStack {
+                     Rectangle()
+                         .frame(height: 6)
+                         .frame(maxWidth: 100)
+                         .foregroundColor(.gray.opacity(0.5))
+                         .cornerRadius(3)
+                         .padding(.vertical, 8)
+                         .gesture(
+                             DragGesture()
+                                 .onChanged { value in
+                                     let newHeight = logsHeight - value.translation.height
+                                     logsHeight = max(100, min(newHeight, UIScreen.main.bounds.height * 0.7))
+                                 }
+                           )
+                      Text("Logs")
+                          .padding()
+                          .frame(maxWidth: .infinity, maxHeight: .infinity)
+                          .background(Color.blue)
+                  }
+                  .background(Color(AdColorPalette.Background.primary.color))
+                  .ignoresSafeArea()
+                  .cornerRadius(15)
+                  .shadow(radius: 3)
+               }
+               .background(Color(AdColorPalette.Background.secondary.color))
+               .ignoresSafeArea()
+               .frame(height: logsHeight)
+               
+           }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 toolBarContent(viewStore: viewStore)
@@ -153,28 +186,12 @@ extension View {
                     AppSettingsView(store: store)
                 }
                 .sheet(
-                    store: store.scope(
-                        state: \.$destination,
-                        action: MainFeature.Action.destination
-                    ),
-                    state: /MainFeature.Destination.State.log,
-                    action: MainFeature.Destination.Action.log) { store in
-                  Text("Logs")
-                      .presentationDetents([.fraction(0.1), .fraction(0.5), .fraction(1)])
-                      .interactiveDismissDisabled()
-                      .presentationBackgroundInteraction(.enabled)
-                      .presentationDragIndicator(.visible)
-                }
-                .sheet(
                   store: store.scope(
                      state: \.$destination,
                      action: MainFeature.Action.destination
                   ),
                   state: /MainFeature.Destination.State.add,
                   action: MainFeature.Destination.Action.add,
-                  onDismiss: {
-                     viewStore.send(.reloadLogView)
-                  },
                   content: { store in
                     if #available(iOS 16.0, *) {
                         AddSheetView(store: store, viewStore: viewStore)

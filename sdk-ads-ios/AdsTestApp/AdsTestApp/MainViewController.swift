@@ -116,7 +116,6 @@ extension MainViewController: AdLifeCycleDelegate {
         let item = LinkPresentationItemSource(metaData: metaData)
         let ac = UIActivityViewController(activityItems: [item], applicationActivities: nil)
        ac.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems:[Any]?, error: Error?) in
-          ViewStore(self.store, observe: { $0 }).send(.reloadLogView)
       }
         present(ac, animated: true)
     }
@@ -176,12 +175,10 @@ extension MainViewController: UIDocumentPickerDelegate {
             return
         }
         print("📄 load File at \(selectedURL.absoluteString)")
-        ViewStore(store, observe: { $0 }).send(.reloadLogView)
         loadFile(at: selectedURL)
     }
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-        ViewStore(store, observe: { $0 }).send(.reloadLogView)
         print("Document picker was cancelled.")
     }
 }

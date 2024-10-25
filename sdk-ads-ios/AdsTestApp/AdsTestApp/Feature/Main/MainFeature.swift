@@ -13,7 +13,7 @@ struct MainFeature: Reducer {
    @Dependency(\.mainQueue) var mainQueue
    var adHostingViewController: UIViewController!
    var adDelegate: AdLifeCycleDelegate!
-    let cardManager = AdsCardManager(logger: TestAppLogController.shared.logger)
+   let cardManager = AdsCardManager(logger: TestAppLogController.shared.logger)
    let maxHeaderBidable = MaxBidder()
    let dtFairBidHeaderBidable = DTFairBidBidder()
    let unityLevelPlayBidable = UnityLevelPlayBidder()
@@ -48,7 +48,7 @@ struct MainFeature: Reducer {
       }
       
       var adFormats: [AdFormat:[any AdManager]] = [:]
-      @PresentationState var destination: Destination.State? = .log(AppSettingsFeature.State(settings: .init(), adDelegate: nil))
+      @PresentationState var destination: Destination.State?
       @BindingState var setName = ""
       fileprivate var settingsPriorToChange: SettingsContainer = SettingsContainer()
    }
@@ -92,7 +92,6 @@ struct MainFeature: Reducer {
       case deleteCard(id: UUID)
       case saveCards
       case refreshAllCards(_: [AdFormat:[any AdManager]])
-      case reloadLogView
       
       enum Alert {
          case notImplemented
@@ -155,10 +154,6 @@ struct MainFeature: Reducer {
                
             case .settingsButtonTapped:
                state.destination = .settings(AppSettingsFeature.State(settings: .init(), adDelegate: adDelegate))
-               return .none
-            
-            case .reloadLogView:
-               state.destination = .log(AppSettingsFeature.State(settings: .init(), adDelegate: adDelegate))
                return .none
                
             case .bulkModeButtonTapped:
