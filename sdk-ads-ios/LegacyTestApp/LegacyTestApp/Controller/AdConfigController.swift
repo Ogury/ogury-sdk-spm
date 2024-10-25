@@ -29,7 +29,7 @@ class AdConfigController {
     }
 
     private var adInterConfig = BehaviorSubject(value: AdConfig(adUnitID: "", campaignID: ""))
-    private var adOptInConfig = BehaviorSubject(value: AdConfig(adUnitID: "", campaignID: ""))
+    private var adRewardedConfig = BehaviorSubject(value: AdConfig(adUnitID: "", campaignID: ""))
     private var adMpuConfig = BehaviorSubject(value: AdConfig(adUnitID: "", campaignID: ""))
     private var adSmallBannerConfig = BehaviorSubject(value: AdConfig(adUnitID: "", campaignID: ""))
     private var adThumbnailConfig = BehaviorSubject(value: AdConfig(adUnitID: "", campaignID: ""))
@@ -41,7 +41,7 @@ class AdConfigController {
     func adConfigObservable(for type: AvailableType) -> Observable<AdConfig> {
         switch type {
             case .interstitial: return adInterConfig.asObserver()
-            case .rewarded: return adOptInConfig.asObserver()
+            case .rewarded: return adRewardedConfig.asObserver()
             case .thumbnail: return adThumbnailConfig.asObserver()
             case .banner(type: .mpu): return adMpuConfig.asObserver()
             case .banner(type: .smallBanner): return adSmallBannerConfig.asObserver()
@@ -132,7 +132,7 @@ class AdConfigController {
 
     func updateRxConfig() {
         adInterConfig.on(.next((self.adConfig(for: .interstitial)!)))
-        adOptInConfig.on(.next(self.adConfig(for: .rewarded)!))
+        adRewardedConfig.on(.next(self.adConfig(for: .rewarded)!))
         adMpuConfig.on(.next(self.adConfig(for: .banner(type: .mpu))!))
         adSmallBannerConfig.on(.next(self.adConfig(for: .banner(type: .smallBanner))!))
         adThumbnailConfig.on(.next(self.adConfig(for: .thumbnail)!))

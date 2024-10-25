@@ -340,6 +340,18 @@
     [self.sequenceRetainController retainSequence:self.sequence fromController:controller];
 }
 
+- (void)controller:(OGAAdController *)controller webkitProcessDidTerminateForAd:(OGAAd *)ad {
+    self.sequence.status = OGAAdSequenceStatusError;
+    if ([ad.adConfiguration.delegateDispatcher respondsToSelector:@selector(failedWithError:)]) {
+        OguryAdError *adError = [OguryAdError adPrecachingFailedWithStackTrace:OGAMonitoringErrorEventWebviewDidTerminateStackTrace];
+        [ad.adConfiguration.delegateDispatcher failedWithError:adError];
+    }
+    OGAMutableOrderedDictionary *precachingFailReason = [[OGAMutableOrderedDictionary alloc] init];
+    precachingFailReason[OGAMonitoringErrorEventContentReason] = OGAMonitoringErrorEventWebviewDidTerminateStackTrace;
+    [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventPrecacheError adConfiguration:ad.adConfiguration errorContent:precachingFailReason];
+    [self.metricService sendEvent:[[OGATrackEvent alloc] initWithAd:controller.ad event:OGAMetricsEventLoadedError]];
+}
+
 - (void)controller:(OGAAdController *)controller didCloseOverlayForAd:(OGAAd *)ad {
     // Release the sequence.
     [self.sequenceRetainController releaseSequence:self.sequence fromController:controller];

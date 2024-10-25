@@ -6,7 +6,7 @@
 
 #import "OGAAdInternalAPI.h"
 #import "OGADelegateDispatcher.h"
-#import "OguryAdsBannerSize.h"
+#import "OguryBannerAdSize.h"
 #import "OguryMediation.h"
 
 @class OGAAdManager;
@@ -30,7 +30,7 @@ extern NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationNa
 
 - (instancetype)initWithAdUnitId:(NSString *)adUnitId
                       bannerView:(UIView *_Nullable)bannerView
-                            size:(OguryAdsBannerSize *)size
+                            size:(OguryBannerAdSize *)size
               delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher
                        mediation:(OguryMediation *_Nullable)mediation;
 
