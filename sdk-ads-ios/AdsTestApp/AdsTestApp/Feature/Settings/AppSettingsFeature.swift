@@ -25,7 +25,8 @@ struct AppSettingsFeature: Reducer {
             lhs.showShowSection == rhs.showShowSection &&
             lhs.usOptout == rhs.usOptout &&
             lhs.usOptoutPartner == rhs.usOptoutPartner &&
-            lhs.enableFeedbacks == rhs.enableFeedbacks
+            lhs.enableFeedbacks == rhs.enableFeedbacks &&
+            lhs.numberOfSDKStart == rhs.numberOfSDKStart
         }
         
         @BindingState var settings: SettingsContainer
@@ -36,6 +37,14 @@ struct AppSettingsFeature: Reducer {
         var showDspFields: Bool { settings.showDspFields }
         var bulkModeEnabled: Bool { settings.bulkModeEnabled }
         var startSDKWithApplication: Bool { settings.startSDKWithApplication }
+        var numberOfSDKStart: Int {
+            get {
+                settings.numberOfSdkStart
+            }
+            set {
+                settings.numberOfSdkStart = newValue
+            }
+        }
         var showTestMode: Bool { settings.showTestMode }
         var usOptout: Bool { settings.usOptout }
         var usOptoutPartner: Bool { settings.usOptoutPartner }
@@ -66,7 +75,8 @@ struct AppSettingsFeature: Reducer {
         var environment: String { Bundle.main.object(forInfoDictionaryKey: "DefaultEnv") as? String ?? "" }
     }
     
-    enum Action: Equatable  {
+    enum Action: BindableAction, Equatable  {
+        case binding(BindingAction<State>)
         case startSDKToggleTapped
         case showCampaignToggleTapped
         case enableAdUnitEditingToggleTapped
@@ -85,11 +95,24 @@ struct AppSettingsFeature: Reducer {
         case showPrivacyDataTapped
         case logOptionsButtonTapped
         case logOptions(LogOptionFeature.Action)
+        case incrementSDKStart
+        case decrementSDKStart
     }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
+                case .binding:
+                    return .none
+                    
+                case .incrementSDKStart:
+                    state.numberOfSDKStart = min(state.numberOfSDKStart + 1, 10)
+                    return .none
+                    
+                case .decrementSDKStart:
+                    state.numberOfSDKStart = max(state.numberOfSDKStart - 1, 1)
+                    return .none
+                    
                 case .showCampaignToggleTapped:
                     state.settings.showCampaignId.toggle()
                     return .none
