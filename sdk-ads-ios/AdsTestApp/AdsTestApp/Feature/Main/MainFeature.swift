@@ -44,9 +44,9 @@ struct MainFeature: Reducer {
                }
             }
          }
-         return isEqual && lhs.destination == rhs.destination && lhs.setName == rhs.setName && lhs.logsFeatureState == rhs.logsFeatureState
+         return isEqual && lhs.destination == rhs.destination && lhs.setName == rhs.setName
       }
-      var logsFeatureState = LogsFeature.State()
+      
       var adFormats: [AdFormat:[any AdManager]] = [:]
       @PresentationState var destination: Destination.State?
       @BindingState var setName = ""
@@ -92,7 +92,6 @@ struct MainFeature: Reducer {
       case deleteCard(id: UUID)
       case saveCards
       case refreshAllCards(_: [AdFormat:[any AdManager]])
-      case logsFeatureAction(LogsFeature.Action)
       
       enum Alert {
          case notImplemented
@@ -228,15 +227,10 @@ struct MainFeature: Reducer {
             case.startSDKButtonTapped:
                AdSdkLauncher.shared.startAds(forceStart: true)
                return .none
-            case .logsFeatureAction:
-               return .none
          }
       }
       .ifLet(\.$destination, action: /Action.destination) {
          Destination()
-      }
-      Scope(state: \.logsFeatureState, action: /MainFeature.Action.logsFeatureAction) {
-         LogsFeature()
       }
    }
    

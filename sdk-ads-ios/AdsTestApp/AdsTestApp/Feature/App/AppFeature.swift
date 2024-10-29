@@ -18,12 +18,14 @@ struct AppFeature: Reducer {
     struct State: Equatable {
         var path = StackState<Path.State>()
         var main = MainFeature.State()
+        var logs = LogsFeature.State()
         @PresentationState var alert: AlertState<Action.Alert>?
     }
     
     enum Action: Equatable  {
         case path(StackAction<Path.State, Path.Action>)
         case main(MainFeature.Action)
+        case logs(LogsFeature.Action)
         case deleteCard(id: UUID)
         case loadCards
         case saveCards
@@ -63,6 +65,10 @@ struct AppFeature: Reducer {
     }
     
     var body: some ReducerOf<Self> {
+        Scope(state: \.logs,
+             action: /Action.logs) {
+            LogsFeature()
+        }
         Scope(state: \.main,
               action: /Action.main) {
             MainFeature(adHostingViewController: adHostingViewController, adDelegate: adDelegate)
@@ -79,7 +85,7 @@ struct AppFeature: Reducer {
                 case .path:
                     return .none
                     
-                case .main:
+                case .main, .logs:
                     return .none
                     
                 case let .deleteCard(id):
