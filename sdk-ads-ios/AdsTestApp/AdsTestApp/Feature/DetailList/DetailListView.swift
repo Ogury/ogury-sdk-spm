@@ -57,15 +57,23 @@ struct DetailListView: View {
                     viewStore.send(.hideToolbar)
                 }
 
-               LogsView(
-                   store: logsStore,
-                   logsHeight: $logsHeight
-               )
-                .background(Color(AdColorPalette.Background.primary.color))
-                .shadow(radius: 3)
-                .frame(height: logsHeight)
-                .padding(.top, 8)
-                .ignoresSafeArea(.container, edges: .bottom)
+               VStack {
+                  VStack {
+                     LogsView(
+                         store: logsStore,
+                         logsHeight: $logsHeight
+                     )
+                       .padding()
+                       .frame(maxWidth: .infinity, maxHeight: .infinity)
+                  }
+                  .background(Color(AdColorPalette.Background.primary.color))
+                  .ignoresSafeArea()
+                  .cornerRadius(15)
+                  .shadow(radius: 3)
+               }
+               .background(Color(AdColorPalette.Background.secondary.color))
+               .ignoresSafeArea()
+               .frame(height: logsHeight)
             }
             .navigationTitle(Text("\(viewStore.adFormat.title.capitalized) (\(viewStore.adManagers.count))"))
             .accentColor(Color(AdColorPalette.Primary.accent.color))
