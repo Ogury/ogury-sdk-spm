@@ -94,7 +94,7 @@ NSString* levelAsString(OguryLogLevel level) {
     
     // main message
     NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:logMessage.message];
-    [attr addAttributes:[self attributesForMessage] range:NSMakeRange(0, attr.string.length)];
+   [attr addAttributes:[self attributesForMessage:logMessage] range:NSMakeRange(0, attr.string.length)];
     [log appendAttributedString:attr];
     
     return log;
@@ -113,19 +113,19 @@ NSString* levelAsString(OguryLogLevel level) {
 - (NSDictionary<NSAttributedStringKey, id> *_Nullable)attributesFor:(OguryLogDisplay)option originalMessage:(OguryLogMessage *)logMessage {
     switch (option) {
         case OguryLogDisplayDate:
-            return @{ NSFontAttributeName : [UIFont systemFontOfSize:12] };
+            return @{ NSFontAttributeName : [UIFont systemFontOfSize:10] };
             break;
             
         case OguryLogDisplaySDK:
-            return @{ NSFontAttributeName : [UIFont boldSystemFontOfSize:16.0] };
+            return @{ NSFontAttributeName : [UIFont boldSystemFontOfSize:14.0] };
             break;
             
         case OguryLogDisplayLevel:
-            return @{ NSFontAttributeName : [UIFont italicSystemFontOfSize:16.0] };
+            return @{ NSFontAttributeName : [UIFont italicSystemFontOfSize:14.0] };
             break;
             
         case OguryLogDisplayType:
-            return @{ NSFontAttributeName : [UIFont italicSystemFontOfSize:16.0] };
+            return @{ NSFontAttributeName : [UIFont italicSystemFontOfSize:14.0] };
             break;
             
         case OguryLogDisplayOrigin:
@@ -133,12 +133,12 @@ NSString* levelAsString(OguryLogLevel level) {
             break;
             
         case OguryLogDisplayTags:
-            return nil;
+            return @{ NSFontAttributeName : [UIFont systemFontOfSize:12]};
             break;
     }
 }
 
-- (NSDictionary<NSAttributedStringKey, id> *_Nullable)attributesForMessage {
+- (NSDictionary<NSAttributedStringKey, id> *_Nullable)attributesForMessage:(OguryLogMessage *)logMessage  {
     return @{ NSFontAttributeName : [UIFont systemFontOfSize:12] };
 }
 

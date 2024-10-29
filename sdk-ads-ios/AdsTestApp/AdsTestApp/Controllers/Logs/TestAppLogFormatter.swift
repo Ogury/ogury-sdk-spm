@@ -41,6 +41,14 @@ public class TestAppLogFormatter: OguryLogFormatter {
         }
         return attr
     }
+   
+   public override func attributes(for logMessage: OguryLogMessage) -> [NSAttributedString.Key : Any]? {
+      var attr = super.attributes(for: logMessage) ?? [:]
+      if let color = logTypeColor[logMessage.logType as OguryLogType] {
+          attr[.foregroundColor] = color
+      }
+      return attr
+   }
     
     public override func add(_ option: OguryLogDisplay) {
         super.add(option)

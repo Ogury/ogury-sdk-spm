@@ -10,6 +10,9 @@ import AdsCardLibrary
 struct MainView: View {
     let store: StoreOf<MainFeature>
    @State private var logsHeight: CGFloat = 100
+   private let collapsedHeight: CGFloat = 100
+   private let halfHeight: CGFloat = UIScreen.main.bounds.height * 0.4
+   private let expandedHeight: CGFloat = UIScreen.main.bounds.height * 0.7
    
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
@@ -34,16 +37,23 @@ struct MainView: View {
                          .cornerRadius(3)
                          .padding(.vertical, 8)
                          .gesture(
-                             DragGesture()
-                                 .onChanged { value in
-                                     let newHeight = logsHeight - value.translation.height
-                                     logsHeight = max(100, min(newHeight, UIScreen.main.bounds.height * 0.7))
-                                 }
+                               DragGesture()
+                                   .onChanged { value in
+                                       let newHeight = logsHeight - value.translation.height
+                                       logsHeight = max(collapsedHeight, min(newHeight, expandedHeight))
+                                   }
+                                   .onEnded { _ in
+                                       withAnimation {
+                                           logsHeight = nearestHeight(to: logsHeight)
+                                       }
+                                   }
                            )
-                      Text("Logs")
-                          .padding()
-                          .frame(maxWidth: .infinity, maxHeight: .infinity)
-                          .background(Color.blue)
+                     LogsView(store: store.scope(
+                          state: \.logsFeatureState,
+                          action: MainFeature.Action.logsFeatureAction
+                     ))
+                       .padding()
+                       .frame(maxWidth: .infinity, maxHeight: .infinity)
                   }
                   .background(Color(AdColorPalette.Background.primary.color))
                   .ignoresSafeArea()
@@ -62,6 +72,11 @@ struct MainView: View {
             .tint(Color(AdColorPalette.Primary.accent.color))
             .addViewModifiers(store: store, viewStore: viewStore)
         }
+    }
+   
+    private func nearestHeight(to height: CGFloat) -> CGFloat {
+        let snapPoints = [collapsedHeight, halfHeight, expandedHeight]
+        return snapPoints.min(by: { abs($0 - height) < abs($1 - height) }) ?? collapsedHeight
     }
     
     private func showAddView(from viewStore: ViewStoreOf<MainFeature>) {

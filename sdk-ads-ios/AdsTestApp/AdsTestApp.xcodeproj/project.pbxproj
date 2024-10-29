@@ -26,6 +26,18 @@
 		1E5BE6342B21F40F0010B995 /* DetailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5BE6322B21F40F0010B995 /* DetailListView.swift */; };
 		1E5BE6352B21F40F0010B995 /* DetailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5BE6322B21F40F0010B995 /* DetailListView.swift */; };
 		1E6D20C22C6A6DF800DF24AB /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20C12C6A6DF800DF24AB /* OguryCore.framework */; };
+		1E92061B2CCBE05D00916482 /* LogsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E92061A2CCBE05500916482 /* LogsFeature.swift */; };
+		1E92061C2CCBE05D00916482 /* LogsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E92061A2CCBE05500916482 /* LogsFeature.swift */; };
+		1E92061D2CCBE05D00916482 /* LogsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E92061A2CCBE05500916482 /* LogsFeature.swift */; };
+		1E92061E2CCBE05D00916482 /* LogsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E92061A2CCBE05500916482 /* LogsFeature.swift */; };
+		1E92061F2CCBE05D00916482 /* LogsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E92061A2CCBE05500916482 /* LogsFeature.swift */; };
+		1E9206202CCBE05D00916482 /* LogsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E92061A2CCBE05500916482 /* LogsFeature.swift */; };
+		1E9206222CCBE09600916482 /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9206212CCBE09100916482 /* LogsView.swift */; };
+		1E9206232CCBE09600916482 /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9206212CCBE09100916482 /* LogsView.swift */; };
+		1E9206242CCBE09600916482 /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9206212CCBE09100916482 /* LogsView.swift */; };
+		1E9206252CCBE09600916482 /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9206212CCBE09100916482 /* LogsView.swift */; };
+		1E9206262CCBE09600916482 /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9206212CCBE09100916482 /* LogsView.swift */; };
+		1E9206272CCBE09600916482 /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9206212CCBE09100916482 /* LogsView.swift */; };
 		1EF117692AF95052004BE519 /* DetailListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF117682AF95052004BE519 /* DetailListFeature.swift */; };
 		2419B11388DFA06C12DD3144 /* Pods_AdsTestApp_Devc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6B2195DC2CFCCA048F35F62 /* Pods_AdsTestApp_Devc.framework */; };
 		42CA16AC49BE594124235EEB /* UnityLevelPlayBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E512FC019E9BB0306E433C15 /* UnityLevelPlayBidder.swift */; };
@@ -424,6 +436,8 @@
 		1E6D20BB2C6A60C400DF24AB /* OgurySdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OgurySdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E6D20BE2C6A6C7F00DF24AB /* OgurySdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OgurySdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E6D20C12C6A6DF800DF24AB /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E92061A2CCBE05500916482 /* LogsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsFeature.swift; sourceTree = "<group>"; };
+		1E9206212CCBE09100916482 /* LogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsView.swift; sourceTree = "<group>"; };
 		1EF117682AF95052004BE519 /* DetailListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListFeature.swift; sourceTree = "<group>"; };
 		4301B1E62B56D3630076065D /* UTType+Extension(devc).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Extension(devc).swift"; sourceTree = "<group>"; };
 		4301B1E82B56D3930076065D /* UTType+Extension(stag).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Extension(stag).swift"; sourceTree = "<group>"; };
@@ -620,6 +634,15 @@
 			path = UnityLevelPlay;
 			sourceTree = "<group>";
 		};
+		1E9206192CCBE04C00916482 /* Logs */ = {
+			isa = PBXGroup;
+			children = (
+				1E9206212CCBE09100916482 /* LogsView.swift */,
+				1E92061A2CCBE05500916482 /* LogsFeature.swift */,
+			);
+			path = Logs;
+			sourceTree = "<group>";
+		};
 		1EF117652AF95004004BE519 /* DetailList */ = {
 			isa = PBXGroup;
 			children = (
@@ -701,6 +724,7 @@
 		434F84A02AC2CD02005077F5 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				1E9206192CCBE04C00916482 /* Logs */,
 				434F84A12AC2CD2B005077F5 /* MainView.swift */,
 				434F84A22AC2CD2B005077F5 /* MainFeature.swift */,
 			);
@@ -1546,6 +1570,8 @@
 				434F84C92ACFE4FE005077F5 /* AppSettingsFeature.swift in Sources */,
 				4394F7512CA42FF1001086FE /* LogOptionView.swift in Sources */,
 				4394F7522CA42FF1001086FE /* LogOptionFeature.swift in Sources */,
+				1E9206272CCBE09600916482 /* LogsView.swift in Sources */,
+				1E92061F2CCBE05D00916482 /* LogsFeature.swift in Sources */,
 				434F84CA2ACFE4FE005077F5 /* AppView.swift in Sources */,
 				434F84CB2ACFE4FE005077F5 /* AdSdkLauncher.swift in Sources */,
 				43B714002B4D6075007C8D21 /* HeaderBiddingSeatBid.swift in Sources */,
@@ -1591,6 +1617,8 @@
 				434F84E52ACFE50A005077F5 /* AppSettingsFeature.swift in Sources */,
 				4394F74B2CA42FF1001086FE /* LogOptionView.swift in Sources */,
 				4394F74C2CA42FF1001086FE /* LogOptionFeature.swift in Sources */,
+				1E9206252CCBE09600916482 /* LogsView.swift in Sources */,
+				1E92061C2CCBE05D00916482 /* LogsFeature.swift in Sources */,
 				434F84E62ACFE50A005077F5 /* AppView.swift in Sources */,
 				434F84E72ACFE50A005077F5 /* AdSdkLauncher.swift in Sources */,
 				43B714012B4D6075007C8D21 /* HeaderBiddingSeatBid.swift in Sources */,
@@ -1607,6 +1635,7 @@
 				433B4A8B2B34259900037FE1 /* AdsStorableContainer.swift in Sources */,
 				434F84B02AC3008C005077F5 /* AddFeature.swift in Sources */,
 				1E373D5D2BFC9F5C00E2EF25 /* DTFairBidBidder.swift in Sources */,
+				1E9206222CCBE09600916482 /* LogsView.swift in Sources */,
 				434F849E2AC2CC54005077F5 /* AppFeature.swift in Sources */,
 				434F85072AD00349005077F5 /* Configuration.swift in Sources */,
 				439A64E32C8F25EA00A180A4 /* (null) in Sources */,
@@ -1640,6 +1669,7 @@
 				43B713FF2B4D6075007C8D21 /* HeaderBiddingSeatBid.swift in Sources */,
 				DAA5D6AAEAC401869ACE1EF5 /* UnityLevelPlayBidder.swift in Sources */,
 				CA51AFC07364F8506360D190 /* RTBidderBody.swift in Sources */,
+				1E92061E2CCBE05D00916482 /* LogsFeature.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1680,6 +1710,8 @@
 				43BCB0B82C22DD45002FB0B1 /* AppView.swift in Sources */,
 				4394F7532CA42FF1001086FE /* LogOptionView.swift in Sources */,
 				4394F7542CA42FF1001086FE /* LogOptionFeature.swift in Sources */,
+				1E9206242CCBE09600916482 /* LogsView.swift in Sources */,
+				1E92061B2CCBE05D00916482 /* LogsFeature.swift in Sources */,
 				43BCB0B92C22DD45002FB0B1 /* AdSdkLauncher.swift in Sources */,
 				43BCB0BA2C22DD45002FB0B1 /* DetailListView.swift in Sources */,
 				43BCB0BB2C22DD45002FB0B1 /* HeaderBiddingSeatBid.swift in Sources */,
@@ -1725,6 +1757,8 @@
 				43BCB0FB2C22DD59002FB0B1 /* AppSettingsFeature.swift in Sources */,
 				4394F74D2CA42FF1001086FE /* LogOptionView.swift in Sources */,
 				4394F74E2CA42FF1001086FE /* LogOptionFeature.swift in Sources */,
+				1E9206262CCBE09600916482 /* LogsView.swift in Sources */,
+				1E92061D2CCBE05D00916482 /* LogsFeature.swift in Sources */,
 				43BCB0FC2C22DD59002FB0B1 /* AppView.swift in Sources */,
 				43BCB0FD2C22DD59002FB0B1 /* AdSdkLauncher.swift in Sources */,
 				43BCB0FE2C22DD59002FB0B1 /* HeaderBiddingSeatBid.swift in Sources */,
@@ -1770,6 +1804,8 @@
 				43BCB13E2C22DD60002FB0B1 /* AppSettingsFeature.swift in Sources */,
 				4394F74F2CA42FF1001086FE /* LogOptionView.swift in Sources */,
 				4394F7502CA42FF1001086FE /* LogOptionFeature.swift in Sources */,
+				1E9206232CCBE09600916482 /* LogsView.swift in Sources */,
+				1E9206202CCBE05D00916482 /* LogsFeature.swift in Sources */,
 				43BCB13F2C22DD60002FB0B1 /* AppView.swift in Sources */,
 				43BCB1402C22DD60002FB0B1 /* AdSdkLauncher.swift in Sources */,
 				43BCB1412C22DD60002FB0B1 /* HeaderBiddingSeatBid.swift in Sources */,
