@@ -65,8 +65,8 @@ NSString *const OGAssetKeyStoreKey = @"OGAssetKeyStoreKey";
 }
 
 - (BOOL)configureAssetKey:(NSString *)assetKey {
-    self.sdkState = OgurySDKStateStarting;
     if (!self.assetKeyHasBeenSet) {
+        self.sdkState = OgurySDKStateStarting;
         self.assetKey = assetKey;
         [self.userDefaultsStore setObject:assetKey forKey:OGAssetKeyStoreKey];
         self.assetKeyHasBeenSet = YES;
@@ -82,7 +82,7 @@ NSString *const OGAssetKeyStoreKey = @"OGAssetKeyStoreKey";
 
 - (void)sdkIsReady {
     // check previous state because Profig can be synced without calling the start method
-    if (self.sdkState == OgurySDKStateStarting) {
+    if (self.sdkState == OgurySDKStateStarting || self.sdkState == OgurySDKStateError) {
         self.sdkState = OgurySDKStateReady;
     }
 }
