@@ -8,6 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 import Combine
+import AdsCardLibrary
 
 struct LogsView: View {
     let store: StoreOf<LogsFeature>
@@ -20,62 +21,103 @@ struct LogsView: View {
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-           VStack(alignment: .center, spacing: 0) {
-              Rectangle()
-                  .frame(height: 6)
-                  .frame(maxWidth: 100)
-                  .foregroundColor(.gray.opacity(0.5))
-                  .cornerRadius(3)
-                  .padding(.vertical, 8)
-                  .gesture(
-                        DragGesture()
-                            .onChanged { value in
-                                let newHeight = logsHeight - value.translation.height
-                                logsHeight = max(collapsedHeight, min(newHeight, expandedHeight))
-                            }
-                            .onEnded { _ in
-                                withAnimation {
-                                    logsHeight = nearestHeight(to: logsHeight)
+            
+            ScrollViewReader { scrollViewProxy in
+                VStack(alignment: .center, spacing: 0) {
+                    Rectangle()
+                        .frame(height: 6)
+                        .frame(maxWidth: 100)
+                        .foregroundColor(.gray.opacity(0.5))
+                        .cornerRadius(3)
+                        .padding(.bottom, 8)
+                        .gesture(
+                            DragGesture()
+                                .onChanged { value in
+                                    let newHeight = logsHeight - value.translation.height
+                                    logsHeight = max(collapsedHeight, min(newHeight, expandedHeight))
+                                }
+                                .onEnded { _ in
+                                    withAnimation {
+                                        logsHeight = nearestHeight(to: logsHeight)
+                                    }
+                                }
+                        )
+                    
+                    HStack {
+                        Text("Logs")
+                            .font(.adsTitle2)
+                            .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
+                        
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                                .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
+                            
+                            TextField("Filter...", text: viewStore.binding(get:\.filter,
+                                                                           send: { .filter($0) } ))
+                                .padding(8)
+                                .cornerRadius(8)
+                            
+                            if !viewStore.filter.isEmpty {
+                                Button(action: {
+                                    viewStore.send(.filter(""))
+                                }) {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .foregroundColor(Color(AdColorPalette.Primary.accent.color))
                                 }
                             }
-                    )
-              ScrollView {
-                 VStack(alignment: .leading, spacing: 0) {
-                    HStack {
-                       Text("Logs")
-                          .font(.title2)
-                       Spacer()
-                       Button {
-                          viewStore.send(.clearLogs)
-                       } label: {
-                          Image(systemName: "trash")
-                       }
+                        }
+                        .padding(.horizontal, 8)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color(AdColorPalette.Background.placeholder.color))
+                        }
+                        
+                        Button {
+                            viewStore.send(.clearLogs)
+                        } label: {
+                            Image(systemName: "trash")
+                                .foregroundStyle(Color(AdColorPalette.State.failure.color))
+                        }
                     }
-                    ForEach(viewStore.logMessages.indices, id: \.self) { index in
-                       Text(AttributedString(viewStore.logMessages[index]))
-                          .padding(.horizontal)
-                          .padding(.vertical, 8)
-                          .cornerRadius(8)
-                          .overlay (
-                             Divider()
-                                .padding(.leading),
-                             alignment : .bottom
-                          )
+                    .padding(.bottom, 8)
+                    
+                    ScrollView {
+                        ForEach(viewStore.logMessages.indices, id: \.self) { index in
+                            Text(AttributedString(viewStore.logMessages[index]))
+                                .multilineTextAlignment(.leading)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.horizontal)
+                                .padding(.vertical, 8)
+                                .cornerRadius(8)
+                                .overlay (
+                                    Divider()
+                                        .padding(.leading),
+                                    alignment : .bottom
+                                )
+                                .id(index)
+                            Spacer()
+                        }
                     }
-                 }
-              }
-           }
-           .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-            .onAppear {
-               logsSubscription = TestAppLogController.shared.logger.logs
-                  .receive(on: DispatchQueue.main)
-                  .sink { logMessages in
-                     viewStore.send(.receiveLog(logMessages))
-                  }
-            }
-            .onDisappear {
-                logsSubscription?.cancel()
-                logsSubscription = nil
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                .onAppear {
+                    logsSubscription = TestAppLogController.shared.logger.logs
+                        .receive(on: DispatchQueue.main)
+                        .sink { logMessages in
+                            viewStore.send(.receiveLog(logMessages))
+                        }
+                }
+                .onDisappear {
+                    logsSubscription?.cancel()
+                    logsSubscription = nil
+                }
+                .onChange(of: viewStore.logMessages) { _ in
+                    if let lastIndex = viewStore.logMessages.indices.last {
+                        withAnimation {
+                            scrollViewProxy.scrollTo(lastIndex, anchor: .bottom)
+                        }
+                    }
+                }
             }
         }
     }

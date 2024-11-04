@@ -67,7 +67,7 @@ struct BannerContainer: Equatable {
     var bannerType: AdType<BannerAdManager>
 }
 
-let testApp: OguryLogType = .init("TestApp")
+public let testApp: OguryLogType = .init("TestApp")
 
 struct AdViewFeature: Reducer {
     var adManager: any AdManager

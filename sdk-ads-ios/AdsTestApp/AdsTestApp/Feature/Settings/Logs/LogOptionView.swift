@@ -377,8 +377,8 @@ struct LogOptionView: View {
     }
 }
 
-#Preview {
-    NavigationView {
-        LogOptionView()
-    }
-}
+//#Preview {
+//    NavigationView {
+//        LogOptionView()
+//    }
+//}

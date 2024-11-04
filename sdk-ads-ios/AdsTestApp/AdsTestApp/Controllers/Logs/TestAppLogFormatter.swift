@@ -7,6 +7,7 @@
 
 import OguryAds.Private
 import OguryCore.Private
+import AdsCardLibrary
 import SwiftUI
 import UserDefault
 
