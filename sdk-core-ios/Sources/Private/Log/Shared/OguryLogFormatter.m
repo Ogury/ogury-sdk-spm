@@ -42,59 +42,60 @@ NSString* levelAsString(OguryLogLevel level) {
 }
 
 - (nullable NSAttributedString *)formatAttributedLogMessage:(OguryLogMessage *)logMessage {
-   
     NSMutableAttributedString *log = [NSMutableAttributedString new];
+    BOOL bracketsAdded = NO;
     if (displayOptions & OguryLogDisplayDate) {
-        NSString *logStr = [NSString stringWithFormat:@"[%@]", [dateFormatter stringFromDate:logMessage.messageDate]];
+        NSString *logStr = [NSString stringWithFormat:@"%@ : ", [dateFormatter stringFromDate:logMessage.messageDate]];
         [log appendAttributedString:[self attributedString:logStr
                                                     option:OguryLogDisplayDate
-                                           includeBrackets:YES
                                            originalMessage:logMessage]];
     }
     if (displayOptions & OguryLogDisplaySDK) {
-        NSString *logStr = [NSString stringWithFormat:@"[%@]", logMessage.sdk];
+        bracketsAdded = YES;
+        NSString *logStr = [NSString stringWithFormat:@"[%@", logMessage.sdk];
         [log appendAttributedString:[self attributedString:logStr
                                                     option:OguryLogDisplaySDK
-                                           includeBrackets:YES
                                            originalMessage:logMessage]];
     }
     if (displayOptions & OguryLogDisplayLevel) {
-        NSString *logStr = [NSString stringWithFormat:@"[%@]", levelAsString(logMessage.level)];
+        NSString *logStr = [NSString stringWithFormat:@"%@%@", bracketsAdded ? @"-" : @"[", levelAsString(logMessage.level)];
+        bracketsAdded = YES;
         [log appendAttributedString:[self attributedString:logStr
                                                     option:OguryLogDisplayLevel
-                                           includeBrackets:YES
                                            originalMessage:logMessage]];
     }
     if (displayOptions & OguryLogDisplayType) {
-        NSString *logStr = [NSString stringWithFormat:@"[%@]", logMessage.logType];
+        NSString *logStr = [NSString stringWithFormat:@"%@%@", bracketsAdded ? @"-" : @"[", logMessage.logType];
+        bracketsAdded = YES;
         [log appendAttributedString:[self attributedString:logStr
                                                     option:OguryLogDisplayType
-                                           includeBrackets:YES
                                            originalMessage:logMessage]];
     }
     if ((displayOptions & OguryLogDisplayOrigin) && logMessage.origin != nil) {
-        NSString *logStr = [NSString stringWithFormat:@"[%@]", logMessage.origin];
+        NSString *logStr = [NSString stringWithFormat:@"%@%@", bracketsAdded ? @"-" : @"[", logMessage.origin];
+        bracketsAdded = YES;
         [log appendAttributedString:[self attributedString:logStr
                                                     option:OguryLogDisplayDate
-                                           includeBrackets:YES
                                            originalMessage:logMessage]];
     }
-    if ((displayOptions & OguryLogDisplayTags) && logMessage.tags != nil) {
-        NSMutableString *logStr = [@"[" mutableCopy];
+    if (bracketsAdded) {
+        [log appendAttributedString:[self attributedString:@"]"
+                                                    option:OguryLogDisplaySDK
+                                           originalMessage:logMessage]];
+    }
+    if ((displayOptions & OguryLogDisplayTags) && logMessage.tags.count > 0) {
+        NSMutableString *logStr = [@"\n[" mutableCopy];
         for (int index=0; index<logMessage.tags.count; index++) {
             OguryLogTag *tag = logMessage.tags[index];
             [logStr appendFormat:@"%@%@:%@", index == 0 ? @"" : @" - ", tag.key, tag.value];
         }
-        [logStr appendString:@"]"];
+        [logStr appendString:@"]\n"];
         [log appendAttributedString:[self attributedString:logStr
                                                     option:OguryLogDisplayTags
-                                           includeBrackets:YES
                                            originalMessage:logMessage]];
-    }
-    if (log.string.length > 0) {
+    } else if (log.string.length > 0) {
         [log appendAttributedString:[self attributedString:@" - "
                                                     option:OguryLogDisplayDate
-                                           includeBrackets:YES
                                            originalMessage:logMessage]];
     }
     
@@ -108,11 +109,9 @@ NSString* levelAsString(OguryLogLevel level) {
 
 - (NSAttributedString *_Nonnull)attributedString:(NSString *)str
                                           option:(OguryLogDisplay)option
-                                 includeBrackets:(BOOL)includeBrackets
                                  originalMessage:(OguryLogMessage *)logMessage {
     NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:str];
-    NSRange range = includeBrackets ? NSMakeRange(0, str.length) : NSMakeRange(1, str.length-2);
-    [attr addAttributes:[self attributesFor:option originalMessage:logMessage] range:range];
+    [attr addAttributes:[self attributesFor:option originalMessage:logMessage] range:NSMakeRange(0, str.length)];
     return attr;
 }
 

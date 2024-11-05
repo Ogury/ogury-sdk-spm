@@ -25,14 +25,13 @@ public class TestAppLogFormatter: OguryLogFormatter {
     
     public override init() {
         let df = DateFormatter()
-        df.dateStyle = .medium
-        df.timeStyle = .medium
+        df.dateStyle = .short
+        df.timeStyle = .short
         var options: OguryLogDisplay = [.SDK, .date, .level, .origin, .type, .tags]
         if let store = UserDefaults.standard.value(forKey: "OguryLogDisplay") as? UInt {
             options = OguryLogDisplay(rawValue: store)
         }
-        super.init(options: options,
-                   dateFormatter: df)
+        super.init(options: options, dateFormatter: df)
     }
     
     public override func attributes(for option: OguryLogDisplay, originalMessage: OguryLogMessage) -> [NSAttributedString.Key : Any]? {

@@ -14,10 +14,11 @@ struct LogsView: View {
     let store: StoreOf<LogsFeature>
     @Binding var logsHeight: CGFloat
     @State private var logsSubscription: AnyCancellable?
+    @State private var keyboardOffset: CGFloat = 0
    
-    private let collapsedHeight: CGFloat = 100
+    private let collapsedHeight: CGFloat = 150
     private let halfHeight: CGFloat = UIScreen.main.bounds.height * 0.5
-    private let expandedHeight: CGFloat = UIScreen.main.bounds.height * 0.7
+    private let expandedHeight: CGFloat = UIScreen.main.bounds.height * 0.8
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
@@ -42,6 +43,25 @@ struct LogsView: View {
                                     }
                                 }
                         )
+                    
+                    ScrollView {
+                        ForEach(viewStore.logMessages.indices, id: \.self) { index in
+                            Text(AttributedString(viewStore.logMessages[index]))
+                                .multilineTextAlignment(.leading)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.horizontal)
+                                .padding(.vertical, 8)
+                                .cornerRadius(8)
+                                .overlay (
+                                    Divider()
+                                        .padding(.leading),
+                                    alignment : .bottom
+                                )
+                                .id(index)
+                            Spacer()
+                        }
+                    }
+                    .padding(.bottom, 8)
                     
                     HStack {
                         Text("Logs")
@@ -80,26 +100,8 @@ struct LogsView: View {
                         }
                     }
                     .padding(.bottom, 8)
-                    
-                    ScrollView {
-                        ForEach(viewStore.logMessages.indices, id: \.self) { index in
-                            Text(AttributedString(viewStore.logMessages[index]))
-                                .multilineTextAlignment(.leading)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.horizontal)
-                                .padding(.vertical, 8)
-                                .cornerRadius(8)
-                                .overlay (
-                                    Divider()
-                                        .padding(.leading),
-                                    alignment : .bottom
-                                )
-                                .id(index)
-                            Spacer()
-                        }
-                    }
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .onAppear {
                     logsSubscription = TestAppLogController.shared.logger.logs
                         .receive(on: DispatchQueue.main)
@@ -117,6 +119,17 @@ struct LogsView: View {
                             scrollViewProxy.scrollTo(lastIndex, anchor: .bottom)
                         }
                     }
+                }
+                .padding(.bottom, keyboardOffset) // Adjust the bottom padding based on keyboard height
+                .animation(.easeInOut, value: keyboardOffset) // Smooth transition when keyboard shows/hides
+                .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { notification in
+                    if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+                        let keyboardHeight = keyboardFrame.height
+                        keyboardOffset = keyboardHeight
+                    }
+                }
+                .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
+                    keyboardOffset = 0
                 }
             }
         }

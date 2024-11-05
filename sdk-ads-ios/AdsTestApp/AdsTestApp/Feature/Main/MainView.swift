@@ -10,7 +10,7 @@ import AdsCardLibrary
 struct MainView: View {
     let store: StoreOf<MainFeature>
     let logsStore: StoreOf<LogsFeature>
-    @State private var logsHeight: CGFloat = 100
+    @State private var logsHeight: CGFloat = 150
    
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
