@@ -32,6 +32,7 @@ struct AppFeature: Reducer {
         case importFile(_: URL)
         case alert(PresentationAction<Alert>)
         case forceTestMode(_: Bool)
+        case focusLogs(on: String)
         case endEditing
         
         enum Alert {
@@ -149,6 +150,10 @@ struct AppFeature: Reducer {
                         state.alert = .cantImportFile
                         return .none
                     }
+                    
+                case let .focusLogs(cardId):
+                    state.logs.filter = cardId
+                    return .none
             }
         }
         .ifLet(\.$alert, action: /Action.alert)

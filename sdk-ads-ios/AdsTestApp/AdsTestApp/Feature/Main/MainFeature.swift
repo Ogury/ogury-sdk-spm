@@ -354,13 +354,11 @@ struct MainFeature: Reducer {
          case alert(AlertState<MainFeature.Action.Alert>)
          case settings(AppSettingsFeature.State)
          case add(AddFeature.State)
-         case log(AppSettingsFeature.State)
       }
       enum Action: Equatable {
          case alert(MainFeature.Action.Alert)
          case settings(AppSettingsFeature.Action)
          case add(AddFeature.Action)
-         case log(AppSettingsFeature.Action)
       }
       var body: some ReducerOf<Self> {
          Scope(state: /State.settings, action: /Action.settings) {
@@ -368,9 +366,6 @@ struct MainFeature: Reducer {
          }
          Scope(state: /State.add, action: /Action.add) {
             AddFeature()
-         }
-         Scope(state: /State.log, action: /Action.log) {
-            AppSettingsFeature()
          }
       }
    }

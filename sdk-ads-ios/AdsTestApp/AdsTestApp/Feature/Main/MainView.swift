@@ -195,13 +195,13 @@ extension View {
     }
 }
 
-#Preview {
-    NavigationView {
-        MainView(store: Store(initialState: MainFeature.State(), reducer: {
-            MainFeature(adHostingViewController: UIViewController(), adDelegate: nil)
-        }), logsStore: Store(initialState: LogsFeature.State() ,reducer: {LogsFeature()}))
-    }
-}
+//#Preview {
+//    NavigationView {
+//        MainView(store: Store(initialState: MainFeature.State(), reducer: {
+//            MainFeature(adHostingViewController: UIViewController(), adDelegate: nil)
+//        }), logsStore: Store(initialState: LogsFeature.State() ,reducer: {LogsFeature()}))
+//    }
+//}
 
 @available(iOS, introduced: 15, deprecated: 16, message: "use ListManagersView for iOS 16+")
 struct LegacyHorizontalCardsView: View {

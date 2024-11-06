@@ -111,7 +111,6 @@ struct AdViewFeature: Reducer {
         var showTestModeButton = true
         var enableAdUnitEditing = true
         var enableFeedbacks = true
-        @BindingState var showQALabelInput = false
         let id: UUID = UUID()
         let adType: AnyAdType!
         var isHeaderBidding: Bool {
@@ -606,7 +605,7 @@ struct AdViewFeature: Reducer {
                     return .none
                     
                 case .showQALabelTapped:
-                    state.showQALabelInput.toggle()
+                    adManager.adDelegate?.focusLogs(on: state.baseOptions.qaLabel)
                     return .none
             }
         }
