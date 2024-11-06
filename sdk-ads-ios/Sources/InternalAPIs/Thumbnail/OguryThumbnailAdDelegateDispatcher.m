@@ -5,12 +5,13 @@
 #import "OguryThumbnailAdDelegateDispatcher.h"
 #import "OguryThumbnailAd.h"
 #import "OGALog.h"
+#import "OguryAds+Log.h"
 
 @implementation OguryThumbnailAdDelegateDispatcher
 
 - (void)loaded {
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
-                                         adConfiguration:nil
+                                         adConfiguration:self.thumbnail.adConfiguration
                                                  logType:OguryLogTypeDelegate
                                                  message:@"[Thumbnail] Ad loaded"
                                                     tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.thumbnail.adUnitId] ]]];
@@ -24,7 +25,7 @@
 
 - (void)clicked {
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
-                                         adConfiguration:nil
+                                         adConfiguration:self.thumbnail.adConfiguration
                                                  logType:OguryLogTypeDelegate
                                                  message:@"[Thumbnail] Ad clicked"
                                                     tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.thumbnail.adUnitId] ]]];
@@ -38,7 +39,7 @@
 
 - (void)closed {
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
-                                         adConfiguration:nil
+                                         adConfiguration:self.thumbnail.adConfiguration
                                                  logType:OguryLogTypeDelegate
                                                  message:@"[Thumbnail] Ad closed"
                                                     tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.thumbnail.adUnitId] ]]];
@@ -53,7 +54,7 @@
 
 - (void)failedWithError:(OguryAdError *)error {
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
-                                         adConfiguration:nil
+                                         adConfiguration:self.thumbnail.adConfiguration
                                                  logType:OguryLogTypeDelegate
                                                    error:error
                                                  message:@"[Thumbnail] Ad failed"
@@ -69,7 +70,7 @@
 
 - (void)adImpression {
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
-                                         adConfiguration:nil
+                                         adConfiguration:self.thumbnail.adConfiguration
                                                  logType:OguryLogTypeDelegate
                                                  message:@"[Thumbnail] Ad impression"
                                                     tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.thumbnail.adUnitId] ]]];

@@ -45,7 +45,7 @@ NSString* levelAsString(OguryLogLevel level) {
     NSMutableAttributedString *log = [NSMutableAttributedString new];
     BOOL bracketsAdded = NO;
     if (displayOptions & OguryLogDisplayDate) {
-        NSString *logStr = [NSString stringWithFormat:@"%@ : ", [dateFormatter stringFromDate:logMessage.messageDate]];
+        NSString *logStr = [NSString stringWithFormat:@"%@\n", [dateFormatter stringFromDate:logMessage.messageDate]];
         [log appendAttributedString:[self attributedString:logStr
                                                     option:OguryLogDisplayDate
                                            originalMessage:logMessage]];
@@ -72,10 +72,10 @@ NSString* levelAsString(OguryLogLevel level) {
                                            originalMessage:logMessage]];
     }
     if ((displayOptions & OguryLogDisplayOrigin) && logMessage.origin != nil) {
-        NSString *logStr = [NSString stringWithFormat:@"%@%@", bracketsAdded ? @"-" : @"[", logMessage.origin];
+        NSString *logStr = [NSString stringWithFormat:@"%@(%@)", bracketsAdded ? @" " : @"[", logMessage.origin];
         bracketsAdded = YES;
         [log appendAttributedString:[self attributedString:logStr
-                                                    option:OguryLogDisplayDate
+                                                    option:OguryLogDisplayOrigin
                                            originalMessage:logMessage]];
     }
     if (bracketsAdded) {
@@ -84,17 +84,16 @@ NSString* levelAsString(OguryLogLevel level) {
                                            originalMessage:logMessage]];
     }
     if ((displayOptions & OguryLogDisplayTags) && logMessage.tags.count > 0) {
-        NSMutableString *logStr = [@"\n[" mutableCopy];
+        NSMutableString *logStr = [@"\n" mutableCopy];
         for (int index=0; index<logMessage.tags.count; index++) {
             OguryLogTag *tag = logMessage.tags[index];
-            [logStr appendFormat:@"%@%@:%@", index == 0 ? @"" : @" - ", tag.key, tag.value];
+            [logStr appendFormat:@"  • %@ : %@\n", tag.key, tag.value];
         }
-        [logStr appendString:@"]\n"];
         [log appendAttributedString:[self attributedString:logStr
                                                     option:OguryLogDisplayTags
                                            originalMessage:logMessage]];
     } else if (log.string.length > 0) {
-        [log appendAttributedString:[self attributedString:@" - "
+        [log appendAttributedString:[self attributedString:@"\n"
                                                     option:OguryLogDisplayDate
                                            originalMessage:logMessage]];
     }

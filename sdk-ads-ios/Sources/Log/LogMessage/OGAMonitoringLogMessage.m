@@ -14,10 +14,11 @@
 @implementation OGAMonitoringLogMessage
 
 - (instancetype)initWithLevel:(OguryLogLevel)level
+              adConfiguration:(OGAAdConfiguration *_Nullable)adConfiguration
                       message:(NSString *)message
                         event:(id<OGMEventMonitorable>)event {
     if (self = [super initWithLevel:level
-                    adConfiguration:nil
+                    adConfiguration:adConfiguration
                             logType:OguryLogTypeMonitoring
                             message:message
                                tags:nil]) {
@@ -35,10 +36,12 @@
 }
 
 - (instancetype)initWithLevel:(OguryLogLevel)level
+              adConfiguration:(OGAAdConfiguration *_Nullable)adConfiguration
                         error:(NSError *)error
                       message:(NSString *_Nullable)message
                         event:(id<OGMEventMonitorable>)event {
     return [self initWithLevel:level
+               adConfiguration:adConfiguration
                        message:message == nil ? logErrorMessage(error) : [logErrorMessage(error) stringByAppendingFormat:@" - %@", message]
                          event:event];
 }

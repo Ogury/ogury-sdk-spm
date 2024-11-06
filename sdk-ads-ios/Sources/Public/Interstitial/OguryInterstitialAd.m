@@ -11,6 +11,8 @@
 
 @property(nonatomic, strong) OguryInterstitialAdDelegateDispatcher *delegateDispatcher;
 @property(nonatomic, strong) OGAInterstitialAdInternalAPI *internalAPI;
+- (void)setLogOrigin:(NSString *)origin;
+- (OGAAdConfiguration *)adConfiguration;
 
 @end
 
@@ -84,6 +86,14 @@
 
 - (void)showAdInViewController:(UIViewController *)viewController {
     [self.internalAPI showAdInViewController:viewController];
+}
+
+- (void)setLogOrigin:(NSString *)origin {
+    [self.internalAPI setLogOrigin:origin];
+}
+
+- (OGAAdConfiguration *)adConfiguration {
+    return self.internalAPI.adConfiguration;
 }
 
 @end

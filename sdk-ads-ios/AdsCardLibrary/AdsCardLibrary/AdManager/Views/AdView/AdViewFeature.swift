@@ -237,7 +237,7 @@ struct AdViewFeature: Reducer {
         func log(_ message: String) {
             AdsCardManager.logger?.logMessage(OGAAdLogMessage(level: .debug,
                                                               logType: testApp,
-                                                              origin: nil,
+                                                              origin: baseOptions.qaLabel,
                                                               sdk: .ads,
                                                               messageDate: nil,
                                                               message: message,

@@ -3,6 +3,7 @@
 //
 
 #import "OguryBannerAdView.h"
+#import "OGAAdConfiguration.h"
 #import "OguryBannerAdViewDelegateDispatcher.h"
 #import "OGABannerAdViewInternalAPI.h"
 
@@ -10,6 +11,8 @@
 
 @property(nonatomic, strong) OguryBannerAdViewDelegateDispatcher *delegateDispatcher;
 @property(nonatomic, strong) OGABannerAdViewInternalAPI *internalAPI;
+- (void)setLogOrigin:(NSString *)origin;
+- (OGAAdConfiguration *)adConfiguration;
 
 @end
 
@@ -104,6 +107,14 @@
     [super didMoveToWindow];
 
     [self.internalAPI didMoveToWindow];
+}
+
+- (void)setLogOrigin:(NSString *)origin {
+    [self.internalAPI setLogOrigin:origin];
+}
+
+- (OGAAdConfiguration *)adConfiguration {
+    return self.internalAPI.adConfiguration;
 }
 
 @end

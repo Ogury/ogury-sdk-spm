@@ -36,6 +36,15 @@ public class TestAppLogFormatter: OguryLogFormatter {
     
     public override func attributes(for option: OguryLogDisplay, originalMessage: OguryLogMessage) -> [NSAttributedString.Key : Any]? {
         var attr = super.attributes(for: option, originalMessage: originalMessage) ?? [:]
+        switch option {
+            case .SDK: attr[.font] = UIFont.init(name: "PPTelegraf-Semibold", size: 14)
+            case .date: attr[.font] = UIFont.init(name: "PPTelegraf-Regular", size: 12)
+            case .level: attr[.font] = UIFont.init(name: "PPTelegraf-Regular", size: 14)
+            case .origin: attr[.font] = UIFont.init(name: "PPTelegraf-Semibold", size: 10)
+            case .tags: attr[.font] = UIFont.init(name: "PPTelegraf-Light", size: 12)
+            case .type: attr[.font] = UIFont.init(name: "PPTelegraf-Regular", size: 14)
+            default: ()
+        }
         if let color = logTypeColor[originalMessage.logType as OguryLogType] {
             attr[.foregroundColor] = color
         }
@@ -44,6 +53,7 @@ public class TestAppLogFormatter: OguryLogFormatter {
    
    public override func attributes(for logMessage: OguryLogMessage) -> [NSAttributedString.Key : Any]? {
       var attr = super.attributes(for: logMessage) ?? [:]
+       attr[.font] = UIFont.init(name: "PPTelegraf-Regular", size: 14)
       if let color = logTypeColor[logMessage.logType as OguryLogType] {
           attr[.foregroundColor] = color
       }

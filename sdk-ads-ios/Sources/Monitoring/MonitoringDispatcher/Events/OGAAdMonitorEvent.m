@@ -23,6 +23,7 @@
 @end
 
 @implementation OGAAdMonitorEvent
+@synthesize adConfiguration;
 - (instancetype)initWithEventConfiguration:(OGAMonitorEventConfiguration *)eventConfiguration
                            adConfiguration:(OGAAdConfiguration *)adConfiguration
                            customSessionId:(NSString *_Nullable)sessionId
@@ -41,6 +42,7 @@
         _creativeId = eventConfiguration.permissionMask & OGAAdIdMaskCreativeId ? adConfiguration.creativeId : nil;
         _extras = eventConfiguration.permissionMask & OGAAdIdMaskExtras ? adConfiguration.extras : nil;
         _mediation = adConfiguration.monitoringDetails.mediation;
+        self.adConfiguration = adConfiguration;
     }
     return self;
 }

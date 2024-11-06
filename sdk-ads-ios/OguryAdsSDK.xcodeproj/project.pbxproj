@@ -940,6 +940,14 @@
 		43E5AA7E28F5499A00AF014D /* OGAAdDisplayerOrientationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 43E5AA7D28F5499A00AF014D /* OGAAdDisplayerOrientationDelegate.h */; };
 		43E5AA8128F549BA00AF014D /* OGAMraidSetOrientationPropertiesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E5AA7F28F549BA00AF014D /* OGAMraidSetOrientationPropertiesCommand.m */; };
 		43E5AA8228F549BA00AF014D /* OGAMraidSetOrientationPropertiesCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 43E5AA8028F549BA00AF014D /* OGAMraidSetOrientationPropertiesCommand.h */; };
+		43EB17972CDA5C3B00264EBB /* OGALogDetail.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EB17952CDA5C3B00264EBB /* OGALogDetail.h */; };
+		43EB17982CDA5C3B00264EBB /* OGALogDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB17962CDA5C3B00264EBB /* OGALogDetail.m */; };
+		43EB17992CDA5C3B00264EBB /* OGALogDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB17962CDA5C3B00264EBB /* OGALogDetail.m */; };
+		43EB179A2CDA5C3B00264EBB /* OGALogDetail.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EB17952CDA5C3B00264EBB /* OGALogDetail.h */; };
+		43EB179C2CDB642D00264EBB /* OguryAds+Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EB179B2CDB642D00264EBB /* OguryAds+Log.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		43EB179D2CDB642D00264EBB /* OguryAds+Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EB179B2CDB642D00264EBB /* OguryAds+Log.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		43EB179F2CDB685D00264EBB /* OGMEventLogMonitorable.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EB179E2CDB685D00264EBB /* OGMEventLogMonitorable.h */; };
+		43EB17A02CDB685D00264EBB /* OGMEventLogMonitorable.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EB179E2CDB685D00264EBB /* OGMEventLogMonitorable.h */; };
 		43F8BBED2BA885DB002695F8 /* OGAMonitoringDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F8BBEC2BA885DB002695F8 /* OGAMonitoringDetails.m */; };
 		43F8BBEE2BA885DB002695F8 /* OGAMonitoringDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = 43F8BBEB2BA885DB002695F8 /* OGAMonitoringDetails.h */; };
 		464BB3177CAC0AB378502168 /* OGABannerAdViewContainerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B8F09DB230B67946BAAFC04 /* OGABannerAdViewContainerState.h */; };
@@ -1661,6 +1669,10 @@
 		43E5AA7D28F5499A00AF014D /* OGAAdDisplayerOrientationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAAdDisplayerOrientationDelegate.h; sourceTree = "<group>"; };
 		43E5AA7F28F549BA00AF014D /* OGAMraidSetOrientationPropertiesCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAMraidSetOrientationPropertiesCommand.m; sourceTree = "<group>"; };
 		43E5AA8028F549BA00AF014D /* OGAMraidSetOrientationPropertiesCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAMraidSetOrientationPropertiesCommand.h; sourceTree = "<group>"; };
+		43EB17952CDA5C3B00264EBB /* OGALogDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGALogDetail.h; sourceTree = "<group>"; };
+		43EB17962CDA5C3B00264EBB /* OGALogDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGALogDetail.m; sourceTree = "<group>"; };
+		43EB179B2CDB642D00264EBB /* OguryAds+Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OguryAds+Log.h"; sourceTree = "<group>"; };
+		43EB179E2CDB685D00264EBB /* OGMEventLogMonitorable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGMEventLogMonitorable.h; sourceTree = "<group>"; };
 		43F8BBEB2BA885DB002695F8 /* OGAMonitoringDetails.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAMonitoringDetails.h; sourceTree = "<group>"; };
 		43F8BBEC2BA885DB002695F8 /* OGAMonitoringDetails.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAMonitoringDetails.m; sourceTree = "<group>"; };
 		4762507994EC33D730BD4E44 /* Pods-OguryAdsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAdsTests.debug.xcconfig"; path = "Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3268,6 +3280,7 @@
 				588A5CB92965E25900DB49B3 /* ServerMonitor */,
 				43A0606429546369008E18E6 /* OGMMonitorable.h */,
 				436A811529545C3F0021EA32 /* OGMEventMonitorable.h */,
+				43EB179E2CDB685D00264EBB /* OGMEventLogMonitorable.h */,
 				584AC1D62976DE2600227BB8 /* OGMPersistanceStore.h */,
 			);
 			path = Monitorable;
@@ -3644,8 +3657,11 @@
 				5890DD7228215E4100B3CDE7 /* LogMessage */,
 				ED3F886E27219893007C6A6D /* OGALog.h */,
 				ED3F886F27219893007C6A6D /* OGALog.m */,
+				43EB179B2CDB642D00264EBB /* OguryAds+Log.h */,
 				22837233288584D4001A07E3 /* OguryLogConstants.h */,
 				22837234288584D4001A07E3 /* OguryLogConstants.m */,
+				43EB17952CDA5C3B00264EBB /* OGALogDetail.h */,
+				43EB17962CDA5C3B00264EBB /* OGALogDetail.m */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -3864,6 +3880,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43EB179A2CDA5C3B00264EBB /* OGALogDetail.h in Headers */,
 				43A9F39B2C37E6B40085EF6F /* OGAAdExposureController.h in Headers */,
 				43A9F39C2C37E6B40085EF6F /* OGAAdExposureDelegate.h in Headers */,
 				43A9F39D2C37E6B40085EF6F /* OGAMetamacros.h in Headers */,
@@ -3938,6 +3955,7 @@
 				43A9F3E52C37E6B40085EF6F /* OGAAdDisplayerSystemCloseInformation.h in Headers */,
 				43A9F3E62C37E6B40085EF6F /* OGAMRAIDAdDisplayer.h in Headers */,
 				43A9F3E72C37E6B40085EF6F /* OGAMRAIDState.h in Headers */,
+				43EB179C2CDB642D00264EBB /* OguryAds+Log.h in Headers */,
 				43A9F3E82C37E6B40085EF6F /* OGAAdDisplayer.h in Headers */,
 				43A9F3E92C37E6B40085EF6F /* OGAAdDisplayerDelegate.h in Headers */,
 				43A9F3EA2C37E6B40085EF6F /* OGATokenGenerator.h in Headers */,
@@ -3947,6 +3965,7 @@
 				43A9F3F32C37E6B40085EF6F /* OGAOrderedDictionary.h in Headers */,
 				43A9F3F72C37E6B40085EF6F /* OGAInterstitialAdInternalAPI.h in Headers */,
 				43A9F3F82C37E6B40085EF6F /* OguryMediation.h in Headers */,
+				43EB179F2CDB685D00264EBB /* OGMEventLogMonitorable.h in Headers */,
 				43A9F3F92C37E6B40085EF6F /* OGAAdInternalAPI.h in Headers */,
 				43A9F3FB2C37E6B40085EF6F /* OGARewardedAdInternalAPI.h in Headers */,
 				43A9F3FC2C37E6B40085EF6F /* OGAMetricsServiceSendEventOperation.h in Headers */,
@@ -4110,6 +4129,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43EB17972CDA5C3B00264EBB /* OGALogDetail.h in Headers */,
 				351A18A353D084319F63DDAE /* OGAAdExposureController.h in Headers */,
 				351A104D27762259E027DFEE /* OGAAdExposureDelegate.h in Headers */,
 				ED58D02D25DC2381002C4738 /* OGAMetamacros.h in Headers */,
@@ -4184,6 +4204,7 @@
 				351A1AB84B4C4357C8BB08D5 /* OGAAdDisplayerSystemCloseInformation.h in Headers */,
 				351A125AC7940F69226BA512 /* OGAMRAIDAdDisplayer.h in Headers */,
 				351A1BF204D15C7E257FBB01 /* OGAMRAIDState.h in Headers */,
+				43EB179D2CDB642D00264EBB /* OguryAds+Log.h in Headers */,
 				351A1B3E49A73B639C8352C9 /* OGAAdDisplayer.h in Headers */,
 				351A16239B780D6F9DE5F41A /* OGAAdDisplayerDelegate.h in Headers */,
 				2295392A26E772490021605A /* OGATokenGenerator.h in Headers */,
@@ -4193,6 +4214,7 @@
 				43A0692129E7FDF90055518D /* OGAOrderedDictionary.h in Headers */,
 				351A1EC4F050524D200CC5C2 /* OGAInterstitialAdInternalAPI.h in Headers */,
 				431F6F012BFE1B8200DBFFAA /* OguryMediation.h in Headers */,
+				43EB17A02CDB685D00264EBB /* OGMEventLogMonitorable.h in Headers */,
 				351A1380860D1356A6CFB490 /* OGAAdInternalAPI.h in Headers */,
 				351A15A066E514A715DE0497 /* OGARewardedAdInternalAPI.h in Headers */,
 				ED63DBF427562D1900554750 /* OGAMetricsServiceSendEventOperation.h in Headers */,
@@ -4597,6 +4619,7 @@
 				43A9F2D22C37E6B40085EF6F /* OguryLogConstants.m in Sources */,
 				43A9F2D32C37E6B40085EF6F /* OGACloseSKAdContainerTransition.m in Sources */,
 				43A9F2D42C37E6B40085EF6F /* OGAAdDisplayerUserCloseSKOverlayInformation.m in Sources */,
+				43EB17992CDA5C3B00264EBB /* OGALogDetail.m in Sources */,
 				43A9F2D52C37E6B40085EF6F /* OGAMRAIDAdDisplayer+Volume.m in Sources */,
 				43A9F2D62C37E6B40085EF6F /* OGAThumbnailAdViewController+CachedPosition.m in Sources */,
 				43A9F2D82C37E6B40085EF6F /* OGAClosedAdContainerState.m in Sources */,
@@ -4818,6 +4841,7 @@
 				22837236288584D4001A07E3 /* OguryLogConstants.m in Sources */,
 				C9F58AAD297155BC00D3E6A5 /* OGACloseSKAdContainerTransition.m in Sources */,
 				1E65E5ED2A0E6B6900703FB0 /* OGAAdDisplayerUserCloseSKOverlayInformation.m in Sources */,
+				43EB17982CDA5C3B00264EBB /* OGALogDetail.m in Sources */,
 				22EE2647265FC3030057EF63 /* OGAMRAIDAdDisplayer+Volume.m in Sources */,
 				228546FB267212DA0078F122 /* OGAThumbnailAdViewController+CachedPosition.m in Sources */,
 				351A136A5C7B9E89404EB655 /* OGAClosedAdContainerState.m in Sources */,

@@ -39,6 +39,7 @@ OguryLogType const OguryLogTypeDelegate = @"Callbacks";
         if (tags != nil) {
             [computeTags addObjectsFromArray:tags];
         }
+        self.origin = adConfiguration.logDetails.origin;
         self.tags = computeTags;
     }
     return self;
