@@ -26,24 +26,26 @@ struct MainView: View {
                            .frame(width: UIScreen.main.bounds.size.width, alignment: .center)
                    }
                }
-               VStack {
-                  VStack {
-                     LogsView(
-                         store: logsStore,
-                         logsHeight: $logsHeight
-                     )
-                       .padding()
-                       .frame(maxWidth: .infinity, maxHeight: .infinity)
-                  }
-                  .background(Color(AdColorPalette.Background.primary.color))
-                  .ignoresSafeArea()
-                  .cornerRadius(15)
-                  .shadow(radius: 3)
-               }
-               .background(Color(AdColorPalette.Background.secondary.color))
-               .ignoresSafeArea()
-               .frame(height: logsHeight)
                
+               if viewStore.showLogs {
+                   VStack {
+                       VStack {
+                           LogsView(
+                            store: logsStore,
+                            logsHeight: $logsHeight
+                           )
+                           .padding()
+                           .frame(maxWidth: .infinity, maxHeight: .infinity)
+                       }
+                       .background(Color(AdColorPalette.Background.primary.color))
+                       .ignoresSafeArea()
+                       .cornerRadius(15)
+                       .shadow(radius: 3)
+                   }
+                   .background(Color(AdColorPalette.Background.secondary.color))
+                   .ignoresSafeArea()
+                   .frame(height: logsHeight)
+               }               
            }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -71,6 +73,16 @@ struct MainView: View {
                     .frame(height: 40)
             }
             .foregroundStyle(Color(AdColorPalette.Background.placeholder.color))
+        }
+        
+        ToolbarItem(placement: .topBarTrailing) {
+            Button {
+                viewStore.send(.showLogs(!viewStore.showLogs))
+            } label: {
+                Image(systemName: viewStore.showLogs ? "text.document.fill" : "text.document")
+                // just to increase a little bit the touching area
+                    .frame(height: 40)
+            }
         }
         
         ToolbarItem(placement: .topBarTrailing) {

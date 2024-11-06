@@ -79,8 +79,8 @@ struct AppView: View {
     }
 }
 
-#Preview {
-    AppView(store: Store(initialState: AppFeature.State(), reducer: {
-        AppFeature(adHostingViewController: nil, adDelegate: nil)
-    }))
-}
+//#Preview {
+//    AppView(store: Store(initialState: AppFeature.State(), reducer: {
+//        AppFeature(adHostingViewController: nil, adDelegate: nil)
+//    }))
+//}

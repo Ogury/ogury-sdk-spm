@@ -38,4 +38,7 @@ struct SettingsController {
    
     @UserDefault("usOptoutPartner")
     var usOptoutPartner: Bool = false
+   
+    @UserDefault("showLogsSheet")
+    var showLogsSheet: Bool = true
 }
