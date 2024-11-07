@@ -15,6 +15,7 @@ struct LogsView: View {
     @Binding var logsHeight: CGFloat
     @State private var logsSubscription: AnyCancellable?
     @State private var keyboardOffset: CGFloat = 0
+    @FocusState var isSearching: Bool
    
     private let collapsedHeight: CGFloat = 150
     private let halfHeight: CGFloat = UIScreen.main.bounds.height * 0.5
@@ -76,6 +77,7 @@ struct LogsView: View {
                                                                            send: { .filter($0) } ))
                                 .padding(8)
                                 .cornerRadius(8)
+                                .focused($isSearching)
                             
                             if !viewStore.filter.isEmpty {
                                 Button(action: {
@@ -92,11 +94,23 @@ struct LogsView: View {
                                 .stroke(Color(AdColorPalette.Background.placeholder.color))
                         }
                         
-                        Button {
-                            viewStore.send(.clearLogs)
-                        } label: {
-                            Image(systemName: "trash")
-                                .foregroundStyle(Color(AdColorPalette.State.failure.color))
+                        if !isSearching {
+                            ShareLink(item: viewStore.logsAsString) {
+                                Image(systemName: "square.and.arrow.up")
+                                    .foregroundStyle(
+                                        Color(viewStore.logMessages.isEmpty
+                                              ? AdColorPalette.Background.placeholder.color
+                                              : AdColorPalette.Primary.accent.color)
+                                    )
+                            }
+                            .disabled(viewStore.logMessages.isEmpty)
+                            
+                            Button {
+                                viewStore.send(.clearLogs)
+                            } label: {
+                                Image(systemName: "trash")
+                                    .foregroundStyle(Color(AdColorPalette.State.failure.color))
+                            }
                         }
                     }
                     .padding(.bottom, 8)

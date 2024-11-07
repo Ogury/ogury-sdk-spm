@@ -79,8 +79,16 @@ struct MainView: View {
             Button {
                 viewStore.send(.showLogs(!viewStore.showLogs))
             } label: {
-                Image(systemName: viewStore.showLogs ? "text.document.fill" : "text.document")
-                // just to increase a little bit the touching area
+                Image("console")
+                    .resizable()
+                    .frame(width: 22, height: 22)
+                    .foregroundStyle(
+                        Color(viewStore.showLogs
+                              ? AdColorPalette.Primary.accent.color
+                              : UIColor.gray)
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: 4))
+                    // just to increase a little bit the touching area
                     .frame(height: 40)
             }
         }

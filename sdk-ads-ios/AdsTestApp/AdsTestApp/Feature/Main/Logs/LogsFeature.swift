@@ -2,7 +2,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct LogsFeature: Reducer {
-    struct State: Equatable {
+    struct State: Equatable {        
         var logMessages: [NSAttributedString] = []
         fileprivate var unfilteredMessages: [NSAttributedString] = []  {
             didSet {
@@ -22,6 +22,11 @@ struct LogsFeature: Reducer {
                 return
             }
             logMessages = unfilteredMessages.filter({ $0.string.lowercased().contains(filter.lowercased()) })
+        }
+        var logsAsString: String {
+            unfilteredMessages
+                .map{ $0.string }
+                .joined(separator: "\n\n")
         }
     }
     
