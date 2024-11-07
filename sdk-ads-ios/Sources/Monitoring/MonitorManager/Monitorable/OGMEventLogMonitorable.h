@@ -13,7 +13,7 @@
 
 @protocol OGMEventLogMonitorable <NSObject, NSCoding>
 
-@property(nonatomic, retain) OGAAdConfiguration* adConfiguration;
+@property(nonatomic, retain) OGAAdConfiguration *adConfiguration;
 
 @end
 

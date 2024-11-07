@@ -11,9 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OGAAdMonitorEvent : OGMMonitorEvent<OGMEventLogMonitorable>
+@interface OGAAdMonitorEvent : OGMMonitorEvent <OGMEventLogMonitorable>
 
-@property(nonatomic, retain) OGAAdConfiguration* adConfiguration;
+@property(nonatomic, retain) OGAAdConfiguration *adConfiguration;
 
 - (instancetype)initWithEventConfiguration:(OGAMonitorEventConfiguration *)eventConfiguration
                            adConfiguration:(OGAAdConfiguration *)adConfiguration

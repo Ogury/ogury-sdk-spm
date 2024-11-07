@@ -118,7 +118,7 @@
 
 - (void)sendMonitoringEvent:(OGAAdMonitorEvent *)event {
     [self.log log:[[OGAMonitoringLogMessage alloc] initWithLevel:OguryLogLevelDebug
-                                                 adConfiguration: event.adConfiguration
+                                                 adConfiguration:event.adConfiguration
                                                          message:@"Send Event"
                                                            event:event]];
     if (self.monitoringEnabled) {

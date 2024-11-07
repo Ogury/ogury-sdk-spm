@@ -28,7 +28,6 @@ extern NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationNa
 @property(nonatomic, assign, readonly) BOOL isExpanded;
 @property(nonatomic, assign, readonly) BOOL isLoaded;
 
-
 #pragma mark - Initialization
 
 - (instancetype)initWithAdUnitId:(NSString *)adUnitId
