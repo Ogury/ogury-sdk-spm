@@ -59,10 +59,12 @@ struct LogsView: View {
                                     alignment : .bottom
                                 )
                                 .id(index)
+                                .accessibilityLabel("LogItem#\(index)")
                             Spacer()
                         }
                     }
                     .padding(.bottom, 8)
+                    .accessibilityLabel("LogView")
                     
                     HStack {
                         Text("Logs")
@@ -78,6 +80,7 @@ struct LogsView: View {
                                 .padding(8)
                                 .cornerRadius(8)
                                 .focused($isSearching)
+                                .accessibilityLabel("LogSearchField")
                             
                             if !viewStore.filter.isEmpty {
                                 Button(action: {
@@ -104,6 +107,7 @@ struct LogsView: View {
                                     )
                             }
                             .disabled(viewStore.logMessages.isEmpty)
+                            .accessibilityLabel("LogShareButton")
                             
                             Button {
                                 viewStore.send(.clearLogs)
@@ -111,6 +115,7 @@ struct LogsView: View {
                                 Image(systemName: "trash")
                                     .foregroundStyle(Color(AdColorPalette.State.failure.color))
                             }
+                            .accessibilityLabel("LogClearButton")
                         }
                     }
                     .padding(.bottom, 8)
