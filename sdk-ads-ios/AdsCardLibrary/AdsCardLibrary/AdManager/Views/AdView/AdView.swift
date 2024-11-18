@@ -19,10 +19,12 @@ public struct AdView: View {
                                 .font(.adsTitle2)
                                 .bold()
                                 .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                                .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_Name")
                         } else {
                             TextField("Title", text: viewStore.$baseOptions.adDisplayName)
                                 .font(.adsTitle2)
                                 .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                                .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_Name")
                         }
                         
                         switch viewStore.adStateEvent {
@@ -51,6 +53,7 @@ public struct AdView: View {
                                     }
                                 }
                                 .buttonStyle(BorderlessButtonStyle())
+                                .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_ErrorButton")
                                 
                             default: Spacer()
                                 
@@ -71,6 +74,7 @@ public struct AdView: View {
                                 }
                             }
                             .disabled(!viewStore.showTestModeButton)
+                            .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_OguryTestModeButton")
                             
                             Button {
                                 viewStore.send(.rtbTestModeButtonTapped)
@@ -86,6 +90,7 @@ public struct AdView: View {
                                 }
                             }
                             .disabled(!viewStore.showTestModeButton || !viewStore.isHeaderBidding)
+                            .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_RTBTestModeButton")
                             
                             Button {
                                 viewStore.send(.showQALabelTapped)
@@ -96,6 +101,7 @@ public struct AdView: View {
                                     Image(systemName:"magnifyingglass")
                                 }
                             }
+                            .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_FocusLogsOnCardButton")
                             
                         } label: {
                             Image(systemName: "ellipsis.circle")
@@ -103,6 +109,7 @@ public struct AdView: View {
                                 .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
                         }
                         .padding(.leading, 4)
+                        .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_Menu")
                     }
                     .padding(EdgeInsets(top: 6, leading: 12, bottom: 0, trailing: 12))
                     .alert(isPresented: $showErrorAlert) {
@@ -131,6 +138,7 @@ public struct AdView: View {
                             AdsTextField(viewStore.$baseOptions.adUnitId,
                                          placeholder: "Ad Unit Id")
                             .disabled(!viewStore.enableAdUnitEditing)
+                            .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_AdUnitField")
                             
                            HStack(alignment: .bottom, spacing: 8) {
                                 if viewStore.baseOptions.showCampaignId {
@@ -140,6 +148,7 @@ public struct AdView: View {
                                                  placeholder: "Campaign Id")
                                     .keyboardType(.numberPad)
                                     .disabled(viewStore.testModeEnabled)
+                                    .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_CampaignField")
                                 }
                                 
                                 if viewStore.baseOptions.showCreativeId {
@@ -149,6 +158,7 @@ public struct AdView: View {
                                                  placeholder: "Creative Id")
                                     .keyboardType(.numberPad)
                                     .disabled(viewStore.testModeEnabled)
+                                    .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_CreativeField")
                                 }
                             }
                             
@@ -160,6 +170,7 @@ public struct AdView: View {
                                                  placeholder: "DSP Creative Id")
                                     .keyboardType(.numberPad)
                                     .disabled(viewStore.testModeEnabled)
+                                    .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_DSPCreativeField")
                                     
                                     Picker("DSP Region", selection: viewStore.$baseOptions.dspRegion) {
                                         ForEach(DspRegion.allCases, id: \.self) { region in
@@ -172,6 +183,7 @@ public struct AdView: View {
                                     .disabled(viewStore.testModeEnabled)
                                     .fixedSize(horizontal: true, vertical: true)
                                     .pickerStyle(.menu)
+                                    .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_DSPRegionField")
                                 }
                             }
                         }
@@ -184,6 +196,7 @@ public struct AdView: View {
                                                                  action: { .bannerAction($0) }
                                                                 ))
                         .frame(maxWidth: .infinity)
+                        .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_BannerView")
                     } else if viewStore.rewardedOptions != nil {
                         RewardedView(store: self.store.scope(
                             state: \.rewardedFeature,
