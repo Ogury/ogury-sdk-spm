@@ -65,29 +65,35 @@ struct Device: Encodable {
     var connectiontype: Int = 2
     var dnt: Int = 0
     var geo: [String: String] = [:]
-    var h: Int = 1334
-    var ifa: String { OGCInternal.shared().getAdIdentifier() }
-    var ip: String { ipAddress() ?? "x.xx.xxx.xx" }
+    var h: Int!
+    var ifa: String!
+    var ip: String!
     var js: Int = 1
-    var language: String { Locale.current.language.languageCode?.identifier ?? "en" }
+    var language: String!
     var make: String = "Apple"
-    var model: String {
-        #if targetEnvironment(simulator)
-        return "iPhone 16 Pro Max"
-        #else
-        return deviceModel()
-        #endif
-    }
+    var model: String!
     var os: String = "ios"
-    var osv: String {
+    var osv: String!
+    var pxratio: Double!
+    var ua: String!
+    var w: Int!
+    
+    init() {
+        w = Int(UIScreen.main.bounds.width)
+        h = Int(UIScreen.main.bounds.height)
+        pxratio = UIScreen.main.scale
+        ua = OGAWebViewUserAgentService.shared().webViewUserAgent ?? "Mozilla/5.0 (Linux; Android 11; Android SDK built for x86 Build/RSR1.210210.001.A1; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.106 Mobile Safari/537.36"
         let osVersion = ProcessInfo.processInfo.operatingSystemVersion
-        return "\(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)"
+        osv = "\(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)"
+#if targetEnvironment(simulator)
+        model = "iPhone 16 Pro Max"
+#else
+        model = deviceModel()
+#endif
+        language = Locale.current.language.languageCode?.identifier ?? "en"
+        ip = ipAddress() ?? "x.xx.xxx.xx"
+        ifa = OGCInternal.shared().getAdIdentifier()
     }
-    var pxratio: Double = 2.0
-    var ua: String {
-        OGAWebViewUserAgentService.shared().webViewUserAgent ?? "Mozilla/5.0 (Linux; Android 11; Android SDK built for x86 Build/RSR1.210210.001.A1; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.106 Mobile Safari/537.36"
-    }
-    var w: Int { Int(UIScreen.main.bounds.width) }
 }
 
 func deviceModel() -> String {
