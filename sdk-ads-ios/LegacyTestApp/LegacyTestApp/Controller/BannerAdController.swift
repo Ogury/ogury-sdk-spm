@@ -50,7 +50,7 @@ final class BannerAdController: NSObject, BannerFormatController {
 
             view?.bringSubviewToFront(bannerAd)
 
-            banner = bannerAd
+//            banner = bannerAd
         } else if let campaignId = campaignId, !campaignId.isEmpty, let creativeId = creativeId, !creativeId.isEmpty {
             let obj = bannerAd
             let sel = NSSelectorFromString("loadWithCampaignId:creativeId:")
@@ -70,7 +70,7 @@ final class BannerAdController: NSObject, BannerFormatController {
 
             view?.bringSubviewToFront(bannerAd)
 
-            banner = bannerAd
+//            banner = bannerAd
         } else if let campaignId = campaignId, !campaignId.isEmpty {
             let obj = bannerAd
             let sel = NSSelectorFromString("loadWithCampaignId:")
@@ -90,7 +90,7 @@ final class BannerAdController: NSObject, BannerFormatController {
 
             view?.bringSubviewToFront(bannerAd)
 
-            banner = bannerAd
+//            banner = bannerAd
         } else {
             bannerAd.load()
         }
@@ -98,8 +98,8 @@ final class BannerAdController: NSObject, BannerFormatController {
 
     func destroy() {
         banner?.destroy()
-        banner?.removeFromSuperview()
-        banner = nil
+//        banner?.removeFromSuperview()
+//        banner = nil
     }
     
     func isLoaded() -> Bool {

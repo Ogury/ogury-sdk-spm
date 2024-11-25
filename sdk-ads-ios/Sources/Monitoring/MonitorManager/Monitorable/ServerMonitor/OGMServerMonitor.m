@@ -9,6 +9,7 @@
 #import <OguryCore/OguryNetworkClient.h>
 #import "OGMEventServerMonitorable.h"
 #import "OGAMonitoringLogMessage.h"
+#import "OGAAdMonitorEvent.h"
 
 @interface OGMServerMonitor ()
 
@@ -76,6 +77,7 @@
 
         [self cleanEvents];
         [self.log log:[[OGAMonitoringLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                     adConfiguration:((OGAAdMonitorEvent *)events.firstObject).adConfiguration
                                                              message:@"Send event"
                                                                event:events.firstObject]];
 
@@ -100,6 +102,7 @@
                                          [self updateSavedEventsWith:localArray];
                                      } else {
                                          [self.log log:[[OGAMonitoringLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                                                      adConfiguration:((OGAAdMonitorEvent *)events.firstObject).adConfiguration
                                                                                                 error:error
                                                                                               message:@"Send event failed"
                                                                                                 event:events.firstObject]];

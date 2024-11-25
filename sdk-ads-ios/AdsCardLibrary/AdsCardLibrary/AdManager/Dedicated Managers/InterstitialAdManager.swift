@@ -5,6 +5,7 @@
 import Foundation
 import SwiftUI
 import OguryAds
+import OguryAds.Private
 import ComposableArchitecture
 import Combine
 
@@ -70,6 +71,7 @@ public final class InterstitialAdManager: AdManager {
             ad = OguryInterstitialAd(adUnitId: options.adUnitId, mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
         }
         ad.delegate = proxyDelegate
+        ad.setLogOrigin(options.qaLabel)
         append(.adLoading)
         
         guard let bidder else {

@@ -5,6 +5,7 @@
 import Foundation
 import SwiftUI
 import OguryAds
+import OguryAds.Private
 import ComposableArchitecture
 import Combine
 
@@ -79,6 +80,7 @@ public final class BannerAdManager: AdManager {
                 self.ad?.destroy()
             }
             self.ad.delegate = self.proxyDelegate
+            self.ad.setLogOrigin(options.qaLabel)
             self.append(.adLoading)
             guard let bidder = self.bidder else {
                 self.load()

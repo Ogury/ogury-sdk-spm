@@ -314,7 +314,7 @@
     OGAAdLogMessage *message = [[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
                                                       adConfiguration:sequence.configuration
                                                               logType:OguryLogTypePublisher
-                                                                error:[OguryAdsError adParsingFailedWithStackTrace:@"stack"]
+                                                                error:[OguryAdError adParsingFailedWithStackTrace:@"stack"]
                                                               message:nil
                                                                  tags:nil];
     OCMVerify([self.log log:message]);

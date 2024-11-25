@@ -9,19 +9,44 @@ import AdsCardLibrary
 
 struct MainView: View {
     let store: StoreOf<MainFeature>
+    let logsStore: StoreOf<LogsFeature>
+    @State private var logsHeight: CGFloat = 150
+   
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            ZStack {
-                Color(AdColorPalette.Background.secondary.color).ignoresSafeArea()
-                
-                if viewStore.adFormats.isEmpty {
-                    EmptyManagersView(viewStore: viewStore)
-                } else {
-                    ListManagersView(store: store)
-                        .listStyle(InsetListStyle())
-                        .frame(width: UIScreen.main.bounds.size.width, alignment: .center)
-                }
-            }
+           VStack(spacing:0) {
+              ZStack {
+                   Color(AdColorPalette.Background.secondary.color).ignoresSafeArea()
+                   
+                   if viewStore.adFormats.isEmpty {
+                       EmptyManagersView(viewStore: viewStore)
+                   } else {
+                       ListManagersView(store: store)
+                           .listStyle(InsetListStyle())
+                           .frame(width: UIScreen.main.bounds.size.width, alignment: .center)
+                   }
+               }
+               
+               if viewStore.showLogs {
+                   VStack {
+                       VStack {
+                           LogsView(
+                            store: logsStore,
+                            logsHeight: $logsHeight
+                           )
+                           .padding()
+                           .frame(maxWidth: .infinity, maxHeight: .infinity)
+                       }
+                       .background(Color(AdColorPalette.Background.primary.color))
+                       .ignoresSafeArea()
+                       .cornerRadius(15)
+                       .shadow(radius: 3)
+                   }
+                   .background(Color(AdColorPalette.Background.secondary.color))
+                   .ignoresSafeArea()
+                   .frame(height: logsHeight)
+               }               
+           }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 toolBarContent(viewStore: viewStore)
@@ -30,7 +55,7 @@ struct MainView: View {
             .addViewModifiers(store: store, viewStore: viewStore)
         }
     }
-    
+   
     private func showAddView(from viewStore: ViewStoreOf<MainFeature>) {
         let _ = withAnimation {
             viewStore.send(.addButtonTapped)
@@ -48,6 +73,24 @@ struct MainView: View {
                     .frame(height: 40)
             }
             .foregroundStyle(Color(AdColorPalette.Background.placeholder.color))
+        }
+        
+        ToolbarItem(placement: .topBarTrailing) {
+            Button {
+                viewStore.send(.showLogs(!viewStore.showLogs))
+            } label: {
+                Image("console")
+                    .resizable()
+                    .frame(width: 22, height: 22)
+                    .foregroundStyle(
+                        Color(viewStore.showLogs
+                              ? AdColorPalette.Primary.accent.color
+                              : UIColor.gray)
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: 4))
+                    // just to increase a little bit the touching area
+                    .frame(height: 40)
+            }
         }
         
         ToolbarItem(placement: .topBarTrailing) {
@@ -153,30 +196,32 @@ extension View {
                     AppSettingsView(store: store)
                 }
                 .sheet(
-                    store: store.scope(
-                        state: \.$destination,
-                        action: MainFeature.Action.destination
-                    ),
-                    state: /MainFeature.Destination.State.add,
-                    action: MainFeature.Destination.Action.add) { store in
-                        if #available(iOS 16.0, *) {
-                            AddSheetView(store: store, viewStore: viewStore)
-                                .presentationDetents([.fraction(0.7)])
-                        } else {
-                            AddSheetView(store: store, viewStore: viewStore)
-                        }
+                  store: store.scope(
+                     state: \.$destination,
+                     action: MainFeature.Action.destination
+                  ),
+                  state: /MainFeature.Destination.State.add,
+                  action: MainFeature.Destination.Action.add,
+                  content: { store in
+                    if #available(iOS 16.0, *) {
+                        AddSheetView(store: store, viewStore: viewStore)
+                            .presentationDetents([.fraction(0.7)])
+                            .presentationBackgroundInteraction(.disabled)
+                    } else {
+                        AddSheetView(store: store, viewStore: viewStore)
                     }
-                    .blur(radius: viewStore.destination != nil ? 5 : 0)
+                 })
+                    
     }
 }
 
-#Preview {
-    NavigationView {
-        MainView(store: Store(initialState: MainFeature.State(), reducer: {
-            MainFeature(adHostingViewController: UIViewController(), adDelegate: nil)
-        }))
-    }
-}
+//#Preview {
+//    NavigationView {
+//        MainView(store: Store(initialState: MainFeature.State(), reducer: {
+//            MainFeature(adHostingViewController: UIViewController(), adDelegate: nil)
+//        }), logsStore: Store(initialState: LogsFeature.State() ,reducer: {LogsFeature()}))
+//    }
+//}
 
 @available(iOS, introduced: 15, deprecated: 16, message: "use ListManagersView for iOS 16+")
 struct LegacyHorizontalCardsView: View {

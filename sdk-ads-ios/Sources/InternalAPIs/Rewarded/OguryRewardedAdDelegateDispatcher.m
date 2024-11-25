@@ -5,12 +5,13 @@
 #import "OguryRewardedAdDelegateDispatcher.h"
 #import "OguryRewardedAd.h"
 #import "OGALog.h"
+#import "OguryAds+Log.h"
 
 @implementation OguryRewardedAdDelegateDispatcher
 
 - (void)clicked {
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
-                                         adConfiguration:nil
+                                         adConfiguration:self.rewardedAd.adConfiguration
                                                  logType:OguryLogTypeDelegate
                                                  message:@"[Rewarded] Ad clicked"
                                                     tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.rewardedAd.adUnitId] ]]];
@@ -24,7 +25,7 @@
 
 - (void)closed {
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
-                                         adConfiguration:nil
+                                         adConfiguration:self.rewardedAd.adConfiguration
                                                  logType:OguryLogTypeDelegate
                                                  message:@"[Rewarded] Ad closed"
                                                     tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.rewardedAd.adUnitId] ]]];
@@ -39,7 +40,7 @@
 
 - (void)failedWithError:(OguryAdError *)error {
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
-                                         adConfiguration:nil
+                                         adConfiguration:self.rewardedAd.adConfiguration
                                                  logType:OguryLogTypeDelegate
                                                    error:error
                                                  message:@"[Rewarded] Ad failed"
@@ -55,7 +56,7 @@
 
 - (void)loaded {
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
-                                         adConfiguration:nil
+                                         adConfiguration:self.rewardedAd.adConfiguration
                                                  logType:OguryLogTypeDelegate
                                                  message:@"[Rewarded] Ad loaded"
                                                     tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.rewardedAd.adUnitId] ]]];
@@ -69,7 +70,7 @@
 
 - (void)rewarded:(OguryReward *)reward {
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
-                                         adConfiguration:nil
+                                         adConfiguration:self.rewardedAd.adConfiguration
                                                  logType:OguryLogTypeDelegate
                                                  message:@"[Rewarded] reward received"
                                                     tags:@[
@@ -88,7 +89,7 @@
 
 - (void)adImpression {
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
-                                         adConfiguration:nil
+                                         adConfiguration:self.rewardedAd.adConfiguration
                                                  logType:OguryLogTypeDelegate
                                                  message:@"[Rewarded] Ad impression"
                                                     tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.rewardedAd.adUnitId] ]]];

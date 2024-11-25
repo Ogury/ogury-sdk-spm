@@ -172,4 +172,12 @@
     [self.adManager show:self.sequence additionalConditions:@[ self.anotherAdInFullScreenOverlayStateChecker ]];
 }
 
+- (void)setLogOrigin:(NSString *)origin {
+    [self.configuration setLogOrigin:origin];
+}
+
+- (OGAAdConfiguration *)adConfiguration {
+    return self.configuration;
+}
+
 @end

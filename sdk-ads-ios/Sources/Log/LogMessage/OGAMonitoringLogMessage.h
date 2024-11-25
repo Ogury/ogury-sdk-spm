@@ -15,10 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface OGAMonitoringLogMessage : OGAAdLogMessage
 
 - (instancetype)initWithLevel:(OguryLogLevel)level
+              adConfiguration:(OGAAdConfiguration *_Nullable)adConfiguration
                       message:(NSString *)message
                         event:(id<OGMEventMonitorable>)event;
 
 - (instancetype)initWithLevel:(OguryLogLevel)level
+              adConfiguration:(OGAAdConfiguration *_Nullable)adConfiguration
                         error:(NSError *)error
                       message:(NSString *_Nullable)message
                         event:(id<OGMEventMonitorable>)event;

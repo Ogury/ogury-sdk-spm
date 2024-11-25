@@ -67,7 +67,7 @@ struct BannerContainer: Equatable {
     var bannerType: AdType<BannerAdManager>
 }
 
-let testApp: OguryLogType = .init("TestApp")
+public let testApp: OguryLogType = .init("TestApp")
 
 struct AdViewFeature: Reducer {
     var adManager: any AdManager
@@ -111,7 +111,6 @@ struct AdViewFeature: Reducer {
         var showTestModeButton = true
         var enableAdUnitEditing = true
         var enableFeedbacks = true
-        @BindingState var showQALabelInput = false
         let id: UUID = UUID()
         let adType: AnyAdType!
         var isHeaderBidding: Bool {
@@ -237,7 +236,7 @@ struct AdViewFeature: Reducer {
         func log(_ message: String) {
             AdsCardManager.logger?.logMessage(OGAAdLogMessage(level: .debug,
                                                               logType: testApp,
-                                                              origin: nil,
+                                                              origin: baseOptions.qaLabel,
                                                               sdk: .ads,
                                                               messageDate: nil,
                                                               message: message,
@@ -606,7 +605,7 @@ struct AdViewFeature: Reducer {
                     return .none
                     
                 case .showQALabelTapped:
-                    state.showQALabelInput.toggle()
+                    adManager.adDelegate?.focusLogs(on: state.baseOptions.qaLabel)
                     return .none
             }
         }

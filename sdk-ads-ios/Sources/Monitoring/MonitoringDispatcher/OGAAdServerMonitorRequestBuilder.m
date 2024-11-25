@@ -15,6 +15,7 @@
 #import "OGADeviceOrientationConstants.h"
 #import "OGALog.h"
 #import "OGAProfigDao.h"
+#import "OGAAdMonitorEvent.h"
 #import "OGAWebViewUserAgentService.h"
 #import "OGAMonitoringLogMessage.h"
 #import "UIDevice+Orientation.h"
@@ -114,12 +115,14 @@ static NSString *const MonitoringServiceBodyDeviceAssetType = @"ios";
     NSData *payload = [NSJSONSerialization dataWithJSONObject:body options:0 error:&serializationError];
     if (serializationError) {
         [self.log log:[[OGAMonitoringLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                     adConfiguration:((OGAAdMonitorEvent *)events.firstObject).adConfiguration
                                                                error:serializationError
                                                              message:@"Failed to serialize metrics"
                                                                event:events.firstObject]];
         return nil;
     } else if (payload == nil) {
         [self.log log:[[OGAMonitoringLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                     adConfiguration:((OGAAdMonitorEvent *)events.firstObject).adConfiguration
                                                              message:@"Failed to serialize metrics (nil payload)"
                                                                event:events.firstObject]];
     }

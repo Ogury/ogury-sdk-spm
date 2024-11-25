@@ -11,8 +11,6 @@ import AdsCardLibrary
 import SwiftMessages
 import OguryAds.Private
 
-
-
 struct AppSettingsFeature: Reducer {
     struct State: Equatable {
         static func == (lhs: AppSettingsFeature.State, rhs: AppSettingsFeature.State) -> Bool {
@@ -72,7 +70,7 @@ struct AppSettingsFeature: Reducer {
         }
         var sdkVersion: String {
             let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
-            return "\(OGAInternal.shared().getVersion()) (\(origin == "Pod" ? "Release" : "Development"))"
+           return "\(String(describing: OGAInternal.shared().getVersion())) (\(origin == "Pod" ? "Release" : "Development"))"
         }
         var environment: String { Bundle.main.object(forInfoDictionaryKey: "DefaultEnv") as? String ?? "" }
     }

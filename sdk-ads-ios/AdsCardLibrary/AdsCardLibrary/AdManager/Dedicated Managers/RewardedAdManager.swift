@@ -5,6 +5,7 @@
 import Foundation
 import SwiftUI
 import OguryAds
+import OguryAds.Private
 import ComposableArchitecture
 import Combine
 
@@ -72,6 +73,7 @@ public final class RewardedAdManager: AdManager {
             ad = OguryRewardedAd(adUnitId: options.adUnitId, mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
         }
         ad.delegate = proxyDelegate
+        ad.setLogOrigin(options.qaLabel)
         append(.adLoading)
         guard let bidder else {
             load()

@@ -3,6 +3,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <os/log.h>
 #import "OguryLog.h"
 #import "OguryOSLogger.h"
 #import "OguryLogFormatter.h"

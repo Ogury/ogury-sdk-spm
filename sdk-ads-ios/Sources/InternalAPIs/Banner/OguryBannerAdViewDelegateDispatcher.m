@@ -5,12 +5,13 @@
 #import "OguryBannerAdViewDelegateDispatcher.h"
 #import "OguryBannerAdView.h"
 #import "OGALog.h"
+#import "OguryAds+Log.h"
 
 @implementation OguryBannerAdViewDelegateDispatcher
 
 - (void)clicked {
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
-                                         adConfiguration:nil
+                                         adConfiguration:self.banner.adConfiguration
                                                  logType:OguryLogTypeDelegate
                                                  message:@"[Banner] Ad clicked"
                                                     tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.banner.adUnitId] ]]];
@@ -24,7 +25,7 @@
 
 - (void)closed {
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
-                                         adConfiguration:nil
+                                         adConfiguration:self.banner.adConfiguration
                                                  logType:OguryLogTypeDelegate
                                                  message:@"[Banner] Ad closed"
                                                     tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.banner.adUnitId] ]]];
@@ -39,7 +40,7 @@
 
 - (void)failedWithError:(OguryAdError *)error {
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
-                                         adConfiguration:nil
+                                         adConfiguration:self.banner.adConfiguration
                                                  logType:OguryLogTypeDelegate
                                                    error:error
                                                  message:@"[Banner] Ad failed"
@@ -55,7 +56,7 @@
 
 - (void)loaded {
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
-                                         adConfiguration:nil
+                                         adConfiguration:self.banner.adConfiguration
                                                  logType:OguryLogTypeDelegate
                                                  message:@"[Banner] Ad loaded"
                                                     tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.banner.adUnitId] ]]];
@@ -69,7 +70,7 @@
 
 - (void)adImpression {
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
-                                         adConfiguration:nil
+                                         adConfiguration:self.banner.adConfiguration
                                                  logType:OguryLogTypeDelegate
                                                  message:@"[Banner] Ad impression"
                                                     tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.banner.adUnitId] ]]];
@@ -84,7 +85,7 @@
 - (UIViewController *)bannerViewController {
     if ([self.delegate respondsToSelector:@selector(presentingViewControllerForBannerAdView:)]) {
         [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
-                                             adConfiguration:nil
+                                             adConfiguration:self.banner.adConfiguration
                                                      logType:OguryLogTypeDelegate
                                                      message:@"[Banner] Ad bannerViewController"
                                                         tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.banner.adUnitId] ]]];

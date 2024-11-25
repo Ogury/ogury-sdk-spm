@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Constants
 
+@class OGAAdConfiguration;
+
 extern NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName;
 
 @interface OGABannerAdViewInternalAPI : NSObject <OGAAdInternalAPI>
@@ -54,6 +56,9 @@ extern NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationNa
 - (void)didMoveToSuperview;
 
 - (void)didMoveToWindow;
+
+- (void)setLogOrigin:(NSString *)origin;
+- (OGAAdConfiguration *)adConfiguration;
 
 @end
 

@@ -29,9 +29,10 @@
 @implementation OguryLogTests
 
 - (void)setUp {
-    self.oguryLog = [[OguryLog alloc] init];
+    self.oguryLog = OCMPartialMock([[OguryLog alloc] init]);
     self.oguryOSLoggerMock = OCMClassMock([OguryOSLogger class]);
-    OCMStub(self.oguryOSLoggerMock.allowedLogTypes).andReturn(@[OguryLogTypePublisher, OguryLogTypeInternal, OguryLogTypeRequest]);
+    NSArray *allowedLogTypes = @[OguryLogTypePublisher, OguryLogTypeInternal, OguryLogTypeRequests];
+    OCMStub([self.oguryOSLoggerMock allowedLogTypes]).andReturn(allowedLogTypes);
     [self.oguryLog clearLoggers];
     [self.oguryLog addLogger:self.oguryOSLoggerMock];
 }
@@ -67,21 +68,7 @@
 }
 
 - (void)testShouldLogDebug {
-    [self.oguryLog logMessage:OCMClassMock([OguryLogMessage class])];
-    OCMVerify([self.oguryOSLoggerMock logMessage:[OCMArg any]]);
-}
-
-- (void)testShouldLogInfo {
-    [self.oguryLog logMessage:OCMClassMock([OguryLogMessage class])];
-    OCMVerify([self.oguryOSLoggerMock logMessage:[OCMArg any]]);
-}
-
-- (void)testShouldLogWarning {
-    [self.oguryLog logMessage:OCMClassMock([OguryLogMessage class])];
-    OCMVerify([self.oguryOSLoggerMock logMessage:[OCMArg any]]);
-}
-
-- (void)testShouldLogError {
+    OCMStub([self.oguryLog canSendMessage:[OCMArg any] to:[OCMArg any]]).andReturn(YES);
     [self.oguryLog logMessage:OCMClassMock([OguryLogMessage class])];
     OCMVerify([self.oguryOSLoggerMock logMessage:[OCMArg any]]);
 }

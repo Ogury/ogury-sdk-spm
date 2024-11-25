@@ -254,4 +254,12 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
     [self.delegateDispatcher adImpression];
 }
 
+- (void)setLogOrigin:(NSString *)origin {
+    [self.configuration setLogOrigin:origin];
+}
+
+- (OGAAdConfiguration *)adConfiguration {
+    return self.configuration;
+}
+
 @end

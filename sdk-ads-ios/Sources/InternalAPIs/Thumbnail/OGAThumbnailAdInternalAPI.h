@@ -11,6 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class OGAAdConfiguration;
+
 @interface OGAThumbnailAdInternalAPI : NSObject <OGAAdInternalAPI>
 
 #pragma mark - properties
@@ -54,6 +56,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setBlacklistViewControllers:(NSArray<NSString *> *_Nullable)viewControllers;
 
 - (void)setWhitelistBundleIdentifiers:(NSArray<NSString *> *_Nullable)bundleIdentifiers;
+
+- (void)setLogOrigin:(NSString *)origin;
+- (OGAAdConfiguration *)adConfiguration;
 
 @end
 

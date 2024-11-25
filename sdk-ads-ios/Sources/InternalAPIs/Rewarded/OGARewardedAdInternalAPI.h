@@ -39,6 +39,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)showAdInViewController:(UIViewController *)viewController;
 
+- (void)setLogOrigin:(NSString *)origin;
+- (OGAAdConfiguration *)adConfiguration;
+
 @end
 
 NS_ASSUME_NONNULL_END

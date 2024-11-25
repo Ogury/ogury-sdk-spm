@@ -7,6 +7,7 @@
 
 import OguryAds.Private
 import OguryCore.Private
+import AdsCardLibrary
 import SwiftUI
 import UserDefault
 
@@ -24,23 +25,40 @@ public class TestAppLogFormatter: OguryLogFormatter {
     
     public override init() {
         let df = DateFormatter()
-        df.dateStyle = .medium
-        df.timeStyle = .medium
+        df.dateStyle = .short
+        df.timeStyle = .short
         var options: OguryLogDisplay = [.SDK, .date, .level, .origin, .type, .tags]
         if let store = UserDefaults.standard.value(forKey: "OguryLogDisplay") as? UInt {
             options = OguryLogDisplay(rawValue: store)
         }
-        super.init(options: options,
-                   dateFormatter: df)
+        super.init(options: options, dateFormatter: df)
     }
     
     public override func attributes(for option: OguryLogDisplay, originalMessage: OguryLogMessage) -> [NSAttributedString.Key : Any]? {
         var attr = super.attributes(for: option, originalMessage: originalMessage) ?? [:]
+        switch option {
+            case .SDK: attr[.font] = UIFont.init(name: "PPTelegraf-Semibold", size: 14)
+            case .date: attr[.font] = UIFont.init(name: "PPTelegraf-Regular", size: 12)
+            case .level: attr[.font] = UIFont.init(name: "PPTelegraf-Regular", size: 14)
+            case .origin: attr[.font] = UIFont.init(name: "PPTelegraf-Semibold", size: 10)
+            case .tags: attr[.font] = UIFont.init(name: "PPTelegraf-Light", size: 12)
+            case .type: attr[.font] = UIFont.init(name: "PPTelegraf-Regular", size: 14)
+            default: ()
+        }
         if let color = logTypeColor[originalMessage.logType as OguryLogType] {
             attr[.foregroundColor] = color
         }
         return attr
     }
+   
+   public override func attributes(for logMessage: OguryLogMessage) -> [NSAttributedString.Key : Any]? {
+      var attr = super.attributes(for: logMessage) ?? [:]
+       attr[.font] = UIFont.init(name: "PPTelegraf-Regular", size: 14)
+      if let color = logTypeColor[logMessage.logType as OguryLogType] {
+          attr[.foregroundColor] = color
+      }
+      return attr
+   }
     
     public override func add(_ option: OguryLogDisplay) {
         super.add(option)

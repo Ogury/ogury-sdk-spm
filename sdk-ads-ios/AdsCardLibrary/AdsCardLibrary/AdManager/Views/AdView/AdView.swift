@@ -91,9 +91,9 @@ public struct AdView: View {
                                 viewStore.send(.showQALabelTapped)
                             } label: {
                                 HStack {
-                                    Text(viewStore.baseOptions.qaLabel)
+                                    Text("Focus LOGS on this card")
                                     Spacer()
-                                    Image(systemName:"pencil")
+                                    Image(systemName:"magnifyingglass")
                                 }
                             }
                             
@@ -231,23 +231,23 @@ public struct AdView: View {
 }
 
 
-struct InterstitialView_Previews: PreviewProvider {
-    static var previews: some View {
-        ZStack {
-            Color(AdColorPalette.Background.separator.color).ignoresSafeArea()
-            
-            AdView(store: Store(
-                initialState: AdViewFeature.State(from: 
-                                                   BaseAdManagerOptions(showCampaignId:true, 
-                                                                        showCreativeId:true,
-                                                                        adDisplayName: "Card#1",
-                                                                        adUnitId: "test_test",
-                                                                        campaignId: "campaignId"),
-                                                  adType: AnyAdType(AdType<InterstitialAdManager>.interstitial)),
-                reducer: {
-                    AdViewFeature(adManager: InterstitialAdManager(adType: .interstitial))
-                }))
-            .padding()
-        }
-    }
-}
+//struct InterstitialView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ZStack {
+//            Color(AdColorPalette.Background.separator.color).ignoresSafeArea()
+//            
+//            AdView(store: Store(
+//                initialState: AdViewFeature.State(from: 
+//                                                   BaseAdManagerOptions(showCampaignId:true, 
+//                                                                        showCreativeId:true,
+//                                                                        adDisplayName: "Card#1",
+//                                                                        adUnitId: "test_test",
+//                                                                        campaignId: "campaignId"),
+//                                                  adType: AnyAdType(AdType<InterstitialAdManager>.interstitial)),
+//                reducer: {
+//                    AdViewFeature(adManager: InterstitialAdManager(adType: .interstitial))
+//                }))
+//            .padding()
+//        }
+//    }
+//}

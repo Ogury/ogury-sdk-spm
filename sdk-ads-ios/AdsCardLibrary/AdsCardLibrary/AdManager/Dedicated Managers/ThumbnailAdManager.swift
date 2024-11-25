@@ -5,6 +5,7 @@
 import Foundation
 import SwiftUI
 import OguryAds
+import OguryAds.Private
 import ComposableArchitecture
 import Combine
 
@@ -61,6 +62,7 @@ public final class ThumbnailAdManager: AdManager {
                 self.ad = OguryThumbnailAd(adUnitId: options.adUnitId, mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
             }
             self.ad.delegate = self.proxyDelegate
+            self.ad.setLogOrigin(options.qaLabel)
             self.load()
         }
         append(.adLoading)
