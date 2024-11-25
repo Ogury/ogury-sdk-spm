@@ -26,6 +26,7 @@ struct AppSettingsFeature: Reducer {
             lhs.usOptout == rhs.usOptout &&
             lhs.usOptoutPartner == rhs.usOptoutPartner &&
             lhs.enableFeedbacks == rhs.enableFeedbacks &&
+            lhs.importMethod == rhs.importMethod &&
             lhs.numberOfSDKStart == rhs.numberOfSDKStart
         }
         
@@ -36,6 +37,7 @@ struct AppSettingsFeature: Reducer {
         var showSpecificOptions: Bool { settings.showSpecificOptions }
         var showDspFields: Bool { settings.showDspFields }
         var bulkModeEnabled: Bool { settings.bulkModeEnabled }
+        var importMethod: ImportMethod { settings.importMethod }
         var startSDKWithApplication: Bool { settings.startSDKWithApplication }
         var numberOfSDKStart: Int {
             get {
@@ -97,6 +99,7 @@ struct AppSettingsFeature: Reducer {
         case logOptions(LogOptionFeature.Action)
         case incrementSDKStart
         case decrementSDKStart
+        case updateImportMethod(_: ImportMethod)
     }
     
     var body: some ReducerOf<Self> {
@@ -107,6 +110,10 @@ struct AppSettingsFeature: Reducer {
                     
                 case .incrementSDKStart:
                     state.numberOfSDKStart = min(state.numberOfSDKStart + 1, 10)
+                    return .none
+                    
+                case let .updateImportMethod(method):
+                    state.settings.importMethod = method
                     return .none
                     
                 case .decrementSDKStart:

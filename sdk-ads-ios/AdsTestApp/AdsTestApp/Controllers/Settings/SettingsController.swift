@@ -44,4 +44,7 @@ struct SettingsController {
    
     @UserDefault("showLogsSheet")
     var showLogsSheet: Bool = true
+   
+    @UserDefault("importMethod")
+    var importMethod: ImportMethod = .file
 }
