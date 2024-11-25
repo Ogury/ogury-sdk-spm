@@ -15,9 +15,8 @@
 #import "OGAProfigDao.h"
 #import "NSDate+OGAFormatter.h"
 #import "OGAConfigurationUtils.h"
-#import "OguryError+Ads.h"
-
-#warning FIXME - Implements unit tests
+#import "OguryAdError.h"
+#import "OguryAdError+Internal.h"
 
 NSString *const OGAMetricsRequestBuilderConnectivityKey = @"connectivity";
 NSString *const OGAMetricsRequestBuilderAtKey = @"at";
@@ -81,8 +80,13 @@ NSString *const OGAMetricsRequestBuilderContentKey = @"content";
     NSError *serializationError;
     NSData *payload = [NSJSONSerialization dataWithJSONObject:bodyContent options:0 error:&serializationError];
     if (serializationError || payload == nil) {
-        [self.log logError:serializationError ?: [OguryError createUnknownError]
-                   message:@"Failed to serialize metrics"];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypeInternal
+                                                       error:serializationError ?: [OguryError createOguryErrorWithCode:OGAInternalUnknownError]
+                                                     message:@"Failed to serialize metrics"
+                                                        tags:nil]];
+
         return nil;
     }
 

@@ -5,6 +5,7 @@
 #import <Foundation/Foundation.h>
 #import "OGAIsKilledChecker.h"
 #import "OGALog.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAIsKilledChecker ()
 
@@ -32,9 +33,13 @@
 - (BOOL)checkForSequence:(OGAAdSequence *)sequence error:(OguryError **)error {
     if ([self.adManager isKilled:sequence]) {
         if (error) {
-            *error = [OguryError createWebViewKilledError];
+            *error = [OguryAdError webviewTerminatedBySystem];
 
-            [self.log logAd:OguryLogLevelError forAdConfiguration:sequence.configuration message:@"Failed to show (ad killed by the OS)"];
+            [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                 adConfiguration:sequence.configuration
+                                                         logType:OguryLogTypePublisher
+                                                         message:@"Failed to show (ad killed by the OS)"
+                                                            tags:nil]];
         }
         return NO;
     }

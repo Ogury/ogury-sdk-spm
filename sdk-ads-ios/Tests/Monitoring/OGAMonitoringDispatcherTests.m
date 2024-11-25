@@ -13,6 +13,7 @@
 #import "OGAOrderedDictionaryTestHelper.h"
 #import "OGMMonitorManager.h"
 #import "OguryAdsADType.h"
+#import "OGALog.h"
 #import "OGAMonitorEventConfigurationFactory.h"
 
 @interface OGMMonitorEvent ()
@@ -29,6 +30,7 @@
                             monitorManager:(OGMMonitorManager *)monitorManager
                         environmentManager:(OGAEnvironmentManager *)environmentManager
                       configurationFactory:(OGAMonitorEventConfigurationFactory *)configurationFactory
+                                       log:(OGALog *)log
                         notificationCenter:(NSNotificationCenter *)notificationCenter;
 
 - (void)sendMonitoringEvent:(OGAAdMonitorEvent *)event;
@@ -61,6 +63,7 @@
 @property(nonatomic, strong) NSNotificationCenter *notificationCenter;
 @property(nonatomic, strong) OGAMonitorEventConfigurationFactory *configurationFactory;
 @property(nonatomic, strong) OGAMonitoringDetails *details;
+@property(nonatomic, strong) OGALog *log;
 
 @end
 
@@ -73,10 +76,12 @@
     self.monitorManager = OCMClassMock([OGMMonitorManager class]);
     self.notificationCenter = OCMClassMock([NSNotificationCenter class]);
     self.environmentManager = OCMClassMock([OGAEnvironmentManager class]);
+    self.log = OCMClassMock([OGALog class]);
     self.monitoringDispatcher = OCMPartialMock([[OGAMonitoringDispatcher alloc] initWithLegacyEventMetrics:self.legacyEventMetrics
                                                                                             monitorManager:self.monitorManager
                                                                                         environmentManager:self.environmentManager
                                                                                       configurationFactory:self.configurationFactory
+                                                                                                       log:self.log
                                                                                         notificationCenter:self.notificationCenter]);
     self.adConfiguration = OCMClassMock([OGAAdConfiguration class]);
     self.details = OCMClassMock([OGAMonitoringDetails class]);
@@ -582,6 +587,7 @@
                                                                                 monitorManager:self.monitorManager
                                                                             environmentManager:self.environmentManager
                                                                           configurationFactory:self.configurationFactory
+                                                                                           log:self.log
                                                                             notificationCenter:self.notificationCenter];
     OGAOrderedDictionary *dict = [sut errorContentFor:OGAMonitoringPrecacheErrorTimeOut arguments:@[ @"1", @"2", @"3" ]];
     XCTAssertEqual(dict.count, 4);
@@ -596,6 +602,7 @@
                                                                                 monitorManager:self.monitorManager
                                                                             environmentManager:self.environmentManager
                                                                           configurationFactory:self.configurationFactory
+                                                                                           log:self.log
                                                                             notificationCenter:self.notificationCenter];
     OGAOrderedDictionary *dict = [sut errorContentFor:OGAMonitoringPrecacheErrorMraidDownloadFailed arguments:@[ @"1", @"2" ]];
     XCTAssertEqual(dict.count, 3);
@@ -609,6 +616,7 @@
                                                                                 monitorManager:self.monitorManager
                                                                             environmentManager:self.environmentManager
                                                                           configurationFactory:self.configurationFactory
+                                                                                           log:self.log
                                                                             notificationCenter:self.notificationCenter];
     OGAOrderedDictionary *dict = [sut errorContentFor:OGAMonitoringPrecacheErrorHtmlEmpty arguments:nil];
     XCTAssertEqual(dict.count, 1);
@@ -620,6 +628,7 @@
                                                                                 monitorManager:self.monitorManager
                                                                             environmentManager:self.environmentManager
                                                                           configurationFactory:self.configurationFactory
+                                                                                           log:self.log
                                                                             notificationCenter:self.notificationCenter];
     OGAOrderedDictionary *dict = [sut errorContentFor:OGAMonitoringPrecacheErrorHtmlLoadFailed arguments:nil];
     XCTAssertEqual(dict.count, 1);
@@ -631,6 +640,7 @@
                                                                                 monitorManager:self.monitorManager
                                                                             environmentManager:self.environmentManager
                                                                           configurationFactory:self.configurationFactory
+                                                                                           log:self.log
                                                                             notificationCenter:self.notificationCenter];
     OGAOrderedDictionary *dict = [sut errorContentFor:OGAMonitoringPrecacheErrorUnload arguments:nil];
     XCTAssertEqual(dict.count, 1);

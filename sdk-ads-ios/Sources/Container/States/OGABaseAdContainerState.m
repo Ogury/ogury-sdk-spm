@@ -80,7 +80,7 @@
 
 #pragma mark - Methods
 
-- (BOOL)display:(id<OGAAdDisplayer>)displayer error:(OguryError **)error {
+- (BOOL)display:(id<OGAAdDisplayer>)displayer error:(OguryAdError **)error {
     self.displayer = displayer;
     [self.displayer setupCloseButtonTimer];
     return YES;
@@ -158,7 +158,11 @@
                 [self.displayer.delegate performAction:forceCloseAdAction error:&closeError];
 
                 if (!closeError) {
-                    [self.log logAdError:closeError forAdConfiguration:self.displayer.ad.adConfiguration message:@"Failed to close Ad"];
+                    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                                         adConfiguration:self.displayer.ad.adConfiguration
+                                                                 logType:OguryLogTypeInternal
+                                                                 message:@"Failed to close Ad during keepAlive"
+                                                                    tags:nil]];
                 }
             });
         }

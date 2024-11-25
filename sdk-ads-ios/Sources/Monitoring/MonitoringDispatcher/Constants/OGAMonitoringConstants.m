@@ -47,3 +47,4 @@ NSString *const OGAMonitoringErrorEventContentAccomplished = @"accomplished";
 NSString *const OGAMonitoringErrorEventContentTimeSpan = @"time_span";
 NSString *const OGAMonitoringErrorEventContentTimeoutDuration = @"timeout_duration";
 NSString *const OGAMonitoringErrorEventContentUrl = @"url";
+NSString *const OGAMonitoringErrorEventWebviewDidTerminateStackTrace = @"Webview terminated by the OS";

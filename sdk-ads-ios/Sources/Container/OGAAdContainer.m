@@ -5,10 +5,11 @@
 #import "OGAAdContainer.h"
 #import "OGACloseAdAction.h"
 #import "OGAForceCloseAdAction.h"
-#import "OguryAdsError.h"
+#import "OguryAdError.h"
 #import "OGAAdDisplayerInformation.h"
 #import "OGAAdDisplayerUpdateScreenSizeInformation.h"
-#import "OguryError+Ads.h"
+#import "OguryAdError.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAAdContainer ()
 
@@ -47,11 +48,11 @@
 
 #pragma mark - Methods
 
-- (BOOL)performAction:(NSString *)action error:(OguryError **)error {
+- (BOOL)performAction:(NSString *)action error:(OguryAdError **)error {
     id<OGAAdContainerTransition> transition = [self findTransitionForAction:action initialState:self.currentState];
     if (!transition) {
         if (error) {
-            *error = [OguryError createOguryErrorWithCode:OguryAdsUnknownError localizedDescription:@"No transitions available."];
+            *error = [OguryAdError createOguryErrorWithCode:OGAInternalUnknownError localizedDescription:@"No transitions available."];
         }
         return NO;
     }
@@ -63,10 +64,10 @@
     }
 
     id<OGAAdDisplayer> displayer = self.currentState.displayer;
-    OguryError *transitionError = nil;
+    OguryAdError *transitionError = nil;
     if (![transition performTransition:&transitionError]) {
         if (error) {
-            *error = [OguryError createCantShowAdsInPresentingViewControllerError];
+            *error = [OguryAdError viewControllerPreventsAdFromBeingDisplayed];
         }
         if ([self.delegate respondsToSelector:@selector(didFailToTransitionTo:error:)]) {
             [self.delegate didFailToTransitionTo:transition.finalState error:transitionError];

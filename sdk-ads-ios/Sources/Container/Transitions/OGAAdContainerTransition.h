@@ -3,7 +3,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <OguryCore/OguryError.h>
 
 #import "OGAAdContainerState.h"
 
@@ -23,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Methods
 
-- (BOOL)performTransition:(OguryError *_Nullable *_Nullable)error;
+- (BOOL)performTransition:(OguryAdError *_Nullable *_Nullable)error;
 
 @end
 

@@ -58,13 +58,21 @@ NSTimeInterval const OGAKeepAliveTime = 6;
     NSString *key = [self.formater stringFromDate:toRemoveDate];
     @synchronized(self) {
         self.keepAliveDict[key] = object;
-        [self.log logFormat:OguryLogLevelInfo format:@"⏰ Object %@ Added in Keep Alive", key];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypeInternal
+                                                     message:[NSString stringWithFormat:@"⏰ Object %@ Added in Keep Alive", key]
+                                                        tags:nil]];
     }
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)self.keepAliveTime * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         @synchronized(self) {
             [self.keepAliveDict removeObjectForKey:key];
-            [self.log logFormat:OguryLogLevelInfo format:@"💥⏰💥 Object with key %@ removed from Keep alive", key];
+            [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                                 adConfiguration:nil
+                                                         logType:OguryLogTypeInternal
+                                                         message:[NSString stringWithFormat:@"💥⏰💥 Object with key %@ removed from Keep alive", key]
+                                                            tags:nil]];
         }
     });
 }

@@ -11,7 +11,8 @@
 #import "OGAMetricsService.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGATrackEvent.h"
-#import "OguryError+Ads.h"
+#import "OguryAdError.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAAdSequenceCoordinator () <OGAAdControllerDelegate>
 
@@ -163,23 +164,23 @@
 
 #pragma mark - Methods
 
-- (BOOL)show:(OguryError *_Nullable *_Nullable)error {
+- (BOOL)show:(OguryAdError *_Nullable *_Nullable)error {
     if (!self.isLoaded) {
         if (error) {
-            *error = [OguryError createNotLoadedError];
+            *error = [OguryAdError noAdLoaded];
         }
         return NO;
     }
     if (self.isDisplayed) {
         if (error) {
 #warning FIXME create dedicated error for this case.
-            *error = [OguryError createAnotherAdAlreadyDisplayedError];
+            *error = [OguryAdError anotherAdIsAlreadyDisplayed];
         }
         return NO;
     }
     if (self.isClosed) {
         if (error) {
-            *error = [OguryError createNotLoadedError];
+            *error = [OguryAdError noAdLoaded];
         }
         return NO;
     }
@@ -195,7 +196,7 @@
 
     if (!initialController) {
         if (error) {
-            *error = [OguryError createAdExpiredError];
+            *error = [OguryAdError adExpired];
         }
         return NO;
     }
@@ -309,11 +310,13 @@
         [self setSequenceStatusLoadedWithAdController:controller];
     } else if (self.isClosed) {
         self.sequence.status = OGAAdSequenceStatusClosed;
-        [self.sequence.configuration.delegateDispatcher failedWithError:[OguryError createNotLoadedError]];
+        [self.sequence.configuration.delegateDispatcher failedWithError:[OguryAdError noAdLoaded]];
         [self.metricService sendEvent:[[OGATrackEvent alloc] initWithAd:ad event:OGAMetricsEventLoadedError]];
     } else if (self.isNotLoadedYet) {
         self.sequence.status = OGAAdSequenceStatusError;
-        [self.sequence.configuration.delegateDispatcher failedWithError:[OguryError createNotLoadedError]];
+        [self.sequence.configuration.delegateDispatcher failedWithError:unloadOrigin == UnloadOriginTimeout
+                                                            ? [OguryAdError adPrecachingTimeout]
+                                                            : [OguryAdError noAdLoaded]];
         [self.metricService sendEvent:[[OGATrackEvent alloc] initWithAd:ad event:OGAMetricsEventLoadedError]];
         if (unloadOrigin == UnloadOriginFormat) {
             [self.monitoringDispatcher sendLoadErrorEventPrecacheFail:OGAMonitoringPrecacheErrorUnload
@@ -337,6 +340,18 @@
     [self.sequenceRetainController retainSequence:self.sequence fromController:controller];
 }
 
+- (void)controller:(OGAAdController *)controller webkitProcessDidTerminateForAd:(OGAAd *)ad {
+    self.sequence.status = OGAAdSequenceStatusError;
+    if ([ad.adConfiguration.delegateDispatcher respondsToSelector:@selector(failedWithError:)]) {
+        OguryAdError *adError = [OguryAdError adPrecachingFailedWithStackTrace:OGAMonitoringErrorEventWebviewDidTerminateStackTrace];
+        [ad.adConfiguration.delegateDispatcher failedWithError:adError];
+    }
+    OGAMutableOrderedDictionary *precachingFailReason = [[OGAMutableOrderedDictionary alloc] init];
+    precachingFailReason[OGAMonitoringErrorEventContentReason] = OGAMonitoringErrorEventWebviewDidTerminateStackTrace;
+    [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventPrecacheError adConfiguration:ad.adConfiguration errorContent:precachingFailReason];
+    [self.metricService sendEvent:[[OGATrackEvent alloc] initWithAd:controller.ad event:OGAMetricsEventLoadedError]];
+}
+
 - (void)controller:(OGAAdController *)controller didCloseOverlayForAd:(OGAAd *)ad {
     // Release the sequence.
     [self.sequenceRetainController releaseSequence:self.sequence fromController:controller];
@@ -357,7 +372,7 @@
         [self close];
         return;
     }
-    OguryError *error = nil;
+    OguryAdError *error = nil;
     if (![nextController show:&error]) {
         [self.sequence.configuration.delegateDispatcher failedWithError:error];
         [self close];
@@ -368,7 +383,7 @@
 - (void)controller:(OGAAdController *)controller didUnLoadWithNextAd:(OGANextAd *)nextAd {
     if (self.sequence.status == OGAAdSequenceStatusShown) {
         OGAAdController *nextController = [self controllerForNextAd:nextAd closingController:controller];
-        OguryError *error = nil;
+        OguryAdError *error = nil;
         if (!nextController) {
             [self close];
             [self dispatchClosedIfNecessary];

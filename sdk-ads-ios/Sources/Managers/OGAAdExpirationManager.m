@@ -51,7 +51,11 @@
 
 - (void)sendExpirationTrackerEventForAd:(OGAAd *)ad {
     if (!ad.localIdentifier) {
-        [self.log logAdFormat:OguryLogLevelWarning forAdConfiguration:ad.adConfiguration format:@"Tried to send expiration tracker event without a local identifier for ad with campaign '%@' and ad unit id '%@'.", ad.campaignId, ad.adUnit.identifier];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                             adConfiguration:ad.adConfiguration
+                                                     logType:OguryLogTypeInternal
+                                                     message:@"Tried to send expiration tracker event without a local identifier"
+                                                        tags:nil]];
         return;
     }
 
@@ -59,7 +63,11 @@
         if (![self.expirationTrackersSentByAdLocalIdentifiers[ad.localIdentifier] boolValue]) {
             self.expirationTrackersSentByAdLocalIdentifiers[ad.localIdentifier] = @(YES);
 
-            [self.log logAdFormat:OguryLogLevelInfo forAdConfiguration:ad.adConfiguration format:@"Sending EXPIRED track for ad with campaign '%@' and ad unit id '%@'.", ad.campaignId, ad.adUnit.identifier];
+            [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                                 adConfiguration:ad.adConfiguration
+                                                         logType:OguryLogTypeInternal
+                                                         message:@"Sending EXPIRED track"
+                                                            tags:nil]];
 
             [self.metricsService sendEvent:[[OGATrackEvent alloc] initWithAd:ad event:OGAMetricsEventExpired]];
         }

@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Initialization
 
 - (instancetype)initWithLevel:(OguryLogLevel)level message:(NSString *)message request:(NSURLRequest *)request;
+- (instancetype)initWithLevel:(OguryLogLevel)level sdk:(OguryLogSDK)sdk message:(NSString *)message request:(NSURLRequest *)request;
 
 @end
 

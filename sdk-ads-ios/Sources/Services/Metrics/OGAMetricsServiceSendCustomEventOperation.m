@@ -43,7 +43,11 @@
     NSURL *url = [NSURL URLWithString:self.eventURL];
 
     if (!url) {
-        [self.log logFormat:OguryLogLevelError format:@"Failed to parse custom track event URL [eventURL: %@]", self.eventURL];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypePublisher
+                                                     message:[NSString stringWithFormat:@"Failed to parse custom track event URL [eventURL: %@]", self.eventURL]
+                                                        tags:nil]];
         return;
     }
 
@@ -51,14 +55,22 @@
     NSURLRequest *eventRequest = [builder build];
 
     if (!eventRequest) {
-        [self.log logFormat:OguryLogLevelError format:@"Failed to create request for custom track event [eventURL: %@]", self.eventURL];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypePublisher
+                                                     message:[NSString stringWithFormat:@"Failed to create request for custom track event [eventURL: %@]", self.eventURL]
+                                                        tags:nil]];
         return;
     }
 
     [self.networkClient performRequest:eventRequest
                      completionHandler:^(NSData *_Nullable result, NSError *_Nullable error) {
                          if (error) {
-                             [self.log logFormat:OguryLogLevelError format:@"An error occurred while sending custom track event [eventURL: %@]", self.eventURL];
+                             [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                                  adConfiguration:nil
+                                                                          logType:OguryLogTypePublisher
+                                                                          message:[NSString stringWithFormat:@"An error occurred while sending custom track event [eventURL: %@]", self.eventURL]
+                                                                             tags:nil]];
                          }
                      }];
 }

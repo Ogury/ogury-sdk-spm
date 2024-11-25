@@ -3,5 +3,6 @@
 //
 
 struct HeaderBiddingBid: Codable {
-    let ext: HeaderBiddingExt
+    let ext: HeaderBiddingExt?
+    let adm: String?
 }

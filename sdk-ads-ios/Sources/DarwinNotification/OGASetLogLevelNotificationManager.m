@@ -37,7 +37,12 @@
 - (void)registerToNotification {
     NSString *formattedString = [self.stringFormatter stringFromOGADarwinNotificationIdentifier:OGADarwinNotificationIdentifierLogAll];
 
-    [self.log logFormat:OguryLogLevelInfo format:@"Registered to darwin notification [%@]", formattedString];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"Registered to darwin notification"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"name" value:formattedString] ]]];
+
     CFNotificationCenterAddObserver(self.cFNotificationCenter,
                                     (__bridge const void *)(self),
                                     ogaNotificationCallback,
@@ -49,7 +54,12 @@
 - (void)unregisterFromNotification {
     NSString *formattedString = [self.stringFormatter stringFromOGADarwinNotificationIdentifier:OGADarwinNotificationIdentifierLogAll];
 
-    [self.log logFormat:OguryLogLevelInfo format:@"Unregistered darwin notification [%@]", formattedString];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"Unregistered to darwin notification"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"name" value:formattedString] ]]];
+
     CFNotificationCenterRemoveObserver(self.cFNotificationCenter, (__bridge const void *)(self), (__bridge CFStringRef)formattedString, NULL);
 }
 

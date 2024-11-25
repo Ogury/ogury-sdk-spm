@@ -3,9 +3,10 @@
 //
 
 #import "OGAAssetKeyManager.h"
-#import "OguryError+Ads.h"
+#import "OguryAdError.h"
 #import "OGALog.h"
 #import "OGAUserDefaultsStore.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGAAssetKeyManager ()
 
@@ -43,7 +44,6 @@ NSString *const OGAssetKeyStoreKey = @"OGAssetKeyStoreKey";
     static OGAAssetKeyManager *instance = nil;
 
     dispatch_once(&onceToken, ^{
-        NSLog(@"%p", &onceToken);
         instance = [[self alloc] init];
     });
 
@@ -82,7 +82,7 @@ NSString *const OGAssetKeyStoreKey = @"OGAssetKeyStoreKey";
 
 - (void)sdkIsReady {
     // check previous state because Profig can be synced without calling the start method
-    if (self.sdkState == OgurySDKStateStarting) {
+    if (self.sdkState == OgurySDKStateStarting || self.sdkState == OgurySDKStateError) {
         self.sdkState = OgurySDKStateReady;
     }
 }
@@ -91,20 +91,24 @@ NSString *const OGAssetKeyStoreKey = @"OGAssetKeyStoreKey";
     self.sdkState = OgurySDKStateError;
 }
 
-- (BOOL)checkAssetKeyIsValid:(OguryError *_Nullable *_Nullable)error {
+- (BOOL)checkAssetKeyIsValid:(OguryError *_Nullable *_Nullable)error type:(OguryAdErrorType)type {
     if (!self.assetKeyHasBeenSet) {
         if (error) {
-            *error = [OguryError createSdkInitNotCalledError];
+            *error = [OguryAdError sdkNotInitializedFrom:type];
         }
 
-        [self.log log:OguryLogLevelError message:@"[setup] Asset key has not been set"];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypePublisher
+                                                     message:@"[setup] Asset key has not been set"
+                                                        tags:nil]];
         self.sdkState = OgurySDKStateError;
         return NO;
     }
 
     if (!self.assetKey || [self.assetKey isEqualToString:@""]) {
         if (error) {
-            *error = [OguryError createAssetKeyNotValidError];
+            *error = [OguryAdError sdkNotProperlyInitializedFrom:type];
         }
         self.sdkState = OgurySDKStateError;
         return NO;

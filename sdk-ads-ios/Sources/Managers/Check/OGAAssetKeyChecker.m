@@ -17,14 +17,17 @@
 
 #pragma mark - Initialization
 
-- (instancetype)init {
-    return [self initWithAssetKeyManager:[OGAAssetKeyManager shared] log:[OGALog shared]];
+- (instancetype)initFrom:(OguryAdErrorType)type {
+    return [self initWithAssetKeyManager:[OGAAssetKeyManager shared] type:type log:[OGALog shared]];
 }
 
-- (instancetype)initWithAssetKeyManager:(OGAAssetKeyManager *)assetKeyManager log:(OGALog *)log {
+- (instancetype)initWithAssetKeyManager:(OGAAssetKeyManager *)assetKeyManager
+                                   type:(OguryAdErrorType)type
+                                    log:(OGALog *)log {
     if (self = [super init]) {
         _assetKeyManager = assetKeyManager;
         _log = log;
+        _type = type;
     }
     return self;
 }
@@ -32,10 +35,14 @@
 #pragma mark - Methods
 
 - (BOOL)checkForSequence:(OGAAdSequence *)sequence error:(OguryError **)error {
-    BOOL isAssetKeyValid = [self.assetKeyManager checkAssetKeyIsValid:error];
+    BOOL isAssetKeyValid = [self.assetKeyManager checkAssetKeyIsValid:error type:self.type];
 
     if (!isAssetKeyValid) {
-        [self.log logFormat:OguryLogLevelError format:@"Assetkey '%@' is not valid", self.assetKeyManager.assetKey];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypePublisher
+                                                     message:[NSString stringWithFormat:@"Assetkey '%@' is not valid", self.assetKeyManager.assetKey]
+                                                        tags:nil]];
     }
 
     return isAssetKeyValid;

@@ -14,6 +14,7 @@
 #import "OGAMonitoringDispatcher.h"
 #import "OGMMonitorManager.h"
 #import "OguryAdsADType.h"
+#import "OGALog.h"
 #import "OguryThumbnailAdDelegateDispatcher.h"
 #import "NSDate+OGAFormatter.h"
 #import "OGAMonitorEventConfigurationFactory.h"
@@ -40,6 +41,7 @@
                             monitorManager:(OGMMonitorManager *)monitorManager
                         environmentManager:(OGAEnvironmentManager *)environmentManager
                       configurationFactory:(OGAMonitorEventConfigurationFactory *)configurationFactory
+                                       log:(OGALog *)log
                         notificationCenter:(NSNotificationCenter *)notificationCenter;
 
 - (void)sendMonitoringEvent:(OGAAdMonitorEvent *)event;
@@ -60,6 +62,7 @@
 @property(nonatomic, strong) OGAEnvironmentManager *environmentManager;
 @property(nonatomic, strong) NSNotificationCenter *notificationCenter;
 @property(nonatomic, strong) NSArray *extras;
+@property(nonatomic, strong) OGALog *log;
 
 @end
 
@@ -71,10 +74,12 @@
     self.monitorManager = OCMClassMock([OGMMonitorManager class]);
     self.notificationCenter = OCMClassMock([NSNotificationCenter class]);
     self.environmentManager = OCMClassMock([OGAEnvironmentManager class]);
+    self.log = OCMClassMock([OGALog class]);
     self.monitoringDispatcher = OCMPartialMock([[OGAMonitoringDispatcher alloc] initWithLegacyEventMetrics:self.legacyEventMetrics
                                                                                             monitorManager:self.monitorManager
                                                                                         environmentManager:self.environmentManager
                                                                                       configurationFactory:self.configurationFactory
+                                                                                                       log:self.log
                                                                                         notificationCenter:self.notificationCenter]);
     [self.monitoringDispatcher setTrackingMask:OGATrackingMaskAdsLifeCycle];
     [self.monitoringDispatcher setBlackListedTracks:@[]];

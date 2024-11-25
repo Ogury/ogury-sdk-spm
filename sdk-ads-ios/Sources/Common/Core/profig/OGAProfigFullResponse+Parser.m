@@ -20,13 +20,21 @@
         json = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingAllowFragments error:&error];
     }
     @catch (NSException *exception) {
-        [[OGALog shared] logFormat:OguryLogLevelError format:@"[Setup] profig response parsing exception: %@", exception.reason];
+        [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                    adConfiguration:nil
+                                                            logType:OguryLogTypePublisher
+                                                            message:[NSString stringWithFormat:@"[Setup] profig response parsing exception: %@", exception.reason]
+                                                               tags:nil]];
     }
     if (error) {
         return nil;
     }
 
-    [[OGALog shared] logFormat:OguryLogLevelDebug format:@"[Setup] profig response parsed: %@", json];
+    [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                adConfiguration:nil
+                                                        logType:OguryLogTypeInternal
+                                                        message:[NSString stringWithFormat:@"[Setup] profig response parsed: %@", json]
+                                                           tags:nil]];
 
     if (json.allKeys.count == 0) {
         return nil;
@@ -69,7 +77,11 @@
     OGAProfigFullResponse *profig = [[OGAProfigFullResponse alloc] initWithDictionary:profigJSON error:&error];
 
     if (error) {
-        [[OGALog shared] logErrorFormat:error format:@"[Setup] profig error parsing: json %@", profigJSON];
+        [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                    adConfiguration:nil
+                                                            logType:OguryLogTypeInternal
+                                                            message:[NSString stringWithFormat:@"[Setup] profig error parsing: json %@", profigJSON]
+                                                               tags:nil]];
         return nil;
     }
 

@@ -8,7 +8,6 @@
 #import "OGAAssetKeyManager.h"
 #import "OGAAdIdentifierService.h"
 #import "OGAConfigurationUtils.h"
-#import "UIApplication+Orientation.h"
 #import "OGADeviceService.h"
 #import "OGATokenConstants.h"
 #import "OGAAdConfiguration.h"
@@ -21,6 +20,7 @@
 #import "OGAOMIDService.h"
 #import "OGAProfigDao.h"
 #import "OGADevice.h"
+#import "OguryAdError+Internal.h"
 
 @interface OGATokenGenerator ()
 
@@ -61,47 +61,92 @@
     return self;
 }
 
-- (BOOL)canSendToken {
-    OguryError *error = nil;
-    BOOL isAssetKeyValid = [self.assetKeyManager checkAssetKeyIsValid:&error];
-    return [self.profigDao.profigFullResponse adsEnabled] && isAssetKeyValid;
-}
-
 - (OGADevice *)currentDevice {
     return [[OGADevice alloc] init];
 }
 
-- (NSDictionary *_Nullable)collectBidderTokenData {
-    return [self collectBidderTokenDataWithCampaignId:nil creativeId:nil dspCreativeId:nil dspRegion:nil];
+- (void)bidToken:(BidTokenCompletionBlock)completion {
+    [self bidTokenWithCampaignId:nil creativeId:nil dspCreativeId:nil dspRegion:nil completion:completion];
 }
 
-- (NSString *_Nullable)generateBidderToken {
-    if (![self canSendToken]) {
-        return nil;
+- (void)bidTokenWithCampaignId:(NSString *)campaignId
+                    completion:(BidTokenCompletionBlock)completion {
+    [self bidTokenWithCampaignId:campaignId creativeId:nil dspCreativeId:nil dspRegion:nil completion:completion];
+}
+
+- (void)bidTokenWithCampaignId:(nonnull NSString *)campaignId
+                    creativeId:(NSString *_Nullable)creativeId
+                    completion:(BidTokenCompletionBlock)completion {
+    [self bidTokenWithCampaignId:campaignId creativeId:creativeId dspCreativeId:nil dspRegion:nil completion:completion];
+}
+
+- (void)bidTokenWithCampaignId:(NSString *_Nullable)campaignId
+                    creativeId:(NSString *_Nullable)creativeId
+                 dspCreativeId:(NSString *_Nullable)dspCreativeId
+                     dspRegion:(NSString *_Nullable)dspRegion
+                    completion:(BidTokenCompletionBlock)completion {
+    OguryError *error = nil;
+    if (![self.assetKeyManager checkAssetKeyIsValid:&error type:OguryAdErrorTypeLoad]) {
+        completion(nil, [OguryAdError headerBiddingFrom:error.code]);
+        return;
     }
-    return [[self collectBidderTokenData] ogaEncodeToBase64];
-}
-
-- (NSString *_Nullable)generateBidderToken:(NSString *)campaignId {
-    return [self generateBidderToken:campaignId creativeId:nil];
-}
-
-- (NSString *_Nullable)generateBidderToken:(nonnull NSString *)campaignId creativeId:(NSString *_Nullable)creativeId {
-    return [self generateBidderToken:campaignId creativeId:creativeId dspCreativeId:nil dspRegion:nil];
-}
-
-- (NSString *_Nullable)generateBidderToken:(NSString *)campaignId creativeId:(NSString *_Nullable)creativeId dspCreativeId:(NSString *_Nullable)dspCreativeId dspRegion:(NSString *_Nullable)dspRegion {
-    if (![self canSendToken]) {
-        return nil;
+    if ([self.profigManager shouldSync]) {
+        [self.profigManager syncProfigWithCompletion:^(OGAProfigFullResponse *response, NSError *error) {
+            if (error) {
+                if (self.assetKeyManager.sdkState != OgurySDKStateReady) {
+                    completion(nil, [OguryAdError headerBiddingFrom:OguryBidTokenErrorCodeSDKNotProperlyInitialized]);
+                } else {
+                    completion(nil, [OguryAdError headerBiddingFrom:OguryBidTokenErrorCodeInvalidConfiguration]);
+                }
+                return;
+            }
+            [self collectBidTokenDataWithCampaignId:campaignId
+                                         creativeId:creativeId
+                                      dspCreativeId:dspCreativeId
+                                          dspRegion:dspRegion
+                                         completion:completion];
+        }];
+    } else {
+        [self collectBidTokenDataWithCampaignId:campaignId
+                                     creativeId:creativeId
+                                  dspCreativeId:dspCreativeId
+                                      dspRegion:dspRegion
+                                     completion:completion];
     }
-    NSDictionary *generatedToken = [self collectBidderTokenDataWithCampaignId:campaignId creativeId:creativeId dspCreativeId:dspCreativeId dspRegion:dspRegion];
-    return [generatedToken ogaEncodeToBase64];
 }
 
-- (NSDictionary *_Nullable)collectBidderTokenDataWithCampaignId:(NSString *)campaignId creativeId:(NSString *_Nullable)creativeId dspCreativeId:(NSString *_Nullable)dspCreativeId dspRegion:(NSString *_Nullable)dspRegion {
-    if (![self canSendToken]) {
-        return nil;
+- (NSInteger)disabledReasonCode {
+    if ([self.profigDao.profigFullResponse.disablingReason isEqualToString:OGAAdConfigurationDisablingReasonCountryUnopened]) {
+        return OguryShowErrorCodeAdDisabledCountryNotOpened;
+    } else if ([self.profigDao.profigFullResponse.disablingReason isEqualToString:OGAAdConfigurationDisablingReasonConsentDenied]) {
+        return OguryShowErrorCodeAdDisabledConsentDenied;
+    } else if ([self.profigDao.profigFullResponse.disablingReason isEqualToString:OGAAdConfigurationDisablingReasonConsentMissing]) {
+        return OguryShowErrorCodeAdDisabledConsentMissing;
+    } else {
+        return OguryShowErrorCodeAdDisabledUnspecifiedReason;
     }
+}
+
+- (void)collectBidTokenDataWithCampaignId:(NSString *_Nullable)campaignId
+                               creativeId:(NSString *_Nullable)creativeId
+                            dspCreativeId:(NSString *_Nullable)dspCreativeId
+                                dspRegion:(NSString *_Nullable)dspRegion
+                               completion:(BidTokenCompletionBlock)completion {
+    if (!self.profigDao.profigFullResponse.adsEnabled) {
+        completion(nil, [OguryAdError headerBiddingFrom:[self disabledReasonCode]]);
+        return;
+    }
+    completion([[self computeBidTokenDataWithCampaignId:campaignId
+                                             creativeId:creativeId
+                                          dspCreativeId:dspCreativeId
+                                              dspRegion:dspRegion] ogaEncodeToBase64],
+               nil);
+}
+
+- (NSDictionary *)computeBidTokenDataWithCampaignId:(NSString *_Nullable)campaignId
+                                         creativeId:(NSString *_Nullable)creativeId
+                                      dspCreativeId:(NSString *_Nullable)dspCreativeId
+                                          dspRegion:(NSString *_Nullable)dspRegion {
     OGAAdPrivacyConfiguration *privacyConfiguration = [self.profigManager currentPrivacyConfiguration];
     NSMutableDictionary *token = [NSMutableDictionary dictionary];
     [token addEntriesFromDictionary:@{
@@ -115,9 +160,9 @@
     privacy[OGARequestBodyPrivacyGPPKey] = [self gppConsentString];
     privacy[OGARequestBodyPrivacyGPPSIDKey] = [self gppSidConsentString];
     NSDictionary *privacyDatas = [self privacyDatas];
-    [privacyDatas enumerateKeysAndObjectsUsingBlock:^(id _Nonnull key, id _Nonnull obj, BOOL *_Nonnull stop) {
-        privacy[key] = obj;
-    }];
+    if ([privacyDatas count] > 0) {
+        privacy[OGARequestBodyPrivacyPublisherDataKey] = privacyDatas;
+    }
     token[OGARequestBodyPrivacyComplianceKey] = privacy;
 
     /// device

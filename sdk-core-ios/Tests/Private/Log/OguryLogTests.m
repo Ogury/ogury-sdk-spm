@@ -13,6 +13,7 @@
 @interface OguryLog ()
 
 - (instancetype)init:(NSMutableArray *)loggers;
+- (BOOL)canSendMessage:(OguryLogMessage *)message to:(id<OguryLogger>)logger;
 
 @end
 
@@ -30,6 +31,7 @@
 - (void)setUp {
     self.oguryLog = [[OguryLog alloc] init];
     self.oguryOSLoggerMock = OCMClassMock([OguryOSLogger class]);
+    OCMStub(self.oguryOSLoggerMock.allowedLogTypes).andReturn(@[OguryLogTypeAll]);
     [self.oguryLog clearLoggers];
     [self.oguryLog addLogger:self.oguryOSLoggerMock];
 }
@@ -65,42 +67,22 @@
 }
 
 - (void)testShouldLogDebug {
-    [self.oguryLog logMessage:@"Lorem ipsum dolor sit amet" level:OguryLogLevelDebug];
-    OCMVerify([self.oguryOSLoggerMock logMessage:[OCMArg any]]);
-}
-
-- (void)testShouldLogDebugWithFormat {
-    [self.oguryLog log:OguryLogLevelDebug format:@"[%@] %@", @"Extra", @"Lorem ipsum dolor sit amet"];
+    [self.oguryLog logMessage:OCMClassMock([OguryLogMessage class])];
     OCMVerify([self.oguryOSLoggerMock logMessage:[OCMArg any]]);
 }
 
 - (void)testShouldLogInfo {
-    [self.oguryLog logMessage:@"Lorem ipsum dolor sit amet" level:OguryLogLevelInfo];
-    OCMVerify([self.oguryOSLoggerMock logMessage:[OCMArg any]]);
-}
-
-- (void)testShouldLogInfoWithFormat {
-    [self.oguryLog log:OguryLogLevelInfo format:@"[%@] %@", @"Extra", @"Lorem ipsum dolor sit amet"];
+    [self.oguryLog logMessage:OCMClassMock([OguryLogMessage class])];
     OCMVerify([self.oguryOSLoggerMock logMessage:[OCMArg any]]);
 }
 
 - (void)testShouldLogWarning {
-    [self.oguryLog logMessage:@"Lorem ipsum dolor sit amet" level:OguryLogLevelWarning];
-    OCMVerify([self.oguryOSLoggerMock logMessage:[OCMArg any]]);
-}
-
-- (void)testShouldLogWarningWithFormat {
-    [self.oguryLog log:OguryLogLevelWarning format:@"[%@] %@", @"Extra", @"Lorem ipsum dolor sit amet"];
+    [self.oguryLog logMessage:OCMClassMock([OguryLogMessage class])];
     OCMVerify([self.oguryOSLoggerMock logMessage:[OCMArg any]]);
 }
 
 - (void)testShouldLogError {
-    [self.oguryLog logMessage:@"Lorem ipsum dolor sit amet" level:OguryLogLevelError];
-    OCMVerify([self.oguryOSLoggerMock logMessage:[OCMArg any]]);
-}
-
-- (void)testShouldLogErrorWithFormat {
-    [self.oguryLog log:OguryLogLevelError format:@"[%@] %@", @"Extra", @"Lorem ipsum dolor sit amet"];
+    [self.oguryLog logMessage:OCMClassMock([OguryLogMessage class])];
     OCMVerify([self.oguryOSLoggerMock logMessage:[OCMArg any]]);
 }
 

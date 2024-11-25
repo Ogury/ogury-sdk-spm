@@ -3,7 +3,7 @@
 //
 
 #import "OGABannerToFullscreenAdContainerTransition.h"
-#import "OGABannerAdContainerState.h"
+#import "OGABannerAdViewContainerState.h"
 #import "OGAFullscreenAdContainerState.h"
 #import "OGAExpandAdAction.h"
 #import "OGAAdDisplayerUpdateStateInformation.h"
@@ -20,7 +20,7 @@
 
 #pragma mark - Methods
 
-- (BOOL)performTransition:(OguryError *_Nullable *_Nullable)error {
+- (BOOL)performTransition:(OguryAdError *_Nullable *_Nullable)error {
     [self.initialState.exposureController stopExposure];
 
     [self.initialState unregisterForApplicationLifecycleNotifications];

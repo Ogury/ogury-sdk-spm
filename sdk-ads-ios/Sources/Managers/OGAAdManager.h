@@ -17,7 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - @properties
 
-#warning FIXME both should not be carried by the ad manager since it create cyclic dependency between ad sync service and this manager.
 @property(nonatomic, assign, setter=defineSDKType:) OGASDKType sdkType;
 @property(nonatomic, copy, setter=defineMediationName:) NSString *mediation;
 

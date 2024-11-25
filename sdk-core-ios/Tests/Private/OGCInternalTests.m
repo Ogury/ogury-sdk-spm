@@ -197,43 +197,24 @@ static NSString * const InternalTokenId = @"00000000-1111-3333-1598-000000000000
     XCTAssertFalse([coreInternalInstance isAdOptin]);
 }
 
-- (void)testUpdateInstanceToken {
-    [self storeInstanceTokenWithIDFA];
-    self.identifierManagerMock.customIDFA = [[NSUUID alloc] initWithUUIDString:InternalIdfa];
-    OGCAdIdentifierManager *adIdentifierManager = [[OGCAdIdentifierManager alloc] initWithPrivacyLayer:self.privacyLayer andDataLayer:self.dataLayer andProcessInfo:[NSProcessInfo processInfo] log:self.log];
-    OGCInternal *coreInternalInstance = [[OGCInternal alloc] initWithAdIdentifierManager:adIdentifierManager log:self.log logNotificationManager:[[OGCSetLogLevelNotificationManager alloc] init]];
-
-    XCTAssertNotNil(coreInternalInstance);
-    XCTAssertNotNil(coreInternalInstance.adIdentifierManager);
-    XCTAssertEqual([coreInternalInstance getAdIdentifier].length, 36);
-    XCTAssertEqualObjects([coreInternalInstance getAdIdentifier], InternalIdfa);
-    XCTAssertTrue([coreInternalInstance isAdOptin]);
-
-    [coreInternalInstance updateInstanceToken];
-
-    XCTAssertNotNil(coreInternalInstance.adIdentifierManager);
-    XCTAssertEqual([coreInternalInstance getAdIdentifier].length, 36);
-    XCTAssertEqual([coreInternalInstance getInstanceToken].length, 36);
-}
-
 - (void)testStoreAndRetrievePrivacyData {
    
     OGCAdIdentifierManager *adIdentifierManager = [[OGCAdIdentifierManager alloc] initWithPrivacyLayer:self.privacyLayer andDataLayer:self.dataLayer andProcessInfo:[NSProcessInfo processInfo] log:self.log];
     OGCInternal *coreInternalInstance = [[OGCInternal alloc] initWithAdIdentifierManager:adIdentifierManager log:self.log logNotificationManager:[[OGCSetLogLevelNotificationManager alloc] init]];
    
-    [coreInternalInstance storePrivacyData:@"testValue" string:@"testKey"];
+    [coreInternalInstance setPrivacyData:@"testValue" string:@"testKey"];
     XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 1);
-    [coreInternalInstance storePrivacyData:@"testValue" string:@"testKey"];
+    [coreInternalInstance setPrivacyData:@"testValue" string:@"testKey"];
     XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 1);
    
-    [coreInternalInstance storePrivacyData:@"testValueBool" boolean:false];
+    [coreInternalInstance setPrivacyData:@"testValueBool" boolean:false];
     XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 2);
-    [coreInternalInstance storePrivacyData:@"testValueBool" boolean:false];
+    [coreInternalInstance setPrivacyData:@"testValueBool" boolean:false];
     XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 2);
    
-    [coreInternalInstance storePrivacyData:@"testValueInt" integer:12];
+    [coreInternalInstance setPrivacyData:@"testValueInt" integer:12];
     XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 3);
-    [coreInternalInstance storePrivacyData:@"testValueInt" integer:12];
+    [coreInternalInstance setPrivacyData:@"testValueInt" integer:12];
     XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 3);
 }
 
@@ -242,9 +223,9 @@ static NSString * const InternalTokenId = @"00000000-1111-3333-1598-000000000000
     OGCAdIdentifierManager *adIdentifierManager = [[OGCAdIdentifierManager alloc] initWithPrivacyLayer:self.privacyLayer andDataLayer:self.dataLayer andProcessInfo:[NSProcessInfo processInfo] log:self.log];
     OGCInternal *coreInternalInstance = [[OGCInternal alloc] initWithAdIdentifierManager:adIdentifierManager log:self.log logNotificationManager:[[OGCSetLogLevelNotificationManager alloc] init]];
    
-    [coreInternalInstance storePrivacyData:@"testValueBool" boolean:false];
+    [coreInternalInstance setPrivacyData:@"testValueBool" boolean:false];
     XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 1);
-    [coreInternalInstance storePrivacyData:@"testValueBool" boolean:false];
+    [coreInternalInstance setPrivacyData:@"testValueBool" boolean:false];
     XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 1);
 
 }
@@ -254,9 +235,9 @@ static NSString * const InternalTokenId = @"00000000-1111-3333-1598-000000000000
     OGCAdIdentifierManager *adIdentifierManager = [[OGCAdIdentifierManager alloc] initWithPrivacyLayer:self.privacyLayer andDataLayer:self.dataLayer andProcessInfo:[NSProcessInfo processInfo] log:self.log];
     OGCInternal *coreInternalInstance = [[OGCInternal alloc] initWithAdIdentifierManager:adIdentifierManager log:self.log logNotificationManager:[[OGCSetLogLevelNotificationManager alloc] init]];
    
-    [coreInternalInstance storePrivacyData:@"testValueInt" integer:12];
+    [coreInternalInstance setPrivacyData:@"testValueInt" integer:12];
     XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 1);
-    [coreInternalInstance storePrivacyData:@"testValueInt" integer:12];
+    [coreInternalInstance setPrivacyData:@"testValueInt" integer:12];
     XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 1);
 
 }
@@ -266,9 +247,9 @@ static NSString * const InternalTokenId = @"00000000-1111-3333-1598-000000000000
     OGCAdIdentifierManager *adIdentifierManager = [[OGCAdIdentifierManager alloc] initWithPrivacyLayer:self.privacyLayer andDataLayer:self.dataLayer andProcessInfo:[NSProcessInfo processInfo] log:self.log];
     OGCInternal *coreInternalInstance = [[OGCInternal alloc] initWithAdIdentifierManager:adIdentifierManager log:self.log logNotificationManager:[[OGCSetLogLevelNotificationManager alloc] init]];
    
-    [coreInternalInstance storePrivacyData:@"testValue" string:@"testKey"];
+    [coreInternalInstance setPrivacyData:@"testValue" string:@"testKey"];
     XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 1);
-    [coreInternalInstance storePrivacyData:@"testValue" string:@"testKey"];
+    [coreInternalInstance setPrivacyData:@"testValue" string:@"testKey"];
     XCTAssertEqual([[coreInternalInstance retrieveDataPrivacy] count], 1);
 
 }

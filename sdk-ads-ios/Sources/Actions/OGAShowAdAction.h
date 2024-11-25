@@ -19,7 +19,7 @@ extern NSString *const OGAShowAdActionName;
 
 #pragma mark - Methods
 
-- (BOOL)performAction:(nonnull OGAAdContainer *)adContainer error:(OguryError *_Nullable *_Nullable)error;
+- (BOOL)performAction:(nonnull OGAAdContainer *)adContainer error:(OguryAdError *_Nullable *_Nullable)error;
 
 @end
 

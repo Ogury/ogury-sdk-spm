@@ -3,9 +3,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <OguryCore/OguryLogLevel.h>
+#import <OguryCore/OguryLog.h>
+#import <OguryAds/OguryAds.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+typedef void (^StartCompletionBlock)(BOOL success, OguryError *_Nullable error);
 
 @interface OGAInternal : NSObject
 
@@ -15,8 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - methods
 
-- (void)startWithAssetKey:(NSString *)assetKey;
+- (void)startWith:(NSString *)assetKey completionHandler:(StartCompletionBlock)completionHandler;
 - (void)setLogLevel:(OguryLogLevel)logLevel;
+- (void)addLogger:(id<OguryLogger>)logger;
 - (NSString *)getVersion;
 - (NSString *)getBuildVersion;
 - (void)defineSDKType:(NSUInteger)sdkType;

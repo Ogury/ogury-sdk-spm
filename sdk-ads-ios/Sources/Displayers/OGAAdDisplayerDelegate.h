@@ -3,8 +3,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <OguryCore/OguryError.h>
-
 #import "OGAAdAction.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -20,8 +18,9 @@ typedef NS_ENUM(NSUInteger, UnloadOrigin) {
 
 - (void)didLoad;
 - (void)didUnLoadFrom:(UnloadOrigin)unloadOrigin;
-- (BOOL)performAction:(id<OGAAdAction>)action error:(OguryError *_Nullable *_Nullable)error;
+- (BOOL)performAction:(id<OGAAdAction>)action error:(OguryAdError *_Nullable *_Nullable)error;
 - (BOOL)adIsDisplayed;
+- (void)webkitProcessDidTerminate;
 
 @end
 

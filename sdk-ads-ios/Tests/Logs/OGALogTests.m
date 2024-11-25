@@ -8,9 +8,6 @@
 #import <OguryCore/OguryLog.h>
 #import <OguryCore/OguryOSLogger.h>
 #import "OGAAdConfiguration.h"
-#import "OguryLog+Ads.h"
-
-@import OguryAds.Private;
 
 @interface OGALog ()
 
@@ -65,38 +62,13 @@
 }
 
 - (void)testLog {
-    [self.log log:OguryLogLevelDebug message:@"Hello"];
-    OCMVerify([self.oguryLog logMessage:@"Hello" level:OguryLogLevelDebug]);
-}
-
-- (void)testLogFormat {
-    // this hidden completion block serves only because variadic parameters Mocking with NSInvocation crashes on M1 chips
-    // it is only used in [logFormat:format:] method without mocking it
-    OGALog *log = [[OGALog alloc] init];
-    XCTestExpectation *expectation = [self expectationWithDescription:@"waiter"];
-    [log setTestCompletionBlock:^(NSString *message, OguryLogLevel level) {
-        if ([message isEqualToString:@"testtest1"]) {
-            [expectation fulfill];
-        }
-    }];
-    [log logFormat:OguryLogLevelError format:@"test%@", @"test1"];
-    [self waitForExpectations:@[ expectation ] timeout:1];
-}
-
-- (void)testError {
-    OCMStub([self.log formatError:[OCMArg any]]).andReturn(@"Formated error");
-    [self.log logError:self.expectedError message:@"expected error"];
-    OCMVerify([self.log log:OguryLogLevelError message:@"expected error - Error: Formated error"]);
-}
-
-- (void)testAdLog {
-    [self.log logAd:OguryLogLevelError forAdConfiguration:self.adConfig message:@"my message"];
-    OCMVerify([self.oguryLog ogaLogAdMessage:OguryLogLevelError adConfiguration:self.adConfig message:@"my message"]);
-}
-
-- (void)testMraidLog {
-    [self.log logMraid:OguryLogLevelError forAdConfiguration:self.adConfig webViewId:self.webviewId message:@"my message"];
-    OCMVerify([self.oguryLog ogaLogMraidMessage:OguryLogLevelError adConfiguration:self.adConfig webViewId:self.webviewId message:@"my message"]);
+    OGAAdLogMessage *message = [[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                      adConfiguration:nil
+                                                              logType:OguryLogTypeInternal
+                                                              message:@"test"
+                                                                 tags:nil];
+    [self.log log:message];
+    OCMVerify([self.oguryLog logMessage:message]);
 }
 
 @end

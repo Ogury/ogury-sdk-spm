@@ -4,7 +4,7 @@
 
 #import "OGABannerAdContainerState+Testing.h"
 
-@implementation OGABannerAdContainerState (Testing)
+@implementation OGABannerAdViewContainerState (Testing)
 
 - (void)overrideBannerView:(UIView *)bannerView {
     self.bannerView = bannerView;

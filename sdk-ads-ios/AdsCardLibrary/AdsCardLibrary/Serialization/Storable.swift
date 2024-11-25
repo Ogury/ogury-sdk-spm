@@ -18,12 +18,13 @@ public struct StorableAdManager: Codable {
 //MARK: AdType Codable
 public enum RawInnerAdType: Int {
     case interstitial = 0
-    case optInVideo = 1
+    case rewarded = 1
     case banner = 2
     case mpu = 3
     case thumbnail = 4
     case maxSuffix = 10
     case dtFairBidSuffix = 20
+    case unityLevelPlaySuffix = 30
 }
 
 extension AdType: Codable {
@@ -31,12 +32,13 @@ extension AdType: Codable {
     public var innerType: Int {
         switch self {
             case .interstitial: return RawInnerAdType.interstitial.rawValue
-            case .optInVideo: return RawInnerAdType.optInVideo.rawValue
+            case .rewarded: return RawInnerAdType.rewarded.rawValue
             case .thumbnail: return RawInnerAdType.thumbnail.rawValue
             case .mpu: return RawInnerAdType.mpu.rawValue
             case .banner: return RawInnerAdType.banner.rawValue
             case let .maxHeaderBidding(adType, _): return RawInnerAdType.maxSuffix.rawValue + adType.innerType
             case let .dtFairBidHeaderBidding(adType, _): return RawInnerAdType.dtFairBidSuffix.rawValue + adType.innerType
+            case let .unityLevelPlayHeaderBidding(adType, _): return RawInnerAdType.unityLevelPlaySuffix.rawValue + adType.innerType
         }
     }
     
@@ -46,8 +48,8 @@ extension AdType: Codable {
                 let adType: AdType<InterstitialAdManager> = .interstitial
                 return adType as? AdType<T>
                 
-            case RawInnerAdType.optInVideo.rawValue:
-                let adType: AdType<OptInAdManager> = .optInVideo
+            case RawInnerAdType.rewarded.rawValue:
+                let adType: AdType<RewardedAdManager> = .rewarded
                 return adType as? AdType<T>
                 
             case RawInnerAdType.banner.rawValue:
@@ -66,8 +68,8 @@ extension AdType: Codable {
                 let adType: AdType<InterstitialAdManager> = .maxHeaderBidding(adType:.interstitial, adMarkUpRetriever: adMarkUpRetriever as? MaxHeaderBidable)
                 return adType as? AdType<T>
                 
-            case RawInnerAdType.optInVideo.rawValue + RawInnerAdType.maxSuffix.rawValue:
-                let adType: AdType<OptInAdManager> = .maxHeaderBidding(adType:.optInVideo, adMarkUpRetriever: adMarkUpRetriever as? MaxHeaderBidable)
+            case RawInnerAdType.rewarded.rawValue + RawInnerAdType.maxSuffix.rawValue:
+                let adType: AdType<RewardedAdManager> = .maxHeaderBidding(adType:.rewarded, adMarkUpRetriever: adMarkUpRetriever as? MaxHeaderBidable)
                 return adType as? AdType<T>
                 
             case RawInnerAdType.thumbnail.rawValue + RawInnerAdType.maxSuffix.rawValue:
@@ -86,8 +88,8 @@ extension AdType: Codable {
                 let adType: AdType<InterstitialAdManager> = .dtFairBidHeaderBidding(adType:.interstitial, adMarkUpRetriever: adMarkUpRetriever as? DTFairBidHeaderBidable)
                 return adType as? AdType<T>
                
-            case RawInnerAdType.optInVideo.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
-                let adType: AdType<OptInAdManager> = .dtFairBidHeaderBidding(adType:.optInVideo, adMarkUpRetriever: adMarkUpRetriever as? DTFairBidHeaderBidable)
+            case RawInnerAdType.rewarded.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
+                let adType: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType:.rewarded, adMarkUpRetriever: adMarkUpRetriever as? DTFairBidHeaderBidable)
                 return adType as? AdType<T>
                
             case RawInnerAdType.thumbnail.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
@@ -102,6 +104,26 @@ extension AdType: Codable {
                 let adType: AdType<BannerAdManager> = .dtFairBidHeaderBidding(adType:.mpu, adMarkUpRetriever: adMarkUpRetriever as? DTFairBidHeaderBidable)
                 return adType as? AdType<T>
                 
+            case RawInnerAdType.interstitial.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
+                let adType: AdType<InterstitialAdManager> = .unityLevelPlayHeaderBidding(adType:.interstitial, adMarkUpRetriever: adMarkUpRetriever as? UnityLevelPlayBidable)
+                return adType as? AdType<T>
+               
+            case RawInnerAdType.rewarded.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
+                let adType: AdType<RewardedAdManager> = .unityLevelPlayHeaderBidding(adType:.rewarded, adMarkUpRetriever: adMarkUpRetriever as? UnityLevelPlayBidable)
+                return adType as? AdType<T>
+               
+            case RawInnerAdType.thumbnail.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
+                let adType: AdType<ThumbnailAdManager> = .unityLevelPlayHeaderBidding(adType:.thumbnail, adMarkUpRetriever: adMarkUpRetriever as? UnityLevelPlayBidable)
+                return adType as? AdType<T>
+               
+            case RawInnerAdType.banner.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
+                let adType: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType:.banner, adMarkUpRetriever: adMarkUpRetriever as? UnityLevelPlayBidable)
+                return adType as? AdType<T>
+               
+            case RawInnerAdType.mpu.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
+            let adType: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType:.mpu, adMarkUpRetriever: adMarkUpRetriever as? UnityLevelPlayBidable)
+                return adType as? AdType<T>
+            
             default: throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "\(innerType) is not a valid AdType"))
         }
     }

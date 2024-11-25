@@ -36,8 +36,6 @@ end
 
 target "OguryAdsTests" do
   project "sdk-ads-ios/OguryAdsSDK"
-
-  pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
   pod "OCMock", :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
 end
 
@@ -79,21 +77,21 @@ end
 
 
 #Wrapper
-target 'OguryWrapper' do
+target 'OguryWrapperTests' do
+  project "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj/"
+    inherit! :complete
+    pod 'OCMock', :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
+end
+
+target 'OguryWrapper-art' do
   project "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj/"
   pod 'OguryCore<%= framework_suffix %>', '<%= ogury_core_version %>'
-
-  target 'OguryWrapperTests' do
-    inherit! :complete
-
-    pod 'OCMock', :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
-  end
+  pod "OguryAds<%= framework_suffix %>", "<%= ogury_ads_version %>"
 end
 
 target 'OguryWrapperTestApp' do
   project "sdk-wrapper-ios/OguryWrapperTestApp/OguryWrapperTestApp.xcodeproj"
-  pod 'OguryCore<%= framework_suffix %>', '<%= ogury_core_version %>'
-  pod 'OguryAds<%= framework_suffix %>', '<%= ogury_ads_version %>'
+  pod 'InMobiCMP', '2.0.1'
 end
 
 

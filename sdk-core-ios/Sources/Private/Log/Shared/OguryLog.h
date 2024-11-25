@@ -7,6 +7,7 @@
 typedef NS_ENUM(NSInteger, OguryLogLevel);
 
 @protocol OguryLogger;
+@class OguryLogMessage;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,9 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setLogLevel:(OguryLogLevel)logLevel;
 
-- (void)logMessage:(NSString *)message level:(OguryLogLevel)level;
-
-- (void)log:(OguryLogLevel)level format:(NSString *)format, ...;
+- (void)logMessage:(OguryLogMessage *)message;
 
 @end
 

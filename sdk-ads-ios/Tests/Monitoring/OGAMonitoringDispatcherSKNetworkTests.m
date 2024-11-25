@@ -10,6 +10,7 @@
 #import "OGAMonitoringDispatcher+SKNetwork.h"
 #import "OGAOrderedDictionaryTestHelper.h"
 #import "OGMMonitorManager.h"
+#import "OGALog.h"
 #import "OGAMonitorEventConfigurationFactory.h"
 
 @interface OGAMonitoringDispatcher (Tests)
@@ -20,6 +21,7 @@
                             monitorManager:(OGMMonitorManager *)monitorManager
                         environmentManager:(OGAEnvironmentManager *)environmentManager
                       configurationFactory:(OGAMonitorEventConfigurationFactory *)configurationFactory
+                                       log:(OGALog *)log
                         notificationCenter:(NSNotificationCenter *)notificationCenter;
 
 - (void)sendMonitoringEvent:(OGAAdMonitorEvent *)event;
@@ -37,6 +39,7 @@
 @property(nonatomic, retain) OGMMonitorManager *monitorManager;
 @property(nonatomic, retain) OGAEnvironmentManager *environmentManager;
 @property(nonatomic, retain) NSNotificationCenter *notificationCenter;
+@property(nonatomic, strong) OGALog *log;
 
 @end
 
@@ -56,10 +59,12 @@
     self.monitorManager = OCMClassMock([OGMMonitorManager class]);
     self.environmentManager = OCMClassMock([OGAEnvironmentManager class]);
     self.notificationCenter = OCMClassMock([NSNotificationCenter class]);
+    self.log = OCMClassMock([OGALog class]);
     self.monitoringDispatcher = OCMPartialMock([[OGAMonitoringDispatcher alloc] initWithLegacyEventMetrics:self.legacyEventMetrics
                                                                                             monitorManager:self.monitorManager
                                                                                         environmentManager:self.environmentManager
                                                                                       configurationFactory:self.configurationFactory
+                                                                                                       log:self.log
                                                                                         notificationCenter:self.notificationCenter]);
 }
 
