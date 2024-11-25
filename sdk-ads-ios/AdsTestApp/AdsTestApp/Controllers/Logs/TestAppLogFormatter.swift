@@ -8,9 +8,12 @@
 import OguryAds.Private
 import OguryCore.Private
 import SwiftUI
+import UserDefault
 
-public class AdsCardLogFormatter: OguryLogFormatter {
-    var logTypeColor: [OguryLogType: UIColor] = [
+public class TestAppLogFormatter: OguryLogFormatter {
+    
+    @UserDefault("logTypeColor")
+    public var logTypeColor: [OguryLogType: UIColor] = [
         .delegate : #colorLiteral(red: 0.2221891582, green: 0.3856237233, blue: 0.507037878, alpha: 1),
         .internal : #colorLiteral(red: 0.1386456192, green: 0.3152645528, blue: 0.2698381543, alpha: 1),
         .monitoring : #colorLiteral(red: 0.3214766979, green: 0.2459062338, blue: 0.518550992, alpha: 1),
@@ -23,7 +26,11 @@ public class AdsCardLogFormatter: OguryLogFormatter {
         let df = DateFormatter()
         df.dateStyle = .medium
         df.timeStyle = .medium
-        super.init(options: [.SDK, .date, .level, .origin, .type, .tags],
+        var options: OguryLogDisplay = [.SDK, .date, .level, .origin, .type, .tags]
+        if let store = UserDefaults.standard.value(forKey: "OguryLogDisplay") as? UInt {
+            options = OguryLogDisplay(rawValue: store)
+        }
+        super.init(options: options,
                    dateFormatter: df)
     }
     
@@ -34,4 +41,18 @@ public class AdsCardLogFormatter: OguryLogFormatter {
         }
         return attr
     }
+    
+    public override func add(_ option: OguryLogDisplay) {
+        super.add(option)
+        UserDefaults.standard.set(displayOptions.rawValue, forKey: "OguryLogDisplay")
+        UserDefaults.standard.synchronize()
+    }
+    
+    public override func remove(_ option: OguryLogDisplay) {
+        super.remove(option)
+        UserDefaults.standard.set(displayOptions.rawValue, forKey: "OguryLogDisplay")
+        UserDefaults.standard.synchronize()
+    }
 }
+
+extension UIColor: @retroactive DefaultsValueConvertible {}

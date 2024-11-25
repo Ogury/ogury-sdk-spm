@@ -142,4 +142,16 @@ NSString* levelAsString(OguryLogLevel level) {
     return @{ NSFontAttributeName : [UIFont systemFontOfSize:12] };
 }
 
+- (void)add:(OguryLogDisplay)option {
+    if (!(displayOptions & option)) {
+        displayOptions |= option;
+    }
+}
+
+- (void)remove:(OguryLogDisplay)option {
+    if (displayOptions & option) {
+        displayOptions &= ~option;
+    }
+}
+
 @end

@@ -14,9 +14,6 @@
 		1E373D592BFC9CB600E2EF25 /* RTBBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D582BFC9CB600E2EF25 /* RTBBidder.swift */; };
 		1E373D5A2BFC9CB600E2EF25 /* RTBBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D582BFC9CB600E2EF25 /* RTBBidder.swift */; };
 		1E373D5B2BFC9CB600E2EF25 /* RTBBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D582BFC9CB600E2EF25 /* RTBBidder.swift */; };
-		1E373D5D2BFC9F5C00E2EF25 /* DTFairBidBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D5C2BFC9F5C00E2EF25 /* DTFairBidBidder.swift */; };
-		1E373D5E2BFC9F5C00E2EF25 /* DTFairBidBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D5C2BFC9F5C00E2EF25 /* DTFairBidBidder.swift */; };
-		1E373D5F2BFC9F5C00E2EF25 /* DTFairBidBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D5C2BFC9F5C00E2EF25 /* DTFairBidBidder.swift */; };
 		1E5BE6252B21CCE50010B995 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1E5BE6242B21CCE50010B995 /* SnapKit */; };
 		1E5BE6292B21CD040010B995 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1E5BE6282B21CD040010B995 /* SnapKit */; };
 		1E5BE62D2B21CD0E0010B995 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1E5BE62C2B21CD0E0010B995 /* SnapKit */; };
@@ -36,12 +33,30 @@
 		4301B1F62B56D4C30076065D /* shareImageData.png in Resources */ = {isa = PBXBuildFile; fileRef = 4301B1F52B56D4C30076065D /* shareImageData.png */; };
 		4317C00A2BC7D69F00F40F5F /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C0092BC7D69F00F40F5F /* config.release.xcconfig */; };
 		4317C00C2BC7D6BC00F40F5F /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C00B2BC7D6BC00F40F5F /* config.release.xcconfig */; };
-		432369CA2CF48A670078EF67 /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogger.swift */; };
-		432369CB2CF48A750078EF67 /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogger.swift */; };
-		432369CC2CF48A770078EF67 /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogger.swift */; };
-		432369CD2CF48A790078EF67 /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogger.swift */; };
-		432369CE2CF48A7C0078EF67 /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogger.swift */; };
-		432369CF2CF48A800078EF67 /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogger.swift */; };
+		432369CA2CF48A670078EF67 /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
+		432369CB2CF48A750078EF67 /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
+		432369CC2CF48A770078EF67 /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
+		432369CD2CF48A790078EF67 /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
+		432369CE2CF48A7C0078EF67 /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
+		432369CF2CF48A800078EF67 /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
+		432369D72CF48EBF0078EF67 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369D12CF48EBF0078EF67 /* MaxBidder.swift */; };
+		432369D82CF48EBF0078EF67 /* UnityLevelPlayBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369D52CF48EBF0078EF67 /* UnityLevelPlayBidder.swift */; };
+		432369D92CF48EBF0078EF67 /* DTFairBidBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369D32CF48EBF0078EF67 /* DTFairBidBidder.swift */; };
+		432369DA2CF48EBF0078EF67 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369D12CF48EBF0078EF67 /* MaxBidder.swift */; };
+		432369DB2CF48EBF0078EF67 /* UnityLevelPlayBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369D52CF48EBF0078EF67 /* UnityLevelPlayBidder.swift */; };
+		432369DC2CF48EBF0078EF67 /* DTFairBidBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369D32CF48EBF0078EF67 /* DTFairBidBidder.swift */; };
+		432369DD2CF48EBF0078EF67 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369D12CF48EBF0078EF67 /* MaxBidder.swift */; };
+		432369DE2CF48EBF0078EF67 /* UnityLevelPlayBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369D52CF48EBF0078EF67 /* UnityLevelPlayBidder.swift */; };
+		432369DF2CF48EBF0078EF67 /* DTFairBidBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369D32CF48EBF0078EF67 /* DTFairBidBidder.swift */; };
+		432369E02CF48EBF0078EF67 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369D12CF48EBF0078EF67 /* MaxBidder.swift */; };
+		432369E12CF48EBF0078EF67 /* UnityLevelPlayBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369D52CF48EBF0078EF67 /* UnityLevelPlayBidder.swift */; };
+		432369E22CF48EBF0078EF67 /* DTFairBidBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369D32CF48EBF0078EF67 /* DTFairBidBidder.swift */; };
+		432369E32CF48EBF0078EF67 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369D12CF48EBF0078EF67 /* MaxBidder.swift */; };
+		432369E42CF48EBF0078EF67 /* UnityLevelPlayBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369D52CF48EBF0078EF67 /* UnityLevelPlayBidder.swift */; };
+		432369E52CF48EBF0078EF67 /* DTFairBidBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369D32CF48EBF0078EF67 /* DTFairBidBidder.swift */; };
+		432369E62CF48EBF0078EF67 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369D12CF48EBF0078EF67 /* MaxBidder.swift */; };
+		432369E72CF48EBF0078EF67 /* UnityLevelPlayBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369D52CF48EBF0078EF67 /* UnityLevelPlayBidder.swift */; };
+		432369E82CF48EBF0078EF67 /* DTFairBidBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369D32CF48EBF0078EF67 /* DTFairBidBidder.swift */; };
 		433B4A8B2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
 		433B4A8C2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
 		433B4A8D2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
@@ -108,11 +123,36 @@
 		438ED4202AA5D0C300486AF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41F2AA5D0C300486AF2 /* Assets.xcassets */; };
 		438ED4232AA5D0C300486AF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
 		438ED42B2AA5D0E100486AF2 /* AdSdkLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED42A2AA5D0E100486AF2 /* AdSdkLauncher.swift */; };
-		439A64E32C8F25EA00A180A4 /* UnityLevelPlayBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8662C63AB4600E64D20 /* UnityLevelPlayBidder.swift */; };
-		439A64E42C8F25EB00A180A4 /* UnityLevelPlayBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8662C63AB4600E64D20 /* UnityLevelPlayBidder.swift */; };
-		439A64E52C8F25EB00A180A4 /* UnityLevelPlayBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8662C63AB4600E64D20 /* UnityLevelPlayBidder.swift */; };
-		439A64E62C8F25EC00A180A4 /* UnityLevelPlayBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8662C63AB4600E64D20 /* UnityLevelPlayBidder.swift */; };
-		439A64E72C8F25EC00A180A4 /* UnityLevelPlayBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8662C63AB4600E64D20 /* UnityLevelPlayBidder.swift */; };
+		4394F73F2CA3F4B2001086FE /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
+		4394F7402CA3F4B2001086FE /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
+		4394F7412CA3F4B2001086FE /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
+		4394F7422CA3F4B2001086FE /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
+		4394F7432CA3F4B2001086FE /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
+		4394F7442CA3F4B2001086FE /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
+		4394F7492CA42FF1001086FE /* LogOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7482CA42FF1001086FE /* LogOptionView.swift */; };
+		4394F74A2CA42FF1001086FE /* LogOptionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7472CA42FF1001086FE /* LogOptionFeature.swift */; };
+		4394F74B2CA42FF1001086FE /* LogOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7482CA42FF1001086FE /* LogOptionView.swift */; };
+		4394F74C2CA42FF1001086FE /* LogOptionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7472CA42FF1001086FE /* LogOptionFeature.swift */; };
+		4394F74D2CA42FF1001086FE /* LogOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7482CA42FF1001086FE /* LogOptionView.swift */; };
+		4394F74E2CA42FF1001086FE /* LogOptionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7472CA42FF1001086FE /* LogOptionFeature.swift */; };
+		4394F74F2CA42FF1001086FE /* LogOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7482CA42FF1001086FE /* LogOptionView.swift */; };
+		4394F7502CA42FF1001086FE /* LogOptionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7472CA42FF1001086FE /* LogOptionFeature.swift */; };
+		4394F7512CA42FF1001086FE /* LogOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7482CA42FF1001086FE /* LogOptionView.swift */; };
+		4394F7522CA42FF1001086FE /* LogOptionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7472CA42FF1001086FE /* LogOptionFeature.swift */; };
+		4394F7532CA42FF1001086FE /* LogOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7482CA42FF1001086FE /* LogOptionView.swift */; };
+		4394F7542CA42FF1001086FE /* LogOptionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7472CA42FF1001086FE /* LogOptionFeature.swift */; };
+		4394F7572CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7552CA44BC5001086FE /* TestAppLogFormatter.swift */; };
+		4394F7582CA44BC5001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
+		4394F7592CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7552CA44BC5001086FE /* TestAppLogFormatter.swift */; };
+		4394F75A2CA44BC5001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
+		4394F75B2CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7552CA44BC5001086FE /* TestAppLogFormatter.swift */; };
+		4394F75C2CA44BC5001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
+		4394F75D2CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7552CA44BC5001086FE /* TestAppLogFormatter.swift */; };
+		4394F75E2CA44BC5001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
+		4394F75F2CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7552CA44BC5001086FE /* TestAppLogFormatter.swift */; };
+		4394F7602CA44BC5001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
+		4394F7612CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7552CA44BC5001086FE /* TestAppLogFormatter.swift */; };
+		4394F7622CA44BC5001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
 		43AE85D82B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
 		43AE85D92B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
 		43AE85DA2B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
@@ -144,14 +184,12 @@
 		43BCB09E2C22DD45002FB0B1 /* HeaderBiddingBid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FC2B4D6075007C8D21 /* HeaderBiddingBid.swift */; };
 		43BCB09F2C22DD45002FB0B1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
 		43BCB0A02C22DD45002FB0B1 /* AddFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84AE2AC3008C005077F5 /* AddFeature.swift */; };
-		43BCB0A12C22DD45002FB0B1 /* DTFairBidBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D5C2BFC9F5C00E2EF25 /* DTFairBidBidder.swift */; };
 		43BCB0A22C22DD45002FB0B1 /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F849C2AC2CC54005077F5 /* AppFeature.swift */; };
 		43BCB0A32C22DD45002FB0B1 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F85062AD00349005077F5 /* Configuration.swift */; };
 		43BCB0A42C22DD45002FB0B1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A12AC2CD2B005077F5 /* MainView.swift */; };
 		43BCB0A52C22DD45002FB0B1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED41A2AA5D0C200486AF2 /* MainViewController.swift */; };
 		43BCB0A62C22DD45002FB0B1 /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
 		43BCB0A82C22DD45002FB0B1 /* UTType+Extension(devc).swift in Sources */ = {isa = PBXBuildFile; fileRef = 4301B1E62B56D3630076065D /* UTType+Extension(devc).swift */; };
-		43BCB0A92C22DD45002FB0B1 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43BCB0AA2C22DD45002FB0B1 /* HeaderBiddingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FD2B4D6075007C8D21 /* HeaderBiddingResponse.swift */; };
 		43BCB0AB2C22DD45002FB0B1 /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* ConsentManager.swift */; };
 		43BCB0AC2C22DD45002FB0B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED4162AA5D0C200486AF2 /* AppDelegate.swift */; };
@@ -185,14 +223,12 @@
 		43BCB0E12C22DD59002FB0B1 /* HeaderBiddingBid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FC2B4D6075007C8D21 /* HeaderBiddingBid.swift */; };
 		43BCB0E22C22DD59002FB0B1 /* UTType+Extension(stag).swift in Sources */ = {isa = PBXBuildFile; fileRef = 4301B1E82B56D3930076065D /* UTType+Extension(stag).swift */; };
 		43BCB0E32C22DD59002FB0B1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
-		43BCB0E42C22DD59002FB0B1 /* DTFairBidBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D5C2BFC9F5C00E2EF25 /* DTFairBidBidder.swift */; };
 		43BCB0E52C22DD59002FB0B1 /* AddFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84AE2AC3008C005077F5 /* AddFeature.swift */; };
 		43BCB0E62C22DD59002FB0B1 /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F849C2AC2CC54005077F5 /* AppFeature.swift */; };
 		43BCB0E72C22DD59002FB0B1 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F85062AD00349005077F5 /* Configuration.swift */; };
 		43BCB0E82C22DD59002FB0B1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A12AC2CD2B005077F5 /* MainView.swift */; };
 		43BCB0E92C22DD59002FB0B1 /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
 		43BCB0EA2C22DD59002FB0B1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED41A2AA5D0C200486AF2 /* MainViewController.swift */; };
-		43BCB0EC2C22DD59002FB0B1 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43BCB0ED2C22DD59002FB0B1 /* HeaderBiddingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FD2B4D6075007C8D21 /* HeaderBiddingResponse.swift */; };
 		43BCB0EE2C22DD59002FB0B1 /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* ConsentManager.swift */; };
 		43BCB0EF2C22DD59002FB0B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED4162AA5D0C200486AF2 /* AppDelegate.swift */; };
@@ -226,14 +262,12 @@
 		43BCB1242C22DD60002FB0B1 /* HeaderBiddingBid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FC2B4D6075007C8D21 /* HeaderBiddingBid.swift */; };
 		43BCB1252C22DD60002FB0B1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
 		43BCB1262C22DD60002FB0B1 /* AddFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84AE2AC3008C005077F5 /* AddFeature.swift */; };
-		43BCB1272C22DD60002FB0B1 /* DTFairBidBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D5C2BFC9F5C00E2EF25 /* DTFairBidBidder.swift */; };
 		43BCB1282C22DD60002FB0B1 /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F849C2AC2CC54005077F5 /* AppFeature.swift */; };
 		43BCB1292C22DD60002FB0B1 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F85062AD00349005077F5 /* Configuration.swift */; };
 		43BCB12A2C22DD60002FB0B1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A12AC2CD2B005077F5 /* MainView.swift */; };
 		43BCB12B2C22DD60002FB0B1 /* UTType+Extension(prod).swift in Sources */ = {isa = PBXBuildFile; fileRef = 4301B1EA2B56D3A80076065D /* UTType+Extension(prod).swift */; };
 		43BCB12C2C22DD60002FB0B1 /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
 		43BCB12D2C22DD60002FB0B1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED41A2AA5D0C200486AF2 /* MainViewController.swift */; };
-		43BCB12F2C22DD60002FB0B1 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43BCB1302C22DD60002FB0B1 /* HeaderBiddingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FD2B4D6075007C8D21 /* HeaderBiddingResponse.swift */; };
 		43BCB1312C22DD60002FB0B1 /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* ConsentManager.swift */; };
 		43BCB1322C22DD60002FB0B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED4162AA5D0C200486AF2 /* AppDelegate.swift */; };
@@ -295,10 +329,6 @@
 		43F788B32B4E882B0022157E /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B12B4E882B0022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43F788B52B4E882F0022157E /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B42B4E882F0022157E /* AdsCardLibrary.framework */; };
 		43F961692C6CD2160088F4A7 /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F961682C6CD2160088F4A7 /* RTBidderBody.swift */; };
-		43FC85612B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
-		43FC85622B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
-		43FC85632B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
-		50CFA8672C63AB5200E64D20 /* UnityLevelPlayBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8662C63AB4600E64D20 /* UnityLevelPlayBidder.swift */; };
 		674BCBAC82FBD4EBB2A4A8E7 /* Pods_AdsTestApp_Devc_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB3C78894E080AB4A6A149C /* Pods_AdsTestApp_Devc_art.framework */; };
 		67DA85977E194EA300BC00BE /* (null) in Sources */ = {isa = PBXBuildFile; };
 		6DA4741832749AC511D60F61 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -410,6 +440,9 @@
 		4317C0092BC7D69F00F40F5F /* config.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = config.release.xcconfig; sourceTree = "<group>"; };
 		4317C00B2BC7D6BC00F40F5F /* config.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = config.release.xcconfig; sourceTree = "<group>"; };
 		4317C00D2BC7D6CA00F40F5F /* config.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = config.release.xcconfig; sourceTree = "<group>"; };
+		432369D12CF48EBF0078EF67 /* MaxBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxBidder.swift; sourceTree = "<group>"; };
+		432369D32CF48EBF0078EF67 /* DTFairBidBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTFairBidBidder.swift; sourceTree = "<group>"; };
+		432369D52CF48EBF0078EF67 /* UnityLevelPlayBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityLevelPlayBidder.swift; sourceTree = "<group>"; };
 		433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsStorableContainer.swift; sourceTree = "<group>"; };
 		433B4A8E2B3491DC00037FE1 /* LinkPresentationItemSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkPresentationItemSource.swift; sourceTree = "<group>"; };
 		433B4A922B34927900037FE1 /* shareImageData.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareImageData.png; sourceTree = "<group>"; };
@@ -446,7 +479,11 @@
 		438ED4242AA5D0C300486AF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		438ED42A2AA5D0E100486AF2 /* AdSdkLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdSdkLauncher.swift; sourceTree = "<group>"; };
 		438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OMSDK_Ogury.xcframework; path = ../OMSDK_Ogury.xcframework; sourceTree = "<group>"; };
-		4394F73E2CA3F4B2001086FE /* TestAppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAppLogger.swift; sourceTree = "<group>"; };
+		4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAppLogController.swift; sourceTree = "<group>"; };
+		4394F7472CA42FF1001086FE /* LogOptionFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOptionFeature.swift; sourceTree = "<group>"; };
+		4394F7482CA42FF1001086FE /* LogOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOptionView.swift; sourceTree = "<group>"; };
+		4394F7552CA44BC5001086FE /* TestAppLogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAppLogFormatter.swift; sourceTree = "<group>"; };
+		4394F7562CA44BC5001086FE /* TestAppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAppLogger.swift; sourceTree = "<group>"; };
 		43AE85C72B4FD19C0010C812 /* OguryChoiceManager.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = OguryChoiceManager.xcframework; sourceTree = "<group>"; };
 		43AE85CF2B4FD28C0010C812 /* OguryCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OguryCore.xcframework; path = ../Pods/OguryCore/OguryCore.xcframework; sourceTree = "<group>"; };
 		43AE85D72B5017860010C812 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -631,6 +668,40 @@
 			path = prod;
 			sourceTree = "<group>";
 		};
+		432369D02CF48DA20078EF67 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				1E373D5C2BFC9F5C00E2EF25 /* DTFairBidBidder.swift */,
+				50CFA8662C63AB4600E64D20 /* UnityLevelPlayBidder.swift */,
+				43FC85602B0F5E0900EABA43 /* MaxBidder.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		432369D22CF48EBF0078EF67 /* AppLovin */ = {
+			isa = PBXGroup;
+			children = (
+				432369D12CF48EBF0078EF67 /* MaxBidder.swift */,
+			);
+			path = AppLovin;
+			sourceTree = "<group>";
+		};
+		432369D42CF48EBF0078EF67 /* DTFairBid */ = {
+			isa = PBXGroup;
+			children = (
+				432369D32CF48EBF0078EF67 /* DTFairBidBidder.swift */,
+			);
+			path = DTFairBid;
+			sourceTree = "<group>";
+		};
+		432369D62CF48EBF0078EF67 /* UnityLevelPlay */ = {
+			isa = PBXGroup;
+			children = (
+				432369D52CF48EBF0078EF67 /* UnityLevelPlayBidder.swift */,
+			);
+			path = UnityLevelPlay;
+			sourceTree = "<group>";
+		};
 		433B4A892B34256700037FE1 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
@@ -675,6 +746,7 @@
 		434F84A72AC2DF00005077F5 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				4394F7462CA42C89001086FE /* Logs */,
 				434F84A82AC2DF0C005077F5 /* AppSettingsView.swift */,
 				434F84A92AC2DF0C005077F5 /* AppSettingsFeature.swift */,
 				43C1D15A2B7E672C006F2D23 /* NotificationMessage.swift */,
@@ -753,6 +825,7 @@
 				438ED4142AA5D0C200486AF2 /* Products */,
 				438ED42C2AA5D0F600486AF2 /* Frameworks */,
 				B80175CC9F7EAD64721C41EC /* Pods */,
+				432369D02CF48DA20078EF67 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -815,7 +888,18 @@
 		4394F7232CA3F391001086FE /* Logs */ = {
 			isa = PBXGroup;
 			children = (
-				4394F73E2CA3F4B2001086FE /* TestAppLogger.swift */,
+				4394F7552CA44BC5001086FE /* TestAppLogFormatter.swift */,
+				4394F7562CA44BC5001086FE /* TestAppLogger.swift */,
+				4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */,
+			);
+			path = Logs;
+			sourceTree = "<group>";
+		};
+		4394F7462CA42C89001086FE /* Logs */ = {
+			isa = PBXGroup;
+			children = (
+				4394F7472CA42FF1001086FE /* LogOptionFeature.swift */,
+				4394F7482CA42FF1001086FE /* LogOptionView.swift */,
 			);
 			path = Logs;
 			sourceTree = "<group>";
@@ -860,36 +944,12 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		43F9616F2C6CD6F40088F4A7 /* AppLovin */ = {
-			isa = PBXGroup;
-			children = (
-				43FC85602B0F5E0900EABA43 /* MaxBidder.swift */,
-			);
-			path = AppLovin;
-			sourceTree = "<group>";
-		};
-		43F961702C6CD6FA0088F4A7 /* DTFairBid */ = {
-			isa = PBXGroup;
-			children = (
-				1E373D5C2BFC9F5C00E2EF25 /* DTFairBidBidder.swift */,
-			);
-			path = DTFairBid;
-			sourceTree = "<group>";
-		};
-		43F961712C6CD6FF0088F4A7 /* UnityLevelPlay */ = {
-			isa = PBXGroup;
-			children = (
-				50CFA8662C63AB4600E64D20 /* UnityLevelPlayBidder.swift */,
-			);
-			path = UnityLevelPlay;
-			sourceTree = "<group>";
-		};
 		43FC855F2B0F5DF500EABA43 /* HeaderBiding */ = {
 			isa = PBXGroup;
 			children = (
-				43F961712C6CD6FF0088F4A7 /* UnityLevelPlay */,
-				43F961702C6CD6FA0088F4A7 /* DTFairBid */,
-				43F9616F2C6CD6F40088F4A7 /* AppLovin */,
+				432369D22CF48EBF0078EF67 /* AppLovin */,
+				432369D42CF48EBF0078EF67 /* DTFairBid */,
+				432369D62CF48EBF0078EF67 /* UnityLevelPlay */,
 				43B713BA2B4BCEC4007C8D21 /* Models */,
 			);
 			path = HeaderBiding;
@@ -1478,32 +1538,37 @@
 				43BE104A2CA311E800FF0467 /* RTBidderBody.swift in Sources */,
 				4301B1E92B56D3930076065D /* UTType+Extension(stag).swift in Sources */,
 				433B4A8C2B34259900037FE1 /* AdsStorableContainer.swift in Sources */,
-				1E373D5E2BFC9F5C00E2EF25 /* DTFairBidBidder.swift in Sources */,
 				434F84BF2ACFE4FE005077F5 /* AddFeature.swift in Sources */,
 				434F84C02ACFE4FE005077F5 /* AppFeature.swift in Sources */,
 				434F85082AD00349005077F5 /* Configuration.swift in Sources */,
 				434F84C12ACFE4FE005077F5 /* MainView.swift in Sources */,
 				43788F412B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */,
 				434F84C22ACFE4FE005077F5 /* MainViewController.swift in Sources */,
-				43FC85622B0F5E0900EABA43 /* MaxBidder.swift in Sources */,
-				439A64E42C8F25EB00A180A4 /* UnityLevelPlayBidder.swift in Sources */,
-				432369CB2CF48A750078EF67 /* TestAppLogger.swift in Sources */,
+				432369CB2CF48A750078EF67 /* TestAppLogController.swift in Sources */,
 				43B714062B4D6075007C8D21 /* HeaderBiddingResponse.swift in Sources */,
 				43B713E82B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
 				434F84C42ACFE4FE005077F5 /* AppDelegate.swift in Sources */,
 				43B714092B4D6075007C8D21 /* HeaderBiddingExt.swift in Sources */,
+				4394F7412CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
 				43AE85D92B5017860010C812 /* SettingsController.swift in Sources */,
 				434F84C52ACFE4FE005077F5 /* AppSettingsView.swift in Sources */,
 				434F84C62ACFE4FE005077F5 /* SceneDelegate.swift in Sources */,
 				1E5BE6342B21F40F0010B995 /* DetailListView.swift in Sources */,
 				1E373D5A2BFC9CB600E2EF25 /* RTBBidder.swift in Sources */,
+				4394F75F2CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */,
+				4394F7602CA44BC5001086FE /* TestAppLogger.swift in Sources */,
 				434F84C72ACFE4FE005077F5 /* AddView.swift in Sources */,
 				43C1D15C2B7E672C006F2D23 /* NotificationMessage.swift in Sources */,
 				1E5BE6302B21F13C0010B995 /* DetailListFeature.swift in Sources */,
 				433B4A902B3491DC00037FE1 /* LinkPresentationItemSource.swift in Sources */,
 				434F84C82ACFE4FE005077F5 /* MainFeature.swift in Sources */,
 				434F84C92ACFE4FE005077F5 /* AppSettingsFeature.swift in Sources */,
+				4394F7512CA42FF1001086FE /* LogOptionView.swift in Sources */,
+				4394F7522CA42FF1001086FE /* LogOptionFeature.swift in Sources */,
 				434F84CA2ACFE4FE005077F5 /* AppView.swift in Sources */,
+				432369DD2CF48EBF0078EF67 /* MaxBidder.swift in Sources */,
+				432369DE2CF48EBF0078EF67 /* UnityLevelPlayBidder.swift in Sources */,
+				432369DF2CF48EBF0078EF67 /* DTFairBidBidder.swift in Sources */,
 				434F84CB2ACFE4FE005077F5 /* AdSdkLauncher.swift in Sources */,
 				43B714002B4D6075007C8D21 /* HeaderBiddingSeatBid.swift in Sources */,
 				DD0A78AC7C3C01019E5515F5 /* (null) in Sources */,
@@ -1519,32 +1584,37 @@
 				43BE104B2CA311F100FF0467 /* RTBidderBody.swift in Sources */,
 				433B4A8D2B34259900037FE1 /* AdsStorableContainer.swift in Sources */,
 				434F84DB2ACFE50A005077F5 /* AddFeature.swift in Sources */,
-				1E373D5F2BFC9F5C00E2EF25 /* DTFairBidBidder.swift in Sources */,
 				434F84DC2ACFE50A005077F5 /* AppFeature.swift in Sources */,
 				434F85092AD00349005077F5 /* Configuration.swift in Sources */,
 				434F84DD2ACFE50A005077F5 /* MainView.swift in Sources */,
 				4301B1EB2B56D3A80076065D /* UTType+Extension(prod).swift in Sources */,
 				43788F422B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */,
 				434F84DE2ACFE50A005077F5 /* MainViewController.swift in Sources */,
-				43FC85632B0F5E0900EABA43 /* MaxBidder.swift in Sources */,
 				43B714072B4D6075007C8D21 /* HeaderBiddingResponse.swift in Sources */,
 				43B713E92B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
 				434F84E02ACFE50A005077F5 /* AppDelegate.swift in Sources */,
-				432369CC2CF48A770078EF67 /* TestAppLogger.swift in Sources */,
+				432369CC2CF48A770078EF67 /* TestAppLogController.swift in Sources */,
 				43B7140A2B4D6075007C8D21 /* HeaderBiddingExt.swift in Sources */,
+				4394F7432CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
 				43AE85DA2B5017860010C812 /* SettingsController.swift in Sources */,
-				50CFA8672C63AB5200E64D20 /* UnityLevelPlayBidder.swift in Sources */,
 				434F84E12ACFE50A005077F5 /* AppSettingsView.swift in Sources */,
 				434F84E22ACFE50A005077F5 /* SceneDelegate.swift in Sources */,
 				1E5BE6352B21F40F0010B995 /* DetailListView.swift in Sources */,
 				1E373D5B2BFC9CB600E2EF25 /* RTBBidder.swift in Sources */,
+				4394F75D2CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */,
+				4394F75E2CA44BC5001086FE /* TestAppLogger.swift in Sources */,
 				434F84E32ACFE50A005077F5 /* AddView.swift in Sources */,
 				43C1D15D2B7E672C006F2D23 /* NotificationMessage.swift in Sources */,
 				1E5BE6312B21F13C0010B995 /* DetailListFeature.swift in Sources */,
 				433B4A912B3491DC00037FE1 /* LinkPresentationItemSource.swift in Sources */,
 				434F84E42ACFE50A005077F5 /* MainFeature.swift in Sources */,
 				434F84E52ACFE50A005077F5 /* AppSettingsFeature.swift in Sources */,
+				4394F74B2CA42FF1001086FE /* LogOptionView.swift in Sources */,
+				4394F74C2CA42FF1001086FE /* LogOptionFeature.swift in Sources */,
 				434F84E62ACFE50A005077F5 /* AppView.swift in Sources */,
+				432369DA2CF48EBF0078EF67 /* MaxBidder.swift in Sources */,
+				432369DB2CF48EBF0078EF67 /* UnityLevelPlayBidder.swift in Sources */,
+				432369DC2CF48EBF0078EF67 /* DTFairBidBidder.swift in Sources */,
 				434F84E72ACFE50A005077F5 /* AdSdkLauncher.swift in Sources */,
 				43B714012B4D6075007C8D21 /* HeaderBiddingSeatBid.swift in Sources */,
 				6DA4741832749AC511D60F61 /* (null) in Sources */,
@@ -1559,33 +1629,38 @@
 				43B714022B4D6075007C8D21 /* HeaderBiddingBid.swift in Sources */,
 				433B4A8B2B34259900037FE1 /* AdsStorableContainer.swift in Sources */,
 				434F84B02AC3008C005077F5 /* AddFeature.swift in Sources */,
-				1E373D5D2BFC9F5C00E2EF25 /* DTFairBidBidder.swift in Sources */,
 				434F849E2AC2CC54005077F5 /* AppFeature.swift in Sources */,
 				434F85072AD00349005077F5 /* Configuration.swift in Sources */,
-				439A64E32C8F25EA00A180A4 /* UnityLevelPlayBidder.swift in Sources */,
 				434F84A32AC2CD2B005077F5 /* MainView.swift in Sources */,
 				438ED41B2AA5D0C200486AF2 /* MainViewController.swift in Sources */,
 				43788F402B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */,
 				4301B1E72B56D3630076065D /* UTType+Extension(devc).swift in Sources */,
 				43F961692C6CD2160088F4A7 /* RTBidderBody.swift in Sources */,
-				432369CA2CF48A670078EF67 /* TestAppLogger.swift in Sources */,
-				43FC85612B0F5E0900EABA43 /* MaxBidder.swift in Sources */,
+				432369CA2CF48A670078EF67 /* TestAppLogController.swift in Sources */,
 				43B714052B4D6075007C8D21 /* HeaderBiddingResponse.swift in Sources */,
 				43B713E72B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
 				438ED4172AA5D0C200486AF2 /* AppDelegate.swift in Sources */,
 				43B714082B4D6075007C8D21 /* HeaderBiddingExt.swift in Sources */,
+				4394F7442CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
 				43AE85D82B5017860010C812 /* SettingsController.swift in Sources */,
 				434F84AA2AC2DF0C005077F5 /* AppSettingsView.swift in Sources */,
 				438ED4192AA5D0C200486AF2 /* SceneDelegate.swift in Sources */,
 				434F84AF2AC3008C005077F5 /* AddView.swift in Sources */,
 				1E373D592BFC9CB600E2EF25 /* RTBBidder.swift in Sources */,
+				4394F7572CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */,
+				4394F7582CA44BC5001086FE /* TestAppLogger.swift in Sources */,
 				434F84A42AC2CD2B005077F5 /* MainFeature.swift in Sources */,
 				43C1D15B2B7E672C006F2D23 /* NotificationMessage.swift in Sources */,
 				434F84AB2AC2DF0C005077F5 /* AppSettingsFeature.swift in Sources */,
 				433B4A8F2B3491DC00037FE1 /* LinkPresentationItemSource.swift in Sources */,
 				1EF117692AF95052004BE519 /* DetailListFeature.swift in Sources */,
 				434F849D2AC2CC54005077F5 /* AppView.swift in Sources */,
+				4394F7492CA42FF1001086FE /* LogOptionView.swift in Sources */,
+				4394F74A2CA42FF1001086FE /* LogOptionFeature.swift in Sources */,
 				438ED42B2AA5D0E100486AF2 /* AdSdkLauncher.swift in Sources */,
+				432369E32CF48EBF0078EF67 /* MaxBidder.swift in Sources */,
+				432369E42CF48EBF0078EF67 /* UnityLevelPlayBidder.swift in Sources */,
+				432369E52CF48EBF0078EF67 /* DTFairBidBidder.swift in Sources */,
 				1E5BE6332B21F40F0010B995 /* DetailListView.swift in Sources */,
 				43B713FF2B4D6075007C8D21 /* HeaderBiddingSeatBid.swift in Sources */,
 				DAA5D6AAEAC401869ACE1EF5 /* (null) in Sources */,
@@ -1601,32 +1676,37 @@
 				43BCB09F2C22DD45002FB0B1 /* AdsStorableContainer.swift in Sources */,
 				43BE104C2CA311FE00FF0467 /* RTBidderBody.swift in Sources */,
 				43BCB0A02C22DD45002FB0B1 /* AddFeature.swift in Sources */,
-				43BCB0A12C22DD45002FB0B1 /* DTFairBidBidder.swift in Sources */,
 				43BCB0A22C22DD45002FB0B1 /* AppFeature.swift in Sources */,
 				43BCB0A32C22DD45002FB0B1 /* Configuration.swift in Sources */,
 				43BCB0A42C22DD45002FB0B1 /* MainView.swift in Sources */,
 				43BCB0A52C22DD45002FB0B1 /* MainViewController.swift in Sources */,
 				43BCB0A62C22DD45002FB0B1 /* AddFormatsView.swift in Sources */,
 				43BCB0A82C22DD45002FB0B1 /* UTType+Extension(devc).swift in Sources */,
-				43BCB0A92C22DD45002FB0B1 /* MaxBidder.swift in Sources */,
-				439A64E52C8F25EB00A180A4 /* UnityLevelPlayBidder.swift in Sources */,
 				43BCB0AA2C22DD45002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
 				43BCB0AB2C22DD45002FB0B1 /* ConsentManager.swift in Sources */,
-				432369CD2CF48A790078EF67 /* TestAppLogger.swift in Sources */,
+				432369CD2CF48A790078EF67 /* TestAppLogController.swift in Sources */,
 				43BCB0AC2C22DD45002FB0B1 /* AppDelegate.swift in Sources */,
 				43BCB0AD2C22DD45002FB0B1 /* HeaderBiddingExt.swift in Sources */,
+				4394F7402CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
 				43BCB0AE2C22DD45002FB0B1 /* SettingsController.swift in Sources */,
 				43BCB0AF2C22DD45002FB0B1 /* AppSettingsView.swift in Sources */,
 				43BCB0B02C22DD45002FB0B1 /* SceneDelegate.swift in Sources */,
 				43BCB0B12C22DD45002FB0B1 /* AddView.swift in Sources */,
 				43BCB0B22C22DD45002FB0B1 /* RTBBidder.swift in Sources */,
+				4394F75B2CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */,
+				4394F75C2CA44BC5001086FE /* TestAppLogger.swift in Sources */,
 				43BCB0B32C22DD45002FB0B1 /* MainFeature.swift in Sources */,
 				43BCB0B42C22DD45002FB0B1 /* NotificationMessage.swift in Sources */,
 				43BCB0B52C22DD45002FB0B1 /* AppSettingsFeature.swift in Sources */,
 				43BCB0B62C22DD45002FB0B1 /* LinkPresentationItemSource.swift in Sources */,
 				43BCB0B72C22DD45002FB0B1 /* DetailListFeature.swift in Sources */,
 				43BCB0B82C22DD45002FB0B1 /* AppView.swift in Sources */,
+				4394F7532CA42FF1001086FE /* LogOptionView.swift in Sources */,
+				4394F7542CA42FF1001086FE /* LogOptionFeature.swift in Sources */,
 				43BCB0B92C22DD45002FB0B1 /* AdSdkLauncher.swift in Sources */,
+				432369D72CF48EBF0078EF67 /* MaxBidder.swift in Sources */,
+				432369D82CF48EBF0078EF67 /* UnityLevelPlayBidder.swift in Sources */,
+				432369D92CF48EBF0078EF67 /* DTFairBidBidder.swift in Sources */,
 				43BCB0BA2C22DD45002FB0B1 /* DetailListView.swift in Sources */,
 				43BCB0BB2C22DD45002FB0B1 /* HeaderBiddingSeatBid.swift in Sources */,
 				C091111E372B9E7316E211F5 /* (null) in Sources */,
@@ -1641,7 +1721,6 @@
 				43BCB0E12C22DD59002FB0B1 /* HeaderBiddingBid.swift in Sources */,
 				43BCB0E22C22DD59002FB0B1 /* UTType+Extension(stag).swift in Sources */,
 				43BCB0E32C22DD59002FB0B1 /* AdsStorableContainer.swift in Sources */,
-				43BCB0E42C22DD59002FB0B1 /* DTFairBidBidder.swift in Sources */,
 				43BE104D2CA3120000FF0467 /* RTBidderBody.swift in Sources */,
 				43BCB0E52C22DD59002FB0B1 /* AddFeature.swift in Sources */,
 				43BCB0E62C22DD59002FB0B1 /* AppFeature.swift in Sources */,
@@ -1649,25 +1728,31 @@
 				43BCB0E82C22DD59002FB0B1 /* MainView.swift in Sources */,
 				43BCB0E92C22DD59002FB0B1 /* AddFormatsView.swift in Sources */,
 				43BCB0EA2C22DD59002FB0B1 /* MainViewController.swift in Sources */,
-				43BCB0EC2C22DD59002FB0B1 /* MaxBidder.swift in Sources */,
-				439A64E62C8F25EC00A180A4 /* UnityLevelPlayBidder.swift in Sources */,
 				43BCB0ED2C22DD59002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
 				43BCB0EE2C22DD59002FB0B1 /* ConsentManager.swift in Sources */,
-				432369CE2CF48A7C0078EF67 /* TestAppLogger.swift in Sources */,
+				432369CE2CF48A7C0078EF67 /* TestAppLogController.swift in Sources */,
 				43BCB0EF2C22DD59002FB0B1 /* AppDelegate.swift in Sources */,
 				43BCB0F02C22DD59002FB0B1 /* HeaderBiddingExt.swift in Sources */,
+				4394F7422CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
 				43BCB0F12C22DD59002FB0B1 /* SettingsController.swift in Sources */,
 				43BCB0F22C22DD59002FB0B1 /* AppSettingsView.swift in Sources */,
 				43BCB0F32C22DD59002FB0B1 /* SceneDelegate.swift in Sources */,
 				43BCB0F42C22DD59002FB0B1 /* DetailListView.swift in Sources */,
 				43BCB0F52C22DD59002FB0B1 /* RTBBidder.swift in Sources */,
+				4394F7592CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */,
+				4394F75A2CA44BC5001086FE /* TestAppLogger.swift in Sources */,
 				43BCB0F62C22DD59002FB0B1 /* AddView.swift in Sources */,
 				43BCB0F72C22DD59002FB0B1 /* NotificationMessage.swift in Sources */,
 				43BCB0F82C22DD59002FB0B1 /* DetailListFeature.swift in Sources */,
 				43BCB0F92C22DD59002FB0B1 /* LinkPresentationItemSource.swift in Sources */,
 				43BCB0FA2C22DD59002FB0B1 /* MainFeature.swift in Sources */,
 				43BCB0FB2C22DD59002FB0B1 /* AppSettingsFeature.swift in Sources */,
+				4394F74D2CA42FF1001086FE /* LogOptionView.swift in Sources */,
+				4394F74E2CA42FF1001086FE /* LogOptionFeature.swift in Sources */,
 				43BCB0FC2C22DD59002FB0B1 /* AppView.swift in Sources */,
+				432369E02CF48EBF0078EF67 /* MaxBidder.swift in Sources */,
+				432369E12CF48EBF0078EF67 /* UnityLevelPlayBidder.swift in Sources */,
+				432369E22CF48EBF0078EF67 /* DTFairBidBidder.swift in Sources */,
 				43BCB0FD2C22DD59002FB0B1 /* AdSdkLauncher.swift in Sources */,
 				43BCB0FE2C22DD59002FB0B1 /* HeaderBiddingSeatBid.swift in Sources */,
 				67DA85977E194EA300BC00BE /* (null) in Sources */,
@@ -1683,32 +1768,37 @@
 				43BCB1252C22DD60002FB0B1 /* AdsStorableContainer.swift in Sources */,
 				43BCB1262C22DD60002FB0B1 /* AddFeature.swift in Sources */,
 				43BE104E2CA3120300FF0467 /* RTBidderBody.swift in Sources */,
-				43BCB1272C22DD60002FB0B1 /* DTFairBidBidder.swift in Sources */,
 				43BCB1282C22DD60002FB0B1 /* AppFeature.swift in Sources */,
 				43BCB1292C22DD60002FB0B1 /* Configuration.swift in Sources */,
 				43BCB12A2C22DD60002FB0B1 /* MainView.swift in Sources */,
 				43BCB12B2C22DD60002FB0B1 /* UTType+Extension(prod).swift in Sources */,
 				43BCB12C2C22DD60002FB0B1 /* AddFormatsView.swift in Sources */,
 				43BCB12D2C22DD60002FB0B1 /* MainViewController.swift in Sources */,
-				43BCB12F2C22DD60002FB0B1 /* MaxBidder.swift in Sources */,
-				439A64E72C8F25EC00A180A4 /* UnityLevelPlayBidder.swift in Sources */,
 				43BCB1302C22DD60002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
 				43BCB1312C22DD60002FB0B1 /* ConsentManager.swift in Sources */,
-				432369CF2CF48A800078EF67 /* TestAppLogger.swift in Sources */,
+				432369CF2CF48A800078EF67 /* TestAppLogController.swift in Sources */,
 				43BCB1322C22DD60002FB0B1 /* AppDelegate.swift in Sources */,
 				43BCB1332C22DD60002FB0B1 /* HeaderBiddingExt.swift in Sources */,
+				4394F73F2CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
 				43BCB1342C22DD60002FB0B1 /* SettingsController.swift in Sources */,
 				43BCB1352C22DD60002FB0B1 /* AppSettingsView.swift in Sources */,
 				43BCB1362C22DD60002FB0B1 /* SceneDelegate.swift in Sources */,
 				43BCB1372C22DD60002FB0B1 /* DetailListView.swift in Sources */,
 				43BCB1382C22DD60002FB0B1 /* RTBBidder.swift in Sources */,
+				4394F7612CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */,
+				4394F7622CA44BC5001086FE /* TestAppLogger.swift in Sources */,
 				43BCB1392C22DD60002FB0B1 /* AddView.swift in Sources */,
 				43BCB13A2C22DD60002FB0B1 /* NotificationMessage.swift in Sources */,
 				43BCB13B2C22DD60002FB0B1 /* DetailListFeature.swift in Sources */,
 				43BCB13C2C22DD60002FB0B1 /* LinkPresentationItemSource.swift in Sources */,
 				43BCB13D2C22DD60002FB0B1 /* MainFeature.swift in Sources */,
 				43BCB13E2C22DD60002FB0B1 /* AppSettingsFeature.swift in Sources */,
+				4394F74F2CA42FF1001086FE /* LogOptionView.swift in Sources */,
+				4394F7502CA42FF1001086FE /* LogOptionFeature.swift in Sources */,
 				43BCB13F2C22DD60002FB0B1 /* AppView.swift in Sources */,
+				432369E62CF48EBF0078EF67 /* MaxBidder.swift in Sources */,
+				432369E72CF48EBF0078EF67 /* UnityLevelPlayBidder.swift in Sources */,
+				432369E82CF48EBF0078EF67 /* DTFairBidBidder.swift in Sources */,
 				43BCB1402C22DD60002FB0B1 /* AdSdkLauncher.swift in Sources */,
 				43BCB1412C22DD60002FB0B1 /* HeaderBiddingSeatBid.swift in Sources */,
 				FC62C0B98CEAC62D346B19A6 /* (null) in Sources */,

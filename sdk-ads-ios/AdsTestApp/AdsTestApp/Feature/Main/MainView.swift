@@ -150,12 +150,7 @@ extension View {
                 ),
                 state: /MainFeature.Destination.State.settings,
                 action: MainFeature.Destination.Action.settings) { store in
-                    NavigationView {
-                        AppSettingsView(store: store)
-                            .navigationTitle("Settings")
-                    }
-                    .navigationBarTitleDisplayMode(.large)
-                    .navigationViewStyle(StackNavigationViewStyle())
+                    AppSettingsView(store: store)
                 }
                 .sheet(
                     store: store.scope(

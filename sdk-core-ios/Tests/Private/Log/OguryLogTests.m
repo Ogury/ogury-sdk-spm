@@ -31,7 +31,7 @@
 - (void)setUp {
     self.oguryLog = [[OguryLog alloc] init];
     self.oguryOSLoggerMock = OCMClassMock([OguryOSLogger class]);
-    OCMStub(self.oguryOSLoggerMock.allowedLogTypes).andReturn(@[OguryLogTypeAll]);
+    OCMStub(self.oguryOSLoggerMock.allowedLogTypes).andReturn(@[OguryLogTypePublisher, OguryLogTypeInternal, OguryLogTypeRequest]);
     [self.oguryLog clearLoggers];
     [self.oguryLog addLogger:self.oguryOSLoggerMock];
 }

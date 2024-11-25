@@ -22,7 +22,7 @@ struct AppFeature: Reducer {
     }
     
     enum Action: Equatable  {
-        case path(StackAction<Path.State , Path.Action>)
+        case path(StackAction<Path.State, Path.Action>)
         case main(MainFeature.Action)
         case deleteCard(id: UUID)
         case loadCards

@@ -1,50 +1,29 @@
 //
-//  TestAppLogger.swift
-//  AdsTestApp
+//  AdsCardLogger.swift
+//  AdsCardLibrary
 //
-//  Created by Jerome TONNELIER on 25/09/2024.
+//  Created by Jerome TONNELIER on 24/09/2024.
 //
 
-import Foundation
-import AdsCardLibrary
 import OguryAds.Private
+import UIKit
+import Combine
+import UserDefault
 
-struct TestAppLogger {
-    var adsCardLogger: AdsCardLogger?
+public class TestAppLogger: NSObject, OguryLogger {    
+    public let logs: PassthroughSubject<NSAttributedString, Never> = PassthroughSubject<NSAttributedString, Never>()
+    public var logLevel: OguryLogLevel = .all
     
-    init() {
-        addLogger()
-    }
+    @UserDefault("TestAppAllowedLogTypes")
+    public var allowedLogTypes: [OguryLogType] = [.publisher, .internal]
+    public var logFormatter: OguryLogFormatter = TestAppLogFormatter()
     
-    mutating func addLogger() {
-        guard adsCardLogger == nil else { return }
-        adsCardLogger = .init()
-        OGAInternal.shared().add(adsCardLogger!)
+    public func logMessage(_ message: OguryLogMessage) {
+        guard let attr = logFormatter.formatAttributedLogMessage(message) else { return }
+        logs.send(attr)
     }
+}
+
+extension OguryLogType: @retroactive DefaultsValueConvertible {
     
-    mutating func removeLogger() {
-        guard let adsCardLogger else { return }
-        OGAInternal.shared().remove(adsCardLogger)
-        self.adsCardLogger = nil
-    }
-    
-    func enable(_ option: OguryLogDisplay) {
-        guard let adsCardLogger else { return }
-        (adsCardLogger.logFormatter as? AdsCardLogFormatter)?.displayOptions.insert(option)
-    }
-    
-    func disable(_ option: OguryLogDisplay) {
-        guard let adsCardLogger else { return }
-        (adsCardLogger.logFormatter as? AdsCardLogFormatter)?.displayOptions.remove(option)
-    }
-    
-    func enable(_ logType: OguryLogType) {
-        guard let adsCardLogger else { return }
-        adsCardLogger.allowedLogTypes.append(logType)
-    }
-    
-    func disable(_ logType: OguryLogType) {
-        guard let adsCardLogger else { return }
-        adsCardLogger.allowedLogTypes.removeAll(where: { $0 == logType })
-    }
 }

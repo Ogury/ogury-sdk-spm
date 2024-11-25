@@ -13,7 +13,7 @@ struct MainFeature: Reducer {
    @Dependency(\.mainQueue) var mainQueue
    var adHostingViewController: UIViewController!
    var adDelegate: AdLifeCycleDelegate!
-   let cardManager = AdsCardManager()
+    let cardManager = AdsCardManager(logger: TestAppLogController.shared.logger)
    let maxHeaderBidable = MaxBidder()
    let dtFairBidHeaderBidable = DTFairBidBidder()
    let unityLevelPlayBidable = UnityLevelPlayBidder()

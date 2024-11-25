@@ -49,6 +49,7 @@ struct AppSettingsFeature: Reducer {
         }
         var adDelegate: AdLifeCycleDelegate?
         let generator = UINotificationFeedbackGenerator()
+        var logOptions: LogOptionFeature.State?
 
         init(settings: SettingsContainer, adDelegate: AdLifeCycleDelegate?) {
             self.settings = settings
@@ -84,6 +85,8 @@ struct AppSettingsFeature: Reducer {
         case usOptoutTapped
         case usOptoutPartnerTapped
         case showPrivacyDataTapped
+        case logOptionsButtonTapped
+        case logOptions(LogOptionFeature.Action)
     }
     
     var body: some ReducerOf<Self> {
@@ -161,6 +164,13 @@ struct AppSettingsFeature: Reducer {
                     return .run { _ in
                         await showNotification(message: "The test mode has been disabled on all cards")
                     }
+                    
+                case .logOptionsButtonTapped:
+                    state.logOptions = .init()
+                    return .none
+                    
+                case .logOptions:
+                    return .none
             }
         }
     }

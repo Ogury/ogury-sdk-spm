@@ -67,6 +67,8 @@ struct BannerContainer: Equatable {
     var bannerType: AdType<BannerAdManager>
 }
 
+let testApp: OguryLogType = .init("TestApp")
+
 struct AdViewFeature: Reducer {
     var adManager: any AdManager
     
@@ -230,6 +232,16 @@ struct AdViewFeature: Reducer {
             } else {
                 tags.remove(.rtbTestMode)
             }
+        }
+        
+        func log(_ message: String) {
+            AdsCardManager.logger?.logMessage(OGAAdLogMessage(level: .debug,
+                                                              logType: testApp,
+                                                              origin: nil,
+                                                              sdk: .ads,
+                                                              messageDate: nil,
+                                                              message: message,
+                                                              tags: nil))
         }
     }
     
@@ -447,6 +459,7 @@ struct AdViewFeature: Reducer {
                 case let .adBarAction(action):
                     switch action {
                         case .loadButtonTapped:
+                            state.log("Load button tapped")
                             state.showAfterLoad = false
                             if state.enableFeedbacks {
                                 UIImpactFeedbackGenerator().impactOccurred()
@@ -454,6 +467,7 @@ struct AdViewFeature: Reducer {
                             return load(state: state)
                             
                         case .showButtonTapped:
+                            state.log("Show button tapped")
                             state.showAfterLoad = false
                             if state.enableFeedbacks {
                                 UIImpactFeedbackGenerator().impactOccurred()
@@ -476,6 +490,7 @@ struct AdViewFeature: Reducer {
                             )
                             
                         case .loadAndShowButtonTapped:
+                            state.log("Load & Show button tapped")
                             state.showAfterLoad = true
                             if state.enableFeedbacks {
                                 UIImpactFeedbackGenerator().impactOccurred()
@@ -483,6 +498,7 @@ struct AdViewFeature: Reducer {
                             return load(state: state)
                             
                         case .deleteButtonTapped:
+                            state.log("Delete button tapped")
                             if state.enableFeedbacks {
                                 UINotificationFeedbackGenerator().notificationOccurred(.warning)
                             }
@@ -511,6 +527,7 @@ struct AdViewFeature: Reducer {
                     return .none
                     
                 case let .error(error):
+                    state.log("Error received \(error.localizedDescription)")
                     state.error = error
                     state.adStateEvent = .adDidFail(error)
                     return .none
@@ -565,10 +582,12 @@ struct AdViewFeature: Reducer {
                     return .none
                     
                 case .oguryTestModeButtonTapped:
+                    state.log("Ogury test mode button tapped")
                     state.toggleTestMode()
                     return .send(.checkForTestMode)
                     
                 case .rtbTestModeButtonTapped:
+                    state.log("RTBTest mode button tapped")
                     state.rtbTestModeEnabled.toggle()
                     state.updateRTBTag()
                     updateAdManager(options: state.baseOptions)

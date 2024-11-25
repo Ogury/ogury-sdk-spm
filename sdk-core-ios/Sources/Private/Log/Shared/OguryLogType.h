@@ -8,6 +8,5 @@ typedef NSString *OguryLogType NS_TYPED_EXTENSIBLE_ENUM;
 extern OguryLogType const OguryLogTypePublisher;
 extern OguryLogType const OguryLogTypeRequests;
 extern OguryLogType const OguryLogTypeInternal;
-extern OguryLogType const OguryLogTypeAll;
 
 

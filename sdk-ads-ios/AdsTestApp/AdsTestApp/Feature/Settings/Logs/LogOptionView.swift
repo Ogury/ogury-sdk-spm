@@ -1,0 +1,384 @@
+//
+//  Copyright © 2023 Ogury Ltd. All rights reserved.
+//
+
+
+import SwiftUI
+import ComposableArchitecture
+import AdsCardLibrary
+
+struct LogOptionView: View {
+    @BindingState var store: StoreOf<LogOptionFeature> = .init(
+        initialState: LogOptionFeature.State(),
+        reducer: { LogOptionFeature() }
+    )
+    
+    var body: some View {
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            List {
+                Section {
+                    Button {
+                        viewStore.send(.logDisplaySDKButtonTapped)
+                    } label: {
+                        HStack {
+                            Text("Show SDK")
+                                .layoutPriority(1)
+                            
+                            Toggle("", isOn:
+                                    viewStore.binding(
+                                        get: \.logDisplaySDKEnabled,
+                                        send: .logDisplaySDKButtonTapped)
+                            )
+                        }
+                    }
+                    Button {
+                        viewStore.send(.logDisplayDateButtonTapped)
+                    } label: {
+                        HStack {
+                            Text("Show Date")
+                                .layoutPriority(1)
+                            
+                            Toggle("", isOn:
+                                    viewStore.binding(
+                                        get: \.logDisplayDateEnabled,
+                                        send: .logDisplayDateButtonTapped)
+                            )
+                        }
+                    }
+                    Button {
+                        viewStore.send(.logDisplayLevelButtonTapped)
+                    } label: {
+                        HStack {
+                            Text("Show log level")
+                                .layoutPriority(1)
+                            
+                            Toggle("", isOn:
+                                    viewStore.binding(
+                                        get: \.logDisplayLevelEnabled,
+                                        send: .logDisplayLevelButtonTapped)
+                            )
+                        }
+                    }
+                    Button {
+                        viewStore.send(.logDisplayTypeButtonTapped)
+                    } label: {
+                        HStack {
+                            Text("Show log type")
+                                .layoutPriority(1)
+                            
+                            Toggle("", isOn:
+                                    viewStore.binding(
+                                        get: \.logDisplayTypeEnabled,
+                                        send: .logDisplayTypeButtonTapped)
+                            )
+                        }
+                    }
+                    Button {
+                        viewStore.send(.logDisplayOriginButtonTapped)
+                    } label: {
+                        HStack {
+                            Text("Show origin")
+                                .layoutPriority(1)
+                            
+                            Toggle("", isOn:
+                                    viewStore.binding(
+                                        get: \.logDisplayOriginEnabled,
+                                        send: .logDisplayOriginButtonTapped)
+                            )
+                        }
+                    }
+                    Button {
+                        viewStore.send(.logDisplayTagsButtonTapped)
+                    } label: {
+                        HStack {
+                            Text("Show tags")
+                                .layoutPriority(1)
+                            
+                            Toggle("", isOn:
+                                    viewStore.binding(
+                                        get: \.logDisplayTagsEnabled,
+                                        send: .logDisplayTagsButtonTapped)
+                            )
+                        }
+                    }
+                    
+                } header: {
+                    Text("Display")
+                        .font(.adsBody)
+                        .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                        .padding(.horizontal, -16)
+                }
+                .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                
+                //MARK: - LOG TYPES
+                Section {
+                    VStack {
+                        HStack {
+                            Button {} label: {
+                                Circle()
+                                    .fill(
+                                        viewStore.logTypeInternalColor
+                                    )
+                                    .onTapGesture {
+//                                        withAnimation {
+                                            viewStore.send(.selectPickerForLogType(.internal))
+//                                        }
+                                    }
+                                    .frame(width: 30, height: 30)
+                                    .padding(.trailing, 8)
+                            }
+                            
+                            Button {
+                                viewStore.send(.logTypeInternalButtonTapped)
+                            } label: {
+                                HStack {
+                                    Text("Internal")
+                                        .font(.adsBody)
+                                        .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                                    Toggle("", isOn:
+                                            viewStore.binding(
+                                                get: \.logTypeInternalEnabled,
+                                                send: .logTypeInternalButtonTapped)
+                                    )
+                                }
+                            }
+                        }
+                        
+                        if viewStore.showColorPicker, viewStore.selectedType == .internal {
+                            ColorPicker("Pick your color",
+                                        selection: viewStore.binding(get: \.color,
+                                                                     send: { .selectColor($0) }),
+                                        supportsOpacity: false)
+                                .onChange(of: store.color) { newColor in
+                                    viewStore.send(.selectColor(newColor))
+                                }
+                                .transition(.slide)
+                        }
+                    }
+                    
+                    VStack {
+                        HStack {
+                            Button {} label: {
+                                Circle()
+                                    .fill(
+                                        viewStore.logTypePublisherColor
+                                    )
+                                    .frame(width: 30, height: 30)
+                                    .padding(.trailing, 8)
+                                    .onTapGesture {
+                                        viewStore.send(.selectPickerForLogType(.publisher))
+                                    }
+                            }
+                            
+                            Button {
+                                viewStore.send(.logTypePublisherButtonTapped)
+                            } label: {
+                                HStack {
+                                    Text("Publisher")
+                                        .font(.adsBody)
+                                        .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                                    Toggle("", isOn:
+                                            viewStore.binding(
+                                                get: \.logTypePublisherEnabled,
+                                                send: .logTypePublisherButtonTapped)
+                                    )
+                                }
+                            }
+                        }
+                        
+                        if viewStore.showColorPicker, viewStore.selectedType == .publisher {
+                            ColorPicker("Pick your color",
+                                        selection: viewStore.binding(get: \.color,
+                                                                     send: { .selectColor($0) }),
+                                        supportsOpacity: false)
+                            .onChange(of: store.color) { newColor in
+                                viewStore.send(.selectColor(newColor))
+                            }
+                        }
+                    }
+                    
+                    VStack {
+                        HStack {
+                            Button {} label: {
+                                Circle()
+                                    .fill(
+                                        viewStore.logTypeDelegateColor
+                                    )
+                                    .frame(width: 30, height: 30)
+                                    .padding(.trailing, 8)
+                                    .onTapGesture {
+                                        viewStore.send(.selectPickerForLogType(.delegate))
+                                    }
+                            }
+                            
+                            Button {
+                                viewStore.send(.logTypeDelegateButtonTapped)
+                            } label: {
+                                HStack {
+                                    Text("Delegate (callbacks)")
+                                        .font(.adsBody)
+                                        .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                                    Toggle("", isOn:
+                                            viewStore.binding(
+                                                get: \.logTypeDelegateEnabled,
+                                                send: .logTypeDelegateButtonTapped)
+                                    )
+                                }
+                            }
+                        }
+                        
+                        if viewStore.showColorPicker, viewStore.selectedType == .delegate {
+                            ColorPicker("Pick your color",
+                                        selection: viewStore.binding(get: \.color,
+                                                                     send: { .selectColor($0) }),
+                                        supportsOpacity: false)
+                            .onChange(of: store.color) { newColor in
+                                viewStore.send(.selectColor(newColor))
+                            }
+                        }
+                    }
+                    
+                    VStack {
+                        HStack {
+                            Button {} label: {
+                                Circle()
+                                    .fill(
+                                        viewStore.logTypeMonitoringColor
+                                    )
+                                    .frame(width: 30, height: 30)
+                                    .padding(.trailing, 8)
+                                    .onTapGesture {
+                                        viewStore.send(.selectPickerForLogType(.monitoring))
+                                    }
+                            }
+                            
+                            Button {
+                                viewStore.send(.logTypeMonitoringButtonTapped)
+                            } label: {
+                                HStack {
+                                    Text("Monitoring")
+                                        .font(.adsBody)
+                                        .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                                    Toggle("", isOn:
+                                            viewStore.binding(
+                                                get: \.logTypeMonitoringEnabled,
+                                                send: .logTypeMonitoringButtonTapped)
+                                    )
+                                }
+                            }
+                        }
+                        
+                        if viewStore.showColorPicker, viewStore.selectedType == .monitoring {
+                            ColorPicker("Pick your color",
+                                        selection: viewStore.binding(get: \.color,
+                                                                     send: { .selectColor($0) }),
+                                        supportsOpacity: false)
+                            .onChange(of: store.color) { newColor in
+                                viewStore.send(.selectColor(newColor))
+                            }
+                        }
+                    }
+                    
+                    VStack {
+                        HStack {
+                            Button {} label: {
+                                Circle()
+                                    .fill(
+                                        viewStore.logTypeMraidColor
+                                    )
+                                    .frame(width: 30, height: 30)
+                                    .padding(.trailing, 8)
+                                    .onTapGesture {
+                                        viewStore.send(.selectPickerForLogType(.mraid))
+                                    }
+                            }
+                            
+                            Button {
+                                viewStore.send(.logTypeMraidButtonTapped)
+                            } label: {
+                                HStack {
+                                    Text("Mraid")
+                                        .font(.adsBody)
+                                        .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                                    Toggle("", isOn:
+                                            viewStore.binding(
+                                                get: \.logTypeMraidEnabled,
+                                                send: .logTypeMraidButtonTapped)
+                                    )
+                                }
+                            }
+                        }
+                        
+                        if viewStore.showColorPicker, viewStore.selectedType == .mraid {
+                            ColorPicker("Pick your color",
+                                        selection: viewStore.binding(get: \.color,
+                                                                     send: { .selectColor($0) }),
+                                        supportsOpacity: false)
+                            .onChange(of: store.color) { newColor in
+                                viewStore.send(.selectColor(newColor))
+                            }
+                        }
+                    }
+                    
+                    VStack {
+                        HStack {
+                            Button {} label: {
+                                Circle()
+                                    .fill(
+                                        viewStore.logTypeRequestColor
+                                    )
+                                    .frame(width: 30, height: 30)
+                                    .padding(.trailing, 8)
+                                    .onTapGesture {
+                                        viewStore.send(.selectPickerForLogType(.requests))
+                                    }
+                            }
+                            
+                            Button {
+                                viewStore.send(.logTypeRequestButtonTapped)
+                            } label: {
+                                HStack {
+                                    Text("Requests")
+                                        .font(.adsBody)
+                                        .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                                    Toggle("", isOn:
+                                            viewStore.binding(
+                                                get: \.logTypeRequestEnabled,
+                                                send: .logTypeRequestButtonTapped)
+                                    )
+                                }
+                            }
+                        }
+                        
+                        if viewStore.showColorPicker, viewStore.selectedType == .requests {
+                            ColorPicker("Pick your color",
+                                        selection: viewStore.binding(get: \.color,
+                                                                     send: { .selectColor($0) }),
+                                        supportsOpacity: false)
+                            .onChange(of: store.color) { newColor in
+                                viewStore.send(.selectColor(newColor))
+                            }
+                        }
+                    }
+                } header: {
+                    Text("Log Types")
+                        .font(.adsCaption)
+                        .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                        .padding(.horizontal, -16)
+                }
+                .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+            }
+            .safeScrollContentBackground(.hidden)
+            .listStyle(.insetGrouped)
+            .tint(Color(AdColorPalette.Text.primary(onAccent: false).color))
+        }
+    }
+}
+
+#Preview {
+    NavigationView {
+        LogOptionView()
+    }
+}
