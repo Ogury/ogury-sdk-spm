@@ -129,10 +129,8 @@
     @weakify(self)[self.mraidFileDownloader downloadMraidJSFromURL:ad
                                                         completion:^(NSString *response, NSError *error) {
                                                             @strongify(self) if (error) {
-                                                                OguryAdError *adError = (OguryAdError *)error;
-                                                                if (adError == nil) {
-                                                                    adError = [OguryAdError adPrecachingFailedWithStackTrace:[NSString stringWithFormat:@"Mraid download error (%ld)", error.code]];
-                                                                }
+                                                                NSString *additionalInformation = [NSString stringWithFormat:@"Mraid download error (%ld)", error.code];
+                                                                OguryAdError *adError = [OguryAdError adPrecachingFailedWithStackTrace:additionalInformation];
                                                                 completionHandler(ad.mraidDownloadUrl, adError);
                                                                 return;
                                                             }

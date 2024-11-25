@@ -7,7 +7,7 @@
 //
 
 typedef NS_ENUM(NSInteger, OguryShowErrorCode) {
-    OguryShowErrorCodeSDKNeverStarted = 3000,
+    OguryShowErrorCodeSDKNotStarted = 3000,
     OguryShowErrorCodeSDKNotProperlyInitialized = 3001,
     OguryShowErrorCodeNoActiveInternetConnection = 3002,
     OguryShowErrorCodeInvalidConfiguration = 3100,

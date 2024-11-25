@@ -2,15 +2,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OguryAdsBannerSize : NSObject
+@interface OguryBannerAdSize : NSObject
 
 - (instancetype)init NS_UNAVAILABLE;
 
 - (CGSize)getSize;
 
-+ (OguryAdsBannerSize *)small_banner_320x50;
++ (OguryBannerAdSize *)small_banner_320x50;
 
-+ (OguryAdsBannerSize *)mrec_300x250;
++ (OguryBannerAdSize *)mrec_300x250;
 
 @end
 

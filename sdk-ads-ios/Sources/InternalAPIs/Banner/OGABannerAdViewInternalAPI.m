@@ -17,7 +17,7 @@
 
 NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName";
 
-@interface OGABannerAdViewInternalAPI () <OguryBannerAdDelegate>
+@interface OGABannerAdViewInternalAPI () <OguryBannerAdViewDelegate>
 
 #pragma mark - Properties
 
@@ -25,7 +25,7 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
 @property(nonatomic, strong) OGAAdSequence *sequence;
 @property(nonatomic, strong) OGAAdConfiguration *configuration;
 @property(nonatomic, strong) OGAAdManager *adManager;
-@property(nonatomic, strong) OguryAdsBannerSize *size;
+@property(nonatomic, strong) OguryBannerAdSize *size;
 @property(nonatomic, strong) NSNotificationCenter *notificationCenter;
 @property(nonatomic, strong) OGALog *log;
 @property(nonatomic, strong) OGAMonitoringDispatcher *monitoringDispatcher;
@@ -46,7 +46,7 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
 
 - (instancetype)initWithAdUnitId:(NSString *)adUnitId
                       bannerView:(UIView *)bannerView
-                            size:(OguryAdsBannerSize *)size
+                            size:(OguryBannerAdSize *)size
               delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher
                        mediation:(OguryMediation *_Nullable)mediation {
     return [self initWithAdUnitId:adUnitId
@@ -63,7 +63,7 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
 
 - (instancetype)initWithAdUnitId:(NSString *)adUnitId
                       bannerView:(UIView *)bannerView
-                            size:(OguryAdsBannerSize *)size
+                            size:(OguryBannerAdSize *)size
               delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher
                        adManager:(OGAAdManager *)adManager
               notificationCenter:(NSNotificationCenter *)notificationCenter
@@ -228,7 +228,7 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
     return [self.delegateDispatcher bannerViewController] != nil || self.bannerView.window.rootViewController != nil;
 }
 
-#pragma mark - OguryBannerAdDelegate
+#pragma mark - OguryBannerAdViewDelegate
 - (void)bannerAdViewDidLoad:(OguryBannerAdView *)bannerAd {
     [self.delegateDispatcher loaded];
 

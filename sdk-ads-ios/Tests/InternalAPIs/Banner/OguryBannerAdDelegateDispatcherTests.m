@@ -9,24 +9,24 @@
 #import "OguryAdError.h"
 #import "OguryAdError+Internal.h"
 
-@interface OguryBannerAdDelegateDispatcherTests : XCTestCase
+@interface OguryBannerAdViewDelegateDispatcherTests : XCTestCase
 
 #pragma mark - Properties
 
-@property(nonatomic, strong) id<OguryBannerAdDelegate> delegate;
+@property(nonatomic, strong) id<OguryBannerAdViewDelegate> delegate;
 @property(nonatomic, strong) OguryBannerAdViewDelegateDispatcher *delegateDispatcher;
 @property(nonatomic, strong) OguryBannerAdView *banner;
 
 @end
 
-@implementation OguryBannerAdDelegateDispatcherTests
+@implementation OguryBannerAdViewDelegateDispatcherTests
 
 #pragma mark - Methods
 
 - (void)setUp {
     [OGADelegateDispatcher setAlwaysDispatchInMainThread:NO];
 
-    self.delegate = OCMProtocolMock(@protocol(OguryBannerAdDelegate));
+    self.delegate = OCMProtocolMock(@protocol(OguryBannerAdViewDelegate));
     self.banner = OCMClassMock([OguryBannerAdView class]);
 
     self.delegateDispatcher = [[OguryBannerAdViewDelegateDispatcher alloc] init];
