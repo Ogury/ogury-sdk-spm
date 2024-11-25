@@ -37,6 +37,10 @@ struct SettingsContainer: Codable, Equatable {
         get { settings.startSDKWithApplication }
         set { settings.startSDKWithApplication = newValue }
     }
+    var numberOfSdkStart: Int {
+        get { settings.numberOfSdkStart }
+        set { settings.numberOfSdkStart = newValue }
+    }
     var showTestMode: Bool {
         get { settings.showTestMode }
         set { settings.showTestMode = newValue }
@@ -68,6 +72,8 @@ struct SettingsContainer: Codable, Equatable {
         case name
         case os
         case enableAdUnitEditing
+        case startSDKWithApplication
+        case numberOfSdkStart
         case logSettings
     }
     
@@ -81,6 +87,8 @@ struct SettingsContainer: Codable, Equatable {
         showTestMode = try container.decode(Bool.self, forKey: .showTestMode)
         name = try container.decode(String.self, forKey: .name)
         os = try container.decode(String.self, forKey: .os)
+        startSDKWithApplication = try container.decodeIfPresent(Bool.self, forKey: .startSDKWithApplication) ?? false
+        numberOfSdkStart = try container.decodeIfPresent(Int.self, forKey: .numberOfSdkStart) ?? 0
         enableAdUnitEditing = try container.decodeIfPresent(Bool.self, forKey: .enableAdUnitEditing) ?? true
         logSettings = (try? container.decodeIfPresent(LogSettings.self, forKey: .logSettings)) ?? LogSettings()
     }
@@ -96,6 +104,8 @@ struct SettingsContainer: Codable, Equatable {
         try container.encode(name, forKey: .name)
         try container.encode(os, forKey: .os)
         try container.encode(enableAdUnitEditing, forKey: .enableAdUnitEditing)
+        try container.encode(numberOfSdkStart, forKey: .numberOfSdkStart)
+        try container.encode(startSDKWithApplication, forKey: .startSDKWithApplication)
         try container.encode(logSettings, forKey: .logSettings)
     }
     
@@ -113,6 +123,8 @@ struct SettingsContainer: Codable, Equatable {
         lhs.startSDKWithApplication == rhs.startSDKWithApplication &&
         lhs.showTestMode == rhs.showTestMode &&
         lhs.enableAdUnitEditing == rhs.enableAdUnitEditing &&
+        lhs.startSDKWithApplication == rhs.startSDKWithApplication &&
+        lhs.numberOfSdkStart == rhs.numberOfSdkStart &&
         lhs.name == rhs.name
     }
 }
