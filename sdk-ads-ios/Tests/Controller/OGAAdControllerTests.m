@@ -139,6 +139,12 @@ double const OGAAdControllerTestsDefaultExpirationTime = 14400;
                                        error:[OCMArg anyObjectRef]]);
 }
 
+- (void)testWebkitProcessDidTerminate {
+    self.controller.delegate = OCMProtocolMock(@protocol(OGAAdControllerDelegate));
+    [self.controller webkitProcessDidTerminate];
+    OCMVerify([self.controller.delegate controller:self.controller webkitProcessDidTerminateForAd:self.ad]);
+}
+
 - (void)testShow_performActionFails {
     OguryError *performActionError = OCMClassMock([OguryAdError class]);
     OCMStub([self.controller performAction:[OCMArg any] error:[OCMArg anyObjectRef]]).andDo(^(NSInvocation *invocation) {

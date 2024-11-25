@@ -200,7 +200,7 @@ public final class BannerAdManager: AdManager {
 // We have to use a proxy object because otherwise, we would have to make InterstitialAdManager a final class that inherits from NSObject
 // and for some reasons, that leads to unexpected compilation fail
 // To overcome easily this, we use a proxy object
-internal class MrecProxyDelegate: AdDelegateProxy<BannerAdManager>, OguryBannerAdDelegate {
+internal class MrecProxyDelegate: AdDelegateProxy<BannerAdManager>, OguryBannerAdViewDelegate {
     func bannerAdViewDidLoad(_ bannerAd: OguryBannerAdView) {
         guard let adManager else { return }
         adManager.append(.adLoaded(canShow:true))

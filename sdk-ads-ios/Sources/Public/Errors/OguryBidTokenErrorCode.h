@@ -7,7 +7,7 @@
 //
 
 typedef NS_ENUM(NSInteger, OguryBidTokenErrorCode) {
-    OguryBidTokenErrorCodeSDKNeverStarted = 4000,
+    OguryBidTokenErrorCodeSDKNotStarted = 4000,
     OguryBidTokenErrorCodeSDKNotProperlyInitialized = 4001,
     OguryBidTokenErrorCodeNoActiveInternetConnection = 4002,
     OguryBidTokenErrorCodeInvalidConfiguration = 4100,

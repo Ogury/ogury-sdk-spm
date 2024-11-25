@@ -855,6 +855,7 @@
 - (void)testWhenWebkitProcessIsTerminated_ThenScriptIsRemovedFromContainerWebview {
     OGAMRAIDWebView *containerWebView = OCMClassMock([OGAMRAIDWebView class]);
     self.displayer.containerWebView = containerWebView;
+    self.displayer.mraidDisplayerState = OGAAdMraidDisplayerStateLoaded;
     OCMStub(self.displayer.ad.maxNumberOfReloadWebView).andReturn(@1);
     [self.displayer webkitProcessDidTerminate];
     OCMVerify([containerWebView removeScriptMessageHandler]);
@@ -864,12 +865,14 @@
     OGAAdLoadStateManager *stateManager = OCMClassMock([OGAAdLoadStateManager class]);
     self.displayer.stateManager = stateManager;
     OCMStub(self.displayer.ad.maxNumberOfReloadWebView).andReturn(@1);
+    self.displayer.mraidDisplayerState = OGAAdMraidDisplayerStateLoaded;
     [self.displayer webkitProcessDidTerminate];
     OCMVerify([stateManager reset]);
 }
 
 - (void)testWhenWebkitProcessIsTerminated_ThenMraidStateIsSetToLoaded {
     OCMStub(self.displayer.ad.maxNumberOfReloadWebView).andReturn(@1);
+    self.displayer.mraidDisplayerState = OGAAdMraidDisplayerStateLoaded;
     [self.displayer webkitProcessDidTerminate];
     XCTAssertEqual(self.displayer.mraidDisplayerState, OGAAdMraidDisplayerStateLoaded);
 }
@@ -887,6 +890,7 @@
                                                                        monitoringDispatcher:self.monitoringDispatcher
                                                                               profigManager:self.profigManager
                                                                                         log:self.log]);
+    displayer.mraidDisplayerState = OGAAdMraidDisplayerStateLoaded;
     XCTAssertNotNil(displayer.containerWebView);
     OCMStub([displayer setupViews])
         .andDo(^(NSInvocation *invocation){
@@ -1072,6 +1076,7 @@
                                                                        monitoringDispatcher:self.monitoringDispatcher
                                                                               profigManager:self.profigManager
                                                                                         log:self.log]);
+    displayer.mraidDisplayerState = OGAAdMraidDisplayerStateLoaded;
     [displayer webkitProcessDidTerminate];
     XCTAssertEqual(displayer.mraidDisplayerState, OGAAdMraidDisplayerStateKilled);
 }
@@ -1158,9 +1163,36 @@
                                                                        monitoringDispatcher:self.monitoringDispatcher
                                                                               profigManager:self.profigManager
                                                                                         log:self.log]);
+    displayer.mraidDisplayerState = OGAAdMraidDisplayerStateLoaded;
     [displayer webkitProcessDidTerminate];
     [displayer webkitProcessDidTerminate];
     XCTAssertEqual(displayer.numberOfReloadAttempts, 2);
+}
+
+- (void)testWhenWebKitProcessIsTerminatedWhileLoading {
+    OGAAd *ad = OCMClassMock([OGAAd class]);
+    OCMStub([ad maxNumberOfReloadWebView]).andReturn(@3);
+    OGAAdConfiguration *conf = OCMPartialMock([OGAAdConfiguration new]);
+    OCMStub(ad.adConfiguration).andReturn(conf);
+    OGAMRAIDAdDisplayer *displayer = OCMPartialMock([[OGAMRAIDAdDisplayer alloc] initWithAd:ad
+                                                                            adConfiguration:conf
+                                                                              adSyncManager:self.adSyncManager
+                                                                      landingPagePrefetcher:self.prefetcher
+                                                                             metricsService:self.metricsService
+                                                                          userDefaultsStore:self.userDefaultStore
+                                                                                application:self.application
+                                                                        adImpressionManager:self.impressionManager
+                                                                      webViewCleanupManager:self.webViewCleanupManager
+                                                                       monitoringDispatcher:self.monitoringDispatcher
+                                                                              profigManager:self.profigManager
+                                                                                        log:self.log]);
+    displayer.delegate = OCMProtocolMock(@protocol(OGAAdDisplayerDelegate));
+    displayer.mraidDisplayerState = OGAAdMraidDisplayerStateLoading;
+    [displayer webkitProcessDidTerminate];
+    OCMVerify([displayer.delegate webkitProcessDidTerminate]);
+    OCMVerify([displayer.stateManager invalidateTimer]);
+    OCMVerify([displayer.stateManager reset]);
+    XCTAssertEqual(displayer.mraidDisplayerState, OGAAdMraidDisplayerStateKilled);
 }
 
 @end

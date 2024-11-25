@@ -72,7 +72,7 @@ class AdsOptinVideoController: NSObject, AdsFullscreenController {
     }
     
     func isLoaded() -> Bool {
-        RewardedAd.isLoaded()
+        RewardedAd.isLoaded
     }
 }
 

@@ -7,7 +7,7 @@
 //
 
 typedef NS_ENUM(NSInteger, OguryLoadErrorCode) {
-    OguryLoadErrorCodeSDKNeverStarted = 2000,
+    OguryLoadErrorCodeSDKNotStarted = 2000,
     OguryLoadErrorCodeSDKNotProperlyInitialized = 2001,
     OguryLoadErrorCodeNoActiveInternetConnection = 2002,
     OguryLoadErrorCodeInvalidConfiguration = 2100,

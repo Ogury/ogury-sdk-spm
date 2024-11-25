@@ -7,7 +7,7 @@ production:
     adunit: "313076_default"
     creative: ""
     dspCreative: ""
-  optin:
+  rewarded:
     campaign: "150175"
     adunit: "083cddeb-0566-4e74-9a67-2e6401d77338"
     creative: ""
