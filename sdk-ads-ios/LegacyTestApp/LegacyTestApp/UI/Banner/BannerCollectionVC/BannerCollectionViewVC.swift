@@ -176,11 +176,11 @@ extension BannerCollectionViewVC: UIPopoverPresentationControllerDelegate {
     }
 }
 
-// MARK: - OguryBannerAdDelegate
+// MARK: - OguryBannerAdViewDelegate
 
-extension BannerCollectionViewVC: OguryBannerAdDelegate {
+extension BannerCollectionViewVC: OguryBannerAdViewDelegate {
 
-    func didLoad(_ banner: OguryBannerAdView) {
+    func bannerAdViewDidLoad(_ bannerAd: OguryBannerAdView) {
         if let bottomBanner = self.bottomBanner {
             bannerBottomView.addSubview(bottomBanner)
         }
@@ -189,28 +189,28 @@ extension BannerCollectionViewVC: OguryBannerAdDelegate {
             bannerTopView.addSubview(topBanner)
         }
 
-        LogsController.shared.addLogs("Banner n°\(idForBanner(banner)) loaded")
+        LogsController.shared.addLogs("Banner n°\(idForBanner(bannerAd)) loaded")
     }
 
-    func didDisplay(_ banner: OguryBannerAdView) {
-        LogsController.shared.addLogs("Banner n°\(idForBanner(banner)) displayed")
+    func bannerAdViewDidTriggerImpression(_ bannerAd: OguryBannerAdView) {
+        LogsController.shared.addLogs("Banner n°\(idForBanner(bannerAd)) trigger impression")
     }
 
 
-    func didClick(_ banner: OguryBannerAdView) {
-        LogsController.shared.addLogs("Banner n°\(idForBanner(banner)) clicked")
+    func bannerAdViewDidClick(_ bannerAd: OguryBannerAdView) {
+        LogsController.shared.addLogs("Banner n°\(idForBanner(bannerAd)) clicked")
     }
 
-    func didClose(_ banner: OguryBannerAdView) {
-        LogsController.shared.addLogs("Banner n°\(idForBanner(banner)) closed")
-        removeBannerFromScreen(banner)
+    func bannerAdViewDidClose(_ bannerAd: OguryBannerAdView) {
+        LogsController.shared.addLogs("Banner n°\(idForBanner(bannerAd)) closed")
+        removeBannerFromScreen(bannerAd)
     }
-
-    func didFail(_ banner: OguryBannerAdView, error: OguryAdError) {
-        LogsController.shared.addLogs("Banner n°\(idForBanner(banner)) error : \(error.localizedDescription)")
+    func bannerAdView(_ bannerAd: OguryBannerAdView, didFailWithError error: OguryAdError) {
+        LogsController.shared.addLogs("Banner n°\(idForBanner(bannerAd)) error : \(error.localizedDescription)")
 
         if (error.code != 2004) {
-            removeBannerFromScreen(banner)
+            removeBannerFromScreen(bannerAd)
         }
     }
+    
 }

@@ -74,18 +74,19 @@ struct AdFormat: Equatable, Identifiable, Hashable {
     }
     
     var displayIcon: Image? {
-        switch adType.adType {
-            case is AdType<InterstitialAdManager>:
-                return Image(systemName: "iphone").symbolRenderingMode(.monochrome)
-            case is AdType<RewardedAdManager>:
-                return Image(systemName: "iphone.gen3.badge.play")
-            case is AdType<ThumbnailAdManager>:
-                return Image(systemName: "rectangle.portrait.bottomright.inset.filled")
-            case is AdType<BannerAdManager>:
-                return Image(systemName: "platter.filled.bottom.iphone")
-            default:
-                return nil
+        if let ad = (adType.adType as? AdType<InterstitialAdManager>) {
+            return Image(systemName: "iphone").symbolRenderingMode(.monochrome)
         }
+        if let ad = (adType.adType as? AdType<RewardedAdManager>) {
+            return Image(systemName: "iphone.gen3.badge.play")
+        }
+        if let ad = (adType.adType as? AdType<ThumbnailAdManager>) {
+            return Image(systemName: "rectangle.portrait.bottomright.inset.filled")
+        }
+        if let ad = (adType.adType as? AdType<BannerAdManager>) {
+            return Image(systemName: "platter.filled.bottom.iphone")
+        }
+        return nil
     }
     
     var tags: [AdTag] {

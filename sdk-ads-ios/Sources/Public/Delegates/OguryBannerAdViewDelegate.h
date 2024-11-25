@@ -9,7 +9,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class OguryBannerAdView;
 
-@protocol OguryBannerAdDelegate <NSObject>
+@protocol OguryBannerAdViewDelegate <NSObject>
 @optional
 - (void)bannerAdViewDidLoad:(OguryBannerAdView *)bannerAd NS_SWIFT_NAME(bannerAdViewDidLoad(_:));
 - (void)bannerAdViewDidClick:(OguryBannerAdView *)bannerAd NS_SWIFT_NAME(bannerAdViewDidClick(_:));

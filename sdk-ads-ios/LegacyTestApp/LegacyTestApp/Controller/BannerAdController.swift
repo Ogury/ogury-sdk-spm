@@ -21,14 +21,14 @@ final class BannerAdController: NSObject, BannerFormatController {
 
     // MARK: - Functions
 
-    func getAd(adUnitId: String, maxSize: OguryAdsBannerSize) -> OguryBannerAdView {
+    func getAd(adUnitId: String, maxSize: OguryBannerAdSize) -> OguryBannerAdView {
         let instance = OguryBannerAdView(adUnitId: adUnitId, size: maxSize)
         instance.delegate = self
         banner = instance
         return instance
     }
 
-    func load(adUnitId: String, campaignId: String? = nil, creativeId:String? = nil, dspCreativeId:String? = nil, dspRegion:String? = nil, maxSize: OguryAdsBannerSize, inView view: UIView?, withWidth width: CGFloat? = nil) {
+    func load(adUnitId: String, campaignId: String? = nil, creativeId:String? = nil, dspCreativeId:String? = nil, dspRegion:String? = nil, maxSize: OguryBannerAdSize, inView view: UIView?, withWidth width: CGFloat? = nil) {
         let bannerAd = getAd(adUnitId: adUnitId, maxSize: maxSize)
 
         if let campaignId = campaignId, !campaignId.isEmpty, let creativeId = creativeId, !creativeId.isEmpty, let dspCreativeId = dspCreativeId, !dspCreativeId.isEmpty, let dspRegion = dspRegion, !dspRegion.isEmpty {
@@ -97,8 +97,8 @@ final class BannerAdController: NSObject, BannerFormatController {
     }
 
     func destroy() {
-        banner?.removeFromSuperview()
         banner?.destroy()
+        banner?.removeFromSuperview()
         banner = nil
     }
     
@@ -118,7 +118,7 @@ extension BannerAdController {
                                creativeId: String?,
                                dspCreativeId: String?,
                                dspRegion: String?,
-                               maxSize: OguryAdsBannerSize,
+                               maxSize: OguryBannerAdSize,
                                preferredWidth width: CGFloat? = nil,
                                in view: UIView?) {
         guard let assetKey = AdConfigController.shared.assetKey() else {
@@ -145,7 +145,7 @@ extension BannerAdController {
                             bannerAd.load(withAdMarkup: adMarkup)
                     
                     case .failure(let error):
-                        self.oguryBannerAdView(bannerAd, didFailWithError: OguryAdError.createOguryError(withCode: -1, localizedDescription: error.localizedDescription))
+                        self.bannerAdView(bannerAd, didFailWithError: OguryAdError.createOguryError(withCode: -1, localizedDescription: error.localizedDescription))
                                     LogsController.shared.addLogs("Header bidding for Interstitial failed. [\(error.localizedDescription)]")
                 }
             }
@@ -153,35 +153,35 @@ extension BannerAdController {
     }
 }
 
-// MARK: - OguryBannerAdDelegate
+// MARK: - OguryBannerAdViewDelegate
 
-extension BannerAdController: OguryBannerAdDelegate {
+extension BannerAdController: OguryBannerAdViewDelegate {
 
-    func oguryBannerAdViewDidLoad(_ banner: OguryBannerAdView) {
+    func bannerAdViewDidLoad(_ bannerAd: OguryBannerAdView) {
         LogsController.shared.addLogs("Banner ad loaded")
 
-        LogsController.shared.addLogs("Banner ad is expanded at load ? [\(banner.isExpanded)]")
+        LogsController.shared.addLogs("Banner ad is expanded at load ? [\(bannerAd.isExpanded)]")
     }
 
-    func oguryBannerAdView(_ banner: OguryBannerAdView, didFailWithError error: OguryAdError) {
+    func bannerAdView(_ bannerAd: OguryBannerAdView, didFailWithError error: OguryAdError) {
         LogsController.shared.addLogs("Banner ad failed with error code \(error.code): \(error.localizedDescription)");
-        banner.removeFromSuperview()
+        bannerAd.removeFromSuperview()
     }
 
-    func oguryBannerAdViewDidClick(_ banner: OguryBannerAdView) {
+    func bannerAdViewDidClick(_ bannerAd: OguryBannerAdView) {
         LogsController.shared.addLogs("Banner ad clicked")
 
-        DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime.now() + 1) { [unowned banner] in
-            LogsController.shared.addLogs("Banner ad is expanded after click ? [\(banner.isExpanded)]")
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime.now() + 1) { [unowned bannerAd] in
+            LogsController.shared.addLogs("Banner ad is expanded after click ? [\(bannerAd.isExpanded)]")
         }
     }
 
-    func oguryBannerAdViewDidClose(_ banner: OguryBannerAdView) {
+    func bannerAdViewDidClose(_ bannerAd: OguryBannerAdView) {
         LogsController.shared.addLogs("Banner ad closed")
-        banner.removeFromSuperview()
+        bannerAd.removeFromSuperview()
     }
     
-    func oguryBannerAdViewDidTriggerImpression(_ banner: OguryBannerAdView) {
+    func bannerAdViewDidTriggerImpression(_ bannerAd: OguryBannerAdView) {
         LogsController.shared.addLogs("Banner ad impression")
     }
     

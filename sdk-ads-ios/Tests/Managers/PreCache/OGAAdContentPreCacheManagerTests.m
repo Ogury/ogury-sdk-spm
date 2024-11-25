@@ -124,7 +124,7 @@ NSString *const TestMraidDownloadUrl2 = @"https://example.com/mraid2.js";
     [self.manager downloadMraidScript:ad
                     completionHandler:^(NSString *mraidDownloadUrl, OguryError *error) {
                         XCTAssertEqualObjects(mraidDownloadUrl, TestMraidDownloadUrl);
-                        XCTAssertEqual(error.code, -1);
+                        XCTAssertEqual(error.code, 2300);
                         [expectation fulfill];
                     }];
 
