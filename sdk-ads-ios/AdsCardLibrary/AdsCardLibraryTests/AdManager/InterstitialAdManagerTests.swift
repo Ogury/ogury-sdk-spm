@@ -165,7 +165,7 @@ final class InterstitialAdManagerTests: XCTestCase {
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didLoad?(OguryInterstitialAd())
+        adManager.ad?.delegate?.interstitialAdDidLoad?(OguryInterstitialAd())
         wait(for: [ex], timeout: 0.5)
     }
     
@@ -183,7 +183,7 @@ final class InterstitialAdManagerTests: XCTestCase {
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didClick?(OguryInterstitialAd())
+        adManager.ad?.delegate?.interstitialAdDidClick?(OguryInterstitialAd())
         wait(for: [ex], timeout: 0.5)
     }
     
@@ -201,7 +201,7 @@ final class InterstitialAdManagerTests: XCTestCase {
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didTriggerImpressionOguryInterstitialAd?(OguryInterstitialAd())
+        adManager.ad?.delegate?.interstitialAdDidTriggerImpression?(OguryInterstitialAd())
         wait(for: [ex], timeout: 0.5)
     }
     
@@ -212,7 +212,7 @@ final class InterstitialAdManagerTests: XCTestCase {
         let vc = UIViewController()
         adManager.options = AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: "")
         try? adManager.loadAd(from: adManager.options.baseOptions)
-        let error = OguryAdError.createOguryError(withCode: 666)
+        let error = OguryAdError(domain: "", code: 666)
         let ex = expectation(description: "")
         adManager.events.sink { event in
             if event == .adDidFail(error) {
@@ -220,19 +220,19 @@ final class InterstitialAdManagerTests: XCTestCase {
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didFail?(OguryInterstitialAd(), error: error)
+        adManager.ad?.delegate?.interstitialAd?(OguryInterstitialAd(), didFailWithError: error)
         wait(for: [ex], timeout: 0.5)
     }
     
     func testWhenReceivingLoadingErrorsThenProperDelegateShouldBeCalled() {
-        [OguryAdErrorCode.sdkNotProperlyInitialized.rawValue,
-         OguryAdErrorCode.noAdLoaded.rawValue].forEach { errorCode in
+        [OguryLoadErrorCode.sdkNotProperlyInitialized.rawValue,
+         OguryShowErrorCode.noAdLoaded.rawValue].forEach { errorCode in
            let inter: AdType<InterstitialAdManager> = .interstitial
            var adManager = InterstitialAdManager(adType: inter)
            let vc = UIViewController()
            adManager.options = AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: "")
            try? adManager.loadAd(from: adManager.options.baseOptions)
-            let error = OguryAdError.createOguryError(withCode: errorCode)
+            let error = OguryAdError(domain: "", code: errorCode as! Int)
             let loadFailEx = expectation(description: "adDidFailToLoad called")
             let failEx = expectation(description: "adDidFail called")
             failEx.isInverted = true
@@ -250,21 +250,21 @@ final class InterstitialAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &storables)
-            adManager.ad?.delegate?.didFail?(OguryInterstitialAd(), error: error)
+            adManager.ad?.delegate?.interstitialAd?(OguryInterstitialAd(), didFailWithError: error)
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
         }
     }
     
     func testWhenReceivingDisplayErrorsThenProperDelegateShouldBeCalled() {
-        [OguryAdErrorCode.adExpired.rawValue,
-         OguryAdErrorCode.anotherAdAlreadyDisplayed.rawValue,
-         OguryAdErrorCode.viewControllerPreventsAdFromBeingDisplayed.rawValue].forEach { errorCode in
+        [OguryShowErrorCode.adExpired.rawValue,
+         OguryShowErrorCode.anotherAdAlreadyDisplayed.rawValue,
+         OguryShowErrorCode.viewControllerPreventsAdFromBeingDisplayed.rawValue].forEach { errorCode in
            let inter: AdType<InterstitialAdManager> = .interstitial
            let adManager = InterstitialAdManager(adType: inter)
            let vc = UIViewController()
            adManager.options = AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: "")
            try? adManager.loadAd(from: adManager.options.baseOptions)
-            let error = OguryAdError.createOguryError(withCode: errorCode)
+            let error = OguryAdError(domain: "", code: errorCode as! Int)
             let loadFailEx = expectation(description: "adDidFailToLoad called")
             loadFailEx.isInverted = true
             let failEx = expectation(description: "adDidFail called")
@@ -282,25 +282,25 @@ final class InterstitialAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &storables)
-            adManager.ad?.delegate?.didFail?(OguryInterstitialAd(), error: error)
+            adManager.ad?.delegate?.interstitialAd?(OguryInterstitialAd(), didFailWithError: error)
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
         }
     }
     
     func testWhenReceivingGenericErrorsThenProperDelegateShouldBeCalled() {
-        [OguryAdErrorCode.adDisabledConsentDenied.rawValue,
-         OguryAdErrorCode.sdkStartNotCalled.rawValue,
-         OguryAdErrorCode.invalidConfiguration.rawValue,
-         OguryAdErrorCode.adDisabledConsentMissing.rawValue,
-         OguryAdErrorCode.adDisabledCountryNotOpened.rawValue,
-         OguryAdErrorCode.adDisabledUnspecifiedReason.rawValue].forEach { errorCode in
+        [OguryLoadErrorCode.adDisabledConsentDenied.rawValue,
+         OguryLoadErrorCode.sdkNotStarted.rawValue,
+         OguryLoadErrorCode.invalidConfiguration.rawValue,
+         OguryLoadErrorCode.adDisabledConsentMissing.rawValue,
+         OguryLoadErrorCode.adDisabledCountryNotOpened.rawValue,
+         OguryLoadErrorCode.adDisabledUnspecifiedReason.rawValue].forEach { errorCode in
            let inter: AdType<InterstitialAdManager> = .interstitial
            
            let adManager = InterstitialAdManager(adType: inter)
            let vc = UIViewController()
            adManager.options = AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: "")
            try? adManager.loadAd(from: adManager.options.baseOptions)
-            let error = OguryAdError.createOguryError(withCode: errorCode)
+            let error = OguryAdError(domain: "", code: errorCode as! Int)
             let loadFailEx = expectation(description: "adDidFailToLoad called")
             loadFailEx.isInverted = true
             let failEx = expectation(description: "adDidFail called")
@@ -318,7 +318,7 @@ final class InterstitialAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &storables)
-            adManager.ad?.delegate?.didFail?(OguryInterstitialAd(), error: error)
+            adManager.ad?.delegate?.interstitialAd?(OguryInterstitialAd(), didFailWithError: error)
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
         }
     }

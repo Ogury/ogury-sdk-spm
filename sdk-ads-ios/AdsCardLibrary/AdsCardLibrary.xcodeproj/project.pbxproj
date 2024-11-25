@@ -16,6 +16,12 @@
 		4314411E2A653CA70067AD47 /* CwlPreconditionTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 4314411D2A653CA70067AD47 /* CwlPreconditionTesting */; };
 		431F6F062C0F3D8100DBFFAA /* AdTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6F052C0F3D8100DBFFAA /* AdTagView.swift */; };
 		431F6F092C0F403F00DBFFAA /* AdTagFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6F082C0F403F00DBFFAA /* AdTagFeature.swift */; };
+		432369C32CF4610F0078EF67 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */; };
+		432369C42CF4610F0078EF67 /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		432369C62CF4629D0078EF67 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4E9E2CB6D00D0029B928 /* OguryAds.framework */; };
+		432369C72CF4629D0078EF67 /* OguryAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4E9E2CB6D00D0029B928 /* OguryAds.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		432369C82CF4629E0078EF67 /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4E9F2CB6D00D0029B928 /* OguryCore.framework */; };
+		432369C92CF4629E0078EF67 /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4E9F2CB6D00D0029B928 /* OguryCore.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4328B2832AD7CF44003C7F91 /* MaxRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328B2822AD7CF44003C7F91 /* MaxRetriever.swift */; };
 		4328B28B2ADFBDA9003C7F91 /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328B28A2ADFBDA9003C7F91 /* Storable.swift */; };
 		434F84982AC1AF9B005077F5 /* RewardedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84962AC1AF9B005077F5 /* RewardedView.swift */; };
@@ -101,8 +107,6 @@
 		43DA127D2AB888D300766D99 /* AdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127A2AB888D300766D99 /* AdBannerView.swift */; };
 		43DA127E2AB888D300766D99 /* BannerPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */; };
 		43DA12802AB888D900766D99 /* BannerAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127F2AB888D900766D99 /* BannerAdManager.swift */; };
-		43FA4EA02CB6D00D0029B928 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4E9E2CB6D00D0029B928 /* OguryAds.framework */; };
-		43FA4EA22CB6D00D0029B928 /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4E9F2CB6D00D0029B928 /* OguryCore.framework */; };
 		50CFA85F2C63776200E64D20 /* UnityLevelPlayBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA85D2C63774B00E64D20 /* UnityLevelPlayBidable.swift */; };
 		50CFA8602C63776200E64D20 /* UnityLevelPlayBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA85D2C63774B00E64D20 /* UnityLevelPlayBidable.swift */; };
 		50CFA8622C637F0B00E64D20 /* UnityLevelPlayRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8612C637F0A00E64D20 /* UnityLevelPlayRetriever.swift */; };
@@ -118,6 +122,22 @@
 			remoteInfo = AdsCardLibrary;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		432369C52CF4610F0078EF67 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				432369C72CF4629D0078EF67 /* OguryAds.framework in Embed Frameworks */,
+				432369C42CF4610F0078EF67 /* OMSDK_Ogury.xcframework in Embed Frameworks */,
+				432369C92CF4629E0078EF67 /* OguryCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTFairBidHeaderBidable.swift; sourceTree = "<group>"; };
@@ -203,10 +223,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43FA4EA02CB6D00D0029B928 /* OguryAds.framework in Frameworks */,
-				43FA4EA22CB6D00D0029B928 /* OguryCore.framework in Frameworks */,
+				432369C62CF4629D0078EF67 /* OguryAds.framework in Frameworks */,
+				432369C82CF4629E0078EF67 /* OguryCore.framework in Frameworks */,
 				435C55EA2A42EAEF004186FF /* AdsCardLibrary.framework in Frameworks */,
 				4314411E2A653CA70067AD47 /* CwlPreconditionTesting in Frameworks */,
+				432369C32CF4610F0078EF67 /* OMSDK_Ogury.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +542,7 @@
 				435C55E52A42EAEF004186FF /* Sources */,
 				435C55E62A42EAEF004186FF /* Frameworks */,
 				435C55E72A42EAEF004186FF /* Resources */,
+				432369C52CF4610F0078EF67 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

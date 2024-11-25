@@ -37,14 +37,14 @@ final class RewardedAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &storables)
-            adManager.ad?.delegate?.didFail?(OguryRewardedAd(), error: error)
+            adManager.ad?.delegate?.rewardedAd?(OguryRewardedAd(), didFailWithError: error)
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
         }
     }
     
     func testWhenReceivingGenericErrorsThenProperDelegateShouldBeCalled() {
         [OguryLoadErrorCode.adDisabledConsentDenied.rawValue,
-         OguryLoadErrorCode.sdkStartNotCalled.rawValue,
+         OguryLoadErrorCode.sdkNotStarted.rawValue,
          OguryLoadErrorCode.invalidConfiguration.rawValue,
          OguryLoadErrorCode.adDisabledConsentMissing.rawValue,
          OguryLoadErrorCode.adDisabledCountryNotOpened.rawValue,
@@ -72,7 +72,7 @@ final class RewardedAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &storables)
-            adManager.ad?.delegate?.didFail?(OguryRewardedAd(), error: error)
+            adManager.ad?.delegate?.rewardedAd?(OguryRewardedAd(), didFailWithError: error)
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
         }
     }
@@ -160,7 +160,7 @@ final class RewardedAdManagerTests: XCTestCase {
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didLoad?(OguryRewardedAd())
+        adManager.ad?.delegate?.rewardedAdDidLoad?(OguryRewardedAd())
         wait(for: [ex], timeout: 0.5)
     }
     
@@ -178,7 +178,7 @@ final class RewardedAdManagerTests: XCTestCase {
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didClick?(OguryRewardedAd())
+        adManager.ad?.delegate?.rewardedAdDidClick?(OguryRewardedAd())
         wait(for: [ex], timeout: 0.5)
     }
     
@@ -196,7 +196,7 @@ final class RewardedAdManagerTests: XCTestCase {
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didClose?(OguryRewardedAd())
+        adManager.ad?.delegate?.rewardedAdDidClose?(OguryRewardedAd())
         wait(for: [ex], timeout: 0.5)
     }
     
@@ -214,7 +214,7 @@ final class RewardedAdManagerTests: XCTestCase {
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didTriggerImpressionOguryRewardedAd?(OguryRewardedAd())
+        adManager.ad?.delegate?.rewardedAdDidTriggerImpression?(OguryRewardedAd())
         wait(for: [ex], timeout: 0.5)
     }
     
@@ -228,18 +228,18 @@ final class RewardedAdManagerTests: XCTestCase {
         let error = OguryAdError.createOguryError(withCode: 666)
         let ex = expectation(description: "")
         adManager.events.sink { event in
-            if event == .adDidFail(error) {
+            if event == .adDidFail(error!) {
                 ex.fulfill()
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didFail?(OguryRewardedAd(), error: error)
+        adManager.ad?.delegate?.rewardedAd?(OguryRewardedAd(), didFailWithError: error!)
         wait(for: [ex], timeout: 0.5)
     }
     
     func testWhenReceivingLoadingErrorsThenProperDelegateShouldBeCalled() {
         [OguryLoadErrorCode.sdkNotProperlyInitialized.rawValue,
-         OguryLoadErrorCode.noAdLoaded.rawValue].forEach { errorCode in
+         OguryShowErrorCode.noAdLoaded.rawValue].forEach { errorCode in
            let ad: AdType<RewardedAdManager> = .rewarded
            var adManager = RewardedAdManager(adType: ad)
            let vc = UIViewController()
@@ -263,7 +263,7 @@ final class RewardedAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &storables)
-            adManager.ad?.delegate?.didFail?(OguryRewardedAd(), error: error)
+            adManager.ad?.delegate?.rewardedAd?(OguryRewardedAd(), didFailWithError: error)
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
         }
     }
