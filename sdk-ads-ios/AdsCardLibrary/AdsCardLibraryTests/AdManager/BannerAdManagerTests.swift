@@ -4,8 +4,7 @@
 
 import XCTest
 @testable import AdsCardLibrary
-import OguryAds.OguryThumbnailAd
-import Mockingbird
+import OguryAds
 import CwlPreconditionTesting
 import Combine
 
@@ -25,10 +24,10 @@ final class BannerAdManagerTests: XCTestCase {
         
         let adManager = BannerAdManager(adType: ad)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            let newDelegate = mock(AdLifeCycleDelegate.self)
+            let newDelegate = MockAdLifeCycleDelegate()
             adManager.adDelegate = newDelegate
-            XCTAssertTrue(adManager.adDelegate as? AdLifeCycleDelegateMock === newDelegate)
-            XCTAssertTrue(adManager.proxyDelegate.adDelegate as? AdLifeCycleDelegateMock === newDelegate)
+            XCTAssertTrue(adManager.adDelegate as? MockAdLifeCycleDelegate === newDelegate)
+            XCTAssertTrue(adManager.proxyDelegate.adDelegate as? MockAdLifeCycleDelegate === newDelegate)
         }
     }
     
@@ -91,7 +90,7 @@ final class BannerAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didLoad?(OguryBannerAdView())
+            adManager.ad?.delegate?.bannerAdViewDidLoad?(OguryBannerAdView())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -110,7 +109,7 @@ final class BannerAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didClick?(OguryBannerAdView())
+            adManager.ad?.delegate?.bannerAdViewDidClick?(OguryBannerAdView())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -130,7 +129,7 @@ final class BannerAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didClose?(OguryBannerAdView())
+            adManager.ad?.delegate?.bannerAdViewDidClose?(OguryBannerAdView())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -150,7 +149,7 @@ final class BannerAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didTriggerImpressionOguryBannerAdView?(OguryBannerAdView())
+            adManager.ad?.delegate?.bannerAdViewDidTriggerImpression?(OguryBannerAdView())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -163,7 +162,7 @@ final class BannerAdManagerTests: XCTestCase {
         adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
         try? adManager.loadAd(from: adManager.options.baseOptions)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            let error = OguryAdError.createOguryError(withCode: 666)
+            let error = OguryAdError(domain: "", code: 666)
             let ex = self.expectation(description: "")
             adManager.events.sink { event in
                 if event == .adDidFail(error) {
@@ -171,21 +170,21 @@ final class BannerAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didFail?(OguryBannerAdView(), error: error)
+            adManager.ad?.delegate?.bannerAdView?(OguryBannerAdView(), didFailWithError: error)
             self.wait(for: [ex], timeout: 0.5)
         }
     }
     
     func testWhenReceivingLoadingErrorsThenProperDelegateShouldBeCalled() {
-        [OguryAdErrorCode.sdkNotProperlyInitialized.rawValue,
-         OguryAdErrorCode.noAdLoaded.rawValue].forEach { errorCode in
+        [OguryLoadErrorCode.sdkNotProperlyInitialized.rawValue,
+         OguryShowErrorCode.noAdLoaded.rawValue].forEach { errorCode in
                let ad: AdType<BannerAdManager> = .banner
                var adManager = BannerAdManager(adType: ad)
                let vc = UIView()
                adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
                try? adManager.loadAd(from: adManager.options.baseOptions)
                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                let error = OguryAdError.createOguryError(withCode: errorCode)
+                   let error = OguryAdError(domain: "", code: errorCode as! Int)
                 let loadFailEx = self.expectation(description: "adDidFailToLoad called")
                 let failEx = self.expectation(description: "adDidFail called")
                 failEx.isInverted = true
@@ -203,23 +202,23 @@ final class BannerAdManagerTests: XCTestCase {
                     }
                 }
                 .store(in: &self.storables)
-                adManager.ad?.delegate?.didFail?(OguryBannerAdView(), error: error)
+                adManager.ad?.delegate?.bannerAdView?(OguryBannerAdView(), didFailWithError: error)
                 self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
             }
         }
     }
     
    func testWhenReceivingDisplayErrorsThenProperDelegateShouldBeCalled() {
-       [OguryAdErrorCode.adExpired.rawValue,
-        OguryAdErrorCode.anotherAdAlreadyDisplayed.rawValue,
-        OguryAdErrorCode.viewControllerPreventsAdFromBeingDisplayed.rawValue].forEach { errorCode in
+       [OguryShowErrorCode.adExpired.rawValue,
+        OguryShowErrorCode.anotherAdAlreadyDisplayed.rawValue,
+        OguryShowErrorCode.viewControllerPreventsAdFromBeingDisplayed.rawValue].forEach { errorCode in
          let ad: AdType<BannerAdManager> = .banner
          let adManager = BannerAdManager(adType: ad)
          let vc = UIView()
          adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
          try? adManager.loadAd(from: adManager.options.baseOptions)
          DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            let error = OguryAdError.createOguryError(withCode: errorCode)
+             let error = OguryAdError(domain: "", code: errorCode as! Int)
             let loadFailEx = self.expectation(description: "adDidFailToLoad called")
             loadFailEx.isInverted = true
             let failEx = self.expectation(description: "adDidFail called")
@@ -237,19 +236,19 @@ final class BannerAdManagerTests: XCTestCase {
                }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didFail?(OguryBannerAdView(), error: error)
+            adManager.ad?.delegate?.bannerAdView?(OguryBannerAdView(), didFailWithError: error)
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
          }
       }
     }
     
     func testWhenReceivingGenericErrorsThenProperDelegateShouldBeCalled() {
-        [OguryAdErrorCode.adDisabledConsentDenied.rawValue,
-         OguryAdErrorCode.invalidConfiguration.rawValue,
-         OguryAdErrorCode.adDisabledUnspecifiedReason.rawValue,
-         OguryAdErrorCode.adDisabledCountryNotOpened.rawValue,
-         OguryAdErrorCode.invalidConfiguration.rawValue,
-         OguryAdErrorCode.sdkStartNotCalled.rawValue].forEach { errorCode in
+        [OguryLoadErrorCode.adDisabledConsentDenied.rawValue,
+         OguryLoadErrorCode.invalidConfiguration.rawValue,
+         OguryLoadErrorCode.adDisabledUnspecifiedReason.rawValue,
+         OguryLoadErrorCode.adDisabledCountryNotOpened.rawValue,
+         OguryLoadErrorCode.invalidConfiguration.rawValue,
+         OguryLoadErrorCode.sdkNotStarted.rawValue].forEach { errorCode in
                let ad: AdType<BannerAdManager> = .banner
                
                let adManager = BannerAdManager(adType: ad)
@@ -257,7 +256,7 @@ final class BannerAdManagerTests: XCTestCase {
                adManager.options = BannerAdManagerOptions(view: vc, adDisplayName: "", adUnitId: "")
                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                try? adManager.loadAd(from: adManager.options.baseOptions)
-                let error = OguryAdError.createOguryError(withCode: errorCode)
+                let error = OguryAdError(domain: "", code: errorCode as! Int)
                 let loadFailEx = self.expectation(description: "adDidFailToLoad called")
                 loadFailEx.isInverted = true
                 let failEx = self.expectation(description: "adDidFail called")
@@ -275,7 +274,7 @@ final class BannerAdManagerTests: XCTestCase {
                     }
                 }
                 .store(in: &self.storables)
-                adManager.ad?.delegate?.didFail?(OguryBannerAdView(), error: error)
+                   adManager.ad?.delegate?.bannerAdView?(OguryBannerAdView(), didFailWithError: error)
                 self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
             }
         }

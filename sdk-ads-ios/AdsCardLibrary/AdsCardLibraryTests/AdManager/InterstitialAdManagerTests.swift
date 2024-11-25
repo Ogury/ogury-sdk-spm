@@ -119,10 +119,10 @@ final class InterstitialAdManagerTests: XCTestCase {
         let inter: AdType<InterstitialAdManager> = .interstitial
         
         let adManager = InterstitialAdManager(adType: inter)
-        let newDelegate = mock(AdLifeCycleDelegate.self)
+        let newDelegate = MockAdLifeCycleDelegate()
         adManager.adDelegate = newDelegate
-        XCTAssertTrue(adManager.adDelegate as? AdLifeCycleDelegateMock === newDelegate)
-        XCTAssertTrue(adManager.proxyDelegate.adDelegate as? AdLifeCycleDelegateMock === newDelegate)
+        XCTAssertTrue(adManager.adDelegate as? MockAdLifeCycleDelegate === newDelegate)
+        XCTAssertTrue(adManager.proxyDelegate.adDelegate as? MockAdLifeCycleDelegate === newDelegate)
     }
     
     func testWhenCallingLoadWithOptionsThenAdObjectIsInstanciated() {

@@ -4,8 +4,7 @@
 
 import XCTest
 @testable import AdsCardLibrary
-import OguryAds.OguryThumbnailAd
-import Mockingbird
+import OguryAds
 import Combine
 
 final class ThumbnailAdManagerTests: XCTestCase {
@@ -21,10 +20,10 @@ final class ThumbnailAdManagerTests: XCTestCase {
         let ad: AdType<ThumbnailAdManager> = .thumbnail
         
         let adManager = ThumbnailAdManager(adType: ad)
-        let newDelegate = mock(AdLifeCycleDelegate.self)
+        let newDelegate = MockAdLifeCycleDelegate()
         adManager.adDelegate = newDelegate
-        XCTAssertTrue(adManager.adDelegate as? AdLifeCycleDelegateMock === newDelegate)
-        XCTAssertTrue(adManager.proxyDelegate.adDelegate as? AdLifeCycleDelegateMock === newDelegate)
+        XCTAssertTrue(adManager.adDelegate as? MockAdLifeCycleDelegate === newDelegate)
+        XCTAssertTrue(adManager.proxyDelegate.adDelegate as? MockAdLifeCycleDelegate === newDelegate)
     }
     
     func testWhenCallingLoadWithOptionsThenAdObjectIsInstanciated() {
