@@ -36,6 +36,16 @@ struct AppSettingsView: View {
                                     )
                                 }
                             }
+                            
+                            if viewStore.startSDKWithApplication {
+                                HStack {
+                                    Stepper("   Start the SDK \(viewStore.numberOfSDKStart) times",
+                                            onIncrement: { viewStore.send(.incrementSDKStart) },
+                                            onDecrement: { viewStore.send(.decrementSDKStart) }
+                                    ).layoutPriority(1)
+                                }
+                            }
+                            
                             Button {
                                 viewStore.send(.toggleEnableFeedbacks)
                             } label: {
@@ -345,11 +355,11 @@ public extension Text {
     }
 }
 
-#Preview {
-    NavigationView(content: {
-        AppSettingsView( store: Store(
-            initialState: AppSettingsFeature.State(settings: SettingsContainer(), adDelegate: nil),
-            reducer: { AppSettingsFeature() }
-        ))
-    })
-}
+//#Preview {
+//    NavigationView(content: {
+//        AppSettingsView( store: Store(
+//            initialState: AppSettingsFeature.State(settings: SettingsContainer(), adDelegate: nil),
+//            reducer: { AppSettingsFeature() }
+//        ))
+//    })
+//}
