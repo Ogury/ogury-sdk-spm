@@ -16,5 +16,6 @@ framework module OguryAds {
         header "OGAMraidLogMessage.h"
         header "OGAMonitoringLogMessage.h"
         header "OGALog.h"
+        header "OguryAds+Log.h"
     }
 }

@@ -45,6 +45,12 @@
 		4301B1F62B56D4C30076065D /* shareImageData.png in Resources */ = {isa = PBXBuildFile; fileRef = 4301B1F52B56D4C30076065D /* shareImageData.png */; };
 		4317C00A2BC7D69F00F40F5F /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C0092BC7D69F00F40F5F /* config.release.xcconfig */; };
 		4317C00C2BC7D6BC00F40F5F /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C00B2BC7D6BC00F40F5F /* config.release.xcconfig */; };
+		432369EA2CF4B0210078EF67 /* RTBBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369E92CF4B0210078EF67 /* RTBBidder.swift */; };
+		432369EB2CF4B0210078EF67 /* RTBBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369E92CF4B0210078EF67 /* RTBBidder.swift */; };
+		432369EC2CF4B0210078EF67 /* RTBBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369E92CF4B0210078EF67 /* RTBBidder.swift */; };
+		432369ED2CF4B0210078EF67 /* RTBBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369E92CF4B0210078EF67 /* RTBBidder.swift */; };
+		432369EE2CF4B0210078EF67 /* RTBBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369E92CF4B0210078EF67 /* RTBBidder.swift */; };
+		432369EF2CF4B0210078EF67 /* RTBBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369E92CF4B0210078EF67 /* RTBBidder.swift */; };
 		433B4A8B2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
 		433B4A8C2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
 		433B4A8D2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
@@ -141,11 +147,6 @@
 		4394F7602CA44BC5001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
 		4394F7612CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7552CA44BC5001086FE /* TestAppLogFormatter.swift */; };
 		4394F7622CA44BC5001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
-		439A64E32C8F25EA00A180A4 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		439A64E42C8F25EB00A180A4 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		439A64E52C8F25EB00A180A4 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		439A64E62C8F25EC00A180A4 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		439A64E72C8F25EC00A180A4 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		43AE85D82B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
 		43AE85D92B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
 		43AE85DA2B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
@@ -300,11 +301,6 @@
 		43BCB1982C23255C002FB0B1 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43BCB1962C23255C002FB0B1 /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43BCB19A2C232565002FB0B1 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BCB1992C232565002FB0B1 /* AdsCardLibrary.framework */; };
 		43BCB19B2C232565002FB0B1 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43BCB1992C232565002FB0B1 /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		43BE104A2CA311E800FF0467 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		43BE104B2CA311F100FF0467 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		43BE104C2CA311FE00FF0467 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		43BE104D2CA3120000FF0467 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		43BE104E2CA3120300FF0467 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		43C1D1552B7E566C006F2D23 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43C1D1542B7E566C006F2D23 /* SwiftMessages */; };
 		43C1D1572B7E567A006F2D23 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43C1D1562B7E567A006F2D23 /* SwiftMessages */; };
 		43C1D1592B7E5684006F2D23 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43C1D1582B7E5684006F2D23 /* SwiftMessages */; };
@@ -327,7 +323,6 @@
 		43FC85612B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43FC85622B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43FC85632B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
-		50CFA8672C63AB5200E64D20 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		674BCBAC82FBD4EBB2A4A8E7 /* Pods_AdsTestApp_Devc_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB3C78894E080AB4A6A149C /* Pods_AdsTestApp_Devc_art.framework */; };
 		67DA85977E194EA300BC00BE /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC679F282C18E34F4992CD02 /* RTBidderBody.swift */; };
 		6DA4741832749AC511D60F61 /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC679F282C18E34F4992CD02 /* RTBidderBody.swift */; };
@@ -441,6 +436,7 @@
 		4317C0092BC7D69F00F40F5F /* config.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = config.release.xcconfig; sourceTree = "<group>"; };
 		4317C00B2BC7D6BC00F40F5F /* config.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = config.release.xcconfig; sourceTree = "<group>"; };
 		4317C00D2BC7D6CA00F40F5F /* config.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = config.release.xcconfig; sourceTree = "<group>"; };
+		432369E92CF4B0210078EF67 /* RTBBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTBBidder.swift; sourceTree = "<group>"; };
 		433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsStorableContainer.swift; sourceTree = "<group>"; };
 		433B4A8E2B3491DC00037FE1 /* LinkPresentationItemSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkPresentationItemSource.swift; sourceTree = "<group>"; };
 		433B4A922B34927900037FE1 /* shareImageData.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareImageData.png; sourceTree = "<group>"; };
@@ -904,6 +900,7 @@
 				43B713FD2B4D6075007C8D21 /* HeaderBiddingResponse.swift */,
 				43B713FB2B4D6075007C8D21 /* HeaderBiddingSeatBid.swift */,
 				FC679F282C18E34F4992CD02 /* RTBidderBody.swift */,
+				432369E92CF4B0210078EF67 /* RTBBidder.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1569,6 +1566,7 @@
 				43C1D15C2B7E672C006F2D23 /* NotificationMessage.swift in Sources */,
 				1E5BE6302B21F13C0010B995 /* DetailListFeature.swift in Sources */,
 				433B4A902B3491DC00037FE1 /* LinkPresentationItemSource.swift in Sources */,
+				432369EE2CF4B0210078EF67 /* RTBBidder.swift in Sources */,
 				434F84C82ACFE4FE005077F5 /* MainFeature.swift in Sources */,
 				434F84C92ACFE4FE005077F5 /* AppSettingsFeature.swift in Sources */,
 				4394F7512CA42FF1001086FE /* LogOptionView.swift in Sources */,
@@ -1613,6 +1611,7 @@
 				43C1D15D2B7E672C006F2D23 /* NotificationMessage.swift in Sources */,
 				1E5BE6312B21F13C0010B995 /* DetailListFeature.swift in Sources */,
 				433B4A912B3491DC00037FE1 /* LinkPresentationItemSource.swift in Sources */,
+				432369EA2CF4B0210078EF67 /* RTBBidder.swift in Sources */,
 				434F84E42ACFE50A005077F5 /* MainFeature.swift in Sources */,
 				434F84E52ACFE50A005077F5 /* AppSettingsFeature.swift in Sources */,
 				4394F74B2CA42FF1001086FE /* LogOptionView.swift in Sources */,
@@ -1657,6 +1656,7 @@
 				434F84A42AC2CD2B005077F5 /* MainFeature.swift in Sources */,
 				43C1D15B2B7E672C006F2D23 /* NotificationMessage.swift in Sources */,
 				434F84AB2AC2DF0C005077F5 /* AppSettingsFeature.swift in Sources */,
+				432369EF2CF4B0210078EF67 /* RTBBidder.swift in Sources */,
 				433B4A8F2B3491DC00037FE1 /* LinkPresentationItemSource.swift in Sources */,
 				1EF117692AF95052004BE519 /* DetailListFeature.swift in Sources */,
 				434F849D2AC2CC54005077F5 /* AppView.swift in Sources */,
@@ -1701,6 +1701,7 @@
 				43BCB0B42C22DD45002FB0B1 /* NotificationMessage.swift in Sources */,
 				43BCB0B52C22DD45002FB0B1 /* AppSettingsFeature.swift in Sources */,
 				43BCB0B62C22DD45002FB0B1 /* LinkPresentationItemSource.swift in Sources */,
+				432369EC2CF4B0210078EF67 /* RTBBidder.swift in Sources */,
 				43BCB0B72C22DD45002FB0B1 /* DetailListFeature.swift in Sources */,
 				43BCB0B82C22DD45002FB0B1 /* AppView.swift in Sources */,
 				4394F7532CA42FF1001086FE /* LogOptionView.swift in Sources */,
@@ -1745,6 +1746,7 @@
 				43BCB0F72C22DD59002FB0B1 /* NotificationMessage.swift in Sources */,
 				43BCB0F82C22DD59002FB0B1 /* DetailListFeature.swift in Sources */,
 				43BCB0F92C22DD59002FB0B1 /* LinkPresentationItemSource.swift in Sources */,
+				432369ED2CF4B0210078EF67 /* RTBBidder.swift in Sources */,
 				43BCB0FA2C22DD59002FB0B1 /* MainFeature.swift in Sources */,
 				43BCB0FB2C22DD59002FB0B1 /* AppSettingsFeature.swift in Sources */,
 				4394F74D2CA42FF1001086FE /* LogOptionView.swift in Sources */,
@@ -1789,6 +1791,7 @@
 				43BCB13A2C22DD60002FB0B1 /* NotificationMessage.swift in Sources */,
 				43BCB13B2C22DD60002FB0B1 /* DetailListFeature.swift in Sources */,
 				43BCB13C2C22DD60002FB0B1 /* LinkPresentationItemSource.swift in Sources */,
+				432369EB2CF4B0210078EF67 /* RTBBidder.swift in Sources */,
 				43BCB13D2C22DD60002FB0B1 /* MainFeature.swift in Sources */,
 				43BCB13E2C22DD60002FB0B1 /* AppSettingsFeature.swift in Sources */,
 				4394F74F2CA42FF1001086FE /* LogOptionView.swift in Sources */,
