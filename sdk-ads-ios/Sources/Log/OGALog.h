@@ -5,10 +5,11 @@
 #import <Foundation/Foundation.h>
 #import <OguryCore/OguryLogLevel.h>
 #import <OguryCore/OguryLog.h>
-#import "OGAAdConfiguration.h"
 #import "OGAAdLogMessage.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class OGAAdConfiguration;
 
 @interface OGALog : NSObject
 
@@ -18,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Management
 - (void)setLogLevel:(OguryLogLevel)logLevel;
 - (void)addLogger:(id<OguryLogger>)logger;
+- (void)removeLogger:(id<OguryLogger>)logger;
 
 #pragma mark - Logs
 - (void)log:(OguryLogMessage *)message;

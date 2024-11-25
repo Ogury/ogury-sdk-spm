@@ -9,6 +9,7 @@
 #import "NSDate+OGAFormatter.h"
 #import "OGAAdPrivacyConfiguration.h"
 #import "OGAAssetKeyManager.h"
+#import "OGAAdConfiguration.h"
 #import "OGAConfigurationUtils.h"
 #import "OGADevice.h"
 #import "OGADeviceOrientationConstants.h"

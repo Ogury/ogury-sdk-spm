@@ -8,6 +8,7 @@
 #import "OguryLogConstants.h"
 #import "OGAAdLogMessage.h"
 #import <Foundation/Foundation.h>
+#import "OGAAdConfiguration.h"
 
 @interface OGALog ()
 
@@ -63,6 +64,10 @@ NSString *logErrorMessage(NSError *error) {
 
 - (void)addLogger:(id<OguryLogger>)logger {
     [self.oguryLog addLogger:logger];
+}
+
+- (void)removeLogger:(id<OguryLogger>)logger {
+    [self.oguryLog removeLogger:logger];
 }
 
 - (void)log:(OGAAdLogMessage *)message {

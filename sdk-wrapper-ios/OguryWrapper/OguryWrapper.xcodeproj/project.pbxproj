@@ -203,6 +203,7 @@
 			children = (
 				05FDDE11255AE2D5000F4C8B /* OgurySdk.framework */,
 				05FDDE3F255AE449000F4C8B /* OgurySdkTests.xctest */,
+				E5D29E048B78896FEBB9B498 /* OguryWrapper-art.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";

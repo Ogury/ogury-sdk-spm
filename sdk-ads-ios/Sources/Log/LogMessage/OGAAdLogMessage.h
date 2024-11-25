@@ -5,7 +5,6 @@
 #import <Foundation/Foundation.h>
 #import <OguryCore/OguryAbstractLogMessage.h>
 #import <OguryCore/OguryLogType.h>
-#import "OGAAdConfiguration.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -13,6 +12,8 @@ extern OguryLogSDK const OguryLogSDKAds;
 extern OguryLogType const OguryLogTypeMraid;
 extern OguryLogType const OguryLogTypeMonitoring;
 extern OguryLogType const OguryLogTypeDelegate;
+
+@class OGAAdConfiguration;
 
 @interface OGAAdLogMessage : OguryAbstractLogMessage
 

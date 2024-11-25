@@ -4,6 +4,7 @@
 
 #import "OGAAdLogMessage.h"
 #import "OGALog.h"
+#import "OGAAdConfiguration.h"
 
 OguryLogSDK const OguryLogSDKAds = @"Ads";
 OguryLogType const OguryLogTypeMraid = @"Mraid";

@@ -4,10 +4,11 @@
 
 #import <Foundation/Foundation.h>
 #import <OguryCore/OguryAbstractLogMessage.h>
-#import "OGAAdConfiguration.h"
 #import "OGAAdLogMessage.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class OGAAdConfiguration;
 
 @interface OGAMraidLogMessage : OGAAdLogMessage
 

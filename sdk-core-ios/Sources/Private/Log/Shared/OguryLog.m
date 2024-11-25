@@ -42,6 +42,12 @@
     }
 }
 
+- (void)removeLogger:(id<OguryLogger>)logger {
+    @synchronized (self.loggers) {
+        [self.loggers removeObject:logger];
+    }
+}
+
 - (void)clearLoggers {
     @synchronized (self.loggers) {
         [self.loggers removeAllObjects];

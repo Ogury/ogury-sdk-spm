@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Methods
 
 - (void)addLogger:(id<OguryLogger>)logger;
+- (void)removeLogger:(id<OguryLogger>)logger;
 
 - (void)clearLoggers;
 
