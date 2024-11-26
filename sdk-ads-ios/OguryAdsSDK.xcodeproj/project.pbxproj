@@ -14,7 +14,7 @@
 		05B5121F25D57D2E00E06388 /* OGAAdDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A1BCF1D37AF6A0B4ABBA6 /* OGAAdDelegate.h */; };
 		05B5122125D57D2E00E06388 /* OguryRewardedAdDelegateDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A1DFF1FE2FCF50FB5DACA /* OguryRewardedAdDelegateDispatcher.h */; };
 		05B5122225D57D2E00E06388 /* OGAAdContentPreCacheManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A15B664B1F01FAF6E45A4 /* OGAAdContentPreCacheManager.h */; };
-		05B5122325D57D2E00E06388 /* OGAWebViewUserAgentService.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A100F631943E2EFB45AE7 /* OGAWebViewUserAgentService.h */; };
+		05B5122325D57D2E00E06388 /* OGAWebViewUserAgentService.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A100F631943E2EFB45AE7 /* OGAWebViewUserAgentService.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		05B5122425D57D2E00E06388 /* NSString+OGAUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A1690E5098A97EBB812F9 /* NSString+OGAUtility.h */; };
 		05B5122525D57D2E00E06388 /* OGAFullscreenViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A179522292AE3BCF96683 /* OGAFullscreenViewController.h */; };
 		05B5124325D57EAF00E06388 /* OGAAdMraidDisplayerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 05B5124225D57EAF00E06388 /* OGAAdMraidDisplayerState.h */; };
@@ -726,7 +726,7 @@
 		43A9F3B72C37E6B40085EF6F /* OGAAdDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A1BCF1D37AF6A0B4ABBA6 /* OGAAdDelegate.h */; };
 		43A9F3B82C37E6B40085EF6F /* OguryRewardedAdDelegateDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A1DFF1FE2FCF50FB5DACA /* OguryRewardedAdDelegateDispatcher.h */; };
 		43A9F3B92C37E6B40085EF6F /* OGAAdContentPreCacheManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A15B664B1F01FAF6E45A4 /* OGAAdContentPreCacheManager.h */; };
-		43A9F3BA2C37E6B40085EF6F /* OGAWebViewUserAgentService.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A100F631943E2EFB45AE7 /* OGAWebViewUserAgentService.h */; };
+		43A9F3BA2C37E6B40085EF6F /* OGAWebViewUserAgentService.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A100F631943E2EFB45AE7 /* OGAWebViewUserAgentService.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		43A9F3BB2C37E6B40085EF6F /* NSString+OGAUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A1690E5098A97EBB812F9 /* NSString+OGAUtility.h */; };
 		43A9F3BC2C37E6B40085EF6F /* OGAMonitoringConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 5057B6892B5025CB00A3E575 /* OGAMonitoringConstants.h */; };
 		43A9F3BD2C37E6B40085EF6F /* OGAFullscreenViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A179522292AE3BCF96683 /* OGAFullscreenViewController.h */; };

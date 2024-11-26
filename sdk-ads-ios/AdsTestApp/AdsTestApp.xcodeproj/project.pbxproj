@@ -144,10 +144,6 @@
 		4394F7602CA44BC5001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
 		4394F7612CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7552CA44BC5001086FE /* TestAppLogFormatter.swift */; };
 		4394F7622CA44BC5001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
-		439A64E42C8F25EB00A180A4 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		439A64E52C8F25EB00A180A4 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		439A64E62C8F25EC00A180A4 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		439A64E72C8F25EC00A180A4 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		43AE85D82B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
 		43AE85D92B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
 		43AE85DA2B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
@@ -328,7 +324,6 @@
 		43FC85612B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43FC85622B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43FC85632B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
-		50CFA8672C63AB5200E64D20 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		674BCBAC82FBD4EBB2A4A8E7 /* Pods_AdsTestApp_Devc_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB3C78894E080AB4A6A149C /* Pods_AdsTestApp_Devc_art.framework */; };
 		67DA85977E194EA300BC00BE /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC679F282C18E34F4992CD02 /* RTBidderBody.swift */; };
 		6DA4741832749AC511D60F61 /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC679F282C18E34F4992CD02 /* RTBidderBody.swift */; };
@@ -424,9 +419,9 @@
 		007C09F8FC1CA7D747DA869C /* Pods-AdsTestApp-Devc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc.release.xcconfig"; sourceTree = "<group>"; };
 		0129D7EE4B4D98C8EF460985 /* Pods-AdsTestApp-Devc-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc-art.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art.debug.xcconfig"; sourceTree = "<group>"; };
 		03519F466E6F8E1195487C99 /* Pods-AdsTestApp-Prod-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod-art.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art.release.xcconfig"; sourceTree = "<group>"; };
-		0A1FBB5DB27428E557C124C2 /* MaxBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxBidder.swift; sourceTree = "<group>"; };
 		1166968A5CF316EC4F730077 /* Pods_AdsTestApp_Staging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Staging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1173BBA690491D93696CCB2A /* Pods-AdsTestApp-Prod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod.release.xcconfig"; sourceTree = "<group>"; };
+		157F945631AE7D007328D50A /* DTFairBidBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTFairBidBidder.swift; sourceTree = "<group>"; };
 		1E373D582BFC9CB600E2EF25 /* RTBBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTBBidder.swift; sourceTree = "<group>"; };
 		1E373D5C2BFC9F5C00E2EF25 /* DTFairBidBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTFairBidBidder.swift; sourceTree = "<group>"; };
 		1E5BE6322B21F40F0010B995 /* DetailListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailListView.swift; sourceTree = "<group>"; };
@@ -436,8 +431,6 @@
 		1E92061A2CCBE05500916482 /* LogsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsFeature.swift; sourceTree = "<group>"; };
 		1E9206212CCBE09100916482 /* LogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsView.swift; sourceTree = "<group>"; };
 		1EF117682AF95052004BE519 /* DetailListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListFeature.swift; sourceTree = "<group>"; };
-		2623B7B555D6C72AF5005854 /* UnityLevelPlayBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityLevelPlayBidder.swift; sourceTree = "<group>"; };
-		3A40C40B3FAAA7FF6130075E /* DTFairBidBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTFairBidBidder.swift; sourceTree = "<group>"; };
 		4301B1E62B56D3630076065D /* UTType+Extension(devc).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Extension(devc).swift"; sourceTree = "<group>"; };
 		4301B1E82B56D3930076065D /* UTType+Extension(stag).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Extension(stag).swift"; sourceTree = "<group>"; };
 		4301B1EA2B56D3A80076065D /* UTType+Extension(prod).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Extension(prod).swift"; sourceTree = "<group>"; };
@@ -517,10 +510,12 @@
 		47C0E4A5A6B569012BC88AE1 /* Pods-AdsTestApp-Prod-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod-art.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art.debug.xcconfig"; sourceTree = "<group>"; };
 		492D0E907FA4EAC9174ADA6D /* Pods_AdsTestApp_Staging_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Staging_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C776A4803A253348F9AB40F /* Pods-AdsTestApp-Release-Staging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Release-Staging.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Release-Staging/Pods-AdsTestApp-Release-Staging.release.xcconfig"; sourceTree = "<group>"; };
+		4EB9A33363592B358A3EC3BD /* UnityLevelPlayBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityLevelPlayBidder.swift; sourceTree = "<group>"; };
 		5D82105BFBFD3D3FCD2F6C9F /* Pods-AdsTestApp-Devc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc.debug.xcconfig"; sourceTree = "<group>"; };
 		6259979422DC1ADB7AD09C7E /* Pods-AdsTestApp-Devc-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc-art.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art.release.xcconfig"; sourceTree = "<group>"; };
 		8714551AA0AAF899695126D1 /* Pods-AdsTestApp-Release-Prod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Release-Prod.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Release-Prod/Pods-AdsTestApp-Release-Prod.debug.xcconfig"; sourceTree = "<group>"; };
 		967A69F95815147E2A65EF91 /* Pods_AdsTestApp_Prod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Prod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9B062918EF12190E48923F8 /* MaxBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxBidder.swift; sourceTree = "<group>"; };
 		AA3A9DEB44516CD436869350 /* Pods-AdsTestApp-Prod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod.debug.xcconfig"; sourceTree = "<group>"; };
 		ACB3C78894E080AB4A6A149C /* Pods_AdsTestApp_Devc_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Devc_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF01C2B608A976962ACECA48 /* Pods-AdsTestApp-Staging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Staging.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging.debug.xcconfig"; sourceTree = "<group>"; };
@@ -649,16 +644,6 @@
 				1EF117682AF95052004BE519 /* DetailListFeature.swift */,
 			);
 			path = DetailList;
-			sourceTree = "<group>";
-		};
-		34764E9D703FAC9B6EDFD91C /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				3A40C40B3FAAA7FF6130075E /* DTFairBidBidder.swift */,
-				2623B7B555D6C72AF5005854 /* UnityLevelPlayBidder.swift */,
-				0A1FBB5DB27428E557C124C2 /* MaxBidder.swift */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		4301B1E52B56D3450076065D /* UTType */ = {
@@ -822,7 +807,7 @@
 				438ED4142AA5D0C200486AF2 /* Products */,
 				438ED42C2AA5D0F600486AF2 /* Frameworks */,
 				B80175CC9F7EAD64721C41EC /* Pods */,
-				34764E9D703FAC9B6EDFD91C /* Recovered References */,
+				7FBFCC45DCA7616B82F56CFA /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -944,10 +929,10 @@
 		43FC855F2B0F5DF500EABA43 /* HeaderBiding */ = {
 			isa = PBXGroup;
 			children = (
+				63F0C61DEB8DFBAC3C39FBF9 /* AppLovin */,
+				F8C95F78E59FF50A62EF0B54 /* DTFairBid */,
 				43B713BA2B4BCEC4007C8D21 /* Models */,
 				1090499CB5BC95FC786D3014 /* UnityLevelPlay */,
-				F8C95F78E59FF50A62EF0B54 /* DTFairBid */,
-				63F0C61DEB8DFBAC3C39FBF9 /* AppLovin */,
 			);
 			path = HeaderBiding;
 			sourceTree = "<group>";
@@ -958,6 +943,16 @@
 				43FC85602B0F5E0900EABA43 /* MaxBidder.swift */,
 			);
 			path = AppLovin;
+			sourceTree = "<group>";
+		};
+		7FBFCC45DCA7616B82F56CFA /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				157F945631AE7D007328D50A /* DTFairBidBidder.swift */,
+				4EB9A33363592B358A3EC3BD /* UnityLevelPlayBidder.swift */,
+				A9B062918EF12190E48923F8 /* MaxBidder.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		B80175CC9F7EAD64721C41EC /* Pods */ = {

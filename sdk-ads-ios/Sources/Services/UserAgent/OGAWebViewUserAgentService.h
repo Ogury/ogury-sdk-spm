@@ -3,9 +3,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OGAWebViewUserAgentServiceDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@protocol OGAWebViewUserAgentServiceDelegate;
 
 @interface OGAWebViewUserAgentService : NSObject
 
