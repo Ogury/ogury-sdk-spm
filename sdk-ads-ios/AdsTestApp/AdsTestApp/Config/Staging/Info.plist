@@ -25,6 +25,10 @@
 	<string>ca-app-pub-5735986212655126~9383827548</string>
 	<key>SDK_SOURCE</key>
 	<string>$(SDK_SOURCE)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>FiraCode-Regular.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

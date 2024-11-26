@@ -60,6 +60,15 @@ struct AppSettingsView: View {
                                     )
                                 }
                             }
+                            
+                            Picker("Import method",
+                                   selection: viewStore.binding(get: \.importMethod,
+                                                                send: { .updateImportMethod($0) })) {
+                                ForEach(ImportMethod.allCases, id:\.self) { method in
+                                    Text(method.shortDisplayText)
+                                }
+                            }
+                            
                         } header: {
                             Text("APPLICATION")
                                 .font(.adsBody)

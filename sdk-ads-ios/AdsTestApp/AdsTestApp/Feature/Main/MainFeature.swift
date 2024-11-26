@@ -95,10 +95,13 @@ struct MainFeature: Reducer {
         case saveCards
         case refreshAllCards(_: [AdFormat:[any AdManager]])
         case showLogs(_: Bool)
+        case importFile(_: URL)
+        case loadFromContainer(_: AdsStorableContainer)
         
         enum Alert {
             case notImplemented
             case removeSet
+            case cantImportFile
         }
     }
     
@@ -118,6 +121,52 @@ struct MainFeature: Reducer {
             switch action {
                 case .destination(.dismiss):
                     return .none
+                    
+                case let .loadFromContainer(container):
+                    let adFormats = container.retrieveAds(cardManager: cardManager,
+                                                          maxHeaderBidable: maxHeaderBidable,
+                                                          dtFairBidHeaderBidable: dtFairBidHeaderBidable,
+                                                          unityLevelPlayBidable: unityLevelPlayBidable,
+                                                          viewController: adHostingViewController,
+                                                          view: nil,
+                                                          adDelegate: adDelegate)
+                    state.adFormats = adFormats
+                    state.setName = container.settings.name
+                    container.save()
+                    if container.shouldUpdateAdUnits {
+                        return .run { _ in
+                            await showNotification(title: "File created on an other os",
+                                                   message: "The file was created using a different os than iOS.\nIn order to allow it to work, the application updated all cards with the default adUnitId for each format",
+                                                   notificationType: .warning)
+                        }
+                    } else {
+                        return .none
+                    }
+                    
+                case let .importFile(url):
+                    do {
+                        let container = try AdsStorableContainer.load(from: url)
+                        return .send(.loadFromContainer(container))
+                    } catch {
+                        state.destination = .alert(.cantImportFile)
+                        return .none
+                    }
+                    
+                case let .destination(.presented(.import(.importButtonTapped(json)))):
+                    do {
+                        guard let data = json.data(using: .utf8) else {
+                            state.destination = .alert(.cantImportFile)
+                            return .send(.destination(.dismiss))
+                        }
+                        let container = try AdsStorableContainer.load(from: data)
+                        return .merge(
+                            .send(.loadFromContainer(container)),
+                            .send(.destination(.dismiss))
+                            )
+                    } catch {
+                        state.destination = .alert(.cantImportFile)
+                        return .none
+                    }
                     
                 case .destination(.presented(.settings(.enableAdUnitEditingToggleTapped))),
                         .destination(.presented(.settings(.showCampaignToggleTapped))),
@@ -205,7 +254,14 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case .importButtonTapped:
-                    adDelegate.showImportPanel()
+                    switch SettingsController().importMethod {
+                        case .file:
+                            adDelegate.showImportPanel()
+                            
+                        case .rawText:
+                            state.destination = .import(.init())
+                    }
+                    
                     return .none
                     
                 case .removeSetButtonTapped:
@@ -363,11 +419,13 @@ struct MainFeature: Reducer {
             case alert(AlertState<MainFeature.Action.Alert>)
             case settings(AppSettingsFeature.State)
             case add(AddFeature.State)
+            case `import`(ImportFeature.State)
         }
         enum Action: Equatable {
             case alert(MainFeature.Action.Alert)
             case settings(AppSettingsFeature.Action)
             case add(AddFeature.Action)
+            case `import`(ImportFeature.Action)
         }
         var body: some ReducerOf<Self> {
             Scope(state: /State.settings, action: /Action.settings) {
@@ -376,11 +434,26 @@ struct MainFeature: Reducer {
             Scope(state: /State.add, action: /Action.add) {
                 AddFeature()
             }
+            Scope(state: /State.import, action: /Action.import) {
+                ImportFeature()
+            }
         }
     }
 }
 
 extension AlertState where Action == MainFeature.Action.Alert {
+    static var cantImportFile: AlertState<Action> {
+        AlertState {
+            TextState("Something went wrong")
+        } actions: {
+            ButtonState(role: .cancel) {
+                TextState("OK")
+            }
+        } message: {
+            TextState("The file cannot be opened because its content is malformed")
+        }
+    }
+    
     static func notImplementedAlert(_ function: String) -> AlertState<Action> {
         AlertState {
             TextState("It's coming ⏰")
