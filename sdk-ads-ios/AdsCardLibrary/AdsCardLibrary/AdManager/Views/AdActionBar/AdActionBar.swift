@@ -15,12 +15,17 @@ struct AdActionBar: View {
                     Button("Load") {
                         viewStore.send(.loadButtonTapped)
                     }
+                    .accessibilityLabel("Card#\(viewStore.qaLabel)_LoadButton")
+                    
                     Button("Show") {
                         viewStore.send(.showButtonTapped)
                     }
+                    .accessibilityLabel("Card#\(viewStore.qaLabel)_ShowButton")
+                    
                     Button("Load & Show") {
                         viewStore.send(.loadAndShowButtonTapped)
                     }
+                    .accessibilityLabel("Card#\(viewStore.qaLabel)_LoadAndShowButton")
                 }
                 .buttonStyle(AdsPrimaryButton(isEnabled: isEnabled))
                 
@@ -39,6 +44,7 @@ struct AdActionBar: View {
                     Image(systemName: "trash")
                         .tint(Color(AdColorPalette.State.failure.color))
                 }
+                .accessibilityLabel("Card#\(viewStore.qaLabel)_DeleteButton")
                 .padding(4)
                 .buttonStyle(AdsDefaultButton(color: AdColorPalette.State.failure.color))
                 .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: true).color))
@@ -52,7 +58,7 @@ struct AdActionBar: View {
 
 struct AdActionBar_Previews: PreviewProvider {
     static var previews: some View {
-        AdActionBar(store: Store(initialState: AdActionBarFeature.State(), reducer: {
+        AdActionBar(store: Store(initialState: AdActionBarFeature.State(qaLabel: "QALabel"), reducer: {
             AdActionBarFeature()
         }))
         //        .disabled(true)

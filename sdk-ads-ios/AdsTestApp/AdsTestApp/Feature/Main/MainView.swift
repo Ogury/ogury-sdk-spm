@@ -24,6 +24,7 @@ struct MainView: View {
                        ListManagersView(store: store)
                            .listStyle(InsetListStyle())
                            .frame(width: UIScreen.main.bounds.size.width, alignment: .center)
+                           .accessibilityLabel("CardList")
                    }
                }
                
@@ -73,6 +74,7 @@ struct MainView: View {
                     .frame(height: 40)
             }
             .foregroundStyle(Color(AdColorPalette.Background.placeholder.color))
+            .accessibilityLabel("NavBarBulkModeButton")
         }
         
         ToolbarItem(placement: .topBarTrailing) {
@@ -91,6 +93,7 @@ struct MainView: View {
                     // just to increase a little bit the touching area
                     .frame(height: 40)
             }
+            .accessibilityLabel("NavBarLogButton")
         }
         
         ToolbarItem(placement: .topBarTrailing) {
@@ -101,11 +104,11 @@ struct MainView: View {
                     // just to increase a little bit the touching area
                     .frame(height: 40)
             }
+            .accessibilityLabel("NavBarAddButton")
         }
         
         ToolbarItem(placement: .topBarTrailing) {
             Menu {
-                
                     ControlGroup {
                         Button{
                             viewStore.send(.exportButtonTapped)
@@ -170,6 +173,7 @@ struct MainView: View {
                     // just to increase a little bit the touching area
                     .frame(height: 40)
             }
+            .accessibilityLabel("NavBarSettingsButton")
         }
     }
 }

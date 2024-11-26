@@ -60,6 +60,7 @@ struct SettingsContainer: Codable, Equatable {
     var name = "AdsSet"
     var os = SettingsContainer.currentOs
     var shouldUpdateAdUnits: Bool { os != SettingsContainer.currentOs }
+    var logSettings: LogSettings!
     
     enum CodingKeys: CodingKey {
         case showCreativeId
@@ -73,6 +74,7 @@ struct SettingsContainer: Codable, Equatable {
         case enableAdUnitEditing
         case startSDKWithApplication
         case numberOfSdkStart
+        case logSettings
     }
     
     init(from decoder: Decoder) throws {
@@ -88,6 +90,7 @@ struct SettingsContainer: Codable, Equatable {
         startSDKWithApplication = try container.decodeIfPresent(Bool.self, forKey: .startSDKWithApplication) ?? false
         numberOfSdkStart = try container.decodeIfPresent(Int.self, forKey: .numberOfSdkStart) ?? 0
         enableAdUnitEditing = try container.decodeIfPresent(Bool.self, forKey: .enableAdUnitEditing) ?? true
+        logSettings = (try? container.decodeIfPresent(LogSettings.self, forKey: .logSettings)) ?? LogSettings()
     }
     
     func encode(to encoder: Encoder) throws {
@@ -103,10 +106,12 @@ struct SettingsContainer: Codable, Equatable {
         try container.encode(enableAdUnitEditing, forKey: .enableAdUnitEditing)
         try container.encode(numberOfSdkStart, forKey: .numberOfSdkStart)
         try container.encode(startSDKWithApplication, forKey: .startSDKWithApplication)
+        try container.encode(logSettings, forKey: .logSettings)
     }
     
     init(name: String = "AdsSet") {
         self.name = name
+        self.logSettings = LogSettings()
     }
     
     static func == (lhs: Self, rhs: Self) -> Bool {
@@ -121,7 +126,53 @@ struct SettingsContainer: Codable, Equatable {
         lhs.startSDKWithApplication == rhs.startSDKWithApplication &&
         lhs.numberOfSdkStart == rhs.numberOfSdkStart &&
         lhs.name == rhs.name
+    }
+}
+
+struct LogSettings: Codable {
+    let allowedTypes: [OguryLogType] // TestAppAllowedLogTypes
+    let allowedDisplay: OguryLogDisplay
+    
+    enum CodingKeys: CodingKey { case allowedTypes, allowedDisplay }
+    
+    init() {
+        if let store = UserDefaults.standard.value(forKey: "OguryLogDisplay") as? UInt {
+            allowedDisplay = OguryLogDisplay(rawValue: store)
+        } else {
+            allowedDisplay = [.SDK, .level, .origin, .tags]
+        }
+        if let types = UserDefaults.standard.value(forKey: "TestAppAllowedLogTypes") as? [OguryLogType] {
+            allowedTypes = types
+        } else {
+            allowedTypes = [.internal, .publisher, .delegate]
+        }
+    }
+    
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let types = try container.decodeIfPresent([String].self, forKey: .allowedTypes) {
+            allowedTypes = types.compactMap{ OguryLogType($0) }
+        } else {
+            allowedTypes = [.internal, .publisher, .delegate]
+        }
+        TestAppLogController.shared.logger.allowedLogTypes = allowedTypes
         
+        if let raw = try? container.decodeIfPresent(UInt.self, forKey: .allowedDisplay) {
+            allowedDisplay = OguryLogDisplay(rawValue: raw)
+        } else {
+            allowedDisplay = [.SDK, .level, .origin, .tags]
+        }
+        TestAppLogController.shared.logger.logFormatter.displayOptions = allowedDisplay
+        
+        UserDefaults.standard.set(allowedDisplay.rawValue, forKey: "OguryLogDisplay")
+        UserDefaults.standard.set(allowedTypes, forKey: "TestAppAllowedLogTypes")
+        UserDefaults.standard.synchronize()
+    }
+    
+    func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(allowedTypes.compactMap{ $0.rawValue }, forKey: .allowedTypes)
+        try container.encode(allowedDisplay.rawValue, forKey: .allowedDisplay)
     }
 }
 

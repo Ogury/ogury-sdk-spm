@@ -167,7 +167,7 @@ struct AdViewFeature: Reducer {
         
         var actionBar: AdActionBarFeature.State {
             get {
-                AdActionBarFeature.State()
+                AdActionBarFeature.State(qaLabel: baseOptions.qaLabel)
             }
             
             set {}
