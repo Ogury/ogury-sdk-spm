@@ -48,6 +48,24 @@
 		4301B1F62B56D4C30076065D /* shareImageData.png in Resources */ = {isa = PBXBuildFile; fileRef = 4301B1F52B56D4C30076065D /* shareImageData.png */; };
 		4317C00A2BC7D69F00F40F5F /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C0092BC7D69F00F40F5F /* config.release.xcconfig */; };
 		4317C00C2BC7D6BC00F40F5F /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C00B2BC7D6BC00F40F5F /* config.release.xcconfig */; };
+		43236A022CF4CB700078EF67 /* ImportFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369FF2CF4CB700078EF67 /* ImportFeature.swift */; };
+		43236A032CF4CB700078EF67 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43236A002CF4CB700078EF67 /* ImportView.swift */; };
+		43236A042CF4CB700078EF67 /* ImportFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369FF2CF4CB700078EF67 /* ImportFeature.swift */; };
+		43236A052CF4CB700078EF67 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43236A002CF4CB700078EF67 /* ImportView.swift */; };
+		43236A062CF4CB700078EF67 /* ImportFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369FF2CF4CB700078EF67 /* ImportFeature.swift */; };
+		43236A072CF4CB700078EF67 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43236A002CF4CB700078EF67 /* ImportView.swift */; };
+		43236A082CF4CB700078EF67 /* ImportFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369FF2CF4CB700078EF67 /* ImportFeature.swift */; };
+		43236A092CF4CB700078EF67 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43236A002CF4CB700078EF67 /* ImportView.swift */; };
+		43236A0A2CF4CB700078EF67 /* ImportFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369FF2CF4CB700078EF67 /* ImportFeature.swift */; };
+		43236A0B2CF4CB700078EF67 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43236A002CF4CB700078EF67 /* ImportView.swift */; };
+		43236A0C2CF4CB700078EF67 /* ImportFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369FF2CF4CB700078EF67 /* ImportFeature.swift */; };
+		43236A0D2CF4CB700078EF67 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43236A002CF4CB700078EF67 /* ImportView.swift */; };
+		43236A182CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
+		43236A192CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
+		43236A1A2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
+		43236A1B2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
+		43236A1C2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
+		43236A1D2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
 		433B4A8B2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
 		433B4A8C2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
 		433B4A8D2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
@@ -144,10 +162,6 @@
 		4394F7602CA44BC5001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
 		4394F7612CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7552CA44BC5001086FE /* TestAppLogFormatter.swift */; };
 		4394F7622CA44BC5001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
-		439A64E42C8F25EB00A180A4 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		439A64E52C8F25EB00A180A4 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		439A64E62C8F25EC00A180A4 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		439A64E72C8F25EC00A180A4 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		43AE85D82B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
 		43AE85D92B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
 		43AE85DA2B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
@@ -328,7 +342,6 @@
 		43FC85612B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43FC85622B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43FC85632B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
-		50CFA8672C63AB5200E64D20 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		674BCBAC82FBD4EBB2A4A8E7 /* Pods_AdsTestApp_Devc_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB3C78894E080AB4A6A149C /* Pods_AdsTestApp_Devc_art.framework */; };
 		67DA85977E194EA300BC00BE /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC679F282C18E34F4992CD02 /* RTBidderBody.swift */; };
 		6DA4741832749AC511D60F61 /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC679F282C18E34F4992CD02 /* RTBidderBody.swift */; };
@@ -446,6 +459,9 @@
 		4317C0092BC7D69F00F40F5F /* config.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = config.release.xcconfig; sourceTree = "<group>"; };
 		4317C00B2BC7D6BC00F40F5F /* config.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = config.release.xcconfig; sourceTree = "<group>"; };
 		4317C00D2BC7D6CA00F40F5F /* config.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = config.release.xcconfig; sourceTree = "<group>"; };
+		432369FF2CF4CB700078EF67 /* ImportFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportFeature.swift; sourceTree = "<group>"; };
+		43236A002CF4CB700078EF67 /* ImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportView.swift; sourceTree = "<group>"; };
+		43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraCode-Regular.ttf"; sourceTree = "<group>"; };
 		433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsStorableContainer.swift; sourceTree = "<group>"; };
 		433B4A8E2B3491DC00037FE1 /* LinkPresentationItemSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkPresentationItemSource.swift; sourceTree = "<group>"; };
 		433B4A922B34927900037FE1 /* shareImageData.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareImageData.png; sourceTree = "<group>"; };
@@ -698,6 +714,23 @@
 			path = prod;
 			sourceTree = "<group>";
 		};
+		43236A012CF4CB700078EF67 /* Import */ = {
+			isa = PBXGroup;
+			children = (
+				432369FF2CF4CB700078EF67 /* ImportFeature.swift */,
+				43236A002CF4CB700078EF67 /* ImportView.swift */,
+			);
+			path = Import;
+			sourceTree = "<group>";
+		};
+		43236A172CF5C6F40078EF67 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		433B4A892B34256700037FE1 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
@@ -720,6 +753,7 @@
 		434F849F2AC2CCEF005077F5 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				43236A012CF4CB700078EF67 /* Import */,
 				43FC855F2B0F5DF500EABA43 /* HeaderBiding */,
 				1EF117652AF95004004BE519 /* DetailList */,
 				434F84AC2AC3007E005077F5 /* Add */,
@@ -764,6 +798,7 @@
 		434F84F42ACFE529005077F5 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				43236A172CF5C6F40078EF67 /* Fonts */,
 				434F85112AD004BA005077F5 /* Devc */,
 				434F85122AD004C3005077F5 /* Staging */,
 				434F85132AD004C7005077F5 /* Prod */,
@@ -1218,6 +1253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				434F84D02ACFE4FE005077F5 /* LaunchScreen.storyboard in Resources */,
+				43236A1A2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */,
 				434F850F2AD004B0005077F5 /* Default.json in Resources */,
 				434F84FD2ACFE5F6005077F5 /* Asset.xcassets in Resources */,
 				4317C00C2BC7D6BC00F40F5F /* config.release.xcconfig in Resources */,
@@ -1233,6 +1269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				434F84EC2ACFE50A005077F5 /* LaunchScreen.storyboard in Resources */,
+				43236A1D2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */,
 				434F85102AD004B8005077F5 /* Default.json in Resources */,
 				434F84ED2ACFE50A005077F5 /* Assets.xcassets in Resources */,
 				434F84FE2ACFE5F8005077F5 /* Asset.xcassets in Resources */,
@@ -1248,6 +1285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				438ED4232AA5D0C300486AF2 /* LaunchScreen.storyboard in Resources */,
+				43236A192CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */,
 				434F85012ACFE6C8005077F5 /* config.debug.xcconfig in Resources */,
 				438ED4202AA5D0C300486AF2 /* Assets.xcassets in Resources */,
 				4317C00A2BC7D69F00F40F5F /* config.release.xcconfig in Resources */,
@@ -1263,6 +1301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43BCB0C62C22DD45002FB0B1 /* LaunchScreen.storyboard in Resources */,
+				43236A1C2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */,
 				43BCB0C82C22DD45002FB0B1 /* Assets.xcassets in Resources */,
 				43D0E6172C61052300AF9CF6 /* config-art.debug.xcconfig in Resources */,
 				43BCB0CA2C22DD45002FB0B1 /* Main.storyboard in Resources */,
@@ -1278,6 +1317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43BCB1092C22DD59002FB0B1 /* LaunchScreen.storyboard in Resources */,
+				43236A1B2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */,
 				43D0E61D2C6105D700AF9CF6 /* config-art.release.xcconfig in Resources */,
 				43BCB10A2C22DD59002FB0B1 /* Default.json in Resources */,
 				43D0E61C2C6105D700AF9CF6 /* config-art.debug.xcconfig in Resources */,
@@ -1293,6 +1333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43BCB14C2C22DD60002FB0B1 /* LaunchScreen.storyboard in Resources */,
+				43236A182CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */,
 				43BCB14D2C22DD60002FB0B1 /* Default.json in Resources */,
 				43D0E6212C61060700AF9CF6 /* config-art.debug.xcconfig in Resources */,
 				43BCB1502C22DD60002FB0B1 /* Assets.xcassets in Resources */,
@@ -1555,6 +1596,8 @@
 				434F84C02ACFE4FE005077F5 /* AppFeature.swift in Sources */,
 				434F85082AD00349005077F5 /* Configuration.swift in Sources */,
 				434F84C12ACFE4FE005077F5 /* MainView.swift in Sources */,
+				43236A062CF4CB700078EF67 /* ImportFeature.swift in Sources */,
+				43236A072CF4CB700078EF67 /* ImportView.swift in Sources */,
 				43788F412B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */,
 				434F84C22ACFE4FE005077F5 /* MainViewController.swift in Sources */,
 				43FC85622B0F5E0900EABA43 /* MaxBidder.swift in Sources */,
@@ -1600,6 +1643,8 @@
 				434F85092AD00349005077F5 /* Configuration.swift in Sources */,
 				434F84DD2ACFE50A005077F5 /* MainView.swift in Sources */,
 				4301B1EB2B56D3A80076065D /* UTType+Extension(prod).swift in Sources */,
+				43236A0C2CF4CB700078EF67 /* ImportFeature.swift in Sources */,
+				43236A0D2CF4CB700078EF67 /* ImportView.swift in Sources */,
 				43788F422B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */,
 				434F84DE2ACFE50A005077F5 /* MainViewController.swift in Sources */,
 				43FC85632B0F5E0900EABA43 /* MaxBidder.swift in Sources */,
@@ -1645,6 +1690,8 @@
 				434F849E2AC2CC54005077F5 /* AppFeature.swift in Sources */,
 				434F85072AD00349005077F5 /* Configuration.swift in Sources */,
 				434F84A32AC2CD2B005077F5 /* MainView.swift in Sources */,
+				43236A042CF4CB700078EF67 /* ImportFeature.swift in Sources */,
+				43236A052CF4CB700078EF67 /* ImportView.swift in Sources */,
 				438ED41B2AA5D0C200486AF2 /* MainViewController.swift in Sources */,
 				43788F402B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */,
 				4301B1E72B56D3630076065D /* UTType+Extension(devc).swift in Sources */,
@@ -1690,6 +1737,8 @@
 				43BCB0A32C22DD45002FB0B1 /* Configuration.swift in Sources */,
 				43BCB0A42C22DD45002FB0B1 /* MainView.swift in Sources */,
 				43BCB0A52C22DD45002FB0B1 /* MainViewController.swift in Sources */,
+				43236A0A2CF4CB700078EF67 /* ImportFeature.swift in Sources */,
+				43236A0B2CF4CB700078EF67 /* ImportView.swift in Sources */,
 				43BCB0A62C22DD45002FB0B1 /* AddFormatsView.swift in Sources */,
 				43BCB0A82C22DD45002FB0B1 /* UTType+Extension(devc).swift in Sources */,
 				43BCB0A92C22DD45002FB0B1 /* MaxBidder.swift in Sources */,
@@ -1735,6 +1784,8 @@
 				43BCB0E62C22DD59002FB0B1 /* AppFeature.swift in Sources */,
 				43BCB0E72C22DD59002FB0B1 /* Configuration.swift in Sources */,
 				43BCB0E82C22DD59002FB0B1 /* MainView.swift in Sources */,
+				43236A082CF4CB700078EF67 /* ImportFeature.swift in Sources */,
+				43236A092CF4CB700078EF67 /* ImportView.swift in Sources */,
 				43BCB0E92C22DD59002FB0B1 /* AddFormatsView.swift in Sources */,
 				43BCB0EA2C22DD59002FB0B1 /* MainViewController.swift in Sources */,
 				43BCB0EC2C22DD59002FB0B1 /* MaxBidder.swift in Sources */,
@@ -1780,6 +1831,8 @@
 				43BCB1292C22DD60002FB0B1 /* Configuration.swift in Sources */,
 				43BCB12A2C22DD60002FB0B1 /* MainView.swift in Sources */,
 				43BCB12B2C22DD60002FB0B1 /* UTType+Extension(prod).swift in Sources */,
+				43236A022CF4CB700078EF67 /* ImportFeature.swift in Sources */,
+				43236A032CF4CB700078EF67 /* ImportView.swift in Sources */,
 				43BCB12C2C22DD60002FB0B1 /* AddFormatsView.swift in Sources */,
 				43BCB12D2C22DD60002FB0B1 /* MainViewController.swift in Sources */,
 				43BCB12F2C22DD60002FB0B1 /* MaxBidder.swift in Sources */,

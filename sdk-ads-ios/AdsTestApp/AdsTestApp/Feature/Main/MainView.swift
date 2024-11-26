@@ -195,6 +195,27 @@ extension View {
                     state: \.$destination,
                     action: MainFeature.Action.destination
                 ),
+                state: /MainFeature.Destination.State.import,
+                action: MainFeature.Destination.Action.import) { store in
+                    NavigationStack {
+                        ImportView(store: store)
+                            .toolbar {
+                                ToolbarItem(placement: .topBarLeading) {
+                                    Button {
+                                        viewStore.send(.destination(.dismiss))
+                                    } label: {
+                                        Text("Cancel")
+                                    }
+                                }
+                            }
+                    }
+                    .background(.gray)
+                }
+            .sheet(
+                store: store.scope(
+                    state: \.$destination,
+                    action: MainFeature.Action.destination
+                ),
                 state: /MainFeature.Destination.State.settings,
                 action: MainFeature.Destination.Action.settings) { store in
                     AppSettingsView(store: store)

@@ -7,7 +7,7 @@ import AdsCardLibrary
 import OguryAds
 import UserDefault
 
-enum ImportMethod: Codable, Equatable, CaseIterable, DefaultsValueConvertible {
+enum ImportMethod: String, Codable, Equatable, CaseIterable, DefaultsValueConvertible {
     case file, rawText
     var displayText: String {
         switch self {
@@ -238,6 +238,10 @@ struct AdsStorableContainer: Codable {
         }
         defer { url.stopAccessingSecurityScopedResource() }
         guard let data = try? Data(contentsOf: url) else { throw ImportError.noFileAtURL }
+        return try AdsStorableContainer.load(from: data)
+    }
+    
+    static func load(from data: Data) throws -> AdsStorableContainer {
         guard let container: AdsStorableContainer = try? JSONDecoder().decode(self, from: data) else { throw ImportError.cantReadFile }
         return container
     }
