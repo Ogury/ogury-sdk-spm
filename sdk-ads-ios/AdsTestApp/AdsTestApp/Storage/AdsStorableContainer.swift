@@ -74,6 +74,7 @@ struct SettingsContainer: Codable, Equatable {
         case enableAdUnitEditing
         case startSDKWithApplication
         case numberOfSdkStart
+        case logSettings
     }
     
     init(from decoder: Decoder) throws {
@@ -105,6 +106,7 @@ struct SettingsContainer: Codable, Equatable {
         try container.encode(enableAdUnitEditing, forKey: .enableAdUnitEditing)
         try container.encode(numberOfSdkStart, forKey: .numberOfSdkStart)
         try container.encode(startSDKWithApplication, forKey: .startSDKWithApplication)
+        try container.encode(logSettings, forKey: .logSettings)
     }
     
     init(name: String = "AdsSet") {
