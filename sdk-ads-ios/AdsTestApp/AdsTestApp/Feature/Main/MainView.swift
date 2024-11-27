@@ -206,6 +206,7 @@ extension View {
                                     } label: {
                                         Text("Cancel")
                                     }
+                                    .accessibilityLabel("ImportSheetCancelButton")
                                 }
                             }
                     }

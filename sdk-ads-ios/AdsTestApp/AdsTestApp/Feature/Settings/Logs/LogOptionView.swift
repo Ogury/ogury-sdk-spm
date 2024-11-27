@@ -31,6 +31,8 @@ struct LogOptionView: View {
                             )
                         }
                     }
+                    .accessibilityLabel("LogSettingsDisplaySDKToggle")
+                    
                     Button {
                         viewStore.send(.logDisplayDateButtonTapped)
                     } label: {
@@ -45,6 +47,8 @@ struct LogOptionView: View {
                             )
                         }
                     }
+                    .accessibilityLabel("LogSettingsDisplayDateToggle")
+                    
                     Button {
                         viewStore.send(.logDisplayLevelButtonTapped)
                     } label: {
@@ -59,6 +63,8 @@ struct LogOptionView: View {
                             )
                         }
                     }
+                    .accessibilityLabel("LogSettingsDisplayLevelToggle")
+                    
                     Button {
                         viewStore.send(.logDisplayTypeButtonTapped)
                     } label: {
@@ -73,6 +79,8 @@ struct LogOptionView: View {
                             )
                         }
                     }
+                    .accessibilityLabel("LogSettingsDisplayTypeToggle")
+                    
                     Button {
                         viewStore.send(.logDisplayOriginButtonTapped)
                     } label: {
@@ -87,6 +95,8 @@ struct LogOptionView: View {
                             )
                         }
                     }
+                    .accessibilityLabel("LogSettingsDisplayOriginToggle")
+                    
                     Button {
                         viewStore.send(.logDisplayTagsButtonTapped)
                     } label: {
@@ -101,6 +111,7 @@ struct LogOptionView: View {
                             )
                         }
                     }
+                    .accessibilityLabel("LogSettingsDisplayTagsToggle")
                     
                 } header: {
                     Text("Display")
@@ -143,6 +154,7 @@ struct LogOptionView: View {
                                     )
                                 }
                             }
+                            .accessibilityLabel("LogSettingsAllowInternalLogsToggle")
                         }
                         
                         if viewStore.showColorPicker, viewStore.selectedType == .internal {
@@ -185,6 +197,7 @@ struct LogOptionView: View {
                                     )
                                 }
                             }
+                            .accessibilityLabel("LogSettingsAllowPublisherLogsToggle")
                         }
                         
                         if viewStore.showColorPicker, viewStore.selectedType == .publisher {
@@ -226,6 +239,7 @@ struct LogOptionView: View {
                                     )
                                 }
                             }
+                            .accessibilityLabel("LogSettingsAllowDelegateLogsToggle")
                         }
                         
                         if viewStore.showColorPicker, viewStore.selectedType == .delegate {
@@ -267,6 +281,7 @@ struct LogOptionView: View {
                                     )
                                 }
                             }
+                            .accessibilityLabel("LogSettingsAllowMonitoringLogsToggle")
                         }
                         
                         if viewStore.showColorPicker, viewStore.selectedType == .monitoring {
@@ -308,6 +323,7 @@ struct LogOptionView: View {
                                     )
                                 }
                             }
+                            .accessibilityLabel("LogSettingsAllowMraidLogsToggle")
                         }
                         
                         if viewStore.showColorPicker, viewStore.selectedType == .mraid {
@@ -349,6 +365,7 @@ struct LogOptionView: View {
                                     )
                                 }
                             }
+                            .accessibilityLabel("LogSettingsAllowRequestsLogsToggle")
                         }
                         
                         if viewStore.showColorPicker, viewStore.selectedType == .requests {

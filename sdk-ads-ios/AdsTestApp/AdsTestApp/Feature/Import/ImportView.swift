@@ -22,18 +22,21 @@ struct ImportView: View {
                     .clipped()
                     .frame(maxHeight: .infinity)
                     .padding()
+                    .accessibilityLabel("ImportTextEditor")
                 
                 HStack {
                     Button("Paste clipboard") {
                         viewStore.send(.pasteFromClipboard)
                     }
                     .buttonStyle(AdsExpandablePrimaryButton())
+                    .accessibilityLabel("ImportPasteFromClipboardButton")
                     
                     Button("Import json") {
                         viewStore.send(.importButtonTapped(viewStore.jsonText))
                     }
                     .buttonStyle(AdsExpandablePrimaryButton(isEnabled: viewStore.validJson))
                     .disabled(!viewStore.validJson)
+                    .accessibilityLabel("ImportJsonButton")
                 }
                 .padding(.horizontal, 20)
             }
