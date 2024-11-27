@@ -16,7 +16,6 @@ struct AppSettingsView: View {
                 .primaryGradient
                 .ignoresSafeArea()
             
-            NavigationView {
                 WithViewStore(self.store, observe: { $0 }) { viewStore in
                     List {
                         
@@ -365,7 +364,6 @@ struct AppSettingsView: View {
                 .navigationTitle("Settings")
                 .navigationBarTitleDisplayMode(.large)
                 .navigationViewStyle(StackNavigationViewStyle())
-            }
         }
     }
     

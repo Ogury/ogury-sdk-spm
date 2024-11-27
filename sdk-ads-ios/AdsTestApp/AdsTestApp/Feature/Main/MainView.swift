@@ -219,7 +219,19 @@ extension View {
                 ),
                 state: /MainFeature.Destination.State.settings,
                 action: MainFeature.Destination.Action.settings) { store in
-                    AppSettingsView(store: store)
+                    NavigationView {
+                        AppSettingsView(store: store)
+                            .toolbar {
+                                ToolbarItem(placement: .topBarLeading) {
+                                    Button {
+                                        viewStore.send(.destination(.dismiss))
+                                    } label: {
+                                        Text("Cancel")
+                                    }
+                                    .accessibilityLabel("SettingsSheetCancelButton")
+                                }
+                            }
+                    }
                 }
                 .sheet(
                   store: store.scope(
