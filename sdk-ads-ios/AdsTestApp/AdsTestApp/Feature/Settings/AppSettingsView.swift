@@ -36,13 +36,16 @@ struct AppSettingsView: View {
                                     )
                                 }
                             }
+                            .accessibilityLabel("StartSDKWithApplication")
                             
                             if viewStore.startSDKWithApplication {
                                 HStack {
                                     Stepper("   Start the SDK \(viewStore.numberOfSDKStart) times",
                                             onIncrement: { viewStore.send(.incrementSDKStart) },
                                             onDecrement: { viewStore.send(.decrementSDKStart) }
-                                    ).layoutPriority(1)
+                                    )
+                                    .layoutPriority(1)
+                                    .accessibilityLabel("StartSDKWithApplication_Stepper")
                                 }
                             }
                             
@@ -60,6 +63,7 @@ struct AppSettingsView: View {
                                     )
                                 }
                             }
+                            .accessibilityLabel("EnableFeedbacks")
                             
                             Picker("Import method",
                                    selection: viewStore.binding(get: \.importMethod,
@@ -67,7 +71,7 @@ struct AppSettingsView: View {
                                 ForEach(ImportMethod.allCases, id:\.self) { method in
                                     Text(method.shortDisplayText)
                                 }
-                            }
+                            }.accessibilityLabel("ImportMethod_Picker")
                             
                         } header: {
                             Text("APPLICATION")
@@ -96,6 +100,7 @@ struct AppSettingsView: View {
                                             )
                                         }
                                     }
+                                    .accessibilityLabel("AllowAdUnitEditingToggle")
                                     
                                     Button {
                                         viewStore.send(.showCampaignToggleTapped)
@@ -111,6 +116,7 @@ struct AppSettingsView: View {
                                             )
                                         }
                                     }
+                                    .accessibilityLabel("ShowCampaignIdToggle")
                                     
                                     Button {
                                         viewStore.send(.showCreativeToggleTapped)
@@ -125,6 +131,8 @@ struct AppSettingsView: View {
                                                         send: .showCreativeToggleTapped))
                                         }
                                     }
+                                    .accessibilityLabel("ShowCreativeIdToggle")
+                                    
                                     Button {
                                         viewStore.send(.showDspFieldsToggleTapped)
                                     } label: {
@@ -138,6 +146,7 @@ struct AppSettingsView: View {
                                                         send: .showDspFieldsToggleTapped))
                                         }
                                     }
+                                    .accessibilityLabel("ShowCreativeFieldsToggle")
                                 }
                                 
                                 Button {
@@ -154,6 +163,7 @@ struct AppSettingsView: View {
                                         )
                                     }
                                 }
+                                .accessibilityLabel("ShowCardOptionsToggle")
                                 
                                 Button {
                                     viewStore.send(.showTestModeToggleTapped)
@@ -169,6 +179,7 @@ struct AppSettingsView: View {
                                         )
                                     }
                                 }
+                                .accessibilityLabel("ShowTestModeToggle")
                             }
                             
                             if !viewStore.showShowSection {
@@ -208,6 +219,7 @@ struct AppSettingsView: View {
                                     )
                                 }
                             }
+                            .accessibilityLabel("EnableBulkModeToggle")
                         } header: {
                             Text("Bulk mode")
                                 .font(.adsBody)
@@ -229,6 +241,7 @@ struct AppSettingsView: View {
                                         .frame(maxWidth: .infinity)
                                 }
                                 .buttonStyle(AdsSecondaryButton())
+                                .accessibilityLabel("EnableTestModeForAllCardsButton")
                                 
                                 Button{
                                     viewStore.send(.disabledTestModeButtonTapped)
@@ -238,6 +251,7 @@ struct AppSettingsView: View {
                                         .frame(maxWidth: .infinity)
                                 }
                                 .buttonStyle(AdsSecondaryButton())
+                                .accessibilityLabel("DisableTestModeForAllCardsButton")
                             }
                             .padding(.horizontal, -20)
                         } header: {
@@ -254,6 +268,7 @@ struct AppSettingsView: View {
                                 viewStore.send(.resetAdConfigButtonTapped)
                             }
                             .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: true).color))
+                            .accessibilityLabel("ResetProfigButton")
                         } header: {
                             Text("Ads config")
                                 .font(.adsBody)
@@ -277,6 +292,8 @@ struct AppSettingsView: View {
                                     )
                                 }
                             }
+                            .accessibilityLabel("USOptOutButton")
+                            
                             Button {
                                 viewStore.send(.usOptoutPartnerTapped)
                             } label: {
@@ -289,6 +306,8 @@ struct AppSettingsView: View {
                                     )
                                 }
                             }
+                            .accessibilityLabel("USOptOuPartnertButton")
+                            
                             Button{
                                 viewStore.send(.showPrivacyDataTapped)
                             } label : {
@@ -297,6 +316,8 @@ struct AppSettingsView: View {
                                     .frame(maxWidth: .infinity)
                             }
                             .buttonStyle(AdsSecondaryButton())
+                            .accessibilityLabel("RetrievePrivacyDataButton")
+                            
                         } header: {
                             Text("Privacy")
                                 .font(.adsBody)
@@ -313,6 +334,7 @@ struct AppSettingsView: View {
                             ) {
                                 Text("Show options")
                             }
+                            .accessibilityLabel("ShowLogOptionsNavigationLink")
                         } header: {
                             Text("Logs")
                                 .font(.adsBody)
@@ -327,9 +349,9 @@ struct AppSettingsView: View {
                         
                         //MARK: - settings
                         VStack(alignment: .center) {
-                            Text("App Version : \(viewStore.appVersion)")
-                            Text("Ads SDK Version : \(viewStore.sdkVersion)")
-                            Text("Environment : \(viewStore.environment)")
+                            Text("App Version : \(viewStore.appVersion)").accessibilityLabel("AppVersionLabel")
+                            Text("Ads SDK Version : \(viewStore.sdkVersion)").accessibilityLabel("SDKVersionLabel")
+                            Text("Environment : \(viewStore.environment)").accessibilityLabel("AppEnvironmentLabel")
                         }
                         .frame(maxWidth: .infinity)
                         .listRowBackground(Color.clear)
