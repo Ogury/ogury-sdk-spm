@@ -428,6 +428,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
 
 - (void)show:(OGAAdSequence *)sequence additionalConditions:(NSArray<id<OGAConditionChecker>> *)additionalConditions {
     // If the ad is not loaded, then it should not be tighted to the sequence's sessionID and a new one should be created and passed along other events in the current method
+    //sequence.status = OGAAdSequenceStatusShowing;
     NSString *sessionId = [self isLoaded:sequence] || [self isKilled:sequence] ? sequence.configuration.monitoringDetails.sessionId : [NSUUID UUID].UUIDString;
     [self.monitoringDispatcher sendShowEventShowCalledWithNbAdsToShow:@(sequence.coordinator.adControllers.count)
                                                       adConfiguration:sequence.monitoringAdConfiguration
