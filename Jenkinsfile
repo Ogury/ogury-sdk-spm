@@ -34,6 +34,10 @@ pipeline {
                     not { changeRequest() }
                     buildingTag()
                 }
+                expression {
+                    // Skip this step if TAG_NAME contains 'internal-testApp'
+                    !env.TAG_NAME?.contains('internal-testApp')
+                }
             }
             steps {
                 script {
@@ -79,6 +83,10 @@ pipeline {
                 not {
                     branch 'master'
                 }
+                expression {
+                    // Skip this step if TAG_NAME contains 'internal-testApp'
+                    !env.TAG_NAME?.contains('internal-testApp')
+                }
             }
             steps {
                 sh """#!/bin/zsh -l
@@ -94,6 +102,10 @@ pipeline {
                 anyOf {
                     branch 'master'
                     changeRequest target:'master'
+                }
+                expression {
+                    // Skip this step if TAG_NAME contains 'internal-testApp'
+                    !env.TAG_NAME?.contains('internal-testApp')
                 }
             }
             steps {
