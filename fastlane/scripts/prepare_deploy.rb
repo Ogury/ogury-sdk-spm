@@ -402,6 +402,13 @@ private_lane :deploy_test_app do |options|
   artifactory = options[:artifactory] ? options[:artifactory] : false
   isQa = options[:isQa] ? options[:isQa] : false
   setup_xcode
+    
+    update_internal_cocoapods environment: 'prod'
+    generate_podfile(environment:'prod', targetThreshold:"all")
+    cocoapods(
+      podfile: "./Podfile",
+      repo_update: true
+    )
   
   puts "Building TestApp".green
 
