@@ -432,10 +432,10 @@ private_lane :deploy_test_app do |options|
       output_name: "#{scheme}.ipa",
       export_method: "development",
       export_options: {
-        signingStyle: "automatic",
-        provisioningProfiles: {
-          bundleId => "XC co ogury sdk ads app #{variant.downcase}"
-        },
+        signingStyle: "automatic"
+        #provisioningProfiles: {
+        #  bundleId => "XC co ogury sdk ads app #{variant.downcase}"
+        #},
       },
 
       )
