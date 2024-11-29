@@ -479,6 +479,28 @@ pipeline {
                     }
                 }
 
+                // tag should look like internal-testApp or internal-testApp-qa for qaMode. Can also contain -art to generate test app based on external dependencies
+                stage('Deploy Ads Test App') {
+                    when {
+                        beforeAgent true
+                        expression {
+                            return "${env.TAG_NAME}".contains("internal-testApp")
+                        }
+                    }
+                    steps {
+                        script {
+                        // Extract information from TAG_NAME
+                            def tagElements = "${env.TAG_NAME}".split("-")
+                            def isQa = tagElements.contains("qa") 
+                            def isArtifactory = tagElements.contains("art") 
+        
+                            sh """#!/bin/zsh -l
+                               bundle exec fastlane generate_test_app isQa:${isQa} artifactory:${isArtifactory} tag:${env.TAG_NAME}
+                            """
+                         }
+                    }
+                }
+
             }
         }
     }

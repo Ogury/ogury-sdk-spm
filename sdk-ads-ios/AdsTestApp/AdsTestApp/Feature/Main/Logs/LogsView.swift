@@ -44,6 +44,7 @@ struct LogsView: View {
                                     }
                                 }
                         )
+                        .accessibilityLabel("LogSheetDragView")
                     
                     ScrollView {
                         ForEach(viewStore.logMessages.indices, id: \.self) { index in

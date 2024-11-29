@@ -2185,6 +2185,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Devc/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Ads - Devc";
@@ -2200,10 +2204,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D QA_MODE";
 				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app.devc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDK_SOURCE = Dev;
@@ -2245,10 +2251,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D QA_MODE";
 				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app.devc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDK_SOURCE = Dev;
