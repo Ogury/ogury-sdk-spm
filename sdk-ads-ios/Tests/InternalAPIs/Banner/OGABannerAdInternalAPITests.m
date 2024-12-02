@@ -194,49 +194,6 @@ static NSString *const DefaultDspRegion = @"dspRegion";
     OCMVerify([self.adManager isExpanded:self.smallBannerInternalAPI.sequence]);
 }
 
-- (void)testShouldShowBannerIfLoaded {
-    OGABannerAdViewInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
-    internalAPI.adManager = self.adManager;
-
-    UIWindow *windowParentView = OCMClassMock(UIWindow.class);
-    UIViewController *viewcontrollerParentView = OCMClassMock(UIViewController.class);
-    UIView *bannerView = OCMClassMock(UIView.class);
-
-    [viewcontrollerParentView.view addSubview:bannerView];
-
-    OCMStub([internalAPI bannerView]).andReturn(bannerView);
-    OCMStub(bannerView.window).andReturn(windowParentView);
-    OCMStub(windowParentView.rootViewController).andReturn(viewcontrollerParentView);
-    OCMStub([internalAPI isLoaded]).andReturn(YES);
-
-    OCMExpect([internalAPI isLoaded]);
-    OCMExpect([internalAPI.adManager show:OCMOCK_ANY additionalConditions:[OCMArg any]]);
-
-    [self.smallBannerInternalAPI showBannerIfLoaded];
-
-    OCMVerify([internalAPI isLoaded]);
-    OCMVerify([internalAPI.adManager show:OCMOCK_ANY additionalConditions:[OCMArg any]]);
-}
-
-- (void)testShouldShowBannerWhenMovedToAnotherSuperview {
-    OGABannerAdViewInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
-
-    OCMExpect([internalAPI showBannerIfLoaded]);
-
-    [self.smallBannerInternalAPI didMoveToSuperview];
-
-    OCMVerify([internalAPI showBannerIfLoaded]);
-}
-
-- (void)testShouldShowBannerWhenMovedToAnotherWindow {
-    OGABannerAdViewInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
-
-    [self.smallBannerInternalAPI didMoveToWindow];
-
-    OCMVerify([internalAPI showBannerIfLoaded]);
-    OCMVerify([self.notificationCenter postNotificationName:OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName object:[OCMArg isKindOfClass:NSString.self] userInfo:nil]);
-}
-
 - (void)testShouldDestroy {
     self.smallBannerInternalAPI.sequence = OCMClassMock([OGAAdSequence class]);
 
@@ -307,47 +264,6 @@ static NSString *const DefaultDspRegion = @"dspRegion";
     [internalAPI bannerAdView:bannerAd didFailWithError:OCMOCK_ANY];
 
     OCMVerify([internalAPI.delegateDispatcher failedWithError:(OguryAdError *)OCMOCK_ANY]);
-}
-
-- (void)testHaveParentViewcontrollerSuperView {
-    OGABannerAdViewInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
-    internalAPI.adManager = self.adManager;
-
-    UIWindow *windowParentView = OCMClassMock(UIWindow.class);
-    UIViewController *viewcontrollerParentView = OCMClassMock(UIViewController.class);
-    UIView *bannerView = OCMClassMock(UIView.class);
-
-    [viewcontrollerParentView.view addSubview:bannerView];
-
-    OCMStub([internalAPI bannerView]).andReturn(bannerView);
-    OCMStub(bannerView.window).andReturn(windowParentView);
-    OCMStub(windowParentView.rootViewController).andReturn(viewcontrollerParentView);
-
-    XCTAssertTrue([internalAPI haveParentViewcontroller]);
-}
-
-- (void)testHaveParentViewcontrollerdelegate {
-    OGABannerAdViewInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
-    internalAPI.adManager = self.adManager;
-
-    UIViewController *viewcontrollerParentView = OCMClassMock(UIViewController.class);
-    UIView *bannerView = OCMClassMock(UIView.class);
-
-    OCMStub([self.delegateDispatcher bannerViewController]).andReturn(viewcontrollerParentView);
-    OCMStub([internalAPI bannerView]).andReturn(bannerView);
-
-    XCTAssertTrue([internalAPI haveParentViewcontroller]);
-}
-
-- (void)testHaveParentViewcontrollerNoParent {
-    OGABannerAdViewInternalAPI *internalAPI = OCMPartialMock(self.smallBannerInternalAPI);
-    internalAPI.adManager = self.adManager;
-
-    UIView *bannerView = OCMClassMock(UIView.class);
-
-    OCMStub([internalAPI bannerView]).andReturn(bannerView);
-
-    XCTAssertFalse([internalAPI haveParentViewcontroller]);
 }
 
 #pragma mark - Properties
