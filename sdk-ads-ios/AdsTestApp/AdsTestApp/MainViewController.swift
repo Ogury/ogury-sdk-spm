@@ -9,7 +9,6 @@ import AdsCardLibrary
 import OguryAds
 import SnapKit
 import CoreServices
-import GoogleMobileAds
 import UniformTypeIdentifiers
 
 class MainViewController: UIViewController {
@@ -25,8 +24,6 @@ class MainViewController: UIViewController {
         AdSdkLauncher.shared.launch()
         addViewToHierarchy()
         startNotifiers()
-        GADMobileAds.sharedInstance().start { status in
-        }
     }
     
     private func start() {

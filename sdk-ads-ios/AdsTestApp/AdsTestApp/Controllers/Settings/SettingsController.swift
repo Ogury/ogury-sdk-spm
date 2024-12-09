@@ -46,5 +46,13 @@ struct SettingsController {
     var showLogsSheet: Bool = true
    
     @UserDefault("importMethod")
-    var importMethod: ImportMethod = .file
+    var importMethod: ImportMethod = SettingsController.qaMode ? .rawText : .file
+    
+    static let qaMode: Bool = {
+#if QA_MODE
+        return true
+#else
+        return false
+#endif
+    }()
 }

@@ -44,10 +44,12 @@ struct LogsView: View {
                                     }
                                 }
                         )
+                        .accessibilityLabel("LogSheetDragView")
                     
                     ScrollView {
                         ForEach(viewStore.logMessages.indices, id: \.self) { index in
-                            Text(AttributedString(viewStore.logMessages[index]))
+                            let str = viewStore.logMessages[index]
+                            Text(AttributedString(str))
                                 .multilineTextAlignment(.leading)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.horizontal)
@@ -60,6 +62,7 @@ struct LogsView: View {
                                 )
                                 .id(index)
                                 .accessibilityLabel("LogItem#\(index)")
+                                .accessibilityValue("\(str)")
                             Spacer()
                         }
                     }
