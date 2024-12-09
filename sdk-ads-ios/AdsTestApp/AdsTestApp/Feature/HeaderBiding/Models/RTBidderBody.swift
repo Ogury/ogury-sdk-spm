@@ -6,6 +6,10 @@
 //
 
 import Foundation
+import AppTrackingTransparency
+import AdSupport
+import OguryAds.Private
+import OguryCore.Private
 
 struct RTBidderBody: Encodable {
     enum CodingKeys: String, CodingKey, CaseIterable {
@@ -61,18 +65,86 @@ struct Device: Encodable {
     var connectiontype: Int = 2
     var dnt: Int = 0
     var geo: [String: String] = [:]
-    var h: Int = 1334
-    var ifa: String = "00000000-0000-0000-0000-000000000000"
-    var ip: String = "8.25.196.26"
+    var h: Int!
+    var ifa: String!
+    var ip: String!
     var js: Int = 1
-    var language: String = "en"
+    var language: String!
     var make: String = "Apple"
-    var model: String = "iPhone 11"
+    var model: String!
     var os: String = "ios"
-    var osv: String = "11.4.1"
-    var pxratio: Double = 2.0
-    var ua: String = "Mozilla/5.0 (Linux; Android 11; Android SDK built for x86 Build/RSR1.210210.001.A1; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.106 Mobile Safari/537.36"
-    var w: Int = 750
+    var osv: String!
+    var pxratio: Double!
+    var ua: String!
+    var w: Int!
+    
+    init() {
+        w = Int(UIScreen.main.bounds.width)
+        h = Int(UIScreen.main.bounds.height)
+        pxratio = UIScreen.main.scale
+        ua = OGAWebViewUserAgentService.shared().webViewUserAgent ?? "Mozilla/5.0 (Linux; Android 11; Android SDK built for x86 Build/RSR1.210210.001.A1; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.106 Mobile Safari/537.36"
+        let osVersion = ProcessInfo.processInfo.operatingSystemVersion
+        osv = "\(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)"
+#if targetEnvironment(simulator)
+        model = "iPhone 16 Pro Max"
+#else
+        model = deviceModel()
+#endif
+        language = Locale.current.language.languageCode?.identifier ?? "en"
+        ip = ipAddress() ?? "x.xx.xxx.xx"
+        ifa = OGCInternal.shared().getAdIdentifier()
+    }
+}
+
+func deviceModel() -> String {
+    var systemInfo = utsname()
+    uname(&systemInfo)
+    let machineMirror = Mirror(reflecting: systemInfo.machine)
+    let identifier = machineMirror.children.reduce("") { identifier, element in
+        guard let value = element.value as? Int8, value != 0 else { return identifier }
+        return identifier + String(UnicodeScalar(UInt8(value)))
+    }
+    
+    return identifier
+}
+
+func ipAddress() -> String? {
+    var address: String?
+    
+    // Get list of all interfaces on the device
+    var ifaddr: UnsafeMutablePointer<ifaddrs>?
+    guard getifaddrs(&ifaddr) == 0 else { return nil }
+    guard let firstAddr = ifaddr else { return nil }
+    
+    // Iterate through all interfaces
+    for ptr in sequence(first: firstAddr, next: { $0.pointee.ifa_next }) {
+        let interface = ptr.pointee
+        let addrFamily = interface.ifa_addr.pointee.sa_family
+        
+        // Check for IPv4 (AF_INET)
+        if addrFamily == UInt8(AF_INET) {
+            // Convert interface name to a string
+            let name = String(cString: interface.ifa_name)
+            if name == "en0" { // "en0" is Wi-Fi
+                var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+                let result = getnameinfo(
+                    interface.ifa_addr,
+                    socklen_t(interface.ifa_addr.pointee.sa_len),
+                    &hostname,
+                    socklen_t(hostname.count),
+                    nil,
+                    0,
+                    NI_NUMERICHOST
+                )
+                if result == 0 {
+                    address = String(cString: hostname)
+                }
+            }
+        }
+    }
+    
+    freeifaddrs(ifaddr)
+    return address
 }
 
 struct User: Encodable {

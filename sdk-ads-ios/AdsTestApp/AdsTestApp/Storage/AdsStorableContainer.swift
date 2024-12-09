@@ -5,6 +5,23 @@
 import UIKit
 import AdsCardLibrary
 import OguryAds
+import UserDefault
+
+enum ImportMethod: String, Codable, Equatable, CaseIterable, DefaultsValueConvertible {
+    case file, rawText
+    var displayText: String {
+        switch self {
+            case .file: return "Import file"
+            case .rawText: return "Import json text"
+        }
+    }
+    var shortDisplayText: String {
+        switch self {
+            case .file: return "File"
+            case .rawText: return "Text"
+        }
+    }
+}
 
 struct SettingsContainer: Codable, Equatable {
     static let currentOs = "iOS"
@@ -37,6 +54,10 @@ struct SettingsContainer: Codable, Equatable {
         get { settings.startSDKWithApplication }
         set { settings.startSDKWithApplication = newValue }
     }
+    var numberOfSdkStart: Int {
+        get { settings.numberOfSdkStart }
+        set { settings.numberOfSdkStart = newValue }
+    }
     var showTestMode: Bool {
         get { settings.showTestMode }
         set { settings.showTestMode = newValue }
@@ -53,6 +74,10 @@ struct SettingsContainer: Codable, Equatable {
         get { settings.usOptoutPartner }
         set { settings.usOptoutPartner = newValue }
     }
+    var importMethod: ImportMethod {
+        get { settings.importMethod }
+        set { settings.importMethod = newValue }
+    }
     var name = "AdsSet"
     var os = SettingsContainer.currentOs
     var shouldUpdateAdUnits: Bool { os != SettingsContainer.currentOs }
@@ -68,7 +93,10 @@ struct SettingsContainer: Codable, Equatable {
         case name
         case os
         case enableAdUnitEditing
+        case startSDKWithApplication
+        case numberOfSdkStart
         case logSettings
+        case importMethod
     }
     
     init(from decoder: Decoder) throws {
@@ -81,7 +109,10 @@ struct SettingsContainer: Codable, Equatable {
         showTestMode = try container.decode(Bool.self, forKey: .showTestMode)
         name = try container.decode(String.self, forKey: .name)
         os = try container.decode(String.self, forKey: .os)
+        startSDKWithApplication = try container.decodeIfPresent(Bool.self, forKey: .startSDKWithApplication) ?? false
+        numberOfSdkStart = try container.decodeIfPresent(Int.self, forKey: .numberOfSdkStart) ?? 0
         enableAdUnitEditing = try container.decodeIfPresent(Bool.self, forKey: .enableAdUnitEditing) ?? true
+        importMethod = try container.decodeIfPresent(ImportMethod.self, forKey: .importMethod) ?? .file
         logSettings = (try? container.decodeIfPresent(LogSettings.self, forKey: .logSettings)) ?? LogSettings()
     }
     
@@ -96,7 +127,10 @@ struct SettingsContainer: Codable, Equatable {
         try container.encode(name, forKey: .name)
         try container.encode(os, forKey: .os)
         try container.encode(enableAdUnitEditing, forKey: .enableAdUnitEditing)
+        try container.encode(numberOfSdkStart, forKey: .numberOfSdkStart)
+        try container.encode(startSDKWithApplication, forKey: .startSDKWithApplication)
         try container.encode(logSettings, forKey: .logSettings)
+        try container.encode(importMethod, forKey: .importMethod)
     }
     
     init(name: String = "AdsSet") {
@@ -113,6 +147,9 @@ struct SettingsContainer: Codable, Equatable {
         lhs.startSDKWithApplication == rhs.startSDKWithApplication &&
         lhs.showTestMode == rhs.showTestMode &&
         lhs.enableAdUnitEditing == rhs.enableAdUnitEditing &&
+        lhs.startSDKWithApplication == rhs.startSDKWithApplication &&
+        lhs.numberOfSdkStart == rhs.numberOfSdkStart &&
+        lhs.importMethod == rhs.importMethod &&
         lhs.name == rhs.name
     }
 }
@@ -201,6 +238,10 @@ struct AdsStorableContainer: Codable {
         }
         defer { url.stopAccessingSecurityScopedResource() }
         guard let data = try? Data(contentsOf: url) else { throw ImportError.noFileAtURL }
+        return try AdsStorableContainer.load(from: data)
+    }
+    
+    static func load(from data: Data) throws -> AdsStorableContainer {
         guard let container: AdsStorableContainer = try? JSONDecoder().decode(self, from: data) else { throw ImportError.cantReadFile }
         return container
     }

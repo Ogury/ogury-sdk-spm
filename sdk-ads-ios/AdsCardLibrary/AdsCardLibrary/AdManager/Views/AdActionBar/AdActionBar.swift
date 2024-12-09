@@ -70,11 +70,46 @@ public struct AdsPrimaryButton: ButtonStyle {
     public init(isEnabled: Bool = true) {
         self.isEnabled = isEnabled
     }
+    
     public func makeBody(configuration: Configuration) -> some View {
         configuration
             .label
             .font(.adsTitle3)
             .padding(8)
+            .background(backgroundColor(isPressed: configuration.isPressed))
+            .foregroundColor(foregroundColor(isPressed: configuration.isPressed))
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .shadow(color: Color(AdColorPalette.Background.shadow.color), radius: 3.5, x: 0, y: 5)
+    }
+    
+    private func backgroundColor(isPressed: Bool) -> Color {
+        switch (isEnabled, isPressed) {
+            case (false, _): return Color(AdColorPalette.Background.disabled.color)
+            case (_, true): return Color(AdColorPalette.Primary.accentLight.color)
+            case (_, false): return Color(AdColorPalette.Primary.accent.color)
+        }
+    }
+    private func foregroundColor(isPressed: Bool) -> Color {
+        switch (isEnabled, isPressed) {
+            case (false, _): return Color(AdColorPalette.Text.supplementary(onAccent: false).color)
+            case (_, false): return Color(AdColorPalette.Text.primary(onAccent: true).color)
+            case (_, true): return Color(AdColorPalette.Text.supplementary(onAccent: false).color)
+        }
+    }
+}
+
+public struct AdsExpandablePrimaryButton: ButtonStyle {
+    private var isEnabled: Bool
+    public init(isEnabled: Bool = true) {
+        self.isEnabled = isEnabled
+    }
+    
+    public func makeBody(configuration: Configuration) -> some View {
+        configuration
+            .label
+            .font(.adsTitle3)
+            .padding(8)
+            .frame(maxWidth: .infinity)
             .background(backgroundColor(isPressed: configuration.isPressed))
             .foregroundColor(foregroundColor(isPressed: configuration.isPressed))
             .clipShape(RoundedRectangle(cornerRadius: 8))

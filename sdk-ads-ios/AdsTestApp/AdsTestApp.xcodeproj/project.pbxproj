@@ -48,6 +48,24 @@
 		4301B1F62B56D4C30076065D /* shareImageData.png in Resources */ = {isa = PBXBuildFile; fileRef = 4301B1F52B56D4C30076065D /* shareImageData.png */; };
 		4317C00A2BC7D69F00F40F5F /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C0092BC7D69F00F40F5F /* config.release.xcconfig */; };
 		4317C00C2BC7D6BC00F40F5F /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C00B2BC7D6BC00F40F5F /* config.release.xcconfig */; };
+		43236A022CF4CB700078EF67 /* ImportFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369FF2CF4CB700078EF67 /* ImportFeature.swift */; };
+		43236A032CF4CB700078EF67 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43236A002CF4CB700078EF67 /* ImportView.swift */; };
+		43236A042CF4CB700078EF67 /* ImportFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369FF2CF4CB700078EF67 /* ImportFeature.swift */; };
+		43236A052CF4CB700078EF67 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43236A002CF4CB700078EF67 /* ImportView.swift */; };
+		43236A062CF4CB700078EF67 /* ImportFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369FF2CF4CB700078EF67 /* ImportFeature.swift */; };
+		43236A072CF4CB700078EF67 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43236A002CF4CB700078EF67 /* ImportView.swift */; };
+		43236A082CF4CB700078EF67 /* ImportFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369FF2CF4CB700078EF67 /* ImportFeature.swift */; };
+		43236A092CF4CB700078EF67 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43236A002CF4CB700078EF67 /* ImportView.swift */; };
+		43236A0A2CF4CB700078EF67 /* ImportFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369FF2CF4CB700078EF67 /* ImportFeature.swift */; };
+		43236A0B2CF4CB700078EF67 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43236A002CF4CB700078EF67 /* ImportView.swift */; };
+		43236A0C2CF4CB700078EF67 /* ImportFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369FF2CF4CB700078EF67 /* ImportFeature.swift */; };
+		43236A0D2CF4CB700078EF67 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43236A002CF4CB700078EF67 /* ImportView.swift */; };
+		43236A182CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
+		43236A192CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
+		43236A1A2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
+		43236A1B2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
+		43236A1C2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
+		43236A1D2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
 		433B4A8B2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
 		433B4A8C2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
 		433B4A8D2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
@@ -144,11 +162,6 @@
 		4394F7602CA44BC5001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
 		4394F7612CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7552CA44BC5001086FE /* TestAppLogFormatter.swift */; };
 		4394F7622CA44BC5001086FE /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
-		439A64E32C8F25EA00A180A4 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		439A64E42C8F25EB00A180A4 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		439A64E52C8F25EB00A180A4 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		439A64E62C8F25EC00A180A4 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		439A64E72C8F25EC00A180A4 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		43AE85D82B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
 		43AE85D92B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
 		43AE85DA2B5017860010C812 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
@@ -159,9 +172,6 @@
 		43B7136C2B45702C007C8D21 /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43B713702B457035007C8D21 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; };
 		43B713712B457035007C8D21 /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		43B713E02B4D5127007C8D21 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 43B713DF2B4D5127007C8D21 /* GoogleMobileAds */; };
-		43B713E22B4D5157007C8D21 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 43B713E12B4D5157007C8D21 /* GoogleMobileAds */; };
-		43B713E42B4D515D007C8D21 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 43B713E32B4D515D007C8D21 /* GoogleMobileAds */; };
 		43B713E72B4D54AA007C8D21 /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* ConsentManager.swift */; };
 		43B713E82B4D54AA007C8D21 /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* ConsentManager.swift */; };
 		43B713E92B4D54AA007C8D21 /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* ConsentManager.swift */; };
@@ -306,11 +316,6 @@
 		43BCB1982C23255C002FB0B1 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43BCB1962C23255C002FB0B1 /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43BCB19A2C232565002FB0B1 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BCB1992C232565002FB0B1 /* AdsCardLibrary.framework */; };
 		43BCB19B2C232565002FB0B1 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43BCB1992C232565002FB0B1 /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		43BE104A2CA311E800FF0467 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		43BE104B2CA311F100FF0467 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		43BE104C2CA311FE00FF0467 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		43BE104D2CA3120000FF0467 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		43BE104E2CA3120300FF0467 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		43C1D1552B7E566C006F2D23 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43C1D1542B7E566C006F2D23 /* SwiftMessages */; };
 		43C1D1572B7E567A006F2D23 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43C1D1562B7E567A006F2D23 /* SwiftMessages */; };
 		43C1D1592B7E5684006F2D23 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43C1D1582B7E5684006F2D23 /* SwiftMessages */; };
@@ -334,7 +339,6 @@
 		43FC85612B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43FC85622B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43FC85632B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
-		50CFA8672C63AB5200E64D20 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		674BCBAC82FBD4EBB2A4A8E7 /* Pods_AdsTestApp_Devc_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB3C78894E080AB4A6A149C /* Pods_AdsTestApp_Devc_art.framework */; };
 		67DA85977E194EA300BC00BE /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC679F282C18E34F4992CD02 /* RTBidderBody.swift */; };
 		6DA4741832749AC511D60F61 /* RTBidderBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC679F282C18E34F4992CD02 /* RTBidderBody.swift */; };
@@ -432,6 +436,7 @@
 		03519F466E6F8E1195487C99 /* Pods-AdsTestApp-Prod-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod-art.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art.release.xcconfig"; sourceTree = "<group>"; };
 		1166968A5CF316EC4F730077 /* Pods_AdsTestApp_Staging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Staging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1173BBA690491D93696CCB2A /* Pods-AdsTestApp-Prod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod.release.xcconfig"; sourceTree = "<group>"; };
+		157F945631AE7D007328D50A /* DTFairBidBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTFairBidBidder.swift; sourceTree = "<group>"; };
 		1E373D582BFC9CB600E2EF25 /* RTBBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTBBidder.swift; sourceTree = "<group>"; };
 		1E373D5C2BFC9F5C00E2EF25 /* DTFairBidBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTFairBidBidder.swift; sourceTree = "<group>"; };
 		1E5BE6322B21F40F0010B995 /* DetailListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailListView.swift; sourceTree = "<group>"; };
@@ -449,6 +454,9 @@
 		4317C0092BC7D69F00F40F5F /* config.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = config.release.xcconfig; sourceTree = "<group>"; };
 		4317C00B2BC7D6BC00F40F5F /* config.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = config.release.xcconfig; sourceTree = "<group>"; };
 		4317C00D2BC7D6CA00F40F5F /* config.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = config.release.xcconfig; sourceTree = "<group>"; };
+		432369FF2CF4CB700078EF67 /* ImportFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportFeature.swift; sourceTree = "<group>"; };
+		43236A002CF4CB700078EF67 /* ImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportView.swift; sourceTree = "<group>"; };
+		43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraCode-Regular.ttf"; sourceTree = "<group>"; };
 		433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsStorableContainer.swift; sourceTree = "<group>"; };
 		433B4A8E2B3491DC00037FE1 /* LinkPresentationItemSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkPresentationItemSource.swift; sourceTree = "<group>"; };
 		433B4A922B34927900037FE1 /* shareImageData.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareImageData.png; sourceTree = "<group>"; };
@@ -520,10 +528,12 @@
 		47C0E4A5A6B569012BC88AE1 /* Pods-AdsTestApp-Prod-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod-art.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art.debug.xcconfig"; sourceTree = "<group>"; };
 		492D0E907FA4EAC9174ADA6D /* Pods_AdsTestApp_Staging_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Staging_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C776A4803A253348F9AB40F /* Pods-AdsTestApp-Release-Staging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Release-Staging.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Release-Staging/Pods-AdsTestApp-Release-Staging.release.xcconfig"; sourceTree = "<group>"; };
+		4EB9A33363592B358A3EC3BD /* UnityLevelPlayBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityLevelPlayBidder.swift; sourceTree = "<group>"; };
 		5D82105BFBFD3D3FCD2F6C9F /* Pods-AdsTestApp-Devc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc.debug.xcconfig"; sourceTree = "<group>"; };
 		6259979422DC1ADB7AD09C7E /* Pods-AdsTestApp-Devc-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc-art.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art.release.xcconfig"; sourceTree = "<group>"; };
 		8714551AA0AAF899695126D1 /* Pods-AdsTestApp-Release-Prod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Release-Prod.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsTestApp-Release-Prod/Pods-AdsTestApp-Release-Prod.debug.xcconfig"; sourceTree = "<group>"; };
 		967A69F95815147E2A65EF91 /* Pods_AdsTestApp_Prod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Prod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9B062918EF12190E48923F8 /* MaxBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxBidder.swift; sourceTree = "<group>"; };
 		AA3A9DEB44516CD436869350 /* Pods-AdsTestApp-Prod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod.debug.xcconfig"; sourceTree = "<group>"; };
 		ACB3C78894E080AB4A6A149C /* Pods_AdsTestApp_Devc_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Devc_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF01C2B608A976962ACECA48 /* Pods-AdsTestApp-Staging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Staging.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging.debug.xcconfig"; sourceTree = "<group>"; };
@@ -545,7 +555,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E5BE6292B21CD040010B995 /* SnapKit in Frameworks */,
-				43B713E22B4D5157007C8D21 /* GoogleMobileAds in Frameworks */,
 				43C1D1572B7E567A006F2D23 /* SwiftMessages in Frameworks */,
 				43AE85DF2B5018B90010C812 /* UserDefault in Frameworks */,
 				43B7136B2B45702C007C8D21 /* OMSDK_Ogury.xcframework in Frameworks */,
@@ -559,7 +568,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E5BE6252B21CCE50010B995 /* SnapKit in Frameworks */,
-				43B713E42B4D515D007C8D21 /* GoogleMobileAds in Frameworks */,
 				43C1D1592B7E5684006F2D23 /* SwiftMessages in Frameworks */,
 				43F181632CEC92A600DE6507 /* AdsCardLibrary.framework in Frameworks */,
 				43AE85E12B5018BF0010C812 /* UserDefault in Frameworks */,
@@ -575,7 +583,6 @@
 			files = (
 				1E0E81642ACD8DFB00EFD70C /* OMSDK_Ogury.xcframework in Frameworks */,
 				43C1D1552B7E566C006F2D23 /* SwiftMessages in Frameworks */,
-				43B713E02B4D5127007C8D21 /* GoogleMobileAds in Frameworks */,
 				43AE85DD2B5018A20010C812 /* UserDefault in Frameworks */,
 				1E5BE62D2B21CD0E0010B995 /* SnapKit in Frameworks */,
 				43F788AF2B4E88250022157E /* AdsCardLibrary.framework in Frameworks */,
@@ -691,6 +698,23 @@
 			path = prod;
 			sourceTree = "<group>";
 		};
+		43236A012CF4CB700078EF67 /* Import */ = {
+			isa = PBXGroup;
+			children = (
+				432369FF2CF4CB700078EF67 /* ImportFeature.swift */,
+				43236A002CF4CB700078EF67 /* ImportView.swift */,
+			);
+			path = Import;
+			sourceTree = "<group>";
+		};
+		43236A172CF5C6F40078EF67 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		433B4A892B34256700037FE1 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
@@ -713,6 +737,7 @@
 		434F849F2AC2CCEF005077F5 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				43236A012CF4CB700078EF67 /* Import */,
 				43FC855F2B0F5DF500EABA43 /* HeaderBiding */,
 				1EF117652AF95004004BE519 /* DetailList */,
 				434F84AC2AC3007E005077F5 /* Add */,
@@ -757,6 +782,7 @@
 		434F84F42ACFE529005077F5 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				43236A172CF5C6F40078EF67 /* Fonts */,
 				434F85112AD004BA005077F5 /* Devc */,
 				434F85122AD004C3005077F5 /* Staging */,
 				434F85132AD004C7005077F5 /* Prod */,
@@ -815,6 +841,7 @@
 				438ED4142AA5D0C200486AF2 /* Products */,
 				438ED42C2AA5D0F600486AF2 /* Frameworks */,
 				B80175CC9F7EAD64721C41EC /* Pods */,
+				7FBFCC45DCA7616B82F56CFA /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -936,10 +963,10 @@
 		43FC855F2B0F5DF500EABA43 /* HeaderBiding */ = {
 			isa = PBXGroup;
 			children = (
+				63F0C61DEB8DFBAC3C39FBF9 /* AppLovin */,
+				F8C95F78E59FF50A62EF0B54 /* DTFairBid */,
 				43B713BA2B4BCEC4007C8D21 /* Models */,
 				1090499CB5BC95FC786D3014 /* UnityLevelPlay */,
-				F8C95F78E59FF50A62EF0B54 /* DTFairBid */,
-				63F0C61DEB8DFBAC3C39FBF9 /* AppLovin */,
 			);
 			path = HeaderBiding;
 			sourceTree = "<group>";
@@ -950,6 +977,16 @@
 				43FC85602B0F5E0900EABA43 /* MaxBidder.swift */,
 			);
 			path = AppLovin;
+			sourceTree = "<group>";
+		};
+		7FBFCC45DCA7616B82F56CFA /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				157F945631AE7D007328D50A /* DTFairBidBidder.swift */,
+				4EB9A33363592B358A3EC3BD /* UnityLevelPlayBidder.swift */,
+				A9B062918EF12190E48923F8 /* MaxBidder.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		B80175CC9F7EAD64721C41EC /* Pods */ = {
@@ -1006,7 +1043,6 @@
 			name = "AdsTestApp-Staging";
 			packageProductDependencies = (
 				1E5BE6282B21CD040010B995 /* SnapKit */,
-				43B713E12B4D5157007C8D21 /* GoogleMobileAds */,
 				43AE85DE2B5018B90010C812 /* UserDefault */,
 				43C1D1562B7E567A006F2D23 /* SwiftMessages */,
 			);
@@ -1032,7 +1068,6 @@
 			name = "AdsTestApp-Prod";
 			packageProductDependencies = (
 				1E5BE6242B21CCE50010B995 /* SnapKit */,
-				43B713E32B4D515D007C8D21 /* GoogleMobileAds */,
 				43AE85E02B5018BF0010C812 /* UserDefault */,
 				43C1D1582B7E5684006F2D23 /* SwiftMessages */,
 			);
@@ -1058,7 +1093,6 @@
 			name = "AdsTestApp-Devc";
 			packageProductDependencies = (
 				1E5BE62C2B21CD0E0010B995 /* SnapKit */,
-				43B713DF2B4D5127007C8D21 /* GoogleMobileAds */,
 				43AE85DC2B5018A20010C812 /* UserDefault */,
 				43C1D1542B7E566C006F2D23 /* SwiftMessages */,
 			);
@@ -1186,7 +1220,6 @@
 			mainGroup = 438ED40A2AA5D0C200486AF2;
 			packageReferences = (
 				1E5BE6232B21CCE50010B995 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				43B713DE2B4D5127007C8D21 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				43AE85DB2B5018A20010C812 /* XCRemoteSwiftPackageReference "UserDefault" */,
 				43C1D1532B7E566C006F2D23 /* XCRemoteSwiftPackageReference "SwiftMessages" */,
 			);
@@ -1210,6 +1243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				434F84D02ACFE4FE005077F5 /* LaunchScreen.storyboard in Resources */,
+				43236A1A2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */,
 				434F850F2AD004B0005077F5 /* Default.json in Resources */,
 				434F84FD2ACFE5F6005077F5 /* Asset.xcassets in Resources */,
 				4317C00C2BC7D6BC00F40F5F /* config.release.xcconfig in Resources */,
@@ -1225,6 +1259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				434F84EC2ACFE50A005077F5 /* LaunchScreen.storyboard in Resources */,
+				43236A1D2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */,
 				434F85102AD004B8005077F5 /* Default.json in Resources */,
 				434F84ED2ACFE50A005077F5 /* Assets.xcassets in Resources */,
 				434F84FE2ACFE5F8005077F5 /* Asset.xcassets in Resources */,
@@ -1240,6 +1275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				438ED4232AA5D0C300486AF2 /* LaunchScreen.storyboard in Resources */,
+				43236A192CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */,
 				434F85012ACFE6C8005077F5 /* config.debug.xcconfig in Resources */,
 				438ED4202AA5D0C300486AF2 /* Assets.xcassets in Resources */,
 				4317C00A2BC7D69F00F40F5F /* config.release.xcconfig in Resources */,
@@ -1255,6 +1291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43BCB0C62C22DD45002FB0B1 /* LaunchScreen.storyboard in Resources */,
+				43236A1C2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */,
 				43BCB0C82C22DD45002FB0B1 /* Assets.xcassets in Resources */,
 				43D0E6172C61052300AF9CF6 /* config-art.debug.xcconfig in Resources */,
 				43BCB0CA2C22DD45002FB0B1 /* Main.storyboard in Resources */,
@@ -1270,6 +1307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43BCB1092C22DD59002FB0B1 /* LaunchScreen.storyboard in Resources */,
+				43236A1B2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */,
 				43D0E61D2C6105D700AF9CF6 /* config-art.release.xcconfig in Resources */,
 				43BCB10A2C22DD59002FB0B1 /* Default.json in Resources */,
 				43D0E61C2C6105D700AF9CF6 /* config-art.debug.xcconfig in Resources */,
@@ -1285,6 +1323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43BCB14C2C22DD60002FB0B1 /* LaunchScreen.storyboard in Resources */,
+				43236A182CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */,
 				43BCB14D2C22DD60002FB0B1 /* Default.json in Resources */,
 				43D0E6212C61060700AF9CF6 /* config-art.debug.xcconfig in Resources */,
 				43BCB1502C22DD60002FB0B1 /* Assets.xcassets in Resources */,
@@ -1540,7 +1579,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				43B714032B4D6075007C8D21 /* HeaderBiddingBid.swift in Sources */,
-				43BE104A2CA311E800FF0467 /* (null) in Sources */,
 				4301B1E92B56D3930076065D /* UTType+Extension(stag).swift in Sources */,
 				433B4A8C2B34259900037FE1 /* AdsStorableContainer.swift in Sources */,
 				1E373D5E2BFC9F5C00E2EF25 /* DTFairBidBidder.swift in Sources */,
@@ -1548,10 +1586,11 @@
 				434F84C02ACFE4FE005077F5 /* AppFeature.swift in Sources */,
 				434F85082AD00349005077F5 /* Configuration.swift in Sources */,
 				434F84C12ACFE4FE005077F5 /* MainView.swift in Sources */,
+				43236A062CF4CB700078EF67 /* ImportFeature.swift in Sources */,
+				43236A072CF4CB700078EF67 /* ImportView.swift in Sources */,
 				43788F412B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */,
 				434F84C22ACFE4FE005077F5 /* MainViewController.swift in Sources */,
 				43FC85622B0F5E0900EABA43 /* MaxBidder.swift in Sources */,
-				439A64E42C8F25EB00A180A4 /* (null) in Sources */,
 				43B714062B4D6075007C8D21 /* HeaderBiddingResponse.swift in Sources */,
 				43B713E82B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
 				434F84C42ACFE4FE005077F5 /* AppDelegate.swift in Sources */,
@@ -1587,7 +1626,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				43B714042B4D6075007C8D21 /* HeaderBiddingBid.swift in Sources */,
-				43BE104B2CA311F100FF0467 /* (null) in Sources */,
 				433B4A8D2B34259900037FE1 /* AdsStorableContainer.swift in Sources */,
 				434F84DB2ACFE50A005077F5 /* AddFeature.swift in Sources */,
 				1E373D5F2BFC9F5C00E2EF25 /* DTFairBidBidder.swift in Sources */,
@@ -1595,6 +1633,8 @@
 				434F85092AD00349005077F5 /* Configuration.swift in Sources */,
 				434F84DD2ACFE50A005077F5 /* MainView.swift in Sources */,
 				4301B1EB2B56D3A80076065D /* UTType+Extension(prod).swift in Sources */,
+				43236A0C2CF4CB700078EF67 /* ImportFeature.swift in Sources */,
+				43236A0D2CF4CB700078EF67 /* ImportView.swift in Sources */,
 				43788F422B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */,
 				434F84DE2ACFE50A005077F5 /* MainViewController.swift in Sources */,
 				43FC85632B0F5E0900EABA43 /* MaxBidder.swift in Sources */,
@@ -1604,7 +1644,6 @@
 				43B7140A2B4D6075007C8D21 /* HeaderBiddingExt.swift in Sources */,
 				4394F7432CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
 				43AE85DA2B5017860010C812 /* SettingsController.swift in Sources */,
-				50CFA8672C63AB5200E64D20 /* (null) in Sources */,
 				434F84E12ACFE50A005077F5 /* AppSettingsView.swift in Sources */,
 				434F84E22ACFE50A005077F5 /* SceneDelegate.swift in Sources */,
 				1E5BE6352B21F40F0010B995 /* DetailListView.swift in Sources */,
@@ -1640,8 +1679,9 @@
 				1E9206222CCBE09600916482 /* LogsView.swift in Sources */,
 				434F849E2AC2CC54005077F5 /* AppFeature.swift in Sources */,
 				434F85072AD00349005077F5 /* Configuration.swift in Sources */,
-				439A64E32C8F25EA00A180A4 /* (null) in Sources */,
 				434F84A32AC2CD2B005077F5 /* MainView.swift in Sources */,
+				43236A042CF4CB700078EF67 /* ImportFeature.swift in Sources */,
+				43236A052CF4CB700078EF67 /* ImportView.swift in Sources */,
 				438ED41B2AA5D0C200486AF2 /* MainViewController.swift in Sources */,
 				43788F402B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */,
 				4301B1E72B56D3630076065D /* UTType+Extension(devc).swift in Sources */,
@@ -1681,17 +1721,17 @@
 			files = (
 				43BCB09E2C22DD45002FB0B1 /* HeaderBiddingBid.swift in Sources */,
 				43BCB09F2C22DD45002FB0B1 /* AdsStorableContainer.swift in Sources */,
-				43BE104C2CA311FE00FF0467 /* (null) in Sources */,
 				43BCB0A02C22DD45002FB0B1 /* AddFeature.swift in Sources */,
 				43BCB0A12C22DD45002FB0B1 /* DTFairBidBidder.swift in Sources */,
 				43BCB0A22C22DD45002FB0B1 /* AppFeature.swift in Sources */,
 				43BCB0A32C22DD45002FB0B1 /* Configuration.swift in Sources */,
 				43BCB0A42C22DD45002FB0B1 /* MainView.swift in Sources */,
 				43BCB0A52C22DD45002FB0B1 /* MainViewController.swift in Sources */,
+				43236A0A2CF4CB700078EF67 /* ImportFeature.swift in Sources */,
+				43236A0B2CF4CB700078EF67 /* ImportView.swift in Sources */,
 				43BCB0A62C22DD45002FB0B1 /* AddFormatsView.swift in Sources */,
 				43BCB0A82C22DD45002FB0B1 /* UTType+Extension(devc).swift in Sources */,
 				43BCB0A92C22DD45002FB0B1 /* MaxBidder.swift in Sources */,
-				439A64E52C8F25EB00A180A4 /* (null) in Sources */,
 				43BCB0AA2C22DD45002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
 				43BCB0AB2C22DD45002FB0B1 /* ConsentManager.swift in Sources */,
 				43BCB0AC2C22DD45002FB0B1 /* AppDelegate.swift in Sources */,
@@ -1730,15 +1770,15 @@
 				43BCB0E22C22DD59002FB0B1 /* UTType+Extension(stag).swift in Sources */,
 				43BCB0E32C22DD59002FB0B1 /* AdsStorableContainer.swift in Sources */,
 				43BCB0E42C22DD59002FB0B1 /* DTFairBidBidder.swift in Sources */,
-				43BE104D2CA3120000FF0467 /* (null) in Sources */,
 				43BCB0E52C22DD59002FB0B1 /* AddFeature.swift in Sources */,
 				43BCB0E62C22DD59002FB0B1 /* AppFeature.swift in Sources */,
 				43BCB0E72C22DD59002FB0B1 /* Configuration.swift in Sources */,
 				43BCB0E82C22DD59002FB0B1 /* MainView.swift in Sources */,
+				43236A082CF4CB700078EF67 /* ImportFeature.swift in Sources */,
+				43236A092CF4CB700078EF67 /* ImportView.swift in Sources */,
 				43BCB0E92C22DD59002FB0B1 /* AddFormatsView.swift in Sources */,
 				43BCB0EA2C22DD59002FB0B1 /* MainViewController.swift in Sources */,
 				43BCB0EC2C22DD59002FB0B1 /* MaxBidder.swift in Sources */,
-				439A64E62C8F25EC00A180A4 /* (null) in Sources */,
 				43BCB0ED2C22DD59002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
 				43BCB0EE2C22DD59002FB0B1 /* ConsentManager.swift in Sources */,
 				43BCB0EF2C22DD59002FB0B1 /* AppDelegate.swift in Sources */,
@@ -1776,16 +1816,16 @@
 				43BCB1242C22DD60002FB0B1 /* HeaderBiddingBid.swift in Sources */,
 				43BCB1252C22DD60002FB0B1 /* AdsStorableContainer.swift in Sources */,
 				43BCB1262C22DD60002FB0B1 /* AddFeature.swift in Sources */,
-				43BE104E2CA3120300FF0467 /* (null) in Sources */,
 				43BCB1272C22DD60002FB0B1 /* DTFairBidBidder.swift in Sources */,
 				43BCB1282C22DD60002FB0B1 /* AppFeature.swift in Sources */,
 				43BCB1292C22DD60002FB0B1 /* Configuration.swift in Sources */,
 				43BCB12A2C22DD60002FB0B1 /* MainView.swift in Sources */,
 				43BCB12B2C22DD60002FB0B1 /* UTType+Extension(prod).swift in Sources */,
+				43236A022CF4CB700078EF67 /* ImportFeature.swift in Sources */,
+				43236A032CF4CB700078EF67 /* ImportView.swift in Sources */,
 				43BCB12C2C22DD60002FB0B1 /* AddFormatsView.swift in Sources */,
 				43BCB12D2C22DD60002FB0B1 /* MainViewController.swift in Sources */,
 				43BCB12F2C22DD60002FB0B1 /* MaxBidder.swift in Sources */,
-				439A64E72C8F25EC00A180A4 /* (null) in Sources */,
 				43BCB1302C22DD60002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
 				43BCB1312C22DD60002FB0B1 /* ConsentManager.swift in Sources */,
 				43BCB1322C22DD60002FB0B1 /* AppDelegate.swift in Sources */,
@@ -2135,6 +2175,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Devc/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Ads - Devc";
@@ -2150,10 +2194,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D QA_MODE";
 				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app.devc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDK_SOURCE = Dev;
@@ -2195,10 +2241,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D QA_MODE";
 				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app.devc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDK_SOURCE = Dev;
@@ -2555,14 +2603,6 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		43B713DE2B4D5127007C8D21 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.0.0;
-			};
-		};
 		43BCB0952C22DD45002FB0B1 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -2699,21 +2739,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 43AE85DB2B5018A20010C812 /* XCRemoteSwiftPackageReference "UserDefault" */;
 			productName = UserDefault;
-		};
-		43B713DF2B4D5127007C8D21 /* GoogleMobileAds */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43B713DE2B4D5127007C8D21 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
-			productName = GoogleMobileAds;
-		};
-		43B713E12B4D5157007C8D21 /* GoogleMobileAds */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43B713DE2B4D5127007C8D21 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
-			productName = GoogleMobileAds;
-		};
-		43B713E32B4D515D007C8D21 /* GoogleMobileAds */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43B713DE2B4D5127007C8D21 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
-			productName = GoogleMobileAds;
 		};
 		43BCB0942C22DD45002FB0B1 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

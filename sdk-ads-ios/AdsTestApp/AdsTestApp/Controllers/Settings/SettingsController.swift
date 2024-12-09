@@ -27,6 +27,9 @@ struct SettingsController {
     @UserDefault("startSDKWithApplication")
     var startSDKWithApplication: Bool = false
     
+    @UserDefault("numberOfSdkStart")
+    var numberOfSdkStart: Int = 1
+    
     @UserDefault("showTestMode")
     var showTestMode: Bool = true
     
@@ -41,4 +44,15 @@ struct SettingsController {
    
     @UserDefault("showLogsSheet")
     var showLogsSheet: Bool = true
+   
+    @UserDefault("importMethod")
+    var importMethod: ImportMethod = SettingsController.qaMode ? .rawText : .file
+    
+    static let qaMode: Bool = {
+#if QA_MODE
+        return true
+#else
+        return false
+#endif
+    }()
 }

@@ -18,9 +18,7 @@
 		431F6F092C0F403F00DBFFAA /* AdTagFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6F082C0F403F00DBFFAA /* AdTagFeature.swift */; };
 		432369C32CF4610F0078EF67 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */; };
 		432369C42CF4610F0078EF67 /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		432369C62CF4629D0078EF67 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4E9E2CB6D00D0029B928 /* OguryAds.framework */; };
 		432369C72CF4629D0078EF67 /* OguryAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4E9E2CB6D00D0029B928 /* OguryAds.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		432369C82CF4629E0078EF67 /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4E9F2CB6D00D0029B928 /* OguryCore.framework */; };
 		432369C92CF4629E0078EF67 /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4E9F2CB6D00D0029B928 /* OguryCore.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4328B2832AD7CF44003C7F91 /* MaxRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328B2822AD7CF44003C7F91 /* MaxRetriever.swift */; };
 		4328B28B2ADFBDA9003C7F91 /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328B28A2ADFBDA9003C7F91 /* Storable.swift */; };
@@ -223,8 +221,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				432369C62CF4629D0078EF67 /* OguryAds.framework in Frameworks */,
-				432369C82CF4629E0078EF67 /* OguryCore.framework in Frameworks */,
 				435C55EA2A42EAEF004186FF /* AdsCardLibrary.framework in Frameworks */,
 				4314411E2A653CA70067AD47 /* CwlPreconditionTesting in Frameworks */,
 				432369C32CF4610F0078EF67 /* OMSDK_Ogury.xcframework in Frameworks */,
@@ -953,6 +949,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -996,6 +993,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1004,6 +1002,7 @@
 		435C55F72A42EAEF004186FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
@@ -1021,6 +1020,7 @@
 		435C55F82A42EAEF004186FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W7JZNL3R6G;

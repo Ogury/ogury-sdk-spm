@@ -34,6 +34,10 @@ pipeline {
                     not { changeRequest() }
                     buildingTag()
                 }
+                expression {
+                    // Skip this step if TAG_NAME contains 'internal-testApp'
+                    !env.TAG_NAME?.contains('internal-testApp')
+                }
             }
             steps {
                 script {
@@ -79,6 +83,10 @@ pipeline {
                 not {
                     branch 'master'
                 }
+                expression {
+                    // Skip this step if TAG_NAME contains 'internal-testApp'
+                    !env.TAG_NAME?.contains('internal-testApp')
+                }
             }
             steps {
                 sh """#!/bin/zsh -l
@@ -94,6 +102,10 @@ pipeline {
                 anyOf {
                     branch 'master'
                     changeRequest target:'master'
+                }
+                expression {
+                    // Skip this step if TAG_NAME contains 'internal-testApp'
+                    !env.TAG_NAME?.contains('internal-testApp')
                 }
             }
             steps {
@@ -476,6 +488,28 @@ pipeline {
                                 bundle exec fastlane deploy_wrapper_podspec environment:release tag:${env.TAG_NAME}
                             """
                         }
+                    }
+                }
+
+                // tag should look like internal-testApp or internal-testApp-qa for qaMode. Can also contain -art to generate test app based on external dependencies
+                stage('Deploy Ads Test App') {
+                    when {
+                        beforeAgent true
+                        expression {
+                            return "${env.TAG_NAME}".contains("internal-testApp")
+                        }
+                    }
+                    steps {
+                        script {
+                        // Extract information from TAG_NAME
+                            def tagElements = "${env.TAG_NAME}".split("-")
+                            def isQa = tagElements.contains("qa") 
+                            def isArtifactory = tagElements.contains("art") 
+        
+                            sh """#!/bin/zsh -l
+                               bundle exec fastlane generate_test_app isQa:${isQa} artifactory:${isArtifactory} tag:${env.TAG_NAME}
+                            """
+                         }
                     }
                 }
 

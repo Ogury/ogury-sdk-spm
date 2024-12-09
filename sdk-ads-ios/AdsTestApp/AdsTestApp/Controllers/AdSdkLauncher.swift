@@ -20,9 +20,14 @@ struct AdSdkLauncher {
     func startAds(forceStart: Bool = false) {
         if SettingsController().startSDKWithApplication || forceStart {
             forceAdsEnvironment()
-           OGAInternal.shared().start(with: assetKey) { succes, error in
-              
-           }
+            (0..<SettingsController().numberOfSdkStart).forEach { second in
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(second)) {
+                    print("🫠 start SDK")
+                    OGAInternal.shared().start(with: assetKey) { _, _ in
+                        
+                    }
+                }
+            }
         }
     }
     
