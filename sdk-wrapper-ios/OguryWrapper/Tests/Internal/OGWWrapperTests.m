@@ -57,8 +57,9 @@
 
 - (void)testStartWithNoModulesPresent {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Completion handler called"];
-    OCMExpect([self.log log:OguryLogLevelError
-                        message:@"No Ogury module found in your application."]);
+    OCMExpect([self.log log:OguryLogLevelDebug
+                    logType:OguryLogTypePublisher
+                    message:@"No Ogury module found in your application. Make sure you have the -ObjC flag in your OTHER_LINKER_FLAGS build setting."]);
         
     [self.wrapper startWith:self.assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
         XCTAssertNotNil(error);
@@ -134,7 +135,8 @@
     
     
     [[self.log expect] log:OguryLogLevelError
-                                  message:@"Error found during the Ogury Start() call :\nModule1 failed\nModule2 failed"];
+                   logType:OguryLogTypePublisher
+                    message:@"Error found during the Ogury Start() call :\nModule1 failed\nModule2 failed to start."];
         
     [self.wrapper startWith:self.assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
         XCTAssertFalse(success);
@@ -174,7 +176,8 @@
                                             userInfo:@{NSLocalizedDescriptionKey: @"Module3 failed"}];
     
     [[self.log expect] log:OguryLogLevelError
-                                  message:@"Error found during the Ogury Start() call"];
+                   logType:OguryLogTypePublisher
+                   message:@"Error found during the Ogury Start() call :\nModule3 failed"];
     
     
     

@@ -1,7 +1,7 @@
 //
 //  Copyright © 2020-present Ogury. All rights reserved.
 //
-
+#include "../../../Pods/Target Support Files/Pods-OguryWrapperTests/Pods-OguryWrapperTests.debug.xcconfig"
 // Identification
 PRODUCT_NAME = OgurySdk
 FRAMEWORK_NAME = OgurySdk

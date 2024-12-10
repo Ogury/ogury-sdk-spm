@@ -116,7 +116,9 @@ static int ogcMaxNumberOfConvertionValue = 63;
       }
       dispatch_group_notify(startGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
          if (errorMessage && errorMessage.length > 0) {
-             [self.log log:OguryLogLevelError logType:OguryLogTypePublisher message:[NSString stringWithFormat:@"Error found during the Ogury Start() call :%@", errorMessage]];
+             [self.log log:OguryLogLevelError
+                   logType:OguryLogTypePublisher
+                   message:[NSString stringWithFormat:@"Error found during the Ogury Start() call :%@", errorMessage]];
             if (self.startCompletionBlocks.count > 0) {
                OguryError *failedToStartError = [OguryError createModuleFailedToStartError:errorMessage];
                for (StartCompletionBlock completionBlock in self.startCompletionBlocks) {
@@ -128,7 +130,7 @@ static int ogcMaxNumberOfConvertionValue = 63;
             return;
          }
          if (modulesMessage && modulesMessage.length > 0) {
-             [self.log log:OguryLogLevelDebug logType:OguryLogTypePublisher message:[NSString stringWithFormat:@"Ogury Start() ended succesfully for modules :%@", modulesMessage]];
+             [self.log log:OguryLogLevelDebug message:[NSString stringWithFormat:@"Ogury Start() ended succesfully for modules :%@", modulesMessage]];
          }
          if (self.startCompletionBlocks.count > 0) {
             for (StartCompletionBlock completionBlock in self.startCompletionBlocks) {
