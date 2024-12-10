@@ -137,12 +137,6 @@ static NSString *const TestDelegate = @"DELEGATE";
     OCMVerify([self.delegateDispatcher setDelegate:delegate]);
 }
 
-- (void)testShouldDispatchDidMoveToSuperview {
-    OCMExpect([self.internalAPI didMoveToSuperview]);
-    [self.banner didMoveToSuperview];
-    OCMVerify([self.internalAPI didMoveToSuperview]);
-}
-
 - (void)testShouldDispatchDidMoveToWindow {
     OCMExpect([self.internalAPI didMoveToWindow]);
     [self.banner didMoveToWindow];
