@@ -5,22 +5,21 @@
 import XCTest
 @testable import AdsCardLibrary
 import OguryAds
-import Mockingbird
 import Combine
 
 final class RewardedAdManagerTests: XCTestCase {
     var storables: [AnyCancellable] = []
     
     func testWhenReceivingDisplayErrorsThenProperDelegateShouldBeCalled() {
-        [OguryAdErrorCode.adExpired.rawValue,
-         OguryAdErrorCode.anotherAdAlreadyDisplayed.rawValue,
-         OguryAdErrorCode.viewControllerPreventsAdFromBeingDisplayed.rawValue].forEach { errorCode in
+        [OguryShowErrorCode.adExpired.rawValue,
+         OguryShowErrorCode.anotherAdAlreadyDisplayed.rawValue,
+         OguryShowErrorCode.viewControllerPreventsAdFromBeingDisplayed.rawValue].forEach { errorCode in
            let ad: AdType<RewardedAdManager> = .rewarded
            let adManager = RewardedAdManager(adType: ad)
            let vc = UIViewController()
            adManager.options = AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: "")
            try? adManager.loadAd(from: adManager.options.baseOptions)
-            let error = OguryAdError.createOguryError(withCode: errorCode)
+            let error = OguryAdError(domain: "", code: errorCode as! Int)
             let loadFailEx = expectation(description: "adDidFailToLoad called")
             loadFailEx.isInverted = true
             let failEx = expectation(description: "adDidFail called")
@@ -38,24 +37,24 @@ final class RewardedAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &storables)
-            adManager.ad?.delegate?.didFail?(OguryRewardedAd(), error: error)
+            adManager.ad?.delegate?.rewardedAd?(OguryRewardedAd(), didFailWithError: error)
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
         }
     }
     
     func testWhenReceivingGenericErrorsThenProperDelegateShouldBeCalled() {
-        [OguryAdErrorCode.adDisabledConsentDenied.rawValue,
-         OguryAdErrorCode.sdkStartNotCalled.rawValue,
-         OguryAdErrorCode.invalidConfiguration.rawValue,
-         OguryAdErrorCode.adDisabledConsentMissing.rawValue,
-         OguryAdErrorCode.adDisabledCountryNotOpened.rawValue,
-         OguryAdErrorCode.adDisabledUnspecifiedReason.rawValue].forEach { errorCode in
+        [OguryLoadErrorCode.adDisabledConsentDenied.rawValue,
+         OguryLoadErrorCode.sdkNotStarted.rawValue,
+         OguryLoadErrorCode.invalidConfiguration.rawValue,
+         OguryLoadErrorCode.adDisabledConsentMissing.rawValue,
+         OguryLoadErrorCode.adDisabledCountryNotOpened.rawValue,
+         OguryLoadErrorCode.adDisabledUnspecifiedReason.rawValue].forEach { errorCode in
            let ad: AdType<RewardedAdManager> = .rewarded
            let adManager = RewardedAdManager(adType: ad)
            let vc = UIViewController()
            adManager.options = AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: "")
            try? adManager.loadAd(from: adManager.options.baseOptions)
-            let error = OguryAdError.createOguryError(withCode: errorCode)
+            let error = OguryAdError(domain: "", code: errorCode as! Int)
             let loadFailEx = expectation(description: "adDidFailToLoad called")
             loadFailEx.isInverted = true
             let failEx = expectation(description: "adDidFail called")
@@ -73,7 +72,7 @@ final class RewardedAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &storables)
-            adManager.ad?.delegate?.didFail?(OguryRewardedAd(), error: error)
+            adManager.ad?.delegate?.rewardedAd?(OguryRewardedAd(), didFailWithError: error)
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
         }
     }
@@ -115,10 +114,10 @@ final class RewardedAdManagerTests: XCTestCase {
         let ad: AdType<RewardedAdManager> = .rewarded
         
         let adManager = RewardedAdManager(adType: ad)
-        let newDelegate = mock(AdLifeCycleDelegate.self)
+        let newDelegate = MockAdLifeCycleDelegate()
         adManager.adDelegate = newDelegate
-        XCTAssertTrue(adManager.adDelegate as? AdLifeCycleDelegateMock === newDelegate)
-        XCTAssertTrue(adManager.proxyDelegate.adDelegate as? AdLifeCycleDelegateMock === newDelegate)
+        XCTAssertTrue(adManager.adDelegate as? MockAdLifeCycleDelegate === newDelegate)
+        XCTAssertTrue(adManager.proxyDelegate.adDelegate as? MockAdLifeCycleDelegate === newDelegate)
     }
     
     func testWhenCallingLoadWithOptionsThenAdObjectIsInstanciated() {
@@ -161,7 +160,7 @@ final class RewardedAdManagerTests: XCTestCase {
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didLoad?(OguryRewardedAd())
+        adManager.ad?.delegate?.rewardedAdDidLoad?(OguryRewardedAd())
         wait(for: [ex], timeout: 0.5)
     }
     
@@ -179,7 +178,7 @@ final class RewardedAdManagerTests: XCTestCase {
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didClick?(OguryRewardedAd())
+        adManager.ad?.delegate?.rewardedAdDidClick?(OguryRewardedAd())
         wait(for: [ex], timeout: 0.5)
     }
     
@@ -197,7 +196,7 @@ final class RewardedAdManagerTests: XCTestCase {
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didClose?(OguryRewardedAd())
+        adManager.ad?.delegate?.rewardedAdDidClose?(OguryRewardedAd())
         wait(for: [ex], timeout: 0.5)
     }
     
@@ -215,7 +214,7 @@ final class RewardedAdManagerTests: XCTestCase {
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didTriggerImpressionOguryRewardedAd?(OguryRewardedAd())
+        adManager.ad?.delegate?.rewardedAdDidTriggerImpression?(OguryRewardedAd())
         wait(for: [ex], timeout: 0.5)
     }
     
@@ -229,24 +228,24 @@ final class RewardedAdManagerTests: XCTestCase {
         let error = OguryAdError.createOguryError(withCode: 666)
         let ex = expectation(description: "")
         adManager.events.sink { event in
-            if event == .adDidFail(error) {
+            if event == .adDidFail(error!) {
                 ex.fulfill()
             }
         }
         .store(in: &storables)
-        adManager.ad?.delegate?.didFail?(OguryRewardedAd(), error: error)
+        adManager.ad?.delegate?.rewardedAd?(OguryRewardedAd(), didFailWithError: error!)
         wait(for: [ex], timeout: 0.5)
     }
     
     func testWhenReceivingLoadingErrorsThenProperDelegateShouldBeCalled() {
-        [OguryAdErrorCode.sdkNotProperlyInitialized.rawValue,
-         OguryAdErrorCode.noAdLoaded.rawValue].forEach { errorCode in
+        [OguryLoadErrorCode.sdkNotProperlyInitialized.rawValue,
+         OguryShowErrorCode.noAdLoaded.rawValue].forEach { errorCode in
            let ad: AdType<RewardedAdManager> = .rewarded
            var adManager = RewardedAdManager(adType: ad)
            let vc = UIViewController()
            adManager.options = AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: "")
            try? adManager.loadAd(from: adManager.options.baseOptions)
-            let error = OguryAdError.createOguryError(withCode: errorCode)
+            let error = OguryAdError(domain: "", code: errorCode as! Int)
             let loadFailEx = expectation(description: "adDidFailToLoad called")
             let failEx = expectation(description: "adDidFail called")
             failEx.isInverted = true
@@ -264,7 +263,7 @@ final class RewardedAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &storables)
-            adManager.ad?.delegate?.didFail?(OguryRewardedAd(), error: error)
+            adManager.ad?.delegate?.rewardedAd?(OguryRewardedAd(), didFailWithError: error)
             self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
         }
     }
@@ -303,8 +302,8 @@ final class RewardedAdManagerTests: XCTestCase {
     
     func testWhenUnityLevelPlayOptInVideoIsUsedThenMaxBiddableIsCalled() {
         let retriever = UnityLevelPlayRetriever(adMarkUpToReturn: "")
-        let ad: AdType<OptInAdManager> = .unityLevelPlayHeaderBidding(adType: .optInVideo, adMarkUpRetriever: retriever)
-        let adManager = OptInAdManager(adType: ad)
+        let ad: AdType<RewardedAdManager> = .unityLevelPlayHeaderBidding(adType: .rewarded, adMarkUpRetriever: retriever)
+        let adManager = RewardedAdManager(adType: ad)
         adManager.options = AdManagerOptions(viewController: UIViewController(), adDisplayName: "", adUnitId: "")
         let ex = XCTestExpectation(description: "The ad did not load")
         adManager.events.sink { event in
@@ -351,8 +350,8 @@ final class RewardedAdManagerTests: XCTestCase {
     
     func testWhenUnityLevelPlayOptInVideoIsUsedAndBidderReturnNilThenErrorIsDispatched() {
         let retriever = UnityLevelPlayRetriever(adMarkUpToReturn: nil)
-        let ad: AdType<OptInAdManager> = .unityLevelPlayHeaderBidding(adType: .optInVideo, adMarkUpRetriever: retriever)
-        let adManager = OptInAdManager(adType: ad)
+        let ad: AdType<RewardedAdManager> = .unityLevelPlayHeaderBidding(adType: .rewarded, adMarkUpRetriever: retriever)
+        let adManager = RewardedAdManager(adType: ad)
         adManager.options = AdManagerOptions(viewController: UIViewController(), adDisplayName: "", adUnitId: "")
         let ex = XCTestExpectation(description: "The ad did not load")
         adManager.events.sink { event in

@@ -16,6 +16,10 @@
 		4314411E2A653CA70067AD47 /* CwlPreconditionTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 4314411D2A653CA70067AD47 /* CwlPreconditionTesting */; };
 		431F6F062C0F3D8100DBFFAA /* AdTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6F052C0F3D8100DBFFAA /* AdTagView.swift */; };
 		431F6F092C0F403F00DBFFAA /* AdTagFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6F082C0F403F00DBFFAA /* AdTagFeature.swift */; };
+		432369C32CF4610F0078EF67 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */; };
+		432369C42CF4610F0078EF67 /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		432369C72CF4629D0078EF67 /* OguryAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4E9E2CB6D00D0029B928 /* OguryAds.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		432369C92CF4629E0078EF67 /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4E9F2CB6D00D0029B928 /* OguryCore.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4328B2832AD7CF44003C7F91 /* MaxRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328B2822AD7CF44003C7F91 /* MaxRetriever.swift */; };
 		4328B28B2ADFBDA9003C7F91 /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328B28A2ADFBDA9003C7F91 /* Storable.swift */; };
 		434F84982AC1AF9B005077F5 /* RewardedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84962AC1AF9B005077F5 /* RewardedView.swift */; };
@@ -56,8 +60,6 @@
 		438ED3D82AA0C2BA00486AF2 /* AdManagerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C62AA0C2BA00486AF2 /* AdManagerOptions.swift */; };
 		43A78A6E2A52ABF30004A613 /* AdManagerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */; };
 		43A9F4A52C37E7800085EF6F /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A9F4A42C37E7800085EF6F /* OguryCore.framework */; };
-		43ACBB6D2B304AB9003FBF35 /* Mockingbird in Frameworks */ = {isa = PBXBuildFile; productRef = 43ACBB6C2B304AB9003FBF35 /* Mockingbird */; };
-		43ACBB702B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ACBB6F2B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift */; };
 		43AE68042AAB25B1002E7C46 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED4392AA8565800486AF2 /* OguryAds.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		43BCB1612C22FBF0002FB0B1 /* AdsCardLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 435C55E22A42EAEF004186FF /* AdsCardLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43BCB1632C22FBF0002FB0B1 /* AdColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3BF2AA0C2BA00486AF2 /* AdColorPalette.swift */; };
@@ -119,6 +121,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		432369C52CF4610F0078EF67 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				432369C72CF4629D0078EF67 /* OguryAds.framework in Embed Frameworks */,
+				432369C42CF4610F0078EF67 /* OMSDK_Ogury.xcframework in Embed Frameworks */,
+				432369C92CF4629E0078EF67 /* OguryCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTFairBidHeaderBidable.swift; sourceTree = "<group>"; };
 		1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTFairBidRetriever.swift; sourceTree = "<group>"; };
@@ -172,7 +190,6 @@
 		438ED4392AA8565800486AF2 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManagerOptionsTests.swift; sourceTree = "<group>"; };
 		43A9F4A42C37E7800085EF6F /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		43ACBB6F2B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift"; sourceTree = "<group>"; };
 		43BCB1912C22FBF0002FB0B1 /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43DA12792AB888D300766D99 /* BannerPlaceholderFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerPlaceholderFeature.swift; sourceTree = "<group>"; };
 		43DA127A2AB888D300766D99 /* AdBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdBannerView.swift; sourceTree = "<group>"; };
@@ -206,7 +223,7 @@
 			files = (
 				435C55EA2A42EAEF004186FF /* AdsCardLibrary.framework in Frameworks */,
 				4314411E2A653CA70067AD47 /* CwlPreconditionTesting in Frameworks */,
-				43ACBB6D2B304AB9003FBF35 /* Mockingbird in Frameworks */,
+				432369C32CF4610F0078EF67 /* OMSDK_Ogury.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,7 +316,6 @@
 		435C55ED2A42EAEF004186FF /* AdsCardLibraryTests */ = {
 			isa = PBXGroup;
 			children = (
-				43ACBB6E2B304B37003FBF35 /* MockingbirdMocks */,
 				1E8256432B2380B4001DFBA4 /* AdsCardLibrary.xctestplan */,
 				435F7BCB2A5FFA990077843A /* AdsCardManager */,
 				435F7BCC2A5FFAA50077843A /* AdManager */,
@@ -428,14 +444,6 @@
 			path = AdView;
 			sourceTree = "<group>";
 		};
-		43ACBB6E2B304B37003FBF35 /* MockingbirdMocks */ = {
-			isa = PBXGroup;
-			children = (
-				43ACBB6F2B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift */,
-			);
-			path = MockingbirdMocks;
-			sourceTree = SOURCE_ROOT;
-		};
 		43DA12782AB888D300766D99 /* BannerPlaceholder */ = {
 			isa = PBXGroup;
 			children = (
@@ -527,10 +535,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 435C55F62A42EAEF004186FF /* Build configuration list for PBXNativeTarget "AdsCardLibraryTests" */;
 			buildPhases = (
-				B99641DA4ABD9D62FEAC31C8 /* Generate Mockingbird Mocks */,
 				435C55E52A42EAEF004186FF /* Sources */,
 				435C55E62A42EAEF004186FF /* Frameworks */,
 				435C55E72A42EAEF004186FF /* Resources */,
+				432369C52CF4610F0078EF67 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -540,7 +548,6 @@
 			name = AdsCardLibraryTests;
 			packageProductDependencies = (
 				4314411D2A653CA70067AD47 /* CwlPreconditionTesting */,
-				43ACBB6C2B304AB9003FBF35 /* Mockingbird */,
 			);
 			productName = AdsCardLibraryTests;
 			productReference = 435C55E92A42EAEF004186FF /* AdsCardLibraryTests.xctest */;
@@ -602,7 +609,6 @@
 			packageReferences = (
 				43E349582A4AC9820060B41F /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				4314411C2A653CA70067AD47 /* XCRemoteSwiftPackageReference "CwlPreconditionTesting" */,
-				43ACBB6B2B304AB9003FBF35 /* XCRemoteSwiftPackageReference "mockingbird" */,
 			);
 			productRefGroup = 435C55E02A42EAEF004186FF /* Products */;
 			projectDirPath = "";
@@ -675,22 +681,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B99641DA4ABD9D62FEAC31C8 /* Generate Mockingbird Mocks */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Generate Mockingbird Mocks";
-			outputPaths = (
-				"$(SRCROOT)/MockingbirdMocks/AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "DERIVED_DATA=\"$(xcodebuild -showBuildSettings | sed -n 's|.*BUILD_ROOT = \\(.*\\)/Build/.*|\\1|p')\"\n \"${DERIVED_DATA}/SourcePackages/checkouts/mockingbird/mockingbird\" generate \\\n    --testbundle AdsCardLibraryTests \\\n    --targets AdsCardLibrary \\\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -743,7 +733,6 @@
 				431441192A6539780067AD47 /* ThumbnailAdManagerTests.swift in Sources */,
 				4328B2832AD7CF44003C7F91 /* MaxRetriever.swift in Sources */,
 				43A78A6E2A52ABF30004A613 /* AdManagerOptionsTests.swift in Sources */,
-				43ACBB702B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift in Sources */,
 				4314411B2A653B060067AD47 /* BannerAdManagerTests.swift in Sources */,
 				50CFA8622C637F0B00E64D20 /* UnityLevelPlayRetriever.swift in Sources */,
 				435C55EF2A42EAEF004186FF /* AdsCardManagerTests.swift in Sources */,
@@ -1187,14 +1176,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		43ACBB6B2B304AB9003FBF35 /* XCRemoteSwiftPackageReference "mockingbird" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/birdrides/mockingbird";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.20.0;
-			};
-		};
 		43BCB15E2C22FBF0002FB0B1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
@@ -1223,11 +1204,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 43E349582A4AC9820060B41F /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
-		};
-		43ACBB6C2B304AB9003FBF35 /* Mockingbird */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43ACBB6B2B304AB9003FBF35 /* XCRemoteSwiftPackageReference "mockingbird" */;
-			productName = Mockingbird;
 		};
 		43BCB15D2C22FBF0002FB0B1 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;

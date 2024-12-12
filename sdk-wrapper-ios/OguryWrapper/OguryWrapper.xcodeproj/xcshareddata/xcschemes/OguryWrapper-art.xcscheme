@@ -8,14 +8,14 @@
       buildArchitectures = "Automatic">
       <BuildActionEntries>
          <BuildActionEntry
-            buildForTesting = "YES"
+            buildForTesting = "NO"
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E698F7ED85C49BCA718B5012"
+               BlueprintIdentifier = "43332D4D2D0832C400E4BAD0"
                BuildableName = "OgurySdk.framework"
                BlueprintName = "OguryWrapper-art"
                ReferencedContainer = "container:OguryWrapper.xcodeproj">
@@ -50,7 +50,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E698F7ED85C49BCA718B5012"
+            BlueprintIdentifier = "43332D4D2D0832C400E4BAD0"
             BuildableName = "OgurySdk.framework"
             BlueprintName = "OguryWrapper-art"
             ReferencedContainer = "container:OguryWrapper.xcodeproj">
