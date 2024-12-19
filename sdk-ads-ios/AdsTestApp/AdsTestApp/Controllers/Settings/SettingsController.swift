@@ -43,7 +43,7 @@ struct SettingsController {
     var usOptoutPartner: Bool = false
    
     @UserDefault("showLogsSheet")
-    var showLogsSheet: Bool = true
+    var showLogsSheet: Bool = false
    
     @UserDefault("importMethod")
     var importMethod: ImportMethod = SettingsController.qaMode ? .rawText : .file
