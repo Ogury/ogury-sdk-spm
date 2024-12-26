@@ -24,7 +24,6 @@
     webViewUserAgentService:(OGAWebViewUserAgentService *)webViewUserAgentService;
 
 - (NSDictionary *)buildBodyFromEvent:(NSArray<id<OGMEventMonitorable>> *)events;
-- (NSString *)getSimCardCountry;
 - (OGADevice *)device;
 - (NSString *)deviceOrientation;
 - (NSLocale *)locale;
@@ -135,7 +134,6 @@ static NSString *const TestContent = @"detailContentTest";
     OCMStub(screen.width).andReturn(@200);
     OCMStub(screen.height).andReturn(@200);
     OCMStub([requestBuilder device]).andReturn(device);
-    OCMStub([requestBuilder getSimCardCountry]).andReturn(@"FR");
     OCMStub([requestBuilder deviceOrientation]).andReturn(@"portrait");
     OCMStub([requestBuilder isLowPowered]).andReturn(YES);
     NSLocale *locale = OCMClassMock([NSLocale class]);

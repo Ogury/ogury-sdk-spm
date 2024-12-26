@@ -220,8 +220,20 @@ static NSString *const MonitoringServiceBodyDeviceAssetType = @"ios";
 }
 
 - (NSString *)getSimCardCountry {
-    CTCarrier *carrier = [[CTTelephonyNetworkInfo new] subscriberCellularProvider];
-    return carrier.isoCountryCode;
+    
+    CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
+    
+    if (@available(iOS 13.0, iOS 16)) {
+        NSString *dataServiceIdentifier = networkInfo.dataServiceIdentifier;
+        NSDictionary *carriers = networkInfo.serviceSubscriberCellularProviders;
+        if (carriers && carriers[dataServiceIdentifier]) {
+            return carriers[dataServiceIdentifier];
+        }
+    }
+    if (@available(*, iOS 12)) {
+        return networkInfo.subscriberCellularProvider;
+    }
+    return "";
 }
 
 - (OGADevice *)device {
