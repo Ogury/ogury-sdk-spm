@@ -94,15 +94,8 @@
     [self.internalAPI destroy];
 }
 
-- (void)didMoveToSuperview {
-    [super didMoveToSuperview];
-
-    [self.internalAPI didMoveToSuperview];
-}
-
 - (void)didMoveToWindow {
     [super didMoveToWindow];
-
     [self.internalAPI didMoveToWindow];
 }
 

@@ -173,7 +173,6 @@
     }
     if (self.isDisplayed) {
         if (error) {
-#warning FIXME create dedicated error for this case.
             *error = [OguryAdError anotherAdIsAlreadyDisplayed];
         }
         return NO;

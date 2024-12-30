@@ -34,11 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
                        mediation:(OguryMediation *_Nullable)mediation
                              log:(OGALog *)log;
 
-- (void)showBannerIfLoaded;
-
 - (void)didMoveToWindow;
-
-- (BOOL)haveParentViewcontroller;
 
 @end
 
