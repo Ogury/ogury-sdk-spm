@@ -1,5 +1,5 @@
 {
-  "originHash" : "b7a289292e37e737be0adb1fe700a5afe9ef758b6610a85f6efe65d0a3356e57",
+  "originHash" : "3c758682f370c1f03e967834fc534653285833f922891bf194c98872856ed032",
   "pins" : [
     {
       "identity" : "combine-schedulers",
@@ -31,7 +31,7 @@
     {
       "identity" : "mockingbird",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/birdrides/mockingbird",
+      "location" : "https://github.com/typealiased/mockingbird",
       "state" : {
         "revision" : "6e0d473df6b975719e145f6aebf90990c634700e",
         "version" : "0.20.0"
