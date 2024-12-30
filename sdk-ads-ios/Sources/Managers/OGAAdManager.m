@@ -481,6 +481,9 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         } else {
             [self sendMonitoringEventFor:sequence oguryError:error customSessionId:sessionId];
         }
+        if ([self shouldErrorCloseOnShow:error]) {
+            [sequence.coordinator close];
+        }
         return;
     }
 
@@ -504,6 +507,14 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         }
         sequence.status = OGAAdSequenceStatusShown;
     });
+}
+
+- (BOOL)shouldErrorCloseOnShow:(OguryAdError *)error {
+    if (error.code == OGAShowErrorEventAnotherAdAlreadyDisplayed ||
+        error.code == OGAShowErrorEventViewInBackground) {
+        return NO;
+    }
+    return YES;
 }
 
 - (OGAProfigDao *)profigDao {
