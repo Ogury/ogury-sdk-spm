@@ -248,9 +248,9 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case .exportButtonTapped:
-                    let settings: SettingsContainer = .init(name: state.setName.isEmpty ? "AdsSet" : state.setName)
+                    let settings: SettingsContainer = .init(name: state.setName.isEmpty ? SettingsContainer.untitledAdSet : state.setName)
                     adDelegate?.share(json: AdsStorableContainer(settings: settings, cards: state.adFormats).json(),
-                                      filename: state.setName.isEmpty ? "AdsSet" : state.setName)
+                                      filename: state.setName.isEmpty ? SettingsContainer.untitledAdSet : state.setName)
                     return .none
                     
                 case .importButtonTapped:
@@ -276,7 +276,7 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case .saveCards:
-                    let settings: SettingsContainer = .init(name: state.setName.isEmpty ? "AdsSet" : state.setName)
+                    let settings: SettingsContainer = .init(name: state.setName.isEmpty ? SettingsContainer.untitledAdSet : state.setName)
                     store(formats: state.adFormats, settings: settings)
                     return .none
                     

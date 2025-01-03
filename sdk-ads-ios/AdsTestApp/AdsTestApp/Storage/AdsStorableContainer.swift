@@ -25,6 +25,7 @@ enum ImportMethod: String, Codable, Equatable, CaseIterable, DefaultsValueConver
 
 struct SettingsContainer: Codable, Equatable {
     static let currentOs = "iOS"
+    static let untitledAdSet = "Untitled Ad Set"
     private var settings = SettingsController()
     var enableAdUnitEditing: Bool {
         get { settings.enableAdUnitEditing }
@@ -78,7 +79,7 @@ struct SettingsContainer: Codable, Equatable {
         get { settings.importMethod }
         set { settings.importMethod = newValue }
     }
-    var name = "AdsSet"
+    var name = SettingsContainer.untitledAdSet
     var os = SettingsContainer.currentOs
     var shouldUpdateAdUnits: Bool { os != SettingsContainer.currentOs }
     var logSettings: LogSettings!
@@ -133,7 +134,7 @@ struct SettingsContainer: Codable, Equatable {
         try container.encode(importMethod, forKey: .importMethod)
     }
     
-    init(name: String = "AdsSet") {
+    init(name: String = SettingsContainer.untitledAdSet) {
         self.name = name
         self.logSettings = LogSettings()
     }

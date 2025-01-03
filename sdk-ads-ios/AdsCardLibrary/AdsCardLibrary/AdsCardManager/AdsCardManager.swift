@@ -288,13 +288,22 @@ extension AdType {
 public enum AdTag: String, Equatable {
     case ogury, max, dtFairbid, unityLevelPlay, direct, bypass, waterfall, headerBidding, oguryTestMode, rtbTestMode
     
+    enum DisplayMode {
+        case fill, stroke
+    }
+    var displayMode: DisplayMode {
+        switch self {
+            default: return .fill
+        }
+    }
+    
     public var name: String {
         switch self {
             case .ogury: return "Ogury"
             case .max: return "Max"
             case .dtFairbid: return "Digital Turbine Fairbid"
             case .direct: return "Direct"
-            case .bypass: return "Bypass"
+            case .bypass: return "No adapter"
             case .waterfall: return "Waterfall"
             case .headerBidding: return "HB"
             case .unityLevelPlay: return "Unity LevelPlay"

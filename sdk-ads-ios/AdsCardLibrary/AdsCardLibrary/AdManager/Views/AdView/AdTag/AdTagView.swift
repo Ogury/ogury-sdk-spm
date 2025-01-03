@@ -9,16 +9,22 @@ import SwiftUI
 import ComposableArchitecture
 
 public struct AdTagList: View {
+    public enum TagSize {
+        case small, `default`
+    }
     let tags: [AdTag]
-    public init(tags: [AdTag]) {
+    var size: TagSize = .default
+    public init(tags: [AdTag], size: TagSize = .default) {
         self.tags = tags
+        self.size = size
     }
     public var body: some View {
         HStack(spacing: 4) {
             ForEach(tags, id: \.name) { tag in
-                AdTagView(store: Store(initialState: .init(tag: tag),
-                                       reducer: { AdTagFeature() }),
-                          displayMode: .fill)
+                AdTagView(store: Store(initialState: .init(
+                    tag: tag,
+                    size: size
+                ), reducer: { AdTagFeature() }))
             }
         }
     }
@@ -34,7 +40,6 @@ public struct AdTagList: View {
 
 struct AdTagView: View {
     let store: StoreOf<AdTagFeature>
-    fileprivate var displayMode: AdTagDisplayMode = .fill
     
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
@@ -42,21 +47,21 @@ struct AdTagView: View {
                 viewStore.send(.tagTouched)
             } label: {
                 Text(viewStore.tag.name)
-                    .font(.adsCaption)
+                    .font(viewStore.size == .small ? .adsCaptionSmall : .adsCaption)
                     .foregroundStyle(
-                        displayMode == .fill ? viewStore.tag.textColor  :viewStore.tag.color
+                        viewStore.tag.displayMode == .fill ? viewStore.tag.textColor  :viewStore.tag.color
                     )
-                    .padding(.vertical, 4)
-                    .padding(.horizontal, 10)
+                    .padding(.vertical, viewStore.size == .small ? 2 : 4)
+                    .padding(.horizontal, viewStore.size == .small ? 5 : 10)
                     .background(
-                        displayMode == .fill ? viewStore.tag.color : .clear
+                        viewStore.tag.displayMode == .fill ? viewStore.tag.color : .clear
                     )
             }
             .clipShape(Capsule())
             .overlay {
                 Capsule()
                 .stroke(
-                    displayMode == .stroke ? viewStore.tag.color : .clear
+                    viewStore.tag.displayMode == .stroke ? viewStore.tag.color : .clear
                 )
             }
             .buttonStyle(
@@ -65,8 +70,4 @@ struct AdTagView: View {
         }
         .alert(store: self.store.scope(state: \.$alert, action: { .alert($0) }))
     }
-}
-
-fileprivate enum AdTagDisplayMode {
-    case fill, stroke
 }
