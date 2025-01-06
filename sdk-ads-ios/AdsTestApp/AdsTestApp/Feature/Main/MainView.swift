@@ -420,8 +420,12 @@ struct ListManagersView: View {
                                       text: viewStore.$setName,
                                       prompt: Text("Name your ads set"))
                             .font(.adsLargeTitle)
+                            .foregroundStyle(
+                                Color(viewStore.setName != SettingsContainer.untitledAdSet
+                                      ? AdColorPalette.Text.primary(onAccent: false).color
+                                      : AdColorPalette.Text.placeholder.color)
+                            )
                         }
-                        .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
                         .padding(8)
                         .padding(.horizontal, -10)
                     }
