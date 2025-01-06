@@ -416,13 +416,6 @@ struct ListManagersView: View {
                         .listRowBackground(Color.clear)
                     } header: {
                         VStack(alignment: .center) {
-                            Text("Beta version - for tests only")
-                                .padding(.vertical, 3)
-                                .padding(.horizontal, 12)
-                                .background(Color(AdColorPalette.State.failure.color.lighter(by: 75) ?? AdColorPalette.State.failure.color))
-                                .foregroundStyle(Color(AdColorPalette.State.failure.color))
-                                .clipShape(Capsule())
-                            
                             TextField("Set name",
                                       text: viewStore.$setName,
                                       prompt: Text("Name your ads set"))

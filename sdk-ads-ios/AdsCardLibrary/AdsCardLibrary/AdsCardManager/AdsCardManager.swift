@@ -336,14 +336,14 @@ public enum AdTag: String, Equatable {
             case .bypass:  return Color(#colorLiteral(red: 0, green: 0.4201652408, blue: 0.4244114757, alpha: 1))
             case .waterfall: return Color(#colorLiteral(red: 0, green: 0.5913378596, blue: 1, alpha: 1))
             case .headerBidding: return Color(#colorLiteral(red: 0, green: 0.8673904538, blue: 0.2728650272, alpha: 1))
-            case .oguryTestMode: return Color(#colorLiteral(red: 0.6542432308, green: 0.8769065142, blue: 0.9881662726, alpha: 1))
-            case .rtbTestMode: return Color(#colorLiteral(red: 0.6542432308, green: 0.8769065142, blue: 0.9881662726, alpha: 1))
+            case .oguryTestMode: return Color(#colorLiteral(red: 0.8326988816, green: 0.2894239128, blue: 0.3478675783, alpha: 1))
+            case .rtbTestMode: return Color(#colorLiteral(red: 0.8326988816, green: 0.2894239128, blue: 0.3478675783, alpha: 1))
         }
     }
     
     internal var textColor: Color {
         switch self {
-            case .direct, .headerBidding, .rtbTestMode, .oguryTestMode: return .black
+            case .direct, .headerBidding: return .black
             default: return .white
         }
     }
