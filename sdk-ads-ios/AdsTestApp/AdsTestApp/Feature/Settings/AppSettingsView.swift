@@ -37,16 +37,16 @@ struct AppSettingsView: View {
                             }
                             .accessibilityLabel("StartSDKWithApplication")
                             
-                            if viewStore.startSDKWithApplication {
-                                HStack {
-                                    Stepper("   Start the SDK \(viewStore.numberOfSDKStart) times",
-                                            onIncrement: { viewStore.send(.incrementSDKStart) },
-                                            onDecrement: { viewStore.send(.decrementSDKStart) }
-                                    )
-                                    .layoutPriority(1)
-                                    .accessibilityLabel("StartSDKWithApplication_Stepper")
-                                }
+                            HStack {
+                                Stepper("Start the SDK \(viewStore.numberOfSDKStart) times",
+                                        onIncrement: { viewStore.send(.incrementSDKStart) },
+                                        onDecrement: { viewStore.send(.decrementSDKStart) }
+                                )
+                                .layoutPriority(1)
+                                .accessibilityLabel("StartSDKWithApplication_Stepper")
                             }
+                            .foregroundStyle(Color(viewStore.startSDKWithApplication ? AdColorPalette.Text.primary(onAccent: false).color : AdColorPalette.Text.placeholder.color))
+                            .disabled(viewStore.startSDKWithApplication == false)
                             
                             Button {
                                 viewStore.send(.toggleEnableFeedbacks)
