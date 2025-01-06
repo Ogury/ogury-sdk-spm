@@ -20,7 +20,6 @@
 
 #pragma mark - Properties
 
-@property(nonatomic, strong) id<OGAAdDisplayer> displayer;
 @property(nonatomic, strong) OGAAdConfiguration *configuration;
 @property(nonatomic, strong) OGAAdContainer *container;
 @property(nonatomic, strong) OGAMetricsService *metricsService;

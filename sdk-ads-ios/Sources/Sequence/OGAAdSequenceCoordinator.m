@@ -400,4 +400,11 @@
     }
 }
 
+- (void)killWebviews {
+    for (int index = 0; index < self.adControllers.count; index++) {
+        OGAAdController *ctrl = self.adControllers[index];
+        [ctrl.displayer webkitProcessDidTerminate];
+    }
+}
+
 @end

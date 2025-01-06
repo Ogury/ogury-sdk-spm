@@ -12,6 +12,7 @@
 #import "OGAAdSequenceCoordinator.h"
 #import "OGAAdController.h"
 #import "OGAInternal.h"
+#import "OGAAdSequenceCoordinator+Private.h"
 
 #pragma mark - Constants
 
@@ -260,6 +261,10 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
 
 - (OGAAdConfiguration *)adConfiguration {
     return self.configuration;
+}
+
+- (void)killWebview {
+    [self.sequence.coordinator killWebviews];
 }
 
 @end

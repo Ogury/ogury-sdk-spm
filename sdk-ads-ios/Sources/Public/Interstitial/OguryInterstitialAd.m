@@ -96,4 +96,8 @@
     return self.internalAPI.adConfiguration;
 }
 
+- (void)killWebview {
+    [self.internalAPI killWebview];
+}
+
 @end

@@ -59,6 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setLogOrigin:(NSString *)origin;
 - (OGAAdConfiguration *)adConfiguration;
+- (void)killWebview;
 
 @end
 

@@ -196,6 +196,11 @@ public final class BannerAdManager: AdManager {
     public func updateCard(events: [AdOptionsEvent]) {
         adView.updateCard(events: events)
     }
+    
+    public func killWebview() {
+        guard let ad else { return }
+        ad.killWebview()
+    }
             
 }
 

@@ -458,6 +458,10 @@
 		430120D32C9BF8CB00892B18 /* OGAMonitoringLogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 430120D12C9BF8CB00892B18 /* OGAMonitoringLogMessage.m */; };
 		430120D42C9BF8CB00892B18 /* OGAMonitoringLogMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 430120D02C9BF8CB00892B18 /* OGAMonitoringLogMessage.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		430120D52C9BF8CB00892B18 /* OGAMonitoringLogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 430120D12C9BF8CB00892B18 /* OGAMonitoringLogMessage.m */; };
+		430D1FA32D281ABC00686748 /* OGAAd+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 430D1FA22D281ABC00686748 /* OGAAd+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		430D1FA42D281ABC00686748 /* OGAAd+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 430D1FA22D281ABC00686748 /* OGAAd+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		430D1FA62D2830F400686748 /* OGAAdSequenceCoordinator+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 430D1FA52D2830F400686748 /* OGAAdSequenceCoordinator+Private.h */; };
+		430D1FA72D2830F400686748 /* OGAAdSequenceCoordinator+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 430D1FA52D2830F400686748 /* OGAAdSequenceCoordinator+Private.h */; };
 		43127C1D2A28CA720034B11A /* OGAEventHeaderBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43127C1C2A28CA720034B11A /* OGAEventHeaderBuilderTests.m */; };
 		4316834129D58B450066932B /* OGAAdServerMonitorRequestBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4316834029D58B450066932B /* OGAAdServerMonitorRequestBuilderTests.m */; };
 		4316834329D5C5A60066932B /* OGAMonitoringDispatcherJSONTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4316834229D5C5A60066932B /* OGAMonitoringDispatcherJSONTests.m */; };
@@ -1612,6 +1616,8 @@
 		351A1FFC5A16B3ADA67C04A9 /* OGAAdParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGAAdParserTests.m; sourceTree = "<group>"; };
 		430120D02C9BF8CB00892B18 /* OGAMonitoringLogMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAMonitoringLogMessage.h; sourceTree = "<group>"; };
 		430120D12C9BF8CB00892B18 /* OGAMonitoringLogMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAMonitoringLogMessage.m; sourceTree = "<group>"; };
+		430D1FA22D281ABC00686748 /* OGAAd+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OGAAd+Private.h"; sourceTree = "<group>"; };
+		430D1FA52D2830F400686748 /* OGAAdSequenceCoordinator+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OGAAdSequenceCoordinator+Private.h"; sourceTree = "<group>"; };
 		43127C1C2A28CA720034B11A /* OGAEventHeaderBuilderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAEventHeaderBuilderTests.m; sourceTree = "<group>"; };
 		4316834029D58B450066932B /* OGAAdServerMonitorRequestBuilderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAAdServerMonitorRequestBuilderTests.m; sourceTree = "<group>"; };
 		4316834229D5C5A60066932B /* OGAMonitoringDispatcherJSONTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAMonitoringDispatcherJSONTests.m; sourceTree = "<group>"; };
@@ -2239,6 +2245,7 @@
 				43C8103D2C7881BA00AED4D8 /* Errors */,
 				351A1FF84BC3CCE71EFC3AF8 /* Rewarded */,
 				351A1E53C3E49CD470AA31C8 /* Thumbnail */,
+				430D1FA22D281ABC00686748 /* OGAAd+Private.h */,
 			);
 			path = InternalAPIs;
 			sourceTree = "<group>";
@@ -2913,6 +2920,7 @@
 				351A1E3878259F712E92C850 /* OGAAdConfiguration.m */,
 				351A1C91D68AA671344C51B2 /* OGAAdSequence.h */,
 				351A15A76B616B7473534363 /* OGAAdSequence.m */,
+				430D1FA52D2830F400686748 /* OGAAdSequenceCoordinator+Private.h */,
 				351A10838005F781AFF1EC0E /* OGAAdSequenceCoordinator.h */,
 				351A136B26CA846D9618DBD4 /* OGAAdSequenceCoordinator.m */,
 				351A12A3B922C5ED94251557 /* OGAAdSequenceCoordinatorDelegate.h */,
@@ -3928,6 +3936,7 @@
 				43A9F3C92C37E6B40085EF6F /* OGABannerToFullscreenAdContainerTransition.h in Headers */,
 				43A9F3CA2C37E6B40085EF6F /* OGAAdDisplayerCallEventListenersInformation.h in Headers */,
 				43A9F3CB2C37E6B40085EF6F /* OGABasicAdContainerTransition.h in Headers */,
+				430D1FA32D281ABC00686748 /* OGAAd+Private.h in Headers */,
 				43A9F3CC2C37E6B40085EF6F /* OGAFullscreenToBannerAdContainerTransition.h in Headers */,
 				43A9F3CD2C37E6B40085EF6F /* OGAFullscreenToThumbnailAdContainerTransition.h in Headers */,
 				43A9F3CE2C37E6B40085EF6F /* OGAThumbnailToFullscreenAdContainerTransition.h in Headers */,
@@ -4050,6 +4059,7 @@
 				43A9F4572C37E6B40085EF6F /* OGMPersistanceStore.h in Headers */,
 				43A9F4582C37E6B40085EF6F /* OGAThumbnailAdViewController+Position.h in Headers */,
 				43A9F4592C37E6B40085EF6F /* OGAThumbnailAdViewController+Exposure.h in Headers */,
+				430D1FA62D2830F400686748 /* OGAAdSequenceCoordinator+Private.h in Headers */,
 				43A9F45A2C37E6B40085EF6F /* OGAAdExpirationManager.h in Headers */,
 				430120D42C9BF8CB00892B18 /* OGAMonitoringLogMessage.h in Headers */,
 				43A9F45B2C37E6B40085EF6F /* NSString+OGABase64.h in Headers */,
@@ -4177,6 +4187,7 @@
 				351A13F175C7A56BD52BC153 /* OGABannerToFullscreenAdContainerTransition.h in Headers */,
 				2272AA372726DEBD00107B47 /* OGAAdDisplayerCallEventListenersInformation.h in Headers */,
 				351A1B476B66B134379D6C09 /* OGABasicAdContainerTransition.h in Headers */,
+				430D1FA42D281ABC00686748 /* OGAAd+Private.h in Headers */,
 				351A1ABBD442D7926304185A /* OGAFullscreenToBannerAdContainerTransition.h in Headers */,
 				351A1F7894061597EDFBAF15 /* OGAFullscreenToThumbnailAdContainerTransition.h in Headers */,
 				351A1D5B34A7F6193DA1B7EB /* OGAThumbnailToFullscreenAdContainerTransition.h in Headers */,
@@ -4299,6 +4310,7 @@
 				584AC1D72976DE2A00227BB8 /* OGMPersistanceStore.h in Headers */,
 				351A1F5B6A25FE6E62D32C7C /* OGAThumbnailAdViewController+Position.h in Headers */,
 				351A1FBD1EC44B518937831C /* OGAThumbnailAdViewController+Exposure.h in Headers */,
+				430D1FA72D2830F400686748 /* OGAAdSequenceCoordinator+Private.h in Headers */,
 				ED618F3B25EE3D7100F774A5 /* OGAAdExpirationManager.h in Headers */,
 				430120D22C9BF8CB00892B18 /* OGAMonitoringLogMessage.h in Headers */,
 				2295393426E912620021605A /* NSString+OGABase64.h in Headers */,

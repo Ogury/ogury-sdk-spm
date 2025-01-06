@@ -164,6 +164,11 @@ public final class InterstitialAdManager: AdManager {
     public func updateCard(events: [AdOptionsEvent]) {
         adView.updateCard(events: events)
     }
+    
+    public func killWebview() {
+        guard let ad else { return }
+        ad.killWebview()
+    }
 }
 
 // We have to use a proxy object because otherwise, we would have to make InterstitialAdManager a final class that inherits from NSObject

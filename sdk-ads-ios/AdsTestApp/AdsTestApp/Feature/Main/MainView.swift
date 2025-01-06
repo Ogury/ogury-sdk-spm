@@ -541,13 +541,3 @@ struct AddSheetView: View {
         }
     }
 }
-
-extension View {
-    public func safeMenuControlGroupStyle() -> some View {
-        if #available(iOS 16.4, *) {
-            return self.controlGroupStyle(.menu)
-        } else {
-            return self.controlGroupStyle(.automatic)
-        }
-    }
-}

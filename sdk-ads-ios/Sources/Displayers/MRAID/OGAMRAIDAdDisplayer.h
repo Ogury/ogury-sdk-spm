@@ -45,6 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Initialization
 
 - (instancetype)initWithAd:(OGAAd *)ad adConfiguration:(OGAAdConfiguration *)configuration;
+- (void)webkitProcessDidTerminate;
 
 @end
 

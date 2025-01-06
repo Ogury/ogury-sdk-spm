@@ -287,6 +287,7 @@ struct AdViewFeature: Reducer {
         case forceTestMode(_: Bool)
         case enableFeedbacks(_: Bool)
         case showQALabelTapped
+        case killWebview
         
         enum Alert {
             case confirmDelete
@@ -606,6 +607,10 @@ struct AdViewFeature: Reducer {
                     
                 case .showQALabelTapped:
                     adManager.adDelegate?.focusLogs(on: state.baseOptions.qaLabel)
+                    return .none
+                    
+                case .killWebview:
+                    adManager.killWebview()
                     return .none
             }
         }

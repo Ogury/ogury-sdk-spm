@@ -14,6 +14,7 @@
 #import "OGAAdSequenceCoordinator.h"
 #import "OGAAdController.h"
 #import "OGAInternal.h"
+#import "OGAAdSequenceCoordinator+Private.h"
 
 @interface OGARewardedAdInternalAPI ()
 
@@ -178,6 +179,10 @@
 
 - (OGAAdConfiguration *)adConfiguration {
     return self.configuration;
+}
+
+- (void)killWebview {
+    [self.sequence.coordinator killWebviews];
 }
 
 @end

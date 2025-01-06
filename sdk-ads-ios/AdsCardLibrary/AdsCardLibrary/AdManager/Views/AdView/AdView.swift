@@ -60,6 +60,30 @@ public struct AdView: View {
                         }
                         
                         Menu {
+                            ControlGroup {
+                                Button {
+                                    viewStore.send(.showQALabelTapped)
+                                } label: {
+                                    HStack {
+                                        Text("Focus in logs")
+                                        Spacer()
+                                        Image(systemName:"magnifyingglass")
+                                    }
+                                }
+                                .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_FocusLogsOnCardButton")
+                                
+                                Button(role: .destructive) {
+                                    viewStore.send(.killWebview)
+                                } label: {
+                                    HStack {
+                                        Text("Kill Webview")
+                                        Spacer()
+                                        Image(systemName: "network.slash")
+                                    }
+                                }
+                                .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_KillWebviewButton")
+                            }.safeMenuControlGroupStyle()
+                            
                             Button {
                                 viewStore.send(.oguryTestModeButtonTapped)
                             } label: {
@@ -91,18 +115,6 @@ public struct AdView: View {
                             }
                             .disabled(!viewStore.showTestModeButton || !viewStore.isHeaderBidding)
                             .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_RTBTestModeButton")
-                            
-                            Button {
-                                viewStore.send(.showQALabelTapped)
-                            } label: {
-                                HStack {
-                                    Text("Focus LOGS on this card")
-                                    Spacer()
-                                    Image(systemName:"magnifyingglass")
-                                }
-                            }
-                            .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_FocusLogsOnCardButton")
-                            
                         } label: {
                             Image(systemName: "ellipsis.circle")
                                 .frame(width: 40, height: 40)
@@ -185,7 +197,7 @@ public struct AdView: View {
                             }
                         }
                     }
-                    .padding(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 12))
+                    .padding(EdgeInsets(top: 4, leading: 12, bottom: 8, trailing: 12))
                     
                     if viewStore.specificOptions as? BannerAdManagerOptions != nil {
                         BannerPlaceholderView(store:
@@ -240,6 +252,15 @@ public struct AdView: View {
     }
 }
 
+extension View {
+    public func safeMenuControlGroupStyle() -> some View {
+        if #available(iOS 16.4, *) {
+            return self.controlGroupStyle(.menu)
+        } else {
+            return self.controlGroupStyle(.automatic)
+        }
+    }
+}
 
 //struct InterstitialView_Previews: PreviewProvider {
 //    static var previews: some View {

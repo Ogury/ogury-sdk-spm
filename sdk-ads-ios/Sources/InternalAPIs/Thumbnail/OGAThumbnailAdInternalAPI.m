@@ -15,6 +15,7 @@
 #import "OGAAdSequenceCoordinator.h"
 #import "OGAAdController.h"
 #import "OGAInternal.h"
+#import "OGAAdSequenceCoordinator+Private.h"
 
 @interface OGAThumbnailAdInternalAPI ()
 
@@ -245,6 +246,10 @@ static OguryRectCorner const OguryAdsThumbnailDefaultConer = OguryRectCornerBott
 
 - (OGAAdConfiguration *)adConfiguration {
     return self.configuration;
+}
+
+- (void)killWebview {
+    [self.sequence.coordinator killWebviews];
 }
 
 @end

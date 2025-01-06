@@ -59,6 +59,7 @@ extern NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationNa
 
 - (void)setLogOrigin:(NSString *)origin;
 - (OGAAdConfiguration *)adConfiguration;
+- (void)killWebview;
 
 @end
 
