@@ -9,9 +9,6 @@
 #import "OGAAdMonitorEvent+Tests.h"
 #import <CoreTelephony/CTCarrier.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
-#import "OGAAdServerMonitorRequestBuilder.h"
-#import <CoreTelephony/CTCarrier.h>
-#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <OguryCore/OguryNetworkRequestBuilder.h>
 #import "NSDate+OGAFormatter.h"
 #import "OGAAdPrivacyConfiguration.h"
