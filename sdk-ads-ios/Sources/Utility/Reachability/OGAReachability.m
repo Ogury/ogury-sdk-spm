@@ -11,10 +11,7 @@
 #import <netdb.h>
 #import <sys/socket.h>
 #import <netinet/in.h>
-
 #import <CoreFoundation/CoreFoundation.h>
-#import <CoreTelephony/CTTelephonyNetworkInfo.h>
-
 #import "OGAReachability.h"
 
 #pragma mark IPv6 Support
@@ -181,7 +178,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
     return NO;
 }
 
-- (NetworkStatus)   currentReachabilityStatus {
+- (NetworkStatus)currentReachabilityStatus {
     NSAssert(_reachabilityRef != NULL, @"currentNetworkStatus called with NULL SCNetworkReachabilityRef");
     NetworkStatus returnValue = NotReachable;
     SCNetworkReachabilityFlags flags;
@@ -193,54 +190,52 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
     return returnValue;
 }
 
-- (NSString *)currentReachabilityCellularNetwork {
-    
-    CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
-    NSDictionary<NSString *, NSString *> *radioAccessTechnologies = networkInfo.serviceCurrentRadioAccessTechnology;
-    if (!radioAccessTechnologies || radioAccessTechnologies.count == 0) {
-        return @"no network";
-    }
-    
-    NSDictionary<NSString *, NSString *> *networkGenerationMap = @{
-        CTRadioAccessTechnologyGPRS: @"2G",
-        CTRadioAccessTechnologyEdge: @"2G",
-        CTRadioAccessTechnologyCDMA1x: @"2G",
-        CTRadioAccessTechnologyWCDMA: @"3G",
-        CTRadioAccessTechnologyHSDPA: @"3G",
-        CTRadioAccessTechnologyHSUPA: @"3G",
-        CTRadioAccessTechnologyCDMAEVDORev0: @"3G",
-        CTRadioAccessTechnologyCDMAEVDORevA: @"3G",
-        CTRadioAccessTechnologyCDMAEVDORevB: @"3G",
-        CTRadioAccessTechnologyeHRPD: @"3G",
-        CTRadioAccessTechnologyLTE: @"4G"
-    };
-    
+- (NSString *)currentReachabilityCellularNetwork:(CTTelephonyNetworkInfo *)telephonyNetworkInfo {
+    NSMutableDictionary<NSString *, NSString *> *networkGenerationMap = [@{
+        CTRadioAccessTechnologyGPRS : @"2G",
+        CTRadioAccessTechnologyEdge : @"2G",
+        CTRadioAccessTechnologyCDMA1x : @"2G",
+        CTRadioAccessTechnologyWCDMA : @"3G",
+        CTRadioAccessTechnologyHSDPA : @"3G",
+        CTRadioAccessTechnologyHSUPA : @"3G",
+        CTRadioAccessTechnologyCDMAEVDORev0 : @"3G",
+        CTRadioAccessTechnologyCDMAEVDORevA : @"3G",
+        CTRadioAccessTechnologyCDMAEVDORevB : @"3G",
+        CTRadioAccessTechnologyeHRPD : @"3G",
+        CTRadioAccessTechnologyLTE : @"4G"
+    } mutableCopy];
+
     if (@available(iOS 14.1, *)) {
-        networkGenerationMap = @{
-            CTRadioAccessTechnologyNRNSA: @"5G",
-            CTRadioAccessTechnologyNR: @"5G"
-        };
+        [networkGenerationMap addEntriesFromDictionary:@{
+            CTRadioAccessTechnologyNRNSA : @"5G",
+            CTRadioAccessTechnologyNR : @"5G"
+        }];
     }
-    
+
+    NSDictionary<NSString *, NSString *> *radioAccessTechnologies = telephonyNetworkInfo.serviceCurrentRadioAccessTechnology;
+    if (!radioAccessTechnologies || radioAccessTechnologies.count == 0) {
+        return @"Unknown";
+    }
+
     if (@available(iOS 13.0, *)) {
-        NSString *dataServiceIdentifier = networkInfo.dataServiceIdentifier;
-        if (dataServiceIdentifier && radioAccessTechnologies[dataServiceIdentifier]) {
+        NSString *dataServiceIdentifier = telephonyNetworkInfo.dataServiceIdentifier;
+        if (dataServiceIdentifier) {
             NSString *activeRadioTechnology = radioAccessTechnologies[dataServiceIdentifier];
-            return [networkGenerationMap objectForKey:activeRadioTechnology];
+            if (activeRadioTechnology) {
+                return networkGenerationMap[activeRadioTechnology] ?: @"Unknown";
+            }
         }
     }
-    
-    return @"no network";
+    return @"Unknown";
 }
 
 - (NSString *)currentReachabilityNetwork {
     NetworkStatus status = [self currentReachabilityStatus];
-
     switch (status) {
         case ReachableViaWiFi:
             return @"WIFI";
         case ReachableViaWWAN:
-            return [self currentReachabilityCellularNetwork];
+            return [self currentReachabilityCellularNetwork:[[CTTelephonyNetworkInfo alloc] init]];
         default:
             return @"no network";
     }
