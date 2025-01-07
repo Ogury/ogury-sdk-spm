@@ -7,7 +7,7 @@ FRAMEWORK_NAME = OguryAds
 PRODUCT_BUNDLE_IDENTIFIER = co.ogury.OguryAds
 
 // Versioning
-MARKETING_VERSION = 4.0.1
+MARKETING_VERSION = 4.0.2-rc-1.0.0
 BUNDLE_VERSION = 1
 
 // Environment available : PROD, DEVC, STAGING
