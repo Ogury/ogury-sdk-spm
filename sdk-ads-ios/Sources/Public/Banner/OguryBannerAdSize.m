@@ -11,7 +11,7 @@
 
 @end
 
-@implementation OguryBannerAdSize 
+@implementation OguryBannerAdSize
 
 #pragma mark - Initialization
 

@@ -188,37 +188,15 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
     [self.adManager close:self.sequence];
 }
 
-- (void)didMoveToSuperview {
-    [self.log logAd:OguryLogLevelDebug forAdConfiguration:self.configuration message:@"Successfully attached to the super view"];
-
-    [self showBannerIfLoaded];
-}
-
 - (void)didMoveToWindow {
     // we must send notification before show banner to have the right window on exposure calculation
     [self.notificationCenter postNotificationName:OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName object:self.configuration.adUnitId userInfo:nil];
-
-    [self showBannerIfLoaded];
-}
-
-- (void)showBannerIfLoaded {
-    if ([self isLoaded] && [self haveParentViewcontroller]) {
-        [self.adManager show:self.sequence additionalConditions:nil];
-    }
-}
-
-- (BOOL)haveParentViewcontroller {
-    return [self.delegateDispatcher bannerViewController] != nil || self.bannerView.window.rootViewController != nil;
 }
 
 #pragma mark - OguryBannerAdViewDelegate
 - (void)bannerAdViewDidLoad:(OguryBannerAdView *)bannerAd {
     [self.delegateDispatcher loaded];
-
-    // Banner must be shown as soon as it is loaded
-    if ([self haveParentViewcontroller]) {
-        [self.adManager show:self.sequence additionalConditions:nil];
-    }
+    [self.adManager show:self.sequence additionalConditions:nil];
 }
 
 - (void)bannerAdViewDidClick:(OguryBannerAdView *)bannerAd {
