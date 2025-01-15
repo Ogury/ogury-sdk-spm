@@ -173,7 +173,9 @@ struct MainFeature: Reducer {
                         .destination(.presented(.settings(.showCreativeToggleTapped))),
                         .destination(.presented(.settings(.showSpecificOptionsToggleTapped))),
                         .destination(.presented(.settings(.showTestModeToggleTapped))),
-                        .destination(.presented(.settings(.showDspFieldsToggleTapped))) ,
+                        .destination(.presented(.settings(.showDspFieldsToggleTapped))),
+                        .destination(.presented(.settings(.toggleKillWebviewMode))),
+                        .destination(.presented(.settings(.updateKillWebviewMode))),
                         .destination(.presented(.settings(.toggleEnableFeedbacks))) :
                     if case let .settings(settingsState) = state.destination {
                         // update the cards for current settings
@@ -324,6 +326,9 @@ struct MainFeature: Reducer {
         }
         if state.settingsPriorToChange.enableFeedbacks != settings.enableFeedbacks {
             cardEvents.append(.enableFeedbacks(settings.enableFeedbacks))
+        }
+        if state.settingsPriorToChange.killWebviewMode != settings.killWebviewMode {
+            cardEvents.append(.updateKillMode(settings.killWebviewMode))
         }
         state.settingsPriorToChange = settings
         state

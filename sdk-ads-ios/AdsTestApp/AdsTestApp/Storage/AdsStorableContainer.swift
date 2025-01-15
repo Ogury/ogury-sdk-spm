@@ -6,6 +6,7 @@ import UIKit
 import AdsCardLibrary
 import OguryAds
 import UserDefault
+import AdsCardLibrary
 
 enum ImportMethod: String, Codable, Equatable, CaseIterable, DefaultsValueConvertible {
     case file, rawText
@@ -79,6 +80,10 @@ struct SettingsContainer: Codable, Equatable {
         get { settings.importMethod }
         set { settings.importMethod = newValue }
     }
+    var killWebviewMode: KillWebviewMode {
+        get { settings.killWebviewMode }
+        set { settings.killWebviewMode = newValue }
+    }
     var name = SettingsContainer.untitledAdSet
     var os = SettingsContainer.currentOs
     var shouldUpdateAdUnits: Bool { os != SettingsContainer.currentOs }
@@ -98,6 +103,7 @@ struct SettingsContainer: Codable, Equatable {
         case numberOfSdkStart
         case logSettings
         case importMethod
+        case killWebviewMode
     }
     
     init(from decoder: Decoder) throws {
@@ -108,6 +114,7 @@ struct SettingsContainer: Codable, Equatable {
         showCampaignId = try container.decode(Bool.self, forKey: .showCampaignId)
         bulkModeEnabled = try container.decode(Bool.self, forKey: .bulkModeEnabled)
         showTestMode = try container.decode(Bool.self, forKey: .showTestMode)
+        killWebviewMode = try container.decodeIfPresent(KillWebviewMode.self, forKey: .killWebviewMode) ?? .none
         name = try container.decode(String.self, forKey: .name)
         os = try container.decode(String.self, forKey: .os)
         startSDKWithApplication = try container.decodeIfPresent(Bool.self, forKey: .startSDKWithApplication) ?? false
@@ -123,6 +130,7 @@ struct SettingsContainer: Codable, Equatable {
         try container.encode(showSpecificOptions, forKey: .showSpecificOptions)
         try container.encode(showDspFields, forKey: .showDspFields)
         try container.encode(showCampaignId, forKey: .showCampaignId)
+        try container.encode(killWebviewMode, forKey: .killWebviewMode)
         try container.encode(bulkModeEnabled, forKey: .bulkModeEnabled)
         try container.encode(showTestMode, forKey: .showTestMode)
         try container.encode(name, forKey: .name)
@@ -151,6 +159,7 @@ struct SettingsContainer: Codable, Equatable {
         lhs.startSDKWithApplication == rhs.startSDKWithApplication &&
         lhs.numberOfSdkStart == rhs.numberOfSdkStart &&
         lhs.importMethod == rhs.importMethod &&
+        lhs.killWebviewMode == rhs.killWebviewMode &&
         lhs.name == rhs.name
     }
 }
@@ -424,6 +433,7 @@ struct AdContainer: Codable {
                          bulkModeEnabled: settings.bulkModeEnabled,
                          oguryTestModeEnabled: adInformations.settings.oguryTestModeEnabled,
                          rtbTestModeEnabled: adInformations.settings.rtbTestModeEnabled,
+                         killWebviewMode: settings.killWebviewMode,
                          qaLabel: adInformations.settings.qaLabel)
     }
     fileprivate func bannerOptions<T: AdManager>(adType: AdType<T>, settings: SettingsContainer, view: UIView) -> BannerAdManagerOptions {
@@ -442,6 +452,7 @@ struct AdContainer: Codable {
                                bulkModeEnabled: settings.bulkModeEnabled,
                                oguryTestModeEnabled: adInformations.settings.oguryTestModeEnabled,
                                rtbTestModeEnabled: adInformations.settings.rtbTestModeEnabled,
+                               killWebviewMode: settings.killWebviewMode,
                                qaLabel: adInformations.settings.qaLabel)
     }
     fileprivate func thumbnailOptions<T: AdManager>(adType: AdType<T>, settings: SettingsContainer, viewController: UIViewController) -> ThumbnailAdManagerOptions {
@@ -472,6 +483,7 @@ struct AdContainer: Codable {
                                          bulkModeEnabled: settings.bulkModeEnabled,
                                          oguryTestModeEnabled: adInformations.settings.oguryTestModeEnabled,
                                          rtbTestModeEnabled: adInformations.settings.rtbTestModeEnabled,
+                                         killWebviewMode: settings.killWebviewMode,
                                          qaLabel: adInformations.settings.qaLabel)
     }
 }

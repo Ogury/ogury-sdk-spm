@@ -4,6 +4,7 @@
 
 import Foundation
 import UserDefault
+import AdsCardLibrary
 
 struct SettingsController {
     @UserDefault("enableAdUnitEditing")
@@ -20,6 +21,9 @@ struct SettingsController {
     
     @UserDefault("showDspFields")
     var showDspFields: Bool = false
+    
+    @UserDefault("killWebviewMode")
+    var killWebviewMode: KillWebviewMode = .none
     
     @UserDefault("bulkModeEnabled")
     var bulkModeEnabled: Bool = false
@@ -55,4 +59,8 @@ struct SettingsController {
         return false
 #endif
     }()
+}
+
+extension KillWebviewMode: @retroactive DefaultsValueConvertible {
+    
 }

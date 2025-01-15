@@ -60,7 +60,7 @@ public struct AdView: View {
                         }
                         
                         Menu {
-                            ControlGroup {
+                            if viewStore.baseOptions.killWebviewMode == .none {
                                 Button {
                                     viewStore.send(.showQALabelTapped)
                                 } label: {
@@ -71,18 +71,31 @@ public struct AdView: View {
                                     }
                                 }
                                 .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_FocusLogsOnCardButton")
-                                
-                                Button(role: .destructive) {
-                                    viewStore.send(.killWebview)
-                                } label: {
-                                    HStack {
-                                        Text("Kill Webview")
-                                        Spacer()
-                                        Image(systemName: "network.slash")
+                            } else {
+                                ControlGroup {
+                                    Button {
+                                        viewStore.send(.showQALabelTapped)
+                                    } label: {
+                                        HStack {
+                                            Text("Focus in logs")
+                                            Spacer()
+                                            Image(systemName:"magnifyingglass")
+                                        }
                                     }
-                                }
-                                .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_KillWebviewButton")
-                            }.safeMenuControlGroupStyle()
+                                    .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_FocusLogsOnCardButton")
+                                    
+                                    Button(role: viewStore.baseOptions.killWebviewMode == .simulate ? .cancel : .destructive) {
+                                        viewStore.send(.killWebview)
+                                    } label: {
+                                        HStack {
+                                            Text("Kill Webview\n(\(viewStore.baseOptions.killWebviewMode.displayName))")
+                                            Spacer()
+                                            Image(systemName: "network.slash")
+                                        }
+                                    }
+                                    .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_KillWebviewButton")
+                                }.safeMenuControlGroupStyle()
+                            }
                             
                             Button {
                                 viewStore.send(.oguryTestModeButtonTapped)
@@ -246,6 +259,7 @@ public struct AdView: View {
                     case let .showTestMode(value): ViewStore(store, observe: { $0 }).send(.showTestModeButton(value))
                     case let .forceTestMode(enable): ViewStore(store, observe: { $0 }).send(.forceTestMode(enable))
                     case let .enableFeedbacks(enable): ViewStore(store, observe: { $0 }).send(.enableFeedbacks(enable))
+                    case let .updateKillMode(mode): ViewStore(store, observe: { $0 }).send(.updateKillMode(mode))
                 }
             }
         }

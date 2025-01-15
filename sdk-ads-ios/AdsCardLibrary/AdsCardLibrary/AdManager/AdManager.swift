@@ -56,6 +56,7 @@ public enum AdOptionsEvent {
     case showTestMode(_: Bool)
     case forceTestMode(_: Bool)
     case enableFeedbacks(_: Bool)
+    case updateKillMode(_: KillWebviewMode)
 }
 
 public enum AdLifeCycleEvent {
