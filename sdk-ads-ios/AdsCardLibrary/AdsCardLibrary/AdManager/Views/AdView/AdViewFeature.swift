@@ -358,7 +358,6 @@ struct AdViewFeature: Reducer {
                                                 adUnitId: options.adUnitId,
                                                 campaignId: options.campaignId,
                                                 creativeId: options.creativeId,
-                                                adMarkUp: "",
                                                 isSelected: options.isSelected,
                                                 bulkModeEnabled: options.bulkModeEnabled,
                                                 oguryTestModeEnabled:options.oguryTestModeEnabled,

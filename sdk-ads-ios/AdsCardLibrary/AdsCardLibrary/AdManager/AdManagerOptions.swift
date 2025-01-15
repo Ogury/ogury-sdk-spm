@@ -35,8 +35,6 @@ public struct BaseAdOptions: Equatable, Codable {
     public internal(set) var dspRegion: DspRegion?
     /// The creativeId used to load the ad
     public internal(set) var creativeId: String?
-    /// The adMarkUp JSON object for HB
-    public internal(set) var adMarkUp: String?
     /// indicates if the card is selected or not
     public internal(set) var isSelected: Bool
     /// indicates if we should show the action bar or not
@@ -88,7 +86,6 @@ public class BaseAdManagerOptions: AdOptions, Codable {
                 creativeId: String? = nil,
                 dspCreativeId: String? = nil,
                 dspRegion: DspRegion? = nil,
-                adMarkUp: String? = nil,
                 isSelected: Bool = false,
                 bulkModeEnabled: Bool = false,
                 oguryTestModeEnabled: Bool = false,
@@ -104,7 +101,6 @@ public class BaseAdManagerOptions: AdOptions, Codable {
                                     dspCreativeId: dspCreativeId,
                                     dspRegion: dspRegion,
                                     creativeId: creativeId,
-                                    adMarkUp: adMarkUp,
                                     isSelected: isSelected,
                                     bulkModeEnabled: bulkModeEnabled,
                                     oguryTestModeEnabled: oguryTestModeEnabled,
@@ -145,7 +141,6 @@ public class BannerAdManagerOptions: BaseAdManagerOptions {
                 creativeId: String? = nil,
                 dspCreativeId: String? = nil,
                 dspRegion: DspRegion? = nil,
-                adMarkUp: String? = nil,
                 isSelected: Bool = false,
                 bulkModeEnabled: Bool = false,
                 oguryTestModeEnabled: Bool = false,
@@ -161,7 +156,6 @@ public class BannerAdManagerOptions: BaseAdManagerOptions {
                    creativeId: creativeId,
                    dspCreativeId: dspCreativeId,
                    dspRegion: dspRegion,
-                   adMarkUp: adMarkUp,
                    isSelected: isSelected,
                    bulkModeEnabled: bulkModeEnabled,
                    oguryTestModeEnabled: oguryTestModeEnabled,
@@ -181,7 +175,6 @@ public class BannerAdManagerOptions: BaseAdManagerOptions {
                    creativeId: options.baseOptions.creativeId,
                    dspCreativeId: options.baseOptions.dspCreativeId,
                    dspRegion: options.baseOptions.dspRegion,
-                   adMarkUp: options.baseOptions.adMarkUp,
                    isSelected: options.baseOptions.isSelected,
                    bulkModeEnabled: options.baseOptions.bulkModeEnabled,
                    oguryTestModeEnabled: options.baseOptions.oguryTestModeEnabled,
@@ -216,7 +209,6 @@ public class AdManagerOptions: BaseAdManagerOptions {
                 creativeId: String? = nil,
                 dspCreativeId: String? = nil,
                 dspRegion: DspRegion? = nil,
-                adMarkUp: String? = nil,
                 isSelected: Bool = false,
                 bulkModeEnabled: Bool = false,
                 oguryTestModeEnabled: Bool = false,
@@ -232,7 +224,6 @@ public class AdManagerOptions: BaseAdManagerOptions {
                    creativeId: creativeId,
                    dspCreativeId: dspCreativeId,
                    dspRegion: dspRegion,
-                   adMarkUp: adMarkUp,
                    isSelected: isSelected,
                    bulkModeEnabled: bulkModeEnabled,
                    oguryTestModeEnabled: oguryTestModeEnabled,
@@ -252,7 +243,6 @@ public class AdManagerOptions: BaseAdManagerOptions {
                    creativeId: options.baseOptions.creativeId,
                    dspCreativeId: options.baseOptions.dspCreativeId,
                    dspRegion: options.baseOptions.dspRegion,
-                   adMarkUp: options.baseOptions.adMarkUp,
                    isSelected: options.baseOptions.isSelected,
                    bulkModeEnabled: options.baseOptions.bulkModeEnabled,
                    oguryTestModeEnabled: options.baseOptions.oguryTestModeEnabled,
@@ -288,7 +278,6 @@ public class ThumbnailAdManagerOptions: AdManagerOptions {
                 creativeId: String? = nil,
                 dspCreativeId: String? = nil,
                 dspRegion: DspRegion? = nil,
-                adMarkUp: String? = nil,
                 isSelected: Bool = false,
                 bulkModeEnabled: Bool = false,
                 oguryTestModeEnabled: Bool = false,
@@ -305,7 +294,6 @@ public class ThumbnailAdManagerOptions: AdManagerOptions {
                    creativeId: creativeId,
                    dspCreativeId: dspCreativeId,
                    dspRegion: dspRegion,
-                   adMarkUp: adMarkUp,
                    isSelected: isSelected,
                    bulkModeEnabled: bulkModeEnabled,
                    oguryTestModeEnabled: oguryTestModeEnabled,
@@ -326,7 +314,6 @@ public class ThumbnailAdManagerOptions: AdManagerOptions {
                    creativeId: options.baseOptions.creativeId,
                    dspCreativeId: options.baseOptions.dspCreativeId,
                    dspRegion: options.baseOptions.dspRegion,
-                   adMarkUp: options.baseOptions.adMarkUp,
                    isSelected: options.baseOptions.isSelected,
                    bulkModeEnabled: options.baseOptions.bulkModeEnabled,
                    oguryTestModeEnabled: options.baseOptions.oguryTestModeEnabled,

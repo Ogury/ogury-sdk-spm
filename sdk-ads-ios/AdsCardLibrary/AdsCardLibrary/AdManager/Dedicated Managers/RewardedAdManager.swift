@@ -140,15 +140,6 @@ public final class RewardedAdManager: AdManager {
         }
     }
     
-    public func loadAdFromAdMarkUp(from options: BaseAdOptions) throws {
-        self.options.baseOptions = options
-        guard let adMarkUp = options.adMarkUp else { throw AdManagerError.noOptions }
-        ad = OguryRewardedAd(adUnitId: options.adUnitId)
-        ad.delegate = proxyDelegate
-        ad.load(withAdMarkup: adMarkUp)
-        append(.adLoading)
-    }
-    
     public func showAd() throws {
         guard let options else { throw AdManagerError.noOptions }
         if ad == nil {
