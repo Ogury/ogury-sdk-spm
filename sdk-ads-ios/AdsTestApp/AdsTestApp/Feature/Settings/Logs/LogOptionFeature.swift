@@ -9,6 +9,41 @@ import ComposableArchitecture
 import AdsCardLibrary
 import OguryAds.Private
 
+extension OguryLogType: @retroactive CaseIterable {
+    public static var allCases: [OguryLogType] = [
+        .internal,
+        .publisher,
+        .delegate,
+        .receivedCallbacks,
+        .monitoring,
+        .mraid,
+        .requests,
+        .testApp
+    ]
+}
+
+extension OguryLogDisplay: @retroactive CaseIterable {
+    public static var allCases: [OguryLogDisplay] = [
+        .SDK,
+        .date,
+        .level,
+        .type,
+        .origin,
+        .tags
+    ]
+    var displayName: String {
+        switch self {
+            case .SDK: return "Show SDK"
+            case .date: return "Show date"
+            case .level: return "Show log level"
+            case .type: return "Show log type"
+            case .origin: return "Show origin"
+            case .tags: return "show tags"
+            default: return ""
+        }
+    }
+}
+
 @Reducer
 struct LogOptionFeature {
     @ObservableState
@@ -18,14 +53,6 @@ struct LogOptionFeature {
         var showColorPicker: Bool = false
         var color: Color = .black
         var selectedType: OguryLogType?
-        
-        // display options
-        var logDisplayDateEnabled: Bool { displayOptions.contains(.date) }
-        var logDisplaySDKEnabled: Bool { displayOptions.contains(.SDK) }
-        var logDisplayLevelEnabled: Bool { displayOptions.contains(.level) }
-        var logDisplayTypeEnabled: Bool { displayOptions.contains(.type) }
-        var logDisplayOriginEnabled: Bool { displayOptions.contains(.origin) }
-        var logDisplayTagsEnabled: Bool { displayOptions.contains(.tags) }
         // Logtypes
         var logTypeInternalEnabled: Bool { allowedTypes.contains(.internal) }
         var logTypeRequestEnabled: Bool { allowedTypes.contains(.requests) }
@@ -105,15 +132,14 @@ struct LogOptionFeature {
                 TestAppLogController.shared.logger.allowedLogTypes.append(type)
             }
         }
+        
+        func state(for logDisplay: OguryLogDisplay) -> Bool {
+            return displayOptions.contains(logDisplay)
+        }
     }
     
     enum Action: Equatable  {
-        case logDisplayDateButtonTapped
-        case logDisplaySDKButtonTapped
-        case logDisplayLevelButtonTapped
-        case logDisplayTypeButtonTapped
-        case logDisplayOriginButtonTapped
-        case logDisplayTagsButtonTapped
+        case logDisplayButtonTapped(_: OguryLogDisplay)
         
         case logTypeInternalButtonTapped
         case logTypeRequestButtonTapped
@@ -121,6 +147,7 @@ struct LogOptionFeature {
         case logTypeMraidButtonTapped
         case logTypeMonitoringButtonTapped
         case logTypeDelegateButtonTapped
+        case logTypeButtonTapped(_: OguryLogType)
         
         case selectColor(_: Color)
         case selectPickerForLogType(_: OguryLogType)
@@ -129,32 +156,7 @@ struct LogOptionFeature {
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
-            switch action {
-                case .logDisplayDateButtonTapped:
-                    state.toggle(.date)
-                    return .none
-                    
-                case .logDisplaySDKButtonTapped:
-                    state.toggle(.SDK)
-                    return .none
-                    
-                case .logDisplayLevelButtonTapped:
-                    state.toggle(.level)
-                    return .none
-                    
-                case .logDisplayTypeButtonTapped:
-                    state.toggle(.type)
-                    return .none
-                    
-                case .logDisplayOriginButtonTapped:
-                    state.toggle(.origin)
-                    return .none
-                    
-                case .logDisplayTagsButtonTapped:
-                    state.toggle(.tags)
-                    return .none
-                    
-                case .logTypeInternalButtonTapped:
+            switch action {case .logTypeInternalButtonTapped:
                     state.toggle(.internal)
                     return .none
                     
@@ -196,6 +198,13 @@ struct LogOptionFeature {
                         await $0(.showColorPicker)
                     }
                     
+                case let .logTypeButtonTapped(logType):
+                    state.toggle(logType)
+                    return .none
+                    
+                case let .logDisplayButtonTapped(logDisplay):
+                    state.toggle(logDisplay)
+                    return .none
             }
         }
     }

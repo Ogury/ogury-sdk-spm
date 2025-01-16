@@ -101,7 +101,10 @@ struct BannerContainer: Equatable {
     var bannerType: AdType<BannerAdManager>
 }
 
-public let testApp: OguryLogType = .init("TestApp")
+public extension OguryLogType {
+    static let testApp: OguryLogType = .init("TestApp")
+    static let receivedCallbacks: OguryLogType = .init("ReceivedCallbacks")
+}
 
 struct AdViewFeature: Reducer {
     var adManager: any AdManager
@@ -267,14 +270,32 @@ struct AdViewFeature: Reducer {
             }
         }
         
-        func log(_ message: String) {
+        func log(_ message: String, logType: OguryLogType = .testApp) {
             AdsCardManager.logger?.logMessage(OGAAdLogMessage(level: .debug,
-                                                              logType: testApp,
+                                                              logType: logType,
                                                               origin: baseOptions.qaLabel,
                                                               sdk: .ads,
                                                               messageDate: nil,
                                                               message: message,
                                                               tags: nil))
+        }
+        
+        func log(event: AdLifeCycleEvent) {
+            var message: String? = nil
+            switch event {
+                case .adLoading: () // no publisher callback
+                case .adLoaded(let canShow): message = "Ad loaded"
+                case .adDisplaying: () // no publisher callback
+                case .adClicked: message = "Ad clicked"
+                case .adClosed: message = "Ad closed"
+                case .adDidTriggerImpression: message = "Ad did trigger impression"
+                case .adDidFailToLoad(let error): message = "Ad did fail to load \(error)"
+                case .adDidFailToDisplay(let error): message = "Ad did fail to display \(error)"
+                case .adDidFail(let error): message = "Ad did fail \(error)"
+                case .bannerReady: () // no publisher callback
+                case .rewardReady(let reward): message = "Ad did receive reward \(reward)"
+            }
+            if let message { log(message, logType: .receivedCallbacks) }
         }
     }
     
@@ -342,6 +363,7 @@ struct AdViewFeature: Reducer {
                     .events
                     .receive(on: DispatchQueue.main)
                     .map { event in
+                        state.log(event: event)
                         switch event {
                             case let .adLoaded(canShow):
                                 if state.enableFeedbacks {

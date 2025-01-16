@@ -6,6 +6,7 @@
 import SwiftUI
 import ComposableArchitecture
 import AdsCardLibrary
+import OguryAds
 
 struct LogOptionView: View {
     @BindingState var store: StoreOf<LogOptionFeature> = .init(
@@ -17,101 +18,23 @@ struct LogOptionView: View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             List {
                 Section {
-                    Button {
-                        viewStore.send(.logDisplaySDKButtonTapped)
-                    } label: {
-                        HStack {
-                            Text("Show SDK")
-                                .layoutPriority(1)
-                            
-                            Toggle("", isOn:
-                                    viewStore.binding(
-                                        get: \.logDisplaySDKEnabled,
-                                        send: .logDisplaySDKButtonTapped)
-                            )
+                    ForEach(OguryLogDisplay.allCases, id:\.rawValue) { logDisplay in
+                        Button {
+                            viewStore.send(.logDisplayButtonTapped(logDisplay))
+                        } label: {
+                            HStack {
+                                Text(logDisplay.displayName)
+                                    .layoutPriority(1)
+                                
+                                Toggle("", isOn: Binding<Bool> {
+                                    viewStore.state.state(for: logDisplay)
+                                } set: { activated in
+                                    viewStore.send(.logDisplayButtonTapped(logDisplay))
+                                })
+                            }
                         }
+                        .accessibilityLabel("LogSettingsDisplaySDKToggle")
                     }
-                    .accessibilityLabel("LogSettingsDisplaySDKToggle")
-                    
-                    Button {
-                        viewStore.send(.logDisplayDateButtonTapped)
-                    } label: {
-                        HStack {
-                            Text("Show Date")
-                                .layoutPriority(1)
-                            
-                            Toggle("", isOn:
-                                    viewStore.binding(
-                                        get: \.logDisplayDateEnabled,
-                                        send: .logDisplayDateButtonTapped)
-                            )
-                        }
-                    }
-                    .accessibilityLabel("LogSettingsDisplayDateToggle")
-                    
-                    Button {
-                        viewStore.send(.logDisplayLevelButtonTapped)
-                    } label: {
-                        HStack {
-                            Text("Show log level")
-                                .layoutPriority(1)
-                            
-                            Toggle("", isOn:
-                                    viewStore.binding(
-                                        get: \.logDisplayLevelEnabled,
-                                        send: .logDisplayLevelButtonTapped)
-                            )
-                        }
-                    }
-                    .accessibilityLabel("LogSettingsDisplayLevelToggle")
-                    
-                    Button {
-                        viewStore.send(.logDisplayTypeButtonTapped)
-                    } label: {
-                        HStack {
-                            Text("Show log type")
-                                .layoutPriority(1)
-                            
-                            Toggle("", isOn:
-                                    viewStore.binding(
-                                        get: \.logDisplayTypeEnabled,
-                                        send: .logDisplayTypeButtonTapped)
-                            )
-                        }
-                    }
-                    .accessibilityLabel("LogSettingsDisplayTypeToggle")
-                    
-                    Button {
-                        viewStore.send(.logDisplayOriginButtonTapped)
-                    } label: {
-                        HStack {
-                            Text("Show origin")
-                                .layoutPriority(1)
-                            
-                            Toggle("", isOn:
-                                    viewStore.binding(
-                                        get: \.logDisplayOriginEnabled,
-                                        send: .logDisplayOriginButtonTapped)
-                            )
-                        }
-                    }
-                    .accessibilityLabel("LogSettingsDisplayOriginToggle")
-                    
-                    Button {
-                        viewStore.send(.logDisplayTagsButtonTapped)
-                    } label: {
-                        HStack {
-                            Text("Show tags")
-                                .layoutPriority(1)
-                            
-                            Toggle("", isOn:
-                                    viewStore.binding(
-                                        get: \.logDisplayTagsEnabled,
-                                        send: .logDisplayTagsButtonTapped)
-                            )
-                        }
-                    }
-                    .accessibilityLabel("LogSettingsDisplayTagsToggle")
                     
                 } header: {
                     Text("Display")
@@ -229,7 +152,7 @@ struct LogOptionView: View {
                                 viewStore.send(.logTypeDelegateButtonTapped)
                             } label: {
                                 HStack {
-                                    Text("Delegate (callbacks)")
+                                    Text("Triggered callbacks")
                                         .font(.adsBody)
                                         .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
                                     Toggle("", isOn:

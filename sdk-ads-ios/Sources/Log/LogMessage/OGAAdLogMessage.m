@@ -9,7 +9,7 @@
 OguryLogSDK const OguryLogSDKAds = @"Ads";
 OguryLogType const OguryLogTypeMraid = @"Mraid";
 OguryLogType const OguryLogTypeMonitoring = @"Monitoring";
-OguryLogType const OguryLogTypeDelegate = @"Callbacks";
+OguryLogType const OguryLogTypeDelegate = @"SDK Callbacks";
 
 @implementation OGAAdLogMessage
 
