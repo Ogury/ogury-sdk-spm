@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -205,6 +205,10 @@
 		FD61C3C1BAEA09E61B64842E /* Pods-AdsCardLibrary-Release.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-Release.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-Release/Pods-AdsCardLibrary-Release.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		43F66E3F2D3A8E55000AED12 /* Helpers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Helpers; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		435C55DC2A42EAEF004186FF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -308,6 +312,7 @@
 				43E349422A49BA040060B41F /* AdManager */,
 				43788F2A2B5FBA000041A9C1 /* Fonts */,
 				4328B2892ADFBD88003C7F91 /* Serialization */,
+				43F66E3F2D3A8E55000AED12 /* Helpers */,
 				436E97262A6A7BC30074E922 /* Assets.xcassets */,
 			);
 			path = AdsCardLibrary;
@@ -523,6 +528,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				43F66E3F2D3A8E55000AED12 /* Helpers */,
+			);
 			name = AdsCardLibrary;
 			packageProductDependencies = (
 				435F7BC92A5EE3970077843A /* ComposableArchitecture */,
@@ -566,6 +574,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				43F66E3F2D3A8E55000AED12 /* Helpers */,
 			);
 			name = "AdsCardLibrary-art";
 			packageProductDependencies = (

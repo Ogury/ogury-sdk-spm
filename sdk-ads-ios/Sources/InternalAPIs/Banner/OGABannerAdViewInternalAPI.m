@@ -263,8 +263,12 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
     return self.configuration;
 }
 
-- (void)killWebview {
-    [self.sequence.coordinator killWebviews];
+- (void)simulateWebviewTerminated {
+    [self.sequence.coordinator simulateWebviewTerminated];
+}
+
+- (WKWebView *)adWebview {
+    return [self.sequence.coordinator adWebview];
 }
 
 @end

@@ -3,6 +3,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 #import "OGAAdInternalAPI.h"
 #import "OGADelegateDispatcher.h"
 #import "OguryRectCorner.h"
@@ -59,7 +60,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setLogOrigin:(NSString *)origin;
 - (OGAAdConfiguration *)adConfiguration;
-- (void)killWebview;
+- (void)simulateWebviewTerminated;
+- (WKWebView *)adWebview;
 
 @end
 

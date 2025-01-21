@@ -211,9 +211,17 @@ public final class ThumbnailAdManager: AdManager {
         adView.updateCard(events: events)
     }
     
-    public func killWebview() {
+    public func killWebview(_ killMode: KillWebviewMode) {
         guard let ad else { return }
-        ad.killWebview()
+        switch killMode {
+            case .none: ()
+            case .simulate:
+                ad.simulateWebviewTerminated()
+                
+            case .saturate:
+                guard let webView = ad.adWebview() else { return }
+                kill(webView)
+        }
     }
 }
 

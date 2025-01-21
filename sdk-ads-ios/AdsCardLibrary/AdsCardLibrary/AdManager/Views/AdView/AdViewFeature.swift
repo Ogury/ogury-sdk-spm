@@ -29,6 +29,14 @@ public enum DspRegion : CaseIterable, Codable {
 public enum KillWebviewMode: CaseIterable, Codable {
     case none, simulate, saturate
     
+    public static var allCases: [KillWebviewMode] {
+#if targetEnvironment(simulator)
+        return [.none, .simulate]
+#else
+        return [.none, .simulate, .saturate]
+#endif
+    }
+    
     public var displayName: String {
         switch self {
             case .none: return "Don't display feature"
@@ -332,7 +340,6 @@ struct AdViewFeature: Reducer {
     enum AdCancel: Hashable {
         case load(_: UUID), show(_: UUID)
     }
-    
     
     func load(state: State) -> Effect<AdViewFeature.Action> {
         .merge(
@@ -645,7 +652,7 @@ struct AdViewFeature: Reducer {
                     return .none
                     
                 case .killWebview:
-                    adManager.killWebview()
+                    adManager.killWebview(state.baseOptions.killWebviewMode)
                     return .none
                     
                 case let .updateKillMode(mode):

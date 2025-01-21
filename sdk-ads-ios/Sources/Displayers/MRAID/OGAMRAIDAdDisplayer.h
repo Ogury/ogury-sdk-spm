@@ -3,6 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <WebKit/WebKit.h>
 #import "OGAAdDisplayer.h"
 #import "OGAAdDisplayerOrientationDelegate.h"
 
@@ -46,6 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithAd:(OGAAd *)ad adConfiguration:(OGAAdConfiguration *)configuration;
 - (void)webkitProcessDidTerminate;
+- (WKWebView *)adWebview;
 
 @end
 
