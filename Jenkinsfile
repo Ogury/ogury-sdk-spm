@@ -57,13 +57,14 @@ pipeline {
                     if (env.GIT_TAG && env.GIT_TAG.contains('-ads-')) {
                         targetThreshold = "ads"
                     }
-                    if (env.GIT_TAG && env.GIT_TAG.contains('-killModeEnabled-')) {
+                    if (env.GIT_TAG && env.GIT_TAG.contains('-killModeEnabled')) {
                         killModeEnabled = true
                     }
         
                     // Log the value of isArtifactory for debugging
                     echo "Artifactory is set to: ${isArtifactory}"
                     echo "Target Threshold is set to: ${targetThreshold}"
+                    echo "killModeEnabled is set to: ${killModeEnabled}"
         
                     // Run the first shell script (setting up environment)
                     sh """#!/bin/zsh -l
