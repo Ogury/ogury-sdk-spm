@@ -126,6 +126,8 @@
 - (WKWebView *)adWebview {
 #if defined(DEBUG) || defined(KILL_MODE_ENABLED)
     return [self.internalAPI adWebview];
+#else
+    return nil;
 #endif
 }
 
