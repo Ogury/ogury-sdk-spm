@@ -280,20 +280,21 @@ struct AdViewFeature: Reducer {
                                                               tags: nil))
         }
         
+        // log received publisher callbacks only
         func log(event: AdLifeCycleEvent) {
             var message: String? = nil
             switch event {
                 case .adLoading: () // no publisher callback
-                case .adLoaded(let canShow): message = "Ad loaded"
+                case .adLoaded: message = "Ad loaded"
                 case .adDisplaying: () // no publisher callback
                 case .adClicked: message = "Ad clicked"
                 case .adClosed: message = "Ad closed"
-                case .adDidTriggerImpression: message = "Ad did trigger impression"
-                case .adDidFailToLoad(let error): message = "Ad did fail to load \(error)"
-                case .adDidFailToDisplay(let error): message = "Ad did fail to display \(error)"
-                case .adDidFail(let error): message = "Ad did fail \(error)"
+                case .adDidTriggerImpression: message = "Ad triggered impression"
                 case .bannerReady: () // no publisher callback
-                case .rewardReady(let reward): message = "Ad did receive reward \(reward)"
+                case .rewardReady(let reward): message = "Ad received reward (\(reward.rewardName) : \(reward.rewardValue))"
+                case .adDidFailToLoad(let error): message = "Ad failed to load (\(error.displayMessage))"
+                case .adDidFailToDisplay(let error): message = "Ad failed to show (\(error.displayMessage))"
+                case .adDidFail(let error): message = "Ad failed (\(error.displayMessage))"
             }
             if let message { log(message, logType: .receivedCallbacks) }
         }
@@ -679,7 +680,6 @@ struct AdViewFeature: Reducer {
     }
 }
 
-
 extension AdLifeCycleEvent {
     var action: AdViewFeature.Action {
         switch self {
@@ -690,5 +690,14 @@ extension AdLifeCycleEvent {
             case let .rewardReady(reward): return .rewardReady(reward)
             default: return .updateEvent(self)
         }
+    }
+}
+
+extension Error {
+    var displayMessage: String {
+        if let adError = self as? OguryAdError {
+            return "#\(adError.code) : \(adError.localizedDescription)"
+        }
+        return String(describing: self)
     }
 }
