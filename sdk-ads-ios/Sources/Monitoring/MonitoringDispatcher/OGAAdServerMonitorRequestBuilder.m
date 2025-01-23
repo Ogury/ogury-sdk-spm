@@ -25,6 +25,7 @@
 @property(nonatomic, retain) NSURL *url;
 @property(nonatomic, retain) OGAProfigDao *profigDao;
 @property(nonatomic, retain) OGAWebViewUserAgentService *webViewUserAgentService;
+@property(nonatomic, retain) CTTelephonyNetworkInfo *telephonyNetworkInfo;
 
 @end
 
@@ -86,20 +87,23 @@ static NSString *const MonitoringServiceBodyDeviceAssetType = @"ios";
                 assetKeyManager:[OGAAssetKeyManager shared]
                       profigDao:[OGAProfigDao shared]
                             log:[OGALog shared]
-        webViewUserAgentService:[OGAWebViewUserAgentService shared]];
+        webViewUserAgentService:[OGAWebViewUserAgentService shared]
+           telephonyNetworkInfo:[[CTTelephonyNetworkInfo alloc] init]];
 }
 
 - (instancetype)init:(NSURL *)url
             assetKeyManager:(OGAAssetKeyManager *)assetKeyManager
                   profigDao:(OGAProfigDao *)profigDao
                         log:(OGALog *)log
-    webViewUserAgentService:(OGAWebViewUserAgentService *)webViewUserAgentService {
+    webViewUserAgentService:(OGAWebViewUserAgentService *)webViewUserAgentService
+       telephonyNetworkInfo:(CTTelephonyNetworkInfo *)telephonyNetworkInfo {
     if (self = [super init]) {
         _url = url;
         _log = log;
         _assetKeyManager = assetKeyManager;
         _profigDao = profigDao;
         _webViewUserAgentService = webViewUserAgentService;
+        _telephonyNetworkInfo = telephonyNetworkInfo;
     }
     return self;
 }
@@ -220,8 +224,27 @@ static NSString *const MonitoringServiceBodyDeviceAssetType = @"ios";
 }
 
 - (NSString *)getSimCardCountry {
-    CTCarrier *carrier = [[CTTelephonyNetworkInfo new] subscriberCellularProvider];
-    return carrier.isoCountryCode;
+    if (@available(iOS 16, *)) {
+        return @"--";
+    } else if (@available(iOS 13.0, *)) {
+        NSString *dataServiceIdentifier = self.telephonyNetworkInfo.dataServiceIdentifier;
+        NSDictionary<NSString *, CTCarrier *> *carriers = self.telephonyNetworkInfo.serviceSubscriberCellularProviders;
+        if (carriers && dataServiceIdentifier) {
+            CTCarrier *carrier = carriers[dataServiceIdentifier];
+            if (carrier) {
+                return carrier.isoCountryCode ?: @"--";
+            }
+        }
+    } else if (@available(iOS 12.0, *)) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        CTCarrier *carrier = self.telephonyNetworkInfo.subscriberCellularProvider;
+#pragma clang diagnostic pop
+        if (carrier) {
+            return carrier.isoCountryCode ?: @"--";
+        }
+    }
+    return @"--";
 }
 
 - (OGADevice *)device {
