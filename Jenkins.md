@@ -2,20 +2,52 @@
 
 This file aim to help you understand the various options you can use with Jenkins to generate your frameworks.
 
-You can direclty jump to the [tag section](#tag-examples) is needed.
+You can direclty jump to the [tag examples section](#tag-examples) if needed.
 
 ## Stages
 The Jenkinsfile has several stages
 
+<a name="build"></a>
 ### Build
 Whenever a commit or a tag are pushed, this stage tries to build the framework to check if it compiles.
+
+###### Underlying Fastlane command
+
+```
+bundle exec fastlane build environment:'prod' artifactory:false targetThreshold:all killModeEnabled:false
+```
+<a name="build-options"></a>
+The options are [^fastlaneOptions] : 
+
+- **environment**: The target environment to deploy the framework to
+- **artifactory**: Specifies wether to use local or external dependencies
+- **targetThreshold**: Defines the dependency level for the Cocoapod file and compilation options [^2]. Can be one of `core`, `ads` or `all` (default value if not provided)
+- **killModeEnabled**: specifies wether to allow access to `WEBVIEW_KILL_MODE` on `OguryAds`
+
+[^fastlaneOptions]: see [Deployments section](#Deployments) to have the list of possible values
+[^2]: `OguryCore` has no dependecy, `OguryAds` depends on `core` and `OgurySdk` depends on `ads`. In order to be able to compile and generate dependecies properly, the `threshold` option defines the highest dependency to handle: `core`, `ads` or `all`
 
 ### Test Dev
 This stage will run the tests in `Prod` environment
 
+###### Underlying Fastlane command
+
+
+```
+bundle exec fastlane test environment:prod
+```
+
 ### Test Prod
 This stage will run the tests in `Release` environment
 
+###### Underlying Fastlane command
+
+
+```
+bundle exec fastlane test environment:release
+```
+
+<a name="Deployments"></a>
 ### Deployments
 This stage will analyse the tag constitution and deploy the framework where it should.
 
@@ -57,6 +89,16 @@ Begind the scene, the Xcode project uses a Preprocessor macro `KILL_MODE_ENABLED
 The new test application comes with a compilation option that allows you to create a test application with QA settings (so far, only the import method is set to `text` inseatd of `file` to ease its use with testsigma. 
 
 Begind the scene, the Xcode project uses a Swift flag `QA_MODE=1` to handle its settings at compile time.
+
+###### Underlying Fastlane commands
+
+```
+bundle exec fastlane deploy_core_framework environment:beta tag:beta-core-3.9.9-NewCITests-1.0.0 artifactory:false killModeEnabled:false
+bundle exec fastlane deploy_core_podspec environment:beta tag:beta-core-3.9.9-NewCITests-1.0.0 artifactory:false
+```
+The options are the same as the [build stage](#build-options).
+
+One extra option is available here: `dry_run: true` that will test every step except the upload phase to S3.
 
 <a name="tag-examples"></a>
 ### Tag examples
