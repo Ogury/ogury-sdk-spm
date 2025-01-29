@@ -5,6 +5,17 @@
 import UIKit
 import AdsCardLibrary
 
+extension Decodable {
+    static func loadJsonFromFile(named fileName: String, extension extName: String? = nil) throws -> Self {
+        guard let url = Bundle.main.url(forResource: fileName, withExtension: extName),
+              let json = try? Data(contentsOf: url) else {
+            fatalError("No configuration file found")
+        }
+        let conf: Self = try JSONDecoder().decode(Self.self, from: json)
+        return conf
+    }
+}
+
 protocol MediationOptions: Codable {
     var interstitial: Configuration.DefaultBaseOptions { get }
     var optIn: Configuration.DefaultBaseOptions { get }
@@ -80,10 +91,7 @@ struct Configuration: Decodable {
     }
     
     static let shared: Configuration = {
-        
-        guard let url = Bundle.main.url(forResource: "Default", withExtension: "json"),
-              let json = try? Data(contentsOf: url),
-              let conf: Configuration = try? JSONDecoder().decode(Configuration.self, from: json) else {
+        guard let conf: Configuration = try? Configuration.loadJsonFromFile(named: "Default", extension: "json") else {
                 fatalError("No configuration file found")
         }
         return conf

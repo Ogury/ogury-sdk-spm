@@ -27,6 +27,8 @@ class MainViewController: UIViewController {
     }
     
     private func start() {
+        // load default preferences from various files
+        SettingsController.loadPreferences()
         loadCards()
         UINavigationBar.appearance().largeTitleTextAttributes = [
             .foregroundColor: AdColorPalette.Text.primary(onAccent: false).color,

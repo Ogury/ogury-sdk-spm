@@ -26,7 +26,7 @@ public enum DspRegion : CaseIterable, Codable {
     }
 }
 
-public enum KillWebviewMode: CaseIterable, Codable {
+public enum KillWebviewMode: String, CaseIterable, Codable {
     case none, simulate, saturate
     
     public static var allCases: [KillWebviewMode] {
