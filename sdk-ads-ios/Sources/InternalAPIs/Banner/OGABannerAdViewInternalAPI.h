@@ -51,8 +51,6 @@ extern NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationNa
 
 - (void)destroy;
 
-- (void)didMoveToSuperview;
-
 - (void)didMoveToWindow;
 
 @end

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem "cocoapods", '1.15.2'
-gem "fastlane"
+gem "fastlane", "2.225"
 gem "artifactory"
 gem "cocoapods-art"
 gem 'activesupport', '~> 7.0.8'

@@ -10,6 +10,7 @@
 		1E373D562BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */; };
 		1E373D612BFCF7CA00E2EF25 /* BTFairBidRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */; };
 		1E8256442B2380B4001DFBA4 /* AdsCardLibrary.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 1E8256432B2380B4001DFBA4 /* AdsCardLibrary.xctestplan */; };
+		1ED014A82CDB783B00B876BF /* Mockingbird in Frameworks */ = {isa = PBXBuildFile; productRef = 1ED014A72CDB783B00B876BF /* Mockingbird */; };
 		430B6F032A65377900A6EFA4 /* RewardedAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430B6F022A65377900A6EFA4 /* RewardedAdManagerTests.swift */; };
 		431441192A6539780067AD47 /* ThumbnailAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431441182A6539780067AD47 /* ThumbnailAdManagerTests.swift */; };
 		4314411B2A653B060067AD47 /* BannerAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4314411A2A653B060067AD47 /* BannerAdManagerTests.swift */; };
@@ -56,7 +57,6 @@
 		438ED3D82AA0C2BA00486AF2 /* AdManagerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C62AA0C2BA00486AF2 /* AdManagerOptions.swift */; };
 		43A78A6E2A52ABF30004A613 /* AdManagerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */; };
 		43A9F4A52C37E7800085EF6F /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A9F4A42C37E7800085EF6F /* OguryCore.framework */; };
-		43ACBB6D2B304AB9003FBF35 /* Mockingbird in Frameworks */ = {isa = PBXBuildFile; productRef = 43ACBB6C2B304AB9003FBF35 /* Mockingbird */; };
 		43ACBB702B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ACBB6F2B304B37003FBF35 /* AdsCardLibraryTests-AdsCardLibraryMocks.generated.swift */; };
 		43AE68042AAB25B1002E7C46 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED4392AA8565800486AF2 /* OguryAds.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		43BCB1612C22FBF0002FB0B1 /* AdsCardLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 435C55E22A42EAEF004186FF /* AdsCardLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -209,8 +209,8 @@
 				43FA4EA02CB6D00D0029B928 /* OguryAds.framework in Frameworks */,
 				43FA4EA22CB6D00D0029B928 /* OguryCore.framework in Frameworks */,
 				435C55EA2A42EAEF004186FF /* AdsCardLibrary.framework in Frameworks */,
+				1ED014A82CDB783B00B876BF /* Mockingbird in Frameworks */,
 				4314411E2A653CA70067AD47 /* CwlPreconditionTesting in Frameworks */,
-				43ACBB6D2B304AB9003FBF35 /* Mockingbird in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,7 +544,7 @@
 			name = AdsCardLibraryTests;
 			packageProductDependencies = (
 				4314411D2A653CA70067AD47 /* CwlPreconditionTesting */,
-				43ACBB6C2B304AB9003FBF35 /* Mockingbird */,
+				1ED014A72CDB783B00B876BF /* Mockingbird */,
 			);
 			productName = AdsCardLibraryTests;
 			productReference = 435C55E92A42EAEF004186FF /* AdsCardLibraryTests.xctest */;
@@ -606,7 +606,7 @@
 			packageReferences = (
 				43E349582A4AC9820060B41F /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				4314411C2A653CA70067AD47 /* XCRemoteSwiftPackageReference "CwlPreconditionTesting" */,
-				43ACBB6B2B304AB9003FBF35 /* XCRemoteSwiftPackageReference "mockingbird" */,
+				1ED014A62CDB783B00B876BF /* XCRemoteSwiftPackageReference "mockingbird" */,
 			);
 			productRefGroup = 435C55E02A42EAEF004186FF /* Products */;
 			projectDirPath = "";
@@ -1179,20 +1179,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1ED014A62CDB783B00B876BF /* XCRemoteSwiftPackageReference "mockingbird" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/typealiased/mockingbird";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.20.0;
+			};
+		};
 		4314411C2A653CA70067AD47 /* XCRemoteSwiftPackageReference "CwlPreconditionTesting" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mattgallagher/CwlPreconditionTesting.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.0.0;
-			};
-		};
-		43ACBB6B2B304AB9003FBF35 /* XCRemoteSwiftPackageReference "mockingbird" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/birdrides/mockingbird";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.20.0;
 			};
 		};
 		43BCB15E2C22FBF0002FB0B1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
@@ -1214,6 +1214,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1ED014A72CDB783B00B876BF /* Mockingbird */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1ED014A62CDB783B00B876BF /* XCRemoteSwiftPackageReference "mockingbird" */;
+			productName = Mockingbird;
+		};
 		4314411D2A653CA70067AD47 /* CwlPreconditionTesting */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4314411C2A653CA70067AD47 /* XCRemoteSwiftPackageReference "CwlPreconditionTesting" */;
@@ -1223,11 +1228,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 43E349582A4AC9820060B41F /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
-		};
-		43ACBB6C2B304AB9003FBF35 /* Mockingbird */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43ACBB6B2B304AB9003FBF35 /* XCRemoteSwiftPackageReference "mockingbird" */;
-			productName = Mockingbird;
 		};
 		43BCB15D2C22FBF0002FB0B1 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
