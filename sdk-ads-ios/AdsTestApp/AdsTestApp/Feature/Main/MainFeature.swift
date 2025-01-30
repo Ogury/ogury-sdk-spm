@@ -173,7 +173,9 @@ struct MainFeature: Reducer {
                         .destination(.presented(.settings(.showCreativeToggleTapped))),
                         .destination(.presented(.settings(.showSpecificOptionsToggleTapped))),
                         .destination(.presented(.settings(.showTestModeToggleTapped))),
-                        .destination(.presented(.settings(.showDspFieldsToggleTapped))) ,
+                        .destination(.presented(.settings(.showDspFieldsToggleTapped))),
+                        .destination(.presented(.settings(.toggleKillWebviewMode))),
+                        .destination(.presented(.settings(.updateKillWebviewMode))),
                         .destination(.presented(.settings(.toggleEnableFeedbacks))) :
                     if case let .settings(settingsState) = state.destination {
                         // update the cards for current settings
@@ -248,9 +250,9 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case .exportButtonTapped:
-                    let settings: SettingsContainer = .init(name: state.setName.isEmpty ? "AdsSet" : state.setName)
+                    let settings: SettingsContainer = .init(name: state.setName.isEmpty ? SettingsContainer.untitledAdSet : state.setName)
                     adDelegate?.share(json: AdsStorableContainer(settings: settings, cards: state.adFormats).json(),
-                                      filename: state.setName.isEmpty ? "AdsSet" : state.setName)
+                                      filename: state.setName.isEmpty ? SettingsContainer.untitledAdSet : state.setName)
                     return .none
                     
                 case .importButtonTapped:
@@ -276,7 +278,7 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case .saveCards:
-                    let settings: SettingsContainer = .init(name: state.setName.isEmpty ? "AdsSet" : state.setName)
+                    let settings: SettingsContainer = .init(name: state.setName.isEmpty ? SettingsContainer.untitledAdSet : state.setName)
                     store(formats: state.adFormats, settings: settings)
                     return .none
                     
@@ -324,6 +326,9 @@ struct MainFeature: Reducer {
         }
         if state.settingsPriorToChange.enableFeedbacks != settings.enableFeedbacks {
             cardEvents.append(.enableFeedbacks(settings.enableFeedbacks))
+        }
+        if state.settingsPriorToChange.killWebviewMode != settings.killWebviewMode {
+            cardEvents.append(.updateKillMode(settings.killWebviewMode))
         }
         state.settingsPriorToChange = settings
         state

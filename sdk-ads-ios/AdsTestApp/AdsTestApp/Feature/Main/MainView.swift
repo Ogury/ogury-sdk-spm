@@ -416,19 +416,16 @@ struct ListManagersView: View {
                         .listRowBackground(Color.clear)
                     } header: {
                         VStack(alignment: .center) {
-                            Text("Beta version - for tests only")
-                                .padding(.vertical, 3)
-                                .padding(.horizontal, 12)
-                                .background(Color(AdColorPalette.State.failure.color.lighter(by: 75) ?? AdColorPalette.State.failure.color))
-                                .foregroundStyle(Color(AdColorPalette.State.failure.color))
-                                .clipShape(Capsule())
-                            
                             TextField("Set name",
                                       text: viewStore.$setName,
                                       prompt: Text("Name your ads set"))
                             .font(.adsLargeTitle)
+                            .foregroundStyle(
+                                Color(viewStore.setName != SettingsContainer.untitledAdSet
+                                      ? AdColorPalette.Text.primary(onAccent: false).color
+                                      : AdColorPalette.Text.placeholder.color)
+                            )
                         }
-                        .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
                         .padding(8)
                         .padding(.horizontal, -10)
                     }
@@ -538,16 +535,6 @@ struct AddSheetView: View {
                     .accentColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                     .font(.adsTitle2)
             })
-        }
-    }
-}
-
-extension View {
-    public func safeMenuControlGroupStyle() -> some View {
-        if #available(iOS 16.4, *) {
-            return self.controlGroupStyle(.menu)
-        } else {
-            return self.controlGroupStyle(.automatic)
         }
     }
 }

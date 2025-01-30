@@ -4,6 +4,7 @@
 
 import Foundation
 import UserDefault
+import AdsCardLibrary
 
 struct SettingsController {
     @UserDefault("enableAdUnitEditing")
@@ -20,6 +21,9 @@ struct SettingsController {
     
     @UserDefault("showDspFields")
     var showDspFields: Bool = false
+    
+    @UserDefault("killWebviewMode")
+    var killWebviewMode: KillWebviewMode = .none
     
     @UserDefault("bulkModeEnabled")
     var bulkModeEnabled: Bool = false
@@ -43,7 +47,7 @@ struct SettingsController {
     var usOptoutPartner: Bool = false
    
     @UserDefault("showLogsSheet")
-    var showLogsSheet: Bool = true
+    var showLogsSheet: Bool = false
    
     @UserDefault("importMethod")
     var importMethod: ImportMethod = SettingsController.qaMode ? .rawText : .file
@@ -55,4 +59,8 @@ struct SettingsController {
         return false
 #endif
     }()
+}
+
+extension KillWebviewMode: @retroactive DefaultsValueConvertible {
+    
 }

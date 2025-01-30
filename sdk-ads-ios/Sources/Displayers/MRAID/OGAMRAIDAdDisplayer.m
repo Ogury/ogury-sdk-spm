@@ -837,4 +837,9 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
     [self.delegate didUnLoadFrom:UnloadOriginTimeout];
 }
 
+- (WKWebView *)adWebview {
+    OGAMraidAdWebView *mainWebView = [self mraidViewForId:OGANameMainWebView];
+    return mainWebView.wkWebView;
+}
+
 @end

@@ -60,6 +60,43 @@ public struct AdView: View {
                         }
                         
                         Menu {
+                            if viewStore.baseOptions.killWebviewMode == .none {
+                                Button {
+                                    viewStore.send(.showQALabelTapped)
+                                } label: {
+                                    HStack {
+                                        Text("Focus in logs")
+                                        Spacer()
+                                        Image(systemName:"magnifyingglass")
+                                    }
+                                }
+                                .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_FocusLogsOnCardButton")
+                            } else {
+                                ControlGroup {
+                                    Button {
+                                        viewStore.send(.showQALabelTapped)
+                                    } label: {
+                                        HStack {
+                                            Text("Focus in logs")
+                                            Spacer()
+                                            Image(systemName:"magnifyingglass")
+                                        }
+                                    }
+                                    .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_FocusLogsOnCardButton")
+                                    
+                                    Button(role: viewStore.baseOptions.killWebviewMode == .simulate ? .cancel : .destructive) {
+                                        viewStore.send(.killWebview)
+                                    } label: {
+                                        HStack {
+                                            Text("Kill Webview\n(\(viewStore.baseOptions.killWebviewMode.displayName))")
+                                            Spacer()
+                                            Image(systemName: "network.slash")
+                                        }
+                                    }
+                                    .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_KillWebviewButton")
+                                }.safeMenuControlGroupStyle()
+                            }
+                            
                             Button {
                                 viewStore.send(.oguryTestModeButtonTapped)
                             } label: {
@@ -91,18 +128,6 @@ public struct AdView: View {
                             }
                             .disabled(!viewStore.showTestModeButton || !viewStore.isHeaderBidding)
                             .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_RTBTestModeButton")
-                            
-                            Button {
-                                viewStore.send(.showQALabelTapped)
-                            } label: {
-                                HStack {
-                                    Text("Focus LOGS on this card")
-                                    Spacer()
-                                    Image(systemName:"magnifyingglass")
-                                }
-                            }
-                            .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_FocusLogsOnCardButton")
-                            
                         } label: {
                             Image(systemName: "ellipsis.circle")
                                 .frame(width: 40, height: 40)
@@ -117,28 +142,25 @@ public struct AdView: View {
                         return Alert(title: Text(alertMessage))
                     }
                     
-                    // use of HStack + Spacer beacause tags were centered :-/ 
-                    HStack {
-                        AdTagList(tags: Array(viewStore.tags))
-                            .padding(.bottom, 4)
-                            .padding(.horizontal, 8)
-                            .frame(minHeight: 30)
-                        
-                        Spacer()
-                    }
-                    
                     Divider()
                         .frame(height: 1)
                         .background(Color(AdColorPalette.Background.separator.color))
                         .padding(0)
                         .ignoresSafeArea()
+                        .padding(.bottom, 4)
                     
                     Group {
                         VStack(spacing:4) {
-                            AdsTextField(viewStore.$baseOptions.adUnitId,
-                                         placeholder: "Ad Unit Id")
-                            .disabled(!viewStore.enableAdUnitEditing)
-                            .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_AdUnitField")
+                            ZStack(alignment: .topTrailing) {
+                                AdsTextField(viewStore.$baseOptions.adUnitId,
+                                             placeholder: "Ad Unit Id")
+                                .disabled(!viewStore.enableAdUnitEditing)
+                                .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_AdUnitField")
+                                
+                                Spacer()
+                                
+                                AdTagList(tags: Array(viewStore.tags), size: .small)
+                            }
                             
                            HStack(alignment: .bottom, spacing: 8) {
                                 if viewStore.baseOptions.showCampaignId {
@@ -188,7 +210,7 @@ public struct AdView: View {
                             }
                         }
                     }
-                    .padding(EdgeInsets(top: 16, leading: 12, bottom: 0, trailing: 12))
+                    .padding(EdgeInsets(top: 4, leading: 12, bottom: 8, trailing: 12))
                     
                     if viewStore.specificOptions as? BannerAdManagerOptions != nil {
                         BannerPlaceholderView(store:
@@ -237,12 +259,22 @@ public struct AdView: View {
                     case let .showTestMode(value): ViewStore(store, observe: { $0 }).send(.showTestModeButton(value))
                     case let .forceTestMode(enable): ViewStore(store, observe: { $0 }).send(.forceTestMode(enable))
                     case let .enableFeedbacks(enable): ViewStore(store, observe: { $0 }).send(.enableFeedbacks(enable))
+                    case let .updateKillMode(mode): ViewStore(store, observe: { $0 }).send(.updateKillMode(mode))
                 }
             }
         }
     }
 }
 
+extension View {
+    public func safeMenuControlGroupStyle() -> some View {
+        if #available(iOS 16.4, *) {
+            return self.controlGroupStyle(.menu)
+        } else {
+            return self.controlGroupStyle(.automatic)
+        }
+    }
+}
 
 //struct InterstitialView_Previews: PreviewProvider {
 //    static var previews: some View {

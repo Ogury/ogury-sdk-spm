@@ -218,7 +218,6 @@
 		43BCB0BB2C22DD45002FB0B1 /* HeaderBiddingSeatBid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FB2B4D6075007C8D21 /* HeaderBiddingSeatBid.swift */; };
 		43BCB0BD2C22DD45002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; };
 		43BCB0BE2C22DD45002FB0B1 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB09A2C22DD45002FB0B1 /* SwiftMessages */; };
-		43BCB0BF2C22DD45002FB0B1 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB0962C22DD45002FB0B1 /* GoogleMobileAds */; };
 		43BCB0C02C22DD45002FB0B1 /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB0982C22DD45002FB0B1 /* UserDefault */; };
 		43BCB0C12C22DD45002FB0B1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB0942C22DD45002FB0B1 /* SnapKit */; };
 		43BCB0C62C22DD45002FB0B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
@@ -258,7 +257,6 @@
 		43BCB0FD2C22DD59002FB0B1 /* AdSdkLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED42A2AA5D0E100486AF2 /* AdSdkLauncher.swift */; };
 		43BCB0FE2C22DD59002FB0B1 /* HeaderBiddingSeatBid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FB2B4D6075007C8D21 /* HeaderBiddingSeatBid.swift */; };
 		43BCB1002C22DD59002FB0B1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB0D72C22DD59002FB0B1 /* SnapKit */; };
-		43BCB1012C22DD59002FB0B1 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB0D92C22DD59002FB0B1 /* GoogleMobileAds */; };
 		43BCB1022C22DD59002FB0B1 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB0DD2C22DD59002FB0B1 /* SwiftMessages */; };
 		43BCB1032C22DD59002FB0B1 /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB0DB2C22DD59002FB0B1 /* UserDefault */; };
 		43BCB1042C22DD59002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; };
@@ -299,7 +297,6 @@
 		43BCB1402C22DD60002FB0B1 /* AdSdkLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED42A2AA5D0E100486AF2 /* AdSdkLauncher.swift */; };
 		43BCB1412C22DD60002FB0B1 /* HeaderBiddingSeatBid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FB2B4D6075007C8D21 /* HeaderBiddingSeatBid.swift */; };
 		43BCB1432C22DD60002FB0B1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB11A2C22DD60002FB0B1 /* SnapKit */; };
-		43BCB1442C22DD60002FB0B1 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB11C2C22DD60002FB0B1 /* GoogleMobileAds */; };
 		43BCB1452C22DD60002FB0B1 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB1202C22DD60002FB0B1 /* SwiftMessages */; };
 		43BCB1462C22DD60002FB0B1 /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB11E2C22DD60002FB0B1 /* UserDefault */; };
 		43BCB1472C22DD60002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; };
@@ -330,10 +327,13 @@
 		43D0E6212C61060700AF9CF6 /* config-art.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 43D0E61F2C61060700AF9CF6 /* config-art.debug.xcconfig */; };
 		43D0E6222C61060F00AF9CF6 /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C00D2BC7D6CA00F40F5F /* config.release.xcconfig */; };
 		43D0E6232C61060F00AF9CF6 /* config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 434F85042ACFE6E2005077F5 /* config.debug.xcconfig */; };
-		43F181632CEC92A600DE6507 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B42B4E882F0022157E /* AdsCardLibrary.framework */; };
-		43F181642CEC92A600DE6507 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B42B4E882F0022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		43F788AF2B4E88250022157E /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
-		43F788B02B4E88250022157E /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43F66E3C2D394D79000AED12 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB0962C22DD45002FB0B1 /* GoogleMobileAds */; };
+		43F66E3D2D394D79000AED12 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB0D92C22DD59002FB0B1 /* GoogleMobileAds */; };
+		43F66E3E2D394D79000AED12 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB11C2C22DD60002FB0B1 /* GoogleMobileAds */; };
+		43F66E432D3FABCF000AED12 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B42B4E882F0022157E /* AdsCardLibrary.framework */; };
+		43F66E442D3FABCF000AED12 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B42B4E882F0022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43F66E452D3FABE7000AED12 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
+		43F66E462D3FABE7000AED12 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43F788B22B4E882B0022157E /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B12B4E882B0022157E /* AdsCardLibrary.framework */; };
 		43F788B32B4E882B0022157E /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B12B4E882B0022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43FC85612B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
@@ -363,7 +363,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				1E0E81652ACD8DFB00EFD70C /* OMSDK_Ogury.xcframework in Embed Frameworks */,
-				43F788B02B4E88250022157E /* AdsCardLibrary.framework in Embed Frameworks */,
+				43F66E462D3FABE7000AED12 /* AdsCardLibrary.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,7 +387,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				43B713712B457035007C8D21 /* OMSDK_Ogury.xcframework in Embed Frameworks */,
-				43F181642CEC92A600DE6507 /* AdsCardLibrary.framework in Embed Frameworks */,
+				43F66E442D3FABCF000AED12 /* AdsCardLibrary.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -569,7 +569,7 @@
 			files = (
 				1E5BE6252B21CCE50010B995 /* SnapKit in Frameworks */,
 				43C1D1592B7E5684006F2D23 /* SwiftMessages in Frameworks */,
-				43F181632CEC92A600DE6507 /* AdsCardLibrary.framework in Frameworks */,
+				43F66E432D3FABCF000AED12 /* AdsCardLibrary.framework in Frameworks */,
 				43AE85E12B5018BF0010C812 /* UserDefault in Frameworks */,
 				43B713702B457035007C8D21 /* OMSDK_Ogury.xcframework in Frameworks */,
 				1E6D20C22C6A6DF800DF24AB /* OguryCore.framework in Frameworks */,
@@ -582,10 +582,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E0E81642ACD8DFB00EFD70C /* OMSDK_Ogury.xcframework in Frameworks */,
+				43F66E452D3FABE7000AED12 /* AdsCardLibrary.framework in Frameworks */,
 				43C1D1552B7E566C006F2D23 /* SwiftMessages in Frameworks */,
 				43AE85DD2B5018A20010C812 /* UserDefault in Frameworks */,
 				1E5BE62D2B21CD0E0010B995 /* SnapKit in Frameworks */,
-				43F788AF2B4E88250022157E /* AdsCardLibrary.framework in Frameworks */,
 				2419B11388DFA06C12DD3144 /* Pods_AdsTestApp_Devc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -594,9 +594,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43F66E3C2D394D79000AED12 /* GoogleMobileAds in Frameworks */,
 				43BCB0BD2C22DD45002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43BCB0BE2C22DD45002FB0B1 /* SwiftMessages in Frameworks */,
-				43BCB0BF2C22DD45002FB0B1 /* GoogleMobileAds in Frameworks */,
 				43BCB1942C23254D002FB0B1 /* AdsCardLibrary.framework in Frameworks */,
 				43BCB0C02C22DD45002FB0B1 /* UserDefault in Frameworks */,
 				43BCB0C12C22DD45002FB0B1 /* SnapKit in Frameworks */,
@@ -608,8 +608,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43F66E3D2D394D79000AED12 /* GoogleMobileAds in Frameworks */,
 				43BCB1002C22DD59002FB0B1 /* SnapKit in Frameworks */,
-				43BCB1012C22DD59002FB0B1 /* GoogleMobileAds in Frameworks */,
 				43BCB1022C22DD59002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB1972C23255C002FB0B1 /* AdsCardLibrary.framework in Frameworks */,
 				43BCB1032C22DD59002FB0B1 /* UserDefault in Frameworks */,
@@ -622,8 +622,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43F66E3E2D394D79000AED12 /* GoogleMobileAds in Frameworks */,
 				43BCB1432C22DD60002FB0B1 /* SnapKit in Frameworks */,
-				43BCB1442C22DD60002FB0B1 /* GoogleMobileAds in Frameworks */,
 				43BCB1452C22DD60002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB19A2C232565002FB0B1 /* AdsCardLibrary.framework in Frameworks */,
 				43BCB1462C22DD60002FB0B1 /* UserDefault in Frameworks */,

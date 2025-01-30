@@ -96,4 +96,18 @@
     return self.internalAPI.adConfiguration;
 }
 
+- (void)simulateWebviewTerminated {
+#if defined(DEBUG) || defined(KILL_MODE_ENABLED)
+    [self.internalAPI simulateWebviewTerminated];
+#endif
+}
+
+- (WKWebView *)adWebview {
+#if defined(DEBUG) || defined(KILL_MODE_ENABLED)
+    return [self.internalAPI adWebview];
+#else
+    return nil;
+#endif
+}
+
 @end

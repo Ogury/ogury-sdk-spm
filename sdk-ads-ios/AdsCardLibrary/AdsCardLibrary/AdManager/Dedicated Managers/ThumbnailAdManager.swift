@@ -210,6 +210,19 @@ public final class ThumbnailAdManager: AdManager {
     public func updateCard(events: [AdOptionsEvent]) {
         adView.updateCard(events: events)
     }
+    
+    public func killWebview(_ killMode: KillWebviewMode) {
+        guard let ad else { return }
+        switch killMode {
+            case .none: ()
+            case .simulate:
+                ad.simulateWebviewTerminated()
+                
+            case .saturate:
+                guard let webView = ad.adWebview() else { return }
+                kill(webView)
+        }
+    }
 }
 
 // We have to use a proxy object because otherwise, we would have to make InterstitialAdManager a final class that inherits from NSObject

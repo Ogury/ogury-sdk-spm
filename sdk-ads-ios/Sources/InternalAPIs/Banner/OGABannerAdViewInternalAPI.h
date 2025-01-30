@@ -3,7 +3,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <WebKit/WebKit.h>
 #import "OGAAdInternalAPI.h"
 #import "OGADelegateDispatcher.h"
 #import "OguryBannerAdSize.h"
@@ -59,6 +59,8 @@ extern NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationNa
 
 - (void)setLogOrigin:(NSString *)origin;
 - (OGAAdConfiguration *)adConfiguration;
+- (void)simulateWebviewTerminated;
+- (WKWebView *)adWebview;
 
 @end
 

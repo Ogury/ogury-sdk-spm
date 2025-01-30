@@ -27,6 +27,7 @@ struct AppSettingsFeature: Reducer {
             lhs.usOptoutPartner == rhs.usOptoutPartner &&
             lhs.enableFeedbacks == rhs.enableFeedbacks &&
             lhs.importMethod == rhs.importMethod &&
+            lhs.killWebviewMode == rhs.killWebviewMode &&
             lhs.numberOfSDKStart == rhs.numberOfSDKStart
         }
         
@@ -38,6 +39,8 @@ struct AppSettingsFeature: Reducer {
         var showDspFields: Bool { settings.showDspFields }
         var bulkModeEnabled: Bool { settings.bulkModeEnabled }
         var importMethod: ImportMethod { settings.importMethod }
+        var killWebviewMode: KillWebviewMode { settings.killWebviewMode }
+        var cachedKillWebviewMode: KillWebviewMode?
         var startSDKWithApplication: Bool { settings.startSDKWithApplication }
         var numberOfSDKStart: Int {
             get {
@@ -100,6 +103,8 @@ struct AppSettingsFeature: Reducer {
         case incrementSDKStart
         case decrementSDKStart
         case updateImportMethod(_: ImportMethod)
+        case toggleKillWebviewMode
+        case updateKillWebviewMode(_: KillWebviewMode)
     }
     
     var body: some ReducerOf<Self> {
@@ -198,6 +203,19 @@ struct AppSettingsFeature: Reducer {
                     return .none
                     
                 case .logOptions:
+                    return .none
+                    
+                case .toggleKillWebviewMode:
+                    if case .none = state.killWebviewMode {
+                        state.settings.killWebviewMode = state.cachedKillWebviewMode ?? .simulate
+                    } else {
+                        state.settings.killWebviewMode = .none
+                    }
+                    return .none
+                    
+                case let .updateKillWebviewMode(mode):
+                    state.settings.killWebviewMode = mode
+                    state.cachedKillWebviewMode = mode
                     return .none
             }
         }

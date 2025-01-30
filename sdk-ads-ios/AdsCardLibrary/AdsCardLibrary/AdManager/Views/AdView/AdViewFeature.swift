@@ -26,6 +26,46 @@ public enum DspRegion : CaseIterable, Codable {
     }
 }
 
+public enum KillWebviewMode: CaseIterable, Codable {
+    case none, simulate, saturate
+    
+    public static var allCases: [KillWebviewMode] {
+#if targetEnvironment(simulator)
+        return [.none, .simulate]
+#else
+        return [.none, .simulate, .saturate]
+#endif
+    }
+    
+    public var displayName: String {
+        switch self {
+            case .none: return "Don't display feature"
+            case .simulate: return "Simulate"
+            case .saturate: return "Crash"
+        }
+    }
+    public var description: String? {
+        switch self {
+            case .none: return nil
+            case .simulate: return "Simulate a memory pressure by calling the SDK delegate method that handles webview kill"
+            case .saturate: return "Saturate the device's memory to try to trigger a webview crash. This will heat your device as memory will saturate, use with caution"
+        }
+    }
+    public var displayColor: Color {
+        switch self {
+            case .none: return Color(AdColorPalette.Text.primary(onAccent: false).color)
+            case .simulate: return Color(AdColorPalette.Text.primary(onAccent: false).color)
+            case .saturate: return Color(AdColorPalette.State.failure.color)
+        }
+    }
+    public var icon: Image? {
+        if case .saturate = self {
+            return Image(systemName: "bolt.trianglebadge.exclamationmark.fill")
+        }
+        return nil
+    }
+}
+
 struct BaseOptions: Equatable {
     var adDisplayName: String = ""
     var adUnitId: String = ""
@@ -42,6 +82,7 @@ struct BaseOptions: Equatable {
     var oguryTestModeEnabled: Bool = false
     var rtbTestModeEnabled: Bool = false
     var qaLabel: String = UUID().uuidString
+    var killWebviewMode: KillWebviewMode = .none
     
     init(from options: any AdOptions) {
         showCampaignId = options.showCampaignId
@@ -59,6 +100,7 @@ struct BaseOptions: Equatable {
         oguryTestModeEnabled = options.baseOptions.oguryTestModeEnabled
         rtbTestModeEnabled = options.baseOptions.rtbTestModeEnabled
         qaLabel = options.baseOptions.qaLabel
+        killWebviewMode = options.baseOptions.killWebviewMode
     }
 }
 
@@ -287,6 +329,8 @@ struct AdViewFeature: Reducer {
         case forceTestMode(_: Bool)
         case enableFeedbacks(_: Bool)
         case showQALabelTapped
+        case killWebview
+        case updateKillMode(_: KillWebviewMode)
         
         enum Alert {
             case confirmDelete
@@ -296,7 +340,6 @@ struct AdViewFeature: Reducer {
     enum AdCancel: Hashable {
         case load(_: UUID), show(_: UUID)
     }
-    
     
     func load(state: State) -> Effect<AdViewFeature.Action> {
         .merge(
@@ -357,11 +400,11 @@ struct AdViewFeature: Reducer {
                                                 adUnitId: options.adUnitId,
                                                 campaignId: options.campaignId,
                                                 creativeId: options.creativeId,
-                                                adMarkUp: "",
                                                 isSelected: options.isSelected,
                                                 bulkModeEnabled: options.bulkModeEnabled,
                                                 oguryTestModeEnabled:options.oguryTestModeEnabled,
                                                 rtbTestModeEnabled:options.rtbTestModeEnabled,
+                                                killWebviewMode: options.killWebviewMode,
                                                 qaLabel:options.qaLabel))
     }
     
@@ -606,6 +649,14 @@ struct AdViewFeature: Reducer {
                     
                 case .showQALabelTapped:
                     adManager.adDelegate?.focusLogs(on: state.baseOptions.qaLabel)
+                    return .none
+                    
+                case .killWebview:
+                    adManager.killWebview(state.baseOptions.killWebviewMode)
+                    return .none
+                    
+                case let .updateKillMode(mode):
+                    state.baseOptions.killWebviewMode = mode
                     return .none
             }
         }
