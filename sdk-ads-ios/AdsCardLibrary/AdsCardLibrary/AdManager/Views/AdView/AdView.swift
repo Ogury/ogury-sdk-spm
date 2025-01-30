@@ -8,6 +8,7 @@ import ComposableArchitecture
 public struct AdView: View {
     let store: StoreOf<AdViewFeature>
     @State private var showErrorAlert = false
+    @Environment(\.deleteButtonDisplayed) var displayDeleteButton
     
     public var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
@@ -273,6 +274,17 @@ extension View {
         } else {
             return self.controlGroupStyle(.automatic)
         }
+    }
+}
+
+public struct DeleteButtonDisplayKey: EnvironmentKey {
+    public static var defaultValue: Bool = true
+}
+
+public extension EnvironmentValues {
+    var deleteButtonDisplayed: Bool {
+        get { self[DeleteButtonDisplayKey.self] }
+        set { self[DeleteButtonDisplayKey.self] = newValue }
     }
 }
 

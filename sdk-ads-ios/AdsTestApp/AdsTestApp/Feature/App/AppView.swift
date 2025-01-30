@@ -10,6 +10,7 @@ import AdsCardLibrary
 struct AppView: View {
     let store: StoreOf<AppFeature>
     @State private var toolbarVisible = false
+    private var displayDeleteButton: Bool { SettingsController().appPermissions.add }
     
     var body: some View {
         if #available(iOS 16, *) {
@@ -22,6 +23,7 @@ struct AppView: View {
                         action: { .main($0) }
                     ), logsStore:  self.store.scope(state: \.logs, action: AppFeature.Action.logs)
                 )
+                .environment(\.deleteButtonDisplayed, displayDeleteButton)
                 .toolbar {
                     ToolbarItemGroup(placement: .keyboard) {
                         if toolbarVisible {

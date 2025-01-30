@@ -1,1 +1,47 @@
-
+{
+  "cards" : [[
+      {
+        "name" : "Card #1",
+        "adInformations" : {
+          "creativeId" : "",
+          "adUnitId" : "51cde178-2be1-42f7-9517-8023e9feb5d9",
+          "campaignId" : "150175",
+          "settings" : {
+            "rtbTestModeEnabled" : false,
+            "qaLabel" : "C8E2F7FC-446E-426D-A1CC-33A2D00BAD04",
+            "oguryTestModeEnabled" : false
+          }
+        },
+        "adType" : 0
+      }
+    ]],
+  "settings" : {
+    "name" : "Untitled Ad Set",
+    "importMethod" : "file",
+    "showCampaignId" : true,
+    "showSpecificOptions" : false,
+    "bulkModeEnabled" : false,
+    "killWebviewMode" : "none",
+    "showTestMode" : true,
+    "showCreativeId" : false,
+    "enableAdUnitEditing" : true,
+    "os" : "iOS",
+    "startSDKWithApplication" : true,
+    "showDspFields" : false,
+    "logSettings" : {
+      "allowedTypes" : [
+        "Callbacks",
+        "Monitoring"
+      ],
+      "allowedDisplay" : 19
+    },
+    "numberOfSdkStart" : 3,
+    "permissions" :  {
+        "settings" : true,
+        "logs" : true,
+        "add" : false,
+        "export" : true,
+        "bulkMode" : true
+    }
+  }
+}

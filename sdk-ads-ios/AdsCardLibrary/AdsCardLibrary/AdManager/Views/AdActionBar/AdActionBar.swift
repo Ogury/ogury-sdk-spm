@@ -7,6 +7,7 @@ import ComposableArchitecture
 
 struct AdActionBar: View {
     @Environment(\.isEnabled) private var isEnabled
+    @Environment(\.deleteButtonDisplayed) var displayDeleteButton
     let store: StoreOf<AdActionBarFeature>
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
@@ -33,23 +34,30 @@ struct AdActionBar: View {
                 
                 Divider()
                     .frame(width: 0.35, height: 35)
-                    .overlay(Color(AdColorPalette.Background.separator.color))
+                    .overlay(Color(
+                        displayDeleteButton
+                        ? AdColorPalette.Background.separator.color
+                        : .clear
+                    ))
                     .padding(.vertical)
                 
-                Spacer()
                 
-                Button {
-                    viewStore.send(.deleteButtonTapped)
-                } label: {
-                    Image(systemName: "trash")
-                        .tint(Color(AdColorPalette.State.failure.color))
+                if displayDeleteButton {
+                    Spacer()
+                    
+                    Button {
+                        viewStore.send(.deleteButtonTapped)
+                    } label: {
+                        Image(systemName: "trash")
+                            .tint(Color(AdColorPalette.State.failure.color))
+                    }
+                    .accessibilityLabel("Card#\(viewStore.qaLabel)_DeleteButton")
+                    .padding(4)
+                    .buttonStyle(AdsDefaultButton(color: AdColorPalette.State.failure.color))
+                    .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: true).color))
+                    .clipShape(RoundedRectangle(cornerRadius: 4))
+                    .buttonStyle(BorderlessButtonStyle())
                 }
-                .accessibilityLabel("Card#\(viewStore.qaLabel)_DeleteButton")
-                .padding(4)
-                .buttonStyle(AdsDefaultButton(color: AdColorPalette.State.failure.color))
-                .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: true).color))
-                .clipShape(RoundedRectangle(cornerRadius: 4))
-                .buttonStyle(BorderlessButtonStyle())
             }
             .background(Color(AdColorPalette.Background.primary.color))
         }
