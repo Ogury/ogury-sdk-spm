@@ -42,10 +42,12 @@ platform :ios do
       end
 
       if targetThreshold == "ads" 
+        killModeEnabled = options[:killModeEnabled] ? options[:killModeEnabled] : false
         build_ads_framework(
           configuration: configuration,
           sdk: sdk,
-          artifactory: artifactory
+          artifactory: artifactory,
+          killModeEnabled: killModeEnabled
           )
 
         if !artifactory
