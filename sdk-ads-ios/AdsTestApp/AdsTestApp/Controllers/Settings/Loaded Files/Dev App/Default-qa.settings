@@ -2,7 +2,7 @@
   "cards" : [],
   "settings" : {
     "name" : "Untitled Ad Set",
-    "importMethod" : "file",
+    "importMethod" : "rawText",
     "bulkModeEnabled" : false,
     "showCampaignId" : true,
     "showSpecificOptions" : false,
