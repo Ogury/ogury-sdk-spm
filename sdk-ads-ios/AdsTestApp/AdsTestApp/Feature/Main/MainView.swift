@@ -12,7 +12,7 @@ struct MainView: View {
     let logsStore: StoreOf<LogsFeature>
     let appPermissions: AppPermissions = SettingsController().appPermissions
     @State private var logsHeight: CGFloat = 150
-    @Environment(\.deleteButtonDisplayed) var displayDeleteButton
+    @Environment(\.cardPermissions) var cardPermissions
    
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
@@ -280,7 +280,7 @@ struct LegacyHorizontalCardsView: View {
     let managers: [any AdManager]
     let geometry: GeometryProxy
     @State private var contentSize: CGSize = .zero
-    @Environment(\.deleteButtonDisplayed) var displayDeleteButton
+    @Environment(\.cardPermissions) var cardPermissions
     
     var body: some View {
         HStack(alignment: .center, spacing: 4) {
@@ -336,7 +336,7 @@ struct HorizontalCardsView: View {
     // we block the navigation for all banner managers since we have issues with adViews and superviews
     var disabled: Bool { managers.first as? BannerAdManager != nil }
     @State private var contentSize: CGSize = .zero
-    @Environment(\.deleteButtonDisplayed) var displayDeleteButton
+    @Environment(\.cardPermissions) var cardPermissions
     
     var body: some View {
         VStack(spacing: 0) {
@@ -405,7 +405,7 @@ struct HorizontalCardsView: View {
 
 struct ListManagersView: View {
     let store: StoreOf<MainFeature>
-    @Environment(\.deleteButtonDisplayed) var displayDeleteButton
+    @Environment(\.cardPermissions) var cardPermissions
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in

@@ -30,9 +30,10 @@ struct AppPermissions: Codable, DefaultsValueConvertible {
     let add: Bool
     let export: Bool
     let bulkMode: Bool
+    let devFeatures: Bool
     static let userDefaultKey = "AppPermissions"
     
-    enum CodingKeys: String, CodingKey { case settings, logs, add, export, bulkMode }
+    enum CodingKeys: String, CodingKey { case settings, logs, add, export, bulkMode, devFeatures }
     init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         settings = try container.decodeIfPresent(Bool.self, forKey: .settings) ?? true
@@ -40,6 +41,7 @@ struct AppPermissions: Codable, DefaultsValueConvertible {
         add = try container.decodeIfPresent(Bool.self, forKey: .add) ?? true
         export = try container.decodeIfPresent(Bool.self, forKey: .export) ?? true
         bulkMode = try container.decodeIfPresent(Bool.self, forKey: .bulkMode) ?? true
+        devFeatures = try container.decodeIfPresent(Bool.self, forKey: .devFeatures) ?? true
     }
     
     init() {
@@ -48,6 +50,7 @@ struct AppPermissions: Codable, DefaultsValueConvertible {
         add = true
         export = true
         bulkMode = true
+        devFeatures = true
     }
 }
 

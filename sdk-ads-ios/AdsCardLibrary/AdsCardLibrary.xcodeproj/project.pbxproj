@@ -61,6 +61,8 @@
 		43A78A6E2A52ABF30004A613 /* AdManagerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */; };
 		43A9F4A52C37E7800085EF6F /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A9F4A42C37E7800085EF6F /* OguryCore.framework */; };
 		43AE68042AAB25B1002E7C46 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED4392AA8565800486AF2 /* OguryAds.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		43B8357C2D4CC2E100797245 /* CardPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B8357B2D4CC2E100797245 /* CardPermissions.swift */; };
+		43B8357D2D4CC2E100797245 /* CardPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B8357B2D4CC2E100797245 /* CardPermissions.swift */; };
 		43BCB1612C22FBF0002FB0B1 /* AdsCardLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 435C55E22A42EAEF004186FF /* AdsCardLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43BCB1632C22FBF0002FB0B1 /* AdColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3BF2AA0C2BA00486AF2 /* AdColorPalette.swift */; };
 		43BCB1642C22FBF0002FB0B1 /* AdDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B32AA0C2B900486AF2 /* AdDelegateProxy.swift */; };
@@ -190,6 +192,7 @@
 		438ED4392AA8565800486AF2 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManagerOptionsTests.swift; sourceTree = "<group>"; };
 		43A9F4A42C37E7800085EF6F /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43B8357B2D4CC2E100797245 /* CardPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPermissions.swift; sourceTree = "<group>"; };
 		43BCB1912C22FBF0002FB0B1 /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43DA12792AB888D300766D99 /* BannerPlaceholderFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerPlaceholderFeature.swift; sourceTree = "<group>"; };
 		43DA127A2AB888D300766D99 /* AdBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdBannerView.swift; sourceTree = "<group>"; };
@@ -444,6 +447,7 @@
 			children = (
 				438ED3C42AA0C2BA00486AF2 /* AdView.swift */,
 				438ED3C52AA0C2BA00486AF2 /* AdViewFeature.swift */,
+				43B8357B2D4CC2E100797245 /* CardPermissions.swift */,
 				431F6F072C0F403400DBFFAA /* AdTag */,
 			);
 			path = AdView;
@@ -723,6 +727,7 @@
 				431F6F062C0F3D8100DBFFAA /* AdTagView.swift in Sources */,
 				43DA127D2AB888D300766D99 /* AdBannerView.swift in Sources */,
 				43DA127E2AB888D300766D99 /* BannerPlaceholderView.swift in Sources */,
+				43B8357C2D4CC2E100797245 /* CardPermissions.swift in Sources */,
 				438ED3CE2AA0C2BA00486AF2 /* AdManager.swift in Sources */,
 				438ED3CC2AA0C2BA00486AF2 /* AdManagerDelegate.swift in Sources */,
 				50CFA85F2C63776200E64D20 /* UnityLevelPlayBidable.swift in Sources */,
@@ -780,6 +785,7 @@
 				43BCB1782C22FBF0002FB0B1 /* AdTagView.swift in Sources */,
 				43BCB1792C22FBF0002FB0B1 /* AdBannerView.swift in Sources */,
 				43BCB17A2C22FBF0002FB0B1 /* BannerPlaceholderView.swift in Sources */,
+				43B8357D2D4CC2E100797245 /* CardPermissions.swift in Sources */,
 				43BCB17B2C22FBF0002FB0B1 /* AdManager.swift in Sources */,
 				43BCB17C2C22FBF0002FB0B1 /* AdManagerDelegate.swift in Sources */,
 				50CFA8602C63776200E64D20 /* UnityLevelPlayBidable.swift in Sources */,

@@ -26,7 +26,8 @@
         "logs" : true,
         "add" : true,
         "export" : true,
-        "bulkMode" : true
+        "bulkMode" : true,
+        "devFeatures" : true
     }
   }
 }

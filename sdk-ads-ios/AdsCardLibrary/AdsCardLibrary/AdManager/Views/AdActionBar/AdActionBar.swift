@@ -7,7 +7,7 @@ import ComposableArchitecture
 
 struct AdActionBar: View {
     @Environment(\.isEnabled) private var isEnabled
-    @Environment(\.deleteButtonDisplayed) var displayDeleteButton
+    @Environment(\.cardPermissions) var cardPermissions
     let store: StoreOf<AdActionBarFeature>
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
@@ -35,14 +35,14 @@ struct AdActionBar: View {
                 Divider()
                     .frame(width: 0.35, height: 35)
                     .overlay(Color(
-                        displayDeleteButton
+                        cardPermissions.add
                         ? AdColorPalette.Background.separator.color
                         : .clear
                     ))
                     .padding(.vertical)
                 
                 
-                if displayDeleteButton {
+                if cardPermissions.add {
                     Spacer()
                     
                     Button {
