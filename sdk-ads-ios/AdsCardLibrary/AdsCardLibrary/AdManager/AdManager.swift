@@ -6,6 +6,7 @@ import Foundation
 import SwiftUI
 import Combine
 import OguryAds
+import WebKit
 
 /// All objects that should have an ad manager basic bahavior should implement this protocol
 public protocol AdManager: Storable, Equatable, Identifiable where ID == UUID {
@@ -43,7 +44,23 @@ public protocol AdManager: Storable, Equatable, Identifiable where ID == UUID {
     // updates the card from the event
     func updateCard(events: [AdOptionsEvent])
     // simulate a memory pressure by calling webViewTerminated
-    func killWebview()
+    func killWebview(_: KillWebviewMode)
+}
+
+extension AdManager {
+    func kill(_ webView: WKWebView) {
+        DispatchQueue.main.async {
+            Task {
+                let crashCommand = "let largeArray = Array(1e9).fill(0);"
+                do {
+                    let res = try await webView.evaluateJavaScript(crashCommand)
+                    print("crash result \(String(describing: res))")
+                } catch {
+                    print("⚠️ Error while trying to crash webview \(error)")
+                }
+            }
+        }
+    }
 }
 
 public enum AdOptionsEvent {

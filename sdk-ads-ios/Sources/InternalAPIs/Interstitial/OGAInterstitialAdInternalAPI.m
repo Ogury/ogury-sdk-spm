@@ -3,7 +3,7 @@
 //
 
 #import "OGAInterstitialAdInternalAPI.h"
-
+#import <WebKit/WebKit.h>
 #import "NSDictionary+OGABase64.h"
 #import "NSString+OGAUtility.h"
 #import "OGAAdConfiguration.h"
@@ -187,8 +187,12 @@
     return self.configuration;
 }
 
-- (void)killWebview {
-    [self.sequence.coordinator killWebviews];
+- (void)simulateWebviewTerminated {
+    [self.sequence.coordinator simulateWebviewTerminated];
+}
+
+- (WKWebView *)adWebview {
+    return [self.sequence.coordinator adWebview];
 }
 
 @end

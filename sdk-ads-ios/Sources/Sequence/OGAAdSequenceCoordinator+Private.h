@@ -10,9 +10,11 @@
 #define OGAAdSequenceCoordinator_Private_h
 
 #import "OGAAdSequenceCoordinator.h"
+#import <WebKit/WebKit.h>
 
 @interface OGAAdSequenceCoordinator (Private)
-- (void)killWebviews;
+- (void)simulateWebviewTerminated;
+- (WKWebView *)adWebview;
 @end
 
 #endif /* OGAAdSequenceCoordinator_Private_h */
