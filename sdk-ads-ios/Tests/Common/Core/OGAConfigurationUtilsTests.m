@@ -16,7 +16,7 @@ NSString *const OGAOGAConfigurationUtilsSDKType = @"ads";
 NSString *const OGAOGAConfigurationUtilsDeviceOS = @"ios";
 
 - (void)testFrameworkType {
-    NSUInteger frameworkType = [OGAConfigurationUtils getFrameworkType];
+    NSUInteger frameworkType = [OGAConfigurationUtils frameworkType];
     XCTAssertEqual(frameworkType, OGASDKTypeNative);
 }
 

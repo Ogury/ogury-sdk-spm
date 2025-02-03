@@ -12,7 +12,8 @@ typedef enum : NSUInteger {
     OGCSDKTypeCordova,
     OGCSDKTypeXamarin,
     OGCSDKTypeAdobeAir,
-    OGCSDKEnumCount
+    OGCSDKTypeFlutter,
+    OGCSDKTypeReactNat
 } OGCSDKType;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -25,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)getAdIdentifier;
 - (NSString *)getVendorIdentifier;
 - (NSString *)getInstanceToken;
-- (OGCSDKType)getFrameworkType;
+- (OGCSDKType)frameworkType;
 - (BOOL)isAdOptin;
 - (NSString * _Nullable) gppConsentString;
 - (NSString * _Nullable) gppSID;
