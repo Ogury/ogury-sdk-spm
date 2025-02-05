@@ -19,7 +19,10 @@ public class TestAppLogger: NSObject, OguryLogger {
     public var logFormatter: OguryLogFormatter = TestAppLogFormatter()
     
     public func logMessage(_ message: OguryLogMessage) {
-        guard let attr = logFormatter.formatAttributedLogMessage(message) else { return }
+        guard allowedLogTypes.contains(message.logType as OguryLogType),
+        let attr = logFormatter.formatAttributedLogMessage(message) else {
+            return
+        }
         logs.send(attr)
     }
 }

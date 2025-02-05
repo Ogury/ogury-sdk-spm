@@ -15,24 +15,15 @@ class AdDelegateProxy<T: AdManager>: NSObject {
     
     internal func handle(_ error: Error, for ad: T.Ad) {
         guard let adManager else { return }
-        guard let error = error as? OguryError else {
+        guard let error = error as? OguryAdError else {
             adManager.append(.adDidFail(error))
             return
         }
         
-        switch error.code {
-            case OguryShowErrorCode.invalidConfiguration.rawValue,
-                OguryShowErrorCode.noAdLoaded.rawValue,
-                OguryLoadErrorCode.invalidConfiguration.rawValue:
-                adManager.append(.adDidFailToLoad(error))
-                
-            case OguryShowErrorCode.adExpired.rawValue,
-                OguryShowErrorCode.anotherAdAlreadyDisplayed.rawValue,
-                OguryShowErrorCode.viewControllerPreventsAdFromBeingDisplayed.rawValue:
-                adManager.append(.adDidFailToDisplay(error))
-                
-            default:
-                adManager.append(.adDidFail(error))
+        switch error.type {
+            case .load: adManager.append(.adDidFailToLoad(error))
+            case .show: adManager.append(.adDidFailToDisplay(error))
+            @unknown default: adManager.append(.adDidFail(error))
         }
     }
 }

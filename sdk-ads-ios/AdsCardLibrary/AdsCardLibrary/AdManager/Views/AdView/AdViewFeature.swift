@@ -109,7 +109,10 @@ struct BannerContainer: Equatable {
     var bannerType: AdType<BannerAdManager>
 }
 
-public let testApp: OguryLogType = .init("TestApp")
+public extension OguryLogType {
+    static let testApp: OguryLogType = .init("TestApp")
+    static let receivedCallbacks: OguryLogType = .init("ReceivedCallbacks")
+}
 
 struct AdViewFeature: Reducer {
     var adManager: any AdManager
@@ -275,14 +278,33 @@ struct AdViewFeature: Reducer {
             }
         }
         
-        func log(_ message: String) {
+        func log(_ message: String, logType: OguryLogType = .testApp) {
             AdsCardManager.logger?.logMessage(OGAAdLogMessage(level: .debug,
-                                                              logType: testApp,
+                                                              logType: logType,
                                                               origin: baseOptions.qaLabel,
                                                               sdk: .ads,
                                                               messageDate: nil,
                                                               message: message,
                                                               tags: nil))
+        }
+        
+        // log received publisher callbacks only
+        func log(event: AdLifeCycleEvent) {
+            var message: String? = nil
+            switch event {
+                case .adLoading: () // no publisher callback
+                case .adLoaded: message = "Ad loaded"
+                case .adDisplaying: () // no publisher callback
+                case .adClicked: message = "Ad clicked"
+                case .adClosed: message = "Ad closed"
+                case .adDidTriggerImpression: message = "Ad triggered impression"
+                case .bannerReady: () // no publisher callback
+                case .rewardReady(let reward): message = "Ad received reward (\(reward.rewardName) : \(reward.rewardValue))"
+                case .adDidFailToLoad(let error): message = "Ad failed to load (\(error.displayMessage))"
+                case .adDidFailToDisplay(let error): message = "Ad failed to show (\(error.displayMessage))"
+                case .adDidFail(let error): message = "Ad failed (\(error.displayMessage))"
+            }
+            if let message { log(message, logType: .receivedCallbacks) }
         }
     }
     
@@ -349,6 +371,7 @@ struct AdViewFeature: Reducer {
                     .events
                     .receive(on: DispatchQueue.main)
                     .map { event in
+                        state.log(event: event)
                         switch event {
                             case let .adLoaded(canShow):
                                 if state.enableFeedbacks {
@@ -664,7 +687,6 @@ struct AdViewFeature: Reducer {
     }
 }
 
-
 extension AdLifeCycleEvent {
     var action: AdViewFeature.Action {
         switch self {
@@ -675,5 +697,14 @@ extension AdLifeCycleEvent {
             case let .rewardReady(reward): return .rewardReady(reward)
             default: return .updateEvent(self)
         }
+    }
+}
+
+extension Error {
+    var displayMessage: String {
+        if let adError = self as? OguryAdError {
+            return "#\(adError.code) : \(adError.localizedDescription)"
+        }
+        return String(describing: self)
     }
 }

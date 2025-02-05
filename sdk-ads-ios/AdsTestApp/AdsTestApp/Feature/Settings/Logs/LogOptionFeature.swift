@@ -9,6 +9,54 @@ import ComposableArchitecture
 import AdsCardLibrary
 import OguryAds.Private
 
+extension OguryLogType: @retroactive CaseIterable {
+    public static var allCases: [OguryLogType] = [
+        .internal,
+        .publisher,
+        .delegate,
+        .receivedCallbacks,
+        .monitoring,
+        .mraid,
+        .requests,
+        .testApp
+    ]
+    var displayName: String {
+        switch self {
+            case .internal: return "Internal"
+            case .publisher: return "Publisher"
+            case .delegate: return "Triggered callbacks"
+            case .receivedCallbacks: return "Received callbacks"
+            case .monitoring: return "Monitoring"
+            case .mraid: return "Mraid"
+            case .requests: return "Requests"
+            case .testApp: return "Test app"
+            default: return ""
+        }
+    }
+}
+
+extension OguryLogDisplay: @retroactive CaseIterable {
+    public static var allCases: [OguryLogDisplay] = [
+        .SDK,
+        .date,
+        .level,
+        .type,
+        .origin,
+        .tags
+    ]
+    var displayName: String {
+        switch self {
+            case .SDK: return "Show SDK"
+            case .date: return "Show date"
+            case .level: return "Show log level"
+            case .type: return "Show log type"
+            case .origin: return "Show origin"
+            case .tags: return "show tags"
+            default: return ""
+        }
+    }
+}
+
 @Reducer
 struct LogOptionFeature {
     @ObservableState
@@ -18,46 +66,6 @@ struct LogOptionFeature {
         var showColorPicker: Bool = false
         var color: Color = .black
         var selectedType: OguryLogType?
-        
-        // display options
-        var logDisplayDateEnabled: Bool { displayOptions.contains(.date) }
-        var logDisplaySDKEnabled: Bool { displayOptions.contains(.SDK) }
-        var logDisplayLevelEnabled: Bool { displayOptions.contains(.level) }
-        var logDisplayTypeEnabled: Bool { displayOptions.contains(.type) }
-        var logDisplayOriginEnabled: Bool { displayOptions.contains(.origin) }
-        var logDisplayTagsEnabled: Bool { displayOptions.contains(.tags) }
-        // Logtypes
-        var logTypeInternalEnabled: Bool { allowedTypes.contains(.internal) }
-        var logTypeRequestEnabled: Bool { allowedTypes.contains(.requests) }
-        var logTypePublisherEnabled: Bool { allowedTypes.contains(.publisher) }
-        var logTypeMraidEnabled: Bool { allowedTypes.contains(.mraid) }
-        var logTypeMonitoringEnabled: Bool { allowedTypes.contains(.monitoring) }
-        var logTypeDelegateEnabled: Bool { allowedTypes.contains(.delegate) }
-        // colors
-        var logTypeInternalColor: Color {
-            get { Color((TestAppLogController.shared.logger.logFormatter as! TestAppLogFormatter).logTypeColor[.internal]!) }
-            set { (TestAppLogController.shared.logger.logFormatter as! TestAppLogFormatter).logTypeColor[.internal] = UIColor(newValue) }
-        }
-        var logTypeRequestColor: Color {
-            get { Color((TestAppLogController.shared.logger.logFormatter as! TestAppLogFormatter).logTypeColor[.requests]!) }
-            set { (TestAppLogController.shared.logger.logFormatter as! TestAppLogFormatter).logTypeColor[.requests] = UIColor(newValue) }
-        }
-        var logTypePublisherColor: Color {
-            get { Color((TestAppLogController.shared.logger.logFormatter as! TestAppLogFormatter).logTypeColor[.publisher]!) }
-            set { (TestAppLogController.shared.logger.logFormatter as! TestAppLogFormatter).logTypeColor[.publisher] = UIColor(newValue) }
-        }
-        var logTypeMraidColor: Color {
-            get { Color((TestAppLogController.shared.logger.logFormatter as! TestAppLogFormatter).logTypeColor[.mraid]!) }
-            set { (TestAppLogController.shared.logger.logFormatter as! TestAppLogFormatter).logTypeColor[.mraid] = UIColor(newValue) }
-        }
-        var logTypeMonitoringColor: Color {
-            get { Color((TestAppLogController.shared.logger.logFormatter as! TestAppLogFormatter).logTypeColor[.monitoring]!) }
-            set { (TestAppLogController.shared.logger.logFormatter as! TestAppLogFormatter).logTypeColor[.monitoring] = UIColor(newValue) }
-        }
-        var logTypeDelegateColor: Color {
-            get { Color((TestAppLogController.shared.logger.logFormatter as! TestAppLogFormatter).logTypeColor[.delegate]!) }
-            set { (TestAppLogController.shared.logger.logFormatter as! TestAppLogFormatter).logTypeColor[.delegate] = UIColor(newValue) }
-        }
         
         init() {
             if ((TestAppLogController.shared.logger.logFormatter.displayOptions.rawValue & OguryLogDisplay.SDK.rawValue) != 0) {
@@ -105,23 +113,23 @@ struct LogOptionFeature {
                 TestAppLogController.shared.logger.allowedLogTypes.append(type)
             }
         }
+        
+        func state(for logDisplay: OguryLogDisplay) -> Bool {
+            displayOptions.contains(logDisplay)
+        }
+        
+        func state(for logType: OguryLogType) -> Bool {
+            allowedTypes.contains(logType)
+        }
+        
+        func color(for logType: OguryLogType) -> Color {
+            Color((TestAppLogController.shared.logger.logFormatter as! TestAppLogFormatter).logTypeColor[logType]!)
+        }
     }
     
     enum Action: Equatable  {
-        case logDisplayDateButtonTapped
-        case logDisplaySDKButtonTapped
-        case logDisplayLevelButtonTapped
-        case logDisplayTypeButtonTapped
-        case logDisplayOriginButtonTapped
-        case logDisplayTagsButtonTapped
-        
-        case logTypeInternalButtonTapped
-        case logTypeRequestButtonTapped
-        case logTypePublisherButtonTapped
-        case logTypeMraidButtonTapped
-        case logTypeMonitoringButtonTapped
-        case logTypeDelegateButtonTapped
-        
+        case logDisplayButtonTapped(_: OguryLogDisplay)
+        case logTypeButtonTapped(_: OguryLogType)
         case selectColor(_: Color)
         case selectPickerForLogType(_: OguryLogType)
         case showColorPicker
@@ -130,54 +138,6 @@ struct LogOptionFeature {
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-                case .logDisplayDateButtonTapped:
-                    state.toggle(.date)
-                    return .none
-                    
-                case .logDisplaySDKButtonTapped:
-                    state.toggle(.SDK)
-                    return .none
-                    
-                case .logDisplayLevelButtonTapped:
-                    state.toggle(.level)
-                    return .none
-                    
-                case .logDisplayTypeButtonTapped:
-                    state.toggle(.type)
-                    return .none
-                    
-                case .logDisplayOriginButtonTapped:
-                    state.toggle(.origin)
-                    return .none
-                    
-                case .logDisplayTagsButtonTapped:
-                    state.toggle(.tags)
-                    return .none
-                    
-                case .logTypeInternalButtonTapped:
-                    state.toggle(.internal)
-                    return .none
-                    
-                case .logTypeRequestButtonTapped:
-                    state.toggle(.requests)
-                    return .none
-                    
-                case .logTypePublisherButtonTapped:
-                    state.toggle(.publisher)
-                    return .none
-                    
-                case .logTypeMraidButtonTapped:
-                    state.toggle(.mraid)
-                    return .none
-                    
-                case .logTypeMonitoringButtonTapped:
-                    state.toggle(.monitoring)
-                    return .none
-                    
-                case .logTypeDelegateButtonTapped:
-                    state.toggle(.delegate)
-                    return .none
-                    
                 case let .selectColor(color):
                     state.color = color
                     if let type = state.selectedType {
@@ -191,11 +151,18 @@ struct LogOptionFeature {
                     
                 case let .selectPickerForLogType(logType):
                     state.selectedType = logType
-                    state.color = Color((TestAppLogController.shared.logger.logFormatter as! TestAppLogFormatter).logTypeColor[logType]!)
+                    state.color = state.color(for: logType)
                     return .run {
                         await $0(.showColorPicker)
                     }
                     
+                case let .logTypeButtonTapped(logType):
+                    state.toggle(logType)
+                    return .none
+                    
+                case let .logDisplayButtonTapped(logDisplay):
+                    state.toggle(logDisplay)
+                    return .none
             }
         }
     }
