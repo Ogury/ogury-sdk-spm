@@ -13,23 +13,31 @@ static NSNumber* _Nullable sdkType;
 }
 
 +(BOOL)hasReactNativeRuntime{
-    return NSClassFromString(@"RCTBridge") != nil;
+    return NSClassFromString(@"RCTBridge") != nil
+    || NSClassFromString(@"RCTRootView") != nil
+    || NSClassFromString(@"RCTBridgeModule") != nil
+    || NSClassFromString(@"RCTEventDispatcher") != nil;
 }
 
 +(BOOL)hasUnityRuntime {
-    return NSClassFromString(@"UnityFramework") != nil;
+    return NSClassFromString(@"UnityFramework") != nil
+    || NSClassFromString(@"UnityAppController") != nil
+    || NSClassFromString(@"UnityPlayer") != nil ;
 }
 
 +(BOOL)hasXamarinRuntime{
-    return NSClassFromString(@"MonoMethod") != nil || NSClassFromString(@"Xamarin_Forms_Platform_iOS_FormsApplicationDelegate") != nil;
+    return NSClassFromString(@"MonoMethod") != nil
+    || NSClassFromString(@"Xamarin_Forms_Platform_iOS_FormsApplicationDelegate") != nil;
 }
 
 +(BOOL)hasCordovaRuntime{
-    return NSClassFromString(@"CDVViewController") != nil || NSClassFromString(@"CDVPlugin") != nil;
+    return NSClassFromString(@"CDVViewController") != nil
+    || NSClassFromString(@"CDVPlugin") != nil;
 }
 
 +(BOOL)hasAdobeAirRuntime{
-    return NSClassFromString(@"AIRGameController") != nil || NSClassFromString(@"AdobeAIR") != nil;
+    return NSClassFromString(@"AIRGameController") != nil
+    || NSClassFromString(@"AdobeAIR") != nil;
 }
 
 + (OGCSDKType)frameworkType {
