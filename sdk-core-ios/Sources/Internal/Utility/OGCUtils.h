@@ -3,6 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OGCInternal.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -10,7 +11,7 @@ enum OGCSDKType;
 
 @interface OGCUtils : NSObject
 
-+ (NSUInteger)getFrameworkType;
++ (OGCSDKType)frameworkType;
 
 @end
 

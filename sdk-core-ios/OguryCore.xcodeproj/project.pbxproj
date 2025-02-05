@@ -55,7 +55,7 @@
 		977348DF244077ED0002EBA4 /* OguryError.h in Headers */ = {isa = PBXBuildFile; fileRef = 977348DD244077ED0002EBA4 /* OguryError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		977348E0244077ED0002EBA4 /* OguryError.m in Sources */ = {isa = PBXBuildFile; fileRef = 977348DE244077ED0002EBA4 /* OguryError.m */; };
 		977348EF24409EDD0002EBA4 /* OguryErrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 977348EE24409EDD0002EBA4 /* OguryErrorTests.m */; };
-		C98F6E7927DB835A0069ECEA /* OGCUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = C98F6E7727DB7C400069ECEA /* OGCUtils.h */; };
+		C98F6E7927DB835A0069ECEA /* OGCUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = C98F6E7727DB7C400069ECEA /* OGCUtils.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		C98F6E7F27DBA6AD0069ECEA /* OGCUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C98F6E7827DB7C550069ECEA /* OGCUtils.m */; };
 		ED174D10255A882500904297 /* OguryNetworkClient.h in Headers */ = {isa = PBXBuildFile; fileRef = ED174D0E255A882500904297 /* OguryNetworkClient.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		ED174D11255A882500904297 /* OguryNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = ED174D0F255A882500904297 /* OguryNetworkClient.m */; };
