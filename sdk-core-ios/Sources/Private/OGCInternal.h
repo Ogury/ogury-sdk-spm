@@ -10,6 +10,7 @@ typedef enum : NSUInteger {
     OGCSDKTypeNative = 0,
     OGCSDKTypeUnity,
     OGCSDKTypeCordova,
+    OGCSDKTypeIonic,
     OGCSDKTypeXamarin,
     OGCSDKTypeAdobeAir,
     OGCSDKTypeFlutter,
