@@ -81,6 +81,13 @@ After you have installed the prerequisites, follow these steps to set up and run
 
    Finally, build and run the project using Xcode. This project was last built and tested on **Xcode 15.4**.
 
+6. **Build Options**
+
+   Here are the various build options handled by this project
+   - `-D QA_MODE`  (Other Swift flags of `AdsTestApp` project) : builds the test application with these options :
+      - Default import method is `Text` instead of `File`
+   - `KILLMODE=1` (Preprocessor Macros of `OguryAds`) allows release SDK to handle the kill webview commands (simulate and crash)
+
 ## Additional Notes
 
 - **macOS Requirement**: This project requires a macOS environment to build and run.

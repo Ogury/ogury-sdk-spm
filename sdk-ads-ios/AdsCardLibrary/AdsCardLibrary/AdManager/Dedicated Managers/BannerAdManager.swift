@@ -5,6 +5,7 @@
 import Foundation
 import SwiftUI
 import OguryAds
+import OguryAds.Private
 import ComposableArchitecture
 import Combine
 
@@ -79,6 +80,7 @@ public final class BannerAdManager: AdManager {
                 self.ad?.destroy()
             }
             self.ad.delegate = self.proxyDelegate
+            self.ad.setLogOrigin(options.qaLabel)
             self.append(.adLoading)
             guard let bidder = self.bidder else {
                 self.load()
@@ -153,19 +155,6 @@ public final class BannerAdManager: AdManager {
         }
     }
     
-    public func loadAdFromAdMarkUp(from options: BaseAdOptions) throws {
-        self.options.baseOptions = options
-        guard let adMarkUp = options.adMarkUp else { throw AdManagerError.noOptions }
-        DispatchQueue.main.async {
-            self.ad = OguryBannerAdView(adUnitId: options.adUnitId,
-                                        size: self.adType == .banner ? .small_banner_320x50() : .mrec_300x250(),
-                                        mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
-            self.ad.delegate = self.proxyDelegate
-            self.ad.load(withAdMarkup: adMarkUp)
-            self.append(.adLoading)
-        }
-    }
-    
     public func showAd() throws {
         guard let options else { throw AdManagerError.noOptions }
         if ad == nil {
@@ -193,6 +182,19 @@ public final class BannerAdManager: AdManager {
     
     public func updateCard(events: [AdOptionsEvent]) {
         adView.updateCard(events: events)
+    }
+    
+    public func killWebview(_ killMode: KillWebviewMode) {
+        guard let ad else { return }
+        switch killMode {
+            case .none: ()
+            case .simulate:
+                ad.simulateWebviewTerminated()
+                
+            case .saturate:
+                guard let webView = ad.adWebview() else { return }
+                kill(webView)
+        }
     }
             
 }

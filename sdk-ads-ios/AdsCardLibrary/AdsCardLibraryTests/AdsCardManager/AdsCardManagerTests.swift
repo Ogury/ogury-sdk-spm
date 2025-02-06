@@ -5,9 +5,36 @@
 import XCTest
 @testable import AdsCardLibrary
 
-final class AdsCardManagerTests: XCTestCase {
+class MockAdLifeCycleDelegate: AdLifeCycleDelegate {
+    func viewController<T>(forBanner banner: T.Ad, adManager: T) -> UIViewController? where T : AdsCardLibrary.AdManager {
+        nil
+    }
     
+    func deleteCard(withId id: UUID) {
+    }
+    
+    func share(json: String, filename: String) {
+    }
+    
+    func showImportPanel() {
+    }
+    
+    func showConsentNotice() {
+    }
+    
+    func enableTestModeForAllCards(_: Bool) {
+    }
+    
+    func focusLogs(on cardId: String) {
+    }
+}
+
+final class AdsCardManagerTests: XCTestCase {
     struct HBRetriever: MaxHeaderBidable {
+        func adMarkUp(adUnitId: String, campaignId: String?, creativeId: String?, dspCreative: String?, dspRegion: AdsCardLibrary.DspRegion?, rtbTestModeEnabled: Bool) async throws -> String? {
+            ""
+        }
+        
         func description(for error: Error) -> String {
             ""
         }
@@ -17,11 +44,15 @@ final class AdsCardManagerTests: XCTestCase {
                      creativeId: String?,
                      dspCreative: String?,
                      dspRegion: DspRegion?) async -> String? {
-            return ""
+            ""
         }
     }
    
     struct HBDTFairBidRetriever: DTFairBidHeaderBidable {
+        func adMarkUp(adUnitId: String, campaignId: String?, creativeId: String?, dspCreative: String?, dspRegion: AdsCardLibrary.DspRegion?, rtbTestModeEnabled: Bool) async throws -> String? {
+            ""
+        }
+        
         func description(for error: Error) -> String {
             ""
         }
@@ -36,6 +67,10 @@ final class AdsCardManagerTests: XCTestCase {
    }
     
    struct HBUnityLevelPlayRetriever: UnityLevelPlayBidable {
+       func adMarkUp(adUnitId: String, campaignId: String?, creativeId: String?, dspCreative: String?, dspRegion: AdsCardLibrary.DspRegion?, rtbTestModeEnabled: Bool) async throws -> String? {
+           ""
+       }
+       
         func description(for error: Error) -> String {
             ""
         }
@@ -154,7 +189,7 @@ final class AdsCardManagerTests: XCTestCase {
     }
     
     func testGivenHBUnityLevelPlayInterstitialAdTypeWithWrongManagerThenErrorIsThrown() {
-        let inter: AdType<OptInAdManager> = .unityLevelPlayHeaderBidding(adType: .interstitial, adMarkUpRetriever: HBUnityLevelPlayRetriever())
+        let inter: AdType<RewardedAdManager> = .unityLevelPlayHeaderBidding(adType: .interstitial, adMarkUpRetriever: HBUnityLevelPlayRetriever())
         let manager = try? inter.adManager
        XCTAssertNil(manager)
        XCTAssertThrowsError(try inter.adManager)
@@ -173,7 +208,7 @@ final class AdsCardManagerTests: XCTestCase {
     }
     
     func testGivenHBUnityLevelPlayOptInAdTypesWhenRetrievingAdManagerThenProperManagerIsReturned() {
-        let inter: AdType<OptInAdManager> = .unityLevelPlayHeaderBidding(adType: .optInVideo, adMarkUpRetriever: HBUnityLevelPlayRetriever())
+        let inter: AdType<RewardedAdManager> = .unityLevelPlayHeaderBidding(adType: .rewarded, adMarkUpRetriever: HBUnityLevelPlayRetriever())
         let manager = try? inter.adManager
         XCTAssertNotNil(manager)
     }
@@ -193,7 +228,7 @@ final class AdsCardManagerTests: XCTestCase {
     }
     
     func testWhenInstanciatingHBUnityLevelPlayOptInAdTypeWithWrongManagerThenErrorIsThrown() {
-        let inter: AdType<InterstitialAdManager> = .unityLevelPlayHeaderBidding(adType: .optInVideo, adMarkUpRetriever: HBUnityLevelPlayRetriever())
+        let inter: AdType<InterstitialAdManager> = .unityLevelPlayHeaderBidding(adType: .rewarded, adMarkUpRetriever: HBUnityLevelPlayRetriever())
         let manager = try? inter.adManager
         XCTAssertNil(manager)
         XCTAssertThrowsError(try inter.adManager)
@@ -280,7 +315,7 @@ final class AdsCardManagerTests: XCTestCase {
     //MARK: - Ad Managers
     func testWhenRetrievingInterstitialAdManagerFromSUTThenProperManagerIsReturned() {
         let sut = AdsCardManager()
-        let adDelegate = mock(AdLifeCycleDelegate.self)
+        let adDelegate = MockAdLifeCycleDelegate()
         let inter: AdType<InterstitialAdManager> = .interstitial
         let vc = UIViewController()
         let manager = try? sut.adManager(for: inter, options: AdManagerOptions(viewController: vc, adDisplayName: "", adUnitId: ""), adDelegate: adDelegate)
@@ -290,7 +325,7 @@ final class AdsCardManagerTests: XCTestCase {
     
     func testWhenRetrievingThumbnailAdManagerFromSUTThenProperManagerIsReturned() {
         let sut = AdsCardManager()
-        let adDelegate = mock(AdLifeCycleDelegate.self)
+        let adDelegate = MockAdLifeCycleDelegate()
         let thumb: AdType<ThumbnailAdManager> = .thumbnail
         let vc = UIViewController()
         let manager = try? sut.adManager(for: thumb, options: ThumbnailAdManagerOptions(viewController: vc, thumbnailOptions: ThumbnailOptions(), adDisplayName: "", adUnitId: ""), adDelegate: adDelegate)
@@ -300,7 +335,7 @@ final class AdsCardManagerTests: XCTestCase {
     
     func testWhenRetrievingBannerAdManagerFromSUTThenProperManagerIsReturned() {
         let sut = AdsCardManager()
-        let adDelegate = mock(AdLifeCycleDelegate.self)
+        let adDelegate = MockAdLifeCycleDelegate()
         let banner: AdType<BannerAdManager> = .banner
         let view = UIView()
         let manager = try? sut.adManager(for: banner, options: BannerAdManagerOptions(view: view, adDisplayName: "", adUnitId: ""), adDelegate: adDelegate)

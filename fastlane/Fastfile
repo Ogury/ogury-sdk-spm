@@ -42,10 +42,12 @@ platform :ios do
       end
 
       if targetThreshold == "ads" 
+        killModeEnabled = options[:killModeEnabled] ? options[:killModeEnabled] : false
         build_ads_framework(
           configuration: configuration,
           sdk: sdk,
-          artifactory: artifactory
+          artifactory: artifactory,
+          killModeEnabled: killModeEnabled
           )
 
         if !artifactory
@@ -359,7 +361,8 @@ lane :test do |options|
   desc "Proceed to deploy a new version of a framewok passed as parameter for the specified environment"
   lane :generate_test_app do |options|
     artifactory = options[:artifactory] ? options[:artifactory] : false
-    deploy_test_app(configuration: configuration, artifactory: artifactory)
+    isQa = options[:isQa] ? options[:isQa] : false
+    deploy_test_app(configuration: configuration, artifactory: artifactory, isQa: isQa)
   end
 
   desc "Proceed to deploy a new version of the framewok for the specified environment"

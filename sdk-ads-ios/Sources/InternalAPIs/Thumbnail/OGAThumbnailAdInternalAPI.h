@@ -3,6 +3,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 #import "OGAAdInternalAPI.h"
 #import "OGADelegateDispatcher.h"
 #import "OguryRectCorner.h"
@@ -10,6 +11,8 @@
 #import "OguryMediation.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class OGAAdConfiguration;
 
 @interface OGAThumbnailAdInternalAPI : NSObject <OGAAdInternalAPI>
 
@@ -54,6 +57,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setBlacklistViewControllers:(NSArray<NSString *> *_Nullable)viewControllers;
 
 - (void)setWhitelistBundleIdentifiers:(NSArray<NSString *> *_Nullable)bundleIdentifiers;
+
+- (void)setLogOrigin:(NSString *)origin;
+- (OGAAdConfiguration *)adConfiguration;
+- (void)simulateWebviewTerminated;
+- (WKWebView *)adWebview;
 
 @end
 

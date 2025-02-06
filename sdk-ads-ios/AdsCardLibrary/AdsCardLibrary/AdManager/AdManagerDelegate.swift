@@ -19,4 +19,6 @@ public protocol AdLifeCycleDelegate {
     func showConsentNotice()
     // test mode
     func enableTestModeForAllCards(_: Bool)
+    // log
+    func focusLogs(on cardId: String)
 }

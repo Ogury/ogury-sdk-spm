@@ -13,6 +13,7 @@ struct AdTagFeature: Reducer {
         @PresentationState var alert: AlertState<Action.Alert>?
         let tag: AdTag
         var flip = true
+        var size: AdTagList.TagSize
     }
     
     enum Action {

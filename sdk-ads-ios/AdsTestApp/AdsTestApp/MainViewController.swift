@@ -9,7 +9,6 @@ import AdsCardLibrary
 import OguryAds
 import SnapKit
 import CoreServices
-import GoogleMobileAds
 import UniformTypeIdentifiers
 
 class MainViewController: UIViewController {
@@ -18,15 +17,13 @@ class MainViewController: UIViewController {
     }
     lazy var rootView = AppView(store: self.store)
     lazy var adViewController = UIHostingController(rootView: rootView)
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         start()
         AdSdkLauncher.shared.launch()
         addViewToHierarchy()
         startNotifiers()
-        GADMobileAds.sharedInstance().start { status in
-        }
     }
     
     private func start() {
@@ -97,6 +94,10 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: AdLifeCycleDelegate {
+    func focusLogs(on cardId: String) {
+        ViewStore(store, observe: { $0 }).send(.focusLogs(on: cardId))
+    }
+    
     func viewController<T>(forBanner banner: T.Ad, adManager: T) -> UIViewController? where T : AdsCardLibrary.AdManager {
         self
     }
@@ -106,6 +107,7 @@ extension MainViewController: AdLifeCycleDelegate {
     }
     
     func share(json: String, filename: String) {
+        UIApplication.topViewController()?.dismiss(animated: true)
         guard let url = createTemporaryFile(text: json, filename: filename) else { return }
         print("📄 File exported to \(url.absoluteString)")
         let metaData = LinkPresentationItemSource.metaData(title: "Share your Ads set",
@@ -114,6 +116,8 @@ extension MainViewController: AdLifeCycleDelegate {
                                                            fileType: "png")
         let item = LinkPresentationItemSource(metaData: metaData)
         let ac = UIActivityViewController(activityItems: [item], applicationActivities: nil)
+       ac.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems:[Any]?, error: Error?) in
+      }
         present(ac, animated: true)
     }
     
@@ -129,6 +133,7 @@ extension MainViewController: AdLifeCycleDelegate {
     }
     
     func showImportPanel() {
+        UIApplication.topViewController()?.dismiss(animated: true)
         let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.oguryAds])
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false // Set to true if you want to allow multiple file selection
@@ -176,5 +181,22 @@ extension MainViewController: UIDocumentPickerDelegate {
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         print("Document picker was cancelled.")
+    }
+}
+
+extension UIApplication {
+    class func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(controller: selected)
+            }
+        }
+        if let presented = controller?.presentedViewController {
+            return topViewController(controller: presented)
+        }
+        return controller
     }
 }

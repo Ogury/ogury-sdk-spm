@@ -4,6 +4,7 @@
 
 import Foundation
 import UserDefault
+import AdsCardLibrary
 
 struct SettingsController {
     @UserDefault("enableAdUnitEditing")
@@ -21,11 +22,17 @@ struct SettingsController {
     @UserDefault("showDspFields")
     var showDspFields: Bool = false
     
+    @UserDefault("killWebviewMode")
+    var killWebviewMode: KillWebviewMode = .none
+    
     @UserDefault("bulkModeEnabled")
     var bulkModeEnabled: Bool = false
     
     @UserDefault("startSDKWithApplication")
     var startSDKWithApplication: Bool = false
+    
+    @UserDefault("numberOfSdkStart")
+    var numberOfSdkStart: Int = 1
     
     @UserDefault("showTestMode")
     var showTestMode: Bool = true
@@ -38,4 +45,22 @@ struct SettingsController {
    
     @UserDefault("usOptoutPartner")
     var usOptoutPartner: Bool = false
+   
+    @UserDefault("showLogsSheet")
+    var showLogsSheet: Bool = false
+   
+    @UserDefault("importMethod")
+    var importMethod: ImportMethod = SettingsController.qaMode ? .rawText : .file
+    
+    static let qaMode: Bool = {
+#if QA_MODE
+        return true
+#else
+        return false
+#endif
+    }()
+}
+
+extension KillWebviewMode: @retroactive DefaultsValueConvertible {
+    
 }

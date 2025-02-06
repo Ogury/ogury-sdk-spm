@@ -5,6 +5,7 @@
 import Foundation
 import SwiftUI
 import OguryAds
+import OguryAds.Private
 import ComposableArchitecture
 import Combine
 
@@ -70,6 +71,7 @@ public final class InterstitialAdManager: AdManager {
             ad = OguryInterstitialAd(adUnitId: options.adUnitId, mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
         }
         ad.delegate = proxyDelegate
+        ad.setLogOrigin(options.qaLabel)
         append(.adLoading)
         
         guard let bidder else {
@@ -161,6 +163,19 @@ public final class InterstitialAdManager: AdManager {
     
     public func updateCard(events: [AdOptionsEvent]) {
         adView.updateCard(events: events)
+    }
+    
+    public func killWebview(_ killMode: KillWebviewMode) {
+        guard let ad else { return }
+        switch killMode {
+            case .none: ()
+            case .simulate:
+                ad.simulateWebviewTerminated()
+                
+            case .saturate:
+                guard let webView = ad.adWebview() else { return }
+                kill(webView)
+        }
     }
 }
 

@@ -9,8 +9,7 @@ import UserDefault
 import OguryAds
 import AdsCardLibrary
 import SwiftMessages
-
-
+import OguryAds.Private
 
 struct AppSettingsFeature: Reducer {
     struct State: Equatable {
@@ -26,7 +25,10 @@ struct AppSettingsFeature: Reducer {
             lhs.showShowSection == rhs.showShowSection &&
             lhs.usOptout == rhs.usOptout &&
             lhs.usOptoutPartner == rhs.usOptoutPartner &&
-            lhs.enableFeedbacks == rhs.enableFeedbacks
+            lhs.enableFeedbacks == rhs.enableFeedbacks &&
+            lhs.importMethod == rhs.importMethod &&
+            lhs.killWebviewMode == rhs.killWebviewMode &&
+            lhs.numberOfSDKStart == rhs.numberOfSDKStart
         }
         
         @BindingState var settings: SettingsContainer
@@ -36,7 +38,18 @@ struct AppSettingsFeature: Reducer {
         var showSpecificOptions: Bool { settings.showSpecificOptions }
         var showDspFields: Bool { settings.showDspFields }
         var bulkModeEnabled: Bool { settings.bulkModeEnabled }
+        var importMethod: ImportMethod { settings.importMethod }
+        var killWebviewMode: KillWebviewMode { settings.killWebviewMode }
+        var cachedKillWebviewMode: KillWebviewMode?
         var startSDKWithApplication: Bool { settings.startSDKWithApplication }
+        var numberOfSDKStart: Int {
+            get {
+                settings.numberOfSdkStart
+            }
+            set {
+                settings.numberOfSdkStart = newValue
+            }
+        }
         var showTestMode: Bool { settings.showTestMode }
         var usOptout: Bool { settings.usOptout }
         var usOptoutPartner: Bool { settings.usOptoutPartner }
@@ -48,6 +61,7 @@ struct AppSettingsFeature: Reducer {
         }
         var adDelegate: AdLifeCycleDelegate?
         let generator = UINotificationFeedbackGenerator()
+        var logOptions: LogOptionFeature.State?
 
         init(settings: SettingsContainer, adDelegate: AdLifeCycleDelegate?) {
             self.settings = settings
@@ -61,12 +75,13 @@ struct AppSettingsFeature: Reducer {
         }
         var sdkVersion: String {
             let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
-            return "\(OguryAdsPrivateLauncher().sdkVersion) (\(origin == "Pod" ? "Release" : "Development"))"
+           return "\(String(describing: OGAInternal.shared().getVersion())) (\(origin == "Pod" ? "Release" : "Development"))"
         }
         var environment: String { Bundle.main.object(forInfoDictionaryKey: "DefaultEnv") as? String ?? "" }
     }
     
-    enum Action: Equatable  {
+    enum Action: BindableAction, Equatable  {
+        case binding(BindingAction<State>)
         case startSDKToggleTapped
         case showCampaignToggleTapped
         case enableAdUnitEditingToggleTapped
@@ -83,11 +98,33 @@ struct AppSettingsFeature: Reducer {
         case usOptoutTapped
         case usOptoutPartnerTapped
         case showPrivacyDataTapped
+        case logOptionsButtonTapped
+        case logOptions(LogOptionFeature.Action)
+        case incrementSDKStart
+        case decrementSDKStart
+        case updateImportMethod(_: ImportMethod)
+        case toggleKillWebviewMode
+        case updateKillWebviewMode(_: KillWebviewMode)
     }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
+                case .binding:
+                    return .none
+                    
+                case .incrementSDKStart:
+                    state.numberOfSDKStart = min(state.numberOfSDKStart + 1, 10)
+                    return .none
+                    
+                case let .updateImportMethod(method):
+                    state.settings.importMethod = method
+                    return .none
+                    
+                case .decrementSDKStart:
+                    state.numberOfSDKStart = max(state.numberOfSDKStart - 1, 1)
+                    return .none
+                    
                 case .showCampaignToggleTapped:
                     state.settings.showCampaignId.toggle()
                     return .none
@@ -160,6 +197,26 @@ struct AppSettingsFeature: Reducer {
                     return .run { _ in
                         await showNotification(message: "The test mode has been disabled on all cards")
                     }
+                    
+                case .logOptionsButtonTapped:
+                    state.logOptions = .init()
+                    return .none
+                    
+                case .logOptions:
+                    return .none
+                    
+                case .toggleKillWebviewMode:
+                    if case .none = state.killWebviewMode {
+                        state.settings.killWebviewMode = state.cachedKillWebviewMode ?? .simulate
+                    } else {
+                        state.settings.killWebviewMode = .none
+                    }
+                    return .none
+                    
+                case let .updateKillWebviewMode(mode):
+                    state.settings.killWebviewMode = mode
+                    state.cachedKillWebviewMode = mode
+                    return .none
             }
         }
     }
