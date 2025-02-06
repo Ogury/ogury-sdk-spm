@@ -475,6 +475,10 @@
 		4376399C2990E6E300B4DFB5 /* OguryError+utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4376399B2990E6E300B4DFB5 /* OguryError+utility.m */; };
 		438AF74A28DC54A6000DCB49 /* OGAViewControllerOrientationHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 438AF74828DC54A6000DCB49 /* OGAViewControllerOrientationHelper.h */; };
 		438AF74B28DC54A6000DCB49 /* OGAViewControllerOrientationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 438AF74928DC54A6000DCB49 /* OGAViewControllerOrientationHelper.m */; };
+		4395CC292D53A69000CF04DD /* OGASdkConsumer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4395CC272D53A69000CF04DD /* OGASdkConsumer.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		4395CC2A2D53A69000CF04DD /* OGASdkConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4395CC282D53A69000CF04DD /* OGASdkConsumer.m */; };
+		4395CC2B2D53A69000CF04DD /* OGASdkConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4395CC282D53A69000CF04DD /* OGASdkConsumer.m */; };
+		4395CC2C2D53A69000CF04DD /* OGASdkConsumer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4395CC272D53A69000CF04DD /* OGASdkConsumer.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		439CE68B29EE8610005C2E0A /* OGAOrderedDictionaryTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 439CE68A29EE8610005C2E0A /* OGAOrderedDictionaryTestHelper.m */; };
 		43A06067295463BD008E18E6 /* OGMServerMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 43A06065295463BD008E18E6 /* OGMServerMonitor.h */; };
 		43A06068295463BD008E18E6 /* OGMServerMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A06066295463BD008E18E6 /* OGMServerMonitor.m */; };
@@ -1650,6 +1654,8 @@
 		4376399B2990E6E300B4DFB5 /* OguryError+utility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "OguryError+utility.m"; sourceTree = "<group>"; };
 		438AF74828DC54A6000DCB49 /* OGAViewControllerOrientationHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAViewControllerOrientationHelper.h; sourceTree = "<group>"; };
 		438AF74928DC54A6000DCB49 /* OGAViewControllerOrientationHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAViewControllerOrientationHelper.m; sourceTree = "<group>"; };
+		4395CC272D53A69000CF04DD /* OGASdkConsumer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGASdkConsumer.h; sourceTree = "<group>"; };
+		4395CC282D53A69000CF04DD /* OGASdkConsumer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGASdkConsumer.m; sourceTree = "<group>"; };
 		439CE68929EE8610005C2E0A /* OGAOrderedDictionaryTestHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAOrderedDictionaryTestHelper.h; sourceTree = "<group>"; };
 		439CE68A29EE8610005C2E0A /* OGAOrderedDictionaryTestHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAOrderedDictionaryTestHelper.m; sourceTree = "<group>"; };
 		43A0606429546369008E18E6 /* OGMMonitorable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGMMonitorable.h; sourceTree = "<group>"; };
@@ -2644,6 +2650,8 @@
 				351A118E190ACB87F06F8CEC /* OGAInternal.h */,
 				351A1C3EF272F9C3DFA521D9 /* OGAInternal.m */,
 				1EB764872B0BCE390069880C /* OguryAds.Private.modulemap */,
+				4395CC272D53A69000CF04DD /* OGASdkConsumer.h */,
+				4395CC282D53A69000CF04DD /* OGASdkConsumer.m */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -4108,6 +4116,7 @@
 				43A9F4842C37E6B40085EF6F /* OGAPreCacheEvent.h in Headers */,
 				43A9F4852C37E6B40085EF6F /* OGAMraidVerificationOperation.h in Headers */,
 				43A9F4862C37E6B40085EF6F /* OGAAdHistoryEvent.h in Headers */,
+				4395CC2C2D53A69000CF04DD /* OGASdkConsumer.h in Headers */,
 				43A9F4872C37E6B40085EF6F /* OGATrackEvent.h in Headers */,
 				43A9F4882C37E6B40085EF6F /* OGAThumbnailAdViewController+CachedPosition.h in Headers */,
 				43A9F4892C37E6B40085EF6F /* OGAAdSequenceCoordinatorDelegate.h in Headers */,
@@ -4355,6 +4364,7 @@
 				351A1412EA61804D24DE3DAE /* OGAPreCacheEvent.h in Headers */,
 				C9C523452910971F00C44A49 /* OGAMraidVerificationOperation.h in Headers */,
 				351A1FA2D4302EB64C3AC87E /* OGAAdHistoryEvent.h in Headers */,
+				4395CC292D53A69000CF04DD /* OGASdkConsumer.h in Headers */,
 				351A178F434E6A9225F7824D /* OGATrackEvent.h in Headers */,
 				228546FA267212DA0078F122 /* OGAThumbnailAdViewController+CachedPosition.h in Headers */,
 				351A10322F59869A53E3047E /* OGAAdSequenceCoordinatorDelegate.h in Headers */,
@@ -4446,9 +4456,12 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Ogury Ltd.";
 				TargetAttributes = {
+					43A9F2AC2C37E6B40085EF6F = {
+						LastSwiftMigration = 1620;
+					};
 					DEF1BF72213917AA0004BAD1 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1530;
+						LastSwiftMigration = 1620;
 					};
 					DEF1BF7B213917AA0004BAD1 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -4672,6 +4685,7 @@
 				43A9F3082C37E6B40085EF6F /* OGAExpirationContext.m in Sources */,
 				43A9F3092C37E6B40085EF6F /* OGACallEventListenersConstants.m in Sources */,
 				43A9F30B2C37E6B40085EF6F /* OGASKAdNetworkService.m in Sources */,
+				4395CC2B2D53A69000CF04DD /* OGASdkConsumer.m in Sources */,
 				43A9F30D2C37E6B40085EF6F /* OGAInterstitialAdInternalAPI.m in Sources */,
 				43A9F30E2C37E6B40085EF6F /* OguryInterstitialAdDelegateDispatcher.m in Sources */,
 				43A9F3102C37E6B40085EF6F /* OGAOpenSKAdContainerTransition.m in Sources */,
@@ -4895,6 +4909,7 @@
 				4352191D299D23FE0000ABE4 /* OGAExpirationContext.m in Sources */,
 				2272AA3C2726E28300107B47 /* OGACallEventListenersConstants.m in Sources */,
 				C94DAA0428F560A0008BFAB1 /* OGASKAdNetworkService.m in Sources */,
+				4395CC2A2D53A69000CF04DD /* OGASdkConsumer.m in Sources */,
 				351A1254B47CDFE80512CD19 /* OGAInterstitialAdInternalAPI.m in Sources */,
 				351A1846EFEBE0DB5B484C04 /* OguryInterstitialAdDelegateDispatcher.m in Sources */,
 				C9F58AAA2970752100D3E6A5 /* OGAOpenSKAdContainerTransition.m in Sources */,

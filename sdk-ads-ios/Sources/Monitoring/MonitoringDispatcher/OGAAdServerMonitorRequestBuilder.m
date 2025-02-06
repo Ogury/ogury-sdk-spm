@@ -18,6 +18,7 @@
 #import "OGAWebViewUserAgentService.h"
 #import "UIDevice+Orientation.h"
 #import "OguryAdError+Internal.h"
+#import "OGAInternal.h"
 
 @interface OGAAdServerMonitorRequestBuilder ()
 
@@ -37,6 +38,9 @@ static NSString *const MonitoringServiceBodyRequestId = @"request_id";
 // app
 static NSString *const MonitoringServiceBodyAppDictionary = @"app";
 static NSString *const MonitoringServiceBodyFrameworkDictionary = @"framework";
+static NSString *const MonitoringServiceBodyProductDictionary = @"product";
+static NSString *const MonitoringServiceBodyProductNameDictionary = @"name";
+static NSString *const MonitoringServiceBodyProductVersionDictionary = @"version";
 static NSString *const MonitoringServiceBodyAppAssetKey = @"asset_key";
 static NSString *const MonitoringServiceBodyAppAssetType = @"asset_type";
 static NSString *const MonitoringServiceBodyAppBundleId = @"bundle_id";
@@ -140,6 +144,13 @@ static NSString *const MonitoringServiceBodyDeviceAssetType = @"ios";
 
     body[MonitoringServiceBodyAppDictionary][MonitoringServiceBodyAppBundleId] = [OGAConfigurationUtils getAppBundleIdentifer];
     body[MonitoringServiceBodyAppDictionary][MonitoringServiceBodyAppVersion] = [OGAConfigurationUtils getAppMarketingVersion];
+
+    if ([OGAInternal shared].sdkConsumer != nil) {
+        body[MonitoringServiceBodyProductDictionary] = @{
+            MonitoringServiceBodyProductNameDictionary : [OGAInternal shared].sdkConsumer.name,
+            MonitoringServiceBodyProductVersionDictionary : [OGAInternal shared].sdkConsumer.version
+        };
+    }
 
     body[MonitoringServiceBodySdkDictionary] = [[NSMutableDictionary alloc] init];
     body[MonitoringServiceBodySdkDictionary][MonitoringServiceBodySdkModuleVersion] = OGA_SDK_VERSION;
