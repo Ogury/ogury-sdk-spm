@@ -147,4 +147,11 @@
     OCMStub([self.internal syncProfig]);
 }
 
+- (void)testWhenSettingsSdkConsumerThenObjectIsRetained {
+    OGASdkConsumer *consumer = [[OGASdkConsumer alloc] initWithName:@"name" version:@"version"];
+    [self.internal setSdkConsumer:consumer];
+    XCTAssertEqualObjects(self.internal.sdkConsumer.name, @"name");
+    XCTAssertEqualObjects(self.internal.sdkConsumer.version, @"version");
+}
+
 @end
