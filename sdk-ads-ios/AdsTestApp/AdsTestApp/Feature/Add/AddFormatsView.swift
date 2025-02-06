@@ -32,8 +32,8 @@ struct AddFormatView: View {
                             : Color(AdColorPalette.Primary.accentLight.color)
                         )
                         .clipShape(RoundedRectangle(cornerRadius: 8))
-                        .disabled(value.wrappedValue == 0)
                 }
+                .disabled(value.wrappedValue <= 0)
                 
                 Button {
                     value.wrappedValue += 1
