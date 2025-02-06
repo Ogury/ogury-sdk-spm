@@ -334,6 +334,24 @@
 		43F66E442D3FABCF000AED12 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B42B4E882F0022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43F66E452D3FABE7000AED12 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
 		43F66E462D3FABE7000AED12 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43F66E582D48E94F000AED12 /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
+		43F66E592D48E94F000AED12 /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
+		43F66E5A2D48E94F000AED12 /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
+		43F66E5B2D48E94F000AED12 /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
+		43F66E5C2D48E94F000AED12 /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
+		43F66E5D2D48E94F000AED12 /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
+		43F66E5F2D48E95C000AED12 /* Custom.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E5E2D48E95C000AED12 /* Custom.settings */; };
+		43F66E602D48E95C000AED12 /* Custom.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E5E2D48E95C000AED12 /* Custom.settings */; };
+		43F66E612D48E95C000AED12 /* Custom.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E5E2D48E95C000AED12 /* Custom.settings */; };
+		43F66E622D48E95C000AED12 /* Custom.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E5E2D48E95C000AED12 /* Custom.settings */; };
+		43F66E632D48E95C000AED12 /* Custom.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E5E2D48E95C000AED12 /* Custom.settings */; };
+		43F66E642D48E95C000AED12 /* Custom.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E5E2D48E95C000AED12 /* Custom.settings */; };
+		43F66E692D4A20E2000AED12 /* Default-qa.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E682D4A20E2000AED12 /* Default-qa.settings */; };
+		43F66E6A2D4A20E2000AED12 /* Default-qa.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E682D4A20E2000AED12 /* Default-qa.settings */; };
+		43F66E6B2D4A20E2000AED12 /* Default-qa.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E682D4A20E2000AED12 /* Default-qa.settings */; };
+		43F66E6C2D4A20E2000AED12 /* Default-qa.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E682D4A20E2000AED12 /* Default-qa.settings */; };
+		43F66E6D2D4A20E2000AED12 /* Default-qa.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E682D4A20E2000AED12 /* Default-qa.settings */; };
+		43F66E6E2D4A20E2000AED12 /* Default-qa.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E682D4A20E2000AED12 /* Default-qa.settings */; };
 		43F788B22B4E882B0022157E /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B12B4E882B0022157E /* AdsCardLibrary.framework */; };
 		43F788B32B4E882B0022157E /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B12B4E882B0022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43FC85612B0F5E0900EABA43 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
@@ -521,6 +539,9 @@
 		43D0E61B2C6105D600AF9CF6 /* config-art.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "config-art.release.xcconfig"; sourceTree = "<group>"; };
 		43D0E61E2C61060700AF9CF6 /* config-art.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "config-art.release.xcconfig"; sourceTree = "<group>"; };
 		43D0E61F2C61060700AF9CF6 /* config-art.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "config-art.debug.xcconfig"; sourceTree = "<group>"; };
+		43F66E572D48E94F000AED12 /* Default.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Default.settings; sourceTree = "<group>"; };
+		43F66E5E2D48E95C000AED12 /* Custom.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Custom.settings; sourceTree = "<group>"; };
+		43F66E682D4A20E2000AED12 /* Default-qa.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Default-qa.settings"; sourceTree = "<group>"; };
 		43F788AE2B4E88250022157E /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F788B12B4E882B0022157E /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F788B42B4E882F0022157E /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -923,6 +944,7 @@
 		43AE85D62B5017720010C812 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				43F66E662D4A20B2000AED12 /* Loaded Files */,
 				43AE85D72B5017860010C812 /* SettingsController.swift */,
 			);
 			path = Settings;
@@ -947,6 +969,24 @@
 				43B713E62B4D54AA007C8D21 /* ConsentManager.swift */,
 			);
 			path = Consent;
+			sourceTree = "<group>";
+		};
+		43F66E662D4A20B2000AED12 /* Loaded Files */ = {
+			isa = PBXGroup;
+			children = (
+				43F66E672D4A20B9000AED12 /* Dev App */,
+			);
+			path = "Loaded Files";
+			sourceTree = "<group>";
+		};
+		43F66E672D4A20B9000AED12 /* Dev App */ = {
+			isa = PBXGroup;
+			children = (
+				43F66E572D48E94F000AED12 /* Default.settings */,
+				43F66E682D4A20E2000AED12 /* Default-qa.settings */,
+				43F66E5E2D48E95C000AED12 /* Custom.settings */,
+			);
+			path = "Dev App";
 			sourceTree = "<group>";
 		};
 		43F788BC2B4EDDC60022157E /* Controllers */ = {
@@ -1244,10 +1284,13 @@
 			files = (
 				434F84D02ACFE4FE005077F5 /* LaunchScreen.storyboard in Resources */,
 				43236A1A2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */,
+				43F66E6E2D4A20E2000AED12 /* Default-qa.settings in Resources */,
 				434F850F2AD004B0005077F5 /* Default.json in Resources */,
 				434F84FD2ACFE5F6005077F5 /* Asset.xcassets in Resources */,
+				43F66E582D48E94F000AED12 /* Default.settings in Resources */,
 				4317C00C2BC7D6BC00F40F5F /* config.release.xcconfig in Resources */,
 				434F84D12ACFE4FE005077F5 /* Assets.xcassets in Resources */,
+				43F66E622D48E95C000AED12 /* Custom.settings in Resources */,
 				434F84D22ACFE4FE005077F5 /* Main.storyboard in Resources */,
 				4301B1F62B56D4C30076065D /* shareImageData.png in Resources */,
 				434F85162AD00DC2005077F5 /* config.debug.xcconfig in Resources */,
@@ -1260,10 +1303,13 @@
 			files = (
 				434F84EC2ACFE50A005077F5 /* LaunchScreen.storyboard in Resources */,
 				43236A1D2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */,
+				43F66E6A2D4A20E2000AED12 /* Default-qa.settings in Resources */,
 				434F85102AD004B8005077F5 /* Default.json in Resources */,
 				434F84ED2ACFE50A005077F5 /* Assets.xcassets in Resources */,
+				43F66E5C2D48E94F000AED12 /* Default.settings in Resources */,
 				434F84FE2ACFE5F8005077F5 /* Asset.xcassets in Resources */,
 				4301B1F42B56D4AC0076065D /* shareImageData.png in Resources */,
+				43F66E612D48E95C000AED12 /* Custom.settings in Resources */,
 				43D0E6222C61060F00AF9CF6 /* config.release.xcconfig in Resources */,
 				43D0E6232C61060F00AF9CF6 /* config.debug.xcconfig in Resources */,
 				434F84EE2ACFE50A005077F5 /* Main.storyboard in Resources */,
@@ -1276,10 +1322,13 @@
 			files = (
 				438ED4232AA5D0C300486AF2 /* LaunchScreen.storyboard in Resources */,
 				43236A192CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */,
+				43F66E6D2D4A20E2000AED12 /* Default-qa.settings in Resources */,
 				434F85012ACFE6C8005077F5 /* config.debug.xcconfig in Resources */,
 				438ED4202AA5D0C300486AF2 /* Assets.xcassets in Resources */,
+				43F66E592D48E94F000AED12 /* Default.settings in Resources */,
 				4317C00A2BC7D69F00F40F5F /* config.release.xcconfig in Resources */,
 				438ED41E2AA5D0C200486AF2 /* Main.storyboard in Resources */,
+				43F66E602D48E95C000AED12 /* Custom.settings in Resources */,
 				434F84F82ACFE5E0005077F5 /* Asset.xcassets in Resources */,
 				433B4A932B34927900037FE1 /* shareImageData.png in Resources */,
 				434F850C2AD003A0005077F5 /* Default.json in Resources */,
@@ -1292,10 +1341,13 @@
 			files = (
 				43BCB0C62C22DD45002FB0B1 /* LaunchScreen.storyboard in Resources */,
 				43236A1C2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */,
+				43F66E692D4A20E2000AED12 /* Default-qa.settings in Resources */,
 				43BCB0C82C22DD45002FB0B1 /* Assets.xcassets in Resources */,
 				43D0E6172C61052300AF9CF6 /* config-art.debug.xcconfig in Resources */,
+				43F66E5D2D48E94F000AED12 /* Default.settings in Resources */,
 				43BCB0CA2C22DD45002FB0B1 /* Main.storyboard in Resources */,
 				43BCB0CB2C22DD45002FB0B1 /* Asset.xcassets in Resources */,
+				43F66E642D48E95C000AED12 /* Custom.settings in Resources */,
 				43BCB0CC2C22DD45002FB0B1 /* shareImageData.png in Resources */,
 				43D0E6162C61052300AF9CF6 /* config-art.release.xcconfig in Resources */,
 				43BCB0CD2C22DD45002FB0B1 /* Default.json in Resources */,
@@ -1308,10 +1360,13 @@
 			files = (
 				43BCB1092C22DD59002FB0B1 /* LaunchScreen.storyboard in Resources */,
 				43236A1B2CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */,
+				43F66E6C2D4A20E2000AED12 /* Default-qa.settings in Resources */,
 				43D0E61D2C6105D700AF9CF6 /* config-art.release.xcconfig in Resources */,
 				43BCB10A2C22DD59002FB0B1 /* Default.json in Resources */,
+				43F66E5A2D48E94F000AED12 /* Default.settings in Resources */,
 				43D0E61C2C6105D700AF9CF6 /* config-art.debug.xcconfig in Resources */,
 				43BCB10B2C22DD59002FB0B1 /* Asset.xcassets in Resources */,
+				43F66E632D48E95C000AED12 /* Custom.settings in Resources */,
 				43BCB10D2C22DD59002FB0B1 /* Assets.xcassets in Resources */,
 				43BCB10E2C22DD59002FB0B1 /* Main.storyboard in Resources */,
 				43BCB10F2C22DD59002FB0B1 /* shareImageData.png in Resources */,
@@ -1324,10 +1379,13 @@
 			files = (
 				43BCB14C2C22DD60002FB0B1 /* LaunchScreen.storyboard in Resources */,
 				43236A182CF5C6F40078EF67 /* FiraCode-Regular.ttf in Resources */,
+				43F66E6B2D4A20E2000AED12 /* Default-qa.settings in Resources */,
 				43BCB14D2C22DD60002FB0B1 /* Default.json in Resources */,
 				43D0E6212C61060700AF9CF6 /* config-art.debug.xcconfig in Resources */,
+				43F66E5B2D48E94F000AED12 /* Default.settings in Resources */,
 				43BCB1502C22DD60002FB0B1 /* Assets.xcassets in Resources */,
 				43BCB1512C22DD60002FB0B1 /* Asset.xcassets in Resources */,
+				43F66E5F2D48E95C000AED12 /* Custom.settings in Resources */,
 				43BCB1522C22DD60002FB0B1 /* shareImageData.png in Resources */,
 				43D0E6202C61060700AF9CF6 /* config-art.release.xcconfig in Resources */,
 				43BCB1532C22DD60002FB0B1 /* Main.storyboard in Resources */,
@@ -1993,6 +2051,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDK_SOURCE = Dev;
@@ -2036,6 +2095,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDK_SOURCE = Dev;

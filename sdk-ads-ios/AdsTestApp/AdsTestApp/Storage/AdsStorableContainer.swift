@@ -24,6 +24,36 @@ enum ImportMethod: String, Codable, Equatable, CaseIterable, DefaultsValueConver
     }
 }
 
+struct AppPermissions: Codable, DefaultsValueConvertible {
+    let settings: Bool
+    let logs: Bool
+    let add: Bool
+    let export: Bool
+    let bulkMode: Bool
+    let devFeatures: Bool
+    static let userDefaultKey = "AppPermissions"
+    
+    enum CodingKeys: String, CodingKey { case settings, logs, add, export, bulkMode, devFeatures }
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        settings = try container.decodeIfPresent(Bool.self, forKey: .settings) ?? true
+        logs = try container.decodeIfPresent(Bool.self, forKey: .logs) ?? true
+        add = try container.decodeIfPresent(Bool.self, forKey: .add) ?? true
+        export = try container.decodeIfPresent(Bool.self, forKey: .export) ?? true
+        bulkMode = try container.decodeIfPresent(Bool.self, forKey: .bulkMode) ?? true
+        devFeatures = try container.decodeIfPresent(Bool.self, forKey: .devFeatures) ?? true
+    }
+    
+    init() {
+        settings = true
+        logs = true
+        add = true
+        export = true
+        bulkMode = true
+        devFeatures = true
+    }
+}
+
 struct SettingsContainer: Codable, Equatable {
     static let currentOs = "iOS"
     static let untitledAdSet = "Untitled Ad Set"
@@ -88,22 +118,27 @@ struct SettingsContainer: Codable, Equatable {
     var os = SettingsContainer.currentOs
     var shouldUpdateAdUnits: Bool { os != SettingsContainer.currentOs }
     var logSettings: LogSettings!
+    var permissions: AppPermissions {
+        get { settings.appPermissions }
+        set { settings.appPermissions = newValue }
+    }
     
     enum CodingKeys: CodingKey {
-        case showCreativeId
-        case showSpecificOptions
-        case showDspFields
-        case showCampaignId
-        case bulkModeEnabled
-        case showTestMode
-        case name
-        case os
-        case enableAdUnitEditing
-        case startSDKWithApplication
-        case numberOfSdkStart
-        case logSettings
-        case importMethod
-        case killWebviewMode
+        case showCreativeId,
+        showSpecificOptions,
+        showDspFields,
+        showCampaignId,
+        bulkModeEnabled,
+        showTestMode,
+        name,
+        os,
+        enableAdUnitEditing,
+        startSDKWithApplication,
+        numberOfSdkStart,
+        logSettings,
+        importMethod,
+        killWebviewMode,
+        permissions
     }
     
     init(from decoder: Decoder) throws {
@@ -122,6 +157,7 @@ struct SettingsContainer: Codable, Equatable {
         enableAdUnitEditing = try container.decodeIfPresent(Bool.self, forKey: .enableAdUnitEditing) ?? true
         importMethod = try container.decodeIfPresent(ImportMethod.self, forKey: .importMethod) ?? .file
         logSettings = (try? container.decodeIfPresent(LogSettings.self, forKey: .logSettings)) ?? LogSettings()
+        permissions = (try? container.decodeIfPresent(AppPermissions.self, forKey: .permissions)) ?? AppPermissions()
     }
     
     func encode(to encoder: Encoder) throws {

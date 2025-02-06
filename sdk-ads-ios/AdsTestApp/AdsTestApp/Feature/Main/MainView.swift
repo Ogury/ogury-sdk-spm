@@ -10,7 +10,9 @@ import AdsCardLibrary
 struct MainView: View {
     let store: StoreOf<MainFeature>
     let logsStore: StoreOf<LogsFeature>
+    let appPermissions: AppPermissions = SettingsController().appPermissions
     @State private var logsHeight: CGFloat = 150
+    @Environment(\.cardPermissions) var cardPermissions
    
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
@@ -65,50 +67,57 @@ struct MainView: View {
     
     @ToolbarContentBuilder
     func toolBarContent(viewStore: ViewStore<MainFeature.State, MainFeature.Action>) -> some ToolbarContent {
-        ToolbarItem(placement: .topBarTrailing) {
-            Button {
-                viewStore.send(.bulkModeButtonTapped)
-            } label: {
-                Image(systemName: "list.bullet")
+        if appPermissions.bulkMode {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    viewStore.send(.bulkModeButtonTapped)
+                } label: {
+                    Image(systemName: "list.bullet")
                     // just to increase a little bit the touching area
-                    .frame(height: 40)
+                        .frame(height: 40)
+                }
+                .foregroundStyle(Color(AdColorPalette.Background.placeholder.color))
+                .accessibilityLabel("NavBarBulkModeButton")
             }
-            .foregroundStyle(Color(AdColorPalette.Background.placeholder.color))
-            .accessibilityLabel("NavBarBulkModeButton")
         }
         
-        ToolbarItem(placement: .topBarTrailing) {
-            Button {
-                viewStore.send(.showLogs(!viewStore.showLogs))
-            } label: {
-                Image("console")
-                    .resizable()
-                    .frame(width: 22, height: 22)
-                    .foregroundStyle(
-                        Color(viewStore.showLogs
-                              ? AdColorPalette.Primary.accent.color
-                              : UIColor.gray)
-                    )
-                    .clipShape(RoundedRectangle(cornerRadius: 4))
+        if appPermissions.logs {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    viewStore.send(.showLogs(!viewStore.showLogs))
+                } label: {
+                    Image("console")
+                        .resizable()
+                        .frame(width: 22, height: 22)
+                        .foregroundStyle(
+                            Color(viewStore.showLogs
+                                  ? AdColorPalette.Primary.accent.color
+                                  : UIColor.gray)
+                        )
+                        .clipShape(RoundedRectangle(cornerRadius: 4))
                     // just to increase a little bit the touching area
-                    .frame(height: 40)
+                        .frame(height: 40)
+                }
+                .accessibilityLabel("NavBarLogButton")
             }
-            .accessibilityLabel("NavBarLogButton")
         }
         
-        ToolbarItem(placement: .topBarTrailing) {
-            Button {
-                showAddView(from: viewStore)
-            } label: {
-                Image(systemName: "plus")
+        if appPermissions.add {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showAddView(from: viewStore)
+                } label: {
+                    Image(systemName: "plus")
                     // just to increase a little bit the touching area
-                    .frame(height: 40)
+                        .frame(height: 40)
+                }
+                .accessibilityLabel("NavBarAddButton")
             }
-            .accessibilityLabel("NavBarAddButton")
         }
         
         ToolbarItem(placement: .topBarTrailing) {
             Menu {
+                if appPermissions.export {
                     ControlGroup {
                         Button{
                             viewStore.send(.exportButtonTapped)
@@ -140,6 +149,7 @@ struct MainView: View {
                         .disabled(viewStore.adFormats.isEmpty)
                     }
                     .safeMenuControlGroupStyle()
+                }
                 
                 Section {
                     Button{
@@ -158,12 +168,15 @@ struct MainView: View {
                             Image(systemName: "doc.text.magnifyingglass")
                         }
                     }
-                    Button{
-                        viewStore.send(.settingsButtonTapped)
-                    } label: {
-                        HStack {
-                            Text("Settings").font(.adsBody)
-                            Image(systemName: "gear")
+                    
+                    if appPermissions.settings {
+                        Button{
+                            viewStore.send(.settingsButtonTapped)
+                        } label: {
+                            HStack {
+                                Text("Settings").font(.adsBody)
+                                Image(systemName: "gear")
+                            }
                         }
                     }
                 }
@@ -267,6 +280,7 @@ struct LegacyHorizontalCardsView: View {
     let managers: [any AdManager]
     let geometry: GeometryProxy
     @State private var contentSize: CGSize = .zero
+    @Environment(\.cardPermissions) var cardPermissions
     
     var body: some View {
         HStack(alignment: .center, spacing: 4) {
@@ -322,6 +336,7 @@ struct HorizontalCardsView: View {
     // we block the navigation for all banner managers since we have issues with adViews and superviews
     var disabled: Bool { managers.first as? BannerAdManager != nil }
     @State private var contentSize: CGSize = .zero
+    @Environment(\.cardPermissions) var cardPermissions
     
     var body: some View {
         VStack(spacing: 0) {
@@ -390,6 +405,7 @@ struct HorizontalCardsView: View {
 
 struct ListManagersView: View {
     let store: StoreOf<MainFeature>
+    @Environment(\.cardPermissions) var cardPermissions
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
@@ -439,6 +455,7 @@ struct ListManagersView: View {
 
 struct EmptyManagersView: View {
     var viewStore: ViewStore<MainFeature.State, MainFeature.Action>
+    let appPermissions: AppPermissions = SettingsController().appPermissions
     
     var body: some View {
         VStack {
@@ -452,31 +469,35 @@ struct EmptyManagersView: View {
                 .padding()
             
             VStack(spacing: 16) {
-                Button {
-                    showAddView(from: viewStore)
-                } label: {
-                    HStack {
-                        Image(systemName: "plus")
-                        Text("Add ad units")
-                            .font(.adsTitle2)
+                if appPermissions.add {
+                    Button {
+                        showAddView(from: viewStore)
+                    } label: {
+                        HStack {
+                            Image(systemName: "plus")
+                            Text("Add ad units")
+                                .font(.adsTitle2)
+                        }
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, 20)
                     }
-                    .padding(.vertical, 4)
-                    .padding(.horizontal, 20)
+                    .buttonStyle(AdsPrimaryButton())
                 }
-                .buttonStyle(AdsPrimaryButton())
                 
-                Button {
-                    viewStore.send(.importButtonTapped)
-                } label: {
-                    HStack {
-                        Image(systemName: "square.and.arrow.down")
-                        Text("Import saved")
-                            .font(.adsTitle2)
+                if appPermissions.export {
+                    Button {
+                        viewStore.send(.importButtonTapped)
+                    } label: {
+                        HStack {
+                            Image(systemName: "square.and.arrow.down")
+                            Text("Import saved")
+                                .font(.adsTitle2)
+                        }
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, 20)
                     }
-                    .padding(.vertical, 4)
-                    .padding(.horizontal, 20)
+                    .buttonStyle(AdsSecondaryButton())
                 }
-                .buttonStyle(AdsSecondaryButton())
             }
         }
     }

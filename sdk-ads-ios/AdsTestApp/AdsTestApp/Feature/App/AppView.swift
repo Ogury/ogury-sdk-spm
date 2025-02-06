@@ -10,6 +10,11 @@ import AdsCardLibrary
 struct AppView: View {
     let store: StoreOf<AppFeature>
     @State private var toolbarVisible = false
+    private var cardPermissions: CardPermissions {
+        CardPermissions(logs: SettingsController().appPermissions.logs,
+                        add: SettingsController().appPermissions.add,
+                        devFeatures: SettingsController().appPermissions.devFeatures)
+    }
     
     var body: some View {
         if #available(iOS 16, *) {
@@ -22,6 +27,7 @@ struct AppView: View {
                         action: { .main($0) }
                     ), logsStore:  self.store.scope(state: \.logs, action: AppFeature.Action.logs)
                 )
+                .environment(\.cardPermissions, cardPermissions)
                 .toolbar {
                     ToolbarItemGroup(placement: .keyboard) {
                         if toolbarVisible {
