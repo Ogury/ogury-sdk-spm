@@ -10,6 +10,7 @@
 #import "OGAConfigurationUtils.h"
 #import "OGADevice.h"
 #import "OGALog.h"
+#import "OGAInternal.h"
 #import "OGAProfigDao.h"
 #import "OGAWebViewUserAgentService.h"
 #import "OGASdkConsumer.h"
@@ -22,7 +23,6 @@
             assetKeyManager:(OGAAssetKeyManager *)assetKeyManager
                   profigDao:(OGAProfigDao *)profigDao
                         log:(OGALog *)log
-                sdkConsumer:(OGASdkConsumer * _Nullable)sdkConsumer
     webViewUserAgentService:(OGAWebViewUserAgentService *)webViewUserAgentService;
 
 - (NSDictionary *)buildBodyFromEvent:(NSArray<id<OGMEventMonitorable>> *)events;
@@ -126,7 +126,6 @@ static NSString *const TestContent = @"detailContentTest";
                                                                                                      assetKeyManager:assetKeyManagerMock
                                                                                                            profigDao:profigDao
                                                                                                                  log:logMock
-                                                                                                         sdkConsumer:nil
                                                                                              webViewUserAgentService:webViewUserAgentService]);
     OGADevice *device = OCMPartialMock([OGADevice new]);
     OCMStub([device name]).andReturn(@"deviceName");
@@ -342,12 +341,35 @@ static NSString *const TestContent = @"detailContentTest";
                                                                                                      assetKeyManager:assetKeyManagerMock
                                                                                                            profigDao:profigDao
                                                                                                                  log:logMock
-                                                                                                         sdkConsumer:sdkConsumer
                                                                                              webViewUserAgentService:webViewUserAgentService]);
+    id internalMock = OCMClassMock([OGAInternal class]);
+    OCMStub(OCMClassMethod([internalMock shared])).andReturn(internalMock);
+    OCMStub([internalMock sdkConsumer]).andReturn(sdkConsumer);
     NSDictionary *res = [requestBuilder buildBodyFromEvent:@[ self.event ]];
     XCTAssertNotNil(res[@"product"]);
     XCTAssertEqualObjects(res[@"product"][@"name"], @"sdk");
     XCTAssertEqualObjects(res[@"product"][@"version"], @"version");
+}
+
+- (void)testWhenNoSdkConsumerIsSetThenNothingIsDispatched {
+    id logMock = OCMClassMock([OGALog class]);
+    OGAAssetKeyManager *assetKeyManagerMock = OCMClassMock([OGAAssetKeyManager class]);
+    OCMStub([assetKeyManagerMock assetKey]).andReturn(TestAssetKey);
+    OGAAdPrivacyConfiguration *privacyConfiguration = OCMPartialMock([[OGAAdPrivacyConfiguration alloc] initWithAdSyncPermissionMask:0
+                                                                                                                      monitoringMask:0]);
+    OGAProfigFullResponse *profigFullResponse = OCMClassMock([OGAProfigFullResponse class]);
+    OGAProfigDao *profigDao = OCMClassMock([OGAProfigDao class]);
+    OGAWebViewUserAgentService *webViewUserAgentService = OCMClassMock([OGAWebViewUserAgentService class]);
+    OCMStub(webViewUserAgentService.webViewUserAgent).andReturn(@"USER_AGENT");
+    OCMStub([profigDao profigFullResponse]).andReturn(profigFullResponse);
+    OCMStub([profigFullResponse getPrivacyConfiguration]).andReturn(privacyConfiguration);
+    OGAAdServerMonitorRequestBuilder *requestBuilder = OCMPartialMock([[OGAAdServerMonitorRequestBuilder alloc] init:[NSURL URLWithString:@"https://www.google.com/"]
+                                                                                                     assetKeyManager:assetKeyManagerMock
+                                                                                                           profigDao:profigDao
+                                                                                                                 log:logMock
+                                                                                             webViewUserAgentService:webViewUserAgentService]);
+    NSDictionary *res = [requestBuilder buildBodyFromEvent:@[ self.event ]];
+    XCTAssertNil(res[@"product"]);
 }
 
 @end

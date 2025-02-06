@@ -29,7 +29,6 @@
 @property(nonatomic, strong) OGAAssetKeyManager *assetKeyManager;
 @property(nonatomic, retain) NSURL *url;
 @property(nonatomic, retain) OGAProfigDao *profigDao;
-@property(nonatomic, retain) OGASdkConsumer * _Nullable sdkConsumer;
 @property(nonatomic, retain) OGAWebViewUserAgentService *webViewUserAgentService;
 
 @end
@@ -96,7 +95,6 @@ static NSString *const MonitoringServiceBodyDeviceAssetType = @"ios";
                 assetKeyManager:[OGAAssetKeyManager shared]
                       profigDao:[OGAProfigDao shared]
                             log:[OGALog shared]
-                    sdkConsumer:[[OGAInternal shared] sdkConsumer]
         webViewUserAgentService:[OGAWebViewUserAgentService shared]];
 }
 
@@ -104,7 +102,6 @@ static NSString *const MonitoringServiceBodyDeviceAssetType = @"ios";
             assetKeyManager:(OGAAssetKeyManager *)assetKeyManager
                   profigDao:(OGAProfigDao *)profigDao
                         log:(OGALog *)log
-                sdkConsumer:(OGASdkConsumer * _Nullable)sdkConsumer
     webViewUserAgentService:(OGAWebViewUserAgentService *)webViewUserAgentService {
     if (self = [super init]) {
         _url = url;
@@ -112,7 +109,6 @@ static NSString *const MonitoringServiceBodyDeviceAssetType = @"ios";
         _assetKeyManager = assetKeyManager;
         _profigDao = profigDao;
         _webViewUserAgentService = webViewUserAgentService;
-        _sdkConsumer = sdkConsumer;
     }
     return self;
 }
@@ -158,10 +154,10 @@ static NSString *const MonitoringServiceBodyDeviceAssetType = @"ios";
     body[MonitoringServiceBodyAppDictionary][MonitoringServiceBodyAppBundleId] = [OGAConfigurationUtils getAppBundleIdentifer];
     body[MonitoringServiceBodyAppDictionary][MonitoringServiceBodyAppVersion] = [OGAConfigurationUtils getAppMarketingVersion];
 
-    if (self.sdkConsumer != nil) {
+    if ([OGAInternal shared].sdkConsumer != nil) {
         body[MonitoringServiceBodyProductDictionary] = @{
-            MonitoringServiceBodyProductNameDictionary : self.sdkConsumer.name,
-            MonitoringServiceBodyProductVersionDictionary : self.sdkConsumer.version
+            MonitoringServiceBodyProductNameDictionary : [OGAInternal shared].sdkConsumer.name,
+            MonitoringServiceBodyProductVersionDictionary : [OGAInternal shared].sdkConsumer.version
         };
     }
 
