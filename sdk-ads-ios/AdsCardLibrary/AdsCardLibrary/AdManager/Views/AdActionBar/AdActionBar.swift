@@ -15,12 +15,17 @@ struct AdActionBar: View {
                     Button("Load") {
                         viewStore.send(.loadButtonTapped)
                     }
+                    .accessibilityLabel("Card#\(viewStore.qaLabel)_LoadButton")
+                    
                     Button("Show") {
                         viewStore.send(.showButtonTapped)
                     }
+                    .accessibilityLabel("Card#\(viewStore.qaLabel)_ShowButton")
+                    
                     Button("Load & Show") {
                         viewStore.send(.loadAndShowButtonTapped)
                     }
+                    .accessibilityLabel("Card#\(viewStore.qaLabel)_LoadAndShowButton")
                 }
                 .buttonStyle(AdsPrimaryButton(isEnabled: isEnabled))
                 
@@ -39,6 +44,7 @@ struct AdActionBar: View {
                     Image(systemName: "trash")
                         .tint(Color(AdColorPalette.State.failure.color))
                 }
+                .accessibilityLabel("Card#\(viewStore.qaLabel)_DeleteButton")
                 .padding(4)
                 .buttonStyle(AdsDefaultButton(color: AdColorPalette.State.failure.color))
                 .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: true).color))
@@ -52,7 +58,7 @@ struct AdActionBar: View {
 
 struct AdActionBar_Previews: PreviewProvider {
     static var previews: some View {
-        AdActionBar(store: Store(initialState: AdActionBarFeature.State(), reducer: {
+        AdActionBar(store: Store(initialState: AdActionBarFeature.State(qaLabel: "QALabel"), reducer: {
             AdActionBarFeature()
         }))
         //        .disabled(true)
@@ -64,11 +70,46 @@ public struct AdsPrimaryButton: ButtonStyle {
     public init(isEnabled: Bool = true) {
         self.isEnabled = isEnabled
     }
+    
     public func makeBody(configuration: Configuration) -> some View {
         configuration
             .label
             .font(.adsTitle3)
             .padding(8)
+            .background(backgroundColor(isPressed: configuration.isPressed))
+            .foregroundColor(foregroundColor(isPressed: configuration.isPressed))
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .shadow(color: Color(AdColorPalette.Background.shadow.color), radius: 3.5, x: 0, y: 5)
+    }
+    
+    private func backgroundColor(isPressed: Bool) -> Color {
+        switch (isEnabled, isPressed) {
+            case (false, _): return Color(AdColorPalette.Background.disabled.color)
+            case (_, true): return Color(AdColorPalette.Primary.accentLight.color)
+            case (_, false): return Color(AdColorPalette.Primary.accent.color)
+        }
+    }
+    private func foregroundColor(isPressed: Bool) -> Color {
+        switch (isEnabled, isPressed) {
+            case (false, _): return Color(AdColorPalette.Text.supplementary(onAccent: false).color)
+            case (_, false): return Color(AdColorPalette.Text.primary(onAccent: true).color)
+            case (_, true): return Color(AdColorPalette.Text.supplementary(onAccent: false).color)
+        }
+    }
+}
+
+public struct AdsExpandablePrimaryButton: ButtonStyle {
+    private var isEnabled: Bool
+    public init(isEnabled: Bool = true) {
+        self.isEnabled = isEnabled
+    }
+    
+    public func makeBody(configuration: Configuration) -> some View {
+        configuration
+            .label
+            .font(.adsTitle3)
+            .padding(8)
+            .frame(maxWidth: .infinity)
             .background(backgroundColor(isPressed: configuration.isPressed))
             .foregroundColor(foregroundColor(isPressed: configuration.isPressed))
             .clipShape(RoundedRectangle(cornerRadius: 8))

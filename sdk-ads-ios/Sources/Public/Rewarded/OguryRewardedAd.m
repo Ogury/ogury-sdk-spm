@@ -11,6 +11,8 @@
 
 @property(nonatomic, strong) OguryRewardedAdDelegateDispatcher *delegateDispatcher;
 @property(nonatomic, strong) OGARewardedAdInternalAPI *internalAPI;
+- (void)setLogOrigin:(NSString *)origin;
+- (OGAAdConfiguration *)adConfiguration;
 
 @end
 
@@ -84,6 +86,28 @@
 
 - (void)showAdInViewController:(UIViewController *)viewController {
     [self.internalAPI showAdInViewController:viewController];
+}
+
+- (void)setLogOrigin:(NSString *)origin {
+    [self.internalAPI setLogOrigin:origin];
+}
+
+- (OGAAdConfiguration *)adConfiguration {
+    return self.internalAPI.adConfiguration;
+}
+
+- (void)simulateWebviewTerminated {
+#if defined(DEBUG) || defined(KILL_MODE_ENABLED)
+    [self.internalAPI simulateWebviewTerminated];
+#endif
+}
+
+- (WKWebView *)adWebview {
+#if defined(DEBUG) || defined(KILL_MODE_ENABLED)
+    return [self.internalAPI adWebview];
+#else
+    return nil;
+#endif
 }
 
 @end

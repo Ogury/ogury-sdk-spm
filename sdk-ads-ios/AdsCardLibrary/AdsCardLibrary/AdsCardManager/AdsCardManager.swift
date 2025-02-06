@@ -5,13 +5,15 @@
 import Foundation
 import OguryAds
 import SwiftUI
+import OguryCore.Private
 
 //MARK: - AdsCardManager
 public struct AdsCardManager {
     public static let testModeSuffix = "_test"
+    internal static var logger: OguryLogger?
     
-    public init() {
-        
+    public init(logger: OguryLogger? = nil) {
+        AdsCardManager.logger = logger  
     }
     
     /// Returns the dedicated adManager associated with the ``AdType``
@@ -286,13 +288,22 @@ extension AdType {
 public enum AdTag: String, Equatable {
     case ogury, max, dtFairbid, unityLevelPlay, direct, bypass, waterfall, headerBidding, oguryTestMode, rtbTestMode
     
+    enum DisplayMode {
+        case fill, stroke
+    }
+    var displayMode: DisplayMode {
+        switch self {
+            default: return .fill
+        }
+    }
+    
     public var name: String {
         switch self {
             case .ogury: return "Ogury"
             case .max: return "Max"
             case .dtFairbid: return "Digital Turbine Fairbid"
             case .direct: return "Direct"
-            case .bypass: return "Bypass"
+            case .bypass: return "No adapter"
             case .waterfall: return "Waterfall"
             case .headerBidding: return "HB"
             case .unityLevelPlay: return "Unity LevelPlay"
@@ -325,14 +336,14 @@ public enum AdTag: String, Equatable {
             case .bypass:  return Color(#colorLiteral(red: 0, green: 0.4201652408, blue: 0.4244114757, alpha: 1))
             case .waterfall: return Color(#colorLiteral(red: 0, green: 0.5913378596, blue: 1, alpha: 1))
             case .headerBidding: return Color(#colorLiteral(red: 0, green: 0.8673904538, blue: 0.2728650272, alpha: 1))
-            case .oguryTestMode: return Color(#colorLiteral(red: 0.6542432308, green: 0.8769065142, blue: 0.9881662726, alpha: 1))
-            case .rtbTestMode: return Color(#colorLiteral(red: 0.6542432308, green: 0.8769065142, blue: 0.9881662726, alpha: 1))
+            case .oguryTestMode: return Color(#colorLiteral(red: 0.8326988816, green: 0.2894239128, blue: 0.3478675783, alpha: 1))
+            case .rtbTestMode: return Color(#colorLiteral(red: 0.8326988816, green: 0.2894239128, blue: 0.3478675783, alpha: 1))
         }
     }
     
     internal var textColor: Color {
         switch self {
-            case .direct, .headerBidding, .rtbTestMode, .oguryTestMode: return .black
+            case .direct, .headerBidding: return .black
             default: return .white
         }
     }

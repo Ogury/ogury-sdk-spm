@@ -5,11 +5,16 @@
 #import "OguryRewardedAdDelegateDispatcher.h"
 #import "OguryRewardedAd.h"
 #import "OGALog.h"
+#import "OguryAds+Log.h"
 
 @implementation OguryRewardedAdDelegateDispatcher
 
 - (void)clicked {
-    [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad clicked called", OGAAdConfigurationAdTypeRewarded, self.rewardedAd.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:self.rewardedAd.adConfiguration
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Rewarded] Ad clicked"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.rewardedAd.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(rewardedAdDidClick:)] && self.rewardedAd != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
@@ -19,7 +24,11 @@
 }
 
 - (void)closed {
-    [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad closed called", OGAAdConfigurationAdTypeRewarded, self.rewardedAd.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:self.rewardedAd.adConfiguration
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Rewarded] Ad closed"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.rewardedAd.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(rewardedAdDidClose:)] && self.rewardedAd != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
@@ -30,7 +39,12 @@
 }
 
 - (void)failedWithError:(OguryAdError *)error {
-    [self.log logErrorFormat:error format:@"[%@][%@] callback ad failed with error called", OGAAdConfigurationAdTypeRewarded, self.rewardedAd.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:self.rewardedAd.adConfiguration
+                                                 logType:OguryLogTypeDelegate
+                                                   error:error
+                                                 message:@"[Rewarded] Ad failed"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.rewardedAd.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(rewardedAd:didFailWithError:)] && self.rewardedAd != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
@@ -41,7 +55,11 @@
 }
 
 - (void)loaded {
-    [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad loaded called", OGAAdConfigurationAdTypeRewarded, self.rewardedAd.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:self.rewardedAd.adConfiguration
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Rewarded] Ad loaded"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.rewardedAd.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(rewardedAdDidLoad:)] && self.rewardedAd != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
@@ -51,7 +69,16 @@
 }
 
 - (void)rewarded:(OguryReward *)reward {
-    [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad rewarded with item[%@]x%@ called", OGAAdConfigurationAdTypeRewarded, self.rewardedAd.adUnitId, reward.rewardName, reward.rewardValue];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:self.rewardedAd.adConfiguration
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Rewarded] reward received"
+                                                    tags:@[
+                                                        [OguryLogTag tagWithKey:@"AdUnitId"
+                                                                          value:self.rewardedAd.adUnitId],
+                                                        [OguryLogTag tagWithKey:@"Item"
+                                                                          value:[NSString stringWithFormat:@"name: %@, value:%@", reward.rewardName, reward.rewardValue]]
+                                                    ]]];
 
     if ([self.delegate respondsToSelector:@selector(rewardedAd:didReceiveReward:)] && self.rewardedAd != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {
@@ -61,7 +88,11 @@
 }
 
 - (void)adImpression {
-    [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad impression called", OGAAdConfigurationAdTypeRewarded, self.rewardedAd.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:self.rewardedAd.adConfiguration
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Rewarded] Ad impression"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.rewardedAd.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(rewardedAdDidTriggerImpression:)] && self.rewardedAd != nil) {
         [self dispatch:^(id<OguryRewardedAdDelegate> _Nonnull delegate) {

@@ -35,8 +35,6 @@ public struct BaseAdOptions: Equatable, Codable {
     public internal(set) var dspRegion: DspRegion?
     /// The creativeId used to load the ad
     public internal(set) var creativeId: String?
-    /// The adMarkUp JSON object for HB
-    public internal(set) var adMarkUp: String?
     /// indicates if the card is selected or not
     public internal(set) var isSelected: Bool
     /// indicates if we should show the action bar or not
@@ -45,6 +43,8 @@ public struct BaseAdOptions: Equatable, Codable {
     public internal(set) var oguryTestModeEnabled: Bool
     /// indicates if we should use the RTB test mode (test=1 in bid request)
     public internal(set) var rtbTestModeEnabled: Bool
+    /// indicates if we should show the killWebView feature
+    public internal(set) var killWebviewMode: KillWebviewMode
     /// The card accessibilityLabel
     public internal(set) var qaLabel: String
     
@@ -88,11 +88,11 @@ public class BaseAdManagerOptions: AdOptions, Codable {
                 creativeId: String? = nil,
                 dspCreativeId: String? = nil,
                 dspRegion: DspRegion? = nil,
-                adMarkUp: String? = nil,
                 isSelected: Bool = false,
                 bulkModeEnabled: Bool = false,
                 oguryTestModeEnabled: Bool = false,
                 rtbTestModeEnabled: Bool = false,
+                killWebviewMode: KillWebviewMode = .none,
                 qaLabel: String = UUID().uuidString) {
         self.showCampaignId = showCampaignId
         self.showCreativeId = showCreativeId
@@ -104,11 +104,11 @@ public class BaseAdManagerOptions: AdOptions, Codable {
                                     dspCreativeId: dspCreativeId,
                                     dspRegion: dspRegion,
                                     creativeId: creativeId,
-                                    adMarkUp: adMarkUp,
                                     isSelected: isSelected,
                                     bulkModeEnabled: bulkModeEnabled,
                                     oguryTestModeEnabled: oguryTestModeEnabled,
                                     rtbTestModeEnabled: rtbTestModeEnabled,
+                                    killWebviewMode: killWebviewMode,
                                     qaLabel: qaLabel)
     }
     
@@ -145,11 +145,11 @@ public class BannerAdManagerOptions: BaseAdManagerOptions {
                 creativeId: String? = nil,
                 dspCreativeId: String? = nil,
                 dspRegion: DspRegion? = nil,
-                adMarkUp: String? = nil,
                 isSelected: Bool = false,
                 bulkModeEnabled: Bool = false,
                 oguryTestModeEnabled: Bool = false,
                 rtbTestModeEnabled: Bool = false,
+                killWebviewMode: KillWebviewMode = .none,
                 qaLabel: String = UUID().uuidString) {
         super.init(showCampaignId: showCampaignId,
                    showCreativeId: showCreativeId,
@@ -161,11 +161,11 @@ public class BannerAdManagerOptions: BaseAdManagerOptions {
                    creativeId: creativeId,
                    dspCreativeId: dspCreativeId,
                    dspRegion: dspRegion,
-                   adMarkUp: adMarkUp,
                    isSelected: isSelected,
                    bulkModeEnabled: bulkModeEnabled,
                    oguryTestModeEnabled: oguryTestModeEnabled,
                    rtbTestModeEnabled: rtbTestModeEnabled,
+                   killWebviewMode: killWebviewMode,
                    qaLabel: qaLabel)
         self.view = view
     }
@@ -181,11 +181,11 @@ public class BannerAdManagerOptions: BaseAdManagerOptions {
                    creativeId: options.baseOptions.creativeId,
                    dspCreativeId: options.baseOptions.dspCreativeId,
                    dspRegion: options.baseOptions.dspRegion,
-                   adMarkUp: options.baseOptions.adMarkUp,
                    isSelected: options.baseOptions.isSelected,
                    bulkModeEnabled: options.baseOptions.bulkModeEnabled,
                    oguryTestModeEnabled: options.baseOptions.oguryTestModeEnabled,
                    rtbTestModeEnabled: options.baseOptions.rtbTestModeEnabled,
+                   killWebviewMode: options.baseOptions.killWebviewMode,
                    qaLabel: options.baseOptions.qaLabel)
     }
     
@@ -216,11 +216,11 @@ public class AdManagerOptions: BaseAdManagerOptions {
                 creativeId: String? = nil,
                 dspCreativeId: String? = nil,
                 dspRegion: DspRegion? = nil,
-                adMarkUp: String? = nil,
                 isSelected: Bool = false,
                 bulkModeEnabled: Bool = false,
                 oguryTestModeEnabled: Bool = false,
                 rtbTestModeEnabled: Bool = false,
+                killWebviewMode: KillWebviewMode = .none,
                 qaLabel: String = UUID().uuidString) {
         super.init(showCampaignId: showCampaignId,
                    showCreativeId: showCreativeId,
@@ -232,11 +232,11 @@ public class AdManagerOptions: BaseAdManagerOptions {
                    creativeId: creativeId,
                    dspCreativeId: dspCreativeId,
                    dspRegion: dspRegion,
-                   adMarkUp: adMarkUp,
                    isSelected: isSelected,
                    bulkModeEnabled: bulkModeEnabled,
                    oguryTestModeEnabled: oguryTestModeEnabled,
                    rtbTestModeEnabled: rtbTestModeEnabled,
+                   killWebviewMode: killWebviewMode,
                    qaLabel: qaLabel)
         self.viewController = viewController
     }
@@ -252,11 +252,11 @@ public class AdManagerOptions: BaseAdManagerOptions {
                    creativeId: options.baseOptions.creativeId,
                    dspCreativeId: options.baseOptions.dspCreativeId,
                    dspRegion: options.baseOptions.dspRegion,
-                   adMarkUp: options.baseOptions.adMarkUp,
                    isSelected: options.baseOptions.isSelected,
                    bulkModeEnabled: options.baseOptions.bulkModeEnabled,
                    oguryTestModeEnabled: options.baseOptions.oguryTestModeEnabled,
                    rtbTestModeEnabled: options.baseOptions.rtbTestModeEnabled,
+                   killWebviewMode: options.baseOptions.killWebviewMode,
                    qaLabel: options.baseOptions.qaLabel)
     }
     
@@ -288,11 +288,11 @@ public class ThumbnailAdManagerOptions: AdManagerOptions {
                 creativeId: String? = nil,
                 dspCreativeId: String? = nil,
                 dspRegion: DspRegion? = nil,
-                adMarkUp: String? = nil,
                 isSelected: Bool = false,
                 bulkModeEnabled: Bool = false,
                 oguryTestModeEnabled: Bool = false,
                 rtbTestModeEnabled: Bool = false,
+                killWebviewMode: KillWebviewMode = .none,
                 qaLabel: String = UUID().uuidString) {
         super.init(showCampaignId: showCampaignId,
                    showCreativeId: showCreativeId,
@@ -305,11 +305,11 @@ public class ThumbnailAdManagerOptions: AdManagerOptions {
                    creativeId: creativeId,
                    dspCreativeId: dspCreativeId,
                    dspRegion: dspRegion,
-                   adMarkUp: adMarkUp,
                    isSelected: isSelected,
                    bulkModeEnabled: bulkModeEnabled,
                    oguryTestModeEnabled: oguryTestModeEnabled,
                    rtbTestModeEnabled: rtbTestModeEnabled,
+                   killWebviewMode: killWebviewMode,
                    qaLabel: qaLabel)
         self.thumbnailOptions = thumbnailOptions
     }
@@ -326,11 +326,11 @@ public class ThumbnailAdManagerOptions: AdManagerOptions {
                    creativeId: options.baseOptions.creativeId,
                    dspCreativeId: options.baseOptions.dspCreativeId,
                    dspRegion: options.baseOptions.dspRegion,
-                   adMarkUp: options.baseOptions.adMarkUp,
                    isSelected: options.baseOptions.isSelected,
                    bulkModeEnabled: options.baseOptions.bulkModeEnabled,
                    oguryTestModeEnabled: options.baseOptions.oguryTestModeEnabled,
                    rtbTestModeEnabled: options.baseOptions.rtbTestModeEnabled,
+                   killWebviewMode: options.baseOptions.killWebviewMode,
                    qaLabel: options.baseOptions.qaLabel)
         self.thumbnailOptions = thumbnailOptions
     }

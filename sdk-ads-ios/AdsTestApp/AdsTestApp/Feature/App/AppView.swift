@@ -20,7 +20,7 @@ struct AppView: View {
                     store: store.scope(
                         state: \.main,
                         action: { .main($0) }
-                    )
+                    ), logsStore:  self.store.scope(state: \.logs, action: AppFeature.Action.logs)
                 )
                 .toolbar {
                     ToolbarItemGroup(placement: .keyboard) {
@@ -51,32 +51,35 @@ struct AppView: View {
                         CaseLet(
                             /AppFeature.Path.State.main,
                              action: AppFeature.Path.Action.main,
-                             then: MainView.init(store:)
+                             then: { store in
+                                MainView(store: store, logsStore: self.store.scope(state: \.logs, action: AppFeature.Action.logs))
+                            }
                         )
                     case .detail:
                         CaseLet(
                             /AppFeature.Path.State.detail,
                              action: AppFeature.Path.Action.detail,
-                             then: DetailListView.init(store:)
+                             then: { store in
+                                DetailListView(store: store, logsStore: self.store.scope(state: \.logs, action: AppFeature.Action.logs))
+                            }
                         )
                 }
             }
-            .alert(store: self.store.scope(state: \.$alert, action: { .alert($0) }))
         } else {
             NavigationView(content: {
                 MainView(
                     store: self.store.scope(
                         state: \.main,
                         action: { .main($0) }
-                    )
+                    ), logsStore:  self.store.scope(state: \.logs, action: AppFeature.Action.logs)
                 )
             })
         }
     }
 }
 
-#Preview {
-    AppView(store: Store(initialState: AppFeature.State(), reducer: {
-        AppFeature(adHostingViewController: nil, adDelegate: nil)
-    }))
-}
+//#Preview {
+//    AppView(store: Store(initialState: AppFeature.State(), reducer: {
+//        AppFeature(adHostingViewController: nil, adDelegate: nil)
+//    }))
+//}

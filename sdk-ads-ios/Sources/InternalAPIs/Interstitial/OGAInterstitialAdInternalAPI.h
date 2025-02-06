@@ -3,12 +3,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <WebKit/WebKit.h>
 #import "OGAAdInternalAPI.h"
 #import "OGADelegateDispatcher.h"
 #import "OguryMediation.h"
 
 @class OGAAdManager;
+@class OGAAdConfiguration;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -38,6 +39,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)loadWithCampaignId:(NSString *_Nullable)campaignId creativeId:(NSString *_Nullable)creativeId dspCreativeId:(NSString *_Nullable)dspCreativeId dspRegion:(NSString *_Nullable)dspRegion;
 
 - (void)showAdInViewController:(UIViewController *)viewController;
+
+- (void)setLogOrigin:(NSString *)origin;
+- (OGAAdConfiguration *)adConfiguration;
+- (void)simulateWebviewTerminated;
+- (WKWebView *)adWebview;
 
 @end
 

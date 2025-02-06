@@ -35,9 +35,29 @@
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self.parameters options:NSJSONWritingFragmentsAllowed error:&error];
     if (!error && jsonData != nil) {
         NSString *jsonParameters = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypeMraid
+                                                     message:@"Convert to Javascript command"
+                                                        tags:@[
+                                                            [OguryLogTag tagWithKey:@"Trigger"
+                                                                              value:self.trigger],
+                                                            [OguryLogTag tagWithKey:@"Params"
+                                                                              value:jsonParameters]
+                                                        ]]];
+
         return [NSString stringWithFormat:@"ogySdkMraidGateway.callEventListeners(\"%@\", %@)", self.trigger, jsonParameters];
     } else if (error != nil) {
-        [self.log logErrorFormat:error format:@"toJavascriptCommand Unable to parse json object: %@", error.description];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypeMraid
+                                                       error:error
+                                                     message:@"Failed to convert to Javascript command"
+                                                        tags:@[
+                                                            [OguryLogTag tagWithKey:@"Trigger"
+                                                                              value:self.trigger]
+                                                        ]]];
         return @"";
     }
     // should never happen

@@ -3,6 +3,7 @@
 //
 
 #import <OCMock/OCMock.h>
+#import "OGAAdLogMessage.h"
 #import <XCTest/XCTest.h>
 #import "OGAAdConfiguration.h"
 #import "OGAAdManager+Testing.h"
@@ -310,7 +311,13 @@
     [self.adManager continueLoadAdAfterAdSynced:sequence ads:@[] error:[OguryAdError adParsingFailedWithStackTrace:@"stack"]];
     XCTAssertEqual(sequence.status, OGAAdSequenceStatusError);
     OCMVerify([self.adManager dispatchError:[OguryAdError adParsingFailedWithStackTrace:@"stack"] sequence:sequence]);
-    OCMVerify([self.log logAd:OguryLogLevelError forAdConfiguration:configuration message:@"failed to decode ad markup"]);
+    OGAAdLogMessage *message = [[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                      adConfiguration:sequence.configuration
+                                                              logType:OguryLogTypePublisher
+                                                                error:[OguryAdError adParsingFailedWithStackTrace:@"stack"]
+                                                              message:nil
+                                                                 tags:nil];
+    OCMVerify([self.log log:message]);
     OCMVerify([self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventAdMarkUpParsingError
                                                  stackTrace:@"stack"
                                             adConfiguration:sequence.monitoringAdConfiguration]);

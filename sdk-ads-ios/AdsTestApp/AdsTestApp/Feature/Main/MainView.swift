@@ -9,19 +9,45 @@ import AdsCardLibrary
 
 struct MainView: View {
     let store: StoreOf<MainFeature>
+    let logsStore: StoreOf<LogsFeature>
+    @State private var logsHeight: CGFloat = 150
+   
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            ZStack {
-                Color(AdColorPalette.Background.secondary.color).ignoresSafeArea()
-                
-                if viewStore.adFormats.isEmpty {
-                    EmptyManagersView(viewStore: viewStore)
-                } else {
-                    ListManagersView(store: store)
-                        .listStyle(InsetListStyle())
-                        .frame(width: UIScreen.main.bounds.size.width, alignment: .center)
-                }
-            }
+           VStack(spacing:0) {
+              ZStack {
+                   Color(AdColorPalette.Background.secondary.color).ignoresSafeArea()
+                   
+                   if viewStore.adFormats.isEmpty {
+                       EmptyManagersView(viewStore: viewStore)
+                   } else {
+                       ListManagersView(store: store)
+                           .listStyle(InsetListStyle())
+                           .frame(width: UIScreen.main.bounds.size.width, alignment: .center)
+                           .accessibilityLabel("CardList")
+                   }
+               }
+               
+               if viewStore.showLogs {
+                   VStack {
+                       VStack {
+                           LogsView(
+                            store: logsStore,
+                            logsHeight: $logsHeight
+                           )
+                           .padding()
+                           .frame(maxWidth: .infinity, maxHeight: .infinity)
+                       }
+                       .background(Color(AdColorPalette.Background.primary.color))
+                       .ignoresSafeArea()
+                       .cornerRadius(15)
+                       .shadow(radius: 3)
+                   }
+                   .background(Color(AdColorPalette.Background.secondary.color))
+                   .ignoresSafeArea()
+                   .frame(height: logsHeight)
+               }               
+           }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 toolBarContent(viewStore: viewStore)
@@ -30,7 +56,7 @@ struct MainView: View {
             .addViewModifiers(store: store, viewStore: viewStore)
         }
     }
-    
+   
     private func showAddView(from viewStore: ViewStoreOf<MainFeature>) {
         let _ = withAnimation {
             viewStore.send(.addButtonTapped)
@@ -48,6 +74,26 @@ struct MainView: View {
                     .frame(height: 40)
             }
             .foregroundStyle(Color(AdColorPalette.Background.placeholder.color))
+            .accessibilityLabel("NavBarBulkModeButton")
+        }
+        
+        ToolbarItem(placement: .topBarTrailing) {
+            Button {
+                viewStore.send(.showLogs(!viewStore.showLogs))
+            } label: {
+                Image("console")
+                    .resizable()
+                    .frame(width: 22, height: 22)
+                    .foregroundStyle(
+                        Color(viewStore.showLogs
+                              ? AdColorPalette.Primary.accent.color
+                              : UIColor.gray)
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: 4))
+                    // just to increase a little bit the touching area
+                    .frame(height: 40)
+            }
+            .accessibilityLabel("NavBarLogButton")
         }
         
         ToolbarItem(placement: .topBarTrailing) {
@@ -58,11 +104,11 @@ struct MainView: View {
                     // just to increase a little bit the touching area
                     .frame(height: 40)
             }
+            .accessibilityLabel("NavBarAddButton")
         }
         
         ToolbarItem(placement: .topBarTrailing) {
             Menu {
-                
                     ControlGroup {
                         Button{
                             viewStore.send(.exportButtonTapped)
@@ -127,6 +173,7 @@ struct MainView: View {
                     // just to increase a little bit the touching area
                     .frame(height: 40)
             }
+            .accessibilityLabel("NavBarSettingsButton")
         }
     }
 }
@@ -148,40 +195,71 @@ extension View {
                     state: \.$destination,
                     action: MainFeature.Action.destination
                 ),
+                state: /MainFeature.Destination.State.import,
+                action: MainFeature.Destination.Action.import) { store in
+                    NavigationStack {
+                        ImportView(store: store)
+                            .toolbar {
+                                ToolbarItem(placement: .topBarLeading) {
+                                    Button {
+                                        viewStore.send(.destination(.dismiss))
+                                    } label: {
+                                        Text("Cancel")
+                                    }
+                                    .accessibilityLabel("ImportSheetCancelButton")
+                                }
+                            }
+                    }
+                    .background(.gray)
+                }
+            .sheet(
+                store: store.scope(
+                    state: \.$destination,
+                    action: MainFeature.Action.destination
+                ),
                 state: /MainFeature.Destination.State.settings,
                 action: MainFeature.Destination.Action.settings) { store in
                     NavigationView {
                         AppSettingsView(store: store)
-                            .navigationTitle("Settings")
+                            .toolbar {
+                                ToolbarItem(placement: .topBarLeading) {
+                                    Button {
+                                        viewStore.send(.destination(.dismiss))
+                                    } label: {
+                                        Text("Cancel")
+                                    }
+                                    .accessibilityLabel("SettingsSheetCancelButton")
+                                }
+                            }
                     }
-                    .navigationBarTitleDisplayMode(.large)
-                    .navigationViewStyle(StackNavigationViewStyle())
                 }
                 .sheet(
-                    store: store.scope(
-                        state: \.$destination,
-                        action: MainFeature.Action.destination
-                    ),
-                    state: /MainFeature.Destination.State.add,
-                    action: MainFeature.Destination.Action.add) { store in
-                        if #available(iOS 16.0, *) {
-                            AddSheetView(store: store, viewStore: viewStore)
-                                .presentationDetents([.fraction(0.7)])
-                        } else {
-                            AddSheetView(store: store, viewStore: viewStore)
-                        }
+                  store: store.scope(
+                     state: \.$destination,
+                     action: MainFeature.Action.destination
+                  ),
+                  state: /MainFeature.Destination.State.add,
+                  action: MainFeature.Destination.Action.add,
+                  content: { store in
+                    if #available(iOS 16.0, *) {
+                        AddSheetView(store: store, viewStore: viewStore)
+                            .presentationDetents([.fraction(0.7)])
+                            .presentationBackgroundInteraction(.disabled)
+                    } else {
+                        AddSheetView(store: store, viewStore: viewStore)
                     }
-                    .blur(radius: viewStore.destination != nil ? 5 : 0)
+                 })
+                    
     }
 }
 
-#Preview {
-    NavigationView {
-        MainView(store: Store(initialState: MainFeature.State(), reducer: {
-            MainFeature(adHostingViewController: UIViewController(), adDelegate: nil)
-        }))
-    }
-}
+//#Preview {
+//    NavigationView {
+//        MainView(store: Store(initialState: MainFeature.State(), reducer: {
+//            MainFeature(adHostingViewController: UIViewController(), adDelegate: nil)
+//        }), logsStore: Store(initialState: LogsFeature.State() ,reducer: {LogsFeature()}))
+//    }
+//}
 
 @available(iOS, introduced: 15, deprecated: 16, message: "use ListManagersView for iOS 16+")
 struct LegacyHorizontalCardsView: View {
@@ -338,19 +416,16 @@ struct ListManagersView: View {
                         .listRowBackground(Color.clear)
                     } header: {
                         VStack(alignment: .center) {
-                            Text("Beta version - for tests only")
-                                .padding(.vertical, 3)
-                                .padding(.horizontal, 12)
-                                .background(Color(AdColorPalette.State.failure.color.lighter(by: 75) ?? AdColorPalette.State.failure.color))
-                                .foregroundStyle(Color(AdColorPalette.State.failure.color))
-                                .clipShape(Capsule())
-                            
                             TextField("Set name",
                                       text: viewStore.$setName,
                                       prompt: Text("Name your ads set"))
                             .font(.adsLargeTitle)
+                            .foregroundStyle(
+                                Color(viewStore.setName != SettingsContainer.untitledAdSet
+                                      ? AdColorPalette.Text.primary(onAccent: false).color
+                                      : AdColorPalette.Text.placeholder.color)
+                            )
                         }
-                        .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
                         .padding(8)
                         .padding(.horizontal, -10)
                     }
@@ -460,16 +535,6 @@ struct AddSheetView: View {
                     .accentColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                     .font(.adsTitle2)
             })
-        }
-    }
-}
-
-extension View {
-    public func safeMenuControlGroupStyle() -> some View {
-        if #available(iOS 16.4, *) {
-            return self.controlGroupStyle(.menu)
-        } else {
-            return self.controlGroupStyle(.automatic)
         }
     }
 }

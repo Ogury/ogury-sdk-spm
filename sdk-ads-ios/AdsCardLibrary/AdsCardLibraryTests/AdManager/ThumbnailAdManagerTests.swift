@@ -4,8 +4,7 @@
 
 import XCTest
 @testable import AdsCardLibrary
-import OguryAds.OguryThumbnailAd
-import Mockingbird
+import OguryAds
 import Combine
 
 final class ThumbnailAdManagerTests: XCTestCase {
@@ -21,10 +20,10 @@ final class ThumbnailAdManagerTests: XCTestCase {
         let ad: AdType<ThumbnailAdManager> = .thumbnail
         
         let adManager = ThumbnailAdManager(adType: ad)
-        let newDelegate = mock(AdLifeCycleDelegate.self)
+        let newDelegate = MockAdLifeCycleDelegate()
         adManager.adDelegate = newDelegate
-        XCTAssertTrue(adManager.adDelegate as? AdLifeCycleDelegateMock === newDelegate)
-        XCTAssertTrue(adManager.proxyDelegate.adDelegate as? AdLifeCycleDelegateMock === newDelegate)
+        XCTAssertTrue(adManager.adDelegate as? MockAdLifeCycleDelegate === newDelegate)
+        XCTAssertTrue(adManager.proxyDelegate.adDelegate as? MockAdLifeCycleDelegate === newDelegate)
     }
     
     func testWhenCallingLoadWithOptionsThenAdObjectIsInstanciated() {
@@ -77,7 +76,7 @@ final class ThumbnailAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didLoad?(OguryThumbnailAd())
+            adManager.ad?.delegate?.thumbnailAdDidLoad?(OguryThumbnailAd())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -97,7 +96,7 @@ final class ThumbnailAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didClick?(OguryThumbnailAd())
+            adManager.ad?.delegate?.thumbnailAdDidClick?(OguryThumbnailAd())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -119,7 +118,7 @@ final class ThumbnailAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didClose?(OguryThumbnailAd())
+            adManager.ad?.delegate?.thumbnailAdDidClose?(OguryThumbnailAd())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -140,7 +139,7 @@ final class ThumbnailAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didTriggerImpressionOguryThumbnailAd?(OguryThumbnailAd())
+            adManager.ad?.delegate?.thumbnailAdDidTriggerImpression?(OguryThumbnailAd())
             self.wait(for: [ex], timeout: 0.5)
         }
     }
@@ -154,7 +153,7 @@ final class ThumbnailAdManagerTests: XCTestCase {
         adManager.options = ThumbnailAdManagerOptions(viewController: vc, thumbnailOptions: .init(), adDisplayName: "", adUnitId: "")
         try? adManager.loadAd(from: adManager.options.baseOptions)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            let error = OguryAdError.createOguryError(withCode: 666)
+            let error = OguryAdError(domain: "", code: 666)
             let ex = self.expectation(description: "")
             adManager.events.sink { event in
                 if event == .adDidFail(error) {
@@ -162,14 +161,14 @@ final class ThumbnailAdManagerTests: XCTestCase {
                 }
             }
             .store(in: &self.storables)
-            adManager.ad?.delegate?.didFail?(OguryThumbnailAd(), error: error)
+            adManager.ad?.delegate?.thumbnailAd?(OguryThumbnailAd(), didFailWithError: error)
             self.wait(for: [ex], timeout: 0.5)
         }
     }
     
     func testWhenReceivingLoadingErrorsThenProperDelegateShouldBeCalled() {
-            [OguryAdErrorCode.sdkNotProperlyInitialized.rawValue,
-             OguryAdErrorCode.noAdLoaded.rawValue].forEach { errorCode in
+            [OguryLoadErrorCode.sdkNotProperlyInitialized.rawValue,
+             OguryShowErrorCode.noAdLoaded.rawValue].forEach { errorCode in
                let ad: AdType<ThumbnailAdManager> = .thumbnail
                let adManager = ThumbnailAdManager(adType: ad)
                
@@ -177,7 +176,7 @@ final class ThumbnailAdManagerTests: XCTestCase {
                adManager.options = ThumbnailAdManagerOptions(viewController: vc, thumbnailOptions: .init(), adDisplayName: "", adUnitId: "")
                try? adManager.loadAd(from: adManager.options.baseOptions)
                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                let error = OguryAdError.createOguryError(withCode: errorCode )
+                   let error = OguryAdError(domain: "", code: errorCode as! Int)
                 let loadFailEx = self.expectation(description: "adDidFailToLoad called")
                 let failEx = self.expectation(description: "adDidFail called")
                 failEx.isInverted = true
@@ -195,16 +194,16 @@ final class ThumbnailAdManagerTests: XCTestCase {
                     }
                 }
                 .store(in: &self.storables)
-                adManager.ad?.delegate?.didFail?(OguryThumbnailAd(), error: error)
+                adManager.ad?.delegate?.thumbnailAd?(OguryThumbnailAd(), didFailWithError: error)
                 self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
             }
         }
     }
     
     func testWhenReceivingDisplayErrorsThenProperDelegateShouldBeCalled() {
-            [OguryAdErrorCode.adExpired.rawValue,
-             OguryAdErrorCode.anotherAdAlreadyDisplayed.rawValue,
-             OguryAdErrorCode.viewControllerPreventsAdFromBeingDisplayed.rawValue].forEach { errorCode in
+            [OguryShowErrorCode.adExpired.rawValue,
+             OguryShowErrorCode.anotherAdAlreadyDisplayed.rawValue,
+             OguryShowErrorCode.viewControllerPreventsAdFromBeingDisplayed.rawValue].forEach { errorCode in
                let ad: AdType<ThumbnailAdManager> = .thumbnail
                let adManager = ThumbnailAdManager(adType: ad)
                
@@ -212,7 +211,7 @@ final class ThumbnailAdManagerTests: XCTestCase {
                adManager.options = ThumbnailAdManagerOptions(viewController: vc, thumbnailOptions: .init(), adDisplayName: "", adUnitId: "")
                try? adManager.loadAd(from: adManager.options.baseOptions)
                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                let error = OguryAdError.createOguryError(withCode: errorCode )
+                let error = OguryAdError(domain: "", code: errorCode as! Int)
                 let loadFailEx = self.expectation(description: "adDidFailToLoad called")
                 loadFailEx.isInverted = true
                 let failEx = self.expectation(description: "adDidFail called")
@@ -230,19 +229,19 @@ final class ThumbnailAdManagerTests: XCTestCase {
                     }
                 }
                 .store(in: &self.storables)
-                adManager.ad?.delegate?.didFail?(OguryThumbnailAd(), error: error)
+                   adManager.ad?.delegate?.thumbnailAd?(OguryThumbnailAd(), didFailWithError: error)
                 self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
             }
         }
     }
     
     func testWhenReceivingGenericErrorsThenProperDelegateShouldBeCalled() {
-            [OguryAdErrorCode.adDisabledConsentDenied.rawValue,
-             OguryAdErrorCode.sdkStartNotCalled.rawValue,
-             OguryAdErrorCode.invalidConfiguration.rawValue,
-             OguryAdErrorCode.adDisabledConsentMissing.rawValue,
-             OguryAdErrorCode.adDisabledCountryNotOpened.rawValue,
-             OguryAdErrorCode.adDisabledUnspecifiedReason.rawValue].forEach { errorCode in
+            [OguryLoadErrorCode.adDisabledConsentDenied.rawValue,
+             OguryLoadErrorCode.sdkNotStarted.rawValue,
+             OguryLoadErrorCode.invalidConfiguration.rawValue,
+             OguryLoadErrorCode.adDisabledConsentMissing.rawValue,
+             OguryLoadErrorCode.adDisabledCountryNotOpened.rawValue,
+             OguryLoadErrorCode.adDisabledUnspecifiedReason.rawValue].forEach { errorCode in
                let ad: AdType<ThumbnailAdManager> = .thumbnail
                
                let adManager = ThumbnailAdManager(adType: ad)
@@ -251,7 +250,7 @@ final class ThumbnailAdManagerTests: XCTestCase {
                adManager.options = ThumbnailAdManagerOptions(viewController: vc, thumbnailOptions: .init(), adDisplayName: "", adUnitId: "")
                try? adManager.loadAd(from: adManager.options.baseOptions)
                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                let error = OguryAdError.createOguryError(withCode: errorCode)
+                let error = OguryAdError(domain: "", code: errorCode as! Int)
                 let loadFailEx = self.expectation(description: "adDidFailToLoad called")
                 loadFailEx.isInverted = true
                 let failEx = self.expectation(description: "adDidFail called")
@@ -269,7 +268,7 @@ final class ThumbnailAdManagerTests: XCTestCase {
                     }
                 }
                 .store(in: &self.storables)
-                adManager.ad?.delegate?.didFail?(OguryThumbnailAd(), error: error)
+                adManager.ad?.delegate?.thumbnailAd?(OguryThumbnailAd(), didFailWithError: error)
                 self.wait(for: [loadFailEx, failEx, displayFailEx], timeout: 0.5)
             }
         }

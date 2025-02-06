@@ -5,6 +5,7 @@
 import Foundation
 import SwiftUI
 import OguryAds
+import OguryAds.Private
 import ComposableArchitecture
 import Combine
 
@@ -72,6 +73,7 @@ public final class RewardedAdManager: AdManager {
             ad = OguryRewardedAd(adUnitId: options.adUnitId, mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
         }
         ad.delegate = proxyDelegate
+        ad.setLogOrigin(options.qaLabel)
         append(.adLoading)
         guard let bidder else {
             load()
@@ -138,15 +140,6 @@ public final class RewardedAdManager: AdManager {
         }
     }
     
-    public func loadAdFromAdMarkUp(from options: BaseAdOptions) throws {
-        self.options.baseOptions = options
-        guard let adMarkUp = options.adMarkUp else { throw AdManagerError.noOptions }
-        ad = OguryRewardedAd(adUnitId: options.adUnitId)
-        ad.delegate = proxyDelegate
-        ad.load(withAdMarkup: adMarkUp)
-        append(.adLoading)
-    }
-    
     public func showAd() throws {
         guard let options else { throw AdManagerError.noOptions }
         if ad == nil {
@@ -171,6 +164,19 @@ public final class RewardedAdManager: AdManager {
     
     public func updateCard(events: [AdOptionsEvent]) {
         adView.updateCard(events: events)
+    }
+    
+    public func killWebview(_ killMode: KillWebviewMode) {
+        guard let ad else { return }
+        switch killMode {
+            case .none: ()
+            case .simulate:
+                ad.simulateWebviewTerminated()
+                
+            case .saturate:
+                guard let webView = ad.adWebview() else { return }
+                kill(webView)
+        }
     }
 }
 

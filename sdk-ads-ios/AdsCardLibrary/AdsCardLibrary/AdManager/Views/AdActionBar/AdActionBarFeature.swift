@@ -9,6 +9,7 @@ import ComposableArchitecture
 
 struct AdActionBarFeature: Reducer {
     struct State: Equatable {
+        var qaLabel: String
     }
     
     enum Action: Equatable  {
