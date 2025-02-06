@@ -855,7 +855,6 @@
 					"$(PROJECT_DIR)/Tests/OCMock",
 				);
 				MACH_O_TYPE = staticlib;
-				OGW_VERSION = "${MARKETING_VERSION}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -891,7 +890,6 @@
 					"$(PROJECT_DIR)/Tests/OCMock",
 				);
 				MACH_O_TYPE = staticlib;
-				OGW_VERSION = "${MARKETING_VERSION}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 6.0;
@@ -981,7 +979,6 @@
 					"$(PROJECT_DIR)/Tests/OCMock",
 				);
 				MACH_O_TYPE = staticlib;
-				OGW_VERSION = "${MARKETING_VERSION}";
 				PRODUCT_NAME = OgurySdk;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1019,7 +1016,6 @@
 					"$(PROJECT_DIR)/Tests/OCMock",
 				);
 				MACH_O_TYPE = staticlib;
-				OGW_VERSION = "${MARKETING_VERSION}";
 				PRODUCT_NAME = OgurySdk;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;

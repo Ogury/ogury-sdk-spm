@@ -18,7 +18,5 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(BUNDLE_VERSION)</string>
-	<key>WrapperVersion</key>
-	<string>${OGW_VERSION}</string>
 </dict>
 </plist>
