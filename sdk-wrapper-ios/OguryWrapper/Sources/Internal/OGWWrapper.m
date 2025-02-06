@@ -17,19 +17,6 @@
 #import <StoreKit/StoreKit.h>
 #endif
 
-@interface NSString (AppVersion)
-+ (NSString *)appVersion;
-@end
-@implementation NSString (AppVersion)
-+ (NSString *)appVersion {
-    NSBundle *bundle = [NSBundle mainBundle];
-    return [NSString stringWithFormat:@"%@b%@",
-            [bundle objectForInfoDictionaryKey:@"WrapperVersion"],
-            bundle.infoDictionary[@"CFBundleVersion"]
-    ];
-}
-@end
-
 static NSString *_Nonnull ogcConvertionValueKey = @"OGC_CONVERSION_VALUE";
 static int ogcMaxNumberOfConvertionValue = 63;
 
@@ -75,7 +62,7 @@ static int ogcMaxNumberOfConvertionValue = 63;
         _startCompletionBlocks = [NSMutableArray new];
         _isStarting = NO;
         [[OGAInternal shared] setSdkConsumer:
-             [[OGASdkConsumer alloc] initWithName:@"sdk" version:[NSString appVersion]]
+             [[OGASdkConsumer alloc] initWithName:@"sdk" version:[Ogury sdkVersion]]
         ];
     }
     return self;
