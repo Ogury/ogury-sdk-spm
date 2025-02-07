@@ -23,4 +23,8 @@ struct MaxRetriever: MaxHeaderBidable {
     func description(for error: Error) -> String {
        "Max AdMarkup retriever failed :\(error.localizedDescription)"
     }
+    func adMarkUp(adUnitId: String, campaignId: String?, creativeId: String?, dspCreative: String?, dspRegion: AdsCardLibrary.DspRegion?, rtbTestModeEnabled: Bool) async throws -> String? {
+        ""
+    }
+    
 }

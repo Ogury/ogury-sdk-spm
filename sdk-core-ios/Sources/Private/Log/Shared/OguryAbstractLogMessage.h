@@ -7,16 +7,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OguryAbstractLogMessage : NSObject <NSCopying, OguryLogMessage>
-
-#pragma mark - Properties
-
-@property (nonatomic, assign, readonly) OguryLogLevel level;
-@property (nonatomic, copy, readonly) NSString *message;
-
-#pragma mark - Initialization
-
-- (instancetype)initWithLevel:(OguryLogLevel)level message:(NSString *)message;
+@interface OguryAbstractLogMessage : OguryLogMessage <NSCopying>
 
 @end
 

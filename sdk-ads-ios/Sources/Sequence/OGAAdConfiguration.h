@@ -12,6 +12,7 @@
 #import "OGAThumbnailAdConstants.h"
 #import "OguryOffset.h"
 #import "OguryRectCorner.h"
+#import "OGALogDetail.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -46,6 +47,7 @@ extern NSString *const OGAAdConfigurationAdTypeInterstitial;
 @property(nonatomic, strong) NSNumber *webviewLoadTimeout;
 @property(nonatomic, assign) NSUInteger numberOfWebviewTerminatedReloadAttempts;
 @property(nonatomic, strong) OGAMonitoringDetails *monitoringDetails;
+@property(nonatomic, strong) OGALogDetail *logDetails;
 @property(nonatomic, assign) OguryMediation *mediation;
 @property(nonatomic, strong) NSArray *extras;
 
@@ -74,6 +76,7 @@ extern NSString *const OGAAdConfigurationAdTypeInterstitial;
 
 - (void)startNewMonitoringSession;
 - (void)reset;
+- (void)setLogOrigin:(NSString *)origin;
 
 - (BOOL)configurationHasChanged:(NSString *_Nullable)newCampaignId
                      creativeId:(NSString *_Nullable)newCreativeId

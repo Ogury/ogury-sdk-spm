@@ -17,12 +17,15 @@ private_lane :build_framework do |options|
   sdk = options[:sdk]
   workspace = options[:workspace]
   scheme = options[:scheme]
+  killModeEnabled = options[:killModeEnabled] ? options[:killModeEnabled] : false
+  xcargs = killModeEnabled ? "GCC_PREPROCESSOR_DEFINITIONS='$(inherited) KILL_MODE_ENABLED=1'" : "GCC_PREPROCESSOR_DEFINITIONS='$(inherited)'"
 
   build_ios_app(
     workspace: workspace,
     configuration: "Debug",
     scheme: scheme,
     sdk: sdk.platform,
+    #xcargs:xcargs,
     destination: sdk.destination,
     clean: true,
     skip_archive: true,
@@ -62,6 +65,7 @@ private_lane :build_ads_framework do |options|
   configuration = options[:configuration]
   sdk = options[:sdk]
   artifactory = options[:artifactory] ? options[:artifactory] : false
+  killModeEnabled = options[:killModeEnabled] ? options[:killModeEnabled] : false
   scheme = artifactory ? configuration.targets.ads.artScheme : configuration.targets.ads.scheme
 
   puts "Compiling OguryAds".blue
@@ -70,7 +74,8 @@ private_lane :build_ads_framework do |options|
     configuration: configuration,
     sdk: sdk,
     workspace: configuration.workspace.file_path,
-    scheme: scheme
+    scheme: scheme,
+    killModeEnabled: killModeEnabled
     )
 end
 

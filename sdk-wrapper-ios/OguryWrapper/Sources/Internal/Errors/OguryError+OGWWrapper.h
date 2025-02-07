@@ -4,6 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <OguryCore/OguryError.h>
 #import "OGWWrapper.h"
 
 NS_ASSUME_NONNULL_BEGIN

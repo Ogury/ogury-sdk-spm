@@ -12,6 +12,7 @@
 #import "OGAAdSequenceCoordinator.h"
 #import "OGAAdController.h"
 #import "OGAInternal.h"
+#import "OGAAdSequenceCoordinator+Private.h"
 
 #pragma mark - Constants
 
@@ -138,9 +139,16 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
                 creativeId:(NSString *_Nullable)creativeId
              dspCreativeId:(NSString *_Nullable)dspCreativeId
                  dspRegion:(NSString *_Nullable)dspRegion {
-    [self.log logAdFormat:OguryLogLevelDebug
-        forAdConfiguration:self.configuration
-                    format:@"loadWithCampaignId:campaignId called [campaignId:%@][creativeId:%@][dspCreativeId:%@][dspRegion:%@]", campaignId, creativeId, dspCreativeId, dspRegion];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:self.configuration
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"loadWithCampaignId... called:"
+                                                    tags:@[
+                                                        [OguryLogTag tagWithKey:@"DspCreative"
+                                                                          value:dspCreativeId == nil ? @"" : dspCreativeId],
+                                                        [OguryLogTag tagWithKey:@"DspRegion"
+                                                                          value:dspRegion == nil ? @"" : dspRegion]
+                                                    ]]];
 
     CGSize size = [self.size getSize];
     self.bannerView.frame = CGRectMake(self.bannerView.frame.origin.x,
@@ -172,10 +180,16 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
 
 - (void)loadWithAdMarkup:(NSString *)adMarkup {
     CGSize size = [self.size getSize];
-
-    [self.log logAdFormat:OguryLogLevelDebug
-        forAdConfiguration:self.configuration
-                    format:@"loadWithCampaignId:size called [adMarkup][size:%d x %d]", size.height, size.width];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:self.configuration
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"loadWithAdMarkup:"
+                                                    tags:@[
+                                                        [OguryLogTag tagWithKey:@"adMarkup"
+                                                                          value:adMarkup],
+                                                        [OguryLogTag tagWithKey:@"size"
+                                                                          value:[NSString stringWithFormat:@"w:%f h:%f", size.height, size.width]]
+                                                    ]]];
 
     self.configuration.size = size;
     self.configuration.campaignId = nil;
@@ -213,6 +227,22 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
 
 - (void)bannerAdViewDidTriggerImpression:(OguryBannerAdView *)bannerAd {
     [self.delegateDispatcher adImpression];
+}
+
+- (void)setLogOrigin:(NSString *)origin {
+    [self.configuration setLogOrigin:origin];
+}
+
+- (OGAAdConfiguration *)adConfiguration {
+    return self.configuration;
+}
+
+- (void)simulateWebviewTerminated {
+    [self.sequence.coordinator simulateWebviewTerminated];
+}
+
+- (WKWebView *)adWebview {
+    return [self.sequence.coordinator adWebview];
 }
 
 @end

@@ -4,8 +4,7 @@
 
 import XCTest
 @testable import AdsCardLibrary
-import OguryAds.OguryThumbnailAd
-////import Mockingbird
+import OguryAds
 
 final class AdManagerOptionsTests: XCTestCase {
     func testWhenInitializingSUTWithOptionsThenAllOptionsAreSet() {

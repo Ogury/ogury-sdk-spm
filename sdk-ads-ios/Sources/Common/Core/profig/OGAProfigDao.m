@@ -92,7 +92,11 @@
 }
 
 - (void)updateWithFullProfig:(OGAProfigFullResponse *)profig {
-    [self.log log:OguryLogLevelInfo message:@"[Setup] Saving configuration"];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"[Setup] Saving configuration"
+                                                    tags:nil]];
 
     self.profigFullResponse = profig;
     self.profigParams = [OGAConfigurationUtils profigParams];
@@ -101,7 +105,11 @@
 
     [self sync];
 
-    [self.log log:OguryLogLevelInfo message:@"[Setup] Configuration saved"];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"[Setup] Configuration saved"
+                                                    tags:nil]];
 }
 
 - (BOOL)shouldMigrateToIdless {

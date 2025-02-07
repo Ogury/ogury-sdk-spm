@@ -8,7 +8,7 @@ import OguryAds
 
 class RTBBidder: HeaderBidable {
     // MARK: - Constants
-    var body = RTBidderBody()
+    var body: RTBidderBody!
     var url: URL! { fatalError() }
     
     enum HeaderBiddingServiceError: LocalizedError {
@@ -177,6 +177,7 @@ class RTBBidder: HeaderBidable {
                                 token: String?,
                                 rtbTestModeEnabled: Bool,
                                 completion: @escaping HeaderBiddingServiceCompletionHandler) {
+        body = RTBidderBody()
         updateJson(withAdUnit: adUnitId, assetKey: assetKey, country: country, token: token, rtbTestModeEnabled: rtbTestModeEnabled)
         request.httpBody = try? JSONEncoder().encode(body)
         URLSession.shared.dataTask(with: request) { (data, response, error) in

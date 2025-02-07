@@ -45,6 +45,11 @@ public extension Font {
         let scaledSize = UIFontMetrics.default.scaledValue(for: 12)
         return .custom("PPTelegraf-Regular", size: scaledSize)
     }
+    // textfields, buttons
+    static var adsCaptionSmall: Font {
+        let scaledSize = UIFontMetrics.default.scaledValue(for: 9)
+        return .custom("PPTelegraf-Regular", size: scaledSize)
+    }
 }
 
 // needed since we load font from a framework...

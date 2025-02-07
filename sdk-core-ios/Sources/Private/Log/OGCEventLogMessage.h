@@ -8,12 +8,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OGCEventLogMessage : OguryAbstractLogMessage <OguryStringFormattable>
-
-#pragma mark - Initialization
-
-- (instancetype)initWithLevel:(OguryLogLevel)level message:(NSString *)message;
-
+@interface OGCEventLogMessage : OguryAbstractLogMessage
 @end
 
 NS_ASSUME_NONNULL_END

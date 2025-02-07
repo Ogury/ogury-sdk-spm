@@ -4,6 +4,7 @@
 
 #import "OGCLog.h"
 #import "OguryOSLogger.h"
+#import "OguryNSLogger.h"
 #import "OGCLogFormatter.h"
 #import "OGCConstants.h"
 
@@ -31,14 +32,18 @@
 }
 
 - (instancetype)init {
-    return [self init:[[OguryLog alloc] init] oSLogger:[[OguryOSLogger alloc] initWithSubSystem:OGCOguryCoreBundle category:OGCOgury] logFormatter:[[OGCLogFormatter alloc] init]];
+    return [self init:[[OguryLog alloc] init] 
+             oSLogger:[[OguryOSLogger alloc] initWithSubSystem:OGCOguryCoreBundle category:OGCOgury]
+             nsLogger:[[OguryNSLogger alloc] initWithLevel:OguryLogLevelError]];
 }
 
-- (instancetype)init:(OguryLog *)oguryLog oSLogger:(OguryOSLogger *)logger logFormatter:(OGCLogFormatter *)formatter {
+- (instancetype)init:(OguryLog *)oguryLog 
+            oSLogger:(OguryOSLogger *)osLogger
+            nsLogger:(OguryNSLogger *)nsLogger {
     if (self = [super init]) {
         _oguryLog = oguryLog;
-        logger.logFormatter = formatter;
-        [_oguryLog addLogger:logger];
+        [_oguryLog addLogger:osLogger];
+        [_oguryLog addLogger:nsLogger];
     }
     return self;
 }
@@ -48,7 +53,10 @@
 }
 
 - (void)logMessage:(OguryLogLevel)logLevel message:(NSString *)message {
-    [self.oguryLog logMessage:message level:logLevel];
+    [self.oguryLog logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:logLevel
+                                                                     logType:OguryLogTypeInternal
+                                                                         sdk:OguryLogSDKCore
+                                                                     message:message]];
 }
 
 - (void)logMessageFormat:(OguryLogLevel)logLevel format:(NSString *)format, ... {

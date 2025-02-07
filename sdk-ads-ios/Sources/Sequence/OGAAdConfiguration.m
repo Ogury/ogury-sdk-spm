@@ -78,6 +78,7 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
         _monitoringDetails = [OGAMonitoringDetails new];
         _isHeaderBidding = false;
         _numberOfWebviewTerminatedReloadAttempts = 0;
+        _logDetails = [OGALogDetail new];
     }
     return self;
 }
@@ -118,6 +119,7 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
     configuration.monitoringDetails = self.monitoringDetails;
     configuration.expirationContext = self.expirationContext;
     configuration.locale = self.locale;
+    configuration.logDetails = self.logDetails;
     configuration.isHeaderBidding = self.isHeaderBidding;
     configuration.encodedAdMarkup = self.encodedAdMarkup;
     configuration.numberOfWebviewTerminatedReloadAttempts = self.numberOfWebviewTerminatedReloadAttempts;
@@ -164,6 +166,10 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
                   dspCreativeId:(NSString *_Nullable)newDspCreativeId
                       dspRegion:(NSString *_Nullable)newDspRegion {
     return (newCampaignId != nil && self.campaignId != newCampaignId) || (newCreativeId != nil && self.creativeId != newCreativeId) || (newDspCreativeId != nil && self.adDsp.creativeId != newDspCreativeId) || (newDspRegion != nil && self.adDsp.region != newDspRegion);
+}
+
+- (void)setLogOrigin:(NSString *)origin {
+    self.logDetails.origin = origin;
 }
 
 @end

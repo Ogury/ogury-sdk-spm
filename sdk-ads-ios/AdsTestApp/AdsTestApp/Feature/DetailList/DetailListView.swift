@@ -1,49 +1,46 @@
-//
-//  Copyright © 2023 Ogury Ltd. All rights reserved.
-//
-
 import SwiftUI
 import ComposableArchitecture
 import AdsCardLibrary
 
 struct DetailListView: View {
     let store: StoreOf<DetailListFeature>
-//    @State var toolbarVisible: Bool = false
-    
+    let logsStore: StoreOf<LogsFeature>
+    @State private var logsHeight: CGFloat = 150
+
     var body: some View {
-        
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            ZStack {
-                Color(AdColorPalette.Background.secondary.color).ignoresSafeArea()
-                
-                VStack(alignment: .leading) {
-                    HStack {
-                        Spacer()
-                        AdTagList(tags: viewStore.adFormat.tags)
-                        Spacer()
-                    }
+            VStack(spacing: 0) {
+                ZStack {
+                    Color(AdColorPalette.Background.secondary.color).ignoresSafeArea()
                     
-                    List {
-                        ForEach(0..<viewStore.state.adManagers.count, id: \.self) { index in
-                            viewStore.state.adManagers[index].adView
-                                .listRowBackground(Color.clear)
-                                .listRowSeparator(.hidden)
-                                .listRowInsets(EdgeInsets())
-                                .padding(.vertical)
-                                .padding(.horizontal, 5)
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Spacer()
+                            AdTagList(tags: viewStore.adFormat.tags)
+                            Spacer()
                         }
+                        
+                        List {
+                            ForEach(0..<viewStore.adManagers.count, id: \.self) { index in
+                                viewStore.adManagers[index].adView
+                                    .listRowBackground(Color.clear)
+                                    .listRowSeparator(.hidden)
+                                    .listRowInsets(EdgeInsets())
+                                    .padding(.vertical)
+                                    .padding(.horizontal, 5)
+                            }
+                        }
+                        .safeScrollDismissesKeyboard()
+                        .safeScrollContentBackground(.hidden)
                     }
-                    .safeScrollDismissesKeyboard()
-                    .safeScrollContentBackground(.hidden)
                 }
                 .toolbar {
                     ToolbarItemGroup(placement: .keyboard) {
                         if viewStore.toolbarVisible {
                             HStack {
                                 Spacer()
-                                
                                 Button("Close") {
-                                    store.send(.endEditing)
+                                    viewStore.send(.endEditing)
                                 }
                                 .font(.adsBody)
                                 .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
@@ -59,13 +56,31 @@ struct DetailListView: View {
                 .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
                     viewStore.send(.hideToolbar)
                 }
+
+               VStack {
+                  VStack {
+                     LogsView(
+                         store: logsStore,
+                         logsHeight: $logsHeight
+                     )
+                       .padding()
+                       .frame(maxWidth: .infinity, maxHeight: .infinity)
+                  }
+                  .background(Color(AdColorPalette.Background.primary.color))
+                  .ignoresSafeArea()
+                  .cornerRadius(15)
+                  .shadow(radius: 3)
+               }
+               .background(Color(AdColorPalette.Background.secondary.color))
+               .ignoresSafeArea()
+               .frame(height: logsHeight)
             }
-            .navigationTitle(Text("\(viewStore.state.adFormat.title.capitalized) (\(viewStore.state.adManagers.count))"))
+            .navigationTitle(Text("\(viewStore.adFormat.title.capitalized) (\(viewStore.adManagers.count))"))
             .accentColor(Color(AdColorPalette.Primary.accent.color))
         }
-        
     }
 }
+
 
 public extension View {
     func safeScrollContentBackground(_ visibility: Visibility) -> some View {
@@ -75,6 +90,7 @@ public extension View {
             return self.background(Color.clear)
         }
     }
+    
     func safeScrollDismissesKeyboard() -> some View {
         if #available(iOS 16.0, *) {
             return self.scrollDismissesKeyboard(.interactively)
@@ -82,11 +98,11 @@ public extension View {
             return self.background(Color.clear)
         }
     }
-    
 }
 
+// Preview Setup
 #Preview {
     DetailListView( store: Store(initialState: DetailListFeature.State(adManagers: [], adFormat: AdFormat(id: 0, adType: AnyAdType(AdType<InterstitialAdManager>.interstitial))), reducer: {
         DetailListFeature()
-    }))
+    }), logsStore: Store(initialState: LogsFeature.State() ,reducer: {LogsFeature()}))
 }

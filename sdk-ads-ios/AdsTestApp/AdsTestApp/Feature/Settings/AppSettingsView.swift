@@ -35,6 +35,19 @@ struct AppSettingsView: View {
                                 )
                             }
                         }
+                        .accessibilityLabel("StartSDKWithApplication")
+                        
+                        HStack {
+                            Stepper("Start the SDK \(viewStore.numberOfSDKStart) times",
+                                    onIncrement: { viewStore.send(.incrementSDKStart) },
+                                    onDecrement: { viewStore.send(.decrementSDKStart) }
+                            )
+                            .layoutPriority(1)
+                            .accessibilityLabel("StartSDKWithApplication_Stepper")
+                        }
+                        .foregroundStyle(Color(viewStore.startSDKWithApplication ? AdColorPalette.Text.primary(onAccent: false).color : AdColorPalette.Text.placeholder.color))
+                        .disabled(viewStore.startSDKWithApplication == false)
+                        
                         Button {
                             viewStore.send(.toggleEnableFeedbacks)
                         } label: {
@@ -49,6 +62,16 @@ struct AppSettingsView: View {
                                 )
                             }
                         }
+                        .accessibilityLabel("EnableFeedbacks")
+                        
+                        Picker("Import method",
+                               selection: viewStore.binding(get: \.importMethod,
+                                                            send: { .updateImportMethod($0) })) {
+                            ForEach(ImportMethod.allCases, id:\.self) { method in
+                                Text(method.shortDisplayText)
+                            }
+                        }.accessibilityLabel("ImportMethod_Picker")
+                        
                     } header: {
                         Text("APPLICATION")
                             .font(.adsBody)
@@ -68,7 +91,7 @@ struct AppSettingsView: View {
                                     HStack {
                                         Text("Allow AdUnit editing")
                                             .layoutPriority(1)
-                                      
+                                        
                                         Toggle("", isOn:
                                                 viewStore.binding(
                                                     get: \.enableAdUnitEditing,
@@ -76,6 +99,7 @@ struct AppSettingsView: View {
                                         )
                                     }
                                 }
+                                .accessibilityLabel("AllowAdUnitEditingToggle")
                                 
                                 Button {
                                     viewStore.send(.showCampaignToggleTapped)
@@ -83,7 +107,7 @@ struct AppSettingsView: View {
                                     HStack {
                                         Text("Show campaign field")
                                             .layoutPriority(1)
-                                      
+                                        
                                         Toggle("", isOn:
                                                 viewStore.binding(
                                                     get: \.showCampaignId,
@@ -91,6 +115,7 @@ struct AppSettingsView: View {
                                         )
                                     }
                                 }
+                                .accessibilityLabel("ShowCampaignIdToggle")
                                 
                                 Button {
                                     viewStore.send(.showCreativeToggleTapped)
@@ -98,62 +123,93 @@ struct AppSettingsView: View {
                                     HStack {
                                         Text("Show creative field")
                                             .layoutPriority(1)
-
+                                        
                                         Toggle("", isOn:
                                                 viewStore.binding(
                                                     get: \.showCreativeId,
                                                     send: .showCreativeToggleTapped))
                                     }
                                 }
+                                .accessibilityLabel("ShowCreativeIdToggle")
+                                
                                 Button {
                                     viewStore.send(.showDspFieldsToggleTapped)
                                 } label: {
                                     HStack {
                                         Text("Show dsp creative field")
                                             .layoutPriority(1)
-
+                                        
                                         Toggle("", isOn:
                                                 viewStore.binding(
                                                     get: \.showDspFields,
                                                     send: .showDspFieldsToggleTapped))
                                     }
                                 }
-                            }
-                            
-                            Button {
-                                viewStore.send(.showSpecificOptionsToggleTapped)
-                            } label: {
-                                HStack {
-                                    Text("Show specific options")
-                                        .layoutPriority(1)
-
-                                    Toggle("", isOn:
-                                            viewStore.binding(
-                                                get: \.showSpecificOptions,
-                                                send: .showSpecificOptionsToggleTapped)
-                                    )
+                                .accessibilityLabel("ShowCreativeFieldsToggle")
+                                
+                                Button {
+                                    viewStore.send(.showSpecificOptionsToggleTapped)
+                                } label: {
+                                    HStack {
+                                        Text("Show specific options")
+                                            .layoutPriority(1)
+                                        
+                                        Toggle("", isOn:
+                                                viewStore.binding(
+                                                    get: \.showSpecificOptions,
+                                                    send: .showSpecificOptionsToggleTapped)
+                                        )
+                                    }
                                 }
-                            }
-                            
-                            Button {
-                                viewStore.send(.showTestModeToggleTapped)
-                            } label: {
-                                HStack {
-                                    Text("Show Test Mode")
-                                        .layoutPriority(1)
-                                    
-                                    Toggle("", isOn:
-                                            viewStore.binding(
-                                                get: \.showTestMode,
-                                                send: .showTestModeToggleTapped)
-                                    )
+                                .accessibilityLabel("ShowCardOptionsToggle")
+                                
+                                Button {
+                                    viewStore.send(.showTestModeToggleTapped)
+                                } label: {
+                                    HStack {
+                                        Text("Show Test Mode")
+                                            .layoutPriority(1)
+                                        
+                                        Toggle("", isOn:
+                                                viewStore.binding(
+                                                    get: \.showTestMode,
+                                                    send: .showTestModeToggleTapped)
+                                        )
+                                    }
+                                }
+                                .accessibilityLabel("ShowTestModeToggle")
+                                
+                                Picker("Kill Webview",
+                                       selection: viewStore.binding(get: \.killWebviewMode,
+                                                                    send: { .updateKillWebviewMode($0) })) {
+                                    ForEach(KillWebviewMode.allCases, id:\.self) { mode in
+                                        Text(mode.displayName)
+                                            .font(.adsCaption)
+                                    }
+                                }.accessibilityLabel("ImportMethod_Picker")
+                                
+                                if let desc = viewStore.killWebviewMode.description {
+                                    HStack {
+                                        if let icon = viewStore.killWebviewMode.icon {
+                                            icon
+                                                .font(.adsTitle)
+                                                .foregroundStyle(viewStore.killWebviewMode.displayColor)
+                                                .padding(.trailing, 8)
+                                                .symbolRenderingMode(.hierarchical)
+                                                .safeBreathe()
+                                        }
+                                        Text(desc)
+                                            .font(.adsCaption)
+                                            .foregroundStyle(viewStore.killWebviewMode.displayColor)
+                                    }
                                 }
                             }
                         }
                         
                         if !viewStore.showShowSection {
-                            Divider()
-                                .listRowBackground(Color.clear)
+                            Text("Card settings hidden")
+                                .font(.adsCaption)
+                                .foregroundStyle(Color(AdColorPalette.Text.placeholder.color))
                         }
                         
                     } header: {
@@ -164,7 +220,7 @@ struct AppSettingsView: View {
                                 Text("Cards")
                                     .font(.adsBody)
                                     .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                                .padding(.horizontal, -16)
+                                    .padding(.horizontal, -16)
                                 Spacer()
                                 Image(systemName: !viewStore.showShowSection ? "chevron.up" : "chevron.down")
                             }
@@ -188,6 +244,7 @@ struct AppSettingsView: View {
                                 )
                             }
                         }
+                        .accessibilityLabel("EnableBulkModeToggle")
                     } header: {
                         Text("Bulk mode")
                             .font(.adsBody)
@@ -209,6 +266,7 @@ struct AppSettingsView: View {
                                     .frame(maxWidth: .infinity)
                             }
                             .buttonStyle(AdsSecondaryButton())
+                            .accessibilityLabel("EnableTestModeForAllCardsButton")
                             
                             Button{
                                 viewStore.send(.disabledTestModeButtonTapped)
@@ -218,6 +276,7 @@ struct AppSettingsView: View {
                                     .frame(maxWidth: .infinity)
                             }
                             .buttonStyle(AdsSecondaryButton())
+                            .accessibilityLabel("DisableTestModeForAllCardsButton")
                         }
                         .padding(.horizontal, -20)
                     } header: {
@@ -234,6 +293,7 @@ struct AppSettingsView: View {
                             viewStore.send(.resetAdConfigButtonTapped)
                         }
                         .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: true).color))
+                        .accessibilityLabel("ResetProfigButton")
                     } header: {
                         Text("Ads config")
                             .font(.adsBody)
@@ -242,58 +302,81 @@ struct AppSettingsView: View {
                     }
                     .listRowBackground(Color(AdColorPalette.State.failure.color))
                     .disabled(true)
-                   
+                    
                     //MARK: - Profig settings
                     Section {
                         Button {
-                           viewStore.send(.usOptoutTapped)
+                            viewStore.send(.usOptoutTapped)
                         } label: {
-                           HStack {
-                               Text("US Opt-out")
-                               Toggle("", isOn:
-                                       viewStore.binding(
-                                           get: \.usOptout,
-                                           send: .usOptoutTapped)
-                               )
-                           }
+                            HStack {
+                                Text("US Opt-out")
+                                Toggle("", isOn:
+                                        viewStore.binding(
+                                            get: \.usOptout,
+                                            send: .usOptoutTapped)
+                                )
+                            }
                         }
+                        .accessibilityLabel("USOptOutButton")
+                        
                         Button {
-                           viewStore.send(.usOptoutPartnerTapped)
+                            viewStore.send(.usOptoutPartnerTapped)
                         } label: {
-                           HStack {
-                              Text("US Opt-out Partner")
-                              Toggle("", isOn:
-                                      viewStore.binding(
-                                          get: \.usOptoutPartner,
-                                          send: .usOptoutPartnerTapped)
-                              )
-                           }
+                            HStack {
+                                Text("US Opt-out Partner")
+                                Toggle("", isOn:
+                                        viewStore.binding(
+                                            get: \.usOptoutPartner,
+                                            send: .usOptoutPartnerTapped)
+                                )
+                            }
                         }
+                        .accessibilityLabel("USOptOuPartnertButton")
+                        
                         Button{
                             viewStore.send(.showPrivacyDataTapped)
                         } label : {
-                           Text("Retrieve Privacy data")
-                               .padding(.vertical, 4)
-                               .frame(maxWidth: .infinity)
+                            Text("Retrieve Privacy data")
+                                .padding(.vertical, 4)
+                                .frame(maxWidth: .infinity)
                         }
                         .buttonStyle(AdsSecondaryButton())
-                   } header: {
-                       Text("Privacy")
-                           .font(.adsBody)
-                           .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                           .padding(.horizontal, -16)
-                   }
-                   .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                   .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                        .accessibilityLabel("RetrievePrivacyDataButton")
+                        
+                    } header: {
+                        Text("Privacy")
+                            .font(.adsBody)
+                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                            .padding(.horizontal, -16)
+                    }
+                    .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                    .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                    
+                    //MARK: - Logs settings
+                    Section {
+                        NavigationLink(
+                            destination: LogOptionView().navigationTitle("Log options")
+                        ) {
+                            Text("Show options")
+                        }
+                        .accessibilityLabel("ShowLogOptionsNavigationLink")
+                    } header: {
+                        Text("Logs")
+                            .font(.adsBody)
+                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                            .padding(.horizontal, -16)
+                    }
+                    .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                    .listRowBackground(Color(AdColorPalette.Background.secondary.color))
                     
                     Spacer()
                         .listRowBackground(Color.clear)
                     
                     //MARK: - settings
                     VStack(alignment: .center) {
-                        Text("App Version : \(viewStore.appVersion)")
-                        Text("Ads SDK Version : \(viewStore.sdkVersion)")
-                        Text("Environment : \(viewStore.environment)")
+                        Text("App Version : \(viewStore.appVersion)").accessibilityLabel("AppVersionLabel")
+                        Text("Ads SDK Version : \(viewStore.sdkVersion)").accessibilityLabel("SDKVersionLabel")
+                        Text("Environment : \(viewStore.environment)").accessibilityLabel("AppEnvironmentLabel")
                     }
                     .frame(maxWidth: .infinity)
                     .listRowBackground(Color.clear)
@@ -304,6 +387,9 @@ struct AppSettingsView: View {
                 .listStyle(.insetGrouped)
             }
             .tint(Color(AdColorPalette.Text.primary(onAccent: false).color))
+            .navigationTitle("Settings")
+            .navigationBarTitleDisplayMode(.large)
+            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
     
@@ -324,11 +410,21 @@ public extension Text {
     }
 }
 
-#Preview {
-    NavigationView(content: {
-        AppSettingsView( store: Store(
-            initialState: AppSettingsFeature.State(settings: SettingsContainer(), adDelegate: nil),
-            reducer: { AppSettingsFeature() }
-        ))
-    })
+extension View {
+    func safeBreathe() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.symbolEffect(.breathe, isActive: true)
+        } else {
+            return self
+        }
+    }
 }
+
+//#Preview {
+//    NavigationView(content: {
+//        AppSettingsView( store: Store(
+//            initialState: AppSettingsFeature.State(settings: SettingsContainer(), adDelegate: nil),
+//            reducer: { AppSettingsFeature() }
+//        ))
+//    })
+//}

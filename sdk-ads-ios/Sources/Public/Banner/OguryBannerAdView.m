@@ -3,6 +3,7 @@
 //
 
 #import "OguryBannerAdView.h"
+#import "OGAAdConfiguration.h"
 #import "OguryBannerAdViewDelegateDispatcher.h"
 #import "OGABannerAdViewInternalAPI.h"
 
@@ -10,6 +11,8 @@
 
 @property(nonatomic, strong) OguryBannerAdViewDelegateDispatcher *delegateDispatcher;
 @property(nonatomic, strong) OGABannerAdViewInternalAPI *internalAPI;
+- (void)setLogOrigin:(NSString *)origin;
+- (OGAAdConfiguration *)adConfiguration;
 
 @end
 
@@ -97,6 +100,28 @@
 - (void)didMoveToWindow {
     [super didMoveToWindow];
     [self.internalAPI didMoveToWindow];
+}
+
+- (void)setLogOrigin:(NSString *)origin {
+    [self.internalAPI setLogOrigin:origin];
+}
+
+- (OGAAdConfiguration *)adConfiguration {
+    return self.internalAPI.adConfiguration;
+}
+
+- (void)simulateWebviewTerminated {
+#if defined(DEBUG) || defined(KILL_MODE_ENABLED)
+    [self.internalAPI simulateWebviewTerminated];
+#endif
+}
+
+- (WKWebView *)adWebview {
+#if defined(DEBUG) || defined(KILL_MODE_ENABLED)
+    return [self.internalAPI adWebview];
+#else
+    return nil;
+#endif
 }
 
 @end

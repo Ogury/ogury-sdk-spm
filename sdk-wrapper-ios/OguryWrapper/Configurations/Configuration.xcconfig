@@ -5,7 +5,7 @@
 // Identification
 PRODUCT_NAME = OgurySdk
 FRAMEWORK_NAME = OgurySdk
-PRODUCT_BUNDLE_IDENTIFIER = com.ogury
+PRODUCT_BUNDLE_IDENTIFIER = com.ogury.OguryWrapper
 
 // Versioning
 MARKETING_VERSION = 5.0.2
