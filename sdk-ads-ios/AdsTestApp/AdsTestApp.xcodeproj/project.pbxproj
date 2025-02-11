@@ -327,7 +327,6 @@
 		43D0E6212C61060700AF9CF6 /* config-art.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 43D0E61F2C61060700AF9CF6 /* config-art.debug.xcconfig */; };
 		43D0E6222C61060F00AF9CF6 /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C00D2BC7D6CA00F40F5F /* config.release.xcconfig */; };
 		43D0E6232C61060F00AF9CF6 /* config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 434F85042ACFE6E2005077F5 /* config.debug.xcconfig */; };
-		43F66E3C2D394D79000AED12 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB0962C22DD45002FB0B1 /* GoogleMobileAds */; };
 		43F66E3D2D394D79000AED12 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB0D92C22DD59002FB0B1 /* GoogleMobileAds */; };
 		43F66E3E2D394D79000AED12 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB11C2C22DD60002FB0B1 /* GoogleMobileAds */; };
 		43F66E432D3FABCF000AED12 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B42B4E882F0022157E /* AdsCardLibrary.framework */; };
@@ -594,7 +593,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F66E3C2D394D79000AED12 /* GoogleMobileAds in Frameworks */,
 				43BCB0BD2C22DD45002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43BCB0BE2C22DD45002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB1942C23254D002FB0B1 /* AdsCardLibrary.framework in Frameworks */,
@@ -1118,7 +1116,6 @@
 			name = "AdsTestApp-Devc-art";
 			packageProductDependencies = (
 				43BCB0942C22DD45002FB0B1 /* SnapKit */,
-				43BCB0962C22DD45002FB0B1 /* GoogleMobileAds */,
 				43BCB0982C22DD45002FB0B1 /* UserDefault */,
 				43BCB09A2C22DD45002FB0B1 /* SwiftMessages */,
 			);
@@ -2611,14 +2608,6 @@
 				minimumVersion = 5.6.0;
 			};
 		};
-		43BCB0972C22DD45002FB0B1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.0.0;
-			};
-		};
 		43BCB0992C22DD45002FB0B1 /* XCRemoteSwiftPackageReference "UserDefault" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/juliand665/UserDefault";
@@ -2744,11 +2733,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 43BCB0952C22DD45002FB0B1 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		43BCB0962C22DD45002FB0B1 /* GoogleMobileAds */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43BCB0972C22DD45002FB0B1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
-			productName = GoogleMobileAds;
 		};
 		43BCB0982C22DD45002FB0B1 /* UserDefault */ = {
 			isa = XCSwiftPackageProductDependency;
