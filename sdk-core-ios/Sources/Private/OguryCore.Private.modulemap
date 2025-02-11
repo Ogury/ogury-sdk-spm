@@ -16,6 +16,7 @@ framework module OguryCore {
         header "OguryError+Internal.h"
         header "OguryLog.h"
         header "OguryLogger.h"
+        header "OguryLogType.h"
         header "OguryLogLevel.h"
         header "OguryLogMessage.h"
         header "OguryLogFormatter.h"
