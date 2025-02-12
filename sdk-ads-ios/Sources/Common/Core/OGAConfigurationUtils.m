@@ -34,23 +34,6 @@ static NSString *const OGAConfigurationUtilsSDK = @"ads";
 static NSString *const OGAConfigurationUtilsDeviceOS = @"ios";
 static NSString *const OGAConfigurationUtilsManufacturer = @"Apple";
 
-+ (OGASDKType)getFrameworkType {
-    OGASDKType type = OGASDKTypeNative;
-#ifdef __HAS_UNITY__
-    type = OGASDKTypeUnity;
-#endif
-#ifdef __HAS_CORDOVA__
-    type = OGASDKTypeCordova;
-#endif
-#ifdef __HAS_XAMARIN__
-    type = OGASDKTypeXamarin;
-#endif
-#ifdef __HAS_AIR__
-    type = OGASDKTypeAdobeAir;
-#endif
-    return type;
-}
-
 + (NSString *)cpuArchitecture {
     const NXArchInfo *info = NXGetAllArchInfos();
     NSString *cpuArchitecture = [NSString stringWithUTF8String:info->description];

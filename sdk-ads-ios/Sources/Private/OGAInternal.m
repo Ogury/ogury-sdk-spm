@@ -167,7 +167,7 @@
 }
 
 - (void)defineSDKType:(NSUInteger)sdkType {
-    [self.adManager defineSDKType:sdkType];
+    [self.adManager setSdkType:sdkType];
 }
 
 - (void)defineMediationName:(NSString *)mediationName {
