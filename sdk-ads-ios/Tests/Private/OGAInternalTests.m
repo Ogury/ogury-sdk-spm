@@ -126,6 +126,7 @@
 
 - (void)testDefineSDKType {
     [self.internal defineSDKType:1];
+
     OCMVerify([self.adManager setSdkType:1]);
 }
 
