@@ -1094,6 +1094,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 434F84EF2ACFE50A005077F5 /* Build configuration list for PBXNativeTarget "AdsTestApp-Prod" */;
 			buildPhases = (
+				4306F1892D6DFB2C00E391E7 /* Update Build Number */,
 				3FA655A38921B7890A2CB77D /* [CP] Check Pods Manifest.lock */,
 				434F84DA2ACFE50A005077F5 /* Sources */,
 				434F84E82ACFE50A005077F5 /* Frameworks */,
@@ -1438,6 +1439,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		4306F1892D6DFB2C00E391E7 /* Update Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Update Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Prod/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Prod/config.release.xcconfig\"\nKEY_TO_UPDATE=\"BUILD_NUMBER\"\nNEW_VALUE=$(date +%Y%m%d%H%M%S)\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
 		};
 		43BCB09C2C22DD45002FB0B1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2030,12 +2049,12 @@
 				ASSET_KEY = "$(ASSET_KEY)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Prod/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Ads - Prod";
+				INFOPLIST_KEY_CFBundleDisplayName = OgurySDK;
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2046,7 +2065,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${VERSION}";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -2074,12 +2093,12 @@
 				ASSET_KEY = "$(ASSET_KEY)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Prod/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Ads - Prod";
+				INFOPLIST_KEY_CFBundleDisplayName = OgurySDK;
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2090,7 +2109,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${VERSION}";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
