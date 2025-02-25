@@ -1150,6 +1150,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43BCB0D12C22DD45002FB0B1 /* Build configuration list for PBXNativeTarget "AdsTestApp-Devc-art" */;
 			buildPhases = (
+				4306F18F2D6E0E7900E391E7 /* Update Build Version */,
 				43BCB09C2C22DD45002FB0B1 /* [CP] Check Pods Manifest.lock */,
 				43BCB09D2C22DD45002FB0B1 /* Sources */,
 				43BCB0BC2C22DD45002FB0B1 /* Frameworks */,
@@ -1176,6 +1177,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43BCB1142C22DD59002FB0B1 /* Build configuration list for PBXNativeTarget "AdsTestApp-Staging-art" */;
 			buildPhases = (
+				4306F1902D6E0E8C00E391E7 /* Update Build Version */,
 				43BCB0DF2C22DD59002FB0B1 /* [CP] Check Pods Manifest.lock */,
 				43BCB0E02C22DD59002FB0B1 /* Sources */,
 				43BCB0FF2C22DD59002FB0B1 /* Frameworks */,
@@ -1202,6 +1204,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43BCB1572C22DD60002FB0B1 /* Build configuration list for PBXNativeTarget "AdsTestApp-Prod-art" */;
 			buildPhases = (
+				4306F1912D6E0EA100E391E7 /* Update Build Version */,
 				43BCB1222C22DD60002FB0B1 /* [CP] Check Pods Manifest.lock */,
 				43BCB1232C22DD60002FB0B1 /* Sources */,
 				43BCB1422C22DD60002FB0B1 /* Frameworks */,
@@ -1552,6 +1555,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/bash\nCONFIG_FILE=\"$(cd \"$PROJECT_DIR/../..\" && pwd)/sdk-ads-ios/Configurations/OGAConfig.xcconfig\"\n\necho \"❤️ Looking for xcconfig file at: $CONFIG_FILE\"\n\n# Extract the framework version from the xcconfig file\nif [ -f \"$CONFIG_FILE\" ]; then\n    FRAMEWORK_VERSION=$(grep -E \"^MARKETING_VERSION\" \"$CONFIG_FILE\" | cut -d '=' -f2 | tr -d ' ')\nelse\n    echo \"❌ .xcconfig file not found! ${CONFIG_FILE}\"\n    FRAMEWORK_VERSION=\"Unknown\"\nfi\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Staging/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Staging/config.release.xcconfig\"\nKEY_TO_UPDATE=\"VERSION\"\nNEW_VALUE=\"1.0.0-ogury-${FRAMEWORK_VERSION}-Staging\"\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
+		};
+		4306F18F2D6E0E7900E391E7 /* Update Build Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Update Build Version";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Devc/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Devc/config.release.xcconfig\"\nKEY_TO_UPDATE=\"BUILD_NUMBER\"\nNEW_VALUE=$(date +%Y%m%d%H%M%S)\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
+		};
+		4306F1902D6E0E8C00E391E7 /* Update Build Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Update Build Version";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Staging/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Staging/config.release.xcconfig\"\nKEY_TO_UPDATE=\"BUILD_NUMBER\"\nNEW_VALUE=$(date +%Y%m%d%H%M%S)\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
+		};
+		4306F1912D6E0EA100E391E7 /* Update Build Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Update Build Version";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Prod/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Prod/config.release.xcconfig\"\nKEY_TO_UPDATE=\"BUILD_NUMBER\"\nNEW_VALUE=$(date +%Y%m%d%H%M%S)\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
 		};
 		43BCB09C2C22DD45002FB0B1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
