@@ -1069,6 +1069,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 434F84D32ACFE4FE005077F5 /* Build configuration list for PBXNativeTarget "AdsTestApp-Staging" */;
 			buildPhases = (
+				4306F18C2D6E0D4400E391E7 /* Update Build Number */,
+				4306F18E2D6E0DB600E391E7 /* Update Version */,
 				295F0BCB9AABA6AF99895712 /* [CP] Check Pods Manifest.lock */,
 				434F84BE2ACFE4FE005077F5 /* Sources */,
 				434F84CC2ACFE4FE005077F5 /* Frameworks */,
@@ -1095,6 +1097,7 @@
 			buildConfigurationList = 434F84EF2ACFE50A005077F5 /* Build configuration list for PBXNativeTarget "AdsTestApp-Prod" */;
 			buildPhases = (
 				4306F1892D6DFB2C00E391E7 /* Update Build Number */,
+				4306F18A2D6DFFF700E391E7 /* Update Version  */,
 				3FA655A38921B7890A2CB77D /* [CP] Check Pods Manifest.lock */,
 				434F84DA2ACFE50A005077F5 /* Sources */,
 				434F84E82ACFE50A005077F5 /* Frameworks */,
@@ -1120,6 +1123,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 438ED4272AA5D0C300486AF2 /* Build configuration list for PBXNativeTarget "AdsTestApp-Devc" */;
 			buildPhases = (
+				4306F18B2D6E0D2100E391E7 /* Update Build Number */,
+				4306F18D2D6E0D9B00E391E7 /* Update Version */,
 				B27F324769FC55F0E39061AE /* [CP] Check Pods Manifest.lock */,
 				438ED40F2AA5D0C200486AF2 /* Sources */,
 				438ED4102AA5D0C200486AF2 /* Frameworks */,
@@ -1457,6 +1462,96 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/bash\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Prod/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Prod/config.release.xcconfig\"\nKEY_TO_UPDATE=\"BUILD_NUMBER\"\nNEW_VALUE=$(date +%Y%m%d%H%M%S)\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
+		};
+		4306F18A2D6DFFF700E391E7 /* Update Version  */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Update Version ";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nCONFIG_FILE=\"$(cd \"$PROJECT_DIR/../..\" && pwd)/sdk-ads-ios/Configurations/OGAConfig.xcconfig\"\n\necho \"❤️ Looking for xcconfig file at: $CONFIG_FILE\"\n\n# Extract the framework version from the xcconfig file\nif [ -f \"$CONFIG_FILE\" ]; then\n    FRAMEWORK_VERSION=$(grep -E \"^MARKETING_VERSION\" \"$CONFIG_FILE\" | cut -d '=' -f2 | tr -d ' ')\nelse\n    echo \"❌ .xcconfig file not found! ${CONFIG_FILE}\"\n    FRAMEWORK_VERSION=\"Unknown\"\nfi\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Prod/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Prod/config.release.xcconfig\"\nKEY_TO_UPDATE=\"VERSION\"\nNEW_VALUE=\"1.0.0-ogury-${FRAMEWORK_VERSION}-Prod\"\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
+		};
+		4306F18B2D6E0D2100E391E7 /* Update Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Update Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Devc/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Devc/config.release.xcconfig\"\nKEY_TO_UPDATE=\"BUILD_NUMBER\"\nNEW_VALUE=$(date +%Y%m%d%H%M%S)\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
+		};
+		4306F18C2D6E0D4400E391E7 /* Update Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Update Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Staging/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Staging/config.release.xcconfig\"\nKEY_TO_UPDATE=\"BUILD_NUMBER\"\nNEW_VALUE=$(date +%Y%m%d%H%M%S)\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
+		};
+		4306F18D2D6E0D9B00E391E7 /* Update Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Update Version";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nCONFIG_FILE=\"$(cd \"$PROJECT_DIR/../..\" && pwd)/sdk-ads-ios/Configurations/OGAConfig.xcconfig\"\n\necho \"❤️ Looking for xcconfig file at: $CONFIG_FILE\"\n\n# Extract the framework version from the xcconfig file\nif [ -f \"$CONFIG_FILE\" ]; then\n    FRAMEWORK_VERSION=$(grep -E \"^MARKETING_VERSION\" \"$CONFIG_FILE\" | cut -d '=' -f2 | tr -d ' ')\nelse\n    echo \"❌ .xcconfig file not found! ${CONFIG_FILE}\"\n    FRAMEWORK_VERSION=\"Unknown\"\nfi\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Devc/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Devc/config.release.xcconfig\"\nKEY_TO_UPDATE=\"VERSION\"\nNEW_VALUE=\"1.0.0-ogury-${FRAMEWORK_VERSION}-Devc\"\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
+		};
+		4306F18E2D6E0DB600E391E7 /* Update Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Update Version";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nCONFIG_FILE=\"$(cd \"$PROJECT_DIR/../..\" && pwd)/sdk-ads-ios/Configurations/OGAConfig.xcconfig\"\n\necho \"❤️ Looking for xcconfig file at: $CONFIG_FILE\"\n\n# Extract the framework version from the xcconfig file\nif [ -f \"$CONFIG_FILE\" ]; then\n    FRAMEWORK_VERSION=$(grep -E \"^MARKETING_VERSION\" \"$CONFIG_FILE\" | cut -d '=' -f2 | tr -d ' ')\nelse\n    echo \"❌ .xcconfig file not found! ${CONFIG_FILE}\"\n    FRAMEWORK_VERSION=\"Unknown\"\nfi\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Staging/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Staging/config.release.xcconfig\"\nKEY_TO_UPDATE=\"VERSION\"\nNEW_VALUE=\"1.0.0-ogury-${FRAMEWORK_VERSION}-Staging\"\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
 		};
 		43BCB09C2C22DD45002FB0B1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
