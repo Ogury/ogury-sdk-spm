@@ -327,9 +327,6 @@
 		43D0E6212C61060700AF9CF6 /* config-art.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 43D0E61F2C61060700AF9CF6 /* config-art.debug.xcconfig */; };
 		43D0E6222C61060F00AF9CF6 /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C00D2BC7D6CA00F40F5F /* config.release.xcconfig */; };
 		43D0E6232C61060F00AF9CF6 /* config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 434F85042ACFE6E2005077F5 /* config.debug.xcconfig */; };
-		43F66E3C2D394D79000AED12 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB0962C22DD45002FB0B1 /* GoogleMobileAds */; };
-		43F66E3D2D394D79000AED12 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB0D92C22DD59002FB0B1 /* GoogleMobileAds */; };
-		43F66E3E2D394D79000AED12 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB11C2C22DD60002FB0B1 /* GoogleMobileAds */; };
 		43F66E432D3FABCF000AED12 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B42B4E882F0022157E /* AdsCardLibrary.framework */; };
 		43F66E442D3FABCF000AED12 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B42B4E882F0022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43F66E452D3FABE7000AED12 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
@@ -615,7 +612,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F66E3C2D394D79000AED12 /* GoogleMobileAds in Frameworks */,
 				43BCB0BD2C22DD45002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43BCB0BE2C22DD45002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB1942C23254D002FB0B1 /* AdsCardLibrary.framework in Frameworks */,
@@ -629,7 +625,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F66E3D2D394D79000AED12 /* GoogleMobileAds in Frameworks */,
 				43BCB1002C22DD59002FB0B1 /* SnapKit in Frameworks */,
 				43BCB1022C22DD59002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB1972C23255C002FB0B1 /* AdsCardLibrary.framework in Frameworks */,
@@ -643,7 +638,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F66E3E2D394D79000AED12 /* GoogleMobileAds in Frameworks */,
 				43BCB1432C22DD60002FB0B1 /* SnapKit in Frameworks */,
 				43BCB1452C22DD60002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB19A2C232565002FB0B1 /* AdsCardLibrary.framework in Frameworks */,
@@ -1157,6 +1151,7 @@
 				43BCB0C52C22DD45002FB0B1 /* Resources */,
 				43BCB0CE2C22DD45002FB0B1 /* Embed Frameworks */,
 				CDA75B21AE4D940DB2FE6CCB /* [CP] Embed Pods Frameworks */,
+				4306F1942D6F0C2B00E391E7 /* Update version */,
 			);
 			buildRules = (
 			);
@@ -1165,7 +1160,6 @@
 			name = "AdsTestApp-Devc-art";
 			packageProductDependencies = (
 				43BCB0942C22DD45002FB0B1 /* SnapKit */,
-				43BCB0962C22DD45002FB0B1 /* GoogleMobileAds */,
 				43BCB0982C22DD45002FB0B1 /* UserDefault */,
 				43BCB09A2C22DD45002FB0B1 /* SwiftMessages */,
 			);
@@ -1178,6 +1172,7 @@
 			buildConfigurationList = 43BCB1142C22DD59002FB0B1 /* Build configuration list for PBXNativeTarget "AdsTestApp-Staging-art" */;
 			buildPhases = (
 				4306F1902D6E0E8C00E391E7 /* Update Build Version */,
+				4306F1932D6F0C0500E391E7 /* Update version */,
 				43BCB0DF2C22DD59002FB0B1 /* [CP] Check Pods Manifest.lock */,
 				43BCB0E02C22DD59002FB0B1 /* Sources */,
 				43BCB0FF2C22DD59002FB0B1 /* Frameworks */,
@@ -1192,7 +1187,6 @@
 			name = "AdsTestApp-Staging-art";
 			packageProductDependencies = (
 				43BCB0D72C22DD59002FB0B1 /* SnapKit */,
-				43BCB0D92C22DD59002FB0B1 /* GoogleMobileAds */,
 				43BCB0DB2C22DD59002FB0B1 /* UserDefault */,
 				43BCB0DD2C22DD59002FB0B1 /* SwiftMessages */,
 			);
@@ -1205,6 +1199,7 @@
 			buildConfigurationList = 43BCB1572C22DD60002FB0B1 /* Build configuration list for PBXNativeTarget "AdsTestApp-Prod-art" */;
 			buildPhases = (
 				4306F1912D6E0EA100E391E7 /* Update Build Version */,
+				4306F1922D6F08EA00E391E7 /* Update version */,
 				43BCB1222C22DD60002FB0B1 /* [CP] Check Pods Manifest.lock */,
 				43BCB1232C22DD60002FB0B1 /* Sources */,
 				43BCB1422C22DD60002FB0B1 /* Frameworks */,
@@ -1219,7 +1214,6 @@
 			name = "AdsTestApp-Prod-art";
 			packageProductDependencies = (
 				43BCB11A2C22DD60002FB0B1 /* SnapKit */,
-				43BCB11C2C22DD60002FB0B1 /* GoogleMobileAds */,
 				43BCB11E2C22DD60002FB0B1 /* UserDefault */,
 				43BCB1202C22DD60002FB0B1 /* SwiftMessages */,
 			);
@@ -1482,7 +1476,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\nCONFIG_FILE=\"$(cd \"$PROJECT_DIR/../..\" && pwd)/sdk-ads-ios/Configurations/OGAConfig.xcconfig\"\n\necho \"❤️ Looking for xcconfig file at: $CONFIG_FILE\"\n\n# Extract the framework version from the xcconfig file\nif [ -f \"$CONFIG_FILE\" ]; then\n    FRAMEWORK_VERSION=$(grep -E \"^MARKETING_VERSION\" \"$CONFIG_FILE\" | cut -d '=' -f2 | tr -d ' ')\nelse\n    echo \"❌ .xcconfig file not found! ${CONFIG_FILE}\"\n    FRAMEWORK_VERSION=\"Unknown\"\nfi\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Prod/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Prod/config.release.xcconfig\"\nKEY_TO_UPDATE=\"VERSION\"\nNEW_VALUE=\"1.0.0-ogury-${FRAMEWORK_VERSION}-Prod\"\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
+			shellScript = "#!/bin/bash\nCONFIG_FILE=\"$(cd \"$PROJECT_DIR/../..\" && pwd)/sdk-ads-ios/Configurations/OGAConfig.xcconfig\"\n\necho \"❤️ Looking for xcconfig file at: $CONFIG_FILE\"\n\n# Extract the framework version from the xcconfig file\nif [ -f \"$CONFIG_FILE\" ]; then\n    FRAMEWORK_VERSION=$(grep -E \"^MARKETING_VERSION\" \"$CONFIG_FILE\" | cut -d '=' -f2 | tr -d ' ')\nelse\n    echo \"❌ .xcconfig file not found! ${CONFIG_FILE}\"\n    FRAMEWORK_VERSION=\"Unknown\"\nfi\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Prod/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Prod/config.release.xcconfig\"\nKEY_TO_UPDATE=\"VERSION\"\nNEW_VALUE=\"1.0.0-ogury-dev-${FRAMEWORK_VERSION}\"\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
 		};
 		4306F18B2D6E0D2100E391E7 /* Update Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1536,7 +1530,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\nCONFIG_FILE=\"$(cd \"$PROJECT_DIR/../..\" && pwd)/sdk-ads-ios/Configurations/OGAConfig.xcconfig\"\n\necho \"❤️ Looking for xcconfig file at: $CONFIG_FILE\"\n\n# Extract the framework version from the xcconfig file\nif [ -f \"$CONFIG_FILE\" ]; then\n    FRAMEWORK_VERSION=$(grep -E \"^MARKETING_VERSION\" \"$CONFIG_FILE\" | cut -d '=' -f2 | tr -d ' ')\nelse\n    echo \"❌ .xcconfig file not found! ${CONFIG_FILE}\"\n    FRAMEWORK_VERSION=\"Unknown\"\nfi\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Devc/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Devc/config.release.xcconfig\"\nKEY_TO_UPDATE=\"VERSION\"\nNEW_VALUE=\"1.0.0-ogury-${FRAMEWORK_VERSION}-Devc\"\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
+			shellScript = "#!/bin/bash\nCONFIG_FILE=\"$(cd \"$PROJECT_DIR/../..\" && pwd)/sdk-ads-ios/Configurations/OGAConfig.xcconfig\"\n\necho \"❤️ Looking for xcconfig file at: $CONFIG_FILE\"\n\n# Extract the framework version from the xcconfig file\nif [ -f \"$CONFIG_FILE\" ]; then\n    FRAMEWORK_VERSION=$(grep -E \"^MARKETING_VERSION\" \"$CONFIG_FILE\" | cut -d '=' -f2 | tr -d ' ')\nelse\n    echo \"❌ .xcconfig file not found! ${CONFIG_FILE}\"\n    FRAMEWORK_VERSION=\"Unknown\"\nfi\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Devc/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Devc/config.release.xcconfig\"\nKEY_TO_UPDATE=\"VERSION\"\nNEW_VALUE=\"1.0.0-ogury-dev-${FRAMEWORK_VERSION}\"\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
 		};
 		4306F18E2D6E0DB600E391E7 /* Update Version */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1554,7 +1548,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\nCONFIG_FILE=\"$(cd \"$PROJECT_DIR/../..\" && pwd)/sdk-ads-ios/Configurations/OGAConfig.xcconfig\"\n\necho \"❤️ Looking for xcconfig file at: $CONFIG_FILE\"\n\n# Extract the framework version from the xcconfig file\nif [ -f \"$CONFIG_FILE\" ]; then\n    FRAMEWORK_VERSION=$(grep -E \"^MARKETING_VERSION\" \"$CONFIG_FILE\" | cut -d '=' -f2 | tr -d ' ')\nelse\n    echo \"❌ .xcconfig file not found! ${CONFIG_FILE}\"\n    FRAMEWORK_VERSION=\"Unknown\"\nfi\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Staging/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Staging/config.release.xcconfig\"\nKEY_TO_UPDATE=\"VERSION\"\nNEW_VALUE=\"1.0.0-ogury-${FRAMEWORK_VERSION}-Staging\"\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
+			shellScript = "#!/bin/bash\nCONFIG_FILE=\"$(cd \"$PROJECT_DIR/../..\" && pwd)/sdk-ads-ios/Configurations/OGAConfig.xcconfig\"\n\necho \"❤️ Looking for xcconfig file at: $CONFIG_FILE\"\n\n# Extract the framework version from the xcconfig file\nif [ -f \"$CONFIG_FILE\" ]; then\n    FRAMEWORK_VERSION=$(grep -E \"^MARKETING_VERSION\" \"$CONFIG_FILE\" | cut -d '=' -f2 | tr -d ' ')\nelse\n    echo \"❌ .xcconfig file not found! ${CONFIG_FILE}\"\n    FRAMEWORK_VERSION=\"Unknown\"\nfi\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Staging/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Staging/config.release.xcconfig\"\nKEY_TO_UPDATE=\"VERSION\"\nNEW_VALUE=\"1.0.0-ogury-dev-${FRAMEWORK_VERSION}\"\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
 		};
 		4306F18F2D6E0E7900E391E7 /* Update Build Version */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1572,7 +1566,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Devc/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Devc/config.release.xcconfig\"\nKEY_TO_UPDATE=\"BUILD_NUMBER\"\nNEW_VALUE=$(date +%Y%m%d%H%M%S)\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
+			shellScript = "#!/bin/bash\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Devc/config-art.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Devc/config-art.release.xcconfig\"\nKEY_TO_UPDATE=\"BUILD_NUMBER\"\nNEW_VALUE=$(date +%Y%m%d%H%M%S)\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
 		};
 		4306F1902D6E0E8C00E391E7 /* Update Build Version */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1590,7 +1584,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Staging/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Staging/config.release.xcconfig\"\nKEY_TO_UPDATE=\"BUILD_NUMBER\"\nNEW_VALUE=$(date +%Y%m%d%H%M%S)\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
+			shellScript = "#!/bin/bash\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Staging/config-art.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Staging/config-art.release.xcconfig\"\nKEY_TO_UPDATE=\"BUILD_NUMBER\"\nNEW_VALUE=$(date +%Y%m%d%H%M%S)\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
 		};
 		4306F1912D6E0EA100E391E7 /* Update Build Version */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1608,7 +1602,61 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Prod/config.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Prod/config.release.xcconfig\"\nKEY_TO_UPDATE=\"BUILD_NUMBER\"\nNEW_VALUE=$(date +%Y%m%d%H%M%S)\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
+			shellScript = "#!/bin/bash\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Prod/config-art.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Prod/config-art.release.xcconfig\"\nKEY_TO_UPDATE=\"BUILD_NUMBER\"\nNEW_VALUE=$(date +%Y%m%d%H%M%S)\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n";
+		};
+		4306F1922D6F08EA00E391E7 /* Update version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Update version";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PODFILE_LOCK=\"${PROJECT_DIR}/../../Podfile.lock\"\nAPP_PLIST=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n\n# Try extracting framework version from Podfile.lock\nif [ -f \"$PODFILE_LOCK\" ]; then\n# Print Podfile.lock content for debugging\necho \"📄 Podfile.lock content snippet:\"\ncat \"$PODFILE_LOCK\" | grep -E \"^\\s+- OguryAds-Prod \\(\" || echo \"⚠️ No match found\"\n\n# Extract framework version\nFRAMEWORK_VERSION=$(grep -E \"^\\s+- OguryAds-Prod \\(\" \"$PODFILE_LOCK\" | head -1 | sed -E 's/.*\\(([0-9a-zA-Z.-]+)\\).*/\\1/')\n\n# Debugging output\necho \"🔍 Extracted Framework Version: '$FRAMEWORK_VERSION'\"\nelse\n    echo \"❌ Podfile.lock not found!\"\n    FRAMEWORK_VERSION=\"Unknown\"\nfi\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Prod/config-art.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Prod/config-art.release.xcconfig\"\nKEY_TO_UPDATE=\"VERSION\"\nNEW_VALUE=\"1.0.0-ogury-${FRAMEWORK_VERSION}\"\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n\n";
+		};
+		4306F1932D6F0C0500E391E7 /* Update version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Update version";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PODFILE_LOCK=\"${PROJECT_DIR}/../../Podfile.lock\"\nAPP_PLIST=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n\n# Try extracting framework version from Podfile.lock\nif [ -f \"$PODFILE_LOCK\" ]; then\n# Print Podfile.lock content for debugging\necho \"📄 Podfile.lock content snippet:\"\ncat \"$PODFILE_LOCK\" | grep -E \"^\\s+- OguryAds-Prod \\(\" || echo \"⚠️ No match found\"\n\n# Extract framework version\nFRAMEWORK_VERSION=$(grep -E \"^\\s+- OguryAds-Prod \\(\" \"$PODFILE_LOCK\" | head -1 | sed -E 's/.*\\(([0-9a-zA-Z.-]+)\\).*/\\1/')\n\n# Debugging output\necho \"🔍 Extracted Framework Version: '$FRAMEWORK_VERSION'\"\nelse\n    echo \"❌ Podfile.lock not found!\"\n    FRAMEWORK_VERSION=\"Unknown\"\nfi\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Staging/config-art.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Staging/config-art.release.xcconfig\"\nKEY_TO_UPDATE=\"VERSION\"\nNEW_VALUE=\"1.0.0-ogury-${FRAMEWORK_VERSION}\"\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n\n";
+		};
+		4306F1942D6F0C2B00E391E7 /* Update version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Update version";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PODFILE_LOCK=\"${PROJECT_DIR}/../../Podfile.lock\"\nAPP_PLIST=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n\n# Try extracting framework version from Podfile.lock\nif [ -f \"$PODFILE_LOCK\" ]; then\n# Print Podfile.lock content for debugging\necho \"📄 Podfile.lock content snippet:\"\ncat \"$PODFILE_LOCK\" | grep -E \"^\\s+- OguryAds-Prod \\(\" || echo \"⚠️ No match found\"\n\n# Extract framework version\nFRAMEWORK_VERSION=$(grep -E \"^\\s+- OguryAds-Prod \\(\" \"$PODFILE_LOCK\" | head -1 | sed -E 's/.*\\(([0-9a-zA-Z.-]+)\\).*/\\1/')\n\n# Debugging output\necho \"🔍 Extracted Framework Version: '$FRAMEWORK_VERSION'\"\nelse\n    echo \"❌ Podfile.lock not found!\"\n    FRAMEWORK_VERSION=\"Unknown\"\nfi\n\nCONFIG_FILE_DEBUG=\"${SRCROOT}/AdsTestApp/Config/Devc/config-art.debug.xcconfig\"\nCONFIG_FILE_RELEASE=\"${SRCROOT}/AdsTestApp/Config/Devc/config-art.release.xcconfig\"\nKEY_TO_UPDATE=\"VERSION\"\nNEW_VALUE=\"1.0.0-ogury-${FRAMEWORK_VERSION}\"\n\n# Check if the config file exists\nif [ -f \"$CONFIG_FILE_DEBUG\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_DEBUG\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\nif [ -f \"$CONFIG_FILE_RELEASE\" ]; then\n    # Use sed to replace the existing value\n    sed -i '' \"s/^$KEY_TO_UPDATE = .*/$KEY_TO_UPDATE = $NEW_VALUE/\" \"$CONFIG_FILE_RELEASE\"\nelse\n    echo \"$CONFIG_FILE not found!\"\n    exit 1\nfi\n\n";
 		};
 		43BCB09C2C22DD45002FB0B1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2116,7 +2164,7 @@
 				ASSET_KEY = "$(ASSET_KEY)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2132,7 +2180,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${VERSION}";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -2159,7 +2207,7 @@
 				ASSET_KEY = "$(ASSET_KEY)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2175,7 +2223,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${VERSION}";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -2403,7 +2451,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "AdsTestApp-Devc.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2424,7 +2472,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${VERSION}";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2454,7 +2502,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "AdsTestApp-Devc.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2471,7 +2519,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${VERSION}";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2500,7 +2548,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "AdsTestApp-Devc.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2517,7 +2565,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${VERSION}";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -2545,7 +2593,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "AdsTestApp-Devc.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2562,7 +2610,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${VERSION}";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -2588,7 +2636,7 @@
 				ASSET_KEY = "$(ASSET_KEY)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2604,7 +2652,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${VERSION}";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -2631,7 +2679,7 @@
 				ASSET_KEY = "$(ASSET_KEY)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2647,7 +2695,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${VERSION}";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -2673,7 +2721,7 @@
 				ASSET_KEY = "$(ASSET_KEY)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2689,7 +2737,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${VERSION}";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -2716,7 +2764,7 @@
 				ASSET_KEY = "$(ASSET_KEY)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2732,7 +2780,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${VERSION}";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -2842,14 +2890,6 @@
 				minimumVersion = 5.6.0;
 			};
 		};
-		43BCB0972C22DD45002FB0B1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.0.0;
-			};
-		};
 		43BCB0992C22DD45002FB0B1 /* XCRemoteSwiftPackageReference "UserDefault" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/juliand665/UserDefault";
@@ -2874,14 +2914,6 @@
 				minimumVersion = 5.6.0;
 			};
 		};
-		43BCB0DA2C22DD59002FB0B1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.0.0;
-			};
-		};
 		43BCB0DC2C22DD59002FB0B1 /* XCRemoteSwiftPackageReference "UserDefault" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/juliand665/UserDefault";
@@ -2904,14 +2936,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.6.0;
-			};
-		};
-		43BCB11D2C22DD60002FB0B1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.0.0;
 			};
 		};
 		43BCB11F2C22DD60002FB0B1 /* XCRemoteSwiftPackageReference "UserDefault" */ = {
@@ -2976,11 +3000,6 @@
 			package = 43BCB0952C22DD45002FB0B1 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		43BCB0962C22DD45002FB0B1 /* GoogleMobileAds */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43BCB0972C22DD45002FB0B1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
-			productName = GoogleMobileAds;
-		};
 		43BCB0982C22DD45002FB0B1 /* UserDefault */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 43BCB0992C22DD45002FB0B1 /* XCRemoteSwiftPackageReference "UserDefault" */;
@@ -2996,11 +3015,6 @@
 			package = 43BCB0D82C22DD59002FB0B1 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		43BCB0D92C22DD59002FB0B1 /* GoogleMobileAds */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43BCB0DA2C22DD59002FB0B1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
-			productName = GoogleMobileAds;
-		};
 		43BCB0DB2C22DD59002FB0B1 /* UserDefault */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 43BCB0DC2C22DD59002FB0B1 /* XCRemoteSwiftPackageReference "UserDefault" */;
@@ -3015,11 +3029,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 43BCB11B2C22DD60002FB0B1 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		43BCB11C2C22DD60002FB0B1 /* GoogleMobileAds */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 43BCB11D2C22DD60002FB0B1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
-			productName = GoogleMobileAds;
 		};
 		43BCB11E2C22DD60002FB0B1 /* UserDefault */ = {
 			isa = XCSwiftPackageProductDependency;
