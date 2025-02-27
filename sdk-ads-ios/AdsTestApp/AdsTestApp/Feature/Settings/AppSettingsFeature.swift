@@ -71,7 +71,7 @@ struct AppSettingsFeature: Reducer {
             self.adDelegate = adDelegate
         }
         var appVersion: String {
-            "\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String) - build \(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
+            "\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String) - \(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
         }
         var sdkVersion: String {
             let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
