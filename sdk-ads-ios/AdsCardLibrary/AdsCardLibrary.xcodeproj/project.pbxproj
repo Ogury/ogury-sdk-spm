@@ -10,6 +10,7 @@
 		1E373D562BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D552BFC98E000E2EF25 /* DTFairBidHeaderBidable.swift */; };
 		1E373D612BFCF7CA00E2EF25 /* BTFairBidRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */; };
 		1E8256442B2380B4001DFBA4 /* AdsCardLibrary.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 1E8256432B2380B4001DFBA4 /* AdsCardLibrary.xctestplan */; };
+		1ED014A82CDB783B00B876BF /* Mockingbird in Frameworks */ = {isa = PBXBuildFile; productRef = 1ED014A72CDB783B00B876BF /* Mockingbird */; };
 		430B6F032A65377900A6EFA4 /* RewardedAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430B6F022A65377900A6EFA4 /* RewardedAdManagerTests.swift */; };
 		431441192A6539780067AD47 /* ThumbnailAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431441182A6539780067AD47 /* ThumbnailAdManagerTests.swift */; };
 		4314411B2A653B060067AD47 /* BannerAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4314411A2A653B060067AD47 /* BannerAdManagerTests.swift */; };
@@ -225,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				435C55EA2A42EAEF004186FF /* AdsCardLibrary.framework in Frameworks */,
+				1ED014A82CDB783B00B876BF /* Mockingbird in Frameworks */,
 				4314411E2A653CA70067AD47 /* CwlPreconditionTesting in Frameworks */,
 				432369C32CF4610F0078EF67 /* OMSDK_Ogury.xcframework in Frameworks */,
 			);
@@ -1174,12 +1176,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4314411C2A653CA70067AD47 /* XCRemoteSwiftPackageReference "CwlPreconditionTesting" */ = {
+		1ED014A62CDB783B00B876BF /* XCRemoteSwiftPackageReference "mockingbird" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mattgallagher/CwlPreconditionTesting.git";
+			repositoryURL = "https://github.com/typealiased/mockingbird";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				minimumVersion = 0.20.0;
 			};
 		};
 		43BCB15E2C22FBF0002FB0B1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
@@ -1201,6 +1203,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1ED014A72CDB783B00B876BF /* Mockingbird */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1ED014A62CDB783B00B876BF /* XCRemoteSwiftPackageReference "mockingbird" */;
+			productName = Mockingbird;
+		};
 		4314411D2A653CA70067AD47 /* CwlPreconditionTesting */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4314411C2A653CA70067AD47 /* XCRemoteSwiftPackageReference "CwlPreconditionTesting" */;
