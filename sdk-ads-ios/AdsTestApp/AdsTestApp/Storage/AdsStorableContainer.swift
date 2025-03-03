@@ -143,15 +143,15 @@ struct SettingsContainer: Codable, Equatable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        showCreativeId = try container.decode(Bool.self, forKey: .showCreativeId)
-        showSpecificOptions = try container.decode(Bool.self, forKey: .showSpecificOptions)
-        showDspFields = try container.decode(Bool.self, forKey: .showDspFields)
-        showCampaignId = try container.decode(Bool.self, forKey: .showCampaignId)
-        bulkModeEnabled = try container.decode(Bool.self, forKey: .bulkModeEnabled)
-        showTestMode = try container.decode(Bool.self, forKey: .showTestMode)
+        showCreativeId = try container.decodeIfPresent(Bool.self, forKey: .showCreativeId) ?? true
+        showSpecificOptions = try container.decodeIfPresent(Bool.self, forKey: .showSpecificOptions) ?? false
+        showDspFields = try container.decodeIfPresent(Bool.self, forKey: .showDspFields) ?? false
+        showCampaignId = try container.decodeIfPresent(Bool.self, forKey: .showCampaignId) ?? true
+        bulkModeEnabled = try container.decodeIfPresent(Bool.self, forKey: .bulkModeEnabled) ?? true
+        showTestMode = try container.decodeIfPresent(Bool.self, forKey: .showTestMode) ?? true
         killWebviewMode = try container.decodeIfPresent(KillWebviewMode.self, forKey: .killWebviewMode) ?? .none
-        name = try container.decode(String.self, forKey: .name)
-        os = try container.decode(String.self, forKey: .os)
+        name = try container.decodeIfPresent(String.self, forKey: .name) ?? SettingsContainer.untitledAdSet
+        os = try container.decodeIfPresent(String.self, forKey: .os) ?? SettingsContainer.currentOs
         startSDKWithApplication = try container.decodeIfPresent(Bool.self, forKey: .startSDKWithApplication) ?? false
         numberOfSdkStart = try container.decodeIfPresent(Int.self, forKey: .numberOfSdkStart) ?? 0
         enableAdUnitEditing = try container.decodeIfPresent(Bool.self, forKey: .enableAdUnitEditing) ?? true
