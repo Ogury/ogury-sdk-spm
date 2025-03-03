@@ -59,7 +59,9 @@ public final class ThumbnailAdManager: AdManager {
         self.options.baseOptions = options
         DispatchQueue.main.async {
             if (self.ad == nil) {
-                self.ad = OguryThumbnailAd(adUnitId: options.adUnitId, mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
+                self.ad = OguryThumbnailAd(adUnitId: options.adUnitId, mediation: OguryMediation(name: "AdsTestApp",
+                                                                                                 version: .sdkVersion,
+                                                                                                 adapterVersion: "n/a"))
             }
             self.ad.delegate = self.proxyDelegate
             self.ad.setLogOrigin(options.qaLabel)

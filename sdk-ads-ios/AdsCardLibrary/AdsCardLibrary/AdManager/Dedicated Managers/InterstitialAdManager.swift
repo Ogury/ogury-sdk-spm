@@ -68,7 +68,9 @@ public final class InterstitialAdManager: AdManager {
     public func loadAd(from options: BaseAdOptions) throws {
         self.options.baseOptions = options
         if (ad == nil) {
-            ad = OguryInterstitialAd(adUnitId: options.adUnitId, mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
+            ad = OguryInterstitialAd(adUnitId: options.adUnitId, mediation: OguryMediation(name: "AdsTestApp",
+                                                                                           version: .sdkVersion,
+                                                                                           adapterVersion: "n/a"))
         }
         ad.delegate = proxyDelegate
         ad.setLogOrigin(options.qaLabel)

@@ -13,7 +13,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface OguryMediation : NSObject <NSCoding, NSCopying>
 @property(nonatomic, retain) NSString *name;
 @property(nonatomic, retain) NSString *version;
-- (instancetype)initWithName:(NSString *_Nonnull)name version:(NSString *_Nonnull)sdkVersion;
+@property(nonatomic, retain) NSString *_Nullable adapterVersion;
+
+- (instancetype)initWithName:(NSString *_Nonnull)name
+                     version:(NSString *_Nonnull)sdkVersion;
+
+- (instancetype)initWithName:(NSString *_Nonnull)name
+                     version:(NSString *_Nonnull)sdkVersion
+              adapterVersion:(NSString *_Nullable)adapterVersion;
 @end
 
 NS_ASSUME_NONNULL_END
