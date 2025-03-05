@@ -345,6 +345,8 @@ struct AdContainer: Codable {
         let adUnitId: String
         let campaignId: String?
         let creativeId: String?
+        let dspCreativeId: String?
+        let dspRegion: DspRegion?
         let settings: CardSettings
     }
     struct ThumbnailOptionsContainer: Codable {
@@ -376,6 +378,8 @@ struct AdContainer: Codable {
                                         adInformations: .init(adUnitId: manager.options.baseOptions.adUnitId,
                                                               campaignId: manager.options.baseOptions.campaignId,
                                                               creativeId: manager.options.baseOptions.creativeId,
+                                                              dspCreativeId: manager.options.baseOptions.dspCreativeId,
+                                                              dspRegion: manager.options.baseOptions.dspRegion,
                                                               settings: .init(oguryTestModeEnabled: manager.options.baseOptions.oguryTestModeEnabled,
                                                                               rtbTestModeEnabled: manager.options.baseOptions.rtbTestModeEnabled,
                                                                               qaLabel: manager.options.baseOptions.qaLabel)),
@@ -465,6 +469,8 @@ struct AdContainer: Codable {
                          : adInformations.adUnitId,
                          campaignId: adInformations.campaignId,
                          creativeId: adInformations.creativeId,
+                         dspCreativeId: adInformations.dspCreativeId,
+                         dspRegion: adInformations.dspRegion,
                          isSelected: false,
                          bulkModeEnabled: settings.bulkModeEnabled,
                          oguryTestModeEnabled: adInformations.settings.oguryTestModeEnabled,
@@ -484,6 +490,8 @@ struct AdContainer: Codable {
                                : adInformations.adUnitId,
                                campaignId: adInformations.campaignId,
                                creativeId: adInformations.creativeId,
+                               dspCreativeId: adInformations.dspCreativeId,
+                               dspRegion: adInformations.dspRegion,
                                isSelected: false,
                                bulkModeEnabled: settings.bulkModeEnabled,
                                oguryTestModeEnabled: adInformations.settings.oguryTestModeEnabled,
@@ -515,6 +523,8 @@ struct AdContainer: Codable {
                                          : adInformations.adUnitId,
                                          campaignId: adInformations.campaignId,
                                          creativeId: adInformations.creativeId,
+                                         dspCreativeId: adInformations.dspCreativeId,
+                                         dspRegion: adInformations.dspRegion,
                                          isSelected: false,
                                          bulkModeEnabled: settings.bulkModeEnabled,
                                          oguryTestModeEnabled: adInformations.settings.oguryTestModeEnabled,
