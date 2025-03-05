@@ -1,5 +1,4 @@
   
-@Library('ogury-jenkins-lib@v7.5.1') _
 
 pipeline {
     agent {
