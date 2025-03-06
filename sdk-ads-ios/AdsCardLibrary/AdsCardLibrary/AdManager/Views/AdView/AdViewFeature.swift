@@ -544,7 +544,10 @@ struct AdViewFeature: Reducer {
                                     adManager
                                         .events
                                         .receive(on: DispatchQueue.main)
-                                        .map { $0.action }
+                                        .map { [state] event in
+                                            state.log(event: event)
+                                            return event.action
+                                        }
                                 }.cancellable(id: AdCancel.show(state.id)),
                                 .run { send in
                                     do {
