@@ -52,7 +52,7 @@
 }
 
 - (void)testSdkVersion {
-    XCTAssertEqual([Ogury sdkVersion], SDK_VERSION);
+    XCTAssertEqualObjects([Ogury sdkVersion], SDK_VERSION);
 }
 
 - (void)testRegisterAttributionForSKAdNetwork {

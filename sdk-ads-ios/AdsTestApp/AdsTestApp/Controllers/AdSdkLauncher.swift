@@ -14,6 +14,7 @@ struct AdSdkLauncher {
     private init() {}
     
     func launch() {
+        OGAInternal.shared().sdkConsumer = .init(name: "AdsTestApp", version: String.appVersion(shortMode: true))
         startAds()
     }
     
@@ -23,9 +24,7 @@ struct AdSdkLauncher {
             (0..<SettingsController().numberOfSdkStart).forEach { second in
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(second)) {
                     print("🫠 start SDK")
-                    OGAInternal.shared().start(with: assetKey) { _, _ in
-                        
-                    }
+                    OGAInternal.shared().start(with: assetKey) { _, _ in }
                 }
             }
         }

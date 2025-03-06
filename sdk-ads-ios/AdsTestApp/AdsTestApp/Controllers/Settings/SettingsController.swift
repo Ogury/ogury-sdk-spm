@@ -64,3 +64,11 @@ struct SettingsController {
 extension KillWebviewMode: @retroactive DefaultsValueConvertible {
     
 }
+
+extension String {
+    static func appVersion(shortMode: Bool = false)-> String {
+        shortMode
+        ? "\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)b\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
+        : "\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String) - build \(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
+    }
+}

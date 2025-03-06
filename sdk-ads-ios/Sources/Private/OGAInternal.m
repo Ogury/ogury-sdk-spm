@@ -11,6 +11,7 @@
 #import "OGAReachability.h"
 #import "OGASetLogLevelNotificationManager.h"
 #import "OGAWebViewUserAgentService.h"
+#import "OGAMonitoringDispatcher.h"
 #import "OGAWebViewUserAgentServiceDelegate.h"
 
 @interface OGAInternal () <OGAWebViewUserAgentServiceDelegate>
@@ -76,6 +77,7 @@
         _logNotificationManager = logNotificationManager;
         _webViewUserAgentService = webViewUserAgentService;
         _webViewUserAgentService.delegate = self;
+        _sdkConsumer = nil;
         [_logNotificationManager registerToNotification];
     }
     return self;

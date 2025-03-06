@@ -35,6 +35,11 @@ static NSNumber* _Nullable sdkType;
     || NSClassFromString(@"CDVPlugin") != nil;
 }
 
++(BOOL)hasIonicRuntime{
+    return NSClassFromString(@"CAPPlugin") != nil
+    || NSClassFromString(@"CAPInstanceConfiguration") != nil;
+}
+
 +(BOOL)hasAdobeAirRuntime{
     return NSClassFromString(@"AIRGameController") != nil
     || NSClassFromString(@"AdobeAIR") != nil;
@@ -48,6 +53,8 @@ static NSNumber* _Nullable sdkType;
     OGCSDKType type = OGCSDKTypeNative;
     if ([self hasUnityRuntime]) {
         type = OGCSDKTypeUnity;
+    } else if ([self hasIonicRuntime]) {
+        type = OGCSDKTypeIonic;
     } else if ([self hasCordovaRuntime]) {
         type = OGCSDKTypeCordova;
     } else if ([self hasXamarinRuntime]) {
