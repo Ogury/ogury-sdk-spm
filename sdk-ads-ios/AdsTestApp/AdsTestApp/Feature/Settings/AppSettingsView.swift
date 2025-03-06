@@ -10,6 +10,7 @@ import SwiftMessages
 
 struct AppSettingsView: View {
     let store: StoreOf<AppSettingsFeature>
+    let appPermissions: AppPermissions = SettingsController().appPermissions
     var body: some View {
         ZStack {
             AdColorPalette
@@ -78,6 +79,7 @@ struct AppSettingsView: View {
                             .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
                             .padding(.horizontal, -16)
                     }
+                    .disabled(!appPermissions.settings)
                     .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                     .listRowBackground(Color(AdColorPalette.Background.secondary.color))
                     
@@ -226,6 +228,7 @@ struct AppSettingsView: View {
                             }
                         }
                     }
+                    .disabled(!appPermissions.settings)
                     .listRowSeparator(.hidden)
                     .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                     .listRowBackground(Color(AdColorPalette.Background.secondary.color))
@@ -285,6 +288,7 @@ struct AppSettingsView: View {
                             .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
                             .padding(.horizontal, -16)
                     }
+                    .disabled(!appPermissions.settings)
                     .listRowBackground(Color.clear)
                     
                     //MARK: - Profig settings
@@ -300,6 +304,7 @@ struct AppSettingsView: View {
                             .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
                             .padding(.horizontal, -16)
                     }
+                    .disabled(!appPermissions.settings)
                     .listRowBackground(Color(AdColorPalette.State.failure.color))
                     .disabled(true)
                     
@@ -349,6 +354,7 @@ struct AppSettingsView: View {
                             .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
                             .padding(.horizontal, -16)
                     }
+                    .disabled(!appPermissions.settings)
                     .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                     .listRowBackground(Color(AdColorPalette.Background.secondary.color))
                     
@@ -366,6 +372,7 @@ struct AppSettingsView: View {
                             .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
                             .padding(.horizontal, -16)
                     }
+                    .disabled(!appPermissions.settings)
                     .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                     .listRowBackground(Color(AdColorPalette.Background.secondary.color))
                     

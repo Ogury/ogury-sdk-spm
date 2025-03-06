@@ -169,14 +169,12 @@ struct MainView: View {
                         }
                     }
                     
-                    if appPermissions.settings {
-                        Button{
-                            viewStore.send(.settingsButtonTapped)
-                        } label: {
-                            HStack {
-                                Text("Settings").font(.adsBody)
-                                Image(systemName: "gear")
-                            }
+                    Button{
+                        viewStore.send(.settingsButtonTapped)
+                    } label: {
+                        HStack {
+                            Text("Settings").font(.adsBody)
+                            Image(systemName: "gear")
                         }
                     }
                 }
