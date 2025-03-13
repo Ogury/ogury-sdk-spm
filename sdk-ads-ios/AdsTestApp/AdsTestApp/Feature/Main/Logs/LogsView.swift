@@ -151,6 +151,13 @@ struct LogsView: View {
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .onChange(of: viewStore.logMessages) { newValue in 
+                    if let lastIndex = viewStore.logMessages.indices.last {
+                        withAnimation {
+                            scrollViewProxy.scrollTo(lastIndex)
+                        }
+                    }
+                }
                 .onAppear {
                     logsSubscription = TestAppLogController.shared.logger.logs
                         .receive(on: DispatchQueue.main)
