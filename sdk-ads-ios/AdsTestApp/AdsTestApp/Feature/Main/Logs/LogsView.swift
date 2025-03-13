@@ -8,7 +8,7 @@ struct LogsView: View {
     @Binding var logsHeight: CGFloat
     @State private var previousHeight: CGFloat = 0
     @State private var logsSubscription: AnyCancellable?
-    @State private var isSearching: Bool = false
+    @Binding var isSearching: Bool
     @FocusState private var isTextFieldFocused: Bool
     
     private let collapsedHeight: CGFloat = 150
