@@ -1941,7 +1941,7 @@
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Staging/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "OguryAds - Stag";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct - Stag";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1984,7 +1984,7 @@
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Staging/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "OguryAds - Stag";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct - Stag";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2026,7 +2026,7 @@
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Prod/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = OguryAds;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2070,7 +2070,7 @@
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Prod/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = OguryAds;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2236,7 +2236,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Devc/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "OguryAds - Devc";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct - Devc";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2283,7 +2283,7 @@
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Devc/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "OguryAds - Devc";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct - Devc";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2329,7 +2329,7 @@
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Devc/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "OguryAds - Devc";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct - Devc";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2374,7 +2374,7 @@
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Devc/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "OguryAds - Devc";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct - Devc";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2417,7 +2417,7 @@
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Staging/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "OguryAds - Stag";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct - Stag";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2460,7 +2460,7 @@
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Staging/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "OguryAds - Stag";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct - Stag";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2502,7 +2502,7 @@
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Prod/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "OguryAds - Prod";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2545,7 +2545,7 @@
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Prod/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "OguryAds - Prod";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
