@@ -86,6 +86,19 @@
                                                                                         ad.adUnit.type]];
         return NO;
     }
+   
+   if ([[adConfig getAdTypeString] isEqualToString:OGAAdConfigurationAdTypeStandardBanners] &&
+       ![[adConfig getAdTypeSizeString] isEqualToString:ad.adUnit.size]) {
+       [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                   adConfiguration:adConfig
+                                                           logType:OguryLogTypePublisher
+                                                           message:[NSString stringWithFormat:@"ad.adUnit size [%@] not equalt to expected adConfiguration with size [%@]", ad.adUnit.size, [adConfig getAdTypeSizeString]]
+                                                              tags:nil]];
+       *error = [OguryAdError adParsingFailedWithStackTrace:[NSString stringWithFormat:@"Syze mismatch. Awaited (%@) - received (%@)",
+                                                                                       [adConfig getAdTypeSizeString],
+                                                                                       ad.adUnit.size]];
+       return NO;
+   }
 
     return YES;
 }
