@@ -68,9 +68,9 @@ public enum AdTypeTitle: String {
     
     var display: String {
         switch self {
-            case .interstitial: return self.rawValue
-            case .rewarded: return self.rawValue
-            case .thumbnail: return self.rawValue
+            case .interstitial: return "Interstitial"
+            case .rewarded: return "Rewarded"
+            case .thumbnail: return "Thumbnail"
             case .banner: return "Small banner"
             case .mpu: return "MREC"
         }

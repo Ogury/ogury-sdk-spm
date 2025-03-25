@@ -352,7 +352,7 @@ struct HorizontalCardsView: View {
                     }
                     
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("\(adFormat.title.capitalized) (\(managers.count))")
+                        Text("\(adFormat.title) (\(managers.count))")
                             .font(.adsTitle)
                             .fontWeight(.medium)
                             .foregroundStyle(

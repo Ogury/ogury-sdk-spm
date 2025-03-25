@@ -13,7 +13,7 @@ struct AddFormatView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
-            Text(title.capitalized)
+            Text(title)
                 .font(.adsSubheadline)
             
             Text(String(describing: value.wrappedValue))
