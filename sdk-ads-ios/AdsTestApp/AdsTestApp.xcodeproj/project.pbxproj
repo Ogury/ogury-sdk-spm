@@ -168,6 +168,18 @@
 		43AE85DD2B5018A20010C812 /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 43AE85DC2B5018A20010C812 /* UserDefault */; };
 		43AE85DF2B5018B90010C812 /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 43AE85DE2B5018B90010C812 /* UserDefault */; };
 		43AE85E12B5018BF0010C812 /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 43AE85E02B5018BF0010C812 /* UserDefault */; };
+		43B59BCD2D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */; };
+		43B59BCE2D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */; };
+		43B59BCF2D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */; };
+		43B59BD02D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */; };
+		43B59BD12D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */; };
+		43B59BD22D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */; };
+		43B59BD32D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */; };
+		43B59BD42D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */; };
+		43B59BD52D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */; };
+		43B59BD62D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */; };
+		43B59BD72D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */; };
+		43B59BD82D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */; };
 		43B7136B2B45702C007C8D21 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; };
 		43B7136C2B45702C007C8D21 /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43B713702B457035007C8D21 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; };
@@ -519,6 +531,8 @@
 		43AE85C72B4FD19C0010C812 /* OguryChoiceManager.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = OguryChoiceManager.xcframework; sourceTree = "<group>"; };
 		43AE85CF2B4FD28C0010C812 /* OguryCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OguryCore.xcframework; path = ../Pods/OguryCore/OguryCore.xcframework; sourceTree = "<group>"; };
 		43AE85D72B5017860010C812 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyDataFeature.swift; sourceTree = "<group>"; };
+		43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyDataView.swift; sourceTree = "<group>"; };
 		43B7139F2B459B8A007C8D21 /* AdsTestApp-Devc.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "AdsTestApp-Devc.entitlements"; sourceTree = "<group>"; };
 		43B713D92B4D5092007C8D21 /* OguryCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OguryCore.xcframework; path = "../Pods/OguryCore-Prod/OguryCore.xcframework"; sourceTree = "<group>"; };
 		43B713E62B4D54AA007C8D21 /* ConsentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentManager.swift; sourceTree = "<group>"; };
@@ -782,6 +796,7 @@
 		434F84A72AC2DF00005077F5 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				43B59BCA2D92FF8B00BE53A1 /* Privacy */,
 				4394F7462CA42C89001086FE /* Logs */,
 				434F84A82AC2DF0C005077F5 /* AppSettingsView.swift */,
 				434F84A92AC2DF0C005077F5 /* AppSettingsFeature.swift */,
@@ -948,6 +963,15 @@
 				43AE85D72B5017860010C812 /* SettingsController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		43B59BCA2D92FF8B00BE53A1 /* Privacy */ = {
+			isa = PBXGroup;
+			children = (
+				43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */,
+				43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */,
+			);
+			path = Privacy;
 			sourceTree = "<group>";
 		};
 		43B713BA2B4BCEC4007C8D21 /* Models */ = {
@@ -1652,6 +1676,8 @@
 				43B714062B4D6075007C8D21 /* HeaderBiddingResponse.swift in Sources */,
 				43B713E82B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
 				434F84C42ACFE4FE005077F5 /* AppDelegate.swift in Sources */,
+				43B59BD12D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */,
+				43B59BD22D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */,
 				43B714092B4D6075007C8D21 /* HeaderBiddingExt.swift in Sources */,
 				4394F7412CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
 				43AE85D92B5017860010C812 /* SettingsController.swift in Sources */,
@@ -1699,6 +1725,8 @@
 				43B714072B4D6075007C8D21 /* HeaderBiddingResponse.swift in Sources */,
 				43B713E92B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
 				434F84E02ACFE50A005077F5 /* AppDelegate.swift in Sources */,
+				43B59BD32D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */,
+				43B59BD42D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */,
 				43B7140A2B4D6075007C8D21 /* HeaderBiddingExt.swift in Sources */,
 				4394F7432CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
 				43AE85DA2B5017860010C812 /* SettingsController.swift in Sources */,
@@ -1746,6 +1774,8 @@
 				43FC85612B0F5E0900EABA43 /* MaxBidder.swift in Sources */,
 				43B714052B4D6075007C8D21 /* HeaderBiddingResponse.swift in Sources */,
 				43B713E72B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
+				43B59BD52D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */,
+				43B59BD62D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */,
 				438ED4172AA5D0C200486AF2 /* AppDelegate.swift in Sources */,
 				43B714082B4D6075007C8D21 /* HeaderBiddingExt.swift in Sources */,
 				4394F7442CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
@@ -1793,6 +1823,8 @@
 				43BCB0AA2C22DD45002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
 				43BCB0AB2C22DD45002FB0B1 /* ConsentManager.swift in Sources */,
 				43BCB0AC2C22DD45002FB0B1 /* AppDelegate.swift in Sources */,
+				43B59BCD2D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */,
+				43B59BCE2D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */,
 				43BCB0AD2C22DD45002FB0B1 /* HeaderBiddingExt.swift in Sources */,
 				4394F7402CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
 				43BCB0AE2C22DD45002FB0B1 /* SettingsController.swift in Sources */,
@@ -1840,6 +1872,8 @@
 				43BCB0ED2C22DD59002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
 				43BCB0EE2C22DD59002FB0B1 /* ConsentManager.swift in Sources */,
 				43BCB0EF2C22DD59002FB0B1 /* AppDelegate.swift in Sources */,
+				43B59BD72D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */,
+				43B59BD82D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */,
 				43BCB0F02C22DD59002FB0B1 /* HeaderBiddingExt.swift in Sources */,
 				4394F7422CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
 				43BCB0F12C22DD59002FB0B1 /* SettingsController.swift in Sources */,
@@ -1887,6 +1921,8 @@
 				43BCB1302C22DD60002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
 				43BCB1312C22DD60002FB0B1 /* ConsentManager.swift in Sources */,
 				43BCB1322C22DD60002FB0B1 /* AppDelegate.swift in Sources */,
+				43B59BCF2D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */,
+				43B59BD02D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */,
 				43BCB1332C22DD60002FB0B1 /* HeaderBiddingExt.swift in Sources */,
 				4394F73F2CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
 				43BCB1342C22DD60002FB0B1 /* SettingsController.swift in Sources */,

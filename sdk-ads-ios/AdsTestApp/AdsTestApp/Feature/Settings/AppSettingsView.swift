@@ -332,15 +332,14 @@ struct AppSettingsView: View {
                         }
                         .accessibilityLabel("USOptOuPartnertButton")
                         
-                        Button{
-                            viewStore.send(.showPrivacyDataTapped)
-                        } label : {
+                        NavigationLink(
+                            destination: PrivacyDataView().navigationTitle("Privacy Data")
+                        ) {
                             Text("Retrieve Privacy data")
-                                .padding(.vertical, 4)
-                                .frame(maxWidth: .infinity)
                         }
-                        .buttonStyle(AdsSecondaryButton())
                         .accessibilityLabel("RetrievePrivacyDataButton")
+                        .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                        .listRowBackground(Color(AdColorPalette.Background.secondary.color))
                         
                     } header: {
                         Text("Privacy")

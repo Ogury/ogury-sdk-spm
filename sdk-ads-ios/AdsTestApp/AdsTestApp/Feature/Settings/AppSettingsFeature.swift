@@ -61,7 +61,6 @@ struct AppSettingsFeature: Reducer {
         }
         var adDelegate: AdLifeCycleDelegate?
         let generator = UINotificationFeedbackGenerator()
-        var logOptions: LogOptionFeature.State?
 
         init(settings: SettingsContainer, adDelegate: AdLifeCycleDelegate?) {
             self.settings = settings
@@ -98,8 +97,6 @@ struct AppSettingsFeature: Reducer {
         case usOptoutTapped
         case usOptoutPartnerTapped
         case showPrivacyDataTapped
-        case logOptionsButtonTapped
-        case logOptions(LogOptionFeature.Action)
         case incrementSDKStart
         case decrementSDKStart
         case updateImportMethod(_: ImportMethod)
@@ -176,11 +173,6 @@ struct AppSettingsFeature: Reducer {
                     state.settings.usOptoutPartner.toggle()
                     OGCInternal.shared().setPrivacyData("us_optout_partner", boolean: state.settings.usOptoutPartner)
                     return .none
-               
-                case .showPrivacyDataTapped:
-                    return .run { _ in
-                       await showNotification(title: "Privacy info", message: OGCInternal.shared().retrieveDataPrivacy().description)
-                    }
                     
                 case .toggleEnableFeedbacks:
                     state.settings.enableFeedbacks.toggle()
@@ -201,13 +193,6 @@ struct AppSettingsFeature: Reducer {
                         await showNotification(message: "The test mode has been disabled on all cards")
                     }
                     
-                case .logOptionsButtonTapped:
-                    state.logOptions = .init()
-                    return .none
-                    
-                case .logOptions:
-                    return .none
-                    
                 case .toggleKillWebviewMode:
                     if case .none = state.killWebviewMode {
                         state.settings.killWebviewMode = state.cachedKillWebviewMode ?? .simulate
@@ -219,6 +204,9 @@ struct AppSettingsFeature: Reducer {
                 case let .updateKillWebviewMode(mode):
                     state.settings.killWebviewMode = mode
                     state.cachedKillWebviewMode = mode
+                    return .none
+                    
+                case .showPrivacyDataTapped:
                     return .none
             }
         }
