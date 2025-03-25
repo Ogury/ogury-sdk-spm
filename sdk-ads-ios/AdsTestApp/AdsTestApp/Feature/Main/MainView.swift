@@ -411,6 +411,22 @@ struct ListManagersView: View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             GeometryReader { geometry in
                 List {
+                    VStack(alignment: .center) {
+                        TextField("Set name",
+                                  text: viewStore.$setName,
+                                  prompt: Text("Name your ads set"))
+                        .font(.adsLargeTitle)
+                        .foregroundStyle(
+                            Color(viewStore.setName != SettingsContainer.untitledAdSet
+                                  ? AdColorPalette.Text.primary(onAccent: false).color
+                                  : AdColorPalette.Text.placeholder.color)
+                        )
+                    }
+                    .padding(8)
+                    .padding(.horizontal, -10)
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
+                    
                     Section {
                         ForEach(viewStore.adFormats.sorted(by: { lhs, rhs in
                             lhs.key.sortPosition < rhs.key.sortPosition
@@ -430,20 +446,6 @@ struct ListManagersView: View {
                         }
                         .listRowSeparator(.hidden)
                         .listRowBackground(Color.clear)
-                    } header: {
-                        VStack(alignment: .center) {
-                            TextField("Set name",
-                                      text: viewStore.$setName,
-                                      prompt: Text("Name your ads set"))
-                            .font(.adsLargeTitle)
-                            .foregroundStyle(
-                                Color(viewStore.setName != SettingsContainer.untitledAdSet
-                                      ? AdColorPalette.Text.primary(onAccent: false).color
-                                      : AdColorPalette.Text.placeholder.color)
-                            )
-                        }
-                        .padding(8)
-                        .padding(.horizontal, -10)
                     }
                 }
                 .safeScrollDismissesKeyboard()
