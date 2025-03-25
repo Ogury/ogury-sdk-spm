@@ -154,8 +154,12 @@
 // Hidden method allowing test app to reset the SDK
 - (void)resetSDK {
     [self.assetKeyManager reset];
-    [self.profigManager resetProfig];
+    [self resetAdConfiguration];
     [self.webViewUserAgentService reset];
+}
+
+- (void)resetAdConfiguration {
+    [self.profigManager resetProfig];
 }
 
 - (NSString *)getVersion {

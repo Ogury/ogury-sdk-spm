@@ -143,7 +143,7 @@ struct AppSettingsFeature: Reducer {
                     return .none
                     
                 case .resetAdConfigButtonTapped:
-                    OGAInternal.shared().perform(NSSelectorFromString("resetSDK"))
+                    OGAInternal.shared().perform(NSSelectorFromString("resetAdConfiguration"))
                     return .run { _ in
                         await showNotification(message: "OguryAds has been reset")
                     }
