@@ -17,7 +17,6 @@ class RTBBidder: HeaderBidable {
         case tokenError(_: Error)
         case invalidResponse
         case noData
-        case noFill
         case invalidData
         case redirection(code: Int)
         case clientError(code: Int)
@@ -35,13 +34,11 @@ class RTBBidder: HeaderBidable {
                 case let .tokenError(error):
                     errorDescription = error.localizedDescription
                 case .invalidResponse:
-                    errorDescription = "The server replied with an invalid response"
+                    errorDescription = "Invalid response"
                 case .noData:
-                    errorDescription = "The ad could not be loaded due to a failure in parsing (No data received)"
-                case .noFill:
-                    errorDescription = "No ad is currently available for this placement (no fill)."
+                    errorDescription = "No data received"
                 case .invalidData:
-                    errorDescription = "The ad could not be loaded due to a failure in parsing"
+                    errorDescription = "Invalid data"
                 case .redirection(let code):
                     errorDescription = "Redirection with code \(code)"
                 case .clientError(let code):
@@ -52,28 +49,32 @@ class RTBBidder: HeaderBidable {
                     errorDescription = "Unknown error"
             }
             
-            return recoverySuggestion != nil
-            ? "\(errorDescription) [Recovery suggestion: \(recoverySuggestion!)]"
-            : errorDescription
+            return "\(errorDescription) [Recovery suggestion: \(recoverySuggestion ?? "None")]"
         }
         
         var recoverySuggestion: String? {
+            var recoverySuggestion: String
+            
             switch self {
+                    
                 case .invalidData:
-                    return """
+                    recoverySuggestion = """
                     The ad markup might be malformed (ex: invalid HB token, different asset key between payload and token) OR the backend was not able to fill the request.
                     Contact AdSerbia for debugging.
                     """
-                case .noFill: return nil
-                default: return "None"
+                    
+                default:
+                    recoverySuggestion = "None"
             }
+            
+            return recoverySuggestion
         }
     }
     
     func description(for error: Error) -> String {
         if let hbError = error as? HeaderBiddingServiceError {
             switch hbError {
-                case .networkError: return "Network error"
+                case .networkError(let subError): return "Network error"
                 default: return error.localizedDescription
             }
         }
@@ -110,6 +111,7 @@ class RTBBidder: HeaderBidable {
             request.addValue("keep-alive", forHTTPHeaderField: "Connection")
             
             // Replace placeholders
+            var token:String?
             if (campaignId != nil && !campaignId!.isEmpty && dspCreative != nil && !dspCreative!.isEmpty && dspRegion != nil) {
                 let cls:AnyClass = OguryBidTokenService.self
                 let sel = NSSelectorFromString("bidTokenWithCampaignId:creativeId:dspCreativeId:dspRegion:completion:")
@@ -205,21 +207,21 @@ class RTBBidder: HeaderBidable {
         }
         
         switch urlResponse.statusCode {
-            case 204:
-                completionHandler(.failure(.noFill))
-                
             case 200..<300:
                 guard let data = data, !data.isEmpty else {
                     completionHandler(.failure(.noData))
                     return
                 }
-                guard let bidResponse = try? JSONDecoder().decode(HeaderBiddingResponse.self, from: data),
+                
+                guard
+                    let bidResponse = try? JSONDecoder().decode(HeaderBiddingResponse.self, from: data),
                     let firstSeatBid = bidResponse.seatbid.first, let firstBid = firstSeatBid.bid.first else {
                     completionHandler(.failure(.invalidData))
                     return
                 }
+                
                 guard let token = adMarkUp(from: firstBid) else {
-                    completionHandler(.failure(.invalidData))
+                    completionHandler(.failure(.invalidResponse))
                     return
                 }
                 completionHandler(.success(token))
