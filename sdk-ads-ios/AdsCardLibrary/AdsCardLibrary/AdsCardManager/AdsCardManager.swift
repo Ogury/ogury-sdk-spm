@@ -65,6 +65,16 @@ public enum AdTypeTitle: String {
     case thumbnail
     case banner
     case mpu
+    
+    var display: String {
+        switch self {
+            case .interstitial: return self.rawValue
+            case .rewarded: return self.rawValue
+            case .thumbnail: return self.rawValue
+            case .banner: return "Small banner"
+            case .mpu: return "MREC"
+        }
+    }
 }
 
 //MARK: - Ad Types
@@ -208,11 +218,11 @@ public indirect enum AdType<T: AdManager> {
     
     public var displayTitle: String {
         switch self {
-            case .interstitial: return AdTypeTitle.interstitial.rawValue
-            case .rewarded: return AdTypeTitle.rewarded.rawValue
-            case .thumbnail: return AdTypeTitle.thumbnail.rawValue
-            case .mpu: return AdTypeTitle.mpu.rawValue
-            case .banner: return AdTypeTitle.banner.rawValue
+            case .interstitial: return AdTypeTitle.interstitial.display
+            case .rewarded: return AdTypeTitle.rewarded.display
+            case .thumbnail: return AdTypeTitle.thumbnail.display
+            case .mpu: return AdTypeTitle.mpu.display
+            case .banner: return AdTypeTitle.banner.display
             case let .maxHeaderBidding(innerType, _): return innerType.displayTitle
             case let .dtFairBidHeaderBidding(innerType, _): return innerType.displayTitle
             case let .unityLevelPlayHeaderBidding(innerType, _): return innerType.displayTitle
@@ -221,11 +231,11 @@ public indirect enum AdType<T: AdManager> {
     
     public var headerTitle: String {
         switch self {
-            case .interstitial: return AdTypeTitle.interstitial.rawValue
-            case .rewarded: return AdTypeTitle.rewarded.rawValue
-            case .thumbnail: return AdTypeTitle.thumbnail.rawValue
-            case .mpu: return AdTypeTitle.mpu.rawValue
-            case .banner: return AdTypeTitle.banner.rawValue
+            case .interstitial: return AdTypeTitle.interstitial.display
+            case .rewarded: return AdTypeTitle.rewarded.display
+            case .thumbnail: return AdTypeTitle.thumbnail.display
+            case .mpu: return AdTypeTitle.mpu.display
+            case .banner: return AdTypeTitle.banner.display
             case let .maxHeaderBidding(innerType, _): return innerType.displayTitle
             case let .dtFairBidHeaderBidding(innerType, _): return innerType.displayTitle
             case let .unityLevelPlayHeaderBidding(innerType, _): return innerType.displayTitle
