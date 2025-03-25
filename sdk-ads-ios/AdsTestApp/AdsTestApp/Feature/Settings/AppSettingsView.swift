@@ -301,7 +301,6 @@ struct AppSettingsView: View {
                             .padding(.horizontal, -16)
                     }
                     .listRowBackground(Color(AdColorPalette.State.failure.color))
-                    .disabled(true)
                     
                     //MARK: - Profig settings
                     Section {
