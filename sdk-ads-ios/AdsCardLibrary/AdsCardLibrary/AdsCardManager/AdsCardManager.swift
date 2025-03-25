@@ -286,7 +286,7 @@ extension AdType {
 }
 
 public enum AdTag: String, Equatable {
-    case ogury, max, dtFairbid, unityLevelPlay, direct, bypass, waterfall, headerBidding, oguryTestMode, rtbTestMode
+    case ogury, max, dtFairbid, unityLevelPlay, direct, bypass, waterfall, headerBidding, oguryTestMode, rtbTestMode, beta
     
     enum DisplayMode {
         case fill, stroke
@@ -309,6 +309,7 @@ public enum AdTag: String, Equatable {
             case .unityLevelPlay: return "Unity LevelPlay"
             case .oguryTestMode: return "Ogury Test Mode"
             case .rtbTestMode: return "RTB Test Mode"
+            case .beta: return "Beta"
         }
     }
     public var description: String {
@@ -323,6 +324,7 @@ public enum AdTag: String, Equatable {
             case .headerBidding: return "Header bidding integration"
             case .oguryTestMode: return "Add _test to the ad unit"
             case .rtbTestMode: return "Add test=1 to bid request"
+            case .beta: return "This feature is still in development"
         }
     }
     
@@ -338,6 +340,7 @@ public enum AdTag: String, Equatable {
             case .headerBidding: return Color(#colorLiteral(red: 0, green: 0.8673904538, blue: 0.2728650272, alpha: 1))
             case .oguryTestMode: return Color(#colorLiteral(red: 0.8326988816, green: 0.2894239128, blue: 0.3478675783, alpha: 1))
             case .rtbTestMode: return Color(#colorLiteral(red: 0.8326988816, green: 0.2894239128, blue: 0.3478675783, alpha: 1))
+            case .beta: return Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1))
         }
     }
     

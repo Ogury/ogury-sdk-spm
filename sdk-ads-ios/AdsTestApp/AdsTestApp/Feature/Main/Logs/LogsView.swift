@@ -70,9 +70,13 @@ struct LogsView: View {
                     .accessibilityLabel("LogView")
                     
                     HStack {
-                        Text("Logs")
-                            .font(.adsTitle2)
-                            .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
+                        HStack(spacing:2) {
+                            Text("Logs")
+                                .font(.adsTitle2)
+                                .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
+                            
+                            AdTagList(tags: [.beta], size: .small)
+                        }
                         
                         HStack {
                             Image(systemName: "magnifyingglass")
