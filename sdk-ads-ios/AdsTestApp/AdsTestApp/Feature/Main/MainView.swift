@@ -181,6 +181,17 @@ struct MainView: View {
                     }
                 }
                 
+                Section {
+                    Button{
+                        viewStore.send(.aboutButtonTapped)
+                    } label: {
+                        HStack {
+                            Text("About").font(.adsBody)
+                            Image(systemName: "info.circle")
+                        }
+                    }
+                }
+                
             } label: {
                 Image(systemName: "ellipsis")
                     // just to increase a little bit the touching area

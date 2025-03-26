@@ -7,6 +7,23 @@ import UIKit
 import ComposableArchitecture
 import AdsCardLibrary
 import SwiftUI
+import OguryAds
+import OguryCore
+import OMSDK_Ogury
+
+struct About {
+    var appVersion: String { Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String }
+    var appBuild: String { Bundle.main.infoDictionary?["CFBundleVersion"] as! String }
+    var environment: String { Bundle.main.object(forInfoDictionaryKey: "DefaultEnv") as? String ?? "" }
+    var bundleId: String { Bundle.main.object(forInfoDictionaryKey: "CFBundleIdentifier") as? String ?? "" }
+    var omidVersion: String { OMIDOgurySDK.versionString() }
+    var assetKey: String { AdSdkLauncher.shared.assetKey }
+    var coreSdkVersion: String { String(describing: OGCInternal.shared().getVersion()) }
+    var adsSdkVersion: String {
+        let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
+        return "\(String(describing: OGAInternal.shared().getVersion())) (\(origin == "Pod" ? "Release" : "Development"))"
+    }
+}
 
 struct MainFeature: Reducer {
     @Dependency(\.dismiss) var dismiss
@@ -97,6 +114,7 @@ struct MainFeature: Reducer {
         case showLogs(_: Bool)
         case importFile(_: URL)
         case loadFromContainer(_: AdsStorableContainer)
+        case aboutButtonTapped
         
         enum Alert {
             case notImplemented
@@ -294,6 +312,10 @@ struct MainFeature: Reducer {
                     var ctrl = SettingsController()
                     ctrl.showLogsSheet = show
                     return .none
+                    
+                case .aboutButtonTapped:
+                    state.destination = .alert(.about)
+                    return .none
             }
         }
         .ifLet(\.$destination, action: /Action.destination) {
@@ -447,6 +469,28 @@ struct MainFeature: Reducer {
 }
 
 extension AlertState where Action == MainFeature.Action.Alert {
+    static var about: AlertState<Action> {
+        let about = About()
+        return AlertState {
+            TextState("About this application")
+        } actions: {
+            ButtonState(role: .cancel) {
+                TextState("OK")
+            }
+        } message: {
+            TextState("""
+Test application version: \(about.appVersion)
+Test application build: \(about.appBuild)
+OguryAds : \(about.adsSdkVersion)
+OguryCore : \(about.coreSdkVersion)
+Environment: \(about.environment)
+Asset key: \(about.assetKey)
+OMID version: \(about.omidVersion)
+App Bundle Identifier: \(about.bundleId)
+""")
+        }
+    }
+    
     static var cantImportFile: AlertState<Action> {
         AlertState {
             TextState("Something went wrong")
