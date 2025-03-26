@@ -14,35 +14,20 @@ struct RewardedView: View {
     let store: StoreOf<RewardedFeature>
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            HStack(spacing: 15) {
-                AdsTextField(viewStore.$name, 
+            HStack(alignment: .bottom, spacing: 8) {
+                AdsTextField(viewStore.$name,
                              placeholder: "Reward name",
-                             titleColor: Color(viewStore.rewardReceived 
-                                               ? AdColorPalette.Text.primary(onAccent: false).color
-                                               : AdColorPalette.Text.placeholder.color),
-                             textColor: Color(viewStore.rewardReceived
-                                              ? AdColorPalette.Text.placeholder.color
-                                              : AdColorPalette.Text.placeholder.color))
-                    .disabled(true)
+                             roundedStyle: false)
+                .disabled(true)
                 
-                AdsTextField(viewStore.$value, 
-                             placeholder: "Reward value",
-                             titleColor: Color(viewStore.rewardReceived
-                                               ? AdColorPalette.Text.primary(onAccent: false).color
-                                               : AdColorPalette.Text.placeholder.color),
-                             textColor: Color(viewStore.rewardReceived
-                                              ? AdColorPalette.Text.placeholder.color
-                                              : AdColorPalette.Text.placeholder.color))
-                    .disabled(true)
+                AdsTextField(viewStore.$value,
+                             placeholder: "Reward name",
+                             roundedStyle: false)
+                .disabled(true)
             }
-            .padding()
-            .background {
-                Rectangle()
-                    .fill(Color(viewStore.rewardReceived ? AdColorPalette.Primary.accentLight.color : AdColorPalette.Background.disabled.color))
-                    .cornerRadius(8)
-                
-            }
-            .padding(12)
+//            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 12)
+            .padding(.bottom, 12)
         }
     }
 }

@@ -11,15 +11,15 @@ import UIKit
 import ComposableArchitecture
 
 struct RewardedOptions: Equatable {
-    var name: String = "not available"
-    var value: String = "not available"
+    var name: String = ""
+    var value: String = ""
     var received = false
 }
 
 struct RewardedFeature: Reducer {
     struct State: Equatable {
-        @BindingState var name: String = "not available"
-        @BindingState var value: String = "not available"
+        @BindingState var name: String = ""
+        @BindingState var value: String = ""
         var rewardReceived = false
     }
     

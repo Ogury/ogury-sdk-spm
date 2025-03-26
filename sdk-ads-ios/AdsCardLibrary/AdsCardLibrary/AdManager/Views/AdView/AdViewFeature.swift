@@ -244,8 +244,8 @@ struct AdViewFeature: Reducer {
         }
         var rewardedFeature: RewardedFeature.State {
             get {
-                RewardedFeature.State(name: rewardedOptions?.name ?? "not available",
-                                      value: rewardedOptions?.value ?? "not available",
+                RewardedFeature.State(name: rewardedOptions?.name ?? "",
+                                      value: rewardedOptions?.value ?? "",
                                       rewardReceived: rewardedOptions?.received ?? false)
             }
             
@@ -490,7 +490,7 @@ struct AdViewFeature: Reducer {
                     
                 case .resetReward:
                     if state.rewardedOptions != nil {
-                        state.rewardedOptions = RewardedOptions(name: "not available", value: "not available", received: false)
+                        state.rewardedOptions = RewardedOptions(name: "", value: "", received: false)
                     }
                     return .none
                     
