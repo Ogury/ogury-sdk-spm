@@ -340,17 +340,17 @@ public enum AdTag: String, Equatable {
     
     internal var color: Color {
         switch self {
-            case .ogury: return Color(#colorLiteral(red: 0.1051147357, green: 0.2970786095, blue: 0.4525763392, alpha: 1))
-            case .max: return Color(#colorLiteral(red: 0.5056632757, green: 0.4479025602, blue: 0.9351767898, alpha: 1))
-            case .dtFairbid: return Color(#colorLiteral(red: 0.8326988816, green: 0.2894239128, blue: 0.3478675783, alpha: 1))
-            case .unityLevelPlay: return Color(#colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1))
-            case .direct: return Color(#colorLiteral(red: 0.6542432308, green: 0.8769065142, blue: 0.9881662726, alpha: 1))
-            case .bypass:  return Color(#colorLiteral(red: 0, green: 0.4201652408, blue: 0.4244114757, alpha: 1))
+            case .ogury: return Color(#colorLiteral(red: 0.07843137255, green: 0.2862745098, blue: 0.462745098, alpha: 1))
+            case .max: return Color(#colorLiteral(red: 0.337254902, green: 0.01176470588, blue: 0.6666666667, alpha: 1))
+            case .dtFairbid: return Color(#colorLiteral(red: 0.8274509804, green: 0.09803921569, blue: 0.2509803922, alpha: 1))
+            case .unityLevelPlay: return Color(#colorLiteral(red: 0.2901960784, green: 0.2901960784, blue: 0.2901960784, alpha: 1))
+            case .direct: return Color(#colorLiteral(red: 0.5176470588, green: 0.8549019608, blue: 1, alpha: 1))
+            case .bypass:  return Color(#colorLiteral(red: 0, green: 0.3490196078, blue: 0.3490196078, alpha: 1))
             case .waterfall: return Color(#colorLiteral(red: 0, green: 0.5913378596, blue: 1, alpha: 1))
-            case .headerBidding: return Color(#colorLiteral(red: 0, green: 0.8673904538, blue: 0.2728650272, alpha: 1))
+            case .headerBidding: return Color(#colorLiteral(red: 0.7647058824, green: 0.9176470588, blue: 0.462745098, alpha: 1))
             case .oguryTestMode: return Color(#colorLiteral(red: 0.8326988816, green: 0.2894239128, blue: 0.3478675783, alpha: 1))
             case .rtbTestMode: return Color(#colorLiteral(red: 0.8326988816, green: 0.2894239128, blue: 0.3478675783, alpha: 1))
-            case .beta: return Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1))
+            case .beta: return Color(#colorLiteral(red: 0.09803921569, green: 0.2588235294, blue: 0.4196078431, alpha: 1))
         }
     }
     
