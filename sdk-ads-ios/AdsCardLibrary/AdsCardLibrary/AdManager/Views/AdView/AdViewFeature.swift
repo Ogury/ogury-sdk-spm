@@ -129,6 +129,13 @@ struct AdViewFeature: Reducer {
         }
         
         @BindingState var baseOptions: BaseOptions
+        var testModeOptions: BaseOptions {
+            var options = baseOptions
+            options.campaignId = ""
+            options.creativeId = ""
+            options.dspCreativeId = ""
+            return options
+        }
         var isLoading = false
         var error: Error?
         var showAfterLoad = false
@@ -398,11 +405,12 @@ struct AdViewFeature: Reducer {
                     guard var options = adManager.options?.baseOptions else {
                         throw AdManagerError.noOptions
                     }
+                    let testMode = state.testModeEnabled
                     options.adUnitId = state.baseOptions.adUnitId
-                    options.campaignId = state.baseOptions.campaignId
-                    options.creativeId = state.baseOptions.creativeId
-                    options.dspCreativeId = state.baseOptions.dspCreativeId
-                    options.dspRegion = !state.baseOptions.showDspFields ? nil : state.baseOptions.dspRegion
+                    options.campaignId = testMode ? nil : state.baseOptions.campaignId
+                    options.creativeId = testMode ? nil : state.baseOptions.creativeId
+                    options.dspCreativeId = testMode ? nil : state.baseOptions.dspCreativeId
+                    options.dspRegion = (!state.baseOptions.showDspFields || testMode) ? nil : state.baseOptions.dspRegion
                     options.adDisplayName = state.baseOptions.adDisplayName
                     if let thumbManager = adManager as? ThumbnailAdManager,
                        let thumbOptions = state.thumbnailOptions {
@@ -642,7 +650,7 @@ struct AdViewFeature: Reducer {
                     let update = state.updateTestMode()
                     // the options are not updated when setting the adUnit programmatically, so we have to "force" an option update
                     if update {
-                        updateAdManager(options: state.baseOptions)
+                        updateAdManager(options: state.testModeEnabled ? state.testModeOptions : state.baseOptions)
                     }
                     return .none
                     
