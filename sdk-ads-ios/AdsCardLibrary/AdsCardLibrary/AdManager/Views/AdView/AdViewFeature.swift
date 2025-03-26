@@ -165,18 +165,18 @@ struct AdViewFeature: Reducer {
         var enableFeedbacks = true
         let id: UUID = UUID()
         let adType: AnyAdType!
-        var isHeaderBidding: Bool {
+        var enableRtbTestMode: Bool {
             if let ad = (adType.adType as? AdType<InterstitialAdManager>) {
-                return ad.isHeaderBidding
+                return ad.enableRtbTestMode
             }
             if let ad = (adType.adType as? AdType<RewardedAdManager>) {
-                return ad.isHeaderBidding
+                return ad.enableRtbTestMode
             }
             if let ad = (adType.adType as? AdType<ThumbnailAdManager>) {
-                return ad.isHeaderBidding
+                return ad.enableRtbTestMode
             }
             if let ad = (adType.adType as? AdType<BannerAdManager>) {
-                return ad.isHeaderBidding
+                return ad.enableRtbTestMode
             }
             return false
         }

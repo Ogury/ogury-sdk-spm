@@ -264,10 +264,10 @@ public indirect enum AdType<T: AdManager> {
         }
     }
     
-    public var isHeaderBidding: Bool {
+    public var enableRtbTestMode: Bool {
         switch self {
-            case .interstitial, .rewarded, .thumbnail, .banner, .mpu: return false
-            default: return true
+            case .unityLevelPlayHeaderBidding: return true
+            default: return false
         }
     }
 }

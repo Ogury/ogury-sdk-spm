@@ -131,7 +131,7 @@ public struct AdView: View {
                                       : "wand.and.stars")
                             }
                         }
-                        .disabled(!viewStore.showTestModeButton || !viewStore.isHeaderBidding)
+                        .disabled(!viewStore.showTestModeButton || !viewStore.enableRtbTestMode)
                         .accessibilityLabel("Card#\(viewStore.baseOptions.qaLabel)_RTBTestModeButton")
                         .hidden(!cardPermissions.devFeatures)
                     } label: {
