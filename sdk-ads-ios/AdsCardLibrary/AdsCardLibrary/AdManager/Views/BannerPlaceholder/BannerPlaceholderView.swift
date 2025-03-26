@@ -16,6 +16,7 @@ struct BannerPlaceholderView: View {
                 HStack {
                     Text("Creative")
                         .font(.adsTitle2)
+                        .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                         .padding(.leading, 12)
                     
                     if viewStore.bannerAd != nil {
