@@ -10,6 +10,7 @@ import OguryAds
 import AdsCardLibrary
 import SwiftMessages
 import OguryAds.Private
+import AVFoundation
 
 struct AppSettingsFeature: Reducer {
     struct State: Equatable {
@@ -29,6 +30,8 @@ struct AppSettingsFeature: Reducer {
             lhs.importMethod == rhs.importMethod &&
             lhs.killWebviewMode == rhs.killWebviewMode &&
             lhs.consentManager == rhs.consentManager &&
+            lhs.audioMode == rhs.audioMode &&
+            lhs.audioCategory == rhs.audioCategory &&
             lhs.numberOfSDKStart == rhs.numberOfSDKStart
         }
         
@@ -61,6 +64,8 @@ struct AppSettingsFeature: Reducer {
                 UserDefaults.standard.setValue(showShowSection, forKey: "showShowSection")
             }
         }
+        var audioCategory: AVAudioSession.Category = AVAudioSession.sharedInstance().category
+        var audioMode: AVAudioSession.Mode = AVAudioSession.sharedInstance().mode
         var adDelegate: (AdLifeCycleDelegate & ApplicationDelegate)?
         let generator = UINotificationFeedbackGenerator()
 
@@ -102,6 +107,8 @@ struct AppSettingsFeature: Reducer {
         case incrementSDKStart
         case decrementSDKStart
         case consentManagerSelected(_: ConsentManager)
+        case audioModeSelected(_: AVAudioSession.Mode)
+        case audioCategorySelected(_: AVAudioSession.Category)
         case updateImportMethod(_: ImportMethod)
         case toggleKillWebviewMode
         case updateKillWebviewMode(_: KillWebviewMode)
@@ -215,6 +222,30 @@ struct AppSettingsFeature: Reducer {
                 case let .consentManagerSelected(cmp):
                     state.settings.consentManager = cmp
                     return .none
+                    
+                case let .audioModeSelected(mode):
+                    state.audioMode = mode
+                    var success = true
+                    do {
+                        try AVAudioSession.sharedInstance().setMode(mode)
+                    } catch {
+                        success = false
+                    }
+                    return .run { [success] _ in
+                        await showNotification(message: success ? "Audio mode has been updated" : "Audio mode update failed")
+                    }
+                    
+                case let .audioCategorySelected(category):
+                    state.audioCategory = category
+                    var success = true
+                    do {
+                        try AVAudioSession.sharedInstance().setCategory(category)
+                    } catch {
+                        success = false
+                    }
+                    return .run { [success] _ in
+                        await showNotification(message: success ? "Audio category has been updated" : "Audio category update failed")
+                    }
             }
         }
     }
@@ -259,4 +290,37 @@ enum NotificationType {
     var conf: SwiftMessages.Config = .init()
     conf.duration = duration
     SwiftMessages.show(config: conf, view: view)
+}
+
+extension AVAudioSession.Category {
+    static let allCases: [Self] = { AVAudioSession.sharedInstance().availableCategories }()
+    var displayName: String? {
+        switch self {
+            case .ambient: return "Ambiant"
+            case .soloAmbient: return "Solo Ambiant"
+            case .multiRoute: return "Multiroute"
+            case .playAndRecord: return "Play and Record"
+            case .playback: return "Playback"
+            case .record: return "Record"
+            default: return nil
+        }
+    }
+}
+
+extension AVAudioSession.Mode {
+    static let allCases: [Self] = { AVAudioSession.sharedInstance().availableModes }()
+    var displayName: String? {
+        switch self {
+            case .default: return "Default"
+            case .gameChat: return "Game chat"
+            case .measurement: return "Measurement"
+            case .moviePlayback: return "Movie playback"
+            case .spokenAudio: return "Spoken audio"
+            case .videoChat: return "Video chat"
+            case .videoRecording: return "Video recording"
+            case .voiceChat: return "Voice chat"
+            case .voicePrompt: return "Voice prompt"
+            default: return nil
+        }
+    }
 }

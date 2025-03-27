@@ -7,6 +7,7 @@ import SwiftUI
 import ComposableArchitecture
 import AdsCardLibrary
 import SwiftMessages
+import AVFoundation
 
 struct AppSettingsView: View {
     let store: StoreOf<AppSettingsFeature>
@@ -82,6 +83,41 @@ struct AppSettingsView: View {
                         
                     } header: {
                         Text("APPLICATION")
+                            .font(.adsBody)
+                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                            .padding(.horizontal, -16)
+                    }
+                    .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                    .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                    
+                    //MARK: - Audio
+                    Section {
+                        Picker("Audio mode",
+                               selection: viewStore.binding(get: \.audioMode,
+                                                            send: { .audioModeSelected($0) })) {
+                            ForEach(AVAudioSession.Mode.allCases, id:\.self) { mode in
+                                if let name = mode.displayName {
+                                    Text(name)
+                                } else {
+                                    EmptyView()
+                                }
+                            }
+                        }.accessibilityLabel("AudioMode_Picker")
+                        
+                        Picker("Audio category",
+                               selection: viewStore.binding(get: \.audioCategory,
+                                                            send: { .audioCategorySelected($0) })) {
+                            ForEach(AVAudioSession.Category.allCases, id:\.self) { cat in
+                                if let name = cat.displayName {
+                                    Text(name)
+                                } else {
+                                    EmptyView()
+                                }
+                            }
+                        }.accessibilityLabel("AudioCategory_Picker")
+                        
+                    } header: {
+                        Text("Audio Session")
                             .font(.adsBody)
                             .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
                             .padding(.horizontal, -16)
