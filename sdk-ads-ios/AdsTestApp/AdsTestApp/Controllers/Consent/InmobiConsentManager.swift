@@ -8,10 +8,10 @@ import AppTrackingTransparency
 import SwiftMessages
 import UIKit
 
-final class ConsentManager: ChoiceCmpDelegate {
+final class InmobiConsentManager: ChoiceCmpDelegate {
     
     // MARK: - Initialization
-    static let shared = ConsentManager()
+    static let shared = InmobiConsentManager()
     private enum ConsentState {
         case idle, loading, loaded, shown, error
     }

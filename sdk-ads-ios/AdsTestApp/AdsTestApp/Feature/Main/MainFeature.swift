@@ -29,7 +29,7 @@ struct MainFeature: Reducer {
     @Dependency(\.dismiss) var dismiss
     @Dependency(\.mainQueue) var mainQueue
     var adHostingViewController: UIViewController!
-    var adDelegate: AdLifeCycleDelegate!
+    var adDelegate: (AdLifeCycleDelegate & ApplicationDelegate)!
     let cardManager = AdsCardManager(logger: TestAppLogController.shared.logger)
     let maxHeaderBidable = MaxBidder()
     let dtFairBidHeaderBidable = DTFairBidBidder()
@@ -216,7 +216,7 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case .showConsentButtonTapped:
-                    adDelegate?.showConsentNotice()
+                    adDelegate?.showConsentNotice(for: SettingsController().consentManager)
                     return .none
                     
                 case .destination(.presented(.alert(.removeSet))):

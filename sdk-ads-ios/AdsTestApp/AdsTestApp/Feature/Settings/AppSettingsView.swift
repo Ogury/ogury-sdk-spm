@@ -72,6 +72,14 @@ struct AppSettingsView: View {
                             }
                         }.accessibilityLabel("ImportMethod_Picker")
                         
+                        Picker("Choose CMP provider",
+                               selection: viewStore.binding(get: \.consentManager,
+                                                            send: { .consentManagerSelected($0) })) {
+                            ForEach(ConsentManager.allCases, id:\.self) { cmp in
+                                Text(cmp.displayName)
+                            }
+                        }.accessibilityLabel("ImportMethod_Picker")
+                        
                     } header: {
                         Text("APPLICATION")
                             .font(.adsBody)

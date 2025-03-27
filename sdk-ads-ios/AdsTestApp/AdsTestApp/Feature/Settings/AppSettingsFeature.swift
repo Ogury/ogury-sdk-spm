@@ -28,6 +28,7 @@ struct AppSettingsFeature: Reducer {
             lhs.enableFeedbacks == rhs.enableFeedbacks &&
             lhs.importMethod == rhs.importMethod &&
             lhs.killWebviewMode == rhs.killWebviewMode &&
+            lhs.consentManager == rhs.consentManager &&
             lhs.numberOfSDKStart == rhs.numberOfSDKStart
         }
         
@@ -42,6 +43,7 @@ struct AppSettingsFeature: Reducer {
         var killWebviewMode: KillWebviewMode { settings.killWebviewMode }
         var cachedKillWebviewMode: KillWebviewMode?
         var startSDKWithApplication: Bool { settings.startSDKWithApplication }
+        var consentManager: ConsentManager { settings.consentManager }
         var numberOfSDKStart: Int {
             get {
                 settings.numberOfSdkStart
@@ -59,10 +61,10 @@ struct AppSettingsFeature: Reducer {
                 UserDefaults.standard.setValue(showShowSection, forKey: "showShowSection")
             }
         }
-        var adDelegate: AdLifeCycleDelegate?
+        var adDelegate: (AdLifeCycleDelegate & ApplicationDelegate)?
         let generator = UINotificationFeedbackGenerator()
 
-        init(settings: SettingsContainer, adDelegate: AdLifeCycleDelegate?) {
+        init(settings: SettingsContainer, adDelegate: (AdLifeCycleDelegate & ApplicationDelegate)?) {
             self.settings = settings
             self.showShowSection = UserDefaults.standard.value(forKey: "showShowSection") != nil
             ? UserDefaults.standard.bool(forKey: "showShowSection")
@@ -99,6 +101,7 @@ struct AppSettingsFeature: Reducer {
         case showPrivacyDataTapped
         case incrementSDKStart
         case decrementSDKStart
+        case consentManagerSelected(_: ConsentManager)
         case updateImportMethod(_: ImportMethod)
         case toggleKillWebviewMode
         case updateKillWebviewMode(_: KillWebviewMode)
@@ -207,6 +210,10 @@ struct AppSettingsFeature: Reducer {
                     return .none
                     
                 case .showPrivacyDataTapped:
+                    return .none
+                    
+                case let .consentManagerSelected(cmp):
+                    state.settings.consentManager = cmp
                     return .none
             }
         }

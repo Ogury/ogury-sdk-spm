@@ -6,6 +6,17 @@ import Foundation
 import UserDefault
 import AdsCardLibrary
 
+enum ConsentManager: CaseIterable, Equatable, Codable, DefaultsValueConvertible {
+    case inMobi, adMob
+    
+    var displayName: String {
+        switch self {
+            case .inMobi: return "InMobi"
+            case .adMob: return "Google AdMob"
+        }
+    }
+}
+
 struct SettingsController {
     @UserDefault("enableAdUnitEditing")
     var enableAdUnitEditing: Bool = true
@@ -78,6 +89,8 @@ struct SettingsController {
         return false
 #endif
     }()
+    @UserDefault("consentManager")
+    var consentManager: ConsentManager = .inMobi
     
     static func loadPreferences() {
         // if there are some data stored in UserDefaults, then we don't handle start configuration files

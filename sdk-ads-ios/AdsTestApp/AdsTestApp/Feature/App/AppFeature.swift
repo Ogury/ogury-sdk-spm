@@ -9,7 +9,7 @@ import AdsCardLibrary
 
 struct AppFeature: Reducer {
     var adHostingViewController: UIViewController!
-    var adDelegate: AdLifeCycleDelegate!
+    var adDelegate: (AdLifeCycleDelegate & ApplicationDelegate)!
     let cardManager = AdsCardManager()
     let maxHeaderBidable = MaxBidder()
     let dtFairBidHeaderBidable = DTFairBidBidder()
@@ -36,7 +36,7 @@ struct AppFeature: Reducer {
     
     struct Path: Reducer {
         var adHostingViewController: UIViewController!
-        var adDelegate: AdLifeCycleDelegate!
+        var adDelegate: (AdLifeCycleDelegate & ApplicationDelegate)!
         enum State: Equatable {
             case main(MainFeature.State)
             case detail(DetailListFeature.State)

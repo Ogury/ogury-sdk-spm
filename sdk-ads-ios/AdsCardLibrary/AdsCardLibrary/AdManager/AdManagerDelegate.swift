@@ -12,13 +12,6 @@ public protocol AdLifeCycleDelegate {
     /// - Returns: the viewController that contains the view hosting the banner
     func viewController<T: AdManager>(forBanner banner: T.Ad, adManager: T) -> UIViewController?
     func deleteCard(withId id: UUID)
-    // import
-    func share(json: String, filename: String)
-    func showImportPanel()
-    // consent
-    func showConsentNotice()
-    // test mode
-    func enableTestModeForAllCards(_: Bool)
     // log
     func focusLogs(on cardId: String)
 }
