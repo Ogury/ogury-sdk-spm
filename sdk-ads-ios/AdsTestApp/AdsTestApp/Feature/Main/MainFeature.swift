@@ -12,6 +12,7 @@ import OguryCore
 import OMSDK_Ogury
 
 struct About {
+    var appName: String { Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ?? "Ads Test Application" }
     var appVersion: String { Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String }
     var appBuild: String { Bundle.main.infoDictionary?["CFBundleVersion"] as! String }
     var environment: String { Bundle.main.object(forInfoDictionaryKey: "DefaultEnv") as? String ?? "" }
@@ -19,6 +20,7 @@ struct About {
     var omidVersion: String { OMIDOgurySDK.versionString() }
     var assetKey: String { AdSdkLauncher.shared.assetKey }
     var coreSdkVersion: String { String(describing: OGCInternal.shared().getVersion()) }
+    var ogurySdkVersion: String { "5.0.2" }
     var adsSdkVersion: String {
         let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
         return "\(String(describing: OGAInternal.shared().getVersion())) (\(origin == "Pod" ? "Release" : "Development"))"
@@ -472,21 +474,22 @@ extension AlertState where Action == MainFeature.Action.Alert {
     static var about: AlertState<Action> {
         let about = About()
         return AlertState {
-            TextState("About this application")
+            TextState("About \(about.appName)")
         } actions: {
             ButtonState(role: .cancel) {
                 TextState("OK")
             }
         } message: {
             TextState("""
-Test application version: \(about.appVersion)
-Test application build: \(about.appBuild)
-OguryAds : \(about.adsSdkVersion)
-OguryCore : \(about.coreSdkVersion)
+App version: \(about.appVersion)
+App build: \(about.appBuild)
+Ogury Sdk : \(about.ogurySdkVersion)
+Module Ads : \(about.adsSdkVersion)
+Module Core : \(about.coreSdkVersion)
+OM SDK version: \(about.omidVersion)
 Environment: \(about.environment)
 Asset key: \(about.assetKey)
-OMID version: \(about.omidVersion)
-App Bundle Identifier: \(about.bundleId)
+Bundle Id: \(about.bundleId)
 """)
         }
     }
