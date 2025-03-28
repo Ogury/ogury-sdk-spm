@@ -422,7 +422,8 @@ struct AdViewFeature: Reducer {
         adManager.update(options: BaseAdOptions(adDisplayName: options.adDisplayName,
                                                 adUnitId: options.adUnitId,
                                                 campaignId: options.campaignId,
-                                                creativeId: options.creativeId,
+                                                dspCreativeId: options.dspCreativeId,
+                                                dspRegion: options.dspRegion, creativeId: options.creativeId,
                                                 isSelected: options.isSelected,
                                                 bulkModeEnabled: options.bulkModeEnabled,
                                                 oguryTestModeEnabled:options.oguryTestModeEnabled,
@@ -543,7 +544,10 @@ struct AdViewFeature: Reducer {
                                     adManager
                                         .events
                                         .receive(on: DispatchQueue.main)
-                                        .map { $0.action }
+                                        .map { [state] event in
+                                            state.log(event: event)
+                                            return event.action
+                                        }
                                 }.cancellable(id: AdCancel.show(state.id)),
                                 .run { send in
                                     do {
