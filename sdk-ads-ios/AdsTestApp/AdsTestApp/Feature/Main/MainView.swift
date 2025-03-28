@@ -12,44 +12,55 @@ struct MainView: View {
     let logsStore: StoreOf<LogsFeature>
     let appPermissions: AppPermissions = SettingsController().appPermissions
     @State private var logsHeight: CGFloat = 150
+    @State private var keyboardShown: Bool = false
+    @State private var logViewSearching: Bool = false
     @Environment(\.cardPermissions) var cardPermissions
-   
+    
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-           VStack(spacing:0) {
-              ZStack {
-                   Color(AdColorPalette.Background.secondary.color).ignoresSafeArea()
-                   
-                   if viewStore.adFormats.isEmpty {
-                       EmptyManagersView(viewStore: viewStore)
-                   } else {
-                       ListManagersView(store: store)
-                           .listStyle(InsetListStyle())
-                           .frame(width: UIScreen.main.bounds.size.width, alignment: .center)
-                           .accessibilityLabel("CardList")
-                   }
-               }
-               
-               if viewStore.showLogs, !viewStore.adFormats.isEmpty {
-                   VStack {
-                       VStack {
-                           LogsView(
-                            store: logsStore,
-                            logsHeight: $logsHeight
-                           )
-                           .padding()
-                           .frame(maxWidth: .infinity, maxHeight: .infinity)
-                       }
-                       .background(Color(AdColorPalette.Background.primary.color))
-                       .ignoresSafeArea()
-                       .cornerRadius(15)
-                       .shadow(radius: 3)
-                   }
-                   .background(Color(AdColorPalette.Background.secondary.color))
-                   .ignoresSafeArea()
-                   .frame(height: logsHeight)
-               }               
-           }
+            VStack(spacing:0) {
+                ZStack {
+                    Color(AdColorPalette.Background.secondary.color).ignoresSafeArea()
+                    
+                    if viewStore.adFormats.isEmpty {
+                        EmptyManagersView(viewStore: viewStore)
+                    } else {
+                        ListManagersView(store: store)
+                            .listStyle(InsetListStyle())
+                            .frame(width: UIScreen.main.bounds.size.width, alignment: .center)
+                            .accessibilityLabel("CardList")
+                    }
+                }
+                
+                if viewStore.showLogs, !keyboardShown, !viewStore.adFormats.isEmpty {
+                    VStack {
+                        VStack {
+                            LogsView(
+                                store: logsStore,
+                                logsHeight: $logsHeight,
+                                isSearching:$logViewSearching
+                            )
+                            .padding()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        }
+                        .background(Color(AdColorPalette.Background.primary.color))
+                        .ignoresSafeArea()
+                        .cornerRadius(15)
+                        .shadow(radius: 3)
+                    }
+                    .background(Color(AdColorPalette.Background.secondary.color))
+                    .ignoresSafeArea()
+                    .frame(height: logsHeight)
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { notification in
+                if !logViewSearching {
+                    keyboardShown = true
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidHideNotification)) { _ in
+                keyboardShown = false
+            }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 toolBarContent(viewStore: viewStore)
@@ -58,7 +69,7 @@ struct MainView: View {
             .addViewModifiers(store: store, viewStore: viewStore)
         }
     }
-   
+    
     private func showAddView(from viewStore: ViewStoreOf<MainFeature>) {
         let _ = withAnimation {
             viewStore.send(.addButtonTapped)
@@ -169,14 +180,12 @@ struct MainView: View {
                         }
                     }
                     
-                    if appPermissions.settings {
-                        Button{
-                            viewStore.send(.settingsButtonTapped)
-                        } label: {
-                            HStack {
-                                Text("Settings").font(.adsBody)
-                                Image(systemName: "gear")
-                            }
+                    Button{
+                        viewStore.send(.settingsButtonTapped)
+                    } label: {
+                        HStack {
+                            Text("Settings").font(.adsBody)
+                            Image(systemName: "gear")
                         }
                     }
                 }
@@ -194,7 +203,7 @@ struct MainView: View {
                 
             } label: {
                 Image(systemName: "ellipsis")
-                    // just to increase a little bit the touching area
+                // just to increase a little bit the touching area
                     .frame(height: 40)
             }
             .accessibilityLabel("NavBarSettingsButton")
@@ -236,44 +245,44 @@ extension View {
                     }
                     .background(.gray)
                 }
-            .sheet(
-                store: store.scope(
-                    state: \.$destination,
-                    action: MainFeature.Action.destination
-                ),
-                state: /MainFeature.Destination.State.settings,
-                action: MainFeature.Destination.Action.settings) { store in
-                    NavigationView {
-                        AppSettingsView(store: store)
-                            .toolbar {
-                                ToolbarItem(placement: .topBarLeading) {
-                                    Button {
-                                        viewStore.send(.destination(.dismiss))
-                                    } label: {
-                                        Text("Cancel")
-                                    }
-                                    .accessibilityLabel("SettingsSheetCancelButton")
-                                }
-                            }
-                    }
-                }
                 .sheet(
-                  store: store.scope(
-                     state: \.$destination,
-                     action: MainFeature.Action.destination
-                  ),
-                  state: /MainFeature.Destination.State.add,
-                  action: MainFeature.Destination.Action.add,
-                  content: { store in
-                    if #available(iOS 16.0, *) {
-                        AddSheetView(store: store, viewStore: viewStore)
-                            .presentationDetents([.fraction(0.7)])
-                            .presentationBackgroundInteraction(.disabled)
-                    } else {
-                        AddSheetView(store: store, viewStore: viewStore)
+                    store: store.scope(
+                        state: \.$destination,
+                        action: MainFeature.Action.destination
+                    ),
+                    state: /MainFeature.Destination.State.settings,
+                    action: MainFeature.Destination.Action.settings) { store in
+                        NavigationView {
+                            AppSettingsView(store: store)
+                                .toolbar {
+                                    ToolbarItem(placement: .topBarLeading) {
+                                        Button {
+                                            viewStore.send(.destination(.dismiss))
+                                        } label: {
+                                            Text("Cancel")
+                                        }
+                                        .accessibilityLabel("SettingsSheetCancelButton")
+                                    }
+                                }
+                        }
                     }
-                 })
-                    
+                    .sheet(
+                        store: store.scope(
+                            state: \.$destination,
+                            action: MainFeature.Action.destination
+                        ),
+                        state: /MainFeature.Destination.State.add,
+                        action: MainFeature.Destination.Action.add,
+                        content: { store in
+                            if #available(iOS 16.0, *) {
+                                AddSheetView(store: store, viewStore: viewStore)
+                                    .presentationDetents([.fraction(0.7)])
+                                    .presentationBackgroundInteraction(.disabled)
+                            } else {
+                                AddSheetView(store: store, viewStore: viewStore)
+                            }
+                        })
+        
     }
 }
 
@@ -314,8 +323,8 @@ struct LegacyHorizontalCardsView: View {
                 AdTagList(tags: adFormat.tags)
             }
         }
-//        .frame(width: UIScreen.main.bounds.size.width - 30,
-//               alignment: .leading)
+        //        .frame(width: UIScreen.main.bounds.size.width - 30,
+        //               alignment: .leading)
         
         TabView {
             ForEach(0..<managers.count, id: \.self) { index in
@@ -370,7 +379,7 @@ struct HorizontalCardsView: View {
                                 disabled
                                 ? Color(AdColorPalette.Text.placeholder.color)
                                 : Color(AdColorPalette.Text.primary(onAccent: false).color)
-                        )
+                            )
                         
                         AdTagList(tags: adFormat.tags)
                             .zIndex(2)
@@ -387,7 +396,7 @@ struct HorizontalCardsView: View {
                 }
                 .disabled(disabled)
                 .frame(width: geometry.size.width - 30,
-                   alignment: .leading)
+                       alignment: .leading)
             }
             
             TabView {

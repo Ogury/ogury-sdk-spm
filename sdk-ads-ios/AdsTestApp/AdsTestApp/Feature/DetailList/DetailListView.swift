@@ -6,6 +6,7 @@ struct DetailListView: View {
     let store: StoreOf<DetailListFeature>
     let logsStore: StoreOf<LogsFeature>
     @State private var logsHeight: CGFloat = 150
+    @State private var logViewSearching: Bool = false
 
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
@@ -61,7 +62,8 @@ struct DetailListView: View {
                   VStack {
                      LogsView(
                          store: logsStore,
-                         logsHeight: $logsHeight
+                         logsHeight: $logsHeight,
+                         isSearching: $logViewSearching
                      )
                        .padding()
                        .frame(maxWidth: .infinity, maxHeight: .infinity)
