@@ -30,7 +30,7 @@ struct MainView: View {
                    }
                }
                
-               if viewStore.showLogs {
+               if viewStore.showLogs, !viewStore.adFormats.isEmpty {
                    VStack {
                        VStack {
                            LogsView(
@@ -81,7 +81,7 @@ struct MainView: View {
             }
         }
         
-        if appPermissions.logs {
+        if appPermissions.logs, !viewStore.adFormats.isEmpty {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     viewStore.send(.showLogs(!viewStore.showLogs))
