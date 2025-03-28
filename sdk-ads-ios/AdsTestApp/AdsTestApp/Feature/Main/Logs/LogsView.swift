@@ -42,7 +42,7 @@ struct LogsView: View {
                             .accessibilityLabel("LogSheetDragView")
                         
                         ScrollView {
-                            ForEach(viewStore.logMessages.indices, id: \ .self) { index in
+                            ForEach(viewStore.logMessages.indices, id: \.self) { index in
                                 let str = viewStore.logMessages[index]
                                 Text(AttributedString(str))
                                     .multilineTextAlignment(.leading)
@@ -58,15 +58,20 @@ struct LogsView: View {
                                     .id(index)
                                     .accessibilityLabel("LogItem#\(index)")
                                     .accessibilityValue("\(str)")
+                                Spacer()
                             }
                         }
                         .padding(.bottom, 8)
                         .accessibilityLabel("LogView")
                         
                         HStack {
-                            Text("Logs")
-                                .font(.adsTitle2)
-                                .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
+                            HStack(spacing:2) {
+                                Text("Logs")
+                                    .font(.adsTitle2)
+                                    .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
+                                
+                                AdTagList(tags: [.beta], size: .small)
+                            }
                             
                             HStack {
                                 Image(systemName: "magnifyingglass")
@@ -151,7 +156,7 @@ struct LogsView: View {
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .onChange(of: viewStore.logMessages) { newValue in 
+                .onChange(of: viewStore.logMessages) { newValue in
                     if let lastIndex = viewStore.logMessages.indices.last {
                         withAnimation {
                             scrollViewProxy.scrollTo(lastIndex)

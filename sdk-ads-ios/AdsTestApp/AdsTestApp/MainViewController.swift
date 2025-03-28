@@ -95,7 +95,7 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: AdLifeCycleDelegate {
+extension MainViewController: AdLifeCycleDelegate, ApplicationDelegate {
     func focusLogs(on cardId: String) {
         ViewStore(store, observe: { $0 }).send(.focusLogs(on: cardId))
     }
@@ -161,8 +161,11 @@ extension MainViewController: AdLifeCycleDelegate {
         return paths[0]
     }
     
-    func showConsentNotice() {
-        ConsentManager.shared.resetConsent(viewController: self)
+    func showConsentNotice(for manager: ConsentManager) {
+        switch manager {
+            case .inMobi: InmobiConsentManager.shared.resetConsent(viewController: self)
+            case .adMob: AdMobConsentManager.shared.resetConsent(viewController: self)
+        }
     }
     
     func enableTestModeForAllCards(_ enable: Bool) {

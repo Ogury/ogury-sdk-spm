@@ -168,13 +168,37 @@
 		43AE85DD2B5018A20010C812 /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 43AE85DC2B5018A20010C812 /* UserDefault */; };
 		43AE85DF2B5018B90010C812 /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 43AE85DE2B5018B90010C812 /* UserDefault */; };
 		43AE85E12B5018BF0010C812 /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 43AE85E02B5018BF0010C812 /* UserDefault */; };
+		43B59BCD2D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */; };
+		43B59BCE2D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */; };
+		43B59BCF2D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */; };
+		43B59BD02D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */; };
+		43B59BD12D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */; };
+		43B59BD22D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */; };
+		43B59BD32D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */; };
+		43B59BD42D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */; };
+		43B59BD52D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */; };
+		43B59BD62D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */; };
+		43B59BD72D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */; };
+		43B59BD82D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */; };
+		43B59BF92D94554D00BE53A1 /* AdMobConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BF82D94554D00BE53A1 /* AdMobConsentManager.swift */; };
+		43B59BFA2D94554D00BE53A1 /* AdMobConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BF82D94554D00BE53A1 /* AdMobConsentManager.swift */; };
+		43B59BFB2D94554D00BE53A1 /* AdMobConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BF82D94554D00BE53A1 /* AdMobConsentManager.swift */; };
+		43B59BFC2D94554D00BE53A1 /* AdMobConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BF82D94554D00BE53A1 /* AdMobConsentManager.swift */; };
+		43B59BFD2D94554D00BE53A1 /* AdMobConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BF82D94554D00BE53A1 /* AdMobConsentManager.swift */; };
+		43B59BFE2D94554D00BE53A1 /* AdMobConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BF82D94554D00BE53A1 /* AdMobConsentManager.swift */; };
+		43B59C002D9457ED00BE53A1 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BFF2D9457ED00BE53A1 /* ApplicationDelegate.swift */; };
+		43B59C012D9457ED00BE53A1 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BFF2D9457ED00BE53A1 /* ApplicationDelegate.swift */; };
+		43B59C022D9457ED00BE53A1 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BFF2D9457ED00BE53A1 /* ApplicationDelegate.swift */; };
+		43B59C032D9457ED00BE53A1 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BFF2D9457ED00BE53A1 /* ApplicationDelegate.swift */; };
+		43B59C042D9457ED00BE53A1 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BFF2D9457ED00BE53A1 /* ApplicationDelegate.swift */; };
+		43B59C052D9457ED00BE53A1 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BFF2D9457ED00BE53A1 /* ApplicationDelegate.swift */; };
 		43B7136B2B45702C007C8D21 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; };
 		43B7136C2B45702C007C8D21 /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43B713702B457035007C8D21 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; };
 		43B713712B457035007C8D21 /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		43B713E72B4D54AA007C8D21 /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* ConsentManager.swift */; };
-		43B713E82B4D54AA007C8D21 /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* ConsentManager.swift */; };
-		43B713E92B4D54AA007C8D21 /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* ConsentManager.swift */; };
+		43B713E72B4D54AA007C8D21 /* InmobiConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* InmobiConsentManager.swift */; };
+		43B713E82B4D54AA007C8D21 /* InmobiConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* InmobiConsentManager.swift */; };
+		43B713E92B4D54AA007C8D21 /* InmobiConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* InmobiConsentManager.swift */; };
 		43B713FF2B4D6075007C8D21 /* HeaderBiddingSeatBid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FB2B4D6075007C8D21 /* HeaderBiddingSeatBid.swift */; };
 		43B714002B4D6075007C8D21 /* HeaderBiddingSeatBid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FB2B4D6075007C8D21 /* HeaderBiddingSeatBid.swift */; };
 		43B714012B4D6075007C8D21 /* HeaderBiddingSeatBid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FB2B4D6075007C8D21 /* HeaderBiddingSeatBid.swift */; };
@@ -199,7 +223,7 @@
 		43BCB0A82C22DD45002FB0B1 /* UTType+Extension(devc).swift in Sources */ = {isa = PBXBuildFile; fileRef = 4301B1E62B56D3630076065D /* UTType+Extension(devc).swift */; };
 		43BCB0A92C22DD45002FB0B1 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43BCB0AA2C22DD45002FB0B1 /* HeaderBiddingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FD2B4D6075007C8D21 /* HeaderBiddingResponse.swift */; };
-		43BCB0AB2C22DD45002FB0B1 /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* ConsentManager.swift */; };
+		43BCB0AB2C22DD45002FB0B1 /* InmobiConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* InmobiConsentManager.swift */; };
 		43BCB0AC2C22DD45002FB0B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED4162AA5D0C200486AF2 /* AppDelegate.swift */; };
 		43BCB0AD2C22DD45002FB0B1 /* HeaderBiddingExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FE2B4D6075007C8D21 /* HeaderBiddingExt.swift */; };
 		43BCB0AE2C22DD45002FB0B1 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
@@ -239,7 +263,7 @@
 		43BCB0EA2C22DD59002FB0B1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED41A2AA5D0C200486AF2 /* MainViewController.swift */; };
 		43BCB0EC2C22DD59002FB0B1 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43BCB0ED2C22DD59002FB0B1 /* HeaderBiddingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FD2B4D6075007C8D21 /* HeaderBiddingResponse.swift */; };
-		43BCB0EE2C22DD59002FB0B1 /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* ConsentManager.swift */; };
+		43BCB0EE2C22DD59002FB0B1 /* InmobiConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* InmobiConsentManager.swift */; };
 		43BCB0EF2C22DD59002FB0B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED4162AA5D0C200486AF2 /* AppDelegate.swift */; };
 		43BCB0F02C22DD59002FB0B1 /* HeaderBiddingExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FE2B4D6075007C8D21 /* HeaderBiddingExt.swift */; };
 		43BCB0F12C22DD59002FB0B1 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
@@ -279,7 +303,7 @@
 		43BCB12D2C22DD60002FB0B1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED41A2AA5D0C200486AF2 /* MainViewController.swift */; };
 		43BCB12F2C22DD60002FB0B1 /* MaxBidder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FC85602B0F5E0900EABA43 /* MaxBidder.swift */; };
 		43BCB1302C22DD60002FB0B1 /* HeaderBiddingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FD2B4D6075007C8D21 /* HeaderBiddingResponse.swift */; };
-		43BCB1312C22DD60002FB0B1 /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* ConsentManager.swift */; };
+		43BCB1312C22DD60002FB0B1 /* InmobiConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* InmobiConsentManager.swift */; };
 		43BCB1322C22DD60002FB0B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED4162AA5D0C200486AF2 /* AppDelegate.swift */; };
 		43BCB1332C22DD60002FB0B1 /* HeaderBiddingExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713FE2B4D6075007C8D21 /* HeaderBiddingExt.swift */; };
 		43BCB1342C22DD60002FB0B1 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
@@ -327,6 +351,9 @@
 		43D0E6212C61060700AF9CF6 /* config-art.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 43D0E61F2C61060700AF9CF6 /* config-art.debug.xcconfig */; };
 		43D0E6222C61060F00AF9CF6 /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C00D2BC7D6CA00F40F5F /* config.release.xcconfig */; };
 		43D0E6232C61060F00AF9CF6 /* config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 434F85042ACFE6E2005077F5 /* config.debug.xcconfig */; };
+		43F66E3C2D394D79000AED12 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		43F66E3D2D394D79000AED12 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		43F66E3E2D394D79000AED12 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E432D3FABCF000AED12 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B42B4E882F0022157E /* AdsCardLibrary.framework */; };
 		43F66E442D3FABCF000AED12 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B42B4E882F0022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43F66E452D3FABE7000AED12 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
@@ -516,9 +543,13 @@
 		43AE85C72B4FD19C0010C812 /* OguryChoiceManager.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = OguryChoiceManager.xcframework; sourceTree = "<group>"; };
 		43AE85CF2B4FD28C0010C812 /* OguryCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OguryCore.xcframework; path = ../Pods/OguryCore/OguryCore.xcframework; sourceTree = "<group>"; };
 		43AE85D72B5017860010C812 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyDataFeature.swift; sourceTree = "<group>"; };
+		43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyDataView.swift; sourceTree = "<group>"; };
+		43B59BF82D94554D00BE53A1 /* AdMobConsentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobConsentManager.swift; sourceTree = "<group>"; };
+		43B59BFF2D9457ED00BE53A1 /* ApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationDelegate.swift; sourceTree = "<group>"; };
 		43B7139F2B459B8A007C8D21 /* AdsTestApp-Devc.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "AdsTestApp-Devc.entitlements"; sourceTree = "<group>"; };
 		43B713D92B4D5092007C8D21 /* OguryCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OguryCore.xcframework; path = "../Pods/OguryCore-Prod/OguryCore.xcframework"; sourceTree = "<group>"; };
-		43B713E62B4D54AA007C8D21 /* ConsentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentManager.swift; sourceTree = "<group>"; };
+		43B713E62B4D54AA007C8D21 /* InmobiConsentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InmobiConsentManager.swift; sourceTree = "<group>"; };
 		43B713FB2B4D6075007C8D21 /* HeaderBiddingSeatBid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderBiddingSeatBid.swift; sourceTree = "<group>"; };
 		43B713FC2B4D6075007C8D21 /* HeaderBiddingBid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderBiddingBid.swift; sourceTree = "<group>"; };
 		43B713FD2B4D6075007C8D21 /* HeaderBiddingResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderBiddingResponse.swift; sourceTree = "<group>"; };
@@ -612,6 +643,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43F66E3C2D394D79000AED12 /* BuildFile in Frameworks */,
 				43BCB0BD2C22DD45002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43BCB0BE2C22DD45002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB1942C23254D002FB0B1 /* AdsCardLibrary.framework in Frameworks */,
@@ -625,6 +657,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43F66E3D2D394D79000AED12 /* BuildFile in Frameworks */,
 				43BCB1002C22DD59002FB0B1 /* SnapKit in Frameworks */,
 				43BCB1022C22DD59002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB1972C23255C002FB0B1 /* AdsCardLibrary.framework in Frameworks */,
@@ -638,6 +671,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43F66E3E2D394D79000AED12 /* BuildFile in Frameworks */,
 				43BCB1432C22DD60002FB0B1 /* SnapKit in Frameworks */,
 				43BCB1452C22DD60002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB19A2C232565002FB0B1 /* AdsCardLibrary.framework in Frameworks */,
@@ -776,6 +810,7 @@
 		434F84A72AC2DF00005077F5 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				43B59BCA2D92FF8B00BE53A1 /* Privacy */,
 				4394F7462CA42C89001086FE /* Logs */,
 				434F84A82AC2DF0C005077F5 /* AppSettingsView.swift */,
 				434F84A92AC2DF0C005077F5 /* AppSettingsFeature.swift */,
@@ -883,6 +918,7 @@
 				438ED4162AA5D0C200486AF2 /* AppDelegate.swift */,
 				438ED4182AA5D0C200486AF2 /* SceneDelegate.swift */,
 				438ED41A2AA5D0C200486AF2 /* MainViewController.swift */,
+				43B59BFF2D9457ED00BE53A1 /* ApplicationDelegate.swift */,
 				438ED41C2AA5D0C200486AF2 /* Main.storyboard */,
 				438ED41F2AA5D0C300486AF2 /* Assets.xcassets */,
 				438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */,
@@ -944,6 +980,15 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		43B59BCA2D92FF8B00BE53A1 /* Privacy */ = {
+			isa = PBXGroup;
+			children = (
+				43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */,
+				43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */,
+			);
+			path = Privacy;
+			sourceTree = "<group>";
+		};
 		43B713BA2B4BCEC4007C8D21 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -960,7 +1005,8 @@
 		43B713E52B4D54A2007C8D21 /* Consent */ = {
 			isa = PBXGroup;
 			children = (
-				43B713E62B4D54AA007C8D21 /* ConsentManager.swift */,
+				43B713E62B4D54AA007C8D21 /* InmobiConsentManager.swift */,
+				43B59BF82D94554D00BE53A1 /* AdMobConsentManager.swift */,
 			);
 			path = Consent;
 			sourceTree = "<group>";
@@ -1069,6 +1115,7 @@
 				434F84CF2ACFE4FE005077F5 /* Resources */,
 				43B713662B45700B007C8D21 /* Embed Frameworks */,
 				FBF614EA9E21FF3B9A715BCE /* [CP] Embed Pods Frameworks */,
+				EF1595C5758B586738CC11BF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1094,6 +1141,7 @@
 				434F84EB2ACFE50A005077F5 /* Resources */,
 				43B713692B45700E007C8D21 /* Embed Frameworks */,
 				8AFA1036852C9D514EE318C6 /* [CP] Embed Pods Frameworks */,
+				522B818E7A4FDC85A2113CCD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1119,6 +1167,7 @@
 				438ED4112AA5D0C200486AF2 /* Resources */,
 				1E0E81632ACD8D7A00EFD70C /* Embed Frameworks */,
 				96C45CC005F66BE17ADC056D /* [CP] Embed Pods Frameworks */,
+				6854602C123A725A7CEB1EB9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1144,6 +1193,7 @@
 				43BCB0C52C22DD45002FB0B1 /* Resources */,
 				43BCB0CE2C22DD45002FB0B1 /* Embed Frameworks */,
 				CDA75B21AE4D940DB2FE6CCB /* [CP] Embed Pods Frameworks */,
+				9B9A8CDDCD0AEB89EA761DCB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1169,6 +1219,7 @@
 				43BCB1082C22DD59002FB0B1 /* Resources */,
 				43BCB1112C22DD59002FB0B1 /* Embed Frameworks */,
 				4DA0A9352BE7ACACE2448F44 /* [CP] Embed Pods Frameworks */,
+				9E5533F2BDEE4659F0846171 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1194,6 +1245,7 @@
 				43BCB14B2C22DD60002FB0B1 /* Resources */,
 				43BCB1542C22DD60002FB0B1 /* Embed Frameworks */,
 				A1A25E15208380F939310270 /* [CP] Embed Pods Frameworks */,
+				23A8D52C99F61822440C4FFA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1386,6 +1438,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		23A8D52C99F61822440C4FFA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		295F0BCB9AABA6AF99895712 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1513,6 +1582,40 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		522B818E7A4FDC85A2113CCD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6854602C123A725A7CEB1EB9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8AFA1036852C9D514EE318C6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1545,6 +1648,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B9A8CDDCD0AEB89EA761DCB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E5533F2BDEE4659F0846171 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A1A25E15208380F939310270 /* [CP] Embed Pods Frameworks */ = {
@@ -1603,6 +1740,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EF1595C5758B586738CC11BF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FBF614EA9E21FF3B9A715BCE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1636,17 +1790,21 @@
 				434F85082AD00349005077F5 /* Configuration.swift in Sources */,
 				434F84C12ACFE4FE005077F5 /* MainView.swift in Sources */,
 				43236A062CF4CB700078EF67 /* ImportFeature.swift in Sources */,
+				43B59BF92D94554D00BE53A1 /* AdMobConsentManager.swift in Sources */,
 				43236A072CF4CB700078EF67 /* ImportView.swift in Sources */,
 				43788F412B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */,
 				434F84C22ACFE4FE005077F5 /* MainViewController.swift in Sources */,
 				43FC85622B0F5E0900EABA43 /* MaxBidder.swift in Sources */,
 				43B714062B4D6075007C8D21 /* HeaderBiddingResponse.swift in Sources */,
-				43B713E82B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
+				43B713E82B4D54AA007C8D21 /* InmobiConsentManager.swift in Sources */,
 				434F84C42ACFE4FE005077F5 /* AppDelegate.swift in Sources */,
+				43B59BD12D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */,
+				43B59BD22D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */,
 				43B714092B4D6075007C8D21 /* HeaderBiddingExt.swift in Sources */,
 				4394F7412CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
 				43AE85D92B5017860010C812 /* SettingsController.swift in Sources */,
 				434F84C52ACFE4FE005077F5 /* AppSettingsView.swift in Sources */,
+				43B59C022D9457ED00BE53A1 /* ApplicationDelegate.swift in Sources */,
 				434F84C62ACFE4FE005077F5 /* SceneDelegate.swift in Sources */,
 				1E5BE6342B21F40F0010B995 /* DetailListView.swift in Sources */,
 				1E373D5A2BFC9CB600E2EF25 /* RTBBidder.swift in Sources */,
@@ -1683,17 +1841,21 @@
 				434F84DD2ACFE50A005077F5 /* MainView.swift in Sources */,
 				4301B1EB2B56D3A80076065D /* UTType+Extension(prod).swift in Sources */,
 				43236A0C2CF4CB700078EF67 /* ImportFeature.swift in Sources */,
+				43B59BFB2D94554D00BE53A1 /* AdMobConsentManager.swift in Sources */,
 				43236A0D2CF4CB700078EF67 /* ImportView.swift in Sources */,
 				43788F422B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */,
 				434F84DE2ACFE50A005077F5 /* MainViewController.swift in Sources */,
 				43FC85632B0F5E0900EABA43 /* MaxBidder.swift in Sources */,
 				43B714072B4D6075007C8D21 /* HeaderBiddingResponse.swift in Sources */,
-				43B713E92B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
+				43B713E92B4D54AA007C8D21 /* InmobiConsentManager.swift in Sources */,
 				434F84E02ACFE50A005077F5 /* AppDelegate.swift in Sources */,
+				43B59BD32D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */,
+				43B59BD42D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */,
 				43B7140A2B4D6075007C8D21 /* HeaderBiddingExt.swift in Sources */,
 				4394F7432CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
 				43AE85DA2B5017860010C812 /* SettingsController.swift in Sources */,
 				434F84E12ACFE50A005077F5 /* AppSettingsView.swift in Sources */,
+				43B59C002D9457ED00BE53A1 /* ApplicationDelegate.swift in Sources */,
 				434F84E22ACFE50A005077F5 /* SceneDelegate.swift in Sources */,
 				1E5BE6352B21F40F0010B995 /* DetailListView.swift in Sources */,
 				1E373D5B2BFC9CB600E2EF25 /* RTBBidder.swift in Sources */,
@@ -1730,17 +1892,21 @@
 				434F85072AD00349005077F5 /* Configuration.swift in Sources */,
 				434F84A32AC2CD2B005077F5 /* MainView.swift in Sources */,
 				43236A042CF4CB700078EF67 /* ImportFeature.swift in Sources */,
+				43B59BFD2D94554D00BE53A1 /* AdMobConsentManager.swift in Sources */,
 				43236A052CF4CB700078EF67 /* ImportView.swift in Sources */,
 				438ED41B2AA5D0C200486AF2 /* MainViewController.swift in Sources */,
 				43788F402B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */,
 				4301B1E72B56D3630076065D /* UTType+Extension(devc).swift in Sources */,
 				43FC85612B0F5E0900EABA43 /* MaxBidder.swift in Sources */,
 				43B714052B4D6075007C8D21 /* HeaderBiddingResponse.swift in Sources */,
-				43B713E72B4D54AA007C8D21 /* ConsentManager.swift in Sources */,
+				43B713E72B4D54AA007C8D21 /* InmobiConsentManager.swift in Sources */,
+				43B59BD52D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */,
+				43B59BD62D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */,
 				438ED4172AA5D0C200486AF2 /* AppDelegate.swift in Sources */,
 				43B714082B4D6075007C8D21 /* HeaderBiddingExt.swift in Sources */,
 				4394F7442CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
 				43AE85D82B5017860010C812 /* SettingsController.swift in Sources */,
+				43B59C012D9457ED00BE53A1 /* ApplicationDelegate.swift in Sources */,
 				434F84AA2AC2DF0C005077F5 /* AppSettingsView.swift in Sources */,
 				438ED4192AA5D0C200486AF2 /* SceneDelegate.swift in Sources */,
 				434F84AF2AC3008C005077F5 /* AddView.swift in Sources */,
@@ -1777,17 +1943,21 @@
 				43BCB0A42C22DD45002FB0B1 /* MainView.swift in Sources */,
 				43BCB0A52C22DD45002FB0B1 /* MainViewController.swift in Sources */,
 				43236A0A2CF4CB700078EF67 /* ImportFeature.swift in Sources */,
+				43B59BFA2D94554D00BE53A1 /* AdMobConsentManager.swift in Sources */,
 				43236A0B2CF4CB700078EF67 /* ImportView.swift in Sources */,
 				43BCB0A62C22DD45002FB0B1 /* AddFormatsView.swift in Sources */,
 				43BCB0A82C22DD45002FB0B1 /* UTType+Extension(devc).swift in Sources */,
 				43BCB0A92C22DD45002FB0B1 /* MaxBidder.swift in Sources */,
 				43BCB0AA2C22DD45002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
-				43BCB0AB2C22DD45002FB0B1 /* ConsentManager.swift in Sources */,
+				43BCB0AB2C22DD45002FB0B1 /* InmobiConsentManager.swift in Sources */,
 				43BCB0AC2C22DD45002FB0B1 /* AppDelegate.swift in Sources */,
+				43B59BCD2D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */,
+				43B59BCE2D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */,
 				43BCB0AD2C22DD45002FB0B1 /* HeaderBiddingExt.swift in Sources */,
 				4394F7402CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
 				43BCB0AE2C22DD45002FB0B1 /* SettingsController.swift in Sources */,
 				43BCB0AF2C22DD45002FB0B1 /* AppSettingsView.swift in Sources */,
+				43B59C032D9457ED00BE53A1 /* ApplicationDelegate.swift in Sources */,
 				43BCB0B02C22DD45002FB0B1 /* SceneDelegate.swift in Sources */,
 				43BCB0B12C22DD45002FB0B1 /* AddView.swift in Sources */,
 				43BCB0B22C22DD45002FB0B1 /* RTBBidder.swift in Sources */,
@@ -1824,17 +1994,21 @@
 				43BCB0E72C22DD59002FB0B1 /* Configuration.swift in Sources */,
 				43BCB0E82C22DD59002FB0B1 /* MainView.swift in Sources */,
 				43236A082CF4CB700078EF67 /* ImportFeature.swift in Sources */,
+				43B59BFC2D94554D00BE53A1 /* AdMobConsentManager.swift in Sources */,
 				43236A092CF4CB700078EF67 /* ImportView.swift in Sources */,
 				43BCB0E92C22DD59002FB0B1 /* AddFormatsView.swift in Sources */,
 				43BCB0EA2C22DD59002FB0B1 /* MainViewController.swift in Sources */,
 				43BCB0EC2C22DD59002FB0B1 /* MaxBidder.swift in Sources */,
 				43BCB0ED2C22DD59002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
-				43BCB0EE2C22DD59002FB0B1 /* ConsentManager.swift in Sources */,
+				43BCB0EE2C22DD59002FB0B1 /* InmobiConsentManager.swift in Sources */,
 				43BCB0EF2C22DD59002FB0B1 /* AppDelegate.swift in Sources */,
+				43B59BD72D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */,
+				43B59BD82D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */,
 				43BCB0F02C22DD59002FB0B1 /* HeaderBiddingExt.swift in Sources */,
 				4394F7422CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
 				43BCB0F12C22DD59002FB0B1 /* SettingsController.swift in Sources */,
 				43BCB0F22C22DD59002FB0B1 /* AppSettingsView.swift in Sources */,
+				43B59C042D9457ED00BE53A1 /* ApplicationDelegate.swift in Sources */,
 				43BCB0F32C22DD59002FB0B1 /* SceneDelegate.swift in Sources */,
 				43BCB0F42C22DD59002FB0B1 /* DetailListView.swift in Sources */,
 				43BCB0F52C22DD59002FB0B1 /* RTBBidder.swift in Sources */,
@@ -1871,17 +2045,21 @@
 				43BCB12A2C22DD60002FB0B1 /* MainView.swift in Sources */,
 				43BCB12B2C22DD60002FB0B1 /* UTType+Extension(prod).swift in Sources */,
 				43236A022CF4CB700078EF67 /* ImportFeature.swift in Sources */,
+				43B59BFE2D94554D00BE53A1 /* AdMobConsentManager.swift in Sources */,
 				43236A032CF4CB700078EF67 /* ImportView.swift in Sources */,
 				43BCB12C2C22DD60002FB0B1 /* AddFormatsView.swift in Sources */,
 				43BCB12D2C22DD60002FB0B1 /* MainViewController.swift in Sources */,
 				43BCB12F2C22DD60002FB0B1 /* MaxBidder.swift in Sources */,
 				43BCB1302C22DD60002FB0B1 /* HeaderBiddingResponse.swift in Sources */,
-				43BCB1312C22DD60002FB0B1 /* ConsentManager.swift in Sources */,
+				43BCB1312C22DD60002FB0B1 /* InmobiConsentManager.swift in Sources */,
 				43BCB1322C22DD60002FB0B1 /* AppDelegate.swift in Sources */,
+				43B59BCF2D92FF9B00BE53A1 /* PrivacyDataFeature.swift in Sources */,
+				43B59BD02D92FF9B00BE53A1 /* PrivacyDataView.swift in Sources */,
 				43BCB1332C22DD60002FB0B1 /* HeaderBiddingExt.swift in Sources */,
 				4394F73F2CA3F4B2001086FE /* TestAppLogController.swift in Sources */,
 				43BCB1342C22DD60002FB0B1 /* SettingsController.swift in Sources */,
 				43BCB1352C22DD60002FB0B1 /* AppSettingsView.swift in Sources */,
+				43B59C052D9457ED00BE53A1 /* ApplicationDelegate.swift in Sources */,
 				43BCB1362C22DD60002FB0B1 /* SceneDelegate.swift in Sources */,
 				43BCB1372C22DD60002FB0B1 /* DetailListView.swift in Sources */,
 				43BCB1382C22DD60002FB0B1 /* RTBBidder.swift in Sources */,

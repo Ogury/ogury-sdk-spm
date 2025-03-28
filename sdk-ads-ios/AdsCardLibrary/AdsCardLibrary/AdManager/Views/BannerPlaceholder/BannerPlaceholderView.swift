@@ -16,50 +16,61 @@ struct BannerPlaceholderView: View {
                 HStack {
                     Text("Creative")
                         .font(.adsTitle2)
+                        .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                        .padding(.leading, 12)
                     
                     if viewStore.bannerAd != nil {
                         Spacer()
-                        
                         Button {
                             viewStore.send(.closeButtonTapped)
                         } label: {
                             Image(systemName: "x.circle.fill")
                                 .foregroundColor(Color(AdColorPalette.Primary.accent.color))
                         }
+                        .padding(.trailing, 20)
                     }
                 }
                 
-                Group {
-                    if let ad = viewStore.bannerAd {
-                        AdBannerView(banner: ad)
-                    } else {
+                // Show AdBannerView centered
+                if let ad = viewStore.bannerAd {
+                    HStack {
+                        Spacer()
+                        AdBannerView(banner: ad) // Centered without GeometryReader
+                            .frame(width: viewStore.isMpuFormat ? 300 : 320,
+                                   height: viewStore.isMpuFormat ? 250 : 50)
+                        Spacer()
+                    }
+                } else {
+                    // Use GeometryReader for Placeholder
+                    GeometryReader { geometry in
+                        let maxWidth = min(geometry.size.width, viewStore.isMpuFormat ? 300 : 320)
+                        
                         ZStack {
                             Rectangle()
                                 .fill(Color(AdColorPalette.Background.secondary.color))
                             
                             VStack(spacing: 8) {
                                 Image(systemName: "photo")
-                                
                                 Text("Once loaded the creative will be displayed here")
                                     .font(.adsBody)
+                                    .minimumScaleFactor(0.6)
                                     .multilineTextAlignment(.center)
-                                    .padding(EdgeInsets(top: 0,
-                                                        leading: viewStore.isMpuFormat ? 40 : 20,
-                                                        bottom: 0,
-                                                        trailing: viewStore.isMpuFormat ? 40 : 20))
+                                    .padding(.horizontal, viewStore.isMpuFormat ? 40 : 20)
                             }
                             .foregroundColor(Color(AdColorPalette.Text.placeholder.color))
                             .font(.system(size: viewStore.isMpuFormat ? 14 : 12))
                             .padding(.vertical, 4)
                         }
+                        .frame(width: maxWidth)
+                        .aspectRatio(ratio(from: viewStore), contentMode: .fit)
+                        .frame(width: geometry.size.width, alignment: .center) // Center horizontally
                     }
+                    .frame(height: viewStore.isMpuFormat ? 250 : 50) // Ensure fixed height
                 }
-                .frame(width: viewStore.isMpuFormat ? 300 : 320,
-                       height: viewStore.isMpuFormat ? 250 : 50)
             }
-            .fixedSize()
+            .fixedSize(horizontal: false, vertical: true) // Prevent vertical overflow
             .padding(.vertical)
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity) // Allow horizontal expansion
         }
     }
     

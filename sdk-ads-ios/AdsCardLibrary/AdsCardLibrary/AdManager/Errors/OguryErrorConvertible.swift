@@ -54,7 +54,8 @@ extension AdManagerError: OguryErrorConvertible {
             case .noOptions: return "No options was fed to the adManager"
             case .loadNotCalledBeforeShow: return "Show was called before load"
             case .noShowForBanner: return "Show does not work on banners"
-            case let .adMarkUpRetrievalFailed(error): return error == nil ? "AdMarkUp retrieval failed" : "AdMarkUp retrieval failed\n\(error!)"
+            case let .adMarkUpRetrievalFailed(error):
+                return error == nil ? "AdMarkUp retrieval failed" : "\(error!)"
         }
     }
 }

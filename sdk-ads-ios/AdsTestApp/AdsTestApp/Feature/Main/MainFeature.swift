@@ -7,12 +7,31 @@ import UIKit
 import ComposableArchitecture
 import AdsCardLibrary
 import SwiftUI
+import OguryAds
+import OguryCore
+import OMSDK_Ogury
+
+struct About {
+    var appName: String { Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ?? "Ads Test Application" }
+    var appVersion: String { Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String }
+    var appBuild: String { Bundle.main.infoDictionary?["CFBundleVersion"] as! String }
+    var environment: String { Bundle.main.object(forInfoDictionaryKey: "DefaultEnv") as? String ?? "" }
+    var bundleId: String { Bundle.main.object(forInfoDictionaryKey: "CFBundleIdentifier") as? String ?? "" }
+    var omidVersion: String { OMIDOgurySDK.versionString() }
+    var assetKey: String { AdSdkLauncher.shared.assetKey }
+    var coreSdkVersion: String { String(describing: OGCInternal.shared().getVersion()) }
+    var ogurySdkVersion: String { "5.0.2" }
+    var adsSdkVersion: String {
+        let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
+        return "\(String(describing: OGAInternal.shared().getVersion())) (\(origin == "Pod" ? "Release" : "Development"))"
+    }
+}
 
 struct MainFeature: Reducer {
     @Dependency(\.dismiss) var dismiss
     @Dependency(\.mainQueue) var mainQueue
     var adHostingViewController: UIViewController!
-    var adDelegate: AdLifeCycleDelegate!
+    var adDelegate: (AdLifeCycleDelegate & ApplicationDelegate)!
     let cardManager = AdsCardManager(logger: TestAppLogController.shared.logger)
     let maxHeaderBidable = MaxBidder()
     let dtFairBidHeaderBidable = DTFairBidBidder()
@@ -97,6 +116,7 @@ struct MainFeature: Reducer {
         case showLogs(_: Bool)
         case importFile(_: URL)
         case loadFromContainer(_: AdsStorableContainer)
+        case aboutButtonTapped
         
         enum Alert {
             case notImplemented
@@ -198,7 +218,7 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case .showConsentButtonTapped:
-                    adDelegate?.showConsentNotice()
+                    adDelegate?.showConsentNotice(for: SettingsController().consentManager)
                     return .none
                     
                 case .destination(.presented(.alert(.removeSet))):
@@ -293,6 +313,10 @@ struct MainFeature: Reducer {
                     state.showLogs = show
                     var ctrl = SettingsController()
                     ctrl.showLogsSheet = show
+                    return .none
+                    
+                case .aboutButtonTapped:
+                    state.destination = .alert(.about)
                     return .none
             }
         }
@@ -447,6 +471,29 @@ struct MainFeature: Reducer {
 }
 
 extension AlertState where Action == MainFeature.Action.Alert {
+    static var about: AlertState<Action> {
+        let about = About()
+        return AlertState {
+            TextState("About \(about.appName)")
+        } actions: {
+            ButtonState(role: .cancel) {
+                TextState("OK")
+            }
+        } message: {
+            TextState("""
+App version: \(about.appVersion)
+App build: \(about.appBuild)
+Ogury Sdk : \(about.ogurySdkVersion)
+Module Ads : \(about.adsSdkVersion)
+Module Core : \(about.coreSdkVersion)
+OM SDK version: \(about.omidVersion)
+Environment: \(about.environment)
+Asset key: \(about.assetKey)
+Bundle Id: \(about.bundleId)
+""")
+        }
+    }
+    
     static var cantImportFile: AlertState<Action> {
         AlertState {
             TextState("Something went wrong")
@@ -506,8 +553,8 @@ extension AdType {
             case .interstitial: return "Interstitial"
             case .rewarded: return "Rewarded Video"
             case .thumbnail: return "Thumbnail"
-            case .mpu: return "Mpu"
-            case .banner: return "Banner"
+            case .mpu: return "MREC"
+            case .banner: return "Small banner"
             case let .maxHeaderBidding(innerFormat, _): return "MAX HB - \(innerFormat.sectionName)"
             case let .dtFairBidHeaderBidding(innerFormat, _): return "DT Fair Bid HB - \(innerFormat.sectionName)"
             case let .unityLevelPlayHeaderBidding(innerFormat, _): return "Unity LevelPlay HB - \(innerFormat.sectionName)"

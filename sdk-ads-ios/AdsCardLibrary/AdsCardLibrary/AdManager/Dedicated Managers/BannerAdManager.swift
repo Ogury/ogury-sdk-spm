@@ -74,8 +74,7 @@ public final class BannerAdManager: AdManager {
         DispatchQueue.main.async {
             if (self.ad == nil) {
                 self.ad = OguryBannerAdView(adUnitId: options.adUnitId,
-                                            size: self.adType == .banner ? .small_banner_320x50() : .mrec_300x250(),
-                                            mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
+                                            size: self.adType == .banner ? .small_banner_320x50() : .mrec_300x250())
             } else {
                 self.ad?.destroy()
             }
@@ -159,8 +158,7 @@ public final class BannerAdManager: AdManager {
         guard let options else { throw AdManagerError.noOptions }
         if ad == nil {
             self.ad = OguryBannerAdView(adUnitId: options.baseOptions.adUnitId,
-                                        size: self.adType == .banner ? .small_banner_320x50() : .mrec_300x250(),
-                                        mediation: OguryMediation(name: "AdsTestApp", version: .sdkVersion))
+                                        size: self.adType == .banner ? .small_banner_320x50() : .mrec_300x250())
             ad.delegate = proxyDelegate
         }
         append(.bannerReady(ad))

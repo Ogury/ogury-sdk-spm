@@ -32,7 +32,7 @@ struct MainView: View {
                     }
                 }
                 
-                if viewStore.showLogs, !keyboardShown {
+                if viewStore.showLogs, !keyboardShown, !viewStore.adFormats.isEmpty {
                     VStack {
                         VStack {
                             LogsView(
@@ -92,7 +92,7 @@ struct MainView: View {
             }
         }
         
-        if appPermissions.logs {
+        if appPermissions.logs, !viewStore.adFormats.isEmpty {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     viewStore.send(.showLogs(!viewStore.showLogs))
@@ -186,6 +186,17 @@ struct MainView: View {
                         HStack {
                             Text("Settings").font(.adsBody)
                             Image(systemName: "gear")
+                        }
+                    }
+                }
+                
+                Section {
+                    Button{
+                        viewStore.send(.aboutButtonTapped)
+                    } label: {
+                        HStack {
+                            Text("About").font(.adsBody)
+                            Image(systemName: "info.circle")
                         }
                     }
                 }
@@ -361,7 +372,7 @@ struct HorizontalCardsView: View {
                     }
                     
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("\(adFormat.title.capitalized) (\(managers.count))")
+                        Text("\(adFormat.title) (\(managers.count))")
                             .font(.adsTitle)
                             .fontWeight(.medium)
                             .foregroundStyle(
@@ -420,6 +431,22 @@ struct ListManagersView: View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             GeometryReader { geometry in
                 List {
+                    VStack(alignment: .center) {
+                        TextField("Set name",
+                                  text: viewStore.$setName,
+                                  prompt: Text("Name your ads set"))
+                        .font(.adsLargeTitle)
+                        .foregroundStyle(
+                            Color(viewStore.setName != SettingsContainer.untitledAdSet
+                                  ? AdColorPalette.Text.primary(onAccent: false).color
+                                  : AdColorPalette.Text.placeholder.color)
+                        )
+                    }
+                    .padding(8)
+                    .padding(.horizontal, -10)
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
+                    
                     Section {
                         ForEach(viewStore.adFormats.sorted(by: { lhs, rhs in
                             lhs.key.sortPosition < rhs.key.sortPosition
@@ -439,20 +466,6 @@ struct ListManagersView: View {
                         }
                         .listRowSeparator(.hidden)
                         .listRowBackground(Color.clear)
-                    } header: {
-                        VStack(alignment: .center) {
-                            TextField("Set name",
-                                      text: viewStore.$setName,
-                                      prompt: Text("Name your ads set"))
-                            .font(.adsLargeTitle)
-                            .foregroundStyle(
-                                Color(viewStore.setName != SettingsContainer.untitledAdSet
-                                      ? AdColorPalette.Text.primary(onAccent: false).color
-                                      : AdColorPalette.Text.placeholder.color)
-                            )
-                        }
-                        .padding(8)
-                        .padding(.horizontal, -10)
                     }
                 }
                 .safeScrollDismissesKeyboard()

@@ -11,26 +11,31 @@ struct AdsTextField: View {
     var text: Binding<String>
     var titleColor: Color
     var textColor: Color
+    var roundedStyle: Bool = true
     init(_ text: Binding<String>,
          placeholder: String,
          titleColor: Color = Color(AdColorPalette.Text.placeholder.color),
          textColor: Color = Color(AdColorPalette.Text.placeholder.color),
+         roundedStyle: Bool = true,
          @ViewBuilder content: @escaping () -> some View) {
         self.title = placeholder
         self.text = text
         self.titleColor = titleColor
         self.textColor = textColor
         self.content = content
+        self.roundedStyle = roundedStyle
     }
     
     init(_ text: Binding<String>,
          placeholder: String,
          titleColor: Color = Color(AdColorPalette.Text.placeholder.color),
-         textColor: Color = Color(AdColorPalette.Text.placeholder.color)) {
+         textColor: Color = Color(AdColorPalette.Text.placeholder.color),
+         roundedStyle: Bool = true) {
         self = .init(text,
                      placeholder: placeholder,
                      titleColor: titleColor,
                      textColor: textColor,
+                     roundedStyle: roundedStyle,
                      content: {
             EmptyView()
         })
@@ -49,13 +54,24 @@ struct AdsTextField: View {
             }
             
             TextField("", text: text)
-                .frame(minHeight: 40)
+                .frame(minHeight: roundedStyle ? 40 : 20)
                 .padding(.vertical, 1)
                 .font(.adsBody)
                 .foregroundStyle(textColor)
-                .textFieldStyle(.roundedBorder)
+                .conditionalTextFieldStyle(roundedStyle)
         }
         .fixedSize(horizontal: false, vertical: true)
+    }
+}
+
+extension View {
+    @ViewBuilder
+    func conditionalTextFieldStyle(_ isRounded: Bool) -> some View {
+        if isRounded {
+            self.textFieldStyle(.roundedBorder)
+        } else {
+            self.textFieldStyle(.plain)
+        }
     }
 }
 

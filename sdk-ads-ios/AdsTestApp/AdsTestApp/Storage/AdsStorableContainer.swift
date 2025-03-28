@@ -114,6 +114,10 @@ struct SettingsContainer: Codable, Equatable {
         get { settings.killWebviewMode }
         set { settings.killWebviewMode = newValue }
     }
+    var consentManager: ConsentManager {
+        get { settings.consentManager }
+        set { settings.consentManager = newValue }
+    }
     var name = SettingsContainer.untitledAdSet
     var os = SettingsContainer.currentOs
     var shouldUpdateAdUnits: Bool { os != SettingsContainer.currentOs }
@@ -252,7 +256,7 @@ struct AdsStorableContainer: Codable {
     let cards: [[AdContainer]]
     private static let userDefaultKey = "AdsStorableContainer"
     fileprivate static let cardManager = AdsCardManager()
-    fileprivate static var adDelegate: AdLifeCycleDelegate?
+    fileprivate static var adDelegate: (AdLifeCycleDelegate & ApplicationDelegate)?
     var shouldUpdateAdUnits: Bool { settings.shouldUpdateAdUnits }
     
     init(settings: SettingsContainer = .init(),

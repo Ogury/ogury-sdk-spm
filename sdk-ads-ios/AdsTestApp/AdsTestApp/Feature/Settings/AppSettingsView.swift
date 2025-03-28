@@ -7,6 +7,7 @@ import SwiftUI
 import ComposableArchitecture
 import AdsCardLibrary
 import SwiftMessages
+import AVFoundation
 
 struct AppSettingsView: View {
     let store: StoreOf<AppSettingsFeature>
@@ -73,6 +74,14 @@ struct AppSettingsView: View {
                             }
                         }.accessibilityLabel("ImportMethod_Picker")
                         
+                        Picker("Choose CMP provider",
+                               selection: viewStore.binding(get: \.consentManager,
+                                                            send: { .consentManagerSelected($0) })) {
+                            ForEach(ConsentManager.allCases, id:\.self) { cmp in
+                                Text(cmp.displayName)
+                            }
+                        }.accessibilityLabel("ImportMethod_Picker")
+                        
                     } header: {
                         Text("APPLICATION")
                             .font(.adsBody)
@@ -80,6 +89,41 @@ struct AppSettingsView: View {
                             .padding(.horizontal, -16)
                     }
                     .disabled(!appPermissions.settings)
+                    .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                    .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                    
+                    //MARK: - Audio
+                    Section {
+                        Picker("Audio mode",
+                               selection: viewStore.binding(get: \.audioMode,
+                                                            send: { .audioModeSelected($0) })) {
+                            ForEach(AVAudioSession.Mode.allCases, id:\.self) { mode in
+                                if let name = mode.displayName {
+                                    Text(name)
+                                } else {
+                                    EmptyView()
+                                }
+                            }
+                        }.accessibilityLabel("AudioMode_Picker")
+                        
+                        Picker("Audio category",
+                               selection: viewStore.binding(get: \.audioCategory,
+                                                            send: { .audioCategorySelected($0) })) {
+                            ForEach(AVAudioSession.Category.allCases, id:\.self) { cat in
+                                if let name = cat.displayName {
+                                    Text(name)
+                                } else {
+                                    EmptyView()
+                                }
+                            }
+                        }.accessibilityLabel("AudioCategory_Picker")
+                        
+                    } header: {
+                        Text("Audio Session")
+                            .font(.adsBody)
+                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                            .padding(.horizontal, -16)
+                    }
                     .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                     .listRowBackground(Color(AdColorPalette.Background.secondary.color))
                     
@@ -306,7 +350,6 @@ struct AppSettingsView: View {
                     }
                     .disabled(!appPermissions.settings)
                     .listRowBackground(Color(AdColorPalette.State.failure.color))
-                    .disabled(true)
                     
                     //MARK: - Profig settings
                     Section {
@@ -338,15 +381,14 @@ struct AppSettingsView: View {
                         }
                         .accessibilityLabel("USOptOuPartnertButton")
                         
-                        Button{
-                            viewStore.send(.showPrivacyDataTapped)
-                        } label : {
+                        NavigationLink(
+                            destination: PrivacyDataView().navigationTitle("Privacy Data")
+                        ) {
                             Text("Retrieve Privacy data")
-                                .padding(.vertical, 4)
-                                .frame(maxWidth: .infinity)
                         }
-                        .buttonStyle(AdsSecondaryButton())
                         .accessibilityLabel("RetrievePrivacyDataButton")
+                        .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                        .listRowBackground(Color(AdColorPalette.Background.secondary.color))
                         
                     } header: {
                         Text("Privacy")

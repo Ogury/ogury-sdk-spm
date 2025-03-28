@@ -129,6 +129,13 @@ struct AdViewFeature: Reducer {
         }
         
         @BindingState var baseOptions: BaseOptions
+        var testModeOptions: BaseOptions {
+            var options = baseOptions
+            options.campaignId = ""
+            options.creativeId = ""
+            options.dspCreativeId = ""
+            return options
+        }
         var isLoading = false
         var error: Error?
         var showAfterLoad = false
@@ -158,18 +165,18 @@ struct AdViewFeature: Reducer {
         var enableFeedbacks = true
         let id: UUID = UUID()
         let adType: AnyAdType!
-        var isHeaderBidding: Bool {
+        var enableRtbTestMode: Bool {
             if let ad = (adType.adType as? AdType<InterstitialAdManager>) {
-                return ad.isHeaderBidding
+                return ad.enableRtbTestMode
             }
             if let ad = (adType.adType as? AdType<RewardedAdManager>) {
-                return ad.isHeaderBidding
+                return ad.enableRtbTestMode
             }
             if let ad = (adType.adType as? AdType<ThumbnailAdManager>) {
-                return ad.isHeaderBidding
+                return ad.enableRtbTestMode
             }
             if let ad = (adType.adType as? AdType<BannerAdManager>) {
-                return ad.isHeaderBidding
+                return ad.enableRtbTestMode
             }
             return false
         }
@@ -237,8 +244,8 @@ struct AdViewFeature: Reducer {
         }
         var rewardedFeature: RewardedFeature.State {
             get {
-                RewardedFeature.State(name: rewardedOptions?.name ?? "not available",
-                                      value: rewardedOptions?.value ?? "not available",
+                RewardedFeature.State(name: rewardedOptions?.name ?? "",
+                                      value: rewardedOptions?.value ?? "",
                                       rewardReceived: rewardedOptions?.received ?? false)
             }
             
@@ -398,11 +405,12 @@ struct AdViewFeature: Reducer {
                     guard var options = adManager.options?.baseOptions else {
                         throw AdManagerError.noOptions
                     }
+                    let testMode = state.testModeEnabled
                     options.adUnitId = state.baseOptions.adUnitId
-                    options.campaignId = state.baseOptions.campaignId
-                    options.creativeId = state.baseOptions.creativeId
-                    options.dspCreativeId = state.baseOptions.dspCreativeId
-                    options.dspRegion = !state.baseOptions.showDspFields ? nil : state.baseOptions.dspRegion
+                    options.campaignId = testMode ? nil : state.baseOptions.campaignId
+                    options.creativeId = testMode ? nil : state.baseOptions.creativeId
+                    options.dspCreativeId = testMode ? nil : state.baseOptions.dspCreativeId
+                    options.dspRegion = (!state.baseOptions.showDspFields || testMode) ? nil : state.baseOptions.dspRegion
                     options.adDisplayName = state.baseOptions.adDisplayName
                     if let thumbManager = adManager as? ThumbnailAdManager,
                        let thumbOptions = state.thumbnailOptions {
@@ -483,7 +491,7 @@ struct AdViewFeature: Reducer {
                     
                 case .resetReward:
                     if state.rewardedOptions != nil {
-                        state.rewardedOptions = RewardedOptions(name: "not available", value: "not available", received: false)
+                        state.rewardedOptions = RewardedOptions(name: "", value: "", received: false)
                     }
                     return .none
                     
@@ -646,7 +654,7 @@ struct AdViewFeature: Reducer {
                     let update = state.updateTestMode()
                     // the options are not updated when setting the adUnit programmatically, so we have to "force" an option update
                     if update {
-                        updateAdManager(options: state.baseOptions)
+                        updateAdManager(options: state.testModeEnabled ? state.testModeOptions : state.baseOptions)
                     }
                     return .none
                     

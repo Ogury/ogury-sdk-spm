@@ -13,7 +13,7 @@ struct AddFormatView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
-            Text(title.capitalized)
+            Text(title)
                 .font(.adsSubheadline)
             
             Text(String(describing: value.wrappedValue))
@@ -28,8 +28,8 @@ struct AddFormatView: View {
                         .frame(width: 50, height: 50)
                         .background(
                             value.wrappedValue == 0
-                            ? Color(AdColorPalette.Background.disabled.color)
-                            : Color(AdColorPalette.Primary.accentLight.color)
+                            ? Color(AdColorPalette.Background.disabled.color).gradient
+                            : Color(AdColorPalette.Primary.accentLight.color).gradient
                         )
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
@@ -41,7 +41,7 @@ struct AddFormatView: View {
                     Image(systemName: "plus")
                         .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
                         .frame(width: 50, height: 50)
-                        .background(Color(AdColorPalette.Primary.accentLight.color))
+                        .background(Color(AdColorPalette.Primary.accentLight.color).gradient)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
             }

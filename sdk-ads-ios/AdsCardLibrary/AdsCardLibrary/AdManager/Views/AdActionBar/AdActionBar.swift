@@ -8,10 +8,11 @@ import ComposableArchitecture
 struct AdActionBar: View {
     @Environment(\.isEnabled) private var isEnabled
     @Environment(\.cardPermissions) var cardPermissions
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
     let store: StoreOf<AdActionBarFeature>
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            HStack(spacing: 8) {
+            HStack(alignment: .center, spacing: 8) {
                 Group {
                     Button("Load") {
                         viewStore.send(.loadButtonTapped)
@@ -30,16 +31,14 @@ struct AdActionBar: View {
                 }
                 .buttonStyle(AdsPrimaryButton(isEnabled: isEnabled))
                 
-                Spacer()
-                
-                Divider()
-                    .frame(width: 0.35, height: 35)
-                    .overlay(Color(
-                        cardPermissions.add
-                        ? AdColorPalette.Background.separator.color
-                        : .clear
-                    ))
-                    .padding(.vertical)
+                if dynamicTypeSize < .xLarge, cardPermissions.add {
+                    Spacer()
+                    
+                    Divider()
+                        .frame(width: 0.35)
+                        .frame(maxHeight: 35)
+                        .overlay(Color(AdColorPalette.Background.separator.color))
+                }
                 
                 
                 if cardPermissions.add {
@@ -49,10 +48,9 @@ struct AdActionBar: View {
                         viewStore.send(.deleteButtonTapped)
                     } label: {
                         Image(systemName: "trash")
-                            .tint(Color(AdColorPalette.State.failure.color))
+                            .tint(Color(AdColorPalette.State.failure.color).gradient)
                     }
                     .accessibilityLabel("Card#\(viewStore.qaLabel)_DeleteButton")
-                    .padding(4)
                     .buttonStyle(AdsDefaultButton(color: AdColorPalette.State.failure.color))
                     .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: true).color))
                     .clipShape(RoundedRectangle(cornerRadius: 4))
@@ -61,6 +59,7 @@ struct AdActionBar: View {
             }
             .background(Color(AdColorPalette.Background.primary.color))
         }
+        .padding(.vertical)
     }
 }
 
@@ -83,8 +82,10 @@ public struct AdsPrimaryButton: ButtonStyle {
         configuration
             .label
             .font(.adsTitle3)
+            .lineLimit(1)
+            .truncationMode(.tail)
             .padding(8)
-            .background(backgroundColor(isPressed: configuration.isPressed))
+            .background(backgroundColor(isPressed: configuration.isPressed).gradient)
             .foregroundColor(foregroundColor(isPressed: configuration.isPressed))
             .clipShape(RoundedRectangle(cornerRadius: 8))
             .shadow(color: Color(AdColorPalette.Background.shadow.color), radius: 3.5, x: 0, y: 5)
@@ -181,7 +182,7 @@ public struct AdsDefaultButton: ButtonStyle {
             .label
             .font(.adsTitle3)
             .padding(8)
-            .background(Color(configuration .isPressed ? (color.darker() ?? color) : color))
+            .background(Color(configuration .isPressed ? (color.darker() ?? color) : color).gradient)
             .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 }

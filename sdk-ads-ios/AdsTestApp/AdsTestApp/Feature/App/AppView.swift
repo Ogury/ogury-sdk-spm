@@ -32,7 +32,9 @@ struct AppView: View {
                     ToolbarItemGroup(placement: .keyboard) {
                         if toolbarVisible {
                             HStack {
-                                Spacer()
+                                if #available(iOS 17.0, *) {
+                                    Spacer()
+                                }
                                 
                                 Button("Close") {
                                     store.send(.endEditing)
@@ -40,6 +42,8 @@ struct AppView: View {
                                 .font(.adsBody)
                                 .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
                             }
+                            .padding()
+                            .id("toolbarVisible")  // Force a view update by adding an ID
                         }
                     }
                 }
