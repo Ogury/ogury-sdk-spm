@@ -21,7 +21,7 @@ static NSString *const OGABannerAdContainerStateKeyValueObservationBoundsKey = @
 static NSString *const OGABannerAdContainerStateKeyValueObservationAlphaKey = @"alpha";
 static NSString *const OGABannerAdContainerStateKeyValueObservationHiddenKey = @"hidden";
 
-static int const OGABannerAdContainerStateMaximumNumberOfParentTraversals = 16;
+static int const OGABannerAdContainerStateMaximumNumberOfParentTraversals = 32;
 
 @interface OGABannerAdViewContainerState ()
 
