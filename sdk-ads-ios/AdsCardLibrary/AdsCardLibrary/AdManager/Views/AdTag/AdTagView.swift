@@ -12,9 +12,9 @@ public struct AdTagList: View {
     public enum TagSize {
         case small, `default`
     }
-    let tags: [AdTag]
+    let tags: [OguryAdTag]
     var size: TagSize = .default
-    public init(tags: [AdTag], size: TagSize = .default) {
+    public init(tags: [OguryAdTag], size: TagSize = .default) {
         self.tags = tags
         self.size = size
     }

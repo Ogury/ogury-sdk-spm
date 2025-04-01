@@ -89,7 +89,7 @@ struct AdFormat: Equatable, Identifiable, Hashable {
         return nil
     }
     
-    var tags: [AdTag] {
+    var tags: [OguryAdTag] {
         if let ad = (adType.adType as? AdType<InterstitialAdManager>) {
             return ad.tags
         }

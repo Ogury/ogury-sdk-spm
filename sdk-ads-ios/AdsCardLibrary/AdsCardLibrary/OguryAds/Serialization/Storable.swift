@@ -28,7 +28,6 @@ public enum RawInnerAdType: Int {
 }
 
 extension AdType: Codable {
-    
     public var innerType: Int {
         switch self {
             case .interstitial: return RawInnerAdType.interstitial.rawValue

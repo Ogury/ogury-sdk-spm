@@ -184,7 +184,7 @@ struct AdViewFeature: Reducer {
         // since we need a Binding to a String, we wille use this property
         @BindingState var fakeTextState = ""
         @PresentationState var alert: AlertState<Action.Alert>?
-        var tags: Set<AdTag> = Set()
+        var tags: Set<OguryAdTag> = Set()
         
         private var adUnitIsInTestMode: Bool { baseOptions.adUnitId.isTestModeOn }
         
