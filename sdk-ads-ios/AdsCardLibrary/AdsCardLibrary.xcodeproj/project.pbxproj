@@ -62,6 +62,8 @@
 		43A78A6E2A52ABF30004A613 /* AdManagerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */; };
 		43A9F4A52C37E7800085EF6F /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A9F4A42C37E7800085EF6F /* OguryCore.framework */; };
 		43AE68042AAB25B1002E7C46 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED4392AA8565800486AF2 /* OguryAds.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		43B439AF2D9C23C7005AAED6 /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B439AE2D9C23C7005AAED6 /* AdManager.swift */; };
+		43B439B02D9C23C7005AAED6 /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B439AE2D9C23C7005AAED6 /* AdManager.swift */; };
 		43B59C092D9AC7D300BE53A1 /* ThumbnailOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59C082D9AC7D300BE53A1 /* ThumbnailOptions.swift */; };
 		43B59C0A2D9AC7D300BE53A1 /* ThumbnailOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59C082D9AC7D300BE53A1 /* ThumbnailOptions.swift */; };
 		43B8357C2D4CC2E100797245 /* CardPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B8357B2D4CC2E100797245 /* CardPermissions.swift */; };
@@ -195,6 +197,7 @@
 		438ED4392AA8565800486AF2 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManagerOptionsTests.swift; sourceTree = "<group>"; };
 		43A9F4A42C37E7800085EF6F /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43B439AE2D9C23C7005AAED6 /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
 		43B59C082D9AC7D300BE53A1 /* ThumbnailOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailOptions.swift; sourceTree = "<group>"; };
 		43B8357B2D4CC2E100797245 /* CardPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPermissions.swift; sourceTree = "<group>"; };
 		43BCB1912C22FBF0002FB0B1 /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -451,6 +454,7 @@
 		43B59C072D9AC75C00BE53A1 /* OguryAds */ = {
 			isa = PBXGroup;
 			children = (
+				438ED3B72AA0C2BA00486AF2 /* OguryAdManager.swift */,
 				438ED3AE2AA0C2B900486AF2 /* AdManagers */,
 				434F85192AD53392005077F5 /* HeaderBiding */,
 				438ED3B52AA0C2BA00486AF2 /* Errors */,
@@ -502,7 +506,7 @@
 		43E349422A49BA040060B41F /* AdManager */ = {
 			isa = PBXGroup;
 			children = (
-				438ED3B72AA0C2BA00486AF2 /* OguryAdManager.swift */,
+				43B439AE2D9C23C7005AAED6 /* AdManager.swift */,
 				438ED3B42AA0C2BA00486AF2 /* AdManagerDelegate.swift */,
 				438ED3C62AA0C2BA00486AF2 /* AdManagerOptions.swift */,
 				438ED3B82AA0C2BA00486AF2 /* Views */,
@@ -739,6 +743,7 @@
 				434F851D2AD535B2005077F5 /* HeaderBidable.swift in Sources */,
 				435C55E42A42EAEF004186FF /* AdsCardLibrary.docc in Sources */,
 				438ED3CD2AA0C2BA00486AF2 /* OguryErrorConvertible.swift in Sources */,
+				43B439B02D9C23C7005AAED6 /* AdManager.swift in Sources */,
 				438ED3D12AA0C2BA00486AF2 /* ThumbnailOptionFeature.swift in Sources */,
 				438ED3C82AA0C2BA00486AF2 /* InterstitialAdManager.swift in Sources */,
 				438ED3D82AA0C2BA00486AF2 /* AdManagerOptions.swift in Sources */,
@@ -798,6 +803,7 @@
 				43BCB1722C22FBF0002FB0B1 /* HeaderBidable.swift in Sources */,
 				43BCB1732C22FBF0002FB0B1 /* AdsCardLibrary.docc in Sources */,
 				43BCB1742C22FBF0002FB0B1 /* OguryErrorConvertible.swift in Sources */,
+				43B439AF2D9C23C7005AAED6 /* AdManager.swift in Sources */,
 				43BCB1752C22FBF0002FB0B1 /* ThumbnailOptionFeature.swift in Sources */,
 				43BCB1762C22FBF0002FB0B1 /* InterstitialAdManager.swift in Sources */,
 				43BCB1772C22FBF0002FB0B1 /* AdManagerOptions.swift in Sources */,

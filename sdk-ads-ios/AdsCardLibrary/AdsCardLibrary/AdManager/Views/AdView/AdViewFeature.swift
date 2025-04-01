@@ -10,62 +10,6 @@ import Combine
 import SwiftUI
 import OguryAds
 
-public enum DspRegion : CaseIterable, Codable {
-    case euWest1
-    case usEast1
-    case usWest2
-    case apNorthEast1
-    
-    public var displayName: String {
-        switch self {
-            case .euWest1: return "eu-west-1"
-            case .usEast1: return "us-east-1"
-            case .usWest2: return "us-west-2"
-            case .apNorthEast1: return "ap-northeast-1"
-        }
-    }
-}
-
-public enum KillWebviewMode: String, CaseIterable, Codable {
-    case none, simulate, saturate
-    
-    public static var allCases: [KillWebviewMode] {
-#if targetEnvironment(simulator)
-        return [.none, .simulate]
-#else
-        return [.none, .simulate, .saturate]
-#endif
-    }
-    
-    public var displayName: String {
-        switch self {
-            case .none: return "Don't display feature"
-            case .simulate: return "Simulate"
-            case .saturate: return "Crash"
-        }
-    }
-    public var description: String? {
-        switch self {
-            case .none: return nil
-            case .simulate: return "Simulate a memory pressure by calling the SDK delegate method that handles webview kill"
-            case .saturate: return "Saturate the device's memory to try to trigger a webview crash. This will heat your device as memory will saturate, use with caution"
-        }
-    }
-    public var displayColor: Color {
-        switch self {
-            case .none: return Color(AdColorPalette.Text.primary(onAccent: false).color)
-            case .simulate: return Color(AdColorPalette.Text.primary(onAccent: false).color)
-            case .saturate: return Color(AdColorPalette.State.failure.color)
-        }
-    }
-    public var icon: Image? {
-        if case .saturate = self {
-            return Image(systemName: "bolt.trianglebadge.exclamationmark.fill")
-        }
-        return nil
-    }
-}
-
 struct BaseOptions: Equatable {
     var adDisplayName: String = ""
     var adUnitId: String = ""
@@ -84,7 +28,7 @@ struct BaseOptions: Equatable {
     var qaLabel: String = UUID().uuidString
     var killWebviewMode: KillWebviewMode = .none
     
-    init(from options: any AdOptions) {
+    init(from options: any OguryAdOptions) {
         showCampaignId = options.showCampaignId
         showCreativeId = options.showCreativeId
         showDspFields = options.showDspFields
@@ -140,7 +84,7 @@ struct AdViewFeature: Reducer {
         var error: Error?
         var showAfterLoad = false
         var adStateEvent: AdLifeCycleEvent?
-        var specificOptions: any AdOptions
+        var specificOptions: any OguryAdOptions
         var thumbnailOptions: ThumbnailDisplayOptions?
         var bannerContainer: BannerContainer?
         var rewardedOptions: RewardedOptions?
@@ -254,7 +198,7 @@ struct AdViewFeature: Reducer {
             }
         }
         
-        init(from options: any AdOptions,
+        init(from options: any OguryAdOptions,
              adType: AnyAdType,
              bannerContainer: BannerContainer? = nil,
              rewardedOptions: RewardedOptions? = nil) {

@@ -88,7 +88,7 @@ public class ThumbnailAdManagerOptions: AdManagerOptions {
         try container.encode(thumbnailOptions, forKey: .thumbnailOptions)
     }
     
-    public override func isEqual(_ options: any AdOptions) -> Bool {
+    public override func isEqual(_ options: any OguryAdOptions) -> Bool {
         guard let otherThumbOption = options as? ThumbnailAdManagerOptions else { return false }
         return super.isEqual(otherThumbOption) && thumbnailOptions == otherThumbOption.thumbnailOptions
     }

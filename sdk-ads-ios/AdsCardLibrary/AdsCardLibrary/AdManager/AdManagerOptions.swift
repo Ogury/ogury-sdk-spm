@@ -6,7 +6,7 @@ import Foundation
 import UIKit
 
 //MARK: -
-public protocol AdOptions: Equatable, Codable {
+public protocol OguryAdOptions: Equatable, Codable {
     //MARK: Variables
     /// show the campaignId field on the ``AdView``
     var showCampaignId: Bool { get set }
@@ -19,7 +19,7 @@ public protocol AdOptions: Equatable, Codable {
     /// the common options for all ads
     var baseOptions: BaseAdOptions { get set }
     /// checks the equality between 2 option set
-    func isEqual(_ otherOption: any AdOptions) -> Bool
+    func isEqual(_ otherOption: any OguryAdOptions) -> Bool
 }
 
 public struct BaseAdOptions: Equatable, Codable {
@@ -56,7 +56,7 @@ public struct BaseAdOptions: Equatable, Codable {
     }
 }
 
-extension AdOptions {
+extension OguryAdOptions {
     static public func == (lhs: Self, rhs: Self) -> Bool {
         lhs.isEqual(rhs)
     }
@@ -64,7 +64,7 @@ extension AdOptions {
 
 //MARK: -
 /// ``BaseAdManagerOptions`` will handle all the common settings for all ad format
-public class BaseAdManagerOptions: AdOptions, Codable {
+public class BaseAdManagerOptions: OguryAdOptions, Codable {
     //MARK: Variables
     /// show the campaignId field on the ``AdView``. false if not set otherwise
     public var showCampaignId: Bool
@@ -112,7 +112,7 @@ public class BaseAdManagerOptions: AdOptions, Codable {
                                     qaLabel: qaLabel)
     }
     
-    public func isEqual(_ options: any AdOptions) -> Bool {
+    public func isEqual(_ options: any OguryAdOptions) -> Bool {
         guard let otherOption = options as? BaseAdManagerOptions else { return false }
         return showCampaignId == otherOption.showCampaignId &&
         showCreativeId == otherOption.showCreativeId &&
@@ -193,7 +193,7 @@ public class BannerAdManagerOptions: BaseAdManagerOptions {
         try super.init(from: decoder)
     }
     
-    public override func isEqual(_ options: any AdOptions) -> Bool {
+    public override func isEqual(_ options: any OguryAdOptions) -> Bool {
         guard let otherThumbOption = options as? BannerAdManagerOptions else { return false }
         return super.isEqual(otherThumbOption) && view == otherThumbOption.view
     }
@@ -264,7 +264,7 @@ public class AdManagerOptions: BaseAdManagerOptions {
         try super.init(from: decoder)
     }
     
-    public override func isEqual(_ options: any AdOptions) -> Bool {
+    public override func isEqual(_ options: any OguryAdOptions) -> Bool {
         guard let otherThumbOption = options as? AdManagerOptions else { return false }
         return super.isEqual(otherThumbOption) && viewController == otherThumbOption.viewController
     }

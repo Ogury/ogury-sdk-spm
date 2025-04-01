@@ -8,19 +8,6 @@ import Combine
 import OguryAds
 import WebKit
 
-public enum AdFormat {
-    case interstitial, rewardedVideo, smallBanner, mrec, thumbnail
-    public var name: String {
-        switch self {
-            case .interstitial: return "Interstitial"
-            case .rewardedVideo: return "Rewarded"
-            case .thumbnail: return "Thumbnail"
-            case .smallBanner: return "Small banner"
-            case .mrec: return "MREC"
-        }
-    }
-}
-
 /// All objects that should have an ad manager basic bahavior should implement this protocol
 public protocol OguryAdManager: Storable, Equatable, Identifiable where ID == UUID {
     /// The underlying ad implementation associated with this manager
@@ -30,7 +17,7 @@ public protocol OguryAdManager: Storable, Equatable, Identifiable where ID == UU
     /// the type of ad to load
     var adType: AdType<Self> { get }
     /// The underlying ad implementation associated with this manager
-    associatedtype Options: AdOptions
+    associatedtype Options: OguryAdOptions
     /// the options associate with this ad format. Mandatory
     var options: Options! { get set }
     /// updates the base options
