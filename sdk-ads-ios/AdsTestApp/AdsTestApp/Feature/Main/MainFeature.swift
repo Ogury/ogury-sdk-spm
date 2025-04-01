@@ -67,7 +67,7 @@ struct MainFeature: Reducer {
             return isEqual && lhs.destination == rhs.destination && lhs.setName == rhs.setName
         }
         
-        var adFormats: [AdFormat:[any AdManager]] = [:]
+        var adFormats: [AdFormat:[any OguryAdManager]] = [:]
         @PresentationState var destination: Destination.State?
         @BindingState var setName = ""
         fileprivate var settingsPriorToChange: SettingsContainer = SettingsContainer()
@@ -112,7 +112,7 @@ struct MainFeature: Reducer {
         case removeSetButtonTapped
         case deleteCard(id: UUID)
         case saveCards
-        case refreshAllCards(_: [AdFormat:[any AdManager]])
+        case refreshAllCards(_: [AdFormat:[any OguryAdManager]])
         case showLogs(_: Bool)
         case importFile(_: URL)
         case loadFromContainer(_: AdsStorableContainer)
@@ -364,8 +364,8 @@ struct MainFeature: Reducer {
             })
     }
     
-    private func sort(adFormats: inout [AdFormat:[any AdManager]])  {
-        var updatedValue: [AdFormat:[any AdManager]] = [:]
+    private func sort(adFormats: inout [AdFormat:[any OguryAdManager]])  {
+        var updatedValue: [AdFormat:[any OguryAdManager]] = [:]
         Array(adFormats.keys)
             .sorted()
             .forEach { key in
@@ -374,8 +374,8 @@ struct MainFeature: Reducer {
         adFormats = updatedValue
     }
     
-    func adManagers(for section: AdFormat, startIndex: Int = 0) -> [any AdManager] {
-        var adsManager: [any AdManager] = []
+    func adManagers(for section: AdFormat, startIndex: Int = 0) -> [any OguryAdManager] {
+        var adsManager: [any OguryAdManager] = []
         for index in 0..<section.nbOfFormatToLoad {
             switch section.adType.adType {
                 case is AdType<InterstitialAdManager>:
@@ -420,7 +420,7 @@ struct MainFeature: Reducer {
         return adsManager
     }
     
-    private func removeCard(withId id: UUID, from formats: [AdFormat:[any AdManager]]) -> [AdFormat:[any AdManager]] {
+    private func removeCard(withId id: UUID, from formats: [AdFormat:[any OguryAdManager]]) -> [AdFormat:[any OguryAdManager]] {
         var sections = formats
         sections.keys.forEach { key in
             var newKey = key
@@ -438,7 +438,7 @@ struct MainFeature: Reducer {
     }
     
     //MARK: - Data management
-    private func store(formats: [AdFormat:[any AdManager]], settings: SettingsContainer? = nil) {
+    private func store(formats: [AdFormat:[any OguryAdManager]], settings: SettingsContainer? = nil) {
         let container = AdsStorableContainer(settings: settings ?? .init(), cards: formats)
         container.save()
     }
@@ -540,7 +540,7 @@ Do you want to proceed ?
 
 struct FormatSection: Equatable {
     let name: String
-    var formats: [any AdManager] = []
+    var formats: [any OguryAdManager] = []
     
     static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.name == rhs.name

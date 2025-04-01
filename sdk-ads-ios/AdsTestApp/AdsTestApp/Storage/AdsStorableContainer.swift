@@ -260,7 +260,7 @@ struct AdsStorableContainer: Codable {
     var shouldUpdateAdUnits: Bool { settings.shouldUpdateAdUnits }
     
     init(settings: SettingsContainer = .init(),
-         cards: [AdFormat: [any AdManager]]) {
+         cards: [AdFormat: [any OguryAdManager]]) {
         self.settings = settings
         self.cards = cards.compactMap { (adFormat, managers) in
             AdContainer.from(adFormat: adFormat, managers: managers)
@@ -308,8 +308,8 @@ struct AdsStorableContainer: Codable {
                      unityLevelPlayBidable: UnityLevelPlayBidder,
                      viewController: UIViewController? = nil,
                      view: UIView? = nil,
-                     adDelegate: AdLifeCycleDelegate? = nil) -> [AdFormat: [any AdManager]] {
-        var adFormats: [AdFormat: [any AdManager]] = [:]
+                     adDelegate: AdLifeCycleDelegate? = nil) -> [AdFormat: [any OguryAdManager]] {
+        var adFormats: [AdFormat: [any OguryAdManager]] = [:]
         cards.forEach { adContainers in
             if let adTuple = adContainers.convertToAdFormat(cardManager: cardManager,
                                                             maxHeaderBidable: maxHeaderBidable,
@@ -370,7 +370,7 @@ struct AdContainer: Codable {
     let adInformations: AdInformationsContainer
     let thumbnailOptions: ThumbnailOptionsContainer?
     
-    fileprivate static func from(adFormat: AdFormat, managers: [any AdManager]) -> [Self] {
+    fileprivate static func from(adFormat: AdFormat, managers: [any OguryAdManager]) -> [Self] {
         managers
             .compactMap { manager in
                 guard let adType = try? adFormat.innerAdType else {
@@ -461,7 +461,7 @@ struct AdContainer: Codable {
         }
     }
     
-    fileprivate func adOptions<T: AdManager>(adType: AdType<T>, settings: SettingsContainer, viewController: UIViewController) -> AdManagerOptions {
+    fileprivate func adOptions<T: OguryAdManager>(adType: AdType<T>, settings: SettingsContainer, viewController: UIViewController) -> AdManagerOptions {
         AdManagerOptions(showCampaignId: settings.showCampaignId,
                          showCreativeId: settings.showCreativeId,
                          showDspFields: settings.showDspFields,
@@ -482,7 +482,7 @@ struct AdContainer: Codable {
                          killWebviewMode: settings.killWebviewMode,
                          qaLabel: adInformations.settings.qaLabel)
     }
-    fileprivate func bannerOptions<T: AdManager>(adType: AdType<T>, settings: SettingsContainer, view: UIView) -> BannerAdManagerOptions {
+    fileprivate func bannerOptions<T: OguryAdManager>(adType: AdType<T>, settings: SettingsContainer, view: UIView) -> BannerAdManagerOptions {
         BannerAdManagerOptions(showCampaignId: settings.showCampaignId,
                                showCreativeId: settings.showCreativeId,
                                showDspFields: settings.showDspFields,
@@ -503,7 +503,7 @@ struct AdContainer: Codable {
                                killWebviewMode: settings.killWebviewMode,
                                qaLabel: adInformations.settings.qaLabel)
     }
-    fileprivate func thumbnailOptions<T: AdManager>(adType: AdType<T>, settings: SettingsContainer, viewController: UIViewController) -> ThumbnailAdManagerOptions {
+    fileprivate func thumbnailOptions<T: OguryAdManager>(adType: AdType<T>, settings: SettingsContainer, viewController: UIViewController) -> ThumbnailAdManagerOptions {
         let corner: OguryRectCorner? = thumbnailOptions?.thumbnailPosition != nil
         ? OguryRectCorner(rawValue: thumbnailOptions!.thumbnailPosition)
         : nil
@@ -546,7 +546,7 @@ extension Array where Element == AdContainer {
                            settings: SettingsContainer,
                            viewController: UIViewController?,
                            view: UIView?,
-                           adDelegate: AdLifeCycleDelegate? = nil) -> (adFormat: AdFormat, managers: [any AdManager])? {
+                           adDelegate: AdLifeCycleDelegate? = nil) -> (adFormat: AdFormat, managers: [any OguryAdManager])? {
         guard !isEmpty, let adFormat = try? first?.adFormat else { return nil }
         return (adFormat: adFormat, managers: compactMap({ adContainer in
             switch adContainer.adType {

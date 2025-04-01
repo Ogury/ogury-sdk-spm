@@ -10,7 +10,7 @@ public protocol AdLifeCycleDelegate {
     ///   - banner: the banner ad that needs display
     ///   - adManager: the adManager associated with the banner
     /// - Returns: the viewController that contains the view hosting the banner
-    func viewController<T: AdManager>(forBanner banner: T.Ad, adManager: T) -> UIViewController?
+    func viewController<T: OguryAdManager>(forBanner banner: T.Ad, adManager: T) -> UIViewController?
     func deleteCard(withId id: UUID)
     // log
     func focusLogs(on cardId: String)

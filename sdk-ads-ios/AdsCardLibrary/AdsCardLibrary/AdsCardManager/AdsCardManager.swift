@@ -31,7 +31,7 @@ public struct AdsCardManager {
     ///  let interstitial: AdType<InterstitialAdManager> = .interstitial
     ///  let interstitialManager = try? cardManager.adManager(for: interstitial, options: AdManagerOptions(adUnitId: ""), adDelegate: nil)
     /// ```
-    public func adManager<T: AdManager>(for adType: AdType<T>,
+    public func adManager<T: OguryAdManager>(for adType: AdType<T>,
                                         options: T.Options,
                                         adDelegate: AdLifeCycleDelegate?) throws -> T {
         var manager = try adType.adManager
@@ -40,19 +40,12 @@ public struct AdsCardManager {
         return manager
     }
     
-//    public func launch(with assetKey: String, environment: String) {
-//        DispatchQueue.main.async {
-//            let sel = NSSelectorFromString("changeServerEnvironment:")
-//            OGAInternal.shared().perform(sel, with: environment)
-//            OGAInternal.shared().start(with: assetKey) { success, error in
-//                if (success && error == nil) {
-//                    print("OguryAds Start Done")
-//                } else {
-//                    print("OguryAds failed to start with error : \(error?.localizedDescription ?? "Error description is nil")")
-//                }
-//            }
-//        }
-//    }
+    /// Return a SwiftUI adView Card to handle ad managed inside the `adManager`
+    /// - Parameter adManager: the `AdManager` that handle the underlying ad
+    /// - Returns: a SwiftUI AdView object that handles all ad lifecycle through its
+    public func card(for adManager: any OguryAdManager) -> AdView? {
+        nil
+    }
 }
 
 public extension String {
@@ -85,7 +78,7 @@ public enum AdTypeTitle: String {
 /// ```swift
 /// let adType: AdType<InterstitialAdManager> = .maxHeaderBidding(.interstitial)
 /// ```
-public indirect enum AdType<T: AdManager> {
+public indirect enum AdType<T: OguryAdManager> {
     case interstitial
     case rewarded
     case thumbnail
@@ -299,7 +292,7 @@ public protocol TypeErasing {
     var underlyingValue: Any { get }
 }
 
-public struct TypeEraser<V: AdManager>: TypeErasing {
+public struct TypeEraser<V: OguryAdManager>: TypeErasing {
     let orinal: AdType<V>
     public var underlyingValue: Any {
         return self.orinal
@@ -310,7 +303,7 @@ public struct AnyAdType: Identifiable, Hashable {
     public let id = UUID()
     typealias Value = Any
     private let eraser: TypeErasing
-    public init<V>(_ adType: AdType<V>) where V:AdManager {
+    public init<V>(_ adType: AdType<V>) where V:OguryAdManager {
         eraser = TypeEraser(orinal: adType)
     }
     

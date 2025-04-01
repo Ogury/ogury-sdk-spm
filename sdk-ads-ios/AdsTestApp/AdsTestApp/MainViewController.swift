@@ -100,7 +100,7 @@ extension MainViewController: AdLifeCycleDelegate, ApplicationDelegate {
         ViewStore(store, observe: { $0 }).send(.focusLogs(on: cardId))
     }
     
-    func viewController<T>(forBanner banner: T.Ad, adManager: T) -> UIViewController? where T : AdsCardLibrary.AdManager {
+    func viewController<T>(forBanner banner: T.Ad, adManager: T) -> UIViewController? where T : AdsCardLibrary.OguryAdManager {
         self
     }
     

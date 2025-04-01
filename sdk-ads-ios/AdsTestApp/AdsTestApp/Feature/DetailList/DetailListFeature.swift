@@ -13,7 +13,7 @@ struct DetailListFeature: Reducer {
             lhs.adManagers.count == rhs.adManagers.count
         }
         
-        var adManagers: [any AdManager]
+        var adManagers: [any OguryAdManager]
         var adFormat: AdFormat
         var toolbarVisible: Bool = false
     }

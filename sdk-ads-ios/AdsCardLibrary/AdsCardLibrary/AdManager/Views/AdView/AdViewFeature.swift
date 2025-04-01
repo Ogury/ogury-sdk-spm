@@ -115,7 +115,7 @@ public extension OguryLogType {
 }
 
 struct AdViewFeature: Reducer {
-    var adManager: any AdManager
+    var adManager: any OguryAdManager
     
     struct State: Equatable {
         static func == (lhs: AdViewFeature.State, rhs: AdViewFeature.State) -> Bool {

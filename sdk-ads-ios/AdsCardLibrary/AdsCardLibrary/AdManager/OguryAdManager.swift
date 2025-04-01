@@ -8,8 +8,21 @@ import Combine
 import OguryAds
 import WebKit
 
+public enum AdFormat {
+    case interstitial, rewardedVideo, smallBanner, mrec, thumbnail
+    public var name: String {
+        switch self {
+            case .interstitial: return "Interstitial"
+            case .rewardedVideo: return "Rewarded"
+            case .thumbnail: return "Thumbnail"
+            case .smallBanner: return "Small banner"
+            case .mrec: return "MREC"
+        }
+    }
+}
+
 /// All objects that should have an ad manager basic bahavior should implement this protocol
-public protocol AdManager: Storable, Equatable, Identifiable where ID == UUID {
+public protocol OguryAdManager: Storable, Equatable, Identifiable where ID == UUID {
     /// The underlying ad implementation associated with this manager
     associatedtype Ad
     /// the ad associate with this ad format. Mandatory
@@ -47,7 +60,7 @@ public protocol AdManager: Storable, Equatable, Identifiable where ID == UUID {
     func killWebview(_: KillWebviewMode)
 }
 
-extension AdManager {
+extension OguryAdManager {
     func kill(_ webView: WKWebView) {
         DispatchQueue.main.async {
             Task {

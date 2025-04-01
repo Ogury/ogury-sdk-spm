@@ -97,7 +97,7 @@ struct Configuration: Decodable {
         return conf
     } ()
     
-    func options<T: AdManager>(for adType: AdType<T>, index: Int?) -> T.Options {
+    func options<T: OguryAdManager>(for adType: AdType<T>, index: Int?) -> T.Options {
         let settings = SettingsController()
         switch adType {
             case .interstitial:

@@ -9,7 +9,7 @@ import OguryAds.Private
 import ComposableArchitecture
 import Combine
 
-public final class InterstitialAdManager: AdManager {
+public final class InterstitialAdManager: OguryAdManager {
     public static func == (lhs: InterstitialAdManager, rhs: InterstitialAdManager) -> Bool {
         return lhs.adType == rhs.adType && lhs.ad == rhs.ad
     }
