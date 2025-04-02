@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Combine
+import WebKit
 
 public enum AdFormat {
     case interstitial, rewardedVideo, smallBanner, mrec, thumbnail
@@ -21,140 +23,130 @@ public enum AdFormat {
 }
 
 public protocol AdManager: Storable, Equatable, Identifiable where ID == UUID {
-}
-
-//MARK: - Options
-public struct AdViewOptions: Codable, Equatable {
-    public var adOptions: AdOptions!
-    public var cardOptions: CardOptions!
-    public init(adOptions: AdOptions!, cardOptions: CardOptions = .init()) {
-        self.adOptions = adOptions
-        self.cardOptions = cardOptions
-    }
-}
-
-public struct CardOptions: Codable, Equatable {
-    /// show the campaignId field on the ``AdView``
-    public var showCampaignId: Bool = true
-    /// show the creativeId field on the ``AdView``
-    public var showCreativeId: Bool = false
-    /// show the DSP creativeId field on the ``AdView``
-    public var showDspFields: Bool = false
-    /// show the DSP creativeId field on the ``AdView``
-    public var showKillMode: Bool = true
-    /// The name of the card that will handle the ad
-    public var adDisplayName: String = ""
-    /// indicates if we should show the action bar or not
-    public var bulkModeEnabled: Bool = false
-    /// indicates if we should use _test mode
-    public var oguryTestModeEnabled: Bool = true
-    /// indicates if we should use the RTB test mode (test=1 in bid request)
-    public var rtbTestModeEnabled: Bool = true
-    /// indicates if we should show the killWebView feature
-    public var killWebviewMode: KillWebviewMode = .none
-    /// The card accessibilityLabel for testSigma and filter logs
-    public var qaLabel: String = UUID().uuidString
+    //MARK: properties
+    var adFormat: AdFormat { get set }
+    var adConfiguration: AdConfiguration! { get set }
+    var cardConfiguration: CardConfiguration! { get set }
+    var adDelegate: AdLifeCycleDelegate? { get set }
+    var events: PassthroughSubject<AdLifeCycleEvent, Never> { get set }
+    var lifeCycleEvents: [AdLifeCycleEventHistory] { get }
     
-    public init(showCampaignId: Bool = true,
-                showCreativeId: Bool = false,
-                showDspFields: Bool = false,
-                showKillMode: Bool = true,
-                adDisplayName: String = "",
-                bulkModeEnabled: Bool = false,
-                oguryTestModeEnabled: Bool = true,
-                rtbTestModeEnabled: Bool = true,
-                killWebviewMode: KillWebviewMode = .none,
-                qaLabel: String = UUID().uuidString) {
-        self.showCampaignId = showCampaignId
-        self.showCreativeId = showCreativeId
-        self.showDspFields = showDspFields
-        self.showKillMode = showKillMode
-        self.adDisplayName = adDisplayName
-        self.bulkModeEnabled = bulkModeEnabled
-        self.oguryTestModeEnabled = oguryTestModeEnabled
-        self.rtbTestModeEnabled = rtbTestModeEnabled
-        self.killWebviewMode = killWebviewMode
-        self.qaLabel = qaLabel
-    }
+    //MARK: functions
+    func update(_ adConfiguration: AdConfiguration)
+    func update(_ cardConfiguration: CardConfiguration)
+    func load() throws
+    func show() throws
+    func destroy() throws
+    func enable(testMode testModeEnabled: Bool)
+    func enable(rtbTestMode rtbTestModeEnabled: Bool)
+    func focusOnLogs(_ focusId: String)
+    func updateCard(events: [AdOptionsEvent])
+    func killWebview(_ killMode: KillWebviewMode)
 }
 
-public struct AdOptions: Codable, Equatable {
-    /// The adUnitId used to load the ad
-    public internal(set) var adUnitId: String
-    /// The campaignId used to load the ad
-    public var campaignId: String?
-    /// The creativeId used to load the ad
-    public var creativeId: String?
-    /// The dsp creativeId used to load the ad
-    public var dspCreativeId: String?
-    /// The dsp region used to load the ad
-    public var dspRegion: DspRegion?
-    
-    public init(adUnitId: String,
-                campaignId: String? = nil,
-                creativeId: String? = nil,
-                dspCreativeId: String? = nil,
-                dspRegion: DspRegion? = nil) {
-        self.adUnitId = adUnitId
-        self.campaignId = campaignId
-        self.creativeId = creativeId
-        self.dspCreativeId = dspCreativeId
-        self.dspRegion = dspRegion
-    }
-}
-
-public enum DspRegion : CaseIterable, Codable {
-    case euWest1
-    case usEast1
-    case usWest2
-    case apNorthEast1
-    
-    public var displayName: String {
-        switch self {
-            case .euWest1: return "eu-west-1"
-            case .usEast1: return "us-east-1"
-            case .usWest2: return "us-west-2"
-            case .apNorthEast1: return "ap-northeast-1"
+extension AdManager {
+    func kill(_ webView: WKWebView) {
+        DispatchQueue.main.async {
+            Task {
+                let crashCommand = "let largeArray = Array(1e9).fill(0);"
+                do {
+                    let res = try await webView.evaluateJavaScript(crashCommand)
+                    print("crash result \(String(describing: res))")
+                } catch {
+                    print("⚠️ Error while trying to crash webview \(error)")
+                }
+            }
         }
     }
 }
 
-public enum KillWebviewMode: String, CaseIterable, Codable {
-    case none, simulate, saturate
-    
-    public static var allCases: [KillWebviewMode] {
-#if targetEnvironment(simulator)
-        return [.none, .simulate]
-#else
-        return [.none, .simulate, .saturate]
-#endif
+public enum AdOptionsEvent {
+    case enableAdUnitEditing(_: Bool)
+    case showCampaignId(_: Bool)
+    case showCreativeId(_: Bool)
+    case showDspFields(_: Bool)
+    case showSpecificOptions(_: Bool)
+    case enableBulkMode(_: Bool)
+    case showTestMode(_: Bool)
+    case forceTestMode(_: Bool)
+    case enableFeedbacks(_: Bool)
+    case updateKillMode(_: KillWebviewMode)
+}
+
+public enum AdLifeCycleEvent {
+    case adLoading
+    // canShow indicates wether the show action can be performed afterwards.
+    // False in case of banners/mpu, true otherwise
+    case adLoaded(canShow: Bool)
+    case adDisplaying
+    case adClicked
+    case adClosed
+    case adDidTriggerImpression
+    case adDidFailToLoad(_: Error)
+    case adDidFailToDisplay(_: Error)
+    case adDidFail(_: Error)
+    case bannerReady(_: UIView)
+    case rewardReady(name: String, value: String)
+}
+
+public struct AdLifeCycleEventHistory {
+    let event: AdLifeCycleEvent
+    let date = Date()
+}
+
+enum AdManagerError: Error {
+    case noOptions
+    case loadNotCalledBeforeShow
+    case noShowForBanner
+    case adMarkUpRetrievalFailed(_: String?)
+}
+
+extension AdLifeCycleEvent: Equatable {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        switch (lhs, rhs) {
+            case (.adLoading, .adLoading): return true
+            case (.adLoaded, .adLoaded): return true
+            case (.adDisplaying, .adDisplaying): return true
+            case (.adClicked, .adClicked): return true
+            case (.adClosed, .adClosed): return true
+            case (.adDidTriggerImpression, .adDidTriggerImpression): return true
+            case (let .adDidFailToLoad(lhsError), let .adDidFailToLoad(rhsError)): return areEqual(lhsError, rhsError)
+            case (let .adDidFail(lhsError), let .adDidFail(rhsError)): return areEqual(lhsError, rhsError)
+            case (let .adDidFailToDisplay(lhsError), let .adDidFailToDisplay(rhsError)): return areEqual(lhsError, rhsError)
+            default: return false
+        }
+    }
+}
+
+/**
+ This is a equality on any 2 instance of Error.
+ */
+public func areEqual(_ lhs: Error, _ rhs: Error) -> Bool {
+    return lhs.reflectedString == rhs.reflectedString
+}
+
+
+public extension Error {
+    var reflectedString: String {
+        // NOTE 1: We can just use the standard reflection for our case
+        return String(reflecting: self)
     }
     
-    public var displayName: String {
-        switch self {
-            case .none: return "Don't display feature"
-            case .simulate: return "Simulate"
-            case .saturate: return "Crash"
-        }
+    // Same typed Equality
+    func isEqual(to: Self) -> Bool {
+        return self.reflectedString == to.reflectedString
     }
-    public var description: String? {
-        switch self {
-            case .none: return nil
-            case .simulate: return "Simulate a memory pressure by calling the SDK delegate method that handles webview kill"
-            case .saturate: return "Saturate the device's memory to try to trigger a webview crash. This will heat your device as memory will saturate, use with caution"
-        }
-    }
-    public var displayColor: Color {
-        switch self {
-            case .none: return Color(AdColorPalette.Text.primary(onAccent: false).color)
-            case .simulate: return Color(AdColorPalette.Text.primary(onAccent: false).color)
-            case .saturate: return Color(AdColorPalette.State.failure.color)
-        }
-    }
-    public var icon: Image? {
-        if case .saturate = self {
-            return Image(systemName: "bolt.trianglebadge.exclamationmark.fill")
-        }
-        return nil
+    
+}
+
+
+public extension NSError {
+    // prevents scenario where one would cast swift Error to NSError
+    // whereby losing the associatedvalue in Obj-C realm.
+    // (IntError.unknown as NSError("some")).(IntError.unknown as NSError)
+    func isEqual(to: NSError) -> Bool {
+        let lhs = self as Error
+        let rhs = to as Error
+        return self.isEqual(to) && lhs.reflectedString == rhs.reflectedString
     }
 }

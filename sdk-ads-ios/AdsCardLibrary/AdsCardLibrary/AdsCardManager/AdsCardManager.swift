@@ -43,7 +43,7 @@ public struct AdsCardManager {
     /// Return a SwiftUI adView Card to handle ad managed inside the `adManager`
     /// - Parameter adManager: the `AdManager` that handle the underlying ad
     /// - Returns: a SwiftUI AdView object that handles all ad lifecycle through its
-    public func card(for adManager: any OguryAdManager) -> AdView? {
+    public func card(for adManager: inout any AdManager) -> AdView? {
         nil
     }
 }

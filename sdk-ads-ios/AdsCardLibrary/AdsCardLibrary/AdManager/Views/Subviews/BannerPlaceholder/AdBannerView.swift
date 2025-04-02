@@ -6,9 +6,9 @@ import SwiftUI
 import OguryAds
 
 struct AdBannerView: UIViewRepresentable {
-    let banner: OguryBannerAdView
+    let banner: UIView
     
-    init(banner: OguryBannerAdView) { self.banner = banner }
+    init(banner: UIView) { self.banner = banner }
     func makeUIView(context: Context) -> some UIView { return banner }
     func updateUIView(_ uiView: UIViewType, context: Context) { }
 }

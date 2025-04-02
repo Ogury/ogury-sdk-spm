@@ -49,7 +49,7 @@ struct BaseOptions: Equatable {
 }
 
 struct BannerContainer: Equatable {
-    var bannerAd: OguryBannerAdView?
+    var bannerAd: UIView?
     var bannerType: AdType<BannerAdManager>
 }
 
@@ -250,7 +250,7 @@ struct AdViewFeature: Reducer {
                 case .adClosed: message = "Ad closed"
                 case .adDidTriggerImpression: message = "Ad triggered impression"
                 case .bannerReady: () // no publisher callback
-                case .rewardReady(let reward): message = "Ad received reward (\(reward.rewardName) : \(reward.rewardValue))"
+                case let .rewardReady(rewardName, rewardValue): message = "Ad received reward (\(rewardName) : \(rewardValue))"
                 case .adDidFailToLoad(let error): message = "Ad failed to load (\(error.displayMessage))"
                 case .adDidFailToDisplay(let error): message = "Ad failed to show (\(error.displayMessage))"
                 case .adDidFail(let error): message = "Ad failed (\(error.displayMessage))"
@@ -280,8 +280,8 @@ struct AdViewFeature: Reducer {
         case rewardedAction(_: RewardedFeature.Action)
         case resetReward
         case resetBanner
-        case bannerReady(_: OguryBannerAdView)
-        case rewardReady(_: OguryReward)
+        case bannerReady(_: UIView)
+        case rewardReady(name: String, value: String)
         case thumbnailOptionsAction(_: ThumbnailOptionFeature.Action)
         case showOptionToggle
         case showAfterLoad
@@ -446,9 +446,9 @@ struct AdViewFeature: Reducer {
                 case .rewardedAction:
                     return .none
                     
-                case let .rewardReady(reward):
-                    let name = reward.rewardName.isEmpty ? "Empty name" : reward.rewardName
-                    let value = reward.rewardValue.isEmpty ? "Empty value" : reward.rewardValue
+                case let .rewardReady(rewardName, rewardValue):
+                    let name = rewardName.isEmpty ? "Empty name" : rewardName
+                    let value = rewardValue.isEmpty ? "Empty value" : rewardValue
                     if state.rewardedOptions != nil {
                         state.rewardedOptions?.name = name
                         state.rewardedOptions?.value = value
@@ -650,7 +650,7 @@ extension AdLifeCycleEvent {
             case let .adDidFailToDisplay(error): return .error(error)
             case let .adDidFail(error): return .error(error)
             case let .bannerReady(ad): return .bannerReady(ad)
-            case let .rewardReady(reward): return .rewardReady(reward)
+            case let .rewardReady(rewardName, rewardValue): return .rewardReady(name: rewardName, value: rewardValue)
             default: return .updateEvent(self)
         }
     }

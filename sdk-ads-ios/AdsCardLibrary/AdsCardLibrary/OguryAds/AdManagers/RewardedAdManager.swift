@@ -210,7 +210,7 @@ internal class RewardedProxyDelegate: AdDelegateProxy<RewardedAdManager>, OguryR
     
     func rewardedAd(_ rewardedAd: OguryRewardedAd, didReceive item: OguryReward) {
         guard let adManager else { return }
-        adManager.append(.rewardReady(item))
+        adManager.append(.rewardReady(name: item.rewardName, value: item.rewardValue))
     }
 }
 

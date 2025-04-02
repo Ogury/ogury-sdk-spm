@@ -28,6 +28,8 @@
 		434F851B2AD534A5005077F5 /* MaxHeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F851A2AD534A5005077F5 /* MaxHeaderBidable.swift */; };
 		434F851D2AD535B2005077F5 /* HeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F851C2AD535B2005077F5 /* HeaderBidable.swift */; };
 		434F85252AD6D9EF005077F5 /* MpuAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F85242AD6D9EF005077F5 /* MpuAdManagerTests.swift */; };
+		43509CDF2D9D2C9D00BA3672 /* OguryOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43509CDE2D9D2C9D00BA3672 /* OguryOptions.swift */; };
+		43509CE02D9D2C9D00BA3672 /* OguryOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43509CDE2D9D2C9D00BA3672 /* OguryOptions.swift */; };
 		435C55E42A42EAEF004186FF /* AdsCardLibrary.docc in Sources */ = {isa = PBXBuildFile; fileRef = 435C55E32A42EAEF004186FF /* AdsCardLibrary.docc */; };
 		435C55EA2A42EAEF004186FF /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C55DF2A42EAEF004186FF /* AdsCardLibrary.framework */; };
 		435C55EF2A42EAEF004186FF /* AdsCardManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435C55EE2A42EAEF004186FF /* AdsCardManagerTests.swift */; };
@@ -161,6 +163,7 @@
 		434F851A2AD534A5005077F5 /* MaxHeaderBidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxHeaderBidable.swift; sourceTree = "<group>"; };
 		434F851C2AD535B2005077F5 /* HeaderBidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBidable.swift; sourceTree = "<group>"; };
 		434F85242AD6D9EF005077F5 /* MpuAdManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MpuAdManagerTests.swift; sourceTree = "<group>"; };
+		43509CDE2D9D2C9D00BA3672 /* OguryOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OguryOptions.swift; sourceTree = "<group>"; };
 		435C55DF2A42EAEF004186FF /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		435C55E22A42EAEF004186FF /* AdsCardLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdsCardLibrary.h; sourceTree = "<group>"; };
 		435C55E32A42EAEF004186FF /* AdsCardLibrary.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = AdsCardLibrary.docc; sourceTree = "<group>"; };
@@ -460,6 +463,7 @@
 				438ED3B52AA0C2BA00486AF2 /* Errors */,
 				43B59C082D9AC7D300BE53A1 /* ThumbnailOptions.swift */,
 				4328B2892ADFBD88003C7F91 /* Serialization */,
+				43509CDE2D9D2C9D00BA3672 /* OguryOptions.swift */,
 			);
 			path = OguryAds;
 			sourceTree = "<group>";
@@ -507,8 +511,8 @@
 			isa = PBXGroup;
 			children = (
 				43B439AE2D9C23C7005AAED6 /* AdManager.swift */,
-				438ED3B42AA0C2BA00486AF2 /* AdManagerDelegate.swift */,
 				438ED3C62AA0C2BA00486AF2 /* AdManagerOptions.swift */,
+				438ED3B42AA0C2BA00486AF2 /* AdManagerDelegate.swift */,
 				438ED3B82AA0C2BA00486AF2 /* Views */,
 			);
 			path = AdManager;
@@ -731,6 +735,7 @@
 				435C55FA2A42F36B004186FF /* AdsCardManager.swift in Sources */,
 				438ED3D52AA0C2BA00486AF2 /* AdActionBarFeature.swift in Sources */,
 				43788F292B5FB7980041A9C1 /* AdsTextField.swift in Sources */,
+				43509CE02D9D2C9D00BA3672 /* OguryOptions.swift in Sources */,
 				438ED3D22AA0C2BA00486AF2 /* ThumbnailOptionView.swift in Sources */,
 				438ED3D42AA0C2BA00486AF2 /* AdActionBar.swift in Sources */,
 				43DA12802AB888D900766D99 /* BannerAdManager.swift in Sources */,
@@ -791,6 +796,7 @@
 				43BCB1662C22FBF0002FB0B1 /* AdsCardManager.swift in Sources */,
 				43BCB1672C22FBF0002FB0B1 /* AdActionBarFeature.swift in Sources */,
 				43BCB1682C22FBF0002FB0B1 /* AdsTextField.swift in Sources */,
+				43509CDF2D9D2C9D00BA3672 /* OguryOptions.swift in Sources */,
 				43BCB1692C22FBF0002FB0B1 /* ThumbnailOptionView.swift in Sources */,
 				43BCB16A2C22FBF0002FB0B1 /* AdActionBar.swift in Sources */,
 				43BCB16B2C22FBF0002FB0B1 /* BannerAdManager.swift in Sources */,

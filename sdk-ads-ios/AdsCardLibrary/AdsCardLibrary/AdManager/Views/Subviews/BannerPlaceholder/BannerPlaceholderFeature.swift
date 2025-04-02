@@ -10,7 +10,7 @@ import OguryAds
 
 struct BannerPlaceholderFeature: Reducer {
     struct State: Equatable {
-        var bannerAd: OguryBannerAdView? = nil
+        var bannerAd: UIView? = nil
         var bannerType: AdType<BannerAdManager>
         var isMpuFormat: Bool {
             switch bannerType {
