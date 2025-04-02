@@ -166,6 +166,7 @@ public final class BannerAdManager: AdManager {
     
     internal func closeAd() {
         ad?.destroy()
+        ad = nil
     }
     
     internal func update(ad: OguryBannerAdView) {

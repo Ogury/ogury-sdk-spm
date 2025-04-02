@@ -597,6 +597,9 @@ struct AdViewFeature: Reducer {
                     
                 case .bannerAction:
                     (adManager as? BannerAdManager)?.closeAd()
+                     state.bannerContainer?.bannerAd = nil
+                     let bannerType = state.bannerFeature.bannerType
+                     state.bannerFeature = BannerPlaceholderFeature.State(bannerAd: nil, bannerType: bannerType)
                     return .none
                     
                 case .showOptionToggle:
