@@ -10,6 +10,30 @@ import ComposableArchitecture
 import Combine
 
 public final class BannerAdManager: OguryAdManager {
+    public var adFormat: AdFormat
+    public var adConfiguration: AdConfiguration!
+    public var cardConfiguration: CardConfiguration!
+    
+    public func update(_ adConfiguration: AdConfiguration) {
+        //TODO: implement
+    }
+    
+    public func update(_ cardConfiguration: CardConfiguration) {
+        //TODO: implement
+    }
+    
+    public func load() {
+        //TODO: implement
+    }
+    
+    public func show() {
+        //TODO: implement
+    }
+    
+    public func close() {
+        //TODO: implement
+    }
+    
     public static func == (lhs: BannerAdManager, rhs: BannerAdManager) -> Bool {
         return lhs.adType == rhs.adType && lhs.ad == rhs.ad
     }
@@ -48,6 +72,7 @@ public final class BannerAdManager: OguryAdManager {
     public init(adType: AdType<BannerAdManager>, adDelegate: AdLifeCycleDelegate? = nil) {
         events = PassthroughSubject<AdLifeCycleEvent, Never>()
         self.adType = adType
+        adFormat = adType.adFormat
         proxyDelegate = MrecProxyDelegate(adDelegate: adDelegate)
         proxyDelegate.adManager = self
         if case let .maxHeaderBidding(_, adMarkUpRetriever) = adType {
@@ -117,7 +142,7 @@ public final class BannerAdManager: OguryAdManager {
         ad.load(withAdMarkup: adMarkUp)
     }
     
-    private func load() {
+    private func privateLoad() {
         if let dspCreativeId = options.baseOptions.dspCreativeId, !dspCreativeId.isEmpty,
            let campaignId = options.baseOptions.campaignId, !campaignId.isEmpty,
            let creativeId = options.baseOptions.creativeId,

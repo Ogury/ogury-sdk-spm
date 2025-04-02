@@ -9,7 +9,7 @@ import OguryAds
 import WebKit
 
 /// All objects that should have an ad manager basic bahavior should implement this protocol
-public protocol OguryAdManager: Storable, Equatable, Identifiable where ID == UUID {
+public protocol OguryAdManager: AdManager {
     /// The underlying ad implementation associated with this manager
     associatedtype Ad
     /// the ad associate with this ad format. Mandatory
@@ -59,6 +59,21 @@ extension OguryAdManager {
                     print("⚠️ Error while trying to crash webview \(error)")
                 }
             }
+        }
+    }
+}
+
+extension AdType {
+    var adFormat: AdFormat {
+        switch self {
+            case .interstitial: return .interstitial
+            case .rewarded: return .rewardedVideo
+            case .thumbnail: return .thumbnail
+            case .banner: return.smallBanner
+            case .mpu: return .mrec
+            case .maxHeaderBidding(let adType, _): return adType.adFormat
+            case .dtFairBidHeaderBidding(let adType, _): return adType.adFormat
+            case .unityLevelPlayHeaderBidding(let adType, _): return adType.adFormat
         }
     }
 }

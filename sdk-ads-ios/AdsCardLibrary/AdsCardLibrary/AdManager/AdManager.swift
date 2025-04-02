@@ -28,19 +28,16 @@ public protocol AdManager: Storable, Equatable, Identifiable where ID == UUID {
     var adConfiguration: AdConfiguration! { get set }
     var cardConfiguration: CardConfiguration! { get set }
     var adDelegate: AdLifeCycleDelegate? { get set }
-    var events: PassthroughSubject<AdLifeCycleEvent, Never> { get set }
+    var events: PassthroughSubject<AdLifeCycleEvent, Never> { get }
     var lifeCycleEvents: [AdLifeCycleEventHistory] { get }
+    var adView: AdView { get }
     
     //MARK: functions
     func update(_ adConfiguration: AdConfiguration)
     func update(_ cardConfiguration: CardConfiguration)
-    func load() throws
-    func show() throws
-    func destroy() throws
-    func enable(testMode testModeEnabled: Bool)
-    func enable(rtbTestMode rtbTestModeEnabled: Bool)
-    func focusOnLogs(_ focusId: String)
-    func updateCard(events: [AdOptionsEvent])
+    func load()
+    func show()
+    func close() // used only for banners
     func killWebview(_ killMode: KillWebviewMode)
 }
 

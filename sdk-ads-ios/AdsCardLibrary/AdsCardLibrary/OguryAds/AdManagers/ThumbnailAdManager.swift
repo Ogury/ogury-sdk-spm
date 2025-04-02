@@ -10,6 +10,30 @@ import ComposableArchitecture
 import Combine
 
 public final class ThumbnailAdManager: OguryAdManager {
+    public var adFormat: AdFormat
+    public var adConfiguration: AdConfiguration!
+    public var cardConfiguration: CardConfiguration!
+    
+    public func update(_ adConfiguration: AdConfiguration) {
+        //TODO: implement
+    }
+    
+    public func update(_ cardConfiguration: CardConfiguration) {
+        //TODO: implement
+    }
+    
+    public func load() {
+        //TODO: implement
+    }
+    
+    public func show() {
+        //TODO: implement
+    }
+    
+    public func close() {
+        //TODO: implement
+    }
+    
     public static func == (lhs: ThumbnailAdManager, rhs: ThumbnailAdManager) -> Bool {
         return lhs.adType == rhs.adType && lhs.ad == rhs.ad
     }
@@ -43,6 +67,7 @@ public final class ThumbnailAdManager: OguryAdManager {
     public init(adType: AdType<ThumbnailAdManager>, adDelegate: AdLifeCycleDelegate? = nil) {
         events = PassthroughSubject<AdLifeCycleEvent, Never>()
         self.adType = adType
+        adFormat = adType.adFormat
         proxyDelegate = ThumbnailProxyDelegate(adDelegate: adDelegate)
         proxyDelegate.adManager = self
     }
@@ -68,7 +93,7 @@ public final class ThumbnailAdManager: OguryAdManager {
         append(.adLoading)
     }
     
-    private func load() {
+    private func privateLoad() {
         if let dspCreativeId = options.baseOptions.dspCreativeId, !dspCreativeId.isEmpty,
            let campaignId = options.baseOptions.campaignId, !campaignId.isEmpty,
            let creativeId = options.baseOptions.creativeId,
