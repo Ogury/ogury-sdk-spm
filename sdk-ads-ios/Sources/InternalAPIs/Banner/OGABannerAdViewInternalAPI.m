@@ -151,7 +151,7 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
                                                     ]]];
 
     CGSize size = [self.size getSize];
-    self.bannerView.frame = CGRectMake(self.bannerView.frame.origin.x,
+    self.bannerView.layer.frame = CGRectMake(self.bannerView.frame.origin.x,
                                        self.bannerView.frame.origin.y,
                                        size.width,
                                        size.height);

@@ -75,8 +75,6 @@ public final class BannerAdManager: AdManager {
             if (self.ad == nil) {
                 self.ad = OguryBannerAdView(adUnitId: options.adUnitId,
                                             size: self.adType == .banner ? .small_banner_320x50() : .mrec_300x250())
-            } else {
-                self.ad?.destroy()
             }
             self.ad.delegate = self.proxyDelegate
             self.ad.setLogOrigin(options.qaLabel)
@@ -166,7 +164,6 @@ public final class BannerAdManager: AdManager {
     
     internal func closeAd() {
         ad?.destroy()
-        ad = nil
     }
     
     internal func update(ad: OguryBannerAdView) {
