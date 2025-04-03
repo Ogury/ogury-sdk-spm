@@ -9,7 +9,7 @@ import OguryAds.Private
 import ComposableArchitecture
 import Combine
 
-public final class InterstitialAdManager: OguryAdManager {
+public final class InterstitialAdManager: OguryAdManager, AdManager {
     public var adFormat: AdFormat
     public var adConfiguration: AdConfiguration!
     public var cardConfiguration: CardConfiguration!
@@ -39,14 +39,24 @@ public final class InterstitialAdManager: OguryAdManager {
     }
     
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
-    lazy var store = Store(initialState: AdViewFeature.State(from: self.options, adType: AnyAdType(self.adType)), reducer: {
-        AdViewFeature(adManager: self)
-    })
+    lazy var store: StoreOf<AdViewFeature> = {
+        var weakSelf: (any AdManager)? = self
+        return Store(
+            initialState: AdViewFeature.State(adManager: &weakSelf!),
+            reducer: { AdViewFeature() }
+        )
+    }()
     public typealias Ad = OguryInterstitialAd
     public typealias Options = AdManagerOptions
     public var adOptionView: (any View)? { nil }
     //MARK: Variables
-    public var options: AdManagerOptions!
+    public var options: AdManagerOptions!  {
+        didSet {
+            adConfiguration = .init(adUnitId: options.baseOptions.adUnitId, campaignId: options.baseOptions.campaignId)
+            cardConfiguration = .init()
+        }
+    }
+
     public private(set) var ad: OguryInterstitialAd!
     public private(set) var adType: AdType<InterstitialAdManager>
     public var adView: AdView { AdView(store: self.store) }
@@ -188,7 +198,7 @@ public final class InterstitialAdManager: OguryAdManager {
     }
     
     public func updateCard(events: [AdOptionsEvent]) {
-        adView.updateCard(events: events)
+//        adView.updateCard(events: events)
     }
     
     public func killWebview(_ killMode: KillWebviewMode) {

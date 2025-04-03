@@ -9,7 +9,7 @@ import OguryAds.Private
 import ComposableArchitecture
 import Combine
 
-public final class RewardedAdManager: OguryAdManager {
+public final class RewardedAdManager: OguryAdManager, AdManager {
     public var adFormat: AdFormat
     public var adConfiguration: AdConfiguration!
     public var cardConfiguration: CardConfiguration!
@@ -39,11 +39,13 @@ public final class RewardedAdManager: OguryAdManager {
     }
     
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
-   lazy var store = Store(initialState: AdViewFeature.State(from: self.options,
-                                                            adType: AnyAdType(self.adType),
-                                                            rewardedOptions: RewardedOptions()), reducer: {
-        AdViewFeature(adManager: self)
-    })
+    lazy var store: StoreOf<AdViewFeature> = {
+        var weakSelf: (any AdManager)? = self
+        return Store(
+            initialState: AdViewFeature.State(adManager: &weakSelf!),
+            reducer: { AdViewFeature() }
+        )
+    }()
     public typealias Ad = OguryRewardedAd
     public typealias Options = AdManagerOptions
     public var adOptionView: (any View)? { nil }
@@ -189,7 +191,7 @@ public final class RewardedAdManager: OguryAdManager {
     }
     
     public func updateCard(events: [AdOptionsEvent]) {
-        adView.updateCard(events: events)
+//        adView.updateCard(events: events)
     }
     
     public func killWebview(_ killMode: KillWebviewMode) {

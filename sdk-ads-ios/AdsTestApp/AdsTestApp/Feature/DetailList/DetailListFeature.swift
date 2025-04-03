@@ -28,7 +28,7 @@ struct DetailListFeature: Reducer {
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-                case .deleteCard(id: let id):
+                case let .deleteCard(id):
                     state.adManagers.removeAll { manager in
                         manager.id == id
                     }
