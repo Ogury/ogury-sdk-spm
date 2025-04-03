@@ -53,8 +53,6 @@
 		438ED3CC2AA0C2BA00486AF2 /* AdManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B42AA0C2BA00486AF2 /* AdManagerDelegate.swift */; };
 		438ED3CD2AA0C2BA00486AF2 /* OguryErrorConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B62AA0C2BA00486AF2 /* OguryErrorConvertible.swift */; };
 		438ED3CE2AA0C2BA00486AF2 /* OguryAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B72AA0C2BA00486AF2 /* OguryAdManager.swift */; };
-		438ED3D12AA0C2BA00486AF2 /* ThumbnailOptionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3BD2AA0C2BA00486AF2 /* ThumbnailOptionFeature.swift */; };
-		438ED3D22AA0C2BA00486AF2 /* ThumbnailOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3BE2AA0C2BA00486AF2 /* ThumbnailOptionView.swift */; };
 		438ED3D32AA0C2BA00486AF2 /* AdColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3BF2AA0C2BA00486AF2 /* AdColorPalette.swift */; };
 		438ED3D42AA0C2BA00486AF2 /* AdActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C12AA0C2BA00486AF2 /* AdActionBar.swift */; };
 		438ED3D52AA0C2BA00486AF2 /* AdActionBarFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C22AA0C2BA00486AF2 /* AdActionBarFeature.swift */; };
@@ -75,7 +73,6 @@
 		43BCB1662C22FBF0002FB0B1 /* AdsCardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435C55F92A42F36B004186FF /* AdsCardManager.swift */; };
 		43BCB1672C22FBF0002FB0B1 /* AdActionBarFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C22AA0C2BA00486AF2 /* AdActionBarFeature.swift */; };
 		43BCB1682C22FBF0002FB0B1 /* AdsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F282B5FB7980041A9C1 /* AdsTextField.swift */; };
-		43BCB1692C22FBF0002FB0B1 /* ThumbnailOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3BE2AA0C2BA00486AF2 /* ThumbnailOptionView.swift */; };
 		43BCB16A2C22FBF0002FB0B1 /* AdActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C12AA0C2BA00486AF2 /* AdActionBar.swift */; };
 		43BCB16B2C22FBF0002FB0B1 /* BannerAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127F2AB888D900766D99 /* BannerAdManager.swift */; };
 		43BCB16D2C22FBF0002FB0B1 /* RewardedAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B22AA0C2B900486AF2 /* RewardedAdManager.swift */; };
@@ -86,7 +83,6 @@
 		43BCB1722C22FBF0002FB0B1 /* HeaderBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F851C2AD535B2005077F5 /* HeaderBidable.swift */; };
 		43BCB1732C22FBF0002FB0B1 /* AdsCardLibrary.docc in Sources */ = {isa = PBXBuildFile; fileRef = 435C55E32A42EAEF004186FF /* AdsCardLibrary.docc */; };
 		43BCB1742C22FBF0002FB0B1 /* OguryErrorConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B62AA0C2BA00486AF2 /* OguryErrorConvertible.swift */; };
-		43BCB1752C22FBF0002FB0B1 /* ThumbnailOptionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3BD2AA0C2BA00486AF2 /* ThumbnailOptionFeature.swift */; };
 		43BCB1762C22FBF0002FB0B1 /* InterstitialAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3B02AA0C2B900486AF2 /* InterstitialAdManager.swift */; };
 		43BCB1772C22FBF0002FB0B1 /* AdManagerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C62AA0C2BA00486AF2 /* AdManagerOptions.swift */; };
 		43BCB1782C22FBF0002FB0B1 /* AdTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6F052C0F3D8100DBFFAA /* AdTagView.swift */; };
@@ -189,8 +185,6 @@
 		438ED3B42AA0C2BA00486AF2 /* AdManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdManagerDelegate.swift; sourceTree = "<group>"; };
 		438ED3B62AA0C2BA00486AF2 /* OguryErrorConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OguryErrorConvertible.swift; sourceTree = "<group>"; };
 		438ED3B72AA0C2BA00486AF2 /* OguryAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OguryAdManager.swift; sourceTree = "<group>"; };
-		438ED3BD2AA0C2BA00486AF2 /* ThumbnailOptionFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailOptionFeature.swift; sourceTree = "<group>"; };
-		438ED3BE2AA0C2BA00486AF2 /* ThumbnailOptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailOptionView.swift; sourceTree = "<group>"; };
 		438ED3BF2AA0C2BA00486AF2 /* AdColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdColorPalette.swift; sourceTree = "<group>"; };
 		438ED3C12AA0C2BA00486AF2 /* AdActionBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdActionBar.swift; sourceTree = "<group>"; };
 		438ED3C22AA0C2BA00486AF2 /* AdActionBarFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdActionBarFeature.swift; sourceTree = "<group>"; };
@@ -436,15 +430,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		438ED3BC2AA0C2BA00486AF2 /* ThumbnailOptionView */ = {
-			isa = PBXGroup;
-			children = (
-				438ED3BD2AA0C2BA00486AF2 /* ThumbnailOptionFeature.swift */,
-				438ED3BE2AA0C2BA00486AF2 /* ThumbnailOptionView.swift */,
-			);
-			path = ThumbnailOptionView;
-			sourceTree = "<group>";
-		};
 		438ED3C02AA0C2BA00486AF2 /* AdActionBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -484,7 +469,6 @@
 				43788F272B5FB77A0041A9C1 /* TextFields */,
 				434F84952AC1AF6B005077F5 /* Rewarded */,
 				43DA12782AB888D300766D99 /* BannerPlaceholder */,
-				438ED3BC2AA0C2BA00486AF2 /* ThumbnailOptionView */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -736,7 +720,6 @@
 				438ED3D52AA0C2BA00486AF2 /* AdActionBarFeature.swift in Sources */,
 				43788F292B5FB7980041A9C1 /* AdsTextField.swift in Sources */,
 				43509CE02D9D2C9D00BA3672 /* OguryOptions.swift in Sources */,
-				438ED3D22AA0C2BA00486AF2 /* ThumbnailOptionView.swift in Sources */,
 				438ED3D42AA0C2BA00486AF2 /* AdActionBar.swift in Sources */,
 				43DA12802AB888D900766D99 /* BannerAdManager.swift in Sources */,
 				438ED3CA2AA0C2BA00486AF2 /* RewardedAdManager.swift in Sources */,
@@ -748,7 +731,6 @@
 				435C55E42A42EAEF004186FF /* AdsCardLibrary.docc in Sources */,
 				438ED3CD2AA0C2BA00486AF2 /* OguryErrorConvertible.swift in Sources */,
 				43B439B02D9C23C7005AAED6 /* AdManager.swift in Sources */,
-				438ED3D12AA0C2BA00486AF2 /* ThumbnailOptionFeature.swift in Sources */,
 				438ED3C82AA0C2BA00486AF2 /* InterstitialAdManager.swift in Sources */,
 				43EB15E02D9D4268002F170A /* AdViewFeature.swift in Sources */,
 				43EB15E12D9D4268002F170A /* AdView.swift in Sources */,
@@ -796,7 +778,6 @@
 				43BCB1672C22FBF0002FB0B1 /* AdActionBarFeature.swift in Sources */,
 				43BCB1682C22FBF0002FB0B1 /* AdsTextField.swift in Sources */,
 				43509CDF2D9D2C9D00BA3672 /* OguryOptions.swift in Sources */,
-				43BCB1692C22FBF0002FB0B1 /* ThumbnailOptionView.swift in Sources */,
 				43BCB16A2C22FBF0002FB0B1 /* AdActionBar.swift in Sources */,
 				43BCB16B2C22FBF0002FB0B1 /* BannerAdManager.swift in Sources */,
 				43BCB16D2C22FBF0002FB0B1 /* RewardedAdManager.swift in Sources */,
@@ -808,7 +789,6 @@
 				43BCB1732C22FBF0002FB0B1 /* AdsCardLibrary.docc in Sources */,
 				43BCB1742C22FBF0002FB0B1 /* OguryErrorConvertible.swift in Sources */,
 				43B439AF2D9C23C7005AAED6 /* AdManager.swift in Sources */,
-				43BCB1752C22FBF0002FB0B1 /* ThumbnailOptionFeature.swift in Sources */,
 				43BCB1762C22FBF0002FB0B1 /* InterstitialAdManager.swift in Sources */,
 				43EB15E22D9D4268002F170A /* AdViewFeature.swift in Sources */,
 				43EB15E32D9D4268002F170A /* AdView.swift in Sources */,

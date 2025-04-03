@@ -170,34 +170,6 @@ public final class ThumbnailAdManager: OguryAdManager, AdManager {
         }
     }
     
-    internal func updateOptions(from options: ThumbnailDisplayOptions) {
-        var size = self.options.thumbnailOptions.size ?? .zero
-        if let width = Float(options.width) {
-            size.width = CGFloat(width)
-        }
-        if let height = Float(options.height) {
-            size.height = CGFloat(height)
-        }
-        self.options.thumbnailOptions.size = size
-        switch options.thumbnailPosition {
-            case .topleft, .topright, .bottomleft, .bottomright:
-                self.options.thumbnailOptions.corner = options.thumbnailPosition.corner
-                self.options.thumbnailOptions.offset = .init(x: CGFloat(Float(options.xOffset) ?? 0),
-                                                             y: CGFloat(Float(options.yOffset) ?? 0))
-            case .position:
-                var position = self.options.thumbnailOptions.position ?? .zero
-                if let xOffset = Float(options.xOffset) {
-                    position.x = CGFloat(xOffset)
-                }
-                if let yOffset = Float(options.yOffset) {
-                    position.y = CGFloat(yOffset)
-                }
-                self.options.thumbnailOptions.position = position
-                
-            default: ()
-        }
-    }
-    
     public func showAd() throws {
         guard let options else { throw AdManagerError.noOptions }
         //      guard let ad else { throw AdManagerError.loadNotCalledBeforeShow }

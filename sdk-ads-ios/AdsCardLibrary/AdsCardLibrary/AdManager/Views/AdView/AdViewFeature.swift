@@ -159,7 +159,6 @@ struct AdViewFeature {
                 case (let .updateEvent(lhsValue), let .updateEvent(rhsValue)): return lhsValue == rhsValue
                 case (let .adBarAction(lhsValue), let .adBarAction(rhsValue)): return lhsValue == rhsValue
                 case (let .bannerAction(lhsValue), let .bannerAction(rhsValue)): return lhsValue == rhsValue
-                case (let .thumbnailOptionsAction(lhsValue), let .thumbnailOptionsAction(rhsValue)): return lhsValue == rhsValue
                 case (let .error(lhsError), let .error(rhsError)): return areEqual(lhsError, rhsError)
                 default: return false
             }
@@ -174,7 +173,6 @@ struct AdViewFeature {
         case resetBanner
         case bannerReady(_: UIView)
         case rewardReady(name: String, value: String)
-        case thumbnailOptionsAction(_: ThumbnailOptionFeature.Action)
         case showAfterLoad
         case error(_: Error)
         case alert(PresentationAction<Alert>)
@@ -367,9 +365,6 @@ struct AdViewFeature {
                 case .showAfterLoad:
                     state.showAfterLoad = false
                     return .send(.adBarAction(.showButtonTapped))
-                    
-                case .thumbnailOptionsAction:
-                    return .none
                     
                 case .bannerAction:
                     state.adManager.close()
