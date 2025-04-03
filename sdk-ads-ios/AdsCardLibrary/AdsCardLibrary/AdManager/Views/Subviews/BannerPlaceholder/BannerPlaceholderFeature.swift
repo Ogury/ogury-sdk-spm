@@ -11,17 +11,8 @@ import OguryAds
 struct BannerPlaceholderFeature: Reducer {
     struct State: Equatable {
         var bannerAd: UIView? = nil
-        var bannerType: AdType<BannerAdManager>
-        var isMpuFormat: Bool {
-            switch bannerType {
-                case .mpu,
-                     .maxHeaderBidding(.mpu, _),
-                     .dtFairBidHeaderBidding(.mpu, _),
-                     .unityLevelPlayHeaderBidding(.mpu, _):
-                    return true
-                default: return false
-            }
-        }
+        var bannerType: AdFormat
+        var isMrec: Bool { bannerType == .mrec }
     }
     
     enum Action: Equatable {

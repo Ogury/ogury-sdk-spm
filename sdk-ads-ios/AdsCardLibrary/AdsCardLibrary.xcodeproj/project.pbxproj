@@ -114,6 +114,10 @@
 		43DA127D2AB888D300766D99 /* AdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127A2AB888D300766D99 /* AdBannerView.swift */; };
 		43DA127E2AB888D300766D99 /* BannerPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */; };
 		43DA12802AB888D900766D99 /* BannerAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA127F2AB888D900766D99 /* BannerAdManager.swift */; };
+		43EB15E02D9D4268002F170A /* NewAdViewFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB15DE2D9D4268002F170A /* NewAdViewFeature.swift */; };
+		43EB15E12D9D4268002F170A /* NewAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB15DF2D9D4268002F170A /* NewAdView.swift */; };
+		43EB15E22D9D4268002F170A /* NewAdViewFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB15DE2D9D4268002F170A /* NewAdViewFeature.swift */; };
+		43EB15E32D9D4268002F170A /* NewAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB15DF2D9D4268002F170A /* NewAdView.swift */; };
 		50CFA85F2C63776200E64D20 /* UnityLevelPlayBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA85D2C63774B00E64D20 /* UnityLevelPlayBidable.swift */; };
 		50CFA8602C63776200E64D20 /* UnityLevelPlayBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA85D2C63774B00E64D20 /* UnityLevelPlayBidable.swift */; };
 		50CFA8622C637F0B00E64D20 /* UnityLevelPlayRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8612C637F0A00E64D20 /* UnityLevelPlayRetriever.swift */; };
@@ -208,6 +212,8 @@
 		43DA127A2AB888D300766D99 /* AdBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdBannerView.swift; sourceTree = "<group>"; };
 		43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerPlaceholderView.swift; sourceTree = "<group>"; };
 		43DA127F2AB888D900766D99 /* BannerAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdManager.swift; sourceTree = "<group>"; };
+		43EB15DE2D9D4268002F170A /* NewAdViewFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAdViewFeature.swift; sourceTree = "<group>"; };
+		43EB15DF2D9D4268002F170A /* NewAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAdView.swift; sourceTree = "<group>"; };
 		43FA4E9E2CB6D00D0029B928 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43FA4E9F2CB6D00D0029B928 /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4925EF716018B487E9F91C3B /* Pods_AdsCardLibrary_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsCardLibrary_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -289,6 +295,15 @@
 				434F851C2AD535B2005077F5 /* HeaderBidable.swift */,
 			);
 			path = HeaderBiding;
+			sourceTree = "<group>";
+		};
+		43509CE22D9D41E500BA3672 /* NewAdView */ = {
+			isa = PBXGroup;
+			children = (
+				43EB15DE2D9D4268002F170A /* NewAdViewFeature.swift */,
+				43EB15DF2D9D4268002F170A /* NewAdView.swift */,
+			);
+			path = NewAdView;
 			sourceTree = "<group>";
 		};
 		435C55D52A42EAEF004186FF = {
@@ -419,6 +434,7 @@
 		438ED3B82AA0C2BA00486AF2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				43509CE22D9D41E500BA3672 /* NewAdView */,
 				438ED3C32AA0C2BA00486AF2 /* AdView */,
 				431F6F072C0F403400DBFFAA /* AdTag */,
 				43D580BD2D9BC8F600DFAD85 /* Subviews */,
@@ -751,6 +767,8 @@
 				43B439B02D9C23C7005AAED6 /* AdManager.swift in Sources */,
 				438ED3D12AA0C2BA00486AF2 /* ThumbnailOptionFeature.swift in Sources */,
 				438ED3C82AA0C2BA00486AF2 /* InterstitialAdManager.swift in Sources */,
+				43EB15E02D9D4268002F170A /* NewAdViewFeature.swift in Sources */,
+				43EB15E12D9D4268002F170A /* NewAdView.swift in Sources */,
 				438ED3D82AA0C2BA00486AF2 /* AdManagerOptions.swift in Sources */,
 				431F6F062C0F3D8100DBFFAA /* AdTagView.swift in Sources */,
 				43DA127D2AB888D300766D99 /* AdBannerView.swift in Sources */,
@@ -812,6 +830,8 @@
 				43B439AF2D9C23C7005AAED6 /* AdManager.swift in Sources */,
 				43BCB1752C22FBF0002FB0B1 /* ThumbnailOptionFeature.swift in Sources */,
 				43BCB1762C22FBF0002FB0B1 /* InterstitialAdManager.swift in Sources */,
+				43EB15E22D9D4268002F170A /* NewAdViewFeature.swift in Sources */,
+				43EB15E32D9D4268002F170A /* NewAdView.swift in Sources */,
 				43BCB1772C22FBF0002FB0B1 /* AdManagerOptions.swift in Sources */,
 				43BCB1782C22FBF0002FB0B1 /* AdTagView.swift in Sources */,
 				43BCB1792C22FBF0002FB0B1 /* AdBannerView.swift in Sources */,

@@ -20,6 +20,7 @@ public enum AdFormat {
             case .mrec: return "MREC"
         }
     }
+    public var isBanner: Bool {  return [.smallBanner, .mrec].contains(self) }
 }
 
 public protocol AdManager: Storable, Equatable, Identifiable where ID == UUID {
@@ -86,7 +87,7 @@ public enum AdLifeCycleEvent {
     case rewardReady(name: String, value: String)
 }
 
-public struct AdLifeCycleEventHistory {
+public struct AdLifeCycleEventHistory: Equatable {
     let event: AdLifeCycleEvent
     let date = Date()
 }

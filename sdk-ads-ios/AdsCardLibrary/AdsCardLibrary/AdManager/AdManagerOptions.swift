@@ -15,6 +15,7 @@ public struct AdViewOptions: Codable, Equatable {
 }
 
 public struct CardConfiguration: Codable, Equatable {
+    public var enableAdUnitEditing: Bool = true
     /// show the campaignId field on the ``AdView``
     public var showCampaignId: Bool = true
     /// show the creativeId field on the ``AdView``
@@ -23,10 +24,14 @@ public struct CardConfiguration: Codable, Equatable {
     public var showDspFields: Bool = false
     /// show the DSP creativeId field on the ``AdView``
     public var showKillMode: Bool = true
+    /// show the DSP creativeId field on the ``AdView``
+    public var showRtbTestMode: Bool = true
     /// The name of the card that will handle the ad
     public var adDisplayName: String = ""
     /// indicates if we should show the action bar or not
     public var bulkModeEnabled: Bool = false
+    /// indicates if we should use _test mode
+    public var showTestModeButton: Bool = true
     /// indicates if we should use _test mode
     public var oguryTestModeEnabled: Bool = true
     /// indicates if we should use the RTB test mode (test=1 in bid request)
@@ -36,23 +41,29 @@ public struct CardConfiguration: Codable, Equatable {
     /// The card accessibilityLabel for testSigma and filter logs
     public var qaLabel: String = UUID().uuidString
     
-    public init(showCampaignId: Bool = true,
+    public init(enableAdUnitEditing: Bool = true,
+                showCampaignId: Bool = true,
                 showCreativeId: Bool = false,
                 showDspFields: Bool = false,
                 showKillMode: Bool = true,
+                showRtbTestMode: Bool = true,
                 adDisplayName: String = "",
                 bulkModeEnabled: Bool = false,
                 oguryTestModeEnabled: Bool = true,
+                showTestModeButton: Bool = true,
                 rtbTestModeEnabled: Bool = true,
                 killWebviewMode: KillWebviewMode = .none,
                 qaLabel: String = UUID().uuidString) {
+        self.enableAdUnitEditing = enableAdUnitEditing
         self.showCampaignId = showCampaignId
         self.showCreativeId = showCreativeId
         self.showDspFields = showDspFields
         self.showKillMode = showKillMode
+        self.showRtbTestMode = showRtbTestMode
         self.adDisplayName = adDisplayName
         self.bulkModeEnabled = bulkModeEnabled
         self.oguryTestModeEnabled = oguryTestModeEnabled
+        self.showTestModeButton = showTestModeButton
         self.rtbTestModeEnabled = rtbTestModeEnabled
         self.killWebviewMode = killWebviewMode
         self.qaLabel = qaLabel

@@ -40,8 +40,7 @@ public final class BannerAdManager: OguryAdManager {
     
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
     lazy var store = Store(
-      initialState: AdViewFeature.State(from: self.options, adType: AnyAdType(self.adType),
-                                          bannerContainer: BannerContainer(bannerType: adType)),
+      initialState: AdViewFeature.State(from: self.options, adType: AnyAdType(self.adType)),
         reducer: {
             AdViewFeature(adManager: self)
         })
@@ -143,6 +142,7 @@ public final class BannerAdManager: OguryAdManager {
     }
     
     private func privateLoad() {
+#warning("CHECK FOR TEST MODE AND DO NOT SEND CAMPAIGN IF ENABLED")
         if let dspCreativeId = options.baseOptions.dspCreativeId, !dspCreativeId.isEmpty,
            let campaignId = options.baseOptions.campaignId, !campaignId.isEmpty,
            let creativeId = options.baseOptions.creativeId,

@@ -128,6 +128,7 @@ public final class InterstitialAdManager: OguryAdManager {
     }
     
     private func privateLoad() {
+        #warning("CHECK FOR TEST MODE AND DO NOT SEND CAMPAIGN IF ENABLED")
         if let dspCreativeId = options.baseOptions.dspCreativeId, !dspCreativeId.isEmpty,
            let campaignId = options.baseOptions.campaignId, !campaignId.isEmpty,
            let creativeId = options.baseOptions.creativeId,
