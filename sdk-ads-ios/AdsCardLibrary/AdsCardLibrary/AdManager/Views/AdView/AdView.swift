@@ -221,28 +221,22 @@ public struct AdView: View {
                 //MARK: Specific views for banner and rewardedVideos
                 WithPerceptionTracking {
                     if store.isBanner {
-                        BannerPlaceholderView(store:
-                                                self.store.scope(state: \.bannerFeature,
-                                                                 action: { .bannerAction($0) }
-                                                                ))
+                        BannerPlaceholderView(store:store.scope(state: \.bannerFeature, action: \.bannerAction))
                         .frame(maxWidth: .infinity)
                         .accessibilityLabel("Card#\(store.qaLabel)_BannerView")
                     } else if store.isRewardedVideo {
-                        RewardedView(store: self.store.scope(
-                            state: \.rewardedFeature,
-                            action: { .rewardedAction($0) }))
+                        RewardedView(store: store.scope(state: \.rewardedFeature, action: \.rewardedAction))
                     }
                 }
                 
                 //MARK: ActionBar for load actions
                 if !store.adManager.cardConfiguration.bulkModeEnabled {
-                    AdActionBar(store: self.store.scope(state: \.actionBar,
-                                                        action: { .adBarAction($0) }))
+                    AdActionBar(store: store.scope(state: \.actionBar, action: \.adBarAction))
                     .disabled(store.adUnitId.isEmpty)
                     .padding(EdgeInsets(top: -10, leading: 12, bottom: 0, trailing: 12))
                 }
             }
-            .alert(store: self.store.scope(state: \.$alert, action: { .alert($0) }))
+            .alert(store: self.store.scope(state: \.$alert, action:\.alert))
             .background(Color(AdColorPalette.Background.primary.color))
             .cornerRadius(8)
             .frame(minWidth: 280)

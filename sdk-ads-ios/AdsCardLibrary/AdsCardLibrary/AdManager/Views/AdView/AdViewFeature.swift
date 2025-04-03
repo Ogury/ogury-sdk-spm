@@ -193,9 +193,23 @@ struct AdViewFeature {
         case killWebview
         case updateKillMode(_: KillWebviewMode)
         
-        enum Alert {
+        @CasePathable
+        enum Alert: Equatable {
             case confirmDelete
         }
+        
+        static let actionBarCasePath =  AnyCasePath<Action, AdActionBarFeature.Action>(
+            embed: { .adBarAction($0) },
+            extract: { if case let .adBarAction(value) = $0 { return value} else { return nil } }
+        )
+        static let bannerCasePath =  AnyCasePath<Action, BannerPlaceholderFeature.Action>(
+            embed: { .bannerAction($0) },
+            extract: { if case let .bannerAction(value) = $0 { return value} else { return nil } }
+        )
+        static let rewardCasePath =  AnyCasePath<Action, RewardedFeature.Action>(
+            embed: { .rewardedAction($0) },
+            extract: { if case let .rewardedAction(value) = $0 { return value} else { return nil } }
+        )
     }
     
     enum NewAdCancel: Hashable {
@@ -243,15 +257,15 @@ struct AdViewFeature {
     var body: some ReducerOf<Self> {
         BindingReducer()
         Scope(state: \.actionBar,
-              action: /Action.adBarAction,
+              action: Action.actionBarCasePath,
               child: { AdActionBarFeature() }
         )
         Scope(state: \.bannerFeature,
-              action: /Action.bannerAction,
+              action: Action.bannerCasePath,
               child: { BannerPlaceholderFeature()._printChanges() }
         )
         Scope(state: \.rewardedFeature,
-              action: /Action.rewardedAction,
+              action: Action.rewardCasePath,
               child: { RewardedFeature() }
         )
         Reduce { state, action in
