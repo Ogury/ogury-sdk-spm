@@ -50,7 +50,12 @@ public final class ThumbnailAdManager: OguryAdManager, AdManager {
     public typealias Options = ThumbnailAdManagerOptions
     public var adOptionView: (any View)? { nil }
     //MARK: Variables
-    public var options: ThumbnailAdManagerOptions!
+    public var options: ThumbnailAdManagerOptions!  {
+        didSet {
+            adConfiguration = .init(adUnitId: options.baseOptions.adUnitId, campaignId: options.baseOptions.campaignId)
+            cardConfiguration = .init()
+        }
+    }
     public private(set) var ad: OguryThumbnailAd!
     public private(set) var adType: AdType<ThumbnailAdManager>
     public var adView: AdView { AdView(store: self.store) }

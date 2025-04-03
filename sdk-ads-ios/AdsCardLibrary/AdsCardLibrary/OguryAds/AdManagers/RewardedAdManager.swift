@@ -50,7 +50,12 @@ public final class RewardedAdManager: OguryAdManager, AdManager {
     public typealias Options = AdManagerOptions
     public var adOptionView: (any View)? { nil }
     //MARK: Variables
-    public var options: AdManagerOptions!
+    public var options: AdManagerOptions!  {
+        didSet {
+            adConfiguration = .init(adUnitId: options.baseOptions.adUnitId, campaignId: options.baseOptions.campaignId)
+            cardConfiguration = .init()
+        }
+    }
     public private(set) var ad: OguryRewardedAd!
     public private(set) var adType: AdType<RewardedAdManager>
     public var adView: AdView { AdView(store: self.store) }

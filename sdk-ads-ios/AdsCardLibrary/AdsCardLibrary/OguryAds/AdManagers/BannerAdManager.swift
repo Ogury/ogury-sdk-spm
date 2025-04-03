@@ -50,7 +50,12 @@ public final class BannerAdManager: OguryAdManager, AdManager {
     public typealias Options = BannerAdManagerOptions
     public var adOptionView: (any View)? { nil }
     //MARK: Variables
-    public var options: BannerAdManagerOptions!
+    public var options: BannerAdManagerOptions!  {
+        didSet {
+            adConfiguration = .init(adUnitId: options.baseOptions.adUnitId, campaignId: options.baseOptions.campaignId)
+            cardConfiguration = .init()
+        }
+    }
     public private(set) var ad: OguryBannerAdView!
     public private(set) var adType: AdType<BannerAdManager>
     public var adView: AdView { AdView(store: self.store) }
