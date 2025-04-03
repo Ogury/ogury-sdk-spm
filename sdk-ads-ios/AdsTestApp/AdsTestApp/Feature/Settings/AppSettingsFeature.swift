@@ -4,7 +4,7 @@
 
 
 import SwiftUI
-import ComposableArchitecture
+internal import ComposableArchitecture
 import UserDefault
 import OguryAds
 import AdsCardLibrary

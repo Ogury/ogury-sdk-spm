@@ -1,5 +1,5 @@
 import SwiftUI
-import ComposableArchitecture
+internal import ComposableArchitecture
 import AdsCardLibrary
 
 struct DetailListView: View {

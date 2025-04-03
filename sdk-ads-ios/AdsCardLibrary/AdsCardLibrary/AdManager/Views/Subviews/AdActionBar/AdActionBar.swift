@@ -3,7 +3,7 @@
 //
 
 import SwiftUI
-import ComposableArchitecture
+internal import ComposableArchitecture
 
 struct AdActionBar: View {
     @Environment(\.isEnabled) private var isEnabled

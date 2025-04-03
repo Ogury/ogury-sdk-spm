@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import ComposableArchitecture
+internal import ComposableArchitecture
 
 public struct AdTagList: View {
     public enum TagSize {

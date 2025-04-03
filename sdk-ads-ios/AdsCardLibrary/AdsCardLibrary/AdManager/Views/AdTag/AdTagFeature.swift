@@ -5,7 +5,7 @@
 //  Created by Jerome TONNELIER on 04/06/2024.
 //
 
-import ComposableArchitecture
+internal import ComposableArchitecture
 import SwiftUI
 
 enum TagDisplayMode {

@@ -6,7 +6,7 @@ import Foundation
 import SwiftUI
 import OguryAds
 import OguryAds.Private
-import ComposableArchitecture
+internal import ComposableArchitecture
 import Combine
 
 public final class ThumbnailAdManager: OguryAdManager, AdManager {

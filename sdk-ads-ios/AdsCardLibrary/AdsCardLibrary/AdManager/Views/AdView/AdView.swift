@@ -4,7 +4,7 @@
 
 
 import SwiftUI
-import ComposableArchitecture
+internal import ComposableArchitecture
 
 public struct AdView: View {
     @Perception.Bindable var store: StoreOf<AdViewFeature>

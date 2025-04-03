@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import ComposableArchitecture
+internal import ComposableArchitecture
 
 struct ThumbnailOptionView: View {
     let store: StoreOf<ThumbnailOptionFeature>

@@ -5,7 +5,7 @@
 //  Created by Jerome TONNELIER on 21/07/2023.
 //
 
-import ComposableArchitecture
+internal import ComposableArchitecture
 import OguryAds
 
 struct ThumbnailDisplayOptions: Equatable {

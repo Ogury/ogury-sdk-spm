@@ -5,7 +5,7 @@
 
 import SwiftUI
 import AdsCardLibrary
-import ComposableArchitecture
+internal import ComposableArchitecture
 
 struct AddFormatView: View {
     var value: Binding<Int>

@@ -8,7 +8,7 @@
 //
 
 import SwiftUI
-import ComposableArchitecture
+internal import ComposableArchitecture
 
 struct RewardedView: View {
     let store: StoreOf<RewardedFeature>

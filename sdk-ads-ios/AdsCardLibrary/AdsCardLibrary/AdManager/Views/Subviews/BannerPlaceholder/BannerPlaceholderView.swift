@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import ComposableArchitecture
+internal import ComposableArchitecture
 
 struct BannerPlaceholderView: View {
     let store: StoreOf<BannerPlaceholderFeature>

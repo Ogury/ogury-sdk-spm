@@ -4,7 +4,7 @@
 
 
 import UIKit
-import ComposableArchitecture
+internal import ComposableArchitecture
 import AdsCardLibrary
 import SwiftUI
 import OguryAds

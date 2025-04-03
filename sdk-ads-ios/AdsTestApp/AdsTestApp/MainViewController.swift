@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import ComposableArchitecture
+internal import ComposableArchitecture
 import SwiftUI
 import AdsCardLibrary
 import OguryAds

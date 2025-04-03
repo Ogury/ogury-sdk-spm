@@ -4,7 +4,7 @@
 
 
 import UIKit
-import ComposableArchitecture
+internal import ComposableArchitecture
 import OguryCore.Private
 
 @Reducer
