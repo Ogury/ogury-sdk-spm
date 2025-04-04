@@ -622,11 +622,11 @@ extension AdType {
     func defaultAdUnit(options: MediationOptions? = nil, testMode: Bool) -> String {
         let currentOptions = options == nil ? Configuration.shared.options : options!
         switch self {
-            case .interstitial: return currentOptions.interstitial.adUnitId + (testMode ? AdsCardManager.testModeSuffix : "")
-            case .rewarded: return currentOptions.optIn.adUnitId + (testMode ? AdsCardManager.testModeSuffix : "")
-            case .thumbnail: return (currentOptions.thumbnail?.adUnitId ?? "") + (testMode ? AdsCardManager.testModeSuffix : "")
-            case .banner: return currentOptions.banner.adUnitId + (testMode ? AdsCardManager.testModeSuffix : "")
-            case .mpu: return currentOptions.mpu.adUnitId + (testMode ? AdsCardManager.testModeSuffix : "")
+            case .interstitial: return currentOptions.interstitial.adUnitId + (testMode ? .testModeSuffix : "")
+            case .rewarded: return currentOptions.optIn.adUnitId + (testMode ? .testModeSuffix : "")
+            case .thumbnail: return (currentOptions.thumbnail?.adUnitId ?? "") + (testMode ? .testModeSuffix : "")
+            case .banner: return currentOptions.banner.adUnitId + (testMode ? .testModeSuffix : "")
+            case .mpu: return currentOptions.mpu.adUnitId + (testMode ? .testModeSuffix : "")
             case .maxHeaderBidding(let adType, _): return adType.defaultAdUnit(options: Configuration.shared.maxOptions, testMode: testMode)
             case .dtFairBidHeaderBidding(let adType, _): return adType.defaultAdUnit(options: Configuration.shared.dtFairBidOptions, testMode: testMode)
             case .unityLevelPlayHeaderBidding(let adType, _): return adType.defaultAdUnit(options: Configuration.shared.unityLevelPlayOptions, testMode: testMode)
