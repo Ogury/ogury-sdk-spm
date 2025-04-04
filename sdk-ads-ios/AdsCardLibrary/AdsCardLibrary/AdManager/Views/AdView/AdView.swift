@@ -165,7 +165,7 @@ public struct AdView: View {
                             
                             Spacer()
                             
-                            AdTagList(tags: store.tags, size: .small)
+                            AdTagList(tags: Array(store.tags), size: .small)
                         }
                         
                         HStack(alignment: .bottom, spacing: 8) {

@@ -63,7 +63,7 @@ struct AdViewFeature {
         var fakeTextState: String = ""
         
         @Presents var alert: AlertState<Action.Alert>?
-        var tags: [TestModeTags] = []
+        var tags: Set<TestModeTags> = Set()
         var enableFeedbacks = true
         var isLoading = false
         var error: Error?
@@ -110,28 +110,28 @@ struct AdViewFeature {
             let previousMode = testModeEnabled
             testModeEnabled = adUnitIsInTestMode
             if testModeEnabled {
-                tags.append(.oguryTestMode)
+                tags.insert(.oguryTestMode)
             } else {
-                tags.removeAll(where: { $0 == .oguryTestMode })
+                tags.remove(.oguryTestMode)
             }
             return previousMode != testModeEnabled
         }
         mutating func toggleTestMode() {
             if adUnitIsInTestMode {
                 adManager.adConfiguration.adUnitId.removeLast(5)
-                tags.removeAll(where: { $0 == .oguryTestMode })
+                tags.remove(.oguryTestMode)
             } else {
                 adManager.adConfiguration.adUnitId.append(AdsCardManager.testModeSuffix)
-                tags.append(.oguryTestMode)
+                tags.insert(.oguryTestMode)
             }
         }
         mutating func forceTestMode(_ enable: Bool) {
             if !adUnitIsInTestMode && enable {
                 adManager.adConfiguration.adUnitId.append(AdsCardManager.testModeSuffix)
-                tags.append(.oguryTestMode)
+                tags.insert(.oguryTestMode)
             } else if adUnitIsInTestMode && !enable {
                 adManager.adConfiguration.adUnitId.removeLast(5)
-                tags.removeAll(where: { $0 == .oguryTestMode })
+                tags.remove(.oguryTestMode)
             }
         }
         
@@ -142,9 +142,9 @@ struct AdViewFeature {
         
         mutating func updateRTBTag() {
             if rtbTestModeEnabled {
-                tags.append(.rtbTestMode)
+                tags.insert(.rtbTestMode)
             } else {
-                tags.removeAll(where: { $0 == .rtbTestMode })
+                tags.remove(.rtbTestMode)
             }
         }
         
