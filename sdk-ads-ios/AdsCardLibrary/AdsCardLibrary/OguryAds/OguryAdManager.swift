@@ -23,7 +23,11 @@ public protocol OguryAdManager: AdManager {
     /// updates the base options
     func update(options: BaseAdOptions)
     /// instanciate a new AdManager object with a given ad type
-    init(adType: AdType<Self>, adDelegate: AdLifeCycleDelegate?)
+    init(adType: AdType<Self>,
+         adConfiguration: AdConfiguration,
+         cardConfiguration: CardConfiguration,
+         viewController: UIViewController?,
+         adDelegate: AdLifeCycleDelegate?)
     /// the SwiftUI view that will be displayed and which will manage the underlying ad format
     var adView: AdView { get }
     /// the SwiftUI view dedicated to specific that will be displayed and which will manage the underlying ad format options

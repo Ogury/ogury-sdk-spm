@@ -194,22 +194,6 @@ struct AppSettingsView: View {
                                 .accessibilityLabel("ShowCreativeFieldsToggle")
                                 
                                 Button {
-                                    viewStore.send(.showSpecificOptionsToggleTapped)
-                                } label: {
-                                    HStack {
-                                        Text("Show specific options")
-                                            .layoutPriority(1)
-                                        
-                                        Toggle("", isOn:
-                                                viewStore.binding(
-                                                    get: \.showSpecificOptions,
-                                                    send: .showSpecificOptionsToggleTapped)
-                                        )
-                                    }
-                                }
-                                .accessibilityLabel("ShowCardOptionsToggle")
-                                
-                                Button {
                                     viewStore.send(.showTestModeToggleTapped)
                                 } label: {
                                     HStack {

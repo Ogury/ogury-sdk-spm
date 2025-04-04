@@ -13,13 +13,13 @@ public final class BannerAdManager: OguryAdManager, AdManager {
     public var adFormat: AdFormat
     public var adConfiguration: AdConfiguration!
     public var cardConfiguration: CardConfiguration!
+    public var viewController: UIViewController?
     
     public func update(_ adConfiguration: AdConfiguration) {
-        //TODO: implement
-    }
-    
-    public func update(_ cardConfiguration: CardConfiguration) {
-        //TODO: implement
+        if adConfiguration.adUnitId != self.adConfiguration.adUnitId {
+            ad = nil
+        }
+        self.adConfiguration = adConfiguration
     }
     
     public func load() {
@@ -31,7 +31,7 @@ public final class BannerAdManager: OguryAdManager, AdManager {
     }
     
     public func close() {
-        //TODO: implement
+        ad?.destroy()
     }
     
     public static func == (lhs: BannerAdManager, rhs: BannerAdManager) -> Bool {
@@ -47,10 +47,10 @@ public final class BannerAdManager: OguryAdManager, AdManager {
         )
     }()
     public typealias Ad = OguryBannerAdView
-    public typealias Options = BannerAdManagerOptions
+    public typealias Options = AdManagerOptions
     public var adOptionView: (any View)? { nil }
     //MARK: Variables
-    public var options: BannerAdManagerOptions!  {
+    public var options: AdManagerOptions!  {
         didSet {
             adConfiguration = .init(adUnitId: options.baseOptions.adUnitId, campaignId: options.baseOptions.campaignId)
             cardConfiguration = .init()
@@ -74,9 +74,16 @@ public final class BannerAdManager: OguryAdManager, AdManager {
     public let id: UUID = UUID()
     
     //MARK: Initializer
-    public init(adType: AdType<BannerAdManager>, adDelegate: AdLifeCycleDelegate? = nil) {
+    public init(adType: AdType<BannerAdManager>,
+                adConfiguration: AdConfiguration,
+                cardConfiguration: CardConfiguration,
+                viewController: UIViewController?,
+                adDelegate: AdLifeCycleDelegate? = nil) {
         events = PassthroughSubject<AdLifeCycleEvent, Never>()
         self.adType = adType
+        self.adConfiguration = adConfiguration
+        self.cardConfiguration = cardConfiguration
+        self.viewController = viewController
         adFormat = adType.adFormat
         proxyDelegate = MrecProxyDelegate(adDelegate: adDelegate)
         proxyDelegate.adManager = self
@@ -148,11 +155,16 @@ public final class BannerAdManager: OguryAdManager, AdManager {
     }
     
     private func privateLoad() {
-#warning("CHECK FOR TEST MODE AND DO NOT SEND CAMPAIGN IF ENABLED")
-        if let dspCreativeId = options.baseOptions.dspCreativeId, !dspCreativeId.isEmpty,
-           let campaignId = options.baseOptions.campaignId, !campaignId.isEmpty,
-           let creativeId = options.baseOptions.creativeId,
-           let dspRegion = options.baseOptions.dspRegion?.displayName, !dspRegion.isEmpty {
+        // if test mode is enabled, then we don't send any other information
+        guard !adUnitId.isTestModeOn else {
+            ad.load()
+            return
+        }
+        
+        if let dspCreativeId, !dspCreativeId.isEmpty,
+           let campaignId, !campaignId.isEmpty,
+           let creativeId,
+           let dspRegion = dspRegion?.displayName, !dspRegion.isEmpty {
             let obj = ad as OguryBannerAdView
             let sel = NSSelectorFromString("loadWithCampaignId:creativeId:dspCreativeId:dspRegion:")
             let meth = class_getInstanceMethod(object_getClass(obj), sel)
@@ -160,10 +172,8 @@ public final class BannerAdManager: OguryAdManager, AdManager {
             typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?, String, String) -> Void
             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
             sayHiTo(obj, sel, campaignId, creativeId, dspCreativeId, dspRegion)
-        } else if let campaignId = options.baseOptions.campaignId,
-                  !campaignId.isEmpty,
-                  let creativeId = options.baseOptions.creativeId,
-                  !creativeId.isEmpty {
+        } else if let campaignId, !campaignId.isEmpty,
+                  let creativeId, !creativeId.isEmpty {
             let obj = ad as OguryBannerAdView
             let sel = NSSelectorFromString("loadWithCampaignId:creativeId:")
             let meth = class_getInstanceMethod(object_getClass(obj), sel)
@@ -171,8 +181,7 @@ public final class BannerAdManager: OguryAdManager, AdManager {
             typealias ClosureType = @convention(c) (AnyObject, Selector, String, String) -> Void
             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
             sayHiTo(obj, sel, campaignId, creativeId)
-        } else if let campaignId = options.baseOptions.campaignId,
-                  !campaignId.isEmpty {
+        } else if let campaignId, !campaignId.isEmpty {
             let obj = ad as OguryBannerAdView
             let sel = NSSelectorFromString("loadWithCampaignId:")
             let meth = class_getInstanceMethod(object_getClass(obj), sel)
@@ -207,10 +216,6 @@ public final class BannerAdManager: OguryAdManager, AdManager {
     public func append(_ event: AdLifeCycleEvent) {
         lifeCycleEvents.append(AdLifeCycleEventHistory(event: event))
         events.send(event)
-    }
-    
-    public func updateCard(events: [AdOptionsEvent]) {
-//        adView.updateCard(events: events)
     }
     
     public func killWebview(_ killMode: KillWebviewMode) {
@@ -267,9 +272,5 @@ extension BannerAdManager: Storable {
         fatalError()
     }
     
-    public func encode() -> StorableAdManager {
-        StorableAdManager(rawAdType: adType.innerType,
-                          options: options,
-                          thumbnailOptions: nil)
-    }
+    public func encode() -> StorableAdManager { StorableAdManager(rawAdType: adType.innerType, options: options) }
 }

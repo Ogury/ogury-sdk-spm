@@ -243,6 +243,24 @@ public struct AdView: View {
             .shadow(color: Color(AdColorPalette.Background.shadow.color), radius: 5, x: 0, y: 8)
         }
     }
+    
+    public func updateCard(events: [AdOptionsEvent]) {
+        withAnimation {
+            events.forEach { event in
+                switch event {
+                    case let .enableAdUnitEditing(value): ViewStore(store, observe: { $0 }).send(.enableAdUnitEditing(value))
+                    case let .showCampaignId(value): ViewStore(store, observe: { $0 }).send(.showCampaignId(value))
+                    case let .showCreativeId(value): ViewStore(store, observe: { $0 }).send(.showCreativeId(value))
+                    case let .showDspFields(value): ViewStore(store, observe: { $0 }).send(.showDspFields(value))
+                    case let .enableBulkMode(value): ViewStore(store, observe: { $0 }).send(.enableBulkMode(value))
+                    case let .showTestMode(value): ViewStore(store, observe: { $0 }).send(.showTestModeButton(value))
+                    case let .forceTestMode(enable): ViewStore(store, observe: { $0 }).send(.forceTestMode(enable))
+                    case let .enableFeedbacks(enable): ViewStore(store, observe: { $0 }).send(.enableFeedbacks(enable))
+                    case let .updateKillMode(mode): ViewStore(store, observe: { $0 }).send(.updateKillMode(mode))
+                }
+            }
+        }
+    }
 }
 
 extension View {

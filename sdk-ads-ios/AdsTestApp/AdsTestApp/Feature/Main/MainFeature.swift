@@ -56,9 +56,8 @@ struct MainFeature: Reducer {
                 zip(leftFormats,
                     rightFormats)
                 .forEach { lhsManager, rhsManager in
-                    if lhsManager.options.baseOptions != rhsManager.options.baseOptions ||
-                        (lhsManager.options as? BaseAdManagerOptions) != (rhsManager.options as? BaseAdManagerOptions) ||
-                        (lhsManager.options as? ThumbnailAdManagerOptions) != (rhsManager.options as? ThumbnailAdManagerOptions) {
+                    if lhsManager.adConfiguration != rhsManager.adConfiguration
+                        || lhsManager.cardConfiguration != rhsManager.cardConfiguration {
                         isEqual = false
                         return
                     }
@@ -191,7 +190,6 @@ struct MainFeature: Reducer {
                 case .destination(.presented(.settings(.enableAdUnitEditingToggleTapped))),
                         .destination(.presented(.settings(.showCampaignToggleTapped))),
                         .destination(.presented(.settings(.showCreativeToggleTapped))),
-                        .destination(.presented(.settings(.showSpecificOptionsToggleTapped))),
                         .destination(.presented(.settings(.showTestModeToggleTapped))),
                         .destination(.presented(.settings(.showDspFieldsToggleTapped))),
                         .destination(.presented(.settings(.toggleKillWebviewMode))),
@@ -339,9 +337,6 @@ struct MainFeature: Reducer {
         if state.settingsPriorToChange.showDspFields != settings.showDspFields {
             cardEvents.append(.showDspFields(settings.showDspFields))
         }
-        if state.settingsPriorToChange.showSpecificOptions != settings.showSpecificOptions {
-            cardEvents.append(.showSpecificOptions(settings.showSpecificOptions))
-        }
         if state.settingsPriorToChange.bulkModeEnabled != settings.bulkModeEnabled {
             cardEvents.append(.enableBulkMode(settings.bulkModeEnabled))
         }
@@ -377,39 +372,38 @@ struct MainFeature: Reducer {
     func adManagers(for section: AdFormat, startIndex: Int = 0) -> [any OguryAdManager] {
         var adsManager: [any OguryAdManager] = []
         for index in 0..<section.nbOfFormatToLoad {
+            let options = Configuration.shared.options(at: index + startIndex + 1)
+            
             switch section.adType.adType {
                 case is AdType<InterstitialAdManager>:
                     let interstitial: AdType<InterstitialAdManager> = section.adType.adType as! AdType<InterstitialAdManager>
-                    let options = Configuration.shared.options(for: interstitial, index: index + startIndex + 1)
-                    options.viewController = adHostingViewController
                     let interstitialManager = try? self.cardManager.adManager(for: interstitial,
                                                                               options: options,
+                                                                              viewController: adHostingViewController,
                                                                               adDelegate: adDelegate)
                     adsManager.append(interstitialManager!)
                     
                 case is AdType<RewardedAdManager>:
                     let optin: AdType<RewardedAdManager> =  section.adType.adType as! AdType<RewardedAdManager>
-                    let options = Configuration.shared.options(for: optin, index: index + startIndex + 1)
-                    options.viewController = adHostingViewController
                     let optinManager = try? self.cardManager.adManager(for: optin,
                                                                        options: options,
+                                                                       viewController: adHostingViewController,
                                                                        adDelegate: adDelegate)
                     adsManager.append(optinManager!)
                     
                 case is AdType<ThumbnailAdManager>:
                     let thumbnail: AdType<ThumbnailAdManager> =  section.adType.adType as! AdType<ThumbnailAdManager>
-                    let options = Configuration.shared.options(for: thumbnail, index: index + startIndex + 1)
-                    options.viewController = adHostingViewController
                     let thumbnailManager = try? self.cardManager.adManager(for: thumbnail,
                                                                            options: options,
+                                                                           viewController: adHostingViewController,
                                                                            adDelegate: adDelegate)
                     adsManager.append(thumbnailManager!)
                     
                 case is AdType<BannerAdManager>:
                     let banner: AdType<BannerAdManager> =  section.adType.adType as! AdType<BannerAdManager>
-                    let options = Configuration.shared.options(for: banner, index: index + startIndex + 1)
                     let bannerManager = try? self.cardManager.adManager(for: banner,
                                                                         options: options,
+                                                                        viewController: adHostingViewController,
                                                                         adDelegate: adDelegate)
                     adsManager.append(bannerManager!)
                     

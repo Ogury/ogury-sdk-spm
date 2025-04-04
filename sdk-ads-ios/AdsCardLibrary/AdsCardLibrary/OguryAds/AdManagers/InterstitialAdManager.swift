@@ -13,25 +13,61 @@ public final class InterstitialAdManager: OguryAdManager, AdManager {
     public var adFormat: AdFormat
     public var adConfiguration: AdConfiguration!
     public var cardConfiguration: CardConfiguration!
+    public var viewController: UIViewController?
 
     public func update(_ adConfiguration: AdConfiguration) {
-        //TODO: implement
-    }
-    
-    public func update(_ cardConfiguration: CardConfiguration) {
-        //TODO: implement
+        if adConfiguration.adUnitId != self.adConfiguration.adUnitId {
+            ad = nil
+        }
+        self.adConfiguration = adConfiguration
     }
     
     public func load() {
-        //TODO: implement
+        if (ad == nil) {
+            ad = OguryInterstitialAd(adUnitId: adUnitId)
+        }
+        ad.delegate = proxyDelegate
+        ad.setLogOrigin(qaLabel)
+        append(.adLoading)
+        
+        guard let bidder else {
+            loadAd()
+            return
+        }
+        Task {
+            do {
+                let adMakUp = try await bidder.adMarkUp(adUnitId: adUnitId,
+                                                        campaignId: campaignId,
+                                                        creativeId: creativeId,
+                                                        dspCreative: dspCreativeId,
+                                                        dspRegion: dspRegion,
+                                                        rtbTestModeEnabled: cardConfiguration.rtbTestModeEnabled)
+                guard let adMakUp else {
+                    append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")))
+                    return
+                }
+                load(from: adMakUp)
+            } catch {
+                append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed(bidder.description(for: error))))
+                return
+            }
+        }
     }
     
     public func show() {
-        //TODO: implement
+        if ad == nil {
+            ad = OguryInterstitialAd(adUnitId: adUnitId)
+            ad.delegate = proxyDelegate
+        }
+        append(.adDisplaying)
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.ad?.show(in: self.viewController!)
+        }
     }
     
     public func close() {
-        //TODO: implement
+        //n/a
     }
     
     public static func == (lhs: InterstitialAdManager, rhs: InterstitialAdManager) -> Bool {
@@ -75,9 +111,16 @@ public final class InterstitialAdManager: OguryAdManager, AdManager {
     public let id: UUID = UUID()
     
     //MARK: Initializer
-    public init(adType: AdType<InterstitialAdManager>, adDelegate: AdLifeCycleDelegate? = nil) {
+    public init(adType: AdType<InterstitialAdManager>,
+                adConfiguration: AdConfiguration,
+                cardConfiguration: CardConfiguration,
+                viewController: UIViewController?,
+                adDelegate: AdLifeCycleDelegate? = nil) {
         events = PassthroughSubject<AdLifeCycleEvent, Never>()
         self.adType = adType
+        self.adConfiguration = adConfiguration
+        self.cardConfiguration = cardConfiguration
+        self.viewController = viewController
         adFormat = adType.adFormat
         proxyDelegate = InterstitialProxyDelegate(adDelegate: adDelegate)
         proxyDelegate.adManager = self
@@ -101,48 +144,25 @@ public final class InterstitialAdManager: OguryAdManager, AdManager {
     
     //MARK: Ad Management
     public func loadAd(from options: BaseAdOptions) throws {
-        self.options.baseOptions = options
-        if (ad == nil) {
-            ad = OguryInterstitialAd(adUnitId: options.adUnitId)
-        }
-        ad.delegate = proxyDelegate
-        ad.setLogOrigin(options.qaLabel)
-        append(.adLoading)
         
-        guard let bidder else {
-            load()
-            return
-        }
-        Task {
-            do {
-                let adMakUp = try await bidder.adMarkUp(adUnitId: options.adUnitId,
-                                                        campaignId: options.campaignId,
-                                                        creativeId: options.creativeId,
-                                                        dspCreative: options.dspCreativeId,
-                                                        dspRegion: options.dspRegion,
-                                                        rtbTestModeEnabled: options.rtbTestModeEnabled)
-                guard let adMakUp else {
-                    append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")))
-                    return
-                }
-                load(from: adMakUp)
-            } catch {
-                append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed(bidder.description(for: error))))
-                return
-            }
-        }
+        
     }
     
     private func load(from adMarkUp: String) {
         ad.load(withAdMarkup: adMarkUp)
     }
     
-    private func privateLoad() {
-        #warning("CHECK FOR TEST MODE AND DO NOT SEND CAMPAIGN IF ENABLED")
-        if let dspCreativeId = options.baseOptions.dspCreativeId, !dspCreativeId.isEmpty,
-           let campaignId = options.baseOptions.campaignId, !campaignId.isEmpty,
-           let creativeId = options.baseOptions.creativeId,
-           let dspRegion = options.baseOptions.dspRegion?.displayName, !dspRegion.isEmpty {
+    private func loadAd() {
+        // if test mode is enabled, then we don't send any other information
+        guard !adUnitId.isTestModeOn else {
+            ad.load()
+            return
+        }
+        
+        if let dspCreativeId, !dspCreativeId.isEmpty,
+           let campaignId, !campaignId.isEmpty,
+           let creativeId,
+           let dspRegion = dspRegion?.displayName, !dspRegion.isEmpty {
             let obj = ad as OguryInterstitialAd
             let sel = NSSelectorFromString("loadWithCampaignId:creativeId:dspCreativeId:dspRegion:")
             let meth = class_getInstanceMethod(object_getClass(obj), sel)
@@ -150,10 +170,8 @@ public final class InterstitialAdManager: OguryAdManager, AdManager {
             typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?, String, String) -> Void
             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
             sayHiTo(obj, sel, campaignId, creativeId, dspCreativeId, dspRegion)
-        } else if let campaignId = options.baseOptions.campaignId,
-                  !campaignId.isEmpty,
-                  let creativeId = options.baseOptions.creativeId,
-                  !creativeId.isEmpty {
+        } else if let campaignId, !campaignId.isEmpty,
+                  let creativeId, !creativeId.isEmpty {
             let obj = ad as OguryInterstitialAd
             let sel = NSSelectorFromString("loadWithCampaignId:creativeId:")
             let meth = class_getInstanceMethod(object_getClass(obj), sel)
@@ -161,8 +179,7 @@ public final class InterstitialAdManager: OguryAdManager, AdManager {
             typealias ClosureType = @convention(c) (AnyObject, Selector, String, String) -> Void
             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
             sayHiTo(obj, sel, campaignId, creativeId)
-        } else if let campaignId = options.baseOptions.campaignId,
-                  !campaignId.isEmpty {
+        } else if let campaignId, !campaignId.isEmpty {
             let obj = ad as OguryInterstitialAd
             let sel = NSSelectorFromString("loadWithCampaignId:")
             let meth = class_getInstanceMethod(object_getClass(obj), sel)
@@ -176,14 +193,14 @@ public final class InterstitialAdManager: OguryAdManager, AdManager {
     }
     
     public func showAd() throws {
-        guard let options else { throw AdManagerError.noOptions }
+        guard let viewController else { throw AdManagerError.noOptions }
         if ad == nil {
             ad = OguryInterstitialAd(adUnitId: options.baseOptions.adUnitId)
             ad.delegate = proxyDelegate
         }
         append(.adDisplaying)
         DispatchQueue.main.async {
-            self.ad?.show(in: options.viewController)
+            self.ad?.show(in: viewController)
         }
     }
     
@@ -195,10 +212,6 @@ public final class InterstitialAdManager: OguryAdManager, AdManager {
     public func append(_ event: AdLifeCycleEvent) {
         lifeCycleEvents.append(AdLifeCycleEventHistory(event: event))
         events.send(event)
-    }
-    
-    public func updateCard(events: [AdOptionsEvent]) {
-//        adView.updateCard(events: events)
     }
     
     public func killWebview(_ killMode: KillWebviewMode) {
@@ -250,9 +263,5 @@ extension InterstitialAdManager: Storable {
         fatalError()
     }
     
-    public func encode() -> StorableAdManager {
-        StorableAdManager(rawAdType: adType.innerType,
-                          options: options,
-                          thumbnailOptions: nil)
-    }
+    public func encode() -> StorableAdManager { StorableAdManager(rawAdType: adType.innerType, options: options) }
 }

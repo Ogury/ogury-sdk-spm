@@ -13,13 +13,13 @@ public final class RewardedAdManager: OguryAdManager, AdManager {
     public var adFormat: AdFormat
     public var adConfiguration: AdConfiguration!
     public var cardConfiguration: CardConfiguration!
+    public var viewController: UIViewController?
     
     public func update(_ adConfiguration: AdConfiguration) {
-        //TODO: implement
-    }
-    
-    public func update(_ cardConfiguration: CardConfiguration) {
-        //TODO: implement
+        if adConfiguration.adUnitId != self.adConfiguration.adUnitId {
+            ad = nil
+        }
+        self.adConfiguration = adConfiguration
     }
     
     public func load() {
@@ -31,7 +31,7 @@ public final class RewardedAdManager: OguryAdManager, AdManager {
     }
     
     public func close() {
-        //TODO: implement
+        //n/a
     }
     
     public static func == (lhs: RewardedAdManager, rhs: RewardedAdManager) -> Bool {
@@ -74,9 +74,16 @@ public final class RewardedAdManager: OguryAdManager, AdManager {
     public let id: UUID = UUID()
     
     //MARK: Initializer
-    public init(adType: AdType<RewardedAdManager>, adDelegate: AdLifeCycleDelegate? = nil) {
+    public init(adType: AdType<RewardedAdManager>,
+                adConfiguration: AdConfiguration,
+                cardConfiguration: CardConfiguration,
+                viewController: UIViewController?,
+                adDelegate: AdLifeCycleDelegate? = nil) {
         events = PassthroughSubject<AdLifeCycleEvent, Never>()
         self.adType = adType
+        self.adConfiguration = adConfiguration
+        self.cardConfiguration = cardConfiguration
+        self.viewController = viewController
         adFormat = adType.adFormat
         proxyDelegate = RewardedProxyDelegate(adDelegate: adDelegate)
         proxyDelegate.adManager = self
@@ -136,11 +143,16 @@ public final class RewardedAdManager: OguryAdManager, AdManager {
     }
     
     private func privateLoad() {
-#warning("CHECK FOR TEST MODE AND DO NOT SEND CAMPAIGN IF ENABLED")
-        if let dspCreativeId = options.baseOptions.dspCreativeId, !dspCreativeId.isEmpty,
-           let campaignId = options.baseOptions.campaignId, !campaignId.isEmpty,
-           let creativeId = options.baseOptions.creativeId,
-           let dspRegion = options.baseOptions.dspRegion?.displayName, !dspRegion.isEmpty {
+        // if test mode is enabled, then we don't send any other information
+        guard !adUnitId.isTestModeOn else {
+            ad.load()
+            return
+        }
+        
+        if let dspCreativeId, !dspCreativeId.isEmpty,
+           let campaignId, !campaignId.isEmpty,
+           let creativeId,
+           let dspRegion = dspRegion?.displayName, !dspRegion.isEmpty {
             let obj = ad as OguryRewardedAd
             let sel = NSSelectorFromString("loadWithCampaignId:creativeId:dspCreativeId:dspRegion:")
             let meth = class_getInstanceMethod(object_getClass(obj), sel)
@@ -148,10 +160,8 @@ public final class RewardedAdManager: OguryAdManager, AdManager {
             typealias ClosureType = @convention(c) (AnyObject, Selector, String, String?, String, String) -> Void
             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
             sayHiTo(obj, sel, campaignId, creativeId, dspCreativeId, dspRegion)
-        } else if let campaignId = options.baseOptions.campaignId,
-                  !campaignId.isEmpty,
-                  let creativeId = options.baseOptions.creativeId,
-                  !creativeId.isEmpty {
+        } else if let campaignId, !campaignId.isEmpty,
+                  let creativeId, !creativeId.isEmpty {
             let obj = ad as OguryRewardedAd
             let sel = NSSelectorFromString("loadWithCampaignId:creativeId:")
             let meth = class_getInstanceMethod(object_getClass(obj), sel)
@@ -159,8 +169,7 @@ public final class RewardedAdManager: OguryAdManager, AdManager {
             typealias ClosureType = @convention(c) (AnyObject, Selector, String, String) -> Void
             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
             sayHiTo(obj, sel, campaignId, creativeId)
-        } else if let campaignId = options.baseOptions.campaignId,
-                  !campaignId.isEmpty {
+        } else if let campaignId, !campaignId.isEmpty {
             let obj = ad as OguryRewardedAd
             let sel = NSSelectorFromString("loadWithCampaignId:")
             let meth = class_getInstanceMethod(object_getClass(obj), sel)
@@ -174,13 +183,13 @@ public final class RewardedAdManager: OguryAdManager, AdManager {
     }
     
     public func showAd() throws {
-        guard let options else { throw AdManagerError.noOptions }
+        guard let viewController else { throw AdManagerError.noOptions }
         if ad == nil {
             ad = OguryRewardedAd(adUnitId: options.baseOptions.adUnitId)
             ad.delegate = proxyDelegate
         }
         DispatchQueue.main.async {
-            self.ad?.show(in: options.viewController)
+            self.ad?.show(in: viewController)
         }
         append(.adDisplaying)
     }
@@ -193,10 +202,6 @@ public final class RewardedAdManager: OguryAdManager, AdManager {
     public func append(_ event: AdLifeCycleEvent) {
         lifeCycleEvents.append(AdLifeCycleEventHistory(event: event))
         events.send(event)
-    }
-    
-    public func updateCard(events: [AdOptionsEvent]) {
-//        adView.updateCard(events: events)
     }
     
     public func killWebview(_ killMode: KillWebviewMode) {
@@ -252,9 +257,5 @@ extension RewardedAdManager: Storable {
         fatalError()
     }
     
-    public func encode() -> StorableAdManager {
-        StorableAdManager(rawAdType: adType.innerType,
-                          options: options,
-                          thumbnailOptions: nil)
-    }
+    public func encode() -> StorableAdManager { StorableAdManager(rawAdType: adType.innerType, options: options) }
 }

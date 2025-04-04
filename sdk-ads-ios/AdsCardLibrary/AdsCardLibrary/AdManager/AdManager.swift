@@ -28,6 +28,7 @@ public protocol AdManager: Storable, Equatable, Identifiable where ID == UUID {
     var adFormat: AdFormat { get set }
     var adConfiguration: AdConfiguration! { get set }
     var cardConfiguration: CardConfiguration! { get set }
+    var viewController: UIViewController? { get set }
     var adDelegate: AdLifeCycleDelegate? { get set }
     var events: PassthroughSubject<AdLifeCycleEvent, Never> { get }
     var lifeCycleEvents: [AdLifeCycleEventHistory] { get }
@@ -35,11 +36,48 @@ public protocol AdManager: Storable, Equatable, Identifiable where ID == UUID {
     
     //MARK: functions
     func update(_ adConfiguration: AdConfiguration)
-    func update(_ cardConfiguration: CardConfiguration)
     func load()
     func show()
     func close() // used only for banners
+    func updateCard(events: [AdOptionsEvent]) // update cardConfiguration through events
     func killWebview(_ killMode: KillWebviewMode)
+}
+
+public extension AdManager {
+    func updateCard(events: [AdOptionsEvent])  {
+        adView.updateCard(events: events)
+    }
+}
+
+public extension AdManager {
+    var cardName: String {
+        get { cardConfiguration.adDisplayName }
+        set { cardConfiguration.adDisplayName = newValue }
+    }
+    var qaLabel: String {
+        get { cardConfiguration.qaLabel }
+        set { cardConfiguration.qaLabel = newValue }
+    }
+    var adUnitId: String {
+        get { adConfiguration.adUnitId }
+        set { adConfiguration.adUnitId = newValue }
+    }
+    var campaignId: String? {
+        get { adConfiguration.campaignId }
+        set { adConfiguration.campaignId = newValue }
+    }
+    var creativeId: String? {
+        get { adConfiguration.creativeId }
+        set { adConfiguration.creativeId = newValue }
+    }
+    var dspCreativeId: String? {
+        get { adConfiguration.dspCreativeId }
+        set { adConfiguration.dspCreativeId = newValue }
+    }
+    var dspRegion: DspRegion? {
+        get { adConfiguration.dspRegion }
+        set { adConfiguration.dspRegion = newValue }
+    }
 }
 
 extension AdManager {
@@ -63,7 +101,6 @@ public enum AdOptionsEvent {
     case showCampaignId(_: Bool)
     case showCreativeId(_: Bool)
     case showDspFields(_: Bool)
-    case showSpecificOptions(_: Bool)
     case enableBulkMode(_: Bool)
     case showTestMode(_: Bool)
     case forceTestMode(_: Bool)

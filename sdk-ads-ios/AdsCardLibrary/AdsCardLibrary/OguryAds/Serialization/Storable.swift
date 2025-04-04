@@ -11,8 +11,7 @@ public protocol Storable {
 
 public struct StorableAdManager: Codable {
     public let rawAdType: Int
-    public let options: BaseAdManagerOptions
-    public let thumbnailOptions: ThumbnailOptions?
+    public let options: AdManagerOptions
 }
 
 //MARK: AdType Codable

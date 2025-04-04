@@ -427,7 +427,7 @@ struct AdViewFeature {
                     return .none
                     
                 case .checkForTestMode:
-                    let update = state.updateTestMode()
+                    state.updateTestMode()
                     return .none
                     
                 case .oguryTestModeButtonTapped:
