@@ -25,7 +25,7 @@ public enum AdFormat {
 
 public protocol AdManager: Storable, Equatable, Identifiable where ID == UUID {
     //MARK: properties
-    var adFormat: AdFormat { get set }
+    var adapterAdFormat: any AdAdapterFormat { get set }
     var adConfiguration: AdConfiguration! { get set }
     var cardConfiguration: CardConfiguration! { get set }
     var viewController: UIViewController? { get set }
@@ -168,7 +168,6 @@ public func areEqual(_ lhs: Error, _ rhs: Error) -> Bool {
     return lhs.reflectedString == rhs.reflectedString
 }
 
-
 public extension Error {
     var reflectedString: String {
         // NOTE 1: We can just use the standard reflection for our case
@@ -181,7 +180,6 @@ public extension Error {
     }
     
 }
-
 
 public extension NSError {
     // prevents scenario where one would cast swift Error to NSError

@@ -10,7 +10,7 @@ internal import ComposableArchitecture
 import Combine
 
 public final class BannerAdManager: OguryAdManager, AdManager {
-    public var adFormat: AdFormat
+    public var adapterAdFormat: any AdAdapterFormat
     public var adConfiguration: AdConfiguration!
     public var cardConfiguration: CardConfiguration!
     public var viewController: UIViewController?
@@ -81,10 +81,10 @@ public final class BannerAdManager: OguryAdManager, AdManager {
                 adDelegate: AdLifeCycleDelegate? = nil) {
         events = PassthroughSubject<AdLifeCycleEvent, Never>()
         self.adType = adType
+        self.adapterAdFormat = adType.adFormat
         self.adConfiguration = adConfiguration
         self.cardConfiguration = cardConfiguration
         self.viewController = viewController
-        adFormat = adType.adFormat
         proxyDelegate = MrecProxyDelegate(adDelegate: adDelegate)
         proxyDelegate.adManager = self
         if case let .maxHeaderBidding(_, adMarkUpRetriever) = adType {

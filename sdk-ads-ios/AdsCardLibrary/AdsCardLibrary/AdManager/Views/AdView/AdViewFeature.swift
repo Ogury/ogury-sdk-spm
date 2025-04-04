@@ -49,9 +49,9 @@ struct AdViewFeature {
         var adManager: any AdManager
         init(adManager: inout any AdManager) {
             self.adManager = adManager
-            switch adManager.adFormat {
+            switch adManager.adapterAdFormat.adFormat {
                 case .rewardedVideo: rewardedOptions = .init()
-                case .smallBanner, .mrec: bannerContainer = .init(bannerType: adManager.adFormat)
+                case .smallBanner, .mrec: bannerContainer = .init(bannerType: adManager.adapterAdFormat.adFormat)
                 case .interstitial, .thumbnail: ()
             }
         }
@@ -83,7 +83,7 @@ struct AdViewFeature {
         var bannerFeature: BannerPlaceholderFeature.State {
             get {
                 return BannerPlaceholderFeature.State(bannerAd: bannerContainer?.bannerAd,
-                                                      bannerType: adManager.adFormat)
+                                                      bannerType: adManager.adapterAdFormat.adFormat)
             }
             
             set {
@@ -550,8 +550,8 @@ extension AdViewFeature.State {
         get { adManager.cardConfiguration.showDspFields }
         set { adManager.cardConfiguration.showDspFields = newValue }
     }
-    var isBanner: Bool { adManager.adFormat.isBanner }
-    var isRewardedVideo: Bool { adManager.adFormat == .rewardedVideo }
+    var isBanner: Bool { adManager.adapterAdFormat.adFormat.isBanner }
+    var isRewardedVideo: Bool { adManager.adapterAdFormat.adFormat == .rewardedVideo }
 }
 
 struct BannerContainer: Equatable {

@@ -52,16 +52,66 @@ public protocol OguryAdManager: AdManager {
 }
 
 extension AdType {
-    var adFormat: AdFormat {
+    struct OguryAdapterAdFormat: AdAdapterFormat {
+        var adFormat: AdFormat
+        var tags: [any AdTag]
+        var displayName: String { adFormat.name }
+        var adType: Int
+        var options: any AdAdapterFormatOptions
+        var id: UUID { UUID(displayName.hashValue) }
+    }
+    struct OguryAdapterAdFormatOption: AdAdapterFormatOptions {
+        var enableRtbTestMode: Bool = false
+    }
+    var adFormat: any AdAdapterFormat {
         switch self {
-            case .interstitial: return .interstitial
-            case .rewarded: return .rewardedVideo
-            case .thumbnail: return .thumbnail
-            case .banner: return.smallBanner
-            case .mpu: return .mrec
-            case .maxHeaderBidding(let adType, _): return adType.adFormat
-            case .dtFairBidHeaderBidding(let adType, _): return adType.adFormat
-            case .unityLevelPlayHeaderBidding(let adType, _): return adType.adFormat
+            case .interstitial:
+                return OguryAdapterAdFormat(adFormat: .interstitial,
+                                            tags: [OguryAdTag.ogury, OguryAdTag.direct],
+                                            adType: 0,
+                                            options: OguryAdapterAdFormatOption())
+                
+            case .rewarded:
+                return OguryAdapterAdFormat(adFormat: .rewardedVideo,
+                                            tags: [OguryAdTag.ogury, OguryAdTag.direct],
+                                            adType: 0,
+                                            options: OguryAdapterAdFormatOption())
+                
+            case .thumbnail:
+                return OguryAdapterAdFormat(adFormat: .thumbnail,
+                                            tags: [OguryAdTag.ogury, OguryAdTag.direct],
+                                            adType: 0,
+                                            options: OguryAdapterAdFormatOption())
+                
+            case .banner:
+                return OguryAdapterAdFormat(adFormat: .smallBanner,
+                                            tags: [OguryAdTag.ogury, OguryAdTag.direct],
+                                            adType: 0,
+                                            options: OguryAdapterAdFormatOption())
+                
+            case .mpu:
+                return OguryAdapterAdFormat(adFormat: .mrec,
+                                            tags: [OguryAdTag.ogury, OguryAdTag.direct],
+                                            adType: 0,
+                                            options: OguryAdapterAdFormatOption())
+                
+            case .maxHeaderBidding(let adType, _):
+                var innerType = adType.adFormat
+                innerType.options.enableRtbTestMode = enableRtbTestMode
+                innerType.tags = [OguryAdTag.max, OguryAdTag.headerBidding, OguryAdTag.bypass]
+                return innerType
+                
+            case .dtFairBidHeaderBidding(let adType, _):
+                var innerType = adType.adFormat
+                innerType.options.enableRtbTestMode = enableRtbTestMode
+                innerType.tags = [OguryAdTag.dtFairbid, OguryAdTag.headerBidding, OguryAdTag.bypass]
+                return innerType
+                
+            case .unityLevelPlayHeaderBidding(let adType, _):
+                var innerType = adType.adFormat
+                innerType.options.enableRtbTestMode = enableRtbTestMode
+                innerType.tags = [OguryAdTag.unityLevelPlay, OguryAdTag.headerBidding, OguryAdTag.bypass]
+                return innerType
         }
     }
 }
