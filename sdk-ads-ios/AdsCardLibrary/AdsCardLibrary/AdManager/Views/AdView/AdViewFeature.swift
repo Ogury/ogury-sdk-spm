@@ -6,7 +6,6 @@
 import UIKit
 import SwiftUI
 internal import ComposableArchitecture
-import OguryAds
 
 enum TestModeTags: AdTag {
     case oguryTestMode, rtbTestMode
@@ -148,14 +147,8 @@ struct AdViewFeature {
             }
         }
         
-        func log(_ message: String, logType: OguryLogType = .testApp) {
-            AdsCardManager.logger?.logMessage(OGAAdLogMessage(level: .debug,
-                                                              logType: logType,
-                                                              origin: adManager.cardConfiguration.qaLabel,
-                                                              sdk: .ads,
-                                                              messageDate: nil,
-                                                              message: message,
-                                                              tags: nil))
+        func log(_ message: String, logType: String = .testAppLogType) {
+            AdsCardManager.log(message, origin: adManager.cardConfiguration.qaLabel, logType: logType)
         }
         
         // log received publisher callbacks only
@@ -174,7 +167,7 @@ struct AdViewFeature {
                 case .adDidFailToDisplay(let error): message = "Ad failed to show (\(error.displayMessage))"
                 case .adDidFail(let error): message = "Ad failed (\(error.displayMessage))"
             }
-            if let message { log(message, logType: .receivedCallbacks) }
+            if let message { log(message, logType: .receivedCallbacksLogType) }
         }
     }
     
@@ -566,14 +559,9 @@ struct BannerContainer: Equatable {
     var bannerType: AdFormat
 }
 
-public extension OguryLogType {
-    static let testApp: OguryLogType = .init("TestApp")
-    static let receivedCallbacks: OguryLogType = .init("ReceivedCallbacks")
-}
-
 extension Error {
     var displayMessage: String {
-        if let adError = self as? OguryAdError {
+        if let adError = self as? NSError {
             return "#\(adError.code) : \(adError.localizedDescription)"
         }
         return String(describing: self)

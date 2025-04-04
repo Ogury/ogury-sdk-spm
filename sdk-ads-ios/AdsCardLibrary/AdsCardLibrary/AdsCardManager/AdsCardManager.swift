@@ -4,13 +4,29 @@
 
 import Foundation
 import OguryAds
+import OguryCore
 import SwiftUI
 import OguryCore.Private
+
+public extension String {
+    static let testAppLogType: String = "TestApp"
+    static let receivedCallbacksLogType: String = "ReceivedCallbacks"
+}
 
 //MARK: - AdsCardManager
 public struct AdsCardManager {
     public static let testModeSuffix = "_test"
     internal static var logger: OguryLogger?
+    
+    static func log(_ message: String, origin: String, logType: String = .testAppLogType) {
+        AdsCardManager.logger?.logMessage(OGAAdLogMessage(level: .debug,
+                                                          logType: OguryLogType(logType),
+                                                          origin: origin,
+                                                          sdk: .ads,
+                                                          messageDate: nil,
+                                                          message: message,
+                                                          tags: nil))
+    }
     
     public init(logger: OguryLogger? = nil) {
         AdsCardManager.logger = logger

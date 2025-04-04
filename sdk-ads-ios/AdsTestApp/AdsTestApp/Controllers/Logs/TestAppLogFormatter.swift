@@ -11,6 +11,11 @@ import AdsCardLibrary
 import SwiftUI
 import UserDefault
 
+public extension OguryLogType {
+    static let testApp: OguryLogType = .init(.testAppLogType)
+    static let receivedCallbacks: OguryLogType = .init(.receivedCallbacksLogType)
+}
+
 public class TestAppLogFormatter: OguryLogFormatter {
     
     @UserDefault("logTypeColor")
