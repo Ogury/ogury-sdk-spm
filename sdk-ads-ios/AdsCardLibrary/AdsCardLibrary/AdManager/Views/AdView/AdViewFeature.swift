@@ -4,8 +4,34 @@
 
 
 import UIKit
+import SwiftUI
 internal import ComposableArchitecture
 import OguryAds
+
+enum TestModeTags: AdTag {
+    case oguryTestMode, rtbTestMode
+    var displayMode: TagDisplayMode { .fill }
+     
+    public var name: String {
+        switch self {
+            case .oguryTestMode: return "Ogury Test Mode"
+            case .rtbTestMode: return "RTB Test Mode"
+        }
+    }
+    public var description: String {
+        switch self {
+            case .oguryTestMode: return "Add _test to the ad unit"
+            case .rtbTestMode: return "Add test=1 to bid request"
+        }
+    }
+    internal var color: Color {
+        switch self {
+            case .oguryTestMode: return Color(#colorLiteral(red: 0.8326988816, green: 0.2894239128, blue: 0.3478675783, alpha: 1))
+            case .rtbTestMode: return Color(#colorLiteral(red: 0.8326988816, green: 0.2894239128, blue: 0.3478675783, alpha: 1))
+        }
+    }
+    internal var textColor: Color { .white }
+}
 
 @Reducer
 struct AdViewFeature {
@@ -37,7 +63,7 @@ struct AdViewFeature {
         var fakeTextState: String = ""
         
         @Presents var alert: AlertState<Action.Alert>?
-        var tags: Set<OguryAdTag> = Set()
+        var tags: [TestModeTags] = []
         var enableFeedbacks = true
         var isLoading = false
         var error: Error?
@@ -84,28 +110,28 @@ struct AdViewFeature {
             let previousMode = testModeEnabled
             testModeEnabled = adUnitIsInTestMode
             if testModeEnabled {
-                tags.insert(.oguryTestMode)
+                tags.append(.oguryTestMode)
             } else {
-                tags.remove(.oguryTestMode)
+                tags.removeAll(where: { $0 == .oguryTestMode })
             }
             return previousMode != testModeEnabled
         }
         mutating func toggleTestMode() {
             if adUnitIsInTestMode {
                 adManager.adConfiguration.adUnitId.removeLast(5)
-                tags.remove(.oguryTestMode)
+                tags.removeAll(where: { $0 == .oguryTestMode })
             } else {
                 adManager.adConfiguration.adUnitId.append(AdsCardManager.testModeSuffix)
-                tags.insert(.oguryTestMode)
+                tags.append(.oguryTestMode)
             }
         }
         mutating func forceTestMode(_ enable: Bool) {
             if !adUnitIsInTestMode && enable {
                 adManager.adConfiguration.adUnitId.append(AdsCardManager.testModeSuffix)
-                tags.insert(.oguryTestMode)
+                tags.append(.oguryTestMode)
             } else if adUnitIsInTestMode && !enable {
                 adManager.adConfiguration.adUnitId.removeLast(5)
-                tags.remove(.oguryTestMode)
+                tags.removeAll(where: { $0 == .oguryTestMode })
             }
         }
         
@@ -116,9 +142,9 @@ struct AdViewFeature {
         
         mutating func updateRTBTag() {
             if rtbTestModeEnabled {
-                tags.insert(.rtbTestMode)
+                tags.append(.rtbTestMode)
             } else {
-                tags.remove(.rtbTestMode)
+                tags.removeAll(where: { $0 == .rtbTestMode })
             }
         }
         

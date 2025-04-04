@@ -8,10 +8,11 @@
 internal import ComposableArchitecture
 import SwiftUI
 
-enum TagDisplayMode {
+public enum TagDisplayMode {
     case fill, stroke
 }
-protocol AdTag: Equatable {
+
+public protocol AdTag: Equatable, Hashable {
     var displayMode: TagDisplayMode { get }
     var name: String { get }
     var description: String { get }
@@ -25,7 +26,7 @@ public enum OguryAdTag: String, AdTag {
     enum DisplayMode {
         case fill, stroke
     }
-    var displayMode: TagDisplayMode {
+    public var displayMode: TagDisplayMode {
         switch self {
             default: return .fill
         }
@@ -62,7 +63,7 @@ public enum OguryAdTag: String, AdTag {
         }
     }
     
-    internal var color: Color {
+    public var color: Color {
         switch self {
             case .ogury: return Color(#colorLiteral(red: 0.07843137255, green: 0.2862745098, blue: 0.462745098, alpha: 1))
             case .max: return Color(#colorLiteral(red: 0.337254902, green: 0.01176470588, blue: 0.6666666667, alpha: 1))
@@ -78,7 +79,7 @@ public enum OguryAdTag: String, AdTag {
         }
     }
     
-    internal var textColor: Color {
+    public var textColor: Color {
         switch self {
             case .direct, .headerBidding: return .black
             default: return .white
@@ -90,7 +91,7 @@ struct AdTagFeature: Reducer {
     struct State: Equatable {
         static func == (lhs: AdTagFeature.State, rhs: AdTagFeature.State) -> Bool { lhs.flip == rhs.flip }
         @PresentationState var alert: AlertState<Action.Alert>?
-        let tag: OguryAdTag
+        let tag: any AdTag
         var flip = true
         var size: AdTagList.TagSize
     }

@@ -70,7 +70,7 @@ struct LogsView: View {
                                     .font(.adsTitle2)
                                     .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
                                 
-                                AdTagList(tags: [.beta], size: .small)
+                                AdTagList(tags: [OguryAdTag.beta], size: .small)
                             }
                             
                             HStack {
