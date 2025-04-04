@@ -108,6 +108,8 @@
 		43EB15E12D9D4268002F170A /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB15DF2D9D4268002F170A /* AdView.swift */; };
 		43EB15E22D9D4268002F170A /* AdViewFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB15DE2D9D4268002F170A /* AdViewFeature.swift */; };
 		43EB15E32D9D4268002F170A /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB15DF2D9D4268002F170A /* AdView.swift */; };
+		43EB15E52D9FDE7F002F170A /* AdsCardAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB15E42D9FDE7F002F170A /* AdsCardAdapter.swift */; };
+		43EB15E62D9FDE7F002F170A /* AdsCardAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB15E42D9FDE7F002F170A /* AdsCardAdapter.swift */; };
 		50CFA85F2C63776200E64D20 /* UnityLevelPlayBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA85D2C63774B00E64D20 /* UnityLevelPlayBidable.swift */; };
 		50CFA8602C63776200E64D20 /* UnityLevelPlayBidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA85D2C63774B00E64D20 /* UnityLevelPlayBidable.swift */; };
 		50CFA8622C637F0B00E64D20 /* UnityLevelPlayRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8612C637F0A00E64D20 /* UnityLevelPlayRetriever.swift */; };
@@ -199,6 +201,7 @@
 		43DA127F2AB888D900766D99 /* BannerAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdManager.swift; sourceTree = "<group>"; };
 		43EB15DE2D9D4268002F170A /* AdViewFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewFeature.swift; sourceTree = "<group>"; };
 		43EB15DF2D9D4268002F170A /* AdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdView.swift; sourceTree = "<group>"; };
+		43EB15E42D9FDE7F002F170A /* AdsCardAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCardAdapter.swift; sourceTree = "<group>"; };
 		43FA4E9E2CB6D00D0029B928 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43FA4E9F2CB6D00D0029B928 /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4925EF716018B487E9F91C3B /* Pods_AdsCardLibrary_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsCardLibrary_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -483,6 +486,7 @@
 			isa = PBXGroup;
 			children = (
 				435C55F92A42F36B004186FF /* AdsCardManager.swift */,
+				43EB15E42D9FDE7F002F170A /* AdsCardAdapter.swift */,
 			);
 			path = AdsCardManager;
 			sourceTree = "<group>";
@@ -729,6 +733,7 @@
 				43B439B02D9C23C7005AAED6 /* AdManager.swift in Sources */,
 				438ED3C82AA0C2BA00486AF2 /* InterstitialAdManager.swift in Sources */,
 				43EB15E02D9D4268002F170A /* AdViewFeature.swift in Sources */,
+				43EB15E62D9FDE7F002F170A /* AdsCardAdapter.swift in Sources */,
 				43EB15E12D9D4268002F170A /* AdView.swift in Sources */,
 				438ED3D82AA0C2BA00486AF2 /* AdManagerOptions.swift in Sources */,
 				431F6F062C0F3D8100DBFFAA /* AdTagView.swift in Sources */,
@@ -786,6 +791,7 @@
 				43B439AF2D9C23C7005AAED6 /* AdManager.swift in Sources */,
 				43BCB1762C22FBF0002FB0B1 /* InterstitialAdManager.swift in Sources */,
 				43EB15E22D9D4268002F170A /* AdViewFeature.swift in Sources */,
+				43EB15E52D9FDE7F002F170A /* AdsCardAdapter.swift in Sources */,
 				43EB15E32D9D4268002F170A /* AdView.swift in Sources */,
 				43BCB1772C22FBF0002FB0B1 /* AdManagerOptions.swift in Sources */,
 				43BCB1782C22FBF0002FB0B1 /* AdTagView.swift in Sources */,
