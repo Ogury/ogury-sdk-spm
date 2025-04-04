@@ -63,19 +63,27 @@ public extension AdManager {
         set { adConfiguration.adUnitId = newValue }
     }
     var campaignId: String? {
-        get { adConfiguration.campaignId }
+        get {
+            (adUnitId.isTestModeOn || !cardConfiguration.showCampaignId) ? nil : adConfiguration.campaignId
+        }
         set { adConfiguration.campaignId = newValue }
     }
     var creativeId: String? {
-        get { adConfiguration.creativeId }
+        get {
+            (adUnitId.isTestModeOn || !cardConfiguration.showCreativeId) ? nil : adConfiguration.creativeId
+        }
         set { adConfiguration.creativeId = newValue }
     }
     var dspCreativeId: String? {
-        get { adConfiguration.dspCreativeId }
+        get {
+            (adUnitId.isTestModeOn || !cardConfiguration.showDspFields) ? nil : adConfiguration.dspCreativeId
+        }
         set { adConfiguration.dspCreativeId = newValue }
     }
     var dspRegion: DspRegion? {
-        get { adConfiguration.dspRegion }
+        get {
+            (adUnitId.isTestModeOn || !cardConfiguration.showDspFields) ? nil : adConfiguration.dspRegion
+        }
         set { adConfiguration.dspRegion = newValue }
     }
 }

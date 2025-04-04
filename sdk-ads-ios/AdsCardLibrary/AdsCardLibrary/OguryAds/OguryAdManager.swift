@@ -51,22 +51,6 @@ public protocol OguryAdManager: AdManager {
     func killWebview(_: KillWebviewMode)
 }
 
-//extension OguryAdManager {
-//    func kill(_ webView: WKWebView) {
-//        DispatchQueue.main.async {
-//            Task {
-//                let crashCommand = "let largeArray = Array(1e9).fill(0);"
-//                do {
-//                    let res = try await webView.evaluateJavaScript(crashCommand)
-//                    print("crash result \(String(describing: res))")
-//                } catch {
-//                    print("⚠️ Error while trying to crash webview \(error)")
-//                }
-//            }
-//        }
-//    }
-//}
-
 extension AdType {
     var adFormat: AdFormat {
         switch self {

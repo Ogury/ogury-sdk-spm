@@ -418,29 +418,14 @@ struct AdViewFeature {
                     
                 case let .showCampaignId(value):
                     state.adManager.cardConfiguration.showCampaignId = value
-                    // if the field is hidden, we "nil" it out
-#warning("CHECK THAT FIELD IS NIL WHEN HIDDEN")
-//                    if value {
-//                        state.baseOptions.campaignId = ""
-//                    }
                     return .none
                     
                 case let .showCreativeId(value):
                     state.adManager.cardConfiguration.showCreativeId = value
-                    // if the field is hidden, we "nil" it out
-#warning("CHECK THAT FIELD IS NIL WHEN HIDDEN")
-//                    if value {
-//                        state.baseOptions.creativeId = ""
-//                    }
                     return .none
                     
                 case let .showDspFields(value):
                     state.adManager.cardConfiguration.showDspFields = value
-                    // if the field is hidden, we "nil" it out
-#warning("CHECK THAT FIELD IS NIL WHEN HIDDEN")
-//                    if value {
-//                        state.baseOptions.dspCreativeId = ""
-//                    }
                     return .none
                     
                 case let .enableBulkMode(value):
