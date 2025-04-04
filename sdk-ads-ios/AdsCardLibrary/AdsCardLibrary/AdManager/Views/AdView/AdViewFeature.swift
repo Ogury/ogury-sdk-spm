@@ -510,8 +510,8 @@ extension AdViewFeature.State {
         get { adManager.adConfiguration.dspCreativeId ?? "" }
         set { adManager.adConfiguration.dspCreativeId = newValue.isEmpty ? nil : newValue }
     }
-    var dspRegion: DspRegion? {
-        get { adManager.adConfiguration.dspRegion }
+    var dspRegion: DspRegion {
+        get { adManager.adConfiguration.dspRegion ?? .euWest1 }
         set { adManager.adConfiguration.dspRegion = newValue }
     }
     var showTestModeButton: Bool {
