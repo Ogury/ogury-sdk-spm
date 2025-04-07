@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 import WebKit
 
-public enum AdFormat {
+public enum AdFormat: Codable {
     case interstitial, rewardedVideo, smallBanner, mrec, thumbnail
     public var name: String {
         switch self {

@@ -5,10 +5,10 @@
 //  Created by Jerome TONNELIER on 04/04/2025.
 //
 
-import Foundation
+import UIKit
 
 /// The available ad format that the `AdsCardAdapter` can provide
-public protocol AdAdapterFormat: Identifiable where ID == UUID {
+public protocol AdAdapterFormat: Codable, Identifiable where ID == UUID {
     /// the associated base adFormat (inter/rewarded/banner/thumb)
     var adFormat: AdFormat { get }
     /// the associated tags to display on the test app
@@ -21,15 +21,28 @@ public protocol AdAdapterFormat: Identifiable where ID == UUID {
     var options: AdAdapterFormatOptions { get set }
 }
 
-public protocol AdAdapterFormatOptions {
+public struct AdAdapterFormatOptions: Codable {
     /// - returns: return `true` if rtbTestMode (i.e. add `test:0` to bidding request) can be used on the server side, `false` if not
-    var enableRtbTestMode: Bool { get set }
+    var enableRtbTestMode: Bool = false
+}
+
+public struct AdAdapterFormatSection: Identifiable {
+    public var id: UUID = UUID()
+    public var title: String
+    public var formats: [any AdAdapterFormat]
 }
 
 public protocol AdsCardAdapter {
     /// list of available `AdAdapterFormat` list to populate the Add panel of the test application
-    var availableAdFormats: [[any AdAdapterFormat]] { get }
+    var availableAdFormats: [AdAdapterFormatSection] { get }
     /// returns the AdManager associated with an `AdAdapterFormat`
     /// - throws: throws an exception if no adapter is available
-    func adManager(for adFormat: any AdAdapterFormat) throws -> any AdManager
+    func adManager(for adFormat: any AdAdapterFormat,
+                   options: AdManagerOptions,
+                   viewController: UIViewController?,
+                   adDelegate: AdLifeCycleDelegate?) throws(AdsCardAdapterError) -> any AdManager
+}
+
+public enum AdsCardAdapterError: Error {
+    case noSuitableAdapterAvailable
 }

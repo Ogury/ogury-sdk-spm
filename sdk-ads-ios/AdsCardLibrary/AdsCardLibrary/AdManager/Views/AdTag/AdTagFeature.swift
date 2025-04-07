@@ -8,11 +8,11 @@
 internal import ComposableArchitecture
 import SwiftUI
 
-public enum TagDisplayMode {
+public enum TagDisplayMode: Codable {
     case fill, stroke
 }
 
-public protocol AdTag: Equatable, Hashable {
+public protocol AdTag: Codable, Equatable, Hashable {
     var displayMode: TagDisplayMode { get }
     var name: String { get }
     var description: String { get }
