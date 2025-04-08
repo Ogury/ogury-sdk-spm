@@ -4,6 +4,7 @@
 
 import UIKit
 import OguryAds
+import AdsCardLibrary
 
 class AdDelegateProxy<T: OguryAdManager>: NSObject {
     internal var adDelegate: AdLifeCycleDelegate?

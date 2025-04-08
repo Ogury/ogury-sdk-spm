@@ -9,10 +9,6 @@ import Foundation
 import OguryAds
 import OguryCore
 
-protocol OguryErrorConvertible {
-    var readableError: String? { get }
-}
-
 extension OguryAdError: OguryErrorConvertible {
     var readableError: String? {
         switch self.code {

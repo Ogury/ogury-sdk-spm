@@ -4,7 +4,6 @@
 
 import XCTest
 @testable import AdsCardLibrary
-import OguryAds
 
 final class AdManagerOptionsTests: XCTestCase {
     func testWhenInitializingSUTWithOptionsThenAllOptionsAreSet() {

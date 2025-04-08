@@ -4,7 +4,6 @@
 
 import XCTest
 @testable import AdsCardLibrary
-import OguryAds
 import CwlPreconditionTesting
 import Combine
 

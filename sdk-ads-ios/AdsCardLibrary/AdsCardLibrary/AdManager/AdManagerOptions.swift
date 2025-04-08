@@ -70,6 +70,7 @@ public struct CardConfiguration: Codable, Equatable {
     }
 }
 
+
 public struct AdConfiguration: Codable, Equatable {
     /// The adUnitId used to load the ad
     public internal(set) var adUnitId: String

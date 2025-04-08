@@ -16,7 +16,7 @@ public protocol AdAdapterFormat: Codable, Identifiable where ID == UUID {
     /// the name to display in the add panel and ad list
     var displayName: String { get }
     /// the inner value to decode/encode
-    var adType: Int { get }
+//    var adType: Int { get }
     /// specific options that comes with current format
     var options: AdAdapterFormatOptions { get set }
 }
@@ -32,13 +32,13 @@ public struct AdAdapterFormatSection: Identifiable {
     public var formats: [any AdAdapterFormat]
 }
 
-public protocol AdsCardAdapter {
+public protocol AdsCardAdaptable {
     /// list of available `AdAdapterFormat` list to populate the Add panel of the test application
     var availableAdFormats: [AdAdapterFormatSection] { get }
     /// returns the AdManager associated with an `AdAdapterFormat`
     /// - throws: throws an exception if no adapter is available
     func adManager(for adFormat: any AdAdapterFormat,
-                   options: AdManagerOptions,
+                   options: AdViewOptions,
                    viewController: UIViewController?,
                    adDelegate: AdLifeCycleDelegate?) throws(AdsCardAdapterError) -> any AdManager
     /// starts the underlying SDK

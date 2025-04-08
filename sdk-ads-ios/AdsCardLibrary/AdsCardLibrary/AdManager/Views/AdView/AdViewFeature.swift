@@ -47,7 +47,7 @@ struct AdViewFeature {
         
         //MARK: init
         var adManager: any AdManager
-        init(adManager: inout any AdManager) {
+        public init(adManager: inout any AdManager) {
             self.adManager = adManager
             switch adManager.adFormat {
                 case .rewardedVideo: rewardedOptions = .init()

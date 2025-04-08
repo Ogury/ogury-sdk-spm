@@ -23,7 +23,7 @@ public enum AdFormat: Codable {
     public var isBanner: Bool {  return [.smallBanner, .mrec].contains(self) }
 }
 
-public protocol AdManager: Storable, Equatable, Identifiable where ID == UUID {
+public protocol AdManager: Codable, Equatable, Identifiable where ID == UUID {
     //MARK: properties
     var adFormat: AdFormat { get set }
     var adConfiguration: AdConfiguration! { get set }
@@ -41,6 +41,7 @@ public protocol AdManager: Storable, Equatable, Identifiable where ID == UUID {
     func close() // used only for banners
     func updateCard(events: [AdOptionsEvent]) // update cardConfiguration through events
     func killWebview(_ killMode: KillWebviewMode)
+    func append(_ event: AdLifeCycleEvent)
 }
 
 public extension AdManager {
