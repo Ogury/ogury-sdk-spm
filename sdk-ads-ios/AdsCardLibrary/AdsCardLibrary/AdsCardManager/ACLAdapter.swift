@@ -8,7 +8,7 @@
 import UIKit
 
 /// The available ad format that the `AdsCardAdapter` can provide
-public protocol AdAdapterFormat: Codable, Identifiable where ID == UUID {
+public protocol ACLAdapterFormat: Codable, Identifiable where ID == UUID {
     /// the associated base adFormat (inter/rewarded/banner/thumb)
     var adFormat: AdFormat { get }
     /// the associated tags to display on the test app
@@ -29,20 +29,20 @@ public struct AdAdapterFormatOptions: Codable {
 public struct AdAdapterFormatSection: Identifiable {
     public var id: UUID = UUID()
     public var title: String
-    public var formats: [any AdAdapterFormat]
+    public var formats: [any ACLAdapterFormat]
 }
 
-public protocol AdsCardAdapter {
+public protocol ACLAdapter {
     /// list of available `AdAdapterFormat` list to populate the Add panel of the test application
     var availableAdFormats: [AdAdapterFormatSection] { get }
     /// returns the AdManager associated with an `AdAdapterFormat`
     /// - throws: throws an exception if no adapter is available
-    func adManager(for adFormat: any AdAdapterFormat,
+    func adManager(for adFormat: any ACLAdapterFormat,
                    options: AdManagerOptions,
                    viewController: UIViewController?,
-                   adDelegate: AdLifeCycleDelegate?) throws(AdsCardAdapterError) -> any AdManager
+                   adDelegate: AdLifeCycleDelegate?) throws(ACLAdapterError) -> any AdManager
 }
 
-public enum AdsCardAdapterError: Error {
+public enum ACLAdapterError: Error {
     case noSuitableAdapterAvailable
 }

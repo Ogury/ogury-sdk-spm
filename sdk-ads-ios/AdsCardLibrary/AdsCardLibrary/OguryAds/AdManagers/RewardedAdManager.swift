@@ -10,7 +10,7 @@ internal import ComposableArchitecture
 import Combine
 
 public final class RewardedAdManager: OguryAdManager, AdManager {
-    public var adapterAdFormat: any AdAdapterFormat
+    public var adFormat: AdFormat
     public var adConfiguration: AdConfiguration!
     public var cardConfiguration: CardConfiguration!
     public var viewController: UIViewController?
@@ -81,7 +81,7 @@ public final class RewardedAdManager: OguryAdManager, AdManager {
                 adDelegate: AdLifeCycleDelegate? = nil) {
         events = PassthroughSubject<AdLifeCycleEvent, Never>()
         self.adType = adType
-        self.adapterAdFormat = adType.adFormat
+        self.adFormat = adType.adFormat.adFormat
         self.adConfiguration = adConfiguration
         self.cardConfiguration = cardConfiguration
         self.viewController = viewController

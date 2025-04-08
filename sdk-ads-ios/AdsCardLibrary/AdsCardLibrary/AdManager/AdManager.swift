@@ -25,7 +25,7 @@ public enum AdFormat: Codable {
 
 public protocol AdManager: Storable, Equatable, Identifiable where ID == UUID {
     //MARK: properties
-    var adapterAdFormat: any AdAdapterFormat { get set }
+    var adFormat: AdFormat { get set }
     var adConfiguration: AdConfiguration! { get set }
     var cardConfiguration: CardConfiguration! { get set }
     var viewController: UIViewController? { get set }

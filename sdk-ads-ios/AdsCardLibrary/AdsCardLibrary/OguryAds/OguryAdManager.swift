@@ -52,7 +52,7 @@ public protocol OguryAdManager: AdManager {
 }
 
 extension AdType {
-    struct OguryAdapterAdFormat: AdAdapterFormat {
+    struct OguryAdapterAdFormat: ACLAdapterFormat {
         var adFormat: AdFormat
         /// have to use this trick because `any [AdTag]` does not conform to Codable 😓
         var tags: [any AdTag] {
@@ -65,7 +65,7 @@ extension AdType {
         var options: AdAdapterFormatOptions
         var id: UUID { UUID(displayName.hashValue) }
     }
-    var adFormat: any AdAdapterFormat {
+    var adFormat: any ACLAdapterFormat {
         switch self {
             case .interstitial:
                 return OguryAdapterAdFormat(adFormat: .interstitial,
