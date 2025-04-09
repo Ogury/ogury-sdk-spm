@@ -252,7 +252,7 @@ struct AdsStorableContainer: Codable {
     var shouldUpdateAdUnits: Bool { settings.shouldUpdateAdUnits }
     
     init(settings: SettingsContainer = .init(),
-         cards: [AdFormat: [any OguryAdManager]]) {
+         cards: [AdFormat: [any AdManager]]) {
         self.settings = settings
         self.cards = cards.compactMap { (adFormat, managers) in
             AdContainer.from(adFormat: adFormat, managers: managers)
@@ -354,7 +354,7 @@ struct AdContainer: Codable {
     let adType: Int
     let adInformations: AdInformationsContainer
     
-    fileprivate static func from(adFormat: AdFormat, managers: [any OguryAdManager]) -> [Self] {
+    fileprivate static func from(adFormat: AdFormat, managers: [any AdManager]) -> [Self] {
         managers
             .compactMap { manager in
                 guard let adType = try? adFormat.innerAdType else {

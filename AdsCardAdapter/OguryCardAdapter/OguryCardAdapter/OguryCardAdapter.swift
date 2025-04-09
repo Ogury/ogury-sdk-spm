@@ -8,16 +8,19 @@
 import UIKit
 import AdsCardAdapter
 import AdsCardLibrary
+import OguryAds.Private
 
 public enum OguryEnvironement {
     case devc, staging, prod
 }
 
 public struct OguryAdsCardAdapter: AdsCardAdaptable {
+    public let assetKey: String
     private let environment: OguryEnvironement
     static var configuration: Configuration!
     public init(assetKey: String, environment: OguryEnvironement) {
         self.environment = environment
+        self.assetKey = assetKey
         OguryAdsCardAdapter.configuration = .init(from: assetKey, environment: environment)
     }
     
@@ -55,6 +58,11 @@ public struct OguryAdsCardAdapter: AdsCardAdaptable {
     }
     
     public func startSdk() {
-        
+        OGAInternal.shared().start(with: assetKey) { _, _ in }
+    }
+    
+    func forceAdsEnvironment(_ env: String) {
+        let sel = NSSelectorFromString("changeServerEnvironment:")
+        OGAInternal.shared().perform(sel, with: env)
     }
 }

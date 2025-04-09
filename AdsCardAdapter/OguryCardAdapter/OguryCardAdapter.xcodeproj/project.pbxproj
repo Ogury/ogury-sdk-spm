@@ -14,9 +14,10 @@
 		43EB16B72DA571B2002F170A /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB16B52DA571B2002F170A /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43EB16EF2DA64ED9002F170A /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB16902DA5525F002F170A /* OguryAds.framework */; };
 		43EB16F02DA64ED9002F170A /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB16B52DA571B2002F170A /* OMSDK_Ogury.xcframework */; };
-		43EB16F12DA64ED9002F170A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB16752DA54B4C002F170A /* AdsCardAdapter.framework */; };
 		43EB16F22DA64ED9002F170A /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB16942DA553AB002F170A /* OguryCore.framework */; };
 		43EB16F52DA64ED9002F170A /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB16B52DA571B2002F170A /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB17752DA693E4002F170A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB16752DA54B4C002F170A /* AdsCardAdapter.framework */; };
+		43EB17762DA693E4002F170A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB16752DA54B4C002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,6 +39,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				43EB16F52DA64ED9002F170A /* OMSDK_Ogury.xcframework in Embed Frameworks */,
+				43EB17762DA693E4002F170A /* AdsCardAdapter.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -113,8 +115,8 @@
 			files = (
 				43EB16EF2DA64ED9002F170A /* OguryAds.framework in Frameworks */,
 				43EB16F02DA64ED9002F170A /* OMSDK_Ogury.xcframework in Frameworks */,
-				43EB16F12DA64ED9002F170A /* AdsCardAdapter.framework in Frameworks */,
 				43EB16F22DA64ED9002F170A /* OguryCore.framework in Frameworks */,
+				43EB17752DA693E4002F170A /* AdsCardAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
