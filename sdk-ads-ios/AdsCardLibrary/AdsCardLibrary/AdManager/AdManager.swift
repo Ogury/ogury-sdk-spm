@@ -23,7 +23,7 @@ public enum AdFormat: Codable {
     public var isBanner: Bool {  return [.smallBanner, .mrec].contains(self) }
 }
 
-public protocol AdManager: Equatable, Identifiable where ID == UUID {
+public protocol AdManager: Equatable, Hashable, Identifiable where ID == UUID {
     //MARK: properties
     var adFormat: AdFormat { get set }
     var adConfiguration: AdConfiguration! { get set }
@@ -42,6 +42,49 @@ public protocol AdManager: Equatable, Identifiable where ID == UUID {
     func updateCard(events: [AdOptionsEvent]) // update cardConfiguration through events
     func killWebview(_ killMode: KillWebviewMode)
     func append(_ event: AdLifeCycleEvent)
+    func encode() -> AdCardContainer
+}
+
+public struct AdCardContainer: Codable {
+    public struct AdInformationsContainer: Codable {
+        let adUnitId: String
+        let campaignId: String?
+        let creativeId: String?
+        let dspCreativeId: String?
+        let dspRegion: DspRegion?
+        let settings: CardSettings
+        public init(adUnitId: String,
+                    campaignId: String? = nil,
+                    creativeId: String? = nil,
+                    dspCreativeId: String? = nil,
+                    dspRegion: DspRegion? = nil,
+                    settings: CardSettings) {
+            self.adUnitId = adUnitId
+            self.campaignId = campaignId
+            self.creativeId = creativeId
+            self.dspCreativeId = dspCreativeId
+            self.dspRegion = dspRegion
+            self.settings = settings
+        }
+    }
+    public struct CardSettings: Codable {
+        let oguryTestModeEnabled: Bool
+        let rtbTestModeEnabled: Bool
+        let qaLabel: String
+        public init(oguryTestModeEnabled: Bool, rtbTestModeEnabled: Bool, qaLabel: String) {
+            self.oguryTestModeEnabled = oguryTestModeEnabled
+            self.rtbTestModeEnabled = rtbTestModeEnabled
+            self.qaLabel = qaLabel
+        }
+    }
+    let name: String
+    let adType: Int
+    let adInformations: AdInformationsContainer
+    public init(name: String, adType: Int, adInformations: AdInformationsContainer) {
+        self.name = name
+        self.adType = adType
+        self.adInformations = adInformations
+    }
 }
 
 public extension AdManager {
