@@ -150,8 +150,7 @@ public indirect enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
     
     /// returns the proper adManager handled by the AdType
     /// if no suitable adManager is found ``AdManagerError/adManagerMismatch`` is thrown
-    internal func adManager(bidder: HeaderBidable?,
-                            viewController: UIViewController?,
+    internal func adManager(viewController: UIViewController?,
                             adDelegate: AdLifeCycleDelegate?) -> any OguryAdManager  {
         switch self {
             case .rewarded:
@@ -173,25 +172,19 @@ public indirect enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
                 fatalError("Thumbnail is not supported on HB")
                 
             case let .maxHeaderBidding(adType):
-                var adManager = adType.adManager(bidder: bidder, viewController: viewController, adDelegate: adDelegate)
-                adManager.bidder = bidder
-                return adManager
+                return adType.adManager(viewController: viewController, adDelegate: adDelegate)
                 
             case .unityLevelPlayHeaderBidding(.thumbnail):
                 fatalError("Thumbnail is not supported on HB")
                 
             case let .unityLevelPlayHeaderBidding(adType):
-                var adManager = adType.adManager(bidder: bidder, viewController: viewController, adDelegate: adDelegate)
-                adManager.bidder = bidder
-                return adManager
+                return adType.adManager(viewController: viewController, adDelegate: adDelegate)
                 
             case .dtFairBidHeaderBidding(.thumbnail):
                 fatalError("Thumbnail is not supported on HB")
                 
             case let .dtFairBidHeaderBidding(adType):
-                var adManager = adType.adManager(bidder: bidder, viewController: viewController, adDelegate: adDelegate)
-                adManager.bidder = bidder
-                return adManager
+                return adType.adManager(viewController: viewController, adDelegate: adDelegate)
         }
     }
     

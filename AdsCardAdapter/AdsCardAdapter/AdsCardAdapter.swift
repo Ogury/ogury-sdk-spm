@@ -21,6 +21,10 @@ public struct AdAdapterFormatSection: Identifiable {
     public var id: UUID = UUID()
     public var title: String
     public var formats: [any AdAdapterFormat]
+    public init(title: String, formats: [any AdAdapterFormat]) {
+        self.title = title
+        self.formats = formats
+    }
 }
 
 public protocol AdsCardAdaptable {
