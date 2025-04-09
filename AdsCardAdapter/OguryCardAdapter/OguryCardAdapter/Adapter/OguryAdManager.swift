@@ -20,81 +20,27 @@ public protocol OguryAdManager: AdManager {
          adDelegate: AdLifeCycleDelegate?)
 }
 
-//extension AdType {
-//    struct OguryAdapterAdFormat: ACLAdapterFormat {
-//        var adFormat: AdFormat
-//        /// have to use this trick because `any [AdTag]` does not conform to Codable 😓
-//        var tags: [any AdTag] {
-//            get { ogyTags as [any AdTag] }
-//            set { ogyTags = newValue as? [OguryAdTag] ?? [] }
-//        }
-//        var ogyTags: [OguryAdTag]
-//        var displayName: String { adFormat.name }
-//        var adType: Int
-//        var options: ACLAdapterFormatOptions
-//        var id: UUID { UUID(displayName.hashValue) }
-//    }
-//    var adFormat: any ACLAdapterFormat {
-//        switch self {
-//            case .interstitial:
-//                return OguryAdapterAdFormat(adFormat: .interstitial,
-//                                            ogyTags: [OguryAdTag.ogury, OguryAdTag.direct],
-//                                            adType: 0,
-//                                            options: ACLAdapterFormatOptions())
-//                
-//            case .rewarded:
-//                return OguryAdapterAdFormat(adFormat: .rewardedVideo,
-//                                            ogyTags: [OguryAdTag.ogury, OguryAdTag.direct],
-//                                            adType: 0,
-//                                            options: ACLAdapterFormatOptions())
-//                
-//            case .thumbnail:
-//                return OguryAdapterAdFormat(adFormat: .thumbnail,
-//                                            ogyTags: [OguryAdTag.ogury, OguryAdTag.direct],
-//                                            adType: 0,
-//                                            options: ACLAdapterFormatOptions())
-//                
-//            case .banner:
-//                return OguryAdapterAdFormat(adFormat: .smallBanner,
-//                                            ogyTags: [OguryAdTag.ogury, OguryAdTag.direct],
-//                                            adType: 0,
-//                                            options: ACLAdapterFormatOptions())
-//                
-//            case .mpu:
-//                return OguryAdapterAdFormat(adFormat: .mrec,
-//                                            ogyTags: [OguryAdTag.ogury, OguryAdTag.direct],
-//                                            adType: 0,
-//                                            options: ACLAdapterFormatOptions())
-//                
-//            case .maxHeaderBidding(let adType, _):
-//                var innerType: OguryAdapterAdFormat = adType.adFormat as! OguryAdapterAdFormat
-//                innerType.options.enableRtbTestMode = enableRtbTestMode
-//                innerType.ogyTags = [OguryAdTag.max, OguryAdTag.headerBidding, OguryAdTag.bypass]
-//                return innerType
-//                
-//            case .dtFairBidHeaderBidding(let adType, _):
-//                var innerType: OguryAdapterAdFormat = adType.adFormat as! OguryAdapterAdFormat
-//                innerType.options.enableRtbTestMode = enableRtbTestMode
-//                innerType.ogyTags = [OguryAdTag.dtFairbid, OguryAdTag.headerBidding, OguryAdTag.bypass]
-//                return innerType
-//                
-//            case .unityLevelPlayHeaderBidding(let adType, _):
-//                var innerType: OguryAdapterAdFormat = adType.adFormat as! OguryAdapterAdFormat
-//                innerType.options.enableRtbTestMode = enableRtbTestMode
-//                innerType.ogyTags = [OguryAdTag.unityLevelPlay, OguryAdTag.headerBidding, OguryAdTag.bypass]
-//                return innerType
-//        }
-//    }
-//}
+extension OguryAdManager {
+    public func encode() -> AdCardContainer {
+        AdCardContainer(name: cardName,
+                        adType: adType.rawValue,
+                        adInformations: .init(adUnitId: adUnitId,
+                                              campaignId: adConfiguration.campaignId,
+                                              creativeId: adConfiguration.creativeId,
+                                              dspCreativeId: adConfiguration.dspCreativeId,
+                                              dspRegion: adConfiguration.dspRegion,
+                                              settings: .init(oguryTestModeEnabled: cardConfiguration.oguryTestModeEnabled,
+                                                              rtbTestModeEnabled: cardConfiguration.rtbTestModeEnabled,
+                                                              qaLabel: qaLabel)))
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(adFormat)
+        hasher.combine(adConfiguration)
+        hasher.combine(cardConfiguration)
+    }
+}
 
-//MARK: - Ad Types
-/// The ad format to load
-/// Note that in order to use ``AdType/maxHeaderBidding(_:)``, you should also define the inner format
-///
-/// Example on how to use maxHeaderBidding
-/// ```swift
-/// let adType: AdType<InterstitialAdManager> = .maxHeaderBidding(.interstitial)
-/// ```
 public indirect enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
     case interstitial
     case rewarded

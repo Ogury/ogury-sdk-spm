@@ -8,7 +8,7 @@ import UIKit
 import AdsCardLibrary
 
 /// The available ad format that the `AdsCardAdapter` can provide
-public protocol AdAdapterFormat: Codable, Identifiable where ID == UUID {
+public protocol AdAdapterFormat: Codable, Equatable, Hashable, Identifiable where ID == UUID {
     /// the associated base adFormat (inter/rewarded/banner/thumb)
     var adFormat: AdFormat { get }
     /// the associated tags to display on the test app
@@ -63,5 +63,11 @@ public extension String {
             uuidBytes[8], uuidBytes[9], uuidBytes[10], uuidBytes[11],
             uuidBytes[12], uuidBytes[13], uuidBytes[14], uuidBytes[15]
         ))
+    }
+}
+
+extension Array where Element == any AdManager {
+    func encode() -> [AdCardContainer] {
+        map{ $0.encode() }
     }
 }
