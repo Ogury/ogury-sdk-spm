@@ -28,7 +28,7 @@
 /* Begin PBXFileReference section */
 		43EB16262DA52338002F170A /* AdsCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdsCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB16332DA523C4002F170A /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		43EB166E2DA54B45002F170A /* OguryCardAdapter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OguryCardAdapter.xcodeproj; path = OguryCardAdapter/OguryCardAdapter.xcodeproj; sourceTree = "<group>"; };
+		43EB16FB2DA64F2D002F170A /* OguryCardAdapter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OguryCardAdapter.xcodeproj; path = OguryCardAdapter/OguryCardAdapter.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -54,7 +54,7 @@
 		43EB161C2DA52338002F170A = {
 			isa = PBXGroup;
 			children = (
-				43EB166E2DA54B45002F170A /* OguryCardAdapter.xcodeproj */,
+				43EB16FB2DA64F2D002F170A /* OguryCardAdapter.xcodeproj */,
 				43EB16282DA52338002F170A /* AdsCardAdapter */,
 				43EB16322DA523C4002F170A /* Frameworks */,
 				43EB16272DA52338002F170A /* Products */,
@@ -77,7 +77,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		43EB166F2DA54B45002F170A /* Products */ = {
+		43EB16FC2DA64F2D002F170A /* Products */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -150,8 +150,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 43EB166F2DA54B45002F170A /* Products */;
-					ProjectRef = 43EB166E2DA54B45002F170A /* OguryCardAdapter.xcodeproj */;
+					ProductGroup = 43EB16FC2DA64F2D002F170A /* Products */;
+					ProjectRef = 43EB16FB2DA64F2D002F170A /* OguryCardAdapter.xcodeproj */;
 				},
 			);
 			projectRoot = "";

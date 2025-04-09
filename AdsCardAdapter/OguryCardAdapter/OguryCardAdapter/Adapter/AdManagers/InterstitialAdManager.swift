@@ -10,7 +10,7 @@ internal import ComposableArchitecture
 import Combine
 import AdsCardLibrary
 
-public final class InterstitialAdManager: OguryAdManager, AdManager {
+public final class InterstitialAdManager: OguryAdManager {
     public var adFormat: AdFormat
     public var adConfiguration: AdConfiguration!
     public var cardConfiguration: CardConfiguration!
@@ -76,19 +76,8 @@ public final class InterstitialAdManager: OguryAdManager, AdManager {
     }
     
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
-    public typealias Ad = OguryInterstitialAd
-    public typealias Options = AdManagerOptions
-    public var adOptionView: (any View)? { nil }
-    //MARK: Variables
-    public var options: AdManagerOptions!  {
-        didSet {
-            adConfiguration = .init(adUnitId: options.baseOptions.adUnitId, campaignId: options.baseOptions.campaignId)
-            cardConfiguration = .init()
-        }
-    }
-
     public private(set) var ad: OguryInterstitialAd!
-    public private(set) var adType: AdType<InterstitialAdManager>
+    public private(set) var adType: AdType
     public var adView: AdView {
         var wself: (any AdManager)? = self
         return AdsCardManager().card(for: &wself!)
@@ -107,6 +96,11 @@ public final class InterstitialAdManager: OguryAdManager, AdManager {
     internal var bidder: HeaderBidable?
     public let id: UUID = UUID()
     
+    init(adType: AdType,
+         viewController: UIViewController?,
+         adDelegate: AdLifeCycleDelegate?) {
+        init(adType: adType, adConfiguration= .init(), cardConfiguration: .init(), viewController: viewController, adDelegate: adDelegate)
+    }
     //MARK: Initializer
     public init(adType: AdType<InterstitialAdManager>,
                 adConfiguration: AdConfiguration,

@@ -5,7 +5,7 @@
 import AdsCardLibrary
 import OguryAds
 
-class MaxBidder: RTBBidder, MaxHeaderBidable {
+class MaxBidder: RTBBidder {
     override var url: URL! { Configuration.shared.maxOptions.url }
     override func updateJson(withAdUnit adUnit: String,
                              assetKey: String,

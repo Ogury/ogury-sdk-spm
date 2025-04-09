@@ -29,7 +29,6 @@
 		435C55EF2A42EAEF004186FF /* AdsCardManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435C55EE2A42EAEF004186FF /* AdsCardManagerTests.swift */; };
 		435C55F02A42EAEF004186FF /* AdsCardLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 435C55E22A42EAEF004186FF /* AdsCardLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		435C55FA2A42F36B004186FF /* AdsCardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435C55F92A42F36B004186FF /* AdsCardManager.swift */; };
-		435C56122A447431004186FF /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */; };
 		435F7BCA2A5EE3970077843A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 435F7BC92A5EE3970077843A /* ComposableArchitecture */; };
 		435F7BCF2A601F990077843A /* InterstitialAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435F7BCE2A601F990077843A /* InterstitialAdManagerTests.swift */; };
 		436E97272A6A7BC30074E922 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 436E97262A6A7BC30074E922 /* Assets.xcassets */; };
@@ -47,7 +46,6 @@
 		438ED3D82AA0C2BA00486AF2 /* AdManagerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C62AA0C2BA00486AF2 /* AdManagerOptions.swift */; };
 		43A78A6E2A52ABF30004A613 /* AdManagerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */; };
 		43A9F4A52C37E7800085EF6F /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A9F4A42C37E7800085EF6F /* OguryCore.framework */; };
-		43AE68042AAB25B1002E7C46 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED4392AA8565800486AF2 /* OguryAds.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		43B439AF2D9C23C7005AAED6 /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B439AE2D9C23C7005AAED6 /* AdManager.swift */; };
 		43B439B02D9C23C7005AAED6 /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B439AE2D9C23C7005AAED6 /* AdManager.swift */; };
 		43B8357C2D4CC2E100797245 /* CardPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B8357B2D4CC2E100797245 /* CardPermissions.swift */; };
@@ -175,8 +173,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				435C56122A447431004186FF /* OMSDK_Ogury.xcframework in Frameworks */,
-				43AE68042AAB25B1002E7C46 /* OguryAds.framework in Frameworks */,
 				43A9F4A52C37E7800085EF6F /* OguryCore.framework in Frameworks */,
 				435F7BCA2A5EE3970077843A /* ComposableArchitecture in Frameworks */,
 			);

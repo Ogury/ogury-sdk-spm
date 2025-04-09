@@ -5,7 +5,7 @@
 import AdsCardLibrary
 import OguryAds
 
-class DTFairBidBidder: RTBBidder, DTFairBidHeaderBidable {
+class DTFairBidBidder: RTBBidder {
     override var url: URL! { Configuration.shared.dtFairBidOptions.url }
     override func updateJson(withAdUnit adUnit: String,
                              assetKey: String,

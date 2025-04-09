@@ -8,17 +8,27 @@
 import Foundation
 import AdsCardAdapter
 
-struct OguryCardAdapter: AdsCardAdaptable {
-    var availableAdFormats: [AdAdapterFormatSection] = []
+public enum OguryEnvironement {
+    case devc, staging, prod
+}
+
+public struct OguryCardAdapter: AdsCardAdaptable {
+    var environment: OguryEnvironement = .prod
+    public init(environment: OguryEnvironement) {
+        self.environment = environment
+        Configuration.shared.load(from: environment)
+    }
     
-    func adManager(for adFormat: any ACLAdapterFormat,
+    public var availableAdFormats: [AdAdapterFormatSection] = []
+    
+    public func adManager(for adFormat: any ACLAdapterFormat,
                    options: AdManagerOptions,
                    viewController: UIViewController?,
                    adDelegate: AdLifeCycleDelegate?) throws(ACLAdapterError) -> any AdManager {
         throw .noSuitableAdapterAvailable
     }
     
-    func startSdk() {
+    public func startSdk() {
         
     }
 }

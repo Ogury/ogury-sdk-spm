@@ -10,7 +10,7 @@ internal import ComposableArchitecture
 import Combine
 import AdsCardLibrary
 
-public final class RewardedAdManager: OguryAdManager, AdManager {
+public final class RewardedAdManager: OguryAdManager {
     public var adFormat: AdFormat
     public var adConfiguration: AdConfiguration!
     public var cardConfiguration: CardConfiguration!

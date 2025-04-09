@@ -15,15 +15,6 @@ public protocol AdAdapterFormat: Codable, Identifiable where ID == UUID {
     var tags: [any AdTag] { get set }
     /// the name to display in the add panel and ad list
     var displayName: String { get }
-    /// the inner value to decode/encode
-//    var adType: Int { get }
-    /// specific options that comes with current format
-    var options: AdAdapterFormatOptions { get set }
-}
-
-public struct AdAdapterFormatOptions: Codable {
-    /// - returns: return `true` if rtbTestMode (i.e. add `test:0` to bidding request) can be used on the server side, `false` if not
-    var enableRtbTestMode: Bool = false
 }
 
 public struct AdAdapterFormatSection: Identifiable {

@@ -7,48 +7,22 @@ import SwiftUI
 import Combine
 import OguryAds
 import WebKit
+import AdsCardLibrary
 
 /// All objects that should have an ad manager basic bahavior should implement this protocol
 public protocol OguryAdManager: AdManager {
-    /// The underlying ad implementation associated with this manager
-    associatedtype Ad
-    /// the ad associate with this ad format. Mandatory
-    var ad: Ad! { get }
     /// the type of ad to load
-    var adType: AdType<Self> { get }
-    /// The underlying ad implementation associated with this manager
-    associatedtype Options: OguryAdOptions
-    /// the options associate with this ad format. Mandatory
-    var options: Options! { get set }
-    /// updates the base options
-    func update(options: BaseAdOptions)
+    var adType: AdType { get }
+    var bidder: HeaderBidable? { get set }
     /// instanciate a new AdManager object with a given ad type
-    init(adType: AdType<Self>,
+    init(adType: AdType,
          adConfiguration: AdConfiguration,
          cardConfiguration: CardConfiguration,
          viewController: UIViewController?,
          adDelegate: AdLifeCycleDelegate?)
-    /// the SwiftUI view that will be displayed and which will manage the underlying ad format
-    var adView: AdView { get }
-    /// the SwiftUI view dedicated to specific that will be displayed and which will manage the underlying ad format options
-    var adOptionView: (any View)? { get }
-    /// banner delegate for the controller
-    var adDelegate: AdLifeCycleDelegate? { get set }
-    /// Mimics the ``AdLifeCycleDelegate`` with Combine in order to ease TCA integration
-    var events: PassthroughSubject<AdLifeCycleEvent, Never> { get }
-    /// An ordered list of all the events
-    var lifeCycleEvents: [AdLifeCycleEventHistory] { get }
-    /// appends an event to the ``lifeCycleEvents`` array and triggers a publisher event on ``events``
-    func append(_ event: AdLifeCycleEvent)
-    /// asks the AdManager to load the add
-    /// - Throws : throws an error if the ad can't be instanciated
-    func loadAd(from options: BaseAdOptions) throws
-    /// asks the AdManager to show the add
-    func showAd() throws
-    // updates the card from the event
-    func updateCard(events: [AdOptionsEvent])
-    // simulate a memory pressure by calling webViewTerminated
-    func killWebview(_: KillWebviewMode)
+    init(adType: AdType,
+         viewController: UIViewController?,
+         adDelegate: AdLifeCycleDelegate?)
 }
 
 //extension AdType {
@@ -126,202 +100,103 @@ public protocol OguryAdManager: AdManager {
 /// ```swift
 /// let adType: AdType<InterstitialAdManager> = .maxHeaderBidding(.interstitial)
 /// ```
-public indirect enum AdType<T: OguryAdManager> {
+public indirect enum AdType: RawValue {
     case interstitial
     case rewarded
     case thumbnail
     case banner
     case mpu
-    case maxHeaderBidding(adType: AdType, adMarkUpRetriever: MaxHeaderBidable?)
-    case dtFairBidHeaderBidding(adType: AdType, adMarkUpRetriever: DTFairBidHeaderBidable?)
-    case unityLevelPlayHeaderBidding(adType: AdType, adMarkUpRetriever: UnityLevelPlayBidable?)
+    case maxHeaderBidding(adType: AdType)
+    case dtFairBidHeaderBidding(adType: AdType)
+    case unityLevelPlayHeaderBidding(adType: AdType)
+    
+    typealias RawValue = Int
+    public enum RawInnerAdType: Int {
+        case interstitial = 0
+        case rewarded = 1
+        case banner = 2
+        case mpu = 3
+        case thumbnail = 4
+        case maxSuffix = 10
+        case dtFairBidSuffix = 20
+        case unityLevelPlaySuffix = 30
+    }
+    public var rawValue: Int {
+        switch self {
+            case .interstitial: return RawInnerAdType.interstitial.rawValue
+            case .rewarded: return RawInnerAdType.rewarded.rawValue
+            case .thumbnail: return RawInnerAdType.thumbnail.rawValue
+            case .banner: return RawInnerAdType.banner.rawValue
+            case .mpu: return RawInnerAdType.mpu.rawValue
+            case .maxHeaderBidding(let adType): return adType.rawValue + RawInnerAdType.maxSuffix.rawValue
+            case .dtFairBidHeaderBidding(let adType): return adType.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue
+            case .unityLevelPlayHeaderBidding(let adType): return adType.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue
+        }
+    }
+    init(rawValue: Int) -> Self? {
+        switch rawValue {
+            case RawInnerAdType.interstitial: return .interstitial
+            case RawInnerAdType.rewarded: return .rewarded
+            case RawInnerAdType.banner: return .smallBanner
+            case RawInnerAdType.mpu: return .mrec
+            case RawInnerAdType.thumbnail: return .thumbnail
+            case RawInnerAdType.maxSuffix..<RawInnerAdType.dtFairBidSuffix:
+                guard let innerRawType = AdType(rawValue - RawInnerAdType.maxSuffix) else { return nil }
+                return .maxHeaderBidding(innerRawType)
+            case RawInnerAdType.dtFairBidSuffix..<RawInnerAdType.unityLevelPlaySuffix:
+                guard let innerRawType = AdType(rawValue - RawInnerAdType.dtFairBidSuffix) else { return nil }
+                return .dtFairBidHeaderBidding(innerRawType)
+            case RawInnerAdType.unityLevelPlaySuffix...RawInnerAdType.unityLevelPlaySuffix + RawInnerAdType.thumbnail:
+                guard let innerRawType = AdType(rawValue - RawInnerAdType.unityLevelPlaySuffix) else { return nil }
+                return .unityLevelPlayHeaderBidding(innerRawType)
+            default: return nil
+        }
+    }
     
     /// returns the proper adManager handled by the AdType
     /// if no suitable adManager is found ``AdManagerError/adManagerMismatch`` is thrown
-    internal func adManager(from options: AdManagerOptions,
+    internal func adManager(bidder: HeaderBidable?,
                             viewController: UIViewController?,
-                            adDelegate: AdLifeCycleDelegate?) throws -> T  {
+                            adDelegate: AdLifeCycleDelegate?) throws -> OguryAdManager  {
         switch self {
             case .rewarded:
-                guard T.self == RewardedAdManager.self else {
-                    throw AdManagerError.adManagerMismatch
-                }
-                return RewardedAdManager(adType: .rewarded,
-                                         adConfiguration: .init(options: options),
-                                         cardConfiguration: .init(options: options),
-                                         viewController: viewController,
-                                         adDelegate: adDelegate) as! T
+                return RewardedAdManager(adType: .rewarded, viewController: viewController, adDelegate: adDelegate)
                 
             case .interstitial:
-                guard T.self == InterstitialAdManager.self else {
-                    throw AdManagerError.adManagerMismatch
-                }
-                return InterstitialAdManager(adType: .interstitial,
-                                             adConfiguration: .init(options: options),
-                                             cardConfiguration: .init(options: options),
-                                             viewController: viewController,
-                                             adDelegate: adDelegate) as! T
+                return InterstitialAdManager(adType: .interstitial, viewController: viewController, adDelegate: adDelegate)
                 
             case .thumbnail:
-                guard T.self == ThumbnailAdManager.self else {
-                    throw AdManagerError.adManagerMismatch
-                }
-                return ThumbnailAdManager(adType: .thumbnail,
-                                          adConfiguration: .init(options: options),
-                                          cardConfiguration: .init(options: options),
-                                          viewController: viewController,
-                                          adDelegate: adDelegate) as! T
+                return ThumbnailAdManager(adType: .thumbnail, viewController: viewController, adDelegate: adDelegate)
                 
             case .banner:
-                guard T.self == BannerAdManager.self else {
-                    throw AdManagerError.adManagerMismatch
-                }
-                return BannerAdManager(adType: .banner,
-                                       adConfiguration: .init(options: options),
-                                       cardConfiguration: .init(options: options),
-                                       viewController: viewController,
-                                       adDelegate: adDelegate) as! T
+                return BannerAdManager(adType: .banner, viewController: viewController, adDelegate: adDelegate)
                 
             case .mpu:
-                guard T.self == BannerAdManager.self else {
-                    throw AdManagerError.adManagerMismatch
-                }
-                return BannerAdManager(adType: .mpu,
-                                       adConfiguration: .init(options: options),
-                                       cardConfiguration: .init(options: options),
-                                       viewController: viewController,
-                                       adDelegate: adDelegate) as! T
+                return BannerAdManager(adType: .mpu, viewController: viewController, adDelegate: adDelegate)
                 
-            case .maxHeaderBidding(.thumbnail, _):
+            case .maxHeaderBidding(.thumbnail):
                 fatalError("Thumbnail is not supported on HB")
                 
-            case let .maxHeaderBidding(.interstitial, adMarkUpRetriever):
-                guard T.self == InterstitialAdManager.self else {
-                    throw AdManagerError.adManagerMismatch
-                }
-                return InterstitialAdManager(adType: .maxHeaderBidding(adType: .interstitial, adMarkUpRetriever: adMarkUpRetriever),
-                                             adConfiguration: .init(options: options),
-                                             cardConfiguration: .init(options: options),
-                                             viewController: viewController,
-                                             adDelegate: adDelegate) as! T
+            case let .maxHeaderBidding(adType):
+                var adManager = adType.adManager(bidder: bidder, viewController: viewController, adDelegate: adDelegate)
+                adManager.bidder = bidder
+                return adManager
                 
-            case let .maxHeaderBidding(.rewarded, adMarkUpRetriever):
-                guard T.self == RewardedAdManager.self else {
-                    throw AdManagerError.adManagerMismatch
-                }
-                return RewardedAdManager(adType: .maxHeaderBidding(adType: .rewarded, adMarkUpRetriever: adMarkUpRetriever),
-                                         adConfiguration: .init(options: options),
-                                         cardConfiguration: .init(options: options),
-                                         viewController: viewController,
-                                         adDelegate: adDelegate) as! T
-                
-            case let .maxHeaderBidding(.banner, adMarkUpRetriever):
-                guard T.self == BannerAdManager.self else {
-                    throw AdManagerError.adManagerMismatch
-                }
-                return BannerAdManager(adType: .maxHeaderBidding(adType: .banner, adMarkUpRetriever: adMarkUpRetriever),
-                                       adConfiguration: .init(options: options),
-                                       cardConfiguration: .init(options: options),
-                                       viewController: viewController,
-                                       adDelegate: adDelegate) as! T
-                
-            case let .maxHeaderBidding(.mpu, adMarkUpRetriever):
-                guard T.self == BannerAdManager.self else {
-                    throw AdManagerError.adManagerMismatch
-                }
-                return BannerAdManager(adType: .maxHeaderBidding(adType: .mpu, adMarkUpRetriever: adMarkUpRetriever),
-                                       adConfiguration: .init(options: options),
-                                       cardConfiguration: .init(options: options),
-                                       viewController: viewController,
-                                       adDelegate: adDelegate) as! T
-                
-            case .dtFairBidHeaderBidding(.thumbnail, _):
+            case .unityLevelPlayHeaderBidding(.thumbnail):
                 fatalError("Thumbnail is not supported on HB")
                 
-            case let .dtFairBidHeaderBidding(.interstitial, adMarkUpRetriever):
-                guard T.self == InterstitialAdManager.self else {
-                    throw AdManagerError.adManagerMismatch
-                }
-                return InterstitialAdManager(adType: .dtFairBidHeaderBidding(adType: .interstitial, adMarkUpRetriever: adMarkUpRetriever),
-                                             adConfiguration: .init(options: options),
-                                             cardConfiguration: .init(options: options),
-                                             viewController: viewController,
-                                             adDelegate: adDelegate) as! T
+            case let .unityLevelPlayHeaderBidding(adType):
+                var adManager = adType.adManager(bidder: bidder, viewController: viewController, adDelegate: adDelegate)
+                adManager.bidder = bidder
+                return adManager
                 
-            case let .dtFairBidHeaderBidding(.rewarded, adMarkUpRetriever):
-                guard T.self == RewardedAdManager.self else {
-                    throw AdManagerError.adManagerMismatch
-                }
-                return RewardedAdManager(adType: .dtFairBidHeaderBidding(adType: .rewarded, adMarkUpRetriever: adMarkUpRetriever),
-                                         adConfiguration: .init(options: options),
-                                         cardConfiguration: .init(options: options),
-                                         viewController: viewController,
-                                         adDelegate: adDelegate) as! T
-                
-            case let .dtFairBidHeaderBidding(.banner, adMarkUpRetriever):
-                guard T.self == BannerAdManager.self else {
-                    throw AdManagerError.adManagerMismatch
-                }
-                return BannerAdManager(adType: .dtFairBidHeaderBidding(adType: .banner, adMarkUpRetriever: adMarkUpRetriever),
-                                       adConfiguration: .init(options: options),
-                                       cardConfiguration: .init(options: options),
-                                       viewController: viewController,
-                                       adDelegate: adDelegate) as! T
-                
-            case let .dtFairBidHeaderBidding(.mpu, adMarkUpRetriever):
-                guard T.self == BannerAdManager.self else {
-                    throw AdManagerError.adManagerMismatch
-                }
-                return BannerAdManager(adType: .dtFairBidHeaderBidding(adType: .mpu, adMarkUpRetriever: adMarkUpRetriever),
-                                       adConfiguration: .init(options: options),
-                                       cardConfiguration: .init(options: options),
-                                       viewController: viewController,
-                                       adDelegate: adDelegate) as! T
-                
-            case .unityLevelPlayHeaderBidding(.thumbnail, _):
+            case .dtFairBidHeaderBidding(.thumbnail):
                 fatalError("Thumbnail is not supported on HB")
                 
-            case let .unityLevelPlayHeaderBidding(.interstitial, adMarkUpRetriever):
-                guard T.self == InterstitialAdManager.self else {
-                    throw AdManagerError.adManagerMismatch
-                }
-                return InterstitialAdManager(adType: .unityLevelPlayHeaderBidding(adType: .interstitial, adMarkUpRetriever: adMarkUpRetriever),
-                                             adConfiguration: .init(options: options),
-                                             cardConfiguration: .init(options: options),
-                                             viewController: viewController,
-                                             adDelegate: adDelegate) as! T
-                
-            case let .unityLevelPlayHeaderBidding(.rewarded, adMarkUpRetriever):
-                guard T.self == RewardedAdManager.self else {
-                    throw AdManagerError.adManagerMismatch
-                }
-                return RewardedAdManager(adType: .unityLevelPlayHeaderBidding(adType: .rewarded, adMarkUpRetriever: adMarkUpRetriever),
-                                         adConfiguration: .init(options: options),
-                                         cardConfiguration: .init(options: options),
-                                         viewController: viewController,
-                                         adDelegate: adDelegate) as! T
-                
-            case let .unityLevelPlayHeaderBidding(.banner, adMarkUpRetriever):
-                guard T.self == BannerAdManager.self else {
-                    throw AdManagerError.adManagerMismatch
-                }
-                return BannerAdManager(adType: .unityLevelPlayHeaderBidding(adType: .banner, adMarkUpRetriever: adMarkUpRetriever),
-                                       adConfiguration: .init(options: options),
-                                       cardConfiguration: .init(options: options),
-                                       viewController: viewController,
-                                       adDelegate: adDelegate) as! T
-                
-            case let .unityLevelPlayHeaderBidding(.mpu, adMarkUpRetriever):
-                guard T.self == BannerAdManager.self else {
-                    throw AdManagerError.adManagerMismatch
-                }
-                return BannerAdManager(adType: .unityLevelPlayHeaderBidding(adType: .mpu, adMarkUpRetriever: adMarkUpRetriever),
-                                       adConfiguration: .init(options: options),
-                                       cardConfiguration: .init(options: options),
-                                       viewController: viewController,
-                                       adDelegate: adDelegate) as! T
-                
-            default: throw AdManagerError.adManagerMismatch
+            case let .dtFairBidHeaderBidding(adType):
+                var adManager = adType.adManager(bidder: bidder, viewController: viewController, adDelegate: adDelegate)
+                adManager.bidder = bidder
+                return adManager
         }
     }
     
@@ -332,9 +207,9 @@ public indirect enum AdType<T: OguryAdManager> {
             case .thumbnail: return AdTypeTitle.thumbnail.display
             case .mpu: return AdTypeTitle.mpu.display
             case .banner: return AdTypeTitle.banner.display
-            case let .maxHeaderBidding(innerType, _): return innerType.displayTitle
-            case let .dtFairBidHeaderBidding(innerType, _): return innerType.displayTitle
-            case let .unityLevelPlayHeaderBidding(innerType, _): return innerType.displayTitle
+            case let .maxHeaderBidding(innerType): return innerType.displayTitle
+            case let .dtFairBidHeaderBidding(innerType): return innerType.displayTitle
+            case let .unityLevelPlayHeaderBidding(innerType): return innerType.displayTitle
         }
     }
     
@@ -345,9 +220,9 @@ public indirect enum AdType<T: OguryAdManager> {
             case .thumbnail: return AdTypeTitle.thumbnail.display
             case .mpu: return AdTypeTitle.mpu.display
             case .banner: return AdTypeTitle.banner.display
-            case let .maxHeaderBidding(innerType, _): return innerType.displayTitle
-            case let .dtFairBidHeaderBidding(innerType, _): return innerType.displayTitle
-            case let .unityLevelPlayHeaderBidding(innerType, _): return innerType.displayTitle
+            case let .maxHeaderBidding(innerType): return innerType.displayTitle
+            case let .dtFairBidHeaderBidding(innerType): return innerType.displayTitle
+            case let .unityLevelPlayHeaderBidding(innerType): return innerType.displayTitle
         }
     }
     
@@ -358,9 +233,9 @@ public indirect enum AdType<T: OguryAdManager> {
             case .thumbnail: return displayTitle.hashValue
             case .mpu: return displayTitle.hashValue
             case .banner: return displayTitle.hashValue
-            case let .maxHeaderBidding(inner, _): return ("maxHeaderBidding" + inner.displayTitle).hashValue
-            case let .dtFairBidHeaderBidding(inner, _): return ("dtFairBidHeaderBidding" + inner.displayTitle).hashValue
-            case let .unityLevelPlayHeaderBidding(inner, _): return ("unityLevelPlayHeaderBidding" + inner.displayTitle).hashValue
+            case let .maxHeaderBidding(inner): return ("maxHeaderBidding" + inner.displayTitle).hashValue
+            case let .dtFairBidHeaderBidding(inner): return ("dtFairBidHeaderBidding" + inner.displayTitle).hashValue
+            case let .unityLevelPlayHeaderBidding(inner): return ("unityLevelPlayHeaderBidding" + inner.displayTitle).hashValue
         }
     }
     
@@ -391,177 +266,5 @@ extension AdType: Equatable {
             case (.mpu, .mpu): return true
             default: return false
         }
-    }
-}
-
-
-//MARK: - Errors
-extension AdType {
-    /// Errors that can be thrown by ``AdsCardManager/adManager(for:options:adDelegate:)``
-    public enum AdManagerError: Error {
-        /// The type of the AdManager that should be used is different from the one specified at call level
-        case adManagerMismatch
-    }
-}
-
-public protocol TypeErasing {
-    var underlyingValue: Any { get }
-}
-
-public struct TypeEraser<V: OguryAdManager>: TypeErasing {
-    let orinal: AdType<V>
-    public var underlyingValue: Any {
-        return self.orinal
-    }
-}
-
-public struct AnyAdType: Identifiable, Hashable {
-    public let id = UUID()
-    typealias Value = Any
-    private let eraser: TypeErasing
-    public init<V>(_ adType: AdType<V>) where V:OguryAdManager {
-        eraser = TypeEraser(orinal: adType)
-    }
-    
-    public var adType: Any {
-        return eraser.underlyingValue
-    }
-    
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-}
-
-extension AnyAdType: Equatable {
-    public static func == (lhs: Self, rhs: Self) -> Bool {
-        return String(describing: lhs) == String(describing: rhs)
-    }
-}
-
-//MARK: AdType Codable
-public enum RawInnerAdType: Int {
-    case interstitial = 0
-    case rewarded = 1
-    case banner = 2
-    case mpu = 3
-    case thumbnail = 4
-    case maxSuffix = 10
-    case dtFairBidSuffix = 20
-    case unityLevelPlaySuffix = 30
-}
-
-extension AdType: Codable {
-    public var innerType: Int {
-        switch self {
-            case .interstitial: return RawInnerAdType.interstitial.rawValue
-            case .rewarded: return RawInnerAdType.rewarded.rawValue
-            case .thumbnail: return RawInnerAdType.thumbnail.rawValue
-            case .mpu: return RawInnerAdType.mpu.rawValue
-            case .banner: return RawInnerAdType.banner.rawValue
-            case let .maxHeaderBidding(adType, _): return RawInnerAdType.maxSuffix.rawValue + adType.innerType
-            case let .dtFairBidHeaderBidding(adType, _): return RawInnerAdType.dtFairBidSuffix.rawValue + adType.innerType
-            case let .unityLevelPlayHeaderBidding(adType, _): return RawInnerAdType.unityLevelPlaySuffix.rawValue + adType.innerType
-        }
-    }
-    
-    public static func adType(from innerType: Int, adMarkUpRetriever: HeaderBidable?) throws -> AdType? {
-        switch innerType {
-            case RawInnerAdType.interstitial.rawValue:
-                let adType: AdType<InterstitialAdManager> = .interstitial
-                return adType as? AdType<T>
-                
-            case RawInnerAdType.rewarded.rawValue:
-                let adType: AdType<RewardedAdManager> = .rewarded
-                return adType as? AdType<T>
-                
-            case RawInnerAdType.banner.rawValue:
-                let adType: AdType<BannerAdManager> = .banner
-                return adType as? AdType<T>
-                
-            case RawInnerAdType.mpu.rawValue:
-                let adType: AdType<BannerAdManager> = .mpu
-                return adType as? AdType<T>
-                
-            case RawInnerAdType.thumbnail.rawValue:
-                let adType: AdType<ThumbnailAdManager> = .thumbnail
-                return adType as? AdType<T>
-                
-            case RawInnerAdType.interstitial.rawValue + RawInnerAdType.maxSuffix.rawValue:
-                let adType: AdType<InterstitialAdManager> = .maxHeaderBidding(adType:.interstitial, adMarkUpRetriever: adMarkUpRetriever as? MaxHeaderBidable)
-                return adType as? AdType<T>
-                
-            case RawInnerAdType.rewarded.rawValue + RawInnerAdType.maxSuffix.rawValue:
-                let adType: AdType<RewardedAdManager> = .maxHeaderBidding(adType:.rewarded, adMarkUpRetriever: adMarkUpRetriever as? MaxHeaderBidable)
-                return adType as? AdType<T>
-                
-            case RawInnerAdType.thumbnail.rawValue + RawInnerAdType.maxSuffix.rawValue:
-                let adType: AdType<ThumbnailAdManager> = .maxHeaderBidding(adType:.thumbnail, adMarkUpRetriever: adMarkUpRetriever as? MaxHeaderBidable)
-                return adType as? AdType<T>
-                
-            case RawInnerAdType.banner.rawValue + RawInnerAdType.maxSuffix.rawValue:
-                let adType: AdType<BannerAdManager> = .maxHeaderBidding(adType:.banner, adMarkUpRetriever: adMarkUpRetriever as? MaxHeaderBidable)
-                return adType as? AdType<T>
-                
-            case RawInnerAdType.mpu.rawValue + RawInnerAdType.maxSuffix.rawValue:
-                let adType: AdType<BannerAdManager> = .maxHeaderBidding(adType:.mpu, adMarkUpRetriever: adMarkUpRetriever as? MaxHeaderBidable)
-                return adType as? AdType<T>
-                
-            case RawInnerAdType.interstitial.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
-                let adType: AdType<InterstitialAdManager> = .dtFairBidHeaderBidding(adType:.interstitial, adMarkUpRetriever: adMarkUpRetriever as? DTFairBidHeaderBidable)
-                return adType as? AdType<T>
-                
-            case RawInnerAdType.rewarded.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
-                let adType: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType:.rewarded, adMarkUpRetriever: adMarkUpRetriever as? DTFairBidHeaderBidable)
-                return adType as? AdType<T>
-                
-            case RawInnerAdType.thumbnail.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
-                let adType: AdType<ThumbnailAdManager> = .dtFairBidHeaderBidding(adType:.thumbnail, adMarkUpRetriever: adMarkUpRetriever as? DTFairBidHeaderBidable)
-                return adType as? AdType<T>
-                
-            case RawInnerAdType.banner.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
-                let adType: AdType<BannerAdManager> = .dtFairBidHeaderBidding(adType:.banner, adMarkUpRetriever: adMarkUpRetriever as? DTFairBidHeaderBidable)
-                return adType as? AdType<T>
-                
-            case RawInnerAdType.mpu.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
-                let adType: AdType<BannerAdManager> = .dtFairBidHeaderBidding(adType:.mpu, adMarkUpRetriever: adMarkUpRetriever as? DTFairBidHeaderBidable)
-                return adType as? AdType<T>
-                
-            case RawInnerAdType.interstitial.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
-                let adType: AdType<InterstitialAdManager> = .unityLevelPlayHeaderBidding(adType:.interstitial, adMarkUpRetriever: adMarkUpRetriever as? UnityLevelPlayBidable)
-                return adType as? AdType<T>
-                
-            case RawInnerAdType.rewarded.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
-                let adType: AdType<RewardedAdManager> = .unityLevelPlayHeaderBidding(adType:.rewarded, adMarkUpRetriever: adMarkUpRetriever as? UnityLevelPlayBidable)
-                return adType as? AdType<T>
-                
-            case RawInnerAdType.thumbnail.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
-                let adType: AdType<ThumbnailAdManager> = .unityLevelPlayHeaderBidding(adType:.thumbnail, adMarkUpRetriever: adMarkUpRetriever as? UnityLevelPlayBidable)
-                return adType as? AdType<T>
-                
-            case RawInnerAdType.banner.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
-                let adType: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType:.banner, adMarkUpRetriever: adMarkUpRetriever as? UnityLevelPlayBidable)
-                return adType as? AdType<T>
-                
-            case RawInnerAdType.mpu.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
-                let adType: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType:.mpu, adMarkUpRetriever: adMarkUpRetriever as? UnityLevelPlayBidable)
-                return adType as? AdType<T>
-                
-            default: throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "\(innerType) is not a valid AdType"))
-        }
-    }
-    
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        let innerType = try container.decode(Int.self)
-        if let type = try AdType.adType(from: innerType, adMarkUpRetriever: nil) {
-            self = type
-        } else {
-            throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "\(innerType) is not a valid adType"))
-        }
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encode(innerType)
     }
 }

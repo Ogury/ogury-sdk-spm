@@ -5,7 +5,7 @@
 import AdsCardLibrary
 import OguryAds
 
-class UnityLevelPlayBidder: RTBBidder, UnityLevelPlayBidable {
+class UnityLevelPlayBidder: RTBBidder {
     override var url: URL! { Configuration.shared.unityLevelPlayOptions.url }
     override func updateJson(withAdUnit adUnit: String,
                              assetKey: String,
