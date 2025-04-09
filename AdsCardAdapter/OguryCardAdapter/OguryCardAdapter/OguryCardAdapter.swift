@@ -5,26 +5,30 @@
 //  Created by Jerome TONNELIER on 08/04/2025.
 //
 
-import Foundation
+import UIKit
 import AdsCardAdapter
+import AdsCardLibrary
 
 public enum OguryEnvironement {
     case devc, staging, prod
 }
 
-public struct OguryCardAdapter: AdsCardAdaptable {
-    var environment: OguryEnvironement = .prod
-    public init(environment: OguryEnvironement) {
+public struct OguryAdsCardAdapter: AdsCardAdaptable {
+    public var assetKey: String
+    private let environment: OguryEnvironement
+    static var configuration: Configuration!
+    public init(assetKey: String, environment: OguryEnvironement) {
+        self.assetKey = assetKey
         self.environment = environment
-        Configuration.shared.load(from: environment)
+        OguryAdsCardAdapter.configuration = .init(from: assetKey, environment: environment)
     }
     
     public var availableAdFormats: [AdAdapterFormatSection] = []
     
-    public func adManager(for adFormat: any ACLAdapterFormat,
-                   options: AdManagerOptions,
+    public func adManager(for adFormat: any AdAdapterFormat,
+                   options: AdViewOptions,
                    viewController: UIViewController?,
-                   adDelegate: AdLifeCycleDelegate?) throws(ACLAdapterError) -> any AdManager {
+                   adDelegate: AdLifeCycleDelegate?) throws(AdsCardAdapterError) -> any AdManager {
         throw .noSuitableAdapterAvailable
     }
     

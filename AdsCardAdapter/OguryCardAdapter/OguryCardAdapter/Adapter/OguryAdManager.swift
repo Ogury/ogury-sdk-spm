@@ -8,18 +8,13 @@ import Combine
 import OguryAds
 import WebKit
 import AdsCardLibrary
+import AdsCardAdapter
 
 /// All objects that should have an ad manager basic bahavior should implement this protocol
 public protocol OguryAdManager: AdManager {
     /// the type of ad to load
     var adType: AdType { get }
     var bidder: HeaderBidable? { get set }
-    /// instanciate a new AdManager object with a given ad type
-    init(adType: AdType,
-         adConfiguration: AdConfiguration,
-         cardConfiguration: CardConfiguration,
-         viewController: UIViewController?,
-         adDelegate: AdLifeCycleDelegate?)
     init(adType: AdType,
          viewController: UIViewController?,
          adDelegate: AdLifeCycleDelegate?)
@@ -100,17 +95,17 @@ public protocol OguryAdManager: AdManager {
 /// ```swift
 /// let adType: AdType<InterstitialAdManager> = .maxHeaderBidding(.interstitial)
 /// ```
-public indirect enum AdType: RawValue {
+public indirect enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
     case interstitial
     case rewarded
     case thumbnail
     case banner
     case mpu
-    case maxHeaderBidding(adType: AdType)
-    case dtFairBidHeaderBidding(adType: AdType)
-    case unityLevelPlayHeaderBidding(adType: AdType)
+    case maxHeaderBidding(_: AdType)
+    case dtFairBidHeaderBidding(_: AdType)
+    case unityLevelPlayHeaderBidding(_: AdType)
     
-    typealias RawValue = Int
+    public typealias RawValue = Int
     public enum RawInnerAdType: Int {
         case interstitial = 0
         case rewarded = 1
@@ -133,22 +128,22 @@ public indirect enum AdType: RawValue {
             case .unityLevelPlayHeaderBidding(let adType): return adType.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue
         }
     }
-    init(rawValue: Int) -> Self? {
+    public init?(rawValue: Int) {
         switch rawValue {
-            case RawInnerAdType.interstitial: return .interstitial
-            case RawInnerAdType.rewarded: return .rewarded
-            case RawInnerAdType.banner: return .smallBanner
-            case RawInnerAdType.mpu: return .mrec
-            case RawInnerAdType.thumbnail: return .thumbnail
-            case RawInnerAdType.maxSuffix..<RawInnerAdType.dtFairBidSuffix:
-                guard let innerRawType = AdType(rawValue - RawInnerAdType.maxSuffix) else { return nil }
-                return .maxHeaderBidding(innerRawType)
-            case RawInnerAdType.dtFairBidSuffix..<RawInnerAdType.unityLevelPlaySuffix:
-                guard let innerRawType = AdType(rawValue - RawInnerAdType.dtFairBidSuffix) else { return nil }
-                return .dtFairBidHeaderBidding(innerRawType)
-            case RawInnerAdType.unityLevelPlaySuffix...RawInnerAdType.unityLevelPlaySuffix + RawInnerAdType.thumbnail:
-                guard let innerRawType = AdType(rawValue - RawInnerAdType.unityLevelPlaySuffix) else { return nil }
-                return .unityLevelPlayHeaderBidding(innerRawType)
+            case RawInnerAdType.interstitial.rawValue: self = .interstitial
+            case RawInnerAdType.rewarded.rawValue: self = .rewarded
+            case RawInnerAdType.banner.rawValue: self = .banner 
+            case RawInnerAdType.mpu.rawValue: self = .mpu
+            case RawInnerAdType.thumbnail.rawValue: self = .thumbnail
+            case RawInnerAdType.maxSuffix.rawValue..<RawInnerAdType.dtFairBidSuffix.rawValue:
+                guard let innerRawType = AdType(rawValue: rawValue - RawInnerAdType.maxSuffix.rawValue) else { return nil }
+                self = .maxHeaderBidding(innerRawType)
+            case RawInnerAdType.dtFairBidSuffix.rawValue..<RawInnerAdType.unityLevelPlaySuffix.rawValue:
+                guard let innerRawType = AdType(rawValue: rawValue - RawInnerAdType.dtFairBidSuffix.rawValue) else { return nil }
+                self = .dtFairBidHeaderBidding(innerRawType)
+            case RawInnerAdType.unityLevelPlaySuffix.rawValue...RawInnerAdType.unityLevelPlaySuffix.rawValue + RawInnerAdType.thumbnail.rawValue:
+                guard let innerRawType = AdType(rawValue: rawValue - RawInnerAdType.unityLevelPlaySuffix.rawValue) else { return nil }
+                self = .unityLevelPlayHeaderBidding(innerRawType)
             default: return nil
         }
     }
@@ -157,7 +152,7 @@ public indirect enum AdType: RawValue {
     /// if no suitable adManager is found ``AdManagerError/adManagerMismatch`` is thrown
     internal func adManager(bidder: HeaderBidable?,
                             viewController: UIViewController?,
-                            adDelegate: AdLifeCycleDelegate?) throws -> OguryAdManager  {
+                            adDelegate: AdLifeCycleDelegate?) -> any OguryAdManager  {
         switch self {
             case .rewarded:
                 return RewardedAdManager(adType: .rewarded, viewController: viewController, adDelegate: adDelegate)
@@ -200,70 +195,54 @@ public indirect enum AdType: RawValue {
         }
     }
     
-    public var displayTitle: String {
+    public var adFormat: AdFormat {
         switch self {
-            case .interstitial: return AdTypeTitle.interstitial.display
-            case .rewarded: return AdTypeTitle.rewarded.display
-            case .thumbnail: return AdTypeTitle.thumbnail.display
-            case .mpu: return AdTypeTitle.mpu.display
-            case .banner: return AdTypeTitle.banner.display
-            case let .maxHeaderBidding(innerType): return innerType.displayTitle
-            case let .dtFairBidHeaderBidding(innerType): return innerType.displayTitle
-            case let .unityLevelPlayHeaderBidding(innerType): return innerType.displayTitle
+            case .interstitial: return .interstitial
+            case .rewarded: return .rewardedVideo
+            case .thumbnail: return .thumbnail
+            case .banner: return .smallBanner
+            case .mpu: return .mrec
+            case let .maxHeaderBidding(adType): return adType.adFormat
+            case let .dtFairBidHeaderBidding(adType): return adType.adFormat
+            case let .unityLevelPlayHeaderBidding(adType): return adType.adFormat
         }
     }
     
-    public var headerTitle: String {
+    public var displayName: String {
         switch self {
-            case .interstitial: return AdTypeTitle.interstitial.display
-            case .rewarded: return AdTypeTitle.rewarded.display
-            case .thumbnail: return AdTypeTitle.thumbnail.display
-            case .mpu: return AdTypeTitle.mpu.display
-            case .banner: return AdTypeTitle.banner.display
-            case let .maxHeaderBidding(innerType): return innerType.displayTitle
-            case let .dtFairBidHeaderBidding(innerType): return innerType.displayTitle
-            case let .unityLevelPlayHeaderBidding(innerType): return innerType.displayTitle
+            case .interstitial: return "Interstitial"
+            case .rewarded: return "Rewarded"
+            case .thumbnail: return "Thumbnail"
+            case .banner: return "Small banner"
+            case .mpu: return "MREC"
+            case let .maxHeaderBidding(adType): return adType.displayName
+            case let .dtFairBidHeaderBidding(adType): return adType.displayName
+            case let .unityLevelPlayHeaderBidding(adType): return adType.displayName
         }
     }
     
-    public var uuid: Int {
+    public var id: UUID {
         switch self {
-            case .interstitial: return displayTitle.hashValue
-            case .rewarded: return displayTitle.hashValue
-            case .thumbnail: return displayTitle.hashValue
-            case .mpu: return displayTitle.hashValue
-            case .banner: return displayTitle.hashValue
-            case let .maxHeaderBidding(inner): return ("maxHeaderBidding" + inner.displayTitle).hashValue
-            case let .dtFairBidHeaderBidding(inner): return ("dtFairBidHeaderBidding" + inner.displayTitle).hashValue
-            case let .unityLevelPlayHeaderBidding(inner): return ("unityLevelPlayHeaderBidding" + inner.displayTitle).hashValue
+            case .interstitial, .rewarded, .banner, .mpu, .thumbnail: return self.displayName.uuid
+            case let .maxHeaderBidding(inner): return ("maxHeaderBidding" + inner.displayName).uuid
+            case let .dtFairBidHeaderBidding(inner): return ("dtFairBidHeaderBidding" + inner.displayName).uuid
+            case let .unityLevelPlayHeaderBidding(inner): return ("unityLevelPlayHeaderBidding" + inner.displayName).uuid
         }
     }
     
-    public var tags: [OguryAdTag] {
+    // use get/set because protocol is definied that way
+    public var tags: [any AdTag] {
         switch self {
-            case .interstitial, .rewarded, .thumbnail, .banner, .mpu: return [.ogury, .direct]
-            case .maxHeaderBidding: return [.max, .headerBidding, .bypass]
-            case .dtFairBidHeaderBidding: return [.dtFairbid, .headerBidding, .bypass]
-            case .unityLevelPlayHeaderBidding: return [.unityLevelPlay, .headerBidding, .bypass]
+            case .interstitial, .rewarded, .thumbnail, .banner, .mpu: return [OguryAdTag.ogury, OguryAdTag.direct]
+            case .maxHeaderBidding: return [OguryAdTag.max, OguryAdTag.headerBidding, OguryAdTag.bypass]
+            case .dtFairBidHeaderBidding: return [OguryAdTag.dtFairbid, OguryAdTag.headerBidding, OguryAdTag.bypass]
+            case .unityLevelPlayHeaderBidding: return [OguryAdTag.unityLevelPlay, OguryAdTag.headerBidding, OguryAdTag.bypass]
         }
     }
     
     public var enableRtbTestMode: Bool {
         switch self {
             case .unityLevelPlayHeaderBidding: return true
-            default: return false
-        }
-    }
-}
-
-extension AdType: Equatable {
-    public static func ==(lhs: AdType<T>, rhs:AdType<T>) -> Bool {
-        switch (lhs, rhs) {
-            case (.interstitial, .interstitial): return true
-            case (.rewarded, .rewarded): return true
-            case (.thumbnail, .thumbnail): return true
-            case (.banner, .banner): return true
-            case (.mpu, .mpu): return true
             default: return false
         }
     }

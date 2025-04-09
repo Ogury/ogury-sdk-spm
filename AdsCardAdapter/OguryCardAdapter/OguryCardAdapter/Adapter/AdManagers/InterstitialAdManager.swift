@@ -6,7 +6,6 @@ import Foundation
 import SwiftUI
 import OguryAds
 import OguryAds.Private
-internal import ComposableArchitecture
 import Combine
 import AdsCardLibrary
 
@@ -93,16 +92,15 @@ public final class InterstitialAdManager: OguryAdManager {
     }
     internal let proxyDelegate: InterstitialProxyDelegate!
     public var lifeCycleEvents: [AdLifeCycleEventHistory] = []
-    internal var bidder: HeaderBidable?
+    public var bidder: HeaderBidable?
     public let id: UUID = UUID()
     
-    init(adType: AdType,
-         viewController: UIViewController?,
-         adDelegate: AdLifeCycleDelegate?) {
-        init(adType: adType, adConfiguration= .init(), cardConfiguration: .init(), viewController: viewController, adDelegate: adDelegate)
+    public convenience init(adType: AdType, viewController: UIViewController?, adDelegate: (any AdsCardLibrary.AdLifeCycleDelegate)?) {
+        self.init(adType: adType, adConfiguration: .init(adUnitId: ""), cardConfiguration: .init(), viewController: viewController, adDelegate: adDelegate)
     }
+    
     //MARK: Initializer
-    public init(adType: AdType<InterstitialAdManager>,
+    public init(adType: AdType,
                 adConfiguration: AdConfiguration,
                 cardConfiguration: CardConfiguration,
                 viewController: UIViewController?,
@@ -115,28 +113,12 @@ public final class InterstitialAdManager: OguryAdManager {
         self.viewController = viewController
         proxyDelegate = InterstitialProxyDelegate(adDelegate: adDelegate)
         proxyDelegate.adManager = self
-        if case let .maxHeaderBidding(_, adMarkUpRetriever) = adType {
-            bidder = adMarkUpRetriever
+        switch adType {
+            case .maxHeaderBidding: bidder = MaxBidder(configuration: OguryAdsCardAdapter.configuration)
+            case .dtFairBidHeaderBidding: bidder = DTFairBidBidder(configuration: OguryAdsCardAdapter.configuration)
+            case .unityLevelPlayHeaderBidding: bidder = UnityLevelPlayBidder(configuration: OguryAdsCardAdapter.configuration)
+            default: ()
         }
-        else if case let .dtFairBidHeaderBidding(_, adMarkUpRetriever) = adType {
-            bidder = adMarkUpRetriever
-        }
-        else if case let .unityLevelPlayHeaderBidding(_, adMarkUpRetriever) = adType {
-            bidder = adMarkUpRetriever
-        }
-    }
-    
-    public func update(options: BaseAdOptions) {
-        if self.options.baseOptions.adUnitId != options.adUnitId {
-            ad = nil
-        }
-        self.options.baseOptions = options
-    }
-    
-    //MARK: Ad Management
-    public func loadAd(from options: BaseAdOptions) throws {
-        
-        
     }
     
     private func load(from adMarkUp: String) {
@@ -184,9 +166,9 @@ public final class InterstitialAdManager: OguryAdManager {
     }
     
     public func showAd() throws {
-        guard let viewController else { throw AdManagerError.noOptions }
+        guard let viewController else { throw AdManagerError.viewControllerMissing }
         if ad == nil {
-            ad = OguryInterstitialAd(adUnitId: options.baseOptions.adUnitId)
+            ad = OguryInterstitialAd(adUnitId: adUnitId)
             ad.delegate = proxyDelegate
         }
         append(.adDisplaying)
@@ -215,6 +197,9 @@ public final class InterstitialAdManager: OguryAdManager {
             case .saturate:
                 guard let webView = ad.adWebview() else { return }
                 kill(webView)
+            
+            @unknown default:
+                fatalError()
         }
     }
 }
@@ -240,19 +225,11 @@ internal class InterstitialProxyDelegate: AdDelegateProxy<InterstitialAdManager>
     
     
     func interstitialAd(_ interstitialAd: OguryInterstitialAd, didFailWithError error: OguryAdError) {
-        handle(error, for: interstitialAd)
+        handle(error)
     }
     
     func interstitialAdDidTriggerImpression(_ interstitialAd: OguryInterstitialAd) {
         guard let adManager else { return }
         adManager.append(.adDidTriggerImpression)
     }
-}
-
-extension InterstitialAdManager: Storable {
-    public convenience init(from data: StorableAdManager) {
-        fatalError()
-    }
-    
-    public func encode() -> StorableAdManager { StorableAdManager(rawAdType: adType.innerType, options: options) }
 }

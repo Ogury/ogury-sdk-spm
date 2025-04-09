@@ -14,7 +14,7 @@ class AdDelegateProxy<T: OguryAdManager>: NSObject {
         self.adDelegate = adDelegate
     }
     
-    internal func handle(_ error: Error, for ad: T.Ad) {
+    internal func handle(_ error: Error) {
         guard let adManager else { return }
         guard let error = error as? OguryAdError else {
             adManager.append(AdLifeCycleEvent.adDidFail(error))

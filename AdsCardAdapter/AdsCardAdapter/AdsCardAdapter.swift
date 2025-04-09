@@ -12,7 +12,7 @@ public protocol AdAdapterFormat: Codable, Identifiable where ID == UUID {
     /// the associated base adFormat (inter/rewarded/banner/thumb)
     var adFormat: AdFormat { get }
     /// the associated tags to display on the test app
-    var tags: [any AdTag] { get set }
+    var tags: [any AdTag] { get }
     /// the name to display in the add panel and ad list
     var displayName: String { get }
 }
@@ -24,6 +24,7 @@ public struct AdAdapterFormatSection: Identifiable {
 }
 
 public protocol AdsCardAdaptable {
+    var assetKey: String { get }
     /// list of available `AdAdapterFormat` list to populate the Add panel of the test application
     var availableAdFormats: [AdAdapterFormatSection] { get }
     /// returns the AdManager associated with an `AdAdapterFormat`
@@ -40,3 +41,23 @@ public enum AdsCardAdapterError: Error {
     case noSuitableAdapterAvailable
 }
 
+public extension String {
+    var uuid: UUID {
+        var hasher = Hasher()
+        hasher.combine(self)
+        let hash = hasher.finalize()
+        // Convert hash (Int) into a UUID-compatible format
+        var uuidBytes = [UInt8](repeating: 0, count: 16)
+        withUnsafeBytes(of: hash.bigEndian) { hashBytes in
+            for i in 0..<min(hashBytes.count, 16) {
+                uuidBytes[i] = hashBytes[i]
+            }
+        }
+        return UUID(uuid: (
+            uuidBytes[0], uuidBytes[1], uuidBytes[2], uuidBytes[3],
+            uuidBytes[4], uuidBytes[5], uuidBytes[6], uuidBytes[7],
+            uuidBytes[8], uuidBytes[9], uuidBytes[10], uuidBytes[11],
+            uuidBytes[12], uuidBytes[13], uuidBytes[14], uuidBytes[15]
+        ))
+    }
+}

@@ -17,6 +17,11 @@ public protocol HeaderBidable {
 }
 
 class RTBBidder: HeaderBidable {
+    internal let configuration: Configuration
+    init(configuration: Configuration) {
+        self.configuration = configuration
+    }
+    
     // MARK: - Constants
     var body: RTBidderBody!
     var url: URL! { fatalError() }
@@ -269,7 +274,7 @@ class RTBBidder: HeaderBidable {
                   dspRegion: DspRegion?,
                   rtbTestModeEnabled: Bool) async throws -> String? {
         try await withUnsafeThrowingContinuation { continuation in
-            retrieveAdMarkup(assetKey: AdSdkLauncher.shared.assetKey,
+            retrieveAdMarkup(assetKey: self.configuration.assetKey,
                              adUnitId: adUnitId,
                              country: "FRA",
                              campaignId: campaignId,

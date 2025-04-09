@@ -41,25 +41,6 @@ public struct AdsCardManager {
     }
 }
 
-protocol OguryErrorConvertible {
+public protocol ErrorConvertible {
     var readableError: String? { get }
-}
-
-#warning("TO REMOVE")
-public enum AdTypeTitle: String {
-    case interstitial
-    case rewarded
-    case thumbnail
-    case banner
-    case mpu
-    
-    var display: String {
-        switch self {
-            case .interstitial: return "Interstitial"
-            case .rewarded: return "Rewarded"
-            case .thumbnail: return "Thumbnail"
-            case .banner: return "Small banner"
-            case .mpu: return "MREC"
-        }
-    }
 }

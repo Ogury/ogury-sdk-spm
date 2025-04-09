@@ -6,14 +6,14 @@ import AdsCardLibrary
 import OguryAds
 
 class MaxBidder: RTBBidder {
-    override var url: URL! { Configuration.shared.maxOptions.url }
+    override var url: URL! { configuration.maxOptions.url }
     override func updateJson(withAdUnit adUnit: String,
                              assetKey: String,
                              country: String?,
                              token: String?,
                              rtbTestModeEnabled: Bool) {
         super.updateJson(withAdUnit: adUnit, assetKey: assetKey, country: country, token: token, rtbTestModeEnabled: rtbTestModeEnabled)
-        body.imp[0].displaymanager = Configuration.shared.maxOptions.displayManager!
+        body.imp[0].displaymanager = configuration.maxOptions.displayManager!
         body.user.data[0].segment[0] = ["signal" : token ?? ""]
     }
     

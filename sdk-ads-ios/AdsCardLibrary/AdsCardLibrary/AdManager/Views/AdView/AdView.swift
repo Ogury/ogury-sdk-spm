@@ -143,7 +143,7 @@ public struct AdView: View {
                 }
                 .padding(EdgeInsets(top: 6, leading: 12, bottom: 0, trailing: 12))
                 .alert(isPresented: $showErrorAlert) {
-                    let alertMessage = (store.error as? OguryErrorConvertible)?.readableError ?? String(describing: store.error)
+                    let alertMessage = (store.error as? ErrorConvertible)?.readableError ?? String(describing: store.error)
                     return Alert(title: Text(alertMessage))
                 }
                 

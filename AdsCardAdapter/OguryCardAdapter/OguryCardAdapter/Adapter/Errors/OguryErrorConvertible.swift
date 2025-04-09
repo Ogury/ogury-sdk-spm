@@ -8,9 +8,10 @@
 import Foundation
 import OguryAds
 import OguryCore
+import AdsCardLibrary
 
-extension OguryAdError: OguryErrorConvertible {
-    var readableError: String? {
+extension OguryAdError: ErrorConvertible {
+    public var readableError: String? {
         switch self.code {
             case OguryShowErrorCode.adDisabledUnspecifiedReason.rawValue: return "Ad is disabled"
             case OguryShowErrorCode.adDisabledConsentMissing.rawValue: return "Ad is disabled (Missing consent)"
@@ -44,14 +45,11 @@ extension OguryAdError: OguryErrorConvertible {
     }
 }
 
-extension AdManagerError: OguryErrorConvertible {
-    var readableError: String? {
+extension AdManagerError: ErrorConvertible {
+    public var readableError: String? {
         switch self {
-            case .noOptions: return "No options was fed to the adManager"
-            case .loadNotCalledBeforeShow: return "Show was called before load"
-            case .noShowForBanner: return "Show does not work on banners"
-            case let .adMarkUpRetrievalFailed(error):
-                return error == nil ? "AdMarkUp retrieval failed" : "\(error!)"
+            case let .adMarkUpRetrievalFailed(error): return error == nil ? "AdMarkUp retrieval failed" : "\(error!)"
+            case .viewControllerMissing: return "ViewController missing"
         }
     }
 }

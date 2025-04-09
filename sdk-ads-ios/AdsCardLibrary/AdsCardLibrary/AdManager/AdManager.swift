@@ -23,7 +23,7 @@ public enum AdFormat: Codable {
     public var isBanner: Bool {  return [.smallBanner, .mrec].contains(self) }
 }
 
-public protocol AdManager: Codable, Equatable, Identifiable where ID == UUID {
+public protocol AdManager: Equatable, Identifiable where ID == UUID {
     //MARK: properties
     var adFormat: AdFormat { get set }
     var adConfiguration: AdConfiguration! { get set }
@@ -89,7 +89,7 @@ public extension AdManager {
     }
 }
 
-extension AdManager {
+public extension AdManager {
     func kill(_ webView: WKWebView) {
         DispatchQueue.main.async {
             Task {
@@ -136,13 +136,14 @@ public enum AdLifeCycleEvent {
 public struct AdLifeCycleEventHistory: Equatable {
     let event: AdLifeCycleEvent
     let date = Date()
+    public init(event: AdLifeCycleEvent) {
+        self.event = event
+    }
 }
 
-enum AdManagerError: Error {
-    case noOptions
-    case loadNotCalledBeforeShow
-    case noShowForBanner
+public enum AdManagerError: Error {
     case adMarkUpRetrievalFailed(_: String?)
+    case viewControllerMissing
 }
 
 extension AdLifeCycleEvent: Equatable {

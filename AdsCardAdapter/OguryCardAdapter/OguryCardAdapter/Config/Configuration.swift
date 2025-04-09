@@ -70,6 +70,7 @@ struct Configuration: Decodable {
         let url: URL?
         var displayManager: String? { "unity levelplay" }
     }
+    let assetKey: String
     let options: DefaultOptions
     let maxOptions: DefaultMaxOptions
     let dtFairBidOptions: DefaultDTFairBidOptions
@@ -88,20 +89,14 @@ struct Configuration: Decodable {
         maxOptions = try container.decode(DefaultMaxOptions.self, forKey: .max)
         dtFairBidOptions = try container.decode(DefaultDTFairBidOptions.self, forKey: .dtFairBid)
         unityLevelPlayOptions = try container.decode(DefaultUnityLevelPlayOptions.self, forKey: .unityLevelPlay)
+        assetKey = ""
     }
     
-    static let shared: Configuration = {
-        guard let conf: Configuration = try? Configuration.loadJsonFromFile(named: "Default", extension: "json") else {
-                fatalError("No configuration file found")
-        }
-        return conf
-    } ()
-    
-    mutating
-    func load(from environment: OguryEnvironement) {
+    init(from assetKey: String, environment: OguryEnvironement) {
         guard let conf: Configuration = try? Configuration.loadJsonFromFile(named: environment.fileName, extension: "json") else {
             fatalError("No configuration file found")
         }
+        self.assetKey = assetKey
         options = conf.options
         maxOptions = conf.maxOptions
         dtFairBidOptions = conf.dtFairBidOptions

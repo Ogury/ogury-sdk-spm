@@ -6,7 +6,6 @@ import Foundation
 import SwiftUI
 import OguryAds
 import OguryAds.Private
-internal import ComposableArchitecture
 import Combine
 import AdsCardLibrary
 
@@ -24,7 +23,34 @@ public final class RewardedAdManager: OguryAdManager {
     }
     
     public func load() {
-        //TODO: implement
+        if (ad == nil) {
+            ad = OguryRewardedAd(adUnitId: adUnitId)
+        }
+        ad.delegate = proxyDelegate
+        ad.setLogOrigin(cardConfiguration.qaLabel)
+        append(.adLoading)
+        guard let bidder else {
+            loadAd()
+            return
+        }
+        Task {
+            do {
+                let adMakUp = try await bidder.adMarkUp(adUnitId: self.adUnitId,
+                                                        campaignId: self.campaignId,
+                                                        creativeId: self.creativeId,
+                                                        dspCreative: self.dspCreativeId,
+                                                        dspRegion: self.dspRegion,
+                                                        rtbTestModeEnabled: self.cardConfiguration.rtbTestModeEnabled)
+                guard let adMakUp else {
+                    append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")))
+                    return
+                }
+                load(from: adMakUp)
+            } catch {
+                append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed(bidder.description(for: error))))
+                return
+            }
+        }
     }
     
     public func show() {
@@ -40,19 +66,9 @@ public final class RewardedAdManager: OguryAdManager {
     }
     
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
-    lazy var store: StoreOf<AdViewFeature> = {
-        var weakSelf: (any AdManager)? = self
-        return Store(
-            initialState: AdViewFeature.State(adManager: &weakSelf!),
-            reducer: { AdViewFeature() }
-        )
-    }()
-    public typealias Ad = OguryRewardedAd
-    public typealias Options = AdManagerOptions
-    public var adOptionView: (any View)? { nil }
     //MARK: Variables
     public private(set) var ad: OguryRewardedAd!
-    public private(set) var adType: AdType<RewardedAdManager>
+    public private(set) var adType: AdType
     public var adView: AdView {
         var wself: (any AdManager)? = self
         return AdsCardManager().card(for: &wself!)
@@ -68,11 +84,15 @@ public final class RewardedAdManager: OguryAdManager {
     }
     internal let proxyDelegate: RewardedProxyDelegate!
     public var lifeCycleEvents: [AdLifeCycleEventHistory] = []
-    internal var bidder: HeaderBidable?
+    public var bidder: HeaderBidable?
     public let id: UUID = UUID()
     
+    public convenience init(adType: AdType, viewController: UIViewController?, adDelegate: (any AdsCardLibrary.AdLifeCycleDelegate)?) {
+        self.init(adType: adType, adConfiguration: .init(adUnitId: ""), cardConfiguration: .init(), viewController: viewController, adDelegate: adDelegate)
+    }
+    
     //MARK: Initializer
-    public init(adType: AdType<RewardedAdManager>,
+    public init(adType: AdType,
                 adConfiguration: AdConfiguration,
                 cardConfiguration: CardConfiguration,
                 viewController: UIViewController?,
@@ -85,62 +105,20 @@ public final class RewardedAdManager: OguryAdManager {
         self.viewController = viewController
         proxyDelegate = RewardedProxyDelegate(adDelegate: adDelegate)
         proxyDelegate.adManager = self
-        if case let .maxHeaderBidding(_, adMarkUpRetriever) = adType {
-            bidder = adMarkUpRetriever
+        switch adType {
+            case .maxHeaderBidding: bidder = MaxBidder(configuration: OguryAdsCardAdapter.configuration)
+            case .dtFairBidHeaderBidding: bidder = DTFairBidBidder(configuration: OguryAdsCardAdapter.configuration)
+            case .unityLevelPlayHeaderBidding: bidder = UnityLevelPlayBidder(configuration: OguryAdsCardAdapter.configuration)
+            default: ()
         }
-        else if case let .dtFairBidHeaderBidding(_, adMarkUpRetriever) = adType {
-            bidder = adMarkUpRetriever
-        }
-        else if case let .unityLevelPlayHeaderBidding(_, adMarkUpRetriever) = adType {
-            bidder = adMarkUpRetriever
-        }
-    }
-    
-    public func update(options: BaseAdOptions) {
-        if self.options.baseOptions.adUnitId != options.adUnitId {
-            ad = nil
-        }
-        self.options.baseOptions = options
     }
     
     //MARK: Ad Management
-    public func loadAd(from options: BaseAdOptions) throws {
-        self.options.baseOptions = options
-        if (ad == nil) {
-            ad = OguryRewardedAd(adUnitId: options.adUnitId)
-        }
-        ad.delegate = proxyDelegate
-        ad.setLogOrigin(options.qaLabel)
-        append(.adLoading)
-        guard let bidder else {
-            load()
-            return
-        }
-        Task {
-            do {
-                let adMakUp = try await bidder.adMarkUp(adUnitId: options.adUnitId,
-                                                        campaignId: options.campaignId,
-                                                        creativeId: options.creativeId,
-                                                        dspCreative: options.dspCreativeId,
-                                                        dspRegion: options.dspRegion,
-                                                        rtbTestModeEnabled: options.rtbTestModeEnabled)
-                guard let adMakUp else {
-                    append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")))
-                    return
-                }
-                load(from: adMakUp)
-            } catch {
-                append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed(bidder.description(for: error))))
-                return
-            }
-        }
-    }
-    
     private func load(from adMarkUp: String) {
         ad.load(withAdMarkup: adMarkUp)
     }
     
-    private func privateLoad() {
+    private func loadAd() {
         // if test mode is enabled, then we don't send any other information
         guard !adUnitId.isTestModeOn else {
             ad.load()
@@ -181,9 +159,9 @@ public final class RewardedAdManager: OguryAdManager {
     }
     
     public func showAd() throws {
-        guard let viewController else { throw AdManagerError.noOptions }
+        guard let viewController else { throw AdManagerError.viewControllerMissing }
         if ad == nil {
-            ad = OguryRewardedAd(adUnitId: options.baseOptions.adUnitId)
+            ad = OguryRewardedAd(adUnitId: adUnitId)
             ad.delegate = proxyDelegate
         }
         DispatchQueue.main.async {
@@ -212,6 +190,9 @@ public final class RewardedAdManager: OguryAdManager {
             case .saturate:
                 guard let webView = ad.adWebview() else { return }
                 kill(webView)
+            
+            @unknown default:
+                fatalError()
         }
     }
 }
@@ -236,7 +217,7 @@ internal class RewardedProxyDelegate: AdDelegateProxy<RewardedAdManager>, OguryR
     }
     
     func rewardedAd(_ rewardedAd: OguryRewardedAd, didFailWithError error: OguryAdError) {
-        handle(error, for: rewardedAd)
+        handle(error)
     }
     
     func rewardedAdDidTriggerImpression(_ rewardedAd: OguryRewardedAd) {
@@ -248,12 +229,4 @@ internal class RewardedProxyDelegate: AdDelegateProxy<RewardedAdManager>, OguryR
         guard let adManager else { return }
         adManager.append(.rewardReady(name: item.rewardName, value: item.rewardValue))
     }
-}
-
-extension RewardedAdManager: Storable {
-    public convenience init(from data: StorableAdManager) {
-        fatalError()
-    }
-    
-    public func encode() -> StorableAdManager { StorableAdManager(rawAdType: adType.innerType, options: options) }
 }
