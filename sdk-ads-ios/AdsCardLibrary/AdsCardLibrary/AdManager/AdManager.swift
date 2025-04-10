@@ -21,6 +21,15 @@ public enum AdFormat: Codable {
         }
     }
     public var isBanner: Bool {  return [.smallBanner, .mrec].contains(self) }
+    /// associated icon
+    var displayIcon: Image {
+        switch self {
+            case .interstitial: return Image(systemName: "iphone").symbolRenderingMode(.monochrome)
+            case .rewardedVideo: return Image(systemName: "iphone.gen3.badge.play")
+            case .smallBanner, .mrec: return Image(systemName: "platter.filled.bottom.iphone")
+            case .thumbnail: return Image(systemName: "rectangle.portrait.bottomright.inset.filled")
+        }
+    }
 }
 
 public protocol AdManager: Equatable, Hashable, Identifiable where ID == UUID {
@@ -43,16 +52,21 @@ public protocol AdManager: Equatable, Hashable, Identifiable where ID == UUID {
     func killWebview(_ killMode: KillWebviewMode)
     func append(_ event: AdLifeCycleEvent)
     func encode() -> AdCardContainer
+    static func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager
+}
+
+public enum AdCardContainerError: Error {
+    case invalidAdType
 }
 
 public struct AdCardContainer: Codable {
     public struct AdInformationsContainer: Codable {
-        let adUnitId: String
-        let campaignId: String?
-        let creativeId: String?
-        let dspCreativeId: String?
-        let dspRegion: DspRegion?
-        let settings: CardSettings
+        public let adUnitId: String
+        public let campaignId: String?
+        public let creativeId: String?
+        public let dspCreativeId: String?
+        public let dspRegion: DspRegion?
+        public let settings: CardSettings
         public init(adUnitId: String,
                     campaignId: String? = nil,
                     creativeId: String? = nil,
@@ -68,18 +82,18 @@ public struct AdCardContainer: Codable {
         }
     }
     public struct CardSettings: Codable {
-        let oguryTestModeEnabled: Bool
-        let rtbTestModeEnabled: Bool
-        let qaLabel: String
+        public let oguryTestModeEnabled: Bool
+        public let rtbTestModeEnabled: Bool
+        public let qaLabel: String
         public init(oguryTestModeEnabled: Bool, rtbTestModeEnabled: Bool, qaLabel: String) {
             self.oguryTestModeEnabled = oguryTestModeEnabled
             self.rtbTestModeEnabled = rtbTestModeEnabled
             self.qaLabel = qaLabel
         }
     }
-    let name: String
-    let adType: Int
-    let adInformations: AdInformationsContainer
+    public let name: String
+    public let adType: Int
+    public let adInformations: AdInformationsContainer
     public init(name: String, adType: Int, adInformations: AdInformationsContainer) {
         self.name = name
         self.adType = adType

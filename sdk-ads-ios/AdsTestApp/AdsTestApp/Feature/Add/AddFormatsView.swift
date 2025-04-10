@@ -62,11 +62,11 @@ struct AddFormatView: View {
     }
 }
 
-#Preview {
-    @State var value = 0
-    let adType: AdType<InterstitialAdManager> = .interstitial
-    return ZStack {
-        Color(AdColorPalette.Background.secondary.color).ignoresSafeArea()
-        AddFormatView(value: $value, title: "Inter")
-    }
-}
+//#Preview {
+//    @State var value = 0
+//    let adType: AdType<InterstitialAdManager> = .interstitial
+//    return ZStack {
+//        Color(AdColorPalette.Background.secondary.color).ignoresSafeArea()
+//        AddFormatView(value: $value, title: "Inter")
+//    }
+//}

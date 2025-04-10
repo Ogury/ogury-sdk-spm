@@ -11,9 +11,6 @@ struct AppFeature: Reducer {
     var adHostingViewController: UIViewController!
     var adDelegate: (AdLifeCycleDelegate & ApplicationDelegate)!
     let cardManager = AdsCardManager()
-    let maxHeaderBidable = MaxBidder()
-    let dtFairBidHeaderBidable = DTFairBidBidder()
-    let unityLevelPlayBidable = UnityLevelPlayBidder()
     
     struct State: Equatable {
         var path = StackState<Path.State>()
@@ -91,14 +88,15 @@ struct AppFeature: Reducer {
                     
                 case .loadCards:
                     guard let container = try? loadSavedData() else { return .none }
-                    state.main.adFormats = container.retrieveAds(cardManager: cardManager,
-                                                                 maxHeaderBidable: maxHeaderBidable, 
-                                                                 dtFairBidHeaderBidable: dtFairBidHeaderBidable,
-                                                                 unityLevelPlayBidable: unityLevelPlayBidable,
-                                                                 viewController: adHostingViewController,
-                                                                 view: nil,
-                                                                 adDelegate: adDelegate)
-                    state.main.setName = container.settings.name
+                    //TODO: 🍀 Fix import
+//                    state.main.adFormats = container.retrieveAds(cardManager: cardManager,
+//                                                                 maxHeaderBidable: maxHeaderBidable, 
+//                                                                 dtFairBidHeaderBidable: dtFairBidHeaderBidable,
+//                                                                 unityLevelPlayBidable: unityLevelPlayBidable,
+//                                                                 viewController: adHostingViewController,
+//                                                                 view: nil,
+//                                                                 adDelegate: adDelegate)
+//                    state.main.setName = container.settings.name
                     return .none
                     
                 case .saveCards:
@@ -130,14 +128,5 @@ struct AppFeature: Reducer {
     
     private func loadSavedData() throws -> AdsStorableContainer  {
         try AdsStorableContainer.loadSavedData()
-    }
-}
-
-extension Array where Element == AdFormat {
-    func sorted() -> Array<Element> {
-        print("Before sort \(compactMap({ $0.sortPosition }))")
-        let sorted = sorted(by: { $0.sortPosition < $1.sortPosition })
-        print("After sort \(sorted.compactMap({ $0.sortPosition }))")
-        return sorted
     }
 }

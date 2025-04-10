@@ -6,16 +6,21 @@
 import AdsCardLibrary
 import Foundation
 import OguryAds.Private
+import OguryCardAdapter
+import AdsCardAdapter
 
-struct AdSdkLauncher {
-    static let shared = AdSdkLauncher()
+struct SdkLauncher {
+    static let shared = SdkLauncher()
+    let adapter: OguryAdsCardAdapter
     let logger = TestAppLogController.shared
     
-    private init() {}
-    
-    func launch() {
-        startAds()
+    private init() {
+        self.adapter = .init(assetKey: SdkLauncher.assetKey, environment: SdkLauncher.environment.oguryEnvironment)
+        self.adapter.forceAdsEnvironment(SdkLauncher.environment)
     }
+    
+    func launch() { startAds() }
+    private func forceAdsEnvironment() { adapter.forceAdsEnvironment(SdkLauncher.environment) }
     
     func startAds(forceStart: Bool = false) {
         if SettingsController().startSDKWithApplication || forceStart {
@@ -23,42 +28,33 @@ struct AdSdkLauncher {
             (0..<SettingsController().numberOfSdkStart).forEach { second in
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(second)) {
                     print("🫠 start SDK")
-                    OGAInternal.shared().start(with: assetKey) { _, _ in
-                        
-                    }
+                    self.adapter.startSdk()
                 }
             }
         }
     }
     
-    var assetKey: String {
+    static var assetKey: String {
         guard let asset = Bundle.main.infoDictionary?["AssetKey"] as? String else {
             return "OGY-669B2C04F486"
         }
         return asset
     }
     
-    private var environment: String {
+    static private var environment: String {
         guard let asset = Bundle.main.infoDictionary?["DefaultEnv"] as? String else {
             return "PROD"
         }
         return asset
     }
-    
-    private var environmentRawValue: Int {
-        guard let asset = Bundle.main.infoDictionary?["DefaultEnv"] as? String else {
-            return 0
+}
+
+private extension String {
+    var oguryEnvironment: OguryEnvironement {
+        switch self {
+            case "DEVC": return .devc
+            case "STAGING": return .staging
+            default: return .prod
         }
-        switch asset {
-            case "PROD": return 0
-            case "STAGING": return 1
-            case "DEVC": return 2
-            default: return 0
-        }
-    }
-    
-    private func forceAdsEnvironment() {
-        let sel = NSSelectorFromString("changeServerEnvironment:")
-        OGAInternal.shared().perform(sel, with: environment)
     }
 }

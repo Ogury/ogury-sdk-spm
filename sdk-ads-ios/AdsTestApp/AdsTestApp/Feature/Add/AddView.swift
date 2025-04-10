@@ -28,10 +28,13 @@ struct AddView: View {
                                 
                                 ScrollView(.horizontal) {
                                     HStack {
-                                        ForEach($section.adFormats, id:\.id) { $adFormat in
-                                            AddFormatView(value: $adFormat.nbOfFormatToLoad,
-                                                          title: adFormat.addCardTitle)
-                                        }
+                                        //TODO: 🍀 Add Stepper back
+//                                        ForEach($section.adFormat, id:\.id) { $adFormat in
+//                                            AddFormatView(value: store.binding(
+//                                                get: \.formatToLoad[adFormat.id],
+//                                                send: { .setValueForFormat($0, adFormat.id) }),
+//                                                          title: adFormat.displayName)
+//                                        }
                                     }
                                 }
                             }
@@ -44,11 +47,11 @@ struct AddView: View {
         }
     }
 }
-
-#Preview {
-    AddView(
-        store: Store(initialState: AddFeature.State(maxHeaderBidable: MaxBidder(), dtFairBidHeaderBidable: DTFairBidBidder(), unityLevelPlayBidable: UnityLevelPlayBidder()),
-                     reducer: {
-                         AddFeature()
-                     }))
-}
+//
+//#Preview {
+//    AddView(
+//        store: Store(initialState: AddFeature.State(maxHeaderBidable: MaxBidder(), dtFairBidHeaderBidable: DTFairBidBidder(), unityLevelPlayBidable: UnityLevelPlayBidder()),
+//                     reducer: {
+//                         AddFeature()
+//                     }))
+//}

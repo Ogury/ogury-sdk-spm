@@ -6,6 +6,7 @@
 import SwiftUI
 internal import ComposableArchitecture
 import AdsCardLibrary
+import AdsCardAdapter
 
 struct MainView: View {
     let store: StoreOf<MainFeature>
@@ -296,15 +297,15 @@ extension View {
 
 @available(iOS, introduced: 15, deprecated: 16, message: "use ListManagersView for iOS 16+")
 struct LegacyHorizontalCardsView: View {
-    let adFormat: AdFormat
-    let managers: [any OguryAdManager]
+    let adFormat: any AdAdapterFormat
+    let managers: [any AdManager]
     let geometry: GeometryProxy
     @State private var contentSize: CGSize = .zero
     @Environment(\.cardPermissions) var cardPermissions
     
     var body: some View {
         HStack(alignment: .center, spacing: 4) {
-            if let image = adFormat.displayIcon {
+            if let image = adFormat.adFormat.displayIcon {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit) // Maintains the aspect ratio
@@ -350,8 +351,8 @@ struct LegacyHorizontalCardsView: View {
 
 @available(iOS 16, *)
 struct HorizontalCardsView: View {
-    let adFormat: AdFormat
-    let managers: [any OguryAdManager]
+    let adFormat: any AdAdapterFormat
+    let managers: [any AdManager]
     let geometry: GeometryProxy
     // we block the navigation for all banner managers since we have issues with adViews and superviews
     var disabled: Bool { managers.first as? BannerAdManager != nil }

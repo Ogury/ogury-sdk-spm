@@ -5,7 +5,7 @@
 import UIKit
 import AdsCardLibrary
 
-extension Decodable {
+public extension Decodable {
     static func loadJsonFromFile(named fileName: String, extension extName: String? = nil) throws -> Self {
         guard let url = Bundle.main.url(forResource: fileName, withExtension: extName),
               let json = try? Data(contentsOf: url) else {

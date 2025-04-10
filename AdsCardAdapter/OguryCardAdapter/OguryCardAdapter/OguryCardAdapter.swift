@@ -57,11 +57,18 @@ public struct OguryAdsCardAdapter: AdsCardAdaptable {
         return adManager
     }
     
+    public func adAdapterFormat(fromRawValue rawValue: Int) throws(AdsCardAdapterError) -> any AdAdapterFormat {
+        guard let adType = AdType(rawValue: rawValue) else {
+            throw .noSuitableAdapterAvailable
+        }
+        return adType
+    }
+    
     public func startSdk() {
         OGAInternal.shared().start(with: assetKey) { _, _ in }
     }
     
-    func forceAdsEnvironment(_ env: String) {
+    public func forceAdsEnvironment(_ env: String) {
         let sel = NSSelectorFromString("changeServerEnvironment:")
         OGAInternal.shared().perform(sel, with: env)
     }

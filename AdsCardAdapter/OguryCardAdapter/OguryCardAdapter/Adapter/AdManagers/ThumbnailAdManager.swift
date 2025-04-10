@@ -10,6 +10,20 @@ import Combine
 import AdsCardLibrary
 
 public final class ThumbnailAdManager: OguryAdManager {
+    public static func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager {
+        guard let adType = AdType(rawValue: container.adType) else { throw .invalidAdType }
+        return ThumbnailAdManager(adType: adType,
+                                  adConfiguration: .init(adUnitId: container.adInformations.adUnitId,
+                                                         campaignId: container.adInformations.campaignId,
+                                                         creativeId: container.adInformations.creativeId,
+                                                         dspCreativeId: container.adInformations.dspCreativeId,
+                                                         dspRegion: container.adInformations.dspRegion),
+                                  cardConfiguration: .init(oguryTestModeEnabled: container.adInformations.settings.oguryTestModeEnabled,
+                                                           rtbTestModeEnabled: container.adInformations.settings.rtbTestModeEnabled,
+                                                           qaLabel: container.adInformations.settings.qaLabel),
+                                  viewController: nil,
+                                  adDelegate: nil)
+    }
     public var bidder: (any HeaderBidable)?
     public var adFormat: AdFormat
     public var adConfiguration: AdConfiguration!

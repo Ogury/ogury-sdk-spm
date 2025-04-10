@@ -102,9 +102,9 @@ public extension View {
     }
 }
 
-// Preview Setup
-#Preview {
-    DetailListView( store: Store(initialState: DetailListFeature.State(adManagers: [], adFormat: AdFormat(id: 0, adType: AnyAdType(AdType<InterstitialAdManager>.interstitial))), reducer: {
-        DetailListFeature()
-    }), logsStore: Store(initialState: LogsFeature.State() ,reducer: {LogsFeature()}))
-}
+//// Preview Setup
+//#Preview {
+//    DetailListView( store: Store(initialState: DetailListFeature.State(adManagers: [], adFormat: AdFormat(id: 0, adType: AnyAdType(AdType<InterstitialAdManager>.interstitial))), reducer: {
+//        DetailListFeature()
+//    }), logsStore: Store(initialState: LogsFeature.State() ,reducer: {LogsFeature()}))
+//}

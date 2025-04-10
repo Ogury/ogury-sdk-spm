@@ -9,7 +9,47 @@ import AdsCardLibrary
 import SwiftUI
 import OguryAds
 import OguryCore
+import AdsCardAdapter
+import AdsCardLibrary
 import OMSDK_Ogury
+
+struct AdCardList: Hashable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.adAdapterFormat.hashValue == rhs.adAdapterFormat.hashValue
+        && lhs.adManagers.hashValue == rhs.adManagers.hashValue
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(adAdapterFormat)
+        hasher.combine(adManagers.map{ $0.hashValue })
+    }
+    
+    var adAdapterFormat: any AdAdapterFormat
+    var adManagers: [any AdManager] = []
+    init(adAdapterFormat: any AdAdapterFormat, adManagers: [any AdManager]) {
+        self.adAdapterFormat = adAdapterFormat
+        self.adManagers = adManagers
+    }
+    
+    mutating func append(_ adManager: any AdManager) {
+        adManagers.append(adManager)
+    }
+    mutating func remove(_ adManager: any AdManager) {
+        adManagers.removeAll(where: { $0.id == adManager.id })
+    }
+}
+
+public extension Array where Element == any AdManager {
+    func hash(into hasher: inout Hasher) {
+        for element in self {
+            hasher.combine(element)
+        }
+    }
+    var hashValue: Int {
+        var hasher = Hasher()
+        hash(into: &hasher)
+        return hasher.finalize()
+    }
+}
 
 struct About {
     var appName: String { Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ?? "Ads Test Application" }
@@ -18,7 +58,7 @@ struct About {
     var environment: String { Bundle.main.object(forInfoDictionaryKey: "DefaultEnv") as? String ?? "" }
     var bundleId: String { Bundle.main.object(forInfoDictionaryKey: "CFBundleIdentifier") as? String ?? "" }
     var omidVersion: String { OMIDOgurySDK.versionString() }
-    var assetKey: String { AdSdkLauncher.shared.assetKey }
+    var assetKey: String { SdkLauncher.assetKey }
     var coreSdkVersion: String { String(describing: OGCInternal.shared().getVersion()) }
     var ogurySdkVersion: String { "5.0.2" }
     var adsSdkVersion: String {
@@ -33,9 +73,6 @@ struct MainFeature: Reducer {
     var adHostingViewController: UIViewController!
     var adDelegate: (AdLifeCycleDelegate & ApplicationDelegate)!
     let cardManager = AdsCardManager(logger: TestAppLogController.shared.logger)
-    let maxHeaderBidable = MaxBidder()
-    let dtFairBidHeaderBidable = DTFairBidBidder()
-    let unityLevelPlayBidable = UnityLevelPlayBidder()
     
     struct State: Equatable {
         static func == (lhs: MainFeature.State, rhs: MainFeature.State) -> Bool {
@@ -66,7 +103,7 @@ struct MainFeature: Reducer {
             return isEqual && lhs.destination == rhs.destination && lhs.setName == rhs.setName
         }
         
-        var adFormats: [AdFormat:[any OguryAdManager]] = [:]
+        var adFormats: [AdCardList] = []
         @PresentationState var destination: Destination.State?
         @BindingState var setName = ""
         fileprivate var settingsPriorToChange: SettingsContainer = SettingsContainer()
@@ -111,7 +148,7 @@ struct MainFeature: Reducer {
         case removeSetButtonTapped
         case deleteCard(id: UUID)
         case saveCards
-        case refreshAllCards(_: [AdFormat:[any OguryAdManager]])
+        case refreshAllCards(_: [AdCardList])
         case showLogs(_: Bool)
         case importFile(_: URL)
         case loadFromContainer(_: AdsStorableContainer)
@@ -142,15 +179,13 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case let .loadFromContainer(container):
-                    let adFormats = container.retrieveAds(cardManager: cardManager,
-                                                          maxHeaderBidable: maxHeaderBidable,
-                                                          dtFairBidHeaderBidable: dtFairBidHeaderBidable,
-                                                          unityLevelPlayBidable: unityLevelPlayBidable,
-                                                          viewController: adHostingViewController,
-                                                          view: nil,
-                                                          adDelegate: adDelegate)
-                    state.adFormats = adFormats
-                    state.setName = container.settings.name
+                    //TODO: 🍀 fix it
+//                    let adFormats = container.retrieveAds(cardManager: cardManager,
+//                                                          viewController: adHostingViewController,
+//                                                          view: nil,
+//                                                          adDelegate: adDelegate)
+//                    state.adFormats = adFormats
+//                    state.setName = container.settings.name
                     container.save()
                     if container.shouldUpdateAdUnits {
                         return .run { _ in
@@ -233,33 +268,34 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case .addButtonTapped:
-                    state.destination = .add(.init(maxHeaderBidable: maxHeaderBidable, dtFairBidHeaderBidable: dtFairBidHeaderBidable, unityLevelPlayBidable: unityLevelPlayBidable))
+                    state.destination = .add(.init())
                     return .none
                     
                 case .addFormatButtonTapped:
-                    guard case let .add(addState) = state.destination else {
-                        return .none
-                    }
-                    let sections = addState.sections.flatMap({ $0.adFormats })
-                        .filter({ $0.nbOfFormatToLoad > 0 })
-                    for (index, _) in sections.enumerated() {
-                        if let adFormat = state.adFormats.first(where: { (key, value) in
-                            key.id == sections[index].id
-                        }) {
-                            var existingAdFormat = adFormat.key
-                            var adsManager = state.adFormats[existingAdFormat]
-                            adsManager?.append(contentsOf: adManagers(for: sections[index], startIndex: adFormat.value.count))
-                            state.adFormats[existingAdFormat] = nil
-                            existingAdFormat.nbOfFormatToLoad = adsManager?.count ?? 0
-                            state.adFormats[existingAdFormat] = adsManager
-                        } else {
-                            var newAdFormat = sections[index]
-                            let adsManager = adManagers(for: newAdFormat)
-                            newAdFormat.nbOfFormatToLoad = adsManager.count
-                            state.adFormats[newAdFormat] = adsManager
-                        }
-                        store(formats: state.adFormats)
-                    }
+                    //TODO: 🍀
+//                    guard case let .add(addState) = state.destination else {
+//                        return .none
+//                    }
+//                    let sections = addState.sections.flatMap({ $0.adFormats })
+//                        .filter({ $0.nbOfFormatToLoad > 0 })
+//                    for (index, _) in sections.enumerated() {
+//                        if let adFormat = state.adFormats.first(where: { (key, value) in
+//                            key.id == sections[index].id
+//                        }) {
+//                            var existingAdFormat = adFormat.key
+//                            var adsManager = state.adFormats[existingAdFormat]
+//                            adsManager?.append(contentsOf: adManagers(for: sections[index], startIndex: adFormat.value.count))
+//                            state.adFormats[existingAdFormat] = nil
+//                            existingAdFormat.nbOfFormatToLoad = adsManager?.count ?? 0
+//                            state.adFormats[existingAdFormat] = adsManager
+//                        } else {
+//                            var newAdFormat = sections[index]
+//                            let adsManager = adManagers(for: newAdFormat)
+//                            newAdFormat.nbOfFormatToLoad = adsManager.count
+//                            state.adFormats[newAdFormat] = adsManager
+//                        }
+//                        store(formats: state.adFormats)
+//                    }
                     state.destination = nil
                     return .none
                     
@@ -304,7 +340,7 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case.startSDKButtonTapped:
-                    AdSdkLauncher.shared.startAds(forceStart: true)
+                    SdkLauncher.shared.startAds(forceStart: true)
                     return .none
                     
                 case let .showLogs(show):
@@ -359,80 +395,83 @@ struct MainFeature: Reducer {
             })
     }
     
-    private func sort(adFormats: inout [AdFormat:[any OguryAdManager]])  {
-        var updatedValue: [AdFormat:[any OguryAdManager]] = [:]
-        Array(adFormats.keys)
-            .sorted()
-            .forEach { key in
-                updatedValue[key] = adFormats[key]
-            }
-        adFormats = updatedValue
-    }
+    //TODO: 🍀 check it
+//    private func sort(adFormats: inout [AdFormat:[any AdManager]])  {
+//        var updatedValue: [AdFormat:[any AdManager]] = [:]
+//        Array(adFormats.keys)
+//            .sorted()
+//            .forEach { key in
+//                updatedValue[key] = adFormats[key]
+//            }
+//        adFormats = updatedValue
+//    }
     
-    func adManagers(for section: AdFormat, startIndex: Int = 0) -> [any OguryAdManager] {
-        var adsManager: [any OguryAdManager] = []
-        for index in 0..<section.nbOfFormatToLoad {
-            let options = Configuration.shared.options(at: index + startIndex + 1)
-            
-            switch section.adType.adType {
-                case is AdType<InterstitialAdManager>:
-                    let interstitial: AdType<InterstitialAdManager> = section.adType.adType as! AdType<InterstitialAdManager>
-                    let interstitialManager = try? self.cardManager.adManager(for: interstitial,
-                                                                              options: options,
-                                                                              viewController: adHostingViewController,
-                                                                              adDelegate: adDelegate)
-                    adsManager.append(interstitialManager!)
-                    
-                case is AdType<RewardedAdManager>:
-                    let optin: AdType<RewardedAdManager> =  section.adType.adType as! AdType<RewardedAdManager>
-                    let optinManager = try? self.cardManager.adManager(for: optin,
-                                                                       options: options,
-                                                                       viewController: adHostingViewController,
-                                                                       adDelegate: adDelegate)
-                    adsManager.append(optinManager!)
-                    
-                case is AdType<ThumbnailAdManager>:
-                    let thumbnail: AdType<ThumbnailAdManager> =  section.adType.adType as! AdType<ThumbnailAdManager>
-                    let thumbnailManager = try? self.cardManager.adManager(for: thumbnail,
-                                                                           options: options,
-                                                                           viewController: adHostingViewController,
-                                                                           adDelegate: adDelegate)
-                    adsManager.append(thumbnailManager!)
-                    
-                case is AdType<BannerAdManager>:
-                    let banner: AdType<BannerAdManager> =  section.adType.adType as! AdType<BannerAdManager>
-                    let bannerManager = try? self.cardManager.adManager(for: banner,
-                                                                        options: options,
-                                                                        viewController: adHostingViewController,
-                                                                        adDelegate: adDelegate)
-                    adsManager.append(bannerManager!)
-                    
-                default:
-                    break
-            }
-        }
+    //TODO: 🍀 Fix it
+    func adManagers(for section: AdFormat, startIndex: Int = 0) -> [any AdManager] {
+        var adsManager: [any AdManager] = []
+//        for index in 0..<section.nbOfFormatToLoad {
+//            let options = Configuration.shared.options(at: index + startIndex + 1)
+//            
+//            switch section.adType.adType {
+//                case is AdType<InterstitialAdManager>:
+//                    let interstitial: AdType<InterstitialAdManager> = section.adType.adType as! AdType<InterstitialAdManager>
+//                    let interstitialManager = try? self.cardManager.adManager(for: interstitial,
+//                                                                              options: options,
+//                                                                              viewController: adHostingViewController,
+//                                                                              adDelegate: adDelegate)
+//                    adsManager.append(interstitialManager!)
+//                    
+//                case is AdType<RewardedAdManager>:
+//                    let optin: AdType<RewardedAdManager> =  section.adType.adType as! AdType<RewardedAdManager>
+//                    let optinManager = try? self.cardManager.adManager(for: optin,
+//                                                                       options: options,
+//                                                                       viewController: adHostingViewController,
+//                                                                       adDelegate: adDelegate)
+//                    adsManager.append(optinManager!)
+//                    
+//                case is AdType<ThumbnailAdManager>:
+//                    let thumbnail: AdType<ThumbnailAdManager> =  section.adType.adType as! AdType<ThumbnailAdManager>
+//                    let thumbnailManager = try? self.cardManager.adManager(for: thumbnail,
+//                                                                           options: options,
+//                                                                           viewController: adHostingViewController,
+//                                                                           adDelegate: adDelegate)
+//                    adsManager.append(thumbnailManager!)
+//                    
+//                case is AdType<BannerAdManager>:
+//                    let banner: AdType<BannerAdManager> =  section.adType.adType as! AdType<BannerAdManager>
+//                    let bannerManager = try? self.cardManager.adManager(for: banner,
+//                                                                        options: options,
+//                                                                        viewController: adHostingViewController,
+//                                                                        adDelegate: adDelegate)
+//                    adsManager.append(bannerManager!)
+//                    
+//                default:
+//                    break
+//            }
+//        }
         return adsManager
     }
     
-    private func removeCard(withId id: UUID, from formats: [AdFormat:[any OguryAdManager]]) -> [AdFormat:[any OguryAdManager]] {
+    private func removeCard(withId id: UUID, from formats: [AdFormat:[any AdManager]]) -> [AdCardList] {
+        //TODO: 🍀 to fix
         var sections = formats
-        sections.keys.forEach { key in
-            var newKey = key
-            var values = sections[key] ?? []
-            values.removeAll(where: { $0.id == id })
-            if values.isEmpty {
-                sections[key] = nil
-            } else {
-                newKey.nbOfFormatToLoad = values.count
-                sections[key] = nil
-                sections[newKey] = values
-            }
-        }
-        return sections
+//        sections.keys.forEach { key in
+//            var newKey = key
+//            var values = sections[key] ?? []
+//            values.removeAll(where: { $0.id == id })
+//            if values.isEmpty {
+//                sections[key] = nil
+//            } else {
+//                newKey.nbOfFormatToLoad = values.count
+//                sections[key] = nil
+//                sections[newKey] = values
+//            }
+//        }
+        return []
     }
     
     //MARK: - Data management
-    private func store(formats: [AdFormat:[any OguryAdManager]], settings: SettingsContainer? = nil) {
+    private func store(formats: [AdCardList], settings: SettingsContainer? = nil) {
         let container = AdsStorableContainer(settings: settings ?? .init(), cards: formats)
         container.save()
     }
@@ -534,26 +573,9 @@ Do you want to proceed ?
 
 struct FormatSection: Equatable {
     let name: String
-    var formats: [any OguryAdManager] = []
+    var formats: [any AdManager] = []
     
     static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.name == rhs.name
-    }
-}
-
-extension AdType {
-    var sectionName: String {
-        switch self {
-            case .interstitial: return "Interstitial"
-            case .rewarded: return "Rewarded Video"
-            case .thumbnail: return "Thumbnail"
-            case .mpu: return "MREC"
-            case .banner: return "Small banner"
-            case let .maxHeaderBidding(innerFormat, _): return "MAX HB - \(innerFormat.sectionName)"
-            case let .dtFairBidHeaderBidding(innerFormat, _): return "DT Fair Bid HB - \(innerFormat.sectionName)"
-            case let .unityLevelPlayHeaderBidding(innerFormat, _): return "Unity LevelPlay HB - \(innerFormat.sectionName)"
-            @unknown default:
-                fatalError()
-        }
     }
 }

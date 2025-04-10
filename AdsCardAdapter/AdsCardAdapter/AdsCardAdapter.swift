@@ -5,19 +5,26 @@
 //  Created by Jerome TONNELIER on 08/04/2025.
 //
 import UIKit
+import SwiftUI
 import AdsCardLibrary
 
 /// The available ad format that the `AdsCardAdapter` can provide
-public protocol AdAdapterFormat: Codable, Equatable, Hashable, Identifiable where ID == UUID {
+public protocol AdAdapterFormat: Codable, Comparable, Equatable, Hashable, RawRepresentable, Identifiable where ID == UUID, RawValue == Int {
     /// the associated base adFormat (inter/rewarded/banner/thumb)
     var adFormat: AdFormat { get }
     /// the associated tags to display on the test app
     var tags: [any AdTag] { get }
-    /// the name to display in the add panel and ad list
+    /// the name to display in the add panel
     var displayName: String { get }
+    /// Identifiable
+    var id: UUID { get }
 }
 
-public struct AdAdapterFormatSection: Identifiable {
+public struct AdAdapterFormatSection: Identifiable, Equatable {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     public var id: UUID = UUID()
     public var title: String
     public var formats: [any AdAdapterFormat]
@@ -37,6 +44,9 @@ public protocol AdsCardAdaptable {
                    options: AdViewOptions,
                    viewController: UIViewController?,
                    adDelegate: AdLifeCycleDelegate?) throws(AdsCardAdapterError) -> any AdManager
+    /// returns the AdManager associated with an `AdAdapterFormat`
+    /// - throws: throws an exception if no adapter is available
+    func adAdapterFormat(fromRawValue rawValue: Int) throws(AdsCardAdapterError) -> any AdAdapterFormat
     /// starts the underlying SDK
     func startSdk()
 }

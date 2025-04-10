@@ -18,6 +18,12 @@ public protocol OguryAdManager: AdManager {
     init(adType: AdType,
          viewController: UIViewController?,
          adDelegate: AdLifeCycleDelegate?)
+    
+    init(adType: AdType,
+         adConfiguration: AdConfiguration,
+         cardConfiguration: CardConfiguration,
+         viewController: UIViewController?,
+         adDelegate: AdLifeCycleDelegate?)
 }
 
 extension OguryAdManager {
@@ -92,6 +98,10 @@ public indirect enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
                 self = .unityLevelPlayHeaderBidding(innerRawType)
             default: return nil
         }
+    }
+    
+    public static func <(lhs: Self, rhs: Self) -> Bool {
+        return lhs.rawValue < rhs.rawValue
     }
     
     /// returns the proper adManager handled by the AdType
