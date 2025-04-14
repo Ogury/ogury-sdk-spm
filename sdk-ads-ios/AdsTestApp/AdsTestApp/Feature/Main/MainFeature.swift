@@ -198,12 +198,9 @@ struct MainFeature: Reducer {
                     
                 case let .loadFromContainer(container):
                     //TODO: 🍀 fix it
-//                    let adFormats = container.retrieveAds(cardManager: cardManager,
-//                                                          viewController: adHostingViewController,
-//                                                          view: nil,
-//                                                          adDelegate: adDelegate)
-//                    state.adFormats = adFormats
-//                    state.setName = container.settings.name
+                    let adFormats = container.retrieveAds(viewController: adHostingViewController, adDelegate: adDelegate)
+                    state.adFormats = adFormats
+                    state.setName = container.settings.name
                     container.save()
                     if container.shouldUpdateAdUnits {
                         return .run { _ in

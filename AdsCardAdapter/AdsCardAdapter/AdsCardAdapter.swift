@@ -23,6 +23,12 @@ public protocol AdAdapterFormat: Codable, Comparable, Equatable, Hashable, RawRe
 }
 
 extension AdAdapterFormat {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        rhs.id == lhs.id
+    }
+}
+
+extension AdAdapterFormat {
     static func < (lhs: Self, rhs: Self) -> Bool {
         lhs.sortOrder < rhs.sortOrder
     }
