@@ -5,7 +5,6 @@
 
 import AdsCardLibrary
 import Foundation
-import OguryAds.Private
 import OguryCardAdapter
 import AdsCardAdapter
 

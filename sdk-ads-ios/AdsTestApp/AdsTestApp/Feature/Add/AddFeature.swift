@@ -8,7 +8,9 @@ internal import ComposableArchitecture
 import AdsCardLibrary
 import AdsCardAdapter
 
-struct AddFeature: Reducer {
+@Reducer
+struct AddFeature {
+    @ObservableState
     struct State: Equatable {
         static func == (lhs: AddFeature.State, rhs: AddFeature.State) -> Bool {
             lhs.sections.id == rhs.sections.id && lhs.formatToLoad == rhs.formatToLoad
@@ -19,8 +21,9 @@ struct AddFeature: Reducer {
         var formatToLoad: [UUID: Int]
         
         init() {
-            sections = IdentifiedArrayOf<AdAdapterFormatSection>(uniqueElements: SdkLauncher.shared.adapter.availableAdFormats)
-            formatToLoad = Dictionary(uniqueKeysWithValues: sections.flatMap { $0.formats.map { ($0.id, 0) } })
+            let formats = SdkLauncher.shared.adapter.availableAdFormats
+            sections = IdentifiedArrayOf<AdAdapterFormatSection>(uniqueElements: formats)
+            formatToLoad = Dictionary(uniqueKeysWithValues: formats.flatMap { $0.formats.map { ($0.id, 0) } })
         }
     }
     

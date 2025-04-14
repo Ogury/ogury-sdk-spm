@@ -8,35 +8,39 @@ import AdsCardLibrary
 internal import ComposableArchitecture
 
 struct AddFormatView: View {
-    var value: Binding<Int>
+    @State var value: Int
     let title: String
+    let id: UUID
+    var numberChanged: (UUID, Int) -> Void
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
             Text(title)
                 .font(.adsSubheadline)
             
-            Text(String(describing: value.wrappedValue))
+            Text(String(describing: value))
                 .font(.adsTitle2)
             
             HStack(spacing: 4) {
                 Button {
-                    value.wrappedValue -= 1
+                    value -= 1
+                    numberChanged(id, value)
                 } label: {
                     Image(systemName: "minus")
                         .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
                         .frame(width: 50, height: 50)
                         .background(
-                            value.wrappedValue == 0
+                            value == 0
                             ? Color(AdColorPalette.Background.disabled.color).gradient
                             : Color(AdColorPalette.Primary.accentLight.color).gradient
                         )
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
-                .disabled(value.wrappedValue <= 0)
+                .disabled(value <= 0)
                 
                 Button {
-                    value.wrappedValue += 1
+                    value += 1
+                    numberChanged(id, value)
                 } label: {
                     Image(systemName: "plus")
                         .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
@@ -53,7 +57,7 @@ struct AddFormatView: View {
                 .cornerRadius(12)
         }
         .overlay {
-            if value.wrappedValue > 0 {
+            if value > 0 {
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(Color(AdColorPalette.Primary.accent.color), lineWidth: 1)
                     .padding(1)
