@@ -123,7 +123,6 @@ static int const OGABannerAdContainerStateMaximumNumberOfParentTraversals = 32;
 }
 
 - (void)cleanUp {
-    [self removeKeyPathObservers];
     [self.displayer.view removeFromSuperview];
     [self.displayer cleanUp];
     [self.exposureController stopExposure];
@@ -188,6 +187,10 @@ static int const OGABannerAdContainerStateMaximumNumberOfParentTraversals = 32;
     if (self.parentView) {
         [self.parentView.layer removeObserver:self forKeyPath:OGABannerAdContainerStateKeyValueObservationBoundsKey];
     }
+}
+
+- (void)dealloc {
+    [self removeKeyPathObservers];
 }
 
 #pragma mark - Window & App observation
