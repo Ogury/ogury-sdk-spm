@@ -77,7 +77,7 @@ struct DetailListView: View {
                .ignoresSafeArea()
                .frame(height: logsHeight)
             }
-            .navigationTitle(Text("\(viewStore.adFormat.title.capitalized) (\(viewStore.adManagers.count))"))
+            .navigationTitle(Text("\(viewStore.adFormat.displayName.capitalized) (\(viewStore.adManagers.count))"))
             .accentColor(Color(AdColorPalette.Primary.accent.color))
         }
     }

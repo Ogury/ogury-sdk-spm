@@ -13,10 +13,14 @@ import AdsCardAdapter
 import AdsCardLibrary
 import OMSDK_Ogury
 
-struct AdCardList: Hashable {
+struct AdCardList: Hashable, Equatable, Comparable, Identifiable {
+    var id: Int { adAdapterFormat.hashValue }
     static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.adAdapterFormat.hashValue == rhs.adAdapterFormat.hashValue
         && lhs.adManagers.hashValue == rhs.adManagers.hashValue
+    }
+    static func < (lhs: Self, rhs: Self) -> Bool {
+        lhs.adAdapterFormat.sortOrder < rhs.adAdapterFormat.sortOrder
     }
     func hash(into hasher: inout Hasher) {
         hasher.combine(adAdapterFormat)
@@ -76,30 +80,30 @@ struct MainFeature: Reducer {
     
     struct State: Equatable {
         static func == (lhs: MainFeature.State, rhs: MainFeature.State) -> Bool {
-            var isEqual = true
+            var isEqual = lhs.adFormats == rhs.adFormats
             guard lhs.adFormats.count == rhs.adFormats.count,
                   lhs.showLogs == rhs.showLogs else { return false }
-            lhs.adFormats.forEach { (key, value) in
-                if !rhs.adFormats.keys.contains(key) {
-                    isEqual = false
-                    return
-                }
-                if value.count != rhs.adFormats[key]!.count {
-                    isEqual = false
-                    return
-                }
-                let leftFormats = lhs.adFormats.compactMap({ $0.value }).flatMap{ $0 }
-                let rightFormats = rhs.adFormats.compactMap({ $0.value }).flatMap{ $0 }
-                zip(leftFormats,
-                    rightFormats)
-                .forEach { lhsManager, rhsManager in
-                    if lhsManager.adConfiguration != rhsManager.adConfiguration
-                        || lhsManager.cardConfiguration != rhsManager.cardConfiguration {
-                        isEqual = false
-                        return
-                    }
-                }
-            }
+//            lhs.adFormats.forEach { (key, value) in
+//                if !rhs.adFormats.keys.contains(key) {
+//                    isEqual = false
+//                    return
+//                }
+//                if value.count != rhs.adFormats[key]!.count {
+//                    isEqual = false
+//                    return
+//                }
+//                let leftFormats = lhs.adFormats.compactMap({ $0.value }).flatMap{ $0 }
+//                let rightFormats = rhs.adFormats.compactMap({ $0.value }).flatMap{ $0 }
+//                zip(leftFormats,
+//                    rightFormats)
+//                .forEach { lhsManager, rhsManager in
+//                    if lhsManager.adConfiguration != rhsManager.adConfiguration
+//                        || lhsManager.cardConfiguration != rhsManager.cardConfiguration {
+//                        isEqual = false
+//                        return
+//                    }
+//                }
+//            }
             return isEqual && lhs.destination == rhs.destination && lhs.setName == rhs.setName
         }
         
@@ -108,6 +112,20 @@ struct MainFeature: Reducer {
         @BindingState var setName = ""
         fileprivate var settingsPriorToChange: SettingsContainer = SettingsContainer()
         var showLogs = SettingsController().showLogsSheet
+        
+        mutating func removeCardFor(managerId: UUID) {
+            adFormats = adFormats.map { card in
+                var card = card
+                card.adManagers = card.adManagers.filter({ $0.id == managerId })
+                return card
+            }
+            storeCards()
+        }
+        
+        func storeCards(settings: SettingsContainer? = nil) {
+            let container = AdsStorableContainer(settings: settings ?? .init(), cards: adFormats)
+            container.save()
+        }
     }
     
     enum Action: BindableAction, Equatable  {
@@ -235,7 +253,7 @@ struct MainFeature: Reducer {
                         let settings = settingsState.settings
                         update(settings: settings, state: &state)
                         let formats = state.adFormats
-                        state.adFormats = [:]
+                        state.adFormats = []
                         return .run { send in
                             try await mainQueue.sleep(for: .nanoseconds(1))
                             await send(.refreshAllCards(formats))
@@ -255,8 +273,8 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case .destination(.presented(.alert(.removeSet))):
-                    state.adFormats = [:]
-                    store(formats: [:], settings: .init())
+                    state.adFormats = []
+                    store(formats: [], settings: .init())
                     return .none
                     
                 case .settingsButtonTapped:
@@ -326,9 +344,7 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case let .deleteCard(id):
-                    let formats = removeCard(withId: id, from: state.adFormats)
-                    state.adFormats = formats
-                    store(formats: formats)
+                    state.removeCardFor(managerId: id)
                     return .none
                     
                 case .saveCards:
@@ -386,9 +402,8 @@ struct MainFeature: Reducer {
             cardEvents.append(.updateKillMode(settings.killWebviewMode))
         }
         state.settingsPriorToChange = settings
-        state
-            .adFormats
-            .compactMap({ $0.value })
+        state.adFormats
+            .compactMap({ $0.adManagers })
             .flatMap({ $0 })
             .forEach({ adManager in
                 adManager.updateCard(events: cardEvents)
@@ -450,24 +465,6 @@ struct MainFeature: Reducer {
 //            }
 //        }
         return adsManager
-    }
-    
-    private func removeCard(withId id: UUID, from formats: [AdFormat:[any AdManager]]) -> [AdCardList] {
-        //TODO: 🍀 to fix
-        var sections = formats
-//        sections.keys.forEach { key in
-//            var newKey = key
-//            var values = sections[key] ?? []
-//            values.removeAll(where: { $0.id == id })
-//            if values.isEmpty {
-//                sections[key] = nil
-//            } else {
-//                newKey.nbOfFormatToLoad = values.count
-//                sections[key] = nil
-//                sections[newKey] = values
-//            }
-//        }
-        return []
     }
     
     //MARK: - Data management

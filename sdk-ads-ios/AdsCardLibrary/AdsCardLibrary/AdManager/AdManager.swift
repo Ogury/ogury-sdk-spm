@@ -22,7 +22,7 @@ public enum AdFormat: Codable {
     }
     public var isBanner: Bool {  return [.smallBanner, .mrec].contains(self) }
     /// associated icon
-    var displayIcon: Image {
+    public var displayIcon: Image {
         switch self {
             case .interstitial: return Image(systemName: "iphone").symbolRenderingMode(.monochrome)
             case .rewardedVideo: return Image(systemName: "iphone.gen3.badge.play")
@@ -35,6 +35,7 @@ public enum AdFormat: Codable {
 public protocol AdManager: Equatable, Hashable, Identifiable where ID == UUID {
     //MARK: properties
     var adFormat: AdFormat { get set }
+    var id: UUID { get }
     var adConfiguration: AdConfiguration! { get set }
     var cardConfiguration: CardConfiguration! { get set }
     var viewController: UIViewController? { get set }

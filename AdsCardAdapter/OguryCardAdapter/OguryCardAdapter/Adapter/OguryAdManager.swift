@@ -100,9 +100,7 @@ public indirect enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
         }
     }
     
-    public static func <(lhs: Self, rhs: Self) -> Bool {
-        return lhs.rawValue < rhs.rawValue
-    }
+    public var sortOrder: Int { rawValue }
     
     /// returns the proper adManager handled by the AdType
     /// if no suitable adManager is found ``AdManagerError/adManagerMismatch`` is thrown

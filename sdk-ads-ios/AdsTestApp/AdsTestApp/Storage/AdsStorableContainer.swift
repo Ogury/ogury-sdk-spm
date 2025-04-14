@@ -296,19 +296,20 @@ struct AdsStorableContainer: Codable {
     }
     
     func retrieveAds(viewController: UIViewController? = nil,
-                     view: UIView? = nil,
                      adDelegate: AdLifeCycleDelegate? = nil) -> [AdCardList] {
         //TODO: 🍀
         var list: [AdCardList] = []
         cards.forEach { card in
             guard let adType = card.first?.adType,
-                  let adFormat: any AdAdapterFormat = SdkLauncher.shared.adapter.adAdapterFormat(fromRawValue: adType) else { return }
+                  let adFormat: any AdAdapterFormat = try? SdkLauncher.shared.adapter.adAdapterFormat(fromRawValue: adType) else { return }
             var adManagers: [any AdManager] = []
             card.forEach { container in
-                let manager = SdkLauncher.shared.adapter.adManager(from: adType,
-                                                                   options: container.adAdapterOptions,
-                                                                   viewController: viewController,
-                                                                   adDelegate: adDelegate)
+                if let manager = try? SdkLauncher.shared.adapter.adManager(for: adFormat,
+                                                                           options: container.adAdapterOptions,
+                                                                           viewController: viewController,
+                                                                           adDelegate: adDelegate) {
+                    adManagers.append(manager)
+                }
             }
             guard !card.isEmpty else { return }
             list.append(.init(adAdapterFormat: adFormat, adManagers: adManagers))

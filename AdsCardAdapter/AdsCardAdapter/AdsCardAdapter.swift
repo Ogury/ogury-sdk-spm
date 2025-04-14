@@ -18,6 +18,14 @@ public protocol AdAdapterFormat: Codable, Comparable, Equatable, Hashable, RawRe
     var displayName: String { get }
     /// Identifiable
     var id: UUID { get }
+    /// used for Comparable
+    var sortOrder: Int { get }
+}
+
+extension AdAdapterFormat {
+    static func < (lhs: Self, rhs: Self) -> Bool {
+        lhs.sortOrder < rhs.sortOrder
+    }
 }
 
 public struct AdAdapterFormatSection: Identifiable, Equatable {
