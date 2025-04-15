@@ -50,6 +50,7 @@ public struct AdAdapterFormatSection: Identifiable, Equatable {
 
 public protocol AdsCardAdaptable {
     var assetKey: String { get }
+    var showResetSdkButton: Bool { get }
     /// list of available `AdAdapterFormat` list to populate the Add panel of the test application
     var availableAdFormats: [AdAdapterFormatSection] { get }
     /// returns the AdManager associated with an `AdAdapterFormat`
@@ -63,6 +64,10 @@ public protocol AdsCardAdaptable {
     func adAdapterFormat(fromRawValue rawValue: Int) throws(AdsCardAdapterError) -> any AdAdapterFormat
     /// starts the underlying SDK
     func startSdk()
+    /// resets the SDK if applicable
+    func resetSdk()
+    /// returns the various SDK used
+    var sdkVersions: [String: String] { get }
 }
 
 public enum AdsCardAdapterError: Error {

@@ -7,11 +7,9 @@ import UIKit
 internal import ComposableArchitecture
 import AdsCardLibrary
 import SwiftUI
-import OguryAds
 import OguryCore
 import AdsCardAdapter
 import AdsCardLibrary
-import OMSDK_Ogury
 
 struct AdCardList: Hashable, Equatable, Comparable, Identifiable {
     var id: Int { adAdapterFormat.hashValue }
@@ -61,13 +59,9 @@ struct About {
     var appBuild: String { Bundle.main.infoDictionary?["CFBundleVersion"] as! String }
     var environment: String { Bundle.main.object(forInfoDictionaryKey: "DefaultEnv") as? String ?? "" }
     var bundleId: String { Bundle.main.object(forInfoDictionaryKey: "CFBundleIdentifier") as? String ?? "" }
-    var omidVersion: String { OMIDOgurySDK.versionString() }
     var assetKey: String { SdkLauncher.assetKey }
-    var coreSdkVersion: String { String(describing: OGCInternal.shared().getVersion()) }
-    var ogurySdkVersion: String { "5.0.2" }
-    var adsSdkVersion: String {
-        let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
-        return "\(String(describing: OGAInternal.shared().getVersion())) (\(origin == "Pod" ? "Release" : "Development"))"
+    var sdkVersions: String {
+        SdkLauncher.shared.adapter.sdkVersions.reduce("", { $0 + "\($1.key): \($1.value)\n" })
     }
 }
 
@@ -510,10 +504,7 @@ extension AlertState where Action == MainFeature.Action.Alert {
             TextState("""
 App version: \(about.appVersion)
 App build: \(about.appBuild)
-Ogury Sdk : \(about.ogurySdkVersion)
-Module Ads : \(about.adsSdkVersion)
-Module Core : \(about.coreSdkVersion)
-OM SDK version: \(about.omidVersion)
+\(about.sdkVersions)
 Environment: \(about.environment)
 Asset key: \(about.assetKey)
 Bundle Id: \(about.bundleId)

@@ -6,8 +6,10 @@ import UIKit
 import AdsCardLibrary
 
 public extension Decodable {
-    static func loadJsonFromFile(named fileName: String, extension extName: String? = nil) throws -> Self {
-        guard let url = Bundle.main.url(forResource: fileName, withExtension: extName),
+    static func loadJsonFromFile(bundle: Bundle,
+                                 named fileName: String,
+                                 extension extName: String? = nil) throws -> Self {
+        guard let url = bundle.url(forResource: fileName, withExtension: extName),
               let json = try? Data(contentsOf: url) else {
             fatalError("No configuration file found")
         }
@@ -93,7 +95,9 @@ struct Configuration: Decodable {
     }
     
     init(from assetKey: String, environment: OguryEnvironement) {
-        guard let conf: Configuration = try? Configuration.loadJsonFromFile(named: environment.fileName, extension: "json") else {
+        guard let conf: Configuration = try? Configuration.loadJsonFromFile(bundle: Bundle(for: InterstitialAdManager.self),
+                                                                            named: environment.fileName,
+                                                                            extension: "json") else {
             fatalError("No configuration file found")
         }
         self.assetKey = assetKey

@@ -8,22 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		43EB17C42DA69FC4002F170A /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB17C32DA69FC4002F170A /* AdsCardLibrary.framework */; };
-		43EB17C52DA69FC4002F170A /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB17C32DA69FC4002F170A /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		43EB17C62DA69FC4002F170A /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				43EB17C52DA69FC4002F170A /* AdsCardLibrary.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		43EB16262DA52338002F170A /* AdsCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdsCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,7 +92,6 @@
 				43EB16222DA52338002F170A /* Sources */,
 				43EB16232DA52338002F170A /* Frameworks */,
 				43EB16242DA52338002F170A /* Resources */,
-				43EB17C62DA69FC4002F170A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

@@ -6,7 +6,6 @@ import UIKit
 internal import ComposableArchitecture
 import SwiftUI
 import AdsCardLibrary
-import OguryAds
 import SnapKit
 import CoreServices
 import UniformTypeIdentifiers

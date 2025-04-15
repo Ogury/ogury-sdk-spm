@@ -4,7 +4,6 @@
 
 import Foundation
 import OguryCore.Private
-import OguryCore
 internal import ComposableArchitecture
 
 public extension String {

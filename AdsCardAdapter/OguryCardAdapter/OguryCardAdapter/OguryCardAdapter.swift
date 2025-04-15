@@ -9,13 +9,29 @@ import UIKit
 import AdsCardAdapter
 import AdsCardLibrary
 import OguryAds.Private
+import OMSDK_Ogury
 
 public enum OguryEnvironement {
     case devc, staging, prod
 }
 
 public struct OguryAdsCardAdapter: AdsCardAdaptable {
+    public var sdkVersions: [String : String] {
+        let coreSdkVersion = String(describing: OGCInternal.shared().getVersion())
+        let ogurySdkVersion = "5.0.2"
+        let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
+        let adsSdkVersion = "\(String(describing: OGAInternal.shared().getVersion())) (\(origin == "Pod" ? "Release" : "Development"))"
+        let omid = OMIDOgurySDK.versionString()
+        return [
+            "Ogury Sdk" : ogurySdkVersion,
+            "Module Ads" : adsSdkVersion,
+            "Module Core" : coreSdkVersion,
+            "OM SDK Version" : omid
+        ]
+    }
+    
     public let assetKey: String
+    public var showResetSdkButton: Bool { true }
     private let environment: OguryEnvironement
     static var configuration: Configuration!
     public init(assetKey: String, environment: OguryEnvironement) {
@@ -69,7 +85,10 @@ public struct OguryAdsCardAdapter: AdsCardAdaptable {
     }
     
     public func forceAdsEnvironment(_ env: String) {
-        let sel = NSSelectorFromString("changeServerEnvironment:")
-        OGAInternal.shared().perform(sel, with: env)
+        OGAInternal.shared().perform(NSSelectorFromString("changeServerEnvironment:"), with: env)
+    }
+    
+    public func resetSdk() {
+        OGAInternal.shared().perform(NSSelectorFromString("resetAdConfiguration"))
     }
 }
