@@ -81,6 +81,8 @@
 		43EB15E12D9D4268002F170A /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB15DF2D9D4268002F170A /* AdView.swift */; };
 		43EB15E22D9D4268002F170A /* AdViewFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB15DE2D9D4268002F170A /* AdViewFeature.swift */; };
 		43EB15E32D9D4268002F170A /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB15DF2D9D4268002F170A /* AdView.swift */; };
+		43EB18FA2DAE8871002F170A /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18F92DAE8871002F170A /* OguryCore.framework */; };
+		43EB18FB2DAE8871002F170A /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18F92DAE8871002F170A /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		50CFA8622C637F0B00E64D20 /* UnityLevelPlayRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8612C637F0A00E64D20 /* UnityLevelPlayRetriever.swift */; };
 		ACA5E9FA7E59514EB048ED47 /* Pods_AdsCardLibrary_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4925EF716018B487E9F91C3B /* Pods_AdsCardLibrary_art.framework */; };
 /* End PBXBuildFile section */
@@ -105,6 +107,17 @@
 				432369C72CF4629D0078EF67 /* OguryAds.framework in Embed Frameworks */,
 				432369C42CF4610F0078EF67 /* OMSDK_Ogury.xcframework in Embed Frameworks */,
 				432369C92CF4629E0078EF67 /* OguryCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43EB18FC2DAE8871002F170A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				43EB18FB2DAE8871002F170A /* OguryCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,6 +171,7 @@
 		43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerPlaceholderView.swift; sourceTree = "<group>"; };
 		43EB15DE2D9D4268002F170A /* AdViewFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewFeature.swift; sourceTree = "<group>"; };
 		43EB15DF2D9D4268002F170A /* AdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdView.swift; sourceTree = "<group>"; };
+		43EB18F92DAE8871002F170A /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43FA4E9E2CB6D00D0029B928 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43FA4E9F2CB6D00D0029B928 /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4925EF716018B487E9F91C3B /* Pods_AdsCardLibrary_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsCardLibrary_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,6 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43EB18FA2DAE8871002F170A /* OguryCore.framework in Frameworks */,
 				435F7BCA2A5EE3970077843A /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,6 +291,7 @@
 		435C55FB2A42F451004186FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43EB18F92DAE8871002F170A /* OguryCore.framework */,
 				43FA4E9E2CB6D00D0029B928 /* OguryAds.framework */,
 				43FA4E9F2CB6D00D0029B928 /* OguryCore.framework */,
 				43A9F4A42C37E7800085EF6F /* OguryCore.framework */,
@@ -442,6 +458,7 @@
 				435C55DB2A42EAEF004186FF /* Sources */,
 				435C55DC2A42EAEF004186FF /* Frameworks */,
 				435C55DD2A42EAEF004186FF /* Resources */,
+				43EB18FC2DAE8871002F170A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -829,7 +846,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = "${SRCROOT}/../../sdk-core-ios/Sources";
 				INFOPLIST_FILE = AdsCardLibrary/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -874,7 +890,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = "${SRCROOT}/../../sdk-core-ios/Sources";
 				INFOPLIST_FILE = AdsCardLibrary/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

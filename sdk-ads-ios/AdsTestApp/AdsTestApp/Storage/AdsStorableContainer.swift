@@ -297,7 +297,7 @@ struct AdsStorableContainer: Codable {
     
     func retrieveAds(viewController: UIViewController? = nil,
                      adDelegate: AdLifeCycleDelegate? = nil) -> [AdCardList] {
-        //TODO: 🍀
+        //TODO: 🍀 Done
         var list: [AdCardList] = []
         cards.forEach { card in
             guard let adType = card.first?.adType,

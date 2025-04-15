@@ -4536,9 +4536,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -5494,6 +5498,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/OguryAdsTests/Sources",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MODULEMAP_FILE = "$(SRCROOT)/Sources/Private/OguryAds.Private.modulemap";
 				MODULEMAP_PRIVATE_FILE = "$(SRCROOT)/Sources/Private/OguryAds.Private.modulemap";
 				OTHER_LDFLAGS = (
@@ -5538,6 +5543,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/OguryAdsTests/Sources",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MODULEMAP_FILE = "$(SRCROOT)/Sources/Private/OguryAds.Private.modulemap";
 				MODULEMAP_PRIVATE_FILE = "$(SRCROOT)/Sources/Private/OguryAds.Private.modulemap";
 				OTHER_LDFLAGS = (
