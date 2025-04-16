@@ -66,6 +66,7 @@ struct MainView: View {
             .toolbar {
                 toolBarContent(viewStore: viewStore)
             }
+            .toolbarBackground(Color(AdColorPalette.Background.primary.color), for: .navigationBar)
             .tint(Color(AdColorPalette.Primary.accent.color))
             .addViewModifiers(store: store, viewStore: viewStore)
         }

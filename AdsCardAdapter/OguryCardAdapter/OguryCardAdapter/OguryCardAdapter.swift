@@ -70,6 +70,9 @@ public struct OguryAdsCardAdapter: AdsCardAdaptable {
         var adManager = adType.adManager(viewController: viewController, adDelegate: adDelegate)
         adManager.adConfiguration = adConfiguration(for: adFormat)
         adManager.cardConfiguration = options.cardConfiguration
+        adManager.cardConfiguration.oguryTestModeEnabled = false
+        adManager.cardConfiguration.rtbTestModeEnabled = false
+        adManager.cardConfiguration.showRtbTestMode = adType.enableRtbTestMode
         return adManager
     }
     
