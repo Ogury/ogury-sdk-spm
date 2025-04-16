@@ -49,9 +49,19 @@ public struct AdAdapterFormatSection: Identifiable, Equatable {
     }
 }
 
+public struct AdapterOptions {
+    public var showResetSdkButton: Bool = true
+    public var showLogs: Bool = true
+    public init(showResetSdkButton: Bool = true,
+                showLogs: Bool = true) {
+        self.showResetSdkButton = showResetSdkButton
+        self.showLogs = showLogs
+    }
+}
+
 public protocol AdsCardAdaptable {
     var assetKey: String { get }
-    var showResetSdkButton: Bool { get }
+    var options: AdapterOptions { get }
     /// list of available `AdAdapterFormat` list to populate the Add panel of the test application
     var availableAdFormats: [AdAdapterFormatSection] { get }
     /// returns the various SDK used

@@ -320,7 +320,7 @@ struct AppSettingsView: View {
                     .listRowBackground(Color.clear)
                     
                     //MARK: - Profig settings
-                    if SdkLauncher.shared.adapter.showResetSdkButton {
+                    if SdkLauncher.shared.adapter.options.showResetSdkButton {
                         Section {
                             Button("Reset Ads config file (profig)") {
                                 viewStore.send(.resetAdConfigButtonTapped)
@@ -387,22 +387,24 @@ struct AppSettingsView: View {
                     .listRowBackground(Color(AdColorPalette.Background.secondary.color))
                     
                     //MARK: - Logs settings
-                    Section {
-                        NavigationLink(
-                            destination: LogOptionView().navigationTitle("Log options")
-                        ) {
-                            Text("Show options")
+                    if SdkLauncher.shared.adapter.options.showLogs {
+                        Section {
+                            NavigationLink(
+                                destination: LogOptionView().navigationTitle("Log options")
+                            ) {
+                                Text("Show options")
+                            }
+                            .accessibilityLabel("ShowLogOptionsNavigationLink")
+                        } header: {
+                            Text("Logs")
+                                .font(.adsBody)
+                                .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                                .padding(.horizontal, -16)
                         }
-                        .accessibilityLabel("ShowLogOptionsNavigationLink")
-                    } header: {
-                        Text("Logs")
-                            .font(.adsBody)
-                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                            .padding(.horizontal, -16)
+                        .disabled(!appPermissions.settings)
+                        .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                        .listRowBackground(Color(AdColorPalette.Background.secondary.color))
                     }
-                    .disabled(!appPermissions.settings)
-                    .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                    .listRowBackground(Color(AdColorPalette.Background.secondary.color))
                     
                     Spacer()
                         .listRowBackground(Color.clear)

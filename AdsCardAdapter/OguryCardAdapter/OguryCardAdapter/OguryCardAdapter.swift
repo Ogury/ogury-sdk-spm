@@ -31,7 +31,7 @@ public struct OguryAdsCardAdapter: AdsCardAdaptable {
     }
     
     public let assetKey: String
-    public var showResetSdkButton: Bool { true }
+    public var options: AdapterOptions { AdapterOptions() }
     private let environment: OguryEnvironement
     static var configuration: Configuration!
     public init(assetKey: String, environment: OguryEnvironement) {
