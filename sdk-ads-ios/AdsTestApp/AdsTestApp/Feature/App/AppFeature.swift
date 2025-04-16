@@ -98,7 +98,7 @@ struct AppFeature: Reducer {
                     
                 case .loadCards:
                     guard let container = try? loadSavedData() else { return .none }
-                    //TODO: 🍀 Fix import
+                    //TODO: 🍀 Done
                     state.main.adFormats = container.retrieveAds(viewController: adHostingViewController, adDelegate: adDelegate)
                     state.main.setName = container.settings.name
                     return .none

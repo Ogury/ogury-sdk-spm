@@ -17,13 +17,8 @@ internal struct TestAppLogController {
     }
     
     mutating func addLogger() {
-        //TODO: 🍀 fix me
-//        OGAInternal.shared().add(logger)
-    }
-    
-    mutating func removeLogger() {
-        //TODO: 🍀 fix me
-//        OGAInternal.shared().remove(logger)
+        //TODO: 🍀 Done
+        SdkLauncher.shared.adapter.add(logger: logger)
     }
     
     func enable(_ option: OguryLogDisplay) {

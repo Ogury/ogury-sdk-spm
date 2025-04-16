@@ -11,7 +11,7 @@ import AdsCardAdapter
 struct SdkLauncher {
     static let shared = SdkLauncher()
     let adapter: OguryAdsCardAdapter
-    let logger = TestAppLogController.shared
+    lazy var logger: TestAppLogController = { TestAppLogController.shared }()
     
     private init() {
         self.adapter = .init(assetKey: SdkLauncher.assetKey, environment: SdkLauncher.environment.oguryEnvironment)

@@ -7,6 +7,7 @@
 import UIKit
 import SwiftUI
 import AdsCardLibrary
+import OguryCore.Private
 
 /// The available ad format that the `AdsCardAdapter` can provide
 public protocol AdAdapterFormat: Codable, Comparable, Equatable, Hashable, RawRepresentable, Identifiable where ID == UUID, RawValue == Int {
@@ -53,6 +54,9 @@ public protocol AdsCardAdaptable {
     var showResetSdkButton: Bool { get }
     /// list of available `AdAdapterFormat` list to populate the Add panel of the test application
     var availableAdFormats: [AdAdapterFormatSection] { get }
+    /// returns the various SDK used
+    var sdkVersions: [String: String] { get }
+    
     /// returns the AdManager associated with an `AdAdapterFormat`
     /// - throws: throws an exception if no adapter is available
     func adManager(for adFormat: any AdAdapterFormat,
@@ -66,8 +70,8 @@ public protocol AdsCardAdaptable {
     func startSdk()
     /// resets the SDK if applicable
     func resetSdk()
-    /// returns the various SDK used
-    var sdkVersions: [String: String] { get }
+    /// add a logger to OguryAds if available
+    func add(logger: any OguryLogger)
 }
 
 public enum AdsCardAdapterError: Error {

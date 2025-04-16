@@ -191,7 +191,7 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case let .loadFromContainer(container):
-                    //TODO: 🍀 fix it
+                    //TODO: 🍀 Done
                     let adFormats = container.retrieveAds(viewController: adHostingViewController, adDelegate: adDelegate)
                     state.adFormats = adFormats
                     state.setName = container.settings.name
@@ -281,30 +281,24 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case .addFormatButtonTapped:
-                    //TODO: 🍀
-//                    guard case let .add(addState) = state.destination else {
-//                        return .none
-//                    }
-//                    let sections = addState.sections.flatMap({ $0.adFormats })
-//                        .filter({ $0.nbOfFormatToLoad > 0 })
-//                    for (index, _) in sections.enumerated() {
-//                        if let adFormat = state.adFormats.first(where: { (key, value) in
-//                            key.id == sections[index].id
-//                        }) {
-//                            var existingAdFormat = adFormat.key
-//                            var adsManager = state.adFormats[existingAdFormat]
-//                            adsManager?.append(contentsOf: adManagers(for: sections[index], startIndex: adFormat.value.count))
-//                            state.adFormats[existingAdFormat] = nil
-//                            existingAdFormat.nbOfFormatToLoad = adsManager?.count ?? 0
-//                            state.adFormats[existingAdFormat] = adsManager
-//                        } else {
-//                            var newAdFormat = sections[index]
-//                            let adsManager = adManagers(for: newAdFormat)
-//                            newAdFormat.nbOfFormatToLoad = adsManager.count
-//                            state.adFormats[newAdFormat] = adsManager
-//                        }
-//                        store(formats: state.adFormats)
-//                    }
+                    //TODO: 🍀 done
+                    guard case let .add(addState) = state.destination else {
+                        return .none
+                    }
+                    let sections = addState.formatToLoad.filter({ $0.value > 0 })
+                    let formats = addState.sections.flatMap{$0.formats}.filter({ sections.keys.contains($0.id) })
+                    sections.forEach { key, value in
+                        guard let adFormat = formats.first(where: { $0.id == key }) else { return }
+                        let adManagers = adManagers(for: adFormat, count: value, startIndex: 0)
+                        guard var existingList = state.adFormats.first(where: { $0.adAdapterFormat.id == adFormat.id }) else {
+                            let newList = AdCardList(adAdapterFormat: adFormat, adManagers: adManagers)
+                            state.adFormats.append(newList)
+                            return
+                        }
+                        existingList.adManagers.append(contentsOf: adManagers)
+                        state.adFormats.removeAll(where: { $0.id == existingList.id })
+                        state.adFormats.append(existingList)
+                    }
                     state.destination = nil
                     return .none
                     
@@ -401,7 +395,7 @@ struct MainFeature: Reducer {
             })
     }
     
-    //TODO: 🍀 check it
+    //TODO: 🍀 Done
 //    private func sort(adFormats: inout [AdFormat:[any AdManager]])  {
 //        var updatedValue: [AdFormat:[any AdManager]] = [:]
 //        Array(adFormats.keys)
@@ -412,50 +406,25 @@ struct MainFeature: Reducer {
 //        adFormats = updatedValue
 //    }
     
-    //TODO: 🍀 Fix it
-    func adManagers(for section: AdFormat, startIndex: Int = 0) -> [any AdManager] {
-        var adsManager: [any AdManager] = []
-//        for index in 0..<section.nbOfFormatToLoad {
-//            let options = Configuration.shared.options(at: index + startIndex + 1)
-//            
-//            switch section.adType.adType {
-//                case is AdType<InterstitialAdManager>:
-//                    let interstitial: AdType<InterstitialAdManager> = section.adType.adType as! AdType<InterstitialAdManager>
-//                    let interstitialManager = try? self.cardManager.adManager(for: interstitial,
-//                                                                              options: options,
-//                                                                              viewController: adHostingViewController,
-//                                                                              adDelegate: adDelegate)
-//                    adsManager.append(interstitialManager!)
-//                    
-//                case is AdType<RewardedAdManager>:
-//                    let optin: AdType<RewardedAdManager> =  section.adType.adType as! AdType<RewardedAdManager>
-//                    let optinManager = try? self.cardManager.adManager(for: optin,
-//                                                                       options: options,
-//                                                                       viewController: adHostingViewController,
-//                                                                       adDelegate: adDelegate)
-//                    adsManager.append(optinManager!)
-//                    
-//                case is AdType<ThumbnailAdManager>:
-//                    let thumbnail: AdType<ThumbnailAdManager> =  section.adType.adType as! AdType<ThumbnailAdManager>
-//                    let thumbnailManager = try? self.cardManager.adManager(for: thumbnail,
-//                                                                           options: options,
-//                                                                           viewController: adHostingViewController,
-//                                                                           adDelegate: adDelegate)
-//                    adsManager.append(thumbnailManager!)
-//                    
-//                case is AdType<BannerAdManager>:
-//                    let banner: AdType<BannerAdManager> =  section.adType.adType as! AdType<BannerAdManager>
-//                    let bannerManager = try? self.cardManager.adManager(for: banner,
-//                                                                        options: options,
-//                                                                        viewController: adHostingViewController,
-//                                                                        adDelegate: adDelegate)
-//                    adsManager.append(bannerManager!)
-//                    
-//                default:
-//                    break
-//            }
-//        }
-        return adsManager
+    //TODO: 🍀 Done
+    func adManagers(for adFormat: any AdAdapterFormat, count: Int, startIndex: Int = 0) -> [any AdManager] {
+        let settings = SettingsController()
+        var index = startIndex
+        return (0..<count).compactMap{ _ in
+            index += 1
+            return try? SdkLauncher.shared.adapter.adManager(for: adFormat,
+                                                             options: .init(adParameters: .init(adUnitId: ""),
+                                                                            cardConfiguration: .init(enableAdUnitEditing: settings.enableAdUnitEditing,
+                                                                                                     showCampaignId: settings.showCampaignId,
+                                                                                                     showCreativeId: settings.showCreativeId,
+                                                                                                     showDspFields: settings.showDspFields,
+                                                                                                     adDisplayName: "Card #\(index)",
+                                                                                                     bulkModeEnabled: settings.bulkModeEnabled,
+                                                                                                     showTestModeButton: settings.showTestMode,
+                                                                                                     killWebviewMode: settings.killWebviewMode)),
+                                                             viewController: adHostingViewController,
+                                                             adDelegate: adDelegate)
+        }
     }
     
     //MARK: - Data management
