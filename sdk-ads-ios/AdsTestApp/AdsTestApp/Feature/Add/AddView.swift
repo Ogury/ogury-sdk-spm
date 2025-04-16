@@ -26,7 +26,6 @@ struct AddView: View {
                             
                             ScrollView(.horizontal) {
                                 HStack {
-                                    //TODO: 🍀 Add Stepper back - To test
                                     ForEach(section.formats, id:\.id) { adFormat in
                                         WithPerceptionTracking {
                                             AddFormatView(value: store.formatToLoad[adFormat.id] ?? 0,

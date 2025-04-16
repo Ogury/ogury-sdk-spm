@@ -429,7 +429,6 @@ struct ListManagersView: View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             GeometryReader { geometry in
                 List {
-                    //TODO: 🍀 add TF back - To test
                     VStack(alignment: .center) {
                         TextField("Set name",
                                   text: viewStore.$setName,

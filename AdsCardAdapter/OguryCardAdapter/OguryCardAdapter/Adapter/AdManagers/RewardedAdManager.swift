@@ -10,6 +10,18 @@ import Combine
 import AdsCardLibrary
 
 public final class RewardedAdManager: OguryAdManager {
+    public func encode() -> AdCardContainer {
+        AdCardContainer(name: cardName,
+                        adType: adType.rawValue,
+                        adInformations: .init(adUnitId: adUnitId,
+                                              campaignId: adConfiguration.campaignId,
+                                              creativeId: adConfiguration.creativeId,
+                                              dspCreativeId: adConfiguration.dspCreativeId,
+                                              dspRegion: adConfiguration.dspRegion,
+                                              settings: .init(oguryTestModeEnabled: cardConfiguration.oguryTestModeEnabled,
+                                                              rtbTestModeEnabled: cardConfiguration.rtbTestModeEnabled,
+                                                              qaLabel: qaLabel)))
+    }
     public static func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager {
         guard let adType = AdType(rawValue: container.adType) else { throw .invalidAdType }
         return RewardedAdManager(adType: adType,

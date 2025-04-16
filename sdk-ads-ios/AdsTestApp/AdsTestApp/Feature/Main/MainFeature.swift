@@ -281,7 +281,6 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case .addFormatButtonTapped:
-                    //TODO: 🍀 done
                     guard case let .add(addState) = state.destination else {
                         return .none
                     }
@@ -299,6 +298,7 @@ struct MainFeature: Reducer {
                         state.adFormats.removeAll(where: { $0.id == existingList.id })
                         state.adFormats.append(existingList)
                     }
+                    store(formats: state.adFormats)
                     state.destination = nil
                     return .none
                     
@@ -395,18 +395,6 @@ struct MainFeature: Reducer {
             })
     }
     
-    //TODO: 🍀 Done
-//    private func sort(adFormats: inout [AdFormat:[any AdManager]])  {
-//        var updatedValue: [AdFormat:[any AdManager]] = [:]
-//        Array(adFormats.keys)
-//            .sorted()
-//            .forEach { key in
-//                updatedValue[key] = adFormats[key]
-//            }
-//        adFormats = updatedValue
-//    }
-    
-    //TODO: 🍀 Done
     func adManagers(for adFormat: any AdAdapterFormat, count: Int, startIndex: Int = 0) -> [any AdManager] {
         let settings = SettingsController()
         var index = startIndex
