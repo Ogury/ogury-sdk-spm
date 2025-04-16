@@ -6,9 +6,7 @@
 import SwiftUI
 internal import ComposableArchitecture
 import AdsCardLibrary
-
-#if canImport(OguryAds)
-import OguryAds
+import OguryCore.Private
 
 struct LogOptionView: View {
     @BindingState var store: StoreOf<LogOptionFeature> = .init(
@@ -115,10 +113,3 @@ struct LogOptionView: View {
         }
     }
 }
-#endif
-
-//#Preview {
-//    NavigationView {
-//        LogOptionView()
-//    }
-//}

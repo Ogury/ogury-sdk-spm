@@ -61,7 +61,7 @@ struct About {
     var bundleId: String { Bundle.main.object(forInfoDictionaryKey: "CFBundleIdentifier") as? String ?? "" }
     var assetKey: String { SdkLauncher.assetKey }
     var sdkVersions: String {
-        SdkLauncher.shared.adapter.sdkVersions.reduce("", { $0 + "\($1.key): \($1.value)\n" })
+        SdkLauncher.shared.adapter.sdkVersions.reduce("", { $0 + "\($0.isEmpty ? "" : "\n")\($1.key): \($1.value)" })
     }
 }
 

@@ -7,6 +7,7 @@ import UIKit
 import SwiftUI
 internal import ComposableArchitecture
 import AdsCardLibrary
+import OguryCore.Private
 
 #if canImport(OguryAds)
 import OguryAds.Private
@@ -16,7 +17,7 @@ extension OguryLogType: @retroactive CaseIterable {
         .internal,
         .publisher,
         .delegate,
-        .receivedCallbacks,
+        .receivedCallBacks,
         .monitoring,
         .mraid,
         .requests,
@@ -27,7 +28,7 @@ extension OguryLogType: @retroactive CaseIterable {
             case .internal: return "Internal"
             case .publisher: return "Publisher"
             case .delegate: return "Triggered callbacks"
-            case .receivedCallbacks: return "Received callbacks"
+            case .receivedCallBacks: return "Received callbacks"
             case .monitoring: return "Monitoring"
             case .mraid: return "Mraid"
             case .requests: return "Requests"
@@ -36,6 +37,25 @@ extension OguryLogType: @retroactive CaseIterable {
         }
     }
 }
+#else
+extension OguryLogType: @retroactive CaseIterable {
+    public static var allCases: [OguryLogType] = [
+        .internal,
+        .publisher,
+        .receivedCallBacks,
+        .testApp
+    ]
+    var displayName: String {
+        switch self {
+            case .internal: return "Internal"
+            case .publisher: return "Publisher"
+            case .receivedCallBacks: return "Received callbacks"
+            case .testApp: return "Test app"
+            default: return ""
+        }
+    }
+}
+#endif
 
 extension OguryLogDisplay: @retroactive CaseIterable {
     public static var allCases: [OguryLogDisplay] = [
@@ -169,5 +189,3 @@ struct LogOptionFeature {
         }
     }
 }
-
-#endif
