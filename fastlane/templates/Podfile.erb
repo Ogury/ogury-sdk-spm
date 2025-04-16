@@ -41,6 +41,12 @@ end
 
 target "AdsCardLibrary-art" do
   project "sdk-ads-ios/AdsCardLibrary/AdsCardLibrary"
+  pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
+end
+
+#OguryCardAdapter
+target "OguryCardAdapter-art" do
+  project "AdsCardAdapter/OguryCardAdapter/OguryCardAdapter"
   pod "OguryAds<%= framework_suffix %>", "<%= ogury_ads_version %>"
   pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
 end
@@ -64,19 +70,16 @@ end
 
 target "AdsTestApp-Devc-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
   pod 'InMobiCMP', '2.0.1'
   pod 'Google-Mobile-Ads-SDK'
 end
 target "AdsTestApp-Staging-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
   pod 'InMobiCMP', '2.0.1'
   pod 'Google-Mobile-Ads-SDK'
 end
 target "AdsTestApp-Prod-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
   pod 'InMobiCMP', '2.0.1'
   pod 'Google-Mobile-Ads-SDK'
 end
