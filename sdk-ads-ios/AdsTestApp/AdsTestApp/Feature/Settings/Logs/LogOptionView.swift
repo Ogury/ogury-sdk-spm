@@ -6,6 +6,8 @@
 import SwiftUI
 internal import ComposableArchitecture
 import AdsCardLibrary
+
+#if canImport(OguryAds)
 import OguryAds
 
 struct LogOptionView: View {
@@ -113,6 +115,7 @@ struct LogOptionView: View {
         }
     }
 }
+#endif
 
 //#Preview {
 //    NavigationView {

@@ -5,7 +5,7 @@
 //  Created by Jerome TONNELIER on 24/09/2024.
 //
 
-import OguryAds.Private
+import OguryCore.Private
 import UIKit
 import Combine
 import UserDefault

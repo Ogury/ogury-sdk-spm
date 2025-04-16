@@ -7,6 +7,8 @@ import UIKit
 import SwiftUI
 internal import ComposableArchitecture
 import AdsCardLibrary
+
+#if canImport(OguryAds)
 import OguryAds.Private
 
 extension OguryLogType: @retroactive CaseIterable {
@@ -168,3 +170,4 @@ struct LogOptionFeature {
     }
 }
 
+#endif

@@ -55,7 +55,11 @@ public struct AdapterOptions {
     public init(showResetSdkButton: Bool = true,
                 showLogs: Bool = true) {
         self.showResetSdkButton = showResetSdkButton
+        #if canImport(OguryAds)
         self.showLogs = showLogs
+        #else
+        self.showLogs = false
+        #endif
     }
 }
 

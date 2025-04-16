@@ -387,6 +387,7 @@ struct AppSettingsView: View {
                     .listRowBackground(Color(AdColorPalette.Background.secondary.color))
                     
                     //MARK: - Logs settings
+#if canImport(OguryAds)
                     if SdkLauncher.shared.adapter.options.showLogs {
                         Section {
                             NavigationLink(
@@ -405,6 +406,7 @@ struct AppSettingsView: View {
                         .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                         .listRowBackground(Color(AdColorPalette.Background.secondary.color))
                     }
+#endif
                     
                     Spacer()
                         .listRowBackground(Color.clear)

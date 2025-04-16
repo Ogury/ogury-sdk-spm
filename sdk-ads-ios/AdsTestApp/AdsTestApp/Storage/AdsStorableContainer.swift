@@ -4,7 +4,7 @@
 
 import UIKit
 import AdsCardLibrary
-import OguryAds
+import OguryCore.Private
 import UserDefault
 import AdsCardLibrary
 import AdsCardAdapter

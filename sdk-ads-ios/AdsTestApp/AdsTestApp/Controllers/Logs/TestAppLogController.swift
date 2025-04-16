@@ -7,7 +7,7 @@
 
 import Foundation
 import AdsCardLibrary
-import OguryAds.Private
+import OguryCore.Private
 
 internal struct TestAppLogController {
     let logger = TestAppLogger()
