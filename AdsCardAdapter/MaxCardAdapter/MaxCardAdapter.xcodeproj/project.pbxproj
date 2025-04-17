@@ -8,27 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		43EB19B72DB1264D002F170A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB19B62DB1264D002F170A /* AdsCardAdapter.framework */; };
-		43EB19B82DB1264D002F170A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB19B62DB1264D002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB1B162DB12DCB002F170A /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB1B142DB12DCB002F170A /* OguryAds.framework */; };
+		43EB1B182DB12DCB002F170A /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB1B152DB12DCB002F170A /* OMSDK_Ogury.xcframework */; };
 		52D7F4CE62EDEB4F2F9A8216 /* Pods_MaxCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4717547F804EE4C76AF48CF8 /* Pods_MaxCardAdapter.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		43EB19B92DB1264D002F170A /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				43EB19B82DB1264D002F170A /* AdsCardAdapter.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		43EB199D2DB0F3C9002F170A /* MaxCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MaxCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB19B62DB1264D002F170A /* AdsCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB1B142DB12DCB002F170A /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB1B152DB12DCB002F170A /* OMSDK_Ogury.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OMSDK_Ogury.xcframework; path = "../../sdk-ads-ios/OMSDK_Ogury.xcframework"; sourceTree = "<group>"; };
 		4717547F804EE4C76AF48CF8 /* Pods_MaxCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaxCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C49C64271D874F164660055 /* Pods-MaxCardAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaxCardAdapter.debug.xcconfig"; path = "Target Support Files/Pods-MaxCardAdapter/Pods-MaxCardAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		E4318B47CFF6138CBBFDCE16 /* Pods-MaxCardAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaxCardAdapter.release.xcconfig"; path = "Target Support Files/Pods-MaxCardAdapter/Pods-MaxCardAdapter.release.xcconfig"; sourceTree = "<group>"; };
@@ -48,7 +37,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				43EB19B72DB1264D002F170A /* AdsCardAdapter.framework in Frameworks */,
+				43EB1B182DB12DCB002F170A /* OMSDK_Ogury.xcframework in Frameworks */,
 				52D7F4CE62EDEB4F2F9A8216 /* Pods_MaxCardAdapter.framework in Frameworks */,
+				43EB1B162DB12DCB002F170A /* OguryAds.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +77,8 @@
 		43EB19B52DB1264D002F170A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43EB1B142DB12DCB002F170A /* OguryAds.framework */,
+				43EB1B152DB12DCB002F170A /* OMSDK_Ogury.xcframework */,
 				43EB19B62DB1264D002F170A /* AdsCardAdapter.framework */,
 				4717547F804EE4C76AF48CF8 /* Pods_MaxCardAdapter.framework */,
 			);
@@ -114,7 +107,6 @@
 				43EB19992DB0F3C9002F170A /* Sources */,
 				43EB199A2DB0F3C9002F170A /* Frameworks */,
 				43EB199B2DB0F3C9002F170A /* Resources */,
-				43EB19B92DB1264D002F170A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

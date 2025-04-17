@@ -13,7 +13,15 @@ import UIKit
 struct MaxAdsCardAdapter: AdsCardAdaptable {
     var assetKey: String
     var options: AdapterOptions
-    var availableAdFormats: [AdsCardAdapter.AdAdapterFormatSection] = []
+    var availableAdFormats: [AdAdapterFormatSection] = [
+        .init(title: "AppLovin Max",
+              formats: [
+                AdType.max(.interstitial),
+                AdType.max(.rewardedVideo),
+                AdType.max(.smallBanner),
+                AdType.max(.mrec)
+                       ])
+    ]
     var sdkVersions: [String : String] = [:]
     
     func adManager(for adFormat: any AdAdapterFormat, options: AdViewOptions, viewController: UIViewController?, adDelegate: (any AdLifeCycleDelegate)?) throws(AdsCardAdapterError) -> any AdManager {

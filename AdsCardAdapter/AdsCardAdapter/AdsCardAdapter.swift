@@ -21,6 +21,8 @@ public protocol AdAdapterFormat: Codable, Comparable, Equatable, Hashable, RawRe
     var id: UUID { get }
     /// used for Comparable
     var sortOrder: Int { get }
+    /// the icon to show on list
+    var displayIcon: Image { get }
 }
 
 extension AdAdapterFormat {
