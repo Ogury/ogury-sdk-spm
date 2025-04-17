@@ -22,6 +22,19 @@ target 'LegacyTestApp' do
   pod "SnapKit"
 end
 
+#OguryCardAdapter
+target "OguryCardAdapter-art" do
+  project "AdsCardAdapter/OguryCardAdapter/OguryCardAdapter"
+  pod "OguryAds<%= framework_suffix %>", "<%= ogury_ads_version %>"
+  pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
+end
+
+#MaxCardAdapter
+target "MaxCardAdapter" do
+  project "AdsCardAdapter/MaxCardAdapter/MaxCardAdapter"
+  pod 'AppLovinSDK'
+end
+
 #Ads
 target "OguryAds-art" do
   project "sdk-ads-ios/OguryAdsSDK"

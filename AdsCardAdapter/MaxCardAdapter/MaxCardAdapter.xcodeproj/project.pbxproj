@@ -7,85 +7,95 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		43EB18FE2DAE8957002F170A /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18FD2DAE8957002F170A /* AdsCardLibrary.framework */; };
+		43EB19B72DB1264D002F170A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB19B62DB1264D002F170A /* AdsCardAdapter.framework */; };
+		43EB19B82DB1264D002F170A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB19B62DB1264D002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		52D7F4CE62EDEB4F2F9A8216 /* Pods_MaxCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4717547F804EE4C76AF48CF8 /* Pods_MaxCardAdapter.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		43EB19B92DB1264D002F170A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				43EB19B82DB1264D002F170A /* AdsCardAdapter.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		43EB16262DA52338002F170A /* AdsCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdsCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		43EB16332DA523C4002F170A /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		43EB16FB2DA64F2D002F170A /* OguryCardAdapter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OguryCardAdapter.xcodeproj; path = OguryCardAdapter/OguryCardAdapter.xcodeproj; sourceTree = "<group>"; };
-		43EB17C32DA69FC4002F170A /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		43EB18FD2DAE8957002F170A /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		43EB19A92DB0F3CA002F170A /* MaxCardAdapter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MaxCardAdapter.xcodeproj; path = MaxCardAdapter/MaxCardAdapter.xcodeproj; sourceTree = "<group>"; };
+		43EB199D2DB0F3C9002F170A /* MaxCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MaxCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB19B62DB1264D002F170A /* AdsCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4717547F804EE4C76AF48CF8 /* Pods_MaxCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaxCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C49C64271D874F164660055 /* Pods-MaxCardAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaxCardAdapter.debug.xcconfig"; path = "Target Support Files/Pods-MaxCardAdapter/Pods-MaxCardAdapter.debug.xcconfig"; sourceTree = "<group>"; };
+		E4318B47CFF6138CBBFDCE16 /* Pods-MaxCardAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaxCardAdapter.release.xcconfig"; path = "Target Support Files/Pods-MaxCardAdapter/Pods-MaxCardAdapter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		43EB16282DA52338002F170A /* AdsCardAdapter */ = {
+		43EB199F2DB0F3C9002F170A /* MaxCardAdapter */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = AdsCardAdapter;
+			path = MaxCardAdapter;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		43EB16232DA52338002F170A /* Frameworks */ = {
+		43EB199A2DB0F3C9002F170A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43EB18FE2DAE8957002F170A /* AdsCardLibrary.framework in Frameworks */,
+				43EB19B72DB1264D002F170A /* AdsCardAdapter.framework in Frameworks */,
+				52D7F4CE62EDEB4F2F9A8216 /* Pods_MaxCardAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		43EB161C2DA52338002F170A = {
+		3C500EABCFEEDC27E76DCD14 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				43EB16FB2DA64F2D002F170A /* OguryCardAdapter.xcodeproj */,
-				43EB19A92DB0F3CA002F170A /* MaxCardAdapter.xcodeproj */,
-				43EB16282DA52338002F170A /* AdsCardAdapter */,
-				43EB16322DA523C4002F170A /* Frameworks */,
-				43EB16272DA52338002F170A /* Products */,
+				9C49C64271D874F164660055 /* Pods-MaxCardAdapter.debug.xcconfig */,
+				E4318B47CFF6138CBBFDCE16 /* Pods-MaxCardAdapter.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../../Pods;
+			sourceTree = "<group>";
+		};
+		43EB19932DB0F3C9002F170A = {
+			isa = PBXGroup;
+			children = (
+				43EB199F2DB0F3C9002F170A /* MaxCardAdapter */,
+				43EB19B52DB1264D002F170A /* Frameworks */,
+				43EB199E2DB0F3C9002F170A /* Products */,
+				3C500EABCFEEDC27E76DCD14 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
-		43EB16272DA52338002F170A /* Products */ = {
+		43EB199E2DB0F3C9002F170A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				43EB16262DA52338002F170A /* AdsCardAdapter.framework */,
+				43EB199D2DB0F3C9002F170A /* MaxCardAdapter.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		43EB16322DA523C4002F170A /* Frameworks */ = {
+		43EB19B52DB1264D002F170A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				43EB18FD2DAE8957002F170A /* AdsCardLibrary.framework */,
-				43EB17C32DA69FC4002F170A /* AdsCardLibrary.framework */,
-				43EB16332DA523C4002F170A /* AdsCardLibrary.framework */,
+				43EB19B62DB1264D002F170A /* AdsCardAdapter.framework */,
+				4717547F804EE4C76AF48CF8 /* Pods_MaxCardAdapter.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		43EB19AA2DB0F3CA002F170A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		43EB1A4D2DB12829002F170A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		43EB16212DA52338002F170A /* Headers */ = {
+		43EB19982DB0F3C9002F170A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -95,75 +105,65 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		43EB16252DA52338002F170A /* AdsCardAdapter */ = {
+		43EB199C2DB0F3C9002F170A /* MaxCardAdapter */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43EB162F2DA52338002F170A /* Build configuration list for PBXNativeTarget "AdsCardAdapter" */;
+			buildConfigurationList = 43EB19A62DB0F3C9002F170A /* Build configuration list for PBXNativeTarget "MaxCardAdapter" */;
 			buildPhases = (
-				43EB16212DA52338002F170A /* Headers */,
-				43EB16222DA52338002F170A /* Sources */,
-				43EB16232DA52338002F170A /* Frameworks */,
-				43EB16242DA52338002F170A /* Resources */,
+				5F86ADCF0298132EE0AE8F06 /* [CP] Check Pods Manifest.lock */,
+				43EB19982DB0F3C9002F170A /* Headers */,
+				43EB19992DB0F3C9002F170A /* Sources */,
+				43EB199A2DB0F3C9002F170A /* Frameworks */,
+				43EB199B2DB0F3C9002F170A /* Resources */,
+				43EB19B92DB1264D002F170A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				43EB16282DA52338002F170A /* AdsCardAdapter */,
+				43EB199F2DB0F3C9002F170A /* MaxCardAdapter */,
 			);
-			name = AdsCardAdapter;
-			packageProductDependencies = (
-			);
-			productName = AdsCardAdapter;
-			productReference = 43EB16262DA52338002F170A /* AdsCardAdapter.framework */;
+			name = MaxCardAdapter;
+			productName = MaxCardAdapter;
+			productReference = 43EB199D2DB0F3C9002F170A /* MaxCardAdapter.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		43EB161D2DA52338002F170A /* Project object */ = {
+		43EB19942DB0F3C9002F170A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1630;
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
-					43EB16252DA52338002F170A = {
+					43EB199C2DB0F3C9002F170A = {
 						CreatedOnToolsVersion = 16.3;
 					};
 				};
 			};
-			buildConfigurationList = 43EB16202DA52338002F170A /* Build configuration list for PBXProject "AdsCardAdapter" */;
+			buildConfigurationList = 43EB19972DB0F3C9002F170A /* Build configuration list for PBXProject "MaxCardAdapter" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 43EB161C2DA52338002F170A;
+			mainGroup = 43EB19932DB0F3C9002F170A;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 43EB16272DA52338002F170A /* Products */;
+			productRefGroup = 43EB199E2DB0F3C9002F170A /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 43EB19AA2DB0F3CA002F170A /* Products */;
-					ProjectRef = 43EB19A92DB0F3CA002F170A /* MaxCardAdapter.xcodeproj */;
-				},
-				{
-					ProductGroup = 43EB1A4D2DB12829002F170A /* Products */;
-					ProjectRef = 43EB16FB2DA64F2D002F170A /* OguryCardAdapter.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
-				43EB16252DA52338002F170A /* AdsCardAdapter */,
+				43EB199C2DB0F3C9002F170A /* MaxCardAdapter */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		43EB16242DA52338002F170A /* Resources */ = {
+		43EB199B2DB0F3C9002F170A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -172,8 +172,33 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5F86ADCF0298132EE0AE8F06 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MaxCardAdapter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		43EB16222DA52338002F170A /* Sources */ = {
+		43EB19992DB0F3C9002F170A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -183,7 +208,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		43EB162D2DA52338002F170A /* Debug */ = {
+		43EB19A42DB0F3C9002F170A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -250,7 +275,7 @@
 			};
 			name = Debug;
 		};
-		43EB162E2DA52338002F170A /* Release */ = {
+		43EB19A52DB0F3C9002F170A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -310,8 +335,9 @@
 			};
 			name = Release;
 		};
-		43EB16302DA52338002F170A /* Debug */ = {
+		43EB19A72DB0F3C9002F170A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C49C64271D874F164660055 /* Pods-MaxCardAdapter.debug.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -332,7 +358,7 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.acl.AdsCardAdapter;
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.acl.MaxCardAdapter;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -347,8 +373,9 @@
 			};
 			name = Debug;
 		};
-		43EB16312DA52338002F170A /* Release */ = {
+		43EB19A82DB0F3C9002F170A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4318B47CFF6138CBBFDCE16 /* Pods-MaxCardAdapter.release.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -369,7 +396,7 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.acl.AdsCardAdapter;
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.acl.MaxCardAdapter;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -387,25 +414,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		43EB16202DA52338002F170A /* Build configuration list for PBXProject "AdsCardAdapter" */ = {
+		43EB19972DB0F3C9002F170A /* Build configuration list for PBXProject "MaxCardAdapter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				43EB162D2DA52338002F170A /* Debug */,
-				43EB162E2DA52338002F170A /* Release */,
+				43EB19A42DB0F3C9002F170A /* Debug */,
+				43EB19A52DB0F3C9002F170A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43EB162F2DA52338002F170A /* Build configuration list for PBXNativeTarget "AdsCardAdapter" */ = {
+		43EB19A62DB0F3C9002F170A /* Build configuration list for PBXNativeTarget "MaxCardAdapter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				43EB16302DA52338002F170A /* Debug */,
-				43EB16312DA52338002F170A /* Release */,
+				43EB19A72DB0F3C9002F170A /* Debug */,
+				43EB19A82DB0F3C9002F170A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 43EB161D2DA52338002F170A /* Project object */;
+	rootObject = 43EB19942DB0F3C9002F170A /* Project object */;
 }

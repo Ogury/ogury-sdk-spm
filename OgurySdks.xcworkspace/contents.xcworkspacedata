@@ -31,4 +31,7 @@
    <FileRef
       location = "group:AdsCardAdapter/OguryCardAdapter/OguryCardAdapter.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:AdsCardAdapter/MaxCardAdapter/MaxCardAdapter.xcodeproj">
+   </FileRef>
 </Workspace>
