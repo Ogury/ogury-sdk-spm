@@ -252,6 +252,9 @@ private_lane :generate_podspec do |options|
     placeholders["omid_sdk"] = "#{File.basename(configuration.frameworks.omid)}"
   end
 
+  ogury_sdk_version = get_module_version(environment, configuration.frameworks.ogury_sdk.internal_version, configuration.frameworks.ogury_sdk.beta_version, configuration.frameworks.ogury_sdk.release_version)
+  placeholders["ogury_sdk_version"] = ogury_sdk_version
+
   puts "#{Dir.pwd}/templates/#{target.name}.podspec.json.erb"
   puts "podspec placeholders #{placeholders}".red
 

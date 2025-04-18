@@ -20,7 +20,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         start()
-        SdkLauncher.shared.launch()
+        Task { await SdkLauncher.shared.launch() }
         addViewToHierarchy()
         startNotifiers()
     }
