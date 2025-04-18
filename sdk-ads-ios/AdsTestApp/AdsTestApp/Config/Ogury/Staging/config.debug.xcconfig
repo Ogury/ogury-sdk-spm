@@ -1,4 +1,4 @@
-#include "../../../../../Pods/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging.debug.xcconfig"
+#include "../../../../../../Pods/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging.debug.xcconfig"
 ASSET_KEY = OGY-1B809BAFEA41
 DEFAULT_ENV = STAGING
 PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app.staging

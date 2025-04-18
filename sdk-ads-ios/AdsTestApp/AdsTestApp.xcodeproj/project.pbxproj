@@ -316,9 +316,66 @@
 		43EB198F2DAFF8E9002F170A /* OguryCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB198D2DAFF8E9002F170A /* OguryCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43EB19912DAFF8F4002F170A /* OguryCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB19902DAFF8F4002F170A /* OguryCardAdapter.framework */; };
 		43EB19922DAFF8F4002F170A /* OguryCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB19902DAFF8F4002F170A /* OguryCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		43F66E3C2D394D79000AED12 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
-		43F66E3D2D394D79000AED12 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
-		43F66E3E2D394D79000AED12 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		43EB1E152DB24675002F170A /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
+		43EB1E162DB24675002F170A /* AddFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84AE2AC3008C005077F5 /* AddFeature.swift */; };
+		43EB1E172DB24675002F170A /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F849C2AC2CC54005077F5 /* AppFeature.swift */; };
+		43EB1E182DB24675002F170A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A12AC2CD2B005077F5 /* MainView.swift */; };
+		43EB1E192DB24675002F170A /* ImportFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369FF2CF4CB700078EF67 /* ImportFeature.swift */; };
+		43EB1E1A2DB24675002F170A /* AdMobConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BF82D94554D00BE53A1 /* AdMobConsentManager.swift */; };
+		43EB1E1B2DB24675002F170A /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43236A002CF4CB700078EF67 /* ImportView.swift */; };
+		43EB1E1C2DB24675002F170A /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
+		43EB1E1D2DB24675002F170A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED41A2AA5D0C200486AF2 /* MainViewController.swift */; };
+		43EB1E1E2DB24675002F170A /* InmobiConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* InmobiConsentManager.swift */; };
+		43EB1E1F2DB24675002F170A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED4162AA5D0C200486AF2 /* AppDelegate.swift */; };
+		43EB1E202DB24675002F170A /* PrivacyDataFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */; };
+		43EB1E212DB24675002F170A /* PrivacyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */; };
+		43EB1E222DB24675002F170A /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
+		43EB1E232DB24675002F170A /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
+		43EB1E242DB24675002F170A /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A82AC2DF0C005077F5 /* AppSettingsView.swift */; };
+		43EB1E252DB24675002F170A /* UTType+Extension(prod).swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB18A42DA6A900002F170A /* UTType+Extension(prod).swift */; };
+		43EB1E262DB24675002F170A /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BFF2D9457ED00BE53A1 /* ApplicationDelegate.swift */; };
+		43EB1E272DB24675002F170A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED4182AA5D0C200486AF2 /* SceneDelegate.swift */; };
+		43EB1E282DB24675002F170A /* DetailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5BE6322B21F40F0010B995 /* DetailListView.swift */; };
+		43EB1E292DB24675002F170A /* TestAppLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7552CA44BC5001086FE /* TestAppLogFormatter.swift */; };
+		43EB1E2A2DB24675002F170A /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
+		43EB1E2B2DB24675002F170A /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84AD2AC3008C005077F5 /* AddView.swift */; };
+		43EB1E2C2DB24675002F170A /* NotificationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C1D15A2B7E672C006F2D23 /* NotificationMessage.swift */; };
+		43EB1E2D2DB24675002F170A /* DetailListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF117682AF95052004BE519 /* DetailListFeature.swift */; };
+		43EB1E2E2DB24675002F170A /* LinkPresentationItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8E2B3491DC00037FE1 /* LinkPresentationItemSource.swift */; };
+		43EB1E2F2DB24675002F170A /* MainFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A22AC2CD2B005077F5 /* MainFeature.swift */; };
+		43EB1E302DB24675002F170A /* AppSettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A92AC2DF0C005077F5 /* AppSettingsFeature.swift */; };
+		43EB1E312DB24675002F170A /* LogOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7482CA42FF1001086FE /* LogOptionView.swift */; };
+		43EB1E322DB24675002F170A /* LogOptionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7472CA42FF1001086FE /* LogOptionFeature.swift */; };
+		43EB1E332DB24675002F170A /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9206212CCBE09100916482 /* LogsView.swift */; };
+		43EB1E342DB24675002F170A /* LogsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E92061A2CCBE05500916482 /* LogsFeature.swift */; };
+		43EB1E352DB24675002F170A /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F849B2AC2CC54005077F5 /* AppView.swift */; };
+		43EB1E382DB24675002F170A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 43EB1E0D2DB24675002F170A /* SnapKit */; };
+		43EB1E392DB24675002F170A /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; };
+		43EB1E3A2DB24675002F170A /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43EB1E112DB24675002F170A /* SwiftMessages */; };
+		43EB1E3B2DB24675002F170A /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 43EB1E0F2DB24675002F170A /* UserDefault */; };
+		43EB1E3C2DB24675002F170A /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190D2DAE89B2002F170A /* OguryAds.framework */; };
+		43EB1E3E2DB24675002F170A /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190F2DAE89B2002F170A /* OguryCore.framework */; };
+		43EB1E412DB24675002F170A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
+		43EB1E422DB24675002F170A /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
+		43EB1E432DB24675002F170A /* Default-qa.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E682D4A20E2000AED12 /* Default-qa.settings */; };
+		43EB1E442DB24675002F170A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41F2AA5D0C300486AF2 /* Assets.xcassets */; };
+		43EB1E452DB24675002F170A /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
+		43EB1E462DB24675002F170A /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434F84FB2ACFE5ED005077F5 /* Asset.xcassets */; };
+		43EB1E472DB24675002F170A /* Custom.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E5E2D48E95C000AED12 /* Custom.settings */; };
+		43EB1E482DB24675002F170A /* shareImageData.png in Resources */ = {isa = PBXBuildFile; fileRef = 43EB18A32DA6A900002F170A /* shareImageData.png */; };
+		43EB1E4B2DB24675002F170A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41C2AA5D0C200486AF2 /* Main.storyboard */; };
+		43EB1E502DB24675002F170A /* OguryAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190D2DAE89B2002F170A /* OguryAds.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB1E512DB24675002F170A /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190F2DAE89B2002F170A /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB1E522DB24675002F170A /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB1E5F2DB247DD002F170A /* config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 43EB1E5D2DB247DD002F170A /* config.debug.xcconfig */; };
+		43EB1E602DB247DD002F170A /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 43EB1E5E2DB247DD002F170A /* config.release.xcconfig */; };
+		43EB1E622DB2482A002F170A /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43EB1E612DB2482A002F170A /* Asset.xcassets */; };
+		43EB1E662DB24A64002F170A /* SdkLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB1E652DB24A64002F170A /* SdkLauncher.swift */; };
+		43EB1E6C2DB24FA1002F170A /* MaxCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB1E6B2DB24FA1002F170A /* MaxCardAdapter.framework */; };
+		43EB1E6D2DB24FA1002F170A /* MaxCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB1E6B2DB24FA1002F170A /* MaxCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43F66E3C2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		43F66E3D2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		43F66E3E2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E582D48E94F000AED12 /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
 		43F66E592D48E94F000AED12 /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
 		43F66E5A2D48E94F000AED12 /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
@@ -339,7 +396,8 @@
 		43F66E6E2D4A20E2000AED12 /* Default-qa.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E682D4A20E2000AED12 /* Default-qa.settings */; };
 		49AAF6A5D0E019AD418EC407 /* Pods_AdsTestApp_Prod_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F423650CD48D191647567E /* Pods_AdsTestApp_Prod_art.framework */; };
 		6E4017B95617E3C0933A7415 /* Pods_AdsTestApp_Staging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DDF33DFB5445EFF5B05E535 /* Pods_AdsTestApp_Staging.framework */; };
-		B68B98228FEF5F63D4165F6C /* Pods_AdsTestApp_Prod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DDDC97D03DFD6F83430AFDE /* Pods_AdsTestApp_Prod.framework */; };
+		B68B98228FEF5F63D4165F6C /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		F55D4BE30033AB27495A092C /* Pods_MaxTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8A5AEABEB02FECE0734BBE2 /* Pods_MaxTestApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -421,11 +479,24 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		43EB1E4E2DB24675002F170A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				43EB1E502DB24675002F170A /* OguryAds.framework in Embed Frameworks */,
+				43EB1E6D2DB24FA1002F170A /* MaxCardAdapter.framework in Embed Frameworks */,
+				43EB1E512DB24675002F170A /* OguryCore.framework in Embed Frameworks */,
+				43EB1E522DB24675002F170A /* OMSDK_Ogury.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		02013761A16D42CD3B733473 /* Pods-AdsTestApp-Prod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod.debug.xcconfig"; sourceTree = "<group>"; };
-		157F945631AE7D007328D50A /* DTFairBidBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTFairBidBidder.swift; sourceTree = "<group>"; };
 		1D42925E862BD0B4CC236A69 /* Pods-AdsTestApp-Staging-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Staging-art.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art.release.xcconfig"; sourceTree = "<group>"; };
 		1E5BE6322B21F40F0010B995 /* DetailListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailListView.swift; sourceTree = "<group>"; };
 		1E6D20BB2C6A60C400DF24AB /* OgurySdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OgurySdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -526,6 +597,13 @@
 		43EB198A2DAFF8DE002F170A /* OguryCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB198D2DAFF8E9002F170A /* OguryCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB19902DAFF8F4002F170A /* OguryCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB1E562DB24675002F170A /* MaxTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaxTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB1E5A2DB247B1002F170A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43EB1E5D2DB247DD002F170A /* config.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = config.debug.xcconfig; sourceTree = "<group>"; };
+		43EB1E5E2DB247DD002F170A /* config.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = config.release.xcconfig; sourceTree = "<group>"; };
+		43EB1E612DB2482A002F170A /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
+		43EB1E652DB24A64002F170A /* SdkLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdkLauncher.swift; sourceTree = "<group>"; };
+		43EB1E6B2DB24FA1002F170A /* MaxCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MaxCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F66E572D48E94F000AED12 /* Default.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Default.settings; sourceTree = "<group>"; };
 		43F66E5E2D48E95C000AED12 /* Custom.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Custom.settings; sourceTree = "<group>"; };
 		43F66E682D4A20E2000AED12 /* Default-qa.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Default-qa.settings"; sourceTree = "<group>"; };
@@ -534,20 +612,20 @@
 		43F788B42B4E882F0022157E /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44F423650CD48D191647567E /* Pods_AdsTestApp_Prod_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Prod_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DDF33DFB5445EFF5B05E535 /* Pods_AdsTestApp_Staging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Staging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4EB9A33363592B358A3EC3BD /* UnityLevelPlayBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityLevelPlayBidder.swift; sourceTree = "<group>"; };
 		54FDEBE22E273EEE2DF87F17 /* Pods-AdsTestApp-Prod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod.release.xcconfig"; sourceTree = "<group>"; };
 		555D0522B2775FF63CA29877 /* Pods_AdsTestApp_Devc_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Devc_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66402FACB9E34281B47E2C92 /* Pods-AdsTestApp-Devc-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc-art.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art.debug.xcconfig"; sourceTree = "<group>"; };
 		6CA74E0E6E8AE86643AC8A83 /* Pods-AdsTestApp-Devc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc.release.xcconfig"; sourceTree = "<group>"; };
-		6DDDC97D03DFD6F83430AFDE /* Pods_AdsTestApp_Prod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Prod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FA95B4FB3A2AF96534FD94F /* Pods-AdsTestApp-Staging-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Staging-art.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art.debug.xcconfig"; sourceTree = "<group>"; };
 		77FAE455F2244E802BFA973B /* Pods_AdsTestApp_Devc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Devc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87A186F2D4CBF0885C4DE96C /* Pods-AdsTestApp-Devc-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc-art.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art.release.xcconfig"; sourceTree = "<group>"; };
-		A9B062918EF12190E48923F8 /* MaxBidder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxBidder.swift; sourceTree = "<group>"; };
+		A8A5AEABEB02FECE0734BBE2 /* Pods_MaxTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaxTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0F466AC346757FE2185B12C /* Pods-MaxTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaxTestApp.debug.xcconfig"; path = "Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B40DCD71260D8F5C84DD941A /* Pods_AdsTestApp_Staging_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Staging_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA59F4A003DD9D666A7AAA37 /* Pods-AdsTestApp-Prod-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod-art.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art.release.xcconfig"; sourceTree = "<group>"; };
 		BB4BB1174C2DCF2F710B8B0B /* Pods-AdsTestApp-Prod-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod-art.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art.debug.xcconfig"; sourceTree = "<group>"; };
 		C01B2DD63BB8AB3C60C44F5A /* Pods-AdsTestApp-Staging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Staging.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging.debug.xcconfig"; sourceTree = "<group>"; };
+		CBEDCD96EDE6355EF9D507B4 /* Pods-MaxTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaxTestApp.release.xcconfig"; path = "Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp.release.xcconfig"; sourceTree = "<group>"; };
 		D34F0E6F0302328BB279D78A /* Pods-AdsTestApp-Devc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc.debug.xcconfig"; sourceTree = "<group>"; };
 		F9A627F2DCE4C1FD6630DD80 /* Pods-AdsTestApp-Staging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Staging.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -577,7 +655,7 @@
 				43C1D1592B7E5684006F2D23 /* SwiftMessages in Frameworks */,
 				43AE85E12B5018BF0010C812 /* UserDefault in Frameworks */,
 				43EB19192DAE8AC6002F170A /* OguryAds.framework in Frameworks */,
-				B68B98228FEF5F63D4165F6C /* Pods_AdsTestApp_Prod.framework in Frameworks */,
+				B68B98228FEF5F63D4165F6C /* (null) in Frameworks */,
 				43EB191D2DAE8AC9002F170A /* OguryCore.framework in Frameworks */,
 				43EB191B2DAE8AC8002F170A /* OguryCardAdapter.framework in Frameworks */,
 			);
@@ -602,7 +680,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F66E3C2D394D79000AED12 /* BuildFile in Frameworks */,
+				43F66E3C2D394D79000AED12 /* (null) in Frameworks */,
 				43BCB0BD2C22DD45002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43BCB0BE2C22DD45002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB0C02C22DD45002FB0B1 /* UserDefault in Frameworks */,
@@ -616,7 +694,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F66E3D2D394D79000AED12 /* BuildFile in Frameworks */,
+				43F66E3D2D394D79000AED12 /* (null) in Frameworks */,
 				43BCB1002C22DD59002FB0B1 /* SnapKit in Frameworks */,
 				43BCB1022C22DD59002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB1032C22DD59002FB0B1 /* UserDefault in Frameworks */,
@@ -630,13 +708,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F66E3E2D394D79000AED12 /* BuildFile in Frameworks */,
+				43F66E3E2D394D79000AED12 /* (null) in Frameworks */,
 				43BCB1432C22DD60002FB0B1 /* SnapKit in Frameworks */,
 				43BCB1452C22DD60002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB1462C22DD60002FB0B1 /* UserDefault in Frameworks */,
 				43BCB1472C22DD60002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43EB19912DAFF8F4002F170A /* OguryCardAdapter.framework in Frameworks */,
 				49AAF6A5D0E019AD418EC407 /* Pods_AdsTestApp_Prod_art.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43EB1E372DB24675002F170A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43EB1E382DB24675002F170A /* SnapKit in Frameworks */,
+				43EB1E392DB24675002F170A /* OMSDK_Ogury.xcframework in Frameworks */,
+				43EB1E3A2DB24675002F170A /* SwiftMessages in Frameworks */,
+				43EB1E3B2DB24675002F170A /* UserDefault in Frameworks */,
+				43EB1E3C2DB24675002F170A /* OguryAds.framework in Frameworks */,
+				43EB1E6C2DB24FA1002F170A /* MaxCardAdapter.framework in Frameworks */,
+				43EB1E3E2DB24675002F170A /* OguryCore.framework in Frameworks */,
+				F55D4BE30033AB27495A092C /* Pods_MaxTestApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,10 +846,9 @@
 		434F84F42ACFE529005077F5 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				43EB1E592DB24700002F170A /* Ogury */,
 				43236A172CF5C6F40078EF67 /* Fonts */,
-				434F85112AD004BA005077F5 /* Devc */,
-				434F85122AD004C3005077F5 /* Staging */,
-				434F85132AD004C7005077F5 /* Prod */,
+				43EB1E5B2DB247B1002F170A /* Max */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -807,7 +899,6 @@
 				438ED4152AA5D0C200486AF2 /* AdsTestApp */,
 				438ED4142AA5D0C200486AF2 /* Products */,
 				438ED42C2AA5D0F600486AF2 /* Frameworks */,
-				7FBFCC45DCA7616B82F56CFA /* Recovered References */,
 				9D20AA4D9EC91BA74A85150A /* Pods */,
 			);
 			sourceTree = "<group>";
@@ -821,6 +912,7 @@
 				43BCB0D42C22DD45002FB0B1 /* AdsTestApp-Devc-art.app */,
 				43BCB1172C22DD59002FB0B1 /* AdsTestApp-Staging-art.app */,
 				43BCB15A2C22DD60002FB0B1 /* AdsTestApp-Prod-art.app */,
+				43EB1E562DB24675002F170A /* MaxTestApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -846,6 +938,7 @@
 		438ED42C2AA5D0F600486AF2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43EB1E6B2DB24FA1002F170A /* MaxCardAdapter.framework */,
 				43EB19902DAFF8F4002F170A /* OguryCardAdapter.framework */,
 				43EB198D2DAFF8E9002F170A /* OguryCardAdapter.framework */,
 				43EB198A2DAFF8DE002F170A /* OguryCardAdapter.framework */,
@@ -882,10 +975,10 @@
 				438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */,
 				77FAE455F2244E802BFA973B /* Pods_AdsTestApp_Devc.framework */,
 				555D0522B2775FF63CA29877 /* Pods_AdsTestApp_Devc_art.framework */,
-				6DDDC97D03DFD6F83430AFDE /* Pods_AdsTestApp_Prod.framework */,
 				44F423650CD48D191647567E /* Pods_AdsTestApp_Prod_art.framework */,
 				4DDF33DFB5445EFF5B05E535 /* Pods_AdsTestApp_Staging.framework */,
 				B40DCD71260D8F5C84DD941A /* Pods_AdsTestApp_Staging_art.framework */,
+				A8A5AEABEB02FECE0734BBE2 /* Pods_MaxTestApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -939,6 +1032,7 @@
 		43EB186A2DA6A496002F170A /* PerTargetLauncher */ = {
 			isa = PBXGroup;
 			children = (
+				43EB1E642DB24A54002F170A /* Max */,
 				43EB18EA2DAE8671002F170A /* Ogury */,
 			);
 			path = PerTargetLauncher;
@@ -989,6 +1083,35 @@
 			path = Ogury;
 			sourceTree = "<group>";
 		};
+		43EB1E592DB24700002F170A /* Ogury */ = {
+			isa = PBXGroup;
+			children = (
+				434F85112AD004BA005077F5 /* Devc */,
+				434F85122AD004C3005077F5 /* Staging */,
+				434F85132AD004C7005077F5 /* Prod */,
+			);
+			path = Ogury;
+			sourceTree = "<group>";
+		};
+		43EB1E5B2DB247B1002F170A /* Max */ = {
+			isa = PBXGroup;
+			children = (
+				43EB1E5A2DB247B1002F170A /* Info.plist */,
+				43EB1E5D2DB247DD002F170A /* config.debug.xcconfig */,
+				43EB1E5E2DB247DD002F170A /* config.release.xcconfig */,
+				43EB1E612DB2482A002F170A /* Asset.xcassets */,
+			);
+			path = Max;
+			sourceTree = "<group>";
+		};
+		43EB1E642DB24A54002F170A /* Max */ = {
+			isa = PBXGroup;
+			children = (
+				43EB1E652DB24A64002F170A /* SdkLauncher.swift */,
+			);
+			path = Max;
+			sourceTree = "<group>";
+		};
 		43F66E662D4A20B2000AED12 /* Loaded Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1018,16 +1141,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		7FBFCC45DCA7616B82F56CFA /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				157F945631AE7D007328D50A /* DTFairBidBidder.swift */,
-				4EB9A33363592B358A3EC3BD /* UnityLevelPlayBidder.swift */,
-				A9B062918EF12190E48923F8 /* MaxBidder.swift */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		9D20AA4D9EC91BA74A85150A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1043,6 +1156,8 @@
 				F9A627F2DCE4C1FD6630DD80 /* Pods-AdsTestApp-Staging.release.xcconfig */,
 				6FA95B4FB3A2AF96534FD94F /* Pods-AdsTestApp-Staging-art.debug.xcconfig */,
 				1D42925E862BD0B4CC236A69 /* Pods-AdsTestApp-Staging-art.release.xcconfig */,
+				B0F466AC346757FE2185B12C /* Pods-MaxTestApp.debug.xcconfig */,
+				CBEDCD96EDE6355EF9D507B4 /* Pods-MaxTestApp.release.xcconfig */,
 			);
 			name = Pods;
 			path = ../../Pods;
@@ -1207,6 +1322,32 @@
 			productReference = 43BCB15A2C22DD60002FB0B1 /* AdsTestApp-Prod-art.app */;
 			productType = "com.apple.product-type.application";
 		};
+		43EB1E0C2DB24675002F170A /* MaxTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43EB1E532DB24675002F170A /* Build configuration list for PBXNativeTarget "MaxTestApp" */;
+			buildPhases = (
+				43EB1E132DB24675002F170A /* [CP] Check Pods Manifest.lock */,
+				43EB1E142DB24675002F170A /* Sources */,
+				43EB1E372DB24675002F170A /* Frameworks */,
+				43EB1E402DB24675002F170A /* Resources */,
+				43EB1E4C2DB24675002F170A /* [CP] Embed Pods Frameworks */,
+				43EB1E4D2DB24675002F170A /* [CP] Copy Pods Resources */,
+				43EB1E4E2DB24675002F170A /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MaxTestApp;
+			packageProductDependencies = (
+				43EB1E0D2DB24675002F170A /* SnapKit */,
+				43EB1E0F2DB24675002F170A /* UserDefault */,
+				43EB1E112DB24675002F170A /* SwiftMessages */,
+			);
+			productName = AdsTestApp;
+			productReference = 43EB1E562DB24675002F170A /* MaxTestApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1262,6 +1403,7 @@
 				43BCB0932C22DD45002FB0B1 /* AdsTestApp-Devc-art */,
 				43BCB0D62C22DD59002FB0B1 /* AdsTestApp-Staging-art */,
 				43BCB1192C22DD60002FB0B1 /* AdsTestApp-Prod-art */,
+				43EB1E0C2DB24675002F170A /* MaxTestApp */,
 			);
 		};
 /* End PBXProject section */
@@ -1375,6 +1517,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		43EB1E402DB24675002F170A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43EB1E412DB24675002F170A /* LaunchScreen.storyboard in Resources */,
+				43EB1E422DB24675002F170A /* FiraCode-Regular.ttf in Resources */,
+				43EB1E432DB24675002F170A /* Default-qa.settings in Resources */,
+				43EB1E442DB24675002F170A /* Assets.xcassets in Resources */,
+				43EB1E452DB24675002F170A /* Default.settings in Resources */,
+				43EB1E462DB24675002F170A /* Asset.xcassets in Resources */,
+				43EB1E622DB2482A002F170A /* Asset.xcassets in Resources */,
+				43EB1E472DB24675002F170A /* Custom.settings in Resources */,
+				43EB1E482DB24675002F170A /* shareImageData.png in Resources */,
+				43EB1E5F2DB247DD002F170A /* config.debug.xcconfig in Resources */,
+				43EB1E602DB247DD002F170A /* config.release.xcconfig in Resources */,
+				43EB1E4B2DB24675002F170A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1386,13 +1547,81 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
+			outputPaths = (
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43EB1E132DB24675002F170A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MaxTestApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43EB1E4C2DB24675002F170A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43EB1E4D2DB24675002F170A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		497FEAFDCAD1B78DC4BA37BE /* [CP] Embed Pods Frameworks */ = {
@@ -1403,9 +1632,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1442,9 +1675,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1459,9 +1696,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1476,9 +1717,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1493,9 +1738,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1510,9 +1759,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1527,9 +1780,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1544,9 +1801,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1561,9 +1822,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1600,9 +1865,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1705,9 +1974,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1963,6 +2236,47 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		43EB1E142DB24675002F170A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43EB1E152DB24675002F170A /* AdsStorableContainer.swift in Sources */,
+				43EB1E162DB24675002F170A /* AddFeature.swift in Sources */,
+				43EB1E172DB24675002F170A /* AppFeature.swift in Sources */,
+				43EB1E182DB24675002F170A /* MainView.swift in Sources */,
+				43EB1E662DB24A64002F170A /* SdkLauncher.swift in Sources */,
+				43EB1E192DB24675002F170A /* ImportFeature.swift in Sources */,
+				43EB1E1A2DB24675002F170A /* AdMobConsentManager.swift in Sources */,
+				43EB1E1B2DB24675002F170A /* ImportView.swift in Sources */,
+				43EB1E1C2DB24675002F170A /* AddFormatsView.swift in Sources */,
+				43EB1E1D2DB24675002F170A /* MainViewController.swift in Sources */,
+				43EB1E1E2DB24675002F170A /* InmobiConsentManager.swift in Sources */,
+				43EB1E1F2DB24675002F170A /* AppDelegate.swift in Sources */,
+				43EB1E202DB24675002F170A /* PrivacyDataFeature.swift in Sources */,
+				43EB1E212DB24675002F170A /* PrivacyDataView.swift in Sources */,
+				43EB1E222DB24675002F170A /* TestAppLogController.swift in Sources */,
+				43EB1E232DB24675002F170A /* SettingsController.swift in Sources */,
+				43EB1E242DB24675002F170A /* AppSettingsView.swift in Sources */,
+				43EB1E252DB24675002F170A /* UTType+Extension(prod).swift in Sources */,
+				43EB1E262DB24675002F170A /* ApplicationDelegate.swift in Sources */,
+				43EB1E272DB24675002F170A /* SceneDelegate.swift in Sources */,
+				43EB1E282DB24675002F170A /* DetailListView.swift in Sources */,
+				43EB1E292DB24675002F170A /* TestAppLogFormatter.swift in Sources */,
+				43EB1E2A2DB24675002F170A /* TestAppLogger.swift in Sources */,
+				43EB1E2B2DB24675002F170A /* AddView.swift in Sources */,
+				43EB1E2C2DB24675002F170A /* NotificationMessage.swift in Sources */,
+				43EB1E2D2DB24675002F170A /* DetailListFeature.swift in Sources */,
+				43EB1E2E2DB24675002F170A /* LinkPresentationItemSource.swift in Sources */,
+				43EB1E2F2DB24675002F170A /* MainFeature.swift in Sources */,
+				43EB1E302DB24675002F170A /* AppSettingsFeature.swift in Sources */,
+				43EB1E312DB24675002F170A /* LogOptionView.swift in Sources */,
+				43EB1E322DB24675002F170A /* LogOptionFeature.swift in Sources */,
+				43EB1E332DB24675002F170A /* LogsView.swift in Sources */,
+				43EB1E342DB24675002F170A /* LogsFeature.swift in Sources */,
+				43EB1E352DB24675002F170A /* AppView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -1998,7 +2312,7 @@
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Staging/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Ogury/Staging/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct - Stag";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -2041,7 +2355,7 @@
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Staging/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Ogury/Staging/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct - Stag";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -2083,7 +2397,7 @@
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Prod/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Ogury/Prod/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -2127,7 +2441,7 @@
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Prod/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Ogury/Prod/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -2293,7 +2607,7 @@
 					"COCOAPODS=1",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Devc/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Ogury/Devc/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct - Devc";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -2340,7 +2654,7 @@
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Devc/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Ogury/Devc/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct - Devc";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -2386,7 +2700,7 @@
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Devc/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Ogury/Devc/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct - Devc";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -2431,7 +2745,7 @@
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Devc/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Ogury/Devc/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct - Devc";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -2474,7 +2788,7 @@
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Staging/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Ogury/Staging/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct - Stag";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -2517,7 +2831,7 @@
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Staging/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Ogury/Staging/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct - Stag";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -2559,7 +2873,7 @@
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Prod/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Ogury/Prod/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -2602,7 +2916,7 @@
 				DEFAULT_ENV = "$(DEFAULT_ENV)";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Prod/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Ogury/Prod/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -2622,6 +2936,93 @@
 				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDK_SOURCE = Pod;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		43EB1E542DB24675002F170A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43EB1E5D2DB247DD002F170A /* config.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSET_KEY = "$(ASSET_KEY)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
+				DEFAULT_ENV = "$(DEFAULT_ENV)";
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Max/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "${VERSION}";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDK_SOURCE = Dev;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		43EB1E552DB24675002F170A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43EB1E5E2DB247DD002F170A /* config.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSET_KEY = "$(ASSET_KEY)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
+				DEFAULT_ENV = "$(DEFAULT_ENV)";
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Max/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ogury Direct";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "${VERSION}";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDK_SOURCE = Dev;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -2693,6 +3094,15 @@
 			buildConfigurations = (
 				43BCB1582C22DD60002FB0B1 /* Debug */,
 				43BCB1592C22DD60002FB0B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43EB1E532DB24675002F170A /* Build configuration list for PBXNativeTarget "MaxTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43EB1E542DB24675002F170A /* Debug */,
+				43EB1E552DB24675002F170A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2796,6 +3206,30 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		43EB1E0E2DB24675002F170A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+		43EB1E102DB24675002F170A /* XCRemoteSwiftPackageReference "UserDefault" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/juliand665/UserDefault";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		43EB1E122DB24675002F170A /* XCRemoteSwiftPackageReference "SwiftMessages" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftKickMobile/SwiftMessages";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2887,6 +3321,21 @@
 		43C1D1582B7E5684006F2D23 /* SwiftMessages */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 43C1D1532B7E566C006F2D23 /* XCRemoteSwiftPackageReference "SwiftMessages" */;
+			productName = SwiftMessages;
+		};
+		43EB1E0D2DB24675002F170A /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43EB1E0E2DB24675002F170A /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		43EB1E0F2DB24675002F170A /* UserDefault */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43EB1E102DB24675002F170A /* XCRemoteSwiftPackageReference "UserDefault" */;
+			productName = UserDefault;
+		};
+		43EB1E112DB24675002F170A /* SwiftMessages */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43EB1E122DB24675002F170A /* XCRemoteSwiftPackageReference "SwiftMessages" */;
 			productName = SwiftMessages;
 		};
 /* End XCSwiftPackageProductDependency section */

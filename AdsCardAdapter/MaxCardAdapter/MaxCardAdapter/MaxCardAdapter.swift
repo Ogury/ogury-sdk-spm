@@ -16,10 +16,10 @@ struct MaxAdsCardAdapter: AdsCardAdaptable {
     var availableAdFormats: [AdAdapterFormatSection] = [
         .init(title: "AppLovin Max",
               formats: [
-                AdType.max(.interstitial),
-                AdType.max(.rewardedVideo),
-                AdType.max(.smallBanner),
-                AdType.max(.mrec)
+                MaxAdType.default(.interstitial),
+                MaxAdType.default(.rewardedVideo),
+                MaxAdType.default(.smallBanner),
+                MaxAdType.default(.mrec)
                        ])
     ]
     var sdkVersions: [String : String] = [:]
