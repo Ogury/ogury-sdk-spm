@@ -7,12 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		43EB19B72DB1264D002F170A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB19B62DB1264D002F170A /* AdsCardAdapter.framework */; };
 		43EB1B162DB12DCB002F170A /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB1B142DB12DCB002F170A /* OguryAds.framework */; };
 		43EB1B182DB12DCB002F170A /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB1B152DB12DCB002F170A /* OMSDK_Ogury.xcframework */; };
 		43EB1E682DB24DA8002F170A /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB1E672DB24DA8002F170A /* OguryCore.framework */; };
+		43EB20E62DB279FA002F170A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB19B62DB1264D002F170A /* AdsCardAdapter.framework */; };
+		43EB20E72DB279FA002F170A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB19B62DB1264D002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		52D7F4CE62EDEB4F2F9A8216 /* Pods_MaxCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4717547F804EE4C76AF48CF8 /* Pods_MaxCardAdapter.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		43EB20E82DB279FA002F170A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				43EB20E72DB279FA002F170A /* AdsCardAdapter.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		43EB199D2DB0F3C9002F170A /* MaxCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MaxCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,9 +53,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43EB19B72DB1264D002F170A /* AdsCardAdapter.framework in Frameworks */,
 				43EB1E682DB24DA8002F170A /* OguryCore.framework in Frameworks */,
 				43EB1B182DB12DCB002F170A /* OMSDK_Ogury.xcframework in Frameworks */,
+				43EB20E62DB279FA002F170A /* AdsCardAdapter.framework in Frameworks */,
 				52D7F4CE62EDEB4F2F9A8216 /* Pods_MaxCardAdapter.framework in Frameworks */,
 				43EB1B162DB12DCB002F170A /* OguryAds.framework in Frameworks */,
 			);
@@ -111,6 +126,7 @@
 				43EB19992DB0F3C9002F170A /* Sources */,
 				43EB199A2DB0F3C9002F170A /* Frameworks */,
 				43EB199B2DB0F3C9002F170A /* Resources */,
+				43EB20E82DB279FA002F170A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

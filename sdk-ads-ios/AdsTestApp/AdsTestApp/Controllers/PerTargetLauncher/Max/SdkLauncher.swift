@@ -18,11 +18,9 @@ struct SdkLauncher {
     }
     
     func launch() async { await startAds() }
-    private func forceAdsEnvironment() { adapter.forceAdsEnvironment(SdkLauncher.environment) }
     
     func startAds(forceStart: Bool = false) async {
         if SettingsController().startSDKWithApplication || forceStart {
-            forceAdsEnvironment()
             (0..<SettingsController().numberOfSdkStart).forEach { second in
                 Task {
                     try? await Task.sleep(for: .seconds(second))

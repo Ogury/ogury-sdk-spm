@@ -5,19 +5,6 @@
 import UIKit
 import AdsCardLibrary
 
-public extension Decodable {
-    static func loadJsonFromFile(bundle: Bundle,
-                                 named fileName: String,
-                                 extension extName: String? = nil) throws -> Self {
-        guard let url = bundle.url(forResource: fileName, withExtension: extName),
-              let json = try? Data(contentsOf: url) else {
-            fatalError("No configuration file found")
-        }
-        let conf: Self = try JSONDecoder().decode(Self.self, from: json)
-        return conf
-    }
-}
-
 protocol MediationOptions: Codable {
     var interstitial: Configuration.DefaultBaseOptions { get }
     var optIn: Configuration.DefaultBaseOptions { get }

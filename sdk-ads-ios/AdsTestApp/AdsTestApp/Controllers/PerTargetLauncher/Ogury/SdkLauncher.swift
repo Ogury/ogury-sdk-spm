@@ -7,6 +7,7 @@ import AdsCardLibrary
 import Foundation
 import OguryCardAdapter
 import AdsCardAdapter
+import AdSupport
 
 struct SdkLauncher {
     static let shared = SdkLauncher()
