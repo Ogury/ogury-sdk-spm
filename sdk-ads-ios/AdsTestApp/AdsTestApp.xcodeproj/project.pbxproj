@@ -316,6 +316,30 @@
 		43EB1C5D2DB242CD002F170A /* OguryCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB1C5B2DB242CD002F170A /* OguryCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43EB1C5F2DB242D6002F170A /* OguryCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB1C5E2DB242D6002F170A /* OguryCardAdapter.framework */; };
 		43EB1C602DB242D6002F170A /* OguryCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB1C5E2DB242D6002F170A /* OguryCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB201B2DB25910002F170A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
+		43EB201C2DB25910002F170A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB201D2DB25910002F170A /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
+		43EB201E2DB25910002F170A /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB201F2DB25916002F170A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
+		43EB20202DB25916002F170A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB20212DB25916002F170A /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
+		43EB20222DB25916002F170A /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB20232DB2591D002F170A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
+		43EB20242DB2591D002F170A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB20252DB2591D002F170A /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
+		43EB20262DB2591D002F170A /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB20272DB25923002F170A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
+		43EB20282DB25923002F170A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB20292DB25923002F170A /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
+		43EB202A2DB25923002F170A /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB202B2DB2592C002F170A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
+		43EB202C2DB2592C002F170A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB202D2DB2592C002F170A /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
+		43EB202E2DB2592C002F170A /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB202F2DB25932002F170A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
+		43EB20302DB25932002F170A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB20312DB25932002F170A /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
+		43EB20322DB25932002F170A /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43F66E3C2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E3D2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E3E2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -350,7 +374,9 @@
 			dstSubfolderSpec = 10;
 			files = (
 				1E0E81652ACD8DFB00EFD70C /* OMSDK_Ogury.xcframework in Embed Frameworks */,
+				43EB201E2DB25910002F170A /* AdsCardLibrary.framework in Embed Frameworks */,
 				43EB186D2DA6A4E7002F170A /* OguryCardAdapter.framework in Embed Frameworks */,
+				43EB201C2DB25910002F170A /* AdsCardAdapter.framework in Embed Frameworks */,
 				43EB192A2DAFF03C002F170A /* OguryCore.framework in Embed Frameworks */,
 				43EB19282DAFF03C002F170A /* OguryAds.framework in Embed Frameworks */,
 			);
@@ -364,7 +390,9 @@
 			dstSubfolderSpec = 10;
 			files = (
 				43B7136C2B45702C007C8D21 /* OMSDK_Ogury.xcframework in Embed Frameworks */,
+				43EB20222DB25916002F170A /* AdsCardLibrary.framework in Embed Frameworks */,
 				43EB18702DA6A4EF002F170A /* OguryCardAdapter.framework in Embed Frameworks */,
+				43EB20202DB25916002F170A /* AdsCardAdapter.framework in Embed Frameworks */,
 				43EB19242DAFF02B002F170A /* OguryCore.framework in Embed Frameworks */,
 				43EB19222DAFF02B002F170A /* OguryAds.framework in Embed Frameworks */,
 			);
@@ -379,6 +407,8 @@
 			files = (
 				43BCB0CF2C22DD45002FB0B1 /* OMSDK_Ogury.xcframework in Embed Frameworks */,
 				43EB1C5A2DB2422D002F170A /* OguryCardAdapter.framework in Embed Frameworks */,
+				43EB20282DB25923002F170A /* AdsCardAdapter.framework in Embed Frameworks */,
+				43EB202A2DB25923002F170A /* AdsCardLibrary.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,6 +421,8 @@
 			files = (
 				43BCB1122C22DD59002FB0B1 /* OMSDK_Ogury.xcframework in Embed Frameworks */,
 				43EB1C5D2DB242CD002F170A /* OguryCardAdapter.framework in Embed Frameworks */,
+				43EB202C2DB2592C002F170A /* AdsCardAdapter.framework in Embed Frameworks */,
+				43EB202E2DB2592C002F170A /* AdsCardLibrary.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,6 +435,8 @@
 			files = (
 				43BCB1552C22DD60002FB0B1 /* OMSDK_Ogury.xcframework in Embed Frameworks */,
 				43EB1C602DB242D6002F170A /* OguryCardAdapter.framework in Embed Frameworks */,
+				43EB20302DB25932002F170A /* AdsCardAdapter.framework in Embed Frameworks */,
+				43EB20322DB25932002F170A /* AdsCardLibrary.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,7 +448,9 @@
 			dstSubfolderSpec = 10;
 			files = (
 				43EB191C2DAE8AC8002F170A /* OguryCardAdapter.framework in Embed Frameworks */,
+				43EB20262DB2591D002F170A /* AdsCardLibrary.framework in Embed Frameworks */,
 				43EB191A2DAE8AC6002F170A /* OguryAds.framework in Embed Frameworks */,
+				43EB20242DB2591D002F170A /* AdsCardAdapter.framework in Embed Frameworks */,
 				43EB191E2DAE8AC9002F170A /* OguryCore.framework in Embed Frameworks */,
 				43EB19132DAE89B2002F170A /* OMSDK_Ogury.xcframework in Embed Frameworks */,
 			);
@@ -565,9 +601,11 @@
 				43AE85DF2B5018B90010C812 /* UserDefault in Frameworks */,
 				43EB19212DAFF02B002F170A /* OguryAds.framework in Frameworks */,
 				43EB186F2DA6A4EF002F170A /* OguryCardAdapter.framework in Frameworks */,
+				43EB201F2DB25916002F170A /* AdsCardAdapter.framework in Frameworks */,
 				43B7136B2B45702C007C8D21 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43EB19232DAFF02B002F170A /* OguryCore.framework in Frameworks */,
 				6E4017B95617E3C0933A7415 /* Pods_AdsTestApp_Staging.framework in Frameworks */,
+				43EB20212DB25916002F170A /* AdsCardLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,9 +618,11 @@
 				43C1D1592B7E5684006F2D23 /* SwiftMessages in Frameworks */,
 				43AE85E12B5018BF0010C812 /* UserDefault in Frameworks */,
 				43EB19192DAE8AC6002F170A /* OguryAds.framework in Frameworks */,
+				43EB20232DB2591D002F170A /* AdsCardAdapter.framework in Frameworks */,
 				B68B98228FEF5F63D4165F6C /* Pods_AdsTestApp_Prod.framework in Frameworks */,
 				43EB191D2DAE8AC9002F170A /* OguryCore.framework in Frameworks */,
 				43EB191B2DAE8AC8002F170A /* OguryCardAdapter.framework in Frameworks */,
+				43EB20252DB2591D002F170A /* AdsCardLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,9 +635,11 @@
 				43AE85DD2B5018A20010C812 /* UserDefault in Frameworks */,
 				43EB19272DAFF03C002F170A /* OguryAds.framework in Frameworks */,
 				43EB186C2DA6A4E7002F170A /* OguryCardAdapter.framework in Frameworks */,
+				43EB201B2DB25910002F170A /* AdsCardAdapter.framework in Frameworks */,
 				1E5BE62D2B21CD0E0010B995 /* SnapKit in Frameworks */,
 				43EB19292DAFF03C002F170A /* OguryCore.framework in Frameworks */,
 				36EC46FB8D718297F1BF33F5 /* Pods_AdsTestApp_Devc.framework in Frameworks */,
+				43EB201D2DB25910002F170A /* AdsCardLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,9 +651,11 @@
 				43BCB0BD2C22DD45002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43BCB0BE2C22DD45002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB0C02C22DD45002FB0B1 /* UserDefault in Frameworks */,
+				43EB20292DB25923002F170A /* AdsCardLibrary.framework in Frameworks */,
 				43BCB0C12C22DD45002FB0B1 /* SnapKit in Frameworks */,
 				43EB1C592DB2422D002F170A /* OguryCardAdapter.framework in Frameworks */,
 				20013F3415F1F26682769B6F /* Pods_AdsTestApp_Devc_art.framework in Frameworks */,
+				43EB20272DB25923002F170A /* AdsCardAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,9 +667,11 @@
 				43BCB1002C22DD59002FB0B1 /* SnapKit in Frameworks */,
 				43BCB1022C22DD59002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB1032C22DD59002FB0B1 /* UserDefault in Frameworks */,
+				43EB202D2DB2592C002F170A /* AdsCardLibrary.framework in Frameworks */,
 				43BCB1042C22DD59002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43EB1C5C2DB242CD002F170A /* OguryCardAdapter.framework in Frameworks */,
 				3B9B96A793595B73BB4425D3 /* Pods_AdsTestApp_Staging_art.framework in Frameworks */,
+				43EB202B2DB2592C002F170A /* AdsCardAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,9 +683,11 @@
 				43BCB1432C22DD60002FB0B1 /* SnapKit in Frameworks */,
 				43BCB1452C22DD60002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB1462C22DD60002FB0B1 /* UserDefault in Frameworks */,
+				43EB20312DB25932002F170A /* AdsCardLibrary.framework in Frameworks */,
 				43BCB1472C22DD60002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43EB1C5F2DB242D6002F170A /* OguryCardAdapter.framework in Frameworks */,
 				49AAF6A5D0E019AD418EC407 /* Pods_AdsTestApp_Prod_art.framework in Frameworks */,
+				43EB202F2DB25932002F170A /* AdsCardAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
