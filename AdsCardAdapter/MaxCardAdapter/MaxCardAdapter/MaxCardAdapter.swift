@@ -12,7 +12,6 @@ import UIKit
 import AppLovinSDK
 
 struct MaxAdsCardAdapter: AdsCardAdaptable {
-    var assetKey: String
     var options: AdapterOptions
     var availableAdFormats: [AdAdapterFormatSection] = [
         .init(title: "AppLovin Max",

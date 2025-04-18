@@ -5,17 +5,16 @@
 
 import AdsCardLibrary
 import Foundation
-import OguryCardAdapter
+import MaxCardAdapter
 import AdsCardAdapter
 
 struct SdkLauncher {
     static let shared = SdkLauncher()
-    let adapter: OguryAdsCardAdapter
+    let adapter: MaxAdsCardAdapter
     lazy var logger: TestAppLogController = { TestAppLogController.shared }()
     
     private init() {
-        self.adapter = .init(assetKey: SdkLauncher.assetKey, environment: SdkLauncher.environment.oguryEnvironment)
-        self.adapter.forceAdsEnvironment(SdkLauncher.environment)
+        self.adapter = .init()
     }
     
     func launch() async { await startAds() }
@@ -39,22 +38,5 @@ struct SdkLauncher {
             return "OGY-3D6E42683F56"
         }
         return asset
-    }
-    
-    static private var environment: String {
-        guard let asset = Bundle.main.infoDictionary?["DefaultEnv"] as? String else {
-            return "PROD"
-        }
-        return asset
-    }
-}
-
-private extension String {
-    var oguryEnvironment: OguryEnvironement {
-        switch self {
-            case "DEVC": return .devc
-            case "STAGING": return .staging
-            default: return .prod
-        }
     }
 }

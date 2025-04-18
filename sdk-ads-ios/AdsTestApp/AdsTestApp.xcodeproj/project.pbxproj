@@ -371,8 +371,12 @@
 		43EB1E602DB247DD002F170A /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 43EB1E5E2DB247DD002F170A /* config.release.xcconfig */; };
 		43EB1E622DB2482A002F170A /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43EB1E612DB2482A002F170A /* Asset.xcassets */; };
 		43EB1E662DB24A64002F170A /* SdkLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB1E652DB24A64002F170A /* SdkLauncher.swift */; };
-		43EB1E6C2DB24FA1002F170A /* MaxCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB1E6B2DB24FA1002F170A /* MaxCardAdapter.framework */; };
-		43EB1E6D2DB24FA1002F170A /* MaxCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB1E6B2DB24FA1002F170A /* MaxCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB1F6E2DB2584A002F170A /* MaxCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB1F6D2DB2584A002F170A /* MaxCardAdapter.framework */; };
+		43EB1F6F2DB2584A002F170A /* MaxCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB1F6D2DB2584A002F170A /* MaxCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB1F702DB25872002F170A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
+		43EB1F712DB25872002F170A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB1F722DB25891002F170A /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
+		43EB1F732DB25891002F170A /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43F66E3C2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E3D2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E3E2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -397,6 +401,7 @@
 		49AAF6A5D0E019AD418EC407 /* Pods_AdsTestApp_Prod_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F423650CD48D191647567E /* Pods_AdsTestApp_Prod_art.framework */; };
 		6E4017B95617E3C0933A7415 /* Pods_AdsTestApp_Staging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DDF33DFB5445EFF5B05E535 /* Pods_AdsTestApp_Staging.framework */; };
 		B68B98228FEF5F63D4165F6C /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		BCD44527C7D6BBC59FB2E2E3 /* Pods_AdsTestApp_Prod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3284F43285076C3732D5B37E /* Pods_AdsTestApp_Prod.framework */; };
 		F55D4BE30033AB27495A092C /* Pods_MaxTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8A5AEABEB02FECE0734BBE2 /* Pods_MaxTestApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -472,7 +477,9 @@
 			dstSubfolderSpec = 10;
 			files = (
 				43EB191C2DAE8AC8002F170A /* OguryCardAdapter.framework in Embed Frameworks */,
+				43EB1F732DB25891002F170A /* AdsCardLibrary.framework in Embed Frameworks */,
 				43EB191A2DAE8AC6002F170A /* OguryAds.framework in Embed Frameworks */,
+				43EB1F712DB25872002F170A /* AdsCardAdapter.framework in Embed Frameworks */,
 				43EB191E2DAE8AC9002F170A /* OguryCore.framework in Embed Frameworks */,
 				43EB19132DAE89B2002F170A /* OMSDK_Ogury.xcframework in Embed Frameworks */,
 			);
@@ -486,7 +493,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				43EB1E502DB24675002F170A /* OguryAds.framework in Embed Frameworks */,
-				43EB1E6D2DB24FA1002F170A /* MaxCardAdapter.framework in Embed Frameworks */,
+				43EB1F6F2DB2584A002F170A /* MaxCardAdapter.framework in Embed Frameworks */,
 				43EB1E512DB24675002F170A /* OguryCore.framework in Embed Frameworks */,
 				43EB1E522DB24675002F170A /* OMSDK_Ogury.xcframework in Embed Frameworks */,
 			);
@@ -505,6 +512,7 @@
 		1E92061A2CCBE05500916482 /* LogsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsFeature.swift; sourceTree = "<group>"; };
 		1E9206212CCBE09100916482 /* LogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsView.swift; sourceTree = "<group>"; };
 		1EF117682AF95052004BE519 /* DetailListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListFeature.swift; sourceTree = "<group>"; };
+		3284F43285076C3732D5B37E /* Pods_AdsTestApp_Prod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Prod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4317C0092BC7D69F00F40F5F /* config.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = config.release.xcconfig; sourceTree = "<group>"; };
 		4317C00B2BC7D6BC00F40F5F /* config.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = config.release.xcconfig; sourceTree = "<group>"; };
 		4317C00D2BC7D6CA00F40F5F /* config.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = config.release.xcconfig; sourceTree = "<group>"; };
@@ -604,6 +612,7 @@
 		43EB1E612DB2482A002F170A /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
 		43EB1E652DB24A64002F170A /* SdkLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdkLauncher.swift; sourceTree = "<group>"; };
 		43EB1E6B2DB24FA1002F170A /* MaxCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MaxCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB1F6D2DB2584A002F170A /* MaxCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MaxCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F66E572D48E94F000AED12 /* Default.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Default.settings; sourceTree = "<group>"; };
 		43F66E5E2D48E95C000AED12 /* Custom.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Custom.settings; sourceTree = "<group>"; };
 		43F66E682D4A20E2000AED12 /* Default-qa.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Default-qa.settings"; sourceTree = "<group>"; };
@@ -657,7 +666,10 @@
 				43EB19192DAE8AC6002F170A /* OguryAds.framework in Frameworks */,
 				B68B98228FEF5F63D4165F6C /* (null) in Frameworks */,
 				43EB191D2DAE8AC9002F170A /* OguryCore.framework in Frameworks */,
+				43EB1F722DB25891002F170A /* AdsCardLibrary.framework in Frameworks */,
+				43EB1F702DB25872002F170A /* AdsCardAdapter.framework in Frameworks */,
 				43EB191B2DAE8AC8002F170A /* OguryCardAdapter.framework in Frameworks */,
+				BCD44527C7D6BBC59FB2E2E3 /* Pods_AdsTestApp_Prod.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,7 +739,7 @@
 				43EB1E3A2DB24675002F170A /* SwiftMessages in Frameworks */,
 				43EB1E3B2DB24675002F170A /* UserDefault in Frameworks */,
 				43EB1E3C2DB24675002F170A /* OguryAds.framework in Frameworks */,
-				43EB1E6C2DB24FA1002F170A /* MaxCardAdapter.framework in Frameworks */,
+				43EB1F6E2DB2584A002F170A /* MaxCardAdapter.framework in Frameworks */,
 				43EB1E3E2DB24675002F170A /* OguryCore.framework in Frameworks */,
 				F55D4BE30033AB27495A092C /* Pods_MaxTestApp.framework in Frameworks */,
 			);
@@ -938,6 +950,7 @@
 		438ED42C2AA5D0F600486AF2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43EB1F6D2DB2584A002F170A /* MaxCardAdapter.framework */,
 				43EB1E6B2DB24FA1002F170A /* MaxCardAdapter.framework */,
 				43EB19902DAFF8F4002F170A /* OguryCardAdapter.framework */,
 				43EB198D2DAFF8E9002F170A /* OguryCardAdapter.framework */,
@@ -979,6 +992,7 @@
 				4DDF33DFB5445EFF5B05E535 /* Pods_AdsTestApp_Staging.framework */,
 				B40DCD71260D8F5C84DD941A /* Pods_AdsTestApp_Staging_art.framework */,
 				A8A5AEABEB02FECE0734BBE2 /* Pods_MaxTestApp.framework */,
+				3284F43285076C3732D5B37E /* Pods_AdsTestApp_Prod.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
