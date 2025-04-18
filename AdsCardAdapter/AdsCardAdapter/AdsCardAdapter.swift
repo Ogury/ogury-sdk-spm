@@ -66,7 +66,6 @@ public struct AdapterOptions {
 }
 
 public protocol AdsCardAdaptable {
-    var assetKey: String { get }
     var options: AdapterOptions { get }
     /// list of available `AdAdapterFormat` list to populate the Add panel of the test application
     var availableAdFormats: [AdAdapterFormatSection] { get }
@@ -83,7 +82,7 @@ public protocol AdsCardAdaptable {
     /// - throws: throws an exception if no adapter is available
     func adAdapterFormat(fromRawValue rawValue: Int) throws(AdsCardAdapterError) -> any AdAdapterFormat
     /// starts the underlying SDK
-    func startSdk()
+    func startSdk() async
     /// resets the SDK if applicable
     func resetSdk()
     /// add a logger to OguryAds if available

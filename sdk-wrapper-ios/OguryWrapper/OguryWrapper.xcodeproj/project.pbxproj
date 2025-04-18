@@ -854,7 +854,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Tests/OCMock",
 				);
-				MACH_O_TYPE = staticlib;
+				MACH_O_TYPE = mh_dylib;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -889,7 +889,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Tests/OCMock",
 				);
-				MACH_O_TYPE = staticlib;
+				MACH_O_TYPE = mh_dylib;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 6.0;
@@ -978,7 +978,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Tests/OCMock",
 				);
-				MACH_O_TYPE = staticlib;
+				MACH_O_TYPE = mh_dylib;
 				PRODUCT_NAME = OgurySdk;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1015,7 +1015,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Tests/OCMock",
 				);
-				MACH_O_TYPE = staticlib;
+				MACH_O_TYPE = mh_dylib;
 				PRODUCT_NAME = OgurySdk;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;

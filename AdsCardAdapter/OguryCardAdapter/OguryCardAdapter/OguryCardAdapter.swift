@@ -9,6 +9,7 @@ import UIKit
 import AdsCardAdapter
 import AdsCardLibrary
 import OguryAds.Private
+import OgurySdk
 import OMSDK_Ogury
 
 public enum OguryEnvironement {
@@ -18,7 +19,7 @@ public enum OguryEnvironement {
 public struct OguryAdsCardAdapter: AdsCardAdaptable {
     public var sdkVersions: [String : String] {
         let coreSdkVersion = String(describing: OGCInternal.shared().getVersion())
-        let ogurySdkVersion = "5.0.2"
+        let ogurySdkVersion = Ogury.sdkVersion()
         let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
         let adsSdkVersion = "\(String(describing: OGAInternal.shared().getVersion())) (\(origin == "Pod" ? "Release" : "Development"))"
         let omid = OMIDOgurySDK.versionString()
@@ -126,8 +127,8 @@ public struct OguryAdsCardAdapter: AdsCardAdaptable {
         return adType
     }
     
-    public func startSdk() {
-        OGAInternal.shared().start(with: assetKey) { _, _ in }
+    public func startSdk() async {
+        await Ogury.start(with: assetKey)
     }
     
     public func forceAdsEnvironment(_ env: String) {

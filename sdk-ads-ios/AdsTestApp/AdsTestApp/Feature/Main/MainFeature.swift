@@ -165,6 +165,7 @@ struct MainFeature: Reducer {
         case importFile(_: URL)
         case loadFromContainer(_: AdsStorableContainer)
         case aboutButtonTapped
+        case startFailed
         
         enum Alert {
             case notImplemented
@@ -341,7 +342,13 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case.startSDKButtonTapped:
-                    SdkLauncher.shared.startAds(forceStart: true)
+                    return .run { send in
+                        do { try await SdkLauncher.shared.startAds(forceStart: true) } catch {
+                            await send(.startFailed)
+                        }
+                    }
+                    
+                case .startFailed:
                     return .none
                     
                 case let .showLogs(show):

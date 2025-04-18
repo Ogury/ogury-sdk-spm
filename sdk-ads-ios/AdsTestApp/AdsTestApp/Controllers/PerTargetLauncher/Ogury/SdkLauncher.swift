@@ -18,16 +18,17 @@ struct SdkLauncher {
         self.adapter.forceAdsEnvironment(SdkLauncher.environment)
     }
     
-    func launch() { startAds() }
+    func launch() async { await startAds() }
     private func forceAdsEnvironment() { adapter.forceAdsEnvironment(SdkLauncher.environment) }
     
-    func startAds(forceStart: Bool = false) {
+    func startAds(forceStart: Bool = false) async {
         if SettingsController().startSDKWithApplication || forceStart {
             forceAdsEnvironment()
             (0..<SettingsController().numberOfSdkStart).forEach { second in
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(second)) {
+                Task {
+                    try? await Task.sleep(for: .seconds(second))
                     print("🫠 start SDK")
-                    self.adapter.startSdk()
+                    await self.adapter.startSdk()
                 }
             }
         }

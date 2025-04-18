@@ -5257,6 +5257,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/OguryAdsTests/Sources",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MODULEMAP_PRIVATE_FILE = "$(SRCROOT)/Sources/Private/OguryAds.Private.modulemap";
 				OTHER_LDFLAGS = (
 					"-fprofile-instr-generate",
@@ -5303,6 +5304,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/OguryAdsTests/Sources",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MODULEMAP_PRIVATE_FILE = "$(SRCROOT)/Sources/Private/OguryAds.Private.modulemap";
 				OTHER_LDFLAGS = (
 					"-fprofile-instr-generate",
