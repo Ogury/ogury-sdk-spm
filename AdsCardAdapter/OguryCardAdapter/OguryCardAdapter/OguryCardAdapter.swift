@@ -19,7 +19,7 @@ public enum OguryEnvironement {
 public struct OguryAdsCardAdapter: AdsCardAdaptable {
     public var sdkVersions: [String : String] {
         let coreSdkVersion = String(describing: OGCInternal.shared().getVersion())
-        let ogurySdkVersion = "5.0.2"
+        let ogurySdkVersion = Ogury.sdkVersion()
         let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
         let adsSdkVersion = "\(String(describing: OGAInternal.shared().getVersion())) (\(origin == "Pod" ? "Release" : "Development"))"
         let omid = OMIDOgurySDK.versionString()

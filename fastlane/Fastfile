@@ -133,7 +133,7 @@ platform :ios do
     artifactory_repository_name = get_artifactory_repository_name(environment)
     ogury_core_version = get_module_version(environment, configuration.frameworks.ogury_core.internal_version, configuration.frameworks.ogury_core.beta_version, configuration.frameworks.ogury_core.release_version)
     ogury_ads_version = get_module_version(environment, configuration.frameworks.ogury_ads.internal_version, configuration.frameworks.ogury_ads.beta_version, configuration.frameworks.ogury_ads.release_version)
-    ogury_choice_manager_version = get_module_version(environment, configuration.frameworks.ogury_choice_manager.internal_version, configuration.frameworks.ogury_choice_manager.beta_version, configuration.frameworks.ogury_choice_manager.release_version)
+    ogury_sdk_version = get_module_version(environment, configuration.frameworks.ogury_sdk.internal_version, configuration.frameworks.ogury_sdk.beta_version, configuration.frameworks.ogury_sdk.release_version)
 
     erb(
       template: templatePath,
@@ -144,7 +144,7 @@ platform :ios do
         :framework_suffix => get_framework_suffix(environment),
         :ogury_core_version => ogury_core_version,
         :ogury_ads_version => ogury_ads_version,
-        :ogury_choice_manager_version => ogury_choice_manager_version
+        :ogury_sdk_version => ogury_sdk_version
       }
       )
   end

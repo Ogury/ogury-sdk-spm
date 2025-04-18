@@ -12,7 +12,6 @@
 		43EB19082DAE8981002F170A /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB19032DAE8981002F170A /* OguryCore.framework */; };
 		43EB190B2DAE8989002F170A /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB16B52DA571B2002F170A /* OMSDK_Ogury.xcframework */; };
 		43EB19302DAFF084002F170A /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB16B52DA571B2002F170A /* OMSDK_Ogury.xcframework */; };
-		43EB19312DAFF084002F170A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB19012DAE8981002F170A /* AdsCardAdapter.framework */; };
 		43EB19322DAFF084002F170A /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB19032DAE8981002F170A /* OguryCore.framework */; };
 		43EB1BBD2DB238FD002F170A /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB1BBC2DB238FD002F170A /* OgurySdk.framework */; };
 		43EB1BBE2DB238FD002F170A /* OgurySdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB1BBC2DB238FD002F170A /* OgurySdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -111,7 +110,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				43EB19302DAFF084002F170A /* OMSDK_Ogury.xcframework in Frameworks */,
-				43EB19312DAFF084002F170A /* AdsCardAdapter.framework in Frameworks */,
 				43EB19322DAFF084002F170A /* OguryCore.framework in Frameworks */,
 				D5B199BF3D5316F125B5C222 /* Pods_OguryCardAdapter_art.framework in Frameworks */,
 			);
@@ -545,6 +543,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.acl.OguryCardAdapter;
 				PRODUCT_NAME = OguryCardAdapter;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_MODULE = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
@@ -579,6 +581,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.acl.OguryCardAdapter;
 				PRODUCT_NAME = OguryCardAdapter;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_MODULE = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;

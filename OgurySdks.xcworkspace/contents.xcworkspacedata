@@ -23,12 +23,12 @@
       location = "group:AdsCardAdapter/AdsCardAdapter.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:AdsCardAdapter/OguryCardAdapter/OguryCardAdapter.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:sdk-ads-ios/AdsTestApp/AdsTestApp.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:AdsCardAdapter/OguryCardAdapter/OguryCardAdapter.xcodeproj">
    </FileRef>
 </Workspace>
