@@ -9,6 +9,7 @@ import AdsCardAdapter
 import AdsCardLibrary
 import OguryCore
 import UIKit
+import AppLovinSDK
 
 struct MaxAdsCardAdapter: AdsCardAdaptable {
     var assetKey: String
@@ -32,8 +33,11 @@ struct MaxAdsCardAdapter: AdsCardAdaptable {
         throw .noSuitableAdapterAvailable
     }
     
-    func startSdk() {
-        
+    func startSdk() async {
+        let config = ALSdkInitializationConfiguration(sdkKey: "") { builder in
+            builder.mediationProvider = ALMediationProviderMAX
+        }
+        let sdkConfig = await ALSdk.shared().initialize(with: config)
     }
     
     func resetSdk() {
