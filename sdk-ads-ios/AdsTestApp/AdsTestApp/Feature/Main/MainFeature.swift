@@ -57,12 +57,9 @@ struct About {
     var appName: String { Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ?? "Ads Test Application" }
     var appVersion: String { Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String }
     var appBuild: String { Bundle.main.infoDictionary?["CFBundleVersion"] as! String }
-    var environment: String { Bundle.main.object(forInfoDictionaryKey: "DefaultEnv") as? String ?? "" }
     var bundleId: String { Bundle.main.object(forInfoDictionaryKey: "CFBundleIdentifier") as? String ?? "" }
     var assetKey: String { SdkLauncher.assetKey }
-    var sdkVersions: String {
-        SdkLauncher.shared.adapter.sdkVersions.reduce("", { $0 + "\($0.isEmpty ? "" : "\n")\($1.key): \($1.value)" })
-    }
+    var sdkVersions: String { SdkLauncher.shared.adapter.sdkVersions }
 }
 
 struct MainFeature: Reducer {
@@ -469,7 +466,6 @@ extension AlertState where Action == MainFeature.Action.Alert {
 App version: \(about.appVersion)
 App build: \(about.appBuild)
 \(about.sdkVersions)
-Environment: \(about.environment)
 Asset key: \(about.assetKey)
 Bundle Id: \(about.bundleId)
 """)

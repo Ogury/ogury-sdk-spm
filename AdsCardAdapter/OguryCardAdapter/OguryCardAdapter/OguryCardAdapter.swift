@@ -17,18 +17,21 @@ public enum OguryEnvironement {
 }
 
 public struct OguryAdsCardAdapter: AdsCardAdaptable {
-    public var sdkVersions: [String : String] {
+    public var sdkVersions: String {
         let coreSdkVersion = String(describing: OGCInternal.shared().getVersion())
         let ogurySdkVersion = Ogury.sdkVersion()
         let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
         let adsSdkVersion = "\(String(describing: OGAInternal.shared().getVersion())) (\(origin == "Pod" ? "Release" : "Development"))"
         let omid = OMIDOgurySDK.versionString()
-        return [
-            "Ogury Sdk" : ogurySdkVersion,
-            "Module Ads" : adsSdkVersion,
-            "Module Core" : coreSdkVersion,
-            "OM SDK Version" : omid
-        ]
+        var environment: String { Bundle.main.object(forInfoDictionaryKey: "DefaultEnv") as? String ?? "" }
+        return
+"""
+Ogury Sdk : \(ogurySdkVersion)
+Module Ads : \(adsSdkVersion)
+Module Core : \(coreSdkVersion)
+OM SDK Version : \(omid)
+Environment: \(environment)
+"""
     }
     
     public let assetKey: String

@@ -10,10 +10,7 @@ import SwiftUI
 import AppLovinSDK
 import AdsCardLibrary
 import AdsCardAdapter
-
-protocol MaxAdManager: AdManager {
-    
-}
+import Combine
 
 enum MaxAdType: AdAdapterFormat, RawRepresentable, Equatable {
     case `default`(_: AdFormat)
@@ -91,5 +88,152 @@ enum MaxAdType: AdAdapterFormat, RawRepresentable, Equatable {
                     @unknown default: fatalError("unknown adFormat \(adFormat)")
                 }
         }
+    }
+    
+    internal func adManager(viewController: UIViewController?,
+                            adDelegate: AdLifeCycleDelegate?) -> MaxAdManager  {
+        switch self {
+            case let .default(innerType):
+                switch innerType {
+                    case .interstitial:
+                        return MaxInterstitialAdManager(adType: self, viewController: viewController, adDelegate: adDelegate)
+                        
+                    default: fatalError()
+                }
+        }
+    }
+}
+
+enum MaxError: Error {
+    case maError(MAError)
+    case adNotReady
+}
+
+extension MaxError: ErrorConvertible {
+    var readableError: String? {
+        switch self {
+            case .maError(let mAError): return mAError.message
+            case .adNotReady: return "Ad is not ready to show"
+        }
+    }
+}
+
+class ALDelegateProxy: NSObject, MAAdDelegate {
+    func didLoad(_ ad: MAAd) {
+        guard let adManager else { return }
+        adManager.append(.adLoaded(canShow: true))
+    }
+    
+    func didFailToLoadAd(forAdUnitIdentifier adUnitIdentifier: String, withError error: MAError) {
+        guard let adManager else { return }
+        adManager.append(.adDidFailToLoad(MaxError.maError(error)))
+    }
+    
+    func didDisplay(_ ad: MAAd) {
+        guard let adManager else { return }
+        adManager.append(.adDisplaying)
+    }
+    
+    func didHide(_ ad: MAAd) {
+    }
+    
+    func didClick(_ ad: MAAd) {
+        guard let adManager else { return }
+        adManager.append(.adClicked)
+    }
+    
+    func didFail(toDisplay ad: MAAd, withError error: MAError) {
+        guard let adManager else { return }
+        adManager.append(.adDidFailToDisplay(MaxError.maError(error)))
+    }
+    
+    var adManager: MaxAdManager?
+    init(adManager: MaxAdManager? = nil) {
+        self.adManager = adManager
+    }
+}
+
+class MaxAdManager: NSObject, AdManager {
+    static func == (lhs: MaxAdManager, rhs: MaxAdManager) -> Bool {
+        lhs.adType == rhs.adType && lhs.id == rhs.id
+    }
+    
+    var adType: MaxAdType
+    var proxy: ALDelegateProxy
+    var adFormat: AdFormat {
+        get { self.adType.adFormat }
+        set { }
+    }
+    var id: UUID = .init()
+    var adConfiguration: AdConfiguration!
+    var cardConfiguration: CardConfiguration!
+    var viewController: UIViewController?
+    var adDelegate: (any AdLifeCycleDelegate)?
+    var events: PassthroughSubject<AdLifeCycleEvent, Never>
+    var lifeCycleEvents: [AdLifeCycleEventHistory] = []
+    var adView: AdView {
+        var wself: (any AdManager)! = self
+        return AdsCardManager().card(for: &wself)
+    }
+    
+    func update(_ adConfiguration: AdConfiguration) {
+        if adConfiguration.adUnitId != self.adConfiguration.adUnitId {
+            resetAd()
+        }
+        self.adConfiguration = adConfiguration
+    }
+    
+    internal func instanciateAd() {
+        fatalError("Implement method")
+    }
+    internal func resetAd() {
+        fatalError("Implement method")
+    }
+    
+    func load() {
+        append(.adLoading)
+    }
+    
+    func show() {
+    }
+    
+    func close() {
+    }
+    
+    func killWebview(_ killMode: KillWebviewMode) {
+        // n/a
+    }
+    
+    func append(_ event: AdLifeCycleEvent) {
+        events.send(event)
+        lifeCycleEvents.append(AdLifeCycleEventHistory(event: event))
+    }
+    
+    func encode() -> AdCardContainer {
+        AdCardContainer(name: "", adType: adType.rawValue,
+                        adInformations: .init(adUnitId: "",
+                                              settings: .init(oguryTestModeEnabled: true,
+                                                              rtbTestModeEnabled: true,
+                                                              qaLabel: "")))
+    }
+    
+    static func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager {
+        fatalError()
+    }
+    
+    //MARK: Initializer
+    public init(adType: MaxAdType,
+                adConfiguration: AdConfiguration = .init(adUnitId: ""),
+                cardConfiguration: CardConfiguration = .init(),
+                viewController: UIViewController?,
+                adDelegate: AdLifeCycleDelegate? = nil) {
+        events = PassthroughSubject<AdLifeCycleEvent, Never>()
+        self.adType = adType
+        self.adConfiguration = adConfiguration
+        self.cardConfiguration = cardConfiguration
+        self.viewController = viewController
+        proxy = ALDelegateProxy()
+        super.init()
+        proxy.adManager = self
     }
 }

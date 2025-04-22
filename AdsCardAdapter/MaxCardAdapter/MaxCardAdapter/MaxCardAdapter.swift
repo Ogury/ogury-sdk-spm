@@ -25,27 +25,38 @@ public struct MaxAdsCardAdapter: AdsCardAdaptable {
                 MaxAdType.default(.mrec)
                        ])
     ]
-    public var sdkVersions: [String : String] = {
+    public var sdkVersions: String = {
         let coreSdkVersion = String(describing: OGCInternal.shared().getVersion())
         let appLovinSdkVersion = ALSdk.version()
         let ogurySdkVersion = Ogury.sdkVersion()
         let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
         let adsSdkVersion = "\(String(describing: OGAInternal.shared().getVersion())) (\(origin == "Pod" ? "Release" : "Development"))"
         let omid = OMIDOgurySDK.versionString()
-        return [
-            "AppLovin SDK" : appLovinSdkVersion,
-            "Ogury Sdk" : ogurySdkVersion,
-            "Module Ads" : adsSdkVersion,
-            "Module Core" : coreSdkVersion,
-            "OM SDK Version" : omid
-        ]
+        return
+"""
+AppLovin SDK : \(appLovinSdkVersion)
+Ogury Sdk : \(ogurySdkVersion)
+Module Ads : \(adsSdkVersion)
+Module Core : \(coreSdkVersion)
+OM SDK Version : \(omid)
+"""
     }()
     public init() {
         
     }
     
-    public func adManager(for adFormat: any AdAdapterFormat, options: AdViewOptions, viewController: UIViewController?, adDelegate: (any AdLifeCycleDelegate)?) throws(AdsCardAdapterError) -> any AdManager {
-        throw .noSuitableAdapterAvailable
+    public func adManager(for adFormat: any AdAdapterFormat,
+                          options: AdViewOptions,
+                          viewController: UIViewController?,
+                          adDelegate: (any AdLifeCycleDelegate)?) throws(AdsCardAdapterError) -> any AdManager {
+        guard let maxFormat = adFormat as? MaxAdType else { throw .noSuitableAdapterAvailable }
+        let adManager = maxFormat.adManager(viewController: viewController, adDelegate: adDelegate)
+        adManager.adConfiguration = AdConfiguration.init(adUnitId: maxFormat.adUnit)
+        adManager.cardConfiguration = options.cardConfiguration
+        adManager.cardConfiguration.oguryTestModeEnabled = false
+        adManager.cardConfiguration.rtbTestModeEnabled = false
+        adManager.cardConfiguration.showRtbTestMode = true
+        return adManager
     }
     
     public func adAdapterFormat(fromRawValue rawValue: Int) throws(AdsCardAdapterError) -> any AdAdapterFormat {
@@ -53,10 +64,11 @@ public struct MaxAdsCardAdapter: AdsCardAdaptable {
     }
     
     public func startSdk() async {
-//        let config = ALSdkInitializationConfiguration(sdkKey: "") { builder in
-//            builder.mediationProvider = ALMediationProviderMAX
-//        }
-//        _ = await ALSdk.shared().initialize(with: config)
+        let config = ALSdkInitializationConfiguration(sdkKey: "1gPFBPN3E3HoZdhU--XVvMEd3BHrxK9ID3dCmpTcpmmpPOvHsc3-u6Q5yPXrTf8pVcsnPMtH8nQ1PbAfPVgpT2") { builder in
+            builder.mediationProvider = ALMediationProviderMAX
+        }
+        let res = await ALSdk.shared().initialize(with: config)
+        print(res)
     }
     
     public func resetSdk() {
@@ -64,9 +76,7 @@ public struct MaxAdsCardAdapter: AdsCardAdaptable {
     }
     
     public func add(logger: any OguryLogger) {
-        
+        OGAInternal.shared().add(logger)
     }
-    
-    
 }
 

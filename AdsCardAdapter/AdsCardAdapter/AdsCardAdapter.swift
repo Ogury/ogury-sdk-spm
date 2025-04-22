@@ -70,7 +70,7 @@ public protocol AdsCardAdaptable {
     /// list of available `AdAdapterFormat` list to populate the Add panel of the test application
     var availableAdFormats: [AdAdapterFormatSection] { get }
     /// returns the various SDK used
-    var sdkVersions: [String: String] { get }
+    var sdkVersions: String { get }
     
     /// returns the AdManager associated with an `AdAdapterFormat`
     /// - throws: throws an exception if no adapter is available
