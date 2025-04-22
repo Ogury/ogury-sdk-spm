@@ -1,9 +1,10 @@
 //
-//  MaxInterstitialAdManager.swift
+//  MaxRewardedAdManager.swift
 //  MaxCardAdapter
 //
 //  Created by Jerome TONNELIER on 22/04/2025.
 //
+
 
 import AdsCardLibrary
 import AdsCardAdapter
@@ -11,16 +12,16 @@ import SwiftUI
 import Combine
 import AppLovinSDK
 
-class MaxInterstitialAdManager: MaxAdManager {
-    var ad: MAInterstitialAd!
-
+class MaxRewardedAdManager: MaxAdManager {
+    var ad: MARewardedAd!
+    
     override func resetAd() {
         ad = nil
     }
     
     override func instanciateAd() async {
         guard ad == nil else { return }
-        ad = .init(adUnitIdentifier: adConfiguration.adUnitId)
+        ad = .shared(withAdUnitIdentifier: adConfiguration.adUnitId)
         ad.delegate = proxy
     }
     

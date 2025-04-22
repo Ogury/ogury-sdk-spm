@@ -95,9 +95,9 @@ enum MaxAdType: AdAdapterFormat, RawRepresentable, Equatable {
         switch self {
             case let .default(innerType):
                 switch innerType {
-                    case .interstitial:
-                        return MaxInterstitialAdManager(adType: self, viewController: viewController, adDelegate: adDelegate)
-                        
+                    case .interstitial: return MaxInterstitialAdManager(adType: self, viewController: viewController, adDelegate: adDelegate)
+                    case .rewardedVideo: return MaxRewardedAdManager(adType: self, viewController: viewController, adDelegate: adDelegate)
+                    case .mrec, .smallBanner: return MaxBannerAdManager(adType: self, viewController: viewController, adDelegate: adDelegate)
                     default: fatalError()
                 }
         }
@@ -118,7 +118,22 @@ extension MaxError: ErrorConvertible {
     }
 }
 
-class ALDelegateProxy: NSObject, MAAdDelegate {
+class ALDelegateProxy: NSObject, MAAdDelegate, MARewardedAdDelegate, MAAdViewAdDelegate {
+    func didExpand(_ ad: MAAd) {
+        guard let adManager = adManager as? MaxBannerAdManager else { return }
+        adManager.append(.adDisplaying)
+    }
+    
+    func didCollapse(_ ad: MAAd) {
+        guard let adManager else { return }
+        adManager.append(.adClosed)
+    }
+    
+    func didRewardUser(for ad: MAAd, with reward: MAReward) {
+        guard let adManager else { return }
+        adManager.append(.rewardReady(name: reward.label, value: "\(reward.amount)"))
+    }
+    
     func didLoad(_ ad: MAAd) {
         guard let adManager else { return }
         adManager.append(.adLoaded(canShow: true))
@@ -183,7 +198,7 @@ class MaxAdManager: NSObject, AdManager {
         self.adConfiguration = adConfiguration
     }
     
-    internal func instanciateAd() {
+    internal func instanciateAd() async {
         fatalError("Implement method")
     }
     internal func resetAd() {
