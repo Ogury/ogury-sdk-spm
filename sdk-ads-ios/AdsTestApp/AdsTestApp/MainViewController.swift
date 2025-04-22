@@ -124,7 +124,7 @@ extension MainViewController: AdLifeCycleDelegate, ApplicationDelegate {
     
     func createTemporaryFile(text: String, filename: String) -> URL? {
         do {
-            let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(filename).\(UTType.oguryAdsExtension)")
+            let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(filename).\(UTType.adsTestAppExtension)")
             try text.write(to: fileURL, atomically: true, encoding: .utf8)
             return fileURL
         } catch {
@@ -135,7 +135,7 @@ extension MainViewController: AdLifeCycleDelegate, ApplicationDelegate {
     
     func showImportPanel() {
         UIApplication.topViewController()?.dismiss(animated: true)
-        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.oguryAds])
+        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.adsTestAppType])
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false // Set to true if you want to allow multiple file selection
         present(documentPicker, animated: true, completion: nil)
@@ -144,7 +144,7 @@ extension MainViewController: AdLifeCycleDelegate, ApplicationDelegate {
     @discardableResult
     func createDocumentFile(text: String, filename: String) -> URL? {
         do {
-            let fileURL = getDocumentsDirectory().appendingPathComponent("\(filename).\(UTType.oguryAdsExtension)")
+            let fileURL = getDocumentsDirectory().appendingPathComponent("\(filename).\(UTType.adsTestAppExtension)")
             try text.write(to: fileURL, atomically: true, encoding: .utf8)
             return fileURL
         } catch {

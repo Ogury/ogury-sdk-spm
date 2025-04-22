@@ -44,4 +44,19 @@ class MaxRewardedAdManager: MaxAdManager {
             ad.show()
         }
     }
+    
+    override class func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager {
+        guard let adType = MaxAdType(rawValue: container.adType) else { throw .invalidAdType }
+        return MaxRewardedAdManager(adType: adType,
+                                    adConfiguration: .init(adUnitId: container.adInformations.adUnitId,
+                                                           campaignId: container.adInformations.campaignId,
+                                                           creativeId: container.adInformations.creativeId,
+                                                           dspCreativeId: container.adInformations.dspCreativeId,
+                                                           dspRegion: container.adInformations.dspRegion),
+                                    cardConfiguration: .init(oguryTestModeEnabled: container.adInformations.settings.oguryTestModeEnabled,
+                                                             rtbTestModeEnabled: container.adInformations.settings.rtbTestModeEnabled,
+                                                             qaLabel: container.adInformations.settings.qaLabel),
+                                    viewController: nil,
+                                    adDelegate: nil)
+    }
 }

@@ -17,7 +17,7 @@
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>co.ogury.sdk.ads.devc.exportedSet</string>
+				<string>co.ogury.sdk.ads.max.exportedSet</string>
 			</array>
 		</dict>
 	</array>
@@ -66,12 +66,12 @@
 				<string>shareImageData</string>
 			</array>
 			<key>UTTypeIdentifier</key>
-			<string>co.ogury.sdk.ads.devc.exportedSet</string>
+			<string>co.ogury.sdk.ads.max.exportedSet</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
-					<string>ogad</string>
+					<string>ogam</string>
 				</array>
 			</dict>
 		</dict>

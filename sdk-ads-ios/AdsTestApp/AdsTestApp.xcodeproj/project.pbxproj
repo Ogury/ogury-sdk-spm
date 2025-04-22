@@ -340,7 +340,6 @@
 		43EB1E222DB24675002F170A /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
 		43EB1E232DB24675002F170A /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
 		43EB1E242DB24675002F170A /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A82AC2DF0C005077F5 /* AppSettingsView.swift */; };
-		43EB1E252DB24675002F170A /* UTType+Extension(prod).swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB18A42DA6A900002F170A /* UTType+Extension(prod).swift */; };
 		43EB1E262DB24675002F170A /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BFF2D9457ED00BE53A1 /* ApplicationDelegate.swift */; };
 		43EB1E272DB24675002F170A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED4182AA5D0C200486AF2 /* SceneDelegate.swift */; };
 		43EB1E282DB24675002F170A /* DetailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5BE6322B21F40F0010B995 /* DetailListView.swift */; };
@@ -369,7 +368,6 @@
 		43EB1E452DB24675002F170A /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
 		43EB1E462DB24675002F170A /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434F84FB2ACFE5ED005077F5 /* Asset.xcassets */; };
 		43EB1E472DB24675002F170A /* Custom.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E5E2D48E95C000AED12 /* Custom.settings */; };
-		43EB1E482DB24675002F170A /* shareImageData.png in Resources */ = {isa = PBXBuildFile; fileRef = 43EB18A32DA6A900002F170A /* shareImageData.png */; };
 		43EB1E4B2DB24675002F170A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41C2AA5D0C200486AF2 /* Main.storyboard */; };
 		43EB1E502DB24675002F170A /* OguryAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190D2DAE89B2002F170A /* OguryAds.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43EB1E512DB24675002F170A /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190F2DAE89B2002F170A /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -383,6 +381,8 @@
 		43EB1F712DB25872002F170A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43EB1F722DB25891002F170A /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
 		43EB1F732DB25891002F170A /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB21072DB7C79B002F170A /* shareImageData.png in Resources */ = {isa = PBXBuildFile; fileRef = 43EB20FE2DB7C72F002F170A /* shareImageData.png */; };
+		43EB21082DB7C79B002F170A /* UTType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB20FF2DB7C72F002F170A /* UTType+Extension.swift */; };
 		43F66E3C2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E3D2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E3E2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -640,6 +640,8 @@
 		43EB1E652DB24A64002F170A /* SdkLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdkLauncher.swift; sourceTree = "<group>"; };
 		43EB1E6B2DB24FA1002F170A /* MaxCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MaxCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB1F6D2DB2584A002F170A /* MaxCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MaxCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB20FE2DB7C72F002F170A /* shareImageData.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareImageData.png; sourceTree = "<group>"; };
+		43EB20FF2DB7C72F002F170A /* UTType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Extension.swift"; sourceTree = "<group>"; };
 		43F66E572D48E94F000AED12 /* Default.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Default.settings; sourceTree = "<group>"; };
 		43F66E5E2D48E95C000AED12 /* Custom.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Custom.settings; sourceTree = "<group>"; };
 		43F66E682D4A20E2000AED12 /* Default-qa.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Default-qa.settings"; sourceTree = "<group>"; };
@@ -805,6 +807,7 @@
 		4301B1E52B56D3450076065D /* UTType */ = {
 			isa = PBXGroup;
 			children = (
+				43EB21002DB7C72F002F170A /* AppLovin */,
 				43EB18A92DA6A900002F170A /* OguryFiles */,
 			);
 			path = UTType;
@@ -1082,7 +1085,7 @@
 		43EB186A2DA6A496002F170A /* PerTargetLauncher */ = {
 			isa = PBXGroup;
 			children = (
-				43EB1E642DB24A54002F170A /* Max */,
+				43EB1E642DB24A54002F170A /* AppLovin */,
 				43EB18EA2DAE8671002F170A /* Ogury */,
 			);
 			path = PerTargetLauncher;
@@ -1154,12 +1157,21 @@
 			path = Max;
 			sourceTree = "<group>";
 		};
-		43EB1E642DB24A54002F170A /* Max */ = {
+		43EB1E642DB24A54002F170A /* AppLovin */ = {
 			isa = PBXGroup;
 			children = (
 				43EB1E652DB24A64002F170A /* SdkLauncher.swift */,
 			);
-			path = Max;
+			path = AppLovin;
+			sourceTree = "<group>";
+		};
+		43EB21002DB7C72F002F170A /* AppLovin */ = {
+			isa = PBXGroup;
+			children = (
+				43EB20FE2DB7C72F002F170A /* shareImageData.png */,
+				43EB20FF2DB7C72F002F170A /* UTType+Extension.swift */,
+			);
+			path = AppLovin;
 			sourceTree = "<group>";
 		};
 		43F66E662D4A20B2000AED12 /* Loaded Files */ = {
@@ -1579,8 +1591,8 @@
 				43EB1E462DB24675002F170A /* Asset.xcassets in Resources */,
 				43EB1E622DB2482A002F170A /* Asset.xcassets in Resources */,
 				43EB1E472DB24675002F170A /* Custom.settings in Resources */,
-				43EB1E482DB24675002F170A /* shareImageData.png in Resources */,
 				43EB1E5F2DB247DD002F170A /* config.debug.xcconfig in Resources */,
+				43EB21072DB7C79B002F170A /* shareImageData.png in Resources */,
 				43EB1E602DB247DD002F170A /* config.release.xcconfig in Resources */,
 				43EB1E4B2DB24675002F170A /* Main.storyboard in Resources */,
 			);
@@ -2307,7 +2319,6 @@
 				43EB1E222DB24675002F170A /* TestAppLogController.swift in Sources */,
 				43EB1E232DB24675002F170A /* SettingsController.swift in Sources */,
 				43EB1E242DB24675002F170A /* AppSettingsView.swift in Sources */,
-				43EB1E252DB24675002F170A /* UTType+Extension(prod).swift in Sources */,
 				43EB1E262DB24675002F170A /* ApplicationDelegate.swift in Sources */,
 				43EB1E272DB24675002F170A /* SceneDelegate.swift in Sources */,
 				43EB1E282DB24675002F170A /* DetailListView.swift in Sources */,
@@ -2321,6 +2332,7 @@
 				43EB1E302DB24675002F170A /* AppSettingsFeature.swift in Sources */,
 				43EB1E312DB24675002F170A /* LogOptionView.swift in Sources */,
 				43EB1E322DB24675002F170A /* LogOptionFeature.swift in Sources */,
+				43EB21082DB7C79B002F170A /* UTType+Extension.swift in Sources */,
 				43EB1E332DB24675002F170A /* LogsView.swift in Sources */,
 				43EB1E342DB24675002F170A /* LogsFeature.swift in Sources */,
 				43EB1E352DB24675002F170A /* AppView.swift in Sources */,

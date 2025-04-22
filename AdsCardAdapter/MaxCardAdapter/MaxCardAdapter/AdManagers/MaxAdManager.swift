@@ -225,15 +225,16 @@ class MaxAdManager: NSObject, AdManager {
     }
     
     func encode() -> AdCardContainer {
-        AdCardContainer(name: "", adType: adType.rawValue,
-                        adInformations: .init(adUnitId: "",
+        AdCardContainer(name: cardConfiguration.adDisplayName,
+                        adType: adType.rawValue,
+                        adInformations: .init(adUnitId: adConfiguration.adUnitId,
                                               settings: .init(oguryTestModeEnabled: true,
                                                               rtbTestModeEnabled: true,
                                                               qaLabel: "")))
     }
     
-    static func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager {
-        fatalError()
+    class func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager {
+        fatalError("Implement in subclasses")
     }
     
     //MARK: Initializer

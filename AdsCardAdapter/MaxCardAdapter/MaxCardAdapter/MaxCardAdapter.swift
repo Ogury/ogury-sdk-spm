@@ -60,7 +60,10 @@ OM SDK Version : \(omid)
     }
     
     public func adAdapterFormat(fromRawValue rawValue: Int) throws(AdsCardAdapterError) -> any AdAdapterFormat {
-        throw .noSuitableAdapterAvailable
+        guard let format = MaxAdType(rawValue: rawValue)  else {
+            throw .noSuitableAdapterAvailable
+        }
+        return format
     }
     
     public func startSdk() async {
