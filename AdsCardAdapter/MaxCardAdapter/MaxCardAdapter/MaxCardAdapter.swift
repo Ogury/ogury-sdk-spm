@@ -70,8 +70,7 @@ OM SDK Version : \(omid)
         let config = ALSdkInitializationConfiguration(sdkKey: "1gPFBPN3E3HoZdhU--XVvMEd3BHrxK9ID3dCmpTcpmmpPOvHsc3-u6Q5yPXrTf8pVcsnPMtH8nQ1PbAfPVgpT2") { builder in
             builder.mediationProvider = ALMediationProviderMAX
         }
-        let res = await ALSdk.shared().initialize(with: config)
-        print(res)
+        _ = await ALSdk.shared().initialize(with: config)
     }
     
     public func resetSdk() {
