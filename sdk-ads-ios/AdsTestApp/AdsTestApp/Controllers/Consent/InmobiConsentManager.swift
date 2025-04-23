@@ -22,7 +22,7 @@ final class InmobiConsentManager: ChoiceCmpDelegate {
     func resetConsent(viewController: UIViewController) {
         if consentState == .idle {
             consentState = .loading
-            ChoiceCmp.shared.startChoice(pcode: "f2N9N2QnAYZz8", delegate: self)
+            ChoiceCmp.shared.startChoice(pcode: "R9d1e18VL3vVF", delegate: self)
         } else {
             ChoiceCmp.shared.forceDisplayUI()
         }
