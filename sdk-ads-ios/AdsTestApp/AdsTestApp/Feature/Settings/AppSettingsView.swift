@@ -376,6 +376,15 @@ struct AppSettingsView: View {
                         .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                         .listRowBackground(Color(AdColorPalette.Background.secondary.color))
                         
+                        Button {
+                            viewStore.send(.copyIdfaButtonTapped)
+                        } label: {
+                            HStack {
+                                Text("Copy IDFA to clipboard")
+                            }
+                        }
+                        .accessibilityLabel("CopyIdfaButton")
+                        
                     } header: {
                         Text("Privacy")
                             .font(.adsBody)

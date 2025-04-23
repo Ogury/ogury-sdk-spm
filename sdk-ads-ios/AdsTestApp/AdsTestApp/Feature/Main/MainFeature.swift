@@ -189,7 +189,6 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case let .loadFromContainer(container):
-                    //TODO: 🍀 Done
                     let adFormats = container.retrieveAds(viewController: adHostingViewController, adDelegate: adDelegate)
                     state.adFormats = adFormats
                     state.setName = container.settings.name

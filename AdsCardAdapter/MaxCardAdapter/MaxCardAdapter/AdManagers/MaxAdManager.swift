@@ -150,6 +150,8 @@ class ALDelegateProxy: NSObject, MAAdDelegate, MARewardedAdDelegate, MAAdViewAdD
     }
     
     func didHide(_ ad: MAAd) {
+        guard let adManager = adManager as? MaxBannerAdManager else { return }
+        adManager.append(.adClosed)
     }
     
     func didClick(_ ad: MAAd) {
@@ -220,6 +222,7 @@ class MaxAdManager: NSObject, AdManager {
     }
     
     func append(_ event: AdLifeCycleEvent) {
+        print("💡 send \(event)")
         events.send(event)
         lifeCycleEvents.append(AdLifeCycleEventHistory(event: event))
     }

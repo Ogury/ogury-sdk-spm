@@ -390,6 +390,12 @@
 		43EB210E2DB8CD3E002F170A /* SdkLaunchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */; };
 		43EB210F2DB8CD3E002F170A /* SdkLaunchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */; };
 		43EB21102DB8CD3E002F170A /* SdkLaunchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */; };
+		43EB21112DB8DACD002F170A /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20BB2C6A60C400DF24AB /* OgurySdk.framework */; };
+		43EB21122DB8DACD002F170A /* OgurySdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20BB2C6A60C400DF24AB /* OgurySdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB21132DB8DAEA002F170A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
+		43EB21142DB8DAEA002F170A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB21152DB8DAEA002F170A /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
+		43EB21162DB8DAEA002F170A /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43F66E3C2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E3D2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E3E2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -528,7 +534,10 @@
 			dstSubfolderSpec = 10;
 			files = (
 				43EB1E502DB24675002F170A /* OguryAds.framework in Embed Frameworks */,
+				43EB21162DB8DAEA002F170A /* AdsCardLibrary.framework in Embed Frameworks */,
 				43EB1F6F2DB2584A002F170A /* MaxCardAdapter.framework in Embed Frameworks */,
+				43EB21142DB8DAEA002F170A /* AdsCardAdapter.framework in Embed Frameworks */,
+				43EB21122DB8DACD002F170A /* OgurySdk.framework in Embed Frameworks */,
 				43EB1E512DB24675002F170A /* OguryCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -786,8 +795,11 @@
 				43EB1E3B2DB24675002F170A /* UserDefault in Frameworks */,
 				43EB1E3C2DB24675002F170A /* OguryAds.framework in Frameworks */,
 				43EB1F6E2DB2584A002F170A /* MaxCardAdapter.framework in Frameworks */,
+				43EB21132DB8DAEA002F170A /* AdsCardAdapter.framework in Frameworks */,
 				43EB1E3E2DB24675002F170A /* OguryCore.framework in Frameworks */,
+				43EB21112DB8DACD002F170A /* OgurySdk.framework in Frameworks */,
 				F55D4BE30033AB27495A092C /* Pods_MaxTestApp.framework in Frameworks */,
+				43EB21152DB8DAEA002F170A /* AdsCardLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3054,7 +3066,7 @@
 					"$(inherited)",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
-				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app;
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.max.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDK_SOURCE = Dev;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -3098,7 +3110,7 @@
 					"$(inherited)",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
-				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app;
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.max.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDK_SOURCE = Dev;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

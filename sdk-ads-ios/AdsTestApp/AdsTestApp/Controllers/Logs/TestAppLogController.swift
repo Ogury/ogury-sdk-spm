@@ -17,7 +17,6 @@ internal struct TestAppLogController {
     }
     
     mutating func addLogger() {
-        //TODO: 🍀 Done
         SdkLauncher.shared.adapter.add(logger: logger)
     }
     
