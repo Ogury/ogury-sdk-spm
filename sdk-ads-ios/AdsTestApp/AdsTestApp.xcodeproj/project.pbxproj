@@ -383,6 +383,13 @@
 		43EB1F732DB25891002F170A /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43EB21072DB7C79B002F170A /* shareImageData.png in Resources */ = {isa = PBXBuildFile; fileRef = 43EB20FE2DB7C72F002F170A /* shareImageData.png */; };
 		43EB21082DB7C79B002F170A /* UTType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB20FF2DB7C72F002F170A /* UTType+Extension.swift */; };
+		43EB210A2DB8CD3E002F170A /* SdkLaunchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */; };
+		43EB210B2DB8CD3E002F170A /* SdkLaunchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */; };
+		43EB210C2DB8CD3E002F170A /* SdkLaunchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */; };
+		43EB210D2DB8CD3E002F170A /* SdkLaunchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */; };
+		43EB210E2DB8CD3E002F170A /* SdkLaunchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */; };
+		43EB210F2DB8CD3E002F170A /* SdkLaunchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */; };
+		43EB21102DB8CD3E002F170A /* SdkLaunchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */; };
 		43F66E3C2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E3D2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E3E2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -642,6 +649,7 @@
 		43EB1F6D2DB2584A002F170A /* MaxCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MaxCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB20FE2DB7C72F002F170A /* shareImageData.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareImageData.png; sourceTree = "<group>"; };
 		43EB20FF2DB7C72F002F170A /* UTType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Extension.swift"; sourceTree = "<group>"; };
+		43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdkLaunchable.swift; sourceTree = "<group>"; };
 		43F66E572D48E94F000AED12 /* Default.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Default.settings; sourceTree = "<group>"; };
 		43F66E5E2D48E95C000AED12 /* Custom.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Custom.settings; sourceTree = "<group>"; };
 		43F66E682D4A20E2000AED12 /* Default-qa.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Default-qa.settings"; sourceTree = "<group>"; };
@@ -1087,6 +1095,7 @@
 			children = (
 				43EB1E642DB24A54002F170A /* AppLovin */,
 				43EB18EA2DAE8671002F170A /* Ogury */,
+				43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */,
 			);
 			path = PerTargetLauncher;
 			sourceTree = "<group>";
@@ -2088,6 +2097,7 @@
 				4394F7522CA42FF1001086FE /* LogOptionFeature.swift in Sources */,
 				1E9206272CCBE09600916482 /* LogsView.swift in Sources */,
 				1E92061F2CCBE05D00916482 /* LogsFeature.swift in Sources */,
+				43EB210D2DB8CD3E002F170A /* SdkLaunchable.swift in Sources */,
 				434F84CA2ACFE4FE005077F5 /* AppView.swift in Sources */,
 				434F84CB2ACFE4FE005077F5 /* SdkLauncher.swift in Sources */,
 			);
@@ -2129,6 +2139,7 @@
 				4394F74C2CA42FF1001086FE /* LogOptionFeature.swift in Sources */,
 				1E9206252CCBE09600916482 /* LogsView.swift in Sources */,
 				1E92061C2CCBE05D00916482 /* LogsFeature.swift in Sources */,
+				43EB210E2DB8CD3E002F170A /* SdkLaunchable.swift in Sources */,
 				434F84E62ACFE50A005077F5 /* AppView.swift in Sources */,
 				434F84E72ACFE50A005077F5 /* SdkLauncher.swift in Sources */,
 			);
@@ -2170,6 +2181,7 @@
 				4394F7492CA42FF1001086FE /* LogOptionView.swift in Sources */,
 				4394F74A2CA42FF1001086FE /* LogOptionFeature.swift in Sources */,
 				438ED42B2AA5D0E100486AF2 /* SdkLauncher.swift in Sources */,
+				43EB210C2DB8CD3E002F170A /* SdkLaunchable.swift in Sources */,
 				1E5BE6332B21F40F0010B995 /* DetailListView.swift in Sources */,
 				1E92061E2CCBE05D00916482 /* LogsFeature.swift in Sources */,
 			);
@@ -2211,6 +2223,7 @@
 				4394F7542CA42FF1001086FE /* LogOptionFeature.swift in Sources */,
 				1E9206242CCBE09600916482 /* LogsView.swift in Sources */,
 				1E92061B2CCBE05D00916482 /* LogsFeature.swift in Sources */,
+				43EB210A2DB8CD3E002F170A /* SdkLaunchable.swift in Sources */,
 				43BCB0B92C22DD45002FB0B1 /* SdkLauncher.swift in Sources */,
 				43BCB0BA2C22DD45002FB0B1 /* DetailListView.swift in Sources */,
 			);
@@ -2252,6 +2265,7 @@
 				4394F74E2CA42FF1001086FE /* LogOptionFeature.swift in Sources */,
 				1E9206262CCBE09600916482 /* LogsView.swift in Sources */,
 				1E92061D2CCBE05D00916482 /* LogsFeature.swift in Sources */,
+				43EB210B2DB8CD3E002F170A /* SdkLaunchable.swift in Sources */,
 				43BCB0FC2C22DD59002FB0B1 /* AppView.swift in Sources */,
 				43BCB0FD2C22DD59002FB0B1 /* SdkLauncher.swift in Sources */,
 			);
@@ -2293,6 +2307,7 @@
 				4394F7502CA42FF1001086FE /* LogOptionFeature.swift in Sources */,
 				1E9206232CCBE09600916482 /* LogsView.swift in Sources */,
 				1E9206202CCBE05D00916482 /* LogsFeature.swift in Sources */,
+				43EB210F2DB8CD3E002F170A /* SdkLaunchable.swift in Sources */,
 				43BCB13F2C22DD60002FB0B1 /* AppView.swift in Sources */,
 				43BCB1402C22DD60002FB0B1 /* SdkLauncher.swift in Sources */,
 			);
@@ -2334,6 +2349,7 @@
 				43EB1E322DB24675002F170A /* LogOptionFeature.swift in Sources */,
 				43EB21082DB7C79B002F170A /* UTType+Extension.swift in Sources */,
 				43EB1E332DB24675002F170A /* LogsView.swift in Sources */,
+				43EB21102DB8CD3E002F170A /* SdkLaunchable.swift in Sources */,
 				43EB1E342DB24675002F170A /* LogsFeature.swift in Sources */,
 				43EB1E352DB24675002F170A /* AppView.swift in Sources */,
 			);

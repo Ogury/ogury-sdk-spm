@@ -8,13 +8,13 @@ import Foundation
 import MaxCardAdapter
 import AdsCardAdapter
 
-struct SdkLauncher {
-    static let shared = SdkLauncher()
-    let adapter: MaxAdsCardAdapter
+struct SdkLauncher: SdkLaunchable {
+    static var shared: any SdkLaunchable = SdkLauncher()
+    let adapter: any AdsCardAdaptable
     lazy var logger: TestAppLogController = { TestAppLogController.shared }()
     
     private init() {
-        self.adapter = .init()
+        self.adapter = MaxAdsCardAdapter()
     }
     
     func launch() async { await startAds() }

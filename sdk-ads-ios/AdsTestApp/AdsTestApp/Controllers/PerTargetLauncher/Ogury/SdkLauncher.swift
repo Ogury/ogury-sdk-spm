@@ -9,18 +9,18 @@ import OguryCardAdapter
 import AdsCardAdapter
 import AdSupport
 
-struct SdkLauncher {
-    static let shared = SdkLauncher()
-    let adapter: OguryAdsCardAdapter
+struct SdkLauncher: SdkLaunchable  {
+    static let shared: any SdkLaunchable = SdkLauncher()
+    let adapter: any AdsCardAdaptable
     lazy var logger: TestAppLogController = { TestAppLogController.shared }()
     
     private init() {
-        self.adapter = .init(assetKey: SdkLauncher.assetKey, environment: SdkLauncher.environment.oguryEnvironment)
-        self.adapter.forceAdsEnvironment(SdkLauncher.environment)
+        self.adapter = OguryAdsCardAdapter(assetKey: SdkLauncher.assetKey, environment: SdkLauncher.environment.oguryEnvironment)
+        (adapter as! OguryAdsCardAdapter).forceAdsEnvironment(SdkLauncher.environment)
     }
     
     func launch() async { await startAds() }
-    private func forceAdsEnvironment() { adapter.forceAdsEnvironment(SdkLauncher.environment) }
+    private func forceAdsEnvironment() { (adapter as! OguryAdsCardAdapter).forceAdsEnvironment(SdkLauncher.environment) }
     
     func startAds(forceStart: Bool = false) async {
         if SettingsController().startSDKWithApplication || forceStart {
