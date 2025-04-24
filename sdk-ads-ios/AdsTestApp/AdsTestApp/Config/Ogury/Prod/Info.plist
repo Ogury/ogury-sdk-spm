@@ -24,7 +24,7 @@
 	<key>DefaultEnv</key>
 	<string>$(DEFAULT_ENV)</string>
 	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-5735986212655126~9383827548</string>
+	<string>ca-app-pub-5735986212655126~8330487942</string>
 	<key>SDK_SOURCE</key>
 	<string>$(SDK_SOURCE)</string>
 	<key>UIAppFonts</key>
