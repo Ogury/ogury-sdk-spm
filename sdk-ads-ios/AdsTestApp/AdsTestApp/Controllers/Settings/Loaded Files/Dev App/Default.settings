@@ -27,7 +27,8 @@
         "add" : true,
         "export" : true,
         "bulkMode" : true,
-        "devFeatures" : true
+        "devFeatures" : true,
+        "settingPermissions" : 1022
     }
   }
 }

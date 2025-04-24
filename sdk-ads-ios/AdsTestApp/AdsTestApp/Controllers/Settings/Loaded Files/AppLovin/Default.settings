@@ -2,12 +2,12 @@
   "cards" : [],
   "settings" : {
     "name" : "Untitled Ad Set",
-    "importMethod" : "rawText",
-    "bulkModeEnabled" : false,
-    "showCampaignId" : true,
+    "importMethod" : "file",
+    "showCampaignId" : false,
     "showSpecificOptions" : false,
-    "killWebviewMode" : "simulate",
-    "showTestMode" : true,
+    "bulkModeEnabled" : false,
+    "killWebviewMode" : "none",
+    "showTestMode" : false,
     "showCreativeId" : false,
     "enableAdUnitEditing" : true,
     "os" : "iOS",
@@ -16,13 +16,11 @@
     "logSettings" : {
       "allowedTypes" : [
         "Callbacks",
-        "Monitoring",
-        "Internal",
-        "Mraid"
+        "Monitoring"
       ],
-      "allowedDisplay" : 50
+      "allowedDisplay" : 19
     },
-    "numberOfSdkStart" : 1,
+    "numberOfSdkStart" : 3,
     "permissions" :  {
         "settings" : true,
         "logs" : true,
@@ -30,7 +28,7 @@
         "export" : true,
         "bulkMode" : true,
         "devFeatures" : true,
-        "settingPermissions" : 1022
+        "settingPermissions" : 2
     }
   }
 }

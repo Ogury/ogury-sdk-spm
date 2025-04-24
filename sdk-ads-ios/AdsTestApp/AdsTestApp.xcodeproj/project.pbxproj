@@ -363,11 +363,8 @@
 		43EB1E3E2DB24675002F170A /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190F2DAE89B2002F170A /* OguryCore.framework */; };
 		43EB1E412DB24675002F170A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
 		43EB1E422DB24675002F170A /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
-		43EB1E432DB24675002F170A /* Default-qa.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E682D4A20E2000AED12 /* Default-qa.settings */; };
 		43EB1E442DB24675002F170A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41F2AA5D0C300486AF2 /* Assets.xcassets */; };
-		43EB1E452DB24675002F170A /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
 		43EB1E462DB24675002F170A /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434F84FB2ACFE5ED005077F5 /* Asset.xcassets */; };
-		43EB1E472DB24675002F170A /* Custom.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E5E2D48E95C000AED12 /* Custom.settings */; };
 		43EB1E4B2DB24675002F170A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41C2AA5D0C200486AF2 /* Main.storyboard */; };
 		43EB1E502DB24675002F170A /* OguryAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190D2DAE89B2002F170A /* OguryAds.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43EB1E512DB24675002F170A /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190F2DAE89B2002F170A /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -396,6 +393,7 @@
 		43EB21142DB8DAEA002F170A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43EB21152DB8DAEA002F170A /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
 		43EB21162DB8DAEA002F170A /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB211A2DBA35B3002F170A /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43EB21192DBA35B3002F170A /* Default.settings */; };
 		43F66E3C2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E3D2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E3E2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -659,6 +657,7 @@
 		43EB20FE2DB7C72F002F170A /* shareImageData.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareImageData.png; sourceTree = "<group>"; };
 		43EB20FF2DB7C72F002F170A /* UTType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Extension.swift"; sourceTree = "<group>"; };
 		43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdkLaunchable.swift; sourceTree = "<group>"; };
+		43EB21192DBA35B3002F170A /* Default.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Default.settings; sourceTree = "<group>"; };
 		43F66E572D48E94F000AED12 /* Default.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Default.settings; sourceTree = "<group>"; };
 		43F66E5E2D48E95C000AED12 /* Custom.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Custom.settings; sourceTree = "<group>"; };
 		43F66E682D4A20E2000AED12 /* Default-qa.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Default-qa.settings"; sourceTree = "<group>"; };
@@ -1195,9 +1194,18 @@
 			path = AppLovin;
 			sourceTree = "<group>";
 		};
+		43EB21182DBA35A3002F170A /* AppLovin */ = {
+			isa = PBXGroup;
+			children = (
+				43EB21192DBA35B3002F170A /* Default.settings */,
+			);
+			path = AppLovin;
+			sourceTree = "<group>";
+		};
 		43F66E662D4A20B2000AED12 /* Loaded Files */ = {
 			isa = PBXGroup;
 			children = (
+				43EB21182DBA35A3002F170A /* AppLovin */,
 				43F66E672D4A20B9000AED12 /* Dev App */,
 			);
 			path = "Loaded Files";
@@ -1606,12 +1614,10 @@
 			files = (
 				43EB1E412DB24675002F170A /* LaunchScreen.storyboard in Resources */,
 				43EB1E422DB24675002F170A /* FiraCode-Regular.ttf in Resources */,
-				43EB1E432DB24675002F170A /* Default-qa.settings in Resources */,
 				43EB1E442DB24675002F170A /* Assets.xcassets in Resources */,
-				43EB1E452DB24675002F170A /* Default.settings in Resources */,
 				43EB1E462DB24675002F170A /* Asset.xcassets in Resources */,
 				43EB1E622DB2482A002F170A /* Asset.xcassets in Resources */,
-				43EB1E472DB24675002F170A /* Custom.settings in Resources */,
+				43EB211A2DBA35B3002F170A /* Default.settings in Resources */,
 				43EB1E5F2DB247DD002F170A /* config.debug.xcconfig in Resources */,
 				43EB21072DB7C79B002F170A /* shareImageData.png in Resources */,
 				43EB1E602DB247DD002F170A /* config.release.xcconfig in Resources */,
@@ -3065,7 +3071,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
+				OTHER_SWIFT_FLAGS = "$(inherited) -D FORCE_APP_CONFIG_FILE";
 				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.max.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDK_SOURCE = Dev;
@@ -3109,7 +3115,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
+				OTHER_SWIFT_FLAGS = "$(inherited) -D FORCE_APP_CONFIG_FILE";
 				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.max.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDK_SOURCE = Dev;

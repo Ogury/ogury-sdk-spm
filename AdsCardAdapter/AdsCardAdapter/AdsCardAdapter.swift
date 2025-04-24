@@ -51,22 +51,7 @@ public struct AdAdapterFormatSection: Identifiable, Equatable {
     }
 }
 
-public struct AdapterOptions {
-    public var showResetSdkButton: Bool = true
-    public var showLogs: Bool = true
-    public init(showResetSdkButton: Bool = true,
-                showLogs: Bool = true) {
-        self.showResetSdkButton = showResetSdkButton
-        #if canImport(OguryAds)
-        self.showLogs = showLogs
-        #else
-        self.showLogs = false
-        #endif
-    }
-}
-
 public protocol AdsCardAdaptable {
-    var options: AdapterOptions { get }
     /// list of available `AdAdapterFormat` list to populate the Add panel of the test application
     var availableAdFormats: [AdAdapterFormatSection] { get }
     /// returns the various SDK used
@@ -126,7 +111,7 @@ public extension Decodable {
                                  extension extName: String? = nil) throws -> Self {
         guard let url = bundle.url(forResource: fileName, withExtension: extName),
               let json = try? Data(contentsOf: url) else {
-            fatalError("No configuration file found")
+            throw DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "File not found"))
         }
         let conf: Self = try JSONDecoder().decode(Self.self, from: json)
         return conf
