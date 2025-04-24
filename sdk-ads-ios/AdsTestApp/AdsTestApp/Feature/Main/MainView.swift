@@ -95,7 +95,6 @@ struct MainView: View {
         }
         
         if appPermissions.logs,
-           SdkLauncher.shared.adapter.options.showLogs,
             !viewStore.adFormats.isEmpty {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {

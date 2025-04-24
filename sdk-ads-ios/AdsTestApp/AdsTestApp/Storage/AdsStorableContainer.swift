@@ -25,6 +25,31 @@ enum ImportMethod: String, Codable, Equatable, CaseIterable, DefaultsValueConver
     }
 }
 
+struct SettingsPermissions: OptionSet, Codable {
+    let rawValue: Int
+    static let noCards = SettingsPermissions(rawValue: 1 << 0)
+    static let showEditAdUnitToggle = SettingsPermissions(rawValue: 1 << 1)
+    static let showCampaignToggle = SettingsPermissions(rawValue: 1 << 2)
+    static let showCreativeToggle = SettingsPermissions(rawValue: 1 << 3)
+    static let showDspToggle = SettingsPermissions(rawValue: 1 << 4)
+    static let showAudioToggle = SettingsPermissions(rawValue: 1 << 5)
+    static let showTestModeToggle = SettingsPermissions(rawValue: 1 << 6)
+    static let showKillWebviewToggle = SettingsPermissions(rawValue: 1 << 7)
+    static let showBulkModeToggle = SettingsPermissions(rawValue: 1 << 8)
+    static let showResetProfigToggle = SettingsPermissions(rawValue: 1 << 9)
+    static var allCases: SettingsPermissions = [
+        .showEditAdUnitToggle,
+        .showAudioToggle,
+        .showBulkModeToggle,
+        .showCampaignToggle,
+        .showCreativeToggle,
+        .showDspToggle,
+        .showKillWebviewToggle,
+        .showResetProfigToggle,
+        .showTestModeToggle
+    ]
+}
+
 struct AppPermissions: Codable, DefaultsValueConvertible {
     let settings: Bool
     let logs: Bool
@@ -32,9 +57,12 @@ struct AppPermissions: Codable, DefaultsValueConvertible {
     let export: Bool
     let bulkMode: Bool
     let devFeatures: Bool
+    let settingPermissions: SettingsPermissions
     static let userDefaultKey = "AppPermissions"
     
-    enum CodingKeys: String, CodingKey { case settings, logs, add, export, bulkMode, devFeatures }
+    enum CodingKeys: String, CodingKey {
+        case settings, logs, add, export, bulkMode, devFeatures, settingPermissions
+    }
     init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         settings = try container.decodeIfPresent(Bool.self, forKey: .settings) ?? true
@@ -43,6 +71,7 @@ struct AppPermissions: Codable, DefaultsValueConvertible {
         export = try container.decodeIfPresent(Bool.self, forKey: .export) ?? true
         bulkMode = try container.decodeIfPresent(Bool.self, forKey: .bulkMode) ?? true
         devFeatures = try container.decodeIfPresent(Bool.self, forKey: .devFeatures) ?? true
+        settingPermissions = try container.decodeIfPresent(SettingsPermissions.self, forKey: .settingPermissions) ?? .allCases
     }
     
     init() {
@@ -52,6 +81,7 @@ struct AppPermissions: Codable, DefaultsValueConvertible {
         export = true
         bulkMode = true
         devFeatures = true
+        settingPermissions = .allCases
     }
 }
 
@@ -345,5 +375,141 @@ extension AdCardContainer {
               cardConfiguration: .init(oguryTestModeEnabled: adInformations.settings.oguryTestModeEnabled,
                                        rtbTestModeEnabled: adInformations.settings.rtbTestModeEnabled,
                                        qaLabel: adInformations.settings.qaLabel))
+    }
+}
+
+extension AdsStorableContainer: CustomStringConvertible {
+    public var description: String {
+"""
+/*************************************/
+/****** C O N F I G   F I L E ********/
+/*************************************/
+
+~~~> SETTINGS
+\(settings)
+
+~~~> CARDS 
+\(cards)
+
+/*************************************/
+/****** E N D   O F   F I L E ********/
+/*************************************/
+"""
+    }
+}
+
+extension OguryLogDisplay: @retroactive CustomStringConvertible {
+    public var description: String {
+        var str = ""
+        if contains(.SDK) {
+            str += "SDK"
+        }
+        if contains(.date) {
+            str += str.isEmpty ? "Date" : " - Date"
+        }
+        if contains(.level) {
+            str += str.isEmpty ? "Level" : " - Level"
+        }
+        if contains(.origin) {
+            str += str.isEmpty ? "Origin" : " - Origin"
+        }
+        if contains(.tags) {
+            str += str.isEmpty ? "Tags" : " - Tags"
+        }
+        if contains(.type) {
+            str += str.isEmpty ? "Type" : " - Type"
+        }
+        return str
+    }
+}
+
+extension LogSettings: CustomStringConvertible {
+    public var description: String {
+"""
+Allowed type    : \(allowedTypes.reduce("", { "\($0.isEmpty ? $0 : "\($0) - ")" + "\($1.rawValue)" }))
+Allowed Display : \(allowedDisplay)
+"""
+    }
+}
+
+extension AppPermissions: CustomStringConvertible {
+    public var description: String {
+"""
+settings            : \(settings)
+logs                : \(logs)
+add                 : \(add)
+export              : \(export)
+bulkMode            : \(bulkMode)
+devFeatures         : \(devFeatures)
+settingPermissions  : \(settingPermissions)
+
+"""
+    }
+}
+
+extension SettingsPermissions: CustomStringConvertible {
+    public var description: String {
+        var str = ""
+        if contains(.noCards) {
+            str += str.isEmpty ? "noCards" : " - noCards"
+        }
+        if contains(.showEditAdUnitToggle) {
+            str += str.isEmpty ? "showEditAdUnit" : " - showEditAdUnit"
+        }
+        if contains(.showCampaignToggle) {
+            str += str.isEmpty ? "showCampaign" : " - showCampaign"
+        }
+        if contains(.showCreativeToggle) {
+            str += str.isEmpty ? "showCreative" : " - showCreative"
+        }
+        if contains(.showDspToggle) {
+            str += str.isEmpty ? "showDsp" : " - showDsp"
+        }
+        if contains(.showAudioToggle) {
+            str += str.isEmpty ? "showAudio" : " - showAudio"
+        }
+        if contains(.showTestModeToggle) {
+            str += str.isEmpty ? "showTestMode" : " - showTestMode"
+        }
+        if contains(.showKillWebviewToggle) {
+            str += str.isEmpty ? "showKillWebview" : " - showKillWebview"
+        }
+        if contains(.showBulkModeToggle) {
+            str += str.isEmpty ? "showBulkMode" : " - showBulkMode"
+        }
+        if contains(.showResetProfigToggle) {
+            str += str.isEmpty ? "showResetProfig" : " - showResetProfig"
+        }
+        return str
+    }
+}
+
+extension SettingsContainer: CustomStringConvertible {
+    public var description: String {
+"""
+*** SHOW BEHAVIOR ***
+enableAdUnitEditing         : \(enableAdUnitEditing)
+showCampaignId              : \(showCampaignId)
+showCreativeId              : \(showCreativeId)
+showDspFields               : \(showDspFields)
+bulkModeEnabled             : \(bulkModeEnabled)
+startSDKWithApplication     : \(startSDKWithApplication)
+numberOfSdkStart            : \(numberOfSdkStart)
+showTestMode                : \(showTestMode)
+enableFeedbacks             : \(enableFeedbacks)
+usOptout                    : \(usOptout)
+usOptoutPartner             : \(usOptoutPartner)
+importMethod                : \(importMethod)
+killWebviewMode             : \(killWebviewMode)
+consentManager              : \(consentManager)
+name                        : \(name)
+os                          : \(os)
+
+*** LOG SETTINGS ***
+\(logSettings!)
+
+*** PERMISSIONS ***
+\(permissions)
+"""
     }
 }
