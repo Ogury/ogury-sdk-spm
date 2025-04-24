@@ -263,7 +263,7 @@ extension View {
                                         Button {
                                             viewStore.send(.destination(.dismiss))
                                         } label: {
-                                            Text("Cancel")
+                                            Text("Dismiss")
                                         }
                                         .accessibilityLabel("SettingsSheetCancelButton")
                                     }
