@@ -12,7 +12,30 @@ import OgurySdk
 import OMSDK_Ogury
 import OguryAds.Private
 import UIKit
+import SwiftUI
 import AppLovinSDK
+
+internal enum MaxAction: AdsCardAdapterAction {
+    var name: String {
+        switch self {
+            case .showDebugger: return "AppLovin Debugger"
+        }
+    }
+    
+    var icon: Image? {
+        switch self {
+            case .showDebugger: return Image(systemName: "bubbles.and.sparkles")
+        }
+    }
+    
+    func perform()  {
+        switch self {
+            case .showDebugger: ALSdk.shared().showMediationDebugger()
+        }
+    }
+    
+    case showDebugger
+}
 
 public struct MaxAdsCardAdapter: AdsCardAdaptable {
     public var availableAdFormats: [AdAdapterFormatSection] = [
@@ -24,6 +47,7 @@ public struct MaxAdsCardAdapter: AdsCardAdaptable {
                 MaxAdType.default(.mrec)
                        ])
     ]
+    public var actions: [AdsCardAdapterAction] = [MaxAction.showDebugger]
     public var sdkVersions: String = {
         let coreSdkVersion = String(describing: OGCInternal.shared().getVersion())
         let appLovinSdkVersion = ALSdk.version()

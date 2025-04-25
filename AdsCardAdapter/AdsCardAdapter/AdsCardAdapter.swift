@@ -51,11 +51,19 @@ public struct AdAdapterFormatSection: Identifiable, Equatable {
     }
 }
 
+public protocol AdsCardAdapterAction {
+    var name: String { get }
+    var icon: Image? { get }
+    func perform()
+}
+
 public protocol AdsCardAdaptable {
     /// list of available `AdAdapterFormat` list to populate the Add panel of the test application
     var availableAdFormats: [AdAdapterFormatSection] { get }
     /// returns the various SDK used
     var sdkVersions: String { get }
+    /// custom actions to add to the `more` test app menu
+    var actions: [AdsCardAdapterAction] { get }
     
     /// returns the AdManager associated with an `AdAdapterFormat`
     /// - throws: throws an exception if no adapter is available
