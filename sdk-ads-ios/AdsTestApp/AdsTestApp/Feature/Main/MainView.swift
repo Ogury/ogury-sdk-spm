@@ -194,6 +194,16 @@ struct MainView: View {
                 }
                 
                 Section {
+                    ForEach(SdkLauncher.shared.adapter.actions, id: \.name) { action in
+                        Button{
+                            action.perform()
+                        } label: {
+                            HStack {
+                                Text(action.name).font(.adsBody)
+                                action.icon!
+                            }
+                        }
+                    }
                     Button{
                         viewStore.send(.aboutButtonTapped)
                     } label: {

@@ -33,6 +33,7 @@ OM SDK Version : \(omid)
 Environment: \(environment)
 """
     }
+    public var actions: [AdsCardAdapterAction] = []
     
     public let assetKey: String
     private let environment: OguryEnvironement
