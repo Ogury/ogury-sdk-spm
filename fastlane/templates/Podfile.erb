@@ -57,6 +57,13 @@ target "MaxCardAdapter" do
   pod 'AppLovinMediationOguryPresageAdapter'
 end
 
+#AdMobCardAdapter
+target "AdMobCardAdapter" do
+  project "AdsCardAdapter/AdMobCardAdapter/AdMobCardAdapter"
+  pod 'Google-Mobile-Ads-SDK'
+  pod 'OguryMediationGoogleMobileAds'
+end
+
 #Ads Test Apps
 target "AdsTestApp-Devc" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"

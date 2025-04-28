@@ -78,7 +78,7 @@ OM SDK Version : \(omid)
         adManager.cardConfiguration = options.cardConfiguration
         adManager.cardConfiguration.oguryTestModeEnabled = false
         adManager.cardConfiguration.rtbTestModeEnabled = false
-        adManager.cardConfiguration.showRtbTestMode = true
+        adManager.cardConfiguration.showRtbTestMode = false
         return adManager
     }
     

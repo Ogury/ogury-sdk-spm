@@ -268,7 +268,7 @@ struct AdViewFeature {
                     }
             }.cancellable(id: NewAdCancel.load(state.adManager.id)),
             .run { [state] send in
-                state.adManager.load()
+                await state.adManager.load()
                 await send(.resetReward)
             }.cancellable(id: NewAdCancel.load(state.adManager.id))
         )

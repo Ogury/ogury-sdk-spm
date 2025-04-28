@@ -24,12 +24,10 @@ class MaxInterstitialAdManager: MaxAdManager {
         ad.delegate = proxy
     }
     
-    override func load() {
-        super.load()
-        Task {
-            await instanciateAd()
-            ad.load()
-        }
+    override func load() async {
+        await super.load()
+        await instanciateAd()
+        ad.load()
     }
     
     override func show() {

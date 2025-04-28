@@ -49,8 +49,9 @@ public final class BannerAdManager: OguryAdManager {
         self.adConfiguration = adConfiguration
     }
     
-    public func load() {
-        DispatchQueue.main.async {
+    public func load() async {
+        Task { @MainActor [weak self] in
+            guard let self else { return }
             if (self.ad == nil) {
                 self.ad = OguryBannerAdView(adUnitId: self.adConfiguration.adUnitId,
                                             size: self.adType == .banner ? .small_banner_320x50() : .mrec_300x250())
