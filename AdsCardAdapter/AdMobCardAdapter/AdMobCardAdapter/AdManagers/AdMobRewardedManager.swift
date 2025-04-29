@@ -25,6 +25,7 @@ class AdMobRewardedManager: AdMobManager {
         do {
             ad = try await RewardedAd.load(with: adType.adUnit, request: Request())
             ad?.fullScreenContentDelegate = proxy
+            append(.adLoaded(canShow: true))
         } catch {
             append(.adDidFailToLoad(error))
         }
@@ -32,10 +33,29 @@ class AdMobRewardedManager: AdMobManager {
     }
     
     override func show() {
-        guard let viewController else { return }
-        ad?.present(from: viewController) { [weak self] in
-            self?.append(.rewardReady(name: self?.ad?.adReward.description ?? "n/a",
-                                      value: "\(self?.ad?.adReward.amount ?? 0)"))
+        Task { @MainActor [weak self] in
+            guard let viewController = self?.viewController else { return }
+            self?.ad?.present(from: viewController) { [weak self] in
+                Task { @MainActor [weak self] in
+                    self?.append(.rewardReady(name: self?.ad?.adReward.type ?? "n/a",
+                                              value: "\(self?.ad?.adReward.amount ?? 0)"))
+                }
+            }
         }
+    }
+    
+    override class func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager {
+        guard let adType = AdMobAdType(rawValue: container.adType) else { throw .invalidAdType }
+        return AdMobRewardedManager(adType: adType,
+                                    adConfiguration: .init(adUnitId: container.adInformations.adUnitId,
+                                                           campaignId: container.adInformations.campaignId,
+                                                           creativeId: container.adInformations.creativeId,
+                                                           dspCreativeId: container.adInformations.dspCreativeId,
+                                                           dspRegion: container.adInformations.dspRegion),
+                                    cardConfiguration: .init(oguryTestModeEnabled: container.adInformations.settings.oguryTestModeEnabled,
+                                                             rtbTestModeEnabled: container.adInformations.settings.rtbTestModeEnabled,
+                                                             qaLabel: container.adInformations.settings.qaLabel),
+                                    viewController: nil,
+                                    adDelegate: nil)
     }
 }

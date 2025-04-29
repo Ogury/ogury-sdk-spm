@@ -6,9 +6,8 @@
 import UIKit
 import AdsCardLibrary
 import Foundation
-import MaxCardAdapter
+import AdMobCardAdapter
 import AdsCardAdapter
-import AppLovinSDK
 
 struct SdkLauncher: SdkLaunchable {
     static var rootViewController: UIViewController!
@@ -17,7 +16,7 @@ struct SdkLauncher: SdkLaunchable {
     lazy var logger: TestAppLogController = { TestAppLogController.shared }()
     
     private init() {
-        self.adapter = MaxAdsCardAdapter()
+        self.adapter = AdMobAdsCardAdapter(debugViewController:SdkLauncher.rootViewController)
     }
     
     func launch() async { await startAds() }
@@ -39,11 +38,5 @@ struct SdkLauncher: SdkLaunchable {
             return "OGY-3D6E42683F56"
         }
         return asset
-    }
-}
-
-extension UIWindow {
-    open override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake { ALSdk.shared().showMediationDebugger() }
     }
 }

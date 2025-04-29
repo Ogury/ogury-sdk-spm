@@ -367,14 +367,23 @@ struct AdsStorableContainer: Codable {
 
 extension AdCardContainer {
     var adAdapterOptions: AdViewOptions {
-        .init(adParameters: .init(adUnitId: adInformations.adUnitId,
-                                  campaignId: adInformations.campaignId,
-                                  creativeId: adInformations.creativeId,
-                                  dspCreativeId: adInformations.dspCreativeId,
-                                  dspRegion: adInformations.dspRegion),
-              cardConfiguration: .init(oguryTestModeEnabled: adInformations.settings.oguryTestModeEnabled,
-                                       rtbTestModeEnabled: adInformations.settings.rtbTestModeEnabled,
-                                       qaLabel: adInformations.settings.qaLabel))
+        let settings = SettingsController()
+        return .init(adParameters: .init(adUnitId: adInformations.adUnitId,
+                                         campaignId: adInformations.campaignId,
+                                         creativeId: adInformations.creativeId,
+                                         dspCreativeId: adInformations.dspCreativeId,
+                                         dspRegion: adInformations.dspRegion),
+                     cardConfiguration: .init(enableAdUnitEditing: settings.enableAdUnitEditing,
+                                              showCampaignId: settings.showCampaignId,
+                                              showCreativeId: settings.showCreativeId,
+                                              showDspFields: settings.showDspFields,
+                                              adDisplayName: name,
+                                              bulkModeEnabled: settings.bulkModeEnabled,
+                                              oguryTestModeEnabled: adInformations.settings.oguryTestModeEnabled,
+                                              showTestModeButton: settings.showTestMode,
+                                              rtbTestModeEnabled: adInformations.settings.rtbTestModeEnabled,
+                                              killWebviewMode: settings.killWebviewMode,
+                                              qaLabel: adInformations.settings.qaLabel))
     }
 }
 

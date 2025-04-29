@@ -5,7 +5,7 @@
 //  Created by Jerome TONNELIER on 23/04/2025.
 //
 
-import Foundation
+import UIKit
 import AdsCardAdapter
 
 protocol SdkLaunchable {
@@ -15,4 +15,5 @@ protocol SdkLaunchable {
     func launch() async
     func startAds(forceStart: Bool) async
     static var assetKey: String { get }
+    static var rootViewController: UIViewController! { get set }
 }

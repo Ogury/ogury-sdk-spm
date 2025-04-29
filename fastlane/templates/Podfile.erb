@@ -87,6 +87,12 @@ target "MaxTestApp" do
   pod 'AppLovinSDK'
   pod 'AppLovinMediationOguryPresageAdapter'
 end
+target "AdMobTestApp" do
+  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  pod 'InMobiCMP', '2.0.1'
+  pod 'Google-Mobile-Ads-SDK'
+  pod 'OguryMediationGoogleMobileAds'
+end
 
 target "AdsTestApp-Devc-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"

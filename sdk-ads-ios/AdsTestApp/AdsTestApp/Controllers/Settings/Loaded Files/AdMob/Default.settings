@@ -1,0 +1,34 @@
+{
+  "cards" : [],
+  "settings" : {
+    "name" : "Untitled Ad Set",
+    "importMethod" : "file",
+    "showCampaignId" : false,
+    "showSpecificOptions" : false,
+    "bulkModeEnabled" : false,
+    "killWebviewMode" : "none",
+    "showTestMode" : false,
+    "showCreativeId" : false,
+    "enableAdUnitEditing" : true,
+    "os" : "iOS",
+    "startSDKWithApplication" : true,
+    "showDspFields" : false,
+    "logSettings" : {
+      "allowedTypes" : [
+        "Callbacks",
+        "Monitoring"
+      ],
+      "allowedDisplay" : 19
+    },
+    "numberOfSdkStart" : 3,
+    "permissions" :  {
+        "settings" : true,
+        "logs" : true,
+        "add" : true,
+        "export" : true,
+        "bulkMode" : true,
+        "devFeatures" : true,
+        "settingPermissions" : 2
+    }
+  }
+}

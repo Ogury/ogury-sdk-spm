@@ -37,6 +37,8 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		43EB25BD2DBFAC49002F170A /* AdMobCardAdapter */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = AdMobCardAdapter;
 			sourceTree = "<group>";
 		};
@@ -204,13 +206,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdMobCardAdapter/Pods-AdMobCardAdapter-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdMobCardAdapter/Pods-AdMobCardAdapter-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

@@ -15,6 +15,7 @@ import OMSDK_Ogury
 import UIKit
 import SwiftUI
 import GoogleMobileAds
+import AdSupport
 
 internal enum AdMobAction: AdsCardAdapterAction {
     var name: String {
@@ -38,11 +39,11 @@ internal enum AdMobAction: AdsCardAdapterAction {
     case showDebugger(_: UIViewController)
 }
 
-struct AdMobAdsCardAdapter: AdsCardAdaptable {
-    init(debugViewController: UIViewController) {
+public struct AdMobAdsCardAdapter: AdsCardAdaptable {
+    public init(debugViewController: UIViewController) {
         actions = [AdMobAction.showDebugger(debugViewController)]
     }
-    var availableAdFormats: [AdAdapterFormatSection] = [
+    public var availableAdFormats: [AdAdapterFormatSection] = [
         .init(title: "Google Ad Mob", formats: [
             AdMobAdType.default(.interstitial),
             AdMobAdType.default(.rewardedVideo),
@@ -51,7 +52,7 @@ struct AdMobAdsCardAdapter: AdsCardAdaptable {
         ])
     ]
     
-    var sdkVersions: String {
+    public var sdkVersions: String {
         let coreSdkVersion = String(describing: OGCInternal.shared().getVersion())
         let adMobSdkVersion = string(for: MobileAds.shared.versionNumber)
         let ogurySdkVersion = Ogury.sdkVersion()
@@ -68,14 +69,14 @@ OM SDK Version : \(omid)
 """
     }
     
-    var actions: [any AdsCardAdapterAction]
+    public var actions: [any AdsCardAdapterAction]
     
-    func adManager(for adFormat: any AdAdapterFormat,
+    public func adManager(for adFormat: any AdAdapterFormat,
                    options: AdViewOptions,
                    viewController: UIViewController?,
                    adDelegate: (any AdLifeCycleDelegate)?) throws(AdsCardAdapterError) -> any AdManager {
         guard let adMobType = adFormat as? AdMobAdType else { throw .noSuitableAdapterAvailable }
-        var adManager = adMobType.adManager(viewController: viewController, adDelegate: adDelegate)
+        let adManager = adMobType.adManager(viewController: viewController, adDelegate: adDelegate)
         adManager.adConfiguration = AdConfiguration.init(adUnitId: adMobType.adUnit)
         adManager.cardConfiguration = options.cardConfiguration
         adManager.cardConfiguration.oguryTestModeEnabled = false
@@ -84,20 +85,22 @@ OM SDK Version : \(omid)
         return adManager
     }
     
-    func adAdapterFormat(fromRawValue rawValue: Int) throws(AdsCardAdapterError) -> any AdAdapterFormat {
+    public func adAdapterFormat(fromRawValue rawValue: Int) throws(AdsCardAdapterError) -> any AdAdapterFormat {
         guard let adFormat = AdMobAdType(rawValue: rawValue) else { throw .noSuitableAdapterAvailable }
         return adFormat
     }
     
-    func startSdk() async {
-        await MobileAds.shared.start()
+    public func startSdk() async {
+        MobileAds.shared.requestConfiguration.testDeviceIdentifiers = [ ASIdentifierManager().advertisingIdentifier.uuidString ]
+        let res = await MobileAds.shared.start()
+        print(res.adapterStatusesByClassName)
     }
     
-    func resetSdk() {
+    public func resetSdk() {
         
     }
     
-    func add(logger: any OguryLogger) {
+    public func add(logger: any OguryLogger) {
         OGAInternal.shared().add(logger)
     }
 }
