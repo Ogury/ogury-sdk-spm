@@ -14,6 +14,7 @@ pipeline {
         RBENV_SHELL = 'zsh'
         SONAR_CLOUD_TOKEN = credentials('SONAR_CLOUD_TOKEN')
         ARTIFACTORY_TOKEN = credentials('ARTIFACTORY_TOKEN')
+        GIT_TAG = sh(script: 'git describe --tags --abbrev=0', returnStdout: true).trim()
     }
 
     stages {
@@ -41,10 +42,12 @@ pipeline {
             }
             steps {
                 script {
+                    echo "GIT_TAG is: ${env.GIT_TAG}"
+
                     // Default to false
                     def isArtifactory = false
-                    def targetThreshold = "all"
                     def killModeEnabled = false
+                    def targetThreshold = "all"
                     
                     // Check if a tag exists and contains '-art'
                     if (env.GIT_TAG && (env.GIT_TAG.contains('-art') || env.GIT_TAG.contains('release-') )) {
@@ -57,6 +60,9 @@ pipeline {
                     if (env.GIT_TAG && env.GIT_TAG.contains('-ads-')) {
                         targetThreshold = "ads"
                     }
+                    if (env.GIT_TAG && env.GIT_TAG.contains('wrapper')) {
+                        targetThreshold = "sdk"
+                    }
                     if (env.GIT_TAG && env.GIT_TAG.contains('-killModeEnabled')) {
                         killModeEnabled = true
                     }
@@ -65,17 +71,6 @@ pipeline {
                     echo "Artifactory is set to: ${isArtifactory}"
                     echo "Target Threshold is set to: ${targetThreshold}"
                     echo "killModeEnabled is set to: ${killModeEnabled}"
-        
-                    // // Run the first shell script (setting up environment)
-                    // sh '''#!/bin/zsh -l
-                    //     source ~/.zshrc
-                    //     source $HOME/.rvm/scripts/rvm
-                    //     rvm use 3.3.1 --default
-                    //     ruby -v
-                    //     gem uninstall bundler
-                    //     gem install bundler
-                    //     bundle install
-                    // '''
         
                     // Run the Fastlane build with artifactory set based on the tag
                     sh """#!/bin/zsh -l
@@ -186,6 +181,20 @@ pipeline {
                             error "Unknown framework type: ${elements[1]}"
                     }
 
+                    def targetThreshold = "all"
+                    if (env.GIT_TAG && env.GIT_TAG.contains('-core-')) {
+                        targetThreshold = "core"
+                    }
+                    if (env.GIT_TAG && env.GIT_TAG.contains('-ads-')) {
+                        targetThreshold = "ads"
+                    }
+                    if (env.GIT_TAG && env.GIT_TAG.contains('wrapper')) {
+                        targetThreshold = "sdk"
+                    }
+                    if (env.GIT_TAG && env.GIT_TAG.contains('-killModeEnabled')) {
+                        killModeEnabled = true
+                    }
+
                     def isBetaOrRelease = (envType == "beta" || envType == "release")
                     if (isBetaOrRelease) {
                         withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
@@ -193,11 +202,11 @@ pipeline {
                         }
                     }
         
-                    echo "Deploying ${framework} in ${envType} mode, artifactory: ${isArtifactory}, killModeEnabled: ${killModeEnabled}"
+                    echo "Deploying ${framework} in ${envType} mode, artifactory: ${isArtifactory}, targetThreshold: ${targetThreshold}, killModeEnabled: ${killModeEnabled}"
 
                     // Main deployment logic
                     sh """#!/bin/zsh -l
-                        bundle exec fastlane deploy_${framework}_framework environment:${envType} tag:${env.TAG_NAME} artifactory:${isArtifactory} killModeEnabled:${killModeEnabled}
+                        bundle exec fastlane deploy_${framework}_framework environment:${envType} tag:${env.TAG_NAME} artifactory:${isArtifactory} targetThreshold:${targetThreshold} killModeEnabled:${killModeEnabled}
                     """
         
                     // Handle additional steps for beta/release
@@ -215,7 +224,7 @@ pipeline {
         
                         sshagent(['Ogy-JenkinsAuth']) {
                             sh """#!/bin/zsh -l
-                                bundle exec fastlane deploy_${framework}_podspec environment:${envType} tag:${env.TAG_NAME} artifactory:${isArtifactory}
+                                bundle exec fastlane deploy_${framework}_podspec environment:${envType} tag:${env.TAG_NAME} artifactory:${isArtifactory} targetThreshold:${targetThreshold}
                             """
                         }
                     }

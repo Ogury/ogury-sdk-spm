@@ -1,0 +1,67 @@
+source "https://github.com/Ogury/ogury-cocoapods-repository.git"
+source 'https://cdn.cocoapods.org/'
+
+<% if artifactory_repository_name != nil %>
+plugin 'cocoapods-art', :sources => [
+  '<%= artifactory_repository_name %>',
+]
+<% end %>
+
+platform :ios, "12.0"
+use_frameworks!
+workspace "OgurySdks.xcworkspace"
+
+install! 'cocoapods',:warn_for_multiple_pod_sources => false, :warn_for_unused_master_specs_repo => false
+
+target 'LegacyTestApp' do
+  project 'sdk-ads-ios/LegacyTestApp/LegacyTestApp'
+  pod 'RxSwift', "6.2.0" # 6.5+ introduced concurrency supports which breaks with iOS under 13
+  pod 'RxCocoa', "6.2.0" # 6.5+ introduced concurrency supports which breaks with iOS under 13
+  pod 'Yaml'
+  pod 'DDPopoverBackgroundView'
+  pod "SnapKit"
+end
+
+#Ads
+target "OguryAds-art" do
+  project "sdk-ads-ios/OguryAdsSDK"
+
+  pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
+end
+
+target "OguryCoreTests" do
+  project "sdk-core-ios/OguryCore"
+  pod "OCMock", :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
+end
+
+target "OguryAdsTests" do
+  project "sdk-ads-ios/OguryAdsSDK"
+  pod "OCMock", :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
+end
+
+#Wrapper
+target 'OguryWrapperTests' do
+  project "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj/"
+    inherit! :complete
+    pod 'OCMock', :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
+end
+
+target 'OguryWrapper-art' do
+  project "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj/"
+  pod 'OguryCore<%= framework_suffix %>', '<%= ogury_core_version %>'
+  pod "OguryAds<%= framework_suffix %>", "<%= ogury_ads_version %>"
+end
+
+target 'OguryWrapperTestApp' do
+  project "sdk-wrapper-ios/OguryWrapperTestApp/OguryWrapperTestApp.xcodeproj"
+  pod 'InMobiCMP', '2.0.1'
+end
+
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = "10.0"
+    end
+  end
+end

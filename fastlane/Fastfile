@@ -59,27 +59,21 @@ platform :ios do
         end
       end
 
+      if targetThreshold == "sdk"
+        build_wrapper(
+          configuration: configuration,
+          sdk: sdk,
+          artifactory: artifactory
+          )
+      end
+
       if targetThreshold == "all"
         build_wrapper(
           configuration: configuration,
           sdk: sdk,
           artifactory: artifactory
           )
-
-        if artifactory
-          build_card_library(
-            configuration: configuration,
-            sdk: sdk,
-            artifactory: artifactory
-            )
-        end
-    end
-
-      # build_test_app(
-      #   configuration: configuration,
-      #   sdk: sdk,
-      #   artifactory: artifactory
-      #   )
+      end
     end
   end
 
@@ -128,6 +122,8 @@ platform :ios do
       templatePath = "./fastlane/templates/PodfileCore.erb"
     elsif targetThreshold == "ads"
       templatePath = "./fastlane/templates/PodfileAds.erb"
+    elsif targetThreshold == "sdk"
+      templatePath = "./fastlane/templates/PodfileSdk.erb"
     end
     
     artifactory_repository_name = get_artifactory_repository_name(environment)
@@ -349,7 +345,7 @@ lane :test do |options|
     artifactory = options[:artifactory] ? options[:artifactory] : false
 
     update_internal_cocoapods environment: environment
-    generate_podfile(environment:environment, targetThreshold:"all")
+    generate_podfile(environment:environment, targetThreshold:"sdk")
     cocoapods(
       podfile: "./Podfile",
       repo_update: true
