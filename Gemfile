@@ -4,7 +4,7 @@ gem "cocoapods", '1.16.2'
 gem "fastlane", "2.225"
 gem "artifactory"
 gem "cocoapods-art"
-gem 'activesupport', '~> 6.1'
+gem 'activesupport', '~> 7.0.8'
 
 plugins_path = File.join(File.dirname(__FILE__), 'fastlane', 'Pluginfile')
 eval_gemfile(plugins_path) if File.exist?(plugins_path)
