@@ -105,10 +105,10 @@ struct MainFeature: Reducer {
         var showLogs = SettingsController().showLogsSheet
         
         mutating func removeCardFor(managerId: UUID) {
-            adFormats = adFormats.map { card in
+            adFormats = adFormats.compactMap { card in
                 var card = card
-                card.adManagers = card.adManagers.filter({ $0.id == managerId })
-                return card
+                card.adManagers = card.adManagers.filter({ $0.id != managerId })
+                return card.adManagers.isEmpty ? nil : card
             }
             storeCards()
         }

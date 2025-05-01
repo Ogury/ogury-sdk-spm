@@ -248,6 +248,7 @@ class MaxAdManager: NSObject, AdManager {
         events = PassthroughSubject<AdLifeCycleEvent, Never>()
         self.adType = adType
         self.adConfiguration = adConfiguration
+        self.adDelegate = adDelegate
         self.cardConfiguration = cardConfiguration
         self.viewController = viewController
         proxy = ALDelegateProxy()
