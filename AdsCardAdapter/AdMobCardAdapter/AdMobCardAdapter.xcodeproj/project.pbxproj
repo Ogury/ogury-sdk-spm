@@ -30,6 +30,8 @@
 		3CEBA4781A6DC6115B8A7709 /* Pods_AdMobCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdMobCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB25BB2DBFAC49002F170A /* AdMobCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdMobCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB25D72DBFAC67002F170A /* AdsCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB284E2DC25E75002F170A /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB28512DC25F0A002F170A /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB3AA5A2A4DB995AB50124E /* Pods-AdMobCardAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdMobCardAdapter.release.xcconfig"; path = "Target Support Files/Pods-AdMobCardAdapter/Pods-AdMobCardAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		D19BE47C1EE3BE9EDF9F30CB /* Pods-AdMobCardAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdMobCardAdapter.debug.xcconfig"; path = "Target Support Files/Pods-AdMobCardAdapter/Pods-AdMobCardAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +80,8 @@
 		43EB25D62DBFAC67002F170A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43EB28512DC25F0A002F170A /* OguryCore.framework */,
+				43EB284E2DC25E75002F170A /* OguryCore.framework */,
 				43EB25D72DBFAC67002F170A /* AdsCardAdapter.framework */,
 				3CEBA4781A6DC6115B8A7709 /* Pods_AdMobCardAdapter.framework */,
 			);

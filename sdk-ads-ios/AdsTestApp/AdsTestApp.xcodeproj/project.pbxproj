@@ -430,21 +430,15 @@
 		43EB269D2DBFCC84002F170A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 43EB26712DBFCC84002F170A /* SnapKit */; };
 		43EB269E2DBFCC84002F170A /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43EB26752DBFCC84002F170A /* SwiftMessages */; };
 		43EB269F2DBFCC84002F170A /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 43EB26732DBFCC84002F170A /* UserDefault */; };
-		43EB26A02DBFCC84002F170A /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190D2DAE89B2002F170A /* OguryAds.framework */; };
 		43EB26A22DBFCC84002F170A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
-		43EB26A32DBFCC84002F170A /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190F2DAE89B2002F170A /* OguryCore.framework */; };
-		43EB26A42DBFCC84002F170A /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20BB2C6A60C400DF24AB /* OgurySdk.framework */; };
 		43EB26A62DBFCC84002F170A /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
 		43EB26A82DBFCC84002F170A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
 		43EB26A92DBFCC84002F170A /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
 		43EB26AA2DBFCC84002F170A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41F2AA5D0C300486AF2 /* Assets.xcassets */; };
 		43EB26AB2DBFCC84002F170A /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434F84FB2ACFE5ED005077F5 /* Asset.xcassets */; };
 		43EB26B12DBFCC84002F170A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41C2AA5D0C200486AF2 /* Main.storyboard */; };
-		43EB26B52DBFCC84002F170A /* OguryAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190D2DAE89B2002F170A /* OguryAds.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43EB26B62DBFCC84002F170A /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43EB26B82DBFCC84002F170A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		43EB26B92DBFCC84002F170A /* OgurySdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20BB2C6A60C400DF24AB /* OgurySdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		43EB26BA2DBFCC84002F170A /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190F2DAE89B2002F170A /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43EB26C82DBFCD3C002F170A /* shareImageData.png in Resources */ = {isa = PBXBuildFile; fileRef = 43EB26C62DBFCD3C002F170A /* shareImageData.png */; };
 		43EB26C92DBFCD3C002F170A /* UTType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB26C72DBFCD3C002F170A /* UTType+Extension.swift */; };
 		43EB26CE2DBFCD50002F170A /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43EB26CA2DBFCD50002F170A /* Asset.xcassets */; };
@@ -610,11 +604,8 @@
 			dstSubfolderSpec = 10;
 			files = (
 				43EB26D92DC0C5E3002F170A /* AdMobCardAdapter.framework in Embed Frameworks */,
-				43EB26B52DBFCC84002F170A /* OguryAds.framework in Embed Frameworks */,
 				43EB26B62DBFCC84002F170A /* AdsCardLibrary.framework in Embed Frameworks */,
 				43EB26B82DBFCC84002F170A /* AdsCardAdapter.framework in Embed Frameworks */,
-				43EB26B92DBFCC84002F170A /* OgurySdk.framework in Embed Frameworks */,
-				43EB26BA2DBFCC84002F170A /* OguryCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -902,11 +893,8 @@
 				43EB269D2DBFCC84002F170A /* SnapKit in Frameworks */,
 				43EB269E2DBFCC84002F170A /* SwiftMessages in Frameworks */,
 				43EB269F2DBFCC84002F170A /* UserDefault in Frameworks */,
-				43EB26A02DBFCC84002F170A /* OguryAds.framework in Frameworks */,
 				43EB26D82DC0C5E3002F170A /* AdMobCardAdapter.framework in Frameworks */,
 				43EB26A22DBFCC84002F170A /* AdsCardAdapter.framework in Frameworks */,
-				43EB26A32DBFCC84002F170A /* OguryCore.framework in Frameworks */,
-				43EB26A42DBFCC84002F170A /* OgurySdk.framework in Frameworks */,
 				43EB26A62DBFCC84002F170A /* AdsCardLibrary.framework in Frameworks */,
 				682EB25E99060FCFF27A4E13 /* Pods_AdMobTestApp.framework in Frameworks */,
 			);
