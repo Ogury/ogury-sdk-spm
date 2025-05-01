@@ -8,6 +8,7 @@ import Foundation
 import OguryCardAdapter
 import AdsCardAdapter
 import AdSupport
+import UIKit
 
 struct SdkLauncher: SdkLaunchable  {
     static var rootViewController: UIViewController!
