@@ -216,6 +216,7 @@ class AdMobManager: NSObject, AdManager {
         self.adConfiguration = adConfiguration
         self.cardConfiguration = cardConfiguration
         self.viewController = viewController
+        self.adDelegate = adDelegate
         proxy = AdMobDelegateProxy()
         super.init()
         proxy.adManager = self
