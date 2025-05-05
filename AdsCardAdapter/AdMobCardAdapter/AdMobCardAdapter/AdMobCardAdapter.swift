@@ -16,6 +16,7 @@ import UIKit
 import SwiftUI
 import GoogleMobileAds
 import AdSupport
+import AppTrackingTransparency
 
 internal enum AdMobAction: AdsCardAdapterAction {
     var name: String {
@@ -32,7 +33,10 @@ internal enum AdMobAction: AdsCardAdapterAction {
     
     func perform()  {
         switch self {
-            case let .showDebugger(viewController): MobileAds.shared.presentAdInspector(from: viewController)
+            case let .showDebugger(viewController):
+                MobileAds.shared.presentAdInspector(from: viewController) { error in
+                    print(error)
+                }
         }
     }
     
@@ -91,8 +95,9 @@ OM SDK Version : \(omid)
     }
     
     public func startSdk() async {
-        MobileAds.shared.requestConfiguration.testDeviceIdentifiers = [ ASIdentifierManager().advertisingIdentifier.uuidString ]
+//        MobileAds.shared.requestConfiguration.testDeviceIdentifiers = [ "dfa33b6637ac35b47c94d295970c272c" ]
         let res = await MobileAds.shared.start()
+        Ogury.setLogLevel(.all)
         print(res.adapterStatusesByClassName)
     }
     
