@@ -254,7 +254,7 @@ struct AdViewFeature {
                                 if state.showAfterLoad, canShow {
                                     return .showAfterLoad
                                 }
-                                return event.newAction
+                                return event.action
                                 
                             case .adDidFailToLoad, .adDidFailToDisplay, .adDidFail:
                                 if state.enableFeedbacks {
@@ -263,7 +263,7 @@ struct AdViewFeature {
                                 fallthrough
                                 
                             default:
-                                return event.newAction
+                                return event.action
                         }
                     }
             }.cancellable(id: NewAdCancel.load(state.adManager.id)),
@@ -366,7 +366,7 @@ struct AdViewFeature {
                                         .receive(on: DispatchQueue.main)
                                         .map { [state] event in
                                             state.log(event: event)
-                                            return event.newAction
+                                            return event.action
                                         }
                                 }.cancellable(id: NewAdCancel.show(state.adManager.id)),
                                 .run { [state] send in
@@ -398,7 +398,10 @@ struct AdViewFeature {
                     
                 case .showAfterLoad:
                     state.showAfterLoad = false
-                    return .send(.adBarAction(.showButtonTapped))
+                    return .merge(
+                        .send(.updateEvent(.adLoaded(canShow: true))),
+                        .send(.adBarAction(.showButtonTapped))
+                    )
                     
                 case .bannerAction:
                     state.adManager.close()
@@ -477,7 +480,7 @@ struct AdViewFeature {
 }
 
 extension AdLifeCycleEvent {
-    var newAction: AdViewFeature.Action {
+    var action: AdViewFeature.Action {
         switch self {
             case let .adDidFailToLoad(error): return .error(error)
             case let .adDidFailToDisplay(error): return .error(error)

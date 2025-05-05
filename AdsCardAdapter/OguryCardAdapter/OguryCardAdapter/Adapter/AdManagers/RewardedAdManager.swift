@@ -78,7 +78,15 @@ public final class RewardedAdManager: OguryAdManager {
     }
     
     public func show() {
-        //TODO: implement
+        if ad == nil {
+            ad = OguryRewardedAd(adUnitId: adUnitId)
+            ad.delegate = proxyDelegate
+        }
+        append(.adDisplaying)
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.ad?.show(in: self.viewController!)
+        }
     }
     
     public func close() {
