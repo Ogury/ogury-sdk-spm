@@ -95,7 +95,7 @@ OM SDK Version : \(omid)
     }
     
     public func startSdk() async {
-//        MobileAds.shared.requestConfiguration.testDeviceIdentifiers = [ "dfa33b6637ac35b47c94d295970c272c" ]
+        MobileAds.shared.requestConfiguration.testDeviceIdentifiers = [ "dfa33b6637ac35b47c94d295970c272c" ]
         let res = await MobileAds.shared.start()
         Ogury.setLogLevel(.all)
         print(res.adapterStatusesByClassName)

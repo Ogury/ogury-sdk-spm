@@ -53,7 +53,8 @@ class MaxBannerAdManager: MaxAdManager {
     override func close() {
         ad?.removeFromSuperview()
         ad.delegate = nil
-        ad =  nil
+        ad = nil
+        append(.adClosed)
     }
     
     override class func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager {

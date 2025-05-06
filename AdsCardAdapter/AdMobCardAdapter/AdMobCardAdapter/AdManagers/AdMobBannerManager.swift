@@ -25,6 +25,11 @@ class AdMobBannerManager: AdMobManager {
         ad = nil
     }
     
+    override func close() {
+        ad = nil
+        append(.adClosed)
+    }
+    
     override func load() async {
         await super.load()
         await instanciateAd()
