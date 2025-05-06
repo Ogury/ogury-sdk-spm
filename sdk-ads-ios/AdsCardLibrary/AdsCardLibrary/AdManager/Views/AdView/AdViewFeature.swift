@@ -55,6 +55,12 @@ struct AdViewFeature {
                 case .smallBanner, .mrec: bannerContainer = .init(bannerType: adManager.adFormat)
                 case .interstitial, .thumbnail: ()
             }
+            if adManager.adUnitId.isTestModeOn {
+                tags.insert(.oguryTestMode)
+            }
+            if adManager.cardConfiguration.rtbTestModeEnabled {
+                tags.insert(.rtbTestMode)
+            }
         }
         
         //MARK: Properties
@@ -232,13 +238,13 @@ struct AdViewFeature {
         )
     }
     
-    enum NewAdCancel: Hashable {
+    enum AdCancel: Hashable {
         case load(_: UUID), show(_: UUID)
     }
     
     func load(_ state: State) -> Effect<AdViewFeature.Action> {
         .merge(
-            .cancel(id: NewAdCancel.load(state.adManager.id)),
+            .cancel(id: AdCancel.load(state.adManager.id)),
             .publisher { [state] in
                 state
                     .adManager
@@ -266,11 +272,11 @@ struct AdViewFeature {
                                 return event.action
                         }
                     }
-            }.cancellable(id: NewAdCancel.load(state.adManager.id)),
+            }.cancellable(id: AdCancel.load(state.adManager.id)),
             .run { [state] send in
                 await state.adManager.load()
                 await send(.resetReward)
-            }.cancellable(id: NewAdCancel.load(state.adManager.id))
+            }.cancellable(id: AdCancel.load(state.adManager.id))
         )
     }
     
@@ -280,11 +286,9 @@ struct AdViewFeature {
                 Reduce() { state, action in
                     switch (oldValue.isTestModeOn, newValue.isTestModeOn) {
                         case (false, true):
-                            state.testModeEnabled = true
                             return .send(.checkForTestMode)
                             
                         case (true, false):
-                            state.testModeEnabled = false
                             return .send(.checkForTestMode)
                         default: return .none
                     }
@@ -372,7 +376,7 @@ struct AdViewFeature {
                                 UIImpactFeedbackGenerator().impactOccurred()
                             }
                             return .merge(
-                                .cancel(id: NewAdCancel.show(state.adManager.id)),
+                                .cancel(id: AdCancel.show(state.adManager.id)),
                                 .publisher {
                                     state
                                         .adManager
@@ -382,10 +386,10 @@ struct AdViewFeature {
                                             state.log(event: event)
                                             return event.action
                                         }
-                                }.cancellable(id: NewAdCancel.show(state.adManager.id)),
+                                }.cancellable(id: AdCancel.show(state.adManager.id)),
                                 .run { [state] send in
                                     state.adManager.show()
-                                }.cancellable(id: NewAdCancel.show(state.adManager.id))
+                                }.cancellable(id: AdCancel.show(state.adManager.id))
                             )
                             
                         case .loadAndShowButtonTapped:
@@ -518,7 +522,12 @@ extension AdViewFeature.State {
     }
     var adUnitId: String {
         get { adManager.adConfiguration.adUnitId }
-        set { adManager.adConfiguration.adUnitId = newValue }
+        set {
+            var conf = adManager.adConfiguration ?? .init(adUnitId: newValue)
+            conf.adUnitId = newValue
+            // need to use this method to update the ad if needed
+            adManager.update(conf)
+        }
     }
     var campaignId: String {
         get { adManager.adConfiguration.campaignId ?? "" }
