@@ -276,6 +276,20 @@ struct AdViewFeature {
     
     var body: some ReducerOf<Self> {
         BindingReducer()
+            .onChange(of: \.adUnitId) { oldValue, newValue in
+                Reduce() { state, action in
+                    switch (oldValue.isTestModeOn, newValue.isTestModeOn) {
+                        case (false, true):
+                            state.testModeEnabled = true
+                            return .send(.checkForTestMode)
+                            
+                        case (true, false):
+                            state.testModeEnabled = false
+                            return .send(.checkForTestMode)
+                        default: return .none
+                    }
+                }
+            }
         Scope(state: \.actionBar,
               action: Action.actionBarCasePath,
               child: { AdActionBarFeature() }
