@@ -78,16 +78,26 @@ OM SDK Version : \(omid)
                    options: AdViewOptions,
                    viewController: UIViewController?,
                    adDelegate: (any AdLifeCycleDelegate)?) throws(AdsCardAdapterError) -> any AdManager {
-        throw .noSuitableAdapterAvailable
+        guard let adType = adFormat as? AdType else {
+            throw .noSuitableAdapterAvailable
+        }
+        let adManager = try adType.adManager(viewController: viewController, adDelegate: adDelegate)
+        adManager.adConfiguration = AdConfiguration.init(adUnitId: adType.adUnit)
+        adManager.cardConfiguration = options.cardConfiguration
+        adManager.cardConfiguration.oguryTestModeEnabled = false
+        adManager.cardConfiguration.rtbTestModeEnabled = false
+        adManager.cardConfiguration.showRtbTestMode = false
+        return adManager
     }
     
     func adAdapterFormat(fromRawValue rawValue: Int) throws(AdsCardAdapterError) -> any AdAdapterFormat {
-        throw .noSuitableAdapterAvailable
+        guard let adFormat = AdType(rawValue: rawValue) else { throw .noSuitableAdapterAvailable }
+        return adFormat
     }
     
     func startSdk() async {
         // Create a request builder with app key and ad formats. Add User ID if available
-        let requestBuilder = LPMInitRequestBuilder(appKey: "2037150c5")
+        let requestBuilder = LPMInitRequestBuilder(appKey: "21f32a64d")
             .withLegacyAdFormats([IS_INTERSTITIAL, IS_BANNER, IS_REWARDED_VIDEO])
         // Build the initial request
         let initRequest = requestBuilder.build()
