@@ -64,8 +64,8 @@ enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
     
     var id: UUID {
         switch self {
-            case let .headerBidding(adFormat): return "ULP\(adFormat.name)".uuid
-            case let .waterfall(adFormat): return "ULP\(adFormat.name)".uuid
+            case let .headerBidding(adFormat): return "ULPHB\(adFormat.name)".uuid
+            case let .waterfall(adFormat): return "ULPWF\(adFormat.name)".uuid
         }
     }
     

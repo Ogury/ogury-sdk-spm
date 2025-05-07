@@ -33,6 +33,7 @@ class ULPBannerAdManager: ULPAdManager {
             return
         }
         await super.load()
+        await instanciateAd()
         await ad.loadAd(with: viewController)
     }
     

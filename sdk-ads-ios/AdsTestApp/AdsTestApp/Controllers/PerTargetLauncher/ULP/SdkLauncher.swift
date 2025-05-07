@@ -6,7 +6,7 @@
 import UIKit
 import AdsCardLibrary
 import Foundation
-import AdMobCardAdapter
+import UnityLevelPlayCardAdapter
 import AdsCardAdapter
 
 struct SdkLauncher: SdkLaunchable {
@@ -16,7 +16,7 @@ struct SdkLauncher: SdkLaunchable {
     lazy var logger: TestAppLogController = { TestAppLogController.shared }()
     
     private init() {
-        self.adapter = AdMobAdsCardAdapter(debugViewController:SdkLauncher.rootViewController)
+        self.adapter = UnityLevelPlayAdsCardAdapter(testSuiteViewController:SdkLauncher.rootViewController)
     }
     
     func launch() async { await startAds() }
@@ -35,7 +35,7 @@ struct SdkLauncher: SdkLaunchable {
     
     static var assetKey: String {
         guard let asset = Bundle.main.infoDictionary?["AssetKey"] as? String else {
-            return "OGY-2D4CA679DE35"
+            return "OGY-98FE43C36168"
         }
         return asset
     }

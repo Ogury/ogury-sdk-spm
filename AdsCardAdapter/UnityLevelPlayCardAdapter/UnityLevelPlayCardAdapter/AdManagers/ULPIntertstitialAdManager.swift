@@ -25,6 +25,7 @@ class ULPIntertstitialAdManager: ULPAdManager {
     
     override func load() async {
         await super.load()
+        await instanciateAd()
         ad.loadAd()
     }
     

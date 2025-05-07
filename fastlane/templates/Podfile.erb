@@ -100,6 +100,11 @@ target "AdMobTestApp" do
   pod 'Google-Mobile-Ads-SDK'
   pod 'OguryMediationGoogleMobileAds-Prod', '5.1.0.0-rc-1.0.3'
 end
+target "UnityLevelPlayTestApp" do
+  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  pod 'InMobiCMP', '2.0.1'
+  pod 'Google-Mobile-Ads-SDK'
+end
 
 target "AdsTestApp-Devc-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"

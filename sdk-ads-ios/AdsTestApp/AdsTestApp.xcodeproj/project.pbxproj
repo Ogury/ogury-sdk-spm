@@ -110,6 +110,67 @@
 		434F84FE2ACFE5F8005077F5 /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434F84FB2ACFE5ED005077F5 /* Asset.xcassets */; };
 		434F85012ACFE6C8005077F5 /* config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 434F85002ACFE6C8005077F5 /* config.debug.xcconfig */; };
 		434F85162AD00DC2005077F5 /* config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 434F85022ACFE6D5005077F5 /* config.debug.xcconfig */; };
+		4373B44B2DCB61F300E1702F /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
+		4373B44C2DCB61F300E1702F /* AddFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84AE2AC3008C005077F5 /* AddFeature.swift */; };
+		4373B44D2DCB61F300E1702F /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F849C2AC2CC54005077F5 /* AppFeature.swift */; };
+		4373B44E2DCB61F300E1702F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A12AC2CD2B005077F5 /* MainView.swift */; };
+		4373B4502DCB61F300E1702F /* ImportFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369FF2CF4CB700078EF67 /* ImportFeature.swift */; };
+		4373B4512DCB61F300E1702F /* AdMobConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BF82D94554D00BE53A1 /* AdMobConsentManager.swift */; };
+		4373B4522DCB61F300E1702F /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43236A002CF4CB700078EF67 /* ImportView.swift */; };
+		4373B4532DCB61F300E1702F /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
+		4373B4542DCB61F300E1702F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED41A2AA5D0C200486AF2 /* MainViewController.swift */; };
+		4373B4552DCB61F300E1702F /* InmobiConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* InmobiConsentManager.swift */; };
+		4373B4562DCB61F300E1702F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED4162AA5D0C200486AF2 /* AppDelegate.swift */; };
+		4373B4572DCB61F300E1702F /* PrivacyDataFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */; };
+		4373B4582DCB61F300E1702F /* PrivacyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */; };
+		4373B4592DCB61F300E1702F /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
+		4373B45A2DCB61F300E1702F /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
+		4373B45B2DCB61F300E1702F /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A82AC2DF0C005077F5 /* AppSettingsView.swift */; };
+		4373B45C2DCB61F300E1702F /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BFF2D9457ED00BE53A1 /* ApplicationDelegate.swift */; };
+		4373B45D2DCB61F300E1702F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED4182AA5D0C200486AF2 /* SceneDelegate.swift */; };
+		4373B45E2DCB61F300E1702F /* DetailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5BE6322B21F40F0010B995 /* DetailListView.swift */; };
+		4373B45F2DCB61F300E1702F /* TestAppLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7552CA44BC5001086FE /* TestAppLogFormatter.swift */; };
+		4373B4602DCB61F300E1702F /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
+		4373B4612DCB61F300E1702F /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84AD2AC3008C005077F5 /* AddView.swift */; };
+		4373B4622DCB61F300E1702F /* NotificationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C1D15A2B7E672C006F2D23 /* NotificationMessage.swift */; };
+		4373B4632DCB61F300E1702F /* DetailListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF117682AF95052004BE519 /* DetailListFeature.swift */; };
+		4373B4642DCB61F300E1702F /* LinkPresentationItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8E2B3491DC00037FE1 /* LinkPresentationItemSource.swift */; };
+		4373B4652DCB61F300E1702F /* MainFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A22AC2CD2B005077F5 /* MainFeature.swift */; };
+		4373B4662DCB61F300E1702F /* AppSettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A92AC2DF0C005077F5 /* AppSettingsFeature.swift */; };
+		4373B4672DCB61F300E1702F /* LogOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7482CA42FF1001086FE /* LogOptionView.swift */; };
+		4373B4682DCB61F300E1702F /* LogOptionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7472CA42FF1001086FE /* LogOptionFeature.swift */; };
+		4373B46A2DCB61F300E1702F /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9206212CCBE09100916482 /* LogsView.swift */; };
+		4373B46B2DCB61F300E1702F /* SdkLaunchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */; };
+		4373B46C2DCB61F300E1702F /* LogsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E92061A2CCBE05500916482 /* LogsFeature.swift */; };
+		4373B46D2DCB61F300E1702F /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F849B2AC2CC54005077F5 /* AppView.swift */; };
+		4373B46F2DCB61F300E1702F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4373B4432DCB61F300E1702F /* SnapKit */; };
+		4373B4702DCB61F300E1702F /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 4373B4472DCB61F300E1702F /* SwiftMessages */; };
+		4373B4712DCB61F300E1702F /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 4373B4452DCB61F300E1702F /* UserDefault */; };
+		4373B4722DCB61F300E1702F /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190D2DAE89B2002F170A /* OguryAds.framework */; };
+		4373B4742DCB61F300E1702F /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
+		4373B4752DCB61F300E1702F /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190F2DAE89B2002F170A /* OguryCore.framework */; };
+		4373B4762DCB61F300E1702F /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20BB2C6A60C400DF24AB /* OgurySdk.framework */; };
+		4373B4782DCB61F300E1702F /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
+		4373B47B2DCB61F300E1702F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
+		4373B47C2DCB61F300E1702F /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
+		4373B47D2DCB61F300E1702F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41F2AA5D0C300486AF2 /* Assets.xcassets */; };
+		4373B4842DCB61F300E1702F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41C2AA5D0C200486AF2 /* Main.storyboard */; };
+		4373B4882DCB61F300E1702F /* OguryAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190D2DAE89B2002F170A /* OguryAds.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4373B4892DCB61F300E1702F /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4373B48B2DCB61F300E1702F /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4373B48C2DCB61F300E1702F /* OgurySdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20BB2C6A60C400DF24AB /* OgurySdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4373B48D2DCB61F300E1702F /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190F2DAE89B2002F170A /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4373B4A12DCB626A00E1702F /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4373B49C2DCB626A00E1702F /* Asset.xcassets */; };
+		4373B4A22DCB626A00E1702F /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4373B49E2DCB626A00E1702F /* config.release.xcconfig */; };
+		4373B4A32DCB626A00E1702F /* config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4373B49D2DCB626A00E1702F /* config.debug.xcconfig */; };
+		4373B4A82DCB631700E1702F /* shareImageData.png in Resources */ = {isa = PBXBuildFile; fileRef = 4373B4A52DCB631700E1702F /* shareImageData.png */; };
+		4373B4A92DCB631700E1702F /* UTType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373B4A62DCB631700E1702F /* UTType+Extension.swift */; };
+		4373B4AC2DCB633A00E1702F /* SdkLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373B4AA2DCB633A00E1702F /* SdkLauncher.swift */; };
+		4373B4AF2DCB634B00E1702F /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 4373B4AD2DCB634B00E1702F /* Default.settings */; };
+		4373B5242DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B5232DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework */; };
+		4373B5252DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B5232DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4373B5292DCB93F500E1702F /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; };
+		4373B52A2DCB93F500E1702F /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43788F402B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
 		43788F412B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
 		43788F422B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
@@ -364,7 +425,6 @@
 		43EB1E412DB24675002F170A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
 		43EB1E422DB24675002F170A /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
 		43EB1E442DB24675002F170A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41F2AA5D0C300486AF2 /* Assets.xcassets */; };
-		43EB1E462DB24675002F170A /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434F84FB2ACFE5ED005077F5 /* Asset.xcassets */; };
 		43EB1E4B2DB24675002F170A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41C2AA5D0C200486AF2 /* Main.storyboard */; };
 		43EB1E502DB24675002F170A /* OguryAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190D2DAE89B2002F170A /* OguryAds.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43EB1E512DB24675002F170A /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190F2DAE89B2002F170A /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -435,7 +495,6 @@
 		43EB26A82DBFCC84002F170A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
 		43EB26A92DBFCC84002F170A /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
 		43EB26AA2DBFCC84002F170A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41F2AA5D0C300486AF2 /* Assets.xcassets */; };
-		43EB26AB2DBFCC84002F170A /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434F84FB2ACFE5ED005077F5 /* Asset.xcassets */; };
 		43EB26B12DBFCC84002F170A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41C2AA5D0C200486AF2 /* Main.storyboard */; };
 		43EB26B62DBFCC84002F170A /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43EB26B82DBFCC84002F170A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -448,9 +507,9 @@
 		43EB26D82DC0C5E3002F170A /* AdMobCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB26D72DC0C5E3002F170A /* AdMobCardAdapter.framework */; };
 		43EB26D92DC0C5E3002F170A /* AdMobCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB26D72DC0C5E3002F170A /* AdMobCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43EB27432DC0D55F002F170A /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43EB27422DC0D55F002F170A /* Default.settings */; };
-		43F66E3C2D394D79000AED12 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
-		43F66E3D2D394D79000AED12 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
-		43F66E3E2D394D79000AED12 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		43F66E3C2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		43F66E3D2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		43F66E3E2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E582D48E94F000AED12 /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
 		43F66E592D48E94F000AED12 /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
 		43F66E5A2D48E94F000AED12 /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
@@ -470,23 +529,24 @@
 		43F66E6D2D4A20E2000AED12 /* Default-qa.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E682D4A20E2000AED12 /* Default-qa.settings */; };
 		43F66E6E2D4A20E2000AED12 /* Default-qa.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E682D4A20E2000AED12 /* Default-qa.settings */; };
 		49AAF6A5D0E019AD418EC407 /* Pods_AdsTestApp_Prod_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F423650CD48D191647567E /* Pods_AdsTestApp_Prod_art.framework */; };
-		4ED29DAF66C9043421131A0B /* Pods_MaxTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2FAE68C29E93A8112FB09F4 /* Pods_MaxTestApp.framework */; };
+		4ED29DAF66C9043421131A0B /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		641C84CBDB1DF68759CA97FE /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D32DAE3DA0002F170A /* AdsCardLibrary.framework */; };
 		682EB25E99060FCFF27A4E13 /* Pods_AdMobTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CCD01789E230EF9F7B3E6D /* Pods_AdMobTestApp.framework */; };
 		6E4017B95617E3C0933A7415 /* Pods_AdsTestApp_Staging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DDF33DFB5445EFF5B05E535 /* Pods_AdsTestApp_Staging.framework */; };
 		768024427BB8B30140B90414 /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
+		7DB2F6E45BFD59711A7F6BC0 /* Pods_UnityLevelPlayTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51EC068D4572859C2BD7988 /* Pods_UnityLevelPlayTestApp.framework */; };
 		88E82992A8B76B9A9A204CC6 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D32DAE3DA0002F170A /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		892845E746F07668F5F00F7C /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
 		940739CE2B14D6D0212589BE /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D32DAE3DA0002F170A /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		96C44FA9C5181024C924D231 /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A1DA1BC99E5F00FA508DA696 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D32DAE3DA0002F170A /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B68B98228FEF5F63D4165F6C /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		B68B98228FEF5F63D4165F6C /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		BCD44527C7D6BBC59FB2E2E3 /* Pods_AdsTestApp_Prod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3284F43285076C3732D5B37E /* Pods_AdsTestApp_Prod.framework */; };
 		DBDBF95790282E5FEDFF37F3 /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E6D752923C989A29C8B6C272 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D32DAE3DA0002F170A /* AdsCardLibrary.framework */; };
 		F1C35725B4319655E70B6EA6 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D32DAE3DA0002F170A /* AdsCardLibrary.framework */; };
 		F4F1FE3A7BF6ECD6BBCDD682 /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
-		F55D4BE30033AB27495A092C /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		F55D4BE30033AB27495A092C /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		FDD6EECD41267B6FAECBD293 /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -503,6 +563,23 @@
 				43EB19282DAFF03C002F170A /* OguryAds.framework in Embed Frameworks */,
 				940739CE2B14D6D0212589BE /* AdsCardLibrary.framework in Embed Frameworks */,
 				DBDBF95790282E5FEDFF37F3 /* AdsCardAdapter.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4373B4872DCB61F300E1702F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4373B4882DCB61F300E1702F /* OguryAds.framework in Embed Frameworks */,
+				4373B5252DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework in Embed Frameworks */,
+				4373B52A2DCB93F500E1702F /* OMSDK_Ogury.xcframework in Embed Frameworks */,
+				4373B4892DCB61F300E1702F /* AdsCardLibrary.framework in Embed Frameworks */,
+				4373B48B2DCB61F300E1702F /* AdsCardAdapter.framework in Embed Frameworks */,
+				4373B48C2DCB61F300E1702F /* OgurySdk.framework in Embed Frameworks */,
+				4373B48D2DCB61F300E1702F /* OguryCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,6 +726,16 @@
 		434F85022ACFE6D5005077F5 /* config.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = config.debug.xcconfig; sourceTree = "<group>"; };
 		434F85042ACFE6E2005077F5 /* config.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = config.debug.xcconfig; sourceTree = "<group>"; };
 		434F85142AD00CFC005077F5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4373B4912DCB61F300E1702F /* UnityLevelPlayTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnityLevelPlayTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4373B49C2DCB626A00E1702F /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
+		4373B49D2DCB626A00E1702F /* config.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = config.debug.xcconfig; sourceTree = "<group>"; };
+		4373B49E2DCB626A00E1702F /* config.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = config.release.xcconfig; sourceTree = "<group>"; };
+		4373B49F2DCB626A00E1702F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4373B4A52DCB631700E1702F /* shareImageData.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareImageData.png; sourceTree = "<group>"; };
+		4373B4A62DCB631700E1702F /* UTType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Extension.swift"; sourceTree = "<group>"; };
+		4373B4AA2DCB633A00E1702F /* SdkLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdkLauncher.swift; sourceTree = "<group>"; };
+		4373B4AD2DCB634B00E1702F /* Default.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Default.settings; sourceTree = "<group>"; };
+		4373B5232DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UnityLevelPlayCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFormatsView.swift; sourceTree = "<group>"; };
 		438ED4132AA5D0C200486AF2 /* AdsTestApp-Devc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AdsTestApp-Devc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		438ED4162AA5D0C200486AF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -745,6 +832,7 @@
 		43F788B12B4E882B0022157E /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F788B42B4E882F0022157E /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44F423650CD48D191647567E /* Pods_AdsTestApp_Prod_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Prod_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D2C8DEA414BC06C491DB34C /* Pods-UnityLevelPlayTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnityLevelPlayTestApp.release.xcconfig"; path = "Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp.release.xcconfig"; sourceTree = "<group>"; };
 		4DDF33DFB5445EFF5B05E535 /* Pods_AdsTestApp_Staging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Staging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54FDEBE22E273EEE2DF87F17 /* Pods-AdsTestApp-Prod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod.release.xcconfig"; sourceTree = "<group>"; };
 		555D0522B2775FF63CA29877 /* Pods_AdsTestApp_Devc_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Devc_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -753,10 +841,11 @@
 		6CA74E0E6E8AE86643AC8A83 /* Pods-AdsTestApp-Devc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc.release.xcconfig"; sourceTree = "<group>"; };
 		6FA95B4FB3A2AF96534FD94F /* Pods-AdsTestApp-Staging-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Staging-art.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art.debug.xcconfig"; sourceTree = "<group>"; };
 		77FAE455F2244E802BFA973B /* Pods_AdsTestApp_Devc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Devc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7ABDC493ACA5841F5D02DF51 /* Pods-UnityLevelPlayTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnityLevelPlayTestApp.debug.xcconfig"; path = "Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		87A186F2D4CBF0885C4DE96C /* Pods-AdsTestApp-Devc-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc-art.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art.release.xcconfig"; sourceTree = "<group>"; };
 		B0F466AC346757FE2185B12C /* Pods-MaxTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaxTestApp.debug.xcconfig"; path = "Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp.debug.xcconfig"; sourceTree = "<group>"; };
-		B2FAE68C29E93A8112FB09F4 /* Pods_MaxTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaxTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B40DCD71260D8F5C84DD941A /* Pods_AdsTestApp_Staging_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Staging_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B51EC068D4572859C2BD7988 /* Pods_UnityLevelPlayTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnityLevelPlayTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA59F4A003DD9D666A7AAA37 /* Pods-AdsTestApp-Prod-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod-art.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art.release.xcconfig"; sourceTree = "<group>"; };
 		BB4BB1174C2DCF2F710B8B0B /* Pods-AdsTestApp-Prod-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod-art.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art.debug.xcconfig"; sourceTree = "<group>"; };
 		C01B2DD63BB8AB3C60C44F5A /* Pods-AdsTestApp-Staging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Staging.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging.debug.xcconfig"; sourceTree = "<group>"; };
@@ -794,12 +883,30 @@
 				43C1D1592B7E5684006F2D23 /* SwiftMessages in Frameworks */,
 				43AE85E12B5018BF0010C812 /* UserDefault in Frameworks */,
 				43EB19192DAE8AC6002F170A /* OguryAds.framework in Frameworks */,
-				B68B98228FEF5F63D4165F6C /* BuildFile in Frameworks */,
+				B68B98228FEF5F63D4165F6C /* (null) in Frameworks */,
 				43EB191D2DAE8AC9002F170A /* OguryCore.framework in Frameworks */,
 				43EB1F722DB25891002F170A /* AdsCardLibrary.framework in Frameworks */,
 				43EB1F702DB25872002F170A /* AdsCardAdapter.framework in Frameworks */,
 				43EB191B2DAE8AC8002F170A /* OguryCardAdapter.framework in Frameworks */,
 				BCD44527C7D6BBC59FB2E2E3 /* Pods_AdsTestApp_Prod.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4373B46E2DCB61F300E1702F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4373B46F2DCB61F300E1702F /* SnapKit in Frameworks */,
+				4373B4702DCB61F300E1702F /* SwiftMessages in Frameworks */,
+				4373B4712DCB61F300E1702F /* UserDefault in Frameworks */,
+				4373B4722DCB61F300E1702F /* OguryAds.framework in Frameworks */,
+				4373B5292DCB93F500E1702F /* OMSDK_Ogury.xcframework in Frameworks */,
+				4373B4742DCB61F300E1702F /* AdsCardAdapter.framework in Frameworks */,
+				4373B5242DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework in Frameworks */,
+				4373B4752DCB61F300E1702F /* OguryCore.framework in Frameworks */,
+				4373B4762DCB61F300E1702F /* OgurySdk.framework in Frameworks */,
+				4373B4782DCB61F300E1702F /* AdsCardLibrary.framework in Frameworks */,
+				7DB2F6E45BFD59711A7F6BC0 /* Pods_UnityLevelPlayTestApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -824,7 +931,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F66E3C2D394D79000AED12 /* BuildFile in Frameworks */,
+				43F66E3C2D394D79000AED12 /* (null) in Frameworks */,
 				43BCB0BD2C22DD45002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43BCB0BE2C22DD45002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB0C02C22DD45002FB0B1 /* UserDefault in Frameworks */,
@@ -840,7 +947,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F66E3D2D394D79000AED12 /* BuildFile in Frameworks */,
+				43F66E3D2D394D79000AED12 /* (null) in Frameworks */,
 				43BCB1002C22DD59002FB0B1 /* SnapKit in Frameworks */,
 				43BCB1022C22DD59002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB1032C22DD59002FB0B1 /* UserDefault in Frameworks */,
@@ -856,7 +963,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F66E3E2D394D79000AED12 /* BuildFile in Frameworks */,
+				43F66E3E2D394D79000AED12 /* (null) in Frameworks */,
 				43BCB1432C22DD60002FB0B1 /* SnapKit in Frameworks */,
 				43BCB1452C22DD60002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB1462C22DD60002FB0B1 /* UserDefault in Frameworks */,
@@ -880,9 +987,9 @@
 				43EB21132DB8DAEA002F170A /* AdsCardAdapter.framework in Frameworks */,
 				43EB1E3E2DB24675002F170A /* OguryCore.framework in Frameworks */,
 				43EB21112DB8DACD002F170A /* OgurySdk.framework in Frameworks */,
-				F55D4BE30033AB27495A092C /* BuildFile in Frameworks */,
+				F55D4BE30033AB27495A092C /* (null) in Frameworks */,
 				43EB21152DB8DAEA002F170A /* AdsCardLibrary.framework in Frameworks */,
-				4ED29DAF66C9043421131A0B /* Pods_MaxTestApp.framework in Frameworks */,
+				4ED29DAF66C9043421131A0B /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -924,6 +1031,7 @@
 		4301B1E52B56D3450076065D /* UTType */ = {
 			isa = PBXGroup;
 			children = (
+				4373B4A72DCB631700E1702F /* ULP */,
 				43EB26C52DBFCD26002F170A /* AdMob */,
 				43EB21002DB7C72F002F170A /* AppLovin */,
 				43EB18A92DA6A900002F170A /* OguryFiles */,
@@ -1019,6 +1127,7 @@
 				43EB1E592DB24700002F170A /* Ogury */,
 				43236A172CF5C6F40078EF67 /* Fonts */,
 				43EB1E5B2DB247B1002F170A /* Max */,
+				4373B4A02DCB626A00E1702F /* ULP */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -1062,6 +1171,42 @@
 			path = Prod;
 			sourceTree = "<group>";
 		};
+		4373B4A02DCB626A00E1702F /* ULP */ = {
+			isa = PBXGroup;
+			children = (
+				4373B49C2DCB626A00E1702F /* Asset.xcassets */,
+				4373B49D2DCB626A00E1702F /* config.debug.xcconfig */,
+				4373B49E2DCB626A00E1702F /* config.release.xcconfig */,
+				4373B49F2DCB626A00E1702F /* Info.plist */,
+			);
+			path = ULP;
+			sourceTree = "<group>";
+		};
+		4373B4A72DCB631700E1702F /* ULP */ = {
+			isa = PBXGroup;
+			children = (
+				4373B4A52DCB631700E1702F /* shareImageData.png */,
+				4373B4A62DCB631700E1702F /* UTType+Extension.swift */,
+			);
+			path = ULP;
+			sourceTree = "<group>";
+		};
+		4373B4AB2DCB633A00E1702F /* ULP */ = {
+			isa = PBXGroup;
+			children = (
+				4373B4AA2DCB633A00E1702F /* SdkLauncher.swift */,
+			);
+			path = ULP;
+			sourceTree = "<group>";
+		};
+		4373B4AE2DCB634B00E1702F /* ULP */ = {
+			isa = PBXGroup;
+			children = (
+				4373B4AD2DCB634B00E1702F /* Default.settings */,
+			);
+			path = ULP;
+			sourceTree = "<group>";
+		};
 		438ED40A2AA5D0C200486AF2 = {
 			isa = PBXGroup;
 			children = (
@@ -1084,6 +1229,7 @@
 				43BCB15A2C22DD60002FB0B1 /* AdsTestApp-Prod-art.app */,
 				43EB1E562DB24675002F170A /* MaxTestApp.app */,
 				43EB26BE2DBFCC84002F170A /* AdMobTestApp.app */,
+				4373B4912DCB61F300E1702F /* UnityLevelPlayTestApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1109,6 +1255,7 @@
 		438ED42C2AA5D0F600486AF2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4373B5232DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework */,
 				43EB26D72DC0C5E3002F170A /* AdMobCardAdapter.framework */,
 				43EB26D42DBFCE5C002F170A /* AdMobCardAdapter.framework */,
 				43EB1F6D2DB2584A002F170A /* MaxCardAdapter.framework */,
@@ -1154,7 +1301,7 @@
 				B40DCD71260D8F5C84DD941A /* Pods_AdsTestApp_Staging_art.framework */,
 				3284F43285076C3732D5B37E /* Pods_AdsTestApp_Prod.framework */,
 				E3CCD01789E230EF9F7B3E6D /* Pods_AdMobTestApp.framework */,
-				B2FAE68C29E93A8112FB09F4 /* Pods_MaxTestApp.framework */,
+				B51EC068D4572859C2BD7988 /* Pods_UnityLevelPlayTestApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1208,6 +1355,7 @@
 		43EB186A2DA6A496002F170A /* PerTargetLauncher */ = {
 			isa = PBXGroup;
 			children = (
+				4373B4AB2DCB633A00E1702F /* ULP */,
 				43EB26C32DBFCD1E002F170A /* AdMob */,
 				43EB1E642DB24A54002F170A /* AppLovin */,
 				43EB18EA2DAE8671002F170A /* Ogury */,
@@ -1349,6 +1497,7 @@
 				43EB27412DC0D548002F170A /* AdMob */,
 				43EB21182DBA35A3002F170A /* AppLovin */,
 				43F66E672D4A20B9000AED12 /* Dev App */,
+				4373B4AE2DCB634B00E1702F /* ULP */,
 			);
 			path = "Loaded Files";
 			sourceTree = "<group>";
@@ -1393,6 +1542,8 @@
 				CBEDCD96EDE6355EF9D507B4 /* Pods-MaxTestApp.release.xcconfig */,
 				D2B5798211318150E2C42E91 /* Pods-AdMobTestApp.debug.xcconfig */,
 				578B72BBCCEC36EDDD2D20BE /* Pods-AdMobTestApp.release.xcconfig */,
+				7ABDC493ACA5841F5D02DF51 /* Pods-UnityLevelPlayTestApp.debug.xcconfig */,
+				4D2C8DEA414BC06C491DB34C /* Pods-UnityLevelPlayTestApp.release.xcconfig */,
 			);
 			name = Pods;
 			path = ../../Pods;
@@ -1451,6 +1602,32 @@
 			);
 			productName = AdsTestApp;
 			productReference = 434F84F22ACFE50A005077F5 /* AdsTestApp-Prod.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4373B4422DCB61F300E1702F /* UnityLevelPlayTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4373B48E2DCB61F300E1702F /* Build configuration list for PBXNativeTarget "UnityLevelPlayTestApp" */;
+			buildPhases = (
+				4373B4492DCB61F300E1702F /* [CP] Check Pods Manifest.lock */,
+				4373B44A2DCB61F300E1702F /* Sources */,
+				4373B46E2DCB61F300E1702F /* Frameworks */,
+				4373B47A2DCB61F300E1702F /* Resources */,
+				4373B4852DCB61F300E1702F /* [CP] Embed Pods Frameworks */,
+				4373B4862DCB61F300E1702F /* [CP] Copy Pods Resources */,
+				4373B4872DCB61F300E1702F /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UnityLevelPlayTestApp;
+			packageProductDependencies = (
+				4373B4432DCB61F300E1702F /* SnapKit */,
+				4373B4452DCB61F300E1702F /* UserDefault */,
+				4373B4472DCB61F300E1702F /* SwiftMessages */,
+			);
+			productName = AdsTestApp;
+			productReference = 4373B4912DCB61F300E1702F /* UnityLevelPlayTestApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		438ED4122AA5D0C200486AF2 /* AdsTestApp-Devc */ = {
@@ -1666,6 +1843,7 @@
 				43BCB1192C22DD60002FB0B1 /* AdsTestApp-Prod-art */,
 				43EB1E0C2DB24675002F170A /* MaxTestApp */,
 				43EB26702DBFCC84002F170A /* AdMobTestApp */,
+				4373B4422DCB61F300E1702F /* UnityLevelPlayTestApp */,
 			);
 		};
 /* End PBXProject section */
@@ -1704,6 +1882,22 @@
 				43D0E6222C61060F00AF9CF6 /* config.release.xcconfig in Resources */,
 				43D0E6232C61060F00AF9CF6 /* config.debug.xcconfig in Resources */,
 				434F84EE2ACFE50A005077F5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4373B47A2DCB61F300E1702F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4373B47B2DCB61F300E1702F /* LaunchScreen.storyboard in Resources */,
+				4373B47C2DCB61F300E1702F /* FiraCode-Regular.ttf in Resources */,
+				4373B47D2DCB61F300E1702F /* Assets.xcassets in Resources */,
+				4373B4AF2DCB634B00E1702F /* Default.settings in Resources */,
+				4373B4A12DCB626A00E1702F /* Asset.xcassets in Resources */,
+				4373B4A82DCB631700E1702F /* shareImageData.png in Resources */,
+				4373B4A22DCB626A00E1702F /* config.release.xcconfig in Resources */,
+				4373B4A32DCB626A00E1702F /* config.debug.xcconfig in Resources */,
+				4373B4842DCB61F300E1702F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1786,7 +1980,6 @@
 				43EB1E412DB24675002F170A /* LaunchScreen.storyboard in Resources */,
 				43EB1E422DB24675002F170A /* FiraCode-Regular.ttf in Resources */,
 				43EB1E442DB24675002F170A /* Assets.xcassets in Resources */,
-				43EB1E462DB24675002F170A /* Asset.xcassets in Resources */,
 				43EB1E622DB2482A002F170A /* Asset.xcassets in Resources */,
 				43EB211A2DBA35B3002F170A /* Default.settings in Resources */,
 				43EB1E5F2DB247DD002F170A /* config.debug.xcconfig in Resources */,
@@ -1803,7 +1996,6 @@
 				43EB26A82DBFCC84002F170A /* LaunchScreen.storyboard in Resources */,
 				43EB26A92DBFCC84002F170A /* FiraCode-Regular.ttf in Resources */,
 				43EB26AA2DBFCC84002F170A /* Assets.xcassets in Resources */,
-				43EB26AB2DBFCC84002F170A /* Asset.xcassets in Resources */,
 				43EB27432DC0D55F002F170A /* Default.settings in Resources */,
 				43EB26CE2DBFCD50002F170A /* Asset.xcassets in Resources */,
 				43EB26CF2DBFCD50002F170A /* config.release.xcconfig in Resources */,
@@ -1824,13 +2016,81 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
+			outputPaths = (
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4373B4492DCB61F300E1702F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UnityLevelPlayTestApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4373B4852DCB61F300E1702F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4373B4862DCB61F300E1702F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		43EB1E132DB24675002F170A /* [CP] Check Pods Manifest.lock */ = {
@@ -1863,9 +2123,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1880,9 +2144,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1919,9 +2187,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1936,9 +2208,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1953,9 +2229,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1992,9 +2272,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2009,9 +2293,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2026,9 +2314,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2043,9 +2335,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2060,9 +2356,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2077,9 +2377,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2094,9 +2398,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2111,9 +2419,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2150,9 +2462,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2255,9 +2571,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2348,6 +2668,48 @@
 				43EB210E2DB8CD3E002F170A /* SdkLaunchable.swift in Sources */,
 				434F84E62ACFE50A005077F5 /* AppView.swift in Sources */,
 				434F84E72ACFE50A005077F5 /* SdkLauncher.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4373B44A2DCB61F300E1702F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4373B44B2DCB61F300E1702F /* AdsStorableContainer.swift in Sources */,
+				4373B44C2DCB61F300E1702F /* AddFeature.swift in Sources */,
+				4373B44D2DCB61F300E1702F /* AppFeature.swift in Sources */,
+				4373B44E2DCB61F300E1702F /* MainView.swift in Sources */,
+				4373B4502DCB61F300E1702F /* ImportFeature.swift in Sources */,
+				4373B4512DCB61F300E1702F /* AdMobConsentManager.swift in Sources */,
+				4373B4522DCB61F300E1702F /* ImportView.swift in Sources */,
+				4373B4532DCB61F300E1702F /* AddFormatsView.swift in Sources */,
+				4373B4542DCB61F300E1702F /* MainViewController.swift in Sources */,
+				4373B4552DCB61F300E1702F /* InmobiConsentManager.swift in Sources */,
+				4373B4562DCB61F300E1702F /* AppDelegate.swift in Sources */,
+				4373B4A92DCB631700E1702F /* UTType+Extension.swift in Sources */,
+				4373B4572DCB61F300E1702F /* PrivacyDataFeature.swift in Sources */,
+				4373B4582DCB61F300E1702F /* PrivacyDataView.swift in Sources */,
+				4373B4592DCB61F300E1702F /* TestAppLogController.swift in Sources */,
+				4373B45A2DCB61F300E1702F /* SettingsController.swift in Sources */,
+				4373B45B2DCB61F300E1702F /* AppSettingsView.swift in Sources */,
+				4373B45C2DCB61F300E1702F /* ApplicationDelegate.swift in Sources */,
+				4373B45D2DCB61F300E1702F /* SceneDelegate.swift in Sources */,
+				4373B45E2DCB61F300E1702F /* DetailListView.swift in Sources */,
+				4373B45F2DCB61F300E1702F /* TestAppLogFormatter.swift in Sources */,
+				4373B4602DCB61F300E1702F /* TestAppLogger.swift in Sources */,
+				4373B4612DCB61F300E1702F /* AddView.swift in Sources */,
+				4373B4622DCB61F300E1702F /* NotificationMessage.swift in Sources */,
+				4373B4632DCB61F300E1702F /* DetailListFeature.swift in Sources */,
+				4373B4642DCB61F300E1702F /* LinkPresentationItemSource.swift in Sources */,
+				4373B4652DCB61F300E1702F /* MainFeature.swift in Sources */,
+				4373B4662DCB61F300E1702F /* AppSettingsFeature.swift in Sources */,
+				4373B4672DCB61F300E1702F /* LogOptionView.swift in Sources */,
+				4373B4682DCB61F300E1702F /* LogOptionFeature.swift in Sources */,
+				4373B46A2DCB61F300E1702F /* LogsView.swift in Sources */,
+				4373B4AC2DCB633A00E1702F /* SdkLauncher.swift in Sources */,
+				4373B46B2DCB61F300E1702F /* SdkLaunchable.swift in Sources */,
+				4373B46C2DCB61F300E1702F /* LogsFeature.swift in Sources */,
+				4373B46D2DCB61F300E1702F /* AppView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2786,6 +3148,93 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDK_SOURCE = Dev;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4373B48F2DCB61F300E1702F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4373B49D2DCB626A00E1702F /* config.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSET_KEY = "$(ASSET_KEY)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
+				DEFAULT_ENV = "$(DEFAULT_ENV)";
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/ULP/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "LevelPlay Ads";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "${VERSION}";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D FORCE_APP_CONFIG_FILE";
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.ulp.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDK_SOURCE = Dev;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4373B4902DCB61F300E1702F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4373B49E2DCB626A00E1702F /* config.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSET_KEY = "$(ASSET_KEY)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
+				DEFAULT_ENV = "$(DEFAULT_ENV)";
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/ULP/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "LevelPlay Ads";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "${VERSION}";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D FORCE_APP_CONFIG_FILE";
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.ulp.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDK_SOURCE = Dev;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -3466,6 +3915,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		4373B48E2DCB61F300E1702F /* Build configuration list for PBXNativeTarget "UnityLevelPlayTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4373B48F2DCB61F300E1702F /* Debug */,
+				4373B4902DCB61F300E1702F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		438ED40E2AA5D0C200486AF2 /* Build configuration list for PBXProject "AdsTestApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -3538,6 +3996,30 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.6.0;
+			};
+		};
+		4373B4442DCB61F300E1702F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+		4373B4462DCB61F300E1702F /* XCRemoteSwiftPackageReference "UserDefault" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/juliand665/UserDefault";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		4373B4482DCB61F300E1702F /* XCRemoteSwiftPackageReference "SwiftMessages" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftKickMobile/SwiftMessages";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
 			};
 		};
 		43AE85DB2B5018A20010C812 /* XCRemoteSwiftPackageReference "UserDefault" */ = {
@@ -3693,6 +4175,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1E5BE6232B21CCE50010B995 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		4373B4432DCB61F300E1702F /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4373B4442DCB61F300E1702F /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		4373B4452DCB61F300E1702F /* UserDefault */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4373B4462DCB61F300E1702F /* XCRemoteSwiftPackageReference "UserDefault" */;
+			productName = UserDefault;
+		};
+		4373B4472DCB61F300E1702F /* SwiftMessages */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4373B4482DCB61F300E1702F /* XCRemoteSwiftPackageReference "SwiftMessages" */;
+			productName = SwiftMessages;
 		};
 		43AE85DC2B5018A20010C812 /* UserDefault */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -28,19 +28,19 @@ internal enum Action: AdsCardAdapterAction {
     
     func perform()  {
         switch self {
-            case let .showDebugger(viewController): IronSource.launchTestSuite(viewController)
+            case let .showDebugger(viewController): Task { @MainActor in IronSource.launchTestSuite(viewController) }
         }
     }
     
     case showDebugger(_: UIViewController)
 }
 
-struct UnityLevelPlayAdsCardAdapter: AdsCardAdaptable {
+public struct UnityLevelPlayAdsCardAdapter: AdsCardAdaptable {
     public init(testSuiteViewController: UIViewController) {
         actions = [Action.showDebugger(testSuiteViewController)]
     }
     
-    var availableAdFormats: [AdAdapterFormatSection] = [
+    public var availableAdFormats: [AdAdapterFormatSection] = [
         .init(title: "Header Bidding", formats: [
             AdType.headerBidding(.interstitial),
             AdType.headerBidding(.rewardedVideo),
@@ -55,7 +55,7 @@ struct UnityLevelPlayAdsCardAdapter: AdsCardAdaptable {
         ]),
     ]
     
-    var sdkVersions: String {
+    public var sdkVersions: String {
         let coreSdkVersion = String(describing: OGCInternal.shared().getVersion())
         let ulpSdkVersion = IronSource.sdkVersion()
         let ogurySdkVersion = Ogury.sdkVersion()
@@ -72,9 +72,9 @@ OM SDK Version : \(omid)
 """
     }
     
-    var actions: [any AdsCardAdapterAction] = []
+    public var actions: [any AdsCardAdapterAction] = []
     
-    func adManager(for adFormat: any AdAdapterFormat,
+    public func adManager(for adFormat: any AdAdapterFormat,
                    options: AdViewOptions,
                    viewController: UIViewController?,
                    adDelegate: (any AdLifeCycleDelegate)?) throws(AdsCardAdapterError) -> any AdManager {
@@ -90,12 +90,12 @@ OM SDK Version : \(omid)
         return adManager
     }
     
-    func adAdapterFormat(fromRawValue rawValue: Int) throws(AdsCardAdapterError) -> any AdAdapterFormat {
+    public func adAdapterFormat(fromRawValue rawValue: Int) throws(AdsCardAdapterError) -> any AdAdapterFormat {
         guard let adFormat = AdType(rawValue: rawValue) else { throw .noSuitableAdapterAvailable }
         return adFormat
     }
     
-    func startSdk() async {
+    public func startSdk() async {
         // Create a request builder with app key and ad formats. Add User ID if available
         let requestBuilder = LPMInitRequestBuilder(appKey: "21f32a64d")
             .withLegacyAdFormats([IS_INTERSTITIAL, IS_BANNER, IS_REWARDED_VIDEO])
@@ -104,13 +104,14 @@ OM SDK Version : \(omid)
         // Initialize LevelPlay with the prepared request
         IronSource.setMetaDataWithKey("is_test_suite", value: "enabled")
         let res = try? await LevelPlay.initWith(initRequest)
+        print(res.debugDescription)
     }
     
-    func resetSdk() {
+    public func resetSdk() {
         
     }
     
-    func add(logger: any OguryLogger) {
+    public func add(logger: any OguryLogger) {
         OGAInternal.shared().add(logger)
     }
 }
