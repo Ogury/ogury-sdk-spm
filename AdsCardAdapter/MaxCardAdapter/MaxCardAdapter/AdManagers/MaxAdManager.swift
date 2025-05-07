@@ -230,9 +230,9 @@ class MaxAdManager: NSObject, AdManager {
         AdCardContainer(name: cardConfiguration.adDisplayName,
                         adType: adType.rawValue,
                         adInformations: .init(adUnitId: adConfiguration.adUnitId,
-                                              settings: .init(oguryTestModeEnabled: true,
-                                                              rtbTestModeEnabled: true,
-                                                              qaLabel: "")))
+                                              settings: .init(oguryTestModeEnabled: false,
+                                                              rtbTestModeEnabled: false,
+                                                              qaLabel: cardConfiguration.qaLabel)))
     }
     
     class func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager {

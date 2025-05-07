@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4373B4282DCB403F00E1702F /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B4252DCB403F00E1702F /* OguryAds.framework */; };
+		4373B42A2DCB403F00E1702F /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B4262DCB403F00E1702F /* OguryCore.framework */; };
+		4373B42C2DCB403F00E1702F /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B4272DCB403F00E1702F /* OgurySdk.framework */; };
 		43EB25D82DBFAC67002F170A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB25D72DBFAC67002F170A /* AdsCardAdapter.framework */; };
 		43EB25D92DBFAC67002F170A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB25D72DBFAC67002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E3C2D7D5BE995FC7CC4AA7E3 /* Pods_AdMobCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CEBA4781A6DC6115B8A7709 /* Pods_AdMobCardAdapter.framework */; };
@@ -28,6 +31,9 @@
 
 /* Begin PBXFileReference section */
 		3CEBA4781A6DC6115B8A7709 /* Pods_AdMobCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdMobCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4373B4252DCB403F00E1702F /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4373B4262DCB403F00E1702F /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4373B4272DCB403F00E1702F /* OgurySdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OgurySdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB25BB2DBFAC49002F170A /* AdMobCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdMobCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB25D72DBFAC67002F170A /* AdsCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB284E2DC25E75002F170A /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,8 +55,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4373B42C2DCB403F00E1702F /* OgurySdk.framework in Frameworks */,
 				43EB25D82DBFAC67002F170A /* AdsCardAdapter.framework in Frameworks */,
 				E3C2D7D5BE995FC7CC4AA7E3 /* Pods_AdMobCardAdapter.framework in Frameworks */,
+				4373B42A2DCB403F00E1702F /* OguryCore.framework in Frameworks */,
+				4373B4282DCB403F00E1702F /* OguryAds.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +87,9 @@
 		43EB25D62DBFAC67002F170A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4373B4252DCB403F00E1702F /* OguryAds.framework */,
+				4373B4262DCB403F00E1702F /* OguryCore.framework */,
+				4373B4272DCB403F00E1702F /* OgurySdk.framework */,
 				43EB28512DC25F0A002F170A /* OguryCore.framework */,
 				43EB284E2DC25E75002F170A /* OguryCore.framework */,
 				43EB25D72DBFAC67002F170A /* AdsCardAdapter.framework */,

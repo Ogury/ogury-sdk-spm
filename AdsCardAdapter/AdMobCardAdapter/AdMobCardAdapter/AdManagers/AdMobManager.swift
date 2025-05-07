@@ -103,7 +103,7 @@ enum AdMobAdType: AdAdapterFormat, RawRepresentable, Equatable {
         }
     }
     
-    private static let prefix = 100
+    private static let prefix = 200
     var rawValue: Int { AdMobAdType.prefix + self.sortOrder }
     
     static func < (lhs: Self, rhs: Self) -> Bool { lhs.rawValue < rhs.rawValue }
@@ -196,9 +196,9 @@ class AdMobManager: NSObject, AdManager {
         AdCardContainer(name: cardConfiguration.adDisplayName,
                         adType: adType.rawValue,
                         adInformations: .init(adUnitId: adConfiguration.adUnitId,
-                                              settings: .init(oguryTestModeEnabled: true,
-                                                              rtbTestModeEnabled: true,
-                                                              qaLabel: "")))
+                                              settings: .init(oguryTestModeEnabled: false,
+                                                              rtbTestModeEnabled: false,
+                                                              qaLabel: cardConfiguration.qaLabel)))
     }
     
     class func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager {
