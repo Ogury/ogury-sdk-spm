@@ -17,7 +17,7 @@
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>co.ogury.sdk.ads.max.exportedSet</string>
+				<string>co.ogury.sdk.ads.ulp.exportedSet</string>
 			</array>
 		</dict>
 	</array>
