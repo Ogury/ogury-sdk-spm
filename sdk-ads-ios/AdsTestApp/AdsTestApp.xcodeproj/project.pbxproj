@@ -3173,7 +3173,7 @@
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/ULP/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "LevelPlay Ads";
+				INFOPLIST_KEY_CFBundleDisplayName = "Unity LevelPlay";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -3217,7 +3217,7 @@
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/ULP/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "LevelPlay Ads";
+				INFOPLIST_KEY_CFBundleDisplayName = "Unity LevelPlay";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -3734,7 +3734,7 @@
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Max/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "AppLovin Ads";
+				INFOPLIST_KEY_CFBundleDisplayName = "AppLovin MAX";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -3778,7 +3778,7 @@
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Max/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "AppLovin Ads";
+				INFOPLIST_KEY_CFBundleDisplayName = "AppLovin MAX";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -3821,7 +3821,7 @@
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/AdMob/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "AdMob Ads";
+				INFOPLIST_KEY_CFBundleDisplayName = "Google AdMob";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -3865,7 +3865,7 @@
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/AdMob/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "AdMob Ads";
+				INFOPLIST_KEY_CFBundleDisplayName = "Google AdMob";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
