@@ -3751,7 +3751,7 @@
 					"$(inherited)",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D FORCE_APP_CONFIG_FILE";
-				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.max.app;
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.max.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDK_SOURCE = Dev;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -3795,7 +3795,7 @@
 					"$(inherited)",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D FORCE_APP_CONFIG_FILE";
-				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.max.app;
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.max.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDK_SOURCE = Dev;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
