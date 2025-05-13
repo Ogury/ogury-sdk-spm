@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43EB16EB2DA64ED9002F170A"
-               BuildableName = "OguryCardAdapter-devc.framework"
-               BlueprintName = "OguryCardAdapter-devc"
+               BlueprintIdentifier = "43EB16612DA54B45002F170A"
+               BuildableName = "OguryCardAdapter.framework"
+               BlueprintName = "OguryCardAdapter"
                ReferencedContainer = "container:OguryCardAdapter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -50,9 +50,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43EB16EB2DA64ED9002F170A"
-            BuildableName = "OguryCardAdapter-devc.framework"
-            BlueprintName = "OguryCardAdapter-devc"
+            BlueprintIdentifier = "43EB16612DA54B45002F170A"
+            BuildableName = "OguryCardAdapter.framework"
+            BlueprintName = "OguryCardAdapter"
             ReferencedContainer = "container:OguryCardAdapter.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

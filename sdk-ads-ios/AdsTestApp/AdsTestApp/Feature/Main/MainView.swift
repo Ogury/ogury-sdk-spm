@@ -6,6 +6,7 @@
 import SwiftUI
 internal import ComposableArchitecture
 import AdsCardLibrary
+import AdsCardAdapter
 
 struct MainView: View {
     let store: StoreOf<MainFeature>
@@ -65,6 +66,7 @@ struct MainView: View {
             .toolbar {
                 toolBarContent(viewStore: viewStore)
             }
+            .toolbarBackground(Color(AdColorPalette.Background.primary.color), for: .navigationBar)
             .tint(Color(AdColorPalette.Primary.accent.color))
             .addViewModifiers(store: store, viewStore: viewStore)
         }
@@ -92,7 +94,9 @@ struct MainView: View {
             }
         }
         
-        if appPermissions.logs, !viewStore.adFormats.isEmpty {
+        if appPermissions.logs,
+           SdkLauncher.shared.adapter.options.showLogs,
+            !viewStore.adFormats.isEmpty {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     viewStore.send(.showLogs(!viewStore.showLogs))
@@ -296,24 +300,22 @@ extension View {
 
 @available(iOS, introduced: 15, deprecated: 16, message: "use ListManagersView for iOS 16+")
 struct LegacyHorizontalCardsView: View {
-    let adFormat: AdFormat
-    let managers: [any OguryAdManager]
+    let adFormat: any AdAdapterFormat
+    let managers: [any AdManager]
     let geometry: GeometryProxy
     @State private var contentSize: CGSize = .zero
     @Environment(\.cardPermissions) var cardPermissions
     
     var body: some View {
         HStack(alignment: .center, spacing: 4) {
-            if let image = adFormat.displayIcon {
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit) // Maintains the aspect ratio
-                    .frame(width: 50, height: 50) // Sets the frame size
-                    .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
-            }
+            adFormat.adFormat.displayIcon
+                .resizable()
+                .aspectRatio(contentMode: .fit) // Maintains the aspect ratio
+                .frame(width: 50, height: 50) // Sets the frame size
+                .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
             
             VStack(alignment: .leading, spacing: 4) {
-                Text("\(adFormat.title.capitalized) (\(managers.count))")
+                Text("\(adFormat.adFormat.name.capitalized) (\(managers.count))")
                     .font(.adsTitle)
                     .fontWeight(.medium)
                     .foregroundStyle(
@@ -350,11 +352,11 @@ struct LegacyHorizontalCardsView: View {
 
 @available(iOS 16, *)
 struct HorizontalCardsView: View {
-    let adFormat: AdFormat
-    let managers: [any OguryAdManager]
+    let adFormat: any AdAdapterFormat
+    let managers: [any AdManager]
     let geometry: GeometryProxy
     // we block the navigation for all banner managers since we have issues with adViews and superviews
-    var disabled: Bool { managers.first as? BannerAdManager != nil }
+    var disabled: Bool { managers.first?.adFormat == .mrec || managers.first?.adFormat == .smallBanner }
     @State private var contentSize: CGSize = .zero
     @Environment(\.cardPermissions) var cardPermissions
     
@@ -362,17 +364,15 @@ struct HorizontalCardsView: View {
         VStack(spacing: 0) {
             ZStack(alignment: .leading) {
                 HStack(alignment: .center, spacing: 4) {
-                    if let image = adFormat.displayIcon {
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit) // Maintains the aspect ratio
-                            .frame(width: 50, height: 50) // Sets the frame size
-                            .offset(y: 3)
-                            .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
-                    }
+                    adFormat.adFormat.displayIcon
+                        .resizable()
+                        .aspectRatio(contentMode: .fit) // Maintains the aspect ratio
+                        .frame(width: 50, height: 50) // Sets the frame size
+                        .offset(y: 3)
+                        .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
                     
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("\(adFormat.title) (\(managers.count))")
+                        Text("\(adFormat.adFormat.name) (\(managers.count))")
                             .font(.adsTitle)
                             .fontWeight(.medium)
                             .foregroundStyle(
@@ -448,18 +448,15 @@ struct ListManagersView: View {
                     .listRowSeparator(.hidden)
                     
                     Section {
-                        ForEach(viewStore.adFormats.sorted(by: { lhs, rhs in
-                            lhs.key.sortPosition < rhs.key.sortPosition
-                        }).map({ $0.key })) { adFormat in
-                            let managers = viewStore.adFormats[adFormat] ?? []
+                        ForEach(viewStore.adFormats.sorted(by: { $0 < $1 })) { adCardList in
                             if #available(iOS 16.0, *) {
-                                HorizontalCardsView(adFormat: adFormat,
-                                                    managers: managers,
+                                HorizontalCardsView(adFormat: adCardList.adAdapterFormat,
+                                                    managers: adCardList.adManagers,
                                                     geometry: geometry)
                                 .frame(width: geometry.size.width)
                             } else {
-                                LegacyHorizontalCardsView(adFormat: adFormat,
-                                                          managers: managers,
+                                LegacyHorizontalCardsView(adFormat: adCardList.adAdapterFormat,
+                                                          managers: adCardList.adManagers,
                                                           geometry: geometry)
                                 .background(Color.clear)
                             }

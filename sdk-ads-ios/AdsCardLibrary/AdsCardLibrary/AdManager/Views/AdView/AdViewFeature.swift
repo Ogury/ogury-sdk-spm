@@ -6,6 +6,7 @@
 import UIKit
 import SwiftUI
 internal import ComposableArchitecture
+import OguryCore
 
 enum TestModeTags: AdTag {
     case oguryTestMode, rtbTestMode
@@ -147,7 +148,7 @@ struct AdViewFeature {
             }
         }
         
-        func log(_ message: String, logType: String = .testAppLogType) {
+        func log(_ message: String, logType: OguryLogType = .testApp) {
             AdsCardManager.log(message, origin: adManager.cardConfiguration.qaLabel, logType: logType)
         }
         
@@ -167,7 +168,7 @@ struct AdViewFeature {
                 case .adDidFailToDisplay(let error): message = "Ad failed to show (\(error.displayMessage))"
                 case .adDidFail(let error): message = "Ad failed (\(error.displayMessage))"
             }
-            if let message { log(message, logType: .receivedCallbacksLogType) }
+            if let message { log(message, logType: .receivedCallBacks) }
         }
     }
     

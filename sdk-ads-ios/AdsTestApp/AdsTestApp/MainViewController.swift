@@ -6,7 +6,6 @@ import UIKit
 internal import ComposableArchitecture
 import SwiftUI
 import AdsCardLibrary
-import OguryAds
 import SnapKit
 import CoreServices
 import UniformTypeIdentifiers
@@ -21,7 +20,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         start()
-        AdSdkLauncher.shared.launch()
+        Task { await SdkLauncher.shared.launch() }
         addViewToHierarchy()
         startNotifiers()
     }
@@ -96,12 +95,12 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: AdLifeCycleDelegate, ApplicationDelegate {
-    func focusLogs(on cardId: String) {
-        ViewStore(store, observe: { $0 }).send(.focusLogs(on: cardId))
+    func viewController(for adManager: any AdManager) -> UIViewController? {
+        self
     }
     
-    func viewController<T>(forBanner banner: T.Ad, adManager: T) -> UIViewController? where T : AdsCardLibrary.OguryAdManager {
-        self
+    func focusLogs(on cardId: String) {
+        ViewStore(store, observe: { $0 }).send(.focusLogs(on: cardId))
     }
     
     func deleteCard(withId id: UUID) {

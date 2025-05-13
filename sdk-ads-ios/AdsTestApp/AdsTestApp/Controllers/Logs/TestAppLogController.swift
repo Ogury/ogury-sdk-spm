@@ -7,7 +7,7 @@
 
 import Foundation
 import AdsCardLibrary
-import OguryAds.Private
+import OguryCore.Private
 
 internal struct TestAppLogController {
     let logger = TestAppLogger()
@@ -17,11 +17,8 @@ internal struct TestAppLogController {
     }
     
     mutating func addLogger() {
-        OGAInternal.shared().add(logger)
-    }
-    
-    mutating func removeLogger() {
-        OGAInternal.shared().remove(logger)
+        //TODO: 🍀 Done
+        SdkLauncher.shared.adapter.add(logger: logger)
     }
     
     func enable(_ option: OguryLogDisplay) {

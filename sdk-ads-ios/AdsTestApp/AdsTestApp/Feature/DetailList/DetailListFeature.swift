@@ -5,6 +5,7 @@
 import UIKit
 internal import ComposableArchitecture
 import AdsCardLibrary
+import AdsCardAdapter
 
 struct DetailListFeature: Reducer {
     var adHostingViewController: UIViewController!
@@ -13,8 +14,8 @@ struct DetailListFeature: Reducer {
             lhs.adManagers.count == rhs.adManagers.count
         }
         
-        var adManagers: [any OguryAdManager]
-        var adFormat: AdFormat
+        var adManagers: [any AdManager]
+        var adFormat: any AdAdapterFormat
         var toolbarVisible: Bool = false
     }
     

@@ -10,10 +10,6 @@ import AdsCardLibrary
 struct AppFeature: Reducer {
     var adHostingViewController: UIViewController!
     var adDelegate: (AdLifeCycleDelegate & ApplicationDelegate)!
-    let cardManager = AdsCardManager()
-    let maxHeaderBidable = MaxBidder()
-    let dtFairBidHeaderBidable = DTFairBidBidder()
-    let unityLevelPlayBidable = UnityLevelPlayBidder()
     
     struct State: Equatable {
         var path = StackState<Path.State>()
@@ -45,6 +41,17 @@ struct AppFeature: Reducer {
             case main(MainFeature.Action)
             case detail(DetailListFeature.Action)
         }
+        
+        static let mainCasePath =  AnyCasePath<Action, MainFeature.Action>(
+            embed: { .main($0) },
+            extract: { if case let .main(value) = $0 { return value} else { return nil } }
+        )
+        
+        static let detailCasePath =  AnyCasePath<Action, DetailListFeature.Action>(
+            embed: { .detail($0) },
+            extract: { if case let .detail(value) = $0 { return value} else { return nil } }
+        )
+        
         var body: some ReducerOf<Self> {
             Scope(
                 state: /State.main,
@@ -91,13 +98,8 @@ struct AppFeature: Reducer {
                     
                 case .loadCards:
                     guard let container = try? loadSavedData() else { return .none }
-                    state.main.adFormats = container.retrieveAds(cardManager: cardManager,
-                                                                 maxHeaderBidable: maxHeaderBidable, 
-                                                                 dtFairBidHeaderBidable: dtFairBidHeaderBidable,
-                                                                 unityLevelPlayBidable: unityLevelPlayBidable,
-                                                                 viewController: adHostingViewController,
-                                                                 view: nil,
-                                                                 adDelegate: adDelegate)
+                    //TODO: 🍀 Done
+                    state.main.adFormats = container.retrieveAds(viewController: adHostingViewController, adDelegate: adDelegate)
                     state.main.setName = container.settings.name
                     return .none
                     
@@ -108,7 +110,7 @@ struct AppFeature: Reducer {
                     state
                         .main
                         .adFormats
-                        .compactMap({ $0.value })
+                        .compactMap({ $0.adManagers })
                         .flatMap({ $0 })
                         .forEach({ adManager in
                             adManager.updateCard(events: [.forceTestMode(enable)])
@@ -130,14 +132,5 @@ struct AppFeature: Reducer {
     
     private func loadSavedData() throws -> AdsStorableContainer  {
         try AdsStorableContainer.loadSavedData()
-    }
-}
-
-extension Array where Element == AdFormat {
-    func sorted() -> Array<Element> {
-        print("Before sort \(compactMap({ $0.sortPosition }))")
-        let sorted = sorted(by: { $0.sortPosition < $1.sortPosition })
-        print("After sort \(sorted.compactMap({ $0.sortPosition }))")
-        return sorted
     }
 }

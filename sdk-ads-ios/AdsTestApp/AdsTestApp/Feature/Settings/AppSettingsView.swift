@@ -320,20 +320,22 @@ struct AppSettingsView: View {
                     .listRowBackground(Color.clear)
                     
                     //MARK: - Profig settings
-                    Section {
-                        Button("Reset Ads config file (profig)") {
-                            viewStore.send(.resetAdConfigButtonTapped)
+                    if SdkLauncher.shared.adapter.options.showResetSdkButton {
+                        Section {
+                            Button("Reset Ads config file (profig)") {
+                                viewStore.send(.resetAdConfigButtonTapped)
+                            }
+                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: true).color))
+                            .accessibilityLabel("ResetProfigButton")
+                        } header: {
+                            Text("Ads config")
+                                .font(.adsBody)
+                                .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                                .padding(.horizontal, -16)
                         }
-                        .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: true).color))
-                        .accessibilityLabel("ResetProfigButton")
-                    } header: {
-                        Text("Ads config")
-                            .font(.adsBody)
-                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                            .padding(.horizontal, -16)
+                        .disabled(!appPermissions.settings)
+                        .listRowBackground(Color(AdColorPalette.State.failure.color))
                     }
-                    .disabled(!appPermissions.settings)
-                    .listRowBackground(Color(AdColorPalette.State.failure.color))
                     
                     //MARK: - Profig settings
                     Section {
@@ -385,36 +387,29 @@ struct AppSettingsView: View {
                     .listRowBackground(Color(AdColorPalette.Background.secondary.color))
                     
                     //MARK: - Logs settings
-                    Section {
-                        NavigationLink(
-                            destination: LogOptionView().navigationTitle("Log options")
-                        ) {
-                            Text("Show options")
+#if canImport(OguryAds)
+                    if SdkLauncher.shared.adapter.options.showLogs {
+                        Section {
+                            NavigationLink(
+                                destination: LogOptionView().navigationTitle("Log options")
+                            ) {
+                                Text("Show options")
+                            }
+                            .accessibilityLabel("ShowLogOptionsNavigationLink")
+                        } header: {
+                            Text("Logs")
+                                .font(.adsBody)
+                                .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                                .padding(.horizontal, -16)
                         }
-                        .accessibilityLabel("ShowLogOptionsNavigationLink")
-                    } header: {
-                        Text("Logs")
-                            .font(.adsBody)
-                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                            .padding(.horizontal, -16)
+                        .disabled(!appPermissions.settings)
+                        .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                        .listRowBackground(Color(AdColorPalette.Background.secondary.color))
                     }
-                    .disabled(!appPermissions.settings)
-                    .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                    .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+#endif
                     
                     Spacer()
                         .listRowBackground(Color.clear)
-                    
-                    //MARK: - settings
-                    VStack(alignment: .center) {
-                        Text("App Version : \(viewStore.appVersion)").accessibilityLabel("AppVersionLabel")
-                        Text("Ads SDK Version : \(viewStore.sdkVersion)").accessibilityLabel("SDKVersionLabel")
-                        Text("Environment : \(viewStore.environment)").accessibilityLabel("AppEnvironmentLabel")
-                    }
-                    .frame(maxWidth: .infinity)
-                    .listRowBackground(Color.clear)
-                    .foregroundStyle(Color(AdColorPalette.Text.placeholder.color))
-                    .font(.caption)
                 }
                 .safeScrollContentBackground(.hidden)
                 .listStyle(.insetGrouped)

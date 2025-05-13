@@ -4,23 +4,25 @@
 
 import Foundation
 import OguryCore.Private
-import OguryCore
 internal import ComposableArchitecture
 
 public extension String {
-    static let testAppLogType: String = "TestApp"
-    static let receivedCallbacksLogType: String = "ReceivedCallbacks"
     static let testModeSuffix = "_test"
     var isTestModeOn: Bool { String(suffix(5)) == .testModeSuffix }
+}
+
+public extension OguryLogType {
+    static let testApp = OguryLogType("TestApp")
+    static let receivedCallBacks = OguryLogType("ReceivedCallbacks")
 }
 
 //MARK: - AdsCardManager
 public struct AdsCardManager {
     internal static var logger: OguryLogger?
     
-    static func log(_ message: String, origin: String, logType: String = .testAppLogType) {
+    static func log(_ message: String, origin: String, logType: OguryLogType = .testApp) {
         AdsCardManager.logger?.logMessage(OguryLogMessage(level: .debug,
-                                                          logType: OguryLogType(logType),
+                                                          logType: logType,
                                                           origin: origin,
                                                           sdk: OguryLogSDK("Ads"),
                                                           messageDate: nil,

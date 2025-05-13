@@ -18,22 +18,15 @@ public protocol OguryAdManager: AdManager {
     init(adType: AdType,
          viewController: UIViewController?,
          adDelegate: AdLifeCycleDelegate?)
+    
+    init(adType: AdType,
+         adConfiguration: AdConfiguration,
+         cardConfiguration: CardConfiguration,
+         viewController: UIViewController?,
+         adDelegate: AdLifeCycleDelegate?)
 }
 
-extension OguryAdManager {
-    public func encode() -> AdCardContainer {
-        AdCardContainer(name: cardName,
-                        adType: adType.rawValue,
-                        adInformations: .init(adUnitId: adUnitId,
-                                              campaignId: adConfiguration.campaignId,
-                                              creativeId: adConfiguration.creativeId,
-                                              dspCreativeId: adConfiguration.dspCreativeId,
-                                              dspRegion: adConfiguration.dspRegion,
-                                              settings: .init(oguryTestModeEnabled: cardConfiguration.oguryTestModeEnabled,
-                                                              rtbTestModeEnabled: cardConfiguration.rtbTestModeEnabled,
-                                                              qaLabel: qaLabel)))
-    }
-    
+extension OguryAdManager {    
     public func hash(into hasher: inout Hasher) {
         hasher.combine(adFormat)
         hasher.combine(adConfiguration)
@@ -94,43 +87,46 @@ public indirect enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
         }
     }
     
+    public var sortOrder: Int { rawValue }
+    
     /// returns the proper adManager handled by the AdType
     /// if no suitable adManager is found ``AdManagerError/adManagerMismatch`` is thrown
     internal func adManager(viewController: UIViewController?,
-                            adDelegate: AdLifeCycleDelegate?) -> any OguryAdManager  {
+                            adDelegate: AdLifeCycleDelegate?,
+                            overridenAdType: AdType? = nil) -> any OguryAdManager  {
         switch self {
             case .rewarded:
-                return RewardedAdManager(adType: .rewarded, viewController: viewController, adDelegate: adDelegate)
+                return RewardedAdManager(adType: overridenAdType ?? .rewarded, viewController: viewController, adDelegate: adDelegate)
                 
             case .interstitial:
-                return InterstitialAdManager(adType: .interstitial, viewController: viewController, adDelegate: adDelegate)
+                return InterstitialAdManager(adType: overridenAdType ?? .interstitial, viewController: viewController, adDelegate: adDelegate)
                 
             case .thumbnail:
                 return ThumbnailAdManager(adType: .thumbnail, viewController: viewController, adDelegate: adDelegate)
                 
             case .banner:
-                return BannerAdManager(adType: .banner, viewController: viewController, adDelegate: adDelegate)
+                return BannerAdManager(adType: overridenAdType ?? .banner, viewController: viewController, adDelegate: adDelegate)
                 
             case .mpu:
-                return BannerAdManager(adType: .mpu, viewController: viewController, adDelegate: adDelegate)
+                return BannerAdManager(adType: overridenAdType ?? .mpu, viewController: viewController, adDelegate: adDelegate)
                 
             case .maxHeaderBidding(.thumbnail):
                 fatalError("Thumbnail is not supported on HB")
                 
             case let .maxHeaderBidding(adType):
-                return adType.adManager(viewController: viewController, adDelegate: adDelegate)
+                return adType.adManager(viewController: viewController, adDelegate: adDelegate, overridenAdType: .maxHeaderBidding(adType))
                 
             case .unityLevelPlayHeaderBidding(.thumbnail):
                 fatalError("Thumbnail is not supported on HB")
                 
             case let .unityLevelPlayHeaderBidding(adType):
-                return adType.adManager(viewController: viewController, adDelegate: adDelegate)
+                return adType.adManager(viewController: viewController, adDelegate: adDelegate, overridenAdType: .unityLevelPlayHeaderBidding(adType))
                 
             case .dtFairBidHeaderBidding(.thumbnail):
                 fatalError("Thumbnail is not supported on HB")
                 
             case let .dtFairBidHeaderBidding(adType):
-                return adType.adManager(viewController: viewController, adDelegate: adDelegate)
+                return adType.adManager(viewController: viewController, adDelegate: adDelegate, overridenAdType: .dtFairBidHeaderBidding(adType))
         }
     }
     

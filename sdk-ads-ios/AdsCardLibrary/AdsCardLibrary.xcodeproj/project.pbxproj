@@ -7,30 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E373D612BFCF7CA00E2EF25 /* BTFairBidRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */; };
-		1E8256442B2380B4001DFBA4 /* AdsCardLibrary.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 1E8256432B2380B4001DFBA4 /* AdsCardLibrary.xctestplan */; };
-		1ED014A82CDB783B00B876BF /* Mockingbird in Frameworks */ = {isa = PBXBuildFile; productRef = 1ED014A72CDB783B00B876BF /* Mockingbird */; };
-		430B6F032A65377900A6EFA4 /* RewardedAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430B6F022A65377900A6EFA4 /* RewardedAdManagerTests.swift */; };
-		431441192A6539780067AD47 /* ThumbnailAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431441182A6539780067AD47 /* ThumbnailAdManagerTests.swift */; };
-		4314411B2A653B060067AD47 /* BannerAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4314411A2A653B060067AD47 /* BannerAdManagerTests.swift */; };
-		4314411E2A653CA70067AD47 /* CwlPreconditionTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 4314411D2A653CA70067AD47 /* CwlPreconditionTesting */; };
 		431F6F062C0F3D8100DBFFAA /* AdTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6F052C0F3D8100DBFFAA /* AdTagView.swift */; };
 		431F6F092C0F403F00DBFFAA /* AdTagFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6F082C0F403F00DBFFAA /* AdTagFeature.swift */; };
-		432369C32CF4610F0078EF67 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */; };
-		432369C42CF4610F0078EF67 /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		432369C72CF4629D0078EF67 /* OguryAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4E9E2CB6D00D0029B928 /* OguryAds.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		432369C92CF4629E0078EF67 /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43FA4E9F2CB6D00D0029B928 /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4328B2832AD7CF44003C7F91 /* MaxRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328B2822AD7CF44003C7F91 /* MaxRetriever.swift */; };
 		434F84982AC1AF9B005077F5 /* RewardedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84962AC1AF9B005077F5 /* RewardedView.swift */; };
 		434F84992AC1AF9B005077F5 /* RewardedFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84972AC1AF9B005077F5 /* RewardedFeature.swift */; };
-		434F85252AD6D9EF005077F5 /* MpuAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F85242AD6D9EF005077F5 /* MpuAdManagerTests.swift */; };
 		435C55E42A42EAEF004186FF /* AdsCardLibrary.docc in Sources */ = {isa = PBXBuildFile; fileRef = 435C55E32A42EAEF004186FF /* AdsCardLibrary.docc */; };
-		435C55EA2A42EAEF004186FF /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C55DF2A42EAEF004186FF /* AdsCardLibrary.framework */; };
-		435C55EF2A42EAEF004186FF /* AdsCardManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435C55EE2A42EAEF004186FF /* AdsCardManagerTests.swift */; };
 		435C55F02A42EAEF004186FF /* AdsCardLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 435C55E22A42EAEF004186FF /* AdsCardLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		435C55FA2A42F36B004186FF /* AdsCardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435C55F92A42F36B004186FF /* AdsCardManager.swift */; };
 		435F7BCA2A5EE3970077843A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 435F7BC92A5EE3970077843A /* ComposableArchitecture */; };
-		435F7BCF2A601F990077843A /* InterstitialAdManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435F7BCE2A601F990077843A /* InterstitialAdManagerTests.swift */; };
 		436E97272A6A7BC30074E922 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 436E97262A6A7BC30074E922 /* Assets.xcassets */; };
 		43788F292B5FB7980041A9C1 /* AdsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F282B5FB7980041A9C1 /* AdsTextField.swift */; };
 		43788F332B5FBA1B0041A9C1 /* PPTelegraf-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43788F2B2B5FBA1A0041A9C1 /* PPTelegraf-Semibold.ttf */; };
@@ -44,8 +28,6 @@
 		438ED3D42AA0C2BA00486AF2 /* AdActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C12AA0C2BA00486AF2 /* AdActionBar.swift */; };
 		438ED3D52AA0C2BA00486AF2 /* AdActionBarFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C22AA0C2BA00486AF2 /* AdActionBarFeature.swift */; };
 		438ED3D82AA0C2BA00486AF2 /* AdManagerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C62AA0C2BA00486AF2 /* AdManagerOptions.swift */; };
-		43A78A6E2A52ABF30004A613 /* AdManagerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */; };
-		43A9F4A52C37E7800085EF6F /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A9F4A42C37E7800085EF6F /* OguryCore.framework */; };
 		43B439AF2D9C23C7005AAED6 /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B439AE2D9C23C7005AAED6 /* AdManager.swift */; };
 		43B439B02D9C23C7005AAED6 /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B439AE2D9C23C7005AAED6 /* AdManager.swift */; };
 		43B8357C2D4CC2E100797245 /* CardPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B8357B2D4CC2E100797245 /* CardPermissions.swift */; };
@@ -82,30 +64,19 @@
 		43EB15E12D9D4268002F170A /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB15DF2D9D4268002F170A /* AdView.swift */; };
 		43EB15E22D9D4268002F170A /* AdViewFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB15DE2D9D4268002F170A /* AdViewFeature.swift */; };
 		43EB15E32D9D4268002F170A /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB15DF2D9D4268002F170A /* AdView.swift */; };
-		50CFA8622C637F0B00E64D20 /* UnityLevelPlayRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFA8612C637F0A00E64D20 /* UnityLevelPlayRetriever.swift */; };
+		43EB18FA2DAE8871002F170A /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18F92DAE8871002F170A /* OguryCore.framework */; };
+		43EB18FB2DAE8871002F170A /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18F92DAE8871002F170A /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ACA5E9FA7E59514EB048ED47 /* Pods_AdsCardLibrary_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4925EF716018B487E9F91C3B /* Pods_AdsCardLibrary_art.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		435C55EB2A42EAEF004186FF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 435C55D62A42EAEF004186FF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 435C55DE2A42EAEF004186FF;
-			remoteInfo = AdsCardLibrary;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
-		432369C52CF4610F0078EF67 /* Embed Frameworks */ = {
+		43EB18FC2DAE8871002F170A /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				432369C72CF4629D0078EF67 /* OguryAds.framework in Embed Frameworks */,
-				432369C42CF4610F0078EF67 /* OMSDK_Ogury.xcframework in Embed Frameworks */,
-				432369C92CF4629E0078EF67 /* OguryCore.framework in Embed Frameworks */,
+				43EB18FB2DAE8871002F170A /* OguryCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -113,27 +84,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTFairBidRetriever.swift; sourceTree = "<group>"; };
-		1E8256432B2380B4001DFBA4 /* AdsCardLibrary.xctestplan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AdsCardLibrary.xctestplan; sourceTree = "<group>"; };
 		26C0AEAF1B91EB6AA20B7E18 /* Pods-AdsCardLibrary-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-art.debug.xcconfig"; path = "Target Support Files/Pods-AdsCardLibrary-art/Pods-AdsCardLibrary-art.debug.xcconfig"; sourceTree = "<group>"; };
-		430B6F022A65377900A6EFA4 /* RewardedAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardedAdManagerTests.swift; sourceTree = "<group>"; };
-		431441182A6539780067AD47 /* ThumbnailAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailAdManagerTests.swift; sourceTree = "<group>"; };
-		4314411A2A653B060067AD47 /* BannerAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdManagerTests.swift; sourceTree = "<group>"; };
 		431F6F052C0F3D8100DBFFAA /* AdTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdTagView.swift; sourceTree = "<group>"; };
 		431F6F082C0F403F00DBFFAA /* AdTagFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdTagFeature.swift; sourceTree = "<group>"; };
-		4328B2822AD7CF44003C7F91 /* MaxRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxRetriever.swift; sourceTree = "<group>"; };
 		434F84962AC1AF9B005077F5 /* RewardedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardedView.swift; sourceTree = "<group>"; };
 		434F84972AC1AF9B005077F5 /* RewardedFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardedFeature.swift; sourceTree = "<group>"; };
-		434F85242AD6D9EF005077F5 /* MpuAdManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MpuAdManagerTests.swift; sourceTree = "<group>"; };
 		435C55DF2A42EAEF004186FF /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		435C55E22A42EAEF004186FF /* AdsCardLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdsCardLibrary.h; sourceTree = "<group>"; };
 		435C55E32A42EAEF004186FF /* AdsCardLibrary.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = AdsCardLibrary.docc; sourceTree = "<group>"; };
-		435C55E92A42EAEF004186FF /* AdsCardLibraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdsCardLibraryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		435C55EE2A42EAEF004186FF /* AdsCardManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCardManagerTests.swift; sourceTree = "<group>"; };
 		435C55F92A42F36B004186FF /* AdsCardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCardManager.swift; sourceTree = "<group>"; };
 		435C55FC2A42F451004186FF /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OMSDK_Ogury.xcframework; path = ../OMSDK_Ogury.xcframework; sourceTree = "<absolute>"; };
-		435F7BCE2A601F990077843A /* InterstitialAdManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdManagerTests.swift; sourceTree = "<group>"; };
 		436E97262A6A7BC30074E922 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43788F282B5FB7980041A9C1 /* AdsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsTextField.swift; sourceTree = "<group>"; };
 		43788F2B2B5FBA1A0041A9C1 /* PPTelegraf-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PPTelegraf-Semibold.ttf"; sourceTree = "<group>"; };
@@ -149,7 +110,6 @@
 		438ED3C22AA0C2BA00486AF2 /* AdActionBarFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdActionBarFeature.swift; sourceTree = "<group>"; };
 		438ED3C62AA0C2BA00486AF2 /* AdManagerOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdManagerOptions.swift; sourceTree = "<group>"; };
 		438ED4392AA8565800486AF2 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManagerOptionsTests.swift; sourceTree = "<group>"; };
 		43A9F4A42C37E7800085EF6F /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43B439AE2D9C23C7005AAED6 /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
 		43B8357B2D4CC2E100797245 /* CardPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPermissions.swift; sourceTree = "<group>"; };
@@ -159,10 +119,10 @@
 		43DA127B2AB888D300766D99 /* BannerPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerPlaceholderView.swift; sourceTree = "<group>"; };
 		43EB15DE2D9D4268002F170A /* AdViewFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewFeature.swift; sourceTree = "<group>"; };
 		43EB15DF2D9D4268002F170A /* AdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdView.swift; sourceTree = "<group>"; };
+		43EB18F92DAE8871002F170A /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43FA4E9E2CB6D00D0029B928 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43FA4E9F2CB6D00D0029B928 /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4925EF716018B487E9F91C3B /* Pods_AdsCardLibrary_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsCardLibrary_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		50CFA8612C637F0A00E64D20 /* UnityLevelPlayRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityLevelPlayRetriever.swift; sourceTree = "<group>"; };
 		93E41BC933C7C059FD62B2FB /* Pods-AdsCardLibrary-Release.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-Release.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-Release/Pods-AdsCardLibrary-Release.debug.xcconfig"; sourceTree = "<group>"; };
 		B53EB2B505F1F4CEAAD6AC64 /* Pods-AdsCardLibrary-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-art.release.xcconfig"; path = "Target Support Files/Pods-AdsCardLibrary-art/Pods-AdsCardLibrary-art.release.xcconfig"; sourceTree = "<group>"; };
 		FD61C3C1BAEA09E61B64842E /* Pods-AdsCardLibrary-Release.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsCardLibrary-Release.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AdsCardLibrary-Release/Pods-AdsCardLibrary-Release.release.xcconfig"; sourceTree = "<group>"; };
@@ -173,19 +133,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43A9F4A52C37E7800085EF6F /* OguryCore.framework in Frameworks */,
+				43EB18FA2DAE8871002F170A /* OguryCore.framework in Frameworks */,
 				435F7BCA2A5EE3970077843A /* ComposableArchitecture in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		435C55E62A42EAEF004186FF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				435C55EA2A42EAEF004186FF /* AdsCardLibrary.framework in Frameworks */,
-				1ED014A82CDB783B00B876BF /* Mockingbird in Frameworks */,
-				4314411E2A653CA70067AD47 /* CwlPreconditionTesting in Frameworks */,
-				432369C32CF4610F0078EF67 /* OMSDK_Ogury.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,7 +183,6 @@
 			isa = PBXGroup;
 			children = (
 				435C55E12A42EAEF004186FF /* AdsCardLibrary */,
-				435C55ED2A42EAEF004186FF /* AdsCardLibraryTests */,
 				435C55E02A42EAEF004186FF /* Products */,
 				435C55FB2A42F451004186FF /* Frameworks */,
 				EF5C3C579273150CBA537921 /* Pods */,
@@ -245,7 +193,6 @@
 			isa = PBXGroup;
 			children = (
 				435C55DF2A42EAEF004186FF /* AdsCardLibrary.framework */,
-				435C55E92A42EAEF004186FF /* AdsCardLibraryTests.xctest */,
 				43BCB1912C22FBF0002FB0B1 /* AdsCardLibrary.framework */,
 			);
 			name = Products;
@@ -265,19 +212,10 @@
 			path = AdsCardLibrary;
 			sourceTree = "<group>";
 		};
-		435C55ED2A42EAEF004186FF /* AdsCardLibraryTests */ = {
-			isa = PBXGroup;
-			children = (
-				1E8256432B2380B4001DFBA4 /* AdsCardLibrary.xctestplan */,
-				435F7BCB2A5FFA990077843A /* AdsCardManager */,
-				435F7BCC2A5FFAA50077843A /* AdManager */,
-			);
-			path = AdsCardLibraryTests;
-			sourceTree = "<group>";
-		};
 		435C55FB2A42F451004186FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43EB18F92DAE8871002F170A /* OguryCore.framework */,
 				43FA4E9E2CB6D00D0029B928 /* OguryAds.framework */,
 				43FA4E9F2CB6D00D0029B928 /* OguryCore.framework */,
 				43A9F4A42C37E7800085EF6F /* OguryCore.framework */,
@@ -287,30 +225,6 @@
 				4925EF716018B487E9F91C3B /* Pods_AdsCardLibrary_art.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		435F7BCB2A5FFA990077843A /* AdsCardManager */ = {
-			isa = PBXGroup;
-			children = (
-				435C55EE2A42EAEF004186FF /* AdsCardManagerTests.swift */,
-			);
-			path = AdsCardManager;
-			sourceTree = "<group>";
-		};
-		435F7BCC2A5FFAA50077843A /* AdManager */ = {
-			isa = PBXGroup;
-			children = (
-				43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */,
-				435F7BCE2A601F990077843A /* InterstitialAdManagerTests.swift */,
-				430B6F022A65377900A6EFA4 /* RewardedAdManagerTests.swift */,
-				431441182A6539780067AD47 /* ThumbnailAdManagerTests.swift */,
-				4314411A2A653B060067AD47 /* BannerAdManagerTests.swift */,
-				434F85242AD6D9EF005077F5 /* MpuAdManagerTests.swift */,
-				50CFA8612C637F0A00E64D20 /* UnityLevelPlayRetriever.swift */,
-				4328B2822AD7CF44003C7F91 /* MaxRetriever.swift */,
-				1E373D602BFCF7CA00E2EF25 /* BTFairBidRetriever.swift */,
-			);
-			path = AdManager;
 			sourceTree = "<group>";
 		};
 		43788F272B5FB77A0041A9C1 /* TextFields */ = {
@@ -444,6 +358,7 @@
 				435C55DB2A42EAEF004186FF /* Sources */,
 				435C55DC2A42EAEF004186FF /* Frameworks */,
 				435C55DD2A42EAEF004186FF /* Resources */,
+				43EB18FC2DAE8871002F170A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -456,28 +371,6 @@
 			productName = AdsCardLibrary;
 			productReference = 435C55DF2A42EAEF004186FF /* AdsCardLibrary.framework */;
 			productType = "com.apple.product-type.framework";
-		};
-		435C55E82A42EAEF004186FF /* AdsCardLibraryTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 435C55F62A42EAEF004186FF /* Build configuration list for PBXNativeTarget "AdsCardLibraryTests" */;
-			buildPhases = (
-				435C55E52A42EAEF004186FF /* Sources */,
-				435C55E62A42EAEF004186FF /* Frameworks */,
-				435C55E72A42EAEF004186FF /* Resources */,
-				432369C52CF4610F0078EF67 /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				435C55EC2A42EAEF004186FF /* PBXTargetDependency */,
-			);
-			name = AdsCardLibraryTests;
-			packageProductDependencies = (
-				4314411D2A653CA70067AD47 /* CwlPreconditionTesting */,
-			);
-			productName = AdsCardLibraryTests;
-			productReference = 435C55E92A42EAEF004186FF /* AdsCardLibraryTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		43BCB15C2C22FBF0002FB0B1 /* AdsCardLibrary-art */ = {
 			isa = PBXNativeTarget;
@@ -515,9 +408,6 @@
 						CreatedOnToolsVersion = 14.3.1;
 						LastSwiftMigration = 1600;
 					};
-					435C55E82A42EAEF004186FF = {
-						CreatedOnToolsVersion = 14.3.1;
-					};
 					43BCB15C2C22FBF0002FB0B1 = {
 						LastSwiftMigration = 1600;
 					};
@@ -541,7 +431,6 @@
 			targets = (
 				435C55DE2A42EAEF004186FF /* AdsCardLibrary */,
 				43BCB15C2C22FBF0002FB0B1 /* AdsCardLibrary-art */,
-				435C55E82A42EAEF004186FF /* AdsCardLibraryTests */,
 			);
 		};
 /* End PBXProject section */
@@ -557,14 +446,6 @@
 				43788F372B5FBA1B0041A9C1 /* PPTelegraf-Medium.ttf in Resources */,
 				43788F332B5FBA1B0041A9C1 /* PPTelegraf-Semibold.ttf in Resources */,
 				43788F342B5FBA1B0041A9C1 /* PPTelegraf-Regular.ttf in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		435C55E72A42EAEF004186FF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1E8256442B2380B4001DFBA4 /* AdsCardLibrary.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,23 +517,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		435C55E52A42EAEF004186FF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1E373D612BFCF7CA00E2EF25 /* BTFairBidRetriever.swift in Sources */,
-				435F7BCF2A601F990077843A /* InterstitialAdManagerTests.swift in Sources */,
-				431441192A6539780067AD47 /* ThumbnailAdManagerTests.swift in Sources */,
-				4328B2832AD7CF44003C7F91 /* MaxRetriever.swift in Sources */,
-				43A78A6E2A52ABF30004A613 /* AdManagerOptionsTests.swift in Sources */,
-				4314411B2A653B060067AD47 /* BannerAdManagerTests.swift in Sources */,
-				50CFA8622C637F0B00E64D20 /* UnityLevelPlayRetriever.swift in Sources */,
-				435C55EF2A42EAEF004186FF /* AdsCardManagerTests.swift in Sources */,
-				430B6F032A65377900A6EFA4 /* RewardedAdManagerTests.swift in Sources */,
-				434F85252AD6D9EF005077F5 /* MpuAdManagerTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		43BCB1622C22FBF0002FB0B1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -681,14 +545,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		435C55EC2A42EAEF004186FF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 435C55DE2A42EAEF004186FF /* AdsCardLibrary */;
-			targetProxy = 435C55EB2A42EAEF004186FF /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		435C55F12A42EAEF004186FF /* Debug */ = {
@@ -902,42 +758,6 @@
 			};
 			name = Release;
 		};
-		435C55F72A42EAEF004186FF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W7JZNL3R6G;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ogury.AdsCardLibraryTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		435C55F82A42EAEF004186FF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W7JZNL3R6G;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ogury.AdsCardLibraryTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		43BCB18F2C22FBF0002FB0B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 26C0AEAF1B91EB6AA20B7E18 /* Pods-AdsCardLibrary-art.debug.xcconfig */;
@@ -1050,15 +870,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		435C55F62A42EAEF004186FF /* Build configuration list for PBXNativeTarget "AdsCardLibraryTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				435C55F72A42EAEF004186FF /* Debug */,
-				435C55F82A42EAEF004186FF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		43BCB18E2C22FBF0002FB0B1 /* Build configuration list for PBXNativeTarget "AdsCardLibrary-art" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1071,14 +882,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1ED014A62CDB783B00B876BF /* XCRemoteSwiftPackageReference "mockingbird" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/typealiased/mockingbird";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.20.0;
-			};
-		};
 		43BCB15E2C22FBF0002FB0B1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
@@ -1098,15 +901,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1ED014A72CDB783B00B876BF /* Mockingbird */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1ED014A62CDB783B00B876BF /* XCRemoteSwiftPackageReference "mockingbird" */;
-			productName = Mockingbird;
-		};
-		4314411D2A653CA70067AD47 /* CwlPreconditionTesting */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CwlPreconditionTesting;
-		};
 		435F7BC92A5EE3970077843A /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 43E349582A4AC9820060B41F /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;

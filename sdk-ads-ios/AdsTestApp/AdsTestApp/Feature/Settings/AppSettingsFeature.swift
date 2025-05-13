@@ -6,11 +6,10 @@
 import SwiftUI
 internal import ComposableArchitecture
 import UserDefault
-import OguryAds
 import AdsCardLibrary
 import SwiftMessages
-import OguryAds.Private
 import AVFoundation
+import OguryCore.Private
 
 struct AppSettingsFeature: Reducer {
     struct State: Equatable {
@@ -73,13 +72,6 @@ struct AppSettingsFeature: Reducer {
             ? UserDefaults.standard.bool(forKey: "showShowSection")
             : true
             self.adDelegate = adDelegate
-        }
-        var appVersion: String {
-            "\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String) - \(Bundle.main.infoDictionary?["CFBundleVersion"] as! String)"
-        }
-        var sdkVersion: String {
-            let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
-           return "\(String(describing: OGAInternal.shared().getVersion())) (\(origin == "Pod" ? "Release" : "Development"))"
         }
         var environment: String { Bundle.main.object(forInfoDictionaryKey: "DefaultEnv") as? String ?? "" }
     }
@@ -146,7 +138,7 @@ struct AppSettingsFeature: Reducer {
                     return .none
                     
                 case .resetAdConfigButtonTapped:
-                    OGAInternal.shared().perform(NSSelectorFromString("resetAdConfiguration"))
+                    SdkLauncher.shared.adapter.resetSdk()
                     return .run { _ in
                         await showNotification(message: "OguryAds has been reset")
                     }

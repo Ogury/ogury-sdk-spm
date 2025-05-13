@@ -17,73 +17,62 @@ struct AppView: View {
     }
     
     var body: some View {
-        if #available(iOS 16, *) {
-            NavigationStackStore(
-                store.scope(state: \.path, action: { .path($0) })
-            ) {
-                MainView(
-                    store: store.scope(
-                        state: \.main,
-                        action: { .main($0) }
-                    ), logsStore:  self.store.scope(state: \.logs, action: AppFeature.Action.logs)
-                )
-                .environment(\.cardPermissions, cardPermissions)
-                .toolbar {
-                    ToolbarItemGroup(placement: .keyboard) {
-                        if toolbarVisible {
-                            HStack {
-                                if #available(iOS 17.0, *) {
-                                    Spacer()
-                                }
-                                
-                                Button("Close") {
-                                    store.send(.endEditing)
-                                }
-                                .font(.adsBody)
-                                .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
+        NavigationStackStore(
+            store.scope(state: \.path, action: { .path($0) })
+        ) {
+            MainView(
+                store: store.scope(
+                    state: \.main,
+                    action: { .main($0) }
+                ), logsStore:  self.store.scope(state: \.logs, action: AppFeature.Action.logs)
+            )
+            .environment(\.cardPermissions, cardPermissions)
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    if toolbarVisible {
+                        HStack {
+                            if #available(iOS 17.0, *) {
+                                Spacer()
                             }
-                            .padding()
-                            .id("toolbarVisible")  // Force a view update by adding an ID
+                            
+                            Button("Close") {
+                                store.send(.endEditing)
+                            }
+                            .font(.adsBody)
+                            .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
                         }
+                        .padding()
+                        .id("toolbarVisible")  // Force a view update by adding an ID
                     }
-                }
-                .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { notification in
-                    if let _ = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
-                        toolbarVisible = true
-                    }
-                }
-                .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
-                    toolbarVisible = false
-                }
-            } destination: { state in
-                switch state {
-                    case .main:
-                        CaseLet(
-                            /AppFeature.Path.State.main,
-                             action: AppFeature.Path.Action.main,
-                             then: { store in
-                                MainView(store: store, logsStore: self.store.scope(state: \.logs, action: AppFeature.Action.logs))
-                            }
-                        )
-                    case .detail:
-                        CaseLet(
-                            /AppFeature.Path.State.detail,
-                             action: AppFeature.Path.Action.detail,
-                             then: { store in
-                                DetailListView(store: store, logsStore: self.store.scope(state: \.logs, action: AppFeature.Action.logs))
-                            }
-                        )
                 }
             }
-        } else {
-            NavigationView(content: {
-                MainView(
-                    store: self.store.scope(
-                        state: \.main,
-                        action: { .main($0) }
-                    ), logsStore:  self.store.scope(state: \.logs, action: AppFeature.Action.logs)
-                )
-            })
+            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { notification in
+                if let _ = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+                    toolbarVisible = true
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
+                toolbarVisible = false
+            }
+        } destination: { state in
+            switch state {
+                case .main:
+                    CaseLet(
+                        /AppFeature.Path.State.main,
+                         action: AppFeature.Path.Action.main,
+                         then: { store in
+                             MainView(store: store, logsStore: self.store.scope(state: \.logs, action: AppFeature.Action.logs))
+                         }
+                    )
+                case .detail:
+                    CaseLet(
+                        /AppFeature.Path.State.detail,
+                         action: AppFeature.Path.Action.detail,
+                         then: { store in
+                             DetailListView(store: store, logsStore: self.store.scope(state: \.logs, action: AppFeature.Action.logs))
+                         }
+                    )
+            }
         }
     }
 }

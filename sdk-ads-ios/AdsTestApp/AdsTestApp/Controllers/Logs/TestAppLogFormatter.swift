@@ -5,16 +5,10 @@
 //  Created by Jerome TONNELIER on 24/09/2024.
 //
 
-import OguryAds.Private
 import OguryCore.Private
 import AdsCardLibrary
 import SwiftUI
 import UserDefault
-
-public extension OguryLogType {
-    static let testApp: OguryLogType = .init(.testAppLogType)
-    static let receivedCallbacks: OguryLogType = .init(.receivedCallbacksLogType)
-}
 
 public class TestAppLogFormatter: OguryLogFormatter {
     
@@ -26,7 +20,7 @@ public class TestAppLogFormatter: OguryLogFormatter {
         .mraid : #colorLiteral(red: 0.3766306043, green: 0.754039824, blue: 0.8901714683, alpha: 1),
         .publisher : #colorLiteral(red: 0.8326988816, green: 0.2894239128, blue: 0.3478675783, alpha: 1),
         .requests : #colorLiteral(red: 0.8553102612, green: 0.6779084802, blue: 0, alpha: 1),
-        .receivedCallbacks : #colorLiteral(red: 0.2272397876, green: 0.3584066629, blue: 0.6085994244, alpha: 1),
+        .receivedCallBacks : #colorLiteral(red: 0.2272397876, green: 0.3584066629, blue: 0.6085994244, alpha: 1),
         .testApp : #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
     ]
     
