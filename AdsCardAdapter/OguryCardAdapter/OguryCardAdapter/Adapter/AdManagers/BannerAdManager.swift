@@ -49,8 +49,9 @@ public final class BannerAdManager: OguryAdManager {
         self.adConfiguration = adConfiguration
     }
     
-    public func load() {
-        DispatchQueue.main.async {
+    public func load() async {
+        Task { @MainActor [weak self] in
+            guard let self else { return }
             if (self.ad == nil) {
                 self.ad = OguryBannerAdView(adUnitId: self.adConfiguration.adUnitId,
                                             size: self.adType == .banner ? .small_banner_320x50() : .mrec_300x250())
@@ -86,7 +87,12 @@ public final class BannerAdManager: OguryAdManager {
     }
     
     public func show() {
-        //TODO: implement
+        if (ad == nil) {
+            ad = OguryBannerAdView(adUnitId: adConfiguration.adUnitId,
+                                   size: adType == .banner ? .small_banner_320x50() : .mrec_300x250())
+            ad.delegate = proxyDelegate
+        }
+        append(.bannerReady(ad!))
     }
     
     public func close() {
@@ -113,7 +119,7 @@ public final class BannerAdManager: OguryAdManager {
             proxyDelegate.adDelegate
         }
     }
-    internal let proxyDelegate: MrecProxyDelegate!
+    internal let proxyDelegate: BannerProxyDelegate!
     public var lifeCycleEvents: [AdLifeCycleEventHistory] = []
     public var bidder: HeaderBidable?
     public let id: UUID = UUID()
@@ -130,11 +136,11 @@ public final class BannerAdManager: OguryAdManager {
                 adDelegate: AdLifeCycleDelegate? = nil) {
         events = PassthroughSubject<AdLifeCycleEvent, Never>()
         self.adType = adType
-        self.adFormat = adType == .banner ? .smallBanner : .mrec
+        self.adFormat = adType.adFormat
         self.adConfiguration = adConfiguration
         self.cardConfiguration = cardConfiguration
         self.viewController = viewController
-        proxyDelegate = MrecProxyDelegate(adDelegate: adDelegate)
+        proxyDelegate = BannerProxyDelegate(adDelegate: adDelegate)
         proxyDelegate.adManager = self
         switch adType {
             case .maxHeaderBidding: bidder = MaxBidder(configuration: OguryAdsCardAdapter.configuration)
@@ -232,7 +238,7 @@ public final class BannerAdManager: OguryAdManager {
 // We have to use a proxy object because otherwise, we would have to make InterstitialAdManager a final class that inherits from NSObject
 // and for some reasons, that leads to unexpected compilation fail
 // To overcome easily this, we use a proxy object
-internal class MrecProxyDelegate: AdDelegateProxy<BannerAdManager>, OguryBannerAdViewDelegate {
+internal class BannerProxyDelegate: AdDelegateProxy<BannerAdManager>, OguryBannerAdViewDelegate {
     func bannerAdViewDidLoad(_ bannerAd: OguryBannerAdView) {
         guard let adManager else { return }
         adManager.append(.adLoaded(canShow:true))

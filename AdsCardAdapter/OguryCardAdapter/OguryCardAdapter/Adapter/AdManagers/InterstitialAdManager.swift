@@ -48,7 +48,7 @@ public final class InterstitialAdManager: OguryAdManager {
         self.adConfiguration = adConfiguration
     }
     
-    public func load() {
+    public func load() async {
         if (ad == nil) {
             ad = OguryInterstitialAd(adUnitId: adUnitId)
         }
@@ -60,23 +60,21 @@ public final class InterstitialAdManager: OguryAdManager {
             loadAd()
             return
         }
-        Task {
-            do {
-                let adMakUp = try await bidder.adMarkUp(adUnitId: adUnitId,
-                                                        campaignId: campaignId,
-                                                        creativeId: creativeId,
-                                                        dspCreative: dspCreativeId,
-                                                        dspRegion: dspRegion,
-                                                        rtbTestModeEnabled: cardConfiguration.rtbTestModeEnabled)
-                guard let adMakUp else {
-                    append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")))
-                    return
-                }
-                load(from: adMakUp)
-            } catch {
-                append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed(bidder.description(for: error))))
+        do {
+            let adMakUp = try await bidder.adMarkUp(adUnitId: adUnitId,
+                                                    campaignId: campaignId,
+                                                    creativeId: creativeId,
+                                                    dspCreative: dspCreativeId,
+                                                    dspRegion: dspRegion,
+                                                    rtbTestModeEnabled: cardConfiguration.rtbTestModeEnabled)
+            guard let adMakUp else {
+                append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")))
                 return
             }
+            load(from: adMakUp)
+        } catch {
+            append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed(bidder.description(for: error))))
+            return
         }
     }
     

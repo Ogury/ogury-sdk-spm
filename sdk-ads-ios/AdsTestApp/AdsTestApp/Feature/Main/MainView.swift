@@ -200,7 +200,9 @@ struct MainView: View {
                         } label: {
                             HStack {
                                 Text(action.name).font(.adsBody)
-                                action.icon!
+                                if let icon = action.icon {
+                                    icon
+                                }
                             }
                         }
                     }
@@ -272,7 +274,7 @@ extension View {
                                         Button {
                                             viewStore.send(.destination(.dismiss))
                                         } label: {
-                                            Text("Cancel")
+                                            Text("Dismiss")
                                         }
                                         .accessibilityLabel("SettingsSheetCancelButton")
                                     }

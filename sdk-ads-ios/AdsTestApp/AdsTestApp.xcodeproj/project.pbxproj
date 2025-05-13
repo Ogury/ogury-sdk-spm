@@ -394,6 +394,60 @@
 		43EB21152DB8DAEA002F170A /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
 		43EB21162DB8DAEA002F170A /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43EB211A2DBA35B3002F170A /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43EB21192DBA35B3002F170A /* Default.settings */; };
+		43EB26792DBFCC84002F170A /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
+		43EB267A2DBFCC84002F170A /* AddFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84AE2AC3008C005077F5 /* AddFeature.swift */; };
+		43EB267B2DBFCC84002F170A /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F849C2AC2CC54005077F5 /* AppFeature.swift */; };
+		43EB267C2DBFCC84002F170A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A12AC2CD2B005077F5 /* MainView.swift */; };
+		43EB267E2DBFCC84002F170A /* ImportFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369FF2CF4CB700078EF67 /* ImportFeature.swift */; };
+		43EB267F2DBFCC84002F170A /* AdMobConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BF82D94554D00BE53A1 /* AdMobConsentManager.swift */; };
+		43EB26802DBFCC84002F170A /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43236A002CF4CB700078EF67 /* ImportView.swift */; };
+		43EB26812DBFCC84002F170A /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
+		43EB26822DBFCC84002F170A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED41A2AA5D0C200486AF2 /* MainViewController.swift */; };
+		43EB26832DBFCC84002F170A /* InmobiConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* InmobiConsentManager.swift */; };
+		43EB26842DBFCC84002F170A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED4162AA5D0C200486AF2 /* AppDelegate.swift */; };
+		43EB26852DBFCC84002F170A /* PrivacyDataFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */; };
+		43EB26862DBFCC84002F170A /* PrivacyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */; };
+		43EB26872DBFCC84002F170A /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
+		43EB26882DBFCC84002F170A /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
+		43EB26892DBFCC84002F170A /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A82AC2DF0C005077F5 /* AppSettingsView.swift */; };
+		43EB268A2DBFCC84002F170A /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BFF2D9457ED00BE53A1 /* ApplicationDelegate.swift */; };
+		43EB268B2DBFCC84002F170A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED4182AA5D0C200486AF2 /* SceneDelegate.swift */; };
+		43EB268C2DBFCC84002F170A /* DetailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5BE6322B21F40F0010B995 /* DetailListView.swift */; };
+		43EB268D2DBFCC84002F170A /* TestAppLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7552CA44BC5001086FE /* TestAppLogFormatter.swift */; };
+		43EB268E2DBFCC84002F170A /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
+		43EB268F2DBFCC84002F170A /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84AD2AC3008C005077F5 /* AddView.swift */; };
+		43EB26902DBFCC84002F170A /* NotificationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C1D15A2B7E672C006F2D23 /* NotificationMessage.swift */; };
+		43EB26912DBFCC84002F170A /* DetailListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF117682AF95052004BE519 /* DetailListFeature.swift */; };
+		43EB26922DBFCC84002F170A /* LinkPresentationItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8E2B3491DC00037FE1 /* LinkPresentationItemSource.swift */; };
+		43EB26932DBFCC84002F170A /* MainFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A22AC2CD2B005077F5 /* MainFeature.swift */; };
+		43EB26942DBFCC84002F170A /* AppSettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A92AC2DF0C005077F5 /* AppSettingsFeature.swift */; };
+		43EB26952DBFCC84002F170A /* LogOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7482CA42FF1001086FE /* LogOptionView.swift */; };
+		43EB26962DBFCC84002F170A /* LogOptionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7472CA42FF1001086FE /* LogOptionFeature.swift */; };
+		43EB26982DBFCC84002F170A /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9206212CCBE09100916482 /* LogsView.swift */; };
+		43EB26992DBFCC84002F170A /* SdkLaunchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */; };
+		43EB269A2DBFCC84002F170A /* LogsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E92061A2CCBE05500916482 /* LogsFeature.swift */; };
+		43EB269B2DBFCC84002F170A /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F849B2AC2CC54005077F5 /* AppView.swift */; };
+		43EB269D2DBFCC84002F170A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 43EB26712DBFCC84002F170A /* SnapKit */; };
+		43EB269E2DBFCC84002F170A /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 43EB26752DBFCC84002F170A /* SwiftMessages */; };
+		43EB269F2DBFCC84002F170A /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 43EB26732DBFCC84002F170A /* UserDefault */; };
+		43EB26A22DBFCC84002F170A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
+		43EB26A62DBFCC84002F170A /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
+		43EB26A82DBFCC84002F170A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
+		43EB26A92DBFCC84002F170A /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
+		43EB26AA2DBFCC84002F170A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41F2AA5D0C300486AF2 /* Assets.xcassets */; };
+		43EB26AB2DBFCC84002F170A /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434F84FB2ACFE5ED005077F5 /* Asset.xcassets */; };
+		43EB26B12DBFCC84002F170A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41C2AA5D0C200486AF2 /* Main.storyboard */; };
+		43EB26B62DBFCC84002F170A /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB26B82DBFCC84002F170A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB26C82DBFCD3C002F170A /* shareImageData.png in Resources */ = {isa = PBXBuildFile; fileRef = 43EB26C62DBFCD3C002F170A /* shareImageData.png */; };
+		43EB26C92DBFCD3C002F170A /* UTType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB26C72DBFCD3C002F170A /* UTType+Extension.swift */; };
+		43EB26CE2DBFCD50002F170A /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43EB26CA2DBFCD50002F170A /* Asset.xcassets */; };
+		43EB26CF2DBFCD50002F170A /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 43EB26CC2DBFCD50002F170A /* config.release.xcconfig */; };
+		43EB26D02DBFCD50002F170A /* config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 43EB26CB2DBFCD50002F170A /* config.debug.xcconfig */; };
+		43EB26D32DBFCE3D002F170A /* SdkLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB26D22DBFCE3D002F170A /* SdkLauncher.swift */; };
+		43EB26D82DC0C5E3002F170A /* AdMobCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB26D72DC0C5E3002F170A /* AdMobCardAdapter.framework */; };
+		43EB26D92DC0C5E3002F170A /* AdMobCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB26D72DC0C5E3002F170A /* AdMobCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB27432DC0D55F002F170A /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43EB27422DC0D55F002F170A /* Default.settings */; };
 		43F66E3C2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E3D2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E3E2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -416,7 +470,9 @@
 		43F66E6D2D4A20E2000AED12 /* Default-qa.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E682D4A20E2000AED12 /* Default-qa.settings */; };
 		43F66E6E2D4A20E2000AED12 /* Default-qa.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E682D4A20E2000AED12 /* Default-qa.settings */; };
 		49AAF6A5D0E019AD418EC407 /* Pods_AdsTestApp_Prod_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F423650CD48D191647567E /* Pods_AdsTestApp_Prod_art.framework */; };
+		4ED29DAF66C9043421131A0B /* Pods_MaxTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2FAE68C29E93A8112FB09F4 /* Pods_MaxTestApp.framework */; };
 		641C84CBDB1DF68759CA97FE /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D32DAE3DA0002F170A /* AdsCardLibrary.framework */; };
+		682EB25E99060FCFF27A4E13 /* Pods_AdMobTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CCD01789E230EF9F7B3E6D /* Pods_AdMobTestApp.framework */; };
 		6E4017B95617E3C0933A7415 /* Pods_AdsTestApp_Staging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DDF33DFB5445EFF5B05E535 /* Pods_AdsTestApp_Staging.framework */; };
 		768024427BB8B30140B90414 /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
 		88E82992A8B76B9A9A204CC6 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D32DAE3DA0002F170A /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -430,7 +486,7 @@
 		E6D752923C989A29C8B6C272 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D32DAE3DA0002F170A /* AdsCardLibrary.framework */; };
 		F1C35725B4319655E70B6EA6 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D32DAE3DA0002F170A /* AdsCardLibrary.framework */; };
 		F4F1FE3A7BF6ECD6BBCDD682 /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
-		F55D4BE30033AB27495A092C /* Pods_MaxTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8A5AEABEB02FECE0734BBE2 /* Pods_MaxTestApp.framework */; };
+		F55D4BE30033AB27495A092C /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		FDD6EECD41267B6FAECBD293 /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -537,6 +593,19 @@
 				43EB21142DB8DAEA002F170A /* AdsCardAdapter.framework in Embed Frameworks */,
 				43EB21122DB8DACD002F170A /* OgurySdk.framework in Embed Frameworks */,
 				43EB1E512DB24675002F170A /* OguryCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43EB26B42DBFCC84002F170A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				43EB26D92DC0C5E3002F170A /* AdMobCardAdapter.framework in Embed Frameworks */,
+				43EB26B62DBFCC84002F170A /* AdsCardLibrary.framework in Embed Frameworks */,
+				43EB26B82DBFCC84002F170A /* AdsCardAdapter.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -658,6 +727,17 @@
 		43EB20FF2DB7C72F002F170A /* UTType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Extension.swift"; sourceTree = "<group>"; };
 		43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdkLaunchable.swift; sourceTree = "<group>"; };
 		43EB21192DBA35B3002F170A /* Default.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Default.settings; sourceTree = "<group>"; };
+		43EB26BE2DBFCC84002F170A /* AdMobTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdMobTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB26C62DBFCD3C002F170A /* shareImageData.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareImageData.png; sourceTree = "<group>"; };
+		43EB26C72DBFCD3C002F170A /* UTType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Extension.swift"; sourceTree = "<group>"; };
+		43EB26CA2DBFCD50002F170A /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
+		43EB26CB2DBFCD50002F170A /* config.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = config.debug.xcconfig; sourceTree = "<group>"; };
+		43EB26CC2DBFCD50002F170A /* config.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = config.release.xcconfig; sourceTree = "<group>"; };
+		43EB26CD2DBFCD50002F170A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43EB26D22DBFCE3D002F170A /* SdkLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdkLauncher.swift; sourceTree = "<group>"; };
+		43EB26D42DBFCE5C002F170A /* AdMobCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdMobCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB26D72DC0C5E3002F170A /* AdMobCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdMobCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB27422DC0D55F002F170A /* Default.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Default.settings; sourceTree = "<group>"; };
 		43F66E572D48E94F000AED12 /* Default.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Default.settings; sourceTree = "<group>"; };
 		43F66E5E2D48E95C000AED12 /* Custom.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Custom.settings; sourceTree = "<group>"; };
 		43F66E682D4A20E2000AED12 /* Default-qa.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Default-qa.settings"; sourceTree = "<group>"; };
@@ -668,19 +748,22 @@
 		4DDF33DFB5445EFF5B05E535 /* Pods_AdsTestApp_Staging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Staging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54FDEBE22E273EEE2DF87F17 /* Pods-AdsTestApp-Prod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod.release.xcconfig"; sourceTree = "<group>"; };
 		555D0522B2775FF63CA29877 /* Pods_AdsTestApp_Devc_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Devc_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		578B72BBCCEC36EDDD2D20BE /* Pods-AdMobTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdMobTestApp.release.xcconfig"; path = "Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp.release.xcconfig"; sourceTree = "<group>"; };
 		66402FACB9E34281B47E2C92 /* Pods-AdsTestApp-Devc-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc-art.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art.debug.xcconfig"; sourceTree = "<group>"; };
 		6CA74E0E6E8AE86643AC8A83 /* Pods-AdsTestApp-Devc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc.release.xcconfig"; sourceTree = "<group>"; };
 		6FA95B4FB3A2AF96534FD94F /* Pods-AdsTestApp-Staging-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Staging-art.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art.debug.xcconfig"; sourceTree = "<group>"; };
 		77FAE455F2244E802BFA973B /* Pods_AdsTestApp_Devc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Devc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87A186F2D4CBF0885C4DE96C /* Pods-AdsTestApp-Devc-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc-art.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art.release.xcconfig"; sourceTree = "<group>"; };
-		A8A5AEABEB02FECE0734BBE2 /* Pods_MaxTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaxTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0F466AC346757FE2185B12C /* Pods-MaxTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaxTestApp.debug.xcconfig"; path = "Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp.debug.xcconfig"; sourceTree = "<group>"; };
+		B2FAE68C29E93A8112FB09F4 /* Pods_MaxTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaxTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B40DCD71260D8F5C84DD941A /* Pods_AdsTestApp_Staging_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdsTestApp_Staging_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA59F4A003DD9D666A7AAA37 /* Pods-AdsTestApp-Prod-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod-art.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art.release.xcconfig"; sourceTree = "<group>"; };
 		BB4BB1174C2DCF2F710B8B0B /* Pods-AdsTestApp-Prod-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Prod-art.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art.debug.xcconfig"; sourceTree = "<group>"; };
 		C01B2DD63BB8AB3C60C44F5A /* Pods-AdsTestApp-Staging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Staging.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging.debug.xcconfig"; sourceTree = "<group>"; };
 		CBEDCD96EDE6355EF9D507B4 /* Pods-MaxTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaxTestApp.release.xcconfig"; path = "Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp.release.xcconfig"; sourceTree = "<group>"; };
+		D2B5798211318150E2C42E91 /* Pods-AdMobTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdMobTestApp.debug.xcconfig"; path = "Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D34F0E6F0302328BB279D78A /* Pods-AdsTestApp-Devc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Devc.debug.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc.debug.xcconfig"; sourceTree = "<group>"; };
+		E3CCD01789E230EF9F7B3E6D /* Pods_AdMobTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdMobTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A627F2DCE4C1FD6630DD80 /* Pods-AdsTestApp-Staging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdsTestApp-Staging.release.xcconfig"; path = "Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -797,8 +880,23 @@
 				43EB21132DB8DAEA002F170A /* AdsCardAdapter.framework in Frameworks */,
 				43EB1E3E2DB24675002F170A /* OguryCore.framework in Frameworks */,
 				43EB21112DB8DACD002F170A /* OgurySdk.framework in Frameworks */,
-				F55D4BE30033AB27495A092C /* Pods_MaxTestApp.framework in Frameworks */,
+				F55D4BE30033AB27495A092C /* (null) in Frameworks */,
 				43EB21152DB8DAEA002F170A /* AdsCardLibrary.framework in Frameworks */,
+				4ED29DAF66C9043421131A0B /* Pods_MaxTestApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43EB269C2DBFCC84002F170A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43EB269D2DBFCC84002F170A /* SnapKit in Frameworks */,
+				43EB269E2DBFCC84002F170A /* SwiftMessages in Frameworks */,
+				43EB269F2DBFCC84002F170A /* UserDefault in Frameworks */,
+				43EB26D82DC0C5E3002F170A /* AdMobCardAdapter.framework in Frameworks */,
+				43EB26A22DBFCC84002F170A /* AdsCardAdapter.framework in Frameworks */,
+				43EB26A62DBFCC84002F170A /* AdsCardLibrary.framework in Frameworks */,
+				682EB25E99060FCFF27A4E13 /* Pods_AdMobTestApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -826,6 +924,7 @@
 		4301B1E52B56D3450076065D /* UTType */ = {
 			isa = PBXGroup;
 			children = (
+				43EB26C52DBFCD26002F170A /* AdMob */,
 				43EB21002DB7C72F002F170A /* AppLovin */,
 				43EB18A92DA6A900002F170A /* OguryFiles */,
 			);
@@ -916,6 +1015,7 @@
 		434F84F42ACFE529005077F5 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				43EB26C12DBFCCCC002F170A /* AdMob */,
 				43EB1E592DB24700002F170A /* Ogury */,
 				43236A172CF5C6F40078EF67 /* Fonts */,
 				43EB1E5B2DB247B1002F170A /* Max */,
@@ -983,6 +1083,7 @@
 				43BCB1172C22DD59002FB0B1 /* AdsTestApp-Staging-art.app */,
 				43BCB15A2C22DD60002FB0B1 /* AdsTestApp-Prod-art.app */,
 				43EB1E562DB24675002F170A /* MaxTestApp.app */,
+				43EB26BE2DBFCC84002F170A /* AdMobTestApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1008,6 +1109,8 @@
 		438ED42C2AA5D0F600486AF2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43EB26D72DC0C5E3002F170A /* AdMobCardAdapter.framework */,
+				43EB26D42DBFCE5C002F170A /* AdMobCardAdapter.framework */,
 				43EB1F6D2DB2584A002F170A /* MaxCardAdapter.framework */,
 				43EB1E6B2DB24FA1002F170A /* MaxCardAdapter.framework */,
 				43EB19902DAFF8F4002F170A /* OguryCardAdapter.framework */,
@@ -1049,8 +1152,9 @@
 				44F423650CD48D191647567E /* Pods_AdsTestApp_Prod_art.framework */,
 				4DDF33DFB5445EFF5B05E535 /* Pods_AdsTestApp_Staging.framework */,
 				B40DCD71260D8F5C84DD941A /* Pods_AdsTestApp_Staging_art.framework */,
-				A8A5AEABEB02FECE0734BBE2 /* Pods_MaxTestApp.framework */,
 				3284F43285076C3732D5B37E /* Pods_AdsTestApp_Prod.framework */,
+				E3CCD01789E230EF9F7B3E6D /* Pods_AdMobTestApp.framework */,
+				B2FAE68C29E93A8112FB09F4 /* Pods_MaxTestApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1104,6 +1208,7 @@
 		43EB186A2DA6A496002F170A /* PerTargetLauncher */ = {
 			isa = PBXGroup;
 			children = (
+				43EB26C32DBFCD1E002F170A /* AdMob */,
 				43EB1E642DB24A54002F170A /* AppLovin */,
 				43EB18EA2DAE8671002F170A /* Ogury */,
 				43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */,
@@ -1202,9 +1307,46 @@
 			path = AppLovin;
 			sourceTree = "<group>";
 		};
+		43EB26C12DBFCCCC002F170A /* AdMob */ = {
+			isa = PBXGroup;
+			children = (
+				43EB26CA2DBFCD50002F170A /* Asset.xcassets */,
+				43EB26CB2DBFCD50002F170A /* config.debug.xcconfig */,
+				43EB26CC2DBFCD50002F170A /* config.release.xcconfig */,
+				43EB26CD2DBFCD50002F170A /* Info.plist */,
+			);
+			path = AdMob;
+			sourceTree = "<group>";
+		};
+		43EB26C32DBFCD1E002F170A /* AdMob */ = {
+			isa = PBXGroup;
+			children = (
+				43EB26D22DBFCE3D002F170A /* SdkLauncher.swift */,
+			);
+			path = AdMob;
+			sourceTree = "<group>";
+		};
+		43EB26C52DBFCD26002F170A /* AdMob */ = {
+			isa = PBXGroup;
+			children = (
+				43EB26C62DBFCD3C002F170A /* shareImageData.png */,
+				43EB26C72DBFCD3C002F170A /* UTType+Extension.swift */,
+			);
+			path = AdMob;
+			sourceTree = "<group>";
+		};
+		43EB27412DC0D548002F170A /* AdMob */ = {
+			isa = PBXGroup;
+			children = (
+				43EB27422DC0D55F002F170A /* Default.settings */,
+			);
+			path = AdMob;
+			sourceTree = "<group>";
+		};
 		43F66E662D4A20B2000AED12 /* Loaded Files */ = {
 			isa = PBXGroup;
 			children = (
+				43EB27412DC0D548002F170A /* AdMob */,
 				43EB21182DBA35A3002F170A /* AppLovin */,
 				43F66E672D4A20B9000AED12 /* Dev App */,
 			);
@@ -1249,6 +1391,8 @@
 				1D42925E862BD0B4CC236A69 /* Pods-AdsTestApp-Staging-art.release.xcconfig */,
 				B0F466AC346757FE2185B12C /* Pods-MaxTestApp.debug.xcconfig */,
 				CBEDCD96EDE6355EF9D507B4 /* Pods-MaxTestApp.release.xcconfig */,
+				D2B5798211318150E2C42E91 /* Pods-AdMobTestApp.debug.xcconfig */,
+				578B72BBCCEC36EDDD2D20BE /* Pods-AdMobTestApp.release.xcconfig */,
 			);
 			name = Pods;
 			path = ../../Pods;
@@ -1439,6 +1583,32 @@
 			productReference = 43EB1E562DB24675002F170A /* MaxTestApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		43EB26702DBFCC84002F170A /* AdMobTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43EB26BB2DBFCC84002F170A /* Build configuration list for PBXNativeTarget "AdMobTestApp" */;
+			buildPhases = (
+				43EB26772DBFCC84002F170A /* [CP] Check Pods Manifest.lock */,
+				43EB26782DBFCC84002F170A /* Sources */,
+				43EB269C2DBFCC84002F170A /* Frameworks */,
+				43EB26A72DBFCC84002F170A /* Resources */,
+				43EB26B22DBFCC84002F170A /* [CP] Embed Pods Frameworks */,
+				43EB26B32DBFCC84002F170A /* [CP] Copy Pods Resources */,
+				43EB26B42DBFCC84002F170A /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AdMobTestApp;
+			packageProductDependencies = (
+				43EB26712DBFCC84002F170A /* SnapKit */,
+				43EB26732DBFCC84002F170A /* UserDefault */,
+				43EB26752DBFCC84002F170A /* SwiftMessages */,
+			);
+			productName = AdsTestApp;
+			productReference = 43EB26BE2DBFCC84002F170A /* AdMobTestApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1495,6 +1665,7 @@
 				43BCB0D62C22DD59002FB0B1 /* AdsTestApp-Staging-art */,
 				43BCB1192C22DD60002FB0B1 /* AdsTestApp-Prod-art */,
 				43EB1E0C2DB24675002F170A /* MaxTestApp */,
+				43EB26702DBFCC84002F170A /* AdMobTestApp */,
 			);
 		};
 /* End PBXProject section */
@@ -1625,6 +1796,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		43EB26A72DBFCC84002F170A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43EB26A82DBFCC84002F170A /* LaunchScreen.storyboard in Resources */,
+				43EB26A92DBFCC84002F170A /* FiraCode-Regular.ttf in Resources */,
+				43EB26AA2DBFCC84002F170A /* Assets.xcassets in Resources */,
+				43EB26AB2DBFCC84002F170A /* Asset.xcassets in Resources */,
+				43EB27432DC0D55F002F170A /* Default.settings in Resources */,
+				43EB26CE2DBFCD50002F170A /* Asset.xcassets in Resources */,
+				43EB26CF2DBFCD50002F170A /* config.release.xcconfig in Resources */,
+				43EB26D02DBFCD50002F170A /* config.debug.xcconfig in Resources */,
+				43EB26C82DBFCD3C002F170A /* shareImageData.png in Resources */,
+				43EB26B12DBFCC84002F170A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1711,6 +1899,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43EB26772DBFCC84002F170A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AdMobTestApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43EB26B22DBFCC84002F170A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43EB26B32DBFCC84002F170A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		497FEAFDCAD1B78DC4BA37BE /* [CP] Embed Pods Frameworks */ = {
@@ -2370,6 +2622,48 @@
 				43EB21102DB8CD3E002F170A /* SdkLaunchable.swift in Sources */,
 				43EB1E342DB24675002F170A /* LogsFeature.swift in Sources */,
 				43EB1E352DB24675002F170A /* AppView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43EB26782DBFCC84002F170A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43EB26792DBFCC84002F170A /* AdsStorableContainer.swift in Sources */,
+				43EB267A2DBFCC84002F170A /* AddFeature.swift in Sources */,
+				43EB267B2DBFCC84002F170A /* AppFeature.swift in Sources */,
+				43EB267C2DBFCC84002F170A /* MainView.swift in Sources */,
+				43EB26D32DBFCE3D002F170A /* SdkLauncher.swift in Sources */,
+				43EB267E2DBFCC84002F170A /* ImportFeature.swift in Sources */,
+				43EB267F2DBFCC84002F170A /* AdMobConsentManager.swift in Sources */,
+				43EB26802DBFCC84002F170A /* ImportView.swift in Sources */,
+				43EB26812DBFCC84002F170A /* AddFormatsView.swift in Sources */,
+				43EB26822DBFCC84002F170A /* MainViewController.swift in Sources */,
+				43EB26832DBFCC84002F170A /* InmobiConsentManager.swift in Sources */,
+				43EB26842DBFCC84002F170A /* AppDelegate.swift in Sources */,
+				43EB26852DBFCC84002F170A /* PrivacyDataFeature.swift in Sources */,
+				43EB26862DBFCC84002F170A /* PrivacyDataView.swift in Sources */,
+				43EB26872DBFCC84002F170A /* TestAppLogController.swift in Sources */,
+				43EB26882DBFCC84002F170A /* SettingsController.swift in Sources */,
+				43EB26892DBFCC84002F170A /* AppSettingsView.swift in Sources */,
+				43EB268A2DBFCC84002F170A /* ApplicationDelegate.swift in Sources */,
+				43EB268B2DBFCC84002F170A /* SceneDelegate.swift in Sources */,
+				43EB268C2DBFCC84002F170A /* DetailListView.swift in Sources */,
+				43EB268D2DBFCC84002F170A /* TestAppLogFormatter.swift in Sources */,
+				43EB268E2DBFCC84002F170A /* TestAppLogger.swift in Sources */,
+				43EB268F2DBFCC84002F170A /* AddView.swift in Sources */,
+				43EB26902DBFCC84002F170A /* NotificationMessage.swift in Sources */,
+				43EB26912DBFCC84002F170A /* DetailListFeature.swift in Sources */,
+				43EB26922DBFCC84002F170A /* LinkPresentationItemSource.swift in Sources */,
+				43EB26932DBFCC84002F170A /* MainFeature.swift in Sources */,
+				43EB26942DBFCC84002F170A /* AppSettingsFeature.swift in Sources */,
+				43EB26952DBFCC84002F170A /* LogOptionView.swift in Sources */,
+				43EB26962DBFCC84002F170A /* LogOptionFeature.swift in Sources */,
+				43EB26982DBFCC84002F170A /* LogsView.swift in Sources */,
+				43EB26C92DBFCD3C002F170A /* UTType+Extension.swift in Sources */,
+				43EB26992DBFCC84002F170A /* SdkLaunchable.swift in Sources */,
+				43EB269A2DBFCC84002F170A /* LogsFeature.swift in Sources */,
+				43EB269B2DBFCC84002F170A /* AppView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3128,6 +3422,93 @@
 			};
 			name = Release;
 		};
+		43EB26BC2DBFCC84002F170A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43EB26CB2DBFCD50002F170A /* config.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSET_KEY = "$(ASSET_KEY)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
+				DEFAULT_ENV = "$(DEFAULT_ENV)";
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/AdMob/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AdMob Ads";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "${VERSION}";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D FORCE_APP_CONFIG_FILE";
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.admob.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDK_SOURCE = Dev;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		43EB26BD2DBFCC84002F170A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43EB26CC2DBFCD50002F170A /* config.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSET_KEY = "$(ASSET_KEY)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
+				DEFAULT_ENV = "$(DEFAULT_ENV)";
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/AdMob/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AdMob Ads";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "${VERSION}";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D FORCE_APP_CONFIG_FILE";
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.admob.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDK_SOURCE = Dev;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -3199,6 +3580,15 @@
 			buildConfigurations = (
 				43EB1E542DB24675002F170A /* Debug */,
 				43EB1E552DB24675002F170A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43EB26BB2DBFCC84002F170A /* Build configuration list for PBXNativeTarget "AdMobTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43EB26BC2DBFCC84002F170A /* Debug */,
+				43EB26BD2DBFCC84002F170A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3326,6 +3716,30 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		43EB26722DBFCC84002F170A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+		43EB26742DBFCC84002F170A /* XCRemoteSwiftPackageReference "UserDefault" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/juliand665/UserDefault";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		43EB26762DBFCC84002F170A /* XCRemoteSwiftPackageReference "SwiftMessages" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftKickMobile/SwiftMessages";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -3432,6 +3846,21 @@
 		43EB1E112DB24675002F170A /* SwiftMessages */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 43EB1E122DB24675002F170A /* XCRemoteSwiftPackageReference "SwiftMessages" */;
+			productName = SwiftMessages;
+		};
+		43EB26712DBFCC84002F170A /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43EB26722DBFCC84002F170A /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		43EB26732DBFCC84002F170A /* UserDefault */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43EB26742DBFCC84002F170A /* XCRemoteSwiftPackageReference "UserDefault" */;
+			productName = UserDefault;
+		};
+		43EB26752DBFCC84002F170A /* SwiftMessages */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43EB26762DBFCC84002F170A /* XCRemoteSwiftPackageReference "SwiftMessages" */;
 			productName = SwiftMessages;
 		};
 /* End XCSwiftPackageProductDependency section */

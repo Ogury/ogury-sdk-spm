@@ -17,6 +17,7 @@
 		43EB17C32DA69FC4002F170A /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB18FD2DAE8957002F170A /* AdsCardLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB19A92DB0F3CA002F170A /* MaxCardAdapter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MaxCardAdapter.xcodeproj; path = MaxCardAdapter/MaxCardAdapter.xcodeproj; sourceTree = "<group>"; };
+		43EB25C72DBFAC49002F170A /* AdMobCardAdapter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AdMobCardAdapter.xcodeproj; path = AdMobCardAdapter/AdMobCardAdapter.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -42,6 +43,7 @@
 		43EB161C2DA52338002F170A = {
 			isa = PBXGroup;
 			children = (
+				43EB25C72DBFAC49002F170A /* AdMobCardAdapter.xcodeproj */,
 				43EB16FB2DA64F2D002F170A /* OguryCardAdapter.xcodeproj */,
 				43EB19A92DB0F3CA002F170A /* MaxCardAdapter.xcodeproj */,
 				43EB16282DA52338002F170A /* AdsCardAdapter */,
@@ -76,6 +78,13 @@
 			sourceTree = "<group>";
 		};
 		43EB1A4D2DB12829002F170A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		43EB25C82DBFAC49002F170A /* Products */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -146,6 +155,10 @@
 			productRefGroup = 43EB16272DA52338002F170A /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 43EB25C82DBFAC49002F170A /* Products */;
+					ProjectRef = 43EB25C72DBFAC49002F170A /* AdMobCardAdapter.xcodeproj */;
+				},
 				{
 					ProductGroup = 43EB19AA2DB0F3CA002F170A /* Products */;
 					ProjectRef = 43EB19A92DB0F3CA002F170A /* MaxCardAdapter.xcodeproj */;

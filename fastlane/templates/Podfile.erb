@@ -57,6 +57,13 @@ target "MaxCardAdapter" do
   pod 'AppLovinMediationOguryPresageAdapter'
 end
 
+#AdMobCardAdapter
+target "AdMobCardAdapter" do
+  project "AdsCardAdapter/AdMobCardAdapter/AdMobCardAdapter"
+  pod 'Google-Mobile-Ads-SDK'
+  pod 'OguryMediationGoogleMobileAds-Prod', '5.1.0.0-rc-1.0.3'
+end
+
 #Ads Test Apps
 target "AdsTestApp-Devc" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
@@ -79,6 +86,12 @@ target "MaxTestApp" do
   pod 'Google-Mobile-Ads-SDK'
   pod 'AppLovinSDK'
   pod 'AppLovinMediationOguryPresageAdapter'
+end
+target "AdMobTestApp" do
+  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  pod 'InMobiCMP', '2.0.1'
+  pod 'Google-Mobile-Ads-SDK'
+  pod 'OguryMediationGoogleMobileAds-Prod', '5.1.0.0-rc-1.0.3'
 end
 
 target "AdsTestApp-Devc-art" do

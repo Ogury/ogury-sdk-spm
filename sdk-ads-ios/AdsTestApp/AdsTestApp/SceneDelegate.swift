@@ -15,8 +15,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         FontLoader.loadFont()
-        Task { await SdkLauncher.shared.launch() }
         let mainViewController = MainViewController()
+        SdkLauncher.rootViewController = mainViewController
+        Task { await SdkLauncher.shared.launch() }
         window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
         if let url = connectionOptions.urlContexts.first?.url {

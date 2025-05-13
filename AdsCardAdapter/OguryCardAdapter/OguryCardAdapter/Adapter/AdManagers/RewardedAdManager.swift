@@ -48,7 +48,7 @@ public final class RewardedAdManager: OguryAdManager {
         self.adConfiguration = adConfiguration
     }
     
-    public func load() {
+    public func load() async {
         if (ad == nil) {
             ad = OguryRewardedAd(adUnitId: adUnitId)
         }
@@ -59,28 +59,34 @@ public final class RewardedAdManager: OguryAdManager {
             loadAd()
             return
         }
-        Task {
-            do {
-                let adMakUp = try await bidder.adMarkUp(adUnitId: self.adUnitId,
-                                                        campaignId: self.campaignId,
-                                                        creativeId: self.creativeId,
-                                                        dspCreative: self.dspCreativeId,
-                                                        dspRegion: self.dspRegion,
-                                                        rtbTestModeEnabled: self.cardConfiguration.rtbTestModeEnabled)
-                guard let adMakUp else {
-                    append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")))
-                    return
-                }
-                load(from: adMakUp)
-            } catch {
-                append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed(bidder.description(for: error))))
+        do {
+            let adMakUp = try await bidder.adMarkUp(adUnitId: self.adUnitId,
+                                                    campaignId: self.campaignId,
+                                                    creativeId: self.creativeId,
+                                                    dspCreative: self.dspCreativeId,
+                                                    dspRegion: self.dspRegion,
+                                                    rtbTestModeEnabled: self.cardConfiguration.rtbTestModeEnabled)
+            guard let adMakUp else {
+                append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")))
                 return
             }
+            load(from: adMakUp)
+        } catch {
+            append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed(bidder.description(for: error))))
+            return
         }
     }
     
     public func show() {
-        //TODO: implement
+        if ad == nil {
+            ad = OguryRewardedAd(adUnitId: adUnitId)
+            ad.delegate = proxyDelegate
+        }
+        append(.adDisplaying)
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.ad?.show(in: self.viewController!)
+        }
     }
     
     public func close() {

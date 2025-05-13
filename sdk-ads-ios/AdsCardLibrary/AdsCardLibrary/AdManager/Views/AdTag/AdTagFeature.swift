@@ -54,7 +54,7 @@ public enum OguryAdTag: String, AdTag {
             case .dtFairbid: return "Fyber"
             case .unityLevelPlay: return "Unity LevelPlay"
             case .direct: return "Direct integration"
-            case .bypass: return "The mediation's SDK is bypassed when loading the ad. In header bidding mediation case, the test app directly calls the ms-bidder endpoint of the mediation to retrieve an ad"
+            case .bypass: return "The mediation SDK is not integrated; instead, it is simulated by the Test App. The app directly calls the ms-bidder endpoint linked to the mediation to fetch an ad and then passes it to the Ogury SDK for rendering"
             case .waterfall: return "Waterfall auction integration"
             case .headerBidding: return "Header bidding integration"
             case .oguryTestMode: return "Add _test to the ad unit"

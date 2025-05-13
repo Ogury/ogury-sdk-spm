@@ -37,7 +37,7 @@ public protocol AdManager: Equatable, Hashable, Identifiable where ID == UUID {
     
     //MARK: functions
     func update(_ adConfiguration: AdConfiguration)
-    func load()
+    func load() async
     func show()
     func close() // used only for banners
     func updateCard(events: [AdOptionsEvent]) // update cardConfiguration through events

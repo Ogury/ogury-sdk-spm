@@ -33,8 +33,8 @@ class MaxBannerAdManager: MaxAdManager {
               height: adType == .default(.smallBanner) ? 50 : 250,)
     }
     
-    override func load() {
-        super.load()
+    override func load() async {
+        await super.load()
         Task { @MainActor [weak self] in
             await self?.instanciateAd()
             self?.ad.loadAd()
@@ -53,7 +53,8 @@ class MaxBannerAdManager: MaxAdManager {
     override func close() {
         ad?.removeFromSuperview()
         ad.delegate = nil
-        ad =  nil
+        ad = nil
+        append(.adClosed)
     }
     
     override class func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager {

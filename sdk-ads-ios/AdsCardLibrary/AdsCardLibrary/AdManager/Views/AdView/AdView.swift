@@ -196,7 +196,7 @@ public struct AdView: View {
                                              ? $store.fakeTextState
                                              : $store.dspCreativeId,
                                              placeholder: "DSP Creative Id")
-                                .keyboardType(.numberPad)
+                                .keyboardType(.default)
                                 .disabled(store.testModeEnabled)
                                 .accessibilityLabel("Card#\(store.qaLabel)_DSPCreativeField")
                                 

@@ -11,6 +11,7 @@ import AdsCardAdapter
 import AppLovinSDK
 
 struct SdkLauncher: SdkLaunchable {
+    static var rootViewController: UIViewController!
     static var shared: any SdkLaunchable = SdkLauncher()
     let adapter: any AdsCardAdaptable
     lazy var logger: TestAppLogController = { TestAppLogController.shared }()

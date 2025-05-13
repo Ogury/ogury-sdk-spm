@@ -29,6 +29,9 @@
       location = "group:AdsCardAdapter/MaxCardAdapter/MaxCardAdapter.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:AdsCardAdapter/AdMobCardAdapter/AdMobCardAdapter.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:sdk-ads-ios/AdsTestApp/AdsTestApp.xcodeproj">
    </FileRef>
    <FileRef

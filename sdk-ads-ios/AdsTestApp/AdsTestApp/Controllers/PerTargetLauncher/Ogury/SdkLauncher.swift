@@ -8,8 +8,10 @@ import Foundation
 import OguryCardAdapter
 import AdsCardAdapter
 import AdSupport
+import UIKit
 
 struct SdkLauncher: SdkLaunchable  {
+    static var rootViewController: UIViewController!
     static let shared: any SdkLaunchable = SdkLauncher()
     let adapter: any AdsCardAdaptable
     lazy var logger: TestAppLogController = { TestAppLogController.shared }()

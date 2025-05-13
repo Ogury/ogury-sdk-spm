@@ -31,7 +31,6 @@ enum MaxAdType: AdAdapterFormat, RawRepresentable, Equatable {
                     case .mrec: return "79dbcc4ff65e3496"
                     default: fatalError("AdFormat \(adFormat) not supported")
                 }
-                
         }
     }
     
@@ -207,7 +206,7 @@ class MaxAdManager: NSObject, AdManager {
         fatalError("Implement method")
     }
     
-    func load() {
+    func load() async {
         append(.adLoading)
     }
     
@@ -249,6 +248,7 @@ class MaxAdManager: NSObject, AdManager {
         events = PassthroughSubject<AdLifeCycleEvent, Never>()
         self.adType = adType
         self.adConfiguration = adConfiguration
+        self.adDelegate = adDelegate
         self.cardConfiguration = cardConfiguration
         self.viewController = viewController
         proxy = ALDelegateProxy()

@@ -49,8 +49,9 @@ public final class ThumbnailAdManager: OguryAdManager {
         self.adConfiguration = adConfiguration
     }
     
-    public func load() {
-        DispatchQueue.main.async {
+    public func load() async {
+        Task { @MainActor [weak self] in
+            guard let self else { return }
             if (self.ad == nil) {
                 self.ad = OguryThumbnailAd(adUnitId: self.adUnitId)
             }
@@ -62,7 +63,15 @@ public final class ThumbnailAdManager: OguryAdManager {
     }
     
     public func show() {
-        //TODO: implement
+        if ad == nil {
+            ad = OguryThumbnailAd(adUnitId: adUnitId)
+            ad.delegate = proxyDelegate
+        }
+        append(.adDisplaying)
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.ad?.show()
+        }
     }
     
     public func close() {
