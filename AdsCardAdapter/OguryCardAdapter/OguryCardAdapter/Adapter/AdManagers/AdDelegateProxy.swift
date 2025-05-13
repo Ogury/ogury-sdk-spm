@@ -4,6 +4,7 @@
 
 import UIKit
 import OguryAds
+import AdsCardLibrary
 
 class AdDelegateProxy<T: OguryAdManager>: NSObject {
     internal var adDelegate: AdLifeCycleDelegate?
@@ -13,17 +14,17 @@ class AdDelegateProxy<T: OguryAdManager>: NSObject {
         self.adDelegate = adDelegate
     }
     
-    internal func handle(_ error: Error, for ad: T.Ad) {
+    internal func handle(_ error: Error) {
         guard let adManager else { return }
         guard let error = error as? OguryAdError else {
-            adManager.append(.adDidFail(error))
+            adManager.append(AdLifeCycleEvent.adDidFail(error))
             return
         }
         
         switch error.type {
-            case .load: adManager.append(.adDidFailToLoad(error))
-            case .show: adManager.append(.adDidFailToDisplay(error))
-            @unknown default: adManager.append(.adDidFail(error))
+            case .load: adManager.append(AdLifeCycleEvent.adDidFailToLoad(error))
+            case .show: adManager.append(AdLifeCycleEvent.adDidFailToDisplay(error))
+            @unknown default: adManager.append(AdLifeCycleEvent.adDidFail(error))
         }
     }
 }

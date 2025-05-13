@@ -5,7 +5,6 @@
 import XCTest
 @testable import AdsCardLibrary
 import CwlPreconditionTesting
-import OguryAds
 import Combine
 
 final class MpuAdManagerTests: XCTestCase {

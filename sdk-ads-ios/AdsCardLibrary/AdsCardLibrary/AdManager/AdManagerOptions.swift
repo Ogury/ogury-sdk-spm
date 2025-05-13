@@ -14,7 +14,7 @@ public struct AdViewOptions: Codable, Equatable {
     }
 }
 
-public struct CardConfiguration: Codable, Equatable {
+public struct CardConfiguration: Codable, Equatable, Hashable {
     public var enableAdUnitEditing: Bool = true
     /// show the campaignId field on the ``AdView``
     public var showCampaignId: Bool = true
@@ -70,7 +70,8 @@ public struct CardConfiguration: Codable, Equatable {
     }
 }
 
-public struct AdConfiguration: Codable, Equatable {
+
+public struct AdConfiguration: Codable, Equatable, Hashable {
     /// The adUnitId used to load the ad
     public internal(set) var adUnitId: String
     /// The campaignId used to load the ad

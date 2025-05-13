@@ -6,11 +6,12 @@ import Foundation
 import SwiftUI
 import OguryAds
 import OguryAds.Private
-internal import ComposableArchitecture
 import Combine
+import AdsCardLibrary
 
-public final class RewardedAdManager: OguryAdManager, AdManager {
-    public var adapterAdFormat: any AdAdapterFormat
+public final class ThumbnailAdManager: OguryAdManager {
+    public var bidder: (any HeaderBidable)?
+    public var adFormat: AdFormat
     public var adConfiguration: AdConfiguration!
     public var cardConfiguration: CardConfiguration!
     public var viewController: UIViewController?
@@ -23,7 +24,15 @@ public final class RewardedAdManager: OguryAdManager, AdManager {
     }
     
     public func load() {
-        //TODO: implement
+        DispatchQueue.main.async {
+            if (self.ad == nil) {
+                self.ad = OguryThumbnailAd(adUnitId: self.adUnitId)
+            }
+            self.ad.delegate = self.proxyDelegate
+            self.ad.setLogOrigin(self.cardConfiguration.qaLabel)
+            self.loadAd()
+        }
+        append(.adLoading)
     }
     
     public func show() {
@@ -34,31 +43,17 @@ public final class RewardedAdManager: OguryAdManager, AdManager {
         //n/a
     }
     
-    public static func == (lhs: RewardedAdManager, rhs: RewardedAdManager) -> Bool {
+    public static func == (lhs: ThumbnailAdManager, rhs: ThumbnailAdManager) -> Bool {
         return lhs.adType == rhs.adType && lhs.ad == rhs.ad
     }
     
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
-    lazy var store: StoreOf<AdViewFeature> = {
-        var weakSelf: (any AdManager)? = self
-        return Store(
-            initialState: AdViewFeature.State(adManager: &weakSelf!),
-            reducer: { AdViewFeature() }
-        )
-    }()
-    public typealias Ad = OguryRewardedAd
-    public typealias Options = AdManagerOptions
-    public var adOptionView: (any View)? { nil }
-    //MARK: Variables
-    public var options: AdManagerOptions!  {
-        didSet {
-            adConfiguration = .init(adUnitId: options.baseOptions.adUnitId, campaignId: options.baseOptions.campaignId)
-            cardConfiguration = .init()
-        }
+    public private(set) var ad: OguryThumbnailAd!
+    public private(set) var adType: AdType
+    public var adView: AdView {
+        var wself: (any AdManager)? = self
+        return AdsCardManager().card(for: &wself!)
     }
-    public private(set) var ad: OguryRewardedAd!
-    public private(set) var adType: AdType<RewardedAdManager>
-    public var adView: AdView { AdView(store: self.store) }
     public var adDelegate: AdLifeCycleDelegate? {
         set {
             proxyDelegate.adDelegate = newValue
@@ -68,81 +63,33 @@ public final class RewardedAdManager: OguryAdManager, AdManager {
             proxyDelegate.adDelegate
         }
     }
-    internal let proxyDelegate: RewardedProxyDelegate!
+    internal let proxyDelegate: ThumbnailProxyDelegate!
     public var lifeCycleEvents: [AdLifeCycleEventHistory] = []
-    internal var bidder: HeaderBidable?
     public let id: UUID = UUID()
     
+    public convenience init(adType: AdType, viewController: UIViewController?, adDelegate: (any AdsCardLibrary.AdLifeCycleDelegate)?) {
+        self.init(adType: adType, adConfiguration: .init(adUnitId: ""), cardConfiguration: .init(), viewController: viewController, adDelegate: adDelegate)
+    }
+    
     //MARK: Initializer
-    public init(adType: AdType<RewardedAdManager>,
+    public init(adType: AdType,
                 adConfiguration: AdConfiguration,
                 cardConfiguration: CardConfiguration,
                 viewController: UIViewController?,
                 adDelegate: AdLifeCycleDelegate? = nil) {
         events = PassthroughSubject<AdLifeCycleEvent, Never>()
         self.adType = adType
-        self.adapterAdFormat = adType.adFormat
+        bidder = nil
+        adFormat = .thumbnail
         self.adConfiguration = adConfiguration
         self.cardConfiguration = cardConfiguration
         self.viewController = viewController
-        proxyDelegate = RewardedProxyDelegate(adDelegate: adDelegate)
+        proxyDelegate = ThumbnailProxyDelegate(adDelegate: adDelegate)
         proxyDelegate.adManager = self
-        if case let .maxHeaderBidding(_, adMarkUpRetriever) = adType {
-            bidder = adMarkUpRetriever
-        }
-        else if case let .dtFairBidHeaderBidding(_, adMarkUpRetriever) = adType {
-            bidder = adMarkUpRetriever
-        }
-        else if case let .unityLevelPlayHeaderBidding(_, adMarkUpRetriever) = adType {
-            bidder = adMarkUpRetriever
-        }
-    }
-    
-    public func update(options: BaseAdOptions) {
-        if self.options.baseOptions.adUnitId != options.adUnitId {
-            ad = nil
-        }
-        self.options.baseOptions = options
     }
     
     //MARK: Ad Management
-    public func loadAd(from options: BaseAdOptions) throws {
-        self.options.baseOptions = options
-        if (ad == nil) {
-            ad = OguryRewardedAd(adUnitId: options.adUnitId)
-        }
-        ad.delegate = proxyDelegate
-        ad.setLogOrigin(options.qaLabel)
-        append(.adLoading)
-        guard let bidder else {
-            load()
-            return
-        }
-        Task {
-            do {
-                let adMakUp = try await bidder.adMarkUp(adUnitId: options.adUnitId,
-                                                        campaignId: options.campaignId,
-                                                        creativeId: options.creativeId,
-                                                        dspCreative: options.dspCreativeId,
-                                                        dspRegion: options.dspRegion,
-                                                        rtbTestModeEnabled: options.rtbTestModeEnabled)
-                guard let adMakUp else {
-                    append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed("adMarkUp not found")))
-                    return
-                }
-                load(from: adMakUp)
-            } catch {
-                append(.adDidFail(AdManagerError.adMarkUpRetrievalFailed(bidder.description(for: error))))
-                return
-            }
-        }
-    }
-    
-    private func load(from adMarkUp: String) {
-        ad.load(withAdMarkup: adMarkUp)
-    }
-    
-    private func privateLoad() {
+    private func loadAd() {
         // if test mode is enabled, then we don't send any other information
         guard !adUnitId.isTestModeOn else {
             ad.load()
@@ -151,9 +98,9 @@ public final class RewardedAdManager: OguryAdManager, AdManager {
         
         if let dspCreativeId, !dspCreativeId.isEmpty,
            let campaignId, !campaignId.isEmpty,
-           let creativeId,
+           let creativeId, !creativeId.isEmpty,
            let dspRegion = dspRegion?.displayName, !dspRegion.isEmpty {
-            let obj = ad as OguryRewardedAd
+            let obj = ad as OguryThumbnailAd
             let sel = NSSelectorFromString("loadWithCampaignId:creativeId:dspCreativeId:dspRegion:")
             let meth = class_getInstanceMethod(object_getClass(obj), sel)
             let imp = method_getImplementation(meth!)
@@ -162,7 +109,7 @@ public final class RewardedAdManager: OguryAdManager, AdManager {
             sayHiTo(obj, sel, campaignId, creativeId, dspCreativeId, dspRegion)
         } else if let campaignId, !campaignId.isEmpty,
                   let creativeId, !creativeId.isEmpty {
-            let obj = ad as OguryRewardedAd
+            let obj = ad as OguryThumbnailAd
             let sel = NSSelectorFromString("loadWithCampaignId:creativeId:")
             let meth = class_getInstanceMethod(object_getClass(obj), sel)
             let imp = method_getImplementation(meth!)
@@ -170,7 +117,7 @@ public final class RewardedAdManager: OguryAdManager, AdManager {
             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
             sayHiTo(obj, sel, campaignId, creativeId)
         } else if let campaignId, !campaignId.isEmpty {
-            let obj = ad as OguryRewardedAd
+            let obj = ad as OguryThumbnailAd
             let sel = NSSelectorFromString("loadWithCampaignId:")
             let meth = class_getInstanceMethod(object_getClass(obj), sel)
             let imp = method_getImplementation(meth!)
@@ -183,18 +130,18 @@ public final class RewardedAdManager: OguryAdManager, AdManager {
     }
     
     public func showAd() throws {
-        guard let viewController else { throw AdManagerError.noOptions }
+        //      guard let ad else { throw AdManagerError.loadNotCalledBeforeShow }
         if ad == nil {
-            ad = OguryRewardedAd(adUnitId: options.baseOptions.adUnitId)
+            ad = OguryThumbnailAd(adUnitId: adUnitId)
             ad.delegate = proxyDelegate
         }
         DispatchQueue.main.async {
-            self.ad?.show(in: viewController)
+            self.ad?.show()
         }
         append(.adDisplaying)
     }
     
-    internal func update(ad: OguryRewardedAd) {
+    internal func update(ad: OguryThumbnailAd) {
         self.ad = ad
         ad.delegate = self.proxyDelegate
     }
@@ -214,6 +161,9 @@ public final class RewardedAdManager: OguryAdManager, AdManager {
             case .saturate:
                 guard let webView = ad.adWebview() else { return }
                 kill(webView)
+            
+            @unknown default:
+                fatalError()
         }
     }
 }
@@ -221,41 +171,28 @@ public final class RewardedAdManager: OguryAdManager, AdManager {
 // We have to use a proxy object because otherwise, we would have to make InterstitialAdManager a final class that inherits from NSObject
 // and for some reasons, that leads to unexpected compilation fail
 // To overcome easily this, we use a proxy object
-internal class RewardedProxyDelegate: AdDelegateProxy<RewardedAdManager>, OguryRewardedAdDelegate {
-    func rewardedAdDidLoad(_ rewardedAd: OguryRewardedAd) {
+internal class ThumbnailProxyDelegate: AdDelegateProxy<ThumbnailAdManager>, OguryThumbnailAdDelegate {
+    func thumbnailAdDidLoad(_ thumbnailAd: OguryThumbnailAd) {
         guard let adManager else { return }
         adManager.append(.adLoaded(canShow: true))
     }
     
-    func rewardedAdDidClick(_ rewardedAd: OguryRewardedAd) {
+    func thumbnailAdDidClick(_ thumbnailAd: OguryThumbnailAd) {
         guard let adManager else { return }
         adManager.append(.adClicked)
     }
     
-    func rewardedAdDidClose(_ rewardedAd: OguryRewardedAd) {
+    func thumbnailAdDidClose(_ thumbnailAd: OguryThumbnailAd) {
         guard let adManager else { return }
         adManager.append(.adClosed)
     }
     
-    func rewardedAd(_ rewardedAd: OguryRewardedAd, didFailWithError error: OguryAdError) {
-        handle(error, for: rewardedAd)
+    func thumbnailAd(_ thumbnailAd: OguryThumbnailAd, didFailWithError error: OguryAdError) {
+        handle(error)
     }
     
-    func rewardedAdDidTriggerImpression(_ rewardedAd: OguryRewardedAd) {
+    func thumbnailAdDidTriggerImpression(_ thumbnailAd: OguryThumbnailAd) {
         guard let adManager else { return }
         adManager.append(.adDidTriggerImpression)
     }
-    
-    func rewardedAd(_ rewardedAd: OguryRewardedAd, didReceive item: OguryReward) {
-        guard let adManager else { return }
-        adManager.append(.rewardReady(name: item.rewardName, value: item.rewardValue))
-    }
-}
-
-extension RewardedAdManager: Storable {
-    public convenience init(from data: StorableAdManager) {
-        fatalError()
-    }
-    
-    public func encode() -> StorableAdManager { StorableAdManager(rawAdType: adType.innerType, options: options) }
 }

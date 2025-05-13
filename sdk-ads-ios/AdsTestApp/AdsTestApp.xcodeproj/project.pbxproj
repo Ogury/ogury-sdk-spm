@@ -351,9 +351,9 @@
 		43D0E6212C61060700AF9CF6 /* config-art.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 43D0E61F2C61060700AF9CF6 /* config-art.debug.xcconfig */; };
 		43D0E6222C61060F00AF9CF6 /* config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4317C00D2BC7D6CA00F40F5F /* config.release.xcconfig */; };
 		43D0E6232C61060F00AF9CF6 /* config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 434F85042ACFE6E2005077F5 /* config.debug.xcconfig */; };
-		43F66E3C2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
-		43F66E3D2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
-		43F66E3E2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		43F66E3C2D394D79000AED12 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		43F66E3D2D394D79000AED12 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		43F66E3E2D394D79000AED12 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E432D3FABCF000AED12 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B42B4E882F0022157E /* AdsCardLibrary.framework */; };
 		43F66E442D3FABCF000AED12 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788B42B4E882F0022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43F66E452D3FABE7000AED12 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
@@ -643,7 +643,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F66E3C2D394D79000AED12 /* (null) in Frameworks */,
+				43F66E3C2D394D79000AED12 /* BuildFile in Frameworks */,
 				43BCB0BD2C22DD45002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43BCB0BE2C22DD45002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB1942C23254D002FB0B1 /* AdsCardLibrary.framework in Frameworks */,
@@ -657,7 +657,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F66E3D2D394D79000AED12 /* (null) in Frameworks */,
+				43F66E3D2D394D79000AED12 /* BuildFile in Frameworks */,
 				43BCB1002C22DD59002FB0B1 /* SnapKit in Frameworks */,
 				43BCB1022C22DD59002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB1972C23255C002FB0B1 /* AdsCardLibrary.framework in Frameworks */,
@@ -671,7 +671,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F66E3E2D394D79000AED12 /* (null) in Frameworks */,
+				43F66E3E2D394D79000AED12 /* BuildFile in Frameworks */,
 				43BCB1432C22DD60002FB0B1 /* SnapKit in Frameworks */,
 				43BCB1452C22DD60002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB19A2C232565002FB0B1 /* AdsCardLibrary.framework in Frameworks */,
@@ -1446,13 +1446,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1577,13 +1573,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1598,13 +1590,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1619,13 +1607,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1640,13 +1624,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1661,13 +1641,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1682,13 +1658,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1703,13 +1675,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1724,13 +1692,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1767,13 +1731,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1788,13 +1748,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1809,13 +1765,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

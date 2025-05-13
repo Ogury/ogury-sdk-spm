@@ -7,13 +7,13 @@
 
 import UIKit
 
-struct OguryCardAdapter: AdsCardAdapter {
+struct OguryCardAdapter: ACLAdapter {
     var availableAdFormats: [AdAdapterFormatSection] = []
     
-    func adManager(for adFormat: any AdAdapterFormat,
+    func adManager(for adFormat: any ACLAdapterFormat,
                    options: AdManagerOptions,
                    viewController: UIViewController?,
-                   adDelegate: AdLifeCycleDelegate?) throws(AdsCardAdapterError) -> any AdManager {
+                   adDelegate: AdLifeCycleDelegate?) throws(ACLAdapterError) -> any AdManager {
         throw .noSuitableAdapterAvailable
     }
 }

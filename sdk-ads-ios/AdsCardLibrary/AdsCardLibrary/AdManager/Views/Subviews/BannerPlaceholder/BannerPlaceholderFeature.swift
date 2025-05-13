@@ -6,7 +6,7 @@
 //
 
 internal import ComposableArchitecture
-import OguryAds
+import UIKit
 
 struct BannerPlaceholderFeature: Reducer {
     struct State: Equatable {

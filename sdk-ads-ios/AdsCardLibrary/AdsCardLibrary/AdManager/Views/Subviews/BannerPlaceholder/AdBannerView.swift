@@ -3,7 +3,6 @@
 //
 
 import SwiftUI
-import OguryAds
 
 struct AdBannerView: UIViewRepresentable {
     let banner: UIView
