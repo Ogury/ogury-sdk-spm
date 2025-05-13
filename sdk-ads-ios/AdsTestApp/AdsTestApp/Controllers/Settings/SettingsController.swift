@@ -114,6 +114,9 @@ struct SettingsController {
         }
         
         file?.save()
+        var settings = SettingsController()
+        settings.appPermissions = file!.settings.permissions
+        print("📘 Config file loaded\n\(file!)")
     }
     
     private static func loadFile(named fileName: String, extension fileExt: String?) -> AdsStorableContainer? {

@@ -50,6 +50,13 @@ target "OguryCardAdapter-art" do
   pod "OgurySdk<%= framework_suffix %>", "<%= ogury_sdk_version %>"
 end
 
+#MaxCardAdapter
+target "MaxCardAdapter" do
+  project "AdsCardAdapter/MaxCardAdapter/MaxCardAdapter"
+  pod 'AppLovinSDK'
+  pod 'AppLovinMediationOguryPresageAdapter'
+end
+
 #Ads Test Apps
 target "AdsTestApp-Devc" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
@@ -65,6 +72,13 @@ target "AdsTestApp-Prod" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod 'InMobiCMP', '2.0.1'
   pod 'Google-Mobile-Ads-SDK'
+end
+target "MaxTestApp" do
+  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  pod 'InMobiCMP', '2.0.1'
+  pod 'Google-Mobile-Ads-SDK'
+  pod 'AppLovinSDK'
+  pod 'AppLovinMediationOguryPresageAdapter'
 end
 
 target "AdsTestApp-Devc-art" do

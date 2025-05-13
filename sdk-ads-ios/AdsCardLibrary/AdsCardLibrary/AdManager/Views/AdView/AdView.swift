@@ -263,7 +263,7 @@ public struct AdView: View {
     }
 }
 
-extension View {
+public extension View {
     public func safeMenuControlGroupStyle() -> some View {
         if #available(iOS 16.4, *) {
             return self.controlGroupStyle(.menu)

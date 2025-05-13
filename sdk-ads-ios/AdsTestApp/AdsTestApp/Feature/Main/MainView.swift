@@ -95,7 +95,6 @@ struct MainView: View {
         }
         
         if appPermissions.logs,
-           SdkLauncher.shared.adapter.options.showLogs,
             !viewStore.adFormats.isEmpty {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
@@ -195,6 +194,16 @@ struct MainView: View {
                 }
                 
                 Section {
+                    ForEach(SdkLauncher.shared.adapter.actions, id: \.name) { action in
+                        Button{
+                            action.perform()
+                        } label: {
+                            HStack {
+                                Text(action.name).font(.adsBody)
+                                action.icon!
+                            }
+                        }
+                    }
                     Button{
                         viewStore.send(.aboutButtonTapped)
                     } label: {
@@ -308,7 +317,7 @@ struct LegacyHorizontalCardsView: View {
     
     var body: some View {
         HStack(alignment: .center, spacing: 4) {
-            adFormat.adFormat.displayIcon
+            adFormat.displayIcon
                 .resizable()
                 .aspectRatio(contentMode: .fit) // Maintains the aspect ratio
                 .frame(width: 50, height: 50) // Sets the frame size
@@ -364,7 +373,7 @@ struct HorizontalCardsView: View {
         VStack(spacing: 0) {
             ZStack(alignment: .leading) {
                 HStack(alignment: .center, spacing: 4) {
-                    adFormat.adFormat.displayIcon
+                    adFormat.displayIcon
                         .resizable()
                         .aspectRatio(contentMode: .fit) // Maintains the aspect ratio
                         .frame(width: 50, height: 50) // Sets the frame size

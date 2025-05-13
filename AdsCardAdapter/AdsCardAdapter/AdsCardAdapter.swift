@@ -21,6 +21,8 @@ public protocol AdAdapterFormat: Codable, Comparable, Equatable, Hashable, RawRe
     var id: UUID { get }
     /// used for Comparable
     var sortOrder: Int { get }
+    /// the icon to show on list
+    var displayIcon: Image { get }
 }
 
 extension AdAdapterFormat {
@@ -49,26 +51,19 @@ public struct AdAdapterFormatSection: Identifiable, Equatable {
     }
 }
 
-public struct AdapterOptions {
-    public var showResetSdkButton: Bool = true
-    public var showLogs: Bool = true
-    public init(showResetSdkButton: Bool = true,
-                showLogs: Bool = true) {
-        self.showResetSdkButton = showResetSdkButton
-        #if canImport(OguryAds)
-        self.showLogs = showLogs
-        #else
-        self.showLogs = false
-        #endif
-    }
+public protocol AdsCardAdapterAction {
+    var name: String { get }
+    var icon: Image? { get }
+    func perform()
 }
 
 public protocol AdsCardAdaptable {
-    var options: AdapterOptions { get }
     /// list of available `AdAdapterFormat` list to populate the Add panel of the test application
     var availableAdFormats: [AdAdapterFormatSection] { get }
     /// returns the various SDK used
-    var sdkVersions: [String: String] { get }
+    var sdkVersions: String { get }
+    /// custom actions to add to the `more` test app menu
+    var actions: [AdsCardAdapterAction] { get }
     
     /// returns the AdManager associated with an `AdAdapterFormat`
     /// - throws: throws an exception if no adapter is available
@@ -115,5 +110,18 @@ public extension String {
 extension Array where Element == any AdManager {
     func encode() -> [AdCardContainer] {
         map{ $0.encode() }
+    }
+}
+
+public extension Decodable {
+    static func loadJsonFromFile(bundle: Bundle,
+                                 named fileName: String,
+                                 extension extName: String? = nil) throws -> Self {
+        guard let url = bundle.url(forResource: fileName, withExtension: extName),
+              let json = try? Data(contentsOf: url) else {
+            throw DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "File not found"))
+        }
+        let conf: Self = try JSONDecoder().decode(Self.self, from: json)
+        return conf
     }
 }

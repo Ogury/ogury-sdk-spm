@@ -10,6 +10,7 @@ import AdsCardLibrary
 import SwiftMessages
 import AVFoundation
 import OguryCore.Private
+import AdSupport
 
 struct AppSettingsFeature: Reducer {
     struct State: Equatable {
@@ -101,11 +102,19 @@ struct AppSettingsFeature: Reducer {
         case updateImportMethod(_: ImportMethod)
         case toggleKillWebviewMode
         case updateKillWebviewMode(_: KillWebviewMode)
+        case copyIdfaButtonTapped
     }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
+                case .copyIdfaButtonTapped:
+                    let idfa = ASIdentifierManager().advertisingIdentifier.uuidString
+                    UIPasteboard.general.string = idfa
+                    return .run { _ in
+                        await showNotification(message: "IDFA copied to clipboard\n\(idfa)")
+                    }
+                    
                 case .binding:
                     return .none
                     

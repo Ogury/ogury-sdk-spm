@@ -21,15 +21,6 @@ public enum AdFormat: Codable {
         }
     }
     public var isBanner: Bool {  return [.smallBanner, .mrec].contains(self) }
-    /// associated icon
-    public var displayIcon: Image {
-        switch self {
-            case .interstitial: return Image(systemName: "iphone").symbolRenderingMode(.monochrome)
-            case .rewardedVideo: return Image(systemName: "iphone.gen3.badge.play")
-            case .smallBanner, .mrec: return Image(systemName: "platter.filled.bottom.iphone")
-            case .thumbnail: return Image(systemName: "rectangle.portrait.bottomright.inset.filled")
-        }
-    }
 }
 
 public protocol AdManager: Equatable, Hashable, Identifiable where ID == UUID {

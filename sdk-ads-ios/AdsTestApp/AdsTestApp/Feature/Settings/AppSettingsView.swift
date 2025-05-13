@@ -126,6 +126,7 @@ struct AppSettingsView: View {
                     }
                     .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                     .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                    .hidden(!appPermissions.settingPermissions.contains(.showAudioToggle))
                     
                     //MARK: - Hide settings
                     Section {
@@ -146,6 +147,7 @@ struct AppSettingsView: View {
                                     }
                                 }
                                 .accessibilityLabel("AllowAdUnitEditingToggle")
+                                .hidden(!appPermissions.settingPermissions.contains(.showEditAdUnitToggle))
                                 
                                 Button {
                                     viewStore.send(.showCampaignToggleTapped)
@@ -162,6 +164,7 @@ struct AppSettingsView: View {
                                     }
                                 }
                                 .accessibilityLabel("ShowCampaignIdToggle")
+                                .hidden(!appPermissions.settingPermissions.contains(.showCampaignToggle))
                                 
                                 Button {
                                     viewStore.send(.showCreativeToggleTapped)
@@ -177,6 +180,7 @@ struct AppSettingsView: View {
                                     }
                                 }
                                 .accessibilityLabel("ShowCreativeIdToggle")
+                                .hidden(!appPermissions.settingPermissions.contains(.showCreativeToggle))
                                 
                                 Button {
                                     viewStore.send(.showDspFieldsToggleTapped)
@@ -192,6 +196,7 @@ struct AppSettingsView: View {
                                     }
                                 }
                                 .accessibilityLabel("ShowCreativeFieldsToggle")
+                                .hidden(!appPermissions.settingPermissions.contains(.showDspToggle))
                                 
                                 Button {
                                     viewStore.send(.showTestModeToggleTapped)
@@ -208,15 +213,19 @@ struct AppSettingsView: View {
                                     }
                                 }
                                 .accessibilityLabel("ShowTestModeToggle")
+                                .hidden(!appPermissions.settingPermissions.contains(.showTestModeToggle))
                                 
                                 Picker("Kill Webview",
                                        selection: viewStore.binding(get: \.killWebviewMode,
-                                                                    send: { .updateKillWebviewMode($0) })) {
+                                                                    send: { .updateKillWebviewMode($0) }))
+                                {
                                     ForEach(KillWebviewMode.allCases, id:\.self) { mode in
                                         Text(mode.displayName)
                                             .font(.adsCaption)
                                     }
-                                }.accessibilityLabel("ImportMethod_Picker")
+                                }
+                                .accessibilityLabel("ImportMethod_Picker")
+                                .hidden(!appPermissions.settingPermissions.contains(.showKillWebviewToggle))
                                 
                                 if let desc = viewStore.killWebviewMode.description {
                                     HStack {
@@ -232,6 +241,7 @@ struct AppSettingsView: View {
                                             .font(.adsCaption)
                                             .foregroundStyle(viewStore.killWebviewMode.displayColor)
                                     }
+                                    .hidden(!appPermissions.settingPermissions.contains(.showKillWebviewToggle))
                                 }
                             }
                         }
@@ -260,6 +270,7 @@ struct AppSettingsView: View {
                     .listRowSeparator(.hidden)
                     .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                     .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                    .hidden(appPermissions.settingPermissions.contains(.noCards))
                     
                     //MARK: - Profig settings
                     Section {
@@ -285,6 +296,7 @@ struct AppSettingsView: View {
                     .disabled(true)
                     .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                     .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                    .hidden(!appPermissions.settingPermissions.contains(.showResetProfigToggle))
                     
                     //MARK: - Test Mode
                     Section {
@@ -318,24 +330,24 @@ struct AppSettingsView: View {
                     }
                     .disabled(!appPermissions.settings)
                     .listRowBackground(Color.clear)
+                    .hidden(!appPermissions.settingPermissions.contains(.showTestModeToggle))
                     
                     //MARK: - Profig settings
-                    if SdkLauncher.shared.adapter.options.showResetSdkButton {
-                        Section {
-                            Button("Reset Ads config file (profig)") {
-                                viewStore.send(.resetAdConfigButtonTapped)
-                            }
-                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: true).color))
-                            .accessibilityLabel("ResetProfigButton")
-                        } header: {
-                            Text("Ads config")
-                                .font(.adsBody)
-                                .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                                .padding(.horizontal, -16)
+                    Section {
+                        Button("Reset Ads config file (profig)") {
+                            viewStore.send(.resetAdConfigButtonTapped)
                         }
-                        .disabled(!appPermissions.settings)
-                        .listRowBackground(Color(AdColorPalette.State.failure.color))
+                        .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: true).color))
+                        .accessibilityLabel("ResetProfigButton")
+                    } header: {
+                        Text("Ads config")
+                            .font(.adsBody)
+                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                            .padding(.horizontal, -16)
                     }
+                    .disabled(!appPermissions.settings)
+                    .listRowBackground(Color(AdColorPalette.State.failure.color))
+                    .hidden(!appPermissions.settingPermissions.contains(.showResetProfigToggle))
                     
                     //MARK: - Profig settings
                     Section {
@@ -376,6 +388,15 @@ struct AppSettingsView: View {
                         .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                         .listRowBackground(Color(AdColorPalette.Background.secondary.color))
                         
+                        Button {
+                            viewStore.send(.copyIdfaButtonTapped)
+                        } label: {
+                            HStack {
+                                Text("Copy IDFA to clipboard")
+                            }
+                        }
+                        .accessibilityLabel("CopyIdfaButton")
+                        
                     } header: {
                         Text("Privacy")
                             .font(.adsBody)
@@ -388,24 +409,23 @@ struct AppSettingsView: View {
                     
                     //MARK: - Logs settings
 #if canImport(OguryAds)
-                    if SdkLauncher.shared.adapter.options.showLogs {
-                        Section {
-                            NavigationLink(
-                                destination: LogOptionView().navigationTitle("Log options")
-                            ) {
-                                Text("Show options")
-                            }
-                            .accessibilityLabel("ShowLogOptionsNavigationLink")
-                        } header: {
-                            Text("Logs")
-                                .font(.adsBody)
-                                .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                                .padding(.horizontal, -16)
+                    Section {
+                        NavigationLink(
+                            destination: LogOptionView().navigationTitle("Log options")
+                        ) {
+                            Text("Show options")
                         }
-                        .disabled(!appPermissions.settings)
-                        .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                        .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                        .accessibilityLabel("ShowLogOptionsNavigationLink")
+                    } header: {
+                        Text("Logs")
+                            .font(.adsBody)
+                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                            .padding(.horizontal, -16)
                     }
+                    .disabled(!appPermissions.settings)
+                    .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                    .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                    .hidden(!appPermissions.logs)
 #endif
                     
                     Spacer()

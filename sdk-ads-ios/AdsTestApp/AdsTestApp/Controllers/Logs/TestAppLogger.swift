@@ -23,6 +23,7 @@ public class TestAppLogger: NSObject, OguryLogger {
         let attr = logFormatter.formatAttributedLogMessage(message) else {
             return
         }
+        print("💡 logMessage \(message.message)")
         logs.send(attr)
     }
 }

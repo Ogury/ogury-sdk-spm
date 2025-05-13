@@ -17,14 +17,14 @@
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>co.ogury.sdk.ads.prod.exportedSet</string>
+				<string>co.ogury.sdk.ads.staging.exportedSet</string>
 			</array>
 		</dict>
 	</array>
 	<key>DefaultEnv</key>
 	<string>$(DEFAULT_ENV)</string>
 	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-5735986212655126~9383827548</string>
+	<string>ca-app-pub-5735986212655126~3088935406</string>
 	<key>SDK_SOURCE</key>
 	<string>$(SDK_SOURCE)</string>
 	<key>UIAppFonts</key>
@@ -66,12 +66,12 @@
 				<string>shareImageData</string>
 			</array>
 			<key>UTTypeIdentifier</key>
-			<string>co.ogury.sdk.ads.prod.exportedSet</string>
+			<string>co.ogury.sdk.ads.staging.exportedSet</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
-					<string>ogap</string>
+					<string>ogas</string>
 				</array>
 			</dict>
 		</dict>

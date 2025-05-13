@@ -7,8 +7,8 @@ import UniformTypeIdentifiers
 
 extension UTType {
     // Define a custom UTI for a hypothetical custom document type
-    static var oguryAds: UTType {
+    static var adsTestAppType: UTType {
         return UTType(exportedAs: "co.ogury.sdk.ads.devc.exportedSet")
     }
-    static var oguryAdsExtension: String { "ogad" }
+    static var adsTestAppExtension: String { "ogad" }
 }

@@ -181,4 +181,17 @@ public indirect enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
             default: return false
         }
     }
+    
+    /// associated icon
+    public var displayIcon: Image {
+        switch self {
+            case .interstitial: return Image(systemName: "iphone").symbolRenderingMode(.monochrome)
+            case .rewarded: return Image(systemName: "iphone.gen3.badge.play")
+            case .banner, .mpu: return Image(systemName: "platter.filled.bottom.iphone")
+            case .thumbnail: return Image(systemName: "rectangle.portrait.bottomright.inset.filled")
+            case let .maxHeaderBidding(adType): return adType.displayIcon
+            case let .dtFairBidHeaderBidding(adType): return adType.displayIcon
+            case let .unityLevelPlayHeaderBidding(adType): return adType.displayIcon
+        }
+    }
 }
