@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import ComposableArchitecture
+internal import ComposableArchitecture
 
 struct BannerPlaceholderView: View {
     let store: StoreOf<BannerPlaceholderFeature>
@@ -36,14 +36,14 @@ struct BannerPlaceholderView: View {
                     HStack {
                         Spacer()
                         AdBannerView(banner: ad) // Centered without GeometryReader
-                            .frame(width: viewStore.isMpuFormat ? 300 : 320,
-                                   height: viewStore.isMpuFormat ? 250 : 50)
+                            .frame(width: viewStore.isMrec ? 300 : 320,
+                                   height: viewStore.isMrec ? 250 : 50)
                         Spacer()
                     }
                 } else {
                     // Use GeometryReader for Placeholder
                     GeometryReader { geometry in
-                        let maxWidth = min(geometry.size.width, viewStore.isMpuFormat ? 300 : 320)
+                        let maxWidth = min(geometry.size.width, viewStore.isMrec ? 300 : 320)
                         
                         ZStack {
                             Rectangle()
@@ -55,17 +55,17 @@ struct BannerPlaceholderView: View {
                                     .font(.adsBody)
                                     .minimumScaleFactor(0.6)
                                     .multilineTextAlignment(.center)
-                                    .padding(.horizontal, viewStore.isMpuFormat ? 40 : 20)
+                                    .padding(.horizontal, viewStore.isMrec ? 40 : 20)
                             }
                             .foregroundColor(Color(AdColorPalette.Text.placeholder.color))
-                            .font(.system(size: viewStore.isMpuFormat ? 14 : 12))
+                            .font(.system(size: viewStore.isMrec ? 14 : 12))
                             .padding(.vertical, 4)
                         }
                         .frame(width: maxWidth)
                         .aspectRatio(ratio(from: viewStore), contentMode: .fit)
                         .frame(width: geometry.size.width, alignment: .center) // Center horizontally
                     }
-                    .frame(height: viewStore.isMpuFormat ? 250 : 50) // Ensure fixed height
+                    .frame(height: viewStore.isMrec ? 250 : 50) // Ensure fixed height
                 }
             }
             .fixedSize(horizontal: false, vertical: true) // Prevent vertical overflow
@@ -75,14 +75,14 @@ struct BannerPlaceholderView: View {
     }
     
     func ratio(from store: ViewStoreOf<BannerPlaceholderFeature>) -> CGFloat {
-        store.bannerType == .mpu ? (250 / 300) : (50 / 320)
+        store.isMrec ? (250 / 300) : (50 / 320)
     }
 }
 
 struct BannerPlaceholder_Previews: PreviewProvider {
     static var previews: some View {
         BannerPlaceholderView(store: Store(
-            initialState: BannerPlaceholderFeature.State(bannerType: .banner),
+            initialState: BannerPlaceholderFeature.State(bannerType: .smallBanner),
             reducer: { BannerPlaceholderFeature() }))
     }
 }

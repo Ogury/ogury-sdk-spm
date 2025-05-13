@@ -27,9 +27,6 @@ struct SettingsController {
     @UserDefault("showCreativeId")  
     var showCreativeId: Bool = false
     
-    @UserDefault("showSpecificOptions")
-    var showSpecificOptions: Bool = false
-    
     @UserDefault("showDspFields")
     var showDspFields: Bool = false
     

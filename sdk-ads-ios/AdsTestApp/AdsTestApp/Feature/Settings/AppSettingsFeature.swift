@@ -4,7 +4,7 @@
 
 
 import SwiftUI
-import ComposableArchitecture
+internal import ComposableArchitecture
 import UserDefault
 import OguryAds
 import AdsCardLibrary
@@ -18,7 +18,6 @@ struct AppSettingsFeature: Reducer {
             lhs.settings == rhs.settings &&
             lhs.showCampaignId == rhs.showCampaignId &&
             lhs.showCreativeId == rhs.showCreativeId &&
-            lhs.showSpecificOptions == rhs.showSpecificOptions &&
             lhs.showDspFields == rhs.showDspFields &&
             lhs.bulkModeEnabled == rhs.bulkModeEnabled &&
             lhs.startSDKWithApplication == rhs.startSDKWithApplication &&
@@ -39,7 +38,6 @@ struct AppSettingsFeature: Reducer {
         var enableAdUnitEditing: Bool { settings.enableAdUnitEditing }
         var showCampaignId: Bool { settings.showCampaignId }
         var showCreativeId: Bool { settings.showCreativeId  }
-        var showSpecificOptions: Bool { settings.showSpecificOptions }
         var showDspFields: Bool { settings.showDspFields }
         var bulkModeEnabled: Bool { settings.bulkModeEnabled }
         var importMethod: ImportMethod { settings.importMethod }
@@ -91,7 +89,6 @@ struct AppSettingsFeature: Reducer {
         case startSDKToggleTapped
         case showCampaignToggleTapped
         case enableAdUnitEditingToggleTapped
-        case showSpecificOptionsToggleTapped
         case showCreativeToggleTapped
         case showDspFieldsToggleTapped
         case showTestModeToggleTapped
@@ -146,10 +143,6 @@ struct AppSettingsFeature: Reducer {
                     
                 case .bulkModeToggleTapped:
                     state.settings.bulkModeEnabled.toggle()
-                    return .none
-                    
-                case .showSpecificOptionsToggleTapped:
-                    state.settings.showSpecificOptions.toggle()
                     return .none
                     
                 case .resetAdConfigButtonTapped:

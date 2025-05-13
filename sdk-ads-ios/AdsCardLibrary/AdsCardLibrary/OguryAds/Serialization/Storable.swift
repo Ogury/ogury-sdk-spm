@@ -11,8 +11,7 @@ public protocol Storable {
 
 public struct StorableAdManager: Codable {
     public let rawAdType: Int
-    public let options: BaseAdManagerOptions
-    public let thumbnailOptions: ThumbnailOptions?
+    public let options: AdManagerOptions
 }
 
 //MARK: AdType Codable
@@ -28,7 +27,6 @@ public enum RawInnerAdType: Int {
 }
 
 extension AdType: Codable {
-    
     public var innerType: Int {
         switch self {
             case .interstitial: return RawInnerAdType.interstitial.rawValue

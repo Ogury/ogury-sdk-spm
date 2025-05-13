@@ -17,10 +17,7 @@ public struct CardPermissions {
         self.add = add
         self.devFeatures = devFeatures
     }
-    
-    var showCardMenu: Bool {
-        logs || devFeatures
-    }
+    var showCardMenu: Bool { logs || devFeatures }
 }
 
 public struct CardPermissionsKey: EnvironmentKey {

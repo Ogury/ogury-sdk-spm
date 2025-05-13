@@ -8,7 +8,7 @@
 //
 
 import UIKit
-import ComposableArchitecture
+internal import ComposableArchitecture
 
 struct RewardedOptions: Equatable {
     var name: String = ""

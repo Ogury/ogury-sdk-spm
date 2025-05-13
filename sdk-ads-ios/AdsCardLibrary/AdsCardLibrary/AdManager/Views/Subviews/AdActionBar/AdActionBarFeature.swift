@@ -5,7 +5,7 @@
 //  Created by Jerome TONNELIER on 19/07/2023.
 //
 
-import ComposableArchitecture
+internal import ComposableArchitecture
 
 struct AdActionBarFeature: Reducer {
     struct State: Equatable {

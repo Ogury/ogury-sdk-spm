@@ -6,15 +6,15 @@
 //
 
 import SwiftUI
-import ComposableArchitecture
+internal import ComposableArchitecture
 
 public struct AdTagList: View {
     public enum TagSize {
         case small, `default`
     }
-    let tags: [AdTag]
+    let tags: [any AdTag]
     var size: TagSize = .default
-    public init(tags: [AdTag], size: TagSize = .default) {
+    public init(tags: [any AdTag], size: TagSize = .default) {
         self.tags = tags
         self.size = size
     }
@@ -27,14 +27,6 @@ public struct AdTagList: View {
                 ), reducer: { AdTagFeature() }))
             }
         }
-    }
-}
-
-#Preview {
-    VStack {
-        AdTagList(tags: [.ogury, .direct])
-        AdTagList(tags: [.max, .headerBidding, .bypass])
-        AdTagList(tags: [.dtFairbid, .waterfall, .bypass])
     }
 }
 

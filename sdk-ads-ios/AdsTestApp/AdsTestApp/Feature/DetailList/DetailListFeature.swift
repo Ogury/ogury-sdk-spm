@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import ComposableArchitecture
+internal import ComposableArchitecture
 import AdsCardLibrary
 
 struct DetailListFeature: Reducer {
@@ -13,7 +13,7 @@ struct DetailListFeature: Reducer {
             lhs.adManagers.count == rhs.adManagers.count
         }
         
-        var adManagers: [any AdManager]
+        var adManagers: [any OguryAdManager]
         var adFormat: AdFormat
         var toolbarVisible: Bool = false
     }
@@ -28,7 +28,7 @@ struct DetailListFeature: Reducer {
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-                case .deleteCard(id: let id):
+                case let .deleteCard(id):
                     state.adManagers.removeAll { manager in
                         manager.id == id
                     }

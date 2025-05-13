@@ -5,7 +5,7 @@
 import UIKit
 import OguryAds
 
-class AdDelegateProxy<T: AdManager>: NSObject {
+class AdDelegateProxy<T: OguryAdManager>: NSObject {
     internal var adDelegate: AdLifeCycleDelegate?
     internal var adManager: T? // optionnal to make it weak
     internal init(adDelegate: AdLifeCycleDelegate? = nil) {

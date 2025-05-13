@@ -4,7 +4,7 @@
 
 
 import UIKit
-import ComposableArchitecture
+internal import ComposableArchitecture
 import AdsCardLibrary
 import SwiftUI
 import OguryAds
@@ -56,9 +56,8 @@ struct MainFeature: Reducer {
                 zip(leftFormats,
                     rightFormats)
                 .forEach { lhsManager, rhsManager in
-                    if lhsManager.options.baseOptions != rhsManager.options.baseOptions ||
-                        (lhsManager.options as? BaseAdManagerOptions) != (rhsManager.options as? BaseAdManagerOptions) ||
-                        (lhsManager.options as? ThumbnailAdManagerOptions) != (rhsManager.options as? ThumbnailAdManagerOptions) {
+                    if lhsManager.adConfiguration != rhsManager.adConfiguration
+                        || lhsManager.cardConfiguration != rhsManager.cardConfiguration {
                         isEqual = false
                         return
                     }
@@ -67,7 +66,7 @@ struct MainFeature: Reducer {
             return isEqual && lhs.destination == rhs.destination && lhs.setName == rhs.setName
         }
         
-        var adFormats: [AdFormat:[any AdManager]] = [:]
+        var adFormats: [AdFormat:[any OguryAdManager]] = [:]
         @PresentationState var destination: Destination.State?
         @BindingState var setName = ""
         fileprivate var settingsPriorToChange: SettingsContainer = SettingsContainer()
@@ -112,7 +111,7 @@ struct MainFeature: Reducer {
         case removeSetButtonTapped
         case deleteCard(id: UUID)
         case saveCards
-        case refreshAllCards(_: [AdFormat:[any AdManager]])
+        case refreshAllCards(_: [AdFormat:[any OguryAdManager]])
         case showLogs(_: Bool)
         case importFile(_: URL)
         case loadFromContainer(_: AdsStorableContainer)
@@ -191,7 +190,6 @@ struct MainFeature: Reducer {
                 case .destination(.presented(.settings(.enableAdUnitEditingToggleTapped))),
                         .destination(.presented(.settings(.showCampaignToggleTapped))),
                         .destination(.presented(.settings(.showCreativeToggleTapped))),
-                        .destination(.presented(.settings(.showSpecificOptionsToggleTapped))),
                         .destination(.presented(.settings(.showTestModeToggleTapped))),
                         .destination(.presented(.settings(.showDspFieldsToggleTapped))),
                         .destination(.presented(.settings(.toggleKillWebviewMode))),
@@ -339,9 +337,6 @@ struct MainFeature: Reducer {
         if state.settingsPriorToChange.showDspFields != settings.showDspFields {
             cardEvents.append(.showDspFields(settings.showDspFields))
         }
-        if state.settingsPriorToChange.showSpecificOptions != settings.showSpecificOptions {
-            cardEvents.append(.showSpecificOptions(settings.showSpecificOptions))
-        }
         if state.settingsPriorToChange.bulkModeEnabled != settings.bulkModeEnabled {
             cardEvents.append(.enableBulkMode(settings.bulkModeEnabled))
         }
@@ -364,8 +359,8 @@ struct MainFeature: Reducer {
             })
     }
     
-    private func sort(adFormats: inout [AdFormat:[any AdManager]])  {
-        var updatedValue: [AdFormat:[any AdManager]] = [:]
+    private func sort(adFormats: inout [AdFormat:[any OguryAdManager]])  {
+        var updatedValue: [AdFormat:[any OguryAdManager]] = [:]
         Array(adFormats.keys)
             .sorted()
             .forEach { key in
@@ -374,42 +369,41 @@ struct MainFeature: Reducer {
         adFormats = updatedValue
     }
     
-    func adManagers(for section: AdFormat, startIndex: Int = 0) -> [any AdManager] {
-        var adsManager: [any AdManager] = []
+    func adManagers(for section: AdFormat, startIndex: Int = 0) -> [any OguryAdManager] {
+        var adsManager: [any OguryAdManager] = []
         for index in 0..<section.nbOfFormatToLoad {
+            let options = Configuration.shared.options(at: index + startIndex + 1)
+            
             switch section.adType.adType {
                 case is AdType<InterstitialAdManager>:
                     let interstitial: AdType<InterstitialAdManager> = section.adType.adType as! AdType<InterstitialAdManager>
-                    let options = Configuration.shared.options(for: interstitial, index: index + startIndex + 1)
-                    options.viewController = adHostingViewController
                     let interstitialManager = try? self.cardManager.adManager(for: interstitial,
                                                                               options: options,
+                                                                              viewController: adHostingViewController,
                                                                               adDelegate: adDelegate)
                     adsManager.append(interstitialManager!)
                     
                 case is AdType<RewardedAdManager>:
                     let optin: AdType<RewardedAdManager> =  section.adType.adType as! AdType<RewardedAdManager>
-                    let options = Configuration.shared.options(for: optin, index: index + startIndex + 1)
-                    options.viewController = adHostingViewController
                     let optinManager = try? self.cardManager.adManager(for: optin,
                                                                        options: options,
+                                                                       viewController: adHostingViewController,
                                                                        adDelegate: adDelegate)
                     adsManager.append(optinManager!)
                     
                 case is AdType<ThumbnailAdManager>:
                     let thumbnail: AdType<ThumbnailAdManager> =  section.adType.adType as! AdType<ThumbnailAdManager>
-                    let options = Configuration.shared.options(for: thumbnail, index: index + startIndex + 1)
-                    options.viewController = adHostingViewController
                     let thumbnailManager = try? self.cardManager.adManager(for: thumbnail,
                                                                            options: options,
+                                                                           viewController: adHostingViewController,
                                                                            adDelegate: adDelegate)
                     adsManager.append(thumbnailManager!)
                     
                 case is AdType<BannerAdManager>:
                     let banner: AdType<BannerAdManager> =  section.adType.adType as! AdType<BannerAdManager>
-                    let options = Configuration.shared.options(for: banner, index: index + startIndex + 1)
                     let bannerManager = try? self.cardManager.adManager(for: banner,
                                                                         options: options,
+                                                                        viewController: adHostingViewController,
                                                                         adDelegate: adDelegate)
                     adsManager.append(bannerManager!)
                     
@@ -420,7 +414,7 @@ struct MainFeature: Reducer {
         return adsManager
     }
     
-    private func removeCard(withId id: UUID, from formats: [AdFormat:[any AdManager]]) -> [AdFormat:[any AdManager]] {
+    private func removeCard(withId id: UUID, from formats: [AdFormat:[any OguryAdManager]]) -> [AdFormat:[any OguryAdManager]] {
         var sections = formats
         sections.keys.forEach { key in
             var newKey = key
@@ -438,7 +432,7 @@ struct MainFeature: Reducer {
     }
     
     //MARK: - Data management
-    private func store(formats: [AdFormat:[any AdManager]], settings: SettingsContainer? = nil) {
+    private func store(formats: [AdFormat:[any OguryAdManager]], settings: SettingsContainer? = nil) {
         let container = AdsStorableContainer(settings: settings ?? .init(), cards: formats)
         container.save()
     }
@@ -540,7 +534,7 @@ Do you want to proceed ?
 
 struct FormatSection: Equatable {
     let name: String
-    var formats: [any AdManager] = []
+    var formats: [any OguryAdManager] = []
     
     static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.name == rhs.name

@@ -6,7 +6,7 @@ import XCTest
 @testable import AdsCardLibrary
 
 class MockAdLifeCycleDelegate: AdLifeCycleDelegate {
-    func viewController<T>(forBanner banner: T.Ad, adManager: T) -> UIViewController? where T : AdsCardLibrary.AdManager {
+    func viewController<T>(forBanner banner: T.Ad, adManager: T) -> UIViewController? where T : AdsCardLibrary.OguryAdManager {
         nil
     }
     

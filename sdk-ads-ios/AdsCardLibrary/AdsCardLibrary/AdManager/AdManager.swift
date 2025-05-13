@@ -1,50 +1,91 @@
 //
-//  Copyright © 2023 Ogury Ltd. All rights reserved.
+//  AdManager.swift
+//  AdsCardLibrary
+//
+//  Created by Jerome TONNELIER on 01/04/2025.
 //
 
-import Foundation
 import SwiftUI
 import Combine
-import OguryAds
 import WebKit
 
-/// All objects that should have an ad manager basic bahavior should implement this protocol
+public enum AdFormat: Codable {
+    case interstitial, rewardedVideo, smallBanner, mrec, thumbnail
+    public var name: String {
+        switch self {
+            case .interstitial: return "Interstitial"
+            case .rewardedVideo: return "Rewarded"
+            case .thumbnail: return "Thumbnail"
+            case .smallBanner: return "Small banner"
+            case .mrec: return "MREC"
+        }
+    }
+    public var isBanner: Bool {  return [.smallBanner, .mrec].contains(self) }
+}
+
 public protocol AdManager: Storable, Equatable, Identifiable where ID == UUID {
-    /// The underlying ad implementation associated with this manager
-    associatedtype Ad
-    /// the ad associate with this ad format. Mandatory
-    var ad: Ad! { get }
-    /// the type of ad to load
-    var adType: AdType<Self> { get }
-    /// The underlying ad implementation associated with this manager
-    associatedtype Options: AdOptions
-    /// the options associate with this ad format. Mandatory
-    var options: Options! { get set }
-    /// updates the base options
-    func update(options: BaseAdOptions)
-    /// instanciate a new AdManager object with a given ad type
-    init(adType: AdType<Self>, adDelegate: AdLifeCycleDelegate?)
-    /// the SwiftUI view that will be displayed and which will manage the underlying ad format
-    var adView: AdView { get }
-    /// the SwiftUI view dedicated to specific that will be displayed and which will manage the underlying ad format options
-    var adOptionView: (any View)? { get }
-    /// banner delegate for the controller
+    //MARK: properties
+    var adapterAdFormat: any AdAdapterFormat { get set }
+    var adConfiguration: AdConfiguration! { get set }
+    var cardConfiguration: CardConfiguration! { get set }
+    var viewController: UIViewController? { get set }
     var adDelegate: AdLifeCycleDelegate? { get set }
-    /// Mimics the ``AdLifeCycleDelegate`` with Combine in order to ease TCA integration
     var events: PassthroughSubject<AdLifeCycleEvent, Never> { get }
-    /// An ordered list of all the events
     var lifeCycleEvents: [AdLifeCycleEventHistory] { get }
-    /// appends an event to the ``lifeCycleEvents`` array and triggers a publisher event on ``events``
-    func append(_ event: AdLifeCycleEvent)
-    /// asks the AdManager to load the add
-    /// - Throws : throws an error if the ad can't be instanciated
-    func loadAd(from options: BaseAdOptions) throws
-    /// asks the AdManager to show the add
-    func showAd() throws
-    // updates the card from the event
-    func updateCard(events: [AdOptionsEvent])
-    // simulate a memory pressure by calling webViewTerminated
-    func killWebview(_: KillWebviewMode)
+    var adView: AdView { get }
+    
+    //MARK: functions
+    func update(_ adConfiguration: AdConfiguration)
+    func load()
+    func show()
+    func close() // used only for banners
+    func updateCard(events: [AdOptionsEvent]) // update cardConfiguration through events
+    func killWebview(_ killMode: KillWebviewMode)
+}
+
+public extension AdManager {
+    func updateCard(events: [AdOptionsEvent])  {
+        adView.updateCard(events: events)
+    }
+}
+
+public extension AdManager {
+    var cardName: String {
+        get { cardConfiguration.adDisplayName }
+        set { cardConfiguration.adDisplayName = newValue }
+    }
+    var qaLabel: String {
+        get { cardConfiguration.qaLabel }
+        set { cardConfiguration.qaLabel = newValue }
+    }
+    var adUnitId: String {
+        get { adConfiguration.adUnitId }
+        set { adConfiguration.adUnitId = newValue }
+    }
+    var campaignId: String? {
+        get {
+            (adUnitId.isTestModeOn || !cardConfiguration.showCampaignId) ? nil : adConfiguration.campaignId
+        }
+        set { adConfiguration.campaignId = newValue }
+    }
+    var creativeId: String? {
+        get {
+            (adUnitId.isTestModeOn || !cardConfiguration.showCreativeId) ? nil : adConfiguration.creativeId
+        }
+        set { adConfiguration.creativeId = newValue }
+    }
+    var dspCreativeId: String? {
+        get {
+            (adUnitId.isTestModeOn || !cardConfiguration.showDspFields) ? nil : adConfiguration.dspCreativeId
+        }
+        set { adConfiguration.dspCreativeId = newValue }
+    }
+    var dspRegion: DspRegion? {
+        get {
+            (adUnitId.isTestModeOn || !cardConfiguration.showDspFields) ? nil : adConfiguration.dspRegion
+        }
+        set { adConfiguration.dspRegion = newValue }
+    }
 }
 
 extension AdManager {
@@ -68,7 +109,6 @@ public enum AdOptionsEvent {
     case showCampaignId(_: Bool)
     case showCreativeId(_: Bool)
     case showDspFields(_: Bool)
-    case showSpecificOptions(_: Bool)
     case enableBulkMode(_: Bool)
     case showTestMode(_: Bool)
     case forceTestMode(_: Bool)
@@ -88,11 +128,11 @@ public enum AdLifeCycleEvent {
     case adDidFailToLoad(_: Error)
     case adDidFailToDisplay(_: Error)
     case adDidFail(_: Error)
-    case bannerReady(_: OguryBannerAdView)
-    case rewardReady(_: OguryReward)
+    case bannerReady(_: UIView)
+    case rewardReady(name: String, value: String)
 }
 
-public struct AdLifeCycleEventHistory {
+public struct AdLifeCycleEventHistory: Equatable {
     let event: AdLifeCycleEvent
     let date = Date()
 }
@@ -128,7 +168,6 @@ public func areEqual(_ lhs: Error, _ rhs: Error) -> Bool {
     return lhs.reflectedString == rhs.reflectedString
 }
 
-
 public extension Error {
     var reflectedString: String {
         // NOTE 1: We can just use the standard reflection for our case
@@ -141,7 +180,6 @@ public extension Error {
     }
     
 }
-
 
 public extension NSError {
     // prevents scenario where one would cast swift Error to NSError
