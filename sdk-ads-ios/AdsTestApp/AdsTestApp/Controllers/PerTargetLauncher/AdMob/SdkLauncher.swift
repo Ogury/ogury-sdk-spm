@@ -35,7 +35,7 @@ struct SdkLauncher: SdkLaunchable {
     
     static var assetKey: String {
         guard let asset = Bundle.main.infoDictionary?["AssetKey"] as? String else {
-            return "OGY-3D6E42683F56"
+            return "OGY-2D4CA679DE35"
         }
         return asset
     }

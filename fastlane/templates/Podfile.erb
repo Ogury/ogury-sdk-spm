@@ -64,6 +64,13 @@ target "AdMobCardAdapter" do
   pod 'OguryMediationGoogleMobileAds-Prod', '5.1.0.0-rc-1.0.3'
 end
 
+#UnityLevelPlayCardAdapter
+target "UnityLevelPlayCardAdapter" do
+  project "AdsCardAdapter/UnityLevelPlayCardAdapter/UnityLevelPlayCardAdapter"
+  pod 'IronSourceSDK'
+  pod 'IronSourceOguryAdapter'
+end
+
 #Ads Test Apps
 target "AdsTestApp-Devc" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
@@ -92,6 +99,11 @@ target "AdMobTestApp" do
   pod 'InMobiCMP', '2.0.1'
   pod 'Google-Mobile-Ads-SDK'
   pod 'OguryMediationGoogleMobileAds-Prod', '5.1.0.0-rc-1.0.3'
+end
+target "UnityLevelPlayTestApp" do
+  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  pod 'InMobiCMP', '2.0.1'
+  pod 'Google-Mobile-Ads-SDK'
 end
 
 target "AdsTestApp-Devc-art" do
