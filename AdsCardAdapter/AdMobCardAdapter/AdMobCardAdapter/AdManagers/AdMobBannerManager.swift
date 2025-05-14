@@ -30,6 +30,12 @@ class AdMobBannerManager: AdMobManager {
         append(.adClosed)
     }
     
+    override public func cardDidAppear() {
+        if let ad {
+            append(.bannerReady(ad))
+        }
+    }
+    
     override func load() async {
         await super.load()
         await instanciateAd()

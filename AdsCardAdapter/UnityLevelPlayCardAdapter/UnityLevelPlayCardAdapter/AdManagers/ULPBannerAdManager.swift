@@ -37,11 +37,23 @@ class ULPBannerAdManager: ULPAdManager {
         await ad.loadAd(with: viewController)
     }
     
+    override public func cardDidAppear() {
+        if let ad {
+            append(.bannerReady(ad))
+        }
+    }
+    
     override func show() {
         guard let ad else {
             return
         }
         append(.bannerReady(ad))
+    }
+    
+    override func close() {
+        ad?.removeFromSuperview()
+        ad = nil
+        append(.adClosed)
     }
     
     override class func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager {

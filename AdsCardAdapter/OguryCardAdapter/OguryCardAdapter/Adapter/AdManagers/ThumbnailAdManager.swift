@@ -85,10 +85,17 @@ public final class ThumbnailAdManager: OguryAdManager {
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
     public private(set) var ad: OguryThumbnailAd!
     public private(set) var adType: AdType
+    internal var _adView: AdView?
     public var adView: AdView {
-        var wself: (any AdManager)? = self
-        return AdsCardManager().card(for: &wself!)
+        guard let view = _adView else {
+            var wself: (any AdManager)? = self
+            _adView = AdsCardManager().card(for: &wself!)
+            return _adView!
+        }
+        return view
     }
+    public func cardDidAppear() {}
+    
     public var adDelegate: AdLifeCycleDelegate? {
         set {
             proxyDelegate.adDelegate = newValue
@@ -122,8 +129,6 @@ public final class ThumbnailAdManager: OguryAdManager {
         proxyDelegate = ThumbnailProxyDelegate(adDelegate: adDelegate)
         proxyDelegate.adManager = self
     }
-    
-    public func cardDidAppear() {}
     
     //MARK: Ad Management
     private func loadAd() {

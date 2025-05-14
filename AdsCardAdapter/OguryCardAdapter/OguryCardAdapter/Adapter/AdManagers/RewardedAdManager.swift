@@ -101,9 +101,14 @@ public final class RewardedAdManager: OguryAdManager {
     //MARK: Variables
     public private(set) var ad: OguryRewardedAd!
     public private(set) var adType: AdType
+    internal var _adView: AdView?
     public var adView: AdView {
-        var wself: (any AdManager)? = self
-        return AdsCardManager().card(for: &wself!)
+        guard let view = _adView else {
+            var wself: (any AdManager)? = self
+            _adView = AdsCardManager().card(for: &wself!)
+            return _adView!
+        }
+        return view
     }
     public var adDelegate: AdLifeCycleDelegate? {
         set {

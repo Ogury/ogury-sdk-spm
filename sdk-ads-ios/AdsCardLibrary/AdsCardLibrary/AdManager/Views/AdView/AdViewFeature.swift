@@ -355,8 +355,8 @@ struct AdViewFeature {
                     return .none
                     
                 case let .bannerReady(ad):
-                    state.bannerContainer?.bannerAd = ad
                     let bannerType = state.bannerFeature.bannerType
+                    state.bannerContainer = .init(bannerAd: ad, bannerType: bannerType)
                     state.bannerFeature = BannerPlaceholderFeature.State(bannerAd: ad, bannerType: bannerType)
                     return .none
                     

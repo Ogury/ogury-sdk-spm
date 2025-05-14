@@ -28,6 +28,12 @@ class MaxBannerAdManager: MaxAdManager {
         }
     }
     
+    override public func cardDidAppear() {
+        if let ad {
+            append(.bannerReady(ad))
+        }
+    }
+    
     private func sizeForAd() -> CGSize {
         .init(width: adType == .default(.smallBanner) ? 320 : 300,
               height: adType == .default(.smallBanner) ? 50 : 250,)

@@ -173,10 +173,16 @@ class ULPAdManager: NSObject, AdManager {
     var adDelegate: (any AdLifeCycleDelegate)?
     var events: PassthroughSubject<AdLifeCycleEvent, Never> = .init()
     var lifeCycleEvents: [AdLifeCycleEventHistory] = []
-    var adView: AdView {
-        var wself: (any AdManager)? = self
-        return AdsCardManager().card(for: &wself!)
+    internal var _adView: AdView?
+    public var adView: AdView {
+        guard let view = _adView else {
+            var wself: (any AdManager)? = self
+            _adView = AdsCardManager().card(for: &wself!)
+            return _adView!
+        }
+        return view
     }
+    public func cardDidAppear() {}
     
     func update(_ adConfiguration: AdConfiguration) {
         if adConfiguration.adUnitId != self.adConfiguration.adUnitId {
