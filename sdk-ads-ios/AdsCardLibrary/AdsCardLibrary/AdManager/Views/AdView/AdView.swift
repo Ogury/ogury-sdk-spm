@@ -236,6 +236,7 @@ public struct AdView: View {
                     .padding(EdgeInsets(top: -10, leading: 12, bottom: 0, trailing: 12))
                 }
             }
+            .onAppear { store.send(.cardDidAppear) }
             .alert(store: self.store.scope(state: \.$alert, action:\.alert))
             .background(Color(AdColorPalette.Background.primary.color))
             .cornerRadius(8)

@@ -145,6 +145,8 @@ public final class RewardedAdManager: OguryAdManager {
         }
     }
     
+    public func cardDidAppear() {}
+    
     //MARK: Ad Management
     private func load(from adMarkUp: String) {
         ad.load(withAdMarkup: adMarkUp)

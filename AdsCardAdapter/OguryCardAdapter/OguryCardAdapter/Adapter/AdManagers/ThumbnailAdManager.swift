@@ -123,6 +123,8 @@ public final class ThumbnailAdManager: OguryAdManager {
         proxyDelegate.adManager = self
     }
     
+    public func cardDidAppear() {}
+    
     //MARK: Ad Management
     private func loadAd() {
         // if test mode is enabled, then we don't send any other information

@@ -44,6 +44,10 @@ struct AdViewFeature {
             && lhs.adStateEvent == rhs.adStateEvent
             && lhs.isLoading == rhs.isLoading
             && ((lhs.error == nil && rhs.error == nil) || (lhs.error != nil && rhs.error != nil))
+            && lhs.bannerContainer == rhs.bannerContainer
+            && lhs.bannerFeature == rhs.bannerFeature
+            && lhs.rewardedOptions == rhs.rewardedOptions
+            && lhs.rewardedFeature == rhs.rewardedFeature
         }
         
         //MARK: init
@@ -195,6 +199,7 @@ struct AdViewFeature {
         case adBarAction(_: AdActionBarFeature.Action)
         case bannerAction(_: BannerPlaceholderFeature.Action)
         case rewardedAction(_: RewardedFeature.Action)
+        case cardDidAppear
         case resetReward
         case resetBanner
         case bannerReady(_: UIView)
@@ -331,6 +336,10 @@ struct AdViewFeature {
                     return .none
                     
                 case .rewardedAction:
+                    return .none
+                    
+                case .cardDidAppear:
+                    state.adManager.cardDidAppear()
                     return .none
                     
                 case let .rewardReady(rewardName, rewardValue):

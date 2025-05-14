@@ -145,6 +145,8 @@ public final class InterstitialAdManager: OguryAdManager {
         }
     }
     
+    public func cardDidAppear() {}
+    
     private func load(from adMarkUp: String) {
         ad.load(withAdMarkup: adMarkUp)
     }
