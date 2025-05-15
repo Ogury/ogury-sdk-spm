@@ -16,6 +16,7 @@ class AdMobBannerManager: AdMobManager {
         Task { @MainActor in
             guard ad == nil else { return }
             ad = .init(adSize: adFormat == .smallBanner ? AdSizeBanner : AdSizeMediumRectangle)
+            ad?.delegate = proxy
             ad?.adUnitID = adType.adUnit
             ad?.rootViewController = viewController
         }
@@ -40,7 +41,6 @@ class AdMobBannerManager: AdMobManager {
         await super.load()
         await instanciateAd()
         await ad?.load(.init())
-        append(.adLoaded(canShow: true))
     }
     
     override func show() {

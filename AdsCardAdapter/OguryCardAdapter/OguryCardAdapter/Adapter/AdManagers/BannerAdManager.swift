@@ -96,7 +96,10 @@ public final class BannerAdManager: OguryAdManager {
     }
     
     public func close() {
+        ad?.delegate = nil
         ad?.destroy()
+        ad = nil
+        append(.adClosed)
     }
     
     public static func == (lhs: BannerAdManager, rhs: BannerAdManager) -> Bool {
@@ -157,7 +160,7 @@ public final class BannerAdManager: OguryAdManager {
     
     //MARK: Ad Management
     public func cardDidAppear() {
-        if let ad {
+        if let ad, ad.isLoaded {
             append(.bannerReady(ad))
         }
     }
@@ -212,10 +215,6 @@ public final class BannerAdManager: OguryAdManager {
             ad.delegate = proxyDelegate
         }
         append(.bannerReady(ad))
-    }
-    
-    internal func closeAd() {
-        ad?.destroy()
     }
     
     internal func update(ad: OguryBannerAdView) {
