@@ -149,13 +149,10 @@ static int const OGABannerAdContainerStateMaximumNumberOfParentTraversals = 16;
 }
 
 - (void)cleanUp {
-    [super cleanUp];
-
-    [self removeKeyPathObservers];
-
     [self.displayer.view removeFromSuperview];
-
+    [self.displayer cleanUp];
     [self.exposureController stopExposure];
+    [super cleanUp];
 }
 
 - (void)centerBannerInFrame {
