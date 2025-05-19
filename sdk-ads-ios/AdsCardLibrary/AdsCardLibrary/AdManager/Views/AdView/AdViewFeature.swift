@@ -433,7 +433,7 @@ struct AdViewFeature {
                     )
                     
                 case .bannerAction:
-                    (adManager as? BannerAdManager)?.closeAd()
+                    state.adManager.close()
                      state.bannerContainer?.bannerAd = nil
                      let bannerType = state.bannerFeature.bannerType
                      state.bannerFeature = BannerPlaceholderFeature.State(bannerAd: nil, bannerType: bannerType)
