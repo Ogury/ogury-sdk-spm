@@ -208,8 +208,8 @@ static NSString *const AdSyncServiceBodyContentOverlayMaximumSizeScaleKey = @"sc
     NSMutableDictionary *adSync = [@{} mutableCopy];
     adSync[AdSyncServiceBodyNameKey] = [self getAdTypeString];
     adSync[AdSyncServiceBodyContentAdSyncTypeKey] = AdSyncServiceBodyContentAdSyncTypeLoadKey;
-   
-   if (self.adType == OguryAdsTypeBanner) {
+
+    if (self.adType == OguryAdsTypeBanner) {
         adSync[AdSyncServiceBodySizeKey] = [self getAdTypeSizeString];
     }
 
