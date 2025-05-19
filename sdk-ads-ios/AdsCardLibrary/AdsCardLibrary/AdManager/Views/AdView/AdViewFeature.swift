@@ -281,6 +281,7 @@ struct AdViewFeature {
             .run { [state] send in
                 await state.adManager.load()
                 await send(.resetReward)
+                await send(.resetBanner)
             }.cancellable(id: AdCancel.load(state.adManager.id))
         )
     }
@@ -333,6 +334,8 @@ struct AdViewFeature {
                     
                 case .resetBanner:
                     state.bannerContainer?.bannerAd = nil
+                    let bannerType = state.bannerFeature.bannerType
+                    state.bannerFeature = BannerPlaceholderFeature.State(bannerAd: nil, bannerType: bannerType)
                     return .none
                     
                 case .rewardedAction:
@@ -434,10 +437,7 @@ struct AdViewFeature {
                     
                 case .bannerAction:
                     state.adManager.close()
-                     state.bannerContainer?.bannerAd = nil
-                     let bannerType = state.bannerFeature.bannerType
-                     state.bannerFeature = BannerPlaceholderFeature.State(bannerAd: nil, bannerType: bannerType)
-                    return .none
+                    return .send(.resetBanner)
                     
                 case let .error(error):
                     state.log("Error received \(error.localizedDescription)")

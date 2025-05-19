@@ -65,8 +65,10 @@ struct BannerPlaceholderView: View {
                 if let ad = store.bannerAd {
                     HStack(alignment: .center) {
                         if isShow {
+                            Spacer()
                             AdBannerView(banner: ad)
                                 .frame(height: store.isMrec ? 250 : 50)
+                            Spacer()
                         } else {
                             placeholderBanner(viewStore: store)
                         }
