@@ -57,6 +57,9 @@ extern NSString *const OGAAdConfigurationAdTypeInterstitial;
 
 - (NSString *)getAdTypeString;
 - (NSString *)getAdTypeSizeString;
+- (NSInteger)getWidthForAdType;
+- (NSInteger)getHeightForAdType;
+
 + (BOOL)isOnLowPowerMode;
 
 #pragma mark - Initialization

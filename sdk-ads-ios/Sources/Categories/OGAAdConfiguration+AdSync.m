@@ -21,7 +21,9 @@
 #pragma mark - Constants
 
 static NSString *const AdSyncServiceBodyNameKey = @"name";
-static NSString *const AdSyncServiceBodySizeKey = @"size";
+static NSString *const AdSyncServiceBodySizeKey = @"sizes";
+static NSString *const AdSyncServiceBodySizeHeightKey = @"h";
+static NSString *const AdSyncServiceBodySizeWidthKey = @"w";
 static NSString *const AdSyncServiceBodyConnectivityeKey = @"connectivity";
 static NSString *const AdSyncServiceBodyTimestampKey = @"sent_at";
 static NSString *const AdSyncServiceBodyRequestIdKey = @"request_id";
@@ -210,7 +212,10 @@ static NSString *const AdSyncServiceBodyContentOverlayMaximumSizeScaleKey = @"sc
     adSync[AdSyncServiceBodyContentAdSyncTypeKey] = AdSyncServiceBodyContentAdSyncTypeLoadKey;
 
     if (self.adType == OguryAdsTypeBanner) {
-        adSync[AdSyncServiceBodySizeKey] = [self getAdTypeSizeString];
+        NSMutableDictionary *size = [@{} mutableCopy];
+        size[AdSyncServiceBodySizeWidthKey] = @([self getWidthForAdType]);
+        size[AdSyncServiceBodySizeHeightKey] = @([self getHeightForAdType]);
+        adSync[AdSyncServiceBodySizeKey] = @[ size ];
     }
 
     NSMutableDictionary *ad = [@{} mutableCopy];

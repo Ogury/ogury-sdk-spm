@@ -160,6 +160,38 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
     }
 }
 
+- (NSInteger)getWidthForAdType {
+    switch (self.adType) {
+        case OguryAdsTypeBanner: {
+            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize small_banner_320x50] getSize])) {
+                return 320;
+            }
+            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize mrec_300x250] getSize])) {
+                return 300;
+            }
+            return 0;
+        }
+        default:
+            return 0;
+    }
+}
+
+- (NSInteger)getHeightForAdType {
+    switch (self.adType) {
+        case OguryAdsTypeBanner: {
+            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize small_banner_320x50] getSize])) {
+                return 50;
+            }
+            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize mrec_300x250] getSize])) {
+                return 250;
+            }
+            return 0;
+        }
+        default:
+            return 0;
+    }
+}
+
 - (void)startNewMonitoringSession {
     [self.monitoringDetails startNewMonitoringSession];
 }
