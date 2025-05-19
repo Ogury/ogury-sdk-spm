@@ -55,8 +55,6 @@ public final class BannerAdManager: OguryAdManager {
             if (self.ad == nil) {
                 self.ad = OguryBannerAdView(adUnitId: self.adConfiguration.adUnitId,
                                             size: self.adType == .banner ? .small_banner_320x50() : .mrec_300x250())
-            } else {
-                self.ad?.destroy()
             }
             self.ad.delegate = self.proxyDelegate
             self.ad.setLogOrigin(self.cardConfiguration.qaLabel)

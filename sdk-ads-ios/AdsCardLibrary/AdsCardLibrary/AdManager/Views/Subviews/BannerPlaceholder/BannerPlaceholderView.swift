@@ -10,6 +10,36 @@ internal import ComposableArchitecture
 
 struct BannerPlaceholderView: View {
     let store: StoreOf<BannerPlaceholderFeature>
+    @State private var isShow = false
+    
+    
+    fileprivate func placeholderBanner(viewStore: ViewStoreOf<BannerPlaceholderFeature>) -> some View {
+        GeometryReader { geometry in
+            let maxWidth = min(geometry.size.width, viewStore.isMpuFormat ? 300 : 320)
+            
+            ZStack {
+                Rectangle()
+                    .fill(Color(AdColorPalette.Background.tertiary.color))
+                
+                VStack(spacing: 8) {
+                    Image(systemName: "photo")
+                    Text("Once loaded the creative will be displayed here")
+                        .font(.adsBody)
+                        .minimumScaleFactor(0.6)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, viewStore.isMpuFormat ? 40 : 20)
+                }
+                .foregroundColor(Color(AdColorPalette.Text.placeholder.color))
+                .font(.system(size: viewStore.isMpuFormat ? 14 : 12))
+                .padding(.vertical, 4)
+            }
+            .frame(width: maxWidth)
+            .aspectRatio(ratio(from: viewStore), contentMode: .fit)
+            .frame(width: geometry.size.width, alignment: .center)
+        }
+        .frame(height: viewStore.isMpuFormat ? 250 : 50)
+    }
+    
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             VStack(alignment: .leading) {
@@ -33,46 +63,29 @@ struct BannerPlaceholderView: View {
                 
                 // Show AdBannerView centered
                 if let ad = viewStore.bannerAd {
-                    HStack {
-                        Spacer()
-                        AdBannerView(banner: ad) // Centered without GeometryReader
-                            .frame(width: viewStore.isMrec ? 300 : 320,
-                                   height: viewStore.isMrec ? 250 : 50)
-                        Spacer()
+                    HStack(alignment: .center) {
+                        if isShow {
+                            AdBannerView(banner: ad)
+                                .frame(height: viewStore.isMpuFormat ? 250 : 50)
+                        } else {
+                            placeholderBanner(viewStore: viewStore)
+                        }
+                    }.onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            isShow = true
+                        }
                     }
                 } else {
-                    // Use GeometryReader for Placeholder
-                    GeometryReader { geometry in
-                        let maxWidth = min(geometry.size.width, viewStore.isMrec ? 300 : 320)
-                        
-                        ZStack {
-                            Rectangle()
-                                .fill(Color(AdColorPalette.Background.secondary.color))
-                            
-                            VStack(spacing: 8) {
-                                Image(systemName: "photo")
-                                Text("Once loaded the creative will be displayed here")
-                                    .font(.adsBody)
-                                    .minimumScaleFactor(0.6)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.horizontal, viewStore.isMrec ? 40 : 20)
-                            }
-                            .foregroundColor(Color(AdColorPalette.Text.placeholder.color))
-                            .font(.system(size: viewStore.isMrec ? 14 : 12))
-                            .padding(.vertical, 4)
-                        }
-                        .frame(width: maxWidth)
-                        .aspectRatio(ratio(from: viewStore), contentMode: .fit)
-                        .frame(width: geometry.size.width, alignment: .center) // Center horizontally
-                    }
-                    .frame(height: viewStore.isMrec ? 250 : 50) // Ensure fixed height
+                    placeholderBanner(viewStore: viewStore)
                 }
             }
-            .fixedSize(horizontal: false, vertical: true) // Prevent vertical overflow
+            .fixedSize(horizontal: false, vertical: true)
             .padding(.vertical)
-            .frame(maxWidth: .infinity) // Allow horizontal expansion
+            
         }
+        
     }
+    
     
     func ratio(from store: ViewStoreOf<BannerPlaceholderFeature>) -> CGFloat {
         store.isMrec ? (250 / 300) : (50 / 320)
