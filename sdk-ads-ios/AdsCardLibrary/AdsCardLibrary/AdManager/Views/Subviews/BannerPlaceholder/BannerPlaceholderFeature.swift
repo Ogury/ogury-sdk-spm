@@ -13,6 +13,7 @@ struct BannerPlaceholderFeature: Reducer {
         var bannerAd: UIView? = nil
         var bannerType: AdFormat
         var isMrec: Bool { bannerType == .mrec }
+        var ratio: CGFloat { isMrec ? (250 / 300) : (50 / 320) }
     }
     
     enum Action: Equatable {
