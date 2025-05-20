@@ -6,6 +6,7 @@ struct DetailListView: View {
     let store: StoreOf<DetailListFeature>
     let logsStore: StoreOf<LogsFeature>
     @State private var logsHeight: CGFloat = 150
+    @State private var keyboardShown: Bool = false
     @State private var logViewSearching: Bool = false
 
     var body: some View {
@@ -49,33 +50,39 @@ struct DetailListView: View {
                         }
                     }
                 }
-                .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { notification in
-                    if let _ = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
-                        viewStore.send(.showToolbar)
+                
+                if viewStore.showLogs, !keyboardShown, !viewStore.adManagers.isEmpty {
+                    VStack {
+                        VStack {
+                            LogsView(
+                                store: logsStore,
+                                logsHeight: $logsHeight,
+                                isSearching: $logViewSearching
+                            )
+                            .padding()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        }
+                        .background(Color(AdColorPalette.Background.primary.color))
+                        .ignoresSafeArea()
+                        .cornerRadius(15)
+                        .shadow(radius: 3)
                     }
+                    .background(Color(AdColorPalette.Background.secondary.color))
+                    .ignoresSafeArea()
+                    .frame(height: logsHeight)
                 }
-                .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
-                    viewStore.send(.hideToolbar)
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { notification in
+                if let _ = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+                    viewStore.send(.showToolbar)
                 }
-
-               VStack {
-                  VStack {
-                     LogsView(
-                         store: logsStore,
-                         logsHeight: $logsHeight,
-                         isSearching: $logViewSearching
-                     )
-                       .padding()
-                       .frame(maxWidth: .infinity, maxHeight: .infinity)
-                  }
-                  .background(Color(AdColorPalette.Background.primary.color))
-                  .ignoresSafeArea()
-                  .cornerRadius(15)
-                  .shadow(radius: 3)
-               }
-               .background(Color(AdColorPalette.Background.secondary.color))
-               .ignoresSafeArea()
-               .frame(height: logsHeight)
+                if !logViewSearching {
+                    keyboardShown = true
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
+                viewStore.send(.hideToolbar)
+                keyboardShown = false
             }
             .navigationTitle(Text("\(viewStore.adFormat.displayName.capitalized) (\(viewStore.adManagers.count))"))
             .accentColor(Color(AdColorPalette.Primary.accent.color))
