@@ -132,7 +132,6 @@
 
     [state cleanUp];
 
-    OCMVerify([state removeKeyPathObservers]);
     OCMVerify([state.notificationCenter removeObserver:OCMOCK_ANY]);
     OCMVerify([state.displayer.view removeFromSuperview]);
     OCMVerify([state.exposureController stopExposure]);
@@ -270,6 +269,7 @@
 
     [state overrideDisplayer:displayer];
     [state overrideBannerView:bannerView];
+    [state startViewsObservation];
 
     [state centerBannerInFrame];
 
@@ -384,6 +384,7 @@
 
     [state overrideBannerView:bannerView];
     [state overrideDisplayer:displayer];
+    [state startViewsObservation];
 
     [state bannerViewDidMoveToWindow:[[NSNotification alloc] initWithName:@"" object:@"1234-56789" userInfo:nil]];
 
@@ -419,101 +420,6 @@
 
     OCMReject([state.exposureController computeExposure]);
     OCMVerify([displayer dispatchInformation:[OCMArg isKindOfClass:OGAAdDisplayerUpdateExposureInformation.self]]);
-}
-
-- (void)testShouldNotFindParentScrollViewAWhenNoneArePresent {
-    id<OGAAdDisplayer> displayer = OCMProtocolMock(@protocol(OGAAdDisplayer));
-
-    OGAAd *ad = OCMClassMock(OGAAd.self);
-
-    OCMStub(displayer.ad).andReturn(ad);
-
-    OGAAdConfiguration *configuration = OCMClassMock([OGAAdConfiguration class]);
-    OCMStub(configuration.adUnitId).andReturn(@"1234-56789");
-
-    OCMStub(ad.adConfiguration).andReturn(configuration);
-
-    UIView *bannerView = OCMPartialMock([[UIView alloc] init]);
-    OCMStub(bannerView.window).andReturn(OCMClassMock(UIWindow.self));
-
-    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
-        initWithViewProvider:^UIView *_Nonnull {
-            return bannerView;
-        }
-        viewControllerProvider:^UIViewController *_Nonnull {
-            return nil;
-        }]);
-
-    [state overrideBannerView:bannerView];
-    [state overrideDisplayer:displayer];
-
-    XCTAssertNil([state getParentScrollViewFrom:bannerView]);
-}
-
-- (void)testShouldFindParentScrollViewBeforeMaximumNumberOfTraversalIsReached {
-    id<OGAAdDisplayer> displayer = OCMProtocolMock(@protocol(OGAAdDisplayer));
-
-    OGAAd *ad = OCMClassMock(OGAAd.self);
-
-    OCMStub(displayer.ad).andReturn(ad);
-
-    OGAAdConfiguration *configuration = OCMClassMock([OGAAdConfiguration class]);
-    OCMStub(configuration.adUnitId).andReturn(@"1234-56789");
-
-    OCMStub(ad.adConfiguration).andReturn(configuration);
-
-    UIView *bannerView = [[UIView alloc] init];
-
-    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
-        initWithViewProvider:^UIView *_Nonnull {
-            return bannerView;
-        }
-        viewControllerProvider:^UIViewController *_Nonnull {
-            return nil;
-        }]);
-
-    NSArray<UIView *> *nestedViews = [OGABannerAdContainerStateTests getNestedViews:10 withScrollViewAtIndex:5];
-
-    UIView *parentView = nestedViews.lastObject;
-    [parentView addSubview:bannerView];
-
-    [state overrideBannerView:bannerView];
-    [state overrideDisplayer:displayer];
-
-    XCTAssertNotNil([state getParentScrollViewFrom:bannerView]);
-}
-
-- (void)testShouldNotFindParentScrollViewAWhenMaximumNumberOfTraversalIsReached {
-    id<OGAAdDisplayer> displayer = OCMProtocolMock(@protocol(OGAAdDisplayer));
-
-    OGAAd *ad = OCMClassMock(OGAAd.self);
-
-    OCMStub(displayer.ad).andReturn(ad);
-
-    OGAAdConfiguration *configuration = OCMClassMock([OGAAdConfiguration class]);
-    OCMStub(configuration.adUnitId).andReturn(@"1234-56789");
-
-    OCMStub(ad.adConfiguration).andReturn(configuration);
-
-    UIView *bannerView = [[UIView alloc] init];
-
-    OGABannerAdViewContainerState *state = OCMPartialMock([[OGABannerAdViewContainerState alloc]
-        initWithViewProvider:^UIView *_Nonnull {
-            return bannerView;
-        }
-        viewControllerProvider:^UIViewController *_Nonnull {
-            return nil;
-        }]);
-
-    [state overrideBannerView:bannerView];
-    [state overrideDisplayer:displayer];
-
-    NSArray<UIView *> *nestedViews = [OGABannerAdContainerStateTests getNestedViews:24 withScrollViewAtIndex:5];
-
-    UIView *parentView = nestedViews.lastObject;
-    [parentView addSubview:bannerView];
-
-    XCTAssertNil([state getParentScrollViewFrom:bannerView]);
 }
 
 + (NSArray<UIView *> *)getNestedViews:(int)quantity withScrollViewAtIndex:(int)scrollViewIndex {
