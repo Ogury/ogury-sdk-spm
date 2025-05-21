@@ -54,6 +54,7 @@ public final class ThumbnailAdManager: OguryAdManager {
             guard let self else { return }
             if (self.ad == nil) {
                 self.ad = OguryThumbnailAd(adUnitId: self.adUnitId)
+                self.ad.setWhitelistBundleIdentifiers(["co.ogury", "com.ogury"])
             }
             self.ad.delegate = self.proxyDelegate
             self.ad.setLogOrigin(self.cardConfiguration.qaLabel)
