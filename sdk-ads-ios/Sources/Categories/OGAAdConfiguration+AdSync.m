@@ -211,13 +211,6 @@ static NSString *const AdSyncServiceBodyContentOverlayMaximumSizeScaleKey = @"sc
     adSync[AdSyncServiceBodyNameKey] = [self getAdTypeString];
     adSync[AdSyncServiceBodyContentAdSyncTypeKey] = AdSyncServiceBodyContentAdSyncTypeLoadKey;
 
-    if (self.adType == OguryAdsTypeBanner) {
-        NSMutableDictionary *size = [@{} mutableCopy];
-        size[AdSyncServiceBodySizeWidthKey] = @([self getWidthForAdType]);
-        size[AdSyncServiceBodySizeHeightKey] = @([self getHeightForAdType]);
-        adSync[AdSyncServiceBodySizeKey] = @[ size ];
-    }
-
     NSMutableDictionary *ad = [@{} mutableCopy];
     ad[AdSyncServiceBodyContentAdUnitIdNameKey] = self.adUnitId;
 
@@ -239,6 +232,14 @@ static NSString *const AdSyncServiceBodyContentOverlayMaximumSizeScaleKey = @"sc
         }
         ad[AdSyncServiceBodyDspKey] = adDsp;
     }
+    
+    if (self.adType == OguryAdsTypeBanner) {
+        NSMutableDictionary *size = [@{} mutableCopy];
+        size[AdSyncServiceBodySizeWidthKey] = @([self getWidthForAdType]);
+        size[AdSyncServiceBodySizeHeightKey] = @([self getHeightForAdType]);
+        ad[AdSyncServiceBodySizeKey] = @[ size ];
+    }
+    
     adSync[AdSyncServiceBodyAdKey] = ad;
 
     BOOL isOMIDCompliant = (profigPersistence.profigFullResponse.isOmidEnabled && isOmidFrameworkPresent);
