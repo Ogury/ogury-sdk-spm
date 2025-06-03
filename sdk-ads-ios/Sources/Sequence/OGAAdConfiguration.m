@@ -6,8 +6,9 @@
 #import "OguryBannerAdSize.h"
 #import <Foundation/NSProcessInfo.h>
 
-NSString *const OGAAdConfigurationAdTypeSmallBanner = @"banner_320x50";
-NSString *const OGAAdConfigurationAdTypeMPU = @"medium_rectangle";
+NSString *const OGAAdConfigurationAdTypeStandardBanners = @"standard_banners";
+NSString *const OGAAdConfigurationAdTypeSizeSmallBanners = @"320x50";
+NSString *const OGAAdConfigurationAdTypeSizeMREC = @"300x250";
 NSString *const OGAAdConfigurationAdTypeThumbnailAd = @"overlay_thumbnail";
 NSString *const OGAAdConfigurationAdTypeRewarded = @"optin_video";
 NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
@@ -132,15 +133,8 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
 
 - (NSString *)getAdTypeString {
     switch (self.adType) {
-        case OguryAdsTypeBanner: {
-            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize small_banner_320x50] getSize])) {
-                return OGAAdConfigurationAdTypeSmallBanner;
-            }
-            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize mrec_300x250] getSize])) {
-                return OGAAdConfigurationAdTypeMPU;
-            }
-            return @"";
-        }
+        case OguryAdsTypeBanner:
+            return OGAAdConfigurationAdTypeStandardBanners;
         case OguryAdsTypeThumbnailAd:
             return OGAAdConfigurationAdTypeThumbnailAd;
         case OguryAdsTypeRewardedAd:
@@ -149,6 +143,54 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
             return OGAAdConfigurationAdTypeInterstitial;
         default:
             return @"";
+    }
+}
+
+- (NSString *)getAdTypeSizeString {
+    switch (self.adType) {
+        case OguryAdsTypeBanner: {
+            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize small_banner_320x50] getSize])) {
+                return OGAAdConfigurationAdTypeSizeSmallBanners;
+            }
+            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize mrec_300x250] getSize])) {
+                return OGAAdConfigurationAdTypeSizeMREC;
+            }
+            return @"";
+        }
+        default:
+            return @"";
+    }
+}
+
+- (NSInteger)getWidthForAdType {
+    switch (self.adType) {
+        case OguryAdsTypeBanner: {
+            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize small_banner_320x50] getSize])) {
+                return 320;
+            }
+            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize mrec_300x250] getSize])) {
+                return 300;
+            }
+            return 0;
+        }
+        default:
+            return 0;
+    }
+}
+
+- (NSInteger)getHeightForAdType {
+    switch (self.adType) {
+        case OguryAdsTypeBanner: {
+            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize small_banner_320x50] getSize])) {
+                return 50;
+            }
+            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize mrec_300x250] getSize])) {
+                return 250;
+            }
+            return 0;
+        }
+        default:
+            return 0;
     }
 }
 

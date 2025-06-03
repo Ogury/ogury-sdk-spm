@@ -19,8 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef UIViewController *_Nonnull (^OGAViewControllerProvider)(void);
 typedef UIView *_Nonnull (^OGAViewProvider)(void);
 
-extern NSString *const OGAAdConfigurationAdTypeSmallBanner;
-extern NSString *const OGAAdConfigurationAdTypeMPU;
+extern NSString *const OGAAdConfigurationAdTypeStandardBanners;
 extern NSString *const OGAAdConfigurationAdTypeThumbnailAd;
 extern NSString *const OGAAdConfigurationAdTypeRewarded;
 extern NSString *const OGAAdConfigurationAdTypeInterstitial;
@@ -59,6 +58,10 @@ extern NSString *const OGAAdConfigurationAdTypeInterstitial;
 @property(nonatomic, weak, nullable) UIWindowScene *scene API_AVAILABLE(ios(13.0));
 
 - (NSString *)getAdTypeString;
+- (NSString *)getAdTypeSizeString;
+- (NSInteger)getWidthForAdType;
+- (NSInteger)getHeightForAdType;
+
 + (BOOL)isOnLowPowerMode;
 
 #pragma mark - Initialization

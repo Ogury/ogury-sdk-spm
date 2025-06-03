@@ -9,6 +9,7 @@
 @property(nonatomic, strong) NSString *identifier;
 @property(nonatomic, strong) NSString *adId;
 @property(nonatomic, strong) NSString *type;
+@property(nonatomic, strong) NSString *size;
 @property(nonatomic, strong) NSString *appUserId;
 @property(nonatomic, strong) NSString *rewardLaunch;
 @property(nonatomic, strong) NSString *rewardName;
