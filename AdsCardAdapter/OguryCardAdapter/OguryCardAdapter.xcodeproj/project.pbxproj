@@ -54,28 +54,7 @@
 		43EB19382DAFF084002F170A /* Exceptions for "OguryCardAdapter" folder in "OguryCardAdapter-art" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Adapter/AdManagers/AdDelegateProxy.swift,
-				Adapter/AdManagers/BannerAdManager.swift,
-				Adapter/AdManagers/InterstitialAdManager.swift,
-				Adapter/AdManagers/RewardedAdManager.swift,
-				Adapter/AdManagers/ThumbnailAdManager.swift,
-				Adapter/Errors/OguryErrorConvertible.swift,
-				Adapter/OguryAdManager.swift,
-				Config/Configuration.swift,
-				Config/Default.devc.json,
-				Config/Default.prod.json,
-				Config/Default.staging.json,
-				HeaderBiding/Core/HeaderBiddingBid.swift,
-				HeaderBiding/Core/HeaderBiddingExt.swift,
-				HeaderBiding/Core/HeaderBiddingResponse.swift,
-				HeaderBiding/Core/HeaderBiddingSeatBid.swift,
-				HeaderBiding/Core/RTBBidder.swift,
-				HeaderBiding/Core/RTBidderBody.swift,
-				HeaderBiding/Mediations/AppLovin/MaxBidder.swift,
-				HeaderBiding/Mediations/DTFairBid/DTFairBidBidder.swift,
-				HeaderBiding/Mediations/UnityLevelPlay/UnityLevelPlayBidder.swift,
 				OguryCardAdapter.docc,
-				OguryCardAdapter.swift,
 			);
 			target = 43EB192B2DAFF084002F170A /* OguryCardAdapter-art */;
 		};
