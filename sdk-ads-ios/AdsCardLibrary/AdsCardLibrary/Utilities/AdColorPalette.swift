@@ -74,6 +74,7 @@ public struct AdColorPalette {
     public enum Background: Colorable {
         case primary
         case secondary
+        case tertiary
         case separator
         case placeholder
         case disabled
@@ -96,6 +97,14 @@ public struct AdColorPalette {
                         @unknown default: return #colorLiteral(red: 0.9656843543, green: 0.9657825828, blue: 0.9688259959, alpha: 1)
                     }
                 }
+               
+               case .tertiary: return UIColor { trait in
+                   switch trait.userInterfaceStyle {
+                       case .dark: return #colorLiteral(red: 0.3388677239, green: 0.3403788805, blue: 0.3442768455, alpha: 1)
+                       case .light, .unspecified: return #colorLiteral(red: 0.9816380143, green: 0.9788030982, blue: 0.9816647172, alpha: 1)
+                       @unknown default: return #colorLiteral(red: 0.9656843543, green: 0.9657825828, blue: 0.9688259959, alpha: 1)
+                   }
+               }
                     
                 case .separator: return UIColor { trait in
                     switch trait.userInterfaceStyle {

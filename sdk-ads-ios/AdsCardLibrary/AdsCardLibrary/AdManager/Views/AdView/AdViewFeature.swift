@@ -44,6 +44,10 @@ struct AdViewFeature {
             && lhs.adStateEvent == rhs.adStateEvent
             && lhs.isLoading == rhs.isLoading
             && ((lhs.error == nil && rhs.error == nil) || (lhs.error != nil && rhs.error != nil))
+            && lhs.bannerContainer == rhs.bannerContainer
+            && lhs.bannerFeature == rhs.bannerFeature
+            && lhs.rewardedOptions == rhs.rewardedOptions
+            && lhs.rewardedFeature == rhs.rewardedFeature
         }
         
         //MARK: init
@@ -195,6 +199,7 @@ struct AdViewFeature {
         case adBarAction(_: AdActionBarFeature.Action)
         case bannerAction(_: BannerPlaceholderFeature.Action)
         case rewardedAction(_: RewardedFeature.Action)
+        case cardDidAppear
         case resetReward
         case resetBanner
         case bannerReady(_: UIView)
@@ -276,6 +281,7 @@ struct AdViewFeature {
             .run { [state] send in
                 await state.adManager.load()
                 await send(.resetReward)
+                await send(.resetBanner)
             }.cancellable(id: AdCancel.load(state.adManager.id))
         )
     }
@@ -328,9 +334,15 @@ struct AdViewFeature {
                     
                 case .resetBanner:
                     state.bannerContainer?.bannerAd = nil
+                    let bannerType = state.bannerFeature.bannerType
+                    state.bannerFeature = BannerPlaceholderFeature.State(bannerAd: nil, bannerType: bannerType)
                     return .none
                     
                 case .rewardedAction:
+                    return .none
+                    
+                case .cardDidAppear:
+                    state.adManager.cardDidAppear()
                     return .none
                     
                 case let .rewardReady(rewardName, rewardValue):
@@ -346,8 +358,8 @@ struct AdViewFeature {
                     return .none
                     
                 case let .bannerReady(ad):
-                    state.bannerContainer?.bannerAd = ad
                     let bannerType = state.bannerFeature.bannerType
+                    state.bannerContainer = .init(bannerAd: ad, bannerType: bannerType)
                     state.bannerFeature = BannerPlaceholderFeature.State(bannerAd: ad, bannerType: bannerType)
                     return .none
                     
@@ -425,7 +437,7 @@ struct AdViewFeature {
                     
                 case .bannerAction:
                     state.adManager.close()
-                    return .none
+                    return .send(.resetBanner)
                     
                 case let .error(error):
                     state.log("Error received \(error.localizedDescription)")

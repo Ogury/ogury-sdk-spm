@@ -101,9 +101,14 @@ public final class InterstitialAdManager: OguryAdManager {
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
     public private(set) var ad: OguryInterstitialAd!
     public private(set) var adType: AdType
+    internal var _adView: AdView?
     public var adView: AdView {
-        var wself: (any AdManager)? = self
-        return AdsCardManager().card(for: &wself!)
+        guard let view = _adView else {
+            var wself: (any AdManager)? = self
+            _adView = AdsCardManager().card(for: &wself!)
+            return _adView!
+        }
+        return view
     }
     public var adDelegate: AdLifeCycleDelegate?  {
         set {
@@ -144,6 +149,8 @@ public final class InterstitialAdManager: OguryAdManager {
             default: ()
         }
     }
+    
+    public func cardDidAppear() {}
     
     private func load(from adMarkUp: String) {
         ad.load(withAdMarkup: adMarkUp)

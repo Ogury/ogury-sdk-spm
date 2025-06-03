@@ -36,6 +36,7 @@ public protocol AdManager: Equatable, Hashable, Identifiable where ID == UUID {
     var adView: AdView { get }
     
     //MARK: functions
+    func cardDidAppear()
     func update(_ adConfiguration: AdConfiguration)
     func load() async
     func show()

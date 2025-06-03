@@ -17,6 +17,7 @@ struct DetailListFeature: Reducer {
         var adManagers: [any AdManager]
         var adFormat: any AdAdapterFormat
         var toolbarVisible: Bool = false
+        let showLogs = SettingsController().showLogsSheet
     }
     
     enum Action: Equatable  {

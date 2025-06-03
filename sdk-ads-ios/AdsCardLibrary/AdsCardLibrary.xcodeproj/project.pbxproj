@@ -49,7 +49,6 @@
 		43BCB17D2C22FBF0002FB0B1 /* AdTagFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6F082C0F403F00DBFFAA /* AdTagFeature.swift */; };
 		43BCB17F2C22FBF0002FB0B1 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3B2B5FBA360041A9C1 /* Font+Extension.swift */; };
 		43BCB1812C22FBF0002FB0B1 /* BannerPlaceholderFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA12792AB888D300766D99 /* BannerPlaceholderFeature.swift */; };
-		43BCB1832C22FBF0002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C56002A42F6EC004186FF /* OMSDK_Ogury.xcframework */; };
 		43BCB1852C22FBF0002FB0B1 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 43BCB15D2C22FBF0002FB0B1 /* ComposableArchitecture */; };
 		43BCB1882C22FBF0002FB0B1 /* PPTelegraf-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43788F2E2B5FBA1A0041A9C1 /* PPTelegraf-Light.ttf */; };
 		43BCB1892C22FBF0002FB0B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 436E97262A6A7BC30074E922 /* Assets.xcassets */; };
@@ -142,7 +141,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43BCB1832C22FBF0002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43BCB1852C22FBF0002FB0B1 /* ComposableArchitecture in Frameworks */,
 				ACA5E9FA7E59514EB048ED47 /* Pods_AdsCardLibrary_art.framework in Frameworks */,
 			);

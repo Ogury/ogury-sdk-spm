@@ -55,8 +55,6 @@ public final class BannerAdManager: OguryAdManager {
             if (self.ad == nil) {
                 self.ad = OguryBannerAdView(adUnitId: self.adConfiguration.adUnitId,
                                             size: self.adType == .banner ? .small_banner_320x50() : .mrec_300x250())
-            } else {
-                self.ad?.destroy()
             }
             self.ad.delegate = self.proxyDelegate
             self.ad.setLogOrigin(self.cardConfiguration.qaLabel)
@@ -96,7 +94,10 @@ public final class BannerAdManager: OguryAdManager {
     }
     
     public func close() {
+        ad?.delegate = nil
         ad?.destroy()
+        ad = nil
+        append(.adClosed)
     }
     
     public static func == (lhs: BannerAdManager, rhs: BannerAdManager) -> Bool {
@@ -106,9 +107,14 @@ public final class BannerAdManager: OguryAdManager {
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
     public private(set) var ad: OguryBannerAdView!
     public private(set) var adType: AdType
+    internal var _adView: AdView?
     public var adView: AdView {
-        var wself: (any AdManager)? = self
-        return AdsCardManager().card(for: &wself!)
+        guard let view = _adView else {
+            var wself: (any AdManager)? = self
+            _adView = AdsCardManager().card(for: &wself!)
+            return _adView!
+        }
+        return view
     }
     public var adDelegate: AdLifeCycleDelegate? {
         set {
@@ -151,6 +157,11 @@ public final class BannerAdManager: OguryAdManager {
     }
     
     //MARK: Ad Management
+    public func cardDidAppear() {
+        if let ad, ad.isLoaded {
+            append(.bannerReady(ad))
+        }
+    }
     private func load(from adMarkUp: String) {
         ad.load(withAdMarkup: adMarkUp)
     }
@@ -202,10 +213,6 @@ public final class BannerAdManager: OguryAdManager {
             ad.delegate = proxyDelegate
         }
         append(.bannerReady(ad))
-    }
-    
-    internal func closeAd() {
-        ad?.destroy()
     }
     
     internal func update(ad: OguryBannerAdView) {

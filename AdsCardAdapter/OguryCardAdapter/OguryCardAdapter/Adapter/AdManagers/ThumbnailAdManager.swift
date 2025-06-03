@@ -54,6 +54,7 @@ public final class ThumbnailAdManager: OguryAdManager {
             guard let self else { return }
             if (self.ad == nil) {
                 self.ad = OguryThumbnailAd(adUnitId: self.adUnitId)
+                self.ad.setWhitelistBundleIdentifiers(["co.ogury", "com.ogury"])
             }
             self.ad.delegate = self.proxyDelegate
             self.ad.setLogOrigin(self.cardConfiguration.qaLabel)
@@ -85,10 +86,17 @@ public final class ThumbnailAdManager: OguryAdManager {
     public var events: PassthroughSubject<AdLifeCycleEvent, Never>
     public private(set) var ad: OguryThumbnailAd!
     public private(set) var adType: AdType
+    internal var _adView: AdView?
     public var adView: AdView {
-        var wself: (any AdManager)? = self
-        return AdsCardManager().card(for: &wself!)
+        guard let view = _adView else {
+            var wself: (any AdManager)? = self
+            _adView = AdsCardManager().card(for: &wself!)
+            return _adView!
+        }
+        return view
     }
+    public func cardDidAppear() {}
+    
     public var adDelegate: AdLifeCycleDelegate? {
         set {
             proxyDelegate.adDelegate = newValue
