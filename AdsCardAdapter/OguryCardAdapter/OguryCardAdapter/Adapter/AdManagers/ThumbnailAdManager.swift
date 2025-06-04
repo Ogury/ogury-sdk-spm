@@ -37,6 +37,7 @@ public final class ThumbnailAdManager: OguryAdManager {
                                   adDelegate: nil)
     }
     public var bidder: (any HeaderBidable)?
+    public var bannerSizes: [BannerSize]? = nil
     public var adFormat: AdFormat
     public var adConfiguration: AdConfiguration!
     public var cardConfiguration: CardConfiguration!

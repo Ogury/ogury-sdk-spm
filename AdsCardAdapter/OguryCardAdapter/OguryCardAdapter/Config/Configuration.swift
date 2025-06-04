@@ -8,8 +8,7 @@ import AdsCardLibrary
 protocol MediationOptions: Codable {
     var interstitial: Configuration.DefaultBaseOptions { get }
     var optIn: Configuration.DefaultBaseOptions { get }
-    var mpu: Configuration.DefaultBaseOptions { get }
-    var banner: Configuration.DefaultBaseOptions { get }
+    var standardBanner: Configuration.DefaultBaseOptions { get }
     var thumbnail: Configuration.DefaultBaseOptions? { get }
     var url: URL? { get }
     var displayManager: String? { get }
@@ -22,12 +21,12 @@ struct Configuration: Decodable {
         let creativeId: String?
         let dspCreativeId: String?
         let dspRegion: DspRegion?
+        let size: CGSize?
     }
     struct DefaultOptions: MediationOptions {
         let interstitial: DefaultBaseOptions
         let optIn: DefaultBaseOptions
-        let mpu: DefaultBaseOptions
-        let banner: DefaultBaseOptions
+        let standardBanner: DefaultBaseOptions
         let thumbnail: DefaultBaseOptions?
         let url: URL?
         var displayManager: String?
@@ -35,8 +34,7 @@ struct Configuration: Decodable {
     struct DefaultMaxOptions: MediationOptions {
         let interstitial: DefaultBaseOptions
         let optIn: DefaultBaseOptions
-        let mpu: DefaultBaseOptions
-        let banner: DefaultBaseOptions
+        let standardBanner: DefaultBaseOptions
         let thumbnail: DefaultBaseOptions?
         let url: URL?
         var displayManager: String? { "max" }
@@ -44,8 +42,7 @@ struct Configuration: Decodable {
     struct DefaultDTFairBidOptions: MediationOptions {
         let interstitial: DefaultBaseOptions
         let optIn: DefaultBaseOptions
-        let mpu: DefaultBaseOptions
-        let banner: DefaultBaseOptions
+        let standardBanner: DefaultBaseOptions
         let thumbnail: DefaultBaseOptions?
         let url: URL?
         var displayManager: String? { "fyber" }
@@ -53,8 +50,7 @@ struct Configuration: Decodable {
     struct DefaultUnityLevelPlayOptions: MediationOptions {
         let interstitial: DefaultBaseOptions
         let optIn: DefaultBaseOptions
-        let mpu: DefaultBaseOptions
-        let banner: DefaultBaseOptions
+        let standardBanner: DefaultBaseOptions
         let thumbnail: DefaultBaseOptions?
         let url: URL?
         var displayManager: String? { "unity levelplay" }

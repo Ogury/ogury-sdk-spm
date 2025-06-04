@@ -56,7 +56,7 @@ struct AdViewFeature {
             self.adManager = adManager
             switch adManager.adFormat {
                 case .rewardedVideo: rewardedOptions = .init()
-                case .smallBanner, .mrec: bannerContainer = .init(bannerType: adManager.adFormat)
+                case .standardBanner: bannerContainer = .init()
                 case .interstitial, .thumbnail: ()
             }
             if adManager.adUnitId.isTestModeOn {
@@ -93,8 +93,7 @@ struct AdViewFeature {
         }
         var bannerFeature: BannerPlaceholderFeature.State {
             get {
-                return BannerPlaceholderFeature.State(bannerAd: bannerContainer?.bannerAd,
-                                                      bannerType: adManager.adFormat)
+                return BannerPlaceholderFeature.State(adManager: adManager, bannerAd: bannerContainer?.bannerAd)
             }
             
             set {
@@ -334,8 +333,7 @@ struct AdViewFeature {
                     
                 case .resetBanner:
                     state.bannerContainer?.bannerAd = nil
-                    let bannerType = state.bannerFeature.bannerType
-                    state.bannerFeature = BannerPlaceholderFeature.State(bannerAd: nil, bannerType: bannerType)
+                    state.bannerFeature = BannerPlaceholderFeature.State(adManager: state.adManager, bannerAd: nil)
                     return .none
                     
                 case .rewardedAction:
@@ -358,9 +356,8 @@ struct AdViewFeature {
                     return .none
                     
                 case let .bannerReady(ad):
-                    let bannerType = state.bannerFeature.bannerType
-                    state.bannerContainer = .init(bannerAd: ad, bannerType: bannerType)
-                    state.bannerFeature = BannerPlaceholderFeature.State(bannerAd: ad, bannerType: bannerType)
+                    state.bannerContainer = .init(bannerAd: ad)
+                    state.bannerFeature = BannerPlaceholderFeature.State(adManager: state.adManager, bannerAd: ad)
                     return .none
                     
                 case let .updateEvent(event):
@@ -368,8 +365,7 @@ struct AdViewFeature {
                     state.adStateEvent = event
                     if event == .adClosed {
                         state.bannerContainer?.bannerAd = nil
-                        let bannerType = state.bannerFeature.bannerType
-                        state.bannerFeature = BannerPlaceholderFeature.State(bannerAd: nil, bannerType: bannerType)
+                        state.bannerFeature = BannerPlaceholderFeature.State(adManager: state.adManager, bannerAd: nil)
                     }
                     return .none
                     
@@ -591,13 +587,12 @@ extension AdViewFeature.State {
         get { adManager.cardConfiguration.showDspFields }
         set { adManager.cardConfiguration.showDspFields = newValue }
     }
-    var isBanner: Bool { adManager.adFormat.isBanner }
+    var isBanner: Bool { adManager.adFormat == .standardBanner }
     var isRewardedVideo: Bool { adManager.adFormat == .rewardedVideo }
 }
 
 struct BannerContainer: Equatable {
     var bannerAd: UIView?
-    var bannerType: AdFormat
 }
 
 extension Error {

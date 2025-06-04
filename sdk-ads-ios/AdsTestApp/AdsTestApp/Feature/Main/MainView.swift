@@ -367,7 +367,7 @@ struct HorizontalCardsView: View {
     let managers: [any AdManager]
     let geometry: GeometryProxy
     // we block the navigation for all banner managers since we have issues with adViews and superviews
-    var disabled: Bool { managers.first?.adFormat == .mrec || managers.first?.adFormat == .smallBanner }
+    var disabled: Bool { managers.first?.adFormat == .standardBanner }
     @State private var contentSize: CGSize = .zero
     @Environment(\.cardPermissions) var cardPermissions
     

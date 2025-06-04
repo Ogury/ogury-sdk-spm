@@ -10,22 +10,21 @@ import Combine
 import WebKit
 
 public enum AdFormat: Codable {
-    case interstitial, rewardedVideo, smallBanner, mrec, thumbnail
+    case interstitial, rewardedVideo, standardBanner, thumbnail
     public var name: String {
         switch self {
             case .interstitial: return "Interstitial"
             case .rewardedVideo: return "Rewarded"
             case .thumbnail: return "Thumbnail"
-            case .smallBanner: return "Small banner"
-            case .mrec: return "MREC"
+            case .standardBanner: return "Standard banner"
         }
     }
-    public var isBanner: Bool {  return [.smallBanner, .mrec].contains(self) }
 }
 
 public protocol AdManager: Equatable, Hashable, Identifiable where ID == UUID {
     //MARK: properties
     var adFormat: AdFormat { get set }
+    var bannerSizes: [BannerSize]? { get }
     var id: UUID { get }
     var adConfiguration: AdConfiguration! { get set }
     var cardConfiguration: CardConfiguration! { get set }
@@ -46,6 +45,32 @@ public protocol AdManager: Equatable, Hashable, Identifiable where ID == UUID {
     func append(_ event: AdLifeCycleEvent)
     func encode() -> AdCardContainer
     static func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager
+}
+
+
+@dynamicMemberLookup
+public class BannerSize: Identifiable, Equatable, Hashable {
+    public let id = UUID()
+    var size: CGSize
+    let image: Image
+    var description: String { "\(Int(size.width)) x \(Int(size.height))" }
+    public init(size: CGSize, image: Image) {
+        self.size = size
+        self.image = image
+    }
+    
+    subscript (dynamicMember keyPath: WritableKeyPath<CGSize, CGFloat>) -> CGFloat {
+        get { size[keyPath: keyPath] }
+        set { size[keyPath: keyPath] = newValue }
+    }
+    
+    public static func == (lhs: BannerSize, rhs: BannerSize) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
 
 public enum AdCardContainerError: Error {

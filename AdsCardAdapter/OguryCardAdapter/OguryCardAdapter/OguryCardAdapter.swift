@@ -47,21 +47,17 @@ Environment: \(environment)
     public var availableAdFormats: [AdAdapterFormatSection] = [
         .init(title: "Ogury", formats: [AdType.interstitial,
                                         AdType.rewarded,
-                                        AdType.banner,
-                                        AdType.mpu,
+                                        AdType.standardBanner,
                                         AdType.thumbnail]),
         .init(title: "MAX Header Bidding", formats: [AdType.maxHeaderBidding(.interstitial),
                                                      AdType.maxHeaderBidding(.rewarded),
-                                                     AdType.maxHeaderBidding(.banner),
-                                                     AdType.maxHeaderBidding(.mpu)]),
+                                                     AdType.maxHeaderBidding(.standardBanner)]),
         .init(title: "DT Fair Bid Header Bidding", formats: [AdType.dtFairBidHeaderBidding(.interstitial),
                                                              AdType.dtFairBidHeaderBidding(.rewarded),
-                                                             AdType.dtFairBidHeaderBidding(.banner),
-                                                             AdType.dtFairBidHeaderBidding(.mpu)]),
+                                                             AdType.dtFairBidHeaderBidding(.standardBanner)]),
         .init(title: "Unity LevelPlay Header Bidding", formats: [AdType.unityLevelPlayHeaderBidding(.interstitial),
                                                                  AdType.unityLevelPlayHeaderBidding(.rewarded),
-                                                                 AdType.unityLevelPlayHeaderBidding(.banner),
-                                                                 AdType.unityLevelPlayHeaderBidding(.mpu)]),
+                                                                 AdType.unityLevelPlayHeaderBidding(.standardBanner)]),
     ]
     
     public func adManager(for adFormat: any AdAdapterFormat,
@@ -94,30 +90,27 @@ Environment: \(environment)
             case .interstitial: return OguryAdsCardAdapter.configuration.options.interstitial
             case .rewarded: return OguryAdsCardAdapter.configuration.options.optIn
             case .thumbnail: return OguryAdsCardAdapter.configuration.options.thumbnail
-            case .banner: return OguryAdsCardAdapter.configuration.options.banner
-            case .mpu: return OguryAdsCardAdapter.configuration.options.mpu
+            case .standardBanner: return OguryAdsCardAdapter.configuration.options.standardBanner
+            
             case let .maxHeaderBidding(innerFormat):
                 switch innerFormat {
                     case .interstitial: return OguryAdsCardAdapter.configuration.maxOptions.interstitial
                     case .rewarded: return OguryAdsCardAdapter.configuration.maxOptions.optIn
-                    case .banner: return OguryAdsCardAdapter.configuration.maxOptions.banner
-                    case .mpu: return OguryAdsCardAdapter.configuration.maxOptions.mpu
+                    case .standardBanner: return OguryAdsCardAdapter.configuration.maxOptions.standardBanner
                     default: return nil
                 }
             case let .dtFairBidHeaderBidding(innerFormat):
                 switch innerFormat {
                     case .interstitial: return OguryAdsCardAdapter.configuration.dtFairBidOptions.interstitial
                     case .rewarded: return OguryAdsCardAdapter.configuration.dtFairBidOptions.optIn
-                    case .banner: return OguryAdsCardAdapter.configuration.dtFairBidOptions.banner
-                    case .mpu: return OguryAdsCardAdapter.configuration.dtFairBidOptions.mpu
+                    case .standardBanner: return OguryAdsCardAdapter.configuration.dtFairBidOptions.standardBanner
                     default: return nil
                 }
             case let .unityLevelPlayHeaderBidding(innerFormat):
                 switch innerFormat {
                     case .interstitial: return OguryAdsCardAdapter.configuration.unityLevelPlayOptions.interstitial
                     case .rewarded: return OguryAdsCardAdapter.configuration.unityLevelPlayOptions.optIn
-                    case .banner: return OguryAdsCardAdapter.configuration.unityLevelPlayOptions.banner
-                    case .mpu: return OguryAdsCardAdapter.configuration.unityLevelPlayOptions.mpu
+                    case .standardBanner: return OguryAdsCardAdapter.configuration.unityLevelPlayOptions.standardBanner
                     default: return nil
                 }
         }

@@ -12,7 +12,7 @@ struct BannerPlaceholderView: View {
     let store: StoreOf<BannerPlaceholderFeature>
     @State private var isShow = false
     
-    fileprivate func placeholderBanner(viewStore store: ViewStoreOf<BannerPlaceholderFeature>) -> some View {
+    fileprivate func placeholderBanner() -> some View {
         ZStack {
             Rectangle()
                 .fill(Color(AdColorPalette.Background.secondary.color))
@@ -23,10 +23,10 @@ struct BannerPlaceholderView: View {
                     .font(.adsBody)
                     .minimumScaleFactor(0.6)
                     .multilineTextAlignment(.center)
-                    .padding(.horizontal, store.isMrec ? 40 : 20)
+                    .padding(.horizontal, 20)
             }
             .foregroundColor(Color(AdColorPalette.Text.placeholder.color))
-            .font(.system(size: store.isMrec ? 14 : 12))
+            .font(.system(size: 12))
             .padding(.vertical, 4)
         }
     }
@@ -39,6 +39,21 @@ struct BannerPlaceholderView: View {
                         .font(.adsTitle2)
                         .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                         .padding(.leading, 12)
+                    
+                    if !store.availableSizes.isEmpty {
+                        Spacer()
+                        
+                        Picker("X", selection: store.binding(get: \.actualSize,
+                                                            send: { .sizePicked($0) })) {
+                            ForEach(store.availableSizes) { size in
+                                HStack {
+                                    size.image
+                                    Spacer()
+                                    Text(size.description)
+                                }
+                            }
+                        }
+                    }
                     
                     if store.bannerAd != nil {
                         Spacer()
@@ -54,43 +69,37 @@ struct BannerPlaceholderView: View {
                 
                 // Show AdBannerView centered
                 GeometryReader { geometry in
-                    let maxWidth = min(geometry.size.width, store.isMrec ? 300 : 320)
+                    let maxWidth = min(geometry.size.width, store.actualSize.width)
                     let ratio = store.ratio
                     
                     Group {
-                        if let ad = store.bannerAd {
-                            HStack(alignment: .center) {
-                                if isShow {
-                                    AdBannerView(banner: ad)
-                                        .clipped()
-                                } else {
-                                    placeholderBanner(viewStore: store)
+                        WithPerceptionTracking {
+                            if let ad = store.bannerAd {
+                                HStack(alignment: .center) {
+                                    if isShow {
+                                        AdBannerView(banner: ad)
+                                            .clipped()
+                                    } else {
+                                        placeholderBanner()
+                                    }
+                                }.onAppear {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                        isShow = true
+                                    }
                                 }
-                            }.onAppear {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                    isShow = true
-                                }
+                            } else {
+                                placeholderBanner()
                             }
-                        } else {
-                            placeholderBanner(viewStore: store)
                         }
                     }
-                    .frame(width: maxWidth, height:store.isMrec ? 250 : 50)
+                    .frame(width: maxWidth, height:store.actualSize.height)
                     .aspectRatio(ratio, contentMode: .fit)
-                    .frame(width: geometry.size.width, alignment: .center)
+                    .frame(width: geometry.size.width, height:270, alignment: .center)
                 }
-                .frame(height:store.isMrec ? 250 : 50)
+                .frame(height:250)
+                .fixedSize(horizontal: false, vertical: true)
+                .padding(.vertical)
             }
-            .fixedSize(horizontal: false, vertical: true)
-            .padding(.vertical)
         }
-    }
-}
-
-struct BannerPlaceholder_Previews: PreviewProvider {
-    static var previews: some View {
-        BannerPlaceholderView(store: Store(
-            initialState: BannerPlaceholderFeature.State(bannerType: .smallBanner),
-            reducer: { BannerPlaceholderFeature() }))
     }
 }

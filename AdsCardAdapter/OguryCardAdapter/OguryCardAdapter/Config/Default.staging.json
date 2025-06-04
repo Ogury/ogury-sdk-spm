@@ -9,13 +9,8 @@
         "campaignId" : "36014",
         "creativeId" : "1399"
     },
-    "banner" : {
+    "standardBanner" : {
         "adUnitId" : "84dd4494-a4b9-4255-8b68-9fa10108594e",
-        "campaignId" : "34928",
-        "creativeId" : "454"
-    },
-    "mpu" : {
-        "adUnitId" : "200da583-4a97-4fc2-b44b-83fc82bd32e0",
         "campaignId" : "34928",
         "creativeId" : "454"
     },
@@ -36,16 +31,11 @@
             "campaignId" : "36014",
             "creativeId" : "1399"
         },
-        "banner" : {
+        "standardBanner" : {
             "adUnitId" : "06a27303-f959-4159-9f5a-e526298c3a61",
             "campaignId" : "34928",
             "creativeId" : "454"
         },
-        "mpu" : {
-            "adUnitId" : "d1dadced-d4fb-4b33-b6e3-0dbcfd32e959",
-            "campaignId" : "34928",
-            "creativeId" : "454"
-        }
     },
     "DTFairBidHeaderBidding" : {
         "url" : "https://ms-bidder-fairbid.staging.cloud.ogury.io/api/header-bidding-request",
@@ -59,16 +49,11 @@
             "campaignId" : "36014",
             "creativeId" : "1399"
         },
-        "banner" : {
+        "standardBanner" : {
             "adUnitId" : "6939c84a-5c7c-45a1-8fdd-56e3c94ccd9d",
             "campaignId" : "34928",
             "creativeId" : "454"
         },
-        "mpu" : {
-            "adUnitId" : "8d31e702-19f2-45a2-9bc5-4f67f62155ad",
-            "campaignId" : "34928",
-            "creativeId" : "454"
-        }
     },
     "UnityLevelPlayHeaderBidding" : {
         "url" : "https://ms-bidder-ironsource.staging.cloud.ogury.io/api/header-bidding-request",
@@ -82,15 +67,10 @@
             "campaignId" : "36014",
             "creativeId" : "1399"
         },
-        "banner" : {
+        "standardBanner" : {
             "adUnitId" : "98d26253-5665-48f7-89d6-0d079c559e07",
             "campaignId" : "34928",
             "creativeId" : "454"
         },
-        "mpu" : {
-            "adUnitId" : "50613cd0-5ea1-4baa-89e4-2ab0f3ac27f1",
-            "campaignId" : "34928",
-            "creativeId" : "454"
-        }
     }
 }
