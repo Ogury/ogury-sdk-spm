@@ -29,7 +29,7 @@ struct BannerPlaceholderFeature: Reducer {
         
         static func == (lhs: Self, rhs: Self) -> Bool {
             return lhs.adManager.id == rhs.adManager.id
-//            && lhs.availableSizes == rhs.availableSizes
+            && lhs.availableSizes == rhs.availableSizes
             && lhs.actualSize == rhs.actualSize
             && ((lhs.bannerAd == nil && rhs.bannerAd == nil) || (lhs.bannerAd != nil && rhs.bannerAd != nil))
         }

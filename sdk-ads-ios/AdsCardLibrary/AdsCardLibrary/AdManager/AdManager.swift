@@ -49,7 +49,7 @@ public protocol AdManager: Equatable, Hashable, Identifiable where ID == UUID {
 
 
 @dynamicMemberLookup
-public class BannerSize: Identifiable, Equatable, Hashable {
+open class BannerSize: Identifiable, Equatable, Hashable {
     public let id = UUID()
     var size: CGSize
     let image: Image
