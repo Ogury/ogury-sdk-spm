@@ -7,8 +7,6 @@
 #import <Foundation/NSProcessInfo.h>
 
 NSString *const OGAAdConfigurationAdTypeStandardBanners = @"standard_banners";
-NSString *const OGAAdConfigurationAdTypeSizeSmallBanners = @"320x50";
-NSString *const OGAAdConfigurationAdTypeSizeMREC = @"300x250";
 NSString *const OGAAdConfigurationAdTypeThumbnailAd = @"overlay_thumbnail";
 NSString *const OGAAdConfigurationAdTypeRewarded = @"optin_video";
 NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
@@ -110,6 +108,8 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
     configuration.creativeId = self.creativeId;
     configuration.adDsp = [self.adDsp copy];
     configuration.size = self.size;
+    configuration.requestedSize = self.requestedSize;
+    configuration.creativeSize = self.creativeSize;
     configuration.corner = self.corner;
     configuration.offset = self.offset;
     configuration.blackListViewControllers = [self.blackListViewControllers copy];
@@ -139,22 +139,6 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
             return OGAAdConfigurationAdTypeRewarded;
         case OguryAdsTypeInterstitial:
             return OGAAdConfigurationAdTypeInterstitial;
-        default:
-            return @"";
-    }
-}
-
-- (NSString *)getAdTypeSizeString {
-    switch (self.adType) {
-        case OguryAdsTypeBanner: {
-            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize small_banner_320x50] getSize])) {
-                return OGAAdConfigurationAdTypeSizeSmallBanners;
-            }
-            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize mrec_300x250] getSize])) {
-                return OGAAdConfigurationAdTypeSizeMREC;
-            }
-            return @"";
-        }
         default:
             return @"";
     }
