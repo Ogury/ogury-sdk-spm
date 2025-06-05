@@ -35,24 +35,31 @@ struct BannerPlaceholderView: View {
         WithViewStore(store, observe: { $0 }) { store in
             VStack(alignment: .leading) {
                 HStack {
-                    Text("Creative")
-                        .font(.adsTitle2)
-                        .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                        .padding(.leading, 12)
+                    HStack(alignment: .firstTextBaseline) {
+                        Text("Creative")
+                            .font(.adsTitle2)
+                            .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                            .padding(.leading, 12)
+                        
+                        Text("(\(store.actualSize.description))")
+                            .font(.adsTitle3)
+                            .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                    }
                     
                     if !store.availableSizes.isEmpty {
-                        Spacer()
+//                        Spacer()
                         
-                        Picker("X", selection: store.binding(get: \.actualSize,
+                        Picker("", selection: store.binding(get: \.actualSize,
                                                             send: { .sizePicked($0) })) {
                             ForEach(store.availableSizes) { size in
-                                HStack {
-                                    size.image
-                                    Spacer()
+                                Label {
                                     Text(size.description)
+                                } icon: {
+                                    size.image
                                 }
                             }
-                        }
+                        }.pickerStyle(.menu)
+                            .offset(x: -10)
                     }
                     
                     if store.bannerAd != nil {

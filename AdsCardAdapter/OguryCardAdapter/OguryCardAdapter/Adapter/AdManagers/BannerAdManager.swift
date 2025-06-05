@@ -46,7 +46,7 @@ public final class BannerAdManager: OguryAdManager {
     }
     
     public var adFormat: AdFormat
-    public var bannerSizes: [BannerSize]? = [
+    public let bannerSizes: [BannerSize]? = [
         BannerAdManagerSize.init(internalSize: OguryBannerAdSize.small_banner_320x50(), image: Image(systemName: "inset.filled.bottomthird.rectangle")),
         BannerAdManagerSize.init(internalSize: OguryBannerAdSize.mrec_300x250(), image: Image(systemName: "inset.filled.rectangle"))
     ]
@@ -139,6 +139,10 @@ public final class BannerAdManager: OguryAdManager {
     public var lifeCycleEvents: [AdLifeCycleEventHistory] = []
     public var bidder: HeaderBidable?
     public let id: UUID = UUID()
+    public var actualSize: BannerSize? {
+        get { size }
+        set { size = newValue as! BannerAdManagerSize }
+    }
     internal var size: BannerAdManagerSize!
     
     public convenience init(adType: AdType,
@@ -159,7 +163,6 @@ public final class BannerAdManager: OguryAdManager {
         self.adConfiguration = adConfiguration
         self.cardConfiguration = cardConfiguration
         self.viewController = viewController
-        size = bannerSizes?.first as! BannerAdManagerSize
         
         proxyDelegate = BannerProxyDelegate(adDelegate: adDelegate)
         proxyDelegate.adManager = self
@@ -169,6 +172,7 @@ public final class BannerAdManager: OguryAdManager {
             case .unityLevelPlayHeaderBidding: bidder = UnityLevelPlayBidder(configuration: OguryAdsCardAdapter.configuration)
             default: ()
         }
+        self.actualSize = self.bannerSizes?.first!
     }
     
     //MARK: Ad Management

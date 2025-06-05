@@ -93,7 +93,7 @@ struct AdViewFeature {
         }
         var bannerFeature: BannerPlaceholderFeature.State {
             get {
-                return BannerPlaceholderFeature.State(adManager: adManager, bannerAd: bannerContainer?.bannerAd)
+                return BannerPlaceholderFeature.State(adManager: adManager, bannerAd: bannerContainer?.bannerAd, actualSize: adManager.actualSize)
             }
             
             set {
@@ -333,7 +333,7 @@ struct AdViewFeature {
                     
                 case .resetBanner:
                     state.bannerContainer?.bannerAd = nil
-                    state.bannerFeature = BannerPlaceholderFeature.State(adManager: state.adManager, bannerAd: nil)
+                    state.bannerFeature = BannerPlaceholderFeature.State(adManager: state.adManager, bannerAd: nil, actualSize: state.adManager.actualSize)
                     return .none
                     
                 case .rewardedAction:
@@ -357,7 +357,7 @@ struct AdViewFeature {
                     
                 case let .bannerReady(ad):
                     state.bannerContainer = .init(bannerAd: ad)
-                    state.bannerFeature = BannerPlaceholderFeature.State(adManager: state.adManager, bannerAd: ad)
+                    state.bannerFeature = BannerPlaceholderFeature.State(adManager: state.adManager, bannerAd: ad, actualSize: state.adManager.actualSize)
                     return .none
                     
                 case let .updateEvent(event):
@@ -365,7 +365,7 @@ struct AdViewFeature {
                     state.adStateEvent = event
                     if event == .adClosed {
                         state.bannerContainer?.bannerAd = nil
-                        state.bannerFeature = BannerPlaceholderFeature.State(adManager: state.adManager, bannerAd: nil)
+                        state.bannerFeature = BannerPlaceholderFeature.State(adManager: state.adManager, bannerAd: nil, actualSize: state.adManager.actualSize)
                     }
                     return .none
                     
@@ -431,9 +431,13 @@ struct AdViewFeature {
                         .send(.adBarAction(.showButtonTapped))
                     )
                     
-                case .bannerAction:
+                case .bannerAction(.closeButtonTapped):
                     state.adManager.close()
                     return .send(.resetBanner)
+                    
+                case let .bannerAction(.sizePicked(size)):
+                    state.adManager.actualSize = size
+                    return .none
                     
                 case let .error(error):
                     state.log("Error received \(error.localizedDescription)")

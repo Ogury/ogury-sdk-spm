@@ -25,6 +25,7 @@ struct BannerPlaceholderFeature: Reducer {
             self.actualSize = actualSize == nil
             ? (sizes.first ?? BannerSize.init(size: .zero, image: Image(systemName:"platter.filled.bottom.iphone")))
             : actualSize!
+            print("🐳 actualSize: \(self.actualSize.description)")
         }
         
         static func == (lhs: Self, rhs: Self) -> Bool {
