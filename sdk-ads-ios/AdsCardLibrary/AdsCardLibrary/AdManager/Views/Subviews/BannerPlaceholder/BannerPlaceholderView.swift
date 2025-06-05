@@ -9,7 +9,7 @@ import SwiftUI
 internal import ComposableArchitecture
 
 struct BannerPlaceholderView: View {
-    let store: StoreOf<BannerPlaceholderFeature>
+    @Perception.Bindable var store: StoreOf<BannerPlaceholderFeature>
     @State private var isShow = false
     
     fileprivate func placeholderBanner() -> some View {
@@ -32,36 +32,37 @@ struct BannerPlaceholderView: View {
     }
     
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { store in
-            VStack(alignment: .leading) {
-                HStack {
-                    HStack(alignment: .firstTextBaseline) {
-                        Text("Creative")
-                            .font(.adsTitle2)
-                            .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                            .padding(.leading, 12)
-                        
-                        Text("(\(store.actualSize.description))")
-                            .font(.adsTitle3)
-                            .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                    }
-                    
+        VStack(alignment: .leading) {
+            HStack {
+                WithPerceptionTracking {
+                    Text("Creative")
+                        .font(.adsTitle2)
+                        .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                        .padding(.leading, 12)
+                }
+                
+                WithPerceptionTracking {
                     if !store.availableSizes.isEmpty {
-//                        Spacer()
+                        Spacer()
                         
-                        Picker("", selection: store.binding(get: \.actualSize,
-                                                            send: { .sizePicked($0) })) {
+                        Picker("", selection: $store.actualSizeId) {
                             ForEach(store.availableSizes) { size in
                                 Label {
                                     Text(size.description)
                                 } icon: {
                                     size.image
                                 }
+                                .tag(size.id)
+                                .font(.adsBody)
+                                .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                             }
-                        }.pickerStyle(.menu)
-                            .offset(x: -10)
+                        }
+                        .font(.adsBody)
+                        .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                     }
-                    
+                }
+                
+                WithPerceptionTracking {
                     if store.bannerAd != nil {
                         Spacer()
                         Button {
@@ -73,9 +74,11 @@ struct BannerPlaceholderView: View {
                         .padding(.trailing, 20)
                     }
                 }
-                
-                // Show AdBannerView centered
-                GeometryReader { geometry in
+            }
+            
+            // Show AdBannerView centered
+            GeometryReader { geometry in
+                WithPerceptionTracking {
                     let maxWidth = min(geometry.size.width, store.actualSize.width)
                     let ratio = store.ratio
                     
@@ -103,10 +106,10 @@ struct BannerPlaceholderView: View {
                     .aspectRatio(ratio, contentMode: .fit)
                     .frame(width: geometry.size.width, height:270, alignment: .center)
                 }
-                .frame(height:250)
-                .fixedSize(horizontal: false, vertical: true)
-                .padding(.vertical)
             }
+            .frame(height:250)
+            .fixedSize(horizontal: false, vertical: true)
+            .padding(.vertical)
         }
     }
 }
