@@ -144,6 +144,12 @@ public final class BannerAdManager: OguryAdManager {
         set { size = newValue as! BannerAdManagerSize }
     }
     internal var size: BannerAdManagerSize!
+    public func updateBannerSize(_ size: BannerSize) {
+        if size != actualSize {
+            actualSize = size
+            ad = nil
+        }
+    }
     
     public convenience init(adType: AdType,
                             viewController: UIViewController?,

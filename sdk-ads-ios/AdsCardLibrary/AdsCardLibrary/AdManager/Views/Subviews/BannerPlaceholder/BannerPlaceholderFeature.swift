@@ -52,7 +52,7 @@ struct BannerPlaceholderFeature {
             .onChange(of: \.actualSizeId) { oldValue, newValue in
                 Reduce() { state, action in
                     state.actualSize = state.availableSizes.first(where: { $0.id == newValue })!
-                    state.adManager.actualSize = state.actualSize
+                    state.adManager.updateBannerSize(state.actualSize)
                     return .none
                 }
             }

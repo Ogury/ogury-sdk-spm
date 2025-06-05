@@ -25,7 +25,7 @@ public protocol AdManager: Equatable, Hashable, Identifiable where ID == UUID {
     //MARK: properties
     var adFormat: AdFormat { get set }
     var bannerSizes: [BannerSize]? { get }
-    var actualSize: BannerSize? { get set }
+    var actualSize: BannerSize? { get  }
     var id: UUID { get }
     var adConfiguration: AdConfiguration! { get set }
     var cardConfiguration: CardConfiguration! { get set }
@@ -38,6 +38,7 @@ public protocol AdManager: Equatable, Hashable, Identifiable where ID == UUID {
     //MARK: functions
     func cardDidAppear()
     func update(_ adConfiguration: AdConfiguration)
+    func updateBannerSize(_: BannerSize)
     func load() async
     func show()
     func close() // used only for banners

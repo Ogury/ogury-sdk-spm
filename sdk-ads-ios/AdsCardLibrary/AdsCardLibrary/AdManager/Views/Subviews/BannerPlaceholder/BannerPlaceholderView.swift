@@ -104,12 +104,12 @@ struct BannerPlaceholderView: View {
                     }
                     .frame(width: maxWidth, height:store.actualSize.height)
                     .aspectRatio(ratio, contentMode: .fit)
-                    .frame(width: geometry.size.width, height:270, alignment: .center)
+                    .frame(width: geometry.size.width, height:250, alignment: .center)
                 }
             }
             .frame(height:250)
             .fixedSize(horizontal: false, vertical: true)
-            .padding(.vertical)
+            .offset(y: -10)
         }
     }
 }
