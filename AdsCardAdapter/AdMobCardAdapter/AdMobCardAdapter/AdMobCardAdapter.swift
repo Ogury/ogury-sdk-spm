@@ -51,8 +51,7 @@ public struct AdMobAdsCardAdapter: AdsCardAdaptable {
         .init(title: "Google Ad Mob", formats: [
             AdMobAdType.default(.interstitial),
             AdMobAdType.default(.rewardedVideo),
-            AdMobAdType.default(.smallBanner),
-            AdMobAdType.default(.mrec),
+            AdMobAdType.default(.standardBanner),
         ])
     ]
     

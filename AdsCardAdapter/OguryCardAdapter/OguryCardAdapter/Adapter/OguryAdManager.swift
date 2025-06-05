@@ -101,7 +101,6 @@ public indirect enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
                 return ThumbnailAdManager(adType: .thumbnail, viewController: viewController, adDelegate: adDelegate)
                 
             case .standardBanner:
-                //TODO: 🐳 Ajouter la gestion de la taille
                 return BannerAdManager(adType: overridenAdType ?? .standardBanner, viewController: viewController, adDelegate: adDelegate)
                 
             case .maxHeaderBidding(.thumbnail):

@@ -21,8 +21,7 @@ enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
                 switch adFormat {
                     case .interstitial: return "g3od8mer7o464aw7"
                     case .rewardedVideo: return "a838wmqd7zm9py8b"
-                    case .smallBanner: return "nskkdxm4ovkpg3a7"
-                    case .mrec: return "ccto2jp7yug7z53e"
+                    case .standardBanner: return "nskkdxm4ovkpg3a7"
                     case .thumbnail: fallthrough
                     @unknown default:
                         fatalError()
@@ -32,8 +31,7 @@ enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
                 switch adFormat {
                     case .interstitial: return "ygf0aaj5owuvic0x"
                     case .rewardedVideo: return "xoivghporet4j1pm"
-                    case .smallBanner: return "usa76usbg4hvdsow"
-                    case .mrec: return "vnufmywgs9qqnqjm"
+                    case .standardBanner: return "usa76usbg4hvdsow"
                     case .thumbnail: fallthrough
                     @unknown default:
                         fatalError()
@@ -75,8 +73,7 @@ enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
                 switch adFormat {
                     case .interstitial: return 0
                     case .rewardedVideo: return 1
-                    case .smallBanner: return 2
-                    case .mrec: return 3
+                    case .standardBanner: return 2
                     case .thumbnail: fallthrough
                     @unknown default:
                         fatalError()
@@ -86,8 +83,7 @@ enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
                 switch adFormat {
                     case .interstitial: return 10
                     case .rewardedVideo: return 11
-                    case .smallBanner: return 12
-                    case .mrec: return 13
+                    case .standardBanner: return 12
                     case .thumbnail: fallthrough
                     @unknown default:
                         fatalError()
@@ -101,7 +97,7 @@ enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
                 switch adFormat {
                     case .interstitial: return Image(systemName: "iphone").symbolRenderingMode(.monochrome)
                     case .rewardedVideo: return Image(systemName: "iphone.gen3.badge.play")
-                    case .smallBanner, .mrec: return Image(systemName: "platter.filled.bottom.iphone")
+                    case .standardBanner: return Image(systemName: "platter.filled.bottom.iphone")
                     case .thumbnail: return Image(systemName: "rectangle.portrait.bottomright.inset.filled")
                     @unknown default: fatalError("unknown adFormat \(adFormat)")
                 }
@@ -110,7 +106,7 @@ enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
                 switch adFormat {
                     case .interstitial: return Image(systemName: "iphone").symbolRenderingMode(.monochrome)
                     case .rewardedVideo: return Image(systemName: "iphone.gen3.badge.play")
-                    case .smallBanner, .mrec: return Image(systemName: "platter.filled.bottom.iphone")
+                    case .standardBanner: return Image(systemName: "platter.filled.bottom.iphone")
                     case .thumbnail: return Image(systemName: "rectangle.portrait.bottomright.inset.filled")
                     @unknown default: fatalError("unknown adFormat \(adFormat)")
                 }
@@ -121,12 +117,10 @@ enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
         switch rawValue {
             case 300: self = .headerBidding(.interstitial)
             case 301: self = .headerBidding(.rewardedVideo)
-            case 302: self = .headerBidding(.smallBanner)
-            case 303: self = .headerBidding(.mrec)
+            case 302: self = .headerBidding(.standardBanner)
             case 310: self = .waterfall(.interstitial)
             case 311: self = .waterfall(.rewardedVideo)
-            case 312: self = .waterfall(.smallBanner)
-            case 313: self = .waterfall(.mrec)
+            case 312: self = .waterfall(.standardBanner)
             default: return nil
         }
     }
@@ -149,8 +143,7 @@ enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
         switch innerFormat {
             case .interstitial: return ULPIntertstitialAdManager(adType: self, viewController: viewController, adDelegate: adDelegate)
             case .rewardedVideo: return ULPRewardedAdManager(adType: self, viewController: viewController, adDelegate: adDelegate)
-            case .smallBanner: return ULPBannerAdManager(adType: self, viewController: viewController, adDelegate: adDelegate)
-            case .mrec: return ULPBannerAdManager(adType: self, viewController: viewController, adDelegate: adDelegate)
+            case .standardBanner: return ULPBannerAdManager(adType: self, viewController: viewController, adDelegate: adDelegate)
             case .thumbnail: fallthrough
             @unknown default:  throw .noSuitableAdapterAvailable
         }
@@ -165,6 +158,9 @@ class ULPAdManager: NSObject, AdManager {
         get { adType.adFormat }
         set {}
     }
+    public var bannerSizes: [BannerSize] = []
+    public var actualSize: BannerSize? = nil
+    public func updateBannerSize(_ size: BannerSize) { actualSize = size }
     
     var id: UUID = .init()
     var adConfiguration: AdConfiguration!

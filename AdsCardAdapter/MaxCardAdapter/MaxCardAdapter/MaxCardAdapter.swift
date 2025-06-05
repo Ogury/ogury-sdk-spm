@@ -43,8 +43,7 @@ public struct MaxAdsCardAdapter: AdsCardAdaptable {
               formats: [
                 MaxAdType.default(.interstitial),
                 MaxAdType.default(.rewardedVideo),
-                MaxAdType.default(.smallBanner),
-                MaxAdType.default(.mrec)
+                MaxAdType.default(.standardBanner)
                        ])
     ]
     public var actions: [AdsCardAdapterAction] = [MaxAction.showDebugger]

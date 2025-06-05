@@ -27,8 +27,7 @@ enum MaxAdType: AdAdapterFormat, RawRepresentable, Equatable {
                 switch adFormat {
                     case .interstitial: return "33ef6bc64f259a70"
                     case .rewardedVideo: return "bee4990ad3478ccd"
-                    case .smallBanner: return "9bf5161c44fe5a8f"
-                    case .mrec: return "79dbcc4ff65e3496"
+                    case .standardBanner: return "9bf5161c44fe5a8f"
                     default: fatalError("AdFormat \(adFormat) not supported")
                 }
         }
@@ -52,8 +51,7 @@ enum MaxAdType: AdAdapterFormat, RawRepresentable, Equatable {
                 switch adFormat {
                     case .interstitial: return 0
                     case .rewardedVideo: return 1
-                    case .smallBanner: return 2
-                    case .mrec: return 3
+                    case .standardBanner: return 2
                     case .thumbnail: fatalError("No thumbnail on AppLovin")
                     @unknown default: fatalError("unknown adFormat \(adFormat)")
                 }
@@ -64,8 +62,7 @@ enum MaxAdType: AdAdapterFormat, RawRepresentable, Equatable {
         switch rawValue {
             case 100: self = .`default`(.interstitial)
             case 101: self = .`default`(.rewardedVideo)
-            case 102: self = .`default`(.smallBanner)
-            case 103: self = .`default`(.mrec)
+            case 102: self = .`default`(.standardBanner)
             default: return nil
         }
     }
@@ -82,7 +79,7 @@ enum MaxAdType: AdAdapterFormat, RawRepresentable, Equatable {
                 switch adFormat {
                     case .interstitial: return Image(systemName: "iphone").symbolRenderingMode(.monochrome)
                     case .rewardedVideo: return Image(systemName: "iphone.gen3.badge.play")
-                    case .smallBanner, .mrec: return Image(systemName: "platter.filled.bottom.iphone")
+                    case .standardBanner: return Image(systemName: "platter.filled.bottom.iphone")
                     case .thumbnail: return Image(systemName: "rectangle.portrait.bottomright.inset.filled")
                     @unknown default: fatalError("unknown adFormat \(adFormat)")
                 }
@@ -96,7 +93,7 @@ enum MaxAdType: AdAdapterFormat, RawRepresentable, Equatable {
                 switch innerType {
                     case .interstitial: return MaxInterstitialAdManager(adType: self, viewController: viewController, adDelegate: adDelegate)
                     case .rewardedVideo: return MaxRewardedAdManager(adType: self, viewController: viewController, adDelegate: adDelegate)
-                    case .mrec, .smallBanner: return MaxBannerAdManager(adType: self, viewController: viewController, adDelegate: adDelegate)
+                    case .standardBanner: return MaxBannerAdManager(adType: self, viewController: viewController, adDelegate: adDelegate)
                     default: fatalError()
                 }
         }
@@ -180,6 +177,9 @@ class MaxAdManager: NSObject, AdManager {
         get { self.adType.adFormat }
         set { }
     }
+    public var bannerSizes: [BannerSize]? = nil
+    public var actualSize: BannerSize? = nil
+    public func updateBannerSize(_ size: BannerSize) { actualSize = size }
     var id: UUID = .init()
     var adConfiguration: AdConfiguration!
     var cardConfiguration: CardConfiguration!

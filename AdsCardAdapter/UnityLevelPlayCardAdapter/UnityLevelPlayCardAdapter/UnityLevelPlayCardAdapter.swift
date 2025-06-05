@@ -44,14 +44,12 @@ public struct UnityLevelPlayAdsCardAdapter: AdsCardAdaptable {
         .init(title: "Header Bidding", formats: [
             AdType.headerBidding(.interstitial),
             AdType.headerBidding(.rewardedVideo),
-            AdType.headerBidding(.smallBanner),
-            AdType.headerBidding(.mrec),
+            AdType.headerBidding(.standardBanner),
         ]),
         .init(title: "Waterfall", formats: [
             AdType.waterfall(.interstitial),
             AdType.waterfall(.rewardedVideo),
-            AdType.waterfall(.smallBanner),
-            AdType.waterfall(.mrec),
+            AdType.waterfall(.standardBanner),
         ]),
     ]
     

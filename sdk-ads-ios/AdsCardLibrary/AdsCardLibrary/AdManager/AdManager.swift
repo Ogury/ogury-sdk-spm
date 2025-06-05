@@ -53,7 +53,7 @@ public protocol AdManager: Equatable, Hashable, Identifiable where ID == UUID {
 @dynamicMemberLookup
 open class BannerSize: Identifiable, Equatable, Hashable {
     public let id = UUID()
-    var size: CGSize
+    public var size: CGSize
     let image: Image
     var description: String { "\(Int(size.width)) x \(Int(size.height))" }
     public init(size: CGSize, image: Image) {
@@ -85,6 +85,7 @@ public struct AdCardContainer: Codable {
         public let campaignId: String?
         public let creativeId: String?
         public let dspCreativeId: String?
+        public let bannerSize: CGSize?
         public let dspRegion: DspRegion?
         public let settings: CardSettings
         public init(adUnitId: String,
@@ -92,6 +93,7 @@ public struct AdCardContainer: Codable {
                     creativeId: String? = nil,
                     dspCreativeId: String? = nil,
                     dspRegion: DspRegion? = nil,
+                    bannerSize: CGSize? = nil,
                     settings: CardSettings) {
             self.adUnitId = adUnitId
             self.campaignId = campaignId
@@ -99,6 +101,7 @@ public struct AdCardContainer: Codable {
             self.dspCreativeId = dspCreativeId
             self.dspRegion = dspRegion
             self.settings = settings
+            self.bannerSize = bannerSize
         }
     }
     public struct CardSettings: Codable {

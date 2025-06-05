@@ -32,6 +32,7 @@ struct BannerPlaceholderFeature {
             : actualSize!
             self.actualSize = size
             self.actualSizeId = size.id
+            print("🐳 actualSize \(size.description)")
         }
         
         static func == (lhs: Self, rhs: Self) -> Bool {

@@ -11,20 +11,57 @@ import SwiftUI
 import Combine
 import AppLovinSDK
 
+internal class BannerAdManagerSize: BannerSize {
+    let internalSize: MAAdFormat!
+    init(internalSize: MAAdFormat!, image: Image) {
+        self.internalSize = internalSize
+        super.init(size: internalSize.size, image: image)
+    }
+}
+
 class MaxBannerAdManager: MaxAdManager {
     var ad: MAAdView!
+    
+    override
+    public init(adType: MaxAdType,
+                adConfiguration: AdConfiguration = .init(adUnitId: ""),
+                cardConfiguration: CardConfiguration = .init(),
+                viewController: UIViewController?,
+                adDelegate: AdLifeCycleDelegate? = nil) {
+        super.init(adType: adType,
+                   adConfiguration: adConfiguration,
+                   cardConfiguration: cardConfiguration,
+                   viewController: viewController,
+                   adDelegate: adDelegate)
+        bannerSizes = [
+            BannerAdManagerSize(internalSize: .banner, image: Image(systemName: "inset.filled.bottomthird.rectangle")),
+            BannerAdManagerSize(internalSize: .mrec, image: Image(systemName: "inset.filled.rectangle")),
+        ]
+        actualSize = BannerAdManagerSize.init(internalSize: .banner, image: Image("max_default_banner"))
+    }
     
     override func resetAd() {
         ad = nil
     }
+    override func updateBannerSize(_ size: BannerSize) {
+        if size != actualSize {
+            resetAd()
+        }
+        super.updateBannerSize(size)
+    }
     
+    override public var actualSize: BannerSize? {
+        get { internalSize }
+        set { internalSize = newValue as! BannerAdManagerSize }
+    }
+    var internalSize: BannerAdManagerSize!
     override func instanciateAd() async {
         guard ad == nil else { return }
         Task { @MainActor [weak self] in
             guard let self else { return }
-            self.ad = .init(adUnitIdentifier: self.adConfiguration.adUnitId, adFormat: adType == .default(.smallBanner) ? .banner : .mrec)
+            self.ad = .init(adUnitIdentifier: self.adConfiguration.adUnitId, adFormat: internalSize.internalSize)
             self.ad.delegate = self.proxy
-            self.ad.frame = .init(origin: .zero, size: sizeForAd())
+            self.ad.frame = .init(origin: .zero, size: internalSize.size)
         }
     }
     
@@ -32,11 +69,6 @@ class MaxBannerAdManager: MaxAdManager {
         if let ad {
             append(.bannerReady(ad))
         }
-    }
-    
-    private func sizeForAd() -> CGSize {
-        .init(width: adType == .default(.smallBanner) ? 320 : 300,
-              height: adType == .default(.smallBanner) ? 50 : 250,)
     }
     
     override func load() async {

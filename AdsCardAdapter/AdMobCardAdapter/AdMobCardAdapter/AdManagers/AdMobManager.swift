@@ -60,8 +60,7 @@ enum AdMobAdType: AdAdapterFormat, RawRepresentable, Equatable {
                 switch adFormat {
                     case .interstitial: return "ca-app-pub-5735986212655126/6644649999"
                     case .rewardedVideo: return "ca-app-pub-5735986212655126/9889760434"
-                    case .smallBanner: return "ca-app-pub-5735986212655126/6385870948"
-                    case .mrec: return "ca-app-pub-5735986212655126/4054979827"
+                    case .standardBanner: return "ca-app-pub-5735986212655126/6385870948"
                     default: fatalError("AdFormat \(adFormat) not supported")
                 }
         }
@@ -85,8 +84,7 @@ enum AdMobAdType: AdAdapterFormat, RawRepresentable, Equatable {
                 switch adFormat {
                     case .interstitial: return 0
                     case .rewardedVideo: return 1
-                    case .smallBanner: return 2
-                    case .mrec: return 3
+                    case .standardBanner: return 2
                     case .thumbnail: fatalError("No thumbnail on AppLovin")
                     @unknown default: fatalError("unknown adFormat \(adFormat)")
                 }
@@ -115,7 +113,7 @@ enum AdMobAdType: AdAdapterFormat, RawRepresentable, Equatable {
                 switch adFormat {
                     case .interstitial: return Image(systemName: "iphone").symbolRenderingMode(.monochrome)
                     case .rewardedVideo: return Image(systemName: "iphone.gen3.badge.play")
-                    case .smallBanner, .mrec: return Image(systemName: "platter.filled.bottom.iphone")
+                    case .standardBanner: return Image(systemName: "platter.filled.bottom.iphone")
                     case .thumbnail: return Image(systemName: "rectangle.portrait.bottomright.inset.filled")
                     @unknown default: fatalError("unknown adFormat \(adFormat)")
                 }
@@ -129,7 +127,7 @@ enum AdMobAdType: AdAdapterFormat, RawRepresentable, Equatable {
                 switch innerType {
                     case .interstitial: return AdMobInterstitialManager(adType: self, viewController: viewController, adDelegate: adDelegate)
                     case .rewardedVideo: return AdMobRewardedManager(adType: self, viewController: viewController, adDelegate: adDelegate)
-                    case .mrec, .smallBanner: return AdMobBannerManager(adType: self, viewController: viewController, adDelegate: adDelegate)
+                    case .standardBanner: return AdMobBannerManager(adType: self, viewController: viewController, adDelegate: adDelegate)
                     default: fatalError()
                 }
         }
@@ -143,6 +141,9 @@ class AdMobManager: NSObject, AdManager {
         get { adType.adFormat }
         set {}
     }
+    public var bannerSizes: [BannerSize]? = nil
+    public var actualSize: BannerSize? = nil
+    public func updateBannerSize(_ size: BannerSize) { actualSize = size }
     
     var id: UUID = .init()
     var adConfiguration: AdConfiguration!
