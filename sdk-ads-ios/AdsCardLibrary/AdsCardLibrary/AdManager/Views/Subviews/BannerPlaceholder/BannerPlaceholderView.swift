@@ -35,9 +35,9 @@ struct BannerPlaceholderView: View {
         VStack(alignment: .leading) {
             HStack {
                 WithPerceptionTracking {
-                    Text("Creative")
-                        .font(.adsTitle2)
-                        .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                    Text("Creative Format")
+                        .font(.adsTitle3)
+                        .foregroundColor(Color(AdColorPalette.Text.placeholder.color))
                         .padding(.leading, 12)
                 }
                 
@@ -53,12 +53,8 @@ struct BannerPlaceholderView: View {
                                     size.image
                                 }
                                 .tag(size.id)
-                                .font(.adsBody)
-                                .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                             }
                         }
-                        .font(.adsBody)
-                        .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                     }
                 }
                 
