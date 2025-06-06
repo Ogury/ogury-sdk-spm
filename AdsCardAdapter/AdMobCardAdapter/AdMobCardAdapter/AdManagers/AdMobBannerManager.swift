@@ -36,7 +36,7 @@ class AdMobBannerManager: AdMobManager {
             BannerAdManagerSize(internalSize: AdSizeBanner, image: Image(systemName: "inset.filled.bottomthird.rectangle")),
             BannerAdManagerSize(internalSize: AdSizeMediumRectangle, image: Image(systemName: "inset.filled.rectangle")),
         ]
-        actualSize = BannerAdManagerSize.init(internalSize: AdSizeBanner, image: Image("max_default_banner"))
+        actualSize = bannerSizes.first!
     }
     override func updateBannerSize(_ size: BannerSize) {
         if size != actualSize {

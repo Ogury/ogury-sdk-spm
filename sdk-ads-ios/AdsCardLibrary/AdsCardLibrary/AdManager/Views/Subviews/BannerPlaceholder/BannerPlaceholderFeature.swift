@@ -17,7 +17,6 @@ struct BannerPlaceholderFeature {
         var bannerAd: UIView? = nil
         var ratio: CGFloat { (250 / 300) }
         var availableSizes: [BannerSize]
-        var actualSizeId: BannerSize.ID
         var actualSize: BannerSize
         
         init(adManager: any AdManager, bannerAd: UIView? = nil, actualSize: BannerSize? = nil) {
@@ -31,14 +30,13 @@ struct BannerPlaceholderFeature {
             ? (sizes.first ?? BannerSize.init(size: .zero, image: Image(systemName:"platter.filled.bottom.iphone")))
             : actualSize!
             self.actualSize = size
-            self.actualSizeId = size.id
-            print("🐳 actualSize \(size.description)")
+            print("🐳 actualSize \(size.description) \(size.id)")
         }
         
         static func == (lhs: Self, rhs: Self) -> Bool {
             return lhs.adManager.id == rhs.adManager.id
             && lhs.availableSizes == rhs.availableSizes
-            && lhs.actualSizeId == rhs.actualSizeId
+            && lhs.actualSize == rhs.actualSize
             && ((lhs.bannerAd == nil && rhs.bannerAd == nil) || (lhs.bannerAd != nil && rhs.bannerAd != nil))
         }
     }

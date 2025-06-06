@@ -37,7 +37,7 @@ class MaxBannerAdManager: MaxAdManager {
             BannerAdManagerSize(internalSize: .banner, image: Image(systemName: "inset.filled.bottomthird.rectangle")),
             BannerAdManagerSize(internalSize: .mrec, image: Image(systemName: "inset.filled.rectangle")),
         ]
-        actualSize = BannerAdManagerSize.init(internalSize: .banner, image: Image("max_default_banner"))
+        actualSize = bannerSizes!.first!
     }
     override func updateBannerSize(_ size: BannerSize) {
         if size != actualSize {
