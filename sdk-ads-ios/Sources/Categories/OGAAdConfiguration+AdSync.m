@@ -237,7 +237,7 @@ static NSString *const AdSyncServiceBodyContentOverlayMaximumSizeScaleKey = @"sc
         NSMutableDictionary *size = [@{} mutableCopy];
         size[AdSyncServiceBodySizeWidthKey] = @([self getWidthForAdType]);
         size[AdSyncServiceBodySizeHeightKey] = @([self getHeightForAdType]);
-        ad[AdSyncServiceBodySizeKey] = @[ size ];
+        ad[AdSyncServiceBodySizesKey] = @[ size ];
     }
     
     adSync[AdSyncServiceBodyAdKey] = ad;
