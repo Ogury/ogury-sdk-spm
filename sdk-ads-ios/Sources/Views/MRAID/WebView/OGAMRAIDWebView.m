@@ -41,7 +41,7 @@
         CGSize adSize = CGSizeMake(screenBounds.size.width, screenBounds.size.height - topPadding - bottomPadding);
         if (ad.thumbnailAdResponse && [ad.adUnit.type isEqual:OGAAdConfigurationAdTypeThumbnailAd]) {
             adSize = CGSizeMake(ad.thumbnailAdResponse.width.floatValue, ad.thumbnailAdResponse.height.floatValue);
-        } else if (ad.bannerAdResponse && ([ad.adUnit.type isEqual:OGAAdConfigurationAdTypeSmallBanner] || [ad.adUnit.type isEqual:OGAAdConfigurationAdTypeMPU])) {
+        } else if (ad.bannerAdResponse && ([ad.adUnit.type isEqual:OGAAdConfigurationAdTypeStandardBanners])) {
             adSize = ad.adConfiguration.size;
         }
         self.frame = CGRectMake(0, 0, adSize.width, adSize.height);

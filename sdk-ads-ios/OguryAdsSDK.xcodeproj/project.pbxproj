@@ -29,6 +29,10 @@
 		1E65E5FA2A1E659600703FB0 /* OGACloseSKAdToCloseTransitionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E65E5F92A1E659600703FB0 /* OGACloseSKAdToCloseTransitionTests.m */; };
 		1E65E5FE2A1E69CD00703FB0 /* OGAAdDisplayerUserCloseSKOverlayInformationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E65E5FD2A1E69CD00703FB0 /* OGAAdDisplayerUserCloseSKOverlayInformationTests.m */; };
 		1E6A9E5D2A0CEC9200F4AC71 /* OGASKOverlayState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6A9E5C2A0CEC9200F4AC71 /* OGASKOverlayState.m */; };
+		1E83FD0B2DF04E0E00D533AA /* OGABannerAdSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E83FD0A2DF04E0E00D533AA /* OGABannerAdSize.m */; };
+		1E83FD0C2DF04E0E00D533AA /* OGABannerAdSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E83FD092DF04E0E00D533AA /* OGABannerAdSize.h */; };
+		1E83FD0D2DF04E0E00D533AA /* OGABannerAdSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E83FD092DF04E0E00D533AA /* OGABannerAdSize.h */; };
+		1E83FD0E2DF04E0E00D533AA /* OGABannerAdSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E83FD0A2DF04E0E00D533AA /* OGABannerAdSize.m */; };
 		1EC503162BC027F400A41349 /* OGAAdEnabledChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC503152BC027F400A41349 /* OGAAdEnabledChecker.m */; };
 		1ED3C28929F03CDF007604BF /* ogury_skadnetwork_public_key.pem in Resources */ = {isa = PBXBuildFile; fileRef = 1ED3C28829F03CDF007604BF /* ogury_skadnetwork_public_key.pem */; };
 		1ED5B2992A4B2F0900C85A84 /* OGAIsKilledChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED5B2982A4B2F0900C85A84 /* OGAIsKilledChecker.m */; };
@@ -1166,6 +1170,8 @@
 		1E65E5FD2A1E69CD00703FB0 /* OGAAdDisplayerUserCloseSKOverlayInformationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OGAAdDisplayerUserCloseSKOverlayInformationTests.m; path = Tests/Common/Core/OGAAdDisplayerUserCloseSKOverlayInformationTests.m; sourceTree = SOURCE_ROOT; };
 		1E6A9E5B2A0CEC6600F4AC71 /* OGASKOverlayState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGASKOverlayState.h; sourceTree = "<group>"; };
 		1E6A9E5C2A0CEC9200F4AC71 /* OGASKOverlayState.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGASKOverlayState.m; sourceTree = "<group>"; };
+		1E83FD092DF04E0E00D533AA /* OGABannerAdSize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGABannerAdSize.h; sourceTree = "<group>"; };
+		1E83FD0A2DF04E0E00D533AA /* OGABannerAdSize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGABannerAdSize.m; sourceTree = "<group>"; };
 		1EB764872B0BCE390069880C /* OguryAds.Private.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = OguryAds.Private.modulemap; sourceTree = "<group>"; };
 		1EC503132BC027E000A41349 /* OGAAdEnabledChecker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAAdEnabledChecker.h; sourceTree = "<group>"; };
 		1EC503152BC027F400A41349 /* OGAAdEnabledChecker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAAdEnabledChecker.m; sourceTree = "<group>"; };
@@ -3022,6 +3028,8 @@
 				351A1F9A2A218F9E9BA9C16C /* OGAThumbnailAdResponse.h */,
 				351A182E92A0B28BFA2D930F /* OGABannerAdResponse.m */,
 				351A12D028CFB73F0F481053 /* OGABannerAdResponse.h */,
+				1E83FD092DF04E0E00D533AA /* OGABannerAdSize.h */,
+				1E83FD0A2DF04E0E00D533AA /* OGABannerAdSize.m */,
 				351A1E3CF2E4DFE18C3239D3 /* OGAAd.h */,
 				351A1F365E85C77C9B7D0C36 /* OGAAd.m */,
 				22BA7035282036BA00F3DF62 /* OGAAd+ImpressionSource.h */,
@@ -3964,6 +3972,7 @@
 				43A9F3E72C37E6B40085EF6F /* OGAMRAIDState.h in Headers */,
 				43A9F3E82C37E6B40085EF6F /* OGAAdDisplayer.h in Headers */,
 				43A9F3E92C37E6B40085EF6F /* OGAAdDisplayerDelegate.h in Headers */,
+				1E83FD0C2DF04E0E00D533AA /* OGABannerAdSize.h in Headers */,
 				43A9F3EA2C37E6B40085EF6F /* OGATokenGenerator.h in Headers */,
 				43A9F3EB2C37E6B40085EF6F /* OGAAdDisplayerInformation.h in Headers */,
 				43A9F3EC2C37E6B40085EF6F /* OGAAdLoadStateManager.h in Headers */,
@@ -4211,6 +4220,7 @@
 				351A1BF204D15C7E257FBB01 /* OGAMRAIDState.h in Headers */,
 				351A1B3E49A73B639C8352C9 /* OGAAdDisplayer.h in Headers */,
 				351A16239B780D6F9DE5F41A /* OGAAdDisplayerDelegate.h in Headers */,
+				1E83FD0D2DF04E0E00D533AA /* OGABannerAdSize.h in Headers */,
 				2295392A26E772490021605A /* OGATokenGenerator.h in Headers */,
 				351A12BD95810FE4DBF9356F /* OGAAdDisplayerInformation.h in Headers */,
 				4360BE8A28E19AE200C54E6D /* OGAAdLoadStateManager.h in Headers */,
@@ -4547,9 +4557,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -4762,6 +4776,7 @@
 				43A9F3692C37E6B40085EF6F /* OGAThumbnailAdViewController.m in Sources */,
 				43A9F36A2C37E6B40085EF6F /* OGAThumbnailAdWindow.m in Sources */,
 				43A9F36B2C37E6B40085EF6F /* OGAOpenSKOverlayAction.m in Sources */,
+				1E83FD0B2DF04E0E00D533AA /* OGABannerAdSize.m in Sources */,
 				43A9F36C2C37E6B40085EF6F /* OGACloseSKAction.m in Sources */,
 				43A9F36D2C37E6B40085EF6F /* OGAThumbnailAdWindowFactory.m in Sources */,
 				43A9F36E2C37E6B40085EF6F /* OGAMraidCommandsHandler.m in Sources */,
@@ -4985,6 +5000,7 @@
 				351A177DD3E042AFCE9F688B /* OGAThumbnailAdViewController.m in Sources */,
 				351A18EEEC022978DC8C078A /* OGAThumbnailAdWindow.m in Sources */,
 				1E65E5EA2A0E5BF900703FB0 /* OGAOpenSKOverlayAction.m in Sources */,
+				1E83FD0E2DF04E0E00D533AA /* OGABannerAdSize.m in Sources */,
 				C9E1092D296DD1C700D9DCE6 /* OGACloseSKAction.m in Sources */,
 				351A1B7910D3483EDD2D05D1 /* OGAThumbnailAdWindowFactory.m in Sources */,
 				351A1F476ADE3EB26146F26D /* OGAMraidCommandsHandler.m in Sources */,
