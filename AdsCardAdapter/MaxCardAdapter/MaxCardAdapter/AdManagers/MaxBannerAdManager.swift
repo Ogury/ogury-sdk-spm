@@ -7,9 +7,9 @@
 
 import AdsCardLibrary
 import AdsCardAdapter
-import SwiftUI
 import Combine
 import AppLovinSDK
+import SwiftUI
 
 internal class BannerAdManagerSize: BannerSize {
     let internalSize: MAAdFormat!

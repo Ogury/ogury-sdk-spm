@@ -158,9 +158,9 @@ class ULPAdManager: NSObject, AdManager {
         get { adType.adFormat }
         set {}
     }
-    public var bannerSizes: [BannerSize] = []
-    public var actualSize: BannerSize? = nil
-    public func updateBannerSize(_ size: BannerSize) { actualSize = size }
+    public var bannerSizes: [AdsCardLibrary.BannerSize]? = []
+    public var actualSize: AdsCardLibrary.BannerSize? = nil
+    public func updateBannerSize(_ size: AdsCardLibrary.BannerSize) { actualSize = size }
     
     var id: UUID = .init()
     var adConfiguration: AdConfiguration!
