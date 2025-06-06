@@ -45,16 +45,35 @@ struct BannerPlaceholderView: View {
                     if !store.availableSizes.isEmpty {
                         Spacer()
                         
-                        Picker("", selection: $store.actualSizeId) {
+                        Menu {
                             ForEach(store.availableSizes) { size in
-                                Label {
-                                    Text(size.description)
-                                } icon: {
-                                    size.image
+                                Button {
+                                    store.send(.pickedSize(size))
+                                } label: {
+                                    WithPerceptionTracking {
+                                        HStack {
+                                            Text("\(size == store.actualSize ? "✓" : "   ") \(size.description)")
+                                                .font(.adsTitle3)
+                                                .foregroundColor(Color(AdColorPalette.Text.placeholder.color))
+                                            size.image
+                                                .font(.adsTitle3)
+                                                .foregroundColor(Color(AdColorPalette.Primary.accent.color))
+                                        }
+                                    }
                                 }
-                                .tag(size.id)
+                            }
+                        } label: {
+                            HStack {
+                                store.actualSize.image
+                                    .font(.adsTitle3)
+                                    .foregroundColor(Color(AdColorPalette.Primary.accent.color))
+                                Text(store.actualSize.description)
+                                    .font(.adsTitle3)
+                                    .foregroundColor(Color(AdColorPalette.Text.placeholder.color))
+                                Image(systemName: "chevron.up.chevron.down")
                             }
                         }
+                        .padding(.trailing, 10)
                     }
                 }
                 
@@ -105,7 +124,6 @@ struct BannerPlaceholderView: View {
             }
             .frame(height:250)
             .fixedSize(horizontal: false, vertical: true)
-            .offset(y: -10)
         }
     }
 }

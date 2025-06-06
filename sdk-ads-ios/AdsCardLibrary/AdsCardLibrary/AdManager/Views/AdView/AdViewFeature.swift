@@ -435,7 +435,7 @@ struct AdViewFeature {
                     state.adManager.close()
                     return .send(.resetBanner)
                     
-                case .bannerAction(.binding):
+                case .bannerAction(.pickedSize):
                     return .none
                     
                 case let .error(error):

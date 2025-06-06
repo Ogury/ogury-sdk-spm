@@ -43,26 +43,20 @@ struct BannerPlaceholderFeature {
         }
     }
     
-    enum Action: BindableAction, Equatable {
-        case binding(BindingAction<State>)
+    enum Action: Equatable {
         case closeButtonTapped
+        case pickedSize(_: BannerSize)
     }
     
     var body: some ReducerOf<Self> {
-        BindingReducer()
-            .onChange(of: \.actualSizeId) { oldValue, newValue in
-                Reduce() { state, action in
-                    state.actualSize = state.availableSizes.first(where: { $0.id == newValue })!
-                    state.adManager.updateBannerSize(state.actualSize)
-                    return .none
-                }
-            }
         Reduce { state, action in
             switch action {
-                case .binding:
+                case .closeButtonTapped:
                     return .none
                     
-                case .closeButtonTapped:
+                case let .pickedSize(size):
+                    state.actualSize = size
+                    state.adManager.updateBannerSize(size)
                     return .none
             }
         }
