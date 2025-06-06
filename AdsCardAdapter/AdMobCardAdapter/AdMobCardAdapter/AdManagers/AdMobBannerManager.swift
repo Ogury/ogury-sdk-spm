@@ -8,14 +8,53 @@
 import GoogleMobileAds
 import AdsCardAdapter
 import AdsCardLibrary
+import SwiftUI
+
+internal class BannerAdManagerSize: BannerSize {
+    let internalSize: AdSize!
+    init(internalSize: AdSize!, image: Image) {
+        self.internalSize = internalSize
+        super.init(size: internalSize.size, image: image)
+    }
+}
 
 class AdMobBannerManager: AdMobManager {
     var ad: BannerView?
     
+    override
+    public init(adType: AdMobAdType,
+                adConfiguration: AdConfiguration = .init(adUnitId: ""),
+                cardConfiguration: CardConfiguration = .init(),
+                viewController: UIViewController?,
+                adDelegate: AdLifeCycleDelegate? = nil) {
+        super.init(adType: adType,
+                   adConfiguration: adConfiguration,
+                   cardConfiguration: cardConfiguration,
+                   viewController: viewController,
+                   adDelegate: adDelegate)
+        bannerSizes = [
+            BannerAdManagerSize(internalSize: AdSizeBanner, image: Image(systemName: "inset.filled.bottomthird.rectangle")),
+            BannerAdManagerSize(internalSize: AdSizeMediumRectangle, image: Image(systemName: "inset.filled.rectangle")),
+        ]
+        actualSize = BannerAdManagerSize.init(internalSize: AdSizeBanner, image: Image("max_default_banner"))
+    }
+    override func updateBannerSize(_ size: BannerSize) {
+        if size != actualSize {
+            resetAd()
+        }
+        super.updateBannerSize(size)
+    }
+    
+    var internalSize: BannerAdManagerSize!
+    override public var actualSize: BannerSize? {
+        get { internalSize }
+        set { internalSize = newValue as! BannerAdManagerSize }
+    }
+    
     override func instanciateAd() async {
         Task { @MainActor in
             guard ad == nil else { return }
-            ad = .init(adSize: adFormat == .smallBanner ? AdSizeBanner : AdSizeMediumRectangle)
+            ad = .init(adSize: internalSize.internalSize)
             ad?.delegate = proxy
             ad?.adUnitID = adType.adUnit
             ad?.rootViewController = viewController

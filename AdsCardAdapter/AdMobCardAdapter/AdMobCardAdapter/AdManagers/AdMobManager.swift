@@ -95,8 +95,7 @@ enum AdMobAdType: AdAdapterFormat, RawRepresentable, Equatable {
         switch rawValue {
             case 100: self = .`default`(.interstitial)
             case 101: self = .`default`(.rewardedVideo)
-            case 102: self = .`default`(.smallBanner)
-            case 103: self = .`default`(.mrec)
+            case 102: self = .`default`(.standardBanner)
             default: return nil
         }
     }

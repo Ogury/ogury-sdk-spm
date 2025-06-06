@@ -39,10 +39,6 @@ class MaxBannerAdManager: MaxAdManager {
         ]
         actualSize = BannerAdManagerSize.init(internalSize: .banner, image: Image("max_default_banner"))
     }
-    
-    override func resetAd() {
-        ad = nil
-    }
     override func updateBannerSize(_ size: BannerSize) {
         if size != actualSize {
             resetAd()
@@ -54,6 +50,11 @@ class MaxBannerAdManager: MaxAdManager {
         get { internalSize }
         set { internalSize = newValue as! BannerAdManagerSize }
     }
+    
+    override func resetAd() {
+        ad = nil
+    }
+    
     var internalSize: BannerAdManagerSize!
     override func instanciateAd() async {
         guard ad == nil else { return }
