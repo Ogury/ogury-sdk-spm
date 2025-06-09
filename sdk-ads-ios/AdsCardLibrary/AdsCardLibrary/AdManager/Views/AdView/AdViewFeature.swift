@@ -436,7 +436,12 @@ struct AdViewFeature {
                     return .send(.resetBanner)
                     
                 case .bannerAction(.pickedSize):
-                    return .none
+                    if state.bannerContainer?.bannerAd != nil {
+                        state.adManager.close()
+                        return .send(.resetBanner)
+                    } else {
+                        return .none
+                    }
                     
                 case let .error(error):
                     state.log("Error received \(error.localizedDescription)")

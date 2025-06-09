@@ -21,7 +21,7 @@
 #pragma mark - Constants
 
 static NSString *const AdSyncServiceBodyNameKey = @"name";
-static NSString *const AdSyncServiceBodySizeKey = @"sizes";
+static NSString *const AdSyncServiceBodySizesKey = @"sizes";
 static NSString *const AdSyncServiceBodySizeHeightKey = @"h";
 static NSString *const AdSyncServiceBodySizeWidthKey = @"w";
 static NSString *const AdSyncServiceBodyConnectivityeKey = @"connectivity";
@@ -237,7 +237,7 @@ static NSString *const AdSyncServiceBodyContentOverlayMaximumSizeScaleKey = @"sc
         NSMutableDictionary *size = [@{} mutableCopy];
         size[AdSyncServiceBodySizeWidthKey] = @([self getWidthForAdType]);
         size[AdSyncServiceBodySizeHeightKey] = @([self getHeightForAdType]);
-        ad[AdSyncServiceBodySizeKey] = @[ size ];
+        ad[AdSyncServiceBodySizesKey] = @[ size ];
     }
     
     adSync[AdSyncServiceBodyAdKey] = ad;

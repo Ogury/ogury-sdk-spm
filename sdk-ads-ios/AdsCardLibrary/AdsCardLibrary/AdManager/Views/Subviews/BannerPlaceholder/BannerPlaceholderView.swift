@@ -76,19 +76,6 @@ struct BannerPlaceholderView: View {
                         .padding(.trailing, 10)
                     }
                 }
-                
-                WithPerceptionTracking {
-                    if store.bannerAd != nil {
-                        Spacer()
-                        Button {
-                            store.send(.closeButtonTapped)
-                        } label: {
-                            Image(systemName: "x.circle.fill")
-                                .foregroundColor(Color(AdColorPalette.Primary.accent.color))
-                        }
-                        .padding(.trailing, 20)
-                    }
-                }
             }
             
             // Show AdBannerView centered
@@ -102,8 +89,20 @@ struct BannerPlaceholderView: View {
                             if let ad = store.bannerAd {
                                 HStack(alignment: .center) {
                                     if isShow {
-                                        AdBannerView(banner: ad)
-                                            .clipped()
+                                        ZStack(alignment: .topTrailing) {
+                                            AdBannerView(banner: ad)
+                                                .clipped()
+                                            
+                                            Button {
+                                                store.send(.closeButtonTapped)
+                                            } label: {
+                                                Image(systemName: "x.circle.fill")
+                                                    .foregroundColor(.white)
+                                                    .background(.black)
+                                                    .opacity(0.7)
+                                            }
+//                                            .offset(x: 10, y: -10)
+                                        }
                                     } else {
                                         placeholderBanner()
                                     }
