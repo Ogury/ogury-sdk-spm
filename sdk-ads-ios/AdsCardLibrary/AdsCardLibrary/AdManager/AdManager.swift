@@ -16,7 +16,7 @@ public enum AdFormat: Codable {
             case .interstitial: return "Interstitial"
             case .rewardedVideo: return "Rewarded"
             case .thumbnail: return "Thumbnail"
-            case .standardBanner: return "Standard banner"
+            case .standardBanner: return "Standard banners"
         }
     }
 }

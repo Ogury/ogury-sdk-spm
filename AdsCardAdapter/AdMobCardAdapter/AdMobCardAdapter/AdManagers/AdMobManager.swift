@@ -72,7 +72,11 @@ enum AdMobAdType: AdAdapterFormat, RawRepresentable, Equatable {
     
     var displayName: String {
         switch self {
-            case let .default(adFormat): return adFormat.name
+            case let .default(adFormat):
+                switch adFormat {
+                    case .standardBanner: return "Std banners"
+                    default: return adFormat.name
+                }
         }
     }
     

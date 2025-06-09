@@ -140,7 +140,7 @@ public indirect enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
             case .interstitial: return "Interstitial"
             case .rewarded: return "Rewarded"
             case .thumbnail: return "Thumbnail"
-            case .standardBanner: return "Standard banner"
+            case .standardBanner: return "Std banners"
             case let .maxHeaderBidding(adType): return adType.displayName
             case let .dtFairBidHeaderBidding(adType): return adType.displayName
             case let .unityLevelPlayHeaderBidding(adType): return adType.displayName

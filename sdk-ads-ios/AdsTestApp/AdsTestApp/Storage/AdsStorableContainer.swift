@@ -85,6 +85,11 @@ struct AppPermissions: Codable, DefaultsValueConvertible {
     }
 }
 
+enum FileVersion: Int, Codable, Equatable {
+    case preVersion = 0
+    case one = 1
+}
+
 struct SettingsContainer: Codable, Equatable {
     static let currentOs = "iOS"
     static let untitledAdSet = "Untitled Ad Set"
@@ -281,6 +286,8 @@ struct AdsStorableContainer: Codable {
     fileprivate static let cardManager = AdsCardManager()
     fileprivate static var adDelegate: (AdLifeCycleDelegate & ApplicationDelegate)?
     var shouldUpdateAdUnits: Bool { settings.shouldUpdateAdUnits }
+    var fileVersion: FileVersion = .one
+    static var currentFileVersion: FileVersion = .one
     
     init(settings: SettingsContainer = .init(),
          cards: [AdCardList]) {
@@ -348,13 +355,21 @@ struct AdsStorableContainer: Codable {
     
     //MARK: Codable
     enum CodingKeys: String, CodingKey {
-        case settings, cards
+        case settings, cards, fileVersion
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        settings = try container.decode(SettingsContainer.self, forKey: .settings)
-        cards = try container.decode([[AdCardContainer]].self, forKey: .cards)
+        fileVersion = (try? container.decodeIfPresent(FileVersion.self, forKey: .fileVersion)) ?? .preVersion
+        
+        var settingsClass = SettingsContainer.self
+        var cardsClass = [[AdCardContainer]].self
+        if fileVersion != AdsStorableContainer.currentFileVersion {
+            settingsClass = SettingsContainer.self
+            cardsClass = [[AdCardContainer]].self
+        }
+        settings = try container.decode(settingsClass, forKey: .settings)
+        cards = try container.decode(cardsClass, forKey: .cards)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -362,6 +377,7 @@ struct AdsStorableContainer: Codable {
         try container.encode(settings, forKey: .settings)
         let adContainers: [[AdCardContainer]] = cards
         try container.encode(adContainers, forKey: .cards)
+        try container.encode(fileVersion, forKey: .fileVersion)
     }
 }
 

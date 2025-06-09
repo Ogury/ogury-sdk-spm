@@ -55,8 +55,17 @@ enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
     
     var displayName: String {
         switch self {
-            case let .headerBidding(adFormat): return adFormat.name
-            case let .waterfall(adFormat): return adFormat.name
+            case let .headerBidding(adFormat):
+                switch adFormat {
+                    case .standardBanner: return "Std banners"
+                    default: return adFormat.name
+                }
+                
+            case let .waterfall(adFormat):
+                switch adFormat {
+                    case .standardBanner: return "Std banners"
+                    default: return adFormat.name
+                }
         }
     }
     
