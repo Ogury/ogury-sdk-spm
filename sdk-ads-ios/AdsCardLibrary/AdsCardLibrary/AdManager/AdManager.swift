@@ -52,7 +52,7 @@ public protocol AdManager: Equatable, Hashable, Identifiable where ID == UUID {
 
 @dynamicMemberLookup
 open class BannerSize: Identifiable, Equatable, Hashable {
-    public let id = UUID()
+    public var id: UUID { description.uuid }
     public var size: CGSize
     let image: Image
     var description: String { "\(Int(size.width)) x \(Int(size.height))" }
@@ -74,18 +74,62 @@ open class BannerSize: Identifiable, Equatable, Hashable {
         hasher.combine(id)
     }
 }
+public extension Array where Element == BannerSize {
+    subscript(size: CGSize?) -> Element? {
+        first(where: { $0.size == size })
+    }
+}
 
 public enum AdCardContainerError: Error {
     case invalidAdType
 }
 
+
+public enum FileVersion: Int, Codable, Equatable, CaseIterable {
+    case preVersion = 0
+    case one = 1
+}
+
+@propertyWrapper
+public struct SizeCodable: Codable {
+    public var wrappedValue: CGSize?
+    
+    public init(wrappedValue: CGSize?) {
+        self.wrappedValue = wrappedValue
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case width
+        case height
+    }
+    public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let width = try container.decodeIfPresent(Int.self, forKey: .width)
+        let height = try container.decodeIfPresent(Int.self, forKey: .height)
+        guard let width, let height else {
+            wrappedValue = nil
+            return
+        }
+        wrappedValue = .init(width: width, height: height)
+    }
+    
+    public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(wrappedValue?.width, forKey: .width)
+        try container.encodeIfPresent(wrappedValue?.height, forKey: .height)
+    }
+}
+
 public struct AdCardContainer: Codable {
+    public static var currentVersion: FileVersion = .preVersion
+    
     public struct AdInformationsContainer: Codable {
         public let adUnitId: String
         public let campaignId: String?
         public let creativeId: String?
         public let dspCreativeId: String?
-        public let bannerSize: CGSize?
+        @SizeCodable
+        public var bannerSize: CGSize?
         public let dspRegion: DspRegion?
         public let settings: CardSettings
         public init(adUnitId: String,
@@ -114,13 +158,36 @@ public struct AdCardContainer: Codable {
             self.qaLabel = qaLabel
         }
     }
+    public var version: FileVersion
     public let name: String
     public let adType: Int
     public let adInformations: AdInformationsContainer
-    public init(name: String, adType: Int, adInformations: AdInformationsContainer) {
+    public init(name: String, adType: Int, adInformations: AdInformationsContainer, fileVersion: FileVersion = .preVersion) {
         self.name = name
         self.adType = adType
         self.adInformations = adInformations
+        self.version = fileVersion
+    }
+    
+    enum CodingKeys: CodingKey {
+        case name
+        case adType
+        case adInformations
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decode(String.self, forKey: .name)
+        adType = try container.decode(Int.self, forKey: .adType)
+        adInformations = try container.decode(AdInformationsContainer.self, forKey: .adInformations)
+        version = .preVersion
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(adType, forKey: .adType)
+        try container.encode(adInformations, forKey: .adInformations)
     }
 }
 
@@ -271,5 +338,26 @@ public extension NSError {
         let lhs = self as Error
         let rhs = to as Error
         return self.isEqual(to) && lhs.reflectedString == rhs.reflectedString
+    }
+}
+
+public extension String {
+    var uuid: UUID {
+        var hasher = Hasher()
+        hasher.combine(self)
+        let hash = hasher.finalize()
+        // Convert hash (Int) into a UUID-compatible format
+        var uuidBytes = [UInt8](repeating: 0, count: 16)
+        withUnsafeBytes(of: hash.bigEndian) { hashBytes in
+            for i in 0..<min(hashBytes.count, 16) {
+                uuidBytes[i] = hashBytes[i]
+            }
+        }
+        return UUID(uuid: (
+            uuidBytes[0], uuidBytes[1], uuidBytes[2], uuidBytes[3],
+            uuidBytes[4], uuidBytes[5], uuidBytes[6], uuidBytes[7],
+            uuidBytes[8], uuidBytes[9], uuidBytes[10], uuidBytes[11],
+            uuidBytes[12], uuidBytes[13], uuidBytes[14], uuidBytes[15]
+        ))
     }
 }

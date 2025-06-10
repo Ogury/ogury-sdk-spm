@@ -70,7 +70,6 @@ public struct CardConfiguration: Codable, Equatable, Hashable {
     }
 }
 
-
 public struct AdConfiguration: Codable, Equatable, Hashable {
     /// The adUnitId used to load the ad
     public internal(set) var adUnitId: String
@@ -82,17 +81,21 @@ public struct AdConfiguration: Codable, Equatable, Hashable {
     public var dspCreativeId: String?
     /// The dsp region used to load the ad
     public var dspRegion: DspRegion?
+    /// The dsp region used to load the ad
+    public var bannerSize: CGSize?
     
     public init(adUnitId: String,
                 campaignId: String? = nil,
                 creativeId: String? = nil,
                 dspCreativeId: String? = nil,
-                dspRegion: DspRegion? = nil) {
+                dspRegion: DspRegion? = nil,
+                bannerSize: CGSize? = nil) {
         self.adUnitId = adUnitId
         self.campaignId = campaignId
         self.creativeId = creativeId
         self.dspCreativeId = dspCreativeId
         self.dspRegion = dspRegion
+        self.bannerSize = bannerSize
     }
 }
 

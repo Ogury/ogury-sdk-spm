@@ -26,23 +26,43 @@ public final class BannerAdManager: OguryAdManager {
                                               creativeId: adConfiguration.creativeId,
                                               dspCreativeId: adConfiguration.dspCreativeId,
                                               dspRegion: adConfiguration.dspRegion,
+                                              bannerSize: size.size,
                                               settings: .init(oguryTestModeEnabled: cardConfiguration.oguryTestModeEnabled,
                                                               rtbTestModeEnabled: cardConfiguration.rtbTestModeEnabled,
                                                               qaLabel: qaLabel)))
     }
+    
     public static func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager {
-        guard let adType = AdType(rawValue: container.adType) else { throw .invalidAdType }
-        return BannerAdManager(adType: adType,
-                               adConfiguration: .init(adUnitId: container.adInformations.adUnitId,
-                                                      campaignId: container.adInformations.campaignId,
-                                                      creativeId: container.adInformations.creativeId,
-                                                      dspCreativeId: container.adInformations.dspCreativeId,
-                                                      dspRegion: container.adInformations.dspRegion),
-                               cardConfiguration: .init(oguryTestModeEnabled: container.adInformations.settings.oguryTestModeEnabled,
-                                                        rtbTestModeEnabled: container.adInformations.settings.rtbTestModeEnabled,
-                                                        qaLabel: container.adInformations.settings.qaLabel),
-                               viewController: nil,
-                               adDelegate: nil)
+        guard let adType: AdType = AdType(rawValue: container.adType, fileVersion: container.version) else {
+            throw .invalidAdType
+        }
+        
+        let adManager = BannerAdManager(adType: adType,
+                                        adConfiguration: .init(adUnitId: container.adInformations.adUnitId,
+                                                               campaignId: container.adInformations.campaignId,
+                                                               creativeId: container.adInformations.creativeId,
+                                                               dspCreativeId: container.adInformations.dspCreativeId,
+                                                               dspRegion: container.adInformations.dspRegion,
+                                                               bannerSize: container.adInformations.bannerSize),
+                                        cardConfiguration: .init(oguryTestModeEnabled: container.adInformations.settings.oguryTestModeEnabled,
+                                                                 rtbTestModeEnabled: container.adInformations.settings.rtbTestModeEnabled,
+                                                                 qaLabel: container.adInformations.settings.qaLabel),
+                                        viewController: nil,
+                                        adDelegate: nil)
+        if container.version != AdCardContainer.currentVersion {
+            adManager.migrate(from: container)
+        }
+        return adManager
+    }
+    
+    private func migrate(from container: AdCardContainer) {
+        switch (container.version, AdCardContainer.currentVersion) {
+            case (.preVersion, .one) where container.adType == 3:
+                // it's a Mrec, use rightful size
+                actualSize = bannerSizes![1]
+                
+            default: ()
+        }
     }
     
     public var adFormat: AdFormat
@@ -179,6 +199,9 @@ public final class BannerAdManager: OguryAdManager {
             default: ()
         }
         self.actualSize = self.bannerSizes?.first!
+        if let size = adConfiguration.bannerSize, let bannerSize = self.bannerSizes?[size] {
+            self.actualSize = bannerSize
+        }
     }
     
     //MARK: Ad Management

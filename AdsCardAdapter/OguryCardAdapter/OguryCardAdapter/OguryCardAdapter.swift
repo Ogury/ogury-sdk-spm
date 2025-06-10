@@ -116,11 +116,48 @@ Environment: \(environment)
         }
     }
     
-    public func adAdapterFormat(fromRawValue rawValue: Int) throws(AdsCardAdapterError) -> any AdAdapterFormat {
-        guard let adType = AdType(rawValue: rawValue) else {
+    public func adAdapterFormat(fromRawValue rawValue: Int,
+                                fileVersion: FileVersion = .preVersion) throws(AdsCardAdapterError) -> any AdAdapterFormat {
+        guard let adType = AdType(rawValue: rawValue, fileVersion: fileVersion) else {
             throw .noSuitableAdapterAvailable
         }
         return adType
+    }
+    
+    public func adManager(from container: AdCardContainer,
+                          viewController: UIViewController?,
+                          adDelegate: AdLifeCycleDelegate?) throws(AdsCardAdapterError) -> any AdManager {
+        guard let adFormat: AdType = try adAdapterFormat(fromRawValue: container.adType, fileVersion: container.version) as? AdType else {
+            throw .noSuitableAdapterAvailable
+        }
+        do {
+            switch adFormat {
+                case .interstitial,
+                     .maxHeaderBidding(.interstitial),
+                     .dtFairBidHeaderBidding(.interstitial),
+                     .unityLevelPlayHeaderBidding(.interstitial):
+                    return try InterstitialAdManager.decode(from: container)
+                    
+                case .rewarded,
+                     .maxHeaderBidding(.rewarded),
+                     .dtFairBidHeaderBidding(.rewarded),
+                     .unityLevelPlayHeaderBidding(.rewarded):
+                    return try RewardedAdManager.decode(from: container)
+                    
+                case .thumbnail:
+                    return try ThumbnailAdManager.decode(from: container)
+                    
+                case .standardBanner,
+                     .maxHeaderBidding(.standardBanner),
+                     .dtFairBidHeaderBidding(.standardBanner),
+                     .unityLevelPlayHeaderBidding(.standardBanner):
+                    return try BannerAdManager.decode(from: container)
+                    
+                default: throw AdsCardAdapterError.noSuitableAdapterAvailable
+            }
+        } catch {
+            throw .noSuitableAdapterAvailable
+        }
     }
     
     public func startSdk() async {

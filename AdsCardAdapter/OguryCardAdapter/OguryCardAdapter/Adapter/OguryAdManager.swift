@@ -64,22 +64,35 @@ public indirect enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
             case .unityLevelPlayHeaderBidding(let adType): return adType.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue
         }
     }
+    
     public init?(rawValue: Int) {
-        switch rawValue {
+        self.init(rawValue: rawValue, fileVersion: .one)
+    }
+    
+    public init?(rawValue: Int, fileVersion: FileVersion) {
+        let targetValue = AdType.migrate(fromRawValue: rawValue, fileVersion: fileVersion)
+        switch targetValue {
             case RawInnerAdType.interstitial.rawValue: self = .interstitial
             case RawInnerAdType.rewarded.rawValue: self = .rewarded
             case RawInnerAdType.standardBanner.rawValue: self = .standardBanner
             case RawInnerAdType.thumbnail.rawValue: self = .thumbnail
             case RawInnerAdType.maxSuffix.rawValue..<RawInnerAdType.dtFairBidSuffix.rawValue:
-                guard let innerRawType = AdType(rawValue: rawValue - RawInnerAdType.maxSuffix.rawValue) else { return nil }
+                guard let innerRawType = AdType(rawValue: rawValue - RawInnerAdType.maxSuffix.rawValue, fileVersion: fileVersion) else { return nil }
                 self = .maxHeaderBidding(innerRawType)
             case RawInnerAdType.dtFairBidSuffix.rawValue..<RawInnerAdType.unityLevelPlaySuffix.rawValue:
-                guard let innerRawType = AdType(rawValue: rawValue - RawInnerAdType.dtFairBidSuffix.rawValue) else { return nil }
+                guard let innerRawType = AdType(rawValue: rawValue - RawInnerAdType.dtFairBidSuffix.rawValue, fileVersion: fileVersion) else { return nil }
                 self = .dtFairBidHeaderBidding(innerRawType)
             case RawInnerAdType.unityLevelPlaySuffix.rawValue...RawInnerAdType.unityLevelPlaySuffix.rawValue + RawInnerAdType.thumbnail.rawValue:
-                guard let innerRawType = AdType(rawValue: rawValue - RawInnerAdType.unityLevelPlaySuffix.rawValue) else { return nil }
+                guard let innerRawType = AdType(rawValue: rawValue - RawInnerAdType.unityLevelPlaySuffix.rawValue, fileVersion: fileVersion) else { return nil }
                 self = .unityLevelPlayHeaderBidding(innerRawType)
             default: return nil
+        }
+    }
+    
+    private static func migrate(fromRawValue rawValue: Int, fileVersion: FileVersion) -> Int {
+        switch (fileVersion, AdCardContainer.currentVersion) {
+            case (.preVersion, .one) where rawValue == 3: return 2
+            default: return rawValue
         }
     }
     
