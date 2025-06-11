@@ -122,8 +122,13 @@ enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
         }
     }
     
-    init?(rawValue: Int) {
-        switch rawValue {
+    public init?(rawValue: Int) {
+        self.init(rawValue: rawValue, fileVersion: .one)
+    }
+    
+    public init?(rawValue: Int, fileVersion: FileVersion) {
+        let targetValue = Self.migrate(fromRawValue: rawValue, fileVersion: fileVersion)
+        switch targetValue {
             case 300: self = .headerBidding(.interstitial)
             case 301: self = .headerBidding(.rewardedVideo)
             case 302: self = .headerBidding(.standardBanner)
@@ -131,6 +136,13 @@ enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
             case 311: self = .waterfall(.rewardedVideo)
             case 312: self = .waterfall(.standardBanner)
             default: return nil
+        }
+    }
+    
+    private static func migrate(fromRawValue rawValue: Int, fileVersion: FileVersion) -> Int {
+        switch (fileVersion, AdCardContainer.currentVersion) {
+            case (.preVersion, .one) where [303, 313].contains(rawValue): return rawValue - 1
+            default: return rawValue
         }
     }
     
@@ -228,6 +240,7 @@ class ULPAdManager: NSObject, AdManager {
         AdCardContainer(name: cardConfiguration.adDisplayName,
                         adType: adType.rawValue,
                         adInformations: .init(adUnitId: adConfiguration.adUnitId,
+                                              bannerSize: actualSize?.size,
                                               settings: .init(oguryTestModeEnabled: false,
                                                               rtbTestModeEnabled: true,
                                                               qaLabel: cardConfiguration.qaLabel)))

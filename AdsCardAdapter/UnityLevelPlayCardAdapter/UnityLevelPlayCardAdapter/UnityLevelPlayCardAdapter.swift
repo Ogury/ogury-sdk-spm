@@ -88,9 +88,39 @@ OM SDK Version : \(omid)
         return adManager
     }
     
-    public func adAdapterFormat(fromRawValue rawValue: Int) throws(AdsCardAdapterError) -> any AdAdapterFormat {
-        guard let adFormat = AdType(rawValue: rawValue) else { throw .noSuitableAdapterAvailable }
-        return adFormat
+    public func adAdapterFormat(fromRawValue rawValue: Int,
+                                fileVersion: FileVersion = .preVersion) throws(AdsCardAdapterError) -> any AdAdapterFormat {
+        guard let adType = AdType(rawValue: rawValue, fileVersion: fileVersion) else {
+            throw .noSuitableAdapterAvailable
+        }
+        return adType
+    }
+    
+    public func adManager(from container: AdCardContainer,
+                          viewController: UIViewController?,
+                          adDelegate: AdLifeCycleDelegate?) throws(AdsCardAdapterError) -> any AdManager {
+        guard let adFormat: AdType = try adAdapterFormat(fromRawValue: container.adType, fileVersion: container.version) as? AdType else {
+            throw .noSuitableAdapterAvailable
+        }
+        do {
+            switch adFormat {
+                case .waterfall(.interstitial),
+                     .headerBidding(.interstitial):
+                    return try ULPIntertstitialAdManager.decode(from: container)
+                    
+                case .waterfall(.rewardedVideo),
+                     .headerBidding(.rewardedVideo):
+                    return try ULPRewardedAdManager.decode(from: container)
+                    
+                case .waterfall(.standardBanner),
+                     .headerBidding(.standardBanner):
+                    return try ULPBannerAdManager.decode(from: container)
+                    
+                default: throw AdsCardAdapterError.noSuitableAdapterAvailable
+            }
+        } catch {
+            throw .noSuitableAdapterAvailable
+        }
     }
     
     public func startSdk() async {

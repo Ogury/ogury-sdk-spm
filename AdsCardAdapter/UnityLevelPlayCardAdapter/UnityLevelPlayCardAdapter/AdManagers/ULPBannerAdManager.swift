@@ -41,7 +41,10 @@ class ULPBannerAdManager: ULPAdManager {
             BannerAdManagerSize(internalSize: .banner(), image: Image(systemName: "inset.filled.bottomthird.rectangle")),
             BannerAdManagerSize(internalSize: .mediumRectangle(), image: Image(systemName: "inset.filled.rectangle")),
         ]
-        actualSize = bannerSizes.first!
+        actualSize = self.bannerSizes?.first!
+        if let bannerSize = self.bannerSizes?[adConfiguration.bannerSize] {
+            actualSize = bannerSize
+        }
     }
 
     override func updateBannerSize(_ size: AdsCardLibrary.BannerSize) {
@@ -101,17 +104,35 @@ class ULPBannerAdManager: ULPAdManager {
     }
     
     override class func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager {
-        guard let adType = AdType(rawValue: container.adType) else { throw .invalidAdType }
-        return ULPBannerAdManager(adType: adType,
-                                  adConfiguration: .init(adUnitId: container.adInformations.adUnitId,
-                                                         campaignId: container.adInformations.campaignId,
-                                                         creativeId: container.adInformations.creativeId,
-                                                         dspCreativeId: container.adInformations.dspCreativeId,
-                                                         dspRegion: container.adInformations.dspRegion),
-                                  cardConfiguration: .init(oguryTestModeEnabled: container.adInformations.settings.oguryTestModeEnabled,
-                                                           rtbTestModeEnabled: container.adInformations.settings.rtbTestModeEnabled,
-                                                           qaLabel: container.adInformations.settings.qaLabel),
-                                  viewController: nil,
-                                  adDelegate: nil)
+        guard let adType: AdType = AdType(rawValue: container.adType, fileVersion: container.version) else {
+            throw .invalidAdType
+        }
+        
+        let adManager = ULPBannerAdManager(adType: adType,
+                                           adConfiguration: .init(adUnitId: container.adInformations.adUnitId,
+                                                                  campaignId: container.adInformations.campaignId,
+                                                                  creativeId: container.adInformations.creativeId,
+                                                                  dspCreativeId: container.adInformations.dspCreativeId,
+                                                                  dspRegion: container.adInformations.dspRegion,
+                                                                  bannerSize: container.adInformations.bannerSize),
+                                           cardConfiguration: .init(oguryTestModeEnabled: container.adInformations.settings.oguryTestModeEnabled,
+                                                                    rtbTestModeEnabled: container.adInformations.settings.rtbTestModeEnabled,
+                                                                    qaLabel: container.adInformations.settings.qaLabel),
+                                           viewController: nil,
+                                           adDelegate: nil)
+        if container.version != AdCardContainer.currentVersion {
+            adManager.migrate(from: container)
+        }
+        return adManager
+    }
+    
+    private func migrate(from container: AdCardContainer) {
+        switch (container.version, AdCardContainer.currentVersion) {
+            case (.preVersion, .one) where [303, 313].contains(container.adType):
+                // it's a Mrec, use rightful size
+                actualSize = bannerSizes![1]
+                
+            default: ()
+        }
     }
 }
