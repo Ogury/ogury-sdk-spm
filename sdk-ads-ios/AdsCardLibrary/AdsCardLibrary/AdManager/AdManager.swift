@@ -147,6 +147,38 @@ public struct AdCardContainer: Codable {
             self.settings = settings
             self.bannerSize = bannerSize
         }
+        
+        enum CodingKeys: CodingKey {
+            case adUnitId
+            case campaignId
+            case creativeId
+            case dspCreativeId
+            case bannerSize
+            case dspRegion
+            case settings
+        }
+        
+        public init(from decoder: any Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            adUnitId = try container.decode(String.self, forKey: .adUnitId)
+            campaignId = try container.decodeIfPresent(String.self, forKey: .campaignId)
+            creativeId = try container.decodeIfPresent(String.self, forKey: .creativeId)
+            dspCreativeId = try container.decodeIfPresent(String.self, forKey: .dspCreativeId)
+            bannerSize = try container.decodeIfPresent(CGSize.self, forKey: .bannerSize)
+            dspRegion = try container.decodeIfPresent(DspRegion.self, forKey: .dspRegion)
+            settings = try container.decode(CardSettings.self, forKey: .settings)
+        }
+        
+        public func encode(to encoder: any Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(adUnitId, forKey: .adUnitId)
+            try container.encodeIfPresent(campaignId, forKey: .campaignId)
+            try container.encodeIfPresent(creativeId, forKey: .creativeId)
+            try container.encodeIfPresent(dspCreativeId, forKey: .dspCreativeId)
+            try container.encodeIfPresent(bannerSize, forKey: .bannerSize)
+            try container.encodeIfPresent(dspRegion, forKey: .dspRegion)
+            try container.encode(settings, forKey: .settings)
+        }
     }
     public struct CardSettings: Codable {
         public let oguryTestModeEnabled: Bool
@@ -177,10 +209,15 @@ public struct AdCardContainer: Codable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        name = try container.decode(String.self, forKey: .name)
-        adType = try container.decode(Int.self, forKey: .adType)
-        adInformations = try container.decode(AdInformationsContainer.self, forKey: .adInformations)
-        version = .preVersion
+        do {
+            name = try container.decode(String.self, forKey: .name)
+            adType = try container.decode(Int.self, forKey: .adType)
+            adInformations = try container.decode(AdInformationsContainer.self, forKey: .adInformations)
+            version = .preVersion
+        } catch {
+            print(error)
+            throw error
+        }
     }
     
     public func encode(to encoder: Encoder) throws {

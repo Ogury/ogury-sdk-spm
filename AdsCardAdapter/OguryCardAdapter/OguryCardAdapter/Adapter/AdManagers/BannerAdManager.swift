@@ -199,7 +199,7 @@ public final class BannerAdManager: OguryAdManager {
             default: ()
         }
         self.actualSize = self.bannerSizes?.first!
-        if let size = adConfiguration.bannerSize, let bannerSize = self.bannerSizes?[size] {
+        if let bannerSize = self.bannerSizes?[adConfiguration.bannerSize] {
             self.actualSize = bannerSize
         }
     }

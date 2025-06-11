@@ -343,6 +343,17 @@ struct AdsStorableContainer: Codable {
                                                           viewController: viewController,
                                                           adDelegate: adDelegate)
             }
+            guard fileVersion == Self.currentFileVersion else {
+                // handle migration
+                if var cardManager = list.first(where: { $0.adAdapterFormat.id == adFormat.id }) {
+                    cardManager.adManagers.append(contentsOf: adManagers)
+                    list.removeAll(where: { $0.adAdapterFormat.id == adFormat.id })
+                    list.append(cardManager)
+                } else {
+                    list.append(.init(adAdapterFormat: adFormat, adManagers: adManagers))
+                }
+                return
+            }
             list.append(.init(adAdapterFormat: adFormat, adManagers: adManagers))
         }
         return list
