@@ -62,12 +62,25 @@ enum MaxAdType: AdAdapterFormat, RawRepresentable, Equatable {
         }
     }
     
-    init?(rawValue: Int) {
-        switch rawValue {
+    
+    public init?(rawValue: Int) {
+        self.init(rawValue: rawValue, fileVersion: .one)
+    }
+    
+    public init?(rawValue: Int, fileVersion: FileVersion) {
+        let targetValue = Self.migrate(fromRawValue: rawValue, fileVersion: fileVersion)
+        switch targetValue {
             case 100: self = .`default`(.interstitial)
             case 101: self = .`default`(.rewardedVideo)
             case 102: self = .`default`(.standardBanner)
             default: return nil
+        }
+    }
+    
+    private static func migrate(fromRawValue rawValue: Int, fileVersion: FileVersion) -> Int {
+        switch (fileVersion, AdCardContainer.currentVersion) {
+            case (.preVersion, .one) where rawValue == 103: return 102
+            default: return rawValue
         }
     }
     
@@ -240,6 +253,7 @@ class MaxAdManager: NSObject, AdManager {
         AdCardContainer(name: cardConfiguration.adDisplayName,
                         adType: adType.rawValue,
                         adInformations: .init(adUnitId: adConfiguration.adUnitId,
+                                              bannerSize: actualSize?.size,
                                               settings: .init(oguryTestModeEnabled: false,
                                                               rtbTestModeEnabled: false,
                                                               qaLabel: cardConfiguration.qaLabel)))

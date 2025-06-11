@@ -81,11 +81,31 @@ OM SDK Version : \(omid)
         return adManager
     }
     
-    public func adAdapterFormat(fromRawValue rawValue: Int) throws(AdsCardAdapterError) -> any AdAdapterFormat {
-        guard let format = MaxAdType(rawValue: rawValue)  else {
+    
+    public func adAdapterFormat(fromRawValue rawValue: Int,
+                                fileVersion: FileVersion = .preVersion) throws(AdsCardAdapterError) -> any AdAdapterFormat {
+        guard let adType = MaxAdType(rawValue: rawValue, fileVersion: fileVersion) else {
             throw .noSuitableAdapterAvailable
         }
-        return format
+        return adType
+    }
+    
+    public func adManager(from container: AdCardContainer,
+                          viewController: UIViewController?,
+                          adDelegate: AdLifeCycleDelegate?) throws(AdsCardAdapterError) -> any AdManager {
+        guard let adFormat: MaxAdType = try adAdapterFormat(fromRawValue: container.adType, fileVersion: container.version) as? MaxAdType else {
+            throw .noSuitableAdapterAvailable
+        }
+        do {
+            switch adFormat {
+                case .default(.interstitial): return try MaxInterstitialAdManager.decode(from: container)
+                case .default(.rewardedVideo): return try MaxRewardedAdManager.decode(from: container)
+                case .default(.standardBanner): return try MaxBannerAdManager.decode(from: container)
+                default: throw AdsCardAdapterError.noSuitableAdapterAvailable
+            }
+        } catch {
+            throw .noSuitableAdapterAvailable
+        }
     }
     
     public func startSdk() async {
