@@ -81,7 +81,6 @@ OM SDK Version : \(omid)
         return adManager
     }
     
-    
     public func adAdapterFormat(fromRawValue rawValue: Int,
                                 fileVersion: FileVersion = .preVersion) throws(AdsCardAdapterError) -> any AdAdapterFormat {
         guard let adType = MaxAdType(rawValue: rawValue, fileVersion: fileVersion) else {

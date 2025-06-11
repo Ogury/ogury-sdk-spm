@@ -62,7 +62,6 @@ enum MaxAdType: AdAdapterFormat, RawRepresentable, Equatable {
         }
     }
     
-    
     public init?(rawValue: Int) {
         self.init(rawValue: rawValue, fileVersion: .one)
     }

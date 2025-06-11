@@ -95,12 +95,24 @@ enum AdMobAdType: AdAdapterFormat, RawRepresentable, Equatable {
         }
     }
     
-    init?(rawValue: Int) {
-        switch rawValue {
-            case 100: self = .`default`(.interstitial)
-            case 101: self = .`default`(.rewardedVideo)
-            case 102: self = .`default`(.standardBanner)
+    public init?(rawValue: Int) {
+        self.init(rawValue: rawValue, fileVersion: .one)
+    }
+    
+    public init?(rawValue: Int, fileVersion: FileVersion) {
+        let targetValue = Self.migrate(fromRawValue: rawValue, fileVersion: fileVersion)
+        switch targetValue {
+            case 200: self = .`default`(.interstitial)
+            case 201: self = .`default`(.rewardedVideo)
+            case 202: self = .`default`(.standardBanner)
             default: return nil
+        }
+    }
+    
+    private static func migrate(fromRawValue rawValue: Int, fileVersion: FileVersion) -> Int {
+        switch (fileVersion, AdCardContainer.currentVersion) {
+            case (.preVersion, .one) where rawValue == 203: return 202
+            default: return rawValue
         }
     }
     
@@ -206,6 +218,7 @@ class AdMobManager: NSObject, AdManager {
         AdCardContainer(name: cardConfiguration.adDisplayName,
                         adType: adType.rawValue,
                         adInformations: .init(adUnitId: adConfiguration.adUnitId,
+                                              bannerSize: actualSize?.size,
                                               settings: .init(oguryTestModeEnabled: false,
                                                               rtbTestModeEnabled: false,
                                                               qaLabel: cardConfiguration.qaLabel)))
