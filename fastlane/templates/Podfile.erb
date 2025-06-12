@@ -65,6 +65,12 @@ target "UnityLevelPlayCardAdapter" do
   pod 'IronSourceOguryAdapter'
 end
 
+#PrebidCardAdapter
+target "PrebidCardAdapter" do
+  project "AdsCardAdapter/PrebidCardAdapter/PrebidCardAdapter"
+  pod 'PrebidMobile'
+end
+
 #Ads Test Apps
 target "AdsTestApp-Devc" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
