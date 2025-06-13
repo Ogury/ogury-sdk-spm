@@ -12,31 +12,37 @@ import OguryCore.Private
 import OguryCore
 import PrebidMobile
 
-struct PrebidAdsCardAdapter: AdsCardAdaptable {
-    var availableAdFormats: [AdAdapterFormatSection] = []
-    var sdkVersions: String = {
+public struct PrebidAdsCardAdapter: AdsCardAdaptable {
+    public init() {}
+    public var availableAdFormats: [AdAdapterFormatSection] = [
+        .init(title: "Prebid", formats: [
+            PrebidAdType.default(.interstitial)
+        ])
+    ]
+    public var sdkVersions: String = {
 """
 PreBid: \(Prebid.shared.version),
 OguryCore: \(OGCInternal.shared().getVersion())
 """
     }()
     
-    var actions: [any AdsCardAdapterAction] = []
+    public var actions: [any AdsCardAdapterAction] = []
     
-    func adManager(for adFormat: any AdAdapterFormat, options: AdViewOptions, viewController: UIViewController?, adDelegate: (any AdLifeCycleDelegate)?) throws(AdsCardAdapterError) -> any AdManager {
+    public func adManager(for adFormat: any AdAdapterFormat, options: AdViewOptions, viewController: UIViewController?, adDelegate: (any AdLifeCycleDelegate)?) throws(AdsCardAdapterError) -> any AdManager {
         throw .noSuitableAdapterAvailable
     }
     
-    func adManager(from container: AdCardContainer, viewController: UIViewController?, adDelegate: (any AdLifeCycleDelegate)?) throws(AdsCardAdapterError) -> any AdManager {
+    public func adManager(from container: AdCardContainer, viewController: UIViewController?, adDelegate: (any AdLifeCycleDelegate)?) throws(AdsCardAdapterError) -> any AdManager {
         throw .noSuitableAdapterAvailable
     }
     
-    func adAdapterFormat(fromRawValue rawValue: Int, fileVersion: FileVersion) throws(AdsCardAdapterError) -> any AdAdapterFormat {
+    public func adAdapterFormat(fromRawValue rawValue: Int, fileVersion: FileVersion) throws(AdsCardAdapterError) -> any AdAdapterFormat {
         throw .noSuitableAdapterAvailable
     }
     
-    func startSdk() async {
+    public func startSdk() async {
         Prebid.shared.prebidServerAccountId = "0689a263-318d-448b-a3d4-b02e8a709d9d"
+        Prebid.shared.auctionSettingsId = "devc_banner_inter"
         Targeting.shared.setGlobalORTBConfig("{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"ogury-id-123\"}}}}")
         try? await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             do {
@@ -59,11 +65,11 @@ OguryCore: \(OGCInternal.shared().getVersion())
         }
     }
     
-    func resetSdk() {
+    public func resetSdk() {
         // n/a
     }
     
-    func add(logger: any OguryLogger) {
+    public func add(logger: any OguryLogger) {
         // n/a
     }
 }

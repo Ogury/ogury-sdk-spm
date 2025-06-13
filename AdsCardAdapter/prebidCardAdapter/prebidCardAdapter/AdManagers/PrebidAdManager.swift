@@ -58,9 +58,9 @@ enum PrebidAdType: AdAdapterFormat, RawRepresentable, Equatable {
         switch self {
             case let .default(adFormat):
                 switch adFormat {
-                    case .interstitial: return "devc_banner_inter"
+                    case .interstitial: return "aeb31f8a-59d2-4d22-b90e-a6a769d4031c"
                     case .rewardedVideo: return "devc_banner_small"
-                    case .standardBanner: return "devc_banner_test"
+                    case .standardBanner: return "8cb41716-380e-4553-8368-97a8e02069d4"
                     default: fatalError("AdFormat \(adFormat) not supported")
                 }
         }
@@ -135,12 +135,11 @@ enum PrebidAdType: AdAdapterFormat, RawRepresentable, Equatable {
         }
     }
     
-    internal func adManager(viewController: UIViewController?,
-                            adDelegate: AdLifeCycleDelegate?) -> AdMobManager  {
+    internal func adManager(viewController: UIViewController?, adDelegate: AdLifeCycleDelegate?) -> PrebidAdManager  {
         switch self {
             case let .default(innerType):
                 switch innerType {
-//                    case .interstitial: return AdMobInterstitialManager(adType: self, viewController: viewController, adDelegate: adDelegate)
+                    case .interstitial: return PrebidInterstitialAdManager(adType: self, viewController: viewController, adDelegate: adDelegate)
 //                    case .rewardedVideo: return AdMobRewardedManager(adType: self, viewController: viewController, adDelegate: adDelegate)
 //                    case .standardBanner: return AdMobBannerManager(adType: self, viewController: viewController, adDelegate: adDelegate)
                     default: fatalError()
@@ -149,7 +148,7 @@ enum PrebidAdType: AdAdapterFormat, RawRepresentable, Equatable {
     }
 }
 
-class AdMobManager: NSObject, AdManager {
+class PrebidAdManager: NSObject, AdManager {
     var proxy: AdMobDelegateProxy
     var adType: PrebidAdType
     var adFormat: AdsCardLibrary.AdFormat {
@@ -246,13 +245,35 @@ class AdMobManager: NSObject, AdManager {
     }
 }
 
-class AdMobDelegateProxy: NSObject {
-    var adManager: AdMobManager?
-//    
-//    func adDidRecordClick(_ ad: any FullScreenPresentingAd) {
-//        guard let adManager else { return }
-//        adManager.append(.adClicked)
-//        
-//    }
+class AdMobDelegateProxy: NSObject, InterstitialAdUnitDelegate {
+    var adManager: PrebidAdManager?
+    
+    func interstitialDidClickAd(_ interstitial: InterstitialRenderingAdUnit) {
+        guard let adManager else { return }
+        adManager.append(.adClicked)
+    }
+    func interstitialDidDismissAd(_ interstitial: InterstitialRenderingAdUnit) {
+        guard let adManager else { return }
+        adManager.append(.adClosed)
+    }
+    func interstitialDidReceiveAd(_ interstitial: InterstitialRenderingAdUnit) {
+        guard let adManager else { return }
+        adManager.append(.adLoaded(canShow: true))
+    }
+    func interstitialWillPresentAd(_ interstitial: InterstitialRenderingAdUnit) {
+        guard let adManager else { return }
+        adManager.append(.adDisplaying)
+    }
+    func interstitialWillLeaveApplication(_ interstitial: InterstitialRenderingAdUnit) {
+        
+    }
+    func interstitial(_ interstitial: InterstitialRenderingAdUnit, didFailToReceiveAdWithError error: (any Error)?) {
+        guard let adManager else { return }
+        if let error {
+            adManager.append(.adDidFail(error))
+        } else {
+            adManager.append(.adDidFail(NSError(domain: "Prebid interstitial failed with unkown error", code: 66, userInfo: nil)))
+        }
+    }
 }
 

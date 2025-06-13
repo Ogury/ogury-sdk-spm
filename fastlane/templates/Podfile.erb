@@ -105,6 +105,13 @@ target "UnityLevelPlayTestApp" do
   pod 'InMobiCMP', '2.0.1'
   pod 'Google-Mobile-Ads-SDK'
 end
+target "PrebidTestApp" do
+  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  pod 'InMobiCMP', '2.0.1'
+  pod 'Google-Mobile-Ads-SDK'
+  pod 'PrebidMobile'
+end
+ 
 
 target "AdsTestApp-Devc-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"

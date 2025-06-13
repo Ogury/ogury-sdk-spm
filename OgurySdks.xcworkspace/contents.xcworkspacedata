@@ -35,12 +35,12 @@
       location = "group:AdsCardAdapter/UnityLevelPlayCardAdapter/UnityLevelPlayCardAdapter.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:AdsCardAdapter/PrebidCardAdapter/PrebidCardAdapter.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:sdk-ads-ios/AdsTestApp/AdsTestApp.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:AdsCardAdapter/PrebidCardAdapter/PrebidCardAdapter.xcodeproj">
    </FileRef>
 </Workspace>

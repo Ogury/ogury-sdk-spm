@@ -12,6 +12,7 @@ import UserDefault
 
 public class TestAppLogFormatter: OguryLogFormatter {
     
+#if canImport(OguryAds)
     @UserDefault("logTypeColor")
     public var logTypeColor: [OguryLogType: UIColor] = [
         .delegate : #colorLiteral(red: 0.1835246086, green: 0.1912622452, blue: 0.6138145924, alpha: 1),
@@ -23,6 +24,16 @@ public class TestAppLogFormatter: OguryLogFormatter {
         .receivedCallBacks : #colorLiteral(red: 0.2272397876, green: 0.3584066629, blue: 0.6085994244, alpha: 1),
         .testApp : #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
     ]
+#else
+    @UserDefault("logTypeColor")
+    public var logTypeColor: [OguryLogType: UIColor] = [
+        .internal : #colorLiteral(red: 0.1386456192, green: 0.3152645528, blue: 0.2698381543, alpha: 1),
+        .publisher : #colorLiteral(red: 0.8326988816, green: 0.2894239128, blue: 0.3478675783, alpha: 1),
+        .requests : #colorLiteral(red: 0.8553102612, green: 0.6779084802, blue: 0, alpha: 1),
+        .receivedCallBacks : #colorLiteral(red: 0.2272397876, green: 0.3584066629, blue: 0.6085994244, alpha: 1),
+        .testApp : #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+    ]
+#endif
     
     public override init() {
         let df = DateFormatter()
