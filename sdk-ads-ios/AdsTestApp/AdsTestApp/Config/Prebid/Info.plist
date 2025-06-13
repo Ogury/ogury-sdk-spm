@@ -24,7 +24,7 @@
 	<key>DefaultEnv</key>
 	<string>$(DEFAULT_ENV)</string>
 	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-5735986212655126~5493770724</string>
+	<string>ca-app-pub-5735986212655126~3961248502</string>
 	<key>SDK_SOURCE</key>
 	<string>$(SDK_SOURCE)</string>
 	<key>SKAdNetworkItems</key>

@@ -13,7 +13,7 @@ class PrebidInterstitialAdManager: PrebidAdManager {
     var ad: InterstitialRenderingAdUnit?
     
     override func instanciateAd() async {
-        ad = InterstitialRenderingAdUnit(configID: "CONFIG_ID", minSizePercentage: CGSize(width: 30, height: 30))
+        ad = InterstitialRenderingAdUnit(configID: adConfiguration.adUnitId, minSizePercentage: CGSize(width: 30, height: 30))
         ad?.delegate = proxy
     }
     
@@ -23,15 +23,14 @@ class PrebidInterstitialAdManager: PrebidAdManager {
     
     override func load() async {
         await super.load()
+        await instanciateAd()
         ad?.loadAd()
-        //ad?.fullScreenContentDelegate = proxy
-        append(.adLoaded(canShow: true))
     }
     
     override func show() {
         Task { @MainActor [weak self] in
-            guard let viewController = self?.viewController else { return }
-            self?.ad?.show(from: viewController)
+            guard let self, let viewController = self.viewController else { return }
+            self.ad?.show(from: viewController)
         }
     }
     

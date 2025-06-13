@@ -58,9 +58,9 @@ enum PrebidAdType: AdAdapterFormat, RawRepresentable, Equatable {
         switch self {
             case let .default(adFormat):
                 switch adFormat {
-                    case .interstitial: return "aeb31f8a-59d2-4d22-b90e-a6a769d4031c"
+                    case .interstitial: return "devc_banner_inter"
                     case .rewardedVideo: return "devc_banner_small"
-                    case .standardBanner: return "8cb41716-380e-4553-8368-97a8e02069d4"
+                    case .standardBanner: return "devc_banner_small"
                     default: fatalError("AdFormat \(adFormat) not supported")
                 }
         }
@@ -135,14 +135,14 @@ enum PrebidAdType: AdAdapterFormat, RawRepresentable, Equatable {
         }
     }
     
-    internal func adManager(viewController: UIViewController?, adDelegate: AdLifeCycleDelegate?) -> PrebidAdManager  {
+    internal func adManager(viewController: UIViewController?, adDelegate: AdLifeCycleDelegate?) throws(AdsCardAdapterError) -> PrebidAdManager  {
         switch self {
             case let .default(innerType):
                 switch innerType {
                     case .interstitial: return PrebidInterstitialAdManager(adType: self, viewController: viewController, adDelegate: adDelegate)
 //                    case .rewardedVideo: return AdMobRewardedManager(adType: self, viewController: viewController, adDelegate: adDelegate)
 //                    case .standardBanner: return AdMobBannerManager(adType: self, viewController: viewController, adDelegate: adDelegate)
-                    default: fatalError()
+                    default: throw .noSuitableAdapterAvailable
                 }
         }
     }

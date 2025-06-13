@@ -136,22 +136,34 @@ Environment: \(environment)
                      .maxHeaderBidding(.interstitial),
                      .dtFairBidHeaderBidding(.interstitial),
                      .unityLevelPlayHeaderBidding(.interstitial):
-                    return try InterstitialAdManager.decode(from: container)
+                    var manager = try InterstitialAdManager.decode(from: container)
+                    manager.adDelegate = adDelegate
+                    manager.viewController = viewController
+                    return manager
                     
                 case .rewarded,
                      .maxHeaderBidding(.rewarded),
                      .dtFairBidHeaderBidding(.rewarded),
                      .unityLevelPlayHeaderBidding(.rewarded):
-                    return try RewardedAdManager.decode(from: container)
+                    var manager = try RewardedAdManager.decode(from: container)
+                    manager.adDelegate = adDelegate
+                    manager.viewController = viewController
+                    return manager
                     
                 case .thumbnail:
-                    return try ThumbnailAdManager.decode(from: container)
+                    var manager = try ThumbnailAdManager.decode(from: container)
+                    manager.adDelegate = adDelegate
+                    manager.viewController = viewController
+                    return manager
                     
                 case .standardBanner,
                      .maxHeaderBidding(.standardBanner),
                      .dtFairBidHeaderBidding(.standardBanner),
                      .unityLevelPlayHeaderBidding(.standardBanner):
-                    return try BannerAdManager.decode(from: container)
+                    var manager = try BannerAdManager.decode(from: container)
+                    manager.adDelegate = adDelegate
+                    manager.viewController = viewController
+                    return manager
                     
                 default: throw AdsCardAdapterError.noSuitableAdapterAvailable
             }
