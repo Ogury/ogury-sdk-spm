@@ -58,16 +58,15 @@ enum PrebidAdType: AdAdapterFormat, RawRepresentable, Equatable {
         switch self {
             case let .default(adFormat):
                 switch adFormat {
-                    case .interstitial: return "devc_banner_inter"
-                    case .rewardedVideo: return "devc_banner_small"
-                    case .standardBanner: return "devc_banner_small"
+                    case .interstitial: return "devc_banner_inter_campaign_34703"
+                    case .standardBanner: return "devc_banner_small_campaign_31189"
                     default: fatalError("AdFormat \(adFormat) not supported")
                 }
         }
     }
     
     var tags: [any AdTag] {
-        [PrebidTag.prebid, OguryAdTag.waterfall]
+        [PrebidTag.prebid, OguryAdTag.headerBidding]
     }
     
     var displayName: String {
@@ -87,9 +86,8 @@ enum PrebidAdType: AdAdapterFormat, RawRepresentable, Equatable {
             case let .default(adFormat):
                 switch adFormat {
                     case .interstitial: return 0
-                    case .rewardedVideo: return 1
-                    case .standardBanner: return 2
-                    case .thumbnail: fatalError("No thumbnail on AppLovin")
+                    case .standardBanner: return 1
+                    case .thumbnail, .rewardedVideo: fatalError("No thumbnail on AppLovin")
                     @unknown default: fatalError("unknown adFormat \(adFormat)")
                 }
         }
@@ -102,22 +100,20 @@ enum PrebidAdType: AdAdapterFormat, RawRepresentable, Equatable {
     public init?(rawValue: Int, fileVersion: FileVersion) {
         let targetValue = PrebidAdType.migrate(fromRawValue: rawValue, fileVersion: fileVersion)
         switch targetValue {
-            case 200: self = .`default`(.interstitial)
-            case 201: self = .`default`(.rewardedVideo)
-            case 202: self = .`default`(.standardBanner)
+            case 0: self = .`default`(.interstitial)
+            case 1: self = .`default`(.standardBanner)
             default: return nil
         }
     }
     
     private static func migrate(fromRawValue rawValue: Int, fileVersion: FileVersion) -> Int {
         switch (fileVersion, AdCardContainer.currentVersion) {
-            case (.preVersion, .one) where rawValue == 203: return 202
+            case (.preVersion, .one) where rawValue == 2: return 1
             default: return rawValue
         }
     }
     
-    private static let prefix = 200
-    var rawValue: Int { PrebidAdType.prefix + self.sortOrder }
+    var rawValue: Int { self.sortOrder }
     
     static func < (lhs: Self, rhs: Self) -> Bool { lhs.rawValue < rhs.rawValue }
     
@@ -127,9 +123,7 @@ enum PrebidAdType: AdAdapterFormat, RawRepresentable, Equatable {
             case let .default(adFormat):
                 switch adFormat {
                     case .interstitial: return Image(systemName: "iphone").symbolRenderingMode(.monochrome)
-                    case .rewardedVideo: return Image(systemName: "iphone.gen3.badge.play")
                     case .standardBanner: return Image(systemName: "platter.filled.bottom.iphone")
-                    case .thumbnail: return Image(systemName: "rectangle.portrait.bottomright.inset.filled")
                     @unknown default: fatalError("unknown adFormat \(adFormat)")
                 }
         }
@@ -140,8 +134,7 @@ enum PrebidAdType: AdAdapterFormat, RawRepresentable, Equatable {
             case let .default(innerType):
                 switch innerType {
                     case .interstitial: return PrebidInterstitialAdManager(adType: self, viewController: viewController, adDelegate: adDelegate)
-//                    case .rewardedVideo: return AdMobRewardedManager(adType: self, viewController: viewController, adDelegate: adDelegate)
-//                    case .standardBanner: return AdMobBannerManager(adType: self, viewController: viewController, adDelegate: adDelegate)
+                    case .standardBanner: return PrebidBannerAdManager(adType: self, viewController: viewController, adDelegate: adDelegate)
                     default: throw .noSuitableAdapterAvailable
                 }
         }
@@ -245,7 +238,29 @@ class PrebidAdManager: NSObject, AdManager {
     }
 }
 
-class AdMobDelegateProxy: NSObject, InterstitialAdUnitDelegate {
+class AdMobDelegateProxy: NSObject, InterstitialAdUnitDelegate, BannerViewDelegate {
+    func bannerViewPresentationController() -> UIViewController? {
+        nil
+    }
+    func bannerView(_ bannerView: BannerView, didReceiveAdWithAdSize adSize: CGSize) {
+        guard let adManager else { return }
+        adManager.append(.adLoaded(canShow: true))
+    }
+    func bannerViewDidDismissModal(_ bannerView: BannerView) {
+        guard let adManager else { return }
+        adManager.append(.adClosed)
+    }
+    func bannerViewWillPresentModal(_ bannerView: BannerView) {
+        //n/a
+    }
+    func bannerViewWillLeaveApplication(_ bannerView: BannerView) {
+        //n/a
+    }
+    func bannerView(_ bannerView: BannerView, didFailToReceiveAdWith error: any Error) {
+        guard let adManager else { return }
+        adManager.append(.adDidFail(error))
+    }
+    
     var adManager: PrebidAdManager?
     
     func interstitialDidClickAd(_ interstitial: InterstitialRenderingAdUnit) {

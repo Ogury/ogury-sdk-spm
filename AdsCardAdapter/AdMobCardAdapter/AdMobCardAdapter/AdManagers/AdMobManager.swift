@@ -102,22 +102,21 @@ enum AdMobAdType: AdAdapterFormat, RawRepresentable, Equatable {
     public init?(rawValue: Int, fileVersion: FileVersion) {
         let targetValue = Self.migrate(fromRawValue: rawValue, fileVersion: fileVersion)
         switch targetValue {
-            case 200: self = .`default`(.interstitial)
-            case 201: self = .`default`(.rewardedVideo)
-            case 202: self = .`default`(.standardBanner)
+            case 0: self = .`default`(.interstitial)
+            case 1: self = .`default`(.rewardedVideo)
+            case 2: self = .`default`(.standardBanner)
             default: return nil
         }
     }
     
     private static func migrate(fromRawValue rawValue: Int, fileVersion: FileVersion) -> Int {
         switch (fileVersion, AdCardContainer.currentVersion) {
-            case (.preVersion, .one) where rawValue == 203: return 202
+            case (.preVersion, .one) where rawValue == 3: return 2
             default: return rawValue
         }
     }
     
-    private static let prefix = 200
-    var rawValue: Int { AdMobAdType.prefix + self.sortOrder }
+    var rawValue: Int { self.sortOrder }
     
     static func < (lhs: Self, rhs: Self) -> Bool { lhs.rawValue < rhs.rawValue }
     

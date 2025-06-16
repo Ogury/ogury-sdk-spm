@@ -16,7 +16,8 @@ public struct PrebidAdsCardAdapter: AdsCardAdaptable {
     public init() {}
     public var availableAdFormats: [AdAdapterFormatSection] = [
         .init(title: "Prebid", formats: [
-            PrebidAdType.default(.interstitial)
+            PrebidAdType.default(.interstitial),
+            PrebidAdType.default(.standardBanner)
         ])
     ]
     public var sdkVersions: String = {
@@ -63,6 +64,12 @@ OguryCore: \(OGCInternal.shared().getVersion())
                     manager.viewController = viewController
                     return manager
                     
+                case .default(.standardBanner):
+                    var manager = try PrebidBannerAdManager.decode(from: container)
+                    manager.adDelegate = adDelegate
+                    manager.viewController = viewController
+                    return manager
+                    
 //                case .default(.rewardedVideo):
 //                    return try ULPRewardedAdManager.decode(from: container)
 //                    
@@ -78,7 +85,6 @@ OguryCore: \(OGCInternal.shared().getVersion())
     
     public func startSdk() async {
         Prebid.shared.prebidServerAccountId = "0689a263-318d-448b-a3d4-b02e8a709d9d"
-        Prebid.shared.auctionSettingsId = "devc_banner_test"
         Targeting.shared.setGlobalORTBConfig("{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"ogury-id-123\"}}}}")
         try? await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             do {

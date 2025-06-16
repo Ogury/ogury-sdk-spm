@@ -680,12 +680,12 @@
 				<string>shareImageData</string>
 			</array>
 			<key>UTTypeIdentifier</key>
-			<string>co.ogury.sdk.ads.ulp.exportedSet</string>
+			<string>co.ogury.sdk.ads.prebid.exportedSet</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
-					<string>ogau</string>
+					<string>ogapb</string>
 				</array>
 			</dict>
 		</dict>
@@ -703,12 +703,12 @@
 			<key>UTTypeIconFiles</key>
 			<array/>
 			<key>UTTypeIdentifier</key>
-			<string>co.ogury.sdk.ads.ulp.exportedSet</string>
+			<string>co.ogury.sdk.ads.prebid.exportedSet</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
-					<string>ogau</string>
+					<string>ogapb</string>
 				</array>
 			</dict>
 		</dict>

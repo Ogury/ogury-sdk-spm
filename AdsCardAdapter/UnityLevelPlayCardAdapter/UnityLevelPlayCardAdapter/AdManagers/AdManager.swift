@@ -129,25 +129,24 @@ enum AdType: AdAdapterFormat, RawRepresentable, Equatable {
     public init?(rawValue: Int, fileVersion: FileVersion) {
         let targetValue = Self.migrate(fromRawValue: rawValue, fileVersion: fileVersion)
         switch targetValue {
-            case 300: self = .headerBidding(.interstitial)
-            case 301: self = .headerBidding(.rewardedVideo)
-            case 302: self = .headerBidding(.standardBanner)
-            case 310: self = .waterfall(.interstitial)
-            case 311: self = .waterfall(.rewardedVideo)
-            case 312: self = .waterfall(.standardBanner)
+            case 0: self = .headerBidding(.interstitial)
+            case 1: self = .headerBidding(.rewardedVideo)
+            case 2: self = .headerBidding(.standardBanner)
+            case 10: self = .waterfall(.interstitial)
+            case 11: self = .waterfall(.rewardedVideo)
+            case 12: self = .waterfall(.standardBanner)
             default: return nil
         }
     }
     
     private static func migrate(fromRawValue rawValue: Int, fileVersion: FileVersion) -> Int {
         switch (fileVersion, AdCardContainer.currentVersion) {
-            case (.preVersion, .one) where [303, 313].contains(rawValue): return rawValue - 1
+            case (.preVersion, .one) where [3, 13].contains(rawValue): return rawValue - 1
             default: return rawValue
         }
     }
     
-    private static let prefix = 300
-    var rawValue: Int { AdType.prefix + self.sortOrder }
+    var rawValue: Int { self.sortOrder }
     
     static func < (lhs: AdType, rhs: AdType) -> Bool {
         lhs.rawValue < rhs.rawValue

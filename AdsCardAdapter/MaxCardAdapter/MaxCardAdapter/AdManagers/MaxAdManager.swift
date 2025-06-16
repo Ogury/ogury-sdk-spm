@@ -69,22 +69,21 @@ enum MaxAdType: AdAdapterFormat, RawRepresentable, Equatable {
     public init?(rawValue: Int, fileVersion: FileVersion) {
         let targetValue = Self.migrate(fromRawValue: rawValue, fileVersion: fileVersion)
         switch targetValue {
-            case 100: self = .`default`(.interstitial)
-            case 101: self = .`default`(.rewardedVideo)
-            case 102: self = .`default`(.standardBanner)
+            case 0: self = .`default`(.interstitial)
+            case 1: self = .`default`(.rewardedVideo)
+            case 2: self = .`default`(.standardBanner)
             default: return nil
         }
     }
     
     private static func migrate(fromRawValue rawValue: Int, fileVersion: FileVersion) -> Int {
         switch (fileVersion, AdCardContainer.currentVersion) {
-            case (.preVersion, .one) where rawValue == 103: return 102
+            case (.preVersion, .one) where rawValue == 3: return 2
             default: return rawValue
         }
     }
     
-    private static let maxPrefix = 100
-    var rawValue: Int { MaxAdType.maxPrefix + self.sortOrder }
+    var rawValue: Int { self.sortOrder }
     
     static func < (lhs: Self, rhs: Self) -> Bool { lhs.rawValue < rhs.rawValue }
     
