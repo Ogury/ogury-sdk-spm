@@ -16,7 +16,7 @@ struct SdkLauncher: SdkLaunchable {
     lazy var logger: TestAppLogController = { TestAppLogController.shared }()
     
     private init() {
-        self.adapter = PrebidAdsCardAdapter()
+        self.adapter = PrebidAdsCardAdapter(assetKey: Self.assetKey)
     }
     
     func launch() async { await startAds() }

@@ -48,6 +48,24 @@ class PrebidBannerAdManager: PrebidAdManager {
                                 configID: adConfiguration.adUnitId,
                                 adSize: CGSize(width: 30, height: 30))
                 ad?.delegate = proxy
+                
+                if let campaignId {
+                    let globalValue =
+"""
+{
+    "imp": {
+        "ogury": {
+            "ext": {
+                "adUnitId": "\(adConfiguration.adUnitId)",
+                "assetKey": "\(PrebidAdsCardAdapter.assetKey)",
+                "testcampaignid": "\(campaignId)"
+            }
+        }
+    }
+}
+"""
+                    ad?.setImpORTBConfig(globalValue)
+                }
                 continuation.resume()
             }
         }

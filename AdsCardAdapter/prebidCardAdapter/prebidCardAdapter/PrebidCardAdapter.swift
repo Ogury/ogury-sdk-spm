@@ -13,7 +13,10 @@ import OguryCore
 import PrebidMobile
 
 public struct PrebidAdsCardAdapter: AdsCardAdaptable {
-    public init() {}
+    static var assetKey: String = ""
+    public init(assetKey: String) {
+        PrebidAdsCardAdapter.assetKey = assetKey
+    }
     public var availableAdFormats: [AdAdapterFormatSection] = [
         .init(title: "Prebid", formats: [
             PrebidAdType.default(.interstitial),
