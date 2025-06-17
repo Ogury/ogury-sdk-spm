@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		43352C2F2DFAFF500082026C /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43352C2E2DFAFF500082026C /* AdsCardAdapter.framework */; };
 		43352C302DFAFF500082026C /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43352C2E2DFAFF500082026C /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		433530232E012D250082026C /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433530222E012D250082026C /* OguryCore.framework */; };
+		433530242E012D250082026C /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 433530222E012D250082026C /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4A428A1768225F83969B88E3 /* Pods_PrebidCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF6307FCD7FA042F645AB53 /* Pods_PrebidCardAdapter.framework */; };
 /* End PBXBuildFile section */
 
@@ -19,6 +21,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				433530242E012D250082026C /* OguryCore.framework in Embed Frameworks */,
 				43352C302DFAFF500082026C /* AdsCardAdapter.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -30,6 +33,7 @@
 		3BF6307FCD7FA042F645AB53 /* Pods_PrebidCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PrebidCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43352C1B2DFAFF460082026C /* PrebidCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrebidCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43352C2E2DFAFF500082026C /* AdsCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		433530222E012D250082026C /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76049BE8EC7F294D888DB29D /* Pods-PrebidCardAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrebidCardAdapter.release.xcconfig"; path = "Target Support Files/Pods-PrebidCardAdapter/Pods-PrebidCardAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		F8DBB209BC6B3820863A8C79 /* Pods-PrebidCardAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrebidCardAdapter.debug.xcconfig"; path = "Target Support Files/Pods-PrebidCardAdapter/Pods-PrebidCardAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -49,6 +53,7 @@
 			files = (
 				43352C2F2DFAFF500082026C /* AdsCardAdapter.framework in Frameworks */,
 				4A428A1768225F83969B88E3 /* Pods_PrebidCardAdapter.framework in Frameworks */,
+				433530232E012D250082026C /* OguryCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +81,7 @@
 		43352C2D2DFAFF500082026C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				433530222E012D250082026C /* OguryCore.framework */,
 				43352C2E2DFAFF500082026C /* AdsCardAdapter.framework */,
 				3BF6307FCD7FA042F645AB53 /* Pods_PrebidCardAdapter.framework */,
 			);

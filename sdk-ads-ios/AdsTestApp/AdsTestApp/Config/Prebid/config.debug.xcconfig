@@ -2,5 +2,5 @@
 ASSET_KEY = OGY-C2896793E224
 DEFAULT_ENV = PROD
 PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.prebid.devc
-BUILD_NUMBER = build:1749715874
-VERSION = 1.0.0+ogury-dev.4.1.0-unity.8.9.0.0
+VERSION = 1.0.0+ogury.4.1.0.prebid.3.0.2
+BUILD_NUMBER = build:1750144506
