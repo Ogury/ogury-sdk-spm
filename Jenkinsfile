@@ -62,7 +62,6 @@ pipeline {
         
                     // Run the Fastlane build with artifactory set based on the tag
                     sh """#!/bin/zsh -l
-                    source ~/.zshrc
                     bundle exec fastlane build environment:'prod' artifactory:${isArtifactory} targetThreshold:${targetThreshold}
                     """
                 }
