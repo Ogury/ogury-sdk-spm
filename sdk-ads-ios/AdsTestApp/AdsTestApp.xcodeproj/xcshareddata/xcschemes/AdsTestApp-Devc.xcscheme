@@ -11,6 +11,22 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
+               scriptText = "&quot;${SRCROOT}/../../scripts/updateDerivedData.sh&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "438ED4122AA5D0C200486AF2"
+                     BuildableName = "AdsTestApp-Devc.app"
+                     BlueprintName = "AdsTestApp-Devc"
+                     ReferencedContainer = "container:AdsTestApp.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
                scriptText = "&quot;${SRCROOT}/../../scripts/update_version.sh&quot; \&#10;  --config-folder &quot;AdsTestApp/Config/Ogury/Devc&quot; \&#10;  --local-xcconfig &quot;${PROJECT_DIR}/../../sdk-wrapper-ios/OguryWrapper/Configurations/Configuration.xcconfig&quot; \&#10;  --ogury-mode local \&#10;  --ogury-framework-name &quot;OgurySdk-Prod&quot; \&#10;  --ogury-version-label &quot;ogury&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
