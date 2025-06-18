@@ -58,7 +58,7 @@ pipeline {
                     // Run the first shell script (setting up environment)
                     sh """#!/bin/zsh -l
                     source ~/.zshrc
-                    rvm --default use 2.7.7
+                    rvm --default use 3.3.1
                     """
         
                     // Run the Fastlane build with artifactory set based on the tag
