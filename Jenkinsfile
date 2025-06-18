@@ -1,5 +1,3 @@
-  
-
 pipeline {
     agent {
         label 'macM2-worker'
@@ -9,7 +7,7 @@ pipeline {
         GIT_TOKEN = credentials('GIT_TOKEN')
         GIT_USERNAME = "weareogury"
         LC_ALL = 'en_US.UTF-8'
-        PATH = "/usr/local/bin:~/.rvm/gems/ruby-2.7.7/wrappers:$PATH"
+        PATH = "$HOME/.rvm/bin:$PATH" // ensure RVM is found
         RBENV_SHELL = 'zsh'
         SONAR_CLOUD_TOKEN = credentials('SONAR_CLOUD_TOKEN')
         ARTIFACTORY_TOKEN = credentials('ARTIFACTORY_TOKEN')
@@ -27,6 +25,7 @@ pipeline {
         }
 
         stage('Build') {
+            
             when {
                 beforeAgent true
                 anyOf {
@@ -58,13 +57,11 @@ pipeline {
         
                     // Run the first shell script (setting up environment)
                     sh """#!/bin/zsh -l
-                    source ~/.zshrc
-                    rvm --default use 2.7.7
+                    rvm --default use 3.3.1
                     """
         
                     // Run the Fastlane build with artifactory set based on the tag
                     sh """#!/bin/zsh -l
-                    source ~/.zshrc
                     bundle exec fastlane build environment:'prod' artifactory:${isArtifactory} targetThreshold:${targetThreshold}
                     """
                 }

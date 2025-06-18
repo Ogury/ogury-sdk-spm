@@ -11,18 +11,13 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _density = @([OGAScreen screenDensity]);
         CGSize screenSize = UIScreen.mainScreen.bounds.size;
         _height = @(screenSize.height);
         _width = @(screenSize.width);
+        _density = @(UIScreen.mainScreen.scale);
     }
 
     return self;
-}
-
-+ (double)screenDensity {
-    double multiplier = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ? 132 : 163;
-    return UIScreen.mainScreen.nativeScale * multiplier;
 }
 
 - (NSDictionary *)mapped {
