@@ -48,24 +48,6 @@ class PrebidBannerAdManager: PrebidAdManager {
                                 configID: adConfiguration.adUnitId,
                                 adSize: CGSize(width: 30, height: 30))
                 ad?.delegate = proxy
-                
-                if let campaignId {
-                    let globalValue =
-"""
-{
-    "imp": {
-        "ogury": {
-            "ext": {
-                "adUnitId": "\(adConfiguration.adUnitId)",
-                "assetKey": "\(PrebidAdsCardAdapter.assetKey)",
-                "testcampaignid": "\(campaignId)"
-            }
-        }
-    }
-}
-"""
-                    ad?.setImpORTBConfig(globalValue)
-                }
                 continuation.resume()
             }
         }
@@ -78,7 +60,11 @@ class PrebidBannerAdManager: PrebidAdManager {
     override func load() async {
         await super.load()
         await instanciateAd()
-        await ad?.loadAd()
+        guard let ad else { return }
+        if let str = ortbValue() {
+            await ad.setImpORTBConfig(str)
+        }
+        await ad.loadAd()
     }
     
     override func show() {

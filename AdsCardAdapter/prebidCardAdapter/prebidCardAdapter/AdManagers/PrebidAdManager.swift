@@ -236,6 +236,68 @@ class PrebidAdManager: NSObject, AdManager {
         super.init()
         proxy.adManager = self
     }
+    
+    func ortbValue() -> String? {
+        let ortb = ORTB(adUnitId: adConfiguration.adUnitId,
+                        assetKey: PrebidAdsCardAdapter.assetKey,
+                        testcampaignid: campaignId,
+                        testcreativeid: creativeId)
+        if let json = try? JSONEncoder().encode(ortb),
+           let str = String(data: json, encoding: .utf8) {
+            return str
+        }
+        return nil
+    }
+}
+
+internal struct ORTB: Codable {
+    var ext: Ext
+    internal struct Ext: Codable {
+        var ogury: Ogury
+        internal struct Ogury: Codable {
+            var adUnitId: String
+            var assetKey: String
+            var testcampaignid: String?
+            var testcreativeid: String?
+            init(adUnitId: String,
+                 assetKey: String,
+                 testcampaignid: String? = nil,
+                 testcreativeid: String? = nil) {
+                self.adUnitId = adUnitId
+                self.assetKey = assetKey
+                self.testcampaignid = testcampaignid
+                self.testcreativeid = testcreativeid
+            }
+            mutating
+            func updade(testcampaignid: String? = nil,
+                        testcreativeid: String? = nil) {
+                self.testcampaignid = testcampaignid
+                self.testcreativeid = testcreativeid
+            }
+        }
+        init(adUnitId: String,
+             assetKey: String,
+             testcampaignid: String? = nil,
+             testcreativeid: String? = nil) {
+            self.ogury = .init(adUnitId: adUnitId, assetKey: assetKey, testcampaignid: testcampaignid, testcreativeid: testcreativeid)
+        }
+        mutating
+        func updade(testcampaignid: String? = nil,
+                    testcreativeid: String? = nil) {
+            self.ogury.updade(testcampaignid: testcampaignid, testcreativeid: testcreativeid)
+        }
+    }
+    init(adUnitId: String,
+         assetKey: String,
+         testcampaignid: String? = nil,
+         testcreativeid: String? = nil) {
+        self.ext = .init(adUnitId: adUnitId, assetKey: assetKey, testcampaignid: testcampaignid, testcreativeid: testcreativeid)
+    }
+    mutating
+    func updade(testcampaignid: String? = nil,
+                testcreativeid: String? = nil) {
+        self.ext.updade(testcampaignid: testcampaignid, testcreativeid: testcreativeid)
+    }
 }
 
 class AdMobDelegateProxy: NSObject, InterstitialAdUnitDelegate, BannerViewDelegate {

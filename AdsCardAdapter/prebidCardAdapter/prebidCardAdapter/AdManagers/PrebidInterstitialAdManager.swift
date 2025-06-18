@@ -15,23 +15,6 @@ class PrebidInterstitialAdManager: PrebidAdManager {
     override func instanciateAd() async {
         ad = InterstitialRenderingAdUnit(configID: adConfiguration.adUnitId, minSizePercentage: CGSize(width: 30, height: 30))
         ad?.delegate = proxy
-        if let campaignId {
-            let globalValue =
-"""
-{
-    "imp": {
-        "ogury": {
-            "ext": {
-                "adUnitId": "\(adConfiguration.adUnitId)",
-                "assetKey": "\(PrebidAdsCardAdapter.assetKey)",
-                "testcampaignid": "\(campaignId)"
-            }
-        }
-    }
-}
-"""
-            ad?.setImpORTBConfig(globalValue)
-        }
     }
     
     override func resetAd() {
@@ -41,7 +24,11 @@ class PrebidInterstitialAdManager: PrebidAdManager {
     override func load() async {
         await super.load()
         await instanciateAd()
-        ad?.loadAd()
+        guard let ad else { return }
+        if let str = ortbValue() {
+            ad.setImpORTBConfig(str)
+        }
+        ad.loadAd()
     }
     
     override func show() {
