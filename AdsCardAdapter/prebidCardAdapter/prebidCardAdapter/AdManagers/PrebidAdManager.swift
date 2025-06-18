@@ -58,8 +58,8 @@ enum PrebidAdType: AdAdapterFormat, RawRepresentable, Equatable {
         switch self {
             case let .default(adFormat):
                 switch adFormat {
-                    case .interstitial: return "devc_banner_inter_campaign_34703"
-                    case .standardBanner: return "devc_banner_small_campaign_31189"
+                    case .interstitial: return "devc_banner_inter"
+                    case .standardBanner: return "devc_banner_small"
                     default: fatalError("AdFormat \(adFormat) not supported")
                 }
         }
@@ -238,9 +238,7 @@ class PrebidAdManager: NSObject, AdManager {
     }
     
     func ortbValue() -> String? {
-        let ortb = ORTB(adUnitId: adConfiguration.adUnitId,
-                        assetKey: PrebidAdsCardAdapter.assetKey,
-                        testcampaignid: campaignId,
+        let ortb = ORTB(testcampaignid: campaignId,
                         testcreativeid: creativeId)
         if let json = try? JSONEncoder().encode(ortb),
            let str = String(data: json, encoding: .utf8) {
@@ -255,16 +253,10 @@ internal struct ORTB: Codable {
     internal struct Ext: Codable {
         var ogury: Ogury
         internal struct Ogury: Codable {
-            var adUnitId: String
-            var assetKey: String
             var testcampaignid: String?
             var testcreativeid: String?
-            init(adUnitId: String,
-                 assetKey: String,
-                 testcampaignid: String? = nil,
+            init(testcampaignid: String? = nil,
                  testcreativeid: String? = nil) {
-                self.adUnitId = adUnitId
-                self.assetKey = assetKey
                 self.testcampaignid = testcampaignid
                 self.testcreativeid = testcreativeid
             }
@@ -275,11 +267,9 @@ internal struct ORTB: Codable {
                 self.testcreativeid = testcreativeid
             }
         }
-        init(adUnitId: String,
-             assetKey: String,
-             testcampaignid: String? = nil,
+        init(testcampaignid: String? = nil,
              testcreativeid: String? = nil) {
-            self.ogury = .init(adUnitId: adUnitId, assetKey: assetKey, testcampaignid: testcampaignid, testcreativeid: testcreativeid)
+            self.ogury = .init(testcampaignid: testcampaignid, testcreativeid: testcreativeid)
         }
         mutating
         func updade(testcampaignid: String? = nil,
@@ -287,11 +277,9 @@ internal struct ORTB: Codable {
             self.ogury.updade(testcampaignid: testcampaignid, testcreativeid: testcreativeid)
         }
     }
-    init(adUnitId: String,
-         assetKey: String,
-         testcampaignid: String? = nil,
+    init(testcampaignid: String? = nil,
          testcreativeid: String? = nil) {
-        self.ext = .init(adUnitId: adUnitId, assetKey: assetKey, testcampaignid: testcampaignid, testcreativeid: testcreativeid)
+        self.ext = .init(testcampaignid: testcampaignid, testcreativeid: testcreativeid)
     }
     mutating
     func updade(testcampaignid: String? = nil,
