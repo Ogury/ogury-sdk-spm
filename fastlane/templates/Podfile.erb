@@ -22,7 +22,6 @@ target 'LegacyTestApp' do
   pod "SnapKit"
 end
 
-#Ads
 target "OguryCoreTests" do
   project "sdk-core-ios/OguryCore"
   pod "OCMock", :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
@@ -55,7 +54,7 @@ end
 target "AdMobCardAdapter" do
   project "AdsCardAdapter/AdMobCardAdapter/AdMobCardAdapter"
   pod 'Google-Mobile-Ads-SDK'
-  pod 'OguryMediationGoogleMobileAds-Prod', '5.1.0.0-rc-1.0.3'
+  pod 'OguryMediationGoogleMobileAds'
 end
 
 #UnityLevelPlayCardAdapter
@@ -63,12 +62,6 @@ target "UnityLevelPlayCardAdapter" do
   project "AdsCardAdapter/UnityLevelPlayCardAdapter/UnityLevelPlayCardAdapter"
   pod 'IronSourceSDK'
   pod 'IronSourceOguryAdapter'
-end
-
-#PrebidCardAdapter
-target "PrebidCardAdapter" do
-  project "AdsCardAdapter/PrebidCardAdapter/PrebidCardAdapter"
-  pod 'PrebidMobile'
 end
 
 #Ads Test Apps
@@ -98,20 +91,13 @@ target "AdMobTestApp" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod 'InMobiCMP', '2.0.1'
   pod 'Google-Mobile-Ads-SDK'
-  pod 'OguryMediationGoogleMobileAds-Prod', '5.1.0.0-rc-1.0.3'
+  pod 'OguryMediationGoogleMobileAds'
 end
 target "UnityLevelPlayTestApp" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod 'InMobiCMP', '2.0.1'
   pod 'Google-Mobile-Ads-SDK'
 end
-target "PrebidTestApp" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod 'InMobiCMP', '2.0.1'
-  pod 'Google-Mobile-Ads-SDK'
-  pod 'PrebidMobile'
-end
- 
 
 target "AdsTestApp-Devc-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"

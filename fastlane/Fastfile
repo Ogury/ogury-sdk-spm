@@ -49,14 +49,6 @@ platform :ios do
           artifactory: artifactory,
           killModeEnabled: killModeEnabled
           )
-
-        if !artifactory
-          build_card_library(
-            configuration: configuration,
-            sdk: sdk,
-            artifactory: artifactory
-            )
-        end
       end
 
       if targetThreshold == "sdk"
@@ -314,23 +306,6 @@ lane :test do |options|
   end
 
   desc "Proceed to deploy a new version of a framewok passed as parameter for the specified environment"
-  lane :deploy_adsLibrary_framework do |options|
-    if !options[:environment]
-      raise "No environment specified!".red
-    end
-
-    if !options[:tag]
-      raise "No tag specified!".red
-    end
-
-    environment = options[:environment]
-    tag = options[:tag]
-    artifactory = options[:artifactory] ? options[:artifactory] : false
-
-    deploy_framework(environment: environment, tag: tag, target: configuration.targets.adsLibrary, artifactory: artifactory)
-  end
-
-  desc "Proceed to deploy a new version of a framewok passed as parameter for the specified environment"
   lane :deploy_wrapper_framework do |options|
     if !options[:environment]
       raise "No environment specified!".red
@@ -358,7 +333,11 @@ lane :test do |options|
   lane :generate_test_app do |options|
     artifactory = options[:artifactory] ? options[:artifactory] : false
     isQa = options[:isQa] ? options[:isQa] : false
-    deploy_test_app(configuration: configuration, artifactory: artifactory, isQa: isQa)
+    killModeEnabled = options[:killModeEnabled] ? options[:killModeEnabled] : false
+    selector = options[:appSelector]
+    UI.user_error!("Missing app selector") unless selector
+
+    deploy_test_app(configuration: configuration, artifactory: artifactory, isQa: isQa, killModeEnabled: killModeEnabled, appSelector:selector)
   end
 
   desc "Proceed to deploy a new version of the framewok for the specified environment"
