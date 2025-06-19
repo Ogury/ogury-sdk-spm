@@ -108,3 +108,28 @@ Here are a few tags and their meaning regarding the options.
 - ***internal-ads-killModeEnabled-3.9.9-ci-1.0.1*** will produce a `OguryAds` SDK on artifactory only, in `prod` environment, and you can retrieve it on JFrog at `sdk-cocoapods-prod/OguryAds-Prod/OguryAds-Prod-3.9.9-ci-1.0.1.tar.gz`. It will be compiled with local dependecies and have the `KILL_MODE_ENABLED` option ON.
 - ***beta-ads-art-killModeEnabled-3.9.9-ci-1.0.2*** will produce a `OguryAds` SDK on Amazon S3 only, in `beta` environment, and you can [retrieve it on s3](https://eu-west-1.console.aws.amazon.com/s3/buckets/ogury-sdk-binaries?region=eu-west-1&bucketType=general&prefix=beta/&showversions=false) at `ogury-sdk-binaries/beta/ads-ios/3.9.9/`. It will be compiled with external dependecies (i.e. artifactory) and have the `KILL_MODE_ENABLED` option ON. Note that in `release` of `beta` environment, the CI does not care about the version set in the tag but uses the internal version declared in the `configuration.xcconfig` file for each project. It will also upload a `podspec`to [Ogury cocoapod beta repository](https://github.com/Ogury/ogury-cocoapods-repository/tree/master/)
 - ***release-wrapper-5.0.0-rc1.1.0.0*** will release the official Release SDK onto S3 (like the `beta` tag)
+
+##Test Applications
+In order to deploy test applications, here are the tags to use : 
+
+- your tag must start with `internal-testApp@`
+- it **must** be followed by the app(s) you want to deploy :
+	- `all` will deploy all test app
+	- `ogury` will deploy devc, staging and prod Ogury test application
+	- `mediation` will deploy max, adMob and unity test applications
+	- or you can deploy a single application (referenced inside the `Configuration.rb` file as follows: 
+		- `prodTestApp`
+		- `devcTestApp`
+		- `stagingTestApp`
+		- `maxTestApp`
+		- `adMobTestApp`
+		- `unityTestApp`
+		- `prebidTestApp`
+- you can specify qaMode, art mode and killMode as well 
+
+Here are some tag examples
+
+- **internal-testApp@all-1.0.0-rc1.0.0** 
+- **internal-testApp@ogury-1.0.0-rc1.0.0** 
+- **internal-testApp@testAppProd-killModeEnabled-qaMode-1.0.0-rc1.0.0** 
+ 
