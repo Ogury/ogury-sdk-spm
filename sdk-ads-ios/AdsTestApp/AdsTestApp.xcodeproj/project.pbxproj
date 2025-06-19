@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 71;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -106,6 +106,8 @@
 		43352D5B2DFC0E920082026C /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43352D7A2DFC18530082026C /* PrebidCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43352D792DFC18530082026C /* PrebidCardAdapter.framework */; };
 		43352D7B2DFC18530082026C /* PrebidCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43352D792DFC18530082026C /* PrebidCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		433530AB2E0416ED0082026C /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20C12C6A6DF800DF24AB /* OguryCore.framework */; };
+		433530AC2E0416ED0082026C /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20C12C6A6DF800DF24AB /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		433B4A8B2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
 		433B4A8C2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
 		433B4A8D2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
@@ -608,6 +610,7 @@
 			files = (
 				43352D7B2DFC18530082026C /* PrebidCardAdapter.framework in Embed Frameworks */,
 				43352D5A2DFC0E920082026C /* AdsCardLibrary.framework in Embed Frameworks */,
+				433530AC2E0416ED0082026C /* OguryCore.framework in Embed Frameworks */,
 				43352D5B2DFC0E920082026C /* AdsCardAdapter.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -1068,6 +1071,7 @@
 				43352D412DFC0E920082026C /* UserDefault in Frameworks */,
 				43352D442DFC0E920082026C /* AdsCardAdapter.framework in Frameworks */,
 				43352D482DFC0E920082026C /* AdsCardLibrary.framework in Frameworks */,
+				433530AB2E0416ED0082026C /* OguryCore.framework in Frameworks */,
 				8D72A90FC30AADF3615F43C1 /* Pods_PrebidTestApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3388,7 +3392,8 @@
 /* Begin XCBuildConfiguration section */
 		43352D5F2DFC0E920082026C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4373B49D2DCB626A00E1702F /* config.debug.xcconfig */;
+			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
+			baseConfigurationReferenceRelativePath = config.debug.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -3432,7 +3437,8 @@
 		};
 		43352D602DFC0E920082026C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4373B49E2DCB626A00E1702F /* config.release.xcconfig */;
+			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
+			baseConfigurationReferenceRelativePath = config.release.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
