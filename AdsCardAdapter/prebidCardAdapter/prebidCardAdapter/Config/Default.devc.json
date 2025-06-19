@@ -1,0 +1,13 @@
+{
+    "options": {
+        "interstitial" : {
+            "adUnitId" : "devc_banner_inter",
+            "campaignId" : "34703"
+        },
+        "standardBanner" : {
+            "adUnitId" : "devc_banner_small",
+            "campaignId" : "31189"
+        }
+    },
+    "url" : "https://prebid-server.devc.cloud.ogury.io/openrtb2/auction"
+}

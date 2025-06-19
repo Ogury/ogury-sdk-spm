@@ -1,0 +1,13 @@
+{
+    "options": {
+        "interstitial" : {
+            "adUnitId" : "prod_banner_inter",
+            "campaignId" : "34703"
+        },
+        "standardBanner" : {
+            "adUnitId" : "prod_banner_small",
+            "campaignId" : "31189"
+        }
+    },
+    "url" : "https://prebid-server.prod.cloud.ogury.io/openrtb2/auction"
+}

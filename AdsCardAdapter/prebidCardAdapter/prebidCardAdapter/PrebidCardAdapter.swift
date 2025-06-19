@@ -12,11 +12,19 @@ import OguryCore.Private
 import OguryCore
 import PrebidMobile
 
+public enum OguryEnvironement {
+    case devc, staging, prod
+}
+
 public struct PrebidAdsCardAdapter: AdsCardAdaptable {
-    static var assetKey: String = ""
-    public init(assetKey: String) {
-        PrebidAdsCardAdapter.assetKey = assetKey
+    private let environment: OguryEnvironement
+    static var configuration: Configuration!
+    
+    public init(assetKey: String, environment: OguryEnvironement) {
+        self.environment = environment
+        PrebidAdsCardAdapter.configuration = .init(from: assetKey, environment: environment)
     }
+    
     public var availableAdFormats: [AdAdapterFormatSection] = [
         .init(title: "Prebid", formats: [
             PrebidAdType.default(.interstitial),
@@ -37,12 +45,27 @@ OguryCore: \(OGCInternal.shared().getVersion())
             throw .noSuitableAdapterAvailable
         }
         let adManager = try adType.adManager(viewController: viewController, adDelegate: adDelegate)
-        adManager.adConfiguration = AdConfiguration.init(adUnitId: adType.adUnit)
+        adManager.adConfiguration = adConfiguration(for: adFormat)
         adManager.cardConfiguration = options.cardConfiguration
         adManager.cardConfiguration.oguryTestModeEnabled = false
         adManager.cardConfiguration.rtbTestModeEnabled = false
         adManager.cardConfiguration.showRtbTestMode = false
         return adManager
+    }
+    
+    private func adConfiguration(for format: any AdAdapterFormat) -> AdsCardLibrary.AdConfiguration? {
+        guard let conf = defaultOptions(for: format) else { return .init(adUnitId: "") }
+        return .init(adUnitId: conf.adUnitId,
+                     campaignId: conf.campaignId,
+                     creativeId: conf.creativeId)
+    }
+    private func defaultOptions(for adFormat: any AdAdapterFormat) -> Configuration.DefaultBaseOptions? {
+        guard let adType = adFormat as? PrebidAdType else { return nil }
+        switch adType {
+            case .default(.interstitial): return PrebidAdsCardAdapter.configuration.options.interstitial
+            case .default(.standardBanner): return PrebidAdsCardAdapter.configuration.options.standardBanner
+            default: return nil
+        }
     }
     
     public func adAdapterFormat(fromRawValue rawValue: Int,
