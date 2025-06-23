@@ -15,9 +15,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "433530F22E093A700082026C"
-                     BuildableName = "PrebidTestApp.app"
-                     BlueprintName = "PrebidTestApp"
+                     BlueprintIdentifier = "43352D122DFC0E920082026C"
+                     BuildableName = "PrebidTestApp-devc.app"
+                     BlueprintName = "PrebidTestApp-devc"
                      ReferencedContainer = "container:AdsTestApp.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -31,9 +31,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "433530F22E093A700082026C"
-                     BuildableName = "PrebidTestApp.app"
-                     BlueprintName = "PrebidTestApp"
+                     BlueprintIdentifier = "43352D122DFC0E920082026C"
+                     BuildableName = "PrebidTestApp-devc.app"
+                     BlueprintName = "PrebidTestApp-devc"
                      ReferencedContainer = "container:AdsTestApp.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -49,9 +49,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "433530F22E093A700082026C"
-               BuildableName = "PrebidTestApp.app"
-               BlueprintName = "PrebidTestApp"
+               BlueprintIdentifier = "43352D122DFC0E920082026C"
+               BuildableName = "PrebidTestApp-devc.app"
+               BlueprintName = "PrebidTestApp-devc"
                ReferencedContainer = "container:AdsTestApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -78,9 +78,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "433530F22E093A700082026C"
-            BuildableName = "PrebidTestApp.app"
-            BlueprintName = "PrebidTestApp"
+            BlueprintIdentifier = "43352D122DFC0E920082026C"
+            BuildableName = "PrebidTestApp-devc.app"
+            BlueprintName = "PrebidTestApp-devc"
             ReferencedContainer = "container:AdsTestApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -95,9 +95,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "433530F22E093A700082026C"
-            BuildableName = "PrebidTestApp.app"
-            BlueprintName = "PrebidTestApp"
+            BlueprintIdentifier = "43352D122DFC0E920082026C"
+            BuildableName = "PrebidTestApp-devc.app"
+            BlueprintName = "PrebidTestApp-devc"
             ReferencedContainer = "container:AdsTestApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -135,7 +135,7 @@ fi
 # Build final version string
 if [[ -n "$CUSTOM_VERSION" ]]; then
   echo "✨ Found CUSTOM_VERSION=$CUSTOM_VERSION"
-  VERSION_STRING="${APP_VERSION}.${CUSTOM_VERSION}"
+  VERSION_STRING="${APP_VERSION}-${CUSTOM_VERSION}"
 else
   VERSION_STRING="${APP_VERSION}"
   if [[ -n "$OGURY_LABEL" && -n "$OGURY_VERSION" ]]; then

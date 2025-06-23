@@ -16,7 +16,7 @@ struct SdkLauncher: SdkLaunchable {
     lazy var logger: TestAppLogController = { TestAppLogController.shared }()
     
     private init() {
-        self.adapter = PrebidAdsCardAdapter(assetKey: Self.assetKey, environment: .devc)
+        self.adapter = PrebidAdsCardAdapter(assetKey: Self.assetKey, environment: SdkLauncher.environment.oguryEnvironment)
     }
     
     func launch() async { await startAds() }
@@ -38,5 +38,22 @@ struct SdkLauncher: SdkLaunchable {
             return "OGY-C2896793E224"
         }
         return asset
+    }
+    
+    static private var environment: String {
+        guard let asset = Bundle.main.infoDictionary?["DefaultEnv"] as? String else {
+            return "PROD"
+        }
+        return asset
+    }
+}
+
+private extension String {
+    var oguryEnvironment: OguryEnvironement {
+        switch self {
+            case "DEVC": return .devc
+            case "STAGING": return .staging
+            default: return .prod
+        }
     }
 }

@@ -108,6 +108,104 @@
 		43352D7B2DFC18530082026C /* PrebidCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43352D792DFC18530082026C /* PrebidCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		433530AB2E0416ED0082026C /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20C12C6A6DF800DF24AB /* OguryCore.framework */; };
 		433530AC2E0416ED0082026C /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20C12C6A6DF800DF24AB /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		433530B62E093A680082026C /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
+		433530B72E093A680082026C /* AddFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84AE2AC3008C005077F5 /* AddFeature.swift */; };
+		433530B82E093A680082026C /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F849C2AC2CC54005077F5 /* AppFeature.swift */; };
+		433530B92E093A680082026C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A12AC2CD2B005077F5 /* MainView.swift */; };
+		433530BA2E093A680082026C /* ImportFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369FF2CF4CB700078EF67 /* ImportFeature.swift */; };
+		433530BB2E093A680082026C /* AdMobConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BF82D94554D00BE53A1 /* AdMobConsentManager.swift */; };
+		433530BC2E093A680082026C /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43236A002CF4CB700078EF67 /* ImportView.swift */; };
+		433530BD2E093A680082026C /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
+		433530BE2E093A680082026C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED41A2AA5D0C200486AF2 /* MainViewController.swift */; };
+		433530BF2E093A680082026C /* InmobiConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* InmobiConsentManager.swift */; };
+		433530C02E093A680082026C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED4162AA5D0C200486AF2 /* AppDelegate.swift */; };
+		433530C12E093A680082026C /* PrivacyDataFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */; };
+		433530C22E093A680082026C /* PrivacyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */; };
+		433530C32E093A680082026C /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
+		433530C42E093A680082026C /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
+		433530C52E093A680082026C /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A82AC2DF0C005077F5 /* AppSettingsView.swift */; };
+		433530C62E093A680082026C /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BFF2D9457ED00BE53A1 /* ApplicationDelegate.swift */; };
+		433530C72E093A680082026C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED4182AA5D0C200486AF2 /* SceneDelegate.swift */; };
+		433530C82E093A680082026C /* DetailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5BE6322B21F40F0010B995 /* DetailListView.swift */; };
+		433530C92E093A680082026C /* TestAppLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7552CA44BC5001086FE /* TestAppLogFormatter.swift */; };
+		433530CA2E093A680082026C /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
+		433530CB2E093A680082026C /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84AD2AC3008C005077F5 /* AddView.swift */; };
+		433530CC2E093A680082026C /* NotificationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C1D15A2B7E672C006F2D23 /* NotificationMessage.swift */; };
+		433530CD2E093A680082026C /* DetailListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF117682AF95052004BE519 /* DetailListFeature.swift */; };
+		433530CE2E093A680082026C /* LinkPresentationItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8E2B3491DC00037FE1 /* LinkPresentationItemSource.swift */; };
+		433530CF2E093A680082026C /* MainFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A22AC2CD2B005077F5 /* MainFeature.swift */; };
+		433530D02E093A680082026C /* AppSettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A92AC2DF0C005077F5 /* AppSettingsFeature.swift */; };
+		433530D12E093A680082026C /* LogOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7482CA42FF1001086FE /* LogOptionView.swift */; };
+		433530D22E093A680082026C /* LogOptionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7472CA42FF1001086FE /* LogOptionFeature.swift */; };
+		433530D32E093A680082026C /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9206212CCBE09100916482 /* LogsView.swift */; };
+		433530D42E093A680082026C /* SdkLaunchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */; };
+		433530D52E093A680082026C /* LogsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E92061A2CCBE05500916482 /* LogsFeature.swift */; };
+		433530D62E093A680082026C /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F849B2AC2CC54005077F5 /* AppView.swift */; };
+		433530D82E093A680082026C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 433530AE2E093A680082026C /* SnapKit */; };
+		433530D92E093A680082026C /* PrebidCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43352D792DFC18530082026C /* PrebidCardAdapter.framework */; };
+		433530DA2E093A680082026C /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 433530B22E093A680082026C /* SwiftMessages */; };
+		433530DB2E093A680082026C /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 433530B02E093A680082026C /* UserDefault */; };
+		433530DC2E093A680082026C /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
+		433530DD2E093A680082026C /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
+		433530DE2E093A680082026C /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20C12C6A6DF800DF24AB /* OguryCore.framework */; };
+		433530DF2E093A680082026C /* Pods_PrebidTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A255DEEAED5E406C788EDCE1 /* Pods_PrebidTestApp.framework */; };
+		433530E12E093A680082026C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
+		433530E22E093A680082026C /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
+		433530E32E093A680082026C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41F2AA5D0C300486AF2 /* Assets.xcassets */; };
+		433530E42E093A680082026C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41C2AA5D0C200486AF2 /* Main.storyboard */; };
+		433530E82E093A680082026C /* PrebidCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43352D792DFC18530082026C /* PrebidCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		433530E92E093A680082026C /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		433530EA2E093A680082026C /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20C12C6A6DF800DF24AB /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		433530EB2E093A680082026C /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		433530FB2E093A700082026C /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
+		433530FC2E093A700082026C /* AddFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84AE2AC3008C005077F5 /* AddFeature.swift */; };
+		433530FD2E093A700082026C /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F849C2AC2CC54005077F5 /* AppFeature.swift */; };
+		433530FE2E093A700082026C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A12AC2CD2B005077F5 /* MainView.swift */; };
+		433530FF2E093A700082026C /* ImportFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432369FF2CF4CB700078EF67 /* ImportFeature.swift */; };
+		433531002E093A700082026C /* AdMobConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BF82D94554D00BE53A1 /* AdMobConsentManager.swift */; };
+		433531012E093A700082026C /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43236A002CF4CB700078EF67 /* ImportView.swift */; };
+		433531022E093A700082026C /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
+		433531032E093A700082026C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED41A2AA5D0C200486AF2 /* MainViewController.swift */; };
+		433531042E093A700082026C /* InmobiConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B713E62B4D54AA007C8D21 /* InmobiConsentManager.swift */; };
+		433531052E093A700082026C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED4162AA5D0C200486AF2 /* AppDelegate.swift */; };
+		433531062E093A700082026C /* PrivacyDataFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCB2D92FF9B00BE53A1 /* PrivacyDataFeature.swift */; };
+		433531072E093A700082026C /* PrivacyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BCC2D92FF9B00BE53A1 /* PrivacyDataView.swift */; };
+		433531082E093A700082026C /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
+		433531092E093A700082026C /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE85D72B5017860010C812 /* SettingsController.swift */; };
+		4335310A2E093A700082026C /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A82AC2DF0C005077F5 /* AppSettingsView.swift */; };
+		4335310B2E093A700082026C /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B59BFF2D9457ED00BE53A1 /* ApplicationDelegate.swift */; };
+		4335310C2E093A700082026C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED4182AA5D0C200486AF2 /* SceneDelegate.swift */; };
+		4335310D2E093A700082026C /* DetailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5BE6322B21F40F0010B995 /* DetailListView.swift */; };
+		4335310E2E093A700082026C /* TestAppLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7552CA44BC5001086FE /* TestAppLogFormatter.swift */; };
+		4335310F2E093A700082026C /* TestAppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7562CA44BC5001086FE /* TestAppLogger.swift */; };
+		433531102E093A700082026C /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84AD2AC3008C005077F5 /* AddView.swift */; };
+		433531112E093A700082026C /* NotificationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C1D15A2B7E672C006F2D23 /* NotificationMessage.swift */; };
+		433531122E093A700082026C /* DetailListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF117682AF95052004BE519 /* DetailListFeature.swift */; };
+		433531132E093A700082026C /* LinkPresentationItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8E2B3491DC00037FE1 /* LinkPresentationItemSource.swift */; };
+		433531142E093A700082026C /* MainFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A22AC2CD2B005077F5 /* MainFeature.swift */; };
+		433531152E093A700082026C /* AppSettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84A92AC2DF0C005077F5 /* AppSettingsFeature.swift */; };
+		433531162E093A700082026C /* LogOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7482CA42FF1001086FE /* LogOptionView.swift */; };
+		433531172E093A700082026C /* LogOptionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F7472CA42FF1001086FE /* LogOptionFeature.swift */; };
+		433531182E093A700082026C /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9206212CCBE09100916482 /* LogsView.swift */; };
+		433531192E093A700082026C /* SdkLaunchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */; };
+		4335311A2E093A700082026C /* LogsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E92061A2CCBE05500916482 /* LogsFeature.swift */; };
+		4335311B2E093A700082026C /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F849B2AC2CC54005077F5 /* AppView.swift */; };
+		4335311D2E093A700082026C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 433530F32E093A700082026C /* SnapKit */; };
+		4335311E2E093A700082026C /* PrebidCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43352D792DFC18530082026C /* PrebidCardAdapter.framework */; };
+		4335311F2E093A700082026C /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 433530F72E093A700082026C /* SwiftMessages */; };
+		433531202E093A700082026C /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 433530F52E093A700082026C /* UserDefault */; };
+		433531212E093A700082026C /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
+		433531222E093A700082026C /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
+		433531232E093A700082026C /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20C12C6A6DF800DF24AB /* OguryCore.framework */; };
+		433531242E093A700082026C /* Pods_PrebidTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A255DEEAED5E406C788EDCE1 /* Pods_PrebidTestApp.framework */; };
+		433531262E093A700082026C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
+		433531272E093A700082026C /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
+		433531282E093A700082026C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41F2AA5D0C300486AF2 /* Assets.xcassets */; };
+		433531292E093A700082026C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41C2AA5D0C200486AF2 /* Main.storyboard */; };
+		4335312D2E093A700082026C /* PrebidCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43352D792DFC18530082026C /* PrebidCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4335312E2E093A700082026C /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4335312F2E093A700082026C /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20C12C6A6DF800DF24AB /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		433531302E093A700082026C /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		433B4A8B2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
 		433B4A8C2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
 		433B4A8D2B34259900037FE1 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
@@ -616,6 +714,34 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		433530E72E093A680082026C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				433530E82E093A680082026C /* PrebidCardAdapter.framework in Embed Frameworks */,
+				433530E92E093A680082026C /* AdsCardLibrary.framework in Embed Frameworks */,
+				433530EA2E093A680082026C /* OguryCore.framework in Embed Frameworks */,
+				433530EB2E093A680082026C /* AdsCardAdapter.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4335312C2E093A700082026C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4335312D2E093A700082026C /* PrebidCardAdapter.framework in Embed Frameworks */,
+				4335312E2E093A700082026C /* AdsCardLibrary.framework in Embed Frameworks */,
+				4335312F2E093A700082026C /* OguryCore.framework in Embed Frameworks */,
+				433531302E093A700082026C /* AdsCardAdapter.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4373B4872DCB61F300E1702F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -748,8 +874,10 @@
 		432369FF2CF4CB700078EF67 /* ImportFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportFeature.swift; sourceTree = "<group>"; };
 		43236A002CF4CB700078EF67 /* ImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportView.swift; sourceTree = "<group>"; };
 		43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraCode-Regular.ttf"; sourceTree = "<group>"; };
-		43352D612DFC0E920082026C /* PrebidTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrebidTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		43352D612DFC0E920082026C /* PrebidTestApp-devc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PrebidTestApp-devc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43352D792DFC18530082026C /* PrebidCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrebidCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		433530EF2E093A680082026C /* PrebidTestApp-staging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PrebidTestApp-staging.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		433531342E093A700082026C /* PrebidTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrebidTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsStorableContainer.swift; sourceTree = "<group>"; };
 		433B4A8E2B3491DC00037FE1 /* LinkPresentationItemSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkPresentationItemSource.swift; sourceTree = "<group>"; };
 		434F849B2AC2CC54005077F5 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
@@ -991,7 +1119,7 @@
 				shareImageData.png,
 				"UTType+Extension.swift",
 			);
-			target = 43352D122DFC0E920082026C /* PrebidTestApp */;
+			target = 43352D122DFC0E920082026C /* PrebidTestApp-devc */;
 		};
 		43352ECD2DFC1E460082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -1000,7 +1128,7 @@
 				config.debug.xcconfig,
 				config.release.xcconfig,
 			);
-			target = 43352D122DFC0E920082026C /* PrebidTestApp */;
+			target = 43352D122DFC0E920082026C /* PrebidTestApp-devc */;
 		};
 		43352F6D2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -1049,15 +1177,63 @@
 			membershipExceptions = (
 				Default.settings,
 			);
-			target = 43352D122DFC0E920082026C /* PrebidTestApp */;
+			target = 43352D122DFC0E920082026C /* PrebidTestApp-devc */;
+		};
+		433531392E093A940082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Default.settings,
+			);
+			target = 433530AD2E093A680082026C /* PrebidTestApp-staging */;
+		};
+		4335313A2E093A940082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Default.settings,
+			);
+			target = 433530F22E093A700082026C /* PrebidTestApp */;
+		};
+		433531412E093AAA0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				shareImageData.png,
+				"UTType+Extension.swift",
+			);
+			target = 433530AD2E093A680082026C /* PrebidTestApp-staging */;
+		};
+		433531422E093AAA0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				shareImageData.png,
+				"UTType+Extension.swift",
+			);
+			target = 433530F22E093A700082026C /* PrebidTestApp */;
+		};
+		433531492E093AB60082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Asset.xcassets,
+				config.debug.xcconfig,
+				config.release.xcconfig,
+			);
+			target = 433530AD2E093A680082026C /* PrebidTestApp-staging */;
+		};
+		4335314A2E093AB60082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Asset.xcassets,
+				config.debug.xcconfig,
+				config.release.xcconfig,
+			);
+			target = 433530F22E093A700082026C /* PrebidTestApp */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		43352D632DFC0F010082026C /* Prebid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (43352ECD2DFC1E460082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Prebid; sourceTree = "<group>"; };
-		43352D642DFC0F090082026C /* Prebid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (43352E2D2DFC1BBD0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E2E2DFC1BBE0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E302DFC1BC20082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Prebid; sourceTree = "<group>"; };
+		43352D632DFC0F010082026C /* Prebid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (43352ECD2DFC1E460082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 433531492E093AB60082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 4335314A2E093AB60082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Prebid; sourceTree = "<group>"; };
+		43352D642DFC0F090082026C /* Prebid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (43352E2D2DFC1BBD0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E2E2DFC1BBE0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E302DFC1BC20082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 433531412E093AAA0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 433531422E093AAA0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Prebid; sourceTree = "<group>"; };
 		43352D652DFC0F110082026C /* Prebid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (43352E242DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E252DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E262DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E272DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E282DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E292DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E2A2DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E2B2DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E2C2DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Prebid; sourceTree = "<group>"; };
-		43352D662DFC0F190082026C /* Prebid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (43352F6D2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F6E2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F6F2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F702DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F712DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F722DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F742DFC20350082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Prebid; sourceTree = "<group>"; };
+		43352D662DFC0F190082026C /* Prebid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (43352F6D2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F6E2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F6F2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F702DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F712DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F722DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F742DFC20350082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 433531392E093A940082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 4335313A2E093A940082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Prebid; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1073,6 +1249,36 @@
 				43352D482DFC0E920082026C /* AdsCardLibrary.framework in Frameworks */,
 				433530AB2E0416ED0082026C /* OguryCore.framework in Frameworks */,
 				8D72A90FC30AADF3615F43C1 /* Pods_PrebidTestApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		433530D72E093A680082026C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				433530D82E093A680082026C /* SnapKit in Frameworks */,
+				433530D92E093A680082026C /* PrebidCardAdapter.framework in Frameworks */,
+				433530DA2E093A680082026C /* SwiftMessages in Frameworks */,
+				433530DB2E093A680082026C /* UserDefault in Frameworks */,
+				433530DC2E093A680082026C /* AdsCardAdapter.framework in Frameworks */,
+				433530DD2E093A680082026C /* AdsCardLibrary.framework in Frameworks */,
+				433530DE2E093A680082026C /* OguryCore.framework in Frameworks */,
+				433530DF2E093A680082026C /* Pods_PrebidTestApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4335311C2E093A700082026C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4335311D2E093A700082026C /* SnapKit in Frameworks */,
+				4335311E2E093A700082026C /* PrebidCardAdapter.framework in Frameworks */,
+				4335311F2E093A700082026C /* SwiftMessages in Frameworks */,
+				433531202E093A700082026C /* UserDefault in Frameworks */,
+				433531212E093A700082026C /* AdsCardAdapter.framework in Frameworks */,
+				433531222E093A700082026C /* AdsCardLibrary.framework in Frameworks */,
+				433531232E093A700082026C /* OguryCore.framework in Frameworks */,
+				433531242E093A700082026C /* Pods_PrebidTestApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1444,7 +1650,9 @@
 				43EB1E562DB24675002F170A /* MaxTestApp.app */,
 				43EB26BE2DBFCC84002F170A /* AdMobTestApp.app */,
 				4373B4912DCB61F300E1702F /* UnityLevelPlayTestApp.app */,
-				43352D612DFC0E920082026C /* PrebidTestApp.app */,
+				43352D612DFC0E920082026C /* PrebidTestApp-devc.app */,
+				433530EF2E093A680082026C /* PrebidTestApp-staging.app */,
+				433531342E093A700082026C /* PrebidTestApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1775,9 +1983,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		43352D122DFC0E920082026C /* PrebidTestApp */ = {
+		43352D122DFC0E920082026C /* PrebidTestApp-devc */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43352D5E2DFC0E920082026C /* Build configuration list for PBXNativeTarget "PrebidTestApp" */;
+			buildConfigurationList = 43352D5E2DFC0E920082026C /* Build configuration list for PBXNativeTarget "PrebidTestApp-devc" */;
 			buildPhases = (
 				43352D192DFC0E920082026C /* [CP] Check Pods Manifest.lock */,
 				43352D1A2DFC0E920082026C /* Sources */,
@@ -1794,14 +2002,72 @@
 			fileSystemSynchronizedGroups = (
 				43352D652DFC0F110082026C /* Prebid */,
 			);
-			name = PrebidTestApp;
+			name = "PrebidTestApp-devc";
 			packageProductDependencies = (
 				43352D132DFC0E920082026C /* SnapKit */,
 				43352D152DFC0E920082026C /* UserDefault */,
 				43352D172DFC0E920082026C /* SwiftMessages */,
 			);
 			productName = AdsTestApp;
-			productReference = 43352D612DFC0E920082026C /* PrebidTestApp.app */;
+			productReference = 43352D612DFC0E920082026C /* PrebidTestApp-devc.app */;
+			productType = "com.apple.product-type.application";
+		};
+		433530AD2E093A680082026C /* PrebidTestApp-staging */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 433530EC2E093A680082026C /* Build configuration list for PBXNativeTarget "PrebidTestApp-staging" */;
+			buildPhases = (
+				433530B42E093A680082026C /* [CP] Check Pods Manifest.lock */,
+				433530B52E093A680082026C /* Sources */,
+				433530D72E093A680082026C /* Frameworks */,
+				433530E02E093A680082026C /* Resources */,
+				433530E52E093A680082026C /* [CP] Embed Pods Frameworks */,
+				433530E62E093A680082026C /* [CP] Copy Pods Resources */,
+				433530E72E093A680082026C /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				43352D652DFC0F110082026C /* Prebid */,
+			);
+			name = "PrebidTestApp-staging";
+			packageProductDependencies = (
+				433530AE2E093A680082026C /* SnapKit */,
+				433530B02E093A680082026C /* UserDefault */,
+				433530B22E093A680082026C /* SwiftMessages */,
+			);
+			productName = AdsTestApp;
+			productReference = 433530EF2E093A680082026C /* PrebidTestApp-staging.app */;
+			productType = "com.apple.product-type.application";
+		};
+		433530F22E093A700082026C /* PrebidTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 433531312E093A700082026C /* Build configuration list for PBXNativeTarget "PrebidTestApp" */;
+			buildPhases = (
+				433530F92E093A700082026C /* [CP] Check Pods Manifest.lock */,
+				433530FA2E093A700082026C /* Sources */,
+				4335311C2E093A700082026C /* Frameworks */,
+				433531252E093A700082026C /* Resources */,
+				4335312A2E093A700082026C /* [CP] Embed Pods Frameworks */,
+				4335312B2E093A700082026C /* [CP] Copy Pods Resources */,
+				4335312C2E093A700082026C /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				43352D652DFC0F110082026C /* Prebid */,
+			);
+			name = PrebidTestApp;
+			packageProductDependencies = (
+				433530F32E093A700082026C /* SnapKit */,
+				433530F52E093A700082026C /* UserDefault */,
+				433530F72E093A700082026C /* SwiftMessages */,
+			);
+			productName = AdsTestApp;
+			productReference = 433531342E093A700082026C /* PrebidTestApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		434F84BC2ACFE4FE005077F5 /* AdsTestApp-Staging */ = {
@@ -2131,7 +2397,9 @@
 				43EB1E0C2DB24675002F170A /* MaxTestApp */,
 				43EB26702DBFCC84002F170A /* AdMobTestApp */,
 				4373B4422DCB61F300E1702F /* UnityLevelPlayTestApp */,
-				43352D122DFC0E920082026C /* PrebidTestApp */,
+				43352D122DFC0E920082026C /* PrebidTestApp-devc */,
+				433530AD2E093A680082026C /* PrebidTestApp-staging */,
+				433530F22E093A700082026C /* PrebidTestApp */,
 			);
 		};
 /* End PBXProject section */
@@ -2145,6 +2413,28 @@
 				43352D4C2DFC0E920082026C /* FiraCode-Regular.ttf in Resources */,
 				43352D4D2DFC0E920082026C /* Assets.xcassets in Resources */,
 				43352D532DFC0E920082026C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		433530E02E093A680082026C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				433530E12E093A680082026C /* LaunchScreen.storyboard in Resources */,
+				433530E22E093A680082026C /* FiraCode-Regular.ttf in Resources */,
+				433530E32E093A680082026C /* Assets.xcassets in Resources */,
+				433530E42E093A680082026C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		433531252E093A700082026C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				433531262E093A700082026C /* LaunchScreen.storyboard in Resources */,
+				433531272E093A700082026C /* FiraCode-Regular.ttf in Resources */,
+				433531282E093A700082026C /* Assets.xcassets in Resources */,
+				433531292E093A700082026C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2372,6 +2662,134 @@
 			showEnvVarsInLog = 0;
 		};
 		43352D552DFC0E920082026C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		433530B42E093A680082026C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PrebidTestApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		433530E52E093A680082026C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		433530E62E093A680082026C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		433530F92E093A700082026C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PrebidTestApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4335312A2E093A700082026C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4335312B2E093A700082026C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2990,6 +3408,86 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		433530B52E093A680082026C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				433530B62E093A680082026C /* AdsStorableContainer.swift in Sources */,
+				433530B72E093A680082026C /* AddFeature.swift in Sources */,
+				433530B82E093A680082026C /* AppFeature.swift in Sources */,
+				433530B92E093A680082026C /* MainView.swift in Sources */,
+				433530BA2E093A680082026C /* ImportFeature.swift in Sources */,
+				433530BB2E093A680082026C /* AdMobConsentManager.swift in Sources */,
+				433530BC2E093A680082026C /* ImportView.swift in Sources */,
+				433530BD2E093A680082026C /* AddFormatsView.swift in Sources */,
+				433530BE2E093A680082026C /* MainViewController.swift in Sources */,
+				433530BF2E093A680082026C /* InmobiConsentManager.swift in Sources */,
+				433530C02E093A680082026C /* AppDelegate.swift in Sources */,
+				433530C12E093A680082026C /* PrivacyDataFeature.swift in Sources */,
+				433530C22E093A680082026C /* PrivacyDataView.swift in Sources */,
+				433530C32E093A680082026C /* TestAppLogController.swift in Sources */,
+				433530C42E093A680082026C /* SettingsController.swift in Sources */,
+				433530C52E093A680082026C /* AppSettingsView.swift in Sources */,
+				433530C62E093A680082026C /* ApplicationDelegate.swift in Sources */,
+				433530C72E093A680082026C /* SceneDelegate.swift in Sources */,
+				433530C82E093A680082026C /* DetailListView.swift in Sources */,
+				433530C92E093A680082026C /* TestAppLogFormatter.swift in Sources */,
+				433530CA2E093A680082026C /* TestAppLogger.swift in Sources */,
+				433530CB2E093A680082026C /* AddView.swift in Sources */,
+				433530CC2E093A680082026C /* NotificationMessage.swift in Sources */,
+				433530CD2E093A680082026C /* DetailListFeature.swift in Sources */,
+				433530CE2E093A680082026C /* LinkPresentationItemSource.swift in Sources */,
+				433530CF2E093A680082026C /* MainFeature.swift in Sources */,
+				433530D02E093A680082026C /* AppSettingsFeature.swift in Sources */,
+				433530D12E093A680082026C /* LogOptionView.swift in Sources */,
+				433530D22E093A680082026C /* LogOptionFeature.swift in Sources */,
+				433530D32E093A680082026C /* LogsView.swift in Sources */,
+				433530D42E093A680082026C /* SdkLaunchable.swift in Sources */,
+				433530D52E093A680082026C /* LogsFeature.swift in Sources */,
+				433530D62E093A680082026C /* AppView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		433530FA2E093A700082026C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				433530FB2E093A700082026C /* AdsStorableContainer.swift in Sources */,
+				433530FC2E093A700082026C /* AddFeature.swift in Sources */,
+				433530FD2E093A700082026C /* AppFeature.swift in Sources */,
+				433530FE2E093A700082026C /* MainView.swift in Sources */,
+				433530FF2E093A700082026C /* ImportFeature.swift in Sources */,
+				433531002E093A700082026C /* AdMobConsentManager.swift in Sources */,
+				433531012E093A700082026C /* ImportView.swift in Sources */,
+				433531022E093A700082026C /* AddFormatsView.swift in Sources */,
+				433531032E093A700082026C /* MainViewController.swift in Sources */,
+				433531042E093A700082026C /* InmobiConsentManager.swift in Sources */,
+				433531052E093A700082026C /* AppDelegate.swift in Sources */,
+				433531062E093A700082026C /* PrivacyDataFeature.swift in Sources */,
+				433531072E093A700082026C /* PrivacyDataView.swift in Sources */,
+				433531082E093A700082026C /* TestAppLogController.swift in Sources */,
+				433531092E093A700082026C /* SettingsController.swift in Sources */,
+				4335310A2E093A700082026C /* AppSettingsView.swift in Sources */,
+				4335310B2E093A700082026C /* ApplicationDelegate.swift in Sources */,
+				4335310C2E093A700082026C /* SceneDelegate.swift in Sources */,
+				4335310D2E093A700082026C /* DetailListView.swift in Sources */,
+				4335310E2E093A700082026C /* TestAppLogFormatter.swift in Sources */,
+				4335310F2E093A700082026C /* TestAppLogger.swift in Sources */,
+				433531102E093A700082026C /* AddView.swift in Sources */,
+				433531112E093A700082026C /* NotificationMessage.swift in Sources */,
+				433531122E093A700082026C /* DetailListFeature.swift in Sources */,
+				433531132E093A700082026C /* LinkPresentationItemSource.swift in Sources */,
+				433531142E093A700082026C /* MainFeature.swift in Sources */,
+				433531152E093A700082026C /* AppSettingsFeature.swift in Sources */,
+				433531162E093A700082026C /* LogOptionView.swift in Sources */,
+				433531172E093A700082026C /* LogOptionFeature.swift in Sources */,
+				433531182E093A700082026C /* LogsView.swift in Sources */,
+				433531192E093A700082026C /* SdkLaunchable.swift in Sources */,
+				4335311A2E093A700082026C /* LogsFeature.swift in Sources */,
+				4335311B2E093A700082026C /* AppView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		434F84BE2ACFE4FE005077F5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3397,15 +3895,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSET_KEY = "$(ASSET_KEY)";
+				ASSET_KEY = "OGY-C2896793E224";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
-				DEFAULT_ENV = "$(DEFAULT_ENV)";
+				DEFAULT_ENV = DEVC;
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Prebid/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Prebid;
+				INFOPLIST_KEY_CFBundleDisplayName = "Prebid - devc";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -3422,7 +3920,7 @@
 					"$(inherited)",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D FORCE_APP_CONFIG_FILE";
-				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.prebid.devc;
+				PREBID_BUNDLE_ID = co.ogury.sdk.ads.prebid.devc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDK_SOURCE = Dev;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -3442,11 +3940,144 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSET_KEY = "$(ASSET_KEY)";
+				ASSET_KEY = "OGY-C2896793E224";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
-				DEFAULT_ENV = "$(DEFAULT_ENV)";
+				DEFAULT_ENV = DEVC;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Prebid/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Prebid - devc";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "${VERSION}";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D FORCE_APP_CONFIG_FILE";
+				PREBID_BUNDLE_ID = co.ogury.sdk.ads.prebid.devc;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDK_SOURCE = Dev;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		433530ED2E093A680082026C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
+			baseConfigurationReferenceRelativePath = config.debug.xcconfig;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSET_KEY = "OGY-9CD4494C9EE6";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
+				DEFAULT_ENV = STAGING;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Prebid/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Prebid - staging";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "${VERSION}";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D FORCE_APP_CONFIG_FILE";
+				PREBID_BUNDLE_ID = co.ogury.sdk.ads.prebid.staging;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDK_SOURCE = Dev;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		433530EE2E093A680082026C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
+			baseConfigurationReferenceRelativePath = config.release.xcconfig;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSET_KEY = "OGY-9CD4494C9EE6";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
+				DEFAULT_ENV = STAGING;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Prebid/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Prebid - staging";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "${VERSION}";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D FORCE_APP_CONFIG_FILE";
+				PREBID_BUNDLE_ID = co.ogury.sdk.ads.prebid.staging;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDK_SOURCE = Dev;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		433531322E093A700082026C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
+			baseConfigurationReferenceRelativePath = config.debug.xcconfig;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSET_KEY = "OGY-17D17E352C5F";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
+				DEFAULT_ENV = PROD;
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Prebid/Info.plist";
@@ -3467,7 +4098,52 @@
 					"$(inherited)",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D FORCE_APP_CONFIG_FILE";
-				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.prebid.devc;
+				PREBID_BUNDLE_ID = co.ogury.sdk.ads.prebid;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDK_SOURCE = Dev;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		433531332E093A700082026C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
+			baseConfigurationReferenceRelativePath = config.release.xcconfig;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSET_KEY = "OGY-17D17E352C5F";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
+				DEFAULT_ENV = PROD;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/AdsTestApp/Config/Prebid/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Prebid;
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This can help us to optimize your ads experience.";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "${VERSION}";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D FORCE_APP_CONFIG_FILE";
+				PREBID_BUNDLE_ID = co.ogury.sdk.ads.prebid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDK_SOURCE = Dev;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -4389,11 +5065,29 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		43352D5E2DFC0E920082026C /* Build configuration list for PBXNativeTarget "PrebidTestApp" */ = {
+		43352D5E2DFC0E920082026C /* Build configuration list for PBXNativeTarget "PrebidTestApp-devc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43352D5F2DFC0E920082026C /* Debug */,
 				43352D602DFC0E920082026C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		433530EC2E093A680082026C /* Build configuration list for PBXNativeTarget "PrebidTestApp-staging" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				433530ED2E093A680082026C /* Debug */,
+				433530EE2E093A680082026C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		433531312E093A700082026C /* Build configuration list for PBXNativeTarget "PrebidTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				433531322E093A700082026C /* Debug */,
+				433531332E093A700082026C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4516,6 +5210,54 @@
 			};
 		};
 		43352D182DFC0E920082026C /* XCRemoteSwiftPackageReference "SwiftMessages" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftKickMobile/SwiftMessages";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+		433530AF2E093A680082026C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+		433530B12E093A680082026C /* XCRemoteSwiftPackageReference "UserDefault" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/juliand665/UserDefault";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		433530B32E093A680082026C /* XCRemoteSwiftPackageReference "SwiftMessages" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftKickMobile/SwiftMessages";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+		433530F42E093A700082026C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+		433530F62E093A700082026C /* XCRemoteSwiftPackageReference "UserDefault" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/juliand665/UserDefault";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		433530F82E093A700082026C /* XCRemoteSwiftPackageReference "SwiftMessages" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftKickMobile/SwiftMessages";
 			requirement = {
@@ -4714,6 +5456,36 @@
 		43352D172DFC0E920082026C /* SwiftMessages */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 43352D182DFC0E920082026C /* XCRemoteSwiftPackageReference "SwiftMessages" */;
+			productName = SwiftMessages;
+		};
+		433530AE2E093A680082026C /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 433530AF2E093A680082026C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		433530B02E093A680082026C /* UserDefault */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 433530B12E093A680082026C /* XCRemoteSwiftPackageReference "UserDefault" */;
+			productName = UserDefault;
+		};
+		433530B22E093A680082026C /* SwiftMessages */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 433530B32E093A680082026C /* XCRemoteSwiftPackageReference "SwiftMessages" */;
+			productName = SwiftMessages;
+		};
+		433530F32E093A700082026C /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 433530F42E093A700082026C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		433530F52E093A700082026C /* UserDefault */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 433530F62E093A700082026C /* XCRemoteSwiftPackageReference "UserDefault" */;
+			productName = UserDefault;
+		};
+		433530F72E093A700082026C /* SwiftMessages */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 433530F82E093A700082026C /* XCRemoteSwiftPackageReference "SwiftMessages" */;
 			productName = SwiftMessages;
 		};
 		4373B4432DCB61F300E1702F /* SnapKit */ = {
