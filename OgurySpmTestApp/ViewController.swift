@@ -76,6 +76,36 @@ class ViewController: UIViewController {
         }
     }
     
+    enum AdState: Equatable {
+        case idle, loading, loaded, showing, closed, error
+    }
+    var adState: AdState = .idle {
+        didSet {
+            switch adState {
+                case .idle:
+                    interLabel.text = "Interstitial ad"
+                    
+                case .loading:
+                    interLabel.text = "⏱️ Interstitial ad"
+                    errorLabel.text = ""
+                    loader.startAnimating()
+                    
+                case .loaded:
+                    interLabel.text = "✅ Interstitial ad"
+                    loader.stopAnimating()
+                    
+                case .showing:
+                    interLabel.text = "🖥️ Interstitial ad"
+                    
+                case .closed:
+                    interLabel.text = "Interstitial ad"
+                    
+                case .error:
+                    interLabel.text = "‼️ Interstitial ad"
+            }
+        }
+    }
+    
     enum SdkError: LocalizedError {
         case sdkNotStarted
         var errorDescription: String? {
@@ -89,6 +119,7 @@ class ViewController: UIViewController {
     
     @IBAction func startSdk(_ sender: Any) {
         sdkState = .starting
+        adState = .idle
         // starting OgurySdk
         Ogury.start(with: Constants.assetKey) { success, error in
             if let error {
@@ -104,15 +135,16 @@ class ViewController: UIViewController {
     }
     
     @IBAction func load(_ sender: Any) {
-        interLabel.text = "↺ Interstitial ad"
-        loader.startAnimating()
+        adState = .loading
         interAd.delegate = self
         interAd.load()
     }
     
     @IBAction func show(_ sender: Any) {
         interAd.show(in: self)
+        adState = .showing
     }
+    
     @IBAction func requestConsent(_ sender: Any) {
         AdMobConsentManager.shared.resetConsent(viewController: self)
     }
@@ -120,8 +152,7 @@ class ViewController: UIViewController {
 
 extension ViewController: OguryInterstitialAdDelegate {
     func interstitialAdDidLoad(_ interstitialAd: OguryInterstitialAd) {
-        loader.stopAnimating()
-        interLabel.text = "✅ Interstitial ad"
+        adState = .loaded
     }
     
     func interstitialAdDidClick(_ interstitialAd: OguryInterstitialAd) {
@@ -129,7 +160,7 @@ extension ViewController: OguryInterstitialAdDelegate {
     }
     
     func interstitialAdDidClose(_ interstitialAd: OguryInterstitialAd) {
-        interLabel.text = "Interstitial ad"
+        adState = .closed
     }
     
     func interstitialAdDidTriggerImpression(_ interstitialAd: OguryInterstitialAd) {
@@ -137,8 +168,7 @@ extension ViewController: OguryInterstitialAdDelegate {
     }
     
     func interstitialAd(_ interstitialAd: OguryInterstitialAd, didFailWithError error: OguryAdError) {
-        loader.stopAnimating()
+        adState = .error
         sdkState = .error(error)
-        interLabel.text = "⛔️ Interstitial ad"
     }
 }

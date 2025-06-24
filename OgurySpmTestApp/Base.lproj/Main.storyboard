@@ -91,7 +91,7 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Ogury" translatesAutoresizingMaskIntoConstraints="NO" id="AAF-aP-iPE">
-                                <rect key="frame" x="100" y="50" width="193" height="69"/>
+                                <rect key="frame" x="100" y="715" width="193" height="69"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="69" id="Mel-mu-MDY"/>
                                 </constraints>
@@ -101,8 +101,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="AAF-aP-iPE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="AyA-Gg-dF6"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="AAF-aP-iPE" secondAttribute="bottom" id="B1k-U7-qgj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zBE-Ah-Gbp" secondAttribute="trailing" constant="32" id="Iup-US-wv1"/>
-                            <constraint firstItem="AAF-aP-iPE" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="50" id="LNj-I4-K5F"/>
                             <constraint firstItem="zBE-Ah-Gbp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="OMc-7I-bcg"/>
                             <constraint firstItem="zBE-Ah-Gbp" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="dtj-FP-eeh"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AAF-aP-iPE" secondAttribute="trailing" constant="100" id="fd7-Xw-H88"/>
