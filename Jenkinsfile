@@ -54,7 +54,9 @@ pipeline {
         stage('Build Swift Package') {
             steps {
                 sh 'swift package resolve'
-                sh 'swift build'
+                sh """
+                    xcodebuild build -project OgurySpmTestApp.xcodeproj -scheme OgurySpmTestApp -destination 'generic/platform=iOS Simulator'
+                """
             }
         }
 
