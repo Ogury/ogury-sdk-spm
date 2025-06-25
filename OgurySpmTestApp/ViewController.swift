@@ -10,6 +10,7 @@ import OgurySdk
 import OguryAds
 
 class ViewController: UIViewController {
+    @IBOutlet weak var sdkVersion: UILabel!
     @IBOutlet weak var errorLabel: UILabel!  {
         didSet {
             errorLabel.isHidden = true
@@ -116,6 +117,11 @@ class ViewController: UIViewController {
         let ad = OguryInterstitialAd(adUnitId: Constants.interAdUnitId)
         return ad
     }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        sdkVersion.text = Ogury.sdkVersion()
+    }
     
     @IBAction func startSdk(_ sender: Any) {
         sdkState = .starting

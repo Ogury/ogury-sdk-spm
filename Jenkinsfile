@@ -85,6 +85,34 @@ pipeline {
             }
         }
 
+        stage('Run UI Tests') {
+          steps {
+            script {
+              // Extract OGURY_WRAPPER_VERSION
+              def oguryVersion = sh(
+                script: 'ruby -r ./configuration.rb -e "puts OGURY_WRAPPER_VERSION"',
+                returnStdout: true
+              ).trim()
+        
+              echo "Using OGURY_WRAPPER_VERSION: ${oguryVersion}"
+        
+              // Run UI tests with environment variable set
+              sh """                
+                echo "Running UI tests..."
+                xcodebuild test \\
+                    -scheme OgurySpmTestApp \\
+                    -destination 'platform=iOS Simulator,name=iPhone 16 Pro Max' \\
+                    -resultBundlePath TestResults.xcresult \\
+                    -enableCodeCoverage YES \\
+                    OGURY_WRAPPER_VERSION=${oguryVersion}
+
+                #xcrun xcresulttool get --path TestResults.xcresult --format json > result.json
+
+                """
+            }
+          }
+        }
+
         stage('Create Git Tag & Release') {
             when {
                 expression { env.RUN_MODE == "release" }

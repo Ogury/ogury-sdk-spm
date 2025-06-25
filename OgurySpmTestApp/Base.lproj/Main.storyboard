@@ -90,22 +90,36 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Ogury" translatesAutoresizingMaskIntoConstraints="NO" id="AAF-aP-iPE">
-                                <rect key="frame" x="100" y="715" width="193" height="69"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="69" id="Mel-mu-MDY"/>
-                                </constraints>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ewq-Qh-MSm">
+                                <rect key="frame" x="100" y="694.66666666666663" width="193" height="89.333333333333371"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Ogury" translatesAutoresizingMaskIntoConstraints="NO" id="AAF-aP-iPE">
+                                        <rect key="frame" x="0.0" y="0.0" width="193" height="69"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="69" id="1EO-zT-uGx"/>
+                                            <constraint firstAttribute="height" constant="69" id="Mel-mu-MDY"/>
+                                            <constraint firstAttribute="width" constant="193" id="hhp-Sz-nUh"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUT-QD-i3j">
+                                        <rect key="frame" x="76" y="69" width="41.333333333333343" height="20.333333333333329"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="sdkVersion"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="AAF-aP-iPE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="AyA-Gg-dF6"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="AAF-aP-iPE" secondAttribute="bottom" id="B1k-U7-qgj"/>
+                            <constraint firstItem="Ewq-Qh-MSm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="COE-oQ-8ww"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zBE-Ah-Gbp" secondAttribute="trailing" constant="32" id="Iup-US-wv1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ewq-Qh-MSm" secondAttribute="trailing" constant="100" id="LC6-vL-VnV"/>
                             <constraint firstItem="zBE-Ah-Gbp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="OMc-7I-bcg"/>
+                            <constraint firstItem="Ewq-Qh-MSm" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="co2-6g-ciR"/>
                             <constraint firstItem="zBE-Ah-Gbp" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="dtj-FP-eeh"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AAF-aP-iPE" secondAttribute="trailing" constant="100" id="fd7-Xw-H88"/>
                         </constraints>
                     </view>
                     <connections>
@@ -116,6 +130,7 @@
                         <outlet property="loader" destination="ADv-To-ean" id="QKL-QJ-Cqm"/>
                         <outlet property="sdkStateButton" destination="GcU-CI-xbT" id="hhH-0w-tli"/>
                         <outlet property="sdkStateLabel" destination="Twz-Gi-yFQ" id="XJz-dc-0ky"/>
+                        <outlet property="sdkVersion" destination="WUT-QD-i3j" id="3cq-xc-NAQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

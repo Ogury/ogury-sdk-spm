@@ -1,0 +1,33 @@
+{
+  "configurations" : [
+    {
+      "id" : "84BD987B-6057-45A5-94BE-C4D9C0F89E5C",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "commandLineArgumentEntries" : [
+      {
+        "argument" : "OGURY_WRAPPER_VERSION=5.1.0"
+      }
+    ],
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:OgurySpmTestApp.xcodeproj",
+      "identifier" : "437449502E09517F00475BFA",
+      "name" : "OgurySpmTestApp"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:OgurySpmTestApp.xcodeproj",
+        "identifier" : "438131792E0BE521004067AD",
+        "name" : "OgySpmTestsUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
