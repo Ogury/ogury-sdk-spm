@@ -54,9 +54,34 @@ pipeline {
         stage('Build Swift Package') {
             steps {
                 sh 'swift package resolve'
-                sh """
-                    xcodebuild build -project OgurySpmTestApp.xcodeproj -scheme OgurySpmTestApp -destination 'generic/platform=iOS Simulator'
-                """
+                sh '''
+                echo "Patching local Swift package path in Xcode project..."
+                set -euo pipefail
+            
+                echo "Patching local Swift package path in Xcode project..."
+            
+                PBXPROJ="OgurySpmTestApp.xcodeproj/project.pbxproj"
+                # Use sed to patch the repositoryURL in ogury-sdk-spm package block
+                LOCAL_PATH="$(pwd)"
+            
+                # Escape the path for sed
+                ESCAPED_PATH=$(printf '%s\n' "$LOCAL_PATH" | sed 's/[\\/&]/\\\\&/g')
+        
+                sed -E "/XCLocalSwiftPackageReference.*ogury-sdk-spm/,/}/ {
+                  s|(relativePath = ).*;|\\1\\\"$ESCAPED_PATH\\\";|
+                }" "$PBXPROJ" > "$PBXPROJ.patched"
+                
+                mv "$PBXPROJ.patched" "$PBXPROJ"
+
+                echo "✅ Patched relativePath to local path: $LOCAL_PATH"
+                grep -A 5 -B 2 'ogury-sdk-spm' "$PBXPROJ"
+
+                echo "Building test app with patched local package..."
+                xcodebuild build \
+                  -project OgurySpmTestApp.xcodeproj \
+                  -scheme OgurySpmTestApp \
+                  -destination "generic/platform=iOS Simulator"
+                '''
             }
         }
 
