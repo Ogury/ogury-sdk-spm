@@ -17,6 +17,9 @@ struct AddFormatView: View {
         VStack(alignment: .center, spacing: 15) {
             Text(title)
                 .font(.adsSubheadline)
+                .minimumScaleFactor(0.5)
+                .padding(.horizontal, 4)
+                .fixedSize(horizontal: true, vertical: true)
             
             Text(String(describing: value))
                 .font(.adsTitle2)

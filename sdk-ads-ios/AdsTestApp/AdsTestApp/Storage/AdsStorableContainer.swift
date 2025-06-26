@@ -281,9 +281,12 @@ struct AdsStorableContainer: Codable {
     fileprivate static let cardManager = AdsCardManager()
     fileprivate static var adDelegate: (AdLifeCycleDelegate & ApplicationDelegate)?
     var shouldUpdateAdUnits: Bool { settings.shouldUpdateAdUnits }
+    var fileVersion: FileVersion = .one
+    static let currentFileVersion: FileVersion = .one
     
     init(settings: SettingsContainer = .init(),
          cards: [AdCardList]) {
+        AdCardContainer.currentVersion = AdsStorableContainer.currentFileVersion;
         self.settings = settings
         self.cards = cards.compactMap { cardList in
             cardList.adManagers.map{ $0.encode() }
@@ -329,18 +332,28 @@ struct AdsStorableContainer: Codable {
                      adDelegate: AdLifeCycleDelegate? = nil) -> [AdCardList] {
         var list: [AdCardList] = []
         cards.forEach { card in
-            guard let adType = card.first?.adType,
-                  let adFormat: any AdAdapterFormat = try? SdkLauncher.shared.adapter.adAdapterFormat(fromRawValue: adType) else { return }
-            var adManagers: [any AdManager] = []
-            card.forEach { container in
-                if let manager = try? SdkLauncher.shared.adapter.adManager(for: adFormat,
-                                                                           options: container.adAdapterOptions,
-                                                                           viewController: viewController,
-                                                                           adDelegate: adDelegate) {
-                    adManagers.append(manager)
-                }
+            guard let firstCard = card.first,
+                  let adFormat = try? SdkLauncher.shared.adapter.adAdapterFormat(fromRawValue: firstCard.adType,
+                                                                                 fileVersion: fileVersion)  else { return }
+            
+            let adManagers: [any AdManager] = card.compactMap { container in
+                var updatedContainer = container
+                updatedContainer.version = fileVersion
+                return try? SdkLauncher.shared.adapter.adManager(from: updatedContainer,
+                                                          viewController: viewController,
+                                                          adDelegate: adDelegate)
             }
-            guard !card.isEmpty else { return }
+            guard fileVersion == Self.currentFileVersion else {
+                // handle migration
+                if var cardManager = list.first(where: { $0.adAdapterFormat.id == adFormat.id }) {
+                    cardManager.adManagers.append(contentsOf: adManagers)
+                    list.removeAll(where: { $0.adAdapterFormat.id == adFormat.id })
+                    list.append(cardManager)
+                } else {
+                    list.append(.init(adAdapterFormat: adFormat, adManagers: adManagers))
+                }
+                return
+            }
             list.append(.init(adAdapterFormat: adFormat, adManagers: adManagers))
         }
         return list
@@ -348,11 +361,12 @@ struct AdsStorableContainer: Codable {
     
     //MARK: Codable
     enum CodingKeys: String, CodingKey {
-        case settings, cards
+        case settings, cards, fileVersion
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        fileVersion = (try? container.decodeIfPresent(FileVersion.self, forKey: .fileVersion)) ?? .preVersion
         settings = try container.decode(SettingsContainer.self, forKey: .settings)
         cards = try container.decode([[AdCardContainer]].self, forKey: .cards)
     }
@@ -360,8 +374,8 @@ struct AdsStorableContainer: Codable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(settings, forKey: .settings)
-        let adContainers: [[AdCardContainer]] = cards
-        try container.encode(adContainers, forKey: .cards)
+        try container.encode(cards, forKey: .cards)
+        try container.encode(fileVersion, forKey: .fileVersion)
     }
 }
 
@@ -372,7 +386,8 @@ extension AdCardContainer {
                                          campaignId: adInformations.campaignId,
                                          creativeId: adInformations.creativeId,
                                          dspCreativeId: adInformations.dspCreativeId,
-                                         dspRegion: adInformations.dspRegion),
+                                         dspRegion: adInformations.dspRegion,
+                                         bannerSize: adInformations.bannerSize),
                      cardConfiguration: .init(enableAdUnitEditing: settings.enableAdUnitEditing,
                                               showCampaignId: settings.showCampaignId,
                                               showCreativeId: settings.showCreativeId,

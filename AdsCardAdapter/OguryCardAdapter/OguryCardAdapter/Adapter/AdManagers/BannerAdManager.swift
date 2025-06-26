@@ -9,6 +9,14 @@ import OguryAds.Private
 import Combine
 import AdsCardLibrary
 
+internal class BannerAdManagerSize: BannerSize {
+    let internalSize: OguryBannerAdSize!
+    init(internalSize: OguryBannerAdSize!, image: Image) {
+        self.internalSize = internalSize
+        super.init(size: internalSize.getSize(), image: image)
+    }
+}
+
 public final class BannerAdManager: OguryAdManager {
     public func encode() -> AdCardContainer {
         AdCardContainer(name: cardName,
@@ -18,26 +26,50 @@ public final class BannerAdManager: OguryAdManager {
                                               creativeId: adConfiguration.creativeId,
                                               dspCreativeId: adConfiguration.dspCreativeId,
                                               dspRegion: adConfiguration.dspRegion,
+                                              bannerSize: size.size,
                                               settings: .init(oguryTestModeEnabled: cardConfiguration.oguryTestModeEnabled,
                                                               rtbTestModeEnabled: cardConfiguration.rtbTestModeEnabled,
                                                               qaLabel: qaLabel)))
     }
+    
     public static func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager {
-        guard let adType = AdType(rawValue: container.adType) else { throw .invalidAdType }
-        return BannerAdManager(adType: adType,
-                               adConfiguration: .init(adUnitId: container.adInformations.adUnitId,
-                                                      campaignId: container.adInformations.campaignId,
-                                                      creativeId: container.adInformations.creativeId,
-                                                      dspCreativeId: container.adInformations.dspCreativeId,
-                                                      dspRegion: container.adInformations.dspRegion),
-                               cardConfiguration: .init(oguryTestModeEnabled: container.adInformations.settings.oguryTestModeEnabled,
-                                                        rtbTestModeEnabled: container.adInformations.settings.rtbTestModeEnabled,
-                                                        qaLabel: container.adInformations.settings.qaLabel),
-                               viewController: nil,
-                               adDelegate: nil)
+        guard let adType: AdType = AdType(rawValue: container.adType, fileVersion: container.version) else {
+            throw .invalidAdType
+        }
+        
+        let adManager = BannerAdManager(adType: adType,
+                                        adConfiguration: .init(adUnitId: container.adInformations.adUnitId,
+                                                               campaignId: container.adInformations.campaignId,
+                                                               creativeId: container.adInformations.creativeId,
+                                                               dspCreativeId: container.adInformations.dspCreativeId,
+                                                               dspRegion: container.adInformations.dspRegion,
+                                                               bannerSize: container.adInformations.bannerSize),
+                                        cardConfiguration: .init(oguryTestModeEnabled: container.adInformations.settings.oguryTestModeEnabled,
+                                                                 rtbTestModeEnabled: container.adInformations.settings.rtbTestModeEnabled,
+                                                                 qaLabel: container.adInformations.settings.qaLabel),
+                                        viewController: nil,
+                                        adDelegate: nil)
+        if container.version != AdCardContainer.currentVersion {
+            adManager.migrate(from: container)
+        }
+        return adManager
+    }
+    
+    private func migrate(from container: AdCardContainer) {
+        switch (container.version, AdCardContainer.currentVersion) {
+            case (.preVersion, .one) where container.adType == 3:
+                // it's a Mrec, use rightful size
+                actualSize = bannerSizes![1]
+                
+            default: ()
+        }
     }
     
     public var adFormat: AdFormat
+    public let bannerSizes: [BannerSize]? = [
+        BannerAdManagerSize.init(internalSize: OguryBannerAdSize.small_banner_320x50(), image: Image(systemName: "inset.filled.bottomthird.rectangle")),
+        BannerAdManagerSize.init(internalSize: OguryBannerAdSize.mrec_300x250(), image: Image(systemName: "inset.filled.rectangle"))
+    ]
     public var adConfiguration: AdConfiguration!
     public var cardConfiguration: CardConfiguration!
     public var viewController: UIViewController?
@@ -53,8 +85,7 @@ public final class BannerAdManager: OguryAdManager {
         Task { @MainActor [weak self] in
             guard let self else { return }
             if (self.ad == nil) {
-                self.ad = OguryBannerAdView(adUnitId: self.adConfiguration.adUnitId,
-                                            size: self.adType == .banner ? .small_banner_320x50() : .mrec_300x250())
+                self.ad = OguryBannerAdView(adUnitId: self.adConfiguration.adUnitId, size: size.internalSize)
             }
             self.ad.delegate = self.proxyDelegate
             self.ad.setLogOrigin(self.cardConfiguration.qaLabel)
@@ -86,8 +117,7 @@ public final class BannerAdManager: OguryAdManager {
     
     public func show() {
         if (ad == nil) {
-            ad = OguryBannerAdView(adUnitId: adConfiguration.adUnitId,
-                                   size: adType == .banner ? .small_banner_320x50() : .mrec_300x250())
+            ad = OguryBannerAdView(adUnitId: adConfiguration.adUnitId, size: size.internalSize)
             ad.delegate = proxyDelegate
         }
         append(.bannerReady(ad!))
@@ -129,8 +159,21 @@ public final class BannerAdManager: OguryAdManager {
     public var lifeCycleEvents: [AdLifeCycleEventHistory] = []
     public var bidder: HeaderBidable?
     public let id: UUID = UUID()
+    public var actualSize: BannerSize? {
+        get { size }
+        set { size = newValue as! BannerAdManagerSize }
+    }
+    internal var size: BannerAdManagerSize!
+    public func updateBannerSize(_ size: BannerSize) {
+        if size != actualSize {
+            actualSize = size
+            ad = nil
+        }
+    }
     
-    public convenience init(adType: AdType, viewController: UIViewController?, adDelegate: (any AdsCardLibrary.AdLifeCycleDelegate)?) {
+    public convenience init(adType: AdType,
+                            viewController: UIViewController?,
+                            adDelegate: (any AdsCardLibrary.AdLifeCycleDelegate)?) {
         self.init(adType: adType, adConfiguration: .init(adUnitId: ""), cardConfiguration: .init(), viewController: viewController, adDelegate: adDelegate)
     }
     
@@ -146,6 +189,7 @@ public final class BannerAdManager: OguryAdManager {
         self.adConfiguration = adConfiguration
         self.cardConfiguration = cardConfiguration
         self.viewController = viewController
+        
         proxyDelegate = BannerProxyDelegate(adDelegate: adDelegate)
         proxyDelegate.adManager = self
         switch adType {
@@ -153,6 +197,10 @@ public final class BannerAdManager: OguryAdManager {
             case .dtFairBidHeaderBidding: bidder = DTFairBidBidder(configuration: OguryAdsCardAdapter.configuration)
             case .unityLevelPlayHeaderBidding: bidder = UnityLevelPlayBidder(configuration: OguryAdsCardAdapter.configuration)
             default: ()
+        }
+        self.actualSize = self.bannerSizes?.first!
+        if let bannerSize = self.bannerSizes?[adConfiguration.bannerSize] {
+            self.actualSize = bannerSize
         }
     }
     
@@ -208,8 +256,7 @@ public final class BannerAdManager: OguryAdManager {
     
     public func showAd() throws {
         if ad == nil {
-            self.ad = OguryBannerAdView(adUnitId: adConfiguration.adUnitId,
-                                        size: self.adType == .banner ? .small_banner_320x50() : .mrec_300x250())
+            self.ad = OguryBannerAdView(adUnitId: adConfiguration.adUnitId, size: size.internalSize)
             ad.delegate = proxyDelegate
         }
         append(.bannerReady(ad))

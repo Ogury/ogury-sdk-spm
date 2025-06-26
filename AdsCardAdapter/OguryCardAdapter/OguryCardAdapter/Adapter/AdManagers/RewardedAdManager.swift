@@ -37,6 +37,9 @@ public final class RewardedAdManager: OguryAdManager {
                                  adDelegate: nil)
     }
     public var adFormat: AdFormat
+    public var bannerSizes: [BannerSize]? = nil
+    public var actualSize: BannerSize? = nil
+    public func updateBannerSize(_ size: BannerSize) {}
     public var adConfiguration: AdConfiguration!
     public var cardConfiguration: CardConfiguration!
     public var viewController: UIViewController?

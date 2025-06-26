@@ -73,7 +73,12 @@ public protocol AdsCardAdaptable {
                    adDelegate: AdLifeCycleDelegate?) throws(AdsCardAdapterError) -> any AdManager
     /// returns the AdManager associated with an `AdAdapterFormat`
     /// - throws: throws an exception if no adapter is available
-    func adAdapterFormat(fromRawValue rawValue: Int) throws(AdsCardAdapterError) -> any AdAdapterFormat
+    func adManager(from container: AdCardContainer,
+                   viewController: UIViewController?,
+                   adDelegate: AdLifeCycleDelegate?) throws(AdsCardAdapterError) -> any AdManager
+    /// returns the AdManager associated with an `AdAdapterFormat`
+    /// - throws: throws an exception if no adapter is available
+    func adAdapterFormat(fromRawValue rawValue: Int, fileVersion: FileVersion) throws(AdsCardAdapterError) -> any AdAdapterFormat
     /// starts the underlying SDK
     func startSdk() async
     /// resets the SDK if applicable
@@ -84,27 +89,6 @@ public protocol AdsCardAdaptable {
 
 public enum AdsCardAdapterError: Error {
     case noSuitableAdapterAvailable
-}
-
-public extension String {
-    var uuid: UUID {
-        var hasher = Hasher()
-        hasher.combine(self)
-        let hash = hasher.finalize()
-        // Convert hash (Int) into a UUID-compatible format
-        var uuidBytes = [UInt8](repeating: 0, count: 16)
-        withUnsafeBytes(of: hash.bigEndian) { hashBytes in
-            for i in 0..<min(hashBytes.count, 16) {
-                uuidBytes[i] = hashBytes[i]
-            }
-        }
-        return UUID(uuid: (
-            uuidBytes[0], uuidBytes[1], uuidBytes[2], uuidBytes[3],
-            uuidBytes[4], uuidBytes[5], uuidBytes[6], uuidBytes[7],
-            uuidBytes[8], uuidBytes[9], uuidBytes[10], uuidBytes[11],
-            uuidBytes[12], uuidBytes[13], uuidBytes[14], uuidBytes[15]
-        ))
-    }
 }
 
 extension Array where Element == any AdManager {

@@ -95,7 +95,8 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
             viewProvider:^UIView * {
                 return self.bannerView;
             }];
-        self.configuration.mediation = mediation;
+        _configuration.requestedSize = [size getSize];
+        _configuration.mediation = mediation;
 
         _notificationCenter = notificationCenter;
     }

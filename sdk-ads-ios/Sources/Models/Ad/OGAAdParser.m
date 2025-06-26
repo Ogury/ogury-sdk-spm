@@ -59,6 +59,7 @@
             ad.orientation = [OGAAdParser parseParam:adJSON param:@"orientation"];
             ad.adWebViewId = [OGAAdParser parseFormatParams:adJSON];
             ad.privacyConfiguration = privacyConfiguration;
+            adConfig.creativeSize = [ad.bannerAdResponse.creativeSize size];
             ad.adConfiguration = [adConfig copy];
             ad.adConfiguration.monitoringDetails.loadedSource = [ad getRawLoadedSource];
             ad.adConfiguration.campaignId = ad.campaignId;

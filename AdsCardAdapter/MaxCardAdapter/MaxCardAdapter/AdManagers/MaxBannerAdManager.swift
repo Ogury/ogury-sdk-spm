@@ -7,24 +7,65 @@
 
 import AdsCardLibrary
 import AdsCardAdapter
-import SwiftUI
 import Combine
 import AppLovinSDK
+import SwiftUI
+
+internal class BannerAdManagerSize: BannerSize {
+    let internalSize: MAAdFormat!
+    init(internalSize: MAAdFormat!, image: Image) {
+        self.internalSize = internalSize
+        super.init(size: internalSize.size, image: image)
+    }
+}
 
 class MaxBannerAdManager: MaxAdManager {
     var ad: MAAdView!
+    
+    override
+    public init(adType: MaxAdType,
+                adConfiguration: AdConfiguration = .init(adUnitId: ""),
+                cardConfiguration: CardConfiguration = .init(),
+                viewController: UIViewController?,
+                adDelegate: AdLifeCycleDelegate? = nil) {
+        super.init(adType: adType,
+                   adConfiguration: adConfiguration,
+                   cardConfiguration: cardConfiguration,
+                   viewController: viewController,
+                   adDelegate: adDelegate)
+        bannerSizes = [
+            BannerAdManagerSize(internalSize: .banner, image: Image(systemName: "inset.filled.bottomthird.rectangle")),
+            BannerAdManagerSize(internalSize: .mrec, image: Image(systemName: "inset.filled.rectangle")),
+        ]
+        actualSize = self.bannerSizes?.first!
+        if let bannerSize = self.bannerSizes?[adConfiguration.bannerSize] {
+            actualSize = bannerSize
+        }
+    }
+    override func updateBannerSize(_ size: BannerSize) {
+        if size != actualSize {
+            resetAd()
+        }
+        super.updateBannerSize(size)
+    }
+    
+    override public var actualSize: BannerSize? {
+        get { internalSize }
+        set { internalSize = newValue as! BannerAdManagerSize }
+    }
     
     override func resetAd() {
         ad = nil
     }
     
+    var internalSize: BannerAdManagerSize!
     override func instanciateAd() async {
         guard ad == nil else { return }
         Task { @MainActor [weak self] in
             guard let self else { return }
-            self.ad = .init(adUnitIdentifier: self.adConfiguration.adUnitId, adFormat: adType == .default(.smallBanner) ? .banner : .mrec)
+            self.ad = .init(adUnitIdentifier: self.adConfiguration.adUnitId, adFormat: internalSize.internalSize)
             self.ad.delegate = self.proxy
-            self.ad.frame = .init(origin: .zero, size: sizeForAd())
+            self.ad.frame = .init(origin: .zero, size: internalSize.size)
         }
     }
     
@@ -32,11 +73,6 @@ class MaxBannerAdManager: MaxAdManager {
         if let ad {
             append(.bannerReady(ad))
         }
-    }
-    
-    private func sizeForAd() -> CGSize {
-        .init(width: adType == .default(.smallBanner) ? 320 : 300,
-              height: adType == .default(.smallBanner) ? 50 : 250,)
     }
     
     override func load() async {
@@ -63,18 +99,36 @@ class MaxBannerAdManager: MaxAdManager {
         append(.adClosed)
     }
     
-    override class func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager {
-        guard let adType = MaxAdType(rawValue: container.adType) else { throw .invalidAdType }
-        return MaxBannerAdManager(adType: adType,
-                                  adConfiguration: .init(adUnitId: container.adInformations.adUnitId,
-                                                         campaignId: container.adInformations.campaignId,
-                                                         creativeId: container.adInformations.creativeId,
-                                                         dspCreativeId: container.adInformations.dspCreativeId,
-                                                         dspRegion: container.adInformations.dspRegion),
-                                  cardConfiguration: .init(oguryTestModeEnabled: container.adInformations.settings.oguryTestModeEnabled,
-                                                           rtbTestModeEnabled: container.adInformations.settings.rtbTestModeEnabled,
-                                                           qaLabel: container.adInformations.settings.qaLabel),
-                                  viewController: nil,
-                                  adDelegate: nil)
+    public override static func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager {
+        guard let adType: MaxAdType = MaxAdType(rawValue: container.adType, fileVersion: container.version) else {
+            throw .invalidAdType
+        }
+        
+        let adManager = MaxBannerAdManager(adType: adType,
+                                           adConfiguration: .init(adUnitId: container.adInformations.adUnitId,
+                                                                  campaignId: container.adInformations.campaignId,
+                                                                  creativeId: container.adInformations.creativeId,
+                                                                  dspCreativeId: container.adInformations.dspCreativeId,
+                                                                  dspRegion: container.adInformations.dspRegion,
+                                                                  bannerSize: container.adInformations.bannerSize),
+                                           cardConfiguration: .init(oguryTestModeEnabled: container.adInformations.settings.oguryTestModeEnabled,
+                                                                    rtbTestModeEnabled: container.adInformations.settings.rtbTestModeEnabled,
+                                                                    qaLabel: container.adInformations.settings.qaLabel),
+                                           viewController: nil,
+                                           adDelegate: nil)
+        if container.version != AdCardContainer.currentVersion {
+            adManager.migrate(from: container)
+        }
+        return adManager
+    }
+    
+    private func migrate(from container: AdCardContainer) {
+        switch (container.version, AdCardContainer.currentVersion) {
+            case (.preVersion, .one) where container.adType == 103:
+                // it's a Mrec, use rightful size
+                actualSize = bannerSizes![1]
+                
+            default: ()
+        }
     }
 }

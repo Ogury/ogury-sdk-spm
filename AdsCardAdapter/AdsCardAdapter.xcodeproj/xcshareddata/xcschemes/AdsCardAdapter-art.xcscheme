@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4379F9DC2DEEECBC0069F47A"
-               BuildableName = "AdsCardAdapter-art.framework"
+               BuildableName = "AdsCardAdapter.framework"
                BlueprintName = "AdsCardAdapter-art"
                ReferencedContainer = "container:AdsCardAdapter.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4379F9DC2DEEECBC0069F47A"
-            BuildableName = "AdsCardAdapter-art.framework"
+            BuildableName = "AdsCardAdapter.framework"
             BlueprintName = "AdsCardAdapter-art"
             ReferencedContainer = "container:AdsCardAdapter.xcodeproj">
          </BuildableReference>

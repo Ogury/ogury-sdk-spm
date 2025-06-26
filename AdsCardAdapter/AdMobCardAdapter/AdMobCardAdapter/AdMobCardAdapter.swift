@@ -51,8 +51,7 @@ public struct AdMobAdsCardAdapter: AdsCardAdaptable {
         .init(title: "Google Ad Mob", formats: [
             AdMobAdType.default(.interstitial),
             AdMobAdType.default(.rewardedVideo),
-            AdMobAdType.default(.smallBanner),
-            AdMobAdType.default(.mrec),
+            AdMobAdType.default(.standardBanner),
         ])
     ]
     
@@ -89,9 +88,30 @@ OM SDK Version : \(omid)
         return adManager
     }
     
-    public func adAdapterFormat(fromRawValue rawValue: Int) throws(AdsCardAdapterError) -> any AdAdapterFormat {
-        guard let adFormat = AdMobAdType(rawValue: rawValue) else { throw .noSuitableAdapterAvailable }
-        return adFormat
+    public func adAdapterFormat(fromRawValue rawValue: Int,
+                                fileVersion: FileVersion = .preVersion) throws(AdsCardAdapterError) -> any AdAdapterFormat {
+        guard let adType = AdMobAdType(rawValue: rawValue, fileVersion: fileVersion) else {
+            throw .noSuitableAdapterAvailable
+        }
+        return adType
+    }
+    
+    public func adManager(from container: AdCardContainer,
+                          viewController: UIViewController?,
+                          adDelegate: AdLifeCycleDelegate?) throws(AdsCardAdapterError) -> any AdManager {
+        guard let adFormat: AdMobAdType = try adAdapterFormat(fromRawValue: container.adType, fileVersion: container.version) as? AdMobAdType else {
+            throw .noSuitableAdapterAvailable
+        }
+        do {
+            switch adFormat {
+                case .default(.interstitial): return try AdMobInterstitialManager.decode(from: container)
+                case .default(.rewardedVideo): return try AdMobRewardedManager.decode(from: container)
+                case .default(.standardBanner): return try AdMobBannerManager.decode(from: container)
+                default: throw AdsCardAdapterError.noSuitableAdapterAvailable
+            }
+        } catch {
+            throw .noSuitableAdapterAvailable
+        }
     }
     
     public func startSdk() async {

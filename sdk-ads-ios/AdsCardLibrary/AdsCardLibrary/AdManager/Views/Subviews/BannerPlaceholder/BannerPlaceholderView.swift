@@ -9,10 +9,10 @@ import SwiftUI
 internal import ComposableArchitecture
 
 struct BannerPlaceholderView: View {
-    let store: StoreOf<BannerPlaceholderFeature>
+    @Perception.Bindable var store: StoreOf<BannerPlaceholderFeature>
     @State private var isShow = false
     
-    fileprivate func placeholderBanner(viewStore store: ViewStoreOf<BannerPlaceholderFeature>) -> some View {
+    fileprivate func placeholderBanner() -> some View {
         ZStack {
             Rectangle()
                 .fill(Color(AdColorPalette.Background.secondary.color))
@@ -23,74 +23,106 @@ struct BannerPlaceholderView: View {
                     .font(.adsBody)
                     .minimumScaleFactor(0.6)
                     .multilineTextAlignment(.center)
-                    .padding(.horizontal, store.isMrec ? 40 : 20)
+                    .padding(.horizontal, 20)
             }
             .foregroundColor(Color(AdColorPalette.Text.placeholder.color))
-            .font(.system(size: store.isMrec ? 14 : 12))
+            .font(.system(size: 12))
             .padding(.vertical, 4)
         }
     }
     
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { store in
-            VStack(alignment: .leading) {
-                HStack {
-                    Text("Creative")
-                        .font(.adsTitle2)
-                        .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+        VStack(alignment: .leading) {
+            HStack {
+                WithPerceptionTracking {
+                    Text("Creative Format")
+                        .font(.adsTitle3)
+                        .foregroundColor(Color(AdColorPalette.Text.placeholder.color))
                         .padding(.leading, 12)
-                    
-                    if store.bannerAd != nil {
-                        Spacer()
-                        Button {
-                            store.send(.closeButtonTapped)
-                        } label: {
-                            Image(systemName: "x.circle.fill")
-                                .foregroundColor(Color(AdColorPalette.Primary.accent.color))
-                        }
-                        .padding(.trailing, 20)
-                    }
                 }
                 
-                // Show AdBannerView centered
-                GeometryReader { geometry in
-                    let maxWidth = min(geometry.size.width, store.isMrec ? 300 : 320)
+                WithPerceptionTracking {
+                    if !store.availableSizes.isEmpty {
+                        Spacer()
+                        
+                        Menu {
+                            ForEach(store.availableSizes) { size in
+                                Button {
+                                    store.send(.pickedSize(size))
+                                } label: {
+                                    WithPerceptionTracking {
+                                        HStack {
+                                            Text("\(size == store.actualSize ? "✓" : "   ") \(size.description)")
+                                                .font(.adsTitle3)
+                                                .foregroundColor(Color(AdColorPalette.Text.placeholder.color))
+                                            size.image
+                                                .font(.adsTitle3)
+                                                .foregroundColor(Color(AdColorPalette.Primary.accent.color))
+                                        }
+                                    }
+                                }
+                            }
+                        } label: {
+                            HStack {
+                                store.actualSize.image
+                                    .font(.adsTitle3)
+                                    .foregroundColor(Color(AdColorPalette.Primary.accent.color))
+                                Text(store.actualSize.description)
+                                    .font(.adsTitle3)
+                                    .foregroundColor(Color(AdColorPalette.Text.placeholder.color))
+                                Image(systemName: "chevron.up.chevron.down")
+                            }
+                        }
+                        .padding(.trailing, 10)
+                    }
+                }
+            }
+            
+            // Show AdBannerView centered
+            GeometryReader { geometry in
+                WithPerceptionTracking {
+                    let maxWidth = min(geometry.size.width, store.actualSize.width)
                     let ratio = store.ratio
                     
                     Group {
-                        if let ad = store.bannerAd {
-                            HStack(alignment: .center) {
-                                if isShow {
-                                    AdBannerView(banner: ad)
-                                        .clipped()
-                                } else {
-                                    placeholderBanner(viewStore: store)
+                        WithPerceptionTracking {
+                            if let ad = store.bannerAd {
+                                HStack(alignment: .center) {
+                                    if isShow {
+                                        ZStack(alignment: .topTrailing) {
+                                            AdBannerView(banner: ad)
+                                                .clipped()
+                                            
+                                            Button {
+                                                store.send(.closeButtonTapped)
+                                            } label: {
+                                                Image(systemName: "x.circle.fill")
+                                                    .foregroundColor(.white)
+                                                    .background(.black)
+                                                    .opacity(0.7)
+                                            }
+//                                            .offset(x: 10, y: -10)
+                                        }
+                                    } else {
+                                        placeholderBanner()
+                                    }
+                                }.onAppear {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                        isShow = true
+                                    }
                                 }
-                            }.onAppear {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                    isShow = true
-                                }
+                            } else {
+                                placeholderBanner()
                             }
-                        } else {
-                            placeholderBanner(viewStore: store)
                         }
                     }
-                    .frame(width: maxWidth, height:store.isMrec ? 250 : 50)
+                    .frame(width: maxWidth, height:store.actualSize.height)
                     .aspectRatio(ratio, contentMode: .fit)
-                    .frame(width: geometry.size.width, alignment: .center)
+                    .frame(width: geometry.size.width, height:250, alignment: .center)
                 }
-                .frame(height:store.isMrec ? 250 : 50)
             }
+            .frame(height:250)
             .fixedSize(horizontal: false, vertical: true)
-            .padding(.vertical)
         }
-    }
-}
-
-struct BannerPlaceholder_Previews: PreviewProvider {
-    static var previews: some View {
-        BannerPlaceholderView(store: Store(
-            initialState: BannerPlaceholderFeature.State(bannerType: .smallBanner),
-            reducer: { BannerPlaceholderFeature() }))
     }
 }

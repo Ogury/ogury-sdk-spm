@@ -9,15 +9,10 @@
         "campaignId" : "32793",
         "creativeId" : "21108"
     },
-    "banner" : {
-        "adUnitId" : "d4b9ea85-767c-455d-a37e-a228b94ef190",
+    "standardBanner" : {
+        "adUnitId" : "e79138d6-e9eb-48b0-83e9-7777ad6a0fdf",
         "campaignId" : "31189",
         "creativeId" : "18765"
-    },
-    "mpu" : {
-        "adUnitId" : "f30b59a2-b2da-4f09-83ab-9886a5d60d6d",
-        "campaignId" : "31188",
-        "creativeId" : "18762"
     },
     "thumbnail" : {
         "adUnitId" : "c53c8e87-7f77-4eab-b259-94feba087de4",
@@ -36,16 +31,11 @@
             "campaignId" : "32793",
             "creativeId" : "21108"
         },
-        "banner" : {
+        "standardBanner" : {
             "adUnitId" : "4b25eb67-39fe-4d05-aae2-b7c60f93be71",
             "campaignId" : "31189",
             "creativeId" : "18765"
         },
-        "mpu" : {
-            "adUnitId" : "5e9446e4-ca92-4226-b4e4-1a6c4bf0dc77",
-            "campaignId" : "31188",
-            "creativeId" : "18762"
-        }
     },
     "DTFairBidHeaderBidding" : {
         "url" : "https://ms-bidder-fairbid.devc.cloud.ogury.io/api/header-bidding-request",
@@ -61,17 +51,12 @@
             "creativeId" : "21108",
             "dspCreativeId" : ""
         },
-        "banner" : {
+        "standardBanner" : {
             "adUnitId" : "0dfcc34b-912d-4753-bf61-4a2a96731424",
             "campaignId" : "31189",
             "creativeId" : "18765",
             "dspCreativeId" : ""
         },
-        "mpu" : {
-            "adUnitId" : "b3c14b28-53e1-4a31-8f30-8ae23275524b",
-            "campaignId" : "31188",
-            "creativeId" : "18762"
-        }
     },
     "UnityLevelPlayHeaderBidding" : {
         "url" : "https://ms-bidder-ironsource.devc.cloud.ogury.io/api/header-bidding-request",
@@ -87,16 +72,11 @@
             "creativeId" : "21108",
             "dspCreativeId" : ""
         },
-        "banner" : {
+        "standardBanner" : {
             "adUnitId" : "cfb89161-a3d6-431f-a085-f666c73da338",
             "campaignId" : "31189",
             "creativeId" : "18765",
             "dspCreativeId" : ""
         },
-        "mpu" : {
-            "adUnitId" : "035876ba-2819-408c-abb4-6f4d8f586cb5",
-            "campaignId" : "31188",
-            "creativeId" : "18762"
-        }
     }
 }

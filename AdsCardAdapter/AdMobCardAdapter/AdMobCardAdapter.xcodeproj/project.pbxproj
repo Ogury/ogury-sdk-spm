@@ -10,19 +10,19 @@
 		4373B4282DCB403F00E1702F /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B4252DCB403F00E1702F /* OguryAds.framework */; };
 		4373B42A2DCB403F00E1702F /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B4262DCB403F00E1702F /* OguryCore.framework */; };
 		4373B42C2DCB403F00E1702F /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B4272DCB403F00E1702F /* OgurySdk.framework */; };
-		43EB25D82DBFAC67002F170A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB25D72DBFAC67002F170A /* AdsCardAdapter.framework */; };
-		43EB25D92DBFAC67002F170A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB25D72DBFAC67002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4379FBCF2DF2BCD60069F47A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4379FBCE2DF2BCD60069F47A /* AdsCardAdapter.framework */; };
+		4379FBD02DF2BCD60069F47A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4379FBCE2DF2BCD60069F47A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E3C2D7D5BE995FC7CC4AA7E3 /* Pods_AdMobCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CEBA4781A6DC6115B8A7709 /* Pods_AdMobCardAdapter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		43EB25DA2DBFAC67002F170A /* Embed Frameworks */ = {
+		4379FBD12DF2BCD60069F47A /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				43EB25D92DBFAC67002F170A /* AdsCardAdapter.framework in Embed Frameworks */,
+				4379FBD02DF2BCD60069F47A /* AdsCardAdapter.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -34,6 +34,7 @@
 		4373B4252DCB403F00E1702F /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4373B4262DCB403F00E1702F /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4373B4272DCB403F00E1702F /* OgurySdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OgurySdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4379FBCE2DF2BCD60069F47A /* AdsCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB25BB2DBFAC49002F170A /* AdMobCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdMobCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB25D72DBFAC67002F170A /* AdsCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB284E2DC25E75002F170A /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,8 +46,6 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		43EB25BD2DBFAC49002F170A /* AdMobCardAdapter */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = AdMobCardAdapter;
 			sourceTree = "<group>";
 		};
@@ -58,8 +57,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4373B42C2DCB403F00E1702F /* OgurySdk.framework in Frameworks */,
-				43EB25D82DBFAC67002F170A /* AdsCardAdapter.framework in Frameworks */,
 				E3C2D7D5BE995FC7CC4AA7E3 /* Pods_AdMobCardAdapter.framework in Frameworks */,
+				4379FBCF2DF2BCD60069F47A /* AdsCardAdapter.framework in Frameworks */,
 				4373B42A2DCB403F00E1702F /* OguryCore.framework in Frameworks */,
 				4373B4282DCB403F00E1702F /* OguryAds.framework in Frameworks */,
 			);
@@ -89,6 +88,7 @@
 		43EB25D62DBFAC67002F170A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4379FBCE2DF2BCD60069F47A /* AdsCardAdapter.framework */,
 				4373B4252DCB403F00E1702F /* OguryAds.framework */,
 				4373B4262DCB403F00E1702F /* OguryCore.framework */,
 				4373B4272DCB403F00E1702F /* OgurySdk.framework */,
@@ -132,8 +132,8 @@
 				43EB25B72DBFAC49002F170A /* Sources */,
 				43EB25B82DBFAC49002F170A /* Frameworks */,
 				43EB25B92DBFAC49002F170A /* Resources */,
-				43EB25DA2DBFAC67002F170A /* Embed Frameworks */,
 				CFF444714A8690082950360B /* [CP] Copy Pods Resources */,
+				4379FBD12DF2BCD60069F47A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -222,9 +222,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdMobCardAdapter/Pods-AdMobCardAdapter-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdMobCardAdapter/Pods-AdMobCardAdapter-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
