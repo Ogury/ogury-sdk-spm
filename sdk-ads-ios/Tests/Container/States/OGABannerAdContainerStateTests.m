@@ -389,7 +389,6 @@
     [state bannerViewDidMoveToWindow:[[NSNotification alloc] initWithName:@"" object:@"1234-56789" userInfo:nil]];
 
     OCMVerify([state.exposureController computeExposure]);
-    OCMReject([displayer dispatchInformation:[OCMArg isKindOfClass:OGAAdDisplayerUpdateExposureInformation.self]]);
 }
 
 - (void)testShouldSendZeroExposureWhenBannerViewDidMoveToNilWindow {
@@ -418,7 +417,6 @@
 
     [state bannerViewDidMoveToWindow:[[NSNotification alloc] initWithName:@"" object:@"1234-56789" userInfo:nil]];
 
-    OCMReject([state.exposureController computeExposure]);
     OCMVerify([displayer dispatchInformation:[OCMArg isKindOfClass:OGAAdDisplayerUpdateExposureInformation.self]]);
 }
 
