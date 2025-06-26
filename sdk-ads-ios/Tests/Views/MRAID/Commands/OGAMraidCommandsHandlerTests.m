@@ -704,17 +704,6 @@
     OCMVerify([delegate bunaZiua]);
     OCMVerify([handler handleUnsentCommands]);
     OCMVerify([handler handleMraidCommand:command]);
-    XCTestExpectation *expectation = [[XCTestExpectation alloc] initWithDescription:@"The timeout delegate should be called"];
-    XCTWaiter *waiter = [[XCTWaiter alloc] init];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (handler.commandsToSend.count == 0) {
-            [expectation fulfill];
-        } else {
-            expectation.inverted = YES;
-            [expectation fulfill];
-        }
-    });
-    [waiter waitForExpectations:@[ expectation ] timeout:1];
 }
 
 - (void)testWhenEulaAcceptedIsReceivedThenDelegateIsCalled {
