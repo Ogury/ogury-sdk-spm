@@ -1,5 +1,5 @@
 class Configuration
-  attr_reader :workspace, :targets, :schemes, :sdks, :test_devices, :allowed_environments, :firebase, :artifactory, :amazon, :slack, :cocoapods, :frameworks, :directories, :testApplications
+  attr_reader :workspace, :targets, :schemes, :sdks, :test_devices, :allowed_environments, :firebase, :artifactory, :amazon, :slack, :cocoapods, :frameworks, :directories, :testApplications, :omidFramework
 
   def initialize
     @workspace = Workspace.new("OgurySdks", "OgurySdks.xcworkspace")
@@ -17,7 +17,8 @@ class Configuration
     @amazon = Amazon.new("https://binaries.ogury.co")
     @slack = Slack.new("https://hooks.slack.com/services/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", "#sdk-ios-ci-update")
     @cocoapods = Cocoapods.new("git@github.com:Ogury/ogury-cocoapods-repository.git")
-    @frameworks = Frameworks.new("./OMSDK_Ogury.xcframework")
+    @omidFramework = OmidFramework.new("OMSDK_Ogury", "./sdk-ads-ios/")
+    @frameworks = Frameworks.new()
     @frameworks.ogury_core = Framework.new("2.0.0-rc-1.0.0", "2.0.0", "2.0.0")
     @frameworks.ogury_ads = Framework.new("4.0.2-rc-1.0.0", "4.0.0", "4.0.0")
     @frameworks.ogury_sdk = Framework.new("5.0.1-rc-1.0.1", "5.0.0", "5.0.0")
@@ -128,13 +129,16 @@ end
 Cocoapods = Struct.new(:url) do
 end
 
-Frameworks = Struct.new(:omid) do
+Frameworks = Struct.new() do
   attr_accessor :ogury_core
   attr_accessor :ogury_ads
   attr_accessor :ogury_sdk
 end
 
 Framework = Struct.new(:internal_version, :beta_version, :release_version) do
+end
+
+OmidFramework = Struct.new(:name, :path) do
 end
 
 Directories = Struct.new(:build, :output, :test_derived_data, :test_app) do

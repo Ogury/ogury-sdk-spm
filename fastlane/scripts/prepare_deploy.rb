@@ -61,7 +61,7 @@ lane :prepare_for_deployment do |options|
     )
 
   if target.dependencies.omid
-    copy_omsdk(configuration: configuration)
+    zip_omid(configuration: configuration, version: version)
   end
 
   if target.dependencies.hasPodspec
@@ -147,15 +147,26 @@ private_lane :combine_framework do |options|
   end
 end
 
-private_lane :copy_omsdk do |options|
+private_lane :zip_omid do |options|
+  if !options[:version]
+    raise "No tag specified!".red
+  end
   if !options[:configuration]
     raise "No configuration specified!".red
   end
 
+  version = options[:version]
   configuration = options[:configuration]
 
+  puts "Zipping OMID"
+  files = "#{configuration.omidFramework.name}.xcframework"
+  archive_filename = "#{configuration.omidFramework.name}-#{version}.tar.gz"
+  puts "Files #{files}".red
+  sh("pwd")
+
   Dir.chdir("..") do
-    sh("cp -R sdk-ads-ios/#{configuration.frameworks.omid} #{configuration.directories.output}")
+    sh("cp -R #{configuration.omidFramework.path}#{files} #{configuration.directories.output}")
+    sh("tar -czvf #{configuration.directories.output}/#{archive_filename} -C #{configuration.directories.output} #{files}")
   end
 end
 
@@ -180,7 +191,7 @@ private_lane :zip_famework do |options|
   environment = options[:environment]
   target = options[:target]
 
-  puts "Zipping OguryAds"
+  puts "Zipping #{target}"
   files = ""
   framework_suffix = get_framework_suffix(environment)
   archive_filename = get_archive_filename(target.publicName, framework_suffix, version)

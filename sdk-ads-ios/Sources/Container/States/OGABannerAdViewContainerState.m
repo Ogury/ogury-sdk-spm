@@ -110,7 +110,6 @@ static NSString *const OGABannerAdContainerStateKeyValueObservationHiddenKey = @
 }
 
 - (void)startViewsObservation {
-
     [self.bannerView addObserver:self forKeyPath:OGABannerAdContainerStateKeyValueObservationFrameKey options:NSKeyValueObservingOptionNew context:nil];
     [self.bannerView addObserver:self forKeyPath:OGABannerAdContainerStateKeyValueObservationAlphaKey options:NSKeyValueObservingOptionNew context:nil];
     [self.bannerView addObserver:self forKeyPath:OGABannerAdContainerStateKeyValueObservationHiddenKey options:NSKeyValueObservingOptionNew context:nil];
@@ -177,7 +176,6 @@ static NSString *const OGABannerAdContainerStateKeyValueObservationHiddenKey = @
 }
 
 - (void)removeKeyPathObservers {
-   
     [self.bannerView removeObserver:self forKeyPath:OGABannerAdContainerStateKeyValueObservationFrameKey];
     [self.bannerView removeObserver:self forKeyPath:OGABannerAdContainerStateKeyValueObservationAlphaKey];
     [self.bannerView removeObserver:self forKeyPath:OGABannerAdContainerStateKeyValueObservationHiddenKey];
