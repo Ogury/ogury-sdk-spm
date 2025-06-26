@@ -42,26 +42,28 @@ target "OguryCardAdapter-art" do
   project "AdsCardAdapter/OguryCardAdapter/OguryCardAdapter"
   pod "OgurySdk<%= framework_suffix %>", "<%= ogury_sdk_version %>"
 end
-
 #MaxCardAdapter
 target "MaxCardAdapter" do
   project "AdsCardAdapter/MaxCardAdapter/MaxCardAdapter"
   pod 'AppLovinSDK'
   pod 'AppLovinMediationOguryPresageAdapter'
 end
-
 #AdMobCardAdapter
 target "AdMobCardAdapter" do
   project "AdsCardAdapter/AdMobCardAdapter/AdMobCardAdapter"
   pod 'Google-Mobile-Ads-SDK'
   pod 'OguryMediationGoogleMobileAds'
 end
-
 #UnityLevelPlayCardAdapter
 target "UnityLevelPlayCardAdapter" do
   project "AdsCardAdapter/UnityLevelPlayCardAdapter/UnityLevelPlayCardAdapter"
   pod 'IronSourceSDK'
   pod 'IronSourceOguryAdapter'
+end
+#Prebid
+target "PrebidCardAdapter" do
+  project "AdsCardAdapter/PrebidCardAdapter/PrebidCardAdapter"
+  pod 'PrebidMobile'
 end
 
 #Ads Test Apps
@@ -98,6 +100,24 @@ target "UnityLevelPlayTestApp" do
   pod 'InMobiCMP', '2.0.1'
   pod 'Google-Mobile-Ads-SDK'
 end
+target "PrebidTestApp-devc" do
+  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  pod 'InMobiCMP', '2.0.1'
+  pod 'Google-Mobile-Ads-SDK'
+  pod 'PrebidMobile'
+end
+target "PrebidTestApp-staging" do
+  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  pod 'InMobiCMP', '2.0.1'
+  pod 'Google-Mobile-Ads-SDK'
+  pod 'PrebidMobile'
+end
+target "PrebidTestApp" do
+  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  pod 'InMobiCMP', '2.0.1'
+  pod 'Google-Mobile-Ads-SDK'
+  pod 'PrebidMobile'
+end
 
 target "AdsTestApp-Devc-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
@@ -114,7 +134,6 @@ target "AdsTestApp-Prod-art" do
   pod 'InMobiCMP', '2.0.1'
   pod 'Google-Mobile-Ads-SDK'
 end
-
 
 #Wrapper
 target 'OguryWrapperTests' do

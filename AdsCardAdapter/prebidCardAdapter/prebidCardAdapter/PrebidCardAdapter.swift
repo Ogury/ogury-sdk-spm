@@ -114,7 +114,7 @@ OguryCore: \(OGCInternal.shared().getVersion())
         Targeting.shared.setGlobalORTBConfig("{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"ogury-id-123\"}}}}")
         try? await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             do {
-                try Prebid.initializeSDK(serverURL: "https://prebid-server.devc.cloud.ogury.io/openrtb2/auction") { status, error in
+                try Prebid.initializeSDK(serverURL: PrebidAdsCardAdapter.configuration.url) { status, error in
                     if let error = error {
                         continuation.resume(throwing: error)
                     } else if status == .succeeded {
