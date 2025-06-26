@@ -21,7 +21,7 @@ public struct OguryAdsCardAdapter: AdsCardAdaptable {
         let coreSdkVersion = String(describing: OGCInternal.shared().getVersion())
         let ogurySdkVersion = Ogury.sdkVersion()
         let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
-        let adsSdkVersion = "\(String(describing: OGAInternal.shared().getVersion())) (\(origin == "Pod" ? "Release" : "Development"))"
+        let adsSdkVersion = "\(String(describing: OGAInternal.shared().getVersion()))"
         let omid = OMIDOgurySDK.versionString()
         var environment: String { Bundle.main.object(forInfoDictionaryKey: "DefaultEnv") as? String ?? "" }
         return
