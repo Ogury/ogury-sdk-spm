@@ -37,6 +37,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
+### prepare_omid_for_deployment
+
+```sh
+[bundle exec] fastlane prepare_omid_for_deployment
+```
+
+
+
 ### prepare_wrapper_for_deployment
 
 ```sh

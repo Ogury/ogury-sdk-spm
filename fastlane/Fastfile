@@ -200,10 +200,6 @@ lane :test do |options|
       deploy_ads_framework(environment: environment, tag: adsTag, artifactory: artifactory)
     end
 
-    if adsLibraryTag != nil 
-      deploy_adsLibrary_framework(environment: environment, tag: adsLibraryTag, artifactory: artifactory)
-    end
-
     if wrapperTag != nil 
       deploy_wrapper_framework(environment: environment, tag: wrapperTag, artifactory: artifactory)
     end
@@ -227,12 +223,12 @@ lane :test do |options|
     environment = options[:environment]
     target = options[:target]
     filePath = target.path
-    projectName = target.name
+    projectName = target.projectName
     tag = options[:tag]
     version = get_version(environment, filePath, projectName, tag)
     artifactory = options[:artifactory] ? options[:artifactory] : false
 
-    print "Deploying #{projectName} with version: #{version}\n"
+    print "Deploying #{target.name} with version: #{version}\n"
 
     if !configuration.allowed_environments.include? environment
       raise "Wrong environment specified!".red
@@ -252,7 +248,7 @@ lane :test do |options|
       send(methodName, params)
       
       if !options[:dry_run]
-        deploy_on_artifactory(configuration: configuration,  environment: environment, version: version, target: target, artifactory: artifactory)
+          deploy_on_artifactory(configuration: configuration,  environment: environment, version: version, target: target, artifactory: artifactory)
       end
 
     when "beta", "release"
@@ -302,6 +298,7 @@ lane :test do |options|
       repo_update: true
     )
 
+    deploy_framework(environment: environment, tag: tag, target: configuration.targets.omid, artifactory: false)
     deploy_framework(environment: environment, tag: tag, target: configuration.targets.ads, artifactory: artifactory)
   end
 
@@ -406,6 +403,7 @@ lane :test do |options|
     environment = options[:environment]
     tag = options[:tag]
     deploy_podspec(configuration: configuration, environment: environment, tag:tag, target: configuration.targets.ads)
+    deploy_podspec(configuration: configuration, environment: environment, tag:tag, target: configuration.targets.omid)
   end
 
   desc "Proceed to deploy a new version of the ads framewok for the specified environment"

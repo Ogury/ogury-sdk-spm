@@ -172,7 +172,7 @@ pipeline {
                             error "Unknown environment type: ${elements[0]}"
                     }
 
-                    // framework : ads - core - wrapper
+                    // framework : ads (+ omid) - core - wrapper
                     def framework = ""
                     switch (elements[1]) {
                         case "core":

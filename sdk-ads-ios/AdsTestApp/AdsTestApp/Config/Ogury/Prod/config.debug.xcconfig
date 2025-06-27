@@ -2,5 +2,5 @@
 ASSET_KEY = OGY-37AEE44C8F53
 DEFAULT_ENV = PROD
 PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app
-VERSION = 1.0.0+ogury-dev.5.1.0-alpha.standardbanners.1
-BUILD_NUMBER = build:1750930609
+VERSION = 1.0.0-alpha.standardbanners.2
+BUILD_NUMBER = 1751016114

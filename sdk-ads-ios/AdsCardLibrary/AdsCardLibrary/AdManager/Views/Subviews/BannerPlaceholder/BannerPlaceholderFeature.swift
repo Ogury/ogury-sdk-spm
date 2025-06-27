@@ -30,7 +30,6 @@ struct BannerPlaceholderFeature {
             ? (sizes.first ?? BannerSize.init(size: .zero, image: Image(systemName:"platter.filled.bottom.iphone")))
             : actualSize!
             self.actualSize = size
-            print("🐳 actualSize \(size.description) \(size.id)")
         }
         
         static func == (lhs: Self, rhs: Self) -> Bool {

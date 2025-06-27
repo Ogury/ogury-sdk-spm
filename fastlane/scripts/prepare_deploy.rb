@@ -47,21 +47,19 @@ lane :prepare_for_deployment do |options|
     environment_url = "OGAProductionURL"
   end
 
-  build_frameworks(
-    configuration: configuration, 
-    version: version, 
-    environment_url: environment_url, 
-    target:target,
-    artifactory: artifactory
-    )
-
-  combine_framework(
-    configuration: configuration, 
-    target: target
-    )
-
-  if target.dependencies.omid
-    zip_omid(configuration: configuration, version: version)
+  if target.buildable 
+    build_frameworks(
+      configuration: configuration, 
+      version: version, 
+      environment_url: environment_url, 
+      target:target,
+      artifactory: artifactory
+      )
+  
+    combine_framework(
+      configuration: configuration, 
+      target: target
+      )
   end
 
   if target.dependencies.hasPodspec
@@ -147,29 +145,6 @@ private_lane :combine_framework do |options|
   end
 end
 
-private_lane :zip_omid do |options|
-  if !options[:version]
-    raise "No tag specified!".red
-  end
-  if !options[:configuration]
-    raise "No configuration specified!".red
-  end
-
-  version = options[:version]
-  configuration = options[:configuration]
-
-  puts "Zipping OMID"
-  files = "#{configuration.omidFramework.name}.xcframework"
-  archive_filename = "#{configuration.omidFramework.name}-#{version}.tar.gz"
-  puts "Files #{files}".red
-  sh("pwd")
-
-  Dir.chdir("..") do
-    sh("cp -R #{configuration.omidFramework.path}#{files} #{configuration.directories.output}")
-    sh("tar -czvf #{configuration.directories.output}/#{archive_filename} -C #{configuration.directories.output} #{files}")
-  end
-end
-
 private_lane :zip_famework do |options|
   if !options[:configuration]
     raise "No configuration specified!".red
@@ -200,15 +175,11 @@ private_lane :zip_famework do |options|
     podspec_filename = get_podspec_filename(target.publicName, framework_suffix)
     files += "#{podspec_filename} "
   end
-  if target.dependencies.omid
-    omsdk_filename = File.basename(configuration.frameworks.omid)
-    files += "#{omsdk_filename}"
-  end
 
   puts "Files #{files}".red
 
   Dir.chdir("..") do
-    sh("tar -czvf #{configuration.directories.output}/#{archive_filename} -C #{configuration.directories.output} #{files}")
+    sh("cd #{configuration.directories.output} && zip -r #{archive_filename} #{files}")
   end
 end
 
@@ -260,7 +231,8 @@ private_lane :generate_podspec do |options|
   end
 
   if target.dependencies.omid
-    placeholders["omid_sdk"] = "#{File.basename(configuration.frameworks.omid)}"
+    ogury_omid_version = get_module_version(environment, configuration.frameworks.ogury_ads.internal_version, configuration.frameworks.ogury_ads.beta_version, configuration.frameworks.ogury_ads.release_version)
+    placeholders["ogury_omid_version"] = ogury_omid_version
   end
 
   erb(
@@ -324,7 +296,7 @@ lane :prepare_ads_for_deployment do |options|
   tag = options[:tag]
   artifactory = options[:artifactory] ? options[:artifactory] : false
 
-  puts "Deploy OguryCore".yellow
+  puts "Deploy OguryAds".yellow
 
   prepare_for_deployment(
     configuration: configuration,
@@ -332,6 +304,45 @@ lane :prepare_ads_for_deployment do |options|
     version: version,
     tag: tag,
     target: configuration.targets.ads,
+    artifactory: artifactory
+    )
+end
+
+lane :prepare_omid_for_deployment do |options|
+  if !options[:configuration]
+    raise "No configuration specified!".red
+  end
+  if !options[:environment]
+    raise "No environment specified!".red
+  end
+  if !options[:version]
+    raise "No version specified!".red
+  end
+  if !options[:tag]
+    raise "No tag specified!".red
+  end
+
+  configuration = options[:configuration]
+  environment = options[:environment]
+  version = options[:version]
+  tag = options[:tag]
+  artifactory = options[:artifactory] ? options[:artifactory] : false
+
+  puts "Deploy OMSDK".yellow
+  target = configuration.targets.omid
+
+  #copy framework before deploying
+  Dir.chdir("..") do
+    sh("mkdir -p #{configuration.directories.output}")
+    sh("cp -R #{target.path}#{target.name}.xcframework #{configuration.directories.output}")
+  end
+
+  prepare_for_deployment(
+    configuration: configuration,
+    environment: environment,
+    version: version,
+    tag: tag,
+    target: target,
     artifactory: artifactory
     )
 end
