@@ -132,4 +132,23 @@ Here are some tag examples
 - **internal-testApp@all-1.0.0-rc1.0.0** 
 - **internal-testApp@ogury-1.0.0-rc1.0.0** 
 - **internal-testApp@testAppProd-killModeEnabled-qaMode-1.0.0-rc1.0.0** 
+
+##Versionning
+All versionning should follow [the guide on the source](https://ogury.atlassian.net/wiki/spaces/SDK/pages/1197670500/Ogury+Test+App+Versioning+Guide)
+
+For the test applications, the versionning is automatically generated from the `script/update_version.sh` script. 
+
+The call to this script is done through the pre-build phase of the scheme.  Here is an example : 
+
+```
+"${SRCROOT}/../../scripts/update_version.sh" \
+  --config-folder "AdsTestApp/Config/Ogury/Prod" \
+  --local-xcconfig "${PROJECT_DIR}/../../sdk-wrapper-ios/OguryWrapper/Configurations/Configuration.xcconfig" \
+  --ogury-mode local \
+  --ogury-framework-name "OgurySdk-Prod" \
+  --ogury-version-label "ogury"
+
+```
+
+Please refer to the script comments for parameters and note that if you want to bypass the automatic version scripting, you can supply a `CUSTOM_VERSION` inside one of the app's `.xcconfig` file. It will generate a version`${APP_VERSION}-${CUSTOM_VERSION}`
  
