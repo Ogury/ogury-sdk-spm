@@ -97,7 +97,11 @@ NSString *const OGAssetKeyStoreKey = @"OGAssetKeyStoreKey";
             *error = [OguryAdError sdkNotInitializedFrom:type];
         }
 
-        [self.log log:OguryLogLevelError message:@"[setup] Asset key has not been set"];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypePublisher
+                                                     message:@"[setup] Asset key has not been set"
+                                                        tags:nil]];
         self.sdkState = OgurySDKStateError;
         return NO;
     }

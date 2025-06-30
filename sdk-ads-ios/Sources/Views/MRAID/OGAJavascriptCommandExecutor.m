@@ -10,6 +10,7 @@
 #import "OGAAdExposure.h"
 #import "OGAAdExposure+MRAID.h"
 #import "OGAAd.h"
+#import "OGAMraidLogMessage.h"
 
 #import <AVFoundation/AVFoundation.h>
 
@@ -195,7 +196,11 @@
 - (void)callPendingMethodCallBackWithCallBackId:(NSString *)callBackId webViewId:(NSString *)webViewId {
     NSString *command = [NSString stringWithFormat:@"ogySdkMraidGateway.callPendingMethodCallback(\"%@\", null, {webviewId: \"%@\"})", callBackId, webViewId];
 
-    [self.log logMraidFormat:OguryLogLevelDebug forAdConfiguration:self.baseWebView.ad.adConfiguration webViewId:self.baseWebView.webViewId format:@"callPendingMethodCallBackWithCallBackId: [%@]", command];
+    [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                            adConfiguration:self.baseWebView.ad.adConfiguration
+                                                  webviewId:webViewId
+                                                    message:[NSString stringWithFormat:@"callPendingMethodCallBackWithCallBackId: [%@]", command]
+                                                       tags:nil]];
 
     [self evaluateJS:command];
 }
@@ -205,7 +210,11 @@
 }
 
 - (void)evaluateJS:(NSString *)javaScriptString {
-    [self.log logMraidFormat:OguryLogLevelDebug forAdConfiguration:self.baseWebView.ad.adConfiguration webViewId:self.baseWebView.webViewId format:@"Evaluating JS command: [%@]", javaScriptString];
+    [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                            adConfiguration:self.baseWebView.ad.adConfiguration
+                                                  webviewId:self.baseWebView.webViewId
+                                                    message:@"Evaluating JS command"
+                                                       tags:@[ [OguryLogTag tagWithKey:@"Command" value:javaScriptString] ]]];
 
     if (!self.webView) {
         return;
@@ -214,7 +223,17 @@
     [self.webView evaluateJavaScript:javaScriptString
                    completionHandler:^(id _Nullable response, NSError *_Nullable error) {
                        if (error) {
-                           [self.log logMraidErrorFormat:error forAdConfiguration:self.baseWebView.ad.adConfiguration webViewId:self.baseWebView.webViewId format:@"evaluage JS error, reponse %@ for %@", response, javaScriptString];
+                           [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                                   adConfiguration:self.baseWebView.ad.adConfiguration
+                                                                         webviewId:self.baseWebView.webViewId
+                                                                             error:error
+                                                                           message:@"Failed to Evaluate JS command"
+                                                                              tags:@[
+                                                                                  [OguryLogTag tagWithKey:@"Command"
+                                                                                                    value:javaScriptString],
+                                                                                  [OguryLogTag tagWithKey:@"Reponse"
+                                                                                                    value:response]
+                                                                              ]]];
                        }
                    }];
 }
@@ -226,10 +245,29 @@
         return;
     }
 
+    [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                            adConfiguration:self.baseWebView.ad.adConfiguration
+                                                  webviewId:self.baseWebView.webViewId
+                                                    message:@"Call event listener"
+                                                       tags:@[
+                                                           [OguryLogTag tagWithKey:@"Command"
+                                                                             value:method]
+                                                       ]]];
+
     [self.webView evaluateJavaScript:method
                    completionHandler:^(id _Nullable response, NSError *_Nullable error) {
                        if (error) {
-                           [self.log logMraidErrorFormat:error forAdConfiguration:self.baseWebView.ad.adConfiguration webViewId:self.baseWebView.webViewId format:@"Error listener evaluation returned an error [response:%@]", response];
+                           [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                                   adConfiguration:self.baseWebView.ad.adConfiguration
+                                                                         webviewId:self.baseWebView.webViewId
+                                                                             error:error
+                                                                           message:@"Failed to call event listener"
+                                                                              tags:@[
+                                                                                  [OguryLogTag tagWithKey:@"Command"
+                                                                                                    value:method],
+                                                                                  [OguryLogTag tagWithKey:@"Reponse"
+                                                                                                    value:response]
+                                                                              ]]];
                        }
                    }];
 }

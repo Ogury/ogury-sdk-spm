@@ -12,5 +12,12 @@ framework module OguryAds {
     module Private {
         // Headers internes qui ne doivent pas être accessibles publiquement
         header "OGAInternal.h"
+        header "OGAAdLogMessage.h"
+        header "OGAMraidLogMessage.h"
+        header "OGAMonitoringLogMessage.h"
+        header "OGALog.h"
+        header "OguryAds+Log.h"
+        header "OGAAd+Private.h"
+        header "OGAWebViewUserAgentService.h"
     }
 }

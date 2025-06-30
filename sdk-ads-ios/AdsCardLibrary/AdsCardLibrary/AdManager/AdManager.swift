@@ -1,135 +1,400 @@
 //
-//  Copyright © 2023 Ogury Ltd. All rights reserved.
+//  AdManager.swift
+//  AdsCardLibrary
+//
+//  Created by Jerome TONNELIER on 01/04/2025.
 //
 
-import Foundation
 import SwiftUI
 import Combine
-import OguryAds
+import WebKit
 
-/// All objects that should have an ad manager basic bahavior should implement this protocol
-public protocol AdManager: Storable, Equatable, Identifiable where ID == UUID {
-   /// The underlying ad implementation associated with this manager
-   associatedtype Ad
-   /// the ad associate with this ad format. Mandatory
-   var ad: Ad! { get }
-   /// the type of ad to load
-   var adType: AdType<Self> { get }
-   /// The underlying ad implementation associated with this manager
-   associatedtype Options: AdOptions
-   /// the options associate with this ad format. Mandatory
-   var options: Options! { get set }
-   /// updates the base options
-   func update(options: BaseAdOptions)
-   /// instanciate a new AdManager object with a given ad type
-   init(adType: AdType<Self>, adDelegate: AdLifeCycleDelegate?)
-   /// the SwiftUI view that will be displayed and which will manage the underlying ad format
-   var adView: AdView { get }
-   /// the SwiftUI view dedicated to specific that will be displayed and which will manage the underlying ad format options
-   var adOptionView: (any View)? { get }
-   /// banner delegate for the controller
-   var adDelegate: AdLifeCycleDelegate? { get set }
-   /// Mimics the ``AdLifeCycleDelegate`` with Combine in order to ease TCA integration
-   var events: PassthroughSubject<AdLifeCycleEvent, Never> { get }
-   /// An ordered list of all the events
-   var lifeCycleEvents: [AdLifeCycleEventHistory] { get }
-   /// appends an event to the ``lifeCycleEvents`` array and triggers a publisher event on ``events``
-   func append(_ event: AdLifeCycleEvent)
-   /// asks the AdManager to load the add
-   /// - Throws : throws an error if the ad can't be instanciated
-   func loadAd(from options: BaseAdOptions) throws
-   /// asks the AdManager to show the add
-   func showAd() throws
-   // updates the card from the event
-   func updateCard(events: [AdOptionsEvent])
+public enum AdFormat: Codable {
+    case interstitial, rewardedVideo, standardBanner, thumbnail
+    public var name: String {
+        switch self {
+            case .interstitial: return "Interstitial"
+            case .rewardedVideo: return "Rewarded"
+            case .thumbnail: return "Thumbnail"
+            case .standardBanner: return "Standard banners"
+        }
+    }
+}
+
+public protocol AdManager: Equatable, Hashable, Identifiable where ID == UUID {
+    //MARK: properties
+    var adFormat: AdFormat { get set }
+    var bannerSizes: [BannerSize]? { get }
+    var actualSize: BannerSize? { get  }
+    var id: UUID { get }
+    var adConfiguration: AdConfiguration! { get set }
+    var cardConfiguration: CardConfiguration! { get set }
+    var viewController: UIViewController? { get set }
+    var adDelegate: AdLifeCycleDelegate? { get set }
+    var events: PassthroughSubject<AdLifeCycleEvent, Never> { get }
+    var lifeCycleEvents: [AdLifeCycleEventHistory] { get }
+    var adView: AdView { get }
+    
+    //MARK: functions
+    func cardDidAppear()
+    func update(_ adConfiguration: AdConfiguration)
+    func updateBannerSize(_: BannerSize)
+    func load() async
+    func show()
+    func close() // used only for banners
+    func updateCard(events: [AdOptionsEvent]) // update cardConfiguration through events
+    func killWebview(_ killMode: KillWebviewMode)
+    func append(_ event: AdLifeCycleEvent)
+    func encode() -> AdCardContainer
+    static func decode(from container: AdCardContainer) throws(AdCardContainerError) -> any AdManager
+}
+
+
+@dynamicMemberLookup
+open class BannerSize: Identifiable, Equatable, Hashable {
+    public var id: UUID { description.uuid }
+    public var size: CGSize
+    let image: Image
+    var description: String { "\(Int(size.width)) x \(Int(size.height))" }
+    public init(size: CGSize, image: Image) {
+        self.size = size
+        self.image = image
+    }
+    
+    subscript (dynamicMember keyPath: WritableKeyPath<CGSize, CGFloat>) -> CGFloat {
+        get { size[keyPath: keyPath] }
+        set { size[keyPath: keyPath] = newValue }
+    }
+    
+    public static func == (lhs: BannerSize, rhs: BannerSize) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+public extension Array where Element == BannerSize {
+    subscript(size: CGSize?) -> Element? {
+        first(where: { $0.size == size })
+    }
+}
+
+public enum AdCardContainerError: Error {
+    case invalidAdType
+}
+
+
+public enum FileVersion: Int, Codable, Equatable, CaseIterable {
+    case preVersion = 0
+    case one = 1
+}
+
+@propertyWrapper
+public struct SizeCodable: Codable {
+    public var wrappedValue: CGSize?
+    
+    public init(wrappedValue: CGSize?) {
+        self.wrappedValue = wrappedValue
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case width
+        case height
+    }
+    public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let width = try container.decodeIfPresent(Int.self, forKey: .width)
+        let height = try container.decodeIfPresent(Int.self, forKey: .height)
+        guard let width, let height else {
+            wrappedValue = nil
+            return
+        }
+        wrappedValue = .init(width: width, height: height)
+    }
+    
+    public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(wrappedValue?.width, forKey: .width)
+        try container.encodeIfPresent(wrappedValue?.height, forKey: .height)
+    }
+}
+
+public struct AdCardContainer: Codable {
+    public static var currentVersion: FileVersion = .preVersion
+    
+    public struct AdInformationsContainer: Codable {
+        public let adUnitId: String
+        public let campaignId: String?
+        public let creativeId: String?
+        public let dspCreativeId: String?
+        @SizeCodable
+        public var bannerSize: CGSize?
+        public let dspRegion: DspRegion?
+        public let settings: CardSettings
+        public init(adUnitId: String,
+                    campaignId: String? = nil,
+                    creativeId: String? = nil,
+                    dspCreativeId: String? = nil,
+                    dspRegion: DspRegion? = nil,
+                    bannerSize: CGSize? = nil,
+                    settings: CardSettings) {
+            self.adUnitId = adUnitId
+            self.campaignId = campaignId
+            self.creativeId = creativeId
+            self.dspCreativeId = dspCreativeId
+            self.dspRegion = dspRegion
+            self.settings = settings
+            self.bannerSize = bannerSize
+        }
+        
+        enum CodingKeys: CodingKey {
+            case adUnitId
+            case campaignId
+            case creativeId
+            case dspCreativeId
+            case bannerSize
+            case dspRegion
+            case settings
+        }
+        
+        public init(from decoder: any Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            adUnitId = try container.decode(String.self, forKey: .adUnitId)
+            campaignId = try container.decodeIfPresent(String.self, forKey: .campaignId)
+            creativeId = try container.decodeIfPresent(String.self, forKey: .creativeId)
+            dspCreativeId = try container.decodeIfPresent(String.self, forKey: .dspCreativeId)
+            bannerSize = try container.decodeIfPresent(CGSize.self, forKey: .bannerSize)
+            dspRegion = try container.decodeIfPresent(DspRegion.self, forKey: .dspRegion)
+            settings = try container.decode(CardSettings.self, forKey: .settings)
+        }
+        
+        public func encode(to encoder: any Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(adUnitId, forKey: .adUnitId)
+            try container.encodeIfPresent(campaignId, forKey: .campaignId)
+            try container.encodeIfPresent(creativeId, forKey: .creativeId)
+            try container.encodeIfPresent(dspCreativeId, forKey: .dspCreativeId)
+            try container.encodeIfPresent(bannerSize, forKey: .bannerSize)
+            try container.encodeIfPresent(dspRegion, forKey: .dspRegion)
+            try container.encode(settings, forKey: .settings)
+        }
+    }
+    public struct CardSettings: Codable {
+        public let oguryTestModeEnabled: Bool
+        public let rtbTestModeEnabled: Bool
+        public let qaLabel: String
+        public init(oguryTestModeEnabled: Bool, rtbTestModeEnabled: Bool, qaLabel: String) {
+            self.oguryTestModeEnabled = oguryTestModeEnabled
+            self.rtbTestModeEnabled = rtbTestModeEnabled
+            self.qaLabel = qaLabel
+        }
+    }
+    public var version: FileVersion
+    public let name: String
+    public let adType: Int
+    public let adInformations: AdInformationsContainer
+    public init(name: String, adType: Int, adInformations: AdInformationsContainer, fileVersion: FileVersion = .preVersion) {
+        self.name = name
+        self.adType = adType
+        self.adInformations = adInformations
+        self.version = fileVersion
+    }
+    
+    enum CodingKeys: CodingKey {
+        case name
+        case adType
+        case adInformations
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        do {
+            name = try container.decode(String.self, forKey: .name)
+            adType = try container.decode(Int.self, forKey: .adType)
+            adInformations = try container.decode(AdInformationsContainer.self, forKey: .adInformations)
+            version = .preVersion
+        } catch {
+            print(error)
+            throw error
+        }
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(adType, forKey: .adType)
+        try container.encode(adInformations, forKey: .adInformations)
+    }
+}
+
+public extension AdManager {
+    func updateCard(events: [AdOptionsEvent])  {
+        adView.updateCard(events: events)
+    }
+}
+
+public extension AdManager {
+    var cardName: String {
+        get { cardConfiguration.adDisplayName }
+        set { cardConfiguration.adDisplayName = newValue }
+    }
+    var qaLabel: String {
+        get { cardConfiguration.qaLabel }
+        set { cardConfiguration.qaLabel = newValue }
+    }
+    var adUnitId: String {
+        get { adConfiguration.adUnitId }
+        set { adConfiguration.adUnitId = newValue }
+    }
+    var campaignId: String? {
+        get {
+            (adUnitId.isTestModeOn || !cardConfiguration.showCampaignId) ? nil : adConfiguration.campaignId
+        }
+        set { adConfiguration.campaignId = newValue }
+    }
+    var creativeId: String? {
+        get {
+            (adUnitId.isTestModeOn || !cardConfiguration.showCreativeId) ? nil : adConfiguration.creativeId
+        }
+        set { adConfiguration.creativeId = newValue }
+    }
+    var dspCreativeId: String? {
+        get {
+            (adUnitId.isTestModeOn || !cardConfiguration.showDspFields) ? nil : adConfiguration.dspCreativeId
+        }
+        set { adConfiguration.dspCreativeId = newValue }
+    }
+    var dspRegion: DspRegion? {
+        get {
+            (adUnitId.isTestModeOn || !cardConfiguration.showDspFields) ? nil : adConfiguration.dspRegion
+        }
+        set { adConfiguration.dspRegion = newValue }
+    }
+}
+
+public extension AdManager {
+    func kill(_ webView: WKWebView) {
+        DispatchQueue.main.async {
+            Task {
+                let crashCommand = "let largeArray = Array(1e9).fill(0);"
+                do {
+                    let res = try await webView.evaluateJavaScript(crashCommand)
+                    print("crash result \(String(describing: res))")
+                } catch {
+                    print("⚠️ Error while trying to crash webview \(error)")
+                }
+            }
+        }
+    }
 }
 
 public enum AdOptionsEvent {
-   case enableAdUnitEditing(_: Bool)
-   case showCampaignId(_: Bool)
-   case showCreativeId(_: Bool)
-   case showDspFields(_: Bool)
-   case showSpecificOptions(_: Bool)
-   case enableBulkMode(_: Bool)
-   case showTestMode(_: Bool)
-   case forceTestMode(_: Bool)
-   case enableFeedbacks(_: Bool)
+    case enableAdUnitEditing(_: Bool)
+    case showCampaignId(_: Bool)
+    case showCreativeId(_: Bool)
+    case showDspFields(_: Bool)
+    case enableBulkMode(_: Bool)
+    case showTestMode(_: Bool)
+    case forceTestMode(_: Bool)
+    case enableFeedbacks(_: Bool)
+    case updateKillMode(_: KillWebviewMode)
 }
 
 public enum AdLifeCycleEvent {
-   case adLoading
-   // canShow indicates wether the show action can be performed afterwards.
-   // False in case of banners/mpu, true otherwise
-   case adLoaded(canShow: Bool)
-   case adDisplaying
-   case adClicked
-   case adClosed
-   case adDidTriggerImpression
-   case adDidFailToLoad(_: Error)
-   case adDidFailToDisplay(_: Error)
-   case adDidFail(_: Error)
-   case bannerReady(_: OguryBannerAdView)
-   case rewardReady(_: OguryReward)
+    case adLoading
+    // canShow indicates wether the show action can be performed afterwards.
+    // False in case of banners/mpu, true otherwise
+    case adLoaded(canShow: Bool)
+    case adDisplaying
+    case adClicked
+    case adClosed
+    case adDidTriggerImpression
+    case adDidFailToLoad(_: Error)
+    case adDidFailToDisplay(_: Error)
+    case adDidFail(_: Error)
+    case bannerReady(_: UIView)
+    case rewardReady(name: String, value: String)
 }
 
-public struct AdLifeCycleEventHistory {
-   let event: AdLifeCycleEvent
-   let date = Date()
+public struct AdLifeCycleEventHistory: Equatable {
+    let event: AdLifeCycleEvent
+    let date = Date()
+    public init(event: AdLifeCycleEvent) {
+        self.event = event
+    }
 }
 
-enum AdManagerError: Error {
-   case noOptions
-   case loadNotCalledBeforeShow
-   case noShowForBanner
-   case adMarkUpRetrievalFailed(_: String?)
+public enum AdManagerError: Error {
+    case adMarkUpRetrievalFailed(_: String?)
+    case viewControllerMissing
 }
 
 extension AdLifeCycleEvent: Equatable {
-   public static func == (lhs: Self, rhs: Self) -> Bool {
-      switch (lhs, rhs) {
-         case (.adLoading, .adLoading): return true
-         case (.adLoaded, .adLoaded): return true
-         case (.adDisplaying, .adDisplaying): return true
-         case (.adClicked, .adClicked): return true
-         case (.adClosed, .adClosed): return true
-         case (.adDidTriggerImpression, .adDidTriggerImpression): return true
-         case (let .adDidFailToLoad(lhsError), let .adDidFailToLoad(rhsError)): return areEqual(lhsError, rhsError)
-         case (let .adDidFail(lhsError), let .adDidFail(rhsError)): return areEqual(lhsError, rhsError)
-         case (let .adDidFailToDisplay(lhsError), let .adDidFailToDisplay(rhsError)): return areEqual(lhsError, rhsError)
-         default: return false
-      }
-   }
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        switch (lhs, rhs) {
+            case (.adLoading, .adLoading): return true
+            case (.adLoaded, .adLoaded): return true
+            case (.adDisplaying, .adDisplaying): return true
+            case (.adClicked, .adClicked): return true
+            case (.adClosed, .adClosed): return true
+            case (.adDidTriggerImpression, .adDidTriggerImpression): return true
+            case (let .adDidFailToLoad(lhsError), let .adDidFailToLoad(rhsError)): return areEqual(lhsError, rhsError)
+            case (let .adDidFail(lhsError), let .adDidFail(rhsError)): return areEqual(lhsError, rhsError)
+            case (let .adDidFailToDisplay(lhsError), let .adDidFailToDisplay(rhsError)): return areEqual(lhsError, rhsError)
+            default: return false
+        }
+    }
 }
 
 /**
  This is a equality on any 2 instance of Error.
  */
 public func areEqual(_ lhs: Error, _ rhs: Error) -> Bool {
-   return lhs.reflectedString == rhs.reflectedString
+    return lhs.reflectedString == rhs.reflectedString
 }
-
 
 public extension Error {
-   var reflectedString: String {
-      // NOTE 1: We can just use the standard reflection for our case
-      return String(reflecting: self)
-   }
-   
-   // Same typed Equality
-   func isEqual(to: Self) -> Bool {
-      return self.reflectedString == to.reflectedString
-   }
-   
+    var reflectedString: String {
+        // NOTE 1: We can just use the standard reflection for our case
+        return String(reflecting: self)
+    }
+    
+    // Same typed Equality
+    func isEqual(to: Self) -> Bool {
+        return self.reflectedString == to.reflectedString
+    }
+    
 }
 
-
 public extension NSError {
-   // prevents scenario where one would cast swift Error to NSError
-   // whereby losing the associatedvalue in Obj-C realm.
-   // (IntError.unknown as NSError("some")).(IntError.unknown as NSError)
-   func isEqual(to: NSError) -> Bool {
-      let lhs = self as Error
-      let rhs = to as Error
-      return self.isEqual(to) && lhs.reflectedString == rhs.reflectedString
-   }
+    // prevents scenario where one would cast swift Error to NSError
+    // whereby losing the associatedvalue in Obj-C realm.
+    // (IntError.unknown as NSError("some")).(IntError.unknown as NSError)
+    func isEqual(to: NSError) -> Bool {
+        let lhs = self as Error
+        let rhs = to as Error
+        return self.isEqual(to) && lhs.reflectedString == rhs.reflectedString
+    }
+}
+
+public extension String {
+    var uuid: UUID {
+        var hasher = Hasher()
+        hasher.combine(self)
+        let hash = hasher.finalize()
+        // Convert hash (Int) into a UUID-compatible format
+        var uuidBytes = [UInt8](repeating: 0, count: 16)
+        withUnsafeBytes(of: hash.bigEndian) { hashBytes in
+            for i in 0..<min(hashBytes.count, 16) {
+                uuidBytes[i] = hashBytes[i]
+            }
+        }
+        return UUID(uuid: (
+            uuidBytes[0], uuidBytes[1], uuidBytes[2], uuidBytes[3],
+            uuidBytes[4], uuidBytes[5], uuidBytes[6], uuidBytes[7],
+            uuidBytes[8], uuidBytes[9], uuidBytes[10], uuidBytes[11],
+            uuidBytes[12], uuidBytes[13], uuidBytes[14], uuidBytes[15]
+        ))
+    }
 }

@@ -7,6 +7,7 @@
 #import "OGCLog.h"
 #import "OguryOSLogger.h"
 #import "OguryLogLevel.h"
+#import "OguryAbstractLogMessage.h"
 
 @interface OGCLog ()
 
@@ -55,7 +56,10 @@ static NSString * const DefaultRawURL = @"https://www.github.com";
 - (void)testLogMessage {
 
     [self.log logMessage:OguryLogLevelDebug message:@"Hello"];
-    OCMVerify([self.log.oguryLog logMessage:@"Hello" level:OguryLogLevelDebug]);
+    OCMVerify([self.log.oguryLog logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                                                   logType:OguryLogTypeInternal
+                                                                                       sdk:OguryLogSDKCore
+                                                                                   message:@"Hello"]]);
 }
 
 - (void)testLogMessageRequest {

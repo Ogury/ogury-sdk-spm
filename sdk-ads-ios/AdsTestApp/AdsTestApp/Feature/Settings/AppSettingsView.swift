@@ -4,12 +4,14 @@
 
 
 import SwiftUI
-import ComposableArchitecture
+internal import ComposableArchitecture
 import AdsCardLibrary
 import SwiftMessages
+import AVFoundation
 
 struct AppSettingsView: View {
     let store: StoreOf<AppSettingsFeature>
+    let appPermissions: AppPermissions = SettingsController().appPermissions
     var body: some View {
         ZStack {
             AdColorPalette
@@ -35,6 +37,19 @@ struct AppSettingsView: View {
                                 )
                             }
                         }
+                        .accessibilityLabel("StartSDKWithApplication")
+                        
+                        HStack {
+                            Stepper("Start the SDK \(viewStore.numberOfSDKStart) times",
+                                    onIncrement: { viewStore.send(.incrementSDKStart) },
+                                    onDecrement: { viewStore.send(.decrementSDKStart) }
+                            )
+                            .layoutPriority(1)
+                            .accessibilityLabel("StartSDKWithApplication_Stepper")
+                        }
+                        .foregroundStyle(Color(viewStore.startSDKWithApplication ? AdColorPalette.Text.primary(onAccent: false).color : AdColorPalette.Text.placeholder.color))
+                        .disabled(viewStore.startSDKWithApplication == false)
+                        
                         Button {
                             viewStore.send(.toggleEnableFeedbacks)
                         } label: {
@@ -49,14 +64,69 @@ struct AppSettingsView: View {
                                 )
                             }
                         }
+                        .accessibilityLabel("EnableFeedbacks")
+                        
+                        Picker("Import method",
+                               selection: viewStore.binding(get: \.importMethod,
+                                                            send: { .updateImportMethod($0) })) {
+                            ForEach(ImportMethod.allCases, id:\.self) { method in
+                                Text(method.shortDisplayText)
+                            }
+                        }.accessibilityLabel("ImportMethod_Picker")
+                        
+                        Picker("Choose CMP provider",
+                               selection: viewStore.binding(get: \.consentManager,
+                                                            send: { .consentManagerSelected($0) })) {
+                            ForEach(ConsentManager.allCases, id:\.self) { cmp in
+                                Text(cmp.displayName)
+                            }
+                        }.accessibilityLabel("ImportMethod_Picker")
+                        
                     } header: {
                         Text("APPLICATION")
                             .font(.adsBody)
                             .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
                             .padding(.horizontal, -16)
                     }
+                    .disabled(!appPermissions.settings)
                     .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                     .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                    
+                    //MARK: - Audio
+                    Section {
+                        Picker("Audio mode",
+                               selection: viewStore.binding(get: \.audioMode,
+                                                            send: { .audioModeSelected($0) })) {
+                            ForEach(AVAudioSession.Mode.allCases, id:\.self) { mode in
+                                if let name = mode.displayName {
+                                    Text(name)
+                                } else {
+                                    EmptyView()
+                                }
+                            }
+                        }.accessibilityLabel("AudioMode_Picker")
+                        
+                        Picker("Audio category",
+                               selection: viewStore.binding(get: \.audioCategory,
+                                                            send: { .audioCategorySelected($0) })) {
+                            ForEach(AVAudioSession.Category.allCases, id:\.self) { cat in
+                                if let name = cat.displayName {
+                                    Text(name)
+                                } else {
+                                    EmptyView()
+                                }
+                            }
+                        }.accessibilityLabel("AudioCategory_Picker")
+                        
+                    } header: {
+                        Text("Audio Session")
+                            .font(.adsBody)
+                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                            .padding(.horizontal, -16)
+                    }
+                    .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                    .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                    .hidden(!appPermissions.settingPermissions.contains(.showAudioToggle))
                     
                     //MARK: - Hide settings
                     Section {
@@ -68,7 +138,7 @@ struct AppSettingsView: View {
                                     HStack {
                                         Text("Allow AdUnit editing")
                                             .layoutPriority(1)
-                                      
+                                        
                                         Toggle("", isOn:
                                                 viewStore.binding(
                                                     get: \.enableAdUnitEditing,
@@ -76,6 +146,8 @@ struct AppSettingsView: View {
                                         )
                                     }
                                 }
+                                .accessibilityLabel("AllowAdUnitEditingToggle")
+                                .hidden(!appPermissions.settingPermissions.contains(.showEditAdUnitToggle))
                                 
                                 Button {
                                     viewStore.send(.showCampaignToggleTapped)
@@ -83,7 +155,7 @@ struct AppSettingsView: View {
                                     HStack {
                                         Text("Show campaign field")
                                             .layoutPriority(1)
-                                      
+                                        
                                         Toggle("", isOn:
                                                 viewStore.binding(
                                                     get: \.showCampaignId,
@@ -91,6 +163,8 @@ struct AppSettingsView: View {
                                         )
                                     }
                                 }
+                                .accessibilityLabel("ShowCampaignIdToggle")
+                                .hidden(!appPermissions.settingPermissions.contains(.showCampaignToggle))
                                 
                                 Button {
                                     viewStore.send(.showCreativeToggleTapped)
@@ -98,62 +172,84 @@ struct AppSettingsView: View {
                                     HStack {
                                         Text("Show creative field")
                                             .layoutPriority(1)
-
+                                        
                                         Toggle("", isOn:
                                                 viewStore.binding(
                                                     get: \.showCreativeId,
                                                     send: .showCreativeToggleTapped))
                                     }
                                 }
+                                .accessibilityLabel("ShowCreativeIdToggle")
+                                .hidden(!appPermissions.settingPermissions.contains(.showCreativeToggle))
+                                
                                 Button {
                                     viewStore.send(.showDspFieldsToggleTapped)
                                 } label: {
                                     HStack {
                                         Text("Show dsp creative field")
                                             .layoutPriority(1)
-
+                                        
                                         Toggle("", isOn:
                                                 viewStore.binding(
                                                     get: \.showDspFields,
                                                     send: .showDspFieldsToggleTapped))
                                     }
                                 }
-                            }
-                            
-                            Button {
-                                viewStore.send(.showSpecificOptionsToggleTapped)
-                            } label: {
-                                HStack {
-                                    Text("Show specific options")
-                                        .layoutPriority(1)
-
-                                    Toggle("", isOn:
-                                            viewStore.binding(
-                                                get: \.showSpecificOptions,
-                                                send: .showSpecificOptionsToggleTapped)
-                                    )
+                                .accessibilityLabel("ShowCreativeFieldsToggle")
+                                .hidden(!appPermissions.settingPermissions.contains(.showDspToggle))
+                                
+                                Button {
+                                    viewStore.send(.showTestModeToggleTapped)
+                                } label: {
+                                    HStack {
+                                        Text("Show Test Mode")
+                                            .layoutPriority(1)
+                                        
+                                        Toggle("", isOn:
+                                                viewStore.binding(
+                                                    get: \.showTestMode,
+                                                    send: .showTestModeToggleTapped)
+                                        )
+                                    }
                                 }
-                            }
-                            
-                            Button {
-                                viewStore.send(.showTestModeToggleTapped)
-                            } label: {
-                                HStack {
-                                    Text("Show Test Mode")
-                                        .layoutPriority(1)
-                                    
-                                    Toggle("", isOn:
-                                            viewStore.binding(
-                                                get: \.showTestMode,
-                                                send: .showTestModeToggleTapped)
-                                    )
+                                .accessibilityLabel("ShowTestModeToggle")
+                                .hidden(!appPermissions.settingPermissions.contains(.showTestModeToggle))
+                                
+                                Picker("Kill Webview",
+                                       selection: viewStore.binding(get: \.killWebviewMode,
+                                                                    send: { .updateKillWebviewMode($0) }))
+                                {
+                                    ForEach(KillWebviewMode.allCases, id:\.self) { mode in
+                                        Text(mode.displayName)
+                                            .font(.adsCaption)
+                                    }
+                                }
+                                .accessibilityLabel("ImportMethod_Picker")
+                                .hidden(!appPermissions.settingPermissions.contains(.showKillWebviewToggle))
+                                
+                                if let desc = viewStore.killWebviewMode.description {
+                                    HStack {
+                                        if let icon = viewStore.killWebviewMode.icon {
+                                            icon
+                                                .font(.adsTitle)
+                                                .foregroundStyle(viewStore.killWebviewMode.displayColor)
+                                                .padding(.trailing, 8)
+                                                .symbolRenderingMode(.hierarchical)
+                                                .safeBreathe()
+                                        }
+                                        Text(desc)
+                                            .font(.adsCaption)
+                                            .foregroundStyle(viewStore.killWebviewMode.displayColor)
+                                    }
+                                    .hidden(!appPermissions.settingPermissions.contains(.showKillWebviewToggle))
                                 }
                             }
                         }
                         
                         if !viewStore.showShowSection {
-                            Divider()
-                                .listRowBackground(Color.clear)
+                            Text("Card settings hidden")
+                                .font(.adsCaption)
+                                .foregroundStyle(Color(AdColorPalette.Text.placeholder.color))
                         }
                         
                     } header: {
@@ -164,15 +260,17 @@ struct AppSettingsView: View {
                                 Text("Cards")
                                     .font(.adsBody)
                                     .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                                .padding(.horizontal, -16)
+                                    .padding(.horizontal, -16)
                                 Spacer()
                                 Image(systemName: !viewStore.showShowSection ? "chevron.up" : "chevron.down")
                             }
                         }
                     }
+                    .disabled(!appPermissions.settings)
                     .listRowSeparator(.hidden)
                     .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                     .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                    .hidden(appPermissions.settingPermissions.contains(.noCards))
                     
                     //MARK: - Profig settings
                     Section {
@@ -188,6 +286,7 @@ struct AppSettingsView: View {
                                 )
                             }
                         }
+                        .accessibilityLabel("EnableBulkModeToggle")
                     } header: {
                         Text("Bulk mode")
                             .font(.adsBody)
@@ -197,6 +296,7 @@ struct AppSettingsView: View {
                     .disabled(true)
                     .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                     .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                    .hidden(!appPermissions.settingPermissions.contains(.showResetProfigToggle))
                     
                     //MARK: - Test Mode
                     Section {
@@ -209,6 +309,7 @@ struct AppSettingsView: View {
                                     .frame(maxWidth: .infinity)
                             }
                             .buttonStyle(AdsSecondaryButton())
+                            .accessibilityLabel("EnableTestModeForAllCardsButton")
                             
                             Button{
                                 viewStore.send(.disabledTestModeButtonTapped)
@@ -218,6 +319,7 @@ struct AppSettingsView: View {
                                     .frame(maxWidth: .infinity)
                             }
                             .buttonStyle(AdsSecondaryButton())
+                            .accessibilityLabel("DisableTestModeForAllCardsButton")
                         }
                         .padding(.horizontal, -20)
                     } header: {
@@ -226,7 +328,9 @@ struct AppSettingsView: View {
                             .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
                             .padding(.horizontal, -16)
                     }
+                    .disabled(!appPermissions.settings)
                     .listRowBackground(Color.clear)
+                    .hidden(!appPermissions.settingPermissions.contains(.showTestModeToggle))
                     
                     //MARK: - Profig settings
                     Section {
@@ -234,76 +338,106 @@ struct AppSettingsView: View {
                             viewStore.send(.resetAdConfigButtonTapped)
                         }
                         .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: true).color))
+                        .accessibilityLabel("ResetProfigButton")
                     } header: {
                         Text("Ads config")
                             .font(.adsBody)
                             .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
                             .padding(.horizontal, -16)
                     }
+                    .disabled(!appPermissions.settings)
                     .listRowBackground(Color(AdColorPalette.State.failure.color))
-                    .disabled(true)
-                   
+                    .hidden(!appPermissions.settingPermissions.contains(.showResetProfigToggle))
+                    
                     //MARK: - Profig settings
                     Section {
                         Button {
-                           viewStore.send(.usOptoutTapped)
+                            viewStore.send(.usOptoutTapped)
                         } label: {
-                           HStack {
-                               Text("US Opt-out")
-                               Toggle("", isOn:
-                                       viewStore.binding(
-                                           get: \.usOptout,
-                                           send: .usOptoutTapped)
-                               )
-                           }
+                            HStack {
+                                Text("US Opt-out")
+                                Toggle("", isOn:
+                                        viewStore.binding(
+                                            get: \.usOptout,
+                                            send: .usOptoutTapped)
+                                )
+                            }
                         }
+                        .accessibilityLabel("USOptOutButton")
+                        
                         Button {
-                           viewStore.send(.usOptoutPartnerTapped)
+                            viewStore.send(.usOptoutPartnerTapped)
                         } label: {
-                           HStack {
-                              Text("US Opt-out Partner")
-                              Toggle("", isOn:
-                                      viewStore.binding(
-                                          get: \.usOptoutPartner,
-                                          send: .usOptoutPartnerTapped)
-                              )
-                           }
+                            HStack {
+                                Text("US Opt-out Partner")
+                                Toggle("", isOn:
+                                        viewStore.binding(
+                                            get: \.usOptoutPartner,
+                                            send: .usOptoutPartnerTapped)
+                                )
+                            }
                         }
-                        Button{
-                            viewStore.send(.showPrivacyDataTapped)
-                        } label : {
-                           Text("Retrieve Privacy data")
-                               .padding(.vertical, 4)
-                               .frame(maxWidth: .infinity)
+                        .accessibilityLabel("USOptOuPartnertButton")
+                        
+                        NavigationLink(
+                            destination: PrivacyDataView().navigationTitle("Privacy Data")
+                        ) {
+                            Text("Retrieve Privacy data")
                         }
-                        .buttonStyle(AdsSecondaryButton())
-                   } header: {
-                       Text("Privacy")
-                           .font(.adsBody)
-                           .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                           .padding(.horizontal, -16)
-                   }
-                   .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
-                   .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                        .accessibilityLabel("RetrievePrivacyDataButton")
+                        .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                        .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                        
+                        Button {
+                            viewStore.send(.copyIdfaButtonTapped)
+                        } label: {
+                            HStack {
+                                Text("Copy IDFA to clipboard")
+                            }
+                        }
+                        .accessibilityLabel("CopyIdfaButton")
+                        
+                    } header: {
+                        Text("Privacy")
+                            .font(.adsBody)
+                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                            .padding(.horizontal, -16)
+                    }
+                    .disabled(!appPermissions.settings)
+                    .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                    .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                    
+                    //MARK: - Logs settings
+#if canImport(OguryAds)
+                    Section {
+                        NavigationLink(
+                            destination: LogOptionView().navigationTitle("Log options")
+                        ) {
+                            Text("Show options")
+                        }
+                        .accessibilityLabel("ShowLogOptionsNavigationLink")
+                    } header: {
+                        Text("Logs")
+                            .font(.adsBody)
+                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                            .padding(.horizontal, -16)
+                    }
+                    .disabled(!appPermissions.settings)
+                    .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                    .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                    .hidden(!appPermissions.logs)
+#endif
                     
                     Spacer()
                         .listRowBackground(Color.clear)
-                    
-                    //MARK: - settings
-                    VStack(alignment: .center) {
-                        Text("App Version : \(viewStore.appVersion)")
-                        Text("Ads SDK Version : \(viewStore.sdkVersion)")
-                        Text("Environment : \(viewStore.environment)")
-                    }
-                    .frame(maxWidth: .infinity)
-                    .listRowBackground(Color.clear)
-                    .foregroundStyle(Color(AdColorPalette.Text.placeholder.color))
-                    .font(.caption)
                 }
                 .safeScrollContentBackground(.hidden)
                 .listStyle(.insetGrouped)
             }
             .tint(Color(AdColorPalette.Text.primary(onAccent: false).color))
+            .navigationTitle("Settings")
+            .navigationBarTitleDisplayMode(.large)
+            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
     
@@ -324,11 +458,21 @@ public extension Text {
     }
 }
 
-#Preview {
-    NavigationView(content: {
-        AppSettingsView( store: Store(
-            initialState: AppSettingsFeature.State(settings: SettingsContainer(), adDelegate: nil),
-            reducer: { AppSettingsFeature() }
-        ))
-    })
+extension View {
+    func safeBreathe() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.symbolEffect(.breathe, isActive: true)
+        } else {
+            return self
+        }
+    }
 }
+
+//#Preview {
+//    NavigationView(content: {
+//        AppSettingsView( store: Store(
+//            initialState: AppSettingsFeature.State(settings: SettingsContainer(), adDelegate: nil),
+//            reducer: { AppSettingsFeature() }
+//        ))
+//    })
+//}

@@ -4,7 +4,10 @@
 
 #import <Foundation/Foundation.h>
 #import <OguryCore/OguryLogLevel.h>
+#import <OguryCore/OguryLogger.h>
+#import <OguryCore/OguryLogMessage.h>
 
+extern OguryLogSDK const OguryLogSDKWrapper;
 @class OguryConfiguration;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -18,20 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setLogLevel:(OguryLogLevel)logLevel;
 
 - (void)log:(OguryLogLevel)logLevel message:(NSString *)message;
-
-- (void)logFormat:(OguryLogLevel)logLevel format:(NSString *)format, ...;
-
-- (void)logError:(NSError *)error message:(NSString *)message;
-
-- (void)logErrorFormat:(NSError *)error format:(NSString *)format, ...;
-
-- (void)logAssetKey:(OguryLogLevel)logLevel assetKey:(NSString *)assetKey message:(NSString *)message;
-
-- (void)logAssetKeyFormat:(OguryLogLevel)logLevel assetKey:(NSString *)assetKey format:(NSString *)format, ...;
-
-- (void)logAssetKeyError:(NSError *)error assetKey:(NSString *)assetKey message:(NSString *)message;
-
-- (void)logAssetKeyErrorFormat:(NSError *)error assetKey:(NSString *)assetKey format:(NSString *)format, ...;
+- (void)log:(OguryLogLevel)logLevel logType:(OguryLogType)logType message:(NSString *)message;
 
 @end
 

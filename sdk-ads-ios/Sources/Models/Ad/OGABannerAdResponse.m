@@ -22,7 +22,8 @@
     return [[OGAJSONKeyMapper alloc] initWithModelToJSONDictionary:@{
         @"autoRefresh" : @"auto_refresh",
         @"autoRefreshRate" : @"auto_refresh_rate",
-        @"fullWidth" : @"full_width"
+        @"fullWidth" : @"full_width",
+        @"creativeSize" : @"creative_size"
     }];
 }
 

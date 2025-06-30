@@ -3,7 +3,7 @@
 //
 
 #import "OGAWebViewUserAgentService.h"
-
+#import "OGAWebViewUserAgentServiceDelegate.h"
 #import <WebKit/WebKit.h>
 
 @interface OGAWebViewUserAgentService () <WKNavigationDelegate>

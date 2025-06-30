@@ -77,7 +77,11 @@
     if (enumEnvironment != NSNotFound) {
         self.environment = enumEnvironment;
     } else {
-        [self.log log:OguryLogLevelInfo message:@"wrong submitted environment, setting environment to production"];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypeInternal
+                                                     message:[NSString stringWithFormat:@"wrong environment submitted (%@), setting environment to production", environment]
+                                                        tags:nil]];
         self.environment = OGAEnvironmentProd;
     }
     [self.environmentURLBuilder updateEnvironment:self.environment];

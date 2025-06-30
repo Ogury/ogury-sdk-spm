@@ -3,6 +3,7 @@
 //
 
 #import "OguryThumbnailAd.h"
+#import "OGAAdConfiguration.h"
 #import "OGAThumbnailAdInternalAPI.h"
 #import "OguryThumbnailAdDelegateDispatcher.h"
 #import "UIViewController+OGAThumbnailAdRestrictions.h"
@@ -13,6 +14,8 @@
 
 @property(nonatomic, strong) OguryThumbnailAdDelegateDispatcher *delegateDispatcher;
 @property(nonatomic, strong) OGAThumbnailAdInternalAPI *internalAPI;
+- (void)setLogOrigin:(NSString *)origin;
+- (OGAAdConfiguration *)adConfiguration;
 
 @end
 
@@ -120,6 +123,28 @@
 
 - (void)setWhitelistBundleIdentifiers:(NSArray<NSString *> *_Nullable)bundleIdentifiers {
     [self.internalAPI setWhitelistBundleIdentifiers:bundleIdentifiers];
+}
+
+- (void)setLogOrigin:(NSString *)origin {
+    [self.internalAPI setLogOrigin:origin];
+}
+
+- (OGAAdConfiguration *)adConfiguration {
+    return self.internalAPI.adConfiguration;
+}
+
+- (void)simulateWebviewTerminated {
+#if defined(DEBUG) || defined(KILL_MODE_ENABLED)
+    [self.internalAPI simulateWebviewTerminated];
+#endif
+}
+
+- (WKWebView *)adWebview {
+#if defined(DEBUG) || defined(KILL_MODE_ENABLED)
+    return [self.internalAPI adWebview];
+#else
+    return nil;
+#endif
 }
 
 @end

@@ -51,7 +51,7 @@
 }
 
 - (void)testbuildMraidEnvironmentBanner {
-    NSString *type = OGAAdConfigurationAdTypeSmallBanner;
+    NSString *type = OGAAdConfigurationAdTypeStandardBanners;
 
     OGAAdUnit *adUnit = OCMClassMock([OGAAdUnit class]);
     OCMStub(adUnit.type).andReturn(type);
@@ -63,7 +63,7 @@
 }
 
 - (void)testbuildMraidEnvironmentMPU {
-    NSString *type = OGAAdConfigurationAdTypeMPU;
+    NSString *type = OGAAdConfigurationAdTypeStandardBanners;
 
     OGAAdUnit *adUnit = OCMClassMock([OGAAdUnit class]);
     OCMStub(adUnit.type).andReturn(type);
