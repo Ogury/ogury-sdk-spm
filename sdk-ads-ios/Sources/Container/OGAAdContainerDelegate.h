@@ -27,7 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)didTransitionTo:(id<OGAAdContainerState>)toState from:(id<OGAAdContainerState>)fromState action:(NSString *)action;
 
-#warning Not yet implemented anywhere
 - (void)didFailToTransitionTo:(id<OGAAdContainerState>)toState error:(OguryAdError *_Nullable)error;
 
 @end

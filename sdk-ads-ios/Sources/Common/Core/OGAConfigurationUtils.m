@@ -7,6 +7,7 @@
 #import "OGAReachability.h"
 #import <UIKit/UIKit.h>
 #import <mach-o/arch.h>
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 
 #if __has_include(<UnityFramework.framework>)
 #define __HAS_UNITY__
@@ -113,7 +114,7 @@ static NSString *const OGAConfigurationUtilsManufacturer = @"Apple";
 }
 
 + (NSString *)currentCellularNetwork {
-    return [[OGAReachability reachabilityForInternetConnection] currentReachabilityCellularNetwork];
+    return [[OGAReachability reachabilityForInternetConnection] currentReachabilityCellularNetwork:[[CTTelephonyNetworkInfo alloc] init]];
 }
 
 + (NSString *)getAppMarketingVersion {
