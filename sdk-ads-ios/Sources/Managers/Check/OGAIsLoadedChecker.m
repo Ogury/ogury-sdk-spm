@@ -34,7 +34,11 @@
         if (error) {
             *error = [OguryAdError noAdLoaded];
 
-            [self.log logAd:OguryLogLevelError forAdConfiguration:sequence.configuration message:@"Failed to show (no ad loaded)"];
+            [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                 adConfiguration:sequence.configuration
+                                                         logType:OguryLogTypePublisher
+                                                         message:@"Failed to show (no ad loaded)"
+                                                            tags:nil]];
         }
         return NO;
     }

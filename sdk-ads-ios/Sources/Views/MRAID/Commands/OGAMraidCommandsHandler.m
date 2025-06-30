@@ -11,6 +11,7 @@
 #import "OGAJavascriptCommandExecutor.h"
 #import "OGAMRAIDWebView.h"
 #import "OGAAdExposure.h"
+#import "OGAMraidLogMessage.h"
 #import "OGAAdDisplayerUpdateStateInformation.h"
 
 #pragma mark - Constants
@@ -83,18 +84,21 @@ static NSArray<NSString *> *commandsToHandleImmedialtely;
 
 - (void)handleMraidCommand:(OGAMraidCommand *)command {
     if ([self.delegate mraidCommunicationIsUp] == NO && [commandsToHandleImmedialtely containsObject:command.method] == NO) {
-        [self.log logMraidFormat:OguryLogLevelDebug
-              forAdConfiguration:self.mraidWebView.ad.adConfiguration
-                       webViewId:self.mraidWebView.webViewId
-                          format:@"Storing mraid command: %@ and will send when communcation is up", command.method];
+        [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                adConfiguration:self.mraidWebView.ad.adConfiguration
+                                                      webviewId:self.mraidWebView.webViewId
+                                                        message:@"Storing mraid command"
+                                                           tags:@[ [OguryLogTag tagWithKey:@"Command" value:command.method] ]]];
+
         [self.commandsToSend addObject:command];
         return;
     }
 
-    [self.log logMraidFormat:OguryLogLevelDebug
-          forAdConfiguration:self.mraidWebView.ad.adConfiguration
-                   webViewId:self.mraidWebView.webViewId
-                      format:@"Handling mraid command: %@", command.method];
+    [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                            adConfiguration:self.mraidWebView.ad.adConfiguration
+                                                  webviewId:self.mraidWebView.webViewId
+                                                    message:@"Handling mraid command"
+                                                       tags:@[ [OguryLogTag tagWithKey:@"Command" value:command.method] ]]];
 
     OGAMraidCreateWebViewCommand *browserCommand = [[OGAMraidCreateWebViewCommand alloc] initWithDictionary:command.args error:nil];
 
@@ -103,8 +107,6 @@ static NSArray<NSString *> *commandsToHandleImmedialtely;
     }
 
     [self.commandExecutor callCommandComplete];
-
-    [self.log logFormat:OguryLogLevelInfo format:@"Command : %@", command.method];
 
     if ([command.method isEqualToString:OGACreateWebViewMRAIDCommand]) {
         [self.delegate createWebView:command];
@@ -249,10 +251,26 @@ static NSArray<NSString *> *commandsToHandleImmedialtely;
         [self.application openURL:url
                           options:@{}
                 completionHandler:^(BOOL success) {
-                    [self.log logMraidFormat:OguryLogLevelDebug forAdConfiguration:self.mraidWebView.ad.adConfiguration webViewId:self.mraidWebView.webViewId format:@"Open %@: %d", customURL, success];
+                    [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                            adConfiguration:self.mraidWebView.ad.adConfiguration
+                                                                  webviewId:self.mraidWebView.webViewId
+                                                                    message:@"openURL"
+                                                                       tags:@[
+                                                                           [OguryLogTag tagWithKey:@"URL"
+                                                                                             value:customURL],
+                                                                           [OguryLogTag tagWithKey:@"Success"
+                                                                                             value:@(success)]
+                                                                       ]]];
                 }];
     } else {
-        [self.log logMraidFormat:OguryLogLevelDebug forAdConfiguration:self.mraidWebView.ad.adConfiguration webViewId:self.mraidWebView.webViewId format:@"Open URL %@ FAILED", customURL];
+        [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                adConfiguration:self.mraidWebView.ad.adConfiguration
+                                                      webviewId:self.mraidWebView.webViewId
+                                                        message:@"openURL failed"
+                                                           tags:@[
+                                                               [OguryLogTag tagWithKey:@"URL"
+                                                                                 value:customURL]
+                                                           ]]];
     }
 }
 

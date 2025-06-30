@@ -76,7 +76,11 @@ static NSString *const OGAConfigurationUtilsManufacturer = @"Apple";
         muStringTimeZone = [NSMutableString stringWithString:stringTimezone];
         [muStringTimeZone insertString:@":" atIndex:3];
     } @catch (NSException *exception) {
-        [[OGALog shared] logFormat:OguryLogLevelDebug format:@"Timezone formatter exception %@", exception.description];
+        [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                    adConfiguration:nil
+                                                            logType:OguryLogTypeInternal
+                                                            message:[NSString stringWithFormat:@"Timezone formatter exception %@", exception.description]
+                                                               tags:nil]];
     }
     return muStringTimeZone;
 }

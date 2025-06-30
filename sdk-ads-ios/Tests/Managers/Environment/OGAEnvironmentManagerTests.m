@@ -4,11 +4,13 @@
 
 #import <XCTest/XCTest.h>
 #import "OGAEnvironmentManager.h"
+#import "OGAAdLogMessage.h"
 #import <OCMock/OCMock.h>
 #import "OguryError+utility.h"
 #import "OGALog.h"
 #import "OGAEnvironmentConstants.h"
 #import "OGAEnvironmentURLBuilder.h"
+#import "OGAAdLogMessage.h"
 
 @interface OGAEnvironmentManager (Test)
 
@@ -97,7 +99,12 @@
     [self.environmentManager updateWith:@"notAnEnvironment"];
     OCMVerify([self.environmentManager updateURLs]);
     XCTAssertEqual(self.environmentManager.environment, OGAEnvironmentProd);
-    OCMVerify([self.log log:OguryLogLevelInfo message:@"wrong submitted environment, setting environment to production"]);
+    OGAAdLogMessage *message = [[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                                      adConfiguration:nil
+                                                              logType:OguryLogTypeInternal
+                                                              message:@"wrong environment submitted (notAnEnvironment), setting environment to production"
+                                                                 tags:nil];
+    OCMVerify([self.log log:message]);
     OCMVerify([self.notificationCenter postNotificationName:OGAEnvironmentChanged object:nil userInfo:nil]);
 }
 

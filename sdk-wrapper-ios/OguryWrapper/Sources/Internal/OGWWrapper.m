@@ -84,7 +84,7 @@ static int ogcMaxNumberOfConvertionValue = 63;
       for (OGWModule *module in self.modulesManager.modules) {
          if (module.isPresent) {
             dispatch_group_enter(startGroup);
-            [self.log logAssetKeyFormat:OguryLogLevelDebug assetKey:assetKey format:@"Module [%@] initialization...", module.className];
+            [self.log log:OguryLogLevelDebug message:[NSString stringWithFormat:@"Module [%@] initialization...", module.className]];
             [module startWith:assetKey completionHandler:^(BOOL success, OguryError * _Nullable error) {
                if (error && !success) {
                   @synchronized (errorMessage) {
@@ -101,7 +101,9 @@ static int ogcMaxNumberOfConvertionValue = 63;
          }
       }
       if (numberOfModulesPresent == 0) {
-         [self.log logAssetKey:OguryLogLevelError assetKey:assetKey message:@"No Ogury module found in your application."];
+         [self.log log:OguryLogLevelDebug
+                    logType:OguryLogTypePublisher
+                    message:@"No Ogury module found in your application. Make sure you have the -ObjC flag in your OTHER_LINKER_FLAGS build setting."];
          if (self.startCompletionBlocks.count > 0) {
             OguryError *moduleMissingError = [OguryError createModuleMissingError];
             for (StartCompletionBlock completionBlock in self.startCompletionBlocks) {
@@ -114,7 +116,9 @@ static int ogcMaxNumberOfConvertionValue = 63;
       }
       dispatch_group_notify(startGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
          if (errorMessage && errorMessage.length > 0) {
-            [self.log logAssetKeyFormat:OguryLogLevelError assetKey:assetKey format:@"Error found during the Ogury Start() call :%@", errorMessage];
+             [self.log log:OguryLogLevelError
+                   logType:OguryLogTypePublisher
+                   message:[NSString stringWithFormat:@"Error found during the Ogury Start() call :%@", errorMessage]];
             if (self.startCompletionBlocks.count > 0) {
                OguryError *failedToStartError = [OguryError createModuleFailedToStartError:errorMessage];
                for (StartCompletionBlock completionBlock in self.startCompletionBlocks) {
@@ -126,7 +130,7 @@ static int ogcMaxNumberOfConvertionValue = 63;
             return;
          }
          if (modulesMessage && modulesMessage.length > 0) {
-            [self.log logAssetKeyFormat:OguryLogLevelDebug assetKey:assetKey format:@"Ogury Start() ended succesfully for modules :%@", modulesMessage];
+             [self.log log:OguryLogLevelDebug message:[NSString stringWithFormat:@"Ogury Start() ended succesfully for modules :%@", modulesMessage]];
          }
          if (self.startCompletionBlocks.count > 0) {
             for (StartCompletionBlock completionBlock in self.startCompletionBlocks) {
@@ -148,28 +152,31 @@ static int ogcMaxNumberOfConvertionValue = 63;
       }
    }
    if (numberOfModulesPresent == 0) {
-      [self.log logAssetKey:OguryLogLevelError assetKey:@"" message:@"SetLogLevel - No Ogury module found in your application. Make sure you have the -ObjC flag in your OTHER_LINKER_FLAGS build setting."];
+       [self.log log:OguryLogLevelDebug
+                    logType:OguryLogTypePublisher
+                    message:@"SetLogLevel - No Ogury module found in your application. Make sure you have the -ObjC flag in your OTHER_LINKER_FLAGS build setting."];
    }
 }
 
 - (void)registerAttributionForSKAdNetwork {
    NSInteger convertionValue = [self.userDefault integerForKey:ogcConvertionValueKey];
    if (convertionValue > ogcMaxNumberOfConvertionValue) {
-      [self.log logAssetKey:OguryLogLevelInfo assetKey:@"" message:@"Number of conversion Value maximun, It's not possible to register for SKAdNetwork anymore"];
+       [self.log log:OguryLogLevelDebug
+                    message:@"Number of conversion Value maximun, It's not possible to register for SKAdNetwork anymore"];
       return;
    }
    if (@available(iOS 15.4, *)) {
       [SKAdNetwork updatePostbackConversionValue:convertionValue
                                completionHandler:^(NSError *_Nullable error) {
                                  if (error != NULL) {
-                                    [self.log logAssetKey:OguryLogLevelError assetKey:@"" message:@"Error during updatePostbackConversionValue"];
+                                     [self.log log:OguryLogLevelDebug message:@"Error during updatePostbackConversionValue"];
                                  } else {
-                                    [self.log logAssetKey:OguryLogLevelDebug assetKey:@"" message:@"updatePostbackConversionValue Success"];
+                                     [self.log log:OguryLogLevelDebug message:@"updatePostbackConversionValue Success"];
                                  }
                                }];
    } else if (@available(iOS 14.0, *)) {
       [SKAdNetwork updateConversionValue:convertionValue];
-      [self.log logAssetKey:OguryLogLevelDebug assetKey:@"" message:@"updateConversionValue Success"];
+       [self.log log:OguryLogLevelDebug message:@"updateConversionValue Success"];
    }
    convertionValue++;
    [self.userDefault setInteger:convertionValue forKey:ogcConvertionValueKey];

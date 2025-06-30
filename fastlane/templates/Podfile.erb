@@ -23,12 +23,6 @@ target 'LegacyTestApp' do
 end
 
 #Ads
-target "OguryAds-art" do
-  project "sdk-ads-ios/OguryAdsSDK"
-
-  pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
-end
-
 target "OguryCoreTests" do
   project "sdk-core-ios/OguryCore"
   pod "OCMock", :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
@@ -41,38 +35,85 @@ end
 
 target "AdsCardLibrary-art" do
   project "sdk-ads-ios/AdsCardLibrary/AdsCardLibrary"
-  pod "OguryAds<%= framework_suffix %>", "<%= ogury_ads_version %>"
   pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
+end
+
+#OguryCardAdapter
+target "OguryCardAdapter-art" do
+  project "AdsCardAdapter/OguryCardAdapter/OguryCardAdapter"
+  pod "OgurySdk<%= framework_suffix %>", "<%= ogury_sdk_version %>"
+end
+
+#MaxCardAdapter
+target "MaxCardAdapter" do
+  project "AdsCardAdapter/MaxCardAdapter/MaxCardAdapter"
+  pod 'AppLovinSDK'
+  pod 'AppLovinMediationOguryPresageAdapter'
+end
+
+#AdMobCardAdapter
+target "AdMobCardAdapter" do
+  project "AdsCardAdapter/AdMobCardAdapter/AdMobCardAdapter"
+  pod 'Google-Mobile-Ads-SDK'
+  pod 'OguryMediationGoogleMobileAds-Prod', '5.1.0.0-rc-1.0.3'
+end
+
+#UnityLevelPlayCardAdapter
+target "UnityLevelPlayCardAdapter" do
+  project "AdsCardAdapter/UnityLevelPlayCardAdapter/UnityLevelPlayCardAdapter"
+  pod 'IronSourceSDK'
+  pod 'IronSourceOguryAdapter'
 end
 
 #Ads Test Apps
 target "AdsTestApp-Devc" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod 'InMobiCMP', '2.0.1'
+  pod 'Google-Mobile-Ads-SDK'
 end
 target "AdsTestApp-Staging" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod 'InMobiCMP', '2.0.1'
+  pod 'Google-Mobile-Ads-SDK'
 end
 target "AdsTestApp-Prod" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod 'InMobiCMP', '2.0.1'
+  pod 'Google-Mobile-Ads-SDK'
+end
+target "MaxTestApp" do
+  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  pod 'InMobiCMP', '2.0.1'
+  pod 'Google-Mobile-Ads-SDK'
+  pod 'AppLovinSDK'
+  pod 'AppLovinMediationOguryPresageAdapter'
+end
+target "AdMobTestApp" do
+  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  pod 'InMobiCMP', '2.0.1'
+  pod 'Google-Mobile-Ads-SDK'
+  pod 'OguryMediationGoogleMobileAds-Prod', '5.1.0.0-rc-1.0.3'
+end
+target "UnityLevelPlayTestApp" do
+  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  pod 'InMobiCMP', '2.0.1'
+  pod 'Google-Mobile-Ads-SDK'
 end
 
 target "AdsTestApp-Devc-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
   pod 'InMobiCMP', '2.0.1'
+  pod 'Google-Mobile-Ads-SDK'
 end
 target "AdsTestApp-Staging-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
   pod 'InMobiCMP', '2.0.1'
+  pod 'Google-Mobile-Ads-SDK'
 end
 target "AdsTestApp-Prod-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod "OguryCore<%= framework_suffix %>", "<%= ogury_core_version %>"
   pod 'InMobiCMP', '2.0.1'
+  pod 'Google-Mobile-Ads-SDK'
 end
 
 
@@ -81,12 +122,6 @@ target 'OguryWrapperTests' do
   project "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj/"
     inherit! :complete
     pod 'OCMock', :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
-end
-
-target 'OguryWrapper-art' do
-  project "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj/"
-  pod 'OguryCore<%= framework_suffix %>', '<%= ogury_core_version %>'
-  pod "OguryAds<%= framework_suffix %>", "<%= ogury_ads_version %>"
 end
 
 target 'OguryWrapperTestApp' do

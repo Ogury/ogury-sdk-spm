@@ -51,7 +51,7 @@
 }
 
 - (void)testWhenWebkitProvisionnalNavigationErrorIsCalledThenPrecachingMethodIsCalled {
-    [(id<WKNavigationDelegate>)self.webView webView:self.webView.wkWebView didFailProvisionalNavigation:[OCMArg any] withError:[OCMArg any]];
+    [(id<WKNavigationDelegate>)self.webView webView:self.webView.wkWebView didFailProvisionalNavigation:[OCMArg any] withError:OCMClassMock([NSError class])];
     OCMVerify([self.webView sendPrecachingFailEvent]);
 }
 

@@ -32,7 +32,11 @@
         case OGADarwinNotificationIdentifierLogAll:
             return @"all";
         default:
-            [self.log log:OguryLogLevelError message:@"notification identifier not correctly converted"];
+            [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                 adConfiguration:nil
+                                                         logType:OguryLogTypePublisher
+                                                         message:@"notification identifier not correctly converted"
+                                                            tags:nil]];
             return @"Error";
     }
 }

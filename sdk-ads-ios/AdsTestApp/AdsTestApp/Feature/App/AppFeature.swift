@@ -4,42 +4,35 @@
 
 
 import UIKit
-import ComposableArchitecture
+internal import ComposableArchitecture
 import AdsCardLibrary
 
 struct AppFeature: Reducer {
     var adHostingViewController: UIViewController!
-    var adDelegate: AdLifeCycleDelegate!
-    let cardManager = AdsCardManager()
-    let maxHeaderBidable = MaxBidder()
-    let dtFairBidHeaderBidable = DTFairBidBidder()
-    let unityLevelPlayBidable = UnityLevelPlayBidder()
+    var adDelegate: (AdLifeCycleDelegate & ApplicationDelegate)!
     
     struct State: Equatable {
         var path = StackState<Path.State>()
         var main = MainFeature.State()
-        @PresentationState var alert: AlertState<Action.Alert>?
+        var logs = LogsFeature.State()
     }
     
     enum Action: Equatable  {
-        case path(StackAction<Path.State , Path.Action>)
+        case path(StackAction<Path.State, Path.Action>)
         case main(MainFeature.Action)
+        case logs(LogsFeature.Action)
         case deleteCard(id: UUID)
         case loadCards
         case saveCards
         case importFile(_: URL)
-        case alert(PresentationAction<Alert>)
         case forceTestMode(_: Bool)
+        case focusLogs(on: String)
         case endEditing
-        
-        enum Alert {
-            case cantImportFile
-        }
     }
     
     struct Path: Reducer {
         var adHostingViewController: UIViewController!
-        var adDelegate: AdLifeCycleDelegate!
+        var adDelegate: (AdLifeCycleDelegate & ApplicationDelegate)!
         enum State: Equatable {
             case main(MainFeature.State)
             case detail(DetailListFeature.State)
@@ -48,6 +41,17 @@ struct AppFeature: Reducer {
             case main(MainFeature.Action)
             case detail(DetailListFeature.Action)
         }
+        
+        static let mainCasePath =  AnyCasePath<Action, MainFeature.Action>(
+            embed: { .main($0) },
+            extract: { if case let .main(value) = $0 { return value} else { return nil } }
+        )
+        
+        static let detailCasePath =  AnyCasePath<Action, DetailListFeature.Action>(
+            embed: { .detail($0) },
+            extract: { if case let .detail(value) = $0 { return value} else { return nil } }
+        )
+        
         var body: some ReducerOf<Self> {
             Scope(
                 state: /State.main,
@@ -63,15 +67,16 @@ struct AppFeature: Reducer {
     }
     
     var body: some ReducerOf<Self> {
+        Scope(state: \.logs,
+             action: /Action.logs) {
+            LogsFeature()
+        }
         Scope(state: \.main,
               action: /Action.main) {
             MainFeature(adHostingViewController: adHostingViewController, adDelegate: adDelegate)
         }
         Reduce { state, action in
             switch action {
-                case .alert:
-                    return .none
-                    
                 case .endEditing:
                     adHostingViewController.view.endEditing(true)
                     return .none
@@ -79,7 +84,7 @@ struct AppFeature: Reducer {
                 case .path:
                     return .none
                     
-                case .main:
+                case .main, .logs:
                     return .none
                     
                 case let .deleteCard(id):
@@ -93,24 +98,18 @@ struct AppFeature: Reducer {
                     
                 case .loadCards:
                     guard let container = try? loadSavedData() else { return .none }
-                    state.main.adFormats = container.retrieveAds(cardManager: cardManager,
-                                                                 maxHeaderBidable: maxHeaderBidable, 
-                                                                 dtFairBidHeaderBidable: dtFairBidHeaderBidable,
-                                                                 unityLevelPlayBidable: unityLevelPlayBidable,
-                                                                 viewController: adHostingViewController,
-                                                                 view: nil,
-                                                                 adDelegate: adDelegate)
+                    state.main.adFormats = container.retrieveAds(viewController: adHostingViewController, adDelegate: adDelegate)
                     state.main.setName = container.settings.name
                     return .none
                     
                 case .saveCards:
                     return .send(.main(.saveCards))
-                    
+               
                 case let .forceTestMode(enable):
                     state
                         .main
                         .adFormats
-                        .compactMap({ $0.value })
+                        .compactMap({ $0.adManagers })
                         .flatMap({ $0 })
                         .forEach({ adManager in
                             adManager.updateCard(events: [.forceTestMode(enable)])
@@ -118,34 +117,13 @@ struct AppFeature: Reducer {
                     return .none
                     
                 case let .importFile(url):
-                    do {
-                        let container = try AdsStorableContainer.load(from: url)
-                        let adFormats = container.retrieveAds(cardManager: cardManager,
-                                                              maxHeaderBidable: maxHeaderBidable, 
-                                                              dtFairBidHeaderBidable: dtFairBidHeaderBidable,
-                                                              unityLevelPlayBidable: unityLevelPlayBidable,
-                                                              viewController: adHostingViewController,
-                                                              view: nil,
-                                                              adDelegate: adDelegate) 
-                        state.main.adFormats = adFormats
-                        state.main.setName = container.settings.name
-                        container.save()
-                        if container.shouldUpdateAdUnits {
-                            return .run { _ in
-                                await showNotification(title: "File created on an other os", 
-                                                       message: "The file was created using a different os than iOS.\nIn order to allow it to work, the application updated all cards with the default adUnitId for each format",
-                                                       notificationType: .warning)
-                            }
-                        } else {
-                            return .none
-                        }
-                    } catch {
-                        state.alert = .cantImportFile
-                        return .none
-                    }
+                    return .send(.main(.importFile(url)))
+                    
+                case let .focusLogs(cardId):
+                    state.logs.filter = cardId
+                    return .none
             }
         }
-        .ifLet(\.$alert, action: /Action.alert)
         .forEach(\.path, action: /Action.path) {
             Path(adHostingViewController: adHostingViewController, adDelegate: adDelegate)
         }
@@ -153,28 +131,5 @@ struct AppFeature: Reducer {
     
     private func loadSavedData() throws -> AdsStorableContainer  {
         try AdsStorableContainer.loadSavedData()
-    }
-}
-
-extension AlertState where Action == AppFeature.Action.Alert {
-    static var cantImportFile: AlertState<Action> {
-        AlertState {
-            TextState("Something went wrong")
-        } actions: {
-            ButtonState(role: .cancel) {
-                TextState("OK")
-            }
-        } message: {
-            TextState("The file cannot be opened because its content is malformed")
-        }
-    }
-}
-
-extension Array where Element == AdFormat {
-    func sorted() -> Array<Element> {
-        print("Before sort \(compactMap({ $0.sortPosition }))")
-        let sorted = sorted(by: { $0.sortPosition < $1.sortPosition })
-        print("After sort \(sorted.compactMap({ $0.sortPosition }))")
-        return sorted
     }
 }

@@ -25,8 +25,9 @@ private_lane :deploy_on_artifactory do |options|
   archive_filename = get_archive_filename(target.publicName, framework_suffix, version)
 
   artifactory(
+    username: "jenkins",
     endpoint: configuration.artifactory.url,
-    api_key: ENV["ARTIFACTORY_TOKEN"],
+    password: ENV["ARTIFACTORY_TOKEN"],
     file: "#{configuration.directories.output}/#{archive_filename}",
     repo: "sdk-cocoapods-#{environment}",
     repo_path: "/#{target.publicName}#{framework_suffix}/#{archive_filename}",

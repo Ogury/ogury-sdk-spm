@@ -100,7 +100,11 @@ static NSString *const OGAHashConsentKey = @"OGY-HashConsentKeys";
 }
 
 - (void)resetProfig {
-    [self.log log:OguryLogLevelInfo message:@"[Setup] resetProfig called"];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"Reset profig"
+                                                    tags:nil]];
 
     [self dispatchToCompletionBlocks:self.waitingCompletionBlocks response:nil error:[OGAConfigurationUtils errorForOGAProfigError:OGAProfigExternalErrorSetupFailed]];
     // Get rid of the previous array that have been captured by the running profig requests.
@@ -109,7 +113,11 @@ static NSString *const OGAHashConsentKey = @"OGY-HashConsentKeys";
 }
 
 - (void)fetchProfig {
-    [self.log log:OguryLogLevelInfo message:@"[Setup] fetchProfig called"];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"Fetch profig"
+                                                    tags:nil]];
 
     // __block is used to force the block to capture the reference to array.
     // This allow us to replace the array in case of reset.
@@ -125,16 +133,33 @@ static NSString *const OGAHashConsentKey = @"OGY-HashConsentKeys";
 }
 
 - (void)onProfigResponse:(OGAProfigFullResponse *)response error:(NSError *)error completionBlocks:(NSMutableArray<ProfigCompletionBlock> *)completionBlocks {
-    [self.log log:OguryLogLevelDebug message:@"[Setup] onProfigResponse:error:completionBlocks called"];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"Received profig response"
+                                                    tags:nil]];
 
     if (!response) {
-        [self.log logError:error message:@"[Setup] Failed to synchronize configuration"];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypeInternal
+                                                     message:@"Failed to synchronize configuration"
+                                                        tags:nil]];
     } else {
         if (error) {
-            [self.log log:OguryLogLevelError message:[NSString stringWithFormat:@"[Setup] Failed to retrieved configuration (%@)", error.localizedDescription]];
+            [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                 adConfiguration:nil
+                                                         logType:OguryLogTypePublisher
+                                                         message:[NSString stringWithFormat:@"[Setup] Failed to retrieved configuration (%@)", error.localizedDescription]
+                                                            tags:nil]];
             [self.profigDao updateWithFullProfig:response];
         } else {
-            [self.log log:OguryLogLevelInfo message:@"[Setup] Configuration synchronized"];
+            [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                                 adConfiguration:nil
+                                                         logType:OguryLogTypeInternal
+                                                         message:@"Configuration synchronized"
+                                                            tags:nil]];
+
             [self updateMonitoringTrackingAndBlacklistedTracks:response];
             [self.profigDao updateWithFullProfig:response];
             [self.userDefaultStore setObject:[self retrieveConsentData] forKey:OGAHashConsentKey];
@@ -170,7 +195,11 @@ static NSString *const OGAHashConsentKey = @"OGY-HashConsentKeys";
 }
 
 - (void)dispatchToCompletionBlocks:(NSMutableArray<ProfigCompletionBlock> *)completionBlocks response:(OGAProfigFullResponse *)response error:(NSError *)error {
-    [self.log log:OguryLogLevelDebug message:@"[Setup] dispatchToCompletionBlocks:response:error called"];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"Dispatch to completion blocks"
+                                                    tags:nil]];
 
     @synchronized(self.waitingCompletionBlocks) {
         for (ProfigCompletionBlock completionBlock in completionBlocks) {
