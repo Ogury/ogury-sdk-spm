@@ -22,7 +22,7 @@ class Configuration
     @frameworks = Frameworks.new()
     @frameworks.ogury_core = Framework.new("2.0.0-rc-1.0.0", "2.0.0", "2.0.0")
     @frameworks.ogury_ads = Framework.new("4.1.0-SPM-1.0.0", "4.0.0", "4.0.0")
-    @frameworks.ogury_sdk = Framework.new("5.0.1-rc-1.0.1", "5.0.0", "5.0.0")
+    @frameworks.ogury_sdk = Framework.new("5.1.0-SPM-1.0.0", "5.0.0", "5.0.0")
     @directories = Directories.new("./jenkins/build", "./jenkins/output", "./jenkins/test_derived_data", "./jenkins/testApp")
     prodTestApp = TestApplication.new("prodTestApp", "AdsTestApp-Prod", nil, "co.ogury.sdk.ads.app", "1:743372999564:ios:b2fa9c2a0751d1abca24a9")
     devcTestApp = TestApplication.new("devcTestApp", "AdsTestApp-Devc", nil, "co.ogury.sdk.ads.app.devc", "1:743372999564:ios:a479c7c9a882a87bca24a9")
@@ -112,7 +112,7 @@ end
 
 class OmidTarget < Target
   def initialize(name:, path:, amazon:)
-    super(name: name, projectName: "OguryAds", path: path, scheme: "", publicName: name, method: "omid", amazon: amazon, buildable: false)
+    super(name: name, projectName: "OguryAds", path: path, scheme: "", publicName: name, dependencies: Dependency.new(hasPodspec: true), method: "omid", amazon: amazon, buildable: false)
   end
 end
 
