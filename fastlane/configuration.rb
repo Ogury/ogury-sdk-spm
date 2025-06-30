@@ -21,7 +21,7 @@ class Configuration
     @cocoapods = Cocoapods.new("git@github.com:Ogury/ogury-cocoapods-repository.git")
     @frameworks = Frameworks.new()
     @frameworks.ogury_core = Framework.new("2.0.0-rc-1.0.0", "2.0.0", "2.0.0")
-    @frameworks.ogury_ads = Framework.new("4.0.2-rc-1.0.0", "4.0.0", "4.0.0")
+    @frameworks.ogury_ads = Framework.new("4.1.0-SPM-1.0.0", "4.0.0", "4.0.0")
     @frameworks.ogury_sdk = Framework.new("5.0.1-rc-1.0.1", "5.0.0", "5.0.0")
     @directories = Directories.new("./jenkins/build", "./jenkins/output", "./jenkins/test_derived_data", "./jenkins/testApp")
     prodTestApp = TestApplication.new("prodTestApp", "AdsTestApp-Prod", nil, "co.ogury.sdk.ads.app", "1:743372999564:ios:b2fa9c2a0751d1abca24a9")
