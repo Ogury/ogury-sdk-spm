@@ -28,7 +28,7 @@
         _subSystem = subSystem;
         _category = category;
         _logLevel = OguryLogLevelError;
-        _allowedLogTypes = @[OguryLogTypeInternal, OguryLogTypePublisher, OguryLogTypeRequests];
+        _allowedLogTypes = @[OguryLogTypePublisher];
         _logFormatter = [[OguryLogFormatter alloc] init];
     }
     return self;
