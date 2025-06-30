@@ -1,5 +1,3 @@
-  
-
 pipeline {
     agent {
         label 'macM2-worker'
@@ -31,6 +29,7 @@ pipeline {
         }
 
         stage('Build') {
+            
             when {
                 beforeAgent true
                 anyOf {

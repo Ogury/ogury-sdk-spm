@@ -59,6 +59,7 @@ static NSString *const MonitoringServiceBodyDeviceModel = @"model";
 static NSString *const MonitoringServiceBodyDeviceScreen = @"screen";
 static NSString *const MonitoringServiceBodyDeviceScreenWidth = @"width";
 static NSString *const MonitoringServiceBodyDeviceScreenHeight = @"height";
+static NSString *const MonitoringServiceBodyDeviceScreenDensity = @"density";
 static NSString *const MonitoringServiceBodyDeviceScreenOrientation = @"orientation";
 
 // settings
@@ -165,6 +166,7 @@ static NSString *const MonitoringServiceBodyDeviceAssetType = @"ios";
     if ([privacyConfiguration monitoringPermissionIsEnabledFor:OGAAdPrivacyPermissionDeviceDimensions]) {
         screenDictionary[MonitoringServiceBodyDeviceScreenWidth] = device.screen.width;
         screenDictionary[MonitoringServiceBodyDeviceScreenHeight] = device.screen.height;
+        screenDictionary[MonitoringServiceBodyDeviceScreenDensity] = device.screen.density;
     }
     if ([privacyConfiguration monitoringPermissionIsEnabledFor:OGAAdPrivacyPermissionDeviceOrientation]) {
         screenDictionary[MonitoringServiceBodyDeviceScreenOrientation] = [self deviceOrientation];

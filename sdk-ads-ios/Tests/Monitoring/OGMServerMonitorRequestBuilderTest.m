@@ -134,6 +134,7 @@ static NSString *const TestContent = @"detailContentTest";
     OCMStub([device screen]).andReturn(screen);
     OCMStub(screen.width).andReturn(@200);
     OCMStub(screen.height).andReturn(@200);
+    OCMStub(screen.density).andReturn(@2.5);
     OCMStub([requestBuilder device]).andReturn(device);
     OCMStub([requestBuilder getSimCardCountry]).andReturn(@"FR");
     OCMStub([requestBuilder deviceOrientation]).andReturn(@"portrait");
@@ -178,9 +179,11 @@ static NSString *const TestContent = @"detailContentTest";
     if (permission & 16) {
         XCTAssertNotNil(payload[@"device"][@"screen"][@"width"], @"%@", message);
         XCTAssertNotNil(payload[@"device"][@"screen"][@"height"], @"%@", message);
+        XCTAssertNotNil(payload[@"device"][@"screen"][@"density"], @"%@", message);
     } else {
         XCTAssertNil(payload[@"device"][@"screen"][@"width"], @"%@", message);
         XCTAssertNil(payload[@"device"][@"screen"][@"height"], @"%@", message);
+        XCTAssertNil(payload[@"device"][@"screen"][@"density"], @"%@", message);
     }
     if (permission & 32) {
         XCTAssertNotNil(payload[@"device"][@"screen"][@"orientation"], @"%@", message);
