@@ -39,7 +39,7 @@
 }
 
 - (NSString *)stringFromOGCDarwinNotificationIdentifier:(OGCDarwinNotificationIdentifier)identifier {
-    return [[NSString alloc] initWithFormat:@"%@.co.ogury.core.loglevel.%@", NSBundle.mainBundle. bundleIdentifier, [self identifierToString:identifier]];
+    return [[NSString alloc] initWithFormat:@"%@.co.ogury.core.loglevel.%@", NSBundle.mainBundle.bundleIdentifier, [self identifierToString:identifier]];
 }
 
 @end

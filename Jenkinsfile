@@ -9,10 +9,14 @@ pipeline {
         GIT_TOKEN = credentials('GIT_TOKEN')
         GIT_USERNAME = "weareogury"
         LC_ALL = 'en_US.UTF-8'
-        PATH = "/usr/local/bin:~/.rvm/gems/ruby-2.7.7/wrappers:$PATH"
+        PATH = "$HOME/.rvm/bin:$PATH" // ensure RVM is found
         RBENV_SHELL = 'zsh'
         SONAR_CLOUD_TOKEN = credentials('SONAR_CLOUD_TOKEN')
         ARTIFACTORY_TOKEN = credentials('ARTIFACTORY_TOKEN')
+        GIT_TAG = sh(
+            script: 'git describe --tags --abbrev=0 2>/dev/null || echo "no-tag"',
+            returnStdout: true
+        ).trim()
     }
 
     stages {
@@ -33,11 +37,18 @@ pipeline {
                     not { changeRequest() }
                     buildingTag()
                 }
+                expression {
+                    // Skip this step if TAG_NAME contains 'internal-testApp'
+                    !env.TAG_NAME?.contains('internal-testApp')
+                }
             }
             steps {
                 script {
+                    echo "GIT_TAG is: ${env.GIT_TAG}"
+
                     // Default to false
                     def isArtifactory = false
+                    def killModeEnabled = false
                     def targetThreshold = "all"
                     
                     // Check if a tag exists and contains '-art'
@@ -51,21 +62,28 @@ pipeline {
                     if (env.GIT_TAG && env.GIT_TAG.contains('-ads-')) {
                         targetThreshold = "ads"
                     }
+                    if (env.GIT_TAG && env.GIT_TAG.contains('wrapper')) {
+                        targetThreshold = "sdk"
+                    }
+                    if (env.GIT_TAG && env.GIT_TAG.contains('-killModeEnabled')) {
+                        killModeEnabled = true
+                    }
         
                     // Log the value of isArtifactory for debugging
                     echo "Artifactory is set to: ${isArtifactory}"
                     echo "Target Threshold is set to: ${targetThreshold}"
-        
-                    // Run the first shell script (setting up environment)
-                    sh """#!/bin/zsh -l
-                    source ~/.zshrc
-                    rvm --default use 2.7.7
-                    """
+                    echo "killModeEnabled is set to: ${killModeEnabled}"
         
                     // Run the Fastlane build with artifactory set based on the tag
                     sh """#!/bin/zsh -l
-                    source ~/.zshrc
-                    bundle exec fastlane build environment:'prod' artifactory:${isArtifactory} targetThreshold:${targetThreshold}
+                        source ~/.zshrc
+                        source $HOME/.rvm/scripts/rvm
+                        rvm use 3.3.1 --default
+                        ruby -v
+                        gem uninstall bundler
+                        gem install bundler
+                        bundle install
+                        bundle exec fastlane build environment:'prod' artifactory:${isArtifactory} targetThreshold:${targetThreshold} killModeEnabled:${killModeEnabled}
                     """
                 }
             }
@@ -77,6 +95,10 @@ pipeline {
                 changeRequest()
                 not {
                     branch 'master'
+                }
+                expression {
+                    // Skip this step if TAG_NAME contains 'internal-testApp'
+                    !env.TAG_NAME?.contains('internal-testApp')
                 }
             }
             steps {
@@ -94,6 +116,10 @@ pipeline {
                     branch 'master'
                     changeRequest target:'master'
                 }
+                expression {
+                    // Skip this step if TAG_NAME contains 'internal-testApp'
+                    !env.TAG_NAME?.contains('internal-testApp')
+                }
             }
             steps {
                 sh """#!/bin/zsh -l
@@ -103,117 +129,93 @@ pipeline {
             }
         }
 
-        // sta
-
-        stage('Deployment') {
+        // Deployments
+        stage('Deployments') {
             when {
                 beforeAgent true
                 buildingTag()
                 not { changeRequest() }
             }
-            stages {
-                // deploy internal builds, both dev and release mode (i.e. uses maven dependencies instead of local ones)
-                stage('Deploy Core Internal dev') {
-                    when {
-                        beforeAgent true
-                        expression {
-                            def elements = "${env.TAG_NAME}".split("-")
-                            return elements.contains("core") && !elements.contains("art") && elements.contains("internal")
+            steps {
+                script {
+                    // Parse TAG_NAME to determine framework, environment, and extra conditions
+                    def elements = "${env.TAG_NAME}".split("-")
+                    if (elements.size() < 3) {
+                        error "Invalid TAG_NAME format: Expected at least two elements, got ${elements.size()}"
+                    }
+
+                    def isArtifactory = elements.contains("art")
+                    def killModeEnabled = elements.contains("killModeEnabled")
+
+                    // environment : internal - beta - release
+                    def envType = ""
+                    switch (elements[0]) {
+                        case "internal":
+                            envType = "prod"
+                            break
+                        case "beta":
+                            envType = "beta"
+                            break
+                        case "release":
+                            envType = "release"
+                            // Ensure that release mode always has this setting to false
+                            killModeEnabled = false
+                            // always use external dependencies when compiling for prod
+                            isArtifactory = true
+                            break
+                        default:
+                            error "Unknown environment type: ${elements[0]}"
+                    }
+
+                    // framework : ads - core - wrapper
+                    def framework = ""
+                    switch (elements[1]) {
+                        case "core":
+                            framework = "core"
+                            break
+                        case "ads":
+                            framework = "ads"
+                            break
+                        case "wrapper":
+                            framework = "wrapper"
+                            break
+                        default:
+                            error "Unknown framework type: ${elements[1]}"
+                    }
+
+                    def targetThreshold = "all"
+                    if (env.GIT_TAG && env.GIT_TAG.contains('-core-')) {
+                        targetThreshold = "core"
+                    }
+                    if (env.GIT_TAG && env.GIT_TAG.contains('-ads-')) {
+                        targetThreshold = "ads"
+                    }
+                    if (env.GIT_TAG && env.GIT_TAG.contains('wrapper')) {
+                        targetThreshold = "sdk"
+                    }
+                    if (env.GIT_TAG && env.GIT_TAG.contains('-killModeEnabled')) {
+                        killModeEnabled = true
+                    }
+
+                    def isBetaOrRelease = (envType == "beta" || envType == "release")
+                    if (isBetaOrRelease) {
+                        withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
+                            echo "Environment variables for beta/release set."
                         }
                     }
-                    steps {
+        
+                    echo "Deploying ${framework} in ${envType} mode, artifactory: ${isArtifactory}, targetThreshold: ${targetThreshold}, killModeEnabled: ${killModeEnabled}"
 
-                        sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_core_framework environment:prod tag:${env.TAG_NAME}
-                        """
-                    }
-                }
-                stage('Deploy Core Internal With Cocoapod Dependencies') {
-                    when {
-                        beforeAgent true
-                        tag "internal-core-art-*"
-                    }
-                    steps {
-
-                        sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_core_framework environment:prod tag:${env.TAG_NAME} artifactory:true
-                        """
-                    }
-                }
-                stage('Deploy Ads Internal dev') {
-                    when {
-                        beforeAgent true
-                        expression {
-                            def elements = "${env.TAG_NAME}".split("-")
-                            return elements.contains("ads") && !elements.contains("art") && elements.contains("internal")
-                        }
-                    }
-                    steps {
-
-                        sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_ads_framework environment:prod tag:${env.TAG_NAME}
-                        """
-                    }
-                }
-                stage('Deploy Ads Internal With Cocoapod Dependencies') {
-                    when {
-                        beforeAgent true
-                        tag "internal-ads-art-*"
-                    }
-                    steps {
-
-                        sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_ads_framework environment:prod tag:${env.TAG_NAME} artifactory:true
-                        """
-                    }
-                }
-                stage('Deploy Wrapper Internal dev') {
-                    when {
-                        beforeAgent true
-                        expression {
-                            def elements = "${env.TAG_NAME}".split("-")
-                            return elements.contains("wrapper") && !elements.contains("art") && elements.contains("internal")
-                        }
-                    }
-                    steps {
-
-                        sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_wrapper_framework environment:prod tag:${env.TAG_NAME}
-                        """
-                    }
-                }
-                stage('Deploy wrapper Internal With Cocoapod Dependencies') {
-                    when {
-                        beforeAgent true
-                        tag "internal-wrapper-art-*"
-                    }
-                    steps {
-
-                        sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_wrapper_framework environment:prod tag:${env.TAG_NAME} artifactory:true
-                        """
-                    }
-                }
-
-                // deploy beta version, both dev and release mode
-                stage('Deploy Core Beta dev') {
-                    environment {
-                        GIT_SSH_COMMAND = 'ssh -o StrictHostKeyChecking=no'
-                    }
-                    when {
-                        beforeAgent true
-                        expression {
-                            def elements = "${env.TAG_NAME}".split("-")
-                            return elements.contains("core") && !elements.contains("art") && elements.contains("beta")
-                        }
-                    }
-                    steps {
-                        sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_core_framework environment:beta tag:${env.TAG_NAME}
-                        """
-
-                        withAWS(role:'ci-eu-west-1-macos-jenkins-ci', roleAccount:'556593845588')  {
+                    // Main deployment logic
+                    sh """#!/bin/zsh -l
+                        bundle exec fastlane deploy_${framework}_framework environment:${envType} tag:${env.TAG_NAME} artifactory:${isArtifactory} targetThreshold:${targetThreshold} killModeEnabled:${killModeEnabled}
+                    """
+        
+                    // Handle additional steps for beta/release
+                    if (isBetaOrRelease) {
+                        withAWS(role: 'ci-eu-west-1-macos-jenkins-ci', roleAccount: '556593845588') {
                             script {
+                                echo "Uploading artifacts to S3..."
                                 s3Utils.uploadDir(
                                     localDir: 'jenkins/output/amazon',
                                     bucket: 'ogury-sdk-binaries',
@@ -221,263 +223,36 @@ pipeline {
                                 )
                             }
                         }
-
+        
                         sshagent(['Ogy-JenkinsAuth']) {
                             sh """#!/bin/zsh -l
-                                bundle exec fastlane deploy_core_podspec environment:beta tag:${env.TAG_NAME}
+                                bundle exec fastlane deploy_${framework}_podspec environment:${envType} tag:${env.TAG_NAME} artifactory:${isArtifactory} targetThreshold:${targetThreshold}
                             """
                         }
                     }
                 }
-                stage('Deploy Core Beta With Cocoapod Dependencies') {
-                    environment {
-                        GIT_SSH_COMMAND = 'ssh -o StrictHostKeyChecking=no'
-                    }
-                    when {
-                        beforeAgent true
-                        tag "beta-core-art-*"
-                    }
-                    steps {
-                        sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_core_framework environment:beta tag:${env.TAG_NAME} artifactory:true
-                        """
+            }
+        }
 
-                        withAWS(role:'ci-eu-west-1-macos-jenkins-ci', roleAccount:'556593845588')  {
-                            script {
-                                s3Utils.uploadDir(
-                                    localDir: 'jenkins/output/amazon',
-                                    bucket: 'ogury-sdk-binaries',
-                                    prefix: ''
-                                )
-                            }
-                        }
-
-                        sshagent(['Ogy-JenkinsAuth']) {
-                            sh """#!/bin/zsh -l
-                                bundle exec fastlane deploy_core_podspec environment:beta tag:${env.TAG_NAME}
-                            """
-                        }
-                    }
+        stage('Deploy Ads Test App') {
+            when {
+                beforeAgent true
+                expression {
+                    return "${env.TAG_NAME}".contains("internal-testApp")
                 }
-                stage('Deploy Ads Beta dev') {
-                    environment {
-                        GIT_SSH_COMMAND = 'ssh -o StrictHostKeyChecking=no'
-                    }
-                    when {
-                        beforeAgent true
-                        expression {
-                            def elements = "${env.TAG_NAME}".split("-")
-                            return elements.contains("ads") && !elements.contains("art") && elements.contains("beta")
-                        }
-                    }
-                    steps {
-                        sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_ads_framework environment:beta tag:${env.TAG_NAME}
-                        """
-
-                        withAWS(role:'ci-eu-west-1-macos-jenkins-ci', roleAccount:'556593845588')  {
-                            script {
-                                s3Utils.uploadDir(
-                                    localDir: 'jenkins/output/amazon',
-                                    bucket: 'ogury-sdk-binaries',
-                                    prefix: ''
-                                )
-                            }
-                        }
-
-                        sshagent(['Ogy-JenkinsAuth']) {
-                            sh """#!/bin/zsh -l
-                                bundle exec fastlane deploy_ads_podspec environment:beta tag:${env.TAG_NAME}
-                            """
-                        }
-                    }
-                }
-                stage('Deploy ads Beta With Cocoapod Dependencies') {
-                    environment {
-                        GIT_SSH_COMMAND = 'ssh -o StrictHostKeyChecking=no'
-                    }
-                    when {
-                        beforeAgent true
-                        tag "beta-ads-art-*"
-                    }
-                    steps {
-                        sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_ads_framework environment:beta tag:${env.TAG_NAME} artifactory:true
-                        """
-
-                        withAWS(role:'ci-eu-west-1-macos-jenkins-ci', roleAccount:'556593845588')  {
-                            script {
-                                s3Utils.uploadDir(
-                                    localDir: 'jenkins/output/amazon',
-                                    bucket: 'ogury-sdk-binaries',
-                                    prefix: ''
-                                )
-                            }
-                        }
-
-                        sshagent(['Ogy-JenkinsAuth']) {
-                            sh """#!/bin/zsh -l
-                                bundle exec fastlane deploy_ads_podspec environment:beta tag:${env.TAG_NAME}
-                            """
-                        }
-                    }
-                }
-                stage('Deploy wrapper Beta dev') {
-                    environment {
-                        GIT_SSH_COMMAND = 'ssh -o StrictHostKeyChecking=no'
-                    }
-                    when {
-                        beforeAgent true
-                        expression {
-                            def elements = "${env.TAG_NAME}".split("-")
-                            return elements.contains("wrapper") && !elements.contains("art") && elements.contains("beta")
-                        }
-                    }
-                    steps {
-                        sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_wrapper_framework environment:beta tag:${env.TAG_NAME}
-                        """
-
-                        withAWS(role:'ci-eu-west-1-macos-jenkins-ci', roleAccount:'556593845588')  {
-                            script {
-                                s3Utils.uploadDir(
-                                    localDir: 'jenkins/output/amazon',
-                                    bucket: 'ogury-sdk-binaries',
-                                    prefix: ''
-                                )
-                            }
-                        }
-
-                        sshagent(['Ogy-JenkinsAuth']) {
-                            sh """#!/bin/zsh -l
-                                bundle exec fastlane deploy_wrapper_podspec environment:beta tag:${env.TAG_NAME}
-                            """
-                        }
-                    }
-                }
-                stage('Deploy wrapper Beta With Cocoapod Dependencies') {
-                    environment {
-                        GIT_SSH_COMMAND = 'ssh -o StrictHostKeyChecking=no'
-                    }
-                    when {
-                        beforeAgent true
-                        tag "beta-wrapper-art-*"
-                    }
-                    steps {
-                        sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_wrapper_framework environment:beta tag:${env.TAG_NAME} artifactory:true
-                        """
-
-                        withAWS(role:'ci-eu-west-1-macos-jenkins-ci', roleAccount:'556593845588')  {
-                            script {
-                                s3Utils.uploadDir(
-                                    localDir: 'jenkins/output/amazon',
-                                    bucket: 'ogury-sdk-binaries',
-                                    prefix: ''
-                                )
-                            }
-                        }
-
-                        sshagent(['Ogy-JenkinsAuth']) {
-                            sh """#!/bin/zsh -l
-                                bundle exec fastlane deploy_wrapper_podspec environment:beta tag:${env.TAG_NAME}
-                            """
-                        }
-                    }
-                }
-
-                // deploy release version
-                stage('Deploy Core Release') {
-                    environment {
-                        GIT_SSH_COMMAND = 'ssh -o StrictHostKeyChecking=no'
-                    }
-                    when {
-                        beforeAgent true
-                        tag "release-core-*"
-                    }
-                    steps {
-                        sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_core_framework environment:release tag:${env.TAG_NAME} artifactory:true
-                        """
-
-                        withAWS(role:'ci-eu-west-1-macos-jenkins-ci', roleAccount:'556593845588')  {
-                            script {
-                                s3Utils.uploadDir(
-                                    localDir: 'jenkins/output/amazon',
-                                    bucket: 'ogury-sdk-binaries',
-                                    prefix: ''
-                                )
-                            }
-                        }
-
-                        sshagent(['Ogy-JenkinsAuth']) {
-                            sh """#!/bin/zsh -l
-                                bundle exec fastlane deploy_core_podspec environment:release tag:${env.TAG_NAME}
-                            """
-                        }
-                    }
-                }
-                stage('Deploy Ads Release') {
-                    environment {
-                        GIT_SSH_COMMAND = 'ssh -o StrictHostKeyChecking=no'
-                    }
-                    when {
-                        beforeAgent true
-                        tag "release-ads-*"
-                    }
-                    steps {
-                        sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_ads_framework environment:release tag:${env.TAG_NAME} artifactory:true
-                        """
-
-                        withAWS(role:'ci-eu-west-1-macos-jenkins-ci', roleAccount:'556593845588')  {
-                            script {
-                                s3Utils.uploadDir(
-                                    localDir: 'jenkins/output/amazon',
-                                    bucket: 'ogury-sdk-binaries',
-                                    prefix: ''
-                                )
-                            }
-                        }
-
-                        sshagent(['Ogy-JenkinsAuth']) {
-                            sh """#!/bin/zsh -l
-                                bundle exec fastlane deploy_ads_podspec environment:release tag:${env.TAG_NAME}
-                            """
-                        }
-                    }
-                }
-                stage('Deploy wrapper Release') {
-                    environment {
-                        GIT_SSH_COMMAND = 'ssh -o StrictHostKeyChecking=no'
-                    }
-                    when {
-                        beforeAgent true
-                        tag "release-wrapper-*"
-                    }
-                    steps {
-                        sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_wrapper_framework environment:release tag:${env.TAG_NAME} artifactory:true
-                        """
-
-                        withAWS(role:'ci-eu-west-1-macos-jenkins-ci', roleAccount:'556593845588')  {
-                            script {
-                                s3Utils.uploadDir(
-                                    localDir: 'jenkins/output/amazon',
-                                    bucket: 'ogury-sdk-binaries',
-                                    prefix: ''
-                                )
-                            }
-                        }
-
-                        sshagent(['Ogy-JenkinsAuth']) {
-                            sh """#!/bin/zsh -l
-                                bundle exec fastlane deploy_wrapper_podspec environment:release tag:${env.TAG_NAME}
-                            """
-                        }
-                    }
-                }
-
+            }
+            steps {
+                script {
+                // Extract information from TAG_NAME
+                    def tagElements = "${env.TAG_NAME}".split("-")
+                    def isQa = tagElements.contains("qa") 
+                    def isArtifactory = tagElements.contains("art") 
+                    def killModeEnabled = elements.contains("killModeEnabled")
+                    
+                    sh """#!/bin/zsh -l
+                       bundle exec fastlane generate_test_app isQa:${isQa} artifactory:${isArtifactory} tag:${env.TAG_NAME} killModeEnabled:${killModeEnabled}
+                    """
+                 }
             }
         }
     }

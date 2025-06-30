@@ -21,8 +21,6 @@ static NSString *const OGABannerAdContainerStateKeyValueObservationBoundsKey = @
 static NSString *const OGABannerAdContainerStateKeyValueObservationAlphaKey = @"alpha";
 static NSString *const OGABannerAdContainerStateKeyValueObservationHiddenKey = @"hidden";
 
-static int const OGABannerAdContainerStateMaximumNumberOfParentTraversals = 16;
-
 @interface OGABannerAdViewContainerState ()
 
 #pragma mark - Properties
@@ -112,7 +110,6 @@ static int const OGABannerAdContainerStateMaximumNumberOfParentTraversals = 16;
 }
 
 - (void)startViewsObservation {
-    [[self getParentScrollViewFrom:self.bannerView].layer addObserver:self forKeyPath:OGABannerAdContainerStateKeyValueObservationBoundsKey options:NSKeyValueObservingOptionNew context:nil];
 
     [self.bannerView addObserver:self forKeyPath:OGABannerAdContainerStateKeyValueObservationFrameKey options:NSKeyValueObservingOptionNew context:nil];
     [self.bannerView addObserver:self forKeyPath:OGABannerAdContainerStateKeyValueObservationAlphaKey options:NSKeyValueObservingOptionNew context:nil];
@@ -123,39 +120,11 @@ static int const OGABannerAdContainerStateMaximumNumberOfParentTraversals = 16;
     }
 }
 
-- (UIView *_Nullable)getParentScrollViewFrom:(UIView *)view {
-    // Parent scroll view has been discovered beforehand, no need to traverse the whole tree
-    if (self.lastKnownParentScrollView) {
-        return self.lastKnownParentScrollView;
-    }
-
-    // Prevent infinite recursion
-    if (self.numberOfParentTraversals >= OGABannerAdContainerStateMaximumNumberOfParentTraversals) {
-        return nil;
-    }
-
-    self.numberOfParentTraversals += 1;
-
-    UIView *superView = view.superview;
-
-    if (!superView || ![superView isKindOfClass:[UIScrollView class]]) {
-        return [self getParentScrollViewFrom:superView];
-    }
-
-    self.lastKnownParentScrollView = superView;
-    self.numberOfParentTraversals = 0;
-
-    return superView;
-}
-
 - (void)cleanUp {
-    [super cleanUp];
-
-    [self removeKeyPathObservers];
-
     [self.displayer.view removeFromSuperview];
-
+    [self.displayer cleanUp];
     [self.exposureController stopExposure];
+    [super cleanUp];
 }
 
 - (void)centerBannerInFrame {
@@ -208,8 +177,7 @@ static int const OGABannerAdContainerStateMaximumNumberOfParentTraversals = 16;
 }
 
 - (void)removeKeyPathObservers {
-    [[self getParentScrollViewFrom:self.bannerView].layer removeObserver:self forKeyPath:OGABannerAdContainerStateKeyValueObservationBoundsKey];
-
+   
     [self.bannerView removeObserver:self forKeyPath:OGABannerAdContainerStateKeyValueObservationFrameKey];
     [self.bannerView removeObserver:self forKeyPath:OGABannerAdContainerStateKeyValueObservationAlphaKey];
     [self.bannerView removeObserver:self forKeyPath:OGABannerAdContainerStateKeyValueObservationHiddenKey];
@@ -217,6 +185,10 @@ static int const OGABannerAdContainerStateMaximumNumberOfParentTraversals = 16;
     if (self.parentView) {
         [self.parentView.layer removeObserver:self forKeyPath:OGABannerAdContainerStateKeyValueObservationBoundsKey];
     }
+}
+
+- (void)dealloc {
+    [self removeKeyPathObservers];
 }
 
 #pragma mark - Window & App observation

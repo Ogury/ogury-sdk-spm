@@ -6,8 +6,7 @@
 #import "OguryBannerAdSize.h"
 #import <Foundation/NSProcessInfo.h>
 
-NSString *const OGAAdConfigurationAdTypeSmallBanner = @"banner_320x50";
-NSString *const OGAAdConfigurationAdTypeMPU = @"medium_rectangle";
+NSString *const OGAAdConfigurationAdTypeStandardBanners = @"standard_banners";
 NSString *const OGAAdConfigurationAdTypeThumbnailAd = @"overlay_thumbnail";
 NSString *const OGAAdConfigurationAdTypeRewarded = @"optin_video";
 NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
@@ -78,6 +77,7 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
         _monitoringDetails = [OGAMonitoringDetails new];
         _isHeaderBidding = false;
         _numberOfWebviewTerminatedReloadAttempts = 0;
+        _logDetails = [OGALogDetail new];
     }
     return self;
 }
@@ -109,6 +109,8 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
     configuration.creativeId = self.creativeId;
     configuration.adDsp = [self.adDsp copy];
     configuration.size = self.size;
+    configuration.requestedSize = self.requestedSize;
+    configuration.creativeSize = self.creativeSize;
     configuration.corner = self.corner;
     configuration.offset = self.offset;
     configuration.blackListViewControllers = [self.blackListViewControllers copy];
@@ -118,6 +120,7 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
     configuration.monitoringDetails = self.monitoringDetails;
     configuration.expirationContext = self.expirationContext;
     configuration.locale = self.locale;
+    configuration.logDetails = self.logDetails;
     configuration.isHeaderBidding = self.isHeaderBidding;
     configuration.encodedAdMarkup = self.encodedAdMarkup;
     configuration.numberOfWebviewTerminatedReloadAttempts = self.numberOfWebviewTerminatedReloadAttempts;
@@ -130,15 +133,8 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
 
 - (NSString *)getAdTypeString {
     switch (self.adType) {
-        case OguryAdsTypeBanner: {
-            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize small_banner_320x50] getSize])) {
-                return OGAAdConfigurationAdTypeSmallBanner;
-            }
-            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize mrec_300x250] getSize])) {
-                return OGAAdConfigurationAdTypeMPU;
-            }
-            return @"";
-        }
+        case OguryAdsTypeBanner:
+            return OGAAdConfigurationAdTypeStandardBanners;
         case OguryAdsTypeThumbnailAd:
             return OGAAdConfigurationAdTypeThumbnailAd;
         case OguryAdsTypeRewardedAd:
@@ -147,6 +143,38 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
             return OGAAdConfigurationAdTypeInterstitial;
         default:
             return @"";
+    }
+}
+
+- (NSInteger)getWidthForAdType {
+    switch (self.adType) {
+        case OguryAdsTypeBanner: {
+            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize small_banner_320x50] getSize])) {
+                return 320;
+            }
+            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize mrec_300x250] getSize])) {
+                return 300;
+            }
+            return 0;
+        }
+        default:
+            return 0;
+    }
+}
+
+- (NSInteger)getHeightForAdType {
+    switch (self.adType) {
+        case OguryAdsTypeBanner: {
+            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize small_banner_320x50] getSize])) {
+                return 50;
+            }
+            if (CGSizeEqualToSize(self.size, [[OguryBannerAdSize mrec_300x250] getSize])) {
+                return 250;
+            }
+            return 0;
+        }
+        default:
+            return 0;
     }
 }
 
@@ -164,6 +192,10 @@ NSString *const OGAAdConfigurationAdTypeInterstitial = @"interstitial";
                   dspCreativeId:(NSString *_Nullable)newDspCreativeId
                       dspRegion:(NSString *_Nullable)newDspRegion {
     return (newCampaignId != nil && self.campaignId != newCampaignId) || (newCreativeId != nil && self.creativeId != newCreativeId) || (newDspCreativeId != nil && self.adDsp.creativeId != newDspCreativeId) || (newDspRegion != nil && self.adDsp.region != newDspRegion);
+}
+
+- (void)setLogOrigin:(NSString *)origin {
+    self.logDetails.origin = origin;
 }
 
 @end

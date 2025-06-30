@@ -5,6 +5,8 @@
 #import "OGAMraidFileDownloader.h"
 #import <OguryCore/OguryNetworkRequestBuilder.h>
 #import <OguryCore/OguryNetworkClient.h>
+#import "OGAMraidLogMessage.h"
+#import <OguryCore/OguryLogMessage.h>
 #import "OguryAdError.h"
 #import "OGAMraidDownloadHeaderBuilder.h"
 #import "OGAMonitoringDispatcher.h"
@@ -49,7 +51,14 @@ static NSString *const OGAMonitoringEventMraidURL = @"url";
         return;
     }
     [self.monitoringDispatcher sendLoadEvent:OGALoadEventMraidRequest adConfiguration:ad.adConfiguration details:@{OGAMonitoringEventMraidURL : ad.mraidDownloadUrl}];
-    [self.log logAd:OguryLogLevelDebug forAdConfiguration:ad.adConfiguration message:[NSString stringWithFormat:@"Mraid file request url : %@", ad.mraidDownloadUrl]];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:ad.adConfiguration
+                                                 logType:OguryLogTypeMraid
+                                                 message:@"Mraid file request"
+                                                    tags:@[
+                                                        [OguryLogTag tagWithKey:@"URL"
+                                                                          value:ad.mraidDownloadUrl]
+                                                    ]]];
 
     // Request
     OguryNetworkRequestBuilder *requestBuilder = [[OguryNetworkRequestBuilder alloc] initWithHTTPMethod:OguryNetworkRequestHTTPMethodGET

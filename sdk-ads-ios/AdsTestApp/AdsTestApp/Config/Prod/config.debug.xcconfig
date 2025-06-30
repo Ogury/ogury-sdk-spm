@@ -1,4 +1,0 @@
-#include "../../../../../Pods/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod.debug.xcconfig"
-ASSET_KEY = OGY-37AEE44C8F53
-DEFAULT_ENV = PROD
-PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app

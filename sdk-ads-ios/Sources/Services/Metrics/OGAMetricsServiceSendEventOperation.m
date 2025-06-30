@@ -51,7 +51,11 @@
     [self.networkClient performRequest:eventRequest
                      completionHandler:^(NSData *_Nullable result, NSError *_Nullable error) {
                          if (error) {
-                             [self.log logErrorFormat:error format:@"An error occurred while sending track event [eventName: %@]", self.event.eventName];
+                             [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                                  adConfiguration:nil
+                                                                          logType:OguryLogTypeInternal
+                                                                          message:[NSString stringWithFormat:@"An error occurred while sending track event [eventName: %@]", self.event.eventName]
+                                                                             tags:nil]];
                          }
                      }];
 }

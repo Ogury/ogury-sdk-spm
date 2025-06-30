@@ -3,22 +3,19 @@
 //
 
 #import "OguryAbstractLogMessage.h"
+#import "OGCLogFormatter.h"
 
 @implementation OguryAbstractLogMessage
 
 #pragma mark - Initialization
-
-- (instancetype)initWithLevel:(OguryLogLevel)level message:(NSString *)message {
-    if (self = [super init]) {
-        _level = level;
-        _message = message;
-    }
-
-    return self;
-}
-
 - (nonnull id)copyWithZone:(nullable NSZone *)zone {
-    return [[[self class] alloc] initWithLevel:self.level message:self.message];
+    return [[[self class] alloc] initWithLevel:self.level
+                                       logType:self.logType
+                                        origin:self.origin
+                                           sdk:self.sdk
+                                   messageDate:self.messageDate
+                                       message:self.message
+                                          tags:self.tags];
 }
 
 @end

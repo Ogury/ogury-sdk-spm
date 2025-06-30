@@ -35,7 +35,7 @@
 - (void)registerToNotification {
    NSString *formattedString = [self.stringFormatter stringFromOGWDarwinNotificationIdentifier:OGWDarwinNotificationIdentifierLogAll];
 
-   [[OGWLog shared] logFormat:OguryLogLevelInfo format:@"Registered to darwin notification [%@]", formattedString];
+    [[OGWLog shared] log:OguryLogLevelInfo message:[NSString stringWithFormat:@"Registered to darwin notification [%@]", formattedString]];
    CFNotificationCenterAddObserver(self.cFNotificationCenter,
                                    (__bridge const void *)(self),
                                    ogwNotificationCallback,
@@ -46,8 +46,7 @@
 
 - (void)unregisterFromNotification {
    NSString *formattedString = [self.stringFormatter stringFromOGWDarwinNotificationIdentifier:OGWDarwinNotificationIdentifierLogAll];
-
-   [[OGWLog shared] logFormat:OguryLogLevelInfo format:@"Unregistered darwin notification [%@]", formattedString];
+    [[OGWLog shared] log:OguryLogLevelInfo message:[NSString stringWithFormat:@"Unregistered darwin notification [%@]", formattedString]];
    CFNotificationCenterRemoveObserver(self.cFNotificationCenter, (__bridge const void *)(self), (__bridge CFStringRef)formattedString, NULL);
 }
 

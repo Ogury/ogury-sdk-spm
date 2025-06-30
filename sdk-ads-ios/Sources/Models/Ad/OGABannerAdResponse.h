@@ -4,6 +4,7 @@
 
 #import <Foundation/Foundation.h>
 #import "OGAJSONModel.h"
+#import "OGABannerAdSize.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSNumber *fullWidth;
 @property(nonatomic, strong) NSNumber *autoRefresh;
 @property(nonatomic, assign, readonly) BOOL isFullScreen;
+@property(nonatomic, strong) OGABannerAdSize *creativeSize;
 
 @end
 

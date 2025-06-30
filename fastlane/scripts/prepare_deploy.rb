@@ -252,9 +252,6 @@ private_lane :generate_podspec do |options|
     placeholders["omid_sdk"] = "#{File.basename(configuration.frameworks.omid)}"
   end
 
-  puts "#{Dir.pwd}/templates/#{target.name}.podspec.json.erb"
-  puts "podspec placeholders #{placeholders}".red
-
   erb(
     template: "#{Dir.pwd}/templates/#{target.publicName}.podspec.json.erb",
     destination: "#{configuration.directories.output}/#{output_file}",
@@ -399,17 +396,26 @@ private_lane :deploy_test_app do |options|
   end
 
   configuration = options[:configuration]
+  artifactory = options[:artifactory] ? options[:artifactory] : false
+  isQa = options[:isQa] ? options[:isQa] : false
   setup_xcode
+    
+    update_internal_cocoapods environment: 'prod'
+    generate_podfile(environment:'prod', targetThreshold:"all")
+    cocoapods(
+      podfile: "./Podfile",
+      repo_update: true
+    )
   
   puts "Building TestApp".green
 
   TestAppVariant.all.each do |variant|
 
     puts "Building #{configuration.targets.testApp.scheme}-#{variant}".blue
-    artifactory = options[:artifactory] ? options[:artifactory] : false
     scheme = "#{configuration.targets.testApp.scheme}-#{variant}"
     scheme =  artifactory ? "#{scheme}-art" : scheme
     bundleId = variant == TestAppVariant::PROD ? "co.ogury.sdk.ads.app" : "co.ogury.sdk.ads.app.#{variant.downcase}"
+    xcargs = isQa ? "OTHER_SWIFT_FLAGS='$(OTHER_SWIFT_FLAGS) -DQA_MODE'" : "OTHER_SWIFT_FLAGS='$(OTHER_SWIFT_FLAGS)'"
     puts "bundleId #{bundleId}".yellow
 
     build_ios_app(
@@ -418,14 +424,15 @@ private_lane :deploy_test_app do |options|
       sdk: "iphoneos",
       derived_data_path: configuration.directories.test_derived_data,
       clean: true,
+      xcargs: xcargs,
       output_directory: configuration.directories.test_app,
       output_name: "#{scheme}.ipa",
       export_method: "development",
       export_options: {
-        signingStyle: "automatic",
-        provisioningProfiles: {
-          bundleId => "XC co ogury sdk ads app #{variant.downcase}"
-        },
+        signingStyle: "automatic"
+        #provisioningProfiles: {
+        #  bundleId => "XC co ogury sdk ads app #{variant.downcase}"
+        #},
       },
 
       )
