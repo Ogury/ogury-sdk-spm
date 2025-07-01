@@ -14,7 +14,7 @@ def get_framework_suffix(environment)
 end
 
 def get_archive_filename(project_name, framework_suffix, version)
-    return "#{project_name}#{framework_suffix}-#{version}.zip"
+    return "#{project_name}#{framework_suffix}-#{version}.tar.gz"
 end
 
 def get_podspec_filename(project_name, framework_suffix)

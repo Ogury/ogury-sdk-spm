@@ -179,7 +179,8 @@ private_lane :zip_famework do |options|
   puts "Files #{files}".red
 
   Dir.chdir("..") do
-    sh("cd #{configuration.directories.output} && zip -r #{archive_filename} #{files}")
+    sh("tar -czvf #{configuration.directories.output}/#{archive_filename} -C #{configuration.directories.output} #{files}")
+    #sh("cd #{configuration.directories.output} && zip -r #{archive_filename} #{files}")
   end
 end
 
