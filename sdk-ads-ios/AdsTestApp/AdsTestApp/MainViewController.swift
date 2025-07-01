@@ -3,10 +3,9 @@
 //
 
 import UIKit
-import ComposableArchitecture
+internal import ComposableArchitecture
 import SwiftUI
 import AdsCardLibrary
-import OguryAds
 import SnapKit
 import CoreServices
 import UniformTypeIdentifiers
@@ -21,12 +20,14 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         start()
-        AdSdkLauncher.shared.launch()
+        Task { await SdkLauncher.shared.launch() }
         addViewToHierarchy()
         startNotifiers()
     }
     
     private func start() {
+        // load default preferences from various files
+        SettingsController.loadPreferences()
         loadCards()
         UINavigationBar.appearance().largeTitleTextAttributes = [
             .foregroundColor: AdColorPalette.Text.primary(onAccent: false).color,
@@ -93,13 +94,13 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: AdLifeCycleDelegate {
-    func focusLogs(on cardId: String) {
-        ViewStore(store, observe: { $0 }).send(.focusLogs(on: cardId))
+extension MainViewController: AdLifeCycleDelegate, ApplicationDelegate {
+    func viewController(for adManager: any AdManager) -> UIViewController? {
+        self
     }
     
-    func viewController<T>(forBanner banner: T.Ad, adManager: T) -> UIViewController? where T : AdsCardLibrary.AdManager {
-        self
+    func focusLogs(on cardId: String) {
+        ViewStore(store, observe: { $0 }).send(.focusLogs(on: cardId))
     }
     
     func deleteCard(withId id: UUID) {
@@ -123,7 +124,7 @@ extension MainViewController: AdLifeCycleDelegate {
     
     func createTemporaryFile(text: String, filename: String) -> URL? {
         do {
-            let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(filename).\(UTType.oguryAdsExtension)")
+            let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(filename).\(UTType.adsTestAppExtension)")
             try text.write(to: fileURL, atomically: true, encoding: .utf8)
             return fileURL
         } catch {
@@ -134,7 +135,7 @@ extension MainViewController: AdLifeCycleDelegate {
     
     func showImportPanel() {
         UIApplication.topViewController()?.dismiss(animated: true)
-        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.oguryAds])
+        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.adsTestAppType])
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false // Set to true if you want to allow multiple file selection
         present(documentPicker, animated: true, completion: nil)
@@ -143,7 +144,7 @@ extension MainViewController: AdLifeCycleDelegate {
     @discardableResult
     func createDocumentFile(text: String, filename: String) -> URL? {
         do {
-            let fileURL = getDocumentsDirectory().appendingPathComponent("\(filename).\(UTType.oguryAdsExtension)")
+            let fileURL = getDocumentsDirectory().appendingPathComponent("\(filename).\(UTType.adsTestAppExtension)")
             try text.write(to: fileURL, atomically: true, encoding: .utf8)
             return fileURL
         } catch {
@@ -159,8 +160,11 @@ extension MainViewController: AdLifeCycleDelegate {
         return paths[0]
     }
     
-    func showConsentNotice() {
-        ConsentManager.shared.resetConsent(viewController: self)
+    func showConsentNotice(for manager: ConsentManager) {
+        switch manager {
+            case .inMobi: InmobiConsentManager.shared.resetConsent(viewController: self)
+            case .adMob: AdMobConsentManager.shared.resetConsent(viewController: self)
+        }
     }
     
     func enableTestModeForAllCards(_ enable: Bool) {

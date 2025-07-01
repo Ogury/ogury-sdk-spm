@@ -252,9 +252,6 @@ private_lane :generate_podspec do |options|
     placeholders["omid_sdk"] = "#{File.basename(configuration.frameworks.omid)}"
   end
 
-  puts "#{Dir.pwd}/templates/#{target.name}.podspec.json.erb"
-  puts "podspec placeholders #{placeholders}".red
-
   erb(
     template: "#{Dir.pwd}/templates/#{target.publicName}.podspec.json.erb",
     destination: "#{configuration.directories.output}/#{output_file}",

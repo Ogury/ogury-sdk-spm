@@ -3,8 +3,9 @@
 //
 
 import UIKit
-import ComposableArchitecture
+internal import ComposableArchitecture
 import AdsCardLibrary
+import AdsCardAdapter
 
 struct DetailListFeature: Reducer {
     var adHostingViewController: UIViewController!
@@ -14,8 +15,9 @@ struct DetailListFeature: Reducer {
         }
         
         var adManagers: [any AdManager]
-        var adFormat: AdFormat
+        var adFormat: any AdAdapterFormat
         var toolbarVisible: Bool = false
+        let showLogs = SettingsController().showLogsSheet
     }
     
     enum Action: Equatable  {
@@ -28,7 +30,7 @@ struct DetailListFeature: Reducer {
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-                case .deleteCard(id: let id):
+                case let .deleteCard(id):
                     state.adManagers.removeAll { manager in
                         manager.id == id
                     }

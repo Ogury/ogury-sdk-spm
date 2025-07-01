@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>APP_VERSION</key>
+	<string>${APP_VERSION}</string>
+	<key>AssetKey</key>
+	<string>$(ASSET_KEY)</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeIconFile</key>
+			<string>shareImageData.png</string>
+			<key>CFBundleTypeName</key>
+			<string>Ads Test App Set</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>co.ogury.sdk.ads.prod.exportedSet</string>
+			</array>
+		</dict>
+	</array>
+	<key>DefaultEnv</key>
+	<string>$(DEFAULT_ENV)</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-5735986212655126~8330487942</string>
+	<key>SDK_SOURCE</key>
+	<string>$(SDK_SOURCE)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>FiraCode-Regular.ttf</string>
+	</array>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict>
+			<key>UIWindowSceneSessionRoleApplication</key>
+			<array>
+				<dict>
+					<key>UISceneConfigurationName</key>
+					<string>Default Configuration</string>
+					<key>UISceneDelegateClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+					<key>UISceneStoryboardFile</key>
+					<string>Main</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.json</string>
+				<string>public.text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Ads Test App Set</string>
+			<key>UTTypeIconFiles</key>
+			<array>
+				<string>shareImageData.png</string>
+				<string>shareImageData</string>
+			</array>
+			<key>UTTypeIdentifier</key>
+			<string>co.ogury.sdk.ads.prod.exportedSet</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>ogap</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

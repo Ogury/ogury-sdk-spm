@@ -4,9 +4,9 @@
 
 
 import SwiftUI
-import ComposableArchitecture
+internal import ComposableArchitecture
 import AdsCardLibrary
-import OguryAds
+import OguryCore.Private
 
 struct LogOptionView: View {
     @BindingState var store: StoreOf<LogOptionFeature> = .init(
@@ -26,11 +26,13 @@ struct LogOptionView: View {
                                 Text(logDisplay.displayName)
                                     .layoutPriority(1)
                                 
-                                Toggle("", isOn: Binding<Bool> {
-                                    viewStore.state.state(for: logDisplay)
-                                } set: { activated in
-                                    viewStore.send(.logDisplayButtonTapped(logDisplay))
-                                })
+                                WithPerceptionTracking {
+                                    Toggle("", isOn: Binding<Bool> {
+                                        viewStore.state.state(for: logDisplay)
+                                    } set: { activated in
+                                        viewStore.send(.logDisplayButtonTapped(logDisplay))
+                                    })
+                                }
                             }
                         }
                         .accessibilityLabel("LogSettingsDisplaySDKToggle")
@@ -70,25 +72,29 @@ struct LogOptionView: View {
                                             .font(.adsBody)
                                             .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
                                         
-                                        Toggle("", isOn: Binding<Bool>{
-                                            viewStore.state.state(for: logType)
-                                        } set: { newValue in
-                                            viewStore.send(.logTypeButtonTapped(logType))
-                                        })
+                                        WithPerceptionTracking {
+                                            Toggle("", isOn: Binding<Bool>{
+                                                viewStore.state.state(for: logType)
+                                            } set: { newValue in
+                                                viewStore.send(.logTypeButtonTapped(logType))
+                                            })
+                                        }
                                     }
                                 }
                                 .accessibilityLabel("LogSettingsAllowInternalLogsToggle")
                             }
                             
-                            if viewStore.showColorPicker, viewStore.selectedType == logType {
-                                ColorPicker("Pick your color",
-                                            selection: viewStore.binding(get: \.color,
-                                                                         send: { .selectColor($0) }),
-                                            supportsOpacity: false)
-                                .onChange(of: store.color) { newColor in
-                                    viewStore.send(.selectColor(newColor))
+                            WithPerceptionTracking {
+                                if viewStore.showColorPicker, viewStore.selectedType == logType {
+                                    ColorPicker("Pick your color",
+                                                selection: viewStore.binding(get: \.color,
+                                                                             send: { .selectColor($0) }),
+                                                supportsOpacity: false)
+                                    .onChange(of: store.color) { newColor in
+                                        viewStore.send(.selectColor(newColor))
+                                    }
+                                    .transition(.slide)
                                 }
-                                .transition(.slide)
                             }
                         }
                     }
@@ -107,9 +113,3 @@ struct LogOptionView: View {
         }
     }
 }
-
-//#Preview {
-//    NavigationView {
-//        LogOptionView()
-//    }
-//}

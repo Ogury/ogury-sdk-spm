@@ -78,7 +78,7 @@
         [self cleanEvents];
         [self.log log:[[OGAMonitoringLogMessage alloc] initWithLevel:OguryLogLevelDebug
                                                      adConfiguration:((OGAAdMonitorEvent *)events.firstObject).adConfiguration
-                                                             message:@"Send event"
+                                                             message:@"Send event to server"
                                                                event:events.firstObject]];
 
         [self.networkClient performRequest:request

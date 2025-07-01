@@ -1,0 +1,635 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4379F8142DEEEBB90069F47A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB19012DAE8981002F170A /* AdsCardAdapter.framework */; };
+		4379F8152DEEEBB90069F47A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB19012DAE8981002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4379F8162DEEEBBB0069F47A /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB19022DAE8981002F170A /* OguryAds.framework */; };
+		4379F8172DEEEBBB0069F47A /* OguryAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB19022DAE8981002F170A /* OguryAds.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4379F8182DEEEBBC0069F47A /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB19032DAE8981002F170A /* OguryCore.framework */; };
+		4379F8192DEEEBBC0069F47A /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB19032DAE8981002F170A /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4379F81A2DEEEBBE0069F47A /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB16B52DA571B2002F170A /* OMSDK_Ogury.xcframework */; };
+		4379F81B2DEEEBBE0069F47A /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB16B52DA571B2002F170A /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4379F9EB2DEEED060069F47A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4379F9EA2DEEED060069F47A /* AdsCardAdapter.framework */; };
+		4379F9EC2DEEED060069F47A /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4379F9EA2DEEED060069F47A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43EB1BBD2DB238FD002F170A /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB1BBC2DB238FD002F170A /* OgurySdk.framework */; };
+		43EB1BBE2DB238FD002F170A /* OgurySdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB1BBC2DB238FD002F170A /* OgurySdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D5B199BF3D5316F125B5C222 /* Pods_OguryCardAdapter_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273B76D22E5E1149B158F655 /* Pods_OguryCardAdapter_art.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4379F9ED2DEEED070069F47A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4379F9EC2DEEED060069F47A /* AdsCardAdapter.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43EB1BBF2DB238FD002F170A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				43EB1BBE2DB238FD002F170A /* OgurySdk.framework in Embed Frameworks */,
+				4379F8152DEEEBB90069F47A /* AdsCardAdapter.framework in Embed Frameworks */,
+				4379F8192DEEEBBC0069F47A /* OguryCore.framework in Embed Frameworks */,
+				4379F8172DEEEBBB0069F47A /* OguryAds.framework in Embed Frameworks */,
+				4379F81B2DEEEBBE0069F47A /* OMSDK_Ogury.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		208E6E8451DCAD2309A26751 /* Pods-OguryCardAdapter-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryCardAdapter-art.release.xcconfig"; path = "Target Support Files/Pods-OguryCardAdapter-art/Pods-OguryCardAdapter-art.release.xcconfig"; sourceTree = "<group>"; };
+		273B76D22E5E1149B158F655 /* Pods_OguryCardAdapter_art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OguryCardAdapter_art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4379F81C2DEEEBF00069F47A /* AdsCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4379F9EA2DEEED060069F47A /* AdsCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB16622DA54B45002F170A /* OguryCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OguryCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB16752DA54B4C002F170A /* AdsCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB16902DA5525F002F170A /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB16942DA553AB002F170A /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB16B52DA571B2002F170A /* OMSDK_Ogury.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OMSDK_Ogury.xcframework; path = "../../sdk-ads-ios/OMSDK_Ogury.xcframework"; sourceTree = "<group>"; };
+		43EB18EB2DAE8843002F170A /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB18EC2DAE8843002F170A /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB19012DAE8981002F170A /* AdsCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB19022DAE8981002F170A /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB19032DAE8981002F170A /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB19372DAFF084002F170A /* OguryCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OguryCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EB1BBC2DB238FD002F170A /* OgurySdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OgurySdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2370283482F0AF1D82F5DA0 /* Pods-OguryCardAdapter-art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryCardAdapter-art.debug.xcconfig"; path = "Target Support Files/Pods-OguryCardAdapter-art/Pods-OguryCardAdapter-art.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		43EB19382DAFF084002F170A /* Exceptions for "OguryCardAdapter" folder in "OguryCardAdapter-art" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				OguryCardAdapter.docc,
+			);
+			target = 43EB192B2DAFF084002F170A /* OguryCardAdapter-art */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		43EB16642DA54B45002F170A /* OguryCardAdapter */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				43EB19382DAFF084002F170A /* Exceptions for "OguryCardAdapter" folder in "OguryCardAdapter-art" target */,
+			);
+			path = OguryCardAdapter;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		43EB165F2DA54B45002F170A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43EB1BBD2DB238FD002F170A /* OgurySdk.framework in Frameworks */,
+				4379F8182DEEEBBC0069F47A /* OguryCore.framework in Frameworks */,
+				4379F8162DEEEBBB0069F47A /* OguryAds.framework in Frameworks */,
+				4379F8142DEEEBB90069F47A /* AdsCardAdapter.framework in Frameworks */,
+				4379F81A2DEEEBBE0069F47A /* OMSDK_Ogury.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43EB192E2DAFF084002F170A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5B199BF3D5316F125B5C222 /* Pods_OguryCardAdapter_art.framework in Frameworks */,
+				4379F9EB2DEEED060069F47A /* AdsCardAdapter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		43EB16582DA54B45002F170A = {
+			isa = PBXGroup;
+			children = (
+				43EB16642DA54B45002F170A /* OguryCardAdapter */,
+				43EB16742DA54B4C002F170A /* Frameworks */,
+				43EB16632DA54B45002F170A /* Products */,
+				561EA86B2719575C507F78FA /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		43EB16632DA54B45002F170A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				43EB16622DA54B45002F170A /* OguryCardAdapter.framework */,
+				43EB19372DAFF084002F170A /* OguryCardAdapter.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		43EB16742DA54B4C002F170A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4379F9EA2DEEED060069F47A /* AdsCardAdapter.framework */,
+				4379F81C2DEEEBF00069F47A /* AdsCardAdapter.framework */,
+				43EB1BBC2DB238FD002F170A /* OgurySdk.framework */,
+				43EB19012DAE8981002F170A /* AdsCardAdapter.framework */,
+				43EB19022DAE8981002F170A /* OguryAds.framework */,
+				43EB19032DAE8981002F170A /* OguryCore.framework */,
+				43EB18EB2DAE8843002F170A /* OguryAds.framework */,
+				43EB18EC2DAE8843002F170A /* OguryCore.framework */,
+				43EB16B52DA571B2002F170A /* OMSDK_Ogury.xcframework */,
+				43EB16942DA553AB002F170A /* OguryCore.framework */,
+				43EB16902DA5525F002F170A /* OguryAds.framework */,
+				43EB16752DA54B4C002F170A /* AdsCardAdapter.framework */,
+				273B76D22E5E1149B158F655 /* Pods_OguryCardAdapter_art.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		561EA86B2719575C507F78FA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A2370283482F0AF1D82F5DA0 /* Pods-OguryCardAdapter-art.debug.xcconfig */,
+				208E6E8451DCAD2309A26751 /* Pods-OguryCardAdapter-art.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../../Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		43EB165D2DA54B45002F170A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43EB192C2DAFF084002F170A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		43EB16612DA54B45002F170A /* OguryCardAdapter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43EB166B2DA54B45002F170A /* Build configuration list for PBXNativeTarget "OguryCardAdapter" */;
+			buildPhases = (
+				43EB165D2DA54B45002F170A /* Headers */,
+				43EB165E2DA54B45002F170A /* Sources */,
+				43EB165F2DA54B45002F170A /* Frameworks */,
+				43EB16602DA54B45002F170A /* Resources */,
+				43EB1BBF2DB238FD002F170A /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				43EB16642DA54B45002F170A /* OguryCardAdapter */,
+			);
+			name = OguryCardAdapter;
+			productName = OguryCardAdapter;
+			productReference = 43EB16622DA54B45002F170A /* OguryCardAdapter.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		43EB192B2DAFF084002F170A /* OguryCardAdapter-art */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43EB19342DAFF084002F170A /* Build configuration list for PBXNativeTarget "OguryCardAdapter-art" */;
+			buildPhases = (
+				4BF23DC67A07235A48C233BB /* [CP] Check Pods Manifest.lock */,
+				43EB192C2DAFF084002F170A /* Headers */,
+				43EB192D2DAFF084002F170A /* Sources */,
+				43EB192E2DAFF084002F170A /* Frameworks */,
+				43EB19332DAFF084002F170A /* Resources */,
+				4379F9ED2DEEED070069F47A /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				43EB16642DA54B45002F170A /* OguryCardAdapter */,
+			);
+			name = "OguryCardAdapter-art";
+			productName = OguryCardAdapter;
+			productReference = 43EB19372DAFF084002F170A /* OguryCardAdapter.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		43EB16592DA54B45002F170A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1630;
+				LastUpgradeCheck = 1630;
+				TargetAttributes = {
+					43EB16612DA54B45002F170A = {
+						CreatedOnToolsVersion = 16.3;
+					};
+				};
+			};
+			buildConfigurationList = 43EB165C2DA54B45002F170A /* Build configuration list for PBXProject "OguryCardAdapter" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 43EB16582DA54B45002F170A;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 43EB16632DA54B45002F170A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				43EB16612DA54B45002F170A /* OguryCardAdapter */,
+				43EB192B2DAFF084002F170A /* OguryCardAdapter-art */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		43EB16602DA54B45002F170A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43EB19332DAFF084002F170A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4BF23DC67A07235A48C233BB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OguryCardAdapter-art-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		43EB165E2DA54B45002F170A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43EB192D2DAFF084002F170A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		43EB16692DA54B45002F170A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		43EB166A2DA54B45002F170A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		43EB166C2DA54B45002F170A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.acl.OguryCardAdapter;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		43EB166D2DA54B45002F170A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.acl.OguryCardAdapter;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		43EB19352DAFF084002F170A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2370283482F0AF1D82F5DA0 /* Pods-OguryCardAdapter-art.debug.xcconfig */;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.acl.OguryCardAdapter;
+				PRODUCT_NAME = OguryCardAdapter;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		43EB19362DAFF084002F170A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 208E6E8451DCAD2309A26751 /* Pods-OguryCardAdapter-art.release.xcconfig */;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.acl.OguryCardAdapter;
+				PRODUCT_NAME = OguryCardAdapter;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		43EB165C2DA54B45002F170A /* Build configuration list for PBXProject "OguryCardAdapter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43EB16692DA54B45002F170A /* Debug */,
+				43EB166A2DA54B45002F170A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43EB166B2DA54B45002F170A /* Build configuration list for PBXNativeTarget "OguryCardAdapter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43EB166C2DA54B45002F170A /* Debug */,
+				43EB166D2DA54B45002F170A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43EB19342DAFF084002F170A /* Build configuration list for PBXNativeTarget "OguryCardAdapter-art" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43EB19352DAFF084002F170A /* Debug */,
+				43EB19362DAFF084002F170A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 43EB16592DA54B45002F170A /* Project object */;
+}

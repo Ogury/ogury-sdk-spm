@@ -3,6 +3,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <UIKit/UIKit.h>
 #import "OGAViewControllerOrientationHelper.h"
 #import <OCMock/OCMock.h>
 
@@ -171,19 +172,19 @@
 
 #pragma mark - (NSString*)stringFrom:(UIInterfaceOrientation)orientation
 - (void)testStringFromPortraitBehaves {
-    XCTAssertEqual([[OGAViewControllerOrientationHelper new] stringFrom:UIInterfaceOrientationPortrait], @"portrait");
+    XCTAssertEqualObjects([[OGAViewControllerOrientationHelper new] stringFrom:UIInterfaceOrientationPortrait], @"portrait");
 }
 - (void)testStringFromPortraitUpSideDownBehaves {
-    XCTAssertEqual([[OGAViewControllerOrientationHelper new] stringFrom:UIInterfaceOrientationPortraitUpsideDown], @"portrait");
+    XCTAssertEqualObjects([[OGAViewControllerOrientationHelper new] stringFrom:UIInterfaceOrientationPortraitUpsideDown], @"portrait");
 }
 - (void)testStringFromLandscapeLeftBehaves {
-    XCTAssertEqual([[OGAViewControllerOrientationHelper new] stringFrom:UIInterfaceOrientationLandscapeLeft], @"landscape");
+    XCTAssertEqualObjects([[OGAViewControllerOrientationHelper new] stringFrom:UIInterfaceOrientationLandscapeLeft], @"landscape");
 }
 - (void)testStringFromLandscapeRightBehaves {
-    XCTAssertEqual([[OGAViewControllerOrientationHelper new] stringFrom:UIInterfaceOrientationLandscapeRight], @"landscape");
+    XCTAssertEqualObjects([[OGAViewControllerOrientationHelper new] stringFrom:UIInterfaceOrientationLandscapeRight], @"landscape");
 }
 - (void)testStringFromUnknownbBehaves {
-    XCTAssertEqual([[OGAViewControllerOrientationHelper new] stringFrom:UIInterfaceOrientationUnknown], @"");
+    XCTAssertEqualObjects([[OGAViewControllerOrientationHelper new] stringFrom:UIInterfaceOrientationUnknown], @"");
 }
 
 @end

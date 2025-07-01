@@ -1,4 +1,0 @@
-#include "../../../../../Pods/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc.release.xcconfig"
-ASSET_KEY = OGY-11D9353D6FB5
-DEFAULT_ENV = DEVC
-PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app.devc

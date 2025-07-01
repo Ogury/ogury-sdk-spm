@@ -14,6 +14,7 @@
 #import "OGAProfigDao.h"
 #import "OGAWebViewUserAgentService.h"
 #import "OGASdkConsumer.h"
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 
 @interface OGAAdServerMonitorRequestBuilder ()
 
@@ -23,10 +24,10 @@
             assetKeyManager:(OGAAssetKeyManager *)assetKeyManager
                   profigDao:(OGAProfigDao *)profigDao
                         log:(OGALog *)log
-    webViewUserAgentService:(OGAWebViewUserAgentService *)webViewUserAgentService;
+    webViewUserAgentService:(OGAWebViewUserAgentService *)webViewUserAgentService
+       telephonyNetworkInfo:(CTTelephonyNetworkInfo *)telephonyNetworkInfo;
 
 - (NSDictionary *)buildBodyFromEvent:(NSArray<id<OGMEventMonitorable>> *)events;
-- (NSString *)getSimCardCountry;
 - (OGADevice *)device;
 - (NSString *)deviceOrientation;
 - (NSLocale *)locale;
@@ -37,6 +38,7 @@
 @interface OGMServerMonitorTest : XCTestCase
 
 @property(nonatomic, strong) OGMMonitorEvent *event;
+@property(nonatomic, strong) CTTelephonyNetworkInfo *telephonyNetworkInfo;
 
 @end
 
@@ -95,6 +97,7 @@ static NSString *const TestContent = @"detailContentTest";
 - (void)setUp {
     NSDictionary *firstDictionnary = @{@"name" : @"dsp", @"value" : @"{\"creative_id\": \"123\", \"region\":\"east-us\"}", @"version" : @2};
     NSDictionary *secondDictionnary = @{@"name" : @"vast_version", @"value" : @"4.0", @"version" : @1};
+    self.telephonyNetworkInfo = [[CTTelephonyNetworkInfo alloc] init];
     NSArray *extras = @[ firstDictionnary, secondDictionnary ];
     self.event = OCMPartialMock([[OGAAdMonitorEvent alloc] initWithTimestamp:[NSNumber numberWithInt:TestTimestamp]
                                                                    sessionId:TestSessionId
@@ -126,7 +129,8 @@ static NSString *const TestContent = @"detailContentTest";
                                                                                                      assetKeyManager:assetKeyManagerMock
                                                                                                            profigDao:profigDao
                                                                                                                  log:logMock
-                                                                                             webViewUserAgentService:webViewUserAgentService]);
+                                                                                             webViewUserAgentService:webViewUserAgentService
+                                                                                                telephonyNetworkInfo:self.telephonyNetworkInfo]);
     OGADevice *device = OCMPartialMock([OGADevice new]);
     OCMStub([device name]).andReturn(@"deviceName");
     OCMStub([device osVersion]).andReturn(@"osVersion");
@@ -136,8 +140,8 @@ static NSString *const TestContent = @"detailContentTest";
     OCMStub([device screen]).andReturn(screen);
     OCMStub(screen.width).andReturn(@200);
     OCMStub(screen.height).andReturn(@200);
+    OCMStub(screen.density).andReturn(@2.5);
     OCMStub([requestBuilder device]).andReturn(device);
-    OCMStub([requestBuilder getSimCardCountry]).andReturn(@"FR");
     OCMStub([requestBuilder deviceOrientation]).andReturn(@"portrait");
     OCMStub([requestBuilder isLowPowered]).andReturn(YES);
     NSLocale *locale = OCMClassMock([NSLocale class]);
@@ -180,9 +184,11 @@ static NSString *const TestContent = @"detailContentTest";
     if (permission & 16) {
         XCTAssertNotNil(payload[@"device"][@"screen"][@"width"], @"%@", message);
         XCTAssertNotNil(payload[@"device"][@"screen"][@"height"], @"%@", message);
+        XCTAssertNotNil(payload[@"device"][@"screen"][@"density"], @"%@", message);
     } else {
         XCTAssertNil(payload[@"device"][@"screen"][@"width"], @"%@", message);
         XCTAssertNil(payload[@"device"][@"screen"][@"height"], @"%@", message);
+        XCTAssertNil(payload[@"device"][@"screen"][@"density"], @"%@", message);
     }
     if (permission & 32) {
         XCTAssertNotNil(payload[@"device"][@"screen"][@"orientation"], @"%@", message);

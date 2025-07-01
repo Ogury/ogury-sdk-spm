@@ -13,6 +13,8 @@
 @property(nonatomic, retain) NSString *adUnitId;
 @property(nonatomic, retain, nullable) NSString *campaignId;
 @property(nonatomic, retain, nullable) NSString *creativeId;
+@property(nonatomic, assign) CGSize requestedSize;
+@property(nonatomic, assign) CGSize creativeSize;
 @property(nonatomic, retain, nullable) NSArray *extras;
 @property(nonatomic, retain, nullable) OguryMediation *mediation;
 
@@ -38,6 +40,10 @@
                                    errorType:eventConfiguration.errorType
                                 errorContent:errorContent]) {
         _adUnitId = adConfiguration.adUnitId;
+        if (adConfiguration.adType == OguryAdsTypeBanner) {
+            _requestedSize = adConfiguration.requestedSize;
+            _creativeSize = adConfiguration.creativeSize;
+        }
         _campaignId = eventConfiguration.permissionMask & OGAAdIdMaskCampaignId ? adConfiguration.campaignId : nil;
         _creativeId = eventConfiguration.permissionMask & OGAAdIdMaskCreativeId ? adConfiguration.creativeId : nil;
         _extras = eventConfiguration.permissionMask & OGAAdIdMaskExtras ? adConfiguration.extras : nil;
@@ -90,6 +96,22 @@
     }
     if (self.creativeId) {
         adIdsDictionary[OGAAdMonitorEventBodyAdCreativeId] = self.creativeId;
+    }
+    if (self.requestedSize.width > 0 && self.requestedSize.height > 0) {
+        adIdsDictionary[OGAAdMonitorEventBodyAdBanner] = [[NSMutableDictionary alloc] init];
+        adIdsDictionary[OGAAdMonitorEventBodyAdBanner][OGAAdMonitorEventBodyAdRequestedSize] = @{
+            OGAAdMonitorEventBodyAdSizeWidth : @(self.requestedSize.width),
+            OGAAdMonitorEventBodyAdSizeHeight : @(self.requestedSize.height)
+        };
+    }
+    if (self.creativeSize.width > 0 && self.creativeSize.height > 0) {
+        if (adIdsDictionary[OGAAdMonitorEventBodyAdBanner] == nil) {
+            adIdsDictionary[OGAAdMonitorEventBodyAdBanner] = [[NSMutableDictionary alloc] init];
+        }
+        adIdsDictionary[OGAAdMonitorEventBodyAdBanner][OGAAdMonitorEventBodyAdCreativeSize] = @{
+            OGAAdMonitorEventBodyAdSizeWidth : @(self.creativeSize.width),
+            OGAAdMonitorEventBodyAdSizeHeight : @(self.creativeSize.height)
+        };
     }
     if (self.extras) {
         adIdsDictionary[OGAAdMonitorEventBodyAdExtras] = self.extras;
