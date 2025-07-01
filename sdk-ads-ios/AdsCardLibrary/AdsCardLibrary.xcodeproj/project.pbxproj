@@ -28,16 +28,11 @@
 		438ED3D42AA0C2BA00486AF2 /* AdActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C12AA0C2BA00486AF2 /* AdActionBar.swift */; };
 		438ED3D52AA0C2BA00486AF2 /* AdActionBarFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C22AA0C2BA00486AF2 /* AdActionBarFeature.swift */; };
 		438ED3D82AA0C2BA00486AF2 /* AdManagerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3C62AA0C2BA00486AF2 /* AdManagerOptions.swift */; };
-<<<<<<< HEAD
 		43A78A6E2A52ABF30004A613 /* AdManagerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A78A6D2A52ABF30004A613 /* AdManagerOptionsTests.swift */; };
 		43A9F4A52C37E7800085EF6F /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A9F4A42C37E7800085EF6F /* OguryCore.framework */; };
 		43AE68042AAB25B1002E7C46 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED4392AA8565800486AF2 /* OguryAds.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-=======
 		43B439AF2D9C23C7005AAED6 /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B439AE2D9C23C7005AAED6 /* AdManager.swift */; };
-		43B439B02D9C23C7005AAED6 /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B439AE2D9C23C7005AAED6 /* AdManager.swift */; };
 		43B8357C2D4CC2E100797245 /* CardPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B8357B2D4CC2E100797245 /* CardPermissions.swift */; };
-		43B8357D2D4CC2E100797245 /* CardPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B8357B2D4CC2E100797245 /* CardPermissions.swift */; };
->>>>>>> release/5.1.0
 		43BCB1612C22FBF0002FB0B1 /* AdsCardLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 435C55E22A42EAEF004186FF /* AdsCardLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43BCB1632C22FBF0002FB0B1 /* AdColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED3BF2AA0C2BA00486AF2 /* AdColorPalette.swift */; };
 		43BCB1652C22FBF0002FB0B1 /* RewardedFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84972AC1AF9B005077F5 /* RewardedFeature.swift */; };
@@ -143,7 +138,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-<<<<<<< HEAD
 		435C55E62A42EAEF004186FF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -155,8 +149,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-=======
->>>>>>> release/5.1.0
 		43BCB1822C22FBF0002FB0B1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -390,7 +382,6 @@
 			productReference = 435C55DF2A42EAEF004186FF /* AdsCardLibrary.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-<<<<<<< HEAD
 		435C55E82A42EAEF004186FF /* AdsCardLibraryTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 435C55F62A42EAEF004186FF /* Build configuration list for PBXNativeTarget "AdsCardLibraryTests" */;
@@ -413,8 +404,6 @@
 			productReference = 435C55E92A42EAEF004186FF /* AdsCardLibraryTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-=======
->>>>>>> release/5.1.0
 		43BCB15C2C22FBF0002FB0B1 /* AdsCardLibrary-art */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43BCB18E2C22FBF0002FB0B1 /* Build configuration list for PBXNativeTarget "AdsCardLibrary-art" */;
@@ -467,10 +456,7 @@
 			mainGroup = 435C55D52A42EAEF004186FF;
 			packageReferences = (
 				43E349582A4AC9820060B41F /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
-<<<<<<< HEAD
 				4314411C2A653CA70067AD47 /* XCRemoteSwiftPackageReference "CwlPreconditionTesting" */,
-=======
->>>>>>> release/5.1.0
 			);
 			productRefGroup = 435C55E02A42EAEF004186FF /* Products */;
 			projectDirPath = "";
@@ -929,7 +915,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-<<<<<<< HEAD
 		1ED014A62CDB783B00B876BF /* XCRemoteSwiftPackageReference "mockingbird" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/typealiased/mockingbird";
@@ -938,8 +923,6 @@
 				minimumVersion = 0.20.0;
 			};
 		};
-=======
->>>>>>> release/5.1.0
 		43BCB15E2C22FBF0002FB0B1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
