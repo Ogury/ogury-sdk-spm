@@ -5,7 +5,7 @@
 //  Created by Jerome TONNELIER on 24/09/2024.
 //
 
-import OguryAds.Private
+import OguryCore.Private
 import UIKit
 import Combine
 import UserDefault
@@ -23,6 +23,7 @@ public class TestAppLogger: NSObject, OguryLogger {
         let attr = logFormatter.formatAttributedLogMessage(message) else {
             return
         }
+        print("💡 logMessage \(message.message)")
         logs.send(attr)
     }
 }

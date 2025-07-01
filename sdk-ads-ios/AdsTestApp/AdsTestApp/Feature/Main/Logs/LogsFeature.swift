@@ -1,5 +1,5 @@
 import SwiftUI
-import ComposableArchitecture
+internal import ComposableArchitecture
 
 struct LogsFeature: Reducer {
     struct State: Equatable {        

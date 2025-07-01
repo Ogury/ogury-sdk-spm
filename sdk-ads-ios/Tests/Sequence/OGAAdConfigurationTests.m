@@ -112,21 +112,21 @@ NSString *const OGAEncodedAdMarkup = @"encoded-adMarkup";
     OGAAdConfiguration *configuration = [[OGAAdConfiguration alloc] initWithType:OguryAdsTypeBanner adUnitId:OGAAdConfigurationTestsAdUnitId delegateDispatcher:self.delegateDispatcher viewControllerProvider:nil viewProvider:nil];
     configuration.size = [[OguryBannerAdSize small_banner_320x50] getSize];
 
-    XCTAssertEqualObjects(configuration.getAdTypeString, @"banner_320x50");
+    XCTAssertEqualObjects(configuration.getAdTypeString, @"standard_banners");
 }
 
 - (void)testGetAdTypeString_bannerAd_mpu {
     OGAAdConfiguration *configuration = [[OGAAdConfiguration alloc] initWithType:OguryAdsTypeBanner adUnitId:OGAAdConfigurationTestsAdUnitId delegateDispatcher:self.delegateDispatcher viewControllerProvider:nil viewProvider:nil];
     configuration.size = [[OguryBannerAdSize mrec_300x250] getSize];
 
-    XCTAssertEqualObjects(configuration.getAdTypeString, @"medium_rectangle");
+    XCTAssertEqualObjects(configuration.getAdTypeString, @"standard_banners");
 }
 
 - (void)testGetAdTypeString_bannerAd_unrecognizedSize {
     OGAAdConfiguration *configuration = [[OGAAdConfiguration alloc] initWithType:OguryAdsTypeBanner adUnitId:OGAAdConfigurationTestsAdUnitId delegateDispatcher:self.delegateDispatcher viewControllerProvider:nil viewProvider:nil];
     configuration.size = CGSizeZero;
 
-    XCTAssertEqualObjects(configuration.getAdTypeString, @"");
+    XCTAssertEqualObjects(configuration.getAdTypeString, @"standard_banners");
 }
 
 - (void)testShouldReturnBannerView {

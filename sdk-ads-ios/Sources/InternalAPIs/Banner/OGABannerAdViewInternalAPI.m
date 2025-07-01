@@ -95,7 +95,8 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
             viewProvider:^UIView * {
                 return self.bannerView;
             }];
-        self.configuration.mediation = mediation;
+        _configuration.requestedSize = [size getSize];
+        _configuration.mediation = mediation;
 
         _notificationCenter = notificationCenter;
     }
@@ -200,6 +201,7 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
 
 - (void)destroy {
     [self.adManager close:self.sequence];
+    [self.monitoringDispatcher sendShowEvent:OGAShowEventAdClose adConfiguration:self.configuration];
 }
 
 - (void)didMoveToWindow {

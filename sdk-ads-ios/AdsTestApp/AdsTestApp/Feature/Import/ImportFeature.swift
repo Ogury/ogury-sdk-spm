@@ -4,7 +4,7 @@
 
 
 import UIKit
-import ComposableArchitecture
+internal import ComposableArchitecture
 
 struct ImportFeature: Reducer {
     struct State: Equatable {
