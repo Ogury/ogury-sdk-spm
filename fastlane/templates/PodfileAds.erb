@@ -33,20 +33,22 @@ target "OguryAdsTests" do
 end
 
 #Ads Test Apps
-target "AdsTestApp-Devc" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+def testAppBasePods
   pod 'InMobiCMP', '2.0.1'
   pod 'Google-Mobile-Ads-SDK'
+end
+
+target "AdsTestApp-Devc" do
+  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  ptestAppBasePods
 end
 target "AdsTestApp-Staging" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod 'InMobiCMP', '2.0.1'
-  pod 'Google-Mobile-Ads-SDK'
+  testAppBasePods
 end
 target "AdsTestApp-Prod" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod 'InMobiCMP', '2.0.1'
-  pod 'Google-Mobile-Ads-SDK'
+  testAppBasePods
 end
 
 post_install do |installer|
