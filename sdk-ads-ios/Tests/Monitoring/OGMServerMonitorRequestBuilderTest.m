@@ -347,7 +347,8 @@ static NSString *const TestContent = @"detailContentTest";
                                                                                                      assetKeyManager:assetKeyManagerMock
                                                                                                            profigDao:profigDao
                                                                                                                  log:logMock
-                                                                                             webViewUserAgentService:webViewUserAgentService]);
+                                                                                             webViewUserAgentService:webViewUserAgentService
+                                                                                                telephonyNetworkInfo:[[CTTelephonyNetworkInfo alloc] init]]);
     id internalMock = OCMClassMock([OGAInternal class]);
     OCMStub(OCMClassMethod([internalMock shared])).andReturn(internalMock);
     OCMStub([internalMock sdkConsumer]).andReturn(sdkConsumer);
@@ -369,11 +370,13 @@ static NSString *const TestContent = @"detailContentTest";
     OCMStub(webViewUserAgentService.webViewUserAgent).andReturn(@"USER_AGENT");
     OCMStub([profigDao profigFullResponse]).andReturn(profigFullResponse);
     OCMStub([profigFullResponse getPrivacyConfiguration]).andReturn(privacyConfiguration);
+
     OGAAdServerMonitorRequestBuilder *requestBuilder = OCMPartialMock([[OGAAdServerMonitorRequestBuilder alloc] init:[NSURL URLWithString:@"https://www.google.com/"]
                                                                                                      assetKeyManager:assetKeyManagerMock
                                                                                                            profigDao:profigDao
                                                                                                                  log:logMock
-                                                                                             webViewUserAgentService:webViewUserAgentService]);
+                                                                                             webViewUserAgentService:webViewUserAgentService
+                                                                                                telephonyNetworkInfo:[[CTTelephonyNetworkInfo alloc] init]]);
     NSDictionary *res = [requestBuilder buildBodyFromEvent:@[ self.event ]];
     XCTAssertNil(res[@"product"]);
 }
