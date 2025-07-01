@@ -15,7 +15,8 @@
 		05FFA07E25B9CA4B0047EFCD /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FFA07D25B9CA4B0047EFCD /* Environment.swift */; };
 		05FFA15C25BEC5C10047EFCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05FFA15B25BEC5C10047EFCD /* Assets.xcassets */; };
 		1E3DDE8E2C91E29300E5D8DB /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 1E3DDE8D2C91E29300E5D8DB /* SwiftMessages */; };
-		50FE9BB72CB80D0200181FCD /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FE9BB62CB80D0200181FCD /* OgurySdk.framework */; };
+		4395CC382D54BD1000CF04DD /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4395CC372D54BD1000CF04DD /* OgurySdk.framework */; };
+		4395CC392D54BD1000CF04DD /* OgurySdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4395CC372D54BD1000CF04DD /* OgurySdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		50FE9BBB2CB80D0D00181FCD /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FE9BBA2CB80D0D00181FCD /* OguryAds.framework */; };
 		50FE9BBE2CB80D1700181FCD /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FE9BBD2CB80D1700181FCD /* OguryCore.framework */; };
 		50FE9BC12CB80D2300181FCD /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FE9BC02CB80D2300181FCD /* OMSDK_Ogury.xcframework */; };
@@ -30,6 +31,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				4395CC392D54BD1000CF04DD /* OgurySdk.framework in Embed Frameworks */,
 				50FE9BC22CB80D2300181FCD /* OMSDK_Ogury.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -49,6 +51,7 @@
 		05FFA15B25BEC5C10047EFCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26484642A57146350328DBED /* Pods-OguryWrapperTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryWrapperTestApp.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryWrapperTestApp/Pods-OguryWrapperTestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		3E0D22C68D5A3D29C94C5B87 /* Pods-OguryWrapperTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryWrapperTestApp.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryWrapperTestApp/Pods-OguryWrapperTestApp.release.xcconfig"; sourceTree = "<group>"; };
+		4395CC372D54BD1000CF04DD /* OgurySdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OgurySdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50FE9BB62CB80D0200181FCD /* OgurySdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OgurySdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50FE9BBA2CB80D0D00181FCD /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50FE9BBD2CB80D1700181FCD /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50FE9BB72CB80D0200181FCD /* OgurySdk.framework in Frameworks */,
+				4395CC382D54BD1000CF04DD /* OgurySdk.framework in Frameworks */,
 				1E3DDE8E2C91E29300E5D8DB /* SwiftMessages in Frameworks */,
 				50FE9BBE2CB80D1700181FCD /* OguryCore.framework in Frameworks */,
 				50FE9BBB2CB80D0D00181FCD /* OguryAds.framework in Frameworks */,
@@ -143,6 +146,7 @@
 		BDE08D00BAFA4CABBE4891A2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4395CC372D54BD1000CF04DD /* OgurySdk.framework */,
 				50FE9BC02CB80D2300181FCD /* OMSDK_Ogury.xcframework */,
 				50FE9BBD2CB80D1700181FCD /* OguryCore.framework */,
 				50FE9BBA2CB80D0D00181FCD /* OguryAds.framework */,
