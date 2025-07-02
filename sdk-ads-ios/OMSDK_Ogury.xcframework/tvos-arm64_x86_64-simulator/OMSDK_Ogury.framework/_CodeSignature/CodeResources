@@ -18,7 +18,7 @@
 		</data>
 		<key>Headers/OMIDAdSessionContext.h</key>
 		<data>
-		sKJRcHPbz6Tp41RWyxIDKOwuQvg=
+		gzlpUOEH9iENUfqAZwA6QaQU17U=
 		</data>
 		<key>Headers/OMIDFriendlyObstructionType.h</key>
 		<data>
@@ -42,11 +42,15 @@
 		</data>
 		<key>Headers/OMIDSDK.h</key>
 		<data>
-		jO9q2lwaClyouww43cLC07JAXuA=
+		WbQt1WZmMGohAMR9ytX6Kar/VVA=
 		</data>
 		<key>Headers/OMIDScriptInjector.h</key>
 		<data>
 		C6l+yQ6sE0xrizL0k5OZq8wcX+o=
+		</data>
+		<key>Headers/OMIDUniversalAdID.h</key>
+		<data>
+		vSHT7UzO/nGlFQCkOh7zyxDzXaQ=
 		</data>
 		<key>Headers/OMIDVASTProperties.h</key>
 		<data>
@@ -62,7 +66,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		2RLBQKN9WV7pAhGhKIpShSCctjc=
+		uljU0ynkyDxnjuo9rozLPiCX4CY=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -100,7 +104,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			QgLA6kFa0UW5ZNi62RpMsEjTY1BL/gA6T4sm6/9E324=
+			uruZ6abdUb36gPNOutbck6bYpLNhKN3X1iOi115fgfE=
 			</data>
 		</dict>
 		<key>Headers/OMIDFriendlyObstructionType.h</key>
@@ -142,7 +146,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			RTiJIq678j9z72QH1dsJqETTYyRFpvorgvtnmd/vCcc=
+			IAO0LBemrCGyp06FC8mIz9n+Y0xb8ZFJuGRefbTLMcU=
 			</data>
 		</dict>
 		<key>Headers/OMIDScriptInjector.h</key>
@@ -150,6 +154,13 @@
 			<key>hash2</key>
 			<data>
 			juRhjsXfocZAt9SSvEA1DDCZ1X05rE8wbSDeiHv7aq4=
+			</data>
+		</dict>
+		<key>Headers/OMIDUniversalAdID.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			6cq5B7KIcQjBIbSDGb36T6xGy9xcvIHF9zlsSUS8bnw=
 			</data>
 		</dict>
 		<key>Headers/OMIDVASTProperties.h</key>
