@@ -127,7 +127,7 @@
 - (void)testDefineSDKType {
     [self.internal defineSDKType:1];
 
-    OCMVerify([self.adManager setSdkType:1]);
+    OCMVerify([self.adManager defineSDKType:1]);
 }
 
 - (void)testMaxWebViewUserAgentRetryReached {
@@ -146,13 +146,6 @@
     [self.internal receivedWebViewUserAgent:@"USER_AGENT"];
     OCMVerify([self.internal syncProfig]);
     OCMStub([self.internal syncProfig]);
-}
-
-- (void)testWhenSettingsSdkConsumerThenObjectIsRetained {
-    OGASdkConsumer *consumer = [[OGASdkConsumer alloc] initWithName:@"name" version:@"version"];
-    [self.internal setSdkConsumer:consumer];
-    XCTAssertEqualObjects(self.internal.sdkConsumer.name, @"name");
-    XCTAssertEqualObjects(self.internal.sdkConsumer.version, @"version");
 }
 
 @end

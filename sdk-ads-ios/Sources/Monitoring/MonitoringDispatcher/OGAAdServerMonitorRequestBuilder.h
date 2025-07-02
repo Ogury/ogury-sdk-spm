@@ -4,7 +4,6 @@
 
 #import <Foundation/Foundation.h>
 #import "OGMEventMonitorable.h"
-#import "OGASdkConsumer.h"
 #import "OGMServerMonitorRequestBuildable.h"
 
 NS_ASSUME_NONNULL_BEGIN

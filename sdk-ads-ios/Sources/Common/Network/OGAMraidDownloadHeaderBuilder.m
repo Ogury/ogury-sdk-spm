@@ -7,7 +7,6 @@
 #import "OGAAdManager.h"
 #import "OGAAdIdentifierService.h"
 #import "OGAAssetKeyManager.h"
-#import <OguryCore/OGCUtils.h>
 
 @implementation OGAMraidDownloadHeaderBuilder
 
@@ -39,7 +38,7 @@ static NSString *const OGAProfigHeaderBuilderApiKey = @"Api-Key";
     headers[OGAProfigHeaderBuilderSDKVersion] = [NSString stringWithFormat:@"[%@]", OGA_SDK_VERSION];
     headers[OGAProfigHeaderBuilderSDKType] = [NSString stringWithFormat:@"%lu", (unsigned long)[OGAAdManager sharedManager].sdkType];
     headers[OGAProfigHeaderBuilderMediation] = [NSString stringWithFormat:@"%@", [OGAAdManager sharedManager].mediation];
-    headers[OGAProfigHeaderBuilderFramework] = [NSString stringWithFormat:@"%lu", (unsigned long)[OGCUtils frameworkType]];
+    headers[OGAProfigHeaderBuilderFramework] = [NSString stringWithFormat:@"%lu", (unsigned long)[OGAConfigurationUtils getFrameworkType]];
     headers[OGAProfigHeaderBuilderTimeZone] = [OGAConfigurationUtils timeZone];
     headers[OGAProfigHeaderBuilderConnectivity] = [OGAConfigurationUtils currentNetwork];
     headers[OGAProfigHeaderBuilderApiKey] = [NSString stringWithFormat:@"[%@]", OGAAssetKeyManager.shared.assetKey];

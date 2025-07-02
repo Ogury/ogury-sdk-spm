@@ -232,14 +232,14 @@ static NSString *const AdSyncServiceBodyContentOverlayMaximumSizeScaleKey = @"sc
         }
         ad[AdSyncServiceBodyDspKey] = adDsp;
     }
-
+    
     if (self.adType == OguryAdsTypeBanner) {
         NSMutableDictionary *size = [@{} mutableCopy];
         size[AdSyncServiceBodySizeWidthKey] = @([self getWidthForAdType]);
         size[AdSyncServiceBodySizeHeightKey] = @([self getHeightForAdType]);
         ad[AdSyncServiceBodySizesKey] = @[ size ];
     }
-
+    
     adSync[AdSyncServiceBodyAdKey] = ad;
 
     BOOL isOMIDCompliant = (profigPersistence.profigFullResponse.isOmidEnabled && isOmidFrameworkPresent);

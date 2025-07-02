@@ -538,6 +538,10 @@ static NSString *const OGADisablingReason = @"disabling_reason";
     }
 }
 
+- (void)defineSDKType:(OGASDKType)sdkType {
+    _sdkType = sdkType;
+}
+
 - (void)defineMediationName:(NSString *)mediationName {
     _mediation = mediationName;
 }

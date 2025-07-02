@@ -122,8 +122,7 @@
     if (self.mediation) {
         body[OGAAdMonitorEventBodyMediation] = @{
             OGAAdMonitorEventBodyMediationName : self.mediation.name,
-            OGAAdMonitorEventBodyMediationVersion : self.mediation.version,
-            OGAAdMonitorEventBodyMediationAdapterVersion : self.mediation.adapterVersion
+            OGAAdMonitorEventBodyMediationVersion : self.mediation.version
         };
     }
     return body;
