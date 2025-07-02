@@ -5,7 +5,6 @@
 #import <Foundation/Foundation.h>
 #import <OguryCore/OguryLog.h>
 #import <OguryAds/OguryAds.h>
-#import <OguryAds/OGASdkConsumer.h>
 #import <OguryAds/OGAAdLogMessage.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -17,7 +16,6 @@ typedef void (^StartCompletionBlock)(BOOL success, OguryError *_Nullable error);
 #pragma mark - Class methods
 
 + (instancetype)shared;
-@property(nonatomic, retain) OGASdkConsumer *_Nullable sdkConsumer;
 
 #pragma mark - methods
 

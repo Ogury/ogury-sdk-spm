@@ -4,69 +4,40 @@
 
 #import <Foundation/Foundation.h>
 #import "OGCUtils.h"
+#import "OGCInternal.h"
 
-static NSNumber* _Nullable sdkType;
+#if __has_include(<UnityFramework.framework>)
+#define __HAS_UNITY__
+#endif
+
+#if __has_include(<Cordova.framework>)
+#define __HAS_CORDOVA__
+#endif
+
+#if __has_include(<Mono.framework>)
+#define __HAS_XAMARIN__
+#endif
+
+#if __has_include(<AIR.framework>)
+#define __HAS_AIR__
+#endif
 
 @implementation OGCUtils
-+(BOOL)hasFlutterRuntime{
-    return NSClassFromString(@"FlutterViewController") != nil;
-}
 
-+(BOOL)hasReactNativeRuntime{
-    return NSClassFromString(@"RCTBridge") != nil
-    || NSClassFromString(@"RCTRootView") != nil
-    || NSClassFromString(@"RCTBridgeModule") != nil
-    || NSClassFromString(@"RCTEventDispatcher") != nil;
-}
-
-+(BOOL)hasUnityRuntime {
-    return NSClassFromString(@"UnityFramework") != nil
-    || NSClassFromString(@"UnityAppController") != nil
-    || NSClassFromString(@"UnityPlayer") != nil ;
-}
-
-+(BOOL)hasXamarinRuntime{
-    return NSClassFromString(@"MonoMethod") != nil
-    || NSClassFromString(@"Xamarin_Forms_Platform_iOS_FormsApplicationDelegate") != nil;
-}
-
-+(BOOL)hasCordovaRuntime{
-    return NSClassFromString(@"CDVViewController") != nil
-    || NSClassFromString(@"CDVPlugin") != nil;
-}
-
-+(BOOL)hasIonicRuntime{
-    return NSClassFromString(@"CAPPlugin") != nil
-    || NSClassFromString(@"CAPInstanceConfiguration") != nil;
-}
-
-+(BOOL)hasAdobeAirRuntime{
-    return NSClassFromString(@"AIRGameController") != nil
-    || NSClassFromString(@"AdobeAIR") != nil;
-}
-
-+ (OGCSDKType)frameworkType {
-    if (sdkType != nil) {
-        return (OGCSDKType)sdkType;
-    }
-    
++ (OGCSDKType)getFrameworkType {
     OGCSDKType type = OGCSDKTypeNative;
-    if ([self hasUnityRuntime]) {
-        type = OGCSDKTypeUnity;
-    } else if ([self hasIonicRuntime]) {
-        type = OGCSDKTypeIonic;
-    } else if ([self hasCordovaRuntime]) {
-        type = OGCSDKTypeCordova;
-    } else if ([self hasXamarinRuntime]) {
-        type = OGCSDKTypeXamarin;
-    }  else if ([self hasAdobeAirRuntime]) {
-        type = OGCSDKTypeAdobeAir;
-    } else if ([self hasFlutterRuntime]) {
-        type = OGCSDKTypeFlutter;
-    } else if ([self hasReactNativeRuntime]) {
-        type = OGCSDKTypeReactNat;
-    }
-    sdkType = @(type);
+#ifdef __HAS_UNITY__
+    type = OGASDKTypeUnity;
+#endif
+#ifdef __HAS_CORDOVA__
+    type = OGASDKTypeCordova;
+#endif
+#ifdef __HAS_XAMARIN__
+    type = OGASDKTypeXamarin;
+#endif
+#ifdef __HAS_AIR__
+    type = OGASDKTypeAdobeAir;
+#endif
     return type;
 }
 

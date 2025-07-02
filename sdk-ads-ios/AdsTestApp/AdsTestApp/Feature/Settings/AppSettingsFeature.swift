@@ -74,11 +74,6 @@ struct AppSettingsFeature: Reducer {
             : true
             self.adDelegate = adDelegate
         }
-        var appVersion: String { String.appVersion() }
-        var sdkVersion: String {
-            let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
-           return "\(String(describing: OGAInternal.shared().getVersion())) (\(origin == "Pod" ? "Release" : "Development"))"
-        }
         var environment: String { Bundle.main.object(forInfoDictionaryKey: "DefaultEnv") as? String ?? "" }
     }
     

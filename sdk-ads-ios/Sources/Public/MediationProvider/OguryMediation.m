@@ -10,39 +10,29 @@
 
 @implementation OguryMediation
 
-@synthesize name, version, adapterVersion;
+@synthesize name, version;
 
-- (instancetype)initWithName:(NSString *_Nonnull)name
-                     version:(NSString *_Nonnull)sdkVersion {
-    return [self initWithName:name version:sdkVersion adapterVersion:nil];
-}
-
-- (instancetype)initWithName:(NSString *_Nonnull)name
-                     version:(NSString *_Nonnull)sdkVersion
-              adapterVersion:(NSString *_Nullable)adapterVersion {
+- (instancetype)initWithName:(NSString *_Nonnull)name version:(NSString *_Nonnull)version {
     if (self = [super init]) {
         self.name = name;
-        self.version = sdkVersion;
-        self.adapterVersion = adapterVersion;
+        self.version = version;
     }
     return self;
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    return [[OguryMediation alloc] initWithName:name version:version adapterVersion:adapterVersion];
+    return [[OguryMediation alloc] initWithName:name version:version];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     NSString *name = [coder decodeObjectForKey:@"name"];
     NSString *version = [coder decodeObjectForKey:@"version"];
-    NSString *adapterVersion = [coder decodeObjectForKey:@"adapterVersion"];
-    return [self initWithName:name version:version adapterVersion:adapterVersion];
+    return [self initWithName:name version:version];
 }
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
     [coder encodeObject:name forKey:@"name"];
     [coder encodeObject:version forKey:@"version"];
-    [coder encodeObject:adapterVersion forKey:@"adapterVersion"];
 }
 
 - (BOOL)isEqual:(id)object {
@@ -50,7 +40,7 @@
     if (!object) {
         return NO;
     }
-    return [name isEqualToString:other.name] && [version isEqualToString:other.version] && ((adapterVersion == nil && other.adapterVersion == nil) || [adapterVersion isEqualToString:other.adapterVersion]);
+    return [name isEqualToString:other.name] && [version isEqualToString:other.version];
 }
 
 @end

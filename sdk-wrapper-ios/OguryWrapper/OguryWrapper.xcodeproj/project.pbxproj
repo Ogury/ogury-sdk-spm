@@ -21,30 +21,6 @@
 		351A1A168A09A89BCC2B8993 /* OGWModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A101D9CF4DBF6D70F6042 /* OGWModule.h */; };
 		351A1BB4636065EFAC6EFA20 /* OGWModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1BFF658819D0DFD194D9 /* OGWModule.m */; };
 		351A1FF36DFB8ECB8FB3B8B1 /* OGWWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A106BDB9B2A71FCEE3A45 /* OGWWrapper.m */; };
-		430255792D5CE05D00E19B91 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430255782D5CE05D00E19B91 /* OguryAds.framework */; };
-		4302557A2D5CE05D00E19B91 /* OguryAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 430255782D5CE05D00E19B91 /* OguryAds.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		43332D4F2D0832C400E4BAD0 /* Ogury.h in Headers */ = {isa = PBXBuildFile; fileRef = 05FDDDCD2559A048000F4C8B /* Ogury.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		43332D502D0832C400E4BAD0 /* OGWModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A101D9CF4DBF6D70F6042 /* OGWModule.h */; };
-		43332D512D0832C400E4BAD0 /* OGWWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 351A1C9175D1D2715C50A630 /* OGWWrapper.h */; };
-		43332D522D0832C400E4BAD0 /* OGWLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D79EEB28587AAF00E94E70 /* OGWLog.h */; };
-		43332D532D0832C400E4BAD0 /* NSString+OGWUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 05FFA0EE25BB0BD80047EFCD /* NSString+OGWUtility.h */; };
-		43332D542D0832C400E4BAD0 /* OGWSetLogLevelNotificationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 58BDDA81288EE8FB000A4A12 /* OGWSetLogLevelNotificationManager.h */; };
-		43332D552D0832C400E4BAD0 /* OGWDarwinNotificationStringFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 58BDDA82288EE8FB000A4A12 /* OGWDarwinNotificationStringFormatter.h */; };
-		43332D562D0832C400E4BAD0 /* OguryStartErrorCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E1B9A75604405C00667A79F /* OguryStartErrorCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		43332D572D0832C400E4BAD0 /* OGWErrorMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 933DC5D364066B4FDB2A85F7 /* OGWErrorMessage.h */; };
-		43332D582D0832C400E4BAD0 /* OguryError+OGWWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 95990B80E71B2F122CBDFAA0 /* OguryError+OGWWrapper.h */; };
-		43332D592D0832C400E4BAD0 /* OGWModulesManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D4699D4C41111B5FF8EBC99 /* OGWModulesManager.h */; };
-		43332D5B2D0832C400E4BAD0 /* Ogury.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FDDDCE2559A048000F4C8B /* Ogury.m */; };
-		43332D5C2D0832C400E4BAD0 /* OGWSetLogLevelNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BDDA84288EE8FB000A4A12 /* OGWSetLogLevelNotificationManager.m */; };
-		43332D5D2D0832C400E4BAD0 /* NSString+OGWUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FFA0EF25BB0BD80047EFCD /* NSString+OGWUtility.m */; };
-		43332D5E2D0832C400E4BAD0 /* OGWModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A1BFF658819D0DFD194D9 /* OGWModule.m */; };
-		43332D5F2D0832C400E4BAD0 /* OGWWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 351A106BDB9B2A71FCEE3A45 /* OGWWrapper.m */; };
-		43332D602D0832C400E4BAD0 /* OGWDarwinNotificationStringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BDDA85288EE8FB000A4A12 /* OGWDarwinNotificationStringFormatter.m */; };
-		43332D612D0832C400E4BAD0 /* OGWLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D79EF328587AAF00E94E70 /* OGWLog.m */; };
-		43332D622D0832C400E4BAD0 /* OGWErrorMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B8403A2DEE968AD0977790 /* OGWErrorMessage.m */; };
-		43332D632D0832C400E4BAD0 /* OGWModulesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B891FBD51ECEA30A3F3D3B /* OGWModulesManager.m */; };
-		43332D642D0832C400E4BAD0 /* OguryError+OGWWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 201087A07301A3E46B60F6B3 /* OguryError+OGWWrapper.m */; };
-		43332D692D0832C400E4BAD0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 43B7E7642B86326D00B845E6 /* PrivacyInfo.xcprivacy */; };
 		43332D722D08349E00E4BAD0 /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43332D6F2D08336500E4BAD0 /* OgurySdk.framework */; };
 		43332D732D08349E00E4BAD0 /* OgurySdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43332D6F2D08336500E4BAD0 /* OgurySdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43B7E7652B86326D00B845E6 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 43B7E7642B86326D00B845E6 /* PrivacyInfo.xcprivacy */; };
@@ -97,7 +73,6 @@
 			files = (
 				43332D732D08349E00E4BAD0 /* OgurySdk.framework in Embed Frameworks */,
 				CC4B2A7782A17180EE24DDCC /* OMSDK_Ogury.xcframework in Embed Frameworks */,
-				4302557A2D5CE05D00E19B91 /* OguryAds.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -124,8 +99,6 @@
 		351A1BFF658819D0DFD194D9 /* OGWModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGWModule.m; sourceTree = "<group>"; };
 		351A1C9175D1D2715C50A630 /* OGWWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGWWrapper.h; sourceTree = "<group>"; };
 		3725D71163D0F2219213B2FD /* Pods-OguryWrapper-art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryWrapper-art.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryWrapper-art/Pods-OguryWrapper-art.release.xcconfig"; sourceTree = "<group>"; };
-		430255782D5CE05D00E19B91 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		43332D6D2D0832C400E4BAD0 /* OgurySdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OgurySdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43332D6F2D08336500E4BAD0 /* OgurySdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OgurySdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43332D762D08367400E4BAD0 /* Configuration-tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Configuration-tests.xcconfig"; sourceTree = "<group>"; };
 		43B7E7642B86326D00B845E6 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -173,7 +146,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				430255792D5CE05D00E19B91 /* OguryAds.framework in Frameworks */,
 				43332D722D08349E00E4BAD0 /* OgurySdk.framework in Frameworks */,
 				8E1622562A58FB51DE8463BA /* Pods_OguryWrapperTests.framework in Frameworks */,
 				328164E325F9BAC2AA03033E /* OMSDK_Ogury.xcframework in Frameworks */,
@@ -375,7 +347,6 @@
 		E3183CF8A318ADE10E85DE89 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				430255782D5CE05D00E19B91 /* OguryAds.framework */,
 				260D692388A1B6C6519D63CD /* OMSDK_Ogury.xcframework */,
 				A608FE3FDC88D9CFE183FE24 /* OguryAds.framework */,
 				BE93C344DE9B6BFB2F112D28 /* OguryCore.framework */,

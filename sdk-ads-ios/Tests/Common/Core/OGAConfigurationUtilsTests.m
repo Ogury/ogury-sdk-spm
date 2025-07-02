@@ -15,6 +15,11 @@
 NSString *const OGAOGAConfigurationUtilsSDKType = @"ads";
 NSString *const OGAOGAConfigurationUtilsDeviceOS = @"ios";
 
+- (void)testFrameworkType {
+    NSUInteger frameworkType = [OGAConfigurationUtils getFrameworkType];
+    XCTAssertEqual(frameworkType, OGASDKTypeNative);
+}
+
 - (void)testTimeZone {
     NSString *timeZone = [OGAConfigurationUtils timeZone];
     XCTAssertNotEqual([timeZone length], 0);

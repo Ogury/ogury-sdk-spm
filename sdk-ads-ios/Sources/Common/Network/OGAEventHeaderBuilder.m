@@ -10,7 +10,6 @@
 #import "OGAAdHistoryEvent.h"
 #import "OGAPreCacheEvent.h"
 #import "OGATrackEvent.h"
-#import <OguryCore/OGCUtils.h>
 
 @implementation OGAEventHeaderBuilder
 
@@ -49,7 +48,7 @@ static NSString *const OGAProfigHeaderBuilderEmptyIDFA = @"00000000-0000-0000-00
     headers[OGAProfigHeaderBuilderSDKVersion] = [NSString stringWithFormat:@"[%@]", OGA_SDK_VERSION];
     headers[OGAProfigHeaderBuilderSDKType] = [NSString stringWithFormat:@"%lu", (unsigned long)[OGAAdManager sharedManager].sdkType];
     headers[OGAProfigHeaderBuilderMediation] = [NSString stringWithFormat:@"%@", [OGAAdManager sharedManager].mediation];
-    headers[OGAProfigHeaderBuilderFramework] = [NSString stringWithFormat:@"%lu", (unsigned long)[OGCUtils frameworkType]];
+    headers[OGAProfigHeaderBuilderFramework] = [NSString stringWithFormat:@"%lu", (unsigned long)[OGAConfigurationUtils getFrameworkType]];
     headers[OGAProfigHeaderBuilderApiKey] = [NSString stringWithFormat:@"[%@]", OGAAssetKeyManager.shared.assetKey];
     return [NSDictionary dictionaryWithDictionary:headers];
 }

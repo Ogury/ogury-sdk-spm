@@ -4,8 +4,18 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum : NSUInteger {
+    OGASDKTypeNative = 0,
+    OGASDKTypeUnity,
+    OGASDKTypeCordova,
+    OGASDKTypeXamarin,
+    OGASDKTypeAdobeAir,
+    OGASDKEnumCount
+} OGASDKType;
+
 @interface OGAConfigurationUtils : NSObject
 
++ (OGASDKType)getFrameworkType;
 + (NSString *)timeZone;
 + (NSString *)cpuArchitecture;
 + (double)screenDensity;

@@ -11,7 +11,6 @@
 #import "OGAReachability.h"
 #import "OGASetLogLevelNotificationManager.h"
 #import "OGAWebViewUserAgentService.h"
-#import "OGAMonitoringDispatcher.h"
 #import "OGAWebViewUserAgentServiceDelegate.h"
 
 @interface OGAInternal () <OGAWebViewUserAgentServiceDelegate>
@@ -77,7 +76,6 @@
         _logNotificationManager = logNotificationManager;
         _webViewUserAgentService = webViewUserAgentService;
         _webViewUserAgentService.delegate = self;
-        _sdkConsumer = nil;
         [_logNotificationManager registerToNotification];
     }
     return self;
@@ -173,7 +171,7 @@
 }
 
 - (void)defineSDKType:(NSUInteger)sdkType {
-    [self.adManager setSdkType:sdkType];
+    [self.adManager defineSDKType:sdkType];
 }
 
 - (void)defineMediationName:(NSString *)mediationName {

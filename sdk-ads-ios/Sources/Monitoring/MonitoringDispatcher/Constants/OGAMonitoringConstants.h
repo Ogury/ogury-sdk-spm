@@ -51,7 +51,6 @@ extern NSString *const OGAMonitoringEventDetailItunesItemId;
 extern NSString *const OGAMonitoringEventDetailAdvertisedAppStoreItemIdentifier;
 extern NSString *const OGAMonitoringErrorEventContentAccomplished;
 extern NSString *const OGAMonitoringErrorEventContentTimeSpan;
-extern NSString *const OGAAdMonitorEventBodyMediationAdapterVersion;
 extern NSString *const OGAMonitoringErrorEventContentTimeoutDuration;
 extern NSString *const OGAMonitoringErrorEventContentUrl;
 extern NSString *const OGAMonitoringErrorEventWebviewDidTerminateStackTrace;
