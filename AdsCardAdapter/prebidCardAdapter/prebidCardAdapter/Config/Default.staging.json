@@ -6,7 +6,7 @@
         },
         "standardBanner" : {
             "adUnitId" : "staging_banner_small",
-            "campaignId" : "34928"
+            "campaignId" : "37009"
         }
     },
     "url" : "https://prebid-server.staging.cloud.ogury.io/openrtb2/auction"
