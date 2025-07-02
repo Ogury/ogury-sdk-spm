@@ -28,6 +28,8 @@
         _subSystem = subSystem;
         _category = category;
         _logLevel = OguryLogLevelError;
+        _allowedLogTypes = @[OguryLogTypePublisher];
+        _logFormatter = [[OguryLogFormatter alloc] init];
     }
     return self;
 }
@@ -43,21 +45,14 @@
     return _logger;
 }
 
-- (void)logMessage:(id<OguryLogMessage>)message {
-    if (message.level > self.logLevel) {
-        return;
-    }
-    NSString *formattedMessage = [self formatStringMessage:message];
+- (void)logMessage:(OguryLogMessage *)message {
+    NSString *formattedMessage = [self.logFormatter formatLogMessage:message];
     
     if (!formattedMessage || formattedMessage.length == 0) {
         return;
     }
 
     [self logToOSLevel:formattedMessage forType:[self logTypeWithLogLevel:message.level]];
-}
-
-- (NSString *)formatStringMessage:(id<OguryLogMessage>)message {
-    return self.logFormatter ? [self.logFormatter formatLogMessage:message] : message.message;
 }
 
 - (os_log_type_t)logTypeWithLogLevel:(OguryLogLevel) logLevel {
@@ -72,7 +67,6 @@
     default:
         return OS_LOG_TYPE_DEBUG;
     }
-
 }
 
 - (void)logToOSLevel:(NSString *)formattedMessage forType:(os_log_type_t)logType {

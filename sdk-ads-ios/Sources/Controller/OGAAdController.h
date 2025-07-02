@@ -31,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign, readonly) BOOL isFullScreenOverlay;
 @property(nonatomic, assign, readonly) BOOL isClosed;
 @property(nonatomic, strong, readonly) NSDate *createdAt;
+@property(nonatomic, strong) id<OGAAdDisplayer> displayer;
 
 #pragma mark - Initialization
 

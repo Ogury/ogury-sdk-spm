@@ -81,6 +81,45 @@ After you have installed the prerequisites, follow these steps to set up and run
 
    Finally, build and run the project using Xcode. This project was last built and tested on **Xcode 15.4**.
 
+6. **Build Options**
+
+   Here are the various build options handled by this project
+   - `-D QA_MODE`  (Other Swift flags of `AdsTestApp` project) : builds the test application with these options :
+      - Default import method is `Text` instead of `File`
+   - `KILLMODE=1` (Preprocessor Macros of `OguryAds`) allows release SDK to handle the kill webview commands (simulate and crash)
+   
+
+## Development concerns
+
+### Load settings in test app at first start
+
+When the test application starts, it will try to load various `.settings` files stored in the project.
+For the development applications (devc/stag/prod), the file is located at `${SRC_ROOT}/AdsTestApp/Controllers/Settings/Dev App`. When more test application will come (OMID, certifications, etc.), we will create new folders under `Settings` and add the same files as below for each target.
+
+If the UserDefaut is empty, the test app will try to load thoses files in order :
+
+1. `Custom.settings`. This file is to be used to locally load custom settings and ads (formely known as the `Zak's feature` ❤️). You can use this file to load custom settings and ads at start. It is also used by the CI to inject custom settings at build time
+2. `Default-qa.settings` : if the QA mode is activated, then it will try to load this file
+3. `Default.settings` finally, the default file is loaded
+
+```
+⚠️⚠️⚠️ ALWAYS LEAVE THE CUSTOM.SETTINGS FILE EMPTY WHEN YOU COMMIT ⚠️⚠️⚠️
+```
+
+### Hidden settings
+The `settings` node contains a hidden, not exported node that controls the display of various features
+
+```
+"permissions" :  {
+   "settings" : true,   // if true, settings button is displayed
+   "logs" : true,       // if true, logs button is displayed
+   "add" : true,        // if true, add buttons are displayed
+   "export" : true,     // if true, export features are displayed
+   "bulkMode" : true    // if true, buklm mode button is displayed
+}
+```
+
+
 ## Additional Notes
 
 - **macOS Requirement**: This project requires a macOS environment to build and run.

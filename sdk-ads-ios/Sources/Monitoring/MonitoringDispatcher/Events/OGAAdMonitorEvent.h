@@ -7,10 +7,13 @@
 #import "OGAMonitoringConstants.h"
 #import "OGAAdConfiguration.h"
 #import "OGAMonitorEventConfiguration.h"
+#import "OGMEventLogMonitorable.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OGAAdMonitorEvent : OGMMonitorEvent
+@interface OGAAdMonitorEvent : OGMMonitorEvent <OGMEventLogMonitorable>
+
+@property(nonatomic, retain) OGAAdConfiguration *adConfiguration;
 
 - (instancetype)initWithEventConfiguration:(OGAMonitorEventConfiguration *)eventConfiguration
                            adConfiguration:(OGAAdConfiguration *)adConfiguration

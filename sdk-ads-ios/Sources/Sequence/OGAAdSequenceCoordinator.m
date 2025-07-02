@@ -13,6 +13,7 @@
 #import "OGATrackEvent.h"
 #import "OguryAdError.h"
 #import "OguryAdError+Internal.h"
+#import <WebKit/WebKit.h>
 
 @interface OGAAdSequenceCoordinator () <OGAAdControllerDelegate>
 
@@ -173,7 +174,6 @@
     }
     if (self.isDisplayed) {
         if (error) {
-#warning FIXME create dedicated error for this case.
             *error = [OguryAdError anotherAdIsAlreadyDisplayed];
         }
         return NO;
@@ -398,6 +398,20 @@
             [self.metricService sendEvent:[[OGATrackEvent alloc] initWithAd:controller.ad event:OGAMetricsEventLoadedError]];
         }
     }
+}
+
+- (void)simulateWebviewTerminated {
+    for (int index = 0; index < self.adControllers.count; index++) {
+        OGAAdController *ctrl = self.adControllers[index];
+        [ctrl.displayer webkitProcessDidTerminate];
+    }
+}
+
+- (WKWebView *)adWebview {
+    if (self.adControllers.count == 0) {
+        return nil;
+    }
+    return [self.adControllers[0].displayer adWebview];
 }
 
 @end

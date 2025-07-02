@@ -1,6 +1,0 @@
-framework module Pods_OguryWrapper {
-  umbrella header "Pods-OguryWrapper-umbrella.h"
-
-  export *
-  module * { export * }
-}

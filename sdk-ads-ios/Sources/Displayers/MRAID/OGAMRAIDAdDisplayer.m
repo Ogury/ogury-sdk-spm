@@ -49,6 +49,7 @@
 #import "OGAWebViewCleanupManager.h"
 #import "OGAAdController.h"
 #import "OguryAdError+Internal.h"
+#import "OGAMraidLogMessage.h"
 
 #pragma mark - Constants
 
@@ -696,10 +697,16 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
 
 - (void)setOrientationProperties:(OGAMraidCommand *)command {
     OGAMraidSetOrientationPropertiesCommand *browserCommand = [[OGAMraidSetOrientationPropertiesCommand alloc] initWithDictionary:command.args error:nil];
-    [self.log logMraid:OguryLogLevelDebug
-        forAdConfiguration:self.ad.adConfiguration
-                 webViewId:@""
-                   message:[NSString stringWithFormat:@"setOrientationProperties allowOrientationChange -> %@ forceOrientation -> %@", browserCommand.allowOrientationChange ? @"YES" : @"NO", browserCommand.forceOrientation]];
+    [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                            adConfiguration:self.ad.adConfiguration
+                                                  webviewId:@""
+                                                    message:@"setOrientationProperties"
+                                                       tags:@[
+                                                           [OguryLogTag tagWithKey:@"allowOrientationChange"
+                                                                             value:browserCommand.allowOrientationChange ? @"YES" : @"NO"],
+                                                           [OguryLogTag tagWithKey:@"forceOrientation"
+                                                                             value:browserCommand.forceOrientation ? @"YES" : @"NO"]
+                                                       ]]];
 
     if (browserCommand.forceOrientation != nil) {
         UIInterfaceOrientationMask newOrientation = UIInterfaceOrientationMaskAll;
@@ -781,13 +788,22 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
 #pragma mark - OGAMRAIDWebViewDelegate
 
 - (void)webViewNotReady:(NSString *)adID {
-    [self.log logMraid:OguryLogLevelDebug forAdConfiguration:self.ad.adConfiguration webViewId:@"" message:@"Webview is not ready for Ad"];
+    [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                            adConfiguration:self.ad.adConfiguration
+                                                  webviewId:@""
+                                                    message:@"Webview is not ready"
+                                                       tags:nil]];
 }
 
 - (void)webViewReady:(NSString *)adID {
     switch (self.mraidDisplayerState) {
         case OGAAdMraidDisplayerStateLoading:
-            [self.log logMraid:OguryLogLevelDebug forAdConfiguration:self.ad.adConfiguration webViewId:@"" message:@"Webview is ready for Ad"];
+            [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                    adConfiguration:self.ad.adConfiguration
+                                                          webviewId:@""
+                                                            message:@"Webview is ready"
+                                                               tags:nil]];
+
             self.mraidDisplayerState = OGAAdMraidDisplayerStateLoaded;
             if ([self.delegate respondsToSelector:@selector(didLoad)]) {
                 [self.delegate didLoad];
@@ -795,23 +811,35 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
             break;
 
         case OGAAdMraidDisplayerStateEnded:
-            [self.log logMraid:OguryLogLevelDebug forAdConfiguration:self.ad.adConfiguration webViewId:@"" message:@"Webview is ready but ad was ended"];
+            [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                    adConfiguration:self.ad.adConfiguration
+                                                          webviewId:@""
+                                                            message:@"Webview is ready but ad was ended"
+                                                               tags:nil]];
+
             if ([self.delegate respondsToSelector:@selector(didUnLoadFrom:)]) {
                 [self.delegate didUnLoadFrom:UnloadOriginFormat];
             }
             break;
 
         default:
-            [self.log logMraidFormat:OguryLogLevelDebug
-                  forAdConfiguration:self.ad.adConfiguration
-                           webViewId:@""
-                              format:@"Webview is ready but state was not loading but %ld instead", self.mraidDisplayerState];
+            [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                    adConfiguration:self.ad.adConfiguration
+                                                          webviewId:@""
+                                                            message:[NSString stringWithFormat:@"Webview is ready but state was not loading but %ld instead", self.mraidDisplayerState]
+                                                               tags:nil]];
+
             break;
     }
 }
 
 - (void)loadTimedOut {
     [self.delegate didUnLoadFrom:UnloadOriginTimeout];
+}
+
+- (WKWebView *)adWebview {
+    OGAMraidAdWebView *mainWebView = [self mraidViewForId:OGANameMainWebView];
+    return mainWebView.wkWebView;
 }
 
 @end

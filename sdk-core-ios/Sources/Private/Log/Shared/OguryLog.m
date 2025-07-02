@@ -8,6 +8,7 @@
 #import "OguryLogLevel.h"
 #import "OGCURLRequestLogMessage.h"
 #import "OGCEventLogMessage.h"
+#import <OguryCore/OguryLogMessage.h>
 
 @interface OguryLog ()
 
@@ -41,6 +42,12 @@
     }
 }
 
+- (void)removeLogger:(id<OguryLogger>)logger {
+    @synchronized (self.loggers) {
+        [self.loggers removeObject:logger];
+    }
+}
+
 - (void)clearLoggers {
     @synchronized (self.loggers) {
         [self.loggers removeAllObjects];
@@ -55,29 +62,34 @@
     }
 }
 
-- (void)logMessage:(NSString *)message level:(OguryLogLevel)level {
+- (void)logMessage:(OguryLogMessage *)message {
     @synchronized (self.loggers) {
         for (id<OguryLogger> currentLogger in self.loggers) {
-            [currentLogger logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:level message:message]];
+            if ([self canSendMessage:message to:currentLogger]) {
+                [currentLogger logMessage:message];
+            }
         }
     }
 }
 
-- (void)log:(OguryLogLevel)level format:(NSString *)format, ... {
-    va_list arguments;
-    va_start(arguments, format);
-
-    NSString *message = [[NSString alloc] initWithFormat:format arguments:arguments];
-
-    va_end(arguments);
-
-    [self logMessage:message level:level];
+- (BOOL)canSendMessage:(OguryLogMessage *)message to:(id<OguryLogger>)logger {
+    if (message.level > logger.logLevel) {
+        return NO;
+    }
+    
+    if (![logger.allowedLogTypes containsObject:message.logType]) {
+        return NO;
+    }
+    return YES;
 }
 
 - (void)ogcLogRequestMessage:(OguryLogLevel)level message:(NSString *)message request:(NSURLRequest *)request {
     @synchronized (self.loggers) {
         for (id<OguryLogger> currentLogger in self.loggers) {
-            [currentLogger logMessage:[[OGCURLRequestLogMessage alloc] initWithLevel:level message:message request:request]];
+            OGCURLRequestLogMessage *logMessage = [[OGCURLRequestLogMessage alloc] initWithLevel:level message:message request:request];
+            if ([self canSendMessage:logMessage to:currentLogger]) {
+                [currentLogger logMessage:logMessage];
+            }
         }
     }
 }

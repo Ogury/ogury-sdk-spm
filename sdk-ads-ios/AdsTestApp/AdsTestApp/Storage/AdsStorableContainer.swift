@@ -4,10 +4,90 @@
 
 import UIKit
 import AdsCardLibrary
-import OguryAds
+import OguryCore.Private
+import UserDefault
+import AdsCardLibrary
+import AdsCardAdapter
+
+enum ImportMethod: String, Codable, Equatable, CaseIterable, DefaultsValueConvertible {
+    case file, rawText
+    var displayText: String {
+        switch self {
+            case .file: return "Import file"
+            case .rawText: return "Import json text"
+        }
+    }
+    var shortDisplayText: String {
+        switch self {
+            case .file: return "File"
+            case .rawText: return "Text"
+        }
+    }
+}
+
+struct SettingsPermissions: OptionSet, Codable {
+    let rawValue: Int
+    static let noCards = SettingsPermissions(rawValue: 1 << 0)
+    static let showEditAdUnitToggle = SettingsPermissions(rawValue: 1 << 1)
+    static let showCampaignToggle = SettingsPermissions(rawValue: 1 << 2)
+    static let showCreativeToggle = SettingsPermissions(rawValue: 1 << 3)
+    static let showDspToggle = SettingsPermissions(rawValue: 1 << 4)
+    static let showAudioToggle = SettingsPermissions(rawValue: 1 << 5)
+    static let showTestModeToggle = SettingsPermissions(rawValue: 1 << 6)
+    static let showKillWebviewToggle = SettingsPermissions(rawValue: 1 << 7)
+    static let showBulkModeToggle = SettingsPermissions(rawValue: 1 << 8)
+    static let showResetProfigToggle = SettingsPermissions(rawValue: 1 << 9)
+    static var allCases: SettingsPermissions = [
+        .showEditAdUnitToggle,
+        .showAudioToggle,
+        .showBulkModeToggle,
+        .showCampaignToggle,
+        .showCreativeToggle,
+        .showDspToggle,
+        .showKillWebviewToggle,
+        .showResetProfigToggle,
+        .showTestModeToggle
+    ]
+}
+
+struct AppPermissions: Codable, DefaultsValueConvertible {
+    let settings: Bool
+    let logs: Bool
+    let add: Bool
+    let export: Bool
+    let bulkMode: Bool
+    let devFeatures: Bool
+    let settingPermissions: SettingsPermissions
+    static let userDefaultKey = "AppPermissions"
+    
+    enum CodingKeys: String, CodingKey {
+        case settings, logs, add, export, bulkMode, devFeatures, settingPermissions
+    }
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        settings = try container.decodeIfPresent(Bool.self, forKey: .settings) ?? true
+        logs = try container.decodeIfPresent(Bool.self, forKey: .logs) ?? true
+        add = try container.decodeIfPresent(Bool.self, forKey: .add) ?? true
+        export = try container.decodeIfPresent(Bool.self, forKey: .export) ?? true
+        bulkMode = try container.decodeIfPresent(Bool.self, forKey: .bulkMode) ?? true
+        devFeatures = try container.decodeIfPresent(Bool.self, forKey: .devFeatures) ?? true
+        settingPermissions = try container.decodeIfPresent(SettingsPermissions.self, forKey: .settingPermissions) ?? .allCases
+    }
+    
+    init() {
+        settings = true
+        logs = true
+        add = true
+        export = true
+        bulkMode = true
+        devFeatures = true
+        settingPermissions = .allCases
+    }
+}
 
 struct SettingsContainer: Codable, Equatable {
     static let currentOs = "iOS"
+    static let untitledAdSet = "Untitled Ad Set"
     private var settings = SettingsController()
     var enableAdUnitEditing: Bool {
         get { settings.enableAdUnitEditing }
@@ -21,10 +101,6 @@ struct SettingsContainer: Codable, Equatable {
         get { settings.showCreativeId }
         set { settings.showCreativeId = newValue }
     }
-    var showSpecificOptions: Bool {
-        get { settings.showSpecificOptions }
-        set { settings.showSpecificOptions = newValue }
-    }
     var showDspFields: Bool {
         get { settings.showDspFields }
         set { settings.showDspFields = newValue }
@@ -36,6 +112,10 @@ struct SettingsContainer: Codable, Equatable {
     var startSDKWithApplication: Bool {
         get { settings.startSDKWithApplication }
         set { settings.startSDKWithApplication = newValue }
+    }
+    var numberOfSdkStart: Int {
+        get { settings.numberOfSdkStart }
+        set { settings.numberOfSdkStart = newValue }
     }
     var showTestMode: Bool {
         get { settings.showTestMode }
@@ -53,79 +133,163 @@ struct SettingsContainer: Codable, Equatable {
         get { settings.usOptoutPartner }
         set { settings.usOptoutPartner = newValue }
     }
-    var name = "AdsSet"
+    var importMethod: ImportMethod {
+        get { settings.importMethod }
+        set { settings.importMethod = newValue }
+    }
+    var killWebviewMode: KillWebviewMode {
+        get { settings.killWebviewMode }
+        set { settings.killWebviewMode = newValue }
+    }
+    var consentManager: ConsentManager {
+        get { settings.consentManager }
+        set { settings.consentManager = newValue }
+    }
+    var name = SettingsContainer.untitledAdSet
     var os = SettingsContainer.currentOs
     var shouldUpdateAdUnits: Bool { os != SettingsContainer.currentOs }
+    var logSettings: LogSettings!
+    var permissions: AppPermissions {
+        get { settings.appPermissions }
+        set { settings.appPermissions = newValue }
+    }
     
     enum CodingKeys: CodingKey {
-        case showCreativeId
-        case showSpecificOptions
-        case showDspFields
-        case showCampaignId
-        case bulkModeEnabled
-        case showTestMode
-        case name
-        case os
-        case enableAdUnitEditing
+        case showCreativeId,
+             showDspFields,
+             showCampaignId,
+             bulkModeEnabled,
+             showTestMode,
+             name,
+             os,
+             enableAdUnitEditing,
+             startSDKWithApplication,
+             numberOfSdkStart,
+             logSettings,
+             importMethod,
+             killWebviewMode,
+             permissions
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        showCreativeId = try container.decode(Bool.self, forKey: .showCreativeId)
-        showSpecificOptions = try container.decode(Bool.self, forKey: .showSpecificOptions)
-        showDspFields = try container.decode(Bool.self, forKey: .showDspFields)
-        showCampaignId = try container.decode(Bool.self, forKey: .showCampaignId)
-        bulkModeEnabled = try container.decode(Bool.self, forKey: .bulkModeEnabled)
-        showTestMode = try container.decode(Bool.self, forKey: .showTestMode)
-        name = try container.decode(String.self, forKey: .name)
-        os = try container.decode(String.self, forKey: .os)
+        showCreativeId = try container.decodeIfPresent(Bool.self, forKey: .showCreativeId) ?? true
+        showDspFields = try container.decodeIfPresent(Bool.self, forKey: .showDspFields) ?? false
+        showCampaignId = try container.decodeIfPresent(Bool.self, forKey: .showCampaignId) ?? true
+        bulkModeEnabled = try container.decodeIfPresent(Bool.self, forKey: .bulkModeEnabled) ?? true
+        showTestMode = try container.decodeIfPresent(Bool.self, forKey: .showTestMode) ?? true
+        killWebviewMode = try container.decodeIfPresent(KillWebviewMode.self, forKey: .killWebviewMode) ?? .none
+        name = try container.decodeIfPresent(String.self, forKey: .name) ?? SettingsContainer.untitledAdSet
+        os = try container.decodeIfPresent(String.self, forKey: .os) ?? SettingsContainer.currentOs
+        startSDKWithApplication = try container.decodeIfPresent(Bool.self, forKey: .startSDKWithApplication) ?? false
+        numberOfSdkStart = try container.decodeIfPresent(Int.self, forKey: .numberOfSdkStart) ?? 0
         enableAdUnitEditing = try container.decodeIfPresent(Bool.self, forKey: .enableAdUnitEditing) ?? true
+        importMethod = try container.decodeIfPresent(ImportMethod.self, forKey: .importMethod) ?? .file
+        logSettings = (try? container.decodeIfPresent(LogSettings.self, forKey: .logSettings)) ?? LogSettings()
+        permissions = (try? container.decodeIfPresent(AppPermissions.self, forKey: .permissions)) ?? AppPermissions()
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(showCreativeId, forKey: .showCreativeId)
-        try container.encode(showSpecificOptions, forKey: .showSpecificOptions)
         try container.encode(showDspFields, forKey: .showDspFields)
         try container.encode(showCampaignId, forKey: .showCampaignId)
+        try container.encode(killWebviewMode, forKey: .killWebviewMode)
         try container.encode(bulkModeEnabled, forKey: .bulkModeEnabled)
         try container.encode(showTestMode, forKey: .showTestMode)
         try container.encode(name, forKey: .name)
         try container.encode(os, forKey: .os)
         try container.encode(enableAdUnitEditing, forKey: .enableAdUnitEditing)
+        try container.encode(numberOfSdkStart, forKey: .numberOfSdkStart)
+        try container.encode(startSDKWithApplication, forKey: .startSDKWithApplication)
+        try container.encode(logSettings, forKey: .logSettings)
+        try container.encode(importMethod, forKey: .importMethod)
     }
     
-    init(name: String = "AdsSet") {
+    init(name: String = SettingsContainer.untitledAdSet) {
         self.name = name
+        self.logSettings = LogSettings()
     }
     
     static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.showCreativeId == rhs.showCreativeId &&
-        lhs.showSpecificOptions == rhs.showSpecificOptions &&
         lhs.showDspFields == rhs.showDspFields &&
         lhs.showCampaignId == rhs.showCampaignId &&
         lhs.bulkModeEnabled == rhs.bulkModeEnabled &&
         lhs.startSDKWithApplication == rhs.startSDKWithApplication &&
         lhs.showTestMode == rhs.showTestMode &&
         lhs.enableAdUnitEditing == rhs.enableAdUnitEditing &&
+        lhs.startSDKWithApplication == rhs.startSDKWithApplication &&
+        lhs.numberOfSdkStart == rhs.numberOfSdkStart &&
+        lhs.importMethod == rhs.importMethod &&
+        lhs.killWebviewMode == rhs.killWebviewMode &&
         lhs.name == rhs.name
+    }
+}
+
+struct LogSettings: Codable {
+    let allowedTypes: [OguryLogType] // TestAppAllowedLogTypes
+    let allowedDisplay: OguryLogDisplay
+    
+    enum CodingKeys: CodingKey { case allowedTypes, allowedDisplay }
+    
+    init() {
+        if let store = UserDefaults.standard.value(forKey: "OguryLogDisplay") as? UInt {
+            allowedDisplay = OguryLogDisplay(rawValue: store)
+        } else {
+            allowedDisplay = [.SDK, .level, .origin, .tags]
+        }
+        if let types = UserDefaults.standard.value(forKey: "TestAppAllowedLogTypes") as? [OguryLogType] {
+            allowedTypes = types
+        } else {
+            allowedTypes = [.internal, .publisher, .delegate]
+        }
+    }
+    
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let types = try container.decodeIfPresent([String].self, forKey: .allowedTypes) {
+            allowedTypes = types.compactMap{ OguryLogType($0) }
+        } else {
+            allowedTypes = [.internal, .publisher, .delegate]
+        }
+        TestAppLogController.shared.logger.allowedLogTypes = allowedTypes
         
+        if let raw = try? container.decodeIfPresent(UInt.self, forKey: .allowedDisplay) {
+            allowedDisplay = OguryLogDisplay(rawValue: raw)
+        } else {
+            allowedDisplay = [.SDK, .level, .origin, .tags]
+        }
+        TestAppLogController.shared.logger.logFormatter.displayOptions = allowedDisplay
+        
+        UserDefaults.standard.set(allowedDisplay.rawValue, forKey: "OguryLogDisplay")
+        UserDefaults.standard.set(allowedTypes, forKey: "TestAppAllowedLogTypes")
+        UserDefaults.standard.synchronize()
+    }
+    
+    func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(allowedTypes.compactMap{ $0.rawValue }, forKey: .allowedTypes)
+        try container.encode(allowedDisplay.rawValue, forKey: .allowedDisplay)
     }
 }
 
 struct AdsStorableContainer: Codable {
     let settings: SettingsContainer
-    let cards: [[AdContainer]]
+    let cards: [[AdCardContainer]]
     private static let userDefaultKey = "AdsStorableContainer"
     fileprivate static let cardManager = AdsCardManager()
-    fileprivate static var adDelegate: AdLifeCycleDelegate?
+    fileprivate static var adDelegate: (AdLifeCycleDelegate & ApplicationDelegate)?
     var shouldUpdateAdUnits: Bool { settings.shouldUpdateAdUnits }
+    var fileVersion: FileVersion = .one
+    static let currentFileVersion: FileVersion = .one
     
     init(settings: SettingsContainer = .init(),
-         cards: [AdFormat: [any AdManager]]) {
+         cards: [AdCardList]) {
+        AdCardContainer.currentVersion = AdsStorableContainer.currentFileVersion;
         self.settings = settings
-        self.cards = cards.compactMap { (adFormat, managers) in
-            AdContainer.from(adFormat: adFormat, managers: managers)
+        self.cards = cards.compactMap { cardList in
+            cardList.adManagers.map{ $0.encode() }
         }
     }
     
@@ -150,6 +314,10 @@ struct AdsStorableContainer: Codable {
         }
         defer { url.stopAccessingSecurityScopedResource() }
         guard let data = try? Data(contentsOf: url) else { throw ImportError.noFileAtURL }
+        return try AdsStorableContainer.load(from: data)
+    }
+    
+    static func load(from data: Data) throws -> AdsStorableContainer {
         guard let container: AdsStorableContainer = try? JSONDecoder().decode(self, from: data) else { throw ImportError.cantReadFile }
         return container
     }
@@ -160,415 +328,212 @@ struct AdsStorableContainer: Codable {
         return container
     }
     
-    func retrieveAds(cardManager: AdsCardManager,
-                     maxHeaderBidable: MaxBidder,
-                     dtFairBidHeaderBidable: DTFairBidBidder,
-                     unityLevelPlayBidable: UnityLevelPlayBidder,
-                     viewController: UIViewController? = nil,
-                     view: UIView? = nil,
-                     adDelegate: AdLifeCycleDelegate? = nil) -> [AdFormat: [any AdManager]] {
-        var adFormats: [AdFormat: [any AdManager]] = [:]
-        cards.forEach { adContainers in
-            if let adTuple = adContainers.convertToAdFormat(cardManager: cardManager,
-                                                            maxHeaderBidable: maxHeaderBidable,
-                                                            dtFairBidHeaderBidable: dtFairBidHeaderBidable,
-                                                            unityLevelPlayBidable: unityLevelPlayBidable,
-                                                            settings: settings,
-                                                            viewController: viewController,
-                                                            view: view,
-                                                            adDelegate: adDelegate) {
-                adFormats[adTuple.adFormat] = adTuple.managers
+    func retrieveAds(viewController: UIViewController? = nil,
+                     adDelegate: AdLifeCycleDelegate? = nil) -> [AdCardList] {
+        var list: [AdCardList] = []
+        cards.forEach { card in
+            guard let firstCard = card.first,
+                  let adFormat = try? SdkLauncher.shared.adapter.adAdapterFormat(fromRawValue: firstCard.adType,
+                                                                                 fileVersion: fileVersion)  else { return }
+            
+            let adManagers: [any AdManager] = card.compactMap { container in
+                var updatedContainer = container
+                updatedContainer.version = fileVersion
+                return try? SdkLauncher.shared.adapter.adManager(from: updatedContainer,
+                                                          viewController: viewController,
+                                                          adDelegate: adDelegate)
             }
+            guard fileVersion == Self.currentFileVersion else {
+                // handle migration
+                if var cardManager = list.first(where: { $0.adAdapterFormat.id == adFormat.id }) {
+                    cardManager.adManagers.append(contentsOf: adManagers)
+                    list.removeAll(where: { $0.adAdapterFormat.id == adFormat.id })
+                    list.append(cardManager)
+                } else {
+                    list.append(.init(adAdapterFormat: adFormat, adManagers: adManagers))
+                }
+                return
+            }
+            list.append(.init(adAdapterFormat: adFormat, adManagers: adManagers))
         }
-        return adFormats
+        return list
     }
     
     //MARK: Codable
     enum CodingKeys: String, CodingKey {
-        case settings, cards
+        case settings, cards, fileVersion
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        fileVersion = (try? container.decodeIfPresent(FileVersion.self, forKey: .fileVersion)) ?? .preVersion
         settings = try container.decode(SettingsContainer.self, forKey: .settings)
-        cards = try container.decode([[AdContainer]].self, forKey: .cards)
+        cards = try container.decode([[AdCardContainer]].self, forKey: .cards)
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(settings, forKey: .settings)
-        let adContainers: [[AdContainer]] = cards
-        try container.encode(adContainers, forKey: .cards)
+        try container.encode(cards, forKey: .cards)
+        try container.encode(fileVersion, forKey: .fileVersion)
     }
 }
 
-struct AdContainer: Codable {
-    struct AdInformationsContainer: Codable {
-        let adUnitId: String
-        let campaignId: String?
-        let creativeId: String?
-        let settings: CardSettings
-    }
-    struct ThumbnailOptionsContainer: Codable {
-        let thumbnailPosition: Int
-        let thumbnailX: Int
-        let thumbnailY: Int
-        let thumbnailWidth: Int
-        let thumbnailHeight: Int
-    }
-    struct CardSettings: Codable {
-        let oguryTestModeEnabled: Bool
-        let rtbTestModeEnabled: Bool
-        let qaLabel: String
-    }
-    let name: String
-    let adType: Int
-    let adInformations: AdInformationsContainer
-    let thumbnailOptions: ThumbnailOptionsContainer?
-    
-    fileprivate static func from(adFormat: AdFormat, managers: [any AdManager]) -> [Self] {
-        managers
-            .compactMap { manager in
-                guard let adType = try? adFormat.innerAdType else {
-                    fatalError("Unkown inner ad type \(adFormat.adType)")
-                }
-                let thumbnailOptions = (manager.options as? ThumbnailAdManagerOptions)?.thumbnailOptions
-                return AdContainer.init(name: manager.options.baseOptions.adDisplayName,
-                                        adType: adType,
-                                        adInformations: .init(adUnitId: manager.options.baseOptions.adUnitId,
-                                                              campaignId: manager.options.baseOptions.campaignId,
-                                                              creativeId: manager.options.baseOptions.creativeId,
-                                                              settings: .init(oguryTestModeEnabled: manager.options.baseOptions.oguryTestModeEnabled,
-                                                                              rtbTestModeEnabled: manager.options.baseOptions.rtbTestModeEnabled,
-                                                                              qaLabel: manager.options.baseOptions.qaLabel)),
-                                        thumbnailOptions: thumbnailOptions == nil
-                                        ? nil
-                                        : .init(thumbnailPosition: thumbnailOptions!.rawCorner,
-                                                thumbnailX: thumbnailOptions!.x,
-                                                thumbnailY: thumbnailOptions!.y,
-                                                thumbnailWidth: thumbnailOptions!.width,
-                                                thumbnailHeight: thumbnailOptions!.height))
-            }
-    }
-    
-    fileprivate var adFormat: AdFormat {
-        get throws {
-            switch adType {
-                case RawInnerAdType.interstitial.rawValue:
-                    let adType: AdType<InterstitialAdManager> = .interstitial
-                    return AdFormat(id: adType.uuid, adType: .init(adType))
-                case RawInnerAdType.interstitial.rawValue + RawInnerAdType.maxSuffix.rawValue:
-                    let adType: AdType<InterstitialAdManager> = .maxHeaderBidding(adType: .interstitial, adMarkUpRetriever: nil)
-                    return AdFormat(id: adType.uuid, adType: .init(adType))
-                case RawInnerAdType.interstitial.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
-                    let adType: AdType<InterstitialAdManager> = .dtFairBidHeaderBidding(adType: .interstitial, adMarkUpRetriever: nil)
-                    return AdFormat(id: adType.uuid, adType: .init(adType))
-                case RawInnerAdType.interstitial.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
-                    let adType: AdType<InterstitialAdManager> = .unityLevelPlayHeaderBidding(adType: .interstitial, adMarkUpRetriever: nil)
-                    return AdFormat(id: adType.uuid, adType: .init(adType))
-                    
-                case RawInnerAdType.rewarded.rawValue:
-                    let adType: AdType<RewardedAdManager> = .rewarded
-                    return AdFormat(id: adType.uuid, adType: .init(adType))
-                case RawInnerAdType.rewarded.rawValue + RawInnerAdType.maxSuffix.rawValue:
-                    let adType: AdType<RewardedAdManager> = .maxHeaderBidding(adType: .rewarded, adMarkUpRetriever: nil)
-                    return AdFormat(id: adType.uuid, adType: .init(adType))
-                case RawInnerAdType.rewarded.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
-                    let adType: AdType<RewardedAdManager> = .dtFairBidHeaderBidding(adType: .rewarded, adMarkUpRetriever: nil)
-                    return AdFormat(id: adType.uuid, adType: .init(adType))
-                case RawInnerAdType.rewarded.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
-                    let adType: AdType<RewardedAdManager> = .unityLevelPlayHeaderBidding(adType: .rewarded, adMarkUpRetriever: nil)
-                    return AdFormat(id: adType.uuid, adType: .init(adType))
-                    
-                case RawInnerAdType.thumbnail.rawValue:
-                    let adType: AdType<ThumbnailAdManager> = .thumbnail
-                    return AdFormat(id: adType.uuid, adType: .init(adType))
-                    
-                case RawInnerAdType.mpu.rawValue:
-                    let adType: AdType<BannerAdManager> = .mpu
-                    return AdFormat(id: adType.uuid, adType: .init(adType))
-                case RawInnerAdType.mpu.rawValue + RawInnerAdType.maxSuffix.rawValue:
-                    let adType: AdType<BannerAdManager> = .maxHeaderBidding(adType: .mpu, adMarkUpRetriever: nil)
-                    return AdFormat(id: adType.uuid, adType: .init(adType))
-                case RawInnerAdType.mpu.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
-                    let adType: AdType<BannerAdManager> = .dtFairBidHeaderBidding(adType: .mpu, adMarkUpRetriever: nil)
-                    return AdFormat(id: adType.uuid, adType: .init(adType))
-                case RawInnerAdType.mpu.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
-                    let adType: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType: .mpu, adMarkUpRetriever: nil)
-                    return AdFormat(id: adType.uuid, adType: .init(adType))
-                
-                case RawInnerAdType.banner.rawValue:
-                    let adType: AdType<BannerAdManager> = .banner
-                    return AdFormat(id: adType.uuid, adType: .init(adType))
-                case RawInnerAdType.banner.rawValue + RawInnerAdType.maxSuffix.rawValue:
-                    let adType: AdType<BannerAdManager> = .maxHeaderBidding(adType: .banner, adMarkUpRetriever: nil)
-                    return AdFormat(id: adType.uuid, adType: .init(adType))
-                case RawInnerAdType.banner.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
-                    let adType: AdType<BannerAdManager> = .dtFairBidHeaderBidding(adType: .banner, adMarkUpRetriever: nil)
-                    return AdFormat(id: adType.uuid, adType: .init(adType))
-                case RawInnerAdType.banner.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
-                    let adType: AdType<BannerAdManager> = .unityLevelPlayHeaderBidding(adType: .banner, adMarkUpRetriever: nil)
-                    return AdFormat(id: adType.uuid, adType: .init(adType))
-                    
-                default: throw EncodingError.invalidValue(adType, .init(codingPath: [], debugDescription: "The adFormat is not allowed"))
-            }
-        }
-    }
-    
-    fileprivate func adOptions<T: AdManager>(adType: AdType<T>, settings: SettingsContainer, viewController: UIViewController) -> AdManagerOptions {
-        AdManagerOptions(showCampaignId: settings.showCampaignId,
-                         showCreativeId: settings.showCreativeId,
-                         showDspFields: settings.showDspFields,
-                         showSpecificOptions: settings.showSpecificOptions,
-                         viewController: viewController,
-                         adDisplayName: name,
-                         adUnitId: settings.shouldUpdateAdUnits
-                         ? adType.defaultAdUnit(testMode: adInformations.adUnitId.isTestModeOn)
-                         : adInformations.adUnitId,
-                         campaignId: adInformations.campaignId,
-                         creativeId: adInformations.creativeId,
-                         adMarkUp: nil,
-                         isSelected: false,
-                         bulkModeEnabled: settings.bulkModeEnabled,
-                         oguryTestModeEnabled: adInformations.settings.oguryTestModeEnabled,
-                         rtbTestModeEnabled: adInformations.settings.rtbTestModeEnabled,
-                         qaLabel: adInformations.settings.qaLabel)
-    }
-    fileprivate func bannerOptions<T: AdManager>(adType: AdType<T>, settings: SettingsContainer, view: UIView) -> BannerAdManagerOptions {
-        BannerAdManagerOptions(showCampaignId: settings.showCampaignId,
-                               showCreativeId: settings.showCreativeId,
-                               showDspFields: settings.showDspFields,
-                               showSpecificOptions: settings.showSpecificOptions,
-                               view: view,
-                               adDisplayName: name,
-                               adUnitId: settings.shouldUpdateAdUnits
-                               ? adType.defaultAdUnit(testMode: adInformations.adUnitId.isTestModeOn)
-                               : adInformations.adUnitId,
-                               campaignId: adInformations.campaignId,
-                               creativeId: adInformations.creativeId,
-                               adMarkUp: nil,
-                               isSelected: false,
-                               bulkModeEnabled: settings.bulkModeEnabled,
-                               oguryTestModeEnabled: adInformations.settings.oguryTestModeEnabled,
-                               rtbTestModeEnabled: adInformations.settings.rtbTestModeEnabled,
-                               qaLabel: adInformations.settings.qaLabel)
-    }
-    fileprivate func thumbnailOptions<T: AdManager>(adType: AdType<T>, settings: SettingsContainer, viewController: UIViewController) -> ThumbnailAdManagerOptions {
-        let corner: OguryRectCorner? = thumbnailOptions?.thumbnailPosition != nil
-        ? OguryRectCorner(rawValue: thumbnailOptions!.thumbnailPosition)
-        : nil
-        let options = ThumbnailOptions(position: corner == nil ? CGPoint(x: CGFloat(thumbnailOptions?.thumbnailX ?? 0),
-                                                                         y: CGFloat(thumbnailOptions?.thumbnailY ?? 0)) : nil,
-                                       size: CGSize(width: CGFloat(thumbnailOptions?.thumbnailWidth ?? 180),
-                                                    height: CGFloat(thumbnailOptions?.thumbnailHeight ?? 180)),
-                                       offset: corner != nil ? OguryOffset(x: CGFloat(thumbnailOptions?.thumbnailX ?? 0),
-                                                                           y: CGFloat(thumbnailOptions?.thumbnailY ?? 0)) : nil,
-                                       corner: corner)
-        
-        return ThumbnailAdManagerOptions(showCampaignId: settings.showCampaignId,
-                                         showCreativeId: settings.showCreativeId,
-                                         showDspFields: settings.showDspFields,
-                                         showSpecificOptions: settings.showSpecificOptions,
-                                         viewController: viewController,
-                                         thumbnailOptions: options,
-                                         adDisplayName: name,
-                                         adUnitId: settings.shouldUpdateAdUnits
-                                         ? adType.defaultAdUnit(testMode: adInformations.adUnitId.isTestModeOn)
-                                         : adInformations.adUnitId,
+extension AdCardContainer {
+    var adAdapterOptions: AdViewOptions {
+        let settings = SettingsController()
+        return .init(adParameters: .init(adUnitId: adInformations.adUnitId,
                                          campaignId: adInformations.campaignId,
                                          creativeId: adInformations.creativeId,
-                                         adMarkUp: nil,
-                                         isSelected: false,
-                                         bulkModeEnabled: settings.bulkModeEnabled,
-                                         oguryTestModeEnabled: adInformations.settings.oguryTestModeEnabled,
-                                         rtbTestModeEnabled: adInformations.settings.rtbTestModeEnabled,
-                                         qaLabel: adInformations.settings.qaLabel)
+                                         dspCreativeId: adInformations.dspCreativeId,
+                                         dspRegion: adInformations.dspRegion,
+                                         bannerSize: adInformations.bannerSize),
+                     cardConfiguration: .init(enableAdUnitEditing: settings.enableAdUnitEditing,
+                                              showCampaignId: settings.showCampaignId,
+                                              showCreativeId: settings.showCreativeId,
+                                              showDspFields: settings.showDspFields,
+                                              adDisplayName: name,
+                                              bulkModeEnabled: settings.bulkModeEnabled,
+                                              oguryTestModeEnabled: adInformations.settings.oguryTestModeEnabled,
+                                              showTestModeButton: settings.showTestMode,
+                                              rtbTestModeEnabled: adInformations.settings.rtbTestModeEnabled,
+                                              killWebviewMode: settings.killWebviewMode,
+                                              qaLabel: adInformations.settings.qaLabel))
     }
 }
 
-extension Array where Element == AdContainer {
-    func convertToAdFormat(cardManager: AdsCardManager,
-                           maxHeaderBidable: MaxBidder,
-                           dtFairBidHeaderBidable: DTFairBidBidder,
-                           unityLevelPlayBidable: UnityLevelPlayBidder,
-                           settings: SettingsContainer,
-                           viewController: UIViewController?,
-                           view: UIView?,
-                           adDelegate: AdLifeCycleDelegate? = nil) -> (adFormat: AdFormat, managers: [any AdManager])? {
-        guard !isEmpty, let adFormat = try? first?.adFormat else { return nil }
-        return (adFormat: adFormat, managers: compactMap({ adContainer in
-            switch adContainer.adType {
-                case RawInnerAdType.interstitial.rawValue,
-                    RawInnerAdType.interstitial.rawValue + RawInnerAdType.maxSuffix.rawValue:
-                    if let adType: AdType<InterstitialAdManager> = try? AdType.adType(from: adContainer.adType,
-                                                                                      adMarkUpRetriever: maxHeaderBidable),
-                       let adManager = try? AdsStorableContainer
-                        .cardManager
-                        .adManager(for: adType,
-                                   options: adContainer.adOptions(adType: adType, 
-                                                                  settings: settings,
-                                                                  viewController: viewController ?? UIViewController()),
-                                   adDelegate: adDelegate) {
-                        return adManager
-                    }
-                    
-                case RawInnerAdType.interstitial.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
-                    if let adType: AdType<InterstitialAdManager> = try? AdType.adType(from: adContainer.adType,
-                                                                                      adMarkUpRetriever: dtFairBidHeaderBidable),
-                       let adManager = try? AdsStorableContainer
-                        .cardManager
-                        .adManager(for: adType,
-                                   options: adContainer.adOptions(adType: adType,
-                                                                  settings: settings,
-                                                                  viewController: viewController ?? UIViewController()),
-                                   adDelegate: adDelegate) {
-                        return adManager
-                    }
-                
-                case RawInnerAdType.interstitial.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
-                    if let adType: AdType<InterstitialAdManager> = try? AdType.adType(from: adContainer.adType,
-                                                                                      adMarkUpRetriever: unityLevelPlayBidable),
-                       let adManager = try? AdsStorableContainer
-                        .cardManager
-                        .adManager(for: adType,
-                                   options: adContainer.adOptions(adType: adType,
-                                                                  settings: settings,
-                                                                  viewController: viewController ?? UIViewController()),
-                                   adDelegate: adDelegate) {
-                        return adManager
-                    }
-                    
-                case RawInnerAdType.rewarded.rawValue,
-                    RawInnerAdType.rewarded.rawValue + RawInnerAdType.maxSuffix.rawValue:
-                    if let adType: AdType<RewardedAdManager> = try? AdType.adType(from: adContainer.adType,
-                                                                               adMarkUpRetriever: maxHeaderBidable),
-                       let adManager = try? AdsStorableContainer
-                        .cardManager
-                        .adManager(for: adType,
-                                   options: adContainer.adOptions(adType: adType,
-                                                                  settings: settings,
-                                                                  viewController: viewController ?? UIViewController()),
-                                   adDelegate: adDelegate) {
-                        return adManager
-                    }
-                    
-                case RawInnerAdType.rewarded.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
-                    if let adType: AdType<RewardedAdManager> = try? AdType.adType(from: adContainer.adType,
-                                                                               adMarkUpRetriever: dtFairBidHeaderBidable),
-                       let adManager = try? AdsStorableContainer
-                        .cardManager
-                        .adManager(for: adType,
-                                   options: adContainer.adOptions(adType: adType,
-                                                                  settings: settings,
-                                                                  viewController: viewController ?? UIViewController()),
-                                   adDelegate: adDelegate) {
-                        return adManager
-                    }
-                
-                case RawInnerAdType.rewarded.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
-                    if let adType: AdType<RewardedAdManager> = try? AdType.adType(from: adContainer.adType,
-                                                                               adMarkUpRetriever: unityLevelPlayBidable),
-                       let adManager = try? AdsStorableContainer
-                        .cardManager
-                        .adManager(for: adType,
-                                   options: adContainer.adOptions(adType: adType,
-                                                                  settings: settings,
-                                                                  viewController: viewController ?? UIViewController()),
-                                   adDelegate: adDelegate) {
-                        return adManager
-                    }
-                    
-                case RawInnerAdType.thumbnail.rawValue:
-                    if let adType: AdType<ThumbnailAdManager> = try? AdType.adType(from: adContainer.adType,
-                                                                                   adMarkUpRetriever: nil),
-                       let adManager = try? AdsStorableContainer
-                        .cardManager
-                        .adManager(for: adType,
-                                   options: adContainer.thumbnailOptions(adType: adType,
-                                                                         settings: settings,
-                                                                         viewController: viewController ?? UIViewController()),
-                                   adDelegate: adDelegate) {
-                        return adManager
-                    }
-                    
-                case RawInnerAdType.banner.rawValue,
-                    RawInnerAdType.mpu.rawValue:
-                    if let adType: AdType<BannerAdManager> = try? AdType.adType(from: adContainer.adType,
-                                                                                adMarkUpRetriever: nil),
-                       let adManager = try? AdsStorableContainer
-                        .cardManager
-                        .adManager(for: adType,
-                                   options: adContainer.bannerOptions(adType: adType,
-                                                                      settings: settings,
-                                                                      view: view ?? UIView()),
-                                   adDelegate: adDelegate) {
-                        return adManager
-                    }
-                    
-                case RawInnerAdType.banner.rawValue + RawInnerAdType.maxSuffix.rawValue,
-                    RawInnerAdType.mpu.rawValue + RawInnerAdType.maxSuffix.rawValue:
-                    if let adType: AdType<BannerAdManager> = try? AdType.adType(from: adContainer.adType,
-                                                                                adMarkUpRetriever: maxHeaderBidable),
-                       let adManager = try? AdsStorableContainer
-                        .cardManager
-                        .adManager(for: adType,
-                                   options: adContainer.bannerOptions(adType: adType,
-                                                                      settings: settings,
-                                                                      view: view ?? UIView()),
-                                   adDelegate: adDelegate) {
-                        return adManager
-                    }
-                
-                case RawInnerAdType.banner.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue,
-                    RawInnerAdType.mpu.rawValue + RawInnerAdType.unityLevelPlaySuffix.rawValue:
-                    if let adType: AdType<BannerAdManager> = try? AdType.adType(from: adContainer.adType,
-                                                                                adMarkUpRetriever: unityLevelPlayBidable),
-                       let adManager = try? AdsStorableContainer
-                        .cardManager
-                        .adManager(for: adType,
-                                   options: adContainer.bannerOptions(adType: adType,
-                                                                      settings: settings,
-                                                                      view: view ?? UIView()),
-                                   adDelegate: adDelegate) {
-                        return adManager
-                    }
-                    
-                case RawInnerAdType.mpu.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue,
-                    RawInnerAdType.banner.rawValue + RawInnerAdType.dtFairBidSuffix.rawValue:
-                    if let adType: AdType<BannerAdManager> = try? AdType.adType(from: adContainer.adType,
-                                                                                adMarkUpRetriever: dtFairBidHeaderBidable),
-                       let adManager = try? AdsStorableContainer
-                        .cardManager
-                        .adManager(for: adType,
-                                   options: adContainer.bannerOptions(adType: adType,
-                                                                      settings: settings,
-                                                                      view: view ?? UIView()),
-                                   adDelegate: adDelegate) {
-                        return adManager
-                    }
-                    return nil
-                    
-                    
-                default: return nil
-            }
-            return nil
-        }))
+extension AdsStorableContainer: CustomStringConvertible {
+    public var description: String {
+"""
+/*************************************/
+/****** C O N F I G   F I L E ********/
+/*************************************/
+
+~~~> SETTINGS
+\(settings)
+
+~~~> CARDS 
+\(cards)
+
+/*************************************/
+/****** E N D   O F   F I L E ********/
+/*************************************/
+"""
     }
 }
 
-extension AdType {
-    func defaultAdUnit(options: MediationOptions? = nil, testMode: Bool) -> String {
-        let currentOptions = options == nil ? Configuration.shared.options : options!
-        switch self {
-            case .interstitial: return currentOptions.interstitial.adUnitId + (testMode ? AdsCardManager.testModeSuffix : "")
-            case .rewarded: return currentOptions.optIn.adUnitId + (testMode ? AdsCardManager.testModeSuffix : "")
-            case .thumbnail: return (currentOptions.thumbnail?.adUnitId ?? "") + (testMode ? AdsCardManager.testModeSuffix : "")
-            case .banner: return currentOptions.banner.adUnitId + (testMode ? AdsCardManager.testModeSuffix : "")
-            case .mpu: return currentOptions.mpu.adUnitId + (testMode ? AdsCardManager.testModeSuffix : "")
-            case .maxHeaderBidding(let adType, _): return adType.defaultAdUnit(options: Configuration.shared.maxOptions, testMode: testMode)
-            case .dtFairBidHeaderBidding(let adType, _): return adType.defaultAdUnit(options: Configuration.shared.dtFairBidOptions, testMode: testMode)
-            case .unityLevelPlayHeaderBidding(let adType, _): return adType.defaultAdUnit(options: Configuration.shared.unityLevelPlayOptions, testMode: testMode)
-            @unknown default: fatalError()
+extension OguryLogDisplay: @retroactive CustomStringConvertible {
+    public var description: String {
+        var str = ""
+        if contains(.SDK) {
+            str += "SDK"
         }
+        if contains(.date) {
+            str += str.isEmpty ? "Date" : " - Date"
+        }
+        if contains(.level) {
+            str += str.isEmpty ? "Level" : " - Level"
+        }
+        if contains(.origin) {
+            str += str.isEmpty ? "Origin" : " - Origin"
+        }
+        if contains(.tags) {
+            str += str.isEmpty ? "Tags" : " - Tags"
+        }
+        if contains(.type) {
+            str += str.isEmpty ? "Type" : " - Type"
+        }
+        return str
+    }
+}
+
+extension LogSettings: CustomStringConvertible {
+    public var description: String {
+"""
+Allowed type    : \(allowedTypes.reduce("", { "\($0.isEmpty ? $0 : "\($0) - ")" + "\($1.rawValue)" }))
+Allowed Display : \(allowedDisplay)
+"""
+    }
+}
+
+extension AppPermissions: CustomStringConvertible {
+    public var description: String {
+"""
+settings            : \(settings)
+logs                : \(logs)
+add                 : \(add)
+export              : \(export)
+bulkMode            : \(bulkMode)
+devFeatures         : \(devFeatures)
+settingPermissions  : \(settingPermissions)
+
+"""
+    }
+}
+
+extension SettingsPermissions: CustomStringConvertible {
+    public var description: String {
+        var str = ""
+        if contains(.noCards) {
+            str += str.isEmpty ? "noCards" : " - noCards"
+        }
+        if contains(.showEditAdUnitToggle) {
+            str += str.isEmpty ? "showEditAdUnit" : " - showEditAdUnit"
+        }
+        if contains(.showCampaignToggle) {
+            str += str.isEmpty ? "showCampaign" : " - showCampaign"
+        }
+        if contains(.showCreativeToggle) {
+            str += str.isEmpty ? "showCreative" : " - showCreative"
+        }
+        if contains(.showDspToggle) {
+            str += str.isEmpty ? "showDsp" : " - showDsp"
+        }
+        if contains(.showAudioToggle) {
+            str += str.isEmpty ? "showAudio" : " - showAudio"
+        }
+        if contains(.showTestModeToggle) {
+            str += str.isEmpty ? "showTestMode" : " - showTestMode"
+        }
+        if contains(.showKillWebviewToggle) {
+            str += str.isEmpty ? "showKillWebview" : " - showKillWebview"
+        }
+        if contains(.showBulkModeToggle) {
+            str += str.isEmpty ? "showBulkMode" : " - showBulkMode"
+        }
+        if contains(.showResetProfigToggle) {
+            str += str.isEmpty ? "showResetProfig" : " - showResetProfig"
+        }
+        return str
+    }
+}
+
+extension SettingsContainer: CustomStringConvertible {
+    public var description: String {
+"""
+*** SHOW BEHAVIOR ***
+enableAdUnitEditing         : \(enableAdUnitEditing)
+showCampaignId              : \(showCampaignId)
+showCreativeId              : \(showCreativeId)
+showDspFields               : \(showDspFields)
+bulkModeEnabled             : \(bulkModeEnabled)
+startSDKWithApplication     : \(startSDKWithApplication)
+numberOfSdkStart            : \(numberOfSdkStart)
+showTestMode                : \(showTestMode)
+enableFeedbacks             : \(enableFeedbacks)
+usOptout                    : \(usOptout)
+usOptoutPartner             : \(usOptoutPartner)
+importMethod                : \(importMethod)
+killWebviewMode             : \(killWebviewMode)
+consentManager              : \(consentManager)
+name                        : \(name)
+os                          : \(os)
+
+*** LOG SETTINGS ***
+\(logSettings!)
+
+*** PERMISSIONS ***
+\(permissions)
+"""
     }
 }

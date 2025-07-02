@@ -3,7 +3,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <WebKit/WebKit.h>
 #import "OGAAdInternalAPI.h"
 #import "OGADelegateDispatcher.h"
 #import "OguryBannerAdSize.h"
@@ -14,6 +14,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Constants
+
+@class OGAAdConfiguration;
 
 extern NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName;
 
@@ -51,9 +53,12 @@ extern NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationNa
 
 - (void)destroy;
 
-- (void)didMoveToSuperview;
-
 - (void)didMoveToWindow;
+
+- (void)setLogOrigin:(NSString *)origin;
+- (OGAAdConfiguration *)adConfiguration;
+- (void)simulateWebviewTerminated;
+- (WKWebView *)adWebview;
 
 @end
 

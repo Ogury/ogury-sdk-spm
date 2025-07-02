@@ -184,13 +184,26 @@
             [self.window setFrame:CGRectMake(self.thumbnailPosition.x, self.thumbnailPosition.y, self.thumbnailSize.width, self.thumbnailSize.height)];
         }
         completion:^(BOOL finished) {
-            [self.log logFormat:OguryLogLevelDebug format:@"[thumbnail_viewController] UPDATE Thumbnail Video to size = %@ and position = %@", NSStringFromCGSize(self.thumbnailSize), NSStringFromCGPoint(self.thumbnailPosition)];
+            [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                 adConfiguration:nil
+                                                         logType:OguryLogTypeInternal
+                                                         message:@"Update thumbnail position"
+                                                            tags:@[
+                                                                [OguryLogTag tagWithKey:@"Size"
+                                                                                  value:NSStringFromCGSize(self.thumbnailSize)],
+                                                                [OguryLogTag tagWithKey:@"Position"
+                                                                                  value:NSStringFromCGPoint(self.thumbnailPosition)]
+                                                            ]]];
             [self sendAdExposure];
         }];
 }
 
 - (void)viewControllerListUpdated {
-    [self.log log:OguryLogLevelDebug message:@"[thumbnail_viewController] viewControllerListUpdated"];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"viewControllerListUpdated"
+                                                    tags:nil]];
     if (self.window.isExpanded) {
         return;
     }

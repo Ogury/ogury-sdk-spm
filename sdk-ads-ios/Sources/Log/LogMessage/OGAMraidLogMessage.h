@@ -4,10 +4,11 @@
 
 #import <Foundation/Foundation.h>
 #import <OguryCore/OguryAbstractLogMessage.h>
-#import "OGAAdConfiguration.h"
 #import "OGAAdLogMessage.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class OGAAdConfiguration;
 
 @interface OGAMraidLogMessage : OGAAdLogMessage
 
@@ -20,7 +21,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithLevel:(OguryLogLevel)level
               adConfiguration:(OGAAdConfiguration *)adConfiguration
                     webviewId:(NSString *)webViewId
-                      message:(NSString *)message;
+                      message:(NSString *)message
+                         tags:(NSArray<OguryLogTag *> *_Nullable)tags;
+
+- (instancetype)initWithLevel:(OguryLogLevel)level
+              adConfiguration:(OGAAdConfiguration *)adConfiguration
+                    webviewId:(NSString *)webViewId
+                        error:(NSError *)error
+                      message:(NSString *_Nullable)message
+                         tags:(NSArray<OguryLogTag *> *_Nullable)tags;
 
 @end
 

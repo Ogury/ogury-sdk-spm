@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <SystemConfiguration/SystemConfiguration.h>
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <netinet/in.h>
 
 typedef enum : NSInteger {
@@ -41,7 +42,9 @@ extern NSString *kOGAReachabilityChangedNotification;
 - (void)stopNotifier;
 
 - (NetworkStatus)currentReachabilityStatus;
-- (NSString *)currentReachabilityCellularNetwork;
+
+- (NSString *)currentReachabilityCellularNetwork:(CTTelephonyNetworkInfo *)telephonyNetworkInfo;
+
 - (NSString *)currentReachabilityNetwork;
 
 /*!

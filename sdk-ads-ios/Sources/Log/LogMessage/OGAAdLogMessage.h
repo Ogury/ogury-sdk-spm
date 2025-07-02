@@ -4,12 +4,18 @@
 
 #import <Foundation/Foundation.h>
 #import <OguryCore/OguryAbstractLogMessage.h>
-#import "OGAAdConfiguration.h"
-#import <OguryCore/OguryStringFormattable.h>
+#import <OguryCore/OguryLogType.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OGAAdLogMessage : OguryAbstractLogMessage <OguryStringFormattable>
+extern OguryLogSDK const OguryLogSDKAds;
+extern OguryLogType const OguryLogTypeMraid;
+extern OguryLogType const OguryLogTypeMonitoring;
+extern OguryLogType const OguryLogTypeDelegate;
+
+@class OGAAdConfiguration;
+
+@interface OGAAdLogMessage : OguryAbstractLogMessage
 
 #pragma mark - Properties
 
@@ -18,8 +24,17 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Initialization
 
 - (instancetype)initWithLevel:(OguryLogLevel)level
-              adConfiguration:(OGAAdConfiguration *)adConfiguration
-                      message:(NSString *)message;
+              adConfiguration:(OGAAdConfiguration *_Nullable)adConfiguration
+                      logType:(OguryLogType)logType
+                      message:(NSString *)message
+                         tags:(NSArray<OguryLogTag *> *_Nullable)tags;
+
+- (instancetype)initWithLevel:(OguryLogLevel)level
+              adConfiguration:(OGAAdConfiguration *_Nullable)adConfiguration
+                      logType:(OguryLogType)logType
+                        error:(NSError *)error
+                      message:(NSString *_Nullable)message
+                         tags:(NSArray<OguryLogTag *> *_Nullable)tags;
 
 @end
 

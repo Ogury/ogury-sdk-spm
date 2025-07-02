@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E254BA02D66318300AC31B4 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506D75562CA40D500050B345 /* OMSDK_Ogury.xcframework */; };
+		1E254BA12D66318300AC31B4 /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 506D75562CA40D500050B345 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1E3D78CF2B23181000FCD4CA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1E3D78CE2B23181000FCD4CA /* SnapKit */; };
 		351A124D3B382C7CCFF8B44B /* AdsFullscreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351A16660272F38F3279B421 /* AdsFullscreenController.swift */; };
 		393D067380175864ACD6ED9B /* Pods_LegacyTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F501599943F878CA9FD609 /* Pods_LegacyTestApp.framework */; };
 		436A80E7295072580021EA32 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A80E6295072580021EA32 /* String+Ext.swift */; };
-		506D75532CA40AC30050B345 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506D75522CA40AC30050B345 /* OguryAds.framework */; };
-		506D75552CA40AED0050B345 /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506D75542CA40AED0050B345 /* OguryCore.framework */; };
-		506D75572CA40D500050B345 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506D75562CA40D500050B345 /* OMSDK_Ogury.xcframework */; };
+		5081A6CC2D2D2EFE00EF4966 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5081A6CB2D2D2EFE00EF4966 /* OguryAds.framework */; };
+		5081A6D12D2D803200EF4966 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506D75562CA40D500050B345 /* OMSDK_Ogury.xcframework */; };
+		5081A6D22D2D803200EF4966 /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 506D75562CA40D500050B345 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5081A6D42D2D82DE00EF4966 /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D0E5A82C5BD61B00AF9CF6 /* OguryCore.framework */; };
 		C907356224A3CCDD000EF992 /* LogsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C907356124A3CCDD000EF992 /* LogsController.swift */; };
 		C907356524A3D034000EF992 /* LogsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C907356424A3D034000EF992 /* LogsCell.swift */; };
 		C907356724A3D045000EF992 /* LogsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C907356624A3D045000EF992 /* LogsCell.xib */; };
@@ -92,12 +95,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		226B0E432886F1D8005275EB /* Embed Frameworks */ = {
+		5081A6D32D2D803200EF4966 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				5081A6D22D2D803200EF4966 /* OMSDK_Ogury.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,6 +120,7 @@
 		506D75522CA40AC30050B345 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		506D75542CA40AED0050B345 /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		506D75562CA40D500050B345 /* OMSDK_Ogury.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OMSDK_Ogury.xcframework; path = ../OMSDK_Ogury.xcframework; sourceTree = "<group>"; };
+		5081A6CB2D2D2EFE00EF4966 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		59F501599943F878CA9FD609 /* Pods_LegacyTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LegacyTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DC195A458AB1854AB919371 /* Pods-LegacyTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LegacyTestApp.release.xcconfig"; path = "Target Support Files/Pods-LegacyTestApp/Pods-LegacyTestApp.release.xcconfig"; sourceTree = "<group>"; };
 		C907356124A3CCDD000EF992 /* LogsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsController.swift; sourceTree = "<group>"; };
@@ -204,12 +209,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				506D75572CA40D500050B345 /* OMSDK_Ogury.xcframework in Frameworks */,
-				506D75552CA40AED0050B345 /* OguryCore.framework in Frameworks */,
-				506D75532CA40AC30050B345 /* OguryAds.framework in Frameworks */,
+				5081A6CC2D2D2EFE00EF4966 /* OguryAds.framework in Frameworks */,
+				5081A6D42D2D82DE00EF4966 /* OguryCore.framework in Frameworks */,
 				393D067380175864ACD6ED9B /* Pods_LegacyTestApp.framework in Frameworks */,
 				C94DAA0A28F59CC5008BFAB1 /* StoreKit.framework in Frameworks */,
-				1E3D78CF2B23181000FCD4CA /* SnapKit in Frameworks */,
+				5081A6D12D2D803200EF4966 /* OMSDK_Ogury.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +223,7 @@
 		3E89C737BA898E957C8C33F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5081A6CB2D2D2EFE00EF4966 /* OguryAds.framework */,
 				506D75562CA40D500050B345 /* OMSDK_Ogury.xcframework */,
 				506D75542CA40AED0050B345 /* OguryCore.framework */,
 				506D75522CA40AC30050B345 /* OguryAds.framework */,
@@ -232,16 +237,6 @@
 				59F501599943F878CA9FD609 /* Pods_LegacyTestApp.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		742ED32698309B3691701E2E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E8372717DE0C2EB8BD999420 /* Pods-LegacyTestApp.debug.xcconfig */,
-				A7D140AD0F0D0031B693E0B3 /* Pods-LegacyTestApp.release.xcconfig */,
-			);
-			name = Pods;
-			path = ../../Pods;
 			sourceTree = "<group>";
 		};
 		C907356324A3D01F000EF992 /* LogsCell */ = {
@@ -633,7 +628,7 @@
 				C9A5E76D241A51660093E79B /* Frameworks */,
 				C9A5E76E241A51660093E79B /* Resources */,
 				8F77F1FF96DAB2201A2DB236 /* [CP] Embed Pods Frameworks */,
-				226B0E432886F1D8005275EB /* Embed Frameworks */,
+				5081A6D32D2D803200EF4966 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -641,7 +636,6 @@
 			);
 			name = LegacyTestApp;
 			packageProductDependencies = (
-				1E3D78CE2B23181000FCD4CA /* SnapKit */,
 			);
 			productName = LegacyTestApp;
 			productReference = C9A5E770241A51660093E79B /* OguryTestApp.app */;
@@ -977,7 +971,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 217;
+				CURRENT_PROJECT_VERSION = " 219";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -985,7 +979,6 @@
 					"$(PROJECT_DIR)/LegacyTestApp",
 					"$(PROJECT_DIR)",
 					"${PODS_XCFRAMEWORKS_BUILD_DIR}/OguryCore",
-					"${PODS_ROOT}/OguryCore-Beta",
 					"$(PROJECT_DIR)/../OMSDK",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1011,7 +1004,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 217;
+				CURRENT_PROJECT_VERSION = " 219";
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1019,7 +1012,6 @@
 					"$(PROJECT_DIR)/LegacyTestApp",
 					"$(PROJECT_DIR)",
 					"${PODS_XCFRAMEWORKS_BUILD_DIR}/OguryCore",
-					"${PODS_ROOT}/OguryCore-Beta",
 					"$(PROJECT_DIR)/..",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1071,14 +1063,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		1E3D78CE2B23181000FCD4CA /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1E3D78CD2B23181000FCD4CA /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C9A5E768241A51660093E79B /* Project object */;
 }

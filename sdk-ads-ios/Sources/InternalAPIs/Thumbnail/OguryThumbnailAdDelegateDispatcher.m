@@ -5,11 +5,16 @@
 #import "OguryThumbnailAdDelegateDispatcher.h"
 #import "OguryThumbnailAd.h"
 #import "OGALog.h"
+#import "OguryAds+Log.h"
 
 @implementation OguryThumbnailAdDelegateDispatcher
 
 - (void)loaded {
-    [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad loaded called", OGAAdConfigurationAdTypeThumbnailAd, self.thumbnail.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:self.thumbnail.adConfiguration
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Thumbnail] Ad loaded"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.thumbnail.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(thumbnailAdDidLoad:)] && self.thumbnail != nil) {
         [self dispatch:^(id<OguryThumbnailAdDelegate> _Nonnull delegate) {
@@ -19,7 +24,11 @@
 }
 
 - (void)clicked {
-    [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad clicked called", OGAAdConfigurationAdTypeThumbnailAd, self.thumbnail.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:self.thumbnail.adConfiguration
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Thumbnail] Ad clicked"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.thumbnail.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(thumbnailAdDidClick:)] && self.thumbnail != nil) {
         [self dispatch:^(id<OguryThumbnailAdDelegate> _Nonnull delegate) {
@@ -29,7 +38,11 @@
 }
 
 - (void)closed {
-    [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad closed called", OGAAdConfigurationAdTypeThumbnailAd, self.thumbnail.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:self.thumbnail.adConfiguration
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Thumbnail] Ad closed"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.thumbnail.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(thumbnailAdDidClose:)] && self.thumbnail != nil) {
         [self dispatch:^(id<OguryThumbnailAdDelegate> _Nonnull delegate) {
@@ -40,7 +53,12 @@
 }
 
 - (void)failedWithError:(OguryAdError *)error {
-    [self.log logErrorFormat:error format:@"[%@][%@] callback failed with error called", OGAAdConfigurationAdTypeThumbnailAd, self.thumbnail.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:self.thumbnail.adConfiguration
+                                                 logType:OguryLogTypeDelegate
+                                                   error:error
+                                                 message:@"[Thumbnail] Ad failed"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.thumbnail.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(thumbnailAd:didFailWithError:)] && self.thumbnail != nil) {
         [self dispatch:^(id<OguryThumbnailAdDelegate> _Nonnull delegate) {
@@ -51,7 +69,11 @@
 }
 
 - (void)adImpression {
-    [self.log logFormat:OguryLogLevelInfo format:@"[%@][%@] callback ad impression called", OGAAdConfigurationAdTypeThumbnailAd, self.thumbnail.adUnitId];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                         adConfiguration:self.thumbnail.adConfiguration
+                                                 logType:OguryLogTypeDelegate
+                                                 message:@"[Thumbnail] Ad impression"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"AdUnitId" value:self.thumbnail.adUnitId] ]]];
 
     if ([self.delegate respondsToSelector:@selector(thumbnailAdDidTriggerImpression:)] && self.thumbnail != nil) {
         [self dispatch:^(id<OguryThumbnailAdDelegate> _Nonnull delegate) {

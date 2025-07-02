@@ -7,6 +7,7 @@
 #import "OGAReachability.h"
 #import <UIKit/UIKit.h>
 #import <mach-o/arch.h>
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 
 #if __has_include(<UnityFramework.framework>)
 #define __HAS_UNITY__
@@ -75,7 +76,11 @@ static NSString *const OGAConfigurationUtilsManufacturer = @"Apple";
         muStringTimeZone = [NSMutableString stringWithString:stringTimezone];
         [muStringTimeZone insertString:@":" atIndex:3];
     } @catch (NSException *exception) {
-        [[OGALog shared] logFormat:OguryLogLevelDebug format:@"Timezone formatter exception %@", exception.description];
+        [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                    adConfiguration:nil
+                                                            logType:OguryLogTypeInternal
+                                                            message:[NSString stringWithFormat:@"Timezone formatter exception %@", exception.description]
+                                                               tags:nil]];
     }
     return muStringTimeZone;
 }
@@ -109,7 +114,7 @@ static NSString *const OGAConfigurationUtilsManufacturer = @"Apple";
 }
 
 + (NSString *)currentCellularNetwork {
-    return [[OGAReachability reachabilityForInternetConnection] currentReachabilityCellularNetwork];
+    return [[OGAReachability reachabilityForInternetConnection] currentReachabilityCellularNetwork:[[CTTelephonyNetworkInfo alloc] init]];
 }
 
 + (NSString *)getAppMarketingVersion {

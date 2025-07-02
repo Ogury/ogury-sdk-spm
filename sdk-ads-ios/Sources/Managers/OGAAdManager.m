@@ -364,7 +364,12 @@ static NSString *const OGADisablingReason = @"disabling_reason";
             if ([error isKindOfClass:[OguryAdError class]]) {
                 ogyError = (OguryAdError *)error;
             }
-            [self.log logAd:OguryLogLevelError forAdConfiguration:sequence.configuration message:@"failed to decode ad markup"];
+            [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                 adConfiguration:sequence.configuration
+                                                         logType:OguryLogTypePublisher
+                                                           error:ogyError
+                                                         message:nil
+                                                            tags:nil]];
             [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventAdMarkUpParsingError
                                                stackTrace:ogyError.additionalInformation
                                           adConfiguration:sequence.monitoringAdConfiguration];
@@ -487,21 +492,19 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         return;
     }
 
-#warning TODO: Combine old track & monitoring
     OGAPreCacheEvent *preCacheEvent = [[OGAPreCacheEvent alloc] initWithAdUnitId:sequence.configuration.adUnitId privacyConfiguration:sequence.privacyConfiguration eventType:OGAMetricsEventShow];
     preCacheEvent.trackURL = [self preCacheEventTrackingURLFromAdConfiguration:sequence.configuration];
 
     [self.metricsService enqueueEvent:preCacheEvent];
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        OguryError *error = nil;
+        OguryAdError *error = nil;
         if (![sequence.coordinator show:&error]) {
             sequence.status = OGAAdSequenceStatusError;
             [self dispatchError:error sequence:sequence];
             [self sendMonitoringEventFor:sequence oguryError:error customSessionId:sessionId];
             return;
         }
-
         @synchronized(self.sequencesShowing) {
             [self.sequencesShowing addObject:sequence];
         }

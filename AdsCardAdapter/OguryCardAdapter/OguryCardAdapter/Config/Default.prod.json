@@ -1,0 +1,89 @@
+{
+    "interstitial" : {
+        "adUnitId" : "51cde178-2be1-42f7-9517-8023e9feb5d9",
+        "campaignId" : "124936",
+        "creativeId" : "66202",
+        "dspCreativeId" : ""
+    },
+    "optIn" : {
+        "adUnitId" : "420551d9-c3d6-4fcb-8557-1d54fb411e4e",
+        "campaignId" : "124934",
+        "creativeId" : "66191",
+        "dspCreativeId" : ""
+    },
+    "standardBanner" : {
+        "adUnitId" : "18dde3b5-af5b-4ce4-80d2-05d607142e9a",
+        "campaignId" : "124961",
+        "creativeId" : "66227",
+        "dspCreativeId" : ""
+    },
+    "thumbnail" : {
+        "adUnitId" : "01174b39-bed0-4d4b-bf7c-f561ad265bd9",
+        "campaignId" : "124934",
+        "creativeId" : "66191",
+        "dspCreativeId" : ""
+    },
+    "maxHeaderBidding" : {
+        "url" : "https://ms-bidder-bidmax-use1.prod.cloud.ogury.io/api/header-bidding-request",
+        "interstitial" : {
+            "adUnitId" : "35a21f14-d08a-4799-8fad-68912943135e",
+            "campaignId" : "248663",
+            "creativeId" : "66202",
+            "dspCreativeId" : ""
+        },
+        "optIn" : {
+            "adUnitId" : "13c7ac0a-0c28-4ec5-af66-6df4763e6e43",
+            "campaignId" : "124934",
+            "creativeId" : "66191",
+            "dspCreativeId" : ""
+        },
+        "standardBanner" : {
+            "adUnitId" : "9bc4a1e6-7e15-484e-aa1e-404349308f6f",
+            "campaignId" : "124961",
+            "creativeId" : "66227",
+            "dspCreativeId" : ""
+        },
+    },
+    "DTFairBidHeaderBidding" : {
+        "url" : "https://inapp-fairbid.presage.io/api/header-bidding-request",
+        "interstitial" : {
+            "adUnitId" : "11729421-cdc4-4057-a13a-2a2ba8b1ea2c",
+            "campaignId" : "248663",
+            "creativeId" : "66202",
+            "dspCreativeId" : ""
+        },
+        "optIn" : {
+            "adUnitId" : "01781453-4e07-4540-8135-7b323d164986",
+            "campaignId" : "124934",
+            "creativeId" : "66191",
+            "dspCreativeId" : ""
+        },
+        "standardBanner" : {
+            "adUnitId" : "f81a3e9e-b3a5-4431-bf8f-d22324f3de91",
+            "campaignId" : "124961",
+            "creativeId" : "66227",
+            "dspCreativeId" : ""
+        },
+    },
+    "UnityLevelPlayHeaderBidding" : {
+        "url" : "https://inapp-unitylevelplay.presage.io/api/header-bidding-request",
+        "interstitial" : {
+            "adUnitId" : "368441d2-44eb-417f-8b72-19da8cdf9365",
+            "campaignId" : "248663",
+            "creativeId" : "66202",
+            "dspCreativeId" : ""
+        },
+        "optIn" : {
+            "adUnitId" : "3938ed26-e66e-4323-9441-f34878329847",
+            "campaignId" : "124934",
+            "creativeId" : "66191",
+            "dspCreativeId" : ""
+        },
+        "standardBanner" : {
+            "adUnitId" : "12b66e5e-1a87-4324-be38-3e958f01ed5b",
+            "campaignId" : "124961",
+            "creativeId" : "66227",
+            "dspCreativeId" : ""
+        },
+    }
+}

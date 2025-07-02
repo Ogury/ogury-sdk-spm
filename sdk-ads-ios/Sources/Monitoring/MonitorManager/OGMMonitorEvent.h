@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - properties
 
 @property(nonatomic, assign) OGMDispatchType dispatchType;
+@property(nonatomic, copy) NSString *logOrigin;
 
 #pragma mark - methods
 

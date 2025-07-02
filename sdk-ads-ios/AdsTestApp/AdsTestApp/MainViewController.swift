@@ -3,13 +3,11 @@
 //
 
 import UIKit
-import ComposableArchitecture
+internal import ComposableArchitecture
 import SwiftUI
 import AdsCardLibrary
-import OguryAds
 import SnapKit
 import CoreServices
-import GoogleMobileAds
 import UniformTypeIdentifiers
 
 class MainViewController: UIViewController {
@@ -18,18 +16,18 @@ class MainViewController: UIViewController {
     }
     lazy var rootView = AppView(store: self.store)
     lazy var adViewController = UIHostingController(rootView: rootView)
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         start()
-        AdSdkLauncher.shared.launch()
+        Task { await SdkLauncher.shared.launch() }
         addViewToHierarchy()
         startNotifiers()
-        GADMobileAds.sharedInstance().start { status in
-        }
     }
     
     private func start() {
+        // load default preferences from various files
+        SettingsController.loadPreferences()
         loadCards()
         UINavigationBar.appearance().largeTitleTextAttributes = [
             .foregroundColor: AdColorPalette.Text.primary(onAccent: false).color,
@@ -96,9 +94,13 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: AdLifeCycleDelegate {
-    func viewController<T>(forBanner banner: T.Ad, adManager: T) -> UIViewController? where T : AdsCardLibrary.AdManager {
+extension MainViewController: AdLifeCycleDelegate, ApplicationDelegate {
+    func viewController(for adManager: any AdManager) -> UIViewController? {
         self
+    }
+    
+    func focusLogs(on cardId: String) {
+        ViewStore(store, observe: { $0 }).send(.focusLogs(on: cardId))
     }
     
     func deleteCard(withId id: UUID) {
@@ -106,6 +108,7 @@ extension MainViewController: AdLifeCycleDelegate {
     }
     
     func share(json: String, filename: String) {
+        UIApplication.topViewController()?.dismiss(animated: true)
         guard let url = createTemporaryFile(text: json, filename: filename) else { return }
         print("📄 File exported to \(url.absoluteString)")
         let metaData = LinkPresentationItemSource.metaData(title: "Share your Ads set",
@@ -114,12 +117,14 @@ extension MainViewController: AdLifeCycleDelegate {
                                                            fileType: "png")
         let item = LinkPresentationItemSource(metaData: metaData)
         let ac = UIActivityViewController(activityItems: [item], applicationActivities: nil)
+       ac.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems:[Any]?, error: Error?) in
+      }
         present(ac, animated: true)
     }
     
     func createTemporaryFile(text: String, filename: String) -> URL? {
         do {
-            let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(filename).\(UTType.oguryAdsExtension)")
+            let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(filename).\(UTType.adsTestAppExtension)")
             try text.write(to: fileURL, atomically: true, encoding: .utf8)
             return fileURL
         } catch {
@@ -129,7 +134,8 @@ extension MainViewController: AdLifeCycleDelegate {
     }
     
     func showImportPanel() {
-        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.oguryAds])
+        UIApplication.topViewController()?.dismiss(animated: true)
+        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.adsTestAppType])
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false // Set to true if you want to allow multiple file selection
         present(documentPicker, animated: true, completion: nil)
@@ -138,7 +144,7 @@ extension MainViewController: AdLifeCycleDelegate {
     @discardableResult
     func createDocumentFile(text: String, filename: String) -> URL? {
         do {
-            let fileURL = getDocumentsDirectory().appendingPathComponent("\(filename).\(UTType.oguryAdsExtension)")
+            let fileURL = getDocumentsDirectory().appendingPathComponent("\(filename).\(UTType.adsTestAppExtension)")
             try text.write(to: fileURL, atomically: true, encoding: .utf8)
             return fileURL
         } catch {
@@ -154,8 +160,11 @@ extension MainViewController: AdLifeCycleDelegate {
         return paths[0]
     }
     
-    func showConsentNotice() {
-        ConsentManager.shared.resetConsent(viewController: self)
+    func showConsentNotice(for manager: ConsentManager) {
+        switch manager {
+            case .inMobi: InmobiConsentManager.shared.resetConsent(viewController: self)
+            case .adMob: AdMobConsentManager.shared.resetConsent(viewController: self)
+        }
     }
     
     func enableTestModeForAllCards(_ enable: Bool) {
@@ -176,5 +185,22 @@ extension MainViewController: UIDocumentPickerDelegate {
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         print("Document picker was cancelled.")
+    }
+}
+
+extension UIApplication {
+    class func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(controller: selected)
+            }
+        }
+        if let presented = controller?.presentedViewController {
+            return topViewController(controller: presented)
+        }
+        return controller
     }
 }

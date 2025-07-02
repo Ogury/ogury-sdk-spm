@@ -12,6 +12,7 @@
 #import "OGAAdSequenceCoordinator.h"
 #import "OGAAdController.h"
 #import "OGAInternal.h"
+#import "OGAAdSequenceCoordinator+Private.h"
 
 #pragma mark - Constants
 
@@ -94,7 +95,8 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
             viewProvider:^UIView * {
                 return self.bannerView;
             }];
-        self.configuration.mediation = mediation;
+        _configuration.requestedSize = [size getSize];
+        _configuration.mediation = mediation;
 
         _notificationCenter = notificationCenter;
     }
@@ -138,9 +140,16 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
                 creativeId:(NSString *_Nullable)creativeId
              dspCreativeId:(NSString *_Nullable)dspCreativeId
                  dspRegion:(NSString *_Nullable)dspRegion {
-    [self.log logAdFormat:OguryLogLevelDebug
-        forAdConfiguration:self.configuration
-                    format:@"loadWithCampaignId:campaignId called [campaignId:%@][creativeId:%@][dspCreativeId:%@][dspRegion:%@]", campaignId, creativeId, dspCreativeId, dspRegion];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:self.configuration
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"loadWithCampaignId... called:"
+                                                    tags:@[
+                                                        [OguryLogTag tagWithKey:@"DspCreative"
+                                                                          value:dspCreativeId == nil ? @"" : dspCreativeId],
+                                                        [OguryLogTag tagWithKey:@"DspRegion"
+                                                                          value:dspRegion == nil ? @"" : dspRegion]
+                                                    ]]];
 
     CGSize size = [self.size getSize];
     self.bannerView.frame = CGRectMake(self.bannerView.frame.origin.x,
@@ -172,10 +181,16 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
 
 - (void)loadWithAdMarkup:(NSString *)adMarkup {
     CGSize size = [self.size getSize];
-
-    [self.log logAdFormat:OguryLogLevelDebug
-        forAdConfiguration:self.configuration
-                    format:@"loadWithCampaignId:size called [adMarkup][size:%d x %d]", size.height, size.width];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:self.configuration
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"loadWithAdMarkup:"
+                                                    tags:@[
+                                                        [OguryLogTag tagWithKey:@"adMarkup"
+                                                                          value:adMarkup],
+                                                        [OguryLogTag tagWithKey:@"size"
+                                                                          value:[NSString stringWithFormat:@"w:%f h:%f", size.height, size.width]]
+                                                    ]]];
 
     self.configuration.size = size;
     self.configuration.campaignId = nil;
@@ -186,39 +201,18 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
 
 - (void)destroy {
     [self.adManager close:self.sequence];
-}
-
-- (void)didMoveToSuperview {
-    [self.log logAd:OguryLogLevelDebug forAdConfiguration:self.configuration message:@"Successfully attached to the super view"];
-
-    [self showBannerIfLoaded];
+    [self.monitoringDispatcher sendShowEvent:OGAShowEventAdClose adConfiguration:self.configuration];
 }
 
 - (void)didMoveToWindow {
     // we must send notification before show banner to have the right window on exposure calculation
     [self.notificationCenter postNotificationName:OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName object:self.configuration.adUnitId userInfo:nil];
-
-    [self showBannerIfLoaded];
-}
-
-- (void)showBannerIfLoaded {
-    if ([self isLoaded] && [self haveParentViewcontroller]) {
-        [self.adManager show:self.sequence additionalConditions:nil];
-    }
-}
-
-- (BOOL)haveParentViewcontroller {
-    return [self.delegateDispatcher bannerViewController] != nil || self.bannerView.window.rootViewController != nil;
 }
 
 #pragma mark - OguryBannerAdViewDelegate
 - (void)bannerAdViewDidLoad:(OguryBannerAdView *)bannerAd {
     [self.delegateDispatcher loaded];
-
-    // Banner must be shown as soon as it is loaded
-    if ([self haveParentViewcontroller]) {
-        [self.adManager show:self.sequence additionalConditions:nil];
-    }
+    [self.adManager show:self.sequence additionalConditions:nil];
 }
 
 - (void)bannerAdViewDidClick:(OguryBannerAdView *)bannerAd {
@@ -235,6 +229,22 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
 
 - (void)bannerAdViewDidTriggerImpression:(OguryBannerAdView *)bannerAd {
     [self.delegateDispatcher adImpression];
+}
+
+- (void)setLogOrigin:(NSString *)origin {
+    [self.configuration setLogOrigin:origin];
+}
+
+- (OGAAdConfiguration *)adConfiguration {
+    return self.configuration;
+}
+
+- (void)simulateWebviewTerminated {
+    [self.sequence.coordinator simulateWebviewTerminated];
+}
+
+- (WKWebView *)adWebview {
+    return [self.sequence.coordinator adWebview];
 }
 
 @end

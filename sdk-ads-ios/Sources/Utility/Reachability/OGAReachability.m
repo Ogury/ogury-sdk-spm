@@ -11,10 +11,7 @@
 #import <netdb.h>
 #import <sys/socket.h>
 #import <netinet/in.h>
-
 #import <CoreFoundation/CoreFoundation.h>
-#import <CoreTelephony/CTTelephonyNetworkInfo.h>
-
 #import "OGAReachability.h"
 
 #pragma mark IPv6 Support
@@ -193,43 +190,52 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
     return returnValue;
 }
 
-- (NSString *)currentReachabilityCellularNetwork {
-    if ([self currentReachabilityStatus] != ReachableViaWWAN) {
-        return @"no network";
-    }
-
-    CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];
-    NSString *radioAccessType = [info currentRadioAccessTechnology];
-
-    if (radioAccessType == NULL) {
-        return @"no network";
-    }
-
-    if ([radioAccessType isEqualToString:CTRadioAccessTechnologyGPRS] || [radioAccessType isEqualToString:CTRadioAccessTechnologyEdge] || [radioAccessType isEqualToString:CTRadioAccessTechnologyCDMA1x]) {
-        return @"2G";
-    }
-
-    if ([radioAccessType isEqualToString:CTRadioAccessTechnologyLTE]) {
-        return @"4G";
-    }
+- (NSString *)currentReachabilityCellularNetwork:(CTTelephonyNetworkInfo *)telephonyNetworkInfo {
+    NSMutableDictionary<NSString *, NSString *> *networkGenerationMap = [@{
+        CTRadioAccessTechnologyGPRS : @"2G",
+        CTRadioAccessTechnologyEdge : @"2G",
+        CTRadioAccessTechnologyCDMA1x : @"2G",
+        CTRadioAccessTechnologyWCDMA : @"3G",
+        CTRadioAccessTechnologyHSDPA : @"3G",
+        CTRadioAccessTechnologyHSUPA : @"3G",
+        CTRadioAccessTechnologyCDMAEVDORev0 : @"3G",
+        CTRadioAccessTechnologyCDMAEVDORevA : @"3G",
+        CTRadioAccessTechnologyCDMAEVDORevB : @"3G",
+        CTRadioAccessTechnologyeHRPD : @"3G",
+        CTRadioAccessTechnologyLTE : @"4G"
+    } mutableCopy];
 
     if (@available(iOS 14.1, *)) {
-        if ([radioAccessType isEqualToString:CTRadioAccessTechnologyNRNSA] || [radioAccessType isEqualToString:CTRadioAccessTechnologyNR]) {
-            return @"5G";
-        }
+        [networkGenerationMap addEntriesFromDictionary:@{
+            CTRadioAccessTechnologyNRNSA : @"5G",
+            CTRadioAccessTechnologyNR : @"5G"
+        }];
     }
 
-    return @"3G";
+    NSDictionary<NSString *, NSString *> *radioAccessTechnologies = telephonyNetworkInfo.serviceCurrentRadioAccessTechnology;
+    if (!radioAccessTechnologies || radioAccessTechnologies.count == 0) {
+        return @"Unknown";
+    }
+
+    if (@available(iOS 13.0, *)) {
+        NSString *dataServiceIdentifier = telephonyNetworkInfo.dataServiceIdentifier;
+        if (dataServiceIdentifier) {
+            NSString *activeRadioTechnology = radioAccessTechnologies[dataServiceIdentifier];
+            if (activeRadioTechnology) {
+                return networkGenerationMap[activeRadioTechnology] ?: @"Unknown";
+            }
+        }
+    }
+    return @"Unknown";
 }
 
 - (NSString *)currentReachabilityNetwork {
     NetworkStatus status = [self currentReachabilityStatus];
-
     switch (status) {
         case ReachableViaWiFi:
             return @"WIFI";
         case ReachableViaWWAN:
-            return [self currentReachabilityCellularNetwork];
+            return [self currentReachabilityCellularNetwork:[[CTTelephonyNetworkInfo alloc] init]];
         default:
             return @"no network";
     }
