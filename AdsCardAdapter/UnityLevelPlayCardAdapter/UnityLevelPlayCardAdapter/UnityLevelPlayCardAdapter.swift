@@ -106,15 +106,24 @@ OM SDK Version : \(omid)
             switch adFormat {
                 case .waterfall(.interstitial),
                      .headerBidding(.interstitial):
-                    return try ULPIntertstitialAdManager.decode(from: container)
+                    var manager = try ULPIntertstitialAdManager.decode(from: container)
+                    manager.adDelegate = adDelegate
+                    manager.viewController = viewController
+                    return manager
                     
                 case .waterfall(.rewardedVideo),
                      .headerBidding(.rewardedVideo):
-                    return try ULPRewardedAdManager.decode(from: container)
+                    var manager = try ULPRewardedAdManager.decode(from: container)
+                    manager.adDelegate = adDelegate
+                    manager.viewController = viewController
+                    return manager
                     
                 case .waterfall(.standardBanner),
                      .headerBidding(.standardBanner):
-                    return try ULPBannerAdManager.decode(from: container)
+                    var manager = try ULPBannerAdManager.decode(from: container)
+                    manager.adDelegate = adDelegate
+                    manager.viewController = viewController
+                    return manager
                     
                 default: throw AdsCardAdapterError.noSuitableAdapterAvailable
             }

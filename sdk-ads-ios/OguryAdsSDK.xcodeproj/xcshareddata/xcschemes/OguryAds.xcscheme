@@ -11,6 +11,22 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
+               scriptText = "&quot;${SRCROOT}/../scripts/updateDerivedData.sh&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "DEF1BF72213917AA0004BAD1"
+                     BuildableName = "OguryAds.framework"
+                     BlueprintName = "OguryAds"
+                     ReferencedContainer = "container:OguryAdsSDK.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
                scriptText = "set -x&#10;CLANG_FORMAT=&quot;/opt/homebrew/bin/clang-format&quot;&#10;&#10;if [ ! -x &quot;$CLANG_FORMAT&quot; ]; then&#10;  echo &quot;clang-format not found&quot;&#10;  exit 1&#10;fi&#10;&#10;echo &quot;Using clang-format at: $CLANG_FORMAT for ${SRCROOT}&quot;&#10;&#10;find &quot;${SRCROOT}&quot; \( -name &quot;*.xcframework&quot; -o -name &quot;*.framework&quot; \) -prune -o \( -name &quot;*.h&quot; -or -name &quot;*.m&quot; -or -name &quot;*.mm&quot; \) -print0 | xargs -0 $CLANG_FORMAT -i&#10;&#10;&#10;echo &quot;All source files have been formatted.&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference

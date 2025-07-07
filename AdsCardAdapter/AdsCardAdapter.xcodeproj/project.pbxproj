@@ -39,6 +39,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		43352C272DFAFF460082026C /* PrebidCardAdapter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PrebidCardAdapter.xcodeproj; path = PrebidCardAdapter/PrebidCardAdapter.xcodeproj; sourceTree = "<group>"; };
 		4373B39A2DCA4D8A00E1702F /* UnityLevelPlayCardAdapter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UnityLevelPlayCardAdapter.xcodeproj; path = UnityLevelPlayCardAdapter/UnityLevelPlayCardAdapter.xcodeproj; sourceTree = "<group>"; };
 		4379F9E72DEEECBC0069F47A /* AdsCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdsCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB16262DA52338002F170A /* AdsCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdsCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +92,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43352C282DFAFF460082026C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		4373B39B2DCA4D8A00E1702F /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +109,7 @@
 		43EB161C2DA52338002F170A = {
 			isa = PBXGroup;
 			children = (
+				43352C272DFAFF460082026C /* PrebidCardAdapter.xcodeproj */,
 				4373B39A2DCA4D8A00E1702F /* UnityLevelPlayCardAdapter.xcodeproj */,
 				43EB25C72DBFAC49002F170A /* AdMobCardAdapter.xcodeproj */,
 				43EB16FB2DA64F2D002F170A /* OguryCardAdapter.xcodeproj */,
@@ -258,6 +267,10 @@
 				{
 					ProductGroup = 43EB1A4D2DB12829002F170A /* Products */;
 					ProjectRef = 43EB16FB2DA64F2D002F170A /* OguryCardAdapter.xcodeproj */;
+				},
+				{
+					ProductGroup = 43352C282DFAFF460082026C /* Products */;
+					ProjectRef = 43352C272DFAFF460082026C /* PrebidCardAdapter.xcodeproj */;
 				},
 				{
 					ProductGroup = 4373B39B2DCA4D8A00E1702F /* Products */;

@@ -104,9 +104,24 @@ OM SDK Version : \(omid)
         }
         do {
             switch adFormat {
-                case .default(.interstitial): return try AdMobInterstitialManager.decode(from: container)
-                case .default(.rewardedVideo): return try AdMobRewardedManager.decode(from: container)
-                case .default(.standardBanner): return try AdMobBannerManager.decode(from: container)
+                case .default(.interstitial):
+                    var manager = try AdMobInterstitialManager.decode(from: container)
+                    manager.adDelegate = adDelegate
+                    manager.viewController = viewController
+                    return manager
+                    
+                case .default(.rewardedVideo):
+                    var manager = try AdMobRewardedManager.decode(from: container)
+                    manager.adDelegate = adDelegate
+                    manager.viewController = viewController
+                    return manager
+                    
+                case .default(.standardBanner):
+                    var manager = try AdMobBannerManager.decode(from: container)
+                    manager.adDelegate = adDelegate
+                    manager.viewController = viewController
+                    return manager
+                    
                 default: throw AdsCardAdapterError.noSuitableAdapterAvailable
             }
         } catch {

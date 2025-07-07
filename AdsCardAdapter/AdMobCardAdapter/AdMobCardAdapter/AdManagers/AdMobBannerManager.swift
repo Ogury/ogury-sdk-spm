@@ -115,7 +115,7 @@ class AdMobBannerManager: AdMobManager {
     
     private func migrate(from container: AdCardContainer) {
         switch (container.version, AdCardContainer.currentVersion) {
-            case (.preVersion, .one) where container.adType == 203:
+            case (.preVersion, .one) where container.adType == 3:
                 // it's a Mrec, use rightful size
                 actualSize = bannerSizes![1]
                 

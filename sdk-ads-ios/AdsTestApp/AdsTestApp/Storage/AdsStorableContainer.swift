@@ -242,7 +242,11 @@ struct LogSettings: Codable {
         if let types = UserDefaults.standard.value(forKey: "TestAppAllowedLogTypes") as? [OguryLogType] {
             allowedTypes = types
         } else {
+#if canImport(OguryAds)
             allowedTypes = [.internal, .publisher, .delegate]
+#else
+            allowedTypes = [.internal, .publisher]
+#endif
         }
     }
     
@@ -251,7 +255,11 @@ struct LogSettings: Codable {
         if let types = try container.decodeIfPresent([String].self, forKey: .allowedTypes) {
             allowedTypes = types.compactMap{ OguryLogType($0) }
         } else {
+#if canImport(OguryAds)
             allowedTypes = [.internal, .publisher, .delegate]
+#else
+            allowedTypes = [.internal, .publisher]
+#endif
         }
         TestAppLogController.shared.logger.allowedLogTypes = allowedTypes
         

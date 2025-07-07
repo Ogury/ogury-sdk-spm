@@ -1,3 +1,6 @@
+  
+@Library('ogury-jenkins-lib@v7.5.1') _
+
 pipeline {
     agent {
         label 'macM2-worker'
@@ -134,6 +137,10 @@ pipeline {
                 beforeAgent true
                 buildingTag()
                 not { changeRequest() }
+                expression {
+                    // Skip this step if TAG_NAME contains 'internal-testApp'
+                    !env.TAG_NAME?.contains('internal-testApp')
+                }
             }
             steps {
                 script {
@@ -236,22 +243,41 @@ pipeline {
         stage('Deploy Ads Test App') {
             when {
                 beforeAgent true
+                buildingTag()
                 expression {
-                    return "${env.TAG_NAME}".contains("internal-testApp")
+                    env.TAG_NAME?.contains('internal-testApp@')
                 }
             }
             steps {
                 script {
-                // Extract information from TAG_NAME
-                    def tagElements = "${env.TAG_NAME}".split("-")
-                    def isQa = tagElements.contains("qa") 
-                    def isArtifactory = tagElements.contains("art") 
-                    def killModeEnabled = elements.contains("killModeEnabled")
-                    
+                    // Extract app selector from TAG_NAME like "internal-testApp@ogury-1.0.0"
+                    def tagName = env.TAG_NAME ?: ""
+                    def match = tagName =~ /testApp@([^-\s]+)/
+        
+                    if (!match) {
+                        error("No app selector found in TAG_NAME: ${tagName}")
+                    } else {
+                        echo "App selector: ${match[1]}"
+                    }
+        
+                    def appSelector = match[0][1]  // e.g., "all, "ogury", "mediation", or "prodTestApp"
+                    echo "Found -> ${appSelector}"
+        
+                    // Additional flags if needed
+                    def tagElements = tagName.split("-")
+                    def isQa = tagElements.contains("qa")
+                    def isArtifactory = tagElements.contains("art")
+                    def killModeEnabled = tagElements.contains("killModeEnabled")
+        
                     sh """#!/bin/zsh -l
-                       bundle exec fastlane generate_test_app isQa:${isQa} artifactory:${isArtifactory} tag:${env.TAG_NAME} killModeEnabled:${killModeEnabled}
+                      bundle exec fastlane generate_test_app \\
+                        appSelector:'${appSelector}' \\
+                        isQa:${isQa} \\
+                        artifactory:${isArtifactory} \\
+                        tag:'${tagName}' \\
+                        killModeEnabled:${killModeEnabled}
                     """
-                 }
+                }
             }
         }
     }

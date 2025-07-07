@@ -128,7 +128,7 @@ class ULPBannerAdManager: ULPAdManager {
     
     private func migrate(from container: AdCardContainer) {
         switch (container.version, AdCardContainer.currentVersion) {
-            case (.preVersion, .one) where [303, 313].contains(container.adType):
+            case (.preVersion, .one) where [3, 13].contains(container.adType):
                 // it's a Mrec, use rightful size
                 actualSize = bannerSizes![1]
                 

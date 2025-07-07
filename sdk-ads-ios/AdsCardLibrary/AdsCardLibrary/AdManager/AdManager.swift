@@ -90,36 +90,6 @@ public enum FileVersion: Int, Codable, Equatable, CaseIterable {
     case one = 1
 }
 
-@propertyWrapper
-public struct SizeCodable: Codable {
-    public var wrappedValue: CGSize?
-    
-    public init(wrappedValue: CGSize?) {
-        self.wrappedValue = wrappedValue
-    }
-    
-    enum CodingKeys: String, CodingKey {
-        case width
-        case height
-    }
-    public init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let width = try container.decodeIfPresent(Int.self, forKey: .width)
-        let height = try container.decodeIfPresent(Int.self, forKey: .height)
-        guard let width, let height else {
-            wrappedValue = nil
-            return
-        }
-        wrappedValue = .init(width: width, height: height)
-    }
-    
-    public func encode(to encoder: any Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(wrappedValue?.width, forKey: .width)
-        try container.encodeIfPresent(wrappedValue?.height, forKey: .height)
-    }
-}
-
 public struct AdCardContainer: Codable {
     public static var currentVersion: FileVersion = .preVersion
     
@@ -128,7 +98,6 @@ public struct AdCardContainer: Codable {
         public let campaignId: String?
         public let creativeId: String?
         public let dspCreativeId: String?
-        @SizeCodable
         public var bannerSize: CGSize?
         public let dspRegion: DspRegion?
         public let settings: CardSettings
@@ -157,29 +126,8 @@ public struct AdCardContainer: Codable {
             case dspRegion
             case settings
         }
-        
-        public init(from decoder: any Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            adUnitId = try container.decode(String.self, forKey: .adUnitId)
-            campaignId = try container.decodeIfPresent(String.self, forKey: .campaignId)
-            creativeId = try container.decodeIfPresent(String.self, forKey: .creativeId)
-            dspCreativeId = try container.decodeIfPresent(String.self, forKey: .dspCreativeId)
-            bannerSize = try container.decodeIfPresent(CGSize.self, forKey: .bannerSize)
-            dspRegion = try container.decodeIfPresent(DspRegion.self, forKey: .dspRegion)
-            settings = try container.decode(CardSettings.self, forKey: .settings)
-        }
-        
-        public func encode(to encoder: any Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(adUnitId, forKey: .adUnitId)
-            try container.encodeIfPresent(campaignId, forKey: .campaignId)
-            try container.encodeIfPresent(creativeId, forKey: .creativeId)
-            try container.encodeIfPresent(dspCreativeId, forKey: .dspCreativeId)
-            try container.encodeIfPresent(bannerSize, forKey: .bannerSize)
-            try container.encodeIfPresent(dspRegion, forKey: .dspRegion)
-            try container.encode(settings, forKey: .settings)
-        }
     }
+    
     public struct CardSettings: Codable {
         public let oguryTestModeEnabled: Bool
         public let rtbTestModeEnabled: Bool
