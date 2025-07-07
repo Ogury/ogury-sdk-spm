@@ -148,7 +148,7 @@ fi
 
 echo "📝 Final version string: $VERSION_STRING"
 
-BUILD_NUMBER="build:$(date +%s)"
+BUILD_NUMBER="$(date +%s)"
 
 for FILE in "$CONFIG_DEBUG" "$CONFIG_RELEASE"; do
   if [ ! -f "$FILE" ]; then
