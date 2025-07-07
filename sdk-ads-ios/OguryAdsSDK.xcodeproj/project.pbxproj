@@ -513,7 +513,9 @@
 		5057B68C2B5025CB00A3E575 /* OGAMonitoringConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5057B68A2B5025CB00A3E575 /* OGAMonitoringConstants.m */; };
 		506AF61C2B0227D4001D6ED7 /* OGAAdDsp.h in Headers */ = {isa = PBXBuildFile; fileRef = 506AF61A2B0227D4001D6ED7 /* OGAAdDsp.h */; };
 		506AF61D2B0227D4001D6ED7 /* OGAAdDsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 506AF61B2B0227D4001D6ED7 /* OGAAdDsp.m */; };
+		5081A6D82D2D867B00EF4966 /* OGAReachabilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5081A6D72D2D867B00EF4966 /* OGAReachabilityTests.m */; };
 		50AE0D262A93B75A00386713 /* OGAWebViewUserAgentServiceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 50AE0D252A93B75A00386713 /* OGAWebViewUserAgentServiceDelegate.h */; };
+		50D388E72E01B48000C17D61 /* OGAScreenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D388E62E01B48000C17D61 /* OGAScreenTests.m */; };
 		50D4FD912B56D753002289C7 /* OGAMonitoringEventPermissionHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D4FD8E2B56D729002289C7 /* OGAMonitoringEventPermissionHandlerTests.m */; };
 		531ED4371DA117AB3D0BDA82 /* OGARewardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6749B5671109A017DB7345 /* OGARewardTests.m */; };
 		533F6099611A71140D330289 /* OguryBidTokenServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF73B319544BC490C5CBEDB /* OguryBidTokenServiceTests.m */; };
@@ -1216,7 +1218,9 @@
 		5057B68A2B5025CB00A3E575 /* OGAMonitoringConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAMonitoringConstants.m; sourceTree = "<group>"; };
 		506AF61A2B0227D4001D6ED7 /* OGAAdDsp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAAdDsp.h; sourceTree = "<group>"; };
 		506AF61B2B0227D4001D6ED7 /* OGAAdDsp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAAdDsp.m; sourceTree = "<group>"; };
+		5081A6D72D2D867B00EF4966 /* OGAReachabilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAReachabilityTests.m; sourceTree = "<group>"; };
 		50AE0D252A93B75A00386713 /* OGAWebViewUserAgentServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGAWebViewUserAgentServiceDelegate.h; sourceTree = "<group>"; };
+		50D388E62E01B48000C17D61 /* OGAScreenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAScreenTests.m; sourceTree = "<group>"; };
 		50D4FD8E2B56D729002289C7 /* OGAMonitoringEventPermissionHandlerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAMonitoringEventPermissionHandlerTests.m; sourceTree = "<group>"; };
 		53359DCB325F5F38DA124BE2 /* OguryBannerAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OguryBannerAdSize.h; sourceTree = "<group>"; };
 		54A46B20222D3B9600484C0B /* testProfigJSON1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testProfigJSON1.json; sourceTree = "<group>"; };
@@ -2353,6 +2357,7 @@
 		351A1B5EC42CF660EA7F9D5F /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				5081A6D62D2D863D00EF4966 /* Reachability */,
 				351A1016F7809FCA816C578B /* NSString+OGAUtilityTests.m */,
 				2244B6BD2600FAAA004AE77B /* UIColor+OGAStringTests.m */,
 				2224D76726EB8B4400DAA85E /* NSString+OGABase64Tests.m */,
@@ -2893,6 +2898,14 @@
 			path = Dsp;
 			sourceTree = "<group>";
 		};
+		5081A6D62D2D863D00EF4966 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				5081A6D72D2D867B00EF4966 /* OGAReachabilityTests.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		54C0FC94225BA040005D6F29 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -3345,6 +3358,7 @@
 				351A1633972F3692B70D13A3 /* OGANextAdTests.m */,
 				ED556BAC25CBF320000E42E5 /* OGAAdExposureTests.m */,
 				351A126D3F191EA9DC153CB7 /* Events */,
+				50D388E62E01B48000C17D61 /* OGAScreenTests.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -4173,6 +4187,7 @@
 				351A1F65AE42032F851E7B32 /* OguryInterstitialAdDelegateDispatcherTests.m in Sources */,
 				351A13415CA823FF8EE5D8E0 /* OGADelegateDispatcherTests.m in Sources */,
 				351A158CC63CD3C1EDEEC721 /* OguryBannerAdDelegateDispatcherTests.m in Sources */,
+				50D388E72E01B48000C17D61 /* OGAScreenTests.m in Sources */,
 				ED360EB0274E78F50072A1E8 /* OGAAdLandingPagePrefetcherTests.m in Sources */,
 				351A19F75607982659BF8F8B /* OGABannerAdResponseTests.m in Sources */,
 				351A138EEB084E0E15048D00 /* OGAMetricsRequestBuilderTests.m in Sources */,
@@ -4197,6 +4212,7 @@
 				5057B6872B4C588800A3E575 /* OGAMRAIDWebViewTests.m in Sources */,
 				351A1E22556815BD69FC745C /* OGAIsLoadedCheckerTests.m in Sources */,
 				351A1E3DE06EA205E841E5DD /* OGAAnotherAdInOverlayStateCheckerTests.m in Sources */,
+				5081A6D82D2D867B00EF4966 /* OGAReachabilityTests.m in Sources */,
 				351A10AC65F30AEDBC99F044 /* OGAAnotherAdOfSameTypeAlreadyDisplayedCheckerTests.m in Sources */,
 				351A151A0E7F48FC21E9F2A5 /* OGAAssetKeyCheckerTests.m in Sources */,
 				2224D76A26EB92B500DAA85E /* NSDictionary+OGABase64Tests.m in Sources */,
@@ -4480,7 +4496,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Configurations/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4528,7 +4544,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Configurations/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
