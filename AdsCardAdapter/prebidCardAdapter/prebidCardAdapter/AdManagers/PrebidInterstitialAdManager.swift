@@ -13,7 +13,7 @@ class PrebidInterstitialAdManager: PrebidAdManager {
     var ad: InterstitialRenderingAdUnit?
     
     override func instanciateAd() async {
-        ad = InterstitialRenderingAdUnit(configID: adConfiguration.adUnitId, minSizePercentage: CGSize(width: 361, height: 486))
+        ad = InterstitialRenderingAdUnit(configID: adConfiguration.adUnitId)
         ad?.delegate = proxy
     }
     
