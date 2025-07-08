@@ -80,20 +80,8 @@ lane :upload_artifacts_to_s3 do |options|
   UI.user_error!("Missing local_file") unless local_file
 
   # Step 1: Assume the role and extract credentials
-  sh """
-    set -e
-  
-    CREDS=$(aws sts assume-role \\
-      --role-arn arn:aws:iam::556593845588:role/ci-eu-west-1-macos-jenkins-ci \\
-      --role-session-name fastlane-upload-session)
-  
-    export AWS_ACCESS_KEY_ID=$(echo "$CREDS" | jq -r '.Credentials.AccessKeyId')
-    export AWS_SECRET_ACCESS_KEY=$(echo "$CREDS" | jq -r '.Credentials.SecretAccessKey')
-    export AWS_SESSION_TOKEN=$(echo "$CREDS" | jq -r '.Credentials.SessionToken')
-  
-    echo "Uploading from: #{local_file} to s3://#{s3_bucket}/"
-    aws s3 cp "#{local_file}" "s3://#{s3_bucket}/"
-  """
+  sh("chmod +x scripts/upload_to_s3.sh")
+  sh("scripts/upload_to_s3.sh #{local_file} #{s3_bucket}")
 end
 
 desc "deploy in amazon"
