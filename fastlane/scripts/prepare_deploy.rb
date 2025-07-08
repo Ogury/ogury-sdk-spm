@@ -29,11 +29,11 @@ lane :prepare_for_deployment do |options|
   source_url = ""
   case environment
   when "devc", "staging", "prod"
-    # Artifactory
-    source_url = "#{configuration.artifactory.url}/sdk-cocoapods-#{environment}/#{target.publicName}#{framework_suffix}"
+    # internal cocoapod
+    source_url = "#{configuration.deployment.internal.s3.url}/#{environment}/#{target.publicName}"
   when "beta", "release"
     # S3 release / beta buckets
-    source_url = "#{configuration.amazon.url}/#{environment}/#{target.amazon}/#{version}"
+    source_url = "#{configuration.deployment.public.s3.url}/#{environment}/#{target.amazon}/#{version}"
   end
 
   # Environment url for SDK
@@ -171,16 +171,16 @@ private_lane :zip_famework do |options|
   framework_suffix = get_framework_suffix(environment)
   archive_filename = get_archive_filename(target.publicName, framework_suffix, version)
   files += "#{target.publicName}.xcframework "
-  if target.dependencies.hasPodspec
-    podspec_filename = get_podspec_filename(target.publicName, framework_suffix)
-    files += "#{podspec_filename} "
-  end
+
+#  if target.dependencies.hasPodspec
+#    podspec_filename = get_podspec_filename(target.publicName, framework_suffix)
+#    files += "#{podspec_filename} "
+#  end
 
   puts "Files #{files}".red
 
   Dir.chdir("..") do
-    sh("tar -czvf #{configuration.directories.output}/#{archive_filename} -C #{configuration.directories.output} #{files}")
-    #sh("cd #{configuration.directories.output} && zip -r #{archive_filename} #{files}")
+    sh("cd #{configuration.directories.output} && zip -r #{archive_filename} #{files}")
   end
 end
 

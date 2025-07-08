@@ -1,5 +1,5 @@
 class Configuration
-  attr_reader :workspace, :targets, :schemes, :sdks, :test_devices, :allowed_environments, :firebase, :artifactory, :amazon, :slack, :cocoapods, :frameworks, :directories, :testApplications
+  attr_reader :workspace, :targets, :schemes, :sdks, :test_devices, :allowed_environments, :firebase, :deployment, :slack, :cocoapods, :frameworks, :directories, :testApplications
 
   def initialize
     @workspace = Workspace.new("OgurySdks", "OgurySdks.xcworkspace")
@@ -15,10 +15,11 @@ class Configuration
     @test_devices = ["iPhone 16"]
     @allowed_environments = ["devc", "staging", "prod", "beta", "release"]
     @firebase = Firebase.new("inApp")
-    @artifactory = Artifactory.new("https://ogury.jfrog.io/artifactory")
-    @amazon = Amazon.new("https://binaries.ogury.co")
+    internalRepositories = Repositories.new(Repository.new("https://binaries.ogury.co/internal/"), Repository.new("git@github.com:Ogury/sdk-internal-cocoapods"), Repository.new("https://github.com/Ogury/sdk-internal-spm"))
+    publicRepositories = Repositories.new(Repository.new("https://binaries.ogury.co"), Repository.new("https://cdn.cocoapods.org/"), Repository.new("https://github.com/Ogury/ogury-sdk-spm"))
+    @deployment = Deployment.new(internalRepositories, publicRepositories)
     @slack = Slack.new("https://hooks.slack.com/services/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", "#sdk-ios-ci-update")
-    @cocoapods = Cocoapods.new("git@github.com:Ogury/ogury-cocoapods-repository.git")
+    #@cocoapods = Cocoapods.new("git@github.com:Ogury/ogury-cocoapods-repository.git")
     @frameworks = Frameworks.new()
     @frameworks.ogury_core = Framework.new("2.1.0-NewTestApp-1.0.2", "2.0.0", "2.0.0")
     @frameworks.ogury_ads = Framework.new("4.1.0-NewTestApp-1.0.7", "4.0.0", "4.0.0")
@@ -125,7 +126,11 @@ end
 Firebase = Struct.new(:test_group) do
 end
 
-Artifactory = Struct.new(:url) do
+Deployment = Struct.new(:internal, :public) do
+end
+Repositories = Struct.new(:s3, :cocoapods, :spm) do
+end
+Repository = Struct.new(:url) do
 end
 
 Amazon = Struct.new(:url) do

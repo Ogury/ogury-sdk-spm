@@ -1,11 +1,5 @@
-source "https://github.com/Ogury/ogury-cocoapods-repository.git"
+source "https://github.com/Ogury/sdk-internal-cocoapods.git"
 source 'https://cdn.cocoapods.org/'
-
-<% if artifactory_repository_name != nil %>
-plugin 'cocoapods-art', :sources => [
-  '<%= artifactory_repository_name %>',
-]
-<% end %>
 
 platform :ios, "12.0"
 use_frameworks!

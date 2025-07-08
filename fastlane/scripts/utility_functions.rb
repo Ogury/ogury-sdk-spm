@@ -21,24 +21,6 @@ def get_podspec_filename(project_name, framework_suffix)
     return "#{project_name}#{framework_suffix}.podspec.json"
 end
 
-def get_artifactory_repository_url(environment, artifactory_url)
-  case environment
-  when "devc", "staging", "prod"
-    return "#{artifactory_url}/api/pods/sdk-cocoapods-#{environment}"
-  else
-    return nil
-  end
-end
-
-def get_artifactory_repository_name(environment)
-  case environment
-  when "devc", "staging", "prod"
-    return "sdk-cocoapods-#{environment}"
-  else
-    return nil
-  end
-end
-
 # Get the version of the SDK to deploy
 # For beta and production releases, the version number is taken from the project configuration.
 # For internal releases, the version is retrieved from the tag instead.
