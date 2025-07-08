@@ -642,9 +642,9 @@
 		43EB26D82DC0C5E3002F170A /* AdMobCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB26D72DC0C5E3002F170A /* AdMobCardAdapter.framework */; };
 		43EB26D92DC0C5E3002F170A /* AdMobCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB26D72DC0C5E3002F170A /* AdMobCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43EB27432DC0D55F002F170A /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43EB27422DC0D55F002F170A /* Default.settings */; };
-		43F66E3C2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
-		43F66E3D2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
-		43F66E3E2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		43F66E3C2D394D79000AED12 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		43F66E3D2D394D79000AED12 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		43F66E3E2D394D79000AED12 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E582D48E94F000AED12 /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
 		43F66E592D48E94F000AED12 /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
 		43F66E5A2D48E94F000AED12 /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
@@ -667,7 +667,7 @@
 		6E4017B95617E3C0933A7415 /* Pods_AdsTestApp_Staging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DDF33DFB5445EFF5B05E535 /* Pods_AdsTestApp_Staging.framework */; };
 		762AEF03AC489D6DDB934B49 /* Pods_AdsTestApp_Devc_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328325EE83F1C5B6D26AAB28 /* Pods_AdsTestApp_Devc_art.framework */; };
 		768024427BB8B30140B90414 /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
-		7DB2F6E45BFD59711A7F6BC0 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		7DB2F6E45BFD59711A7F6BC0 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		892845E746F07668F5F00F7C /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
 		8B924BBDA55C6A2A9A7B1BC6 /* Pods_AdsTestApp_Staging_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AEA155454134DCBAAEB2236 /* Pods_AdsTestApp_Staging_art.framework */; };
 		940739CE2B14D6D0212589BE /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D32DAE3DA0002F170A /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -676,7 +676,7 @@
 		A1DA1BC99E5F00FA508DA696 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D32DAE3DA0002F170A /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AE6341E1BC6E4D1F82D75033 /* Pods_PrebidTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6A97258B1D3FB45FB5FB6C0 /* Pods_PrebidTestApp.framework */; };
 		B6364FAAC153409B89870666 /* Pods_AdsTestApp_Prod_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF73C3885C98602D969CE63 /* Pods_AdsTestApp_Prod_art.framework */; };
-		B68B98228FEF5F63D4165F6C /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		B68B98228FEF5F63D4165F6C /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		BCD44527C7D6BBC59FB2E2E3 /* Pods_AdsTestApp_Prod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3284F43285076C3732D5B37E /* Pods_AdsTestApp_Prod.framework */; };
 		DBDBF95790282E5FEDFF37F3 /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E6D752923C989A29C8B6C272 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D32DAE3DA0002F170A /* AdsCardLibrary.framework */; };
@@ -1044,70 +1044,70 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		43352E242DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352E242DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 438ED4122AA5D0C200486AF2 /* AdsTestApp-Devc */;
 		};
-		43352E252DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352E252DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Staging" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 434F84BC2ACFE4FE005077F5 /* AdsTestApp-Staging */;
 		};
-		43352E262DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352E262DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Prod" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 434F84D82ACFE50A005077F5 /* AdsTestApp-Prod */;
 		};
-		43352E272DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352E272DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc-art" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 43BCB0932C22DD45002FB0B1 /* AdsTestApp-Devc-art */;
 		};
-		43352E282DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352E282DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Staging-art" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 43BCB0D62C22DD59002FB0B1 /* AdsTestApp-Staging-art */;
 		};
-		43352E292DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352E292DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Prod-art" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 43BCB1192C22DD60002FB0B1 /* AdsTestApp-Prod-art */;
 		};
-		43352E2A2DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352E2A2DFC1B320082026C /* Exceptions for "Prebid" folder in "MaxTestApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 43EB1E0C2DB24675002F170A /* MaxTestApp */;
 		};
-		43352E2B2DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352E2B2DFC1B320082026C /* Exceptions for "Prebid" folder in "AdMobTestApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 43EB26702DBFCC84002F170A /* AdMobTestApp */;
 		};
-		43352E2C2DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352E2C2DFC1B320082026C /* Exceptions for "Prebid" folder in "UnityLevelPlayTestApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 4373B4422DCB61F300E1702F /* UnityLevelPlayTestApp */;
 		};
-		43352E2D2DFC1BBD0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352E2D2DFC1BBD0082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				shareImageData.png,
@@ -1115,7 +1115,7 @@
 			);
 			target = 438ED4122AA5D0C200486AF2 /* AdsTestApp-Devc */;
 		};
-		43352E2E2DFC1BBE0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352E2E2DFC1BBE0082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc-art" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				shareImageData.png,
@@ -1123,7 +1123,7 @@
 			);
 			target = 43BCB0932C22DD45002FB0B1 /* AdsTestApp-Devc-art */;
 		};
-		43352E302DFC1BC20082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352E302DFC1BC20082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-devc" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				shareImageData.png,
@@ -1131,7 +1131,7 @@
 			);
 			target = 43352D122DFC0E920082026C /* PrebidTestApp-devc */;
 		};
-		43352ECD2DFC1E460082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352ECD2DFC1E460082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-devc" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Asset.xcassets,
@@ -1140,70 +1140,70 @@
 			);
 			target = 43352D122DFC0E920082026C /* PrebidTestApp-devc */;
 		};
-		43352F6D2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352F6D2DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Default.settings,
 			);
 			target = 438ED4122AA5D0C200486AF2 /* AdsTestApp-Devc */;
 		};
-		43352F6E2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352F6E2DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Staging" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Default.settings,
 			);
 			target = 434F84BC2ACFE4FE005077F5 /* AdsTestApp-Staging */;
 		};
-		43352F6F2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352F6F2DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Prod" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Default.settings,
 			);
 			target = 434F84D82ACFE50A005077F5 /* AdsTestApp-Prod */;
 		};
-		43352F702DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352F702DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc-art" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Default.settings,
 			);
 			target = 43BCB0932C22DD45002FB0B1 /* AdsTestApp-Devc-art */;
 		};
-		43352F712DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352F712DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Staging-art" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Default.settings,
 			);
 			target = 43BCB0D62C22DD59002FB0B1 /* AdsTestApp-Staging-art */;
 		};
-		43352F722DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352F722DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Prod-art" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Default.settings,
 			);
 			target = 43BCB1192C22DD60002FB0B1 /* AdsTestApp-Prod-art */;
 		};
-		43352F742DFC20350082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		43352F742DFC20350082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-devc" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Default.settings,
 			);
 			target = 43352D122DFC0E920082026C /* PrebidTestApp-devc */;
 		};
-		433531392E093A940082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		433531392E093A940082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-staging" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Default.settings,
 			);
 			target = 433530AD2E093A680082026C /* PrebidTestApp-staging */;
 		};
-		4335313A2E093A940082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		4335313A2E093A940082026C /* Exceptions for "Prebid" folder in "PrebidTestApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Default.settings,
 			);
 			target = 433530F22E093A700082026C /* PrebidTestApp */;
 		};
-		433531412E093AAA0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		433531412E093AAA0082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-staging" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				shareImageData.png,
@@ -1211,7 +1211,7 @@
 			);
 			target = 433530AD2E093A680082026C /* PrebidTestApp-staging */;
 		};
-		433531422E093AAA0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		433531422E093AAA0082026C /* Exceptions for "Prebid" folder in "PrebidTestApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				shareImageData.png,
@@ -1219,7 +1219,7 @@
 			);
 			target = 433530F22E093A700082026C /* PrebidTestApp */;
 		};
-		433531492E093AB60082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		433531492E093AB60082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-staging" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Asset.xcassets,
@@ -1228,7 +1228,7 @@
 			);
 			target = 433530AD2E093A680082026C /* PrebidTestApp-staging */;
 		};
-		4335314A2E093AB60082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		4335314A2E093AB60082026C /* Exceptions for "Prebid" folder in "PrebidTestApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Asset.xcassets,
@@ -1240,10 +1240,76 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		43352D632DFC0F010082026C /* Prebid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (43352ECD2DFC1E460082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 433531492E093AB60082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 4335314A2E093AB60082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Prebid; sourceTree = "<group>"; };
-		43352D642DFC0F090082026C /* Prebid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (43352E2D2DFC1BBD0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E2E2DFC1BBE0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E302DFC1BC20082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 433531412E093AAA0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 433531422E093AAA0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Prebid; sourceTree = "<group>"; };
-		43352D652DFC0F110082026C /* Prebid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (43352E242DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E252DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E262DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E272DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E282DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E292DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E2A2DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E2B2DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E2C2DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Prebid; sourceTree = "<group>"; };
-		43352D662DFC0F190082026C /* Prebid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (43352F6D2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F6E2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F6F2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F702DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F712DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F722DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F742DFC20350082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 433531392E093A940082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 4335313A2E093A940082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Prebid; sourceTree = "<group>"; };
+		43352D632DFC0F010082026C /* Prebid */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				43352ECD2DFC1E460082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-devc" target */,
+				433531492E093AB60082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-staging" target */,
+				4335314A2E093AB60082026C /* Exceptions for "Prebid" folder in "PrebidTestApp" target */,
+			);
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = Prebid;
+			sourceTree = "<group>";
+		};
+		43352D642DFC0F090082026C /* Prebid */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				43352E2D2DFC1BBD0082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc" target */,
+				43352E2E2DFC1BBE0082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc-art" target */,
+				43352E302DFC1BC20082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-devc" target */,
+				433531412E093AAA0082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-staging" target */,
+				433531422E093AAA0082026C /* Exceptions for "Prebid" folder in "PrebidTestApp" target */,
+			);
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = Prebid;
+			sourceTree = "<group>";
+		};
+		43352D652DFC0F110082026C /* Prebid */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				43352E242DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc" target */,
+				43352E252DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Staging" target */,
+				43352E262DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Prod" target */,
+				43352E272DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc-art" target */,
+				43352E282DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Staging-art" target */,
+				43352E292DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Prod-art" target */,
+				43352E2A2DFC1B320082026C /* Exceptions for "Prebid" folder in "MaxTestApp" target */,
+				43352E2B2DFC1B320082026C /* Exceptions for "Prebid" folder in "AdMobTestApp" target */,
+				43352E2C2DFC1B320082026C /* Exceptions for "Prebid" folder in "UnityLevelPlayTestApp" target */,
+			);
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = Prebid;
+			sourceTree = "<group>";
+		};
+		43352D662DFC0F190082026C /* Prebid */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				43352F6D2DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc" target */,
+				43352F6E2DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Staging" target */,
+				43352F6F2DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Prod" target */,
+				43352F702DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc-art" target */,
+				43352F712DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Staging-art" target */,
+				43352F722DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Prod-art" target */,
+				43352F742DFC20350082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-devc" target */,
+				433531392E093A940082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-staging" target */,
+				4335313A2E093A940082026C /* Exceptions for "Prebid" folder in "PrebidTestApp" target */,
+			);
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = Prebid;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1318,7 +1384,7 @@
 				43C1D1592B7E5684006F2D23 /* SwiftMessages in Frameworks */,
 				43AE85E12B5018BF0010C812 /* UserDefault in Frameworks */,
 				43EB19192DAE8AC6002F170A /* OguryAds.framework in Frameworks */,
-				B68B98228FEF5F63D4165F6C /* (null) in Frameworks */,
+				B68B98228FEF5F63D4165F6C /* BuildFile in Frameworks */,
 				43EB191D2DAE8AC9002F170A /* OguryCore.framework in Frameworks */,
 				43EB1F722DB25891002F170A /* AdsCardLibrary.framework in Frameworks */,
 				43EB1F702DB25872002F170A /* AdsCardAdapter.framework in Frameworks */,
@@ -1341,7 +1407,7 @@
 				4373B4752DCB61F300E1702F /* OguryCore.framework in Frameworks */,
 				4373B4762DCB61F300E1702F /* OgurySdk.framework in Frameworks */,
 				4373B4782DCB61F300E1702F /* AdsCardLibrary.framework in Frameworks */,
-				7DB2F6E45BFD59711A7F6BC0 /* (null) in Frameworks */,
+				7DB2F6E45BFD59711A7F6BC0 /* BuildFile in Frameworks */,
 				9676762D3F38ED1EE7136BC1 /* Pods_UnityLevelPlayTestApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1367,7 +1433,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F66E3C2D394D79000AED12 /* (null) in Frameworks */,
+				43F66E3C2D394D79000AED12 /* BuildFile in Frameworks */,
 				43BCB0BD2C22DD45002FB0B1 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43BCB0BE2C22DD45002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB0C02C22DD45002FB0B1 /* UserDefault in Frameworks */,
@@ -1383,7 +1449,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F66E3D2D394D79000AED12 /* (null) in Frameworks */,
+				43F66E3D2D394D79000AED12 /* BuildFile in Frameworks */,
 				43BCB1002C22DD59002FB0B1 /* SnapKit in Frameworks */,
 				43BCB1022C22DD59002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB1032C22DD59002FB0B1 /* UserDefault in Frameworks */,
@@ -1399,7 +1465,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F66E3E2D394D79000AED12 /* (null) in Frameworks */,
+				43F66E3E2D394D79000AED12 /* BuildFile in Frameworks */,
 				43BCB1432C22DD60002FB0B1 /* SnapKit in Frameworks */,
 				43BCB1452C22DD60002FB0B1 /* SwiftMessages in Frameworks */,
 				4379F9EF2DEEED220069F47A /* OguryCardAdapter.framework in Frameworks */,
@@ -2625,13 +2691,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2668,13 +2730,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2689,13 +2747,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2710,13 +2764,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2775,13 +2825,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2818,13 +2864,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2839,13 +2881,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2860,13 +2898,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2881,13 +2915,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2902,13 +2932,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2945,13 +2971,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2966,13 +2988,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2987,13 +3005,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3008,13 +3022,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3073,13 +3083,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3094,13 +3100,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3115,13 +3117,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3136,13 +3134,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3157,13 +3151,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3200,13 +3190,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3265,13 +3251,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3308,13 +3290,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3351,13 +3329,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3372,13 +3346,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3910,6 +3880,7 @@
 /* Begin XCBuildConfiguration section */
 		43352D5F2DFC0E920082026C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 425A080EF29FF55FA4C891C7 /* Pods-PrebidTestApp-devc.debug.xcconfig */;
 			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
 			baseConfigurationReferenceRelativePath = config.debug.xcconfig;
 			buildSettings = {
@@ -3956,6 +3927,7 @@
 		};
 		43352D602DFC0E920082026C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED71F1CE749BAD5EEB150506 /* Pods-PrebidTestApp-devc.release.xcconfig */;
 			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
 			baseConfigurationReferenceRelativePath = config.debug.xcconfig;
 			buildSettings = {
@@ -4001,6 +3973,7 @@
 		};
 		433530ED2E093A680082026C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B71DB5BA070F7DEBA5FF203 /* Pods-PrebidTestApp-staging.debug.xcconfig */;
 			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
 			baseConfigurationReferenceRelativePath = config.debug.xcconfig;
 			buildSettings = {
@@ -4047,6 +4020,7 @@
 		};
 		433530EE2E093A680082026C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 831D8AC61348959B8FBD8F16 /* Pods-PrebidTestApp-staging.release.xcconfig */;
 			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
 			baseConfigurationReferenceRelativePath = config.debug.xcconfig;
 			buildSettings = {
@@ -4092,6 +4066,7 @@
 		};
 		433531322E093A700082026C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA86A495350F34EDB78FCC1B /* Pods-PrebidTestApp.debug.xcconfig */;
 			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
 			baseConfigurationReferenceRelativePath = config.debug.xcconfig;
 			buildSettings = {
@@ -4138,6 +4113,7 @@
 		};
 		433531332E093A700082026C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3483F55FE27D5B59D35A0ED9 /* Pods-PrebidTestApp.release.xcconfig */;
 			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
 			baseConfigurationReferenceRelativePath = config.debug.xcconfig;
 			buildSettings = {
