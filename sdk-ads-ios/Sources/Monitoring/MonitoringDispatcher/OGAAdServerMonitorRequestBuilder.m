@@ -6,6 +6,7 @@
 #import <CoreTelephony/CTCarrier.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <OguryCore/OguryNetworkRequestBuilder.h>
+#import <OguryCore/OGCUtils.h>
 #import "NSDate+OGAFormatter.h"
 #import "OGAAdPrivacyConfiguration.h"
 #import "OGAAssetKeyManager.h"
@@ -20,6 +21,7 @@
 #import "OGAMonitoringLogMessage.h"
 #import "UIDevice+Orientation.h"
 #import "OguryAdError+Internal.h"
+#import "OGAInternal.h"
 
 @interface OGAAdServerMonitorRequestBuilder ()
 
@@ -39,6 +41,10 @@ static NSString *const MonitoringServiceBodyRequestId = @"request_id";
 
 // app
 static NSString *const MonitoringServiceBodyAppDictionary = @"app";
+static NSString *const MonitoringServiceBodyFrameworkDictionary = @"framework";
+static NSString *const MonitoringServiceBodyProductDictionary = @"product";
+static NSString *const MonitoringServiceBodyProductNameDictionary = @"name";
+static NSString *const MonitoringServiceBodyProductVersionDictionary = @"version";
 static NSString *const MonitoringServiceBodyAppAssetKey = @"asset_key";
 static NSString *const MonitoringServiceBodyAppAssetType = @"asset_type";
 static NSString *const MonitoringServiceBodyAppBundleId = @"bundle_id";
@@ -148,9 +154,17 @@ static NSString *const MonitoringServiceBodyDeviceAssetType = @"ios";
     body[MonitoringServiceBodyAppDictionary] = [[NSMutableDictionary alloc] init];
     body[MonitoringServiceBodyAppDictionary][MonitoringServiceBodyAppAssetKey] = [self.assetKeyManager assetKey];
     body[MonitoringServiceBodyAppDictionary][MonitoringServiceBodyAppAssetType] = MonitoringServiceBodyDeviceAssetType;
+    body[MonitoringServiceBodyAppDictionary][MonitoringServiceBodyFrameworkDictionary] = [self frameworkType];
 
     body[MonitoringServiceBodyAppDictionary][MonitoringServiceBodyAppBundleId] = [OGAConfigurationUtils getAppBundleIdentifer];
     body[MonitoringServiceBodyAppDictionary][MonitoringServiceBodyAppVersion] = [OGAConfigurationUtils getAppMarketingVersion];
+
+    if ([OGAInternal shared].sdkConsumer != nil) {
+        body[MonitoringServiceBodyProductDictionary] = @{
+            MonitoringServiceBodyProductNameDictionary : [OGAInternal shared].sdkConsumer.name,
+            MonitoringServiceBodyProductVersionDictionary : [OGAInternal shared].sdkConsumer.version
+        };
+    }
 
     body[MonitoringServiceBodySdkDictionary] = [[NSMutableDictionary alloc] init];
     body[MonitoringServiceBodySdkDictionary][MonitoringServiceBodySdkModuleVersion] = OGA_SDK_VERSION;
@@ -228,6 +242,26 @@ static NSString *const MonitoringServiceBodyDeviceAssetType = @"ios";
     }
     body[MonitoringServiceBodyEventsArray] = eventDictArray;
     return body;
+}
+
+- (NSString *)frameworkType {
+    OGCSDKType sdkType = [OGCUtils frameworkType];
+    if (sdkType == OGCSDKTypeUnity) {
+        return @"Unity";
+    } else if (sdkType == OGCSDKTypeCordova) {
+        return @"Cordova";
+    } else if (sdkType == OGCSDKTypeIonic) {
+        return @"Ionic";
+    } else if (sdkType == OGCSDKTypeXamarin) {
+        return @"Xamarin";
+    } else if (sdkType == OGCSDKTypeAdobeAir) {
+        return @"Adobe Air";
+    } else if (sdkType == OGCSDKTypeFlutter) {
+        return @"Flutter";
+    } else if (sdkType == OGCSDKTypeReactNat) {
+        return @"React Native";
+    }
+    return @"Native";
 }
 
 - (BOOL)isLowPowered {

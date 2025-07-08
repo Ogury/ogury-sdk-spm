@@ -11,7 +11,7 @@ enum OGCSDKType;
 
 @interface OGCUtils : NSObject
 
-+ (NSUInteger)frameworkType;
++ (OGCSDKType)frameworkType;
 
 @end
 
