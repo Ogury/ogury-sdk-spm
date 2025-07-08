@@ -15,7 +15,7 @@ class Configuration
     @test_devices = ["iPhone 16"]
     @allowed_environments = ["devc", "staging", "prod", "beta", "release"]
     @firebase = Firebase.new("inApp")
-    internalRepositories = Repositories.new(Repository.new("https://binaries.ogury.co/internal/"), Repository.new("git@github.com:Ogury/sdk-internal-cocoapods"), Repository.new("https://github.com/Ogury/sdk-internal-spm"))
+    internalRepositories = Repositories.new(Repository.new("https://binaries.ogury.co/internal/"), Repository.new("Ogury/sdk-internal-cocoapods"), Repository.new("https://github.com/Ogury/sdk-internal-spm"))
     publicRepositories = Repositories.new(Repository.new("https://binaries.ogury.co"), Repository.new("https://cdn.cocoapods.org/"), Repository.new("https://github.com/Ogury/ogury-sdk-spm"))
     @deployment = Deployment.new(internalRepositories, publicRepositories)
     @slack = Slack.new("https://hooks.slack.com/services/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", "#sdk-ios-ci-update")

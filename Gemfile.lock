@@ -325,6 +325,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   artifactory
+  aws-sdk-s3
   cocoapods (= 1.16.2)
   cocoapods-art
   fastlane

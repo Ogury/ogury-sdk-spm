@@ -13,7 +13,6 @@ pipeline {
         PATH = "$HOME/.rvm/bin:$PATH" // ensure RVM is found
         RBENV_SHELL = 'zsh'
         SONAR_CLOUD_TOKEN = credentials('SONAR_CLOUD_TOKEN')
-        ARTIFACTORY_TOKEN = credentials('ARTIFACTORY_TOKEN')
         GIT_TAG = sh(
             script: 'git describe --tags --abbrev=0 2>/dev/null || echo "no-tag"',
             returnStdout: true

@@ -72,7 +72,9 @@ platform :ios do
   desc "Install CocoaPods internal repository for environment and update it."
   lane :update_internal_cocoapods do |options|
     repo_name = 'sdk-internal'
-    repo_url  = configuration.deployment.internal.cocoapods.url
+    git_token = ENV["GIT_TOKEN"] || UI.user_error!("GIT_TOKEN not set")
+    git_username = ENV["GIT_USERNAME"] || "weareogury"
+    repo_url = "https://#{git_username}:#{git_token}@github.com/#{configuration.deployment.internal.cocoapods.url}"
   
     Dir.chdir("..") do
       UI.message("Checking for CocoaPods repo '#{repo_name}'...")

@@ -172,11 +172,6 @@ private_lane :zip_famework do |options|
   archive_filename = get_archive_filename(target.publicName, framework_suffix, version)
   files += "#{target.publicName}.xcframework "
 
-#  if target.dependencies.hasPodspec
-#    podspec_filename = get_podspec_filename(target.publicName, framework_suffix)
-#    files += "#{podspec_filename} "
-#  end
-
   puts "Files #{files}".red
 
   Dir.chdir("..") do

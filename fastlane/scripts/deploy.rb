@@ -50,7 +50,9 @@ lane :push_podspec_to_private_repo do |options|
   end
 
   repo_name = 'sdk-internal'
-  repo_url  = configuration.deployment.internal.cocoapods.url
+  git_token = ENV["GIT_TOKEN"] || UI.user_error!("GIT_TOKEN not set")
+  git_username = ENV["GIT_USERNAME"] || "weareogury"
+  repo_url = "https://#{git_username}:#{git_token}@github.com/#{configuration.deployment.internal.cocoapods.url}"
   framework_suffix = get_framework_suffix(environment)
   podspec = get_podspec_filename(target.publicName, framework_suffix)
 
