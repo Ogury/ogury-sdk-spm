@@ -76,8 +76,8 @@
     [self.adIdentifierManager updateInstanceToken];
 }
 
-- (OGCSDKType)getFrameworkType {
-    return [OGCUtils getFrameworkType];
+- (OGCSDKType)frameworkType {
+    return [OGCUtils frameworkType];
 }
 
 // GPP

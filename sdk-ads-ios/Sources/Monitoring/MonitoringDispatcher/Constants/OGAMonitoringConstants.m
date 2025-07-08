@@ -10,6 +10,7 @@ NSString *const OGAAdMonitorEventBodyAdUnitId = @"id";
 NSString *const OGAAdMonitorEventBodyMediation = @"mediation";
 NSString *const OGAAdMonitorEventBodyMediationName = @"name";
 NSString *const OGAAdMonitorEventBodyMediationVersion = @"version";
+NSString *const OGAAdMonitorEventBodyMediationAdapterVersion = @"adapter_version";
 NSString *const OGAAdMonitorEventBodyAd = @"ad";
 NSString *const OGAAdMonitorEventBodyAdCampaignId = @"campaign_id";
 NSString *const OGAAdMonitorEventBodyAdCreativeId = @"creative_id";

@@ -152,7 +152,7 @@ static NSString *const OGADisablingReason = @"disabling_reason";
 
         if (previousSequence.status == OGAAdSequenceStatusLoaded && [self isLoaded:previousSequence] && ![self isExpired:previousSequence]) {
             [previousSequence.configuration.delegateDispatcher loaded];
-            //Now we must track the new event, so update the sessionId on the sequence and all associated ads
+            // now we must track the new event, so update the sessionId on the sequence and all associated ads
             [previousSequence updateReloadStateWithSessionId:configuration.monitoringDetails.sessionId];
             [self.monitoringDispatcher sendLoadEvent:OGALoadEventLoadAdLoaded adConfiguration:previousSequence.monitoringAdConfiguration];
             return previousSequence;
@@ -486,9 +486,6 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         } else {
             [self sendMonitoringEventFor:sequence oguryError:error customSessionId:sessionId];
         }
-        if ([self shouldErrorCloseOnShow:error]) {
-            [sequence.coordinator close];
-        }
         return;
     }
 
@@ -510,14 +507,6 @@ static NSString *const OGADisablingReason = @"disabling_reason";
         }
         sequence.status = OGAAdSequenceStatusShown;
     });
-}
-
-- (BOOL)shouldErrorCloseOnShow:(OguryAdError *)error {
-    if (error.code == OGAShowErrorEventAnotherAdAlreadyDisplayed ||
-        error.code == OGAShowErrorEventViewInBackground) {
-        return NO;
-    }
-    return YES;
 }
 
 - (OGAProfigDao *)profigDao {
@@ -547,10 +536,6 @@ static NSString *const OGADisablingReason = @"disabling_reason";
     @synchronized(self.sequencesShowing) {
         [self.sequencesShowing removeObject:sequence];
     }
-}
-
-- (void)defineSDKType:(OGASDKType)sdkType {
-    _sdkType = sdkType;
 }
 
 - (void)defineMediationName:(NSString *)mediationName {

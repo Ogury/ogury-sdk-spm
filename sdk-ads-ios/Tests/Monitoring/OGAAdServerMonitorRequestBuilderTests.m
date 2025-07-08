@@ -68,7 +68,7 @@
     NSArray *extras = @[ firstDictionnary, secondDictionnary ];
     id currentDevice = OCMPartialMock([UIDevice currentDevice]);
 
-    OguryMediation *mediation = [[OguryMediation alloc] initWithName:@"Mediation" version:@"1.0.0"];
+    OguryMediation *mediation = [[OguryMediation alloc] initWithName:@"Mediation" version:@"1.0.0" adapterVersion:@"4.0.0.1"];
 
     OCMReject([currentDevice name]);
     OGAAdMonitorEvent *event = [[OGAAdMonitorEvent alloc] initWithTimestamp:@1000
