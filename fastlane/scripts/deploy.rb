@@ -32,7 +32,7 @@ private_lane :deploy_on_private_cocoapods do |options|
     s3_bucket = configuration.deployment.public.s3.url
   end
 
-  upload_artifacts_to_s3(s3_bucket:s3_bucket, local_dir:"#{configuration.directories.output}/#{archive_filename}")
+  upload_artifacts_to_s3(s3_bucket:s3_bucket, local_file:"#{configuration.directories.output}/#{archive_filename}")
   push_podspec_to_private_repo(configuration:configuration, environment:environment, target:target)
 end
 
@@ -74,13 +74,15 @@ end
 
 lane :upload_artifacts_to_s3 do |options|
   s3_bucket = options[:s3_bucket]
-  local_dir = options[:local_dir]
+  local_file = options[:local_file]
 
   UI.user_error!("Missing s3_bucket") unless s3_bucket
-  UI.user_error!("Missing local_dir") unless local_dir
+  UI.user_error!("Missing local_file") unless local_file
 
   # Step 1: Assume the role and extract credentials
-  sh <<~BASH
+  sh """
+    set -e
+  
     CREDS=$(aws sts assume-role \\
       --role-arn arn:aws:iam::556593845588:role/ci-eu-west-1-macos-jenkins-ci \\
       --role-session-name fastlane-upload-session)
@@ -89,9 +91,9 @@ lane :upload_artifacts_to_s3 do |options|
     export AWS_SECRET_ACCESS_KEY=$(echo "$CREDS" | jq -r '.Credentials.SecretAccessKey')
     export AWS_SESSION_TOKEN=$(echo "$CREDS" | jq -r '.Credentials.SessionToken')
   
-    # Step 2: Upload artifacts to S3
-    aws s3 cp "#{local_dir}" "s3://#{s3_bucket}/" --recursive
-  BASH
+    echo "Uploading from: #{local_file} to s3://#{s3_bucket}/"
+    aws s3 cp "#{local_file}" "s3://#{s3_bucket}/"
+  """
 end
 
 desc "deploy in amazon"
@@ -129,7 +131,7 @@ private_lane :deploy_on_amazon do |options|
     sh("cp '#{configuration.directories.output}/#{podspec_filename}' '#{amazon_directory}'")
   end
 
-  upload_artifacts_to_s3(s3_bucket:configuration.deployment.public.s3.url, local_dir:amazon_directory)
+  upload_artifacts_to_s3(s3_bucket:configuration.deployment.public.s3.url, local_file:amazon_directory)
 end
 
 desc "Push the supplied podspec to the specified Cocoapod repository"
