@@ -64,7 +64,7 @@ static NSNumber* _Nullable sdkType;
     } else if ([self hasFlutterRuntime]) {
         type = OGCSDKTypeFlutter;
     } else if ([self hasReactNativeRuntime]) {
-        type = OGCSDKTypeReactNat;
+        type = OGCSDKTypeReactNative;
     }
     sdkType = @(type);
     return type;

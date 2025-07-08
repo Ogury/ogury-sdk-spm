@@ -258,7 +258,7 @@ static NSString *const MonitoringServiceBodyDeviceAssetType = @"ios";
         return @"Adobe Air";
     } else if (sdkType == OGCSDKTypeFlutter) {
         return @"Flutter";
-    } else if (sdkType == OGCSDKTypeReactNat) {
+    } else if (sdkType == OGCSDKTypeReactNative) {
         return @"React Native";
     }
     return @"Native";

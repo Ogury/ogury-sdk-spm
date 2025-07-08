@@ -14,7 +14,7 @@ typedef enum : NSUInteger {
     OGCSDKTypeXamarin,
     OGCSDKTypeAdobeAir,
     OGCSDKTypeFlutter,
-    OGCSDKTypeReactNat
+    OGCSDKTypeReactNative
 } OGCSDKType;
 
 NS_ASSUME_NONNULL_BEGIN
