@@ -53,14 +53,6 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
-### push_podspec_to_private_repo
-
-```sh
-[bundle exec] fastlane push_podspec_to_private_repo
-```
-
-
-
 ### upload_artifacts_to_s3
 
 ```sh

@@ -15,11 +15,12 @@ class Configuration
     @test_devices = ["iPhone 16"]
     @allowed_environments = ["devc", "staging", "prod", "beta", "release"]
     @firebase = Firebase.new("inApp")
-    internalRepositories = Repositories.new(Repository.new("ogury-sdk-binaries/internal"), Repository.new("Ogury/sdk-internal-cocoapods"), Repository.new("https://github.com/Ogury/sdk-internal-spm"))
-    publicRepositories = Repositories.new(Repository.new("ogury-sdk-binaries"), Repository.new("https://cdn.cocoapods.org/"), Repository.new("https://github.com/Ogury/ogury-sdk-spm"))
+    internalS3 = S3Repository.new(public: "https://binaries.ogury.co", bucket:"ogury-sdk-binaries", path:"internal")
+    publicS3 = S3Repository.new(public: "https://binaries.ogury.co", bucket:"ogury-sdk-binaries")
+    internalRepositories = Repositories.new(internalS3, Repository.new("Ogury/sdk-internal-cocoapods"), Repository.new("https://github.com/Ogury/sdk-internal-spm"))
+    publicRepositories = Repositories.new(publicS3, Repository.new("https://cdn.cocoapods.org/"), Repository.new("https://github.com/Ogury/ogury-sdk-spm"))
     @deployment = Deployment.new(internalRepositories, publicRepositories)
     @slack = Slack.new("https://hooks.slack.com/services/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", "#sdk-ios-ci-update")
-    #@cocoapods = Cocoapods.new("git@github.com:Ogury/ogury-cocoapods-repository.git")
     @frameworks = Frameworks.new()
     @frameworks.ogury_core = Framework.new("2.1.0-NewTestApp-1.0.2", "2.0.0", "2.0.0")
     @frameworks.ogury_ads = Framework.new("4.1.0-NewTestApp-1.0.7", "4.0.0", "4.0.0")
@@ -31,8 +32,7 @@ class Configuration
     maxTestApp = TestApplication.new("maxTestApp", "MaxTestApp", "MaxTestApp", "co.ogury.sdk.ads.max.app", "1:743372999564:ios:cc7358fc83c446edca24a9")
     adMobTestApp = TestApplication.new("adMobTestApp", "AdMobTestApp", "AdMobTestApp", "co.ogury.sdk.ads.admob.app", "1:743372999564:ios:126315fea3608a04ca24a9")
     unityTestApp = TestApplication.new("unityTestApp", "UnityLevelPlayTestApp", "UnityLevelPlayTestApp", "co.ogury.sdk.ads.ulp.app", "1:743372999564:ios:4c84c9f1f5248edaca24a9")
-    prebidTestApp = TestApplication.new("prebidTestApp", "PrebidTestApp", "PrebidTestApp", "co.ogury.sdk.ads.prebid.devc", "1:743372999564:ios:c00cac288d327678ca24a9
-")
+    prebidTestApp = TestApplication.new("prebidTestApp", "PrebidTestApp", "PrebidTestApp", "co.ogury.sdk.ads.prebid.devc", "1:743372999564:ios:c00cac288d327678ca24a9")
     @testApplications = TestApplications.new([prodTestApp, devcTestApp, stagingTestApp], [maxTestApp, adMobTestApp, unityTestApp, prebidTestApp])
   end
 end
@@ -131,6 +131,15 @@ end
 Repositories = Struct.new(:s3, :cocoapods, :spm) do
 end
 Repository = Struct.new(:url) do
+end
+
+class S3Repository
+  attr_accessor :public, :bucket
+
+  def initialize(public:, bucket:, path: nil)
+    @public = path.nil? ? public : "#{public}/#{path}"
+    @bucket = path.nil? ? bucket : "#{bucket}/#{path}"
+  end
 end
 
 Amazon = Struct.new(:url) do

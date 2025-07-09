@@ -30,10 +30,10 @@ lane :prepare_for_deployment do |options|
   case environment
   when "devc", "staging", "prod"
     # internal cocoapod
-    source_url = "#{configuration.deployment.internal.s3.url}/#{environment}/#{target.publicName}"
+    source_url = "#{configuration.deployment.internal.s3.public}/#{environment}/#{target.publicName}"
   when "beta", "release"
     # S3 release / beta buckets
-    source_url = "#{configuration.deployment.public.s3.url}/#{environment}/#{target.amazon}/#{version}"
+    source_url = "#{configuration.deployment.public.s3.public}/#{environment}/#{target.amazon}/#{version}"
   end
 
   # Environment url for SDK
