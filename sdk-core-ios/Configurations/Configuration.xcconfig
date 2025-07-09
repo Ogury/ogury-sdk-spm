@@ -7,5 +7,5 @@ FRAMEWORK_NAME = OguryCore
 PRODUCT_BUNDLE_IDENTIFIER = com.ogury.core
 
 // Versioning
-MARKETING_VERSION = 2.1.0-alpha.standardbanners.1
+MARKETING_VERSION = 2.1.0-rc.1
 BUNDLE_VERSION = 1
