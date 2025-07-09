@@ -33,21 +33,13 @@ private_lane :deploy_on_private_cocoapods do |options|
   end
 
   upload_artifacts_to_s3(s3_bucket:s3_bucket, local_file:"#{configuration.directories.output}/#{archive_filename}")
-  push_podspec_to_private_repo(configuration:configuration, environment:environment, target:target)
+  push_podspec_to_private_repo(options)
 end
 
-lane :push_podspec_to_private_repo do |options|
-  if !options[:configuration]
-    raise "No configuration specified!".red
-  end
-
-  if !options[:environment]
-    raise "No environment specified!".red
-  end
-
-  if !options[:target]
-    raise "No target specified!".red
-  end
+private_lane :push_podspec_to_private_repo do |options|
+  configuration = options[:configuration] or raise "No configuration specified!".red
+  environment = options[:environment] or raise "No environment specified!".red
+  target = options[:target] or raise "No target specified!".red
 
   repo_name = 'sdk-internal'
   git_token = ENV["GIT_TOKEN"] || UI.user_error!("GIT_TOKEN not set")
@@ -68,7 +60,6 @@ lane :push_podspec_to_private_repo do |options|
     UI.message("CocoaPods repo '#{repo_name}' already exists.")
   end
 
-  # Push the podspec to the private repo
   sh("pod repo push #{repo_name} #{podspec} --allow-warnings --skip-tests")
 end
 
@@ -82,7 +73,7 @@ lane :upload_artifacts_to_s3 do |options|
   # Step 1: Assume the role and extract credentials
   Dir.chdir("..") do
     filename = File.basename(local_file)
-    sh(%Q[aws s3 cp "#{local_file}" "s3://#{s3_bucket}/#{filename}"])
+    sh(%Q[aws s3 cp "#{local_file}" "s3://#{s3_bucket}/#{filename}"  --region eu-west-1])
   end
 end
 
