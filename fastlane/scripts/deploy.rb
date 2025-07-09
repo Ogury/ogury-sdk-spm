@@ -80,8 +80,10 @@ lane :upload_artifacts_to_s3 do |options|
   UI.user_error!("Missing local_file") unless local_file
 
   # Step 1: Assume the role and extract credentials
-  sh("chmod +x scripts/upload_to_s3.sh")
-  sh("scripts/upload_to_s3.sh #{local_file} #{s3_bucket}")
+  Dir.chdir("..") do
+    filename = File.basename(local_file)
+    sh(%Q[aws s3 cp "#{local_file}" "s3://#{s3_bucket}/#{filename}"])
+  end
 end
 
 desc "deploy in amazon"

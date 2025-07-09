@@ -141,97 +141,99 @@ pipeline {
                 }
             }
             steps {
-                script {
-                    // Parse TAG_NAME to determine framework, environment, and extra conditions
-                    def elements = "${env.TAG_NAME}".split("-")
-                    if (elements.size() < 3) {
-                        error "Invalid TAG_NAME format: Expected at least two elements, got ${elements.size()}"
-                    }
-
-                    def isArtifactory = elements.contains("art")
-                    def killModeEnabled = elements.contains("killModeEnabled")
-
-                    // environment : internal - beta - release
-                    def envType = ""
-                    switch (elements[0]) {
-                        case "internal":
-                            envType = "prod"
-                            break
-                        case "beta":
-                            envType = "beta"
-                            break
-                        case "release":
-                            envType = "release"
-                            // Ensure that release mode always has this setting to false
-                            killModeEnabled = false
-                            // always use external dependencies when compiling for prod
-                            isArtifactory = true
-                            break
-                        default:
-                            error "Unknown environment type: ${elements[0]}"
-                    }
-
-                    // framework : ads (+ omid) - core - wrapper
-                    def framework = ""
-                    switch (elements[1]) {
-                        case "core":
-                            framework = "core"
-                            break
-                        case "ads":
-                            framework = "ads"
-                            break
-                        case "wrapper":
-                            framework = "wrapper"
-                            break
-                        default:
-                            error "Unknown framework type: ${elements[1]}"
-                    }
-
-                    def targetThreshold = "all"
-                    if (env.GIT_TAG && env.GIT_TAG.contains('-core-')) {
-                        targetThreshold = "core"
-                    }
-                    if (env.GIT_TAG && env.GIT_TAG.contains('-ads-')) {
-                        targetThreshold = "ads"
-                    }
-                    if (env.GIT_TAG && env.GIT_TAG.contains('wrapper')) {
-                        targetThreshold = "sdk"
-                    }
-                    if (env.GIT_TAG && env.GIT_TAG.contains('-killModeEnabled')) {
-                        killModeEnabled = true
-                    }
-
-                    def isBetaOrRelease = (envType == "beta" || envType == "release")
-                    if (isBetaOrRelease) {
-                        withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
-                            echo "Environment variables for beta/release set."
+                withAWS(role: 'ci-eu-west-1-macos-jenkins-ci', roleAccount: '556593845588') {
+                    script {
+                        // Parse TAG_NAME to determine framework, environment, and extra conditions
+                        def elements = "${env.TAG_NAME}".split("-")
+                        if (elements.size() < 3) {
+                            error "Invalid TAG_NAME format: Expected at least two elements, got ${elements.size()}"
                         }
-                    }
-        
-                    echo "Deploying ${framework} in ${envType} mode, artifactory: ${isArtifactory}, targetThreshold: ${targetThreshold}, killModeEnabled: ${killModeEnabled}"
 
-                    // Main deployment logic
-                    sh """#!/bin/zsh -l
-                        bundle exec fastlane deploy_${framework}_framework environment:${envType} tag:${env.TAG_NAME} artifactory:${isArtifactory} targetThreshold:${targetThreshold} killModeEnabled:${killModeEnabled}
-                    """
+                        def isArtifactory = elements.contains("art")
+                        def killModeEnabled = elements.contains("killModeEnabled")
+
+                        // environment : internal - beta - release
+                        def envType = ""
+                        switch (elements[0]) {
+                            case "internal":
+                                envType = "prod"
+                                break
+                            case "beta":
+                                envType = "beta"
+                                break
+                            case "release":
+                                envType = "release"
+                                // Ensure that release mode always has this setting to false
+                                killModeEnabled = false
+                                // always use external dependencies when compiling for prod
+                                isArtifactory = true
+                                break
+                            default:
+                                error "Unknown environment type: ${elements[0]}"
+                        }
+
+                        // framework : ads (+ omid) - core - wrapper
+                        def framework = ""
+                        switch (elements[1]) {
+                            case "core":
+                                framework = "core"
+                                break
+                            case "ads":
+                                framework = "ads"
+                                break
+                            case "wrapper":
+                                framework = "wrapper"
+                                break
+                            default:
+                                error "Unknown framework type: ${elements[1]}"
+                        }
+
+                        def targetThreshold = "all"
+                        if (env.GIT_TAG && env.GIT_TAG.contains('-core-')) {
+                            targetThreshold = "core"
+                        }
+                        if (env.GIT_TAG && env.GIT_TAG.contains('-ads-')) {
+                            targetThreshold = "ads"
+                        }
+                        if (env.GIT_TAG && env.GIT_TAG.contains('wrapper')) {
+                            targetThreshold = "sdk"
+                        }
+                        if (env.GIT_TAG && env.GIT_TAG.contains('-killModeEnabled')) {
+                            killModeEnabled = true
+                        }
+
+                        def isBetaOrRelease = (envType == "beta" || envType == "release")
+                        if (isBetaOrRelease) {
+                            withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
+                                echo "Environment variables for beta/release set."
+                            }
+                        }
         
-                    // Handle additional steps for beta/release
-                    if (isBetaOrRelease) {
-                        //withAWS(role: 'ci-eu-west-1-macos-jenkins-ci', roleAccount: '556593845588') {
-                        //    script {
-                        //        echo "Uploading artifacts to S3..."
-                        //        s3Utils.uploadDir(
-                        //            localDir: 'jenkins/output/amazon',
-                        //            bucket: 'ogury-sdk-binaries',
-                        //            prefix: ''
-                        //        )
-                        //    }
-                        //}
+                        echo "Deploying ${framework} in ${envType} mode, artifactory: ${isArtifactory}, targetThreshold: ${targetThreshold}, killModeEnabled: ${killModeEnabled}"
+
+                        // Main deployment logic
+                        sh """#!/bin/zsh -l
+                            bundle exec fastlane deploy_${framework}_framework environment:${envType} tag:${env.TAG_NAME} artifactory:${isArtifactory} targetThreshold:${targetThreshold} killModeEnabled:${killModeEnabled}
+                        """
         
-                        sshagent(['Ogy-JenkinsAuth']) {
-                            sh """#!/bin/zsh -l
-                                bundle exec fastlane deploy_${framework}_podspec environment:${envType} tag:${env.TAG_NAME} artifactory:${isArtifactory} targetThreshold:${targetThreshold}
-                            """
+                        // Handle additional steps for beta/release
+                        if (isBetaOrRelease) {
+                            //withAWS(role: 'ci-eu-west-1-macos-jenkins-ci', roleAccount: '556593845588') {
+                            //    script {
+                            //        echo "Uploading artifacts to S3..."
+                            //        s3Utils.uploadDir(
+                            //            localDir: 'jenkins/output/amazon',
+                            //            bucket: 'ogury-sdk-binaries',
+                            //            prefix: ''
+                            //        )
+                            //    }
+                            //}
+        
+                            sshagent(['Ogy-JenkinsAuth']) {
+                                sh """#!/bin/zsh -l
+                                    bundle exec fastlane deploy_${framework}_podspec environment:${envType} tag:${env.TAG_NAME} artifactory:${isArtifactory} targetThreshold:${targetThreshold}
+                                """
+                            }
                         }
                     }
                 }
