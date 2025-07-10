@@ -210,6 +210,7 @@ class PrebidAdManager: NSObject, AdManager {
         AdCardContainer(name: cardConfiguration.adDisplayName,
                         adType: adType.rawValue,
                         adInformations: .init(adUnitId: adConfiguration.adUnitId,
+                                              campaignId: adConfiguration.campaignId,
                                               bannerSize: actualSize?.size,
                                               settings: .init(oguryTestModeEnabled: false,
                                                               rtbTestModeEnabled: false,

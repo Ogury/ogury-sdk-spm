@@ -7,6 +7,7 @@
 #import "OGAReachability.h"
 #import <UIKit/UIKit.h>
 #import <mach-o/arch.h>
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 
 #if __has_include(<UnityFramework.framework>)
 #define __HAS_UNITY__
@@ -33,23 +34,6 @@ static NSInteger const OGAConfigurationUtilsIdiomiOS = 163;
 static NSString *const OGAConfigurationUtilsSDK = @"ads";
 static NSString *const OGAConfigurationUtilsDeviceOS = @"ios";
 static NSString *const OGAConfigurationUtilsManufacturer = @"Apple";
-
-+ (OGASDKType)getFrameworkType {
-    OGASDKType type = OGASDKTypeNative;
-#ifdef __HAS_UNITY__
-    type = OGASDKTypeUnity;
-#endif
-#ifdef __HAS_CORDOVA__
-    type = OGASDKTypeCordova;
-#endif
-#ifdef __HAS_XAMARIN__
-    type = OGASDKTypeXamarin;
-#endif
-#ifdef __HAS_AIR__
-    type = OGASDKTypeAdobeAir;
-#endif
-    return type;
-}
 
 + (NSString *)cpuArchitecture {
     const NXArchInfo *info = NXGetAllArchInfos();
@@ -113,7 +97,7 @@ static NSString *const OGAConfigurationUtilsManufacturer = @"Apple";
 }
 
 + (NSString *)currentCellularNetwork {
-    return [[OGAReachability reachabilityForInternetConnection] currentReachabilityCellularNetwork];
+    return [[OGAReachability reachabilityForInternetConnection] currentReachabilityCellularNetwork:[[CTTelephonyNetworkInfo alloc] init]];
 }
 
 + (NSString *)getAppMarketingVersion {

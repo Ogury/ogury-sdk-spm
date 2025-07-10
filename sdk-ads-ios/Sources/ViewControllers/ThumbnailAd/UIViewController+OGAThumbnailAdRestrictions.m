@@ -5,6 +5,7 @@
 #import "UIViewController+OGAThumbnailAdRestrictions.h"
 #import "objc/runtime.h"
 #import "OGAThumbnailAdViewController.h"
+#import "OGAThumbnailAdWindow.h"
 #import "OGAApplicationViewControllersManager.h"
 
 @implementation UIViewController (OGAThumbnailRestrictions)
@@ -44,11 +45,17 @@
 
 - (void)logged_viewWillAppear:(BOOL)animated {
     [self logged_viewWillAppear:animated];
+    if ([self isKindOfClass:[OGAThumbnailAdViewController class]]) {
+        return;
+    }
     [[OGAApplicationViewControllersManager shared] addVisibleViewController:self.getSelfClassRepresentation];
 }
 
 - (void)logged_viewWillDisappear:(BOOL)animated {
     [self logged_viewWillDisappear:animated];
+    if ([self isKindOfClass:[OGAThumbnailAdViewController class]]) {
+        return;
+    }
     [[OGAApplicationViewControllersManager shared] removeVisibleViewController:self.getSelfClassRepresentation];
 }
 

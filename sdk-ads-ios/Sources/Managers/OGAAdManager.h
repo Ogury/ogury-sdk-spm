@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - @properties
 
-@property(nonatomic, assign, setter=defineSDKType:) OGASDKType sdkType;
+@property(nonatomic, assign) OGCSDKType sdkType;
 @property(nonatomic, copy, setter=defineMediationName:) NSString *mediation;
 
 #pragma mark - Class Methods
@@ -31,7 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)show:(OGAAdSequence *)sequence additionalConditions:(NSArray<id<OGAConditionChecker>> *_Nullable)additionalConditions;
 
-- (void)defineSDKType:(OGASDKType)sdkType;
 - (void)defineMediationName:(NSString *)mediationName;
 - (BOOL)isLoaded:(OGAAdSequence *_Nullable)sequence;
 - (BOOL)isExpired:(OGAAdSequence *)sequence;
