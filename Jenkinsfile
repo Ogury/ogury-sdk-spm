@@ -31,6 +31,7 @@ pipeline {
         }
 
         stage('Build') {
+            
             when {
                 beforeAgent true
                 anyOf {

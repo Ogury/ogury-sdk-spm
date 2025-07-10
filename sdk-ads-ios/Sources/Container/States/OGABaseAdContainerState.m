@@ -127,12 +127,10 @@
 }
 
 - (void)applicationDidBecomeActive {
-#warning Called upon losing focus (see https://openradar.appspot.com/32614495 for more details)
     [self.exposureController computeExposure];
 }
 
 - (void)applicationWillResignActive {
-#warning Called twice upon losing focus (see https://openradar.appspot.com/32614495 for more details)
     [self.displayer dispatchInformation:[[OGAAdDisplayerUpdateExposureInformation alloc] initWithExposure:[OGAAdExposure zeroExposure]]];
     [self updateViewablityIfNecessary:[OGAAdExposure zeroExposure]];
 }

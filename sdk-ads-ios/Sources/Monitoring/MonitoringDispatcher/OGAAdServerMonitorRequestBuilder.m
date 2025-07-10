@@ -6,6 +6,7 @@
 #import <CoreTelephony/CTCarrier.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <OguryCore/OguryNetworkRequestBuilder.h>
+#import <OguryCore/OGCUtils.h>
 #import "NSDate+OGAFormatter.h"
 #import "OGAAdPrivacyConfiguration.h"
 #import "OGAAssetKeyManager.h"
@@ -20,6 +21,7 @@
 #import "OGAMonitoringLogMessage.h"
 #import "UIDevice+Orientation.h"
 #import "OguryAdError+Internal.h"
+#import "OGAInternal.h"
 
 @interface OGAAdServerMonitorRequestBuilder ()
 
@@ -28,6 +30,7 @@
 @property(nonatomic, retain) NSURL *url;
 @property(nonatomic, retain) OGAProfigDao *profigDao;
 @property(nonatomic, retain) OGAWebViewUserAgentService *webViewUserAgentService;
+@property(nonatomic, retain) CTTelephonyNetworkInfo *telephonyNetworkInfo;
 
 @end
 
@@ -38,6 +41,10 @@ static NSString *const MonitoringServiceBodyRequestId = @"request_id";
 
 // app
 static NSString *const MonitoringServiceBodyAppDictionary = @"app";
+static NSString *const MonitoringServiceBodyFrameworkDictionary = @"framework";
+static NSString *const MonitoringServiceBodyProductDictionary = @"product";
+static NSString *const MonitoringServiceBodyProductNameDictionary = @"name";
+static NSString *const MonitoringServiceBodyProductVersionDictionary = @"version";
 static NSString *const MonitoringServiceBodyAppAssetKey = @"asset_key";
 static NSString *const MonitoringServiceBodyAppAssetType = @"asset_type";
 static NSString *const MonitoringServiceBodyAppBundleId = @"bundle_id";
@@ -59,6 +66,7 @@ static NSString *const MonitoringServiceBodyDeviceModel = @"model";
 static NSString *const MonitoringServiceBodyDeviceScreen = @"screen";
 static NSString *const MonitoringServiceBodyDeviceScreenWidth = @"width";
 static NSString *const MonitoringServiceBodyDeviceScreenHeight = @"height";
+static NSString *const MonitoringServiceBodyDeviceScreenDensity = @"density";
 static NSString *const MonitoringServiceBodyDeviceScreenOrientation = @"orientation";
 
 // settings
@@ -89,20 +97,23 @@ static NSString *const MonitoringServiceBodyDeviceAssetType = @"ios";
                 assetKeyManager:[OGAAssetKeyManager shared]
                       profigDao:[OGAProfigDao shared]
                             log:[OGALog shared]
-        webViewUserAgentService:[OGAWebViewUserAgentService shared]];
+        webViewUserAgentService:[OGAWebViewUserAgentService shared]
+           telephonyNetworkInfo:[[CTTelephonyNetworkInfo alloc] init]];
 }
 
 - (instancetype)init:(NSURL *)url
             assetKeyManager:(OGAAssetKeyManager *)assetKeyManager
                   profigDao:(OGAProfigDao *)profigDao
                         log:(OGALog *)log
-    webViewUserAgentService:(OGAWebViewUserAgentService *)webViewUserAgentService {
+    webViewUserAgentService:(OGAWebViewUserAgentService *)webViewUserAgentService
+       telephonyNetworkInfo:(CTTelephonyNetworkInfo *)telephonyNetworkInfo {
     if (self = [super init]) {
         _url = url;
         _log = log;
         _assetKeyManager = assetKeyManager;
         _profigDao = profigDao;
         _webViewUserAgentService = webViewUserAgentService;
+        _telephonyNetworkInfo = telephonyNetworkInfo;
     }
     return self;
 }
@@ -143,9 +154,17 @@ static NSString *const MonitoringServiceBodyDeviceAssetType = @"ios";
     body[MonitoringServiceBodyAppDictionary] = [[NSMutableDictionary alloc] init];
     body[MonitoringServiceBodyAppDictionary][MonitoringServiceBodyAppAssetKey] = [self.assetKeyManager assetKey];
     body[MonitoringServiceBodyAppDictionary][MonitoringServiceBodyAppAssetType] = MonitoringServiceBodyDeviceAssetType;
+    body[MonitoringServiceBodyAppDictionary][MonitoringServiceBodyFrameworkDictionary] = [self frameworkType];
 
     body[MonitoringServiceBodyAppDictionary][MonitoringServiceBodyAppBundleId] = [OGAConfigurationUtils getAppBundleIdentifer];
     body[MonitoringServiceBodyAppDictionary][MonitoringServiceBodyAppVersion] = [OGAConfigurationUtils getAppMarketingVersion];
+
+    if ([OGAInternal shared].sdkConsumer != nil) {
+        body[MonitoringServiceBodyProductDictionary] = @{
+            MonitoringServiceBodyProductNameDictionary : [OGAInternal shared].sdkConsumer.name,
+            MonitoringServiceBodyProductVersionDictionary : [OGAInternal shared].sdkConsumer.version
+        };
+    }
 
     body[MonitoringServiceBodySdkDictionary] = [[NSMutableDictionary alloc] init];
     body[MonitoringServiceBodySdkDictionary][MonitoringServiceBodySdkModuleVersion] = OGA_SDK_VERSION;
@@ -165,6 +184,7 @@ static NSString *const MonitoringServiceBodyDeviceAssetType = @"ios";
     if ([privacyConfiguration monitoringPermissionIsEnabledFor:OGAAdPrivacyPermissionDeviceDimensions]) {
         screenDictionary[MonitoringServiceBodyDeviceScreenWidth] = device.screen.width;
         screenDictionary[MonitoringServiceBodyDeviceScreenHeight] = device.screen.height;
+        screenDictionary[MonitoringServiceBodyDeviceScreenDensity] = device.screen.density;
     }
     if ([privacyConfiguration monitoringPermissionIsEnabledFor:OGAAdPrivacyPermissionDeviceOrientation]) {
         screenDictionary[MonitoringServiceBodyDeviceScreenOrientation] = [self deviceOrientation];
@@ -224,13 +244,52 @@ static NSString *const MonitoringServiceBodyDeviceAssetType = @"ios";
     return body;
 }
 
+- (NSString *)frameworkType {
+    OGCSDKType sdkType = [OGCUtils frameworkType];
+    if (sdkType == OGCSDKTypeUnity) {
+        return @"Unity";
+    } else if (sdkType == OGCSDKTypeCordova) {
+        return @"Cordova";
+    } else if (sdkType == OGCSDKTypeIonic) {
+        return @"Ionic";
+    } else if (sdkType == OGCSDKTypeXamarin) {
+        return @"Xamarin";
+    } else if (sdkType == OGCSDKTypeAdobeAir) {
+        return @"Adobe Air";
+    } else if (sdkType == OGCSDKTypeFlutter) {
+        return @"Flutter";
+    } else if (sdkType == OGCSDKTypeReactNative) {
+        return @"React Native";
+    }
+    return @"Native";
+}
+
 - (BOOL)isLowPowered {
     return [OGAAdConfiguration isOnLowPowerMode];
 }
 
 - (NSString *)getSimCardCountry {
-    CTCarrier *carrier = [[CTTelephonyNetworkInfo new] subscriberCellularProvider];
-    return carrier.isoCountryCode;
+    if (@available(iOS 16, *)) {
+        return @"--";
+    } else if (@available(iOS 13.0, *)) {
+        NSString *dataServiceIdentifier = self.telephonyNetworkInfo.dataServiceIdentifier;
+        NSDictionary<NSString *, CTCarrier *> *carriers = self.telephonyNetworkInfo.serviceSubscriberCellularProviders;
+        if (carriers && dataServiceIdentifier) {
+            CTCarrier *carrier = carriers[dataServiceIdentifier];
+            if (carrier) {
+                return carrier.isoCountryCode ?: @"--";
+            }
+        }
+    } else if (@available(iOS 12.0, *)) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        CTCarrier *carrier = self.telephonyNetworkInfo.subscriberCellularProvider;
+#pragma clang diagnostic pop
+        if (carrier) {
+            return carrier.isoCountryCode ?: @"--";
+        }
+    }
+    return @"--";
 }
 
 - (OGADevice *)device {

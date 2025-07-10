@@ -201,6 +201,7 @@ NSString *const OGABannerAdInternalAPIBannerDidMoveToWindowNotificationName = @"
 
 - (void)destroy {
     [self.adManager close:self.sequence];
+    [self.monitoringDispatcher sendShowEvent:OGAShowEventAdClose adConfiguration:self.configuration];
 }
 
 - (void)didMoveToWindow {

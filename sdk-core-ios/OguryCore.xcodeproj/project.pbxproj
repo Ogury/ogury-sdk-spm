@@ -60,7 +60,7 @@
 		977348DF244077ED0002EBA4 /* OguryError.h in Headers */ = {isa = PBXBuildFile; fileRef = 977348DD244077ED0002EBA4 /* OguryError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		977348E0244077ED0002EBA4 /* OguryError.m in Sources */ = {isa = PBXBuildFile; fileRef = 977348DE244077ED0002EBA4 /* OguryError.m */; };
 		977348EF24409EDD0002EBA4 /* OguryErrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 977348EE24409EDD0002EBA4 /* OguryErrorTests.m */; };
-		C98F6E7927DB835A0069ECEA /* OGCUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = C98F6E7727DB7C400069ECEA /* OGCUtils.h */; };
+		C98F6E7927DB835A0069ECEA /* OGCUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = C98F6E7727DB7C400069ECEA /* OGCUtils.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		C98F6E7F27DBA6AD0069ECEA /* OGCUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C98F6E7827DB7C550069ECEA /* OGCUtils.m */; };
 		E28068C45CB5510208F7A0B2 /* OguryError+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 17A2EECFBF6FE86D44F13767 /* OguryError+Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		ED174D10255A882500904297 /* OguryNetworkClient.h in Headers */ = {isa = PBXBuildFile; fileRef = ED174D0E255A882500904297 /* OguryNetworkClient.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -730,9 +730,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OguryCoreTests/Pods-OguryCoreTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OguryCoreTests/Pods-OguryCoreTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
