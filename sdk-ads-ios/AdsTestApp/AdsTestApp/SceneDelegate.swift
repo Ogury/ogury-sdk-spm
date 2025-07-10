@@ -17,7 +17,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         FontLoader.loadFont()
         let mainViewController = MainViewController()
         SdkLauncher.rootViewController = mainViewController
-        Task { await SdkLauncher.shared.launch() }
         window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
         if let url = connectionOptions.urlContexts.first?.url {

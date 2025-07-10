@@ -20,7 +20,7 @@
       ],
       "allowedDisplay" : 19
     },
-    "numberOfSdkStart" : 3,
+    "numberOfSdkStart" : 1,
     "permissions" :  {
         "settings" : true,
         "logs" : true,
