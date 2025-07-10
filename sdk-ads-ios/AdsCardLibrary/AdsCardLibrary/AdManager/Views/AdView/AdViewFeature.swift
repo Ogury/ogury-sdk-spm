@@ -161,7 +161,6 @@ struct AdViewFeature {
             AdsCardManager.log(message, origin: adManager.cardConfiguration.qaLabel, logType: logType)
         }
         
-        // log received publisher callbacks only
         func log(event: AdLifeCycleEvent) {
             var message: String? = nil
             switch event {
@@ -249,6 +248,7 @@ struct AdViewFeature {
     func load(_ state: State) -> Effect<AdViewFeature.Action> {
         .merge(
             .cancel(id: AdCancel.load(state.adManager.id)),
+            .cancel(id: AdCancel.show(state.adManager.id)),
             .publisher { [state] in
                 state
                     .adManager
@@ -387,6 +387,7 @@ struct AdViewFeature {
                             }
                             return .merge(
                                 .cancel(id: AdCancel.show(state.adManager.id)),
+                                .cancel(id: AdCancel.load(state.adManager.id)),
                                 .publisher {
                                     state
                                         .adManager
