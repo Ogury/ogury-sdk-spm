@@ -210,6 +210,7 @@ class PrebidAdManager: NSObject, AdManager {
         AdCardContainer(name: cardConfiguration.adDisplayName,
                         adType: adType.rawValue,
                         adInformations: .init(adUnitId: adConfiguration.adUnitId,
+                                              campaignId: adConfiguration.campaignId,
                                               bannerSize: actualSize?.size,
                                               settings: .init(oguryTestModeEnabled: false,
                                                               rtbTestModeEnabled: false,
@@ -290,7 +291,8 @@ internal struct ORTB: Codable {
 
 class AdMobDelegateProxy: NSObject, InterstitialAdUnitDelegate, BannerViewDelegate {
     func bannerViewPresentationController() -> UIViewController? {
-        nil
+        guard let adManager else { return nil }
+        return adManager.viewController
     }
     func bannerView(_ bannerView: BannerView, didReceiveAdWithAdSize adSize: CGSize) {
         guard let adManager else { return }
