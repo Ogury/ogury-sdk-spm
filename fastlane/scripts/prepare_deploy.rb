@@ -172,7 +172,7 @@ private_lane :zip_famework do |options|
   files = ""
   framework_suffix = get_framework_suffix(environment)
   archive_filename = get_archive_filename(target.publicName, framework_suffix, version)
-  files += "#{target.publicName}.xcframework "
+  files += "#{target.publicName}.xcframework 
 
   puts "Files #{files}".red
 
@@ -352,6 +352,45 @@ lane :prepare_omid_for_deployment do |options|
     target: target,
     artifactory: artifactory,
     targetThreshold: "ads"
+    )
+end
+
+lane :prepare_omid_for_deployment do |options|
+  if !options[:configuration]
+    raise "No configuration specified!".red
+  end
+  if !options[:environment]
+    raise "No environment specified!".red
+  end
+  if !options[:version]
+    raise "No version specified!".red
+  end
+  if !options[:tag]
+    raise "No tag specified!".red
+  end
+
+  configuration = options[:configuration]
+  environment = options[:environment]
+  version = options[:version]
+  tag = options[:tag]
+  artifactory = options[:artifactory] ? options[:artifactory] : false
+
+  puts "Deploy OMSDK".yellow
+  target = configuration.targets.omid
+
+  #copy framework before deploying
+  Dir.chdir("..") do
+    sh("mkdir -p #{configuration.directories.output}")
+    sh("cp -R #{target.path}#{target.name}.xcframework #{configuration.directories.output}")
+  end
+
+  prepare_for_deployment(
+    configuration: configuration,
+    environment: environment,
+    version: version,
+    tag: tag,
+    target: target,
+    artifactory: artifactory
     )
 end
 

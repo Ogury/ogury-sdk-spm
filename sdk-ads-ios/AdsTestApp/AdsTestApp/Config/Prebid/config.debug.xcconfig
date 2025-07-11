@@ -1,5 +1,5 @@
 #include "../../../../../Pods/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp.debug.xcconfig"
 DEFAULT_ENV = PROD
-CUSTOM_VERSION = alpha.devc.4
-VERSION = 1.0.0-alpha.devc.4
-BUILD_NUMBER = 1752136147
+CUSTOM_VERSION = alpha.devc.1
+VERSION = 1.0.0-alpha.devc.1
+BUILD_NUMBER = 1752135359
