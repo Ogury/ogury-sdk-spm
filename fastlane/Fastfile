@@ -296,6 +296,9 @@ lane :test do |options|
     )
 
     deploy_framework(environment: environment, tag: tag, target: configuration.targets.omid, artifactory: false)
+    #update the internal repo so that the previous OMID push is available
+    update_internal_cocoapods environment: environment
+    #now deploy ads
     deploy_framework(environment: environment, tag: tag, target: configuration.targets.ads, artifactory: artifactory)
   end
 

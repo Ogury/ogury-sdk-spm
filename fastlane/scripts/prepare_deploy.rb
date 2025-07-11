@@ -277,7 +277,8 @@ lane :prepare_core_for_deployment do |options|
     version: version,
     tag: tag,
     target: configuration.targets.core,
-    artifactory: artifactory
+    artifactory: artifactory,
+    targetThreshold: "core"
     )
 end
 
@@ -309,7 +310,8 @@ lane :prepare_ads_for_deployment do |options|
     version: version,
     tag: tag,
     target: configuration.targets.ads,
-    artifactory: artifactory
+    artifactory: artifactory,
+    targetThreshold: "ads"
     )
 end
 
@@ -348,7 +350,8 @@ lane :prepare_omid_for_deployment do |options|
     version: version,
     tag: tag,
     target: target,
-    artifactory: artifactory
+    artifactory: artifactory,
+    targetThreshold: "ads"
     )
 end
 
@@ -380,7 +383,8 @@ lane :prepare_wrapper_for_deployment do |options|
     version: version,
     tag: tag,
     target: configuration.targets.wrapper,
-    artifactory: artifactory
+    artifactory: artifactory,
+    targetThreshold: "sdk"
     )
 end
 
