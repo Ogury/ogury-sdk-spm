@@ -169,11 +169,6 @@ lane :test do |options|
         configuration: configuration, 
         sdk: sdk
         )
-
-      # test_card_framework(
-      #   configuration: configuration, 
-      #   sdk: sdk
-      # )
     end
   end
 
