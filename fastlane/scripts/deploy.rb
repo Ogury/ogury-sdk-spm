@@ -60,7 +60,7 @@ private_lane :push_podspec_to_private_repo do |options|
   Dir.chdir("..") do
     #sh("pwd")
     UI.message("Linting #{podspec}...")
-    sh("pod spec lint #{podspec} --allow-warnings --skip-tests")
+    sh("pod spec lint #{podspec} --allow-warnings --skip-tests --sources='sdk-internal,cocoapods'")
   
     # Check if repo is already added
     repo_list = sh("pod repo list", log: false)
@@ -70,7 +70,7 @@ private_lane :push_podspec_to_private_repo do |options|
     else
       UI.message("CocoaPods repo '#{repo_name}' already exists.")
     end
-    sh("pod repo push #{repo_name} #{podspec} --allow-warnings --skip-tests")
+    sh("pod repo push #{repo_name} #{podspec} --allow-warnings --skip-tests --sources='sdk-internal,cocoapods'")
   end
 end
 
