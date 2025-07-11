@@ -27,9 +27,10 @@ struct SdkLauncher: SdkLaunchable  {
     func startAds(forceStart: Bool = false) async {
         if SettingsController().startSDKWithApplication || forceStart {
             forceAdsEnvironment()
-            (0..<SettingsController().numberOfSdkStart).forEach { second in
+            let nbOfStart = SettingsController().numberOfSdkStart
+            (0..<nbOfStart).forEach { second in
                 Task {
-                    try? await Task.sleep(for: .seconds(second))
+                    try? await Task.sleep(for: .seconds(Double(second) + 0.1))
                     print("🫠 start SDK")
                     await self.adapter.startSdk()
                 }
