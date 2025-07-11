@@ -103,6 +103,10 @@ platform :ios do
       raise "Wrong environment specified!".red
     end
 
+    if ENV['GIT_USERNAME'].nil? || ENV['GIT_TOKEN'].nil?
+      raise "GIT_USERNAME and GIT_TOKEN must be set in the environment!".red
+    end
+
     environment = options[:environment]
     testTarget = options[:testTarget] ? options[:testTarget] : false
     targetThreshold = options[:targetThreshold] ? options[:targetThreshold] : "all"

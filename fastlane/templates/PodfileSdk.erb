@@ -1,4 +1,6 @@
-source "git@github.com:Ogury/sdk-internal-cocoapods.git"
+<% raise "Missing GIT_USERNAME or GIT_TOKEN" unless ENV['GIT_USERNAME'] && ENV['GIT_TOKEN'] %>
+
+source "https://<%= ENV['GIT_USERNAME'] %>:<%= ENV['GIT_TOKEN'] %>@github.com/Ogury/sdk-internal-cocoapods.git"
 source 'https://cdn.cocoapods.org/'
 
 platform :ios, "12.0"
