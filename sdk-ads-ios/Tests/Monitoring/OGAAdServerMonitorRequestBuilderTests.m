@@ -63,9 +63,9 @@
 }
 
 - (void)testWhenRequestIsBuilt_ThenDeviceNameIsNeverCalled {
-    NSDictionary *firstDictionnary = @{@"name" : @"dsp", @"value" : @"{\"creative_id\": \"123\", \"region\":\"east-us\"}", @"version" : @2};
-    NSDictionary *secondDictionnary = @{@"name" : @"vast_version", @"value" : @"4.0", @"version" : @1};
-    NSArray *extras = @[ firstDictionnary, secondDictionnary ];
+    NSDictionary *firstDictionary = @{@"name" : @"dsp", @"value" : @"{\"creative_id\": \"123\", \"region\":\"east-us\"}", @"version" : @2};
+    NSDictionary *secondDictionary = @{@"name" : @"vast_version", @"value" : @"4.0", @"version" : @1};
+    NSArray *extras = @[ firstDictionary, secondDictionary ];
     id currentDevice = OCMPartialMock([UIDevice currentDevice]);
 
     OguryMediation *mediation = [[OguryMediation alloc] initWithName:@"Mediation" version:@"1.0.0" adapterVersion:@"4.0.0.1"];
@@ -89,9 +89,9 @@
 }
 
 - (void)testWhenRequestIsBuilt_ThenDeviceNameIsNeverCalled_NoAdapterVersion {
-    NSDictionary *firstDictionnary = @{@"name" : @"dsp", @"value" : @"{\"creative_id\": \"123\", \"region\":\"east-us\"}", @"version" : @2};
-    NSDictionary *secondDictionnary = @{@"name" : @"vast_version", @"value" : @"4.0", @"version" : @1};
-    NSArray *extras = @[ firstDictionnary, secondDictionnary ];
+    NSDictionary *firstDictionary = @{@"name" : @"dsp", @"value" : @"{\"creative_id\": \"123\", \"region\":\"east-us\"}", @"version" : @2};
+    NSDictionary *secondDictionary = @{@"name" : @"vast_version", @"value" : @"4.0", @"version" : @1};
+    NSArray *extras = @[ firstDictionary, secondDictionary ];
     id currentDevice = OCMPartialMock([UIDevice currentDevice]);
 
     OguryMediation *mediation = [[OguryMediation alloc] initWithName:@"Mediation" version:@"1.0.0"];
