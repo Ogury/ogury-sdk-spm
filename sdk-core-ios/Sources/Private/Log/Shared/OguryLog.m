@@ -58,6 +58,8 @@
     @synchronized (self.loggers) {
         for (id<OguryLogger> currentLogger in self.loggers) {
             currentLogger.logLevel = logLevel;
+            currentLogger.allowedLogTypes = @[OguryLogTypePublisher, OguryLogTypeInternal, OguryLogTypeRequests, @"Mraid", @"Monitoring", @"SDK Callbacks"];
+            currentLogger.logFormatter.displayOptions = OguryLogDisplaySDK | OguryLogDisplayOrigin | OguryLogDisplayType | OguryLogDisplayLevel | OguryLogDisplayTags | OguryLogDisplayDate;
         }
     }
 }

@@ -167,7 +167,7 @@ struct LogsView: View {
                     logsSubscription = TestAppLogController.shared.logger.logs
                         .receive(on: DispatchQueue.main)
                         .sink { logMessages in
-                            print("💡 received messages \(logMessages)")
+                            print("💡 received messages \(logMessages.string)")
                             viewStore.send(.receiveLog(logMessages))
                         }
                     
