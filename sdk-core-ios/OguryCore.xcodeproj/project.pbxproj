@@ -1029,7 +1029,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4BFB006EEAC67C4A30D0BAF8 /* Pods-OguryCoreTests.debug.xcconfig */;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Tests/OCMock",
@@ -1046,7 +1045,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CE692C3841CF8D177988BC43 /* Pods-OguryCoreTests.release.xcconfig */;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Tests/OCMock",
