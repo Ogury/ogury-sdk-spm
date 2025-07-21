@@ -63,12 +63,38 @@
 }
 
 - (void)testWhenRequestIsBuilt_ThenDeviceNameIsNeverCalled {
-    NSDictionary *firstDictionnary = @{@"name" : @"dsp", @"value" : @"{\"creative_id\": \"123\", \"region\":\"east-us\"}", @"version" : @2};
-    NSDictionary *secondDictionnary = @{@"name" : @"vast_version", @"value" : @"4.0", @"version" : @1};
-    NSArray *extras = @[ firstDictionnary, secondDictionnary ];
+    NSDictionary *firstDictionary = @{@"name" : @"dsp", @"value" : @"{\"creative_id\": \"123\", \"region\":\"east-us\"}", @"version" : @2};
+    NSDictionary *secondDictionary = @{@"name" : @"vast_version", @"value" : @"4.0", @"version" : @1};
+    NSArray *extras = @[ firstDictionary, secondDictionary ];
     id currentDevice = OCMPartialMock([UIDevice currentDevice]);
 
     OguryMediation *mediation = [[OguryMediation alloc] initWithName:@"Mediation" version:@"1.0.0" adapterVersion:@"4.0.0.1"];
+
+    OCMReject([currentDevice name]);
+    OGAAdMonitorEvent *event = [[OGAAdMonitorEvent alloc] initWithTimestamp:@1000
+                                                                  sessionId:@"session"
+                                                                  eventCode:@"eventCode"
+                                                                  eventName:@"event"
+                                                               dispatchType:OGMDispatchTypeImmediate
+                                                                   adUnitId:@"adUnit"
+                                                                  mediation:mediation
+                                                                 campaignId:@"campaignId"
+                                                                 creativeId:@"creativeId"
+                                                                     extras:extras
+                                                          detailsDictionary:@{@"Dictionary" : @YES}
+                                                                  errorType:nil
+                                                               errorContent:nil];
+    [self.requestBuilder buildRequestWithEvents:@[ event ]];
+    [currentDevice stopMocking];
+}
+
+- (void)testWhenRequestIsBuilt_ThenDeviceNameIsNeverCalled_NoAdapterVersion {
+    NSDictionary *firstDictionary = @{@"name" : @"dsp", @"value" : @"{\"creative_id\": \"123\", \"region\":\"east-us\"}", @"version" : @2};
+    NSDictionary *secondDictionary = @{@"name" : @"vast_version", @"value" : @"4.0", @"version" : @1};
+    NSArray *extras = @[ firstDictionary, secondDictionary ];
+    id currentDevice = OCMPartialMock([UIDevice currentDevice]);
+
+    OguryMediation *mediation = [[OguryMediation alloc] initWithName:@"Mediation" version:@"1.0.0"];
 
     OCMReject([currentDevice name]);
     OGAAdMonitorEvent *event = [[OGAAdMonitorEvent alloc] initWithTimestamp:@1000
