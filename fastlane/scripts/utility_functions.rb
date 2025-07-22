@@ -52,7 +52,7 @@ def get_version(environment, xcodeproj, target, tag)
     return project_version
   end
 
-  tag_version = tag[/internal-(?:[\w-]+?)-(\d+\.\d+\.\d+(?:-(?:rc|beta|alpha)(?:\.[\w]+)?(?:\.\d+)?)?)/, 1]
+  tag_version = tag[/internal-(?:[\w-]+?)-(\d+\.\d+\.\d+(?:-(?:rc|alpha)(?:\.[\w]+)?(?:\.\d+)?)?)/, 1]
 
   return tag_version
 end
