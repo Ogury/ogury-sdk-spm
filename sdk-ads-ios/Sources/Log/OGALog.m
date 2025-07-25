@@ -3,7 +3,7 @@
 //
 
 #import "OGALog.h"
-#import <OguryCore/OguryOSLogger.h>
+#import <OguryCore/OguryNSLogger.h>
 #import <OguryCore/OGCLog.h>
 #import "NSString+OGAUtility.h"
 #import "OguryLogConstants.h"
@@ -35,11 +35,11 @@
 
 - (instancetype)init {
     return [self init:[OGCLog shared].oguryLog
-             oSLogger:[[OguryOSLogger alloc] initWithSubSystem:OGABundleIdentifier category:OGALogOgury]];
+             nsLogger:[[OguryNSLogger alloc] init]];
 }
 
 - (instancetype)init:(OguryLog *)oguryLog
-            oSLogger:(OguryOSLogger *)logger {
+            nsLogger:(OguryNSLogger *)logger {
     if (self = [super init]) {
         _oguryLog = oguryLog;
         [_oguryLog addLogger:logger];
