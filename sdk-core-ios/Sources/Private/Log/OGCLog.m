@@ -52,6 +52,10 @@
     [self.oguryLog setLogLevel:logLevel];
 }
 
+- (void)setAllowedTypes:(NSArray<NSString *> *)allowedLogTypes {
+    [self.oguryLog setAllowedTypes:allowedLogTypes];
+}
+
 - (void)logMessage:(OguryLogLevel)logLevel message:(NSString *)message {
     [self.oguryLog logMessage:[[OguryAbstractLogMessage alloc] initWithLevel:logLevel
                                                                      logType:OguryLogTypeInternal

@@ -8,6 +8,8 @@
 #import "OguryLogLevel.h"
 #import "OGCURLRequestLogMessage.h"
 #import "OGCEventLogMessage.h"
+#import "OguryNSLogger.h"
+#import "OguryOSLogger.h"
 #import <OguryCore/OguryLogMessage.h>
 
 @interface OguryLog ()
@@ -38,6 +40,12 @@
 
 - (void)addLogger:(id<OguryLogger>)logger {
     @synchronized (self.loggers) {
+        // Check if the logger is already added
+        for (id<OguryLogger> currentLogger in self.loggers) {
+            if ([currentLogger.class isEqual:logger.class]) {
+                return; // Logger already exists, no need to add it again
+            }
+        }
         [self.loggers addObject:logger];
     }
 }
@@ -58,6 +66,13 @@
     @synchronized (self.loggers) {
         for (id<OguryLogger> currentLogger in self.loggers) {
             currentLogger.logLevel = logLevel;
+        }
+    }
+}
+
+- (void)setAllowedTypes:(NSArray<NSString *> *)allowedLogTypes {
+    @synchronized (self.loggers) {
+        for (id<OguryLogger> currentLogger in self.loggers) {
             currentLogger.allowedLogTypes = @[OguryLogTypePublisher, OguryLogTypeInternal, OguryLogTypeRequests, @"Mraid", @"Monitoring", @"SDK Callbacks"];
             currentLogger.logFormatter.displayOptions = OguryLogDisplaySDK | OguryLogDisplayOrigin | OguryLogDisplayType | OguryLogDisplayLevel | OguryLogDisplayTags | OguryLogDisplayDate;
         }

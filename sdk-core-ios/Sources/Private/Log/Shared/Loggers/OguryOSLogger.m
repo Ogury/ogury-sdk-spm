@@ -30,6 +30,7 @@
         _logLevel = OguryLogLevelError;
         _allowedLogTypes = @[OguryLogTypePublisher];
         _logFormatter = [[OguryLogFormatter alloc] init];
+        _logFormatter.displayOptions = OguryLogDisplaySDK | OguryLogDisplayOrigin | OguryLogDisplayType | OguryLogDisplayLevel | OguryLogDisplayTags | OguryLogDisplayDate;
     }
     return self;
 }

@@ -6,6 +6,7 @@
 #import <OguryCore/OguryOSLogger.h>
 #import <OguryCore/OguryLog.h>
 #import <OguryCore/OguryLogMessage.h>
+#import <OguryCore/OGCLog.h>
 
 OguryLogSDK const OguryLogSDKWrapper = @"OgurySDK";
 
@@ -34,7 +35,7 @@ NSString *const OGWBundleIdentifier = @"com.ogury.OguryWrapper";
 }
 
 - (instancetype)init {
-   return [self init:[[OguryLog alloc] init]
+   return [self init:[OGCLog shared].oguryLog
             oSLogger:[[OguryOSLogger alloc] initWithSubSystem:OGWBundleIdentifier category:OGWLogOgury]];
 }
 

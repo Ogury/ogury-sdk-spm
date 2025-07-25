@@ -4,6 +4,7 @@
 
 #import "OGALog.h"
 #import <OguryCore/OguryOSLogger.h>
+#import <OguryCore/OGCLog.h>
 #import "NSString+OGAUtility.h"
 #import "OguryLogConstants.h"
 #import "OGAAdLogMessage.h"
@@ -33,7 +34,7 @@
 }
 
 - (instancetype)init {
-    return [self init:[[OguryLog alloc] init]
+    return [self init:[OGCLog shared].oguryLog
              oSLogger:[[OguryOSLogger alloc] initWithSubSystem:OGABundleIdentifier category:OGALogOgury]];
 }
 

@@ -176,6 +176,20 @@ Environment: \(environment)
         await Ogury.start(with: assetKey)
     }
     
+    public func setLogLevel(_ level: OguryLogLevel) {
+        Ogury.setLogLevel(level)
+    }
+    
+    public func setAllowedTypes(_ types: [String]) {
+        let obj = OGCInternal.shared()
+        let sel = NSSelectorFromString("setAllowedTypes:")
+        let meth = class_getInstanceMethod(object_getClass(obj), sel)
+        let imp = method_getImplementation(meth!)
+        typealias ClosureType = @convention(c) (AnyObject, Selector, Array<String>) -> Void
+        let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
+        sayHiTo(obj, sel, types)
+    }
+    
     public func forceAdsEnvironment(_ env: String) {
         OGAInternal.shared().perform(NSSelectorFromString("changeServerEnvironment:"), with: env)
     }
