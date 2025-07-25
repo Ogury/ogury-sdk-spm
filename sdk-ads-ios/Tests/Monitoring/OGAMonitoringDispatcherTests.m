@@ -124,7 +124,7 @@
     OCMStub(notification.name).andReturn(OGAEnvironmentChanged);
     [self.monitoringDispatcher didReceiveEnvironmentChange:notification];
     OCMVerify([self.monitorManager resetMonitors]);
-    OCMVerify(times(3), [self.monitorManager addMonitor:[OCMArg any]]);
+    OCMVerify(times(2), [self.monitorManager addMonitor:[OCMArg any]]);
 }
 
 - (void)testIsEventBlacklistedFalse {

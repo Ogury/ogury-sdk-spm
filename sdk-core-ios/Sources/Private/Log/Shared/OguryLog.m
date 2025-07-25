@@ -73,8 +73,7 @@
 - (void)setAllowedTypes:(NSArray<NSString *> *)allowedLogTypes {
     @synchronized (self.loggers) {
         for (id<OguryLogger> currentLogger in self.loggers) {
-            currentLogger.allowedLogTypes = @[OguryLogTypePublisher, OguryLogTypeInternal, OguryLogTypeRequests, @"Mraid", @"Monitoring", @"SDK Callbacks"];
-            currentLogger.logFormatter.displayOptions = OguryLogDisplaySDK | OguryLogDisplayOrigin | OguryLogDisplayType | OguryLogDisplayLevel | OguryLogDisplayTags | OguryLogDisplayDate;
+            currentLogger.allowedLogTypes = allowedLogTypes;
         }
     }
 }
