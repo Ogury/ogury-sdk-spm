@@ -3,7 +3,7 @@
 //
 
 #import "OGWLog.h"
-#import <OguryCore/OguryOSLogger.h>
+#import <OguryCore/OguryNSLogger.h>
 #import <OguryCore/OguryLog.h>
 #import <OguryCore/OguryLogMessage.h>
 #import <OguryCore/OGCLog.h>
@@ -36,10 +36,10 @@ NSString *const OGWBundleIdentifier = @"com.ogury.OguryWrapper";
 
 - (instancetype)init {
    return [self init:[OGCLog shared].oguryLog
-            oSLogger:[[OguryOSLogger alloc] initWithSubSystem:OGWBundleIdentifier category:OGWLogOgury]];
+            nsLogger:[[OguryNSLogger alloc] init]];
 }
 
-- (instancetype)init:(OguryLog *)oguryLog oSLogger:(OguryOSLogger *)logger {
+- (instancetype)init:(OguryLog *)oguryLog nsLogger:(OguryNSLogger *)logger {
    if (self = [super init]) {
       _oguryLog = oguryLog;
       [_oguryLog addLogger:logger];
