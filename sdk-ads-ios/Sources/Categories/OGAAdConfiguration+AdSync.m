@@ -125,7 +125,7 @@ static NSString *const AdSyncServiceBodyContentOverlayMaximumSizeScaleKey = @"sc
     body[AdSyncServiceBodyAppKey][AdSyncServiceBodyAssetKeyKey] = [assetKeyManager assetKey];
     body[AdSyncServiceBodyAppKey][AdSyncServiceBodyAssetTypeKey] = [OGAConfigurationUtils getDeviceOS];
     body[AdSyncServiceBodyAppKey][AdSyncServiceBodyBundleIdKey] = [OGAConfigurationUtils getAppBundleIdentifer];
-    body[AdSyncServiceBodyAppKey][AdSyncServiceBodyVersionKey] = [NSString stringWithFormat:@"%@.%@", [OGAConfigurationUtils getAppMarketingVersion], [OGAConfigurationUtils getAppBuildVersion]];
+    body[AdSyncServiceBodyAppKey][AdSyncServiceBodyVersionKey] = [OGAConfigurationUtils getAppMarketingVersion];
     if ([privacyConfiguration adSyncPermissionIsEnabledFor:OGAAdPrivacyPermissionInstanceToken]) {
         body[AdSyncServiceBodyAppKey][AdSyncServiceBodyInstanceTokenKey] = [OGAAdIdentifierService getInstanceToken];
     }
