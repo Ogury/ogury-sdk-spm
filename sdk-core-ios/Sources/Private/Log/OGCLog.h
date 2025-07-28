@@ -9,11 +9,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OGCLog : NSObject
 
+@property (nonatomic, strong, readonly) OguryLog *oguryLog;
+
 #pragma mark - Methods
 
 + (instancetype)shared;
 
 - (void)setLogLevel:(OguryLogLevel)logLevel;
+
+- (void)setAllowedTypes:(NSArray<NSString *> *)allowedLogTypes;
 
 - (void)logMessage:(OguryLogLevel)logLevel message:(NSString *)message;
 

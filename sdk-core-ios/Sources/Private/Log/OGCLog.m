@@ -42,7 +42,6 @@
             nsLogger:(OguryNSLogger *)nsLogger {
     if (self = [super init]) {
         _oguryLog = oguryLog;
-        [_oguryLog addLogger:osLogger];
         [_oguryLog addLogger:nsLogger];
     }
     return self;
@@ -50,6 +49,10 @@
 
 - (void)setLogLevel:(OguryLogLevel)logLevel {
     [self.oguryLog setLogLevel:logLevel];
+}
+
+- (void)setAllowedTypes:(NSArray<NSString *> *)allowedLogTypes {
+    [self.oguryLog setAllowedTypes:allowedLogTypes];
 }
 
 - (void)logMessage:(OguryLogLevel)logLevel message:(NSString *)message {

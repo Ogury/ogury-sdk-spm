@@ -9,8 +9,9 @@
 - (instancetype)initWithLevel:(OguryLogLevel)level {
     if (self = [super init]) {
         _logLevel = level;
-        _allowedLogTypes = @[OguryLogTypePublisher];
+        _allowedLogTypes = @[OguryLogTypePublisher, @"SDK Callbacks"];
         _logFormatter = [[OguryLogFormatter alloc] init];
+        _logFormatter.displayOptions = OguryLogDisplaySDK | OguryLogDisplayOrigin | OguryLogDisplayType | OguryLogDisplayLevel | OguryLogDisplayTags | OguryLogDisplayDate;
     }
     return self;
 }

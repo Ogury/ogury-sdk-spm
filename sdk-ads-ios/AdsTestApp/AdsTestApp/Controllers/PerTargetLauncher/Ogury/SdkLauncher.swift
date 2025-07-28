@@ -33,6 +33,8 @@ struct SdkLauncher: SdkLaunchable  {
                     try? await Task.sleep(for: .seconds(Double(second) + 0.1))
                     print("🫠 start SDK")
                     await self.adapter.startSdk()
+                    await self.adapter.setLogLevel(.all)
+                    await self.adapter.setAllowedTypes(["Publisher", "Internal", "Requests", "Mraid", "Monitoring", "SDK Callbacks"])
                 }
             }
         }

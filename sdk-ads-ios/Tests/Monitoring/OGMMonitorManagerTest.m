@@ -72,14 +72,14 @@ static NSString *const TestContent = @"detailContentTest";
 - (void)testMonitor {
     OGMMonitorManager *manager = [[OGMMonitorManager alloc] init];
 
-    XCTAssertEqual([manager.monitors count], 1);  // default os monitor is added
+    XCTAssertEqual([manager.monitors count], 0);
 
     OGMOSLogMonitor *monitorMock = [[OGMOSLogMonitor alloc] init];
 
     [manager addMonitor:monitorMock];
     [manager monitor:self.event];
 
-    XCTAssertEqual([manager.monitors count], 2);  // default os monitor is added
+    XCTAssertEqual([manager.monitors count], 1);
     OCMVerify([monitorMock monitor:self.event]);
 }
 

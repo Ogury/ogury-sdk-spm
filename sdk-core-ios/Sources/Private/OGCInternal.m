@@ -56,6 +56,10 @@
     [self.log setLogLevel:logLevel];
 }
 
+- (void)setAllowedTypes:(NSArray<NSString *> *)allowedLogTypes {
+    [self.log setAllowedTypes:allowedLogTypes];
+}
+
 - (NSString *)getAdIdentifier {
     return [self.adIdentifierManager getAdIdentifier];
 }
