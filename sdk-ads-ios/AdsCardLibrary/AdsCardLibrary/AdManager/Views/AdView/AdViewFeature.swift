@@ -127,19 +127,19 @@ struct AdViewFeature {
         }
         mutating func toggleTestMode() {
             if adUnitIsInTestMode {
-                adManager.adConfiguration.adUnitId.removeLast(5)
+                adUnitId.removeLast(5)
                 tags.remove(.oguryTestMode)
             } else {
-                adManager.adConfiguration.adUnitId.append(.testModeSuffix)
+                adUnitId.append(.testModeSuffix)
                 tags.insert(.oguryTestMode)
             }
         }
         mutating func forceTestMode(_ enable: Bool) {
             if !adUnitIsInTestMode && enable {
-                adManager.adConfiguration.adUnitId.append(.testModeSuffix)
+                adUnitId.append(.testModeSuffix)
                 tags.insert(.oguryTestMode)
             } else if adUnitIsInTestMode && !enable {
-                adManager.adConfiguration.adUnitId.removeLast(5)
+                adUnitId.removeLast(5)
                 tags.remove(.oguryTestMode)
             }
         }
