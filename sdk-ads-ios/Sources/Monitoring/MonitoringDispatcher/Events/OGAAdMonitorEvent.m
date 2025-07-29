@@ -120,11 +120,19 @@
         body[OGAAdMonitorEventBodyAd] = adIdsDictionary;
     }
     if (self.mediation) {
-        body[OGAAdMonitorEventBodyMediation] = @{
-            OGAAdMonitorEventBodyMediationName : self.mediation.name,
-            OGAAdMonitorEventBodyMediationVersion : self.mediation.version,
-            OGAAdMonitorEventBodyMediationAdapterVersion : self.mediation.adapterVersion
-        };
+        NSMutableDictionary *mediationDict = [NSMutableDictionary dictionary];
+        if (self.mediation.name) {
+            mediationDict[OGAAdMonitorEventBodyMediationName] = self.mediation.name;
+        }
+        if (self.mediation.version) {
+            mediationDict[OGAAdMonitorEventBodyMediationVersion] = self.mediation.version;
+        }
+        if (self.mediation.adapterVersion) {
+            mediationDict[OGAAdMonitorEventBodyMediationAdapterVersion] = self.mediation.adapterVersion;
+        }
+        if (mediationDict.count > 0) {
+            body[OGAAdMonitorEventBodyMediation] = [mediationDict copy];
+        }
     }
     return body;
 }

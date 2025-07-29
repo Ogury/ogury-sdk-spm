@@ -91,7 +91,6 @@
 
 - (void)didReceiveEnvironmentChange:(NSNotification *)notification {
     [self.monitorManager resetMonitors];
-    [self.monitorManager addMonitor:[[OGMOSLogMonitor alloc] init]];
     [self.monitorManager addMonitor:[[OGMServerMonitor alloc] initWithRequestBuilder:[[OGAAdServerMonitorRequestBuilder alloc] initWithUrl:self.environmentManager.monitoringURL]
                                                                     persistanceStore:[[OGMEventPersistanceStore alloc] init]]];
 }

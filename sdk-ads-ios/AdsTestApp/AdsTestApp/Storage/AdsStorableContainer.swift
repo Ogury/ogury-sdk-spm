@@ -347,9 +347,12 @@ struct AdsStorableContainer: Codable {
             let adManagers: [any AdManager] = card.compactMap { container in
                 var updatedContainer = container
                 updatedContainer.version = fileVersion
-                return try? SdkLauncher.shared.adapter.adManager(from: updatedContainer,
-                                                          viewController: viewController,
-                                                          adDelegate: adDelegate)
+                var adManager = try? SdkLauncher.shared.adapter.adManager(from: updatedContainer,
+                                                                          viewController: viewController,
+                                                                          adDelegate: adDelegate)
+                // save the global settings to the manager as well as it will impatc the card layout
+                adManager?.cardConfiguration = container.adAdapterOptions.cardConfiguration
+                return adManager
             }
             guard fileVersion == Self.currentFileVersion else {
                 // handle migration

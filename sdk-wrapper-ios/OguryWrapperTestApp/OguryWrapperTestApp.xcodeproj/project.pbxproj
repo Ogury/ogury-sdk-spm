@@ -38,6 +38,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04737F62B9F321363DD8B9EE /* Pods-OguryWrapperTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryWrapperTestApp.debug.xcconfig"; path = "Target Support Files/Pods-OguryWrapperTestApp/Pods-OguryWrapperTestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		05FF9FE725B88DED0047EFCD /* OguryWrapperTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OguryWrapperTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05FF9FEA25B88DED0047EFCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05FF9FEE25B88DED0047EFCD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -47,8 +48,7 @@
 		05FF9FF825B88DEF0047EFCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05FFA07D25B9CA4B0047EFCD /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		05FFA15B25BEC5C10047EFCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		26484642A57146350328DBED /* Pods-OguryWrapperTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryWrapperTestApp.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryWrapperTestApp/Pods-OguryWrapperTestApp.debug.xcconfig"; sourceTree = "<group>"; };
-		3E0D22C68D5A3D29C94C5B87 /* Pods-OguryWrapperTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryWrapperTestApp.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-OguryWrapperTestApp/Pods-OguryWrapperTestApp.release.xcconfig"; sourceTree = "<group>"; };
+		335D4387D76D9C80006851C1 /* Pods-OguryWrapperTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryWrapperTestApp.release.xcconfig"; path = "Target Support Files/Pods-OguryWrapperTestApp/Pods-OguryWrapperTestApp.release.xcconfig"; sourceTree = "<group>"; };
 		50FE9BB62CB80D0200181FCD /* OgurySdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OgurySdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50FE9BBA2CB80D0D00181FCD /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50FE9BBD2CB80D1700181FCD /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,8 +81,8 @@
 				05FF9FFF25B974A10047EFCD /* Sources */,
 				05FF9FE925B88DED0047EFCD /* OguryWrapperTestApp */,
 				05FF9FE825B88DED0047EFCD /* Products */,
-				6F6F4184EE73B22EF75F65F9 /* Pods */,
 				BDE08D00BAFA4CABBE4891A2 /* Frameworks */,
+				740B281D89C065E1C3B35D8D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,14 +130,14 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		6F6F4184EE73B22EF75F65F9 /* Pods */ = {
+		740B281D89C065E1C3B35D8D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				26484642A57146350328DBED /* Pods-OguryWrapperTestApp.debug.xcconfig */,
-				3E0D22C68D5A3D29C94C5B87 /* Pods-OguryWrapperTestApp.release.xcconfig */,
+				04737F62B9F321363DD8B9EE /* Pods-OguryWrapperTestApp.debug.xcconfig */,
+				335D4387D76D9C80006851C1 /* Pods-OguryWrapperTestApp.release.xcconfig */,
 			);
 			name = Pods;
-			path = ../Pods;
+			path = ../../Pods;
 			sourceTree = "<group>";
 		};
 		BDE08D00BAFA4CABBE4891A2 /* Frameworks */ = {
@@ -304,6 +304,7 @@
 /* Begin XCBuildConfiguration section */
 		05FF9FF925B88DEF0047EFCD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04737F62B9F321363DD8B9EE /* Pods-OguryWrapperTestApp.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -369,6 +370,7 @@
 		};
 		05FF9FFA25B88DEF0047EFCD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 335D4387D76D9C80006851C1 /* Pods-OguryWrapperTestApp.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -428,7 +430,7 @@
 		};
 		05FF9FFC25B88DEF0047EFCD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 26484642A57146350328DBED /* Pods-OguryWrapperTestApp.debug.xcconfig */;
+			baseConfigurationReference = 04737F62B9F321363DD8B9EE /* Pods-OguryWrapperTestApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -469,6 +471,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "wrapper test Application";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -476,7 +482,7 @@
 		};
 		05FF9FFD25B88DEF0047EFCD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E0D22C68D5A3D29C94C5B87 /* Pods-OguryWrapperTestApp.release.xcconfig */;
+			baseConfigurationReference = 335D4387D76D9C80006851C1 /* Pods-OguryWrapperTestApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -517,6 +523,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "wrapper test Application";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

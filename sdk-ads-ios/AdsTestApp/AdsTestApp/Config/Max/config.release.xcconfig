@@ -2,5 +2,5 @@
 ASSET_KEY = OGY-3D6E42683F56
 DEFAULT_ENV = PROD
 PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.max.ads.app
-VERSION = 1.0.0+ogury.4.1.0.applovin.13.3.0
-BUILD_NUMBER = build:1750144934
+VERSION = 1.0.0+ogury.4.1.0-cocoapods-1.applovin.13.3.1
+BUILD_NUMBER = 1753778831

@@ -41,6 +41,19 @@ struct BannerPlaceholderView: View {
                         .padding(.leading, 12)
                 }
                 
+                if isShow {
+                    Spacer()
+                    Button {
+                        store.send(.closeButtonTapped)
+                        isShow = false
+                    } label: {
+                        Text("destroy")
+                            .font(.adsCaptionSmall)
+                    }
+                    .buttonStyle(.bordered)
+                    .tint(Color(AdColorPalette.Primary.accent.color))
+                }
+                
                 WithPerceptionTracking {
                     if !store.availableSizes.isEmpty {
                         Spacer()
@@ -49,6 +62,7 @@ struct BannerPlaceholderView: View {
                             ForEach(store.availableSizes) { size in
                                 Button {
                                     store.send(.pickedSize(size))
+                                    isShow = false
                                 } label: {
                                     WithPerceptionTracking {
                                         HStack {
@@ -89,20 +103,7 @@ struct BannerPlaceholderView: View {
                             if let ad = store.bannerAd {
                                 HStack(alignment: .center) {
                                     if isShow {
-                                        ZStack(alignment: .topTrailing) {
-                                            AdBannerView(banner: ad)
-                                                .clipped()
-                                            
-                                            Button {
-                                                store.send(.closeButtonTapped)
-                                            } label: {
-                                                Image(systemName: "x.circle.fill")
-                                                    .foregroundColor(.white)
-                                                    .background(.black)
-                                                    .opacity(0.7)
-                                            }
-//                                            .offset(x: 10, y: -10)
-                                        }
+                                        AdBannerView(banner: ad).clipped()
                                     } else {
                                         placeholderBanner()
                                     }

@@ -85,6 +85,10 @@ public protocol AdsCardAdaptable {
     func resetSdk()
     /// add a logger to OguryAds if available
     func add(logger: any OguryLogger)
+    /// sets the log level if available
+    func setLogLevel(_ level: OguryLogLevel)
+    /// sets The allowed type of loggers if available
+    func setAllowedTypes(_ types: [String])
 }
 
 public enum AdsCardAdapterError: Error {

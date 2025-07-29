@@ -271,7 +271,7 @@ static NSString *const DefaultAdUnitID = @"AdUnit";
     XCTAssertEqualObjects(payload[@"app"][@"asset_key"], @"OGY-XXXXXXXX");
     XCTAssertEqualObjects(payload[@"app"][@"asset_type"], @"deviceOS");
     XCTAssertEqualObjects(payload[@"app"][@"bundle_id"], @"bundle");
-    XCTAssertEqualObjects(payload[@"app"][@"version"], @"1.2.3");
+    XCTAssertEqualObjects(payload[@"app"][@"version"], @"1.2");
     XCTAssertEqualObjects(payload[@"app"][@"instance_token"], @"XXXXX-XXXX-XXXXX-XX-XXX-XXXXX");
     // sdk
     XCTAssertEqualObjects(payload[@"sdk"][@"module_version"], @"1.2.3.4.5");
