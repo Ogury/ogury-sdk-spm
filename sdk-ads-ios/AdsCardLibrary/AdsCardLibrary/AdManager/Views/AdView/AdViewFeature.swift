@@ -221,6 +221,7 @@ struct AdViewFeature {
         case showQALabelTapped
         case killWebview
         case updateKillMode(_: KillWebviewMode)
+        case dspPickerDidShow
         
         @CasePathable
         enum Alert: Equatable {
@@ -509,6 +510,12 @@ struct AdViewFeature {
                     
                 case let .updateKillMode(mode):
                     state.adManager.cardConfiguration.killWebviewMode = mode
+                    return .none
+                    
+                case .dspPickerDidShow:
+                    if state.adManager.adConfiguration.dspRegion == nil {
+                        state.dspRegion = .euWest1
+                    }
                     return .none
             }
         }
