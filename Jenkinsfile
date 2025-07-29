@@ -219,17 +219,6 @@ pipeline {
         
                         // Handle additional steps for beta/release
                         if (isBetaOrRelease) {
-                            //withAWS(role: 'ci-eu-west-1-macos-jenkins-ci', roleAccount: '556593845588') {
-                            //    script {
-                            //        echo "Uploading artifacts to S3..."
-                            //        s3Utils.uploadDir(
-                            //            localDir: 'jenkins/output/amazon',
-                            //            bucket: 'ogury-sdk-binaries',
-                            //            prefix: ''
-                            //        )
-                            //    }
-                            //}
-        
                             sshagent(['Ogy-JenkinsAuth']) {
                                 sh """#!/bin/zsh -l
                                     bundle exec fastlane deploy_${framework}_podspec environment:${envType} tag:${env.TAG_NAME} artifactory:${isArtifactory} targetThreshold:${targetThreshold}
