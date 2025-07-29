@@ -14,29 +14,11 @@ def get_framework_suffix(environment)
 end
 
 def get_archive_filename(project_name, framework_suffix, version)
-    return "#{project_name}#{framework_suffix}-#{version}.tar.gz"
+    return "#{project_name}#{framework_suffix}-#{version}.zip"
 end
 
 def get_podspec_filename(project_name, framework_suffix)
     return "#{project_name}#{framework_suffix}.podspec.json"
-end
-
-def get_artifactory_repository_url(environment, artifactory_url)
-  case environment
-  when "devc", "staging", "prod"
-    return "#{artifactory_url}/api/pods/sdk-cocoapods-#{environment}"
-  else
-    return nil
-  end
-end
-
-def get_artifactory_repository_name(environment)
-  case environment
-  when "devc", "staging", "prod"
-    return "sdk-cocoapods-#{environment}"
-  else
-    return nil
-  end
 end
 
 # Get the version of the SDK to deploy
@@ -52,10 +34,11 @@ def get_version(environment, xcodeproj, target, tag)
     return project_version
   end
 
-  tag_version = tag[/internal-(?:[\w-]+?)-(\d+\.\d+\.\d+(?:-\w+(?:-?\d+)?(?:\.\d+\.\d+)?)?)/, 1]
+  tag_version = tag[/internal-(?:[\w-]+?)-(\d+\.\d+\.\d+(?:-(?:rc|alpha)(?:\.[\w]+)?(?:\.\d+)?)?)/, 1]
 
   return tag_version
 end
+
 
 def get_module_version(environment, internal_version, beta_version, staging_version)
   case environment

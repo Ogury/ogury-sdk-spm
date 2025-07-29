@@ -1,11 +1,7 @@
-source "https://github.com/Ogury/ogury-cocoapods-repository.git"
-source 'https://cdn.cocoapods.org/'
+<% raise "Missing GIT_USERNAME or GIT_TOKEN" unless ENV['GIT_USERNAME'] && ENV['GIT_TOKEN'] %>
 
-<% if artifactory_repository_name != nil %>
-plugin 'cocoapods-art', :sources => [
-  '<%= artifactory_repository_name %>',
-]
-<% end %>
+source "https://<%= ENV['GIT_USERNAME'] %>:<%= ENV['GIT_TOKEN'] %>@github.com/Ogury/sdk-internal-cocoapods.git"
+source 'https://cdn.cocoapods.org/'
 
 platform :ios, "12.0"
 use_frameworks!

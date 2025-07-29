@@ -127,19 +127,19 @@ struct AdViewFeature {
         }
         mutating func toggleTestMode() {
             if adUnitIsInTestMode {
-                adManager.adConfiguration.adUnitId.removeLast(5)
+                adUnitId.removeLast(5)
                 tags.remove(.oguryTestMode)
             } else {
-                adManager.adConfiguration.adUnitId.append(.testModeSuffix)
+                adUnitId.append(.testModeSuffix)
                 tags.insert(.oguryTestMode)
             }
         }
         mutating func forceTestMode(_ enable: Bool) {
             if !adUnitIsInTestMode && enable {
-                adManager.adConfiguration.adUnitId.append(.testModeSuffix)
+                adUnitId.append(.testModeSuffix)
                 tags.insert(.oguryTestMode)
             } else if adUnitIsInTestMode && !enable {
-                adManager.adConfiguration.adUnitId.removeLast(5)
+                adUnitId.removeLast(5)
                 tags.remove(.oguryTestMode)
             }
         }
@@ -161,7 +161,6 @@ struct AdViewFeature {
             AdsCardManager.log(message, origin: adManager.cardConfiguration.qaLabel, logType: logType)
         }
         
-        // log received publisher callbacks only
         func log(event: AdLifeCycleEvent) {
             var message: String? = nil
             switch event {
@@ -249,6 +248,7 @@ struct AdViewFeature {
     func load(_ state: State) -> Effect<AdViewFeature.Action> {
         .merge(
             .cancel(id: AdCancel.load(state.adManager.id)),
+            .cancel(id: AdCancel.show(state.adManager.id)),
             .publisher { [state] in
                 state
                     .adManager
@@ -387,6 +387,7 @@ struct AdViewFeature {
                             }
                             return .merge(
                                 .cancel(id: AdCancel.show(state.adManager.id)),
+                                .cancel(id: AdCancel.load(state.adManager.id)),
                                 .publisher {
                                     state
                                         .adManager

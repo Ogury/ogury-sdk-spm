@@ -17,6 +17,14 @@ public enum OguryEnvironement {
 }
 
 public struct PrebidAdsCardAdapter: AdsCardAdaptable {
+    public func setLogLevel(_ level: OguryLogLevel) {
+        
+    }
+    
+    public func setAllowedTypes(_ types: [String]) {
+        
+    }
+    
     private let environment: OguryEnvironement
     static var configuration: Configuration!
     

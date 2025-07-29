@@ -186,7 +186,7 @@ struct MainFeature: Reducer {
         Reduce { state, action in
             switch action {
                 case .destination(.dismiss):
-                    return .none
+                    return .send(.saveCards)
                     
                 case let .loadFromContainer(container):
                     let adFormats = container.retrieveAds(viewController: adHostingViewController, adDelegate: adDelegate)

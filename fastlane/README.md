@@ -53,6 +53,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
+### upload_artifacts_to_s3
+
+```sh
+[bundle exec] fastlane upload_artifacts_to_s3
+```
+
+
+
 ----
 
 
@@ -72,7 +80,7 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 [bundle exec] fastlane ios update_internal_cocoapods
 ```
 
-Install cocoapods internal repository for environment and update it.
+Install CocoaPods internal repository for environment and update it.
 
 ### ios generate_podfile
 

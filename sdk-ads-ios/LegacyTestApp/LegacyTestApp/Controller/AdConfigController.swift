@@ -224,6 +224,15 @@ class AdConfigController {
             DispatchQueue.main.async {
                 let sel = NSSelectorFromString("resetSDK")
                 OGAInternal.shared().perform(sel)
+                
+                OGCInternal.shared().setLogLevel(.all)
+                let obj = OGCInternal.shared()
+                let sel2 = NSSelectorFromString("setAllowedTypes:")
+                let meth = class_getInstanceMethod(object_getClass(obj), sel2)
+                let imp = method_getImplementation(meth!)
+                typealias ClosureType = @convention(c) (AnyObject, Selector, Array<String>) -> Void
+                let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
+                sayHiTo(obj, sel, ["Publisher", "Internal", "Requests", "Mraid", "Monitoring", "SDK Callbacks"])
 
                 guard let assetKey = AdConfigController.shared.assetKey(), !assetKey.isEmpty else {
                     fatalError("Asset key must not be nil nor empty.")
@@ -237,7 +246,7 @@ class AdConfigController {
                         print("Ogury SDK failed to start for an unknown reason.")
                     }
                 }
-                OGAInternal.shared().setLogLevel(.all)
+                
             }
         }
     }

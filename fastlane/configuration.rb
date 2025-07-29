@@ -1,5 +1,5 @@
 class Configuration
-  attr_reader :workspace, :targets, :schemes, :sdks, :test_devices, :allowed_environments, :firebase, :artifactory, :amazon, :slack, :cocoapods, :frameworks, :directories, :testApplications
+  attr_reader :workspace, :targets, :schemes, :sdks, :test_devices, :allowed_environments, :firebase, :deployment, :slack, :cocoapods, :frameworks, :directories, :testApplications
 
   def initialize
     @workspace = Workspace.new("OgurySdks", "OgurySdks.xcworkspace")
@@ -15,14 +15,16 @@ class Configuration
     @test_devices = ["iPhone 16"]
     @allowed_environments = ["devc", "staging", "prod", "beta", "release"]
     @firebase = Firebase.new("inApp")
-    @artifactory = Artifactory.new("https://ogury.jfrog.io/artifactory")
-    @amazon = Amazon.new("https://binaries.ogury.co")
+    internalS3 = S3Repository.new(public: "https://binaries.ogury.co", bucket:"ogury-sdk-binaries", path:"internal")
+    publicS3 = S3Repository.new(public: "https://binaries.ogury.co", bucket:"ogury-sdk-binaries")
+    internalRepositories = Repositories.new(internalS3, Repository.new("Ogury/sdk-internal-cocoapods"), Repository.new("https://github.com/Ogury/sdk-internal-spm"))
+    publicRepositories = Repositories.new(publicS3, Repository.new("https://cdn.cocoapods.org/"), Repository.new("https://github.com/Ogury/ogury-sdk-spm"))
+    @deployment = Deployment.new(internalRepositories, publicRepositories)
     @slack = Slack.new("https://hooks.slack.com/services/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", "#sdk-ios-ci-update")
-    @cocoapods = Cocoapods.new("git@github.com:Ogury/ogury-cocoapods-repository.git")
-    @frameworks = Frameworks.new("./OMSDK_Ogury.xcframework")
-    @frameworks.ogury_core = Framework.new("2.1.0-rc-1", "2.0.0", "2.0.0")
-    @frameworks.ogury_ads = Framework.new("4.1.0-rc-1", "4.0.0", "4.0.0")
-    @frameworks.ogury_sdk = Framework.new("5.1.0-rc-1", "5.0.0", "5.0.0")
+    @frameworks = Frameworks.new()
+    @frameworks.ogury_core = Framework.new("2.1.0-cocoapod-1.0.3", "2.0.0", "2.0.0")
+    @frameworks.ogury_ads = Framework.new("4.1.0-cocoapod-1.0.7", "4.0.0", "4.0.0")
+    @frameworks.ogury_sdk = Framework.new("5.1.0-cocoapod-1.0.0", "5.0.0", "5.0.0")
     @directories = Directories.new("./jenkins/build", "./jenkins/output", "./jenkins/test_derived_data", "./jenkins/testApp")
     prodTestApp = TestApplication.new("prodTestApp", "AdsTestApp-Prod", nil, "co.ogury.sdk.ads.app", "1:743372999564:ios:b2fa9c2a0751d1abca24a9")
     devcTestApp = TestApplication.new("devcTestApp", "AdsTestApp-Devc", nil, "co.ogury.sdk.ads.app.devc", "1:743372999564:ios:a479c7c9a882a87bca24a9")
@@ -30,8 +32,7 @@ class Configuration
     maxTestApp = TestApplication.new("maxTestApp", "MaxTestApp", "MaxTestApp", "co.ogury.sdk.ads.max.app", "1:743372999564:ios:cc7358fc83c446edca24a9")
     adMobTestApp = TestApplication.new("adMobTestApp", "AdMobTestApp", "AdMobTestApp", "co.ogury.sdk.ads.admob.app", "1:743372999564:ios:126315fea3608a04ca24a9")
     unityTestApp = TestApplication.new("unityTestApp", "UnityLevelPlayTestApp", "UnityLevelPlayTestApp", "co.ogury.sdk.ads.ulp.app", "1:743372999564:ios:4c84c9f1f5248edaca24a9")
-    prebidTestApp = TestApplication.new("prebidTestApp", "PrebidTestApp", "PrebidTestApp", "co.ogury.sdk.ads.prebid.devc", "1:743372999564:ios:c00cac288d327678ca24a9
-")
+    prebidTestApp = TestApplication.new("prebidTestApp", "PrebidTestApp", "PrebidTestApp", "co.ogury.sdk.ads.prebid.devc", "1:743372999564:ios:c00cac288d327678ca24a9")
     @testApplications = TestApplications.new([prodTestApp, devcTestApp, stagingTestApp], [maxTestApp, adMobTestApp, unityTestApp, prebidTestApp])
   end
 end
@@ -125,7 +126,20 @@ end
 Firebase = Struct.new(:test_group) do
 end
 
-Artifactory = Struct.new(:url) do
+Deployment = Struct.new(:internal, :public) do
+end
+Repositories = Struct.new(:s3, :cocoapods, :spm) do
+end
+Repository = Struct.new(:url) do
+end
+
+class S3Repository
+  attr_accessor :public, :bucket
+
+  def initialize(public:, bucket:, path: nil)
+    @public = path.nil? ? public : "#{public}/#{path}"
+    @bucket = path.nil? ? bucket : "#{bucket}/#{path}"
+  end
 end
 
 Amazon = Struct.new(:url) do

@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E254BA02D66318300AC31B4 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506D75562CA40D500050B345 /* OMSDK_Ogury.xcframework */; };
-		1E254BA12D66318300AC31B4 /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 506D75562CA40D500050B345 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1E3D78CF2B23181000FCD4CA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1E3D78CE2B23181000FCD4CA /* SnapKit */; };
 		351A124D3B382C7CCFF8B44B /* AdsFullscreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351A16660272F38F3279B421 /* AdsFullscreenController.swift */; };
 		393D067380175864ACD6ED9B /* Pods_LegacyTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F501599943F878CA9FD609 /* Pods_LegacyTestApp.framework */; };
 		436A80E7295072580021EA32 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A80E6295072580021EA32 /* String+Ext.swift */; };
@@ -635,8 +632,6 @@
 			dependencies = (
 			);
 			name = LegacyTestApp;
-			packageProductDependencies = (
-			);
 			productName = LegacyTestApp;
 			productReference = C9A5E770241A51660093E79B /* OguryTestApp.app */;
 			productType = "com.apple.product-type.application";
@@ -993,7 +988,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.ogury.Test-Application";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "LegacyTestApp/LegacyTestApp-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1026,7 +1026,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.ogury.Test-Application";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "LegacyTestApp/LegacyTestApp-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -69,28 +69,27 @@ platform :ios do
     end
   end
 
-  desc "Install cocoapods internal repository for environment and update it."
+  desc "Install CocoaPods internal repository for environment and update it."
   lane :update_internal_cocoapods do |options|
-    if !options[:environment]
-      raise "No environment specified!".red
-    end
-
-    environment = options[:environment]
-
-    artifactory_repository_url = get_artifactory_repository_url(environment, configuration.artifactory.url)
-    if !artifactory_repository_url
-      next
-    end
-
-    if artifactory_repository_url.empty?
-      next
-    end
-
-    artifactory_repository_name = get_artifactory_repository_name(environment)
-
+    repo_name = 'sdk-internal'
+    git_token = ENV["GIT_TOKEN"] || UI.user_error!("GIT_TOKEN not set")
+    git_username = ENV["GIT_USERNAME"] || "weareogury"
+    repo_url = "https://#{git_username}:#{git_token}@github.com/#{configuration.deployment.internal.cocoapods.url}"
+  
     Dir.chdir("..") do
-      sh("pod repo-art add #{artifactory_repository_name} #{artifactory_repository_url} || true")
-      sh("pod repo-art update #{artifactory_repository_name}")
+      UI.message("Checking for CocoaPods repo '#{repo_name}'...")
+  
+      repo_list = sh("pod repo list", log: false)
+  
+      unless repo_list.include?(repo_name)
+        UI.message("CocoaPods repo '#{repo_name}' not found. Adding it...")
+        sh("pod repo add #{repo_name} #{repo_url}")
+      else
+        UI.message("CocoaPods repo '#{repo_name}' already exists.")
+      end
+  
+      UI.message("Updating CocoaPods repo '#{repo_name}'...")
+      sh("pod repo update #{repo_name}")
     end
   end
 
@@ -102,6 +101,10 @@ platform :ios do
 
     if !configuration.allowed_environments.include? options[:environment]
       raise "Wrong environment specified!".red
+    end
+
+    if ENV['GIT_USERNAME'].nil? || ENV['GIT_TOKEN'].nil?
+      raise "GIT_USERNAME and GIT_TOKEN must be set in the environment!".red
     end
 
     environment = options[:environment]
@@ -118,7 +121,6 @@ platform :ios do
       templatePath = "./fastlane/templates/PodfileSdk.erb"
     end
     
-    artifactory_repository_name = get_artifactory_repository_name(environment)
     ogury_core_version = get_module_version(environment, configuration.frameworks.ogury_core.internal_version, configuration.frameworks.ogury_core.beta_version, configuration.frameworks.ogury_core.release_version)
     ogury_ads_version = get_module_version(environment, configuration.frameworks.ogury_ads.internal_version, configuration.frameworks.ogury_ads.beta_version, configuration.frameworks.ogury_ads.release_version)
     ogury_sdk_version = get_module_version(environment, configuration.frameworks.ogury_sdk.internal_version, configuration.frameworks.ogury_sdk.beta_version, configuration.frameworks.ogury_sdk.release_version)
@@ -128,7 +130,6 @@ platform :ios do
       destination: "./Podfile",
       placeholders: {
         :environment => environment,
-        :artifactory_repository_name => artifactory_repository_name,
         :framework_suffix => get_framework_suffix(environment),
         :ogury_core_version => ogury_core_version,
         :ogury_ads_version => ogury_ads_version,
@@ -168,11 +169,6 @@ lane :test do |options|
         configuration: configuration, 
         sdk: sdk
         )
-
-      # test_card_framework(
-      #   configuration: configuration, 
-      #   sdk: sdk
-      # )
     end
   end
 
@@ -243,18 +239,14 @@ lane :test do |options|
       artifactory: artifactory
     }
 
-    case environment
-    when "devc", "staging", "prod"
-      send(methodName, params)
-      
-      if !options[:dry_run]
-          deploy_on_artifactory(configuration: configuration,  environment: environment, version: version, target: target, artifactory: artifactory)
-      end
+    send(methodName, params)
 
-    when "beta", "release"
-      send(methodName, params)
-
-      if !options[:dry_run]
+    if !options[:dry_run]
+      case environment
+      when "devc", "staging", "prod"
+        deploy_on_private_cocoapods(configuration: configuration,  environment: environment, version: version, target: target, artifactory: artifactory)
+  
+      when "beta", "release"
         deploy_on_amazon(configuration: configuration, environment: environment, version: version, target: target, artifactory: artifactory)
       end
     end
@@ -299,6 +291,9 @@ lane :test do |options|
     )
 
     deploy_framework(environment: environment, tag: tag, target: configuration.targets.omid, artifactory: false)
+    #update the internal repo so that the previous OMID push is available
+    update_internal_cocoapods environment: environment
+    #now deploy ads
     deploy_framework(environment: environment, tag: tag, target: configuration.targets.ads, artifactory: artifactory)
   end
 

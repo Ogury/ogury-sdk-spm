@@ -24,16 +24,17 @@ lane :prepare_for_deployment do |options|
   framework_suffix = get_framework_suffix(environment)
   target = options[:target]
   artifactory = options[:artifactory] ? options[:artifactory] : false
+  targetThreshold = options[:targetThreshold] ? options[:targetThreshold] : "all"
 
   # Source URL for Cocoapods
   source_url = ""
   case environment
   when "devc", "staging", "prod"
-    # Artifactory
-    source_url = "#{configuration.artifactory.url}/sdk-cocoapods-#{environment}/#{target.publicName}#{framework_suffix}"
+    # internal cocoapod
+    source_url = "#{configuration.deployment.internal.s3.public}/#{environment}/#{target.publicName}"
   when "beta", "release"
     # S3 release / beta buckets
-    source_url = "#{configuration.amazon.url}/#{environment}/#{target.amazon}/#{version}"
+    source_url = "#{configuration.deployment.public.s3.public}/#{environment}/#{target.amazon}/#{version}"
   end
 
   # Environment url for SDK
@@ -68,7 +69,8 @@ lane :prepare_for_deployment do |options|
       version: version, 
       environment: environment, 
       source_url: source_url,
-      target: target
+      target: target,
+      targetThreshold: targetThreshold
       )
   end
 
@@ -171,16 +173,11 @@ private_lane :zip_famework do |options|
   framework_suffix = get_framework_suffix(environment)
   archive_filename = get_archive_filename(target.publicName, framework_suffix, version)
   files += "#{target.publicName}.xcframework "
-  if target.dependencies.hasPodspec
-    podspec_filename = get_podspec_filename(target.publicName, framework_suffix)
-    files += "#{podspec_filename} "
-  end
 
   puts "Files #{files}".red
 
   Dir.chdir("..") do
-    sh("tar -czvf #{configuration.directories.output}/#{archive_filename} -C #{configuration.directories.output} #{files}")
-    #sh("cd #{configuration.directories.output} && zip -r #{archive_filename} #{files}")
+    sh("cd #{configuration.directories.output} && zip -r #{archive_filename} #{files}")
   end
 end
 
@@ -210,6 +207,7 @@ private_lane :generate_podspec do |options|
   version = options[:version]
   source_url = options[:source_url]
   target = options[:target]
+  targetThreshold = options[:targetThreshold] ? options[:targetThreshold] : "all"
   
   framework_suffix = get_framework_suffix(environment)
   archive_filename = get_archive_filename(target.publicName, framework_suffix, version)
@@ -232,8 +230,14 @@ private_lane :generate_podspec do |options|
   end
 
   if target.dependencies.omid
-    ogury_omid_version = get_module_version(environment, configuration.frameworks.ogury_ads.internal_version, configuration.frameworks.ogury_ads.beta_version, configuration.frameworks.ogury_ads.release_version)
-    placeholders["ogury_omid_version"] = ogury_omid_version
+    # if we are generating the Ads framework, then the version is the version of the tag
+    if targetThreshold == "ads"
+      placeholders["ogury_omid_version"] = version
+    # otherwise, it's the version of ads
+    else
+      ogury_omid_version = get_module_version(environment, configuration.frameworks.ogury_ads.internal_version, configuration.frameworks.ogury_ads.beta_version, configuration.frameworks.ogury_ads.release_version)
+      placeholders["ogury_omid_version"] = ogury_omid_version
+    end
   end
 
   erb(
@@ -273,7 +277,8 @@ lane :prepare_core_for_deployment do |options|
     version: version,
     tag: tag,
     target: configuration.targets.core,
-    artifactory: artifactory
+    artifactory: artifactory,
+    targetThreshold: "core"
     )
 end
 
@@ -305,7 +310,8 @@ lane :prepare_ads_for_deployment do |options|
     version: version,
     tag: tag,
     target: configuration.targets.ads,
-    artifactory: artifactory
+    artifactory: artifactory,
+    targetThreshold: "ads"
     )
 end
 
@@ -344,7 +350,8 @@ lane :prepare_omid_for_deployment do |options|
     version: version,
     tag: tag,
     target: target,
-    artifactory: artifactory
+    artifactory: artifactory,
+    targetThreshold: "ads"
     )
 end
 
@@ -376,7 +383,8 @@ lane :prepare_wrapper_for_deployment do |options|
     version: version,
     tag: tag,
     target: configuration.targets.wrapper,
-    artifactory: artifactory
+    artifactory: artifactory,
+    targetThreshold: "sdk"
     )
 end
 
