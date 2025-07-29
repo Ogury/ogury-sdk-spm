@@ -3880,7 +3880,7 @@
 /* Begin XCBuildConfiguration section */
 		43352D5F2DFC0E920082026C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 425A080EF29FF55FA4C891C7 /* Pods-PrebidTestApp-devc.debug.xcconfig */;
+			baseConfigurationReference = C4660C7D055814EBC172DA82 /* Pods-PrebidTestApp-devc.debug.xcconfig */;
 			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
 			baseConfigurationReferenceRelativePath = config.debug.xcconfig;
 			buildSettings = {
@@ -3927,7 +3927,7 @@
 		};
 		43352D602DFC0E920082026C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ED71F1CE749BAD5EEB150506 /* Pods-PrebidTestApp-devc.release.xcconfig */;
+			baseConfigurationReference = A87DCB0791AB7247D82D569C /* Pods-PrebidTestApp-devc.release.xcconfig */;
 			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
 			baseConfigurationReferenceRelativePath = config.debug.xcconfig;
 			buildSettings = {
@@ -3973,7 +3973,7 @@
 		};
 		433530ED2E093A680082026C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B71DB5BA070F7DEBA5FF203 /* Pods-PrebidTestApp-staging.debug.xcconfig */;
+			baseConfigurationReference = F86D07A71EC45EBFBF1751E8 /* Pods-PrebidTestApp-staging.debug.xcconfig */;
 			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
 			baseConfigurationReferenceRelativePath = config.debug.xcconfig;
 			buildSettings = {
@@ -4020,7 +4020,7 @@
 		};
 		433530EE2E093A680082026C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 831D8AC61348959B8FBD8F16 /* Pods-PrebidTestApp-staging.release.xcconfig */;
+			baseConfigurationReference = EEE222752816BFF097EFC4FA /* Pods-PrebidTestApp-staging.release.xcconfig */;
 			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
 			baseConfigurationReferenceRelativePath = config.debug.xcconfig;
 			buildSettings = {
@@ -4066,7 +4066,7 @@
 		};
 		433531322E093A700082026C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA86A495350F34EDB78FCC1B /* Pods-PrebidTestApp.debug.xcconfig */;
+			baseConfigurationReference = E28AA9BC531278789A88A404 /* Pods-PrebidTestApp.debug.xcconfig */;
 			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
 			baseConfigurationReferenceRelativePath = config.debug.xcconfig;
 			buildSettings = {
@@ -4113,7 +4113,7 @@
 		};
 		433531332E093A700082026C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3483F55FE27D5B59D35A0ED9 /* Pods-PrebidTestApp.release.xcconfig */;
+			baseConfigurationReference = CE372BB980B7B7829A38210A /* Pods-PrebidTestApp.release.xcconfig */;
 			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
 			baseConfigurationReferenceRelativePath = config.debug.xcconfig;
 			buildSettings = {
