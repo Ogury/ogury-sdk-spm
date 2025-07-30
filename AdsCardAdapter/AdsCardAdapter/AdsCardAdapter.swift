@@ -91,6 +91,14 @@ public protocol AdsCardAdaptable {
     func setAllowedTypes(_ types: [String])
 }
 
+extension AdsCardAdaptable {
+    public func setAllowedTypes(_ types: [String]) {
+        #if canImport(OguryCore)
+            OGCInternal.shared().setAllowedTypes(types)
+        #endif
+    }
+}
+
 public enum AdsCardAdapterError: Error {
     case noSuitableAdapterAvailable
 }

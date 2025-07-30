@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setPrivacyData:(NSString *)key integer:(NSInteger)value;
 - (void)setPrivacyData:(NSString *)key string:(NSString *)value;
 - (NSDictionary<NSString *, id> *)retrieveDataPrivacy;
+- (void)setAllowedTypes:(NSArray<NSString *> *)allowedLogTypes;
 
 @end
 
