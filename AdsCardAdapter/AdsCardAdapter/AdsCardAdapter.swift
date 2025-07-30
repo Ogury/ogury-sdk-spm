@@ -94,7 +94,13 @@ public protocol AdsCardAdaptable {
 extension AdsCardAdaptable {
     public func setAllowedTypes(_ types: [String]) {
         #if canImport(OguryCore)
-            OGCInternal.shared().setAllowedTypes(types)
+            let obj = OGCInternal.shared()
+            let sel = NSSelectorFromString("setAllowedTypes:")
+            let meth = class_getInstanceMethod(object_getClass(obj), sel)
+            let imp = method_getImplementation(meth!)
+            typealias ClosureType = @convention(c) (AnyObject, Selector, Array<String>) -> Void
+            let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
+            sayHiTo(obj, sel, types)
         #endif
     }
 }
