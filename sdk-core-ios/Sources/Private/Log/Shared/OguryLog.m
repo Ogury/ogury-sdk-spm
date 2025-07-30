@@ -70,12 +70,18 @@
     }
 }
 
-- (void)setAllowedTypes:(NSArray<NSString *> *)allowedLogTypes {
+- (void)setAllowedTypes:(NSArray<NSString *> *)allowedLogTypes whiteList:(NSArray<Class> *)whitelist {
     @synchronized (self.loggers) {
         for (id<OguryLogger> currentLogger in self.loggers) {
-            currentLogger.allowedLogTypes = allowedLogTypes;
+            if ([whitelist containsObject:[currentLogger class]]) {
+                currentLogger.allowedLogTypes = allowedLogTypes;
+            }
         }
     }
+}
+
+- (void)setAllowedTypes:(NSArray<NSString *> *)allowedLogTypes {
+    [self setAllowedTypes:allowedLogTypes whiteList:@[NSClassFromString(@"OguryOSLogger"), NSClassFromString(@"OguryNSLogger")]];
 }
 
 - (void)logMessage:(OguryLogMessage *)message {

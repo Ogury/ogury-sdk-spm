@@ -221,6 +221,7 @@ struct AdViewFeature {
         case showQALabelTapped
         case killWebview
         case updateKillMode(_: KillWebviewMode)
+        case dspPickerDidShow
         
         @CasePathable
         enum Alert: Equatable {
@@ -278,6 +279,7 @@ struct AdViewFeature {
                     }
             }.cancellable(id: AdCancel.load(state.adManager.id)),
             .run { [state] send in
+                await state.adManager.viewController?.view?.endEditing(true)
                 await state.adManager.load()
                 await send(.resetReward)
                 await send(.resetBanner)
@@ -399,6 +401,7 @@ struct AdViewFeature {
                                         }
                                 }.cancellable(id: AdCancel.show(state.adManager.id)),
                                 .run { [state] send in
+                                    await state.adManager.viewController?.view?.endEditing(true)
                                     state.adManager.show()
                                 }.cancellable(id: AdCancel.show(state.adManager.id))
                             )
@@ -509,6 +512,12 @@ struct AdViewFeature {
                     
                 case let .updateKillMode(mode):
                     state.adManager.cardConfiguration.killWebviewMode = mode
+                    return .none
+                    
+                case .dspPickerDidShow:
+                    if state.adManager.adConfiguration.dspRegion == nil {
+                        state.dspRegion = .euWest1
+                    }
                     return .none
             }
         }

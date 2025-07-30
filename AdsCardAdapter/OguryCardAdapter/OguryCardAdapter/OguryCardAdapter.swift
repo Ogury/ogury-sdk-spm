@@ -9,6 +9,7 @@ import UIKit
 import AdsCardAdapter
 import AdsCardLibrary
 import OguryAds.Private
+import OguryCore.Private
 import OgurySdk
 import OMSDK_Ogury
 
@@ -20,7 +21,6 @@ public struct OguryAdsCardAdapter: AdsCardAdaptable {
     public var sdkVersions: String {
         let coreSdkVersion = String(describing: OGCInternal.shared().getVersion())
         let ogurySdkVersion = Ogury.sdkVersion()
-        let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
         let adsSdkVersion = "\(String(describing: OGAInternal.shared().getVersion()))"
         let omid = OMIDOgurySDK.versionString()
         var environment: String { Bundle.main.object(forInfoDictionaryKey: "DefaultEnv") as? String ?? "" }
@@ -178,16 +178,6 @@ Environment: \(environment)
     
     public func setLogLevel(_ level: OguryLogLevel) {
         Ogury.setLogLevel(level)
-    }
-    
-    public func setAllowedTypes(_ types: [String]) {
-        let obj = OGCInternal.shared()
-        let sel = NSSelectorFromString("setAllowedTypes:")
-        let meth = class_getInstanceMethod(object_getClass(obj), sel)
-        let imp = method_getImplementation(meth!)
-        typealias ClosureType = @convention(c) (AnyObject, Selector, Array<String>) -> Void
-        let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
-        sayHiTo(obj, sel, types)
     }
     
     public func forceAdsEnvironment(_ env: String) {

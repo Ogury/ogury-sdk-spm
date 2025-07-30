@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setLogLevel:(OguryLogLevel)logLevel;
 
 - (void)setAllowedTypes:(NSArray<NSString *> *)allowedLogTypes;
+- (void)setAllowedTypes:(NSArray<NSString *> *)allowedLogTypes whiteList:(NSArray<Class> *)whitelist;
 
 - (void)logMessage:(OguryLogMessage *)message;
 

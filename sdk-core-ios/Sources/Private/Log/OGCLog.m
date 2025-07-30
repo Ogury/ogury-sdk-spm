@@ -52,7 +52,11 @@
 }
 
 - (void)setAllowedTypes:(NSArray<NSString *> *)allowedLogTypes {
-    [self.oguryLog setAllowedTypes:allowedLogTypes];
+    [self setAllowedTypes:allowedLogTypes whiteList:@[NSClassFromString(@"OguryOSLogger"), NSClassFromString(@"OguryNSLogger")]];
+}
+
+- (void)setAllowedTypes:(NSArray<NSString *> *)allowedLogTypes whiteList:(NSArray<Class> *)whitelist {
+    [self.oguryLog setAllowedTypes:allowedLogTypes whiteList:whitelist];
 }
 
 - (void)logMessage:(OguryLogLevel)logLevel message:(NSString *)message {

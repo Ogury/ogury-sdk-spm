@@ -212,6 +212,9 @@ public struct AdView: View {
                                 .fixedSize(horizontal: true, vertical: true)
                                 .pickerStyle(.menu)
                                 .accessibilityLabel("Card#\(store.qaLabel)_DSPRegionField")
+                                .onAppear {
+                                    store.send(.dspPickerDidShow)
+                                }
                             }
                         }
                     }
