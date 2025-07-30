@@ -279,6 +279,7 @@ struct AdViewFeature {
                     }
             }.cancellable(id: AdCancel.load(state.adManager.id)),
             .run { [state] send in
+                await state.adManager.viewController?.view?.endEditing(true)
                 await state.adManager.load()
                 await send(.resetReward)
                 await send(.resetBanner)
@@ -400,6 +401,7 @@ struct AdViewFeature {
                                         }
                                 }.cancellable(id: AdCancel.show(state.adManager.id)),
                                 .run { [state] send in
+                                    await state.adManager.viewController?.view?.endEditing(true)
                                     state.adManager.show()
                                 }.cancellable(id: AdCancel.show(state.adManager.id))
                             )
