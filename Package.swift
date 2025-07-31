@@ -14,23 +14,23 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "OguryWrapper",
-            url: "https://ads-ios-sdk.ogury.co/spm/dynamic/OgurySdk-5.1.0.zip",
-            checksum: "f0b42ec77d63fc0010760bc25c78ddf38a89140a757df875bc5139479efa0c39"
+            url: "https://binaries.ogury.co/internal/prod/OgurySdk/OgurySdk-Prod-5.1.0-beta.cocoapod.1.zip",
+            checksum: "4d21a7bae79711c7f5537f7631ce4e2c23036e8aa08d57fba4c1d7b796943bfa"
         ),
         .binaryTarget(
             name: "OguryAds",
-            url: "https://ads-ios-sdk.ogury.co/spm/dynamic/OguryAds-4.1.0.zip",
-            checksum: "56831bfa97ccd52969985d6ff03aa598b926b2774a44cd3f2f63059d5a181813"
+            url: "https://binaries.ogury.co/internal/prod/OguryAds/OguryAds-Prod-4.1.0-beta.cocoapod.1.zip",
+            checksum: "a439f8f5eb278f046e02c9be5e0049d9bd2a2df6033561efdddce2fc07974bb7"
         ),
         .binaryTarget(
             name: "OguryCore",
-            url: "https://ads-ios-sdk.ogury.co/spm/dynamic/OguryCore-2.1.0.zip",
-            checksum: "39e68b290085b702222536763259e8a5fdd060f6256127c00a6fdd693df59a8b"
+            url: "https://binaries.ogury.co/internal/prod/OguryCore/OguryCore-Prod-2.1.0-beta.cocoapod.1.zip",
+            checksum: "8b3df0e05de8cc846712738e1c90b8324553fde61597cc9f644427104b4891e9"
         ),
         .binaryTarget(
             name: "OMSDK",
-            url: "https://ads-ios-sdk.ogury.co/spm/dynamic/OMSDK-5.1.0.zip",
-            checksum: "874475a25bbc8d6354263cf0d0a1d79b42af7c39931946317d717faa9ff8a6ba"
+            url: "https://binaries.ogury.co/internal/prod/OMSDK_Ogury/OMSDK_Ogury-Prod-4.1.0-beta.cocoapod.1.zip",
+            checksum: "9282081e270361b43d87dc222f8ad94cee5062df3ab248bfeeea40394361fe5e"
         )
     ]
 )
