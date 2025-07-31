@@ -23,33 +23,23 @@ pipeline {
                         script: 'git describe --tags --abbrev=0 2>/dev/null || echo ""',
                         returnStdout: true
                     ).trim()
-
+        
                     if (env.GIT_TAG.endsWith("-dry")) {
                         echo "Detected dry run tag: ${env.GIT_TAG}"
                         env.RUN_MODE = "dry"
-
                     } else if (env.GIT_TAG == "") {
-                        echo "No Git tag found. Running in default mode."
+                        echo "No Git tag found. Running in default mode (not a release)."
                         env.RUN_MODE = "default"
-
-                    } else if (env.GIT_TAG ==~ /^internal-\d+\.\d+\.\d+$/) {
+                    } else if (env.GIT_TAG ==~ /^internal-\d+\.\d+\.\d+(-[\w\.]+)?$/) {
                         echo "Detected internal release tag: ${env.GIT_TAG}"
                         env.RUN_MODE = "internal"
-                        env.GIT_VERSION = env.GIT_TAG.replaceFirst(/^internal-/, "")
-
-                        if (!fileExists(env.CHANGELOG_FILE)) {
-                            error "Changelog file '${env.CHANGELOG_FILE}' is required for internal releases."
-                        }
-
                     } else if (env.GIT_TAG ==~ /^sdk-release-\d+\.\d+\.\d+$/) {
-                        echo "Detected SDK public release tag: ${env.GIT_TAG}"
+                        echo "Detected public release tag: ${env.GIT_TAG}"
                         env.RUN_MODE = "release"
-                        env.GIT_VERSION = env.GIT_TAG.replaceFirst(/^sdk-release-/, "")
-
+        
                         if (!fileExists(env.CHANGELOG_FILE)) {
-                            error "Changelog file '${env.CHANGELOG_FILE}' is required for public releases."
+                            error "Changelog file '${env.CHANGELOG_FILE}' is required for release builds but was not found."
                         }
-
                     } else {
                         echo "Tag '${env.GIT_TAG}' doesn't match any expected pattern. Proceeding in default mode."
                         env.RUN_MODE = "default"
@@ -57,7 +47,7 @@ pipeline {
                 }
             }
         }
-
+        
         stage('Run Update Script') {
             steps {
                 script {
