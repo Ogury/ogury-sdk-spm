@@ -27,18 +27,31 @@ pipeline {
                     if (env.GIT_TAG.endsWith("-dry")) {
                         echo "Detected dry run tag: ${env.GIT_TAG}"
                         env.RUN_MODE = "dry"
+
                     } else if (env.GIT_TAG == "") {
-                        echo "No Git tag found. Running in default mode (not a release)."
+                        echo "No Git tag found. Running in default mode."
                         env.RUN_MODE = "default"
-                    } else if (env.GIT_TAG =~ /^release-\d+\.\d+\.\d+$/) {
-                        echo "Detected release tag: ${env.GIT_TAG}"
-                        env.RUN_MODE = "release"
+
+                    } else if (env.GIT_TAG ==~ /^internal-\d+\.\d+\.\d+$/) {
+                        echo "Detected internal release tag: ${env.GIT_TAG}"
+                        env.RUN_MODE = "internal"
+                        env.GIT_VERSION = env.GIT_TAG.replaceFirst(/^internal-/, "")
 
                         if (!fileExists(env.CHANGELOG_FILE)) {
-                            error "Changelog file '${env.CHANGELOG_FILE}' is required for release builds but was not found."
+                            error "Changelog file '${env.CHANGELOG_FILE}' is required for internal releases."
                         }
+
+                    } else if (env.GIT_TAG ==~ /^sdk-release-\d+\.\d+\.\d+$/) {
+                        echo "Detected SDK public release tag: ${env.GIT_TAG}"
+                        env.RUN_MODE = "release"
+                        env.GIT_VERSION = env.GIT_TAG.replaceFirst(/^sdk-release-/, "")
+
+                        if (!fileExists(env.CHANGELOG_FILE)) {
+                            error "Changelog file '${env.CHANGELOG_FILE}' is required for public releases."
+                        }
+
                     } else {
-                        echo "Tag '${env.GIT_TAG}' doesn't match any expected pattern. Proceeding without tagging."
+                        echo "Tag '${env.GIT_TAG}' doesn't match any expected pattern. Proceeding in default mode."
                         env.RUN_MODE = "default"
                     }
                 }
@@ -47,71 +60,33 @@ pipeline {
 
         stage('Run Update Script') {
             steps {
-                sh "ruby ${env.UPDATE_SCRIPT}"
+                script {
+                    def updateCommand = "ruby ${env.UPDATE_SCRIPT}"
+
+                    if (env.RUN_MODE == "internal") {
+                        updateCommand += " --internal"
+                    } else if (env.RUN_MODE == "release") {
+                        updateCommand += " --tag"
+                    }
+
+                    echo "Running update script with command: ${updateCommand}"
+                    sh updateCommand
+                }
             }
         }
 
-        stage('Build Swift Package') {
+        stage('Build') {
+            when {
+                anyOf {
+                    expression { env.RUN_MODE == "release" }
+                    expression { env.RUN_MODE == "internal" }
+                }
+            }
             steps {
-                sh 'swift package resolve'
-                sh '''
-                echo "Patching local Swift package path in Xcode project..."
-                set -euo pipefail
-            
-                echo "Patching local Swift package path in Xcode project..."
-            
-                PBXPROJ="OgurySpmTestApp.xcodeproj/project.pbxproj"
-                # Use sed to patch the repositoryURL in ogury-sdk-spm package block
-                LOCAL_PATH="$(pwd)"
-            
-                # Escape the path for sed
-                ESCAPED_PATH=$(printf '%s\n' "$LOCAL_PATH" | sed 's/[\\/&]/\\\\&/g')
-        
-                sed -E "/XCLocalSwiftPackageReference.*ogury-sdk-spm/,/}/ {
-                  s|(relativePath = ).*;|\\1\\\"$ESCAPED_PATH\\\";|
-                }" "$PBXPROJ" > "$PBXPROJ.patched"
-                
-                mv "$PBXPROJ.patched" "$PBXPROJ"
-
-                echo "✅ Patched relativePath to local path: $LOCAL_PATH"
-                grep -A 5 -B 2 'ogury-sdk-spm' "$PBXPROJ"
-
-                echo "Building test app with patched local package..."
-                xcodebuild build \
-                  -project OgurySpmTestApp.xcodeproj \
-                  -scheme OgurySpmTestApp \
-                  -destination "generic/platform=iOS Simulator"
-                '''
+                echo "Build SDK version ${env.GIT_VERSION} for mode: ${env.RUN_MODE}"
+                sh "./scripts/build_package.sh"
             }
         }
-
-//        stage('Run UI Tests') {
-//          steps {
-//            script {
-//              // Extract OGURY_WRAPPER_VERSION
-//              def oguryVersion = sh(
-//                script: 'ruby -r ./configuration.rb -e "puts OGURY_WRAPPER_VERSION"',
-//                returnStdout: true
-//              ).trim()
-//        
-//              echo "Using OGURY_WRAPPER_VERSION: ${oguryVersion}"
-//        
-//              // Run UI tests with environment variable set
-//              sh """                
-//                echo "Running UI tests..."
-//                xcodebuild test \\
-//                    -scheme OgurySpmTestApp \\
-//                    -destination 'platform=iOS Simulator,name=iPhone 16 Pro Max' \\
-//                    -resultBundlePath TestResults.xcresult \\
-//                    -enableCodeCoverage YES \\
-//                    OGURY_WRAPPER_VERSION=${oguryVersion}
-//
-//                #xcrun xcresulttool get --path TestResults.xcresult --format json > result.json
-//
-//                """
-//            }
-//          }
-//        }
 
         stage('Create Git Tag & Release') {
             when {
@@ -119,21 +94,28 @@ pipeline {
             }
             steps {
                 script {
-                    def version = env.GIT_TAG.replaceFirst(/^release-/, "")
-                    def tag = "v${version}"
-                    echo "Creating Git tag: ${tag}"
+                    def releaseTag = "v${env.GIT_VERSION}"
 
-                    sh """
-                        git config user.name "${env.GIT_USERNAME}"
-                        git config user.email "ci@ogury.co"
-                        git add Package.swift
-                        git commit -m 'Update Ogury SDK to ${version}' || echo 'No changes to commit'
-                        git tag ${tag}
-                        git push origin ${tag}
-                    """
+                    // Check if the tag already exists (e.g., created by Ruby script)
+                    def tagExists = sh(
+                        script: "git tag -l ${releaseTag}",
+                        returnStdout: true
+                    ).trim()
 
-                    sh "rm -f ${env.CHANGELOG_FILE}"
-                    echo "Changelog file deleted after release."
+                    if (tagExists) {
+                        echo "Git tag ${releaseTag} already exists. Skipping tag creation."
+                    } else {
+                        echo "Creating git tag ${releaseTag}"
+                        sh """
+                            git config user.email "ci@yourdomain.com"
+                            git config user.name "CI Bot"
+                            git tag -a ${releaseTag} -m "Release ${releaseTag}"
+                            git push origin ${releaseTag}
+                        """
+                    }
+
+                    // Optional: generate release via GitHub CLI if not done in Ruby
+                    // sh "gh release create ${releaseTag} --title ${releaseTag} --notes-file ${CHANGELOG_FILE}"
                 }
             }
         }

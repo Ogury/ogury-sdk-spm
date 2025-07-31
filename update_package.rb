@@ -7,28 +7,37 @@ require "tmpdir"
 require_relative "./configuration"
 
 PACKAGE_SWIFT_PATH = "Package.swift"
+INTERNAL_MODE = ARGV.include?("--internal")
 
-# Build download URL map
+puts "🔧 Mode: #{INTERNAL_MODE ? "Internal" : "Release"}"
+
+BASE_URL = INTERNAL_MODE ? "https://binaries.ogury.co/internal/prod" : "https://binaries.ogury.co"
+
+# Define SDKs and their specific paths
 sdks = [
   {
     name: "OguryWrapper",
     version: OGURY_WRAPPER_VERSION,
-    zip_name: "OgurySdk"
+    internal_path: "OgurySdk/OgurySdk-Prod-#{OGURY_WRAPPER_VERSION}.zip",
+    release_path: "ios/#{OGURY_WRAPPER_VERSION}/OgurySdk-#{OGURY_WRAPPER_VERSION}.zip"
   },
   {
     name: "OguryAds",
     version: OGURY_ADS_VERSION,
-    zip_name: "OguryAds"
+    internal_path: "OguryAds/OguryAds-Prod-#{OGURY_ADS_VERSION}.zip",
+    release_path: "ads-ios/#{OGURY_ADS_VERSION}/OguryAds-#{OGURY_ADS_VERSION}.zip"
   },
   {
     name: "OguryCore",
     version: OGURY_CORE_VERSION,
-    zip_name: "OguryCore"
+    internal_path: "OguryCore/OguryCore-Prod-#{OGURY_CORE_VERSION}.zip",
+    release_path: "core-ios/#{OGURY_CORE_VERSION}/OguryCore-#{OGURY_CORE_VERSION}.zip"
   },
   {
-    name: "OMSDK",
+    name: "OMSDK_Ogury",
     version: OMSDK_VERSION,
-    zip_name: "OMSDK"
+    internal_path: "OMSDK_Ogury/OMSDK_Ogury-Prod-#{OMSDK_VERSION}.zip",
+    release_path: "ads-ios/#{OGURY_ADS_VERSION}/OMSDK_Ogury-#{OMSDK_VERSION}.zip"
   }
 ]
 
@@ -36,19 +45,18 @@ puts "🔽 Downloading SDKs and computing checksums..."
 
 Dir.mktmpdir("ogury_sdk") do |tmp_dir|
   sdks.each do |sdk|
-    zip_filename = "#{sdk[:zip_name]}-#{sdk[:version]}.zip"
-    download_url = "https://ads-ios-sdk.ogury.co/spm/dynamic/#{zip_filename}"
-    local_zip = File.join(tmp_dir, zip_filename)
+    zip_path = INTERNAL_MODE ? sdk[:internal_path] : sdk[:release_path]
+    download_url = "#{BASE_URL}/#{zip_path}"
+    local_zip = File.join(tmp_dir, zip_path)
 
-    # Ensure parent directory exists (important for paths like "static/OMSDK_Ogury")
     FileUtils.mkdir_p(File.dirname(local_zip))
-  
+
     puts "⬇️ Downloading #{sdk[:name]} from #{download_url}"
     URI.open(download_url) do |remote|
       File.write(local_zip, remote.read)
     end
-  
-    puts "🧮 Computing checksum for #{zip_filename}"
+
+    puts "🧮 Computing checksum for #{zip_path}"
     checksum = `swift package compute-checksum #{local_zip}`.strip
     sdk[:url] = download_url
     sdk[:checksum] = checksum
@@ -56,40 +64,34 @@ Dir.mktmpdir("ogury_sdk") do |tmp_dir|
 
   puts "📝 Updating Package.swift..."
 
-  package_swift_path = File.expand_path("Package.swift", __dir__)
+  package_swift_path = File.expand_path(PACKAGE_SWIFT_PATH, __dir__)
   package_contents = File.read(package_swift_path)
-  
+
   sdks.each do |sdk|
     puts "🔁 Updating #{sdk[:name]} in Package.swift"
-  
-    # Construct patterns
-    url_pattern = %r{(name: "#{Regexp.escape(sdk[:name])}".*?url:\s*")[^"]+(")}m
 
-    # Match and replace the checksum line for the correct target
+    url_pattern = %r{(name:\s*"#{Regexp.escape(sdk[:name])}".*?url:\s*")[^"]+(")}m
     checksum_pattern = %r{(name:\s*"#{Regexp.escape(sdk[:name])}".*?\n\s*checksum:\s*")[^"]*(")}m
-    
+    fallback_checksum_pattern = %r{(name:\s*"#{Regexp.escape(sdk[:name])}".*?\n.*?checksum:\s*")[^"]*(")}m
+
+    # Replace URL
+    package_contents.gsub!(url_pattern) { "#{$1}#{sdk[:url]}#{$2}" }
+
+    # Replace checksum
     if package_contents.match?(checksum_pattern)
       package_contents.gsub!(checksum_pattern) { "#{$1}#{sdk[:checksum]}#{$2}" }
     else
-      # fallback: replace any line that looks like checksum: "..." and comes after the right name:
-      fallback_checksum_pattern = %r{(name:\s*"#{Regexp.escape(sdk[:name])}".*?\n.*?checksum:\s*")[^"]*(")}m
       package_contents.gsub!(fallback_checksum_pattern) { "#{$1}#{sdk[:checksum]}#{$2}" }
     end
-
-    # Replace URL
-    package_contents.gsub!(url_pattern) do |match|
-      "#{$1}#{sdk[:url]}#{$2}"
-    end
   end
-  
-  # Write back only if changed
+
   File.write(package_swift_path, package_contents)
   puts "✅ Package.swift updated."
-  end
+end
 
-# Optional: create GitHub release
+# Optional: Git tag and push
 if ARGV.include?("--tag")
-  version = sdks["OguryWrapper"][:version]
+  version = sdks.find { _1[:name] == "OguryWrapper" }[:version]
   tag = "v#{version}"
   puts "🏷️  Creating GitHub release #{tag}..."
   system("git add Package.swift")
