@@ -23,31 +23,37 @@ pipeline {
                         script: 'git describe --tags --abbrev=0 2>/dev/null || echo ""',
                         returnStdout: true
                     ).trim()
+                    echo ">> Detected Git tag: '${env.GIT_TAG}'"
         
                     if (env.GIT_TAG.endsWith("-dry")) {
                         echo "Detected dry run tag: ${env.GIT_TAG}"
                         env.RUN_MODE = "dry"
+        
                     } else if (env.GIT_TAG == "") {
                         echo "No Git tag found. Running in default mode (not a release)."
                         env.RUN_MODE = "default"
-                    } else if (env.GIT_TAG ==~ /^internal-\d+\.\d+\.\d+(-[\w\.]+)?$/) {
-                        echo "Detected internal release tag: ${env.GIT_TAG}"
-                        env.RUN_MODE = "internal"
-                    } else if (env.GIT_TAG ==~ /^sdk-release-\d+\.\d+\.\d+$/) {
+        
+                    // ✅ First check for release (more specific)
+                    } else if (env.GIT_TAG ==~ /^sdk-release-\d+\.\d+\.\d+(-[\w\.]+)?$/) {
                         echo "Detected public release tag: ${env.GIT_TAG}"
                         env.RUN_MODE = "release"
-        
+                    
                         if (!fileExists(env.CHANGELOG_FILE)) {
                             error "Changelog file '${env.CHANGELOG_FILE}' is required for release builds but was not found."
                         }
+                    
+                    } else if (env.GIT_TAG ==~ /^internal-\d+\.\d+\.\d+(-[\w\.]+)?$/) {
+                        echo "Detected internal release tag: ${env.GIT_TAG}"
+                        env.RUN_MODE = "internal"
+        
                     } else {
                         echo "Tag '${env.GIT_TAG}' doesn't match any expected pattern. Proceeding in default mode."
                         env.RUN_MODE = "default"
                     }
                 }
             }
-        }
-        
+        }      
+          
         stage('Run Update Script') {
             steps {
                 script {
@@ -65,16 +71,38 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            when {
-                anyOf {
-                    expression { env.RUN_MODE == "release" }
-                    expression { env.RUN_MODE == "internal" }
-                }
-            }
+
+        stage('Build Swift Package') {
             steps {
-                echo "Build SDK version ${env.GIT_VERSION} for mode: ${env.RUN_MODE}"
-                sh "./scripts/build_package.sh"
+                sh 'swift package resolve'
+                sh '''
+                echo "Patching local Swift package path in Xcode project..."
+                set -euo pipefail
+            
+                echo "Patching local Swift package path in Xcode project..."
+            
+                PBXPROJ="OgurySpmTestApp.xcodeproj/project.pbxproj"
+                # Use sed to patch the repositoryURL in ogury-sdk-spm package block
+                LOCAL_PATH="$(pwd)"
+            
+                # Escape the path for sed
+                ESCAPED_PATH=$(printf '%s\n' "$LOCAL_PATH" | sed 's/[\\/&]/\\\\&/g')
+        
+                sed -E "/XCLocalSwiftPackageReference.*ogury-sdk-spm/,/}/ {
+                  s|(relativePath = ).*;|\\1\\\"$ESCAPED_PATH\\\";|
+                }" "$PBXPROJ" > "$PBXPROJ.patched"
+                
+                mv "$PBXPROJ.patched" "$PBXPROJ"
+
+                echo "✅ Patched relativePath to local path: $LOCAL_PATH"
+                grep -A 5 -B 2 'ogury-sdk-spm' "$PBXPROJ"
+
+                echo "Building test app with patched local package..."
+                xcodebuild build \
+                  -project OgurySpmTestApp.xcodeproj \
+                  -scheme OgurySpmTestApp \
+                  -destination "generic/platform=iOS Simulator"
+                '''
             }
         }
 
