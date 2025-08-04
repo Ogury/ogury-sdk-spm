@@ -130,7 +130,7 @@ pipeline {
                         echo "Creating git tag ${releaseTag}"
         
                         // Use HTTPS with token to push tag
-                        def gitUrl = "git@github.com/ogury/ogury-sdk-spm.git"
+                        def gitUrl = "git@github.com:Ogury/ogury-sdk-spm.git"
                         echo "🔗 Git remote URL: ${gitUrl.replace(env.GIT_TOKEN, '****')}"
         
                         sh """
