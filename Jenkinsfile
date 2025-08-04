@@ -112,7 +112,9 @@ pipeline {
             }
             steps {
                 script {
-                    def releaseTag = "v${env.GIT_VERSION}"
+                    def version = env.GIT_TAG.replaceFirst(/^release-/, "")
+                    def releaseTag = "v${version}"
+                    echo "Creating Git tag: ${releaseTag}"
 
                     // Check if the tag already exists (e.g., created by Ruby script)
                     def tagExists = sh(
@@ -131,9 +133,6 @@ pipeline {
                             git push origin ${releaseTag}
                         """
                     }
-
-                    // Optional: generate release via GitHub CLI if not done in Ruby
-                    // sh "gh release create ${releaseTag} --title ${releaseTag} --notes-file ${CHANGELOG_FILE}"
                 }
             }
         }

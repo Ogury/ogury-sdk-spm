@@ -93,7 +93,7 @@ end
 if ARGV.include?("--tag")
   version = sdks.find { _1[:name] == "OguryWrapper" }[:version]
   tag = "v#{version}"
-  puts "🏷️  Creating GitHub release #{tag}..."
+  puts "🏷️  Creating GitHub release with tag #{tag}..."
   system("git add Package.swift")
   system("git commit -m 'Update Ogury SDK to #{version}'")
   system("git tag #{tag}")
