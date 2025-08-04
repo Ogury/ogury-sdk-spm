@@ -71,30 +71,9 @@ struct MainFeature: Reducer {
     
     struct State: Equatable {
         static func == (lhs: MainFeature.State, rhs: MainFeature.State) -> Bool {
-            var isEqual = lhs.adFormats == rhs.adFormats
+            let isEqual = lhs.adFormats == rhs.adFormats
             guard lhs.adFormats.count == rhs.adFormats.count,
                   lhs.showLogs == rhs.showLogs else { return false }
-//            lhs.adFormats.forEach { (key, value) in
-//                if !rhs.adFormats.keys.contains(key) {
-//                    isEqual = false
-//                    return
-//                }
-//                if value.count != rhs.adFormats[key]!.count {
-//                    isEqual = false
-//                    return
-//                }
-//                let leftFormats = lhs.adFormats.compactMap({ $0.value }).flatMap{ $0 }
-//                let rightFormats = rhs.adFormats.compactMap({ $0.value }).flatMap{ $0 }
-//                zip(leftFormats,
-//                    rightFormats)
-//                .forEach { lhsManager, rhsManager in
-//                    if lhsManager.adConfiguration != rhsManager.adConfiguration
-//                        || lhsManager.cardConfiguration != rhsManager.cardConfiguration {
-//                        isEqual = false
-//                        return
-//                    }
-//                }
-//            }
             return isEqual && lhs.destination == rhs.destination && lhs.setName == rhs.setName
         }
         
@@ -163,6 +142,7 @@ struct MainFeature: Reducer {
         case loadFromContainer(_: AdsStorableContainer)
         case aboutButtonTapped
         case startFailed
+        case showDetail(managers: [any AdManager], adFormat: any AdAdapterFormat)
         
         enum Alert {
             case notImplemented
@@ -185,6 +165,9 @@ struct MainFeature: Reducer {
         
         Reduce { state, action in
             switch action {
+                case .showDetail:
+                    return .none
+                    
                 case .destination(.dismiss):
                     return .send(.saveCards)
                     
