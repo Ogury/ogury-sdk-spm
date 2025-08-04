@@ -89,21 +89,4 @@ Dir.mktmpdir("ogury_sdk") do |tmp_dir|
   puts "✅ Package.swift updated."
 end
 
-# Optional: Git tag and push
-if ARGV.include?("--tag")
-  version = sdks.find { _1[:name] == "OguryWrapper" }[:version]
-  tag = "v#{version}"
-  puts "🏷️  Creating GitHub release with tag #{tag}..."
-
-  system("git add Package.swift")
-  system("git commit -m 'Update Ogury SDK to #{version}'")
-
-  https_remote = "https://#{ENV['GIT_USERNAME']}:#{ENV['GIT_TOKEN']}@github.com/Ogury/ogury-sdk-spm.git"
-  system("git remote set-url origin #{https_remote}")
-
-  system("git tag #{tag}")
-  system("git push origin #{tag}")
-  puts "🚀 Release #{tag} pushed."
-end
-
 puts "✅ Done."

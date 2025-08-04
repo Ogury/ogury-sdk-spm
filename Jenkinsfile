@@ -112,24 +112,34 @@ pipeline {
             }
             steps {
                 script {
-                    def version = env.GIT_TAG.replaceFirst(/^release-/, "")
+                    def version = env.GIT_TAG
+                        .replaceFirst(/^sdk-release-/, "")
+                        .replaceFirst(/^internal-/, "")
                     def releaseTag = "v${version}"
-                    echo "Creating Git tag: ${releaseTag}"
-
-                    // Check if the tag already exists (e.g., created by Ruby script)
+                    echo "Preparing Git tag: ${releaseTag}"
+        
+                    // Check if the tag already exists
                     def tagExists = sh(
                         script: "git tag -l ${releaseTag}",
                         returnStdout: true
                     ).trim()
-
+        
                     if (tagExists) {
                         echo "Git tag ${releaseTag} already exists. Skipping tag creation."
                     } else {
                         echo "Creating git tag ${releaseTag}"
+        
+                        // Use HTTPS with token to push tag
+                        def gitUrl = "git@github.com/ogury/ogury-sdk-spm.git"
+                        echo "🔗 Git remote URL: ${gitUrl.replace(env.GIT_TOKEN, '****')}"
+        
                         sh """
-                            git config user.email "ci@yourdomain.com"
-                            git config user.name "CI Bot"
+                            git config user.email "sdk.developers@ogury.co"
+                            git config user.name "weareogury"
                             git tag -a ${releaseTag} -m "Release ${releaseTag}"
+        
+                            # Push using token-authenticated HTTPS
+                            git remote set-url origin ${gitUrl}
                             git push origin ${releaseTag}
                         """
                     }
