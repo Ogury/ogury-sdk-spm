@@ -35,6 +35,8 @@ enum TestModeTags: AdTag {
 
 @Reducer
 struct AdViewFeature {
+    @Dependency(\.continuousClock) var clock
+    
     @ObservableState
     struct State: Equatable {
         static func == (lhs: Self, rhs: Self) -> Bool {
@@ -222,6 +224,8 @@ struct AdViewFeature {
         case killWebview
         case updateKillMode(_: KillWebviewMode)
         case dspPickerDidShow
+        case triggerSaveCards
+        case saveCards
         
         @CasePathable
         enum Alert: Equatable {
@@ -243,7 +247,7 @@ struct AdViewFeature {
     }
     
     enum AdCancel: Hashable {
-        case load(_: UUID), show(_: UUID)
+        case load(_: UUID), show(_: UUID), save
     }
     
     func load(_ state: State) -> Effect<AdViewFeature.Action> {
@@ -325,7 +329,7 @@ struct AdViewFeature {
                     return .none
                     
                 case .binding:
-                    return .none
+                    return .send(.triggerSaveCards)
                     
                 case .resetReward:
                     if state.rewardedOptions != nil {
@@ -481,14 +485,17 @@ struct AdViewFeature {
                 case .oguryTestModeButtonTapped:
                     state.log("Ogury test mode button tapped")
                     state.toggleTestMode()
-                    return .send(.checkForTestMode)
+                    return .merge(
+                        .run { send in await send(.checkForTestMode) },
+                        .run { send in await send(.triggerSaveCards) }
+                    )
                     
                 case .rtbTestModeButtonTapped:
                     state.log("RTBTest mode button tapped")
                     state.rtbTestModeEnabled.toggle()
                     state.updateRTBTag()
                     state.adManager.cardConfiguration.rtbTestModeEnabled = state.rtbTestModeEnabled
-                    return .none
+                    return .send(.triggerSaveCards)
                     
                 case let .forceTestMode(enable):
                     state.forceTestMode(enable)
@@ -518,6 +525,19 @@ struct AdViewFeature {
                     if state.adManager.adConfiguration.dspRegion == nil {
                         state.dspRegion = .euWest1
                     }
+                    return .none
+                    
+                case .triggerSaveCards:
+                    return .merge(
+                        .cancel(id: AdCancel.save),
+                        .run { send in
+                            try await clock.sleep(for: .seconds(3))
+                            await send(.saveCards)
+                        }.cancellable(id: AdCancel.save)
+                    )
+                    
+                case .saveCards:
+                    state.adManager.adDelegate?.saveSet()
                     return .none
             }
         }

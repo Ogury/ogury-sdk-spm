@@ -111,6 +111,10 @@ extension MainViewController: AdLifeCycleDelegate, ApplicationDelegate {
         ViewStore(store, observe: { $0 }).send(.deleteCard(id: id))
     }
     
+    func saveSet() {
+        ViewStore(store, observe: { $0 }).send(.saveCards)
+    }
+    
     func share(json: String, filename: String) {
         UIApplication.topViewController()?.dismiss(animated: true)
         guard let url = createTemporaryFile(text: json, filename: filename) else { return }
