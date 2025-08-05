@@ -19,10 +19,20 @@ pipeline {
         stage('Prepare') {
             steps {
                 script {
-                    env.GIT_TAG = sh(
-                        script: 'git describe --tags --abbrev=0 2>/dev/null || echo ""',
+                    def rawTags = sh(
+                        script: '''
+                            git fetch --tags --quiet
+                            git tag --points-at HEAD | grep -E '^(sdk-release-|internal-)' || true
+                        ''',
                         returnStdout: true
                     ).trim()
+                    
+                    def matchingTags = rawTags.split('\n')*.trim().findAll { it }
+                    
+                    def preferredTag = matchingTags.find { it.startsWith("sdk-release-") } ?:
+                                       matchingTags.find { it.startsWith("internal-") } ?: ""
+                    
+                    env.GIT_TAG = preferredTag
                     echo ">> Detected Git tag: '${env.GIT_TAG}'"
         
                     if (env.GIT_TAG.endsWith("-dry")) {
