@@ -19,32 +19,32 @@ pipeline {
         stage('Prepare') {
             steps {
                 script {
-                    env.GIT_TAG = env.TAG_NAME
-                    echo ">> Detected Git tag: '${env.GIT_TAG}'"
+                    env.TAG_NAME = env.TAG_NAME?.trim() ?: ""
+                    echo ">> Detected Git tag: '${env.TAG_NAME}'"
         
-                    if (env.GIT_TAG.endsWith("-dry")) {
-                        echo "Detected dry run tag: ${env.GIT_TAG}"
+                    if (env.TAG_NAME.endsWith("-dry")) {
+                        echo "Detected dry run tag: ${env.TAG_NAME}"
                         env.RUN_MODE = "dry"
         
-                    } else if (env.GIT_TAG == "") {
+                    } else if (env.TAG_NAME == "") {
                         echo "No Git tag found. Running in default mode (not a release)."
                         env.RUN_MODE = "default"
         
                     // ✅ First check for release (more specific)
-                    } else if (env.GIT_TAG ==~ /^sdk-release-\d+\.\d+\.\d+(-[\w\.]+)?$/) {
-                        echo "Detected public release tag: ${env.GIT_TAG}"
+                    } else if (env.TAG_NAME ==~ /^sdk-release-\d+\.\d+\.\d+(-[\w\.]+)?$/) {
+                        echo "Detected public release tag: ${env.TAG_NAME}"
                         env.RUN_MODE = "release"
                     
                         if (!fileExists(env.CHANGELOG_FILE)) {
                             error "Changelog file '${env.CHANGELOG_FILE}' is required for release builds but was not found."
                         }
                     
-                    } else if (env.GIT_TAG ==~ /^internal-\d+\.\d+\.\d+(-[\w\.]+)?$/) {
-                        echo "Detected internal release tag: ${env.GIT_TAG}"
+                    } else if (env.TAG_NAME ==~ /^internal-\d+\.\d+\.\d+(-[\w\.]+)?$/) {
+                        echo "Detected internal release tag: ${env.TAG_NAME}"
                         env.RUN_MODE = "internal"
         
                     } else {
-                        echo "Tag '${env.GIT_TAG}' doesn't match any expected pattern. Proceeding in default mode."
+                        echo "Tag '${env.TAG_NAME}' doesn't match any expected pattern. Proceeding in default mode."
                         env.RUN_MODE = "default"
                     }
                 }
@@ -109,7 +109,7 @@ pipeline {
             }
             steps {
                 script {
-                    def version = env.GIT_TAG
+                    def version = env.TAG_NAME
                         .replaceFirst(/^sdk-release-/, "")
                         .replaceFirst(/^internal-/, "")
                     def releaseTag = "v${version}"
