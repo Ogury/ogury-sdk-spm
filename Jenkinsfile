@@ -13,14 +13,10 @@ pipeline {
         PATH = "$HOME/.rvm/bin:$PATH" // ensure RVM is found
         RBENV_SHELL = 'zsh'
         SONAR_CLOUD_TOKEN = credentials('SONAR_CLOUD_TOKEN')
-        GIT_TAG = sh(
-            script: 'git describe --tags --abbrev=0 2>/dev/null || echo "no-tag"',
-            returnStdout: true
-        ).trim()
+        ARTIFACTORY_TOKEN = credentials('ARTIFACTORY_TOKEN')
     }
 
     stages {
-
         stage('Setup') {
             steps {
                 sh """#!/bin/zsh -l
@@ -45,7 +41,7 @@ pipeline {
             }
             steps {
                 script {
-                    echo "GIT_TAG is: ${env.GIT_TAG}"
+                    echo "TAG_NAME is: ${env.TAG_NAME}"
 
                     // Default to false
                     def isArtifactory = false
@@ -53,20 +49,20 @@ pipeline {
                     def targetThreshold = "all"
                     
                     // Check if a tag exists and contains '-art'
-                    if (env.GIT_TAG && (env.GIT_TAG.contains('-art') || env.GIT_TAG.contains('release-') )) {
+                    if (env.TAG_NAME && (env.TAG_NAME.contains('-art') || env.TAG_NAME.contains('release-') )) {
                         isArtifactory = true
                     }
 
-                    if (env.GIT_TAG && env.GIT_TAG.contains('-core-')) {
+                    if (env.TAG_NAME && env.TAG_NAME.contains('-core-')) {
                         targetThreshold = "core"
                     }
-                    if (env.GIT_TAG && env.GIT_TAG.contains('-ads-')) {
+                    if (env.TAG_NAME && env.TAG_NAME.contains('-ads-')) {
                         targetThreshold = "ads"
                     }
-                    if (env.GIT_TAG && env.GIT_TAG.contains('wrapper')) {
+                    if (env.TAG_NAME && env.TAG_NAME.contains('wrapper')) {
                         targetThreshold = "sdk"
                     }
-                    if (env.GIT_TAG && env.GIT_TAG.contains('-killModeEnabled')) {
+                    if (env.TAG_NAME && env.TAG_NAME.contains('-killModeEnabled')) {
                         killModeEnabled = true
                     }
         
@@ -189,19 +185,19 @@ pipeline {
                                 error "Unknown framework type: ${elements[1]}"
                         }
 
-                        def targetThreshold = "all"
-                        if (env.GIT_TAG && env.GIT_TAG.contains('-core-')) {
-                            targetThreshold = "core"
-                        }
-                        if (env.GIT_TAG && env.GIT_TAG.contains('-ads-')) {
-                            targetThreshold = "ads"
-                        }
-                        if (env.GIT_TAG && env.GIT_TAG.contains('wrapper')) {
-                            targetThreshold = "sdk"
-                        }
-                        if (env.GIT_TAG && env.GIT_TAG.contains('-killModeEnabled')) {
-                            killModeEnabled = true
-                        }
+                    def targetThreshold = "all"
+                    if (env.TAG_NAME && env.TAG_NAME.contains('-core-')) {
+                        targetThreshold = "core"
+                    }
+                    if (env.TAG_NAME && env.TAG_NAME.contains('-ads-')) {
+                        targetThreshold = "ads"
+                    }
+                    if (env.TAG_NAME && env.TAG_NAME.contains('wrapper')) {
+                        targetThreshold = "sdk"
+                    }
+                    if (env.TAG_NAME && env.TAG_NAME.contains('-killModeEnabled')) {
+                        killModeEnabled = true
+                    }
 
                         def isBetaOrRelease = (envType == "beta" || envType == "release")
                         if (isBetaOrRelease) {
