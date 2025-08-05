@@ -139,7 +139,7 @@ OM SDK Version : \(omid)
         // Build the initial request
         let initRequest = requestBuilder.build()
         // Initialize LevelPlay with the prepared request
-        IronSource.setMetaDataWithKey("is_test_suite", value: "enabled")
+        IronSource.setMetaDataWithKey("is_test_suite", value: "enable")
         let res = try? await LevelPlay.initWith(initRequest)
         print(res.debugDescription)
     }
