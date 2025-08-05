@@ -108,7 +108,7 @@ pipeline {
 
         stage('Create Git Tag & Release') {
             when {
-                expression { env.RUN_MODE == "release" || env.RUN_MODE == "internal" }
+                expression { env.RUN_MODE == "release"}
             }
             steps {
                 script {
