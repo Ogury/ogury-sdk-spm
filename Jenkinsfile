@@ -112,7 +112,7 @@ pipeline {
                     def version = env.TAG_NAME
                         .replaceFirst(/^sdk-release-/, "")
                         .replaceFirst(/^internal-/, "")
-                    def releaseTag = "v${version}"
+                    def releaseTag = "${version}"
                     echo "Preparing Git tag: ${releaseTag}"
         
                     // Check if the tag already exists
