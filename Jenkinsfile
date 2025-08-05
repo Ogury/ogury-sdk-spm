@@ -19,10 +19,7 @@ pipeline {
         stage('Prepare') {
             steps {
                 script {
-                    env.GIT_TAG = sh(
-                        script: 'git describe --tags --abbrev=0 2>/dev/null || echo ""',
-                        returnStdout: true
-                    ).trim()
+                    env.GIT_TAG = env.TAG_NAME
                     echo ">> Detected Git tag: '${env.GIT_TAG}'"
         
                     if (env.GIT_TAG.endsWith("-dry")) {
