@@ -20,7 +20,11 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         start()
-        Task { await SdkLauncher.shared.launch() }
+        Task {
+            await SdkLauncher.shared.launch()
+            await SdkLauncher.shared.adapter.setAllowedTypes(["Publisher", "Internal", "Requests", "Mraid", "Monitoring", "SDK Callbacks"])
+            await SdkLauncher.shared.adapter.setLogLevel(.all)
+        }
         addViewToHierarchy()
         startNotifiers()
     }
@@ -105,6 +109,10 @@ extension MainViewController: AdLifeCycleDelegate, ApplicationDelegate {
     
     func deleteCard(withId id: UUID) {
         ViewStore(store, observe: { $0 }).send(.deleteCard(id: id))
+    }
+    
+    func saveSet() {
+        ViewStore(store, observe: { $0 }).send(.saveCards)
     }
     
     func share(json: String, filename: String) {

@@ -84,6 +84,10 @@ struct AppFeature: Reducer {
                 case .path:
                     return .none
                     
+                case let .main(.showDetail(managers, adFormat)):
+                    state.path.append(.detail(.init(adManagers: managers, adFormat: adFormat)))
+                    return .none
+                    
                 case .main, .logs:
                     return .none
                     

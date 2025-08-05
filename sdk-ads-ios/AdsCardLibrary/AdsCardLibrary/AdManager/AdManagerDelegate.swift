@@ -14,4 +14,5 @@ public protocol AdLifeCycleDelegate {
     func deleteCard(withId id: UUID)
     // log
     func focusLogs(on cardId: String)
+    func saveSet()
 }

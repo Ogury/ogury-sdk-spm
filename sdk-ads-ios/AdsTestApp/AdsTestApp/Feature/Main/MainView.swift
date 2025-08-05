@@ -309,60 +309,8 @@ extension View {
 //    }
 //}
 
-@available(iOS, introduced: 15, deprecated: 16, message: "use ListManagersView for iOS 16+")
-struct LegacyHorizontalCardsView: View {
-    let adFormat: any AdAdapterFormat
-    let managers: [any AdManager]
-    let geometry: GeometryProxy
-    @State private var contentSize: CGSize = .zero
-    @Environment(\.cardPermissions) var cardPermissions
-    
-    var body: some View {
-        HStack(alignment: .center, spacing: 4) {
-            adFormat.displayIcon
-                .resizable()
-                .aspectRatio(contentMode: .fit) // Maintains the aspect ratio
-                .frame(width: 50, height: 50) // Sets the frame size
-                .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
-            
-            VStack(alignment: .leading, spacing: 4) {
-                Text("\(adFormat.adFormat.name.capitalized) (\(managers.count))")
-                    .font(.adsTitle)
-                    .fontWeight(.medium)
-                    .foregroundStyle(
-                        Color(AdColorPalette.Text.placeholder.color)
-                    )
-                
-                AdTagList(tags: adFormat.tags)
-            }
-        }
-        //        .frame(width: UIScreen.main.bounds.size.width - 30,
-        //               alignment: .leading)
-        
-        TabView {
-            ForEach(0..<managers.count, id: \.self) { index in
-                managers[index]
-                    .adView
-                    .padding(.horizontal, 20)
-                    .frame(width: geometry.size.width)
-                    .overlay(
-                        GeometryReader { geo in
-                            Color.clear.onAppear {
-                                contentSize = geo.size
-                            }
-                        }
-                    )
-            }
-        }
-        .zIndex(0)
-        .frame(width: geometry.size.width,
-               height: contentSize.height + (managers.isEmpty ? 0 : 70))
-        .tabViewStyle(.page)
-    }
-}
-
-@available(iOS 16, *)
 struct HorizontalCardsView: View {
+    let store: StoreOf<MainFeature>
     let adFormat: any AdAdapterFormat
     let managers: [any AdManager]
     let geometry: GeometryProxy
@@ -374,40 +322,37 @@ struct HorizontalCardsView: View {
     var body: some View {
         VStack(spacing: 0) {
             ZStack(alignment: .leading) {
-                HStack(alignment: .center, spacing: 4) {
-                    adFormat.displayIcon
-                        .resizable()
-                        .aspectRatio(contentMode: .fit) // Maintains the aspect ratio
-                        .frame(width: 50, height: 50) // Sets the frame size
-                        .offset(y: 3)
-                        .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
-                    
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("\(adFormat.adFormat.name) (\(managers.count))")
-                            .font(.adsTitle)
-                            .fontWeight(.medium)
-                            .foregroundStyle(
-                                disabled
-                                ? Color(AdColorPalette.Text.placeholder.color)
-                                : Color(AdColorPalette.Text.primary(onAccent: false).color)
-                            )
-                        
-                        AdTagList(tags: adFormat.tags)
-                            .zIndex(2)
+                Button {
+                    if !disabled {
+                        store.send(.showDetail(managers: managers, adFormat: adFormat))
                     }
+                } label: {
+                    HStack(alignment: .center, spacing: 4) {
+                        adFormat.displayIcon
+                            .resizable()
+                            .aspectRatio(contentMode: .fit) // Maintains the aspect ratio
+                            .frame(width: 50, height: 50) // Sets the frame size
+                            .offset(y: 3)
+                            .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("\(adFormat.adFormat.name) (\(managers.count))")
+                                .font(.adsTitle)
+                                .fontWeight(.medium)
+                                .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                            
+                            AdTagList(tags: adFormat.tags)
+                                .zIndex(2)
+                        }
+                        
+                        if managers.count > 1, !disabled {
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                    }
+                    .zIndex(1)
                 }
-                .zIndex(1)
-                
-                NavigationLink(
-                    state: AppFeature.Path.State.detail(
-                        DetailListFeature.State(adManagers: managers, adFormat: adFormat)
-                    )
-                ) {
-                    EmptyView()
-                }
-                .disabled(disabled)
-                .frame(width: geometry.size.width - 30,
-                       alignment: .leading)
+                .frame(width: geometry.size.width - 30, alignment: .leading)
             }
             
             TabView {
@@ -441,7 +386,7 @@ struct ListManagersView: View {
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             GeometryReader { geometry in
-                List {
+                ScrollView {
                     VStack(alignment: .center) {
                         TextField("Set name",
                                   text: viewStore.$setName,
@@ -454,23 +399,17 @@ struct ListManagersView: View {
                         )
                     }
                     .padding(8)
-                    .padding(.horizontal, -10)
+                    .padding(.horizontal, 10)
                     .listRowBackground(Color.clear)
                     .listRowSeparator(.hidden)
                     
                     Section {
                         ForEach(viewStore.adFormats.sorted(by: { $0 < $1 })) { adCardList in
-                            if #available(iOS 16.0, *) {
-                                HorizontalCardsView(adFormat: adCardList.adAdapterFormat,
-                                                    managers: adCardList.adManagers,
-                                                    geometry: geometry)
-                                .frame(width: geometry.size.width)
-                            } else {
-                                LegacyHorizontalCardsView(adFormat: adCardList.adAdapterFormat,
-                                                          managers: adCardList.adManagers,
-                                                          geometry: geometry)
-                                .background(Color.clear)
-                            }
+                            HorizontalCardsView(store: store,
+                                                adFormat: adCardList.adAdapterFormat,
+                                                managers: adCardList.adManagers,
+                                                geometry: geometry)
+                            .frame(width: geometry.size.width)
                         }
                         .listRowSeparator(.hidden)
                         .listRowBackground(Color.clear)
