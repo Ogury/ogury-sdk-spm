@@ -141,6 +141,17 @@ pipeline {
                             # Push using token-authenticated HTTPS
                             git remote set-url origin ${gitUrl}
                             git push origin ${releaseTag}
+
+                            curl -s -X POST https://api.github.com/repos/ogury/ogury-sdk-spm/releases \\
+                              -H "Authorization: token ${env.GIT_TOKEN}" \\
+                              -H "Content-Type: application/json" \\
+                              -d '{
+                                "tag_name": "${releaseTag}",
+                                "name": "Release ${releaseTag}",
+                                "body": "Automatically created by Jenkins",
+                                "draft": false,
+                                "prerelease": true
+                              }'
                         """
                     }
                 }
