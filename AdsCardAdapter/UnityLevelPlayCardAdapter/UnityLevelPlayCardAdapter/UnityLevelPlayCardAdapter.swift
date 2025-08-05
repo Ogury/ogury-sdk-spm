@@ -135,11 +135,11 @@ OM SDK Version : \(omid)
     public func startSdk() async {
         // Create a request builder with app key and ad formats. Add User ID if available
         let requestBuilder = LPMInitRequestBuilder(appKey: "21f32a64d")
-            .withLegacyAdFormats([IS_INTERSTITIAL, IS_BANNER, IS_REWARDED_VIDEO])
+//            .withLegacyAdFormats([IS_INTERSTITIAL, IS_BANNER, IS_REWARDED_VIDEO])
         // Build the initial request
         let initRequest = requestBuilder.build()
         // Initialize LevelPlay with the prepared request
-        IronSource.setMetaDataWithKey("is_test_suite", value: "enable")
+        IronSourceAds.setMetaDataWithKey("is_test_suite", value: "enable")
         let res = try? await LevelPlay.initWith(initRequest)
         print(res.debugDescription)
     }
