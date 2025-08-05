@@ -20,9 +20,13 @@ pipeline {
             steps {
                 script {
                     env.GIT_TAG = sh(
-                        script: 'git describe --tags --abbrev=0 2>/dev/null || echo ""',
+                        script: '''
+                            git fetch --tags --quiet
+                            git tag --points-at HEAD | grep -E '^(sdk-release-|internal-)' || true
+                        ''',
                         returnStdout: true
                     ).trim()
+                    
                     echo ">> Detected Git tag: '${env.GIT_TAG}'"
         
                     if (env.GIT_TAG.endsWith("-dry")) {
