@@ -46,11 +46,12 @@ public struct UnityLevelPlayAdsCardAdapter: AdsCardAdaptable {
             AdType.headerBidding(.rewardedVideo),
             AdType.headerBidding(.standardBanner),
         ]),
-        .init(title: "Waterfall", formats: [
-            AdType.waterfall(.interstitial),
-            AdType.waterfall(.rewardedVideo),
-            AdType.waterfall(.standardBanner),
-        ]),
+        // uncomment when we try to integrate waterfall
+//        .init(title: "Waterfall", formats: [
+//            AdType.waterfall(.interstitial),
+//            AdType.waterfall(.rewardedVideo),
+//            AdType.waterfall(.standardBanner),
+//        ]),
     ]
     
     public var sdkVersions: String {
