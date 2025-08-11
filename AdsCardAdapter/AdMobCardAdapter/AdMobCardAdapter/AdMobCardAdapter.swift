@@ -60,7 +60,7 @@ public struct AdMobAdsCardAdapter: AdsCardAdaptable {
         let adMobSdkVersion = string(for: MobileAds.shared.versionNumber)
         let ogurySdkVersion = Ogury.sdkVersion()
         let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
-        let adsSdkVersion = "\(String(describing: OGAInternal.shared().getVersion())) (\(origin == "Pod" ? "Release" : "Development"))"
+        let adsSdkVersion = "\(String(describing: OGAInternal.shared().getVersion()))"
         let omid = OMIDOgurySDK.versionString()
         return
 """

@@ -28,7 +28,7 @@ internal enum Action: AdsCardAdapterAction {
     
     func perform()  {
         switch self {
-            case let .showDebugger(viewController): Task { @MainActor in IronSource.launchTestSuite(viewController) }
+            case let .showDebugger(viewController): Task { @MainActor in LevelPlay.launchTestSuite(viewController) }
         }
     }
     
@@ -56,10 +56,10 @@ public struct UnityLevelPlayAdsCardAdapter: AdsCardAdaptable {
     
     public var sdkVersions: String {
         let coreSdkVersion = String(describing: OGCInternal.shared().getVersion())
-        let ulpSdkVersion = IronSource.sdkVersion()
+        let ulpSdkVersion = IronSourceAds.sdkVersion()
         let ogurySdkVersion = Ogury.sdkVersion()
         let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
-        let adsSdkVersion = "\(String(describing: OGAInternal.shared().getVersion())) (\(origin == "Pod" ? "Release" : "Development"))"
+        let adsSdkVersion = "\(String(describing: OGAInternal.shared().getVersion()))"
         let omid = OMIDOgurySDK.versionString()
         return
 """
@@ -140,7 +140,7 @@ OM SDK Version : \(omid)
         // Build the initial request
         let initRequest = requestBuilder.build()
         // Initialize LevelPlay with the prepared request
-        IronSourceAds.setMetaDataWithKey("is_test_suite", value: "enable")
+        LevelPlay.setMetaDataWithKey("is_test_suite", value: "enable")
         let res = try? await LevelPlay.initWith(initRequest)
         print(res.debugDescription)
     }

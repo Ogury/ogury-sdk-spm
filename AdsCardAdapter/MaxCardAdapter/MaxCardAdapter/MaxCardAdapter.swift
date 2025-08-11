@@ -52,7 +52,7 @@ public struct MaxAdsCardAdapter: AdsCardAdaptable {
         let appLovinSdkVersion = ALSdk.version()
         let ogurySdkVersion = Ogury.sdkVersion()
         let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
-        let adsSdkVersion = "\(String(describing: OGAInternal.shared().getVersion())) (\(origin == "Pod" ? "Release" : "Development"))"
+        let adsSdkVersion = "\(String(describing: OGAInternal.shared().getVersion()))"
         let omid = OMIDOgurySDK.versionString()
         return
 """
