@@ -10,7 +10,7 @@ pipeline {
         GIT_TOKEN = credentials('GIT_TOKEN')
         GIT_USERNAME = "weareogury"
         LC_ALL = 'en_US.UTF-8'
-        PATH = "$HOME/.rvm/bin:$PATH" // ensure RVM is found
+        PATH = "/usr/local/bin:$HOME/.rvm/bin:$PATH" // ensure RVM is found
         RBENV_SHELL = 'zsh'
         SONAR_CLOUD_TOKEN = credentials('SONAR_CLOUD_TOKEN')
         ARTIFACTORY_TOKEN = credentials('ARTIFACTORY_TOKEN')
