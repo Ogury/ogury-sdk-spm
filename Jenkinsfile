@@ -167,7 +167,7 @@ pipeline {
                             // Ensure that release mode always has this setting to false
                             killModeEnabled = false
                             // always use external dependencies when compiling for prod
-                            isArtifactory = true
+                            isArtifactory = false
                             break
                         default:
                             error "Unknown environment type: ${elements[0]}"
