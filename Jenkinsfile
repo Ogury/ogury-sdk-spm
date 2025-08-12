@@ -54,7 +54,7 @@ pipeline {
                     def targetThreshold = "all"
                     
                     // Check if a tag exists and contains '-art'
-                    if (env.GIT_TAG && (env.GIT_TAG.contains('-art') || env.GIT_TAG.contains('release-') )) {
+                    if (env.GIT_TAG && (env.GIT_TAG.contains('-art'))) {
                         isArtifactory = true
                     }
 
