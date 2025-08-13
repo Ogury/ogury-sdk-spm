@@ -1,0 +1,89 @@
+{
+  "cards" : [
+    [
+      {
+        "name" : "Standard banner",
+        "adType" : 2,
+        "adInformations" : {
+          "dspCreativeId" : "",
+          "creativeId" : "66227",
+          "bannerSize" : [
+            320,
+            50
+          ],
+          "campaignId" : "124961",
+          "settings" : {
+            "rtbTestModeEnabled" : false,
+            "qaLabel" : "C5EEA63F-9485-4ACE-9B23-DE3C7D796B8D",
+            "oguryTestModeEnabled" : false
+          },
+          "adUnitId" : "e2c7d8c4-8b23-4d6f-af5e-0b726ee9eab1"
+        }
+      }
+    ],
+    [
+      {
+        "name" : "Rewarded",
+        "adType" : 1,
+        "adInformations" : {
+          "dspCreativeId" : "",
+          "creativeId" : "66191",
+          "adUnitId" : "9e8e8590-a75f-4ad4-8945-6b250a616427",
+          "campaignId" : "124934",
+          "settings" : {
+            "rtbTestModeEnabled" : false,
+            "qaLabel" : "88EA4E6C-19BC-4F0F-AA2B-68DACBB565A6",
+            "oguryTestModeEnabled" : false
+          }
+        }
+      }
+    ],
+    [
+      {
+        "name" : "Interstitial",
+        "adType" : 0,
+        "adInformations" : {
+          "dspCreativeId" : "",
+          "creativeId" : "66202",
+          "adUnitId" : "60af2985-4660-46d0-ac59-6dc43e05b4a1",
+          "campaignId" : "124936",
+          "settings" : {
+            "rtbTestModeEnabled" : false,
+            "qaLabel" : "5058F6BC-3C77-4E61-BF38-F807C0DBB508",
+            "oguryTestModeEnabled" : false
+          }
+        }
+      }
+    ]
+  ],
+  "settings" : {
+    "name" : "OMID test suite",
+    "permissions" :  {
+        "settings" : false,
+        "logs" : false,
+        "add" : false,
+        "export" : false,
+        "bulkMode" : false,
+        "devFeatures" : false,
+        "settingPermissions" : 0
+    },
+    "importMethod" : "file",
+    "showCampaignId" : true,
+    "bulkModeEnabled" : false,
+    "killWebviewMode" : "none",
+    "showTestMode" : false,
+    "showCreativeId" : false,
+    "enableAdUnitEditing" : false,
+    "os" : "iOS",
+    "startSDKWithApplication" : true,
+    "showDspFields" : false,
+    "logSettings" : {
+      "allowedTypes" : [
+        "Callbacks"
+      ],
+      "allowedDisplay" : 0
+    },
+    "numberOfSdkStart" : 1
+  },
+  "fileVersion" : 1
+}

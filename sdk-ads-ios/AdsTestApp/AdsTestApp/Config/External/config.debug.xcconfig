@@ -1,0 +1,7 @@
+#include "../../../../../../Pods/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext.debug.xcconfig"
+ASSET_KEY = OGY-4795165606DF
+DEFAULT_ENV = PROD
+PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app.ext
+VERSION = 1.0.0+ogury.5.1.0-alpha.standardbanners.1
+BUILD_NUMBER = build:1750931364
+PRODUCT_NAME = Ogury OM SDK
