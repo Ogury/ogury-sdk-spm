@@ -3,6 +3,8 @@
 //
 
 #import "OGAMraidLogMessage.h"
+#import "OGAAdConfiguration.h"
+#import "OGALog.h"
 
 @implementation OGAMraidLogMessage
 
@@ -11,22 +13,30 @@
 - (instancetype)initWithLevel:(OguryLogLevel)level
               adConfiguration:(OGAAdConfiguration *)adConfiguration
                     webviewId:(NSString *)webViewId
-                      message:(NSString *)message {
-    if (self = [super initWithLevel:level adConfiguration:adConfiguration message:message]) {
+                      message:(NSString *)message
+                         tags:(NSArray<OguryLogTag *> *_Nullable)tags {
+    if (self = [super initWithLevel:level
+                    adConfiguration:adConfiguration
+                            logType:OguryLogTypeMraid
+                            message:message
+                               tags:tags]) {
         _webviewId = webViewId;
+        self.tags = [self.tags arrayByAddingObject:[OguryLogTag tagWithKey:@"WebViewId" value:webViewId]];
     }
     return self;
 }
 
-#pragma mark - OguryStringFormattable
-
-- (NSString *)formattedString {
-    return [NSString stringWithFormat:@"[%@][%@][%@][MRAID][%@] %@",
-                                      [self.adConfiguration getAdTypeString],
-                                      self.adConfiguration.adUnitId,
-                                      self.adConfiguration.campaignId ?: @"",
-                                      self.webviewId,
-                                      self.message];
+- (instancetype)initWithLevel:(OguryLogLevel)level
+              adConfiguration:(OGAAdConfiguration *)adConfiguration
+                    webviewId:(NSString *)webViewId
+                        error:(NSError *)error
+                      message:(NSString *_Nullable)message
+                         tags:(NSArray<OguryLogTag *> *_Nullable)tags {
+    return [self initWithLevel:level
+               adConfiguration:adConfiguration
+                     webviewId:webViewId
+                       message:message == nil ? logErrorMessage(error) : [logErrorMessage(error) stringByAppendingFormat:@" - %@", message]
+                          tags:tags];
 }
 
 @end

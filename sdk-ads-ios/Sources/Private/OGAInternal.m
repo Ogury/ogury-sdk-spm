@@ -11,6 +11,7 @@
 #import "OGAReachability.h"
 #import "OGASetLogLevelNotificationManager.h"
 #import "OGAWebViewUserAgentService.h"
+#import "OGAMonitoringDispatcher.h"
 #import "OGAWebViewUserAgentServiceDelegate.h"
 
 @interface OGAInternal () <OGAWebViewUserAgentServiceDelegate>
@@ -76,6 +77,7 @@
         _logNotificationManager = logNotificationManager;
         _webViewUserAgentService = webViewUserAgentService;
         _webViewUserAgentService.delegate = self;
+        _sdkConsumer = nil;
         [_logNotificationManager registerToNotification];
     }
     return self;
@@ -85,15 +87,27 @@
 
 - (void)startWith:(NSString *)assetKey completionHandler:(StartCompletionBlock)completionHandler {
     self.setupBlock = completionHandler;
-    [self.log log:OguryLogLevelInfo message:@"Module started"];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"Module started"
+                                                    tags:nil]];
 
     if ([self.assetKeyManager configureAssetKey:assetKey] || [self.profigManager shouldSync]) {
         // Setup notifier otherwise further call to the internetReachability will return invalid statuses.
-        [self.log log:OguryLogLevelInfo message:@"Invalid/No profig found, start profig sync."];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypeInternal
+                                                     message:@"Invalid/No profig found, start profig sync"
+                                                        tags:nil]];
         [self.internetReachability startNotifier];
         [self.webViewUserAgentService syncWebViewUserAgentAndDispatchDelegate];
     } else {
-        [self.log log:OguryLogLevelWarning message:@"Ogury Ads only need to be started once. Additional calls are ignored."];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypeInternal
+                                                     message:@"Ogury Ads only need to be started once. Additional calls are ignored."
+                                                        tags:nil]];
         completionHandler(true, nil);
     }
 }
@@ -105,7 +119,11 @@
 - (void)syncProfig {
     [self.profigManager syncProfigWithCompletion:^(OGAProfigFullResponse *response, NSError *error) {
         if (!response) {
-            [self.log logError:error message:@"Failed to initialize Ogury Ads"];
+            [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                                 adConfiguration:nil
+                                                         logType:OguryLogTypeInternal
+                                                         message:@"Failed to initialize Ogury Ads"
+                                                            tags:nil]];
         }
         if (self.setupBlock != nil) {
             self.setupBlock(response != nil, error);
@@ -122,6 +140,14 @@
     [self.log setLogLevel:logLevel];
 }
 
+- (void)addLogger:(id<OguryLogger>)logger {
+    [self.log addLogger:logger];
+}
+
+- (void)removeLogger:(id<OguryLogger>)logger {
+    [self.log removeLogger:logger];
+}
+
 // Hidden method allowing test app to change the URL of the server
 - (void)changeServerEnvironment:(NSString *)environment {
     [self.environmentManager updateWith:environment];
@@ -130,8 +156,12 @@
 // Hidden method allowing test app to reset the SDK
 - (void)resetSDK {
     [self.assetKeyManager reset];
-    [self.profigManager resetProfig];
+    [self resetAdConfiguration];
     [self.webViewUserAgentService reset];
+}
+
+- (void)resetAdConfiguration {
+    [self.profigManager resetProfig];
 }
 
 - (NSString *)getVersion {
@@ -143,7 +173,7 @@
 }
 
 - (void)defineSDKType:(NSUInteger)sdkType {
-    [self.adManager defineSDKType:sdkType];
+    [self.adManager setSdkType:sdkType];
 }
 
 - (void)defineMediationName:(NSString *)mediationName {
@@ -151,7 +181,11 @@
 }
 
 - (void)maxWebViewUserAgentRetryReached {
-    [self.log log:OguryLogLevelWarning message:@"Ogury Ads is unable to retreive webview User Agent."];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"Ogury Ads is unable to retreive webview User Agent."
+                                                    tags:nil]];
     [self syncProfig];
 }
 

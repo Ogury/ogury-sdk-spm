@@ -22,6 +22,7 @@
 #import "OGAMraidVerificationOperation.h"
 #import "OGAMRAIDWebViewDelegate.h"
 #import "OGAMraidBaseWebView+PrivateHeader.h"
+#import "OGAMraidLogMessage.h"
 #import "OGAMonitoringDispatcher.h"
 
 #define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
@@ -69,7 +70,11 @@ static NSString *const OGAadLoadingStateKey = @"adLoadingState";
 
 #pragma mark - Methods
 - (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView {
-    [self.log logMraid:OguryLogLevelWarning forAdConfiguration:self.ad.adConfiguration webViewId:self.webViewId message:@"webViewWebContentProcessDidTerminate ☣️"];
+    [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                            adConfiguration:self.ad.adConfiguration
+                                                  webviewId:self.webViewId
+                                                    message:@"webViewWebContentProcessDidTerminate ☣️"
+                                                       tags:nil]];
     [self.displayer webkitProcessDidTerminate];
 }
 
@@ -86,10 +91,11 @@ static NSString *const OGAadLoadingStateKey = @"adLoadingState";
 /// Start the MRAID initialisation process for the WKWebView
 - (void)startMRAIDProcessForContent:(NSString *)content {
     if (self.isPerformingMRAIDInitialization) {
-        [self.log logMraid:OguryLogLevelWarning
-            forAdConfiguration:self.ad.adConfiguration
-                     webViewId:self.webViewId
-                       message:@"Trying to perform a dual MRAID initialization"];
+        [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                                adConfiguration:self.ad.adConfiguration
+                                                      webviewId:self.webViewId
+                                                        message:@"Trying to perform a dual MRAID initialization"
+                                                           tags:nil]];
         return;
     }
 
@@ -107,10 +113,11 @@ static NSString *const OGAadLoadingStateKey = @"adLoadingState";
         [self.wkWebView evaluateJavaScript:mraidFile
                          completionHandler:^(id _Nullable result, NSError *_Nullable error) {
                              if (error) {
-                                 [self.log logMraidError:error
-                                      forAdConfiguration:self.ad.adConfiguration
-                                               webViewId:self.webViewId
-                                                 message:@"An error occurred during MRAID evaluation in webview"];
+                                 [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                                                         adConfiguration:self.ad.adConfiguration
+                                                                               webviewId:self.webViewId
+                                                                                 message:[NSString stringWithFormat:@"An error occurred during MRAID evaluation in webview - %@", error.localizedDescription]
+                                                                                    tags:nil]];
                              }
                          }];
     });
@@ -142,10 +149,11 @@ static NSString *const OGAadLoadingStateKey = @"adLoadingState";
             if (self.isCommunicatingWithMraid) {
                 [self.mraidCommandsHandler sendLoadCommands];
             } else {
-                [self.log logMraid:OguryLogLevelError
-                    forAdConfiguration:self.ad.adConfiguration
-                             webViewId:self.webViewId
-                               message:@"MRAID has not been initialized for webview"];
+                [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                        adConfiguration:self.ad.adConfiguration
+                                                              webviewId:self.webViewId
+                                                                message:@"MRAID has not been initialized for webview"
+                                                                   tags:nil]];
                 [self.mraidCommandsHandler handleMraidCommand:[OGAMraidCommand mraidTimeoutUnloadCommand]];
             }
         });
@@ -156,10 +164,11 @@ static NSString *const OGAadLoadingStateKey = @"adLoadingState";
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     if ([self.displayer webViewLoaded:self.webViewId] == NO) {
-        [self.log logMraid:OguryLogLevelError
-            forAdConfiguration:self.ad.adConfiguration
-                     webViewId:self.webViewId
-                       message:@"BunaZiua not received before ad finishes to load."];
+        [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                adConfiguration:self.ad.adConfiguration
+                                                      webviewId:self.webViewId
+                                                        message:@"BunaZiua not received before ad finishes to load."
+                                                           tags:nil]];
         return;
     }
 }

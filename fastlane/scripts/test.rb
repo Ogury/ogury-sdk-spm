@@ -76,28 +76,6 @@ private_lane :test_ads_framework do |options|
     )
 end
 
-private_lane :test_card_library do |options|
-  if !options[:configuration]
-    raise "No configuration specified!".red
-  end
-  if !options[:sdk]
-    raise "No SDK specified!".red
-  end
-
-  configuration = options[:configuration]
-  sdk = options[:sdk]
-  scheme = configuration.targets.adsLibrary.scheme
-  
-  puts "Testing AdsCardLibrary".yellow
-
-  test_framework(
-    configuration: configuration,
-    sdk: sdk,
-    workspace: configuration.workspace.file_path,
-    scheme: scheme
-    )
-end
-
 private_lane :test_wrapper do |options|
   if !options[:configuration]
     raise "No configuration specified!".red

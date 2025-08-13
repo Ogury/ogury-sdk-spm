@@ -5,6 +5,7 @@
 #import "OGAMraidLoadHTMLOperation.h"
 #import "OGALog.h"
 #import "OGAAd.h"
+#import "OGAMraidLogMessage.h"
 #import "OGAMraidCommandsHandler.h"
 
 static int const delayBeforeSendingLoadCommands = 1;
@@ -73,7 +74,11 @@ static int const delayBeforeSendingLoadCommands = 1;
             });
         });
     } else {
-        [self.log logMraid:OguryLogLevelError forAdConfiguration:self.baseView.ad.adConfiguration webViewId:self.baseView.webViewId message:@"MRAID has not been initialized for webview"];
+        [self.log log:[[OGAMraidLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                adConfiguration:self.baseView.ad.adConfiguration
+                                                      webviewId:self.baseView.webViewId
+                                                        message:@"MRAID has not been initialized for webview"
+                                                           tags:nil]];
     }
 }
 

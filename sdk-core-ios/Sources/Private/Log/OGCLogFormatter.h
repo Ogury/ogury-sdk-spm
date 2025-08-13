@@ -8,7 +8,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OGCLogFormatter : NSObject <OguryLogFormatter>
+@interface OGCLogFormatter : OguryLogFormatter
 
 - (nullable NSString *)formatLogMessage:(OguryAbstractLogMessage *)logMessage;
 

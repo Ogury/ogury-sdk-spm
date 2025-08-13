@@ -36,13 +36,21 @@ NSString *const OGAOMIDSessionPartnerName = @"Ogury";
 #pragma mark - Public methods
 
 - (void)startOMIDSession {
-    [self.log log:OguryLogLevelDebug message:@"[OMID] starting session."];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"[OMID] starting session"
+                                                    tags:nil]];
 
     [self.adSession start];
 }
 
 - (void)stopOMIDSession {
-    [self.log log:OguryLogLevelDebug message:@"[OMID] session finished."];
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeInternal
+                                                 message:@"[OMID] session finished"
+                                                    tags:nil]];
 
     [self.adSession finish];
 }
@@ -70,7 +78,12 @@ NSString *const OGAOMIDSessionPartnerName = @"Ogury";
                                                                          customReferenceIdentifier:@""
                                                                                              error:&error];
     if (error) {
-        [self.log logError:error message:@"[OMID] Failed to create OMID session context"];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypeInternal
+                                                       error:error
+                                                     message:@"[OMID] Failed to create session context"
+                                                        tags:nil]];
     }
     return sessionContext;
 }
@@ -85,7 +98,12 @@ NSString *const OGAOMIDSessionPartnerName = @"Ogury";
                                                                                                       error:&error];
 
     if (error) {
-        [self.log logError:error message:@"[OMID] Failed to create OMID session configuration"];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypeInternal
+                                                       error:error
+                                                     message:@"[OMID] Failed to create session configuration"
+                                                        tags:nil]];
     }
     return config;
 }
@@ -106,7 +124,12 @@ NSString *const OGAOMIDSessionPartnerName = @"Ogury";
                                                                    adSessionContext:sessionContext
                                                                               error:&error];
     if (error) {
-        [self.log logError:error message:@"[OMID] Failed to create OMID session"];
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypeInternal
+                                                       error:error
+                                                     message:@"[OMID] Failed to create session"
+                                                        tags:nil]];
     }
     session.mainAdView = webView;
     return session;

@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import ComposableArchitecture
+internal import ComposableArchitecture
 import SwiftUI
 import AdsCardLibrary
 
@@ -15,8 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         FontLoader.loadFont()
-        AdSdkLauncher.shared.launch()
-        var mainViewController = MainViewController()
+        let mainViewController = MainViewController()
+        SdkLauncher.rootViewController = mainViewController
         window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
         if let url = connectionOptions.urlContexts.first?.url {

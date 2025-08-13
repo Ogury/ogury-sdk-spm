@@ -8,6 +8,8 @@
 #import "OGAConfigurationUtils.h"
 #import <OguryCore/OguryNetworkClient.h>
 #import "OGMEventServerMonitorable.h"
+#import "OGAMonitoringLogMessage.h"
+#import "OGAAdMonitorEvent.h"
 
 @interface OGMServerMonitor ()
 
@@ -74,10 +76,10 @@
         }
 
         [self cleanEvents];
-        [self.log log:OguryLogLevelDebug
-              message:[NSString stringWithFormat:@"👀 Monitor event %@-%@",
-                                                 events.firstObject.asDisctionary[@"event"],
-                                                 events.firstObject.asDisctionary[@"details"]]];
+        [self.log log:[[OGAMonitoringLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                     adConfiguration:((OGAAdMonitorEvent *)events.firstObject).adConfiguration
+                                                             message:@"Send event to server"
+                                                               event:events.firstObject]];
 
         [self.networkClient performRequest:request
                          completionHandler:^(NSData *_Nullable result, NSError *_Nullable error) {
@@ -99,7 +101,11 @@
                                      if ([errorCodes containsObject:@(error.code)]) {
                                          [self updateSavedEventsWith:localArray];
                                      } else {
-                                         [self.log logErrorFormat:error format:@"An error occurred while sending monitoring event \n%@]", events[0].asDisctionary];
+                                         [self.log log:[[OGAMonitoringLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                                                      adConfiguration:((OGAAdMonitorEvent *)events.firstObject).adConfiguration
+                                                                                                error:error
+                                                                                              message:@"Send event failed"
+                                                                                                event:events.firstObject]];
                                      }
                                  }
                              }

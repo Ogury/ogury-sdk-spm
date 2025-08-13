@@ -5,43 +5,50 @@
 
 import SwiftUI
 import AdsCardLibrary
-import ComposableArchitecture
+internal import ComposableArchitecture
 
 struct AddFormatView: View {
-    var value: Binding<Int>
+    @State var value: Int
     let title: String
+    let id: UUID
+    var numberChanged: (UUID, Int) -> Void
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
-            Text(title.capitalized)
+            Text(title)
                 .font(.adsSubheadline)
+                .minimumScaleFactor(0.5)
+                .padding(.horizontal, 4)
+                .fixedSize(horizontal: true, vertical: true)
             
-            Text(String(describing: value.wrappedValue))
+            Text(String(describing: value))
                 .font(.adsTitle2)
             
             HStack(spacing: 4) {
                 Button {
-                    value.wrappedValue -= 1
+                    value -= 1
+                    numberChanged(id, value)
                 } label: {
                     Image(systemName: "minus")
                         .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
                         .frame(width: 50, height: 50)
                         .background(
-                            value.wrappedValue == 0
-                            ? Color(AdColorPalette.Background.disabled.color)
-                            : Color(AdColorPalette.Primary.accentLight.color)
+                            value == 0
+                            ? Color(AdColorPalette.Background.disabled.color).gradient
+                            : Color(AdColorPalette.Primary.accentLight.color).gradient
                         )
                         .clipShape(RoundedRectangle(cornerRadius: 8))
-                        .disabled(value.wrappedValue == 0)
                 }
+                .disabled(value <= 0)
                 
                 Button {
-                    value.wrappedValue += 1
+                    value += 1
+                    numberChanged(id, value)
                 } label: {
                     Image(systemName: "plus")
                         .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
                         .frame(width: 50, height: 50)
-                        .background(Color(AdColorPalette.Primary.accentLight.color))
+                        .background(Color(AdColorPalette.Primary.accentLight.color).gradient)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
             }
@@ -53,7 +60,7 @@ struct AddFormatView: View {
                 .cornerRadius(12)
         }
         .overlay {
-            if value.wrappedValue > 0 {
+            if value > 0 {
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(Color(AdColorPalette.Primary.accent.color), lineWidth: 1)
                     .padding(1)
@@ -62,11 +69,11 @@ struct AddFormatView: View {
     }
 }
 
-#Preview {
-    @State var value = 0
-    let adType: AdType<InterstitialAdManager> = .interstitial
-    return ZStack {
-        Color(AdColorPalette.Background.secondary.color).ignoresSafeArea()
-        AddFormatView(value: $value, title: "Inter")
-    }
-}
+//#Preview {
+//    @State var value = 0
+//    let adType: AdType<InterstitialAdManager> = .interstitial
+//    return ZStack {
+//        Color(AdColorPalette.Background.secondary.color).ignoresSafeArea()
+//        AddFormatView(value: $value, title: "Inter")
+//    }
+//}

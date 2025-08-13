@@ -20,7 +20,6 @@
 - (instancetype)init {
     if (self = [super init]) {
         monitors = [[NSMutableArray alloc] init];
-        [self addMonitor:[[OGMOSLogMonitor alloc] init]];
     }
     return self;
 }

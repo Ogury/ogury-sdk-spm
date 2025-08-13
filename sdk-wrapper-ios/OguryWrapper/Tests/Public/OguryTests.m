@@ -3,10 +3,10 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "Ogury.h"
 #import "OGWWrapper.h"
 #import "OGWLog.h"
 #import <OCMock/OCMock.h>
+#import <OgurySdk/Ogury.h>
 
 @interface OguryTests : XCTestCase
 
@@ -52,7 +52,7 @@
 }
 
 - (void)testSdkVersion {
-    XCTAssertEqual([Ogury sdkVersion], SDK_VERSION);
+    XCTAssertEqualObjects([Ogury sdkVersion], SDK_VERSION);
 }
 
 - (void)testRegisterAttributionForSKAdNetwork {

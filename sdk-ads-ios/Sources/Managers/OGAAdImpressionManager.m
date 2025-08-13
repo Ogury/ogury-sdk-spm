@@ -82,7 +82,11 @@ CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
         // the identifier to used twice.
 
         if (!self.hasSentImpressionTrackByAdId[ad.localIdentifier].boolValue) {
-            [self.log logAd:OguryLogLevelInfo forAdConfiguration:ad.adConfiguration message:@"Sending SHOWN track for ad"];
+            [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelInfo
+                                                 adConfiguration:ad.adConfiguration
+                                                         logType:OguryLogTypeInternal
+                                                         message:@"Sending SHOWN track for ad"
+                                                            tags:nil]];
 
             self.hasSentImpressionTrackByAdId[ad.localIdentifier] = @(YES);
             if (![NSString ogaIsNilOrEmpty:ad.impressionUrl]) {

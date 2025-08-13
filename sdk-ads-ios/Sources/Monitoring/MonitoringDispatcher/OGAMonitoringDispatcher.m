@@ -17,6 +17,8 @@
 #import "OGMMonitorManager.h"
 #import "OGMOSLogMonitor.h"
 #import "OGMServerMonitor.h"
+#import "OGALog.h"
+#import "OGAMonitoringLogMessage.h"
 #import "OGAMonitorEventConfigurationFactory.h"
 
 @interface OGAMonitoringDispatcher ()
@@ -24,6 +26,7 @@
 @property(nonatomic, strong) OGAMonitorEventConfigurationFactory *configurationFactory;
 @property(nonatomic, strong) OGMMonitorManager *monitorManager;
 @property(nonatomic, strong) OGAMetricsService *legacyEventMetrics;
+@property(nonatomic, strong) OGALog *log;
 @property(nonatomic) BOOL monitoringEnabled;
 @property(nonatomic, strong, nullable) NSArray<NSString *> *blackListedTracks;
 @property(nonatomic, assign) OGAEnvironmentManager *environmentManager;
@@ -58,6 +61,7 @@
                                                                 monitorManager:[[OGMMonitorManager alloc] init]
                                                             environmentManager:OGAEnvironmentManager.shared
                                                           configurationFactory:OGAMonitorEventConfigurationFactory.shared
+                                                                           log:[OGALog shared]
                                                             notificationCenter:NSNotificationCenter.defaultCenter];
     });
     return instance;
@@ -67,6 +71,7 @@
                             monitorManager:(OGMMonitorManager *)monitorManager
                         environmentManager:(OGAEnvironmentManager *)environmentManager
                       configurationFactory:(OGAMonitorEventConfigurationFactory *)configurationFactory
+                                       log:(OGALog *)log
                         notificationCenter:(NSNotificationCenter *)notificationCenter {
     if (self = [self init]) {
         _configurationFactory = configurationFactory;
@@ -75,6 +80,7 @@
         _blackListedTracks = [OGAProfigFullResponse defaultBlackList];
         _monitoringEnabled = YES;
         _environmentManager = environmentManager;
+        _log = log;
         [_monitorManager addMonitor:[[OGMServerMonitor alloc] initWithRequestBuilder:[[OGAAdServerMonitorRequestBuilder alloc] initWithUrl:_environmentManager.monitoringURL]
                                                                     persistanceStore:[[OGMEventPersistanceStore alloc] init]]];
         _notificationCenter = notificationCenter;
@@ -85,12 +91,16 @@
 
 - (void)didReceiveEnvironmentChange:(NSNotification *)notification {
     [self.monitorManager resetMonitors];
-    [self.monitorManager addMonitor:[[OGMOSLogMonitor alloc] init]];
     [self.monitorManager addMonitor:[[OGMServerMonitor alloc] initWithRequestBuilder:[[OGAAdServerMonitorRequestBuilder alloc] initWithUrl:self.environmentManager.monitoringURL]
                                                                     persistanceStore:[[OGMEventPersistanceStore alloc] init]]];
 }
 
 - (void)setBlackListedTracks:(NSArray<NSString *> *)blackListed {
+    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                         adConfiguration:nil
+                                                 logType:OguryLogTypeMonitoring
+                                                 message:@"Set Blacklist"
+                                                    tags:@[ [OguryLogTag tagWithKey:@"blacklit" value:blackListed] ]]];
     _blackListedTracks = blackListed;
 }
 
@@ -106,6 +116,10 @@
 }
 
 - (void)sendMonitoringEvent:(OGAAdMonitorEvent *)event {
+    [self.log log:[[OGAMonitoringLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                 adConfiguration:event.adConfiguration
+                                                         message:@"Handle event"
+                                                           event:event]];
     if (self.monitoringEnabled) {
         [self.monitorManager monitor:event];
     }
@@ -121,6 +135,11 @@
         return;
     }
     if ([self isEventBlacklisted:eventConfiguration.eventCode]) {
+        [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                             adConfiguration:nil
+                                                     logType:OguryLogTypeMonitoring
+                                                     message:[NSString stringWithFormat:@"Event (%ld) is blacklisted", event]
+                                                        tags:nil]];
         return;
     }
     // add reload and fromAdMarkUp fields

@@ -1,140 +1,122 @@
 //
-//  AdViewFeature.swift
-//  AdCard
-//
-//  Created by Jerome TONNELIER on 19/07/2023.
+//  Copyright © 2023 Ogury Ltd. All rights reserved.
 //
 
-import ComposableArchitecture
-import Combine
+
+import UIKit
 import SwiftUI
-import OguryAds
+internal import ComposableArchitecture
+import OguryCore
 
-public enum DspRegion : CaseIterable, Codable {
-    case euWest1
-    case usEast1
-    case usWest2
-    case apNorthEast1
-    
-    public var displayName: String {
+enum TestModeTags: AdTag {
+    case oguryTestMode, rtbTestMode
+    var displayMode: TagDisplayMode { .fill }
+     
+    public var name: String {
         switch self {
-            case .euWest1: return "eu-west-1"
-            case .usEast1: return "us-east-1"
-            case .usWest2: return "us-west-2"
-            case .apNorthEast1: return "ap-northeast-1"
+            case .oguryTestMode: return "Ogury Test Mode"
+            case .rtbTestMode: return "RTB Test Mode"
         }
     }
-}
-
-struct BaseOptions: Equatable {
-    var adDisplayName: String = ""
-    var adUnitId: String = ""
-    var campaignId: String = ""
-    var creativeId: String = ""
-    var dspCreativeId: String = ""
-    var dspRegion: DspRegion = .euWest1
-    var showCampaignId: Bool = false
-    var showCreativeId: Bool = true
-    var showDspFields: Bool = true
-    var showSpecificOptions: Bool = true
-    var bulkModeEnabled = false
-    var isSelected = false
-    var oguryTestModeEnabled: Bool = false
-    var rtbTestModeEnabled: Bool = false
-    var qaLabel: String = UUID().uuidString
-    
-    init(from options: any AdOptions) {
-        showCampaignId = options.showCampaignId
-        showCreativeId = options.showCreativeId
-        showDspFields = options.showDspFields
-        showSpecificOptions = options.showSpecificOptions
-        adDisplayName = options.baseOptions.adDisplayName
-        adUnitId = options.baseOptions.adUnitId
-        campaignId = options.baseOptions.campaignId ?? ""
-        creativeId = options.baseOptions.creativeId ?? ""
-        dspCreativeId = options.baseOptions.dspCreativeId ?? ""
-        dspRegion = options.baseOptions.dspRegion ?? .euWest1
-        bulkModeEnabled = options.baseOptions.bulkModeEnabled
-        isSelected = options.baseOptions.isSelected
-        oguryTestModeEnabled = options.baseOptions.oguryTestModeEnabled
-        rtbTestModeEnabled = options.baseOptions.rtbTestModeEnabled
-        qaLabel = options.baseOptions.qaLabel
+    public var description: String {
+        switch self {
+            case .oguryTestMode: return "Add _test to the ad unit"
+            case .rtbTestMode: return "Add test=1 to bid request"
+        }
     }
+    internal var color: Color {
+        switch self {
+            case .oguryTestMode: return Color(#colorLiteral(red: 0.8326988816, green: 0.2894239128, blue: 0.3478675783, alpha: 1))
+            case .rtbTestMode: return Color(#colorLiteral(red: 0.8326988816, green: 0.2894239128, blue: 0.3478675783, alpha: 1))
+        }
+    }
+    internal var textColor: Color { .white }
 }
 
-struct BannerContainer: Equatable {
-    var bannerAd: OguryBannerAdView?
-    var bannerType: AdType<BannerAdManager>
-}
-
-struct AdViewFeature: Reducer {
-    var adManager: any AdManager
+@Reducer
+struct AdViewFeature {
+    @Dependency(\.continuousClock) var clock
     
+    @ObservableState
     struct State: Equatable {
-        static func == (lhs: AdViewFeature.State, rhs: AdViewFeature.State) -> Bool {
-            let isEqual = lhs.adStateEvent == rhs.adStateEvent &&
-            lhs.isLoading == rhs.isLoading &&
-            ((lhs.error == nil && rhs.error == nil) || (lhs.error != nil && rhs.error != nil)) &&
-            lhs.baseOptions == rhs.baseOptions &&
-            lhs.showTestModeButton == rhs.showTestModeButton &&
-            ((lhs.thumbnailOptions == nil && rhs.thumbnailOptions == nil) || (lhs.thumbnailOptions != rhs.thumbnailOptions))
-            return isEqual
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            return lhs.adManager.adConfiguration == rhs.adManager.adConfiguration
+            && lhs.adManager.cardConfiguration == rhs.adManager.cardConfiguration
+            && lhs.adManager.lifeCycleEvents == rhs.adManager.lifeCycleEvents
+            && lhs.adStateEvent == rhs.adStateEvent
+            && lhs.isLoading == rhs.isLoading
+            && ((lhs.error == nil && rhs.error == nil) || (lhs.error != nil && rhs.error != nil))
+            && lhs.bannerContainer == rhs.bannerContainer
+            && lhs.bannerFeature == rhs.bannerFeature
+            && lhs.rewardedOptions == rhs.rewardedOptions
+            && lhs.rewardedFeature == rhs.rewardedFeature
         }
         
-        @BindingState var baseOptions: BaseOptions
+        //MARK: init
+        var adManager: any AdManager
+        public init(adManager: inout any AdManager) {
+            self.adManager = adManager
+            switch adManager.adFormat {
+                case .rewardedVideo: rewardedOptions = .init()
+                case .standardBanner: bannerContainer = .init()
+                case .interstitial, .thumbnail: ()
+            }
+            if adManager.adUnitId.isTestModeOn {
+                tags.insert(.oguryTestMode)
+            }
+            if adManager.cardConfiguration.rtbTestModeEnabled {
+                tags.insert(.rtbTestMode)
+            }
+        }
+        
+        //MARK: Properties
+        // this field is used to show the content od the various fields when the test mode is enabled
+        // since we need a Binding to a String, we wille use this property
+        var fakeTextState: String = ""
+        
+        @Presents var alert: AlertState<Action.Alert>?
+        var tags: Set<TestModeTags> = Set()
+        var enableFeedbacks = true
         var isLoading = false
         var error: Error?
         var showAfterLoad = false
-        var adStateEvent: AdLifeCycleEvent?
-        var specificOptions: any AdOptions
-        var thumbnailOptions: ThumbnailDisplayOptions?
         var bannerContainer: BannerContainer?
         var rewardedOptions: RewardedOptions?
-        var testModeEnabled: Bool {
-            get {
-                baseOptions.oguryTestModeEnabled
-            }
-            set {
-                baseOptions.oguryTestModeEnabled = newValue
-            }
-        }
-        var rtbTestModeEnabled: Bool {
-            get {
-                baseOptions.rtbTestModeEnabled
-            }
-            set {
-                baseOptions.rtbTestModeEnabled = newValue
-            }
-        }
-        var showTestModeButton = true
-        var enableAdUnitEditing = true
-        var enableFeedbacks = true
-        @BindingState var showQALabelInput = false
-        let id: UUID = UUID()
-        let adType: AnyAdType!
-        var isHeaderBidding: Bool {
-            if let ad = (adType.adType as? AdType<InterstitialAdManager>) {
-                return ad.isHeaderBidding
-            }
-            if let ad = (adType.adType as? AdType<RewardedAdManager>) {
-                return ad.isHeaderBidding
-            }
-            if let ad = (adType.adType as? AdType<ThumbnailAdManager>) {
-                return ad.isHeaderBidding
-            }
-            if let ad = (adType.adType as? AdType<BannerAdManager>) {
-                return ad.isHeaderBidding
-            }
-            return false
-        }
-        // this field is used to show the content od the various fields when the test mode is enabled
-        // since we need a Binding to a String, we wille use this property
-        @BindingState var fakeTextState = ""
-        @PresentationState var alert: AlertState<Action.Alert>?
-        var tags: Set<AdTag> = Set()
+        var adStateEvent: AdLifeCycleEvent?
         
-        private var adUnitIsInTestMode: Bool { baseOptions.adUnitId.isTestModeOn }
+        private var adUnitIsInTestMode: Bool { adManager.adConfiguration.adUnitId.isTestModeOn }
+        //MARK: TCA bridges
+        var actionBar: AdActionBarFeature.State {
+            get {
+                AdActionBarFeature.State(qaLabel: adManager.cardConfiguration.qaLabel)
+            }
+            
+            set {}
+        }
+        var bannerFeature: BannerPlaceholderFeature.State {
+            get {
+                return BannerPlaceholderFeature.State(adManager: adManager, bannerAd: bannerContainer?.bannerAd, actualSize: adManager.actualSize)
+            }
+            
+            set {
+                bannerContainer?.bannerAd = newValue.bannerAd
+            }
+        }
+        var rewardedFeature: RewardedFeature.State {
+            get {
+                RewardedFeature.State(name: rewardedOptions?.name ?? "",
+                                      value: rewardedOptions?.value ?? "",
+                                      rewardReceived: rewardedOptions?.received ?? false)
+            }
+            
+            set {
+                rewardedOptions = RewardedOptions(name: newValue.name,
+                                                  value: newValue.value,
+                                                  received: newValue.rewardReceived)
+            }
+        }
         
+        //MARK: functionnalities
         @discardableResult mutating func updateTestMode() -> Bool {
             let previousMode = testModeEnabled
             testModeEnabled = adUnitIsInTestMode
@@ -147,76 +129,21 @@ struct AdViewFeature: Reducer {
         }
         mutating func toggleTestMode() {
             if adUnitIsInTestMode {
-                baseOptions.adUnitId.removeLast(5)
+                adUnitId.removeLast(5)
                 tags.remove(.oguryTestMode)
             } else {
-                baseOptions.adUnitId.append(AdsCardManager.testModeSuffix)
+                adUnitId.append(.testModeSuffix)
                 tags.insert(.oguryTestMode)
             }
         }
         mutating func forceTestMode(_ enable: Bool) {
             if !adUnitIsInTestMode && enable {
-                baseOptions.adUnitId.append(AdsCardManager.testModeSuffix)
+                adUnitId.append(.testModeSuffix)
                 tags.insert(.oguryTestMode)
             } else if adUnitIsInTestMode && !enable {
-                baseOptions.adUnitId.removeLast(5)
+                adUnitId.removeLast(5)
                 tags.remove(.oguryTestMode)
             }
-        }
-        
-        var actionBar: AdActionBarFeature.State {
-            get {
-                AdActionBarFeature.State()
-            }
-            
-            set {}
-        }
-        var bannerFeature: BannerPlaceholderFeature.State {
-            get {
-                return BannerPlaceholderFeature.State(bannerAd: bannerContainer?.bannerAd, bannerType: bannerContainer?.bannerType ?? .banner)
-            }
-            
-            set {
-                bannerContainer?.bannerAd = newValue.bannerAd
-            }
-        }
-        var thumbFeature: ThumbnailOptionFeature.State {
-            get {
-                ThumbnailOptionFeature.State(options: thumbnailOptions!)
-            }
-            
-            set {
-                thumbnailOptions = newValue.options
-            }
-        }
-        var rewardedFeature: RewardedFeature.State {
-            get {
-                RewardedFeature.State(name: rewardedOptions?.name ?? "not available",
-                                      value: rewardedOptions?.value ?? "not available",
-                                      rewardReceived: rewardedOptions?.received ?? false)
-            }
-            
-            set {
-                rewardedOptions = RewardedOptions(name: newValue.name, value: newValue.value, received: newValue.rewardReceived)
-            }
-        }
-        
-        init(from options: any AdOptions,
-             adType: AnyAdType,
-             bannerContainer: BannerContainer? = nil,
-             rewardedOptions: RewardedOptions? = nil) {
-            baseOptions = BaseOptions(from: options)
-            specificOptions = options
-            if options as? ThumbnailAdManagerOptions != nil {
-                thumbnailOptions = ThumbnailDisplayOptions(showOptions: options.showSpecificOptions)
-            }
-            self.bannerContainer = bannerContainer
-            self.rewardedOptions = rewardedOptions
-            self.adType = adType
-            updateTags()
-            UISegmentedControl.appearance().selectedSegmentTintColor = AdColorPalette.Primary.accent.color
-            UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
-            UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: AdColorPalette.Primary.accent.color], for: .normal)
         }
         
         mutating func updateTags() {
@@ -231,17 +158,37 @@ struct AdViewFeature: Reducer {
                 tags.remove(.rtbTestMode)
             }
         }
+        
+        func log(_ message: String, logType: OguryLogType = .testApp) {
+            AdsCardManager.log(message, origin: adManager.cardConfiguration.qaLabel, logType: logType)
+        }
+        
+        func log(event: AdLifeCycleEvent) {
+            var message: String? = nil
+            switch event {
+                case .adLoading: () // no publisher callback
+                case .adLoaded: message = "Ad loaded"
+                case .adDisplaying: () // no publisher callback
+                case .adClicked: message = "Ad clicked"
+                case .adClosed: message = "Ad closed"
+                case .adDidTriggerImpression: message = "Ad triggered impression"
+                case .bannerReady: () // no publisher callback
+                case let .rewardReady(rewardName, rewardValue): message = "Ad received reward (\(rewardName) : \(rewardValue))"
+                case .adDidFailToLoad(let error): message = "Ad failed to load (\(error.displayMessage))"
+                case .adDidFailToDisplay(let error): message = "Ad failed to show (\(error.displayMessage))"
+                case .adDidFail(let error): message = "Ad failed (\(error.displayMessage))"
+            }
+            if let message { log(message, logType: .receivedCallBacks) }
+        }
     }
     
     enum Action: BindableAction, Equatable  {
-        static func == (lhs: AdViewFeature.Action, rhs: AdViewFeature.Action) -> Bool {
+        static func == (lhs: Self, rhs: Self) -> Bool {
             switch (lhs, rhs) {
                 case (let .binding(lhsValue), let .binding(rhsValue)): return lhsValue == rhsValue
                 case (let .updateEvent(lhsValue), let .updateEvent(rhsValue)): return lhsValue == rhsValue
                 case (let .adBarAction(lhsValue), let .adBarAction(rhsValue)): return lhsValue == rhsValue
                 case (let .bannerAction(lhsValue), let .bannerAction(rhsValue)): return lhsValue == rhsValue
-                case (let .thumbnailOptionsAction(lhsValue), let .thumbnailOptionsAction(rhsValue)): return lhsValue == rhsValue
-                case (.showOptionToggle,showOptionToggle): return true
                 case (let .error(lhsError), let .error(rhsError)): return areEqual(lhsError, rhsError)
                 default: return false
             }
@@ -252,12 +199,11 @@ struct AdViewFeature: Reducer {
         case adBarAction(_: AdActionBarFeature.Action)
         case bannerAction(_: BannerPlaceholderFeature.Action)
         case rewardedAction(_: RewardedFeature.Action)
+        case cardDidAppear
         case resetReward
         case resetBanner
-        case bannerReady(_: OguryBannerAdView)
-        case rewardReady(_: OguryReward)
-        case thumbnailOptionsAction(_: ThumbnailOptionFeature.Action)
-        case showOptionToggle
+        case bannerReady(_: UIView)
+        case rewardReady(name: String, value: String)
         case showAfterLoad
         case error(_: Error)
         case alert(PresentationAction<Alert>)
@@ -266,7 +212,6 @@ struct AdViewFeature: Reducer {
         case showCampaignId(_: Bool)
         case showCreativeId(_: Bool)
         case showDspFields(_: Bool)
-        case showSpecificOptions(_: Bool)
         case enableBulkMode(_: Bool)
         // test mode
         case showTestModeButton(_: Bool)
@@ -276,25 +221,46 @@ struct AdViewFeature: Reducer {
         case forceTestMode(_: Bool)
         case enableFeedbacks(_: Bool)
         case showQALabelTapped
+        case killWebview
+        case updateKillMode(_: KillWebviewMode)
+        case dspPickerDidShow
+        case triggerSaveCards
+        case saveCards
         
-        enum Alert {
+        @CasePathable
+        enum Alert: Equatable {
             case confirmDelete
         }
+        
+        static let actionBarCasePath =  AnyCasePath<Action, AdActionBarFeature.Action>(
+            embed: { .adBarAction($0) },
+            extract: { if case let .adBarAction(value) = $0 { return value} else { return nil } }
+        )
+        static let bannerCasePath =  AnyCasePath<Action, BannerPlaceholderFeature.Action>(
+            embed: { .bannerAction($0) },
+            extract: { if case let .bannerAction(value) = $0 { return value} else { return nil } }
+        )
+        static let rewardCasePath =  AnyCasePath<Action, RewardedFeature.Action>(
+            embed: { .rewardedAction($0) },
+            extract: { if case let .rewardedAction(value) = $0 { return value} else { return nil } }
+        )
     }
     
     enum AdCancel: Hashable {
-        case load(_: UUID), show(_: UUID)
+        case load(_: UUID), show(_: UUID), save
     }
     
-    
-    func load(state: State) -> Effect<AdViewFeature.Action> {
+    func load(_ state: State) -> Effect<AdViewFeature.Action> {
         .merge(
-            .cancel(id: AdCancel.load(state.id)),
+            .cancel(id: AdCancel.load(state.adManager.id)),
+            .cancel(id: AdCancel.show(state.adManager.id)),
             .publisher { [state] in
-                adManager
+                state
+                    .adManager
                     .events
                     .receive(on: DispatchQueue.main)
                     .map { event in
+                        state.log(event: event)
                         switch event {
                             case let .adLoaded(canShow):
                                 if state.enableFeedbacks {
@@ -315,110 +281,77 @@ struct AdViewFeature: Reducer {
                                 return event.action
                         }
                     }
-            }.cancellable(id: AdCancel.load(state.id)),
+            }.cancellable(id: AdCancel.load(state.adManager.id)),
             .run { [state] send in
-                do {
-                    guard var options = adManager.options?.baseOptions else {
-                        throw AdManagerError.noOptions
-                    }
-                    options.adUnitId = state.baseOptions.adUnitId
-                    options.campaignId = state.baseOptions.campaignId
-                    options.creativeId = state.baseOptions.creativeId
-                    options.dspCreativeId = state.baseOptions.dspCreativeId
-                    options.dspRegion = !state.baseOptions.showDspFields ? nil : state.baseOptions.dspRegion
-                    options.adDisplayName = state.baseOptions.adDisplayName
-                    if let thumbManager = adManager as? ThumbnailAdManager,
-                       let thumbOptions = state.thumbnailOptions {
-                        thumbManager.updateOptions(from: thumbOptions)
-                    }
-                    try adManager.loadAd(from: options)
-                    await send(.resetReward)
-                } catch {
-                    await send(.error(error))
-                    
-                }
-            }.cancellable(id: AdCancel.load(state.id))
+                await state.adManager.viewController?.view?.endEditing(true)
+                await state.adManager.load()
+                await send(.resetReward)
+                await send(.resetBanner)
+            }.cancellable(id: AdCancel.load(state.adManager.id))
         )
-    }
-    
-    private func updateAdManager(options: BaseOptions) {
-        adManager.update(options: BaseAdOptions(adDisplayName: options.adDisplayName,
-                                                adUnitId: options.adUnitId,
-                                                campaignId: options.campaignId,
-                                                creativeId: options.creativeId,
-                                                adMarkUp: "",
-                                                isSelected: options.isSelected,
-                                                bulkModeEnabled: options.bulkModeEnabled,
-                                                oguryTestModeEnabled:options.oguryTestModeEnabled,
-                                                rtbTestModeEnabled:options.rtbTestModeEnabled,
-                                                qaLabel:options.qaLabel))
     }
     
     var body: some ReducerOf<Self> {
         BindingReducer()
-            .onChange(of: \.baseOptions, { oldValue, newValue in
-                Reduce { state, action in
-                    updateAdManager(options: newValue)
-                    return .none
-                }
-            })
-            .onChange(of: \.baseOptions.adUnitId, { oldValue, newValue in
-                Reduce {state, action in
-                    return .send(.checkForTestMode)
-                }
-            })
-            .onChange(of: \.thumbnailOptions, { oldValue, newValue in
-                Reduce { state, action in
-                    if let thumbManager = adManager as? ThumbnailAdManager, let newValue {
-                        thumbManager.updateOptions(from: newValue)
+            .onChange(of: \.adUnitId) { oldValue, newValue in
+                Reduce() { state, action in
+                    switch (oldValue.isTestModeOn, newValue.isTestModeOn) {
+                        case (false, true):
+                            state.testModeEnabled = true
+                            return .send(.checkForTestMode)
+                            
+                        case (true, false):
+                            state.testModeEnabled = false
+                            return .send(.checkForTestMode)
+                        default: return .none
                     }
-                    return .none
                 }
-            })
+            }
         Scope(state: \.actionBar,
-              action: /Action.adBarAction,
+              action: Action.actionBarCasePath,
               child: { AdActionBarFeature() }
         )
-        Scope(state: \.thumbFeature,
-              action: /Action.thumbnailOptionsAction,
-              child: { ThumbnailOptionFeature() }
-        )
         Scope(state: \.bannerFeature,
-              action: /Action.bannerAction,
+              action: Action.bannerCasePath,
               child: { BannerPlaceholderFeature()._printChanges() }
         )
         Scope(state: \.rewardedFeature,
-              action: /Action.rewardedAction,
+              action: Action.rewardCasePath,
               child: { RewardedFeature() }
         )
         Reduce { state, action in
             switch action {
                 case .alert(.presented(.confirmDelete)):
-                    adManager.adDelegate?.deleteCard(withId: adManager.id)
+                    state.adManager.adDelegate?.deleteCard(withId: state.adManager.id)
                     return .none
                     
                 case .alert:
                     return .none
                     
                 case .binding:
-                    return .none
+                    return .send(.triggerSaveCards)
                     
                 case .resetReward:
                     if state.rewardedOptions != nil {
-                        state.rewardedOptions = RewardedOptions(name: "not available", value: "not available", received: false)
+                        state.rewardedOptions = RewardedOptions(name: "", value: "", received: false)
                     }
                     return .none
                     
                 case .resetBanner:
                     state.bannerContainer?.bannerAd = nil
+                    state.bannerFeature = BannerPlaceholderFeature.State(adManager: state.adManager, bannerAd: nil, actualSize: state.adManager.actualSize)
                     return .none
                     
                 case .rewardedAction:
                     return .none
                     
-                case let .rewardReady(reward):
-                    let name = reward.rewardName.isEmpty ? "Empty name" : reward.rewardName
-                    let value = reward.rewardValue.isEmpty ? "Empty value" : reward.rewardValue
+                case .cardDidAppear:
+                    state.adManager.cardDidAppear()
+                    return .none
+                    
+                case let .rewardReady(rewardName, rewardValue):
+                    let name = rewardName.isEmpty ? "Empty name" : rewardName
+                    let value = rewardValue.isEmpty ? "Empty value" : rewardValue
                     if state.rewardedOptions != nil {
                         state.rewardedOptions?.name = name
                         state.rewardedOptions?.value = value
@@ -429,9 +362,8 @@ struct AdViewFeature: Reducer {
                     return .none
                     
                 case let .bannerReady(ad):
-                    state.bannerContainer?.bannerAd = ad
-                    let bannerType = state.bannerFeature.bannerType
-                    state.bannerFeature = BannerPlaceholderFeature.State(bannerAd: ad, bannerType: bannerType)
+                    state.bannerContainer = .init(bannerAd: ad)
+                    state.bannerFeature = BannerPlaceholderFeature.State(adManager: state.adManager, bannerAd: ad, actualSize: state.adManager.actualSize)
                     return .none
                     
                 case let .updateEvent(event):
@@ -439,50 +371,55 @@ struct AdViewFeature: Reducer {
                     state.adStateEvent = event
                     if event == .adClosed {
                         state.bannerContainer?.bannerAd = nil
-                        let bannerType = state.bannerFeature.bannerType
-                        state.bannerFeature = BannerPlaceholderFeature.State(bannerAd: nil, bannerType: bannerType)
+                        state.bannerFeature = BannerPlaceholderFeature.State(adManager: state.adManager, bannerAd: nil, actualSize: state.adManager.actualSize)
                     }
                     return .none
                     
                 case let .adBarAction(action):
                     switch action {
                         case .loadButtonTapped:
+                            state.log("Load button tapped")
                             state.showAfterLoad = false
                             if state.enableFeedbacks {
                                 UIImpactFeedbackGenerator().impactOccurred()
                             }
-                            return load(state: state)
+                            return load(state)
                             
                         case .showButtonTapped:
+                            state.log("Show button tapped")
                             state.showAfterLoad = false
                             if state.enableFeedbacks {
                                 UIImpactFeedbackGenerator().impactOccurred()
                             }
                             return .merge(
-                                .cancel(id: AdCancel.show(state.id)),
+                                .cancel(id: AdCancel.show(state.adManager.id)),
+                                .cancel(id: AdCancel.load(state.adManager.id)),
                                 .publisher {
-                                    adManager
+                                    state
+                                        .adManager
                                         .events
                                         .receive(on: DispatchQueue.main)
-                                        .map { $0.action }
-                                }.cancellable(id: AdCancel.show(state.id)),
-                                .run { send in
-                                    do {
-                                        try adManager.showAd()
-                                    } catch {
-                                        await send(.error(error))
-                                    }
-                                }.cancellable(id: AdCancel.show(state.id))
+                                        .map { [state] event in
+                                            state.log(event: event)
+                                            return event.action
+                                        }
+                                }.cancellable(id: AdCancel.show(state.adManager.id)),
+                                .run { [state] send in
+                                    await state.adManager.viewController?.view?.endEditing(true)
+                                    state.adManager.show()
+                                }.cancellable(id: AdCancel.show(state.adManager.id))
                             )
                             
                         case .loadAndShowButtonTapped:
+                            state.log("Load & Show button tapped")
                             state.showAfterLoad = true
                             if state.enableFeedbacks {
                                 UIImpactFeedbackGenerator().impactOccurred()
                             }
-                            return load(state: state)
+                            return load(state)
                             
                         case .deleteButtonTapped:
+                            state.log("Delete button tapped")
                             if state.enableFeedbacks {
                                 UINotificationFeedbackGenerator().notificationOccurred(.warning)
                             }
@@ -497,82 +434,68 @@ struct AdViewFeature: Reducer {
                     
                 case .showAfterLoad:
                     state.showAfterLoad = false
-                    return .send(.adBarAction(.showButtonTapped))
+                    return .merge(
+                        .send(.updateEvent(.adLoaded(canShow: true))),
+                        .send(.adBarAction(.showButtonTapped))
+                    )
                     
-                case .thumbnailOptionsAction:
-                    return .none
+                case .bannerAction(.closeButtonTapped):
+                    state.adManager.close()
+                    return .send(.resetBanner)
                     
-                case .bannerAction:
-                    (adManager as? BannerAdManager)?.closeAd()
-                    return .none
-                    
-                case .showOptionToggle:
-                    state.baseOptions.showSpecificOptions.toggle()
-                    return .none
+                case .bannerAction(.pickedSize):
+                    if state.bannerContainer?.bannerAd != nil {
+                        state.adManager.close()
+                        return .send(.resetBanner)
+                    } else {
+                        return .none
+                    }
                     
                 case let .error(error):
+                    state.log("Error received \(error.localizedDescription)")
                     state.error = error
                     state.adStateEvent = .adDidFail(error)
                     return .none
                     
                 case let .showCampaignId(value):
-                    state.baseOptions.showCampaignId = value
-                    // if the field is hidden, we "nil" it out
-                    if value {
-                        state.baseOptions.campaignId = ""
-                    }
+                    state.adManager.cardConfiguration.showCampaignId = value
                     return .none
                     
                 case let .showCreativeId(value):
-                    state.baseOptions.showCreativeId = value
-                    // if the field is hidden, we "nil" it out
-                    if value {
-                        state.baseOptions.creativeId = ""
-                    }
+                    state.adManager.cardConfiguration.showCreativeId = value
                     return .none
                     
                 case let .showDspFields(value):
-                    state.baseOptions.showDspFields = value
-                    // if the field is hidden, we "nil" it out
-                    if value {
-                        state.baseOptions.dspCreativeId = ""
-                    }
-                    return .none
-                    
-                case let .showSpecificOptions(value):
-                    guard state.thumbnailOptions != nil else { return .none }
-                    state.baseOptions.showSpecificOptions = value
-                    var current = state.thumbFeature
-                    current.options.showOptions = value
-                    state.thumbFeature = current
+                    state.adManager.cardConfiguration.showDspFields = value
                     return .none
                     
                 case let .enableBulkMode(value):
-                    state.baseOptions.bulkModeEnabled = value
+                    state.adManager.cardConfiguration.bulkModeEnabled = value
                     return .none
                     
                     // test mode
                 case let .showTestModeButton(show):
-                    state.showTestModeButton = show
+                    state.adManager.cardConfiguration.showTestModeButton = show
                     return .none
                     
                 case .checkForTestMode:
-                    let update = state.updateTestMode()
-                    // the options are not updated when setting the adUnit programmatically, so we have to "force" an option update
-                    if update {
-                        updateAdManager(options: state.baseOptions)
-                    }
+                    state.updateTestMode()
                     return .none
                     
                 case .oguryTestModeButtonTapped:
+                    state.log("Ogury test mode button tapped")
                     state.toggleTestMode()
-                    return .send(.checkForTestMode)
+                    return .merge(
+                        .run { send in await send(.checkForTestMode) },
+                        .run { send in await send(.triggerSaveCards) }
+                    )
                     
                 case .rtbTestModeButtonTapped:
+                    state.log("RTBTest mode button tapped")
                     state.rtbTestModeEnabled.toggle()
                     state.updateRTBTag()
-                    updateAdManager(options: state.baseOptions)
-                    return .none
+                    state.adManager.cardConfiguration.rtbTestModeEnabled = state.rtbTestModeEnabled
+                    return .send(.triggerSaveCards)
                     
                 case let .forceTestMode(enable):
                     state.forceTestMode(enable)
@@ -583,18 +506,44 @@ struct AdViewFeature: Reducer {
                     return .none
                     
                 case let .enableAdUnitEditing(value):
-                    state.enableAdUnitEditing = value
+                    state.adManager.cardConfiguration.enableAdUnitEditing = value
                     return .none
                     
                 case .showQALabelTapped:
-                    state.showQALabelInput.toggle()
+                    state.adManager.adDelegate?.focusLogs(on: state.adManager.cardConfiguration.qaLabel)
+                    return .none
+                    
+                case .killWebview:
+                    state.adManager.killWebview(state.adManager.cardConfiguration.killWebviewMode)
+                    return .none
+                    
+                case let .updateKillMode(mode):
+                    state.adManager.cardConfiguration.killWebviewMode = mode
+                    return .none
+                    
+                case .dspPickerDidShow:
+                    if state.adManager.adConfiguration.dspRegion == nil {
+                        state.dspRegion = .euWest1
+                    }
+                    return .none
+                    
+                case .triggerSaveCards:
+                    return .merge(
+                        .cancel(id: AdCancel.save),
+                        .run { send in
+                            try await clock.sleep(for: .seconds(3))
+                            await send(.saveCards)
+                        }.cancellable(id: AdCancel.save)
+                    )
+                    
+                case .saveCards:
+                    state.adManager.adDelegate?.saveSet()
                     return .none
             }
         }
-        .ifLet(\.$alert, action: /Action.alert)
+        .ifLet(\.$alert, action: \.alert)
     }
 }
-
 
 extension AdLifeCycleEvent {
     var action: AdViewFeature.Action {
@@ -603,8 +552,92 @@ extension AdLifeCycleEvent {
             case let .adDidFailToDisplay(error): return .error(error)
             case let .adDidFail(error): return .error(error)
             case let .bannerReady(ad): return .bannerReady(ad)
-            case let .rewardReady(reward): return .rewardReady(reward)
+            case let .rewardReady(rewardName, rewardValue): return .rewardReady(name: rewardName, value: rewardValue)
             default: return .updateEvent(self)
         }
+    }
+}
+
+extension AdViewFeature.State {
+    //MARK: Dynamic accessors
+    var cardName: String {
+        get { adManager.cardConfiguration.adDisplayName }
+        set { adManager.cardConfiguration.adDisplayName = newValue }
+    }
+    var qaLabel: String {
+        get { adManager.cardConfiguration.qaLabel }
+        set { adManager.cardConfiguration.qaLabel = newValue }
+    }
+    var adUnitId: String {
+        get { adManager.adConfiguration.adUnitId }
+        set {
+            var conf = adManager.adConfiguration ?? .init(adUnitId: newValue)
+            conf.adUnitId = newValue
+            // need to use this method to update the ad if needed
+            adManager.update(conf)
+        }
+    }
+    var campaignId: String {
+        get { adManager.adConfiguration.campaignId ?? "" }
+        set { adManager.adConfiguration.campaignId = newValue.isEmpty ? nil : newValue }
+    }
+    var creativeId: String {
+        get { adManager.adConfiguration.creativeId ?? "" }
+        set { adManager.adConfiguration.creativeId = newValue.isEmpty ? nil : newValue }
+    }
+    var dspCreativeId: String {
+        get { adManager.adConfiguration.dspCreativeId ?? "" }
+        set { adManager.adConfiguration.dspCreativeId = newValue.isEmpty ? nil : newValue }
+    }
+    var dspRegion: DspRegion {
+        get { adManager.adConfiguration.dspRegion ?? .euWest1 }
+        set { adManager.adConfiguration.dspRegion = newValue }
+    }
+    var showTestModeButton: Bool {
+        get { adManager.cardConfiguration.showTestModeButton }
+        set { adManager.cardConfiguration.showTestModeButton = newValue }
+    }
+    var testModeEnabled: Bool {
+        get { adManager.cardConfiguration.oguryTestModeEnabled }
+        set { adManager.cardConfiguration.oguryTestModeEnabled = newValue }
+    }
+    var rtbTestModeEnabled: Bool {
+        get { adManager.cardConfiguration.rtbTestModeEnabled }
+        set { adManager.cardConfiguration.rtbTestModeEnabled = newValue }
+    }
+    var showRtbTestMode: Bool {
+        get { adManager.cardConfiguration.showRtbTestMode }
+        set { adManager.cardConfiguration.showRtbTestMode = newValue }
+    }
+    var enableAdUnitEditing: Bool {
+        get { adManager.cardConfiguration.enableAdUnitEditing }
+        set { adManager.cardConfiguration.enableAdUnitEditing = newValue }
+    }
+    var showCampaignId: Bool {
+        get { adManager.cardConfiguration.showCampaignId }
+        set { adManager.cardConfiguration.showCampaignId = newValue }
+    }
+    var showCreativeId: Bool {
+        get { adManager.cardConfiguration.showCreativeId }
+        set { adManager.cardConfiguration.showCreativeId = newValue }
+    }
+    var showDspFields: Bool {
+        get { adManager.cardConfiguration.showDspFields }
+        set { adManager.cardConfiguration.showDspFields = newValue }
+    }
+    var isBanner: Bool { adManager.adFormat == .standardBanner }
+    var isRewardedVideo: Bool { adManager.adFormat == .rewardedVideo }
+}
+
+struct BannerContainer: Equatable {
+    var bannerAd: UIView?
+}
+
+extension Error {
+    var displayMessage: String {
+        if let adError = self as? NSError {
+            return "#\(adError.code) : \(adError.localizedDescription)"
+        }
+        return String(describing: self)
     }
 }

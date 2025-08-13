@@ -48,13 +48,18 @@
         NSError *parseError;
         OGAAd *ad = [[OGAAd alloc] initWithDictionary:adJSON error:&parseError];
         if (parseError) {
-            [[OGALog shared] logAdError:parseError forAdConfiguration:adConfig message:@"Failed to parse ad content."];
+            [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                        adConfiguration:adConfig
+                                                                logType:OguryLogTypeInternal
+                                                                message:@"Failed to parse ad content."
+                                                                   tags:nil]];
             return nil;
         }
         if ([self shouldParseAd:ad withConfiguration:adConfig error:error]) {
             ad.orientation = [OGAAdParser parseParam:adJSON param:@"orientation"];
             ad.adWebViewId = [OGAAdParser parseFormatParams:adJSON];
             ad.privacyConfiguration = privacyConfiguration;
+            adConfig.creativeSize = [ad.bannerAdResponse.creativeSize size];
             ad.adConfiguration = [adConfig copy];
             ad.adConfiguration.monitoringDetails.loadedSource = [ad getRawLoadedSource];
             ad.adConfiguration.campaignId = ad.campaignId;
@@ -66,21 +71,31 @@
             return nil;
         }
     } @catch (NSException *exception) {
-        [[OGALog shared] logAdFormat:OguryLogLevelError forAdConfiguration:adConfig format:@"Failed to parse ad content. Caused by %@.", exception.reason];
+        [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                    adConfiguration:nil
+                                                            logType:OguryLogTypePublisher
+                                                            message:[NSString stringWithFormat:@"Failed to parse ad content. Caused by %@.", exception.reason]
+                                                               tags:nil]];
     }
 }
 
 + (BOOL)shouldParseAd:(OGAAd *)ad withConfiguration:(OGAAdConfiguration *)adConfig error:(NSError *_Nonnull *_Nonnull)error {
     if ([NSString ogaIsNilOrEmpty:ad.adUnit.identifier] || [NSString ogaIsNilOrEmpty:ad.adUnit.type]) {
-        [[OGALog shared] logAdFormat:OguryLogLevelInfo forAdConfiguration:adConfig format:@"adUnit on ad object is empty"];
+        [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                    adConfiguration:adConfig
+                                                            logType:OguryLogTypeInternal
+                                                            message:@"adUnit on ad object is empty"
+                                                               tags:nil]];
         *error = [OguryAdError adParsingFailedWithStackTrace:@"No adUnit on Ad object"];
         return NO;
     }
 
     if (![[adConfig getAdTypeString] isEqualToString:ad.adUnit.type]) {
-        [[OGALog shared] logAdFormat:OguryLogLevelError
-                  forAdConfiguration:adConfig
-                              format:@"ad.adUnit type [%@] not equalt to expected adConfiguration with type [%@]", ad.adUnit.type, [adConfig getAdTypeString]];
+        [[OGALog shared] log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                    adConfiguration:adConfig
+                                                            logType:OguryLogTypePublisher
+                                                            message:[NSString stringWithFormat:@"ad.adUnit type [%@] not equalt to expected adConfiguration with type [%@]", ad.adUnit.type, [adConfig getAdTypeString]]
+                                                               tags:nil]];
         *error = [OguryAdError adParsingFailedWithStackTrace:[NSString stringWithFormat:@"Type mismatch. Awaited (%@) - received (%@)",
                                                                                         [adConfig getAdTypeString],
                                                                                         ad.adUnit.type]];

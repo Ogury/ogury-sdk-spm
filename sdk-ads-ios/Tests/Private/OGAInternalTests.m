@@ -127,14 +127,18 @@
 - (void)testDefineSDKType {
     [self.internal defineSDKType:1];
 
-    OCMVerify([self.adManager defineSDKType:1]);
+    OCMVerify([self.adManager setSdkType:1]);
 }
 
 - (void)testMaxWebViewUserAgentRetryReached {
     OCMStub([self.internal syncProfig]);
     [self.internal maxWebViewUserAgentRetryReached];
     OCMVerify([self.internal syncProfig]);
-    OCMVerify([self.log log:OguryLogLevelWarning message:@"Ogury Ads is unable to retreive webview User Agent."]);
+    OCMVerify([self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                                   adConfiguration:nil
+                                                           logType:OguryLogTypeInternal
+                                                           message:@"Ogury Ads is unable to retreive webview User Agent."
+                                                              tags:nil]]);
 }
 
 - (void)testReceivedWebViewUserAgent {
@@ -142,6 +146,13 @@
     [self.internal receivedWebViewUserAgent:@"USER_AGENT"];
     OCMVerify([self.internal syncProfig]);
     OCMStub([self.internal syncProfig]);
+}
+
+- (void)testWhenSettingsSdkConsumerThenObjectIsRetained {
+    OGASdkConsumer *consumer = [[OGASdkConsumer alloc] initWithName:@"name" version:@"version"];
+    [self.internal setSdkConsumer:consumer];
+    XCTAssertEqualObjects(self.internal.sdkConsumer.name, @"name");
+    XCTAssertEqualObjects(self.internal.sdkConsumer.version, @"version");
 }
 
 @end

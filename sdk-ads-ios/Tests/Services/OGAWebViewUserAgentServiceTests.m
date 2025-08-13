@@ -6,6 +6,7 @@
 #import <WebKit/WebKit.h>
 #import <XCTest/XCTest.h>
 #import "OGAWebViewUserAgentService.h"
+#import "OGAWebViewUserAgentServiceDelegate.h"
 
 @interface OGAWebViewUserAgentServiceTests : XCTestCase
 

@@ -364,7 +364,12 @@ static NSString *const OGADisablingReason = @"disabling_reason";
             if ([error isKindOfClass:[OguryAdError class]]) {
                 ogyError = (OguryAdError *)error;
             }
-            [self.log logAd:OguryLogLevelError forAdConfiguration:sequence.configuration message:@"failed to decode ad markup"];
+            [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelError
+                                                 adConfiguration:sequence.configuration
+                                                         logType:OguryLogTypePublisher
+                                                           error:ogyError
+                                                         message:nil
+                                                            tags:nil]];
             [self.monitoringDispatcher sendLoadErrorEvent:OGALoadErrorEventAdMarkUpParsingError
                                                stackTrace:ogyError.additionalInformation
                                           adConfiguration:sequence.monitoringAdConfiguration];
@@ -531,10 +536,6 @@ static NSString *const OGADisablingReason = @"disabling_reason";
     @synchronized(self.sequencesShowing) {
         [self.sequencesShowing removeObject:sequence];
     }
-}
-
-- (void)defineSDKType:(OGASDKType)sdkType {
-    _sdkType = sdkType;
 }
 
 - (void)defineMediationName:(NSString *)mediationName {

@@ -21,6 +21,9 @@
 #pragma mark - Constants
 
 static NSString *const AdSyncServiceBodyNameKey = @"name";
+static NSString *const AdSyncServiceBodySizesKey = @"sizes";
+static NSString *const AdSyncServiceBodySizeHeightKey = @"h";
+static NSString *const AdSyncServiceBodySizeWidthKey = @"w";
 static NSString *const AdSyncServiceBodyConnectivityeKey = @"connectivity";
 static NSString *const AdSyncServiceBodyTimestampKey = @"sent_at";
 static NSString *const AdSyncServiceBodyRequestIdKey = @"request_id";
@@ -122,7 +125,7 @@ static NSString *const AdSyncServiceBodyContentOverlayMaximumSizeScaleKey = @"sc
     body[AdSyncServiceBodyAppKey][AdSyncServiceBodyAssetKeyKey] = [assetKeyManager assetKey];
     body[AdSyncServiceBodyAppKey][AdSyncServiceBodyAssetTypeKey] = [OGAConfigurationUtils getDeviceOS];
     body[AdSyncServiceBodyAppKey][AdSyncServiceBodyBundleIdKey] = [OGAConfigurationUtils getAppBundleIdentifer];
-    body[AdSyncServiceBodyAppKey][AdSyncServiceBodyVersionKey] = [NSString stringWithFormat:@"%@.%@", [OGAConfigurationUtils getAppMarketingVersion], [OGAConfigurationUtils getAppBuildVersion]];
+    body[AdSyncServiceBodyAppKey][AdSyncServiceBodyVersionKey] = [OGAConfigurationUtils getAppMarketingVersion];
     if ([privacyConfiguration adSyncPermissionIsEnabledFor:OGAAdPrivacyPermissionInstanceToken]) {
         body[AdSyncServiceBodyAppKey][AdSyncServiceBodyInstanceTokenKey] = [OGAAdIdentifierService getInstanceToken];
     }
@@ -229,6 +232,14 @@ static NSString *const AdSyncServiceBodyContentOverlayMaximumSizeScaleKey = @"sc
         }
         ad[AdSyncServiceBodyDspKey] = adDsp;
     }
+
+    if (self.adType == OguryAdsTypeBanner) {
+        NSMutableDictionary *size = [@{} mutableCopy];
+        size[AdSyncServiceBodySizeWidthKey] = @([self getWidthForAdType]);
+        size[AdSyncServiceBodySizeHeightKey] = @([self getHeightForAdType]);
+        ad[AdSyncServiceBodySizesKey] = @[ size ];
+    }
+
     adSync[AdSyncServiceBodyAdKey] = ad;
 
     BOOL isOMIDCompliant = (profigPersistence.profigFullResponse.isOmidEnabled && isOmidFrameworkPresent);

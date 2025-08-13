@@ -7,6 +7,7 @@
 #import "OGAAdMraidDisplayerState.h"
 #import "OGAAdDisplayerOrientationDelegate.h"
 #import "OGAAdLoadStateManager.h"
+#import <WebKit/WebKit.h>
 
 @protocol OGAAdDisplayerInformation;
 @class OGAAd;
@@ -49,6 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)webViewLoaded:(NSString *)webViewId;
 
 - (void)webkitProcessDidTerminate;
+- (WKWebView *)adWebview;
 
 @end
 

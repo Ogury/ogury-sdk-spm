@@ -252,9 +252,6 @@ private_lane :generate_podspec do |options|
     placeholders["omid_sdk"] = "#{File.basename(configuration.frameworks.omid)}"
   end
 
-  puts "#{Dir.pwd}/templates/#{target.name}.podspec.json.erb"
-  puts "podspec placeholders #{placeholders}".red
-
   erb(
     template: "#{Dir.pwd}/templates/#{target.publicName}.podspec.json.erb",
     destination: "#{configuration.directories.output}/#{output_file}",
@@ -328,38 +325,6 @@ lane :prepare_ads_for_deployment do |options|
     )
 end
 
-lane :prepare_adsLibrary_for_deployment do |options|
-  if !options[:configuration]
-    raise "No configuration specified!".red
-  end
-  if !options[:environment]
-    raise "No environment specified!".red
-  end
-  if !options[:version]
-    raise "No version specified!".red
-  end
-  if !options[:tag]
-    raise "No tag specified!".red
-  end
-
-  configuration = options[:configuration]
-  environment = options[:environment]
-  version = options[:version]
-  tag = options[:tag]
-  artifactory = options[:artifactory] ? options[:artifactory] : false
-
-  puts "Deploy AdsLibrary".yellow
-
-  prepare_for_deployment(
-    configuration: configuration,
-    environment: environment,
-    version: version,
-    tag: tag,
-    target: configuration.targets.adsLibrary,
-    artifactory: artifactory
-    )
-end
-
 lane :prepare_wrapper_for_deployment do |options|
   if !options[:configuration]
     raise "No configuration specified!".red
@@ -399,36 +364,70 @@ private_lane :deploy_test_app do |options|
   end
 
   configuration = options[:configuration]
+  artifactory = options[:artifactory] ? options[:artifactory] : false
+  isQa = options[:isQa] ? options[:isQa] : false
+  killModeEnabled = options[:killModeEnabled] ? options[:killModeEnabled] : false
+  
+  ## the appSelector refers to Configuration.rb TestApplications variants
+  selector = options[:appSelector]
+  UI.user_error!("Missing app selector") unless selector
+
   setup_xcode
+    
+  update_internal_cocoapods environment: 'prod'
+  generate_podfile(environment:'prod', targetThreshold:"all")
+  cocoapods(
+    podfile: "./Podfile",
+    repo_update: true
+  )
   
   puts "Building TestApp".green
 
-  TestAppVariant.all.each do |variant|
+  # Determine selection
+  selected_apps = case selector
+                  when "all"
+                    configuration.testApplications.all
+                  when "ogury"
+                    configuration.testApplications.ogury
+                  when "mediation"
+                    configuration.testApplications.mediation
+                  else
+                    app = configuration.testApplications.all.find { |a| a.name == selector }
+                    UI.user_error!("App '#{selector}' not found") unless app
+                    [app]
+                  end
 
-    puts "Building #{configuration.targets.testApp.scheme}-#{variant}".blue
-    artifactory = options[:artifactory] ? options[:artifactory] : false
-    scheme = "#{configuration.targets.testApp.scheme}-#{variant}"
-    scheme =  artifactory ? "#{scheme}-art" : scheme
-    bundleId = variant == TestAppVariant::PROD ? "co.ogury.sdk.ads.app" : "co.ogury.sdk.ads.app.#{variant.downcase}"
+  puts "Select apps -> #{selected_apps}".red
+
+  selected_apps.each do |app|
+    scheme =  artifactory ? app.artScheme : app.scheme
+    bundleId = app.bundleId
+    xcargs = []
+    xcargs << (isQa ? "OTHER_SWIFT_FLAGS='$(OTHER_SWIFT_FLAGS) -DQA_MODE'" : "OTHER_SWIFT_FLAGS='$(OTHER_SWIFT_FLAGS)'")
+    xcargs << (killModeEnabled ? "GCC_PREPROCESSOR_DEFINITIONS='$(inherited) KILL_MODE_ENABLED=1'" : "GCC_PREPROCESSOR_DEFINITIONS='$(inherited)'")
+    xcargs = xcargs.join(' ')
+    output_dir = File.join(configuration.directories.test_app, app.name)
+    puts "Building #{scheme}".blue
     puts "bundleId #{bundleId}".yellow
+    puts "output_dir #{output_dir}".red
 
     build_ios_app(
       workspace: configuration.workspace.file_path,
       scheme: scheme,
       sdk: "iphoneos",
-      derived_data_path: configuration.directories.test_derived_data,
+      derived_data_path: output_dir,
       clean: true,
+      xcargs: xcargs,
       output_directory: configuration.directories.test_app,
       output_name: "#{scheme}.ipa",
       export_method: "development",
       export_options: {
-        signingStyle: "automatic",
-        provisioningProfiles: {
-          bundleId => "XC co ogury sdk ads app #{variant.downcase}"
-        },
+        signingStyle: "automatic"
+        #provisioningProfiles: {
+        #  bundleId => "XC co ogury sdk ads app #{variant.downcase}"
+        #},
       },
-
-      )
+    )
 
     copy_artifacts(
       target_path: "artifacts",
@@ -436,7 +435,7 @@ private_lane :deploy_test_app do |options|
       )
 
     firebase_app_distribution(
-      app: "1:433541045380:ios:715a877bd12614bd0c36d1",
+      app: app.firebaseAppId,
       testers: configuration.firebase.test_group,
       firebase_cli_token: "1//03VqloLsbSYJoCgYIARAAGAMSNwF-L9IrdbY5QQQDTEUBtWKAbeT0dxPkwNb0okDx1AIbr8Xli4R2-Ez6ZQMfVycZtf_Hv488wZg",
       release_notes: "",

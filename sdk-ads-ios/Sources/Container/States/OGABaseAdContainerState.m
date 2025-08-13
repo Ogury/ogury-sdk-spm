@@ -127,12 +127,10 @@
 }
 
 - (void)applicationDidBecomeActive {
-#warning Called upon losing focus (see https://openradar.appspot.com/32614495 for more details)
     [self.exposureController computeExposure];
 }
 
 - (void)applicationWillResignActive {
-#warning Called twice upon losing focus (see https://openradar.appspot.com/32614495 for more details)
     [self.displayer dispatchInformation:[[OGAAdDisplayerUpdateExposureInformation alloc] initWithExposure:[OGAAdExposure zeroExposure]]];
     [self updateViewablityIfNecessary:[OGAAdExposure zeroExposure]];
 }
@@ -158,7 +156,11 @@
                 [self.displayer.delegate performAction:forceCloseAdAction error:&closeError];
 
                 if (!closeError) {
-                    [self.log logAdError:closeError forAdConfiguration:self.displayer.ad.adConfiguration message:@"Failed to close Ad"];
+                    [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelWarning
+                                                         adConfiguration:self.displayer.ad.adConfiguration
+                                                                 logType:OguryLogTypeInternal
+                                                                 message:@"Failed to close Ad during keepAlive"
+                                                                    tags:nil]];
                 }
             });
         }
