@@ -137,10 +137,10 @@ public struct AdView: View {
                         }
                         .padding(.leading, 4)
                         .accessibilityLabel("Card#\(store.qaLabel)_Menu")
-                        // play with `opacity` instead of `hidden` to keep the 40:40 frame
-                        .opacity(cardPermissions.showCardMenu ? 1 : 0)
+                        .hidden(!cardPermissions.showCardMenu)
                     }
                 }
+                .frame(minHeight: 40)
                 .padding(EdgeInsets(top: 6, leading: 12, bottom: 0, trailing: 12))
                 .alert(isPresented: $showErrorAlert) {
                     let alertMessage = (store.error as? ErrorConvertible)?.readableError ?? String(describing: store.error)
@@ -176,6 +176,7 @@ public struct AdView: View {
                                              placeholder: "Campaign Id")
                                 .keyboardType(.numberPad)
                                 .disabled(store.testModeEnabled)
+                                .disabled(!store.enableAdUnitEditing)
                                 .accessibilityLabel("Card#\(store.qaLabel)_CampaignField")
                             }
                             
@@ -186,6 +187,7 @@ public struct AdView: View {
                                              placeholder: "Creative Id")
                                 .keyboardType(.numberPad)
                                 .disabled(store.testModeEnabled)
+                                .disabled(!store.enableAdUnitEditing)
                                 .accessibilityLabel("Card#\(store.qaLabel)_CreativeField")
                             }
                         }
@@ -198,6 +200,7 @@ public struct AdView: View {
                                              placeholder: "DSP Creative Id")
                                 .keyboardType(.default)
                                 .disabled(store.testModeEnabled)
+                                .disabled(!store.enableAdUnitEditing)
                                 .accessibilityLabel("Card#\(store.qaLabel)_DSPCreativeField")
                                 
                                 Picker("DSP Region", selection: $store.dspRegion) {
@@ -209,6 +212,7 @@ public struct AdView: View {
                                 .tint(Color(AdColorPalette.Text.placeholder.color))
                                 .font(.adsBody)
                                 .disabled(store.testModeEnabled)
+                                .disabled(!store.enableAdUnitEditing)
                                 .fixedSize(horizontal: true, vertical: true)
                                 .pickerStyle(.menu)
                                 .accessibilityLabel("Card#\(store.qaLabel)_DSPRegionField")

@@ -6,7 +6,7 @@ import Foundation
 import UserDefault
 import AdsCardLibrary
 
-enum ConsentManager: CaseIterable, Equatable, Codable, DefaultsValueConvertible {
+enum ConsentManager: String, CaseIterable, Equatable, Codable, DefaultsValueConvertible {
     case inMobi, adMob
     
     var displayName: String {
@@ -17,9 +17,14 @@ enum ConsentManager: CaseIterable, Equatable, Codable, DefaultsValueConvertible 
     }
 }
 
+extension FieldEditingMask: @retroactive DefaultsValueConvertible {}
+
 struct SettingsController {
     @UserDefault("enableAdUnitEditing")
     var enableAdUnitEditing: Bool = true
+    
+    @UserDefault("fieldEditingMask")
+    var fieldEditingMask: FieldEditingMask = .allowAll
     
     @UserDefault("showCampaignId")
     var showCampaignId: Bool = true

@@ -136,7 +136,7 @@ struct AppSettingsView: View {
                                     viewStore.send(.enableAdUnitEditingToggleTapped)
                                 } label: {
                                     HStack {
-                                        Text("Allow AdUnit editing")
+                                        Text("Allow fields editing")
                                             .layoutPriority(1)
                                         
                                         Toggle("", isOn:
@@ -147,7 +147,7 @@ struct AppSettingsView: View {
                                     }
                                 }
                                 .accessibilityLabel("AllowAdUnitEditingToggle")
-                                .hidden(!appPermissions.settingPermissions.contains(.showEditAdUnitToggle))
+                                .hidden(!appPermissions.settingPermissions.contains(.showEditFieldsToggle))
                                 
                                 Button {
                                     viewStore.send(.showCampaignToggleTapped)

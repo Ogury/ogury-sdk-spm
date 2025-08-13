@@ -14,8 +14,36 @@ public struct AdViewOptions: Codable, Equatable {
     }
 }
 
+public struct FieldEditingMask: OptionSet, Codable, Hashable, CaseIterable {
+    public static var allCases: [FieldEditingMask] = [.allowAdUnit, .allowCampaignId, .allowCreativeId, .allowDspFields]
+    public let rawValue: Int
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
+    }
+    
+    public static let denyAll = FieldEditingMask(rawValue: 1 << 0)
+    public static let allowAll = FieldEditingMask(rawValue: 1 << 30) // to handle Android 32 bit system
+    public static let allowAdUnit = FieldEditingMask(rawValue: 1 << 1)
+    public static let allowCampaignId = FieldEditingMask(rawValue: 1 << 2)
+    public static let allowCreativeId = FieldEditingMask(rawValue: 1 << 3)
+    public static let allowDspFields = FieldEditingMask(rawValue: 1 << 4)
+    
+    var displayName: String {
+        switch self {
+            case .denyAll: return "None"
+            case .allowAll: return "All"
+            case .allowAdUnit: return "Ad Unit"
+            case .allowCampaignId: return "Campaign Id"
+            case .allowCreativeId: return "Creative Id"
+            case .allowDspFields: return "Dsp fields"
+            default: return ""
+        }
+    }
+}
+
 public struct CardConfiguration: Codable, Equatable, Hashable {
     public var enableAdUnitEditing: Bool = true
+    public var fieldEditingMask: FieldEditingMask = .allowAll
     /// show the campaignId field on the ``AdView``
     public var showCampaignId: Bool = true
     /// show the creativeId field on the ``AdView``
@@ -42,6 +70,7 @@ public struct CardConfiguration: Codable, Equatable, Hashable {
     public var qaLabel: String = UUID().uuidString
     
     public init(enableAdUnitEditing: Bool = true,
+                fieldEditingMask: FieldEditingMask = .allowAll,
                 showCampaignId: Bool = true,
                 showCreativeId: Bool = false,
                 showDspFields: Bool = false,
@@ -55,6 +84,7 @@ public struct CardConfiguration: Codable, Equatable, Hashable {
                 killWebviewMode: KillWebviewMode = .none,
                 qaLabel: String = UUID().uuidString) {
         self.enableAdUnitEditing = enableAdUnitEditing
+        self.fieldEditingMask = fieldEditingMask
         self.showCampaignId = showCampaignId
         self.showCreativeId = showCreativeId
         self.showDspFields = showDspFields

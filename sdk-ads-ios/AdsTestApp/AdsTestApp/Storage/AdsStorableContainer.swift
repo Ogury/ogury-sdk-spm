@@ -28,7 +28,7 @@ enum ImportMethod: String, Codable, Equatable, CaseIterable, DefaultsValueConver
 struct SettingsPermissions: OptionSet, Codable {
     let rawValue: Int
     static let noCards = SettingsPermissions(rawValue: 1 << 0)
-    static let showEditAdUnitToggle = SettingsPermissions(rawValue: 1 << 1)
+    static let showEditFieldsToggle = SettingsPermissions(rawValue: 1 << 1)
     static let showCampaignToggle = SettingsPermissions(rawValue: 1 << 2)
     static let showCreativeToggle = SettingsPermissions(rawValue: 1 << 3)
     static let showDspToggle = SettingsPermissions(rawValue: 1 << 4)
@@ -38,7 +38,7 @@ struct SettingsPermissions: OptionSet, Codable {
     static let showBulkModeToggle = SettingsPermissions(rawValue: 1 << 8)
     static let showResetProfigToggle = SettingsPermissions(rawValue: 1 << 9)
     static var allCases: SettingsPermissions = [
-        .showEditAdUnitToggle,
+        .showEditFieldsToggle,
         .showAudioToggle,
         .showBulkModeToggle,
         .showCampaignToggle,
@@ -92,6 +92,10 @@ struct SettingsContainer: Codable, Equatable {
     var enableAdUnitEditing: Bool {
         get { settings.enableAdUnitEditing }
         set { settings.enableAdUnitEditing = newValue }
+    }
+    var fieldEditingMask: FieldEditingMask {
+        get { settings.fieldEditingMask }
+        set { settings.fieldEditingMask = newValue }
     }
     var showCampaignId: Bool {
         get { settings.showCampaignId }
@@ -168,7 +172,9 @@ struct SettingsContainer: Codable, Equatable {
              logSettings,
              importMethod,
              killWebviewMode,
-             permissions
+             permissions,
+             consentManager,
+             fieldEditingMask
     }
     
     init(from decoder: Decoder) throws {
@@ -184,7 +190,9 @@ struct SettingsContainer: Codable, Equatable {
         startSDKWithApplication = try container.decodeIfPresent(Bool.self, forKey: .startSDKWithApplication) ?? false
         numberOfSdkStart = try container.decodeIfPresent(Int.self, forKey: .numberOfSdkStart) ?? 0
         enableAdUnitEditing = try container.decodeIfPresent(Bool.self, forKey: .enableAdUnitEditing) ?? true
+        fieldEditingMask = try container.decodeIfPresent(FieldEditingMask.self, forKey: .fieldEditingMask) ?? .allowAll
         importMethod = try container.decodeIfPresent(ImportMethod.self, forKey: .importMethod) ?? .file
+        consentManager = try container.decodeIfPresent(ConsentManager.self, forKey: .consentManager) ?? .inMobi
         logSettings = (try? container.decodeIfPresent(LogSettings.self, forKey: .logSettings)) ?? LogSettings()
         permissions = (try? container.decodeIfPresent(AppPermissions.self, forKey: .permissions)) ?? AppPermissions()
     }
@@ -200,10 +208,12 @@ struct SettingsContainer: Codable, Equatable {
         try container.encode(name, forKey: .name)
         try container.encode(os, forKey: .os)
         try container.encode(enableAdUnitEditing, forKey: .enableAdUnitEditing)
+        try container.encode(fieldEditingMask, forKey: .fieldEditingMask)
         try container.encode(numberOfSdkStart, forKey: .numberOfSdkStart)
         try container.encode(startSDKWithApplication, forKey: .startSDKWithApplication)
         try container.encode(logSettings, forKey: .logSettings)
         try container.encode(importMethod, forKey: .importMethod)
+        try container.encode(consentManager, forKey: .consentManager)
     }
     
     init(name: String = SettingsContainer.untitledAdSet) {
@@ -219,10 +229,12 @@ struct SettingsContainer: Codable, Equatable {
         lhs.startSDKWithApplication == rhs.startSDKWithApplication &&
         lhs.showTestMode == rhs.showTestMode &&
         lhs.enableAdUnitEditing == rhs.enableAdUnitEditing &&
+        lhs.fieldEditingMask == rhs.fieldEditingMask &&
         lhs.startSDKWithApplication == rhs.startSDKWithApplication &&
         lhs.numberOfSdkStart == rhs.numberOfSdkStart &&
         lhs.importMethod == rhs.importMethod &&
         lhs.killWebviewMode == rhs.killWebviewMode &&
+        lhs.consentManager == rhs.consentManager &&
         lhs.name == rhs.name
     }
 }
@@ -399,7 +411,7 @@ extension AdCardContainer {
                                          dspCreativeId: adInformations.dspCreativeId,
                                          dspRegion: adInformations.dspRegion,
                                          bannerSize: adInformations.bannerSize),
-                     cardConfiguration: .init(enableAdUnitEditing: settings.enableAdUnitEditing,
+                     cardConfiguration: .init(fieldEditingMask: settings.fieldEditingMask,
                                               showCampaignId: settings.showCampaignId,
                                               showCreativeId: settings.showCreativeId,
                                               showDspFields: settings.showDspFields,
@@ -488,7 +500,7 @@ extension SettingsPermissions: CustomStringConvertible {
         if contains(.noCards) {
             str += str.isEmpty ? "noCards" : " - noCards"
         }
-        if contains(.showEditAdUnitToggle) {
+        if contains(.showEditFieldsToggle) {
             str += str.isEmpty ? "showEditAdUnit" : " - showEditAdUnit"
         }
         if contains(.showCampaignToggle) {

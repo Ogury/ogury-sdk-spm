@@ -351,8 +351,8 @@ struct MainFeature: Reducer {
         if state.settingsPriorToChange.showCampaignId != settings.showCampaignId {
             cardEvents.append(.showCampaignId(settings.showCampaignId))
         }
-        if state.settingsPriorToChange.enableAdUnitEditing != settings.enableAdUnitEditing {
-            cardEvents.append(.enableAdUnitEditing(settings.enableAdUnitEditing))
+        if state.settingsPriorToChange.fieldEditingMask != settings.fieldEditingMask {
+            cardEvents.append(.enableAdUnitEditing(settings.fieldEditingMask == .allowAll))
         }
         if state.settingsPriorToChange.showCreativeId != settings.showCreativeId {
             cardEvents.append(.showCreativeId(settings.showCreativeId))

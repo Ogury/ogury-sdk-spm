@@ -507,6 +507,7 @@ struct AdViewFeature {
                     
                 case let .enableAdUnitEditing(value):
                     state.adManager.cardConfiguration.enableAdUnitEditing = value
+                    state.adManager.cardConfiguration.fieldEditingMask = value ? .allowAll : .denyAll
                     return .none
                     
                 case .showQALabelTapped:
@@ -610,8 +611,8 @@ extension AdViewFeature.State {
         set { adManager.cardConfiguration.showRtbTestMode = newValue }
     }
     var enableAdUnitEditing: Bool {
-        get { adManager.cardConfiguration.enableAdUnitEditing }
-        set { adManager.cardConfiguration.enableAdUnitEditing = newValue }
+        get { adManager.cardConfiguration.fieldEditingMask == .allowAll }
+        set { adManager.cardConfiguration.fieldEditingMask = newValue ? .allowAll : .denyAll }
     }
     var showCampaignId: Bool {
         get { adManager.cardConfiguration.showCampaignId }

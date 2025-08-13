@@ -58,23 +58,24 @@
   ],
   "settings" : {
     "name" : "OMID test suite",
-    "permissions" :  {
-        "settings" : false,
-        "logs" : false,
-        "add" : false,
-        "export" : false,
-        "bulkMode" : false,
-        "devFeatures" : false,
-        "settingPermissions" : 0
-    },
     "importMethod" : "file",
     "showCampaignId" : true,
     "bulkModeEnabled" : false,
     "killWebviewMode" : "none",
     "showTestMode" : false,
     "showCreativeId" : false,
-    "enableAdUnitEditing" : false,
+    "fieldEditingMask" : 1,
+    "consentManager" : "inMobi",
     "os" : "iOS",
+    "permissions" : {
+      "bulkMode" : false,
+      "export" : false,
+      "settings" : false,
+      "settingPermissions" : 0,
+      "add" : false,
+      "logs" : false,
+      "devFeatures" : false
+    },
     "startSDKWithApplication" : true,
     "showDspFields" : false,
     "logSettings" : {

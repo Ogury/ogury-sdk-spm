@@ -35,7 +35,9 @@ struct AppSettingsFeature: Reducer {
         }
         
         @BindingState var settings: SettingsContainer
-        var enableAdUnitEditing: Bool { settings.enableAdUnitEditing }
+        var enableAdUnitEditing: Bool {
+            settings.fieldEditingMask == .allowAll
+        }
         var showCampaignId: Bool { settings.showCampaignId }
         var showCreativeId: Bool { settings.showCreativeId  }
         var showDspFields: Bool { settings.showDspFields }
@@ -103,6 +105,8 @@ struct AppSettingsFeature: Reducer {
         case toggleKillWebviewMode
         case updateKillWebviewMode(_: KillWebviewMode)
         case copyIdfaButtonTapped
+        case appendFieldEditingMask(_: FieldEditingMask)
+        case removeFieldEditingMask(_: FieldEditingMask)
     }
     
     var body: some ReducerOf<Self> {
@@ -116,6 +120,22 @@ struct AppSettingsFeature: Reducer {
                     }
                     
                 case .binding:
+                    return .none
+                    
+                case let .appendFieldEditingMask(mask):
+                    if mask == .allowAll {
+                        state.settings.fieldEditingMask = mask
+                    } else {
+                        state.settings.fieldEditingMask.insert(mask)
+                    }
+                    return .none
+                    
+                case let .removeFieldEditingMask(mask):
+                    if mask == .denyAll {
+                        state.settings.fieldEditingMask = mask
+                    } else {
+                        state.settings.fieldEditingMask.remove(mask)
+                    }
                     return .none
                     
                 case .incrementSDKStart:
@@ -165,7 +185,11 @@ struct AppSettingsFeature: Reducer {
                     return .none
                     
                 case .enableAdUnitEditingToggleTapped:
-                    state.settings.enableAdUnitEditing.toggle()
+                    if state.settings.fieldEditingMask == .denyAll {
+                        state.settings.fieldEditingMask = .allowAll
+                    } else {
+                        state.settings.fieldEditingMask = .denyAll
+                    }
                     return .none
                
                 case .usOptoutTapped:
