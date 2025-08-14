@@ -44,6 +44,9 @@ struct SettingsController {
     @UserDefault("startSDKWithApplication")
     var startSDKWithApplication: Bool = false
     
+    @UserDefault("startConsentWithApplication")
+    var startConsentWithApplication: Bool = false
+    
     @UserDefault("numberOfSdkStart")
     var numberOfSdkStart: Int = 1
     

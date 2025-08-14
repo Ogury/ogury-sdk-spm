@@ -1,3 +1,4 @@
+
 {
   "cards" : [
     [
@@ -65,7 +66,7 @@
     "showTestMode" : false,
     "showCreativeId" : false,
     "fieldEditingMask" : 1,
-    "consentManager" : "inMobi",
+    "consentManager" : "adMob",
     "os" : "iOS",
     "permissions" : {
       "bulkMode" : false,
@@ -77,6 +78,7 @@
       "devFeatures" : false
     },
     "startSDKWithApplication" : true,
+    "startConsentWithApplication" : true,
     "showDspFields" : false,
     "logSettings" : {
       "allowedTypes" : [

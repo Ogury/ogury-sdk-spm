@@ -21,6 +21,7 @@ struct AppSettingsFeature: Reducer {
             lhs.showDspFields == rhs.showDspFields &&
             lhs.bulkModeEnabled == rhs.bulkModeEnabled &&
             lhs.startSDKWithApplication == rhs.startSDKWithApplication &&
+            lhs.startConsentWithApplication == rhs.startConsentWithApplication &&
             lhs.showTestMode == rhs.showTestMode &&
             lhs.showShowSection == rhs.showShowSection &&
             lhs.usOptout == rhs.usOptout &&
@@ -46,6 +47,7 @@ struct AppSettingsFeature: Reducer {
         var killWebviewMode: KillWebviewMode { settings.killWebviewMode }
         var cachedKillWebviewMode: KillWebviewMode?
         var startSDKWithApplication: Bool { settings.startSDKWithApplication }
+        var startConsentWithApplication: Bool { settings.startConsentWithApplication }
         var consentManager: ConsentManager { settings.consentManager }
         var numberOfSDKStart: Int {
             get {
@@ -82,6 +84,7 @@ struct AppSettingsFeature: Reducer {
     enum Action: BindableAction, Equatable  {
         case binding(BindingAction<State>)
         case startSDKToggleTapped
+        case startConsentToggleTapped
         case showCampaignToggleTapped
         case enableFieldsEditingToggleTapped
         case showCreativeToggleTapped
@@ -178,6 +181,10 @@ struct AppSettingsFeature: Reducer {
                     
                 case .startSDKToggleTapped:
                     state.settings.startSDKWithApplication.toggle()
+                    return .none
+                    
+                case .startConsentToggleTapped:
+                    state.settings.startConsentWithApplication.toggle()
                     return .none
                     
                 case .showTestModeToggleTapped:

@@ -84,6 +84,9 @@ class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         adViewController.view.frame = view.bounds
+        if SettingsController().startConsentWithApplication {
+            showConsentNotice()
+        }
     }
     
     func loadFile(at url: URL) {
@@ -168,10 +171,10 @@ extension MainViewController: AdLifeCycleDelegate, ApplicationDelegate {
         return paths[0]
     }
     
-    func showConsentNotice(for manager: ConsentManager) {
-        switch manager {
-            case .inMobi: InmobiConsentManager.shared.resetConsent(viewController: self)
-            case .adMob: AdMobConsentManager.shared.resetConsent(viewController: self)
+    func showConsentNotice() {
+        Task { @MainActor in
+            try await Task.sleep(for: .seconds(1))
+            ConsentController.resetConsent(viewController: self)
         }
     }
     

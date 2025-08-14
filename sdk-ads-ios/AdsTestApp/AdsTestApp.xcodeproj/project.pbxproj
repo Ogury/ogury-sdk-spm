@@ -374,6 +374,19 @@
 		439126CA2E4C89D600C1BFD5 /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		439126CB2E4C89D600C1BFD5 /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190F2DAE89B2002F170A /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		439126CC2E4C89D600C1BFD5 /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4391282C2E4DC67300C1BFD5 /* ConsentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4391282B2E4DC67300C1BFD5 /* ConsentController.swift */; };
+		4391282D2E4DC67300C1BFD5 /* ConsentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4391282B2E4DC67300C1BFD5 /* ConsentController.swift */; };
+		4391282E2E4DC67300C1BFD5 /* ConsentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4391282B2E4DC67300C1BFD5 /* ConsentController.swift */; };
+		4391282F2E4DC67300C1BFD5 /* ConsentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4391282B2E4DC67300C1BFD5 /* ConsentController.swift */; };
+		439128302E4DC67300C1BFD5 /* ConsentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4391282B2E4DC67300C1BFD5 /* ConsentController.swift */; };
+		439128312E4DC67300C1BFD5 /* ConsentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4391282B2E4DC67300C1BFD5 /* ConsentController.swift */; };
+		439128322E4DC67300C1BFD5 /* ConsentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4391282B2E4DC67300C1BFD5 /* ConsentController.swift */; };
+		439128332E4DC67300C1BFD5 /* ConsentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4391282B2E4DC67300C1BFD5 /* ConsentController.swift */; };
+		439128342E4DC67300C1BFD5 /* ConsentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4391282B2E4DC67300C1BFD5 /* ConsentController.swift */; };
+		439128352E4DC67300C1BFD5 /* ConsentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4391282B2E4DC67300C1BFD5 /* ConsentController.swift */; };
+		439128362E4DC67300C1BFD5 /* ConsentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4391282B2E4DC67300C1BFD5 /* ConsentController.swift */; };
+		439128372E4DC67300C1BFD5 /* ConsentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4391282B2E4DC67300C1BFD5 /* ConsentController.swift */; };
+		439128382E4DC67300C1BFD5 /* ConsentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4391282B2E4DC67300C1BFD5 /* ConsentController.swift */; };
 		4394F73F2CA3F4B2001086FE /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
 		4394F7402CA3F4B2001086FE /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
 		4394F7412CA3F4B2001086FE /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
@@ -999,6 +1012,7 @@
 		438ED42A2AA5D0E100486AF2 /* SdkLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SdkLauncher.swift; sourceTree = "<group>"; };
 		438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OMSDK_Ogury.xcframework; path = ../OMSDK_Ogury.xcframework; sourceTree = "<group>"; };
 		439126D22E4C89D600C1BFD5 /* AdsTestApp-Ext.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AdsTestApp-Ext.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4391282B2E4DC67300C1BFD5 /* ConsentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentController.swift; sourceTree = "<group>"; };
 		4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAppLogController.swift; sourceTree = "<group>"; };
 		4394F7472CA42FF1001086FE /* LogOptionFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOptionFeature.swift; sourceTree = "<group>"; };
 		4394F7482CA42FF1001086FE /* LogOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOptionView.swift; sourceTree = "<group>"; };
@@ -2073,6 +2087,7 @@
 			children = (
 				43B713E62B4D54AA007C8D21 /* InmobiConsentManager.swift */,
 				43B59BF82D94554D00BE53A1 /* AdMobConsentManager.swift */,
+				4391282B2E4DC67300C1BFD5 /* ConsentController.swift */,
 			);
 			path = Consent;
 			sourceTree = "<group>";
@@ -3890,6 +3905,7 @@
 				43352D2B2DFC0E920082026C /* AppSettingsView.swift in Sources */,
 				43352D2C2DFC0E920082026C /* ApplicationDelegate.swift in Sources */,
 				43352D2D2DFC0E920082026C /* SceneDelegate.swift in Sources */,
+				439128342E4DC67300C1BFD5 /* ConsentController.swift in Sources */,
 				43352D2E2DFC0E920082026C /* DetailListView.swift in Sources */,
 				43352D2F2DFC0E920082026C /* TestAppLogFormatter.swift in Sources */,
 				43352D302DFC0E920082026C /* TestAppLogger.swift in Sources */,
@@ -3930,6 +3946,7 @@
 				433530C52E093A680082026C /* AppSettingsView.swift in Sources */,
 				433530C62E093A680082026C /* ApplicationDelegate.swift in Sources */,
 				433530C72E093A680082026C /* SceneDelegate.swift in Sources */,
+				439128382E4DC67300C1BFD5 /* ConsentController.swift in Sources */,
 				433530C82E093A680082026C /* DetailListView.swift in Sources */,
 				433530C92E093A680082026C /* TestAppLogFormatter.swift in Sources */,
 				433530CA2E093A680082026C /* TestAppLogger.swift in Sources */,
@@ -3970,6 +3987,7 @@
 				4335310A2E093A700082026C /* AppSettingsView.swift in Sources */,
 				4335310B2E093A700082026C /* ApplicationDelegate.swift in Sources */,
 				4335310C2E093A700082026C /* SceneDelegate.swift in Sources */,
+				4391282D2E4DC67300C1BFD5 /* ConsentController.swift in Sources */,
 				4335310D2E093A700082026C /* DetailListView.swift in Sources */,
 				4335310E2E093A700082026C /* TestAppLogFormatter.swift in Sources */,
 				4335310F2E093A700082026C /* TestAppLogger.swift in Sources */,
@@ -4012,6 +4030,7 @@
 				434F84C62ACFE4FE005077F5 /* SceneDelegate.swift in Sources */,
 				1E5BE6342B21F40F0010B995 /* DetailListView.swift in Sources */,
 				4394F75F2CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */,
+				4391282E2E4DC67300C1BFD5 /* ConsentController.swift in Sources */,
 				4394F7602CA44BC5001086FE /* TestAppLogger.swift in Sources */,
 				434F84C72ACFE4FE005077F5 /* AddView.swift in Sources */,
 				43EB18B72DA6A900002F170A /* UTType+Extension(stag).swift in Sources */,
@@ -4054,6 +4073,7 @@
 				43B59C002D9457ED00BE53A1 /* ApplicationDelegate.swift in Sources */,
 				434F84E22ACFE50A005077F5 /* SceneDelegate.swift in Sources */,
 				1E5BE6352B21F40F0010B995 /* DetailListView.swift in Sources */,
+				4391282F2E4DC67300C1BFD5 /* ConsentController.swift in Sources */,
 				4394F75D2CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */,
 				4394F75E2CA44BC5001086FE /* TestAppLogger.swift in Sources */,
 				434F84E32ACFE50A005077F5 /* AddView.swift in Sources */,
@@ -4096,6 +4116,7 @@
 				4373B45C2DCB61F300E1702F /* ApplicationDelegate.swift in Sources */,
 				4373B45D2DCB61F300E1702F /* SceneDelegate.swift in Sources */,
 				4373B45E2DCB61F300E1702F /* DetailListView.swift in Sources */,
+				439128322E4DC67300C1BFD5 /* ConsentController.swift in Sources */,
 				4373B45F2DCB61F300E1702F /* TestAppLogFormatter.swift in Sources */,
 				4373B4602DCB61F300E1702F /* TestAppLogger.swift in Sources */,
 				4373B4612DCB61F300E1702F /* AddView.swift in Sources */,
@@ -4138,6 +4159,7 @@
 				434F84AA2AC2DF0C005077F5 /* AppSettingsView.swift in Sources */,
 				438ED4192AA5D0C200486AF2 /* SceneDelegate.swift in Sources */,
 				43EB18AD2DA6A900002F170A /* UTType+Extension(devc).swift in Sources */,
+				439128332E4DC67300C1BFD5 /* ConsentController.swift in Sources */,
 				434F84AF2AC3008C005077F5 /* AddView.swift in Sources */,
 				4394F7572CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */,
 				4394F7582CA44BC5001086FE /* TestAppLogger.swift in Sources */,
@@ -4178,6 +4200,7 @@
 				4391269A2E4C89D600C1BFD5 /* AppSettingsView.swift in Sources */,
 				4391269C2E4C89D600C1BFD5 /* ApplicationDelegate.swift in Sources */,
 				4391269D2E4C89D600C1BFD5 /* SceneDelegate.swift in Sources */,
+				439128312E4DC67300C1BFD5 /* ConsentController.swift in Sources */,
 				4391269E2E4C89D600C1BFD5 /* DetailListView.swift in Sources */,
 				4391269F2E4C89D600C1BFD5 /* TestAppLogFormatter.swift in Sources */,
 				439126A02E4C89D600C1BFD5 /* TestAppLogger.swift in Sources */,
@@ -4220,6 +4243,7 @@
 				43BCB0B02C22DD45002FB0B1 /* SceneDelegate.swift in Sources */,
 				43BCB0B12C22DD45002FB0B1 /* AddView.swift in Sources */,
 				43EB18B32DA6A900002F170A /* UTType+Extension(devc).swift in Sources */,
+				439128352E4DC67300C1BFD5 /* ConsentController.swift in Sources */,
 				4394F75B2CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */,
 				4394F75C2CA44BC5001086FE /* TestAppLogger.swift in Sources */,
 				43BCB0B32C22DD45002FB0B1 /* MainFeature.swift in Sources */,
@@ -4262,6 +4286,7 @@
 				43BCB0F32C22DD59002FB0B1 /* SceneDelegate.swift in Sources */,
 				43BCB0F42C22DD59002FB0B1 /* DetailListView.swift in Sources */,
 				4394F7592CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */,
+				439128372E4DC67300C1BFD5 /* ConsentController.swift in Sources */,
 				4394F75A2CA44BC5001086FE /* TestAppLogger.swift in Sources */,
 				43BCB0F62C22DD59002FB0B1 /* AddView.swift in Sources */,
 				43EB18BB2DA6A900002F170A /* UTType+Extension(stag).swift in Sources */,
@@ -4304,6 +4329,7 @@
 				43B59C052D9457ED00BE53A1 /* ApplicationDelegate.swift in Sources */,
 				43BCB1362C22DD60002FB0B1 /* SceneDelegate.swift in Sources */,
 				43BCB1372C22DD60002FB0B1 /* DetailListView.swift in Sources */,
+				4391282C2E4DC67300C1BFD5 /* ConsentController.swift in Sources */,
 				4394F7612CA44BC5001086FE /* TestAppLogFormatter.swift in Sources */,
 				4394F7622CA44BC5001086FE /* TestAppLogger.swift in Sources */,
 				43BCB1392C22DD60002FB0B1 /* AddView.swift in Sources */,
@@ -4346,6 +4372,7 @@
 				43EB1E262DB24675002F170A /* ApplicationDelegate.swift in Sources */,
 				43EB1E272DB24675002F170A /* SceneDelegate.swift in Sources */,
 				43EB1E282DB24675002F170A /* DetailListView.swift in Sources */,
+				439128302E4DC67300C1BFD5 /* ConsentController.swift in Sources */,
 				43EB1E292DB24675002F170A /* TestAppLogFormatter.swift in Sources */,
 				43EB1E2A2DB24675002F170A /* TestAppLogger.swift in Sources */,
 				43EB1E2B2DB24675002F170A /* AddView.swift in Sources */,
@@ -4388,6 +4415,7 @@
 				43EB268A2DBFCC84002F170A /* ApplicationDelegate.swift in Sources */,
 				43EB268B2DBFCC84002F170A /* SceneDelegate.swift in Sources */,
 				43EB268C2DBFCC84002F170A /* DetailListView.swift in Sources */,
+				439128362E4DC67300C1BFD5 /* ConsentController.swift in Sources */,
 				43EB268D2DBFCC84002F170A /* TestAppLogFormatter.swift in Sources */,
 				43EB268E2DBFCC84002F170A /* TestAppLogger.swift in Sources */,
 				43EB268F2DBFCC84002F170A /* AddView.swift in Sources */,

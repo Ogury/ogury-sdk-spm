@@ -114,6 +114,10 @@ struct SettingsContainer: Codable, Equatable {
         get { settings.startSDKWithApplication }
         set { settings.startSDKWithApplication = newValue }
     }
+    var startConsentWithApplication: Bool {
+        get { settings.startConsentWithApplication }
+        set { settings.startConsentWithApplication = newValue }
+    }
     var numberOfSdkStart: Int {
         get { settings.numberOfSdkStart }
         set { settings.numberOfSdkStart = newValue }
@@ -165,6 +169,7 @@ struct SettingsContainer: Codable, Equatable {
              os,
              enableFieldsEditing,
              startSDKWithApplication,
+             startConsentWithApplication,
              numberOfSdkStart,
              logSettings,
              importMethod,
@@ -185,6 +190,7 @@ struct SettingsContainer: Codable, Equatable {
         name = try container.decodeIfPresent(String.self, forKey: .name) ?? SettingsContainer.untitledAdSet
         os = try container.decodeIfPresent(String.self, forKey: .os) ?? SettingsContainer.currentOs
         startSDKWithApplication = try container.decodeIfPresent(Bool.self, forKey: .startSDKWithApplication) ?? false
+        startConsentWithApplication = try container.decodeIfPresent(Bool.self, forKey: .startConsentWithApplication) ?? false
         numberOfSdkStart = try container.decodeIfPresent(Int.self, forKey: .numberOfSdkStart) ?? 0
         fieldEditingMask = try container.decodeIfPresent(FieldEditingMask.self, forKey: .fieldEditingMask) ?? .allowAll
         importMethod = try container.decodeIfPresent(ImportMethod.self, forKey: .importMethod) ?? .file
@@ -206,6 +212,7 @@ struct SettingsContainer: Codable, Equatable {
         try container.encode(fieldEditingMask, forKey: .fieldEditingMask)
         try container.encode(numberOfSdkStart, forKey: .numberOfSdkStart)
         try container.encode(startSDKWithApplication, forKey: .startSDKWithApplication)
+        try container.encode(startConsentWithApplication, forKey: .startConsentWithApplication)
         try container.encode(logSettings, forKey: .logSettings)
         try container.encode(importMethod, forKey: .importMethod)
         try container.encode(consentManager, forKey: .consentManager)
@@ -222,6 +229,7 @@ struct SettingsContainer: Codable, Equatable {
         lhs.showCampaignId == rhs.showCampaignId &&
         lhs.bulkModeEnabled == rhs.bulkModeEnabled &&
         lhs.startSDKWithApplication == rhs.startSDKWithApplication &&
+        lhs.startConsentWithApplication == rhs.startConsentWithApplication &&
         lhs.showTestMode == rhs.showTestMode &&
         lhs.fieldEditingMask == rhs.fieldEditingMask &&
         lhs.startSDKWithApplication == rhs.startSDKWithApplication &&

@@ -240,7 +240,7 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case .showConsentButtonTapped:
-                    adDelegate?.showConsentNotice(for: SettingsController().consentManager)
+                    adDelegate?.showConsentNotice()
                     return .none
                     
                 case .destination(.presented(.alert(.removeSet))):

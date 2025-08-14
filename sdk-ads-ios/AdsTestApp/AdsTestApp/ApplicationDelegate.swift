@@ -12,7 +12,7 @@ protocol ApplicationDelegate {
     func share(json: String, filename: String)
     func showImportPanel()
     // consent
-    func showConsentNotice(for manager: ConsentManager)
+    func showConsentNotice()
     // test mode
     func enableTestModeForAllCards(_: Bool)
 }
