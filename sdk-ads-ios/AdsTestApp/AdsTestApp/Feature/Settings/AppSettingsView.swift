@@ -133,7 +133,7 @@ struct AppSettingsView: View {
                         if viewStore.showShowSection {
                             Group {
                                 Button {
-                                    viewStore.send(.enableAdUnitEditingToggleTapped)
+                                    viewStore.send(.enableFieldsEditingToggleTapped)
                                 } label: {
                                     HStack {
                                         Text("Allow fields editing")
@@ -141,12 +141,12 @@ struct AppSettingsView: View {
                                         
                                         Toggle("", isOn:
                                                 viewStore.binding(
-                                                    get: \.enableAdUnitEditing,
-                                                    send: .enableAdUnitEditingToggleTapped)
+                                                    get: \.enableFieldsEditing,
+                                                    send: .enableFieldsEditingToggleTapped)
                                         )
                                     }
                                 }
-                                .accessibilityLabel("AllowAdUnitEditingToggle")
+                                .accessibilityLabel("AllowFieldsEditingToggle")
                                 .hidden(!appPermissions.settingPermissions.contains(.showEditFieldsToggle))
                                 
                                 Button {

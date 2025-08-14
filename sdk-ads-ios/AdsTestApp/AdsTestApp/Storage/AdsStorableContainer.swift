@@ -89,10 +89,7 @@ struct SettingsContainer: Codable, Equatable {
     static let currentOs = "iOS"
     static let untitledAdSet = "Untitled Ad Set"
     private var settings = SettingsController()
-    var enableAdUnitEditing: Bool {
-        get { settings.enableAdUnitEditing }
-        set { settings.enableAdUnitEditing = newValue }
-    }
+    
     var fieldEditingMask: FieldEditingMask {
         get { settings.fieldEditingMask }
         set { settings.fieldEditingMask = newValue }
@@ -166,7 +163,7 @@ struct SettingsContainer: Codable, Equatable {
              showTestMode,
              name,
              os,
-             enableAdUnitEditing,
+             enableFieldsEditing,
              startSDKWithApplication,
              numberOfSdkStart,
              logSettings,
@@ -189,7 +186,6 @@ struct SettingsContainer: Codable, Equatable {
         os = try container.decodeIfPresent(String.self, forKey: .os) ?? SettingsContainer.currentOs
         startSDKWithApplication = try container.decodeIfPresent(Bool.self, forKey: .startSDKWithApplication) ?? false
         numberOfSdkStart = try container.decodeIfPresent(Int.self, forKey: .numberOfSdkStart) ?? 0
-        enableAdUnitEditing = try container.decodeIfPresent(Bool.self, forKey: .enableAdUnitEditing) ?? true
         fieldEditingMask = try container.decodeIfPresent(FieldEditingMask.self, forKey: .fieldEditingMask) ?? .allowAll
         importMethod = try container.decodeIfPresent(ImportMethod.self, forKey: .importMethod) ?? .file
         consentManager = try container.decodeIfPresent(ConsentManager.self, forKey: .consentManager) ?? .inMobi
@@ -207,7 +203,6 @@ struct SettingsContainer: Codable, Equatable {
         try container.encode(showTestMode, forKey: .showTestMode)
         try container.encode(name, forKey: .name)
         try container.encode(os, forKey: .os)
-        try container.encode(enableAdUnitEditing, forKey: .enableAdUnitEditing)
         try container.encode(fieldEditingMask, forKey: .fieldEditingMask)
         try container.encode(numberOfSdkStart, forKey: .numberOfSdkStart)
         try container.encode(startSDKWithApplication, forKey: .startSDKWithApplication)
@@ -228,7 +223,6 @@ struct SettingsContainer: Codable, Equatable {
         lhs.bulkModeEnabled == rhs.bulkModeEnabled &&
         lhs.startSDKWithApplication == rhs.startSDKWithApplication &&
         lhs.showTestMode == rhs.showTestMode &&
-        lhs.enableAdUnitEditing == rhs.enableAdUnitEditing &&
         lhs.fieldEditingMask == rhs.fieldEditingMask &&
         lhs.startSDKWithApplication == rhs.startSDKWithApplication &&
         lhs.numberOfSdkStart == rhs.numberOfSdkStart &&
@@ -535,7 +529,7 @@ extension SettingsContainer: CustomStringConvertible {
     public var description: String {
 """
 *** SHOW BEHAVIOR ***
-enableAdUnitEditing         : \(enableAdUnitEditing)
+fieldEditingMask            : \(fieldEditingMask)
 showCampaignId              : \(showCampaignId)
 showCreativeId              : \(showCreativeId)
 showDspFields               : \(showDspFields)

@@ -208,7 +208,7 @@ struct AdViewFeature {
         case error(_: Error)
         case alert(PresentationAction<Alert>)
         // options
-        case enableAdUnitEditing(_: Bool)
+        case enableFieldsEditing(_: Bool)
         case showCampaignId(_: Bool)
         case showCreativeId(_: Bool)
         case showDspFields(_: Bool)
@@ -505,8 +505,8 @@ struct AdViewFeature {
                     state.enableFeedbacks = enable
                     return .none
                     
-                case let .enableAdUnitEditing(value):
-                    state.adManager.cardConfiguration.enableAdUnitEditing = value
+                case let .enableFieldsEditing(value):
+                    state.adManager.cardConfiguration.enableFieldsEditing = value
                     state.adManager.cardConfiguration.fieldEditingMask = value ? .allowAll : .denyAll
                     return .none
                     
@@ -610,7 +610,7 @@ extension AdViewFeature.State {
         get { adManager.cardConfiguration.showRtbTestMode }
         set { adManager.cardConfiguration.showRtbTestMode = newValue }
     }
-    var enableAdUnitEditing: Bool {
+    var enableFieldsEditing: Bool {
         get { adManager.cardConfiguration.fieldEditingMask == .allowAll }
         set { adManager.cardConfiguration.fieldEditingMask = newValue ? .allowAll : .denyAll }
     }

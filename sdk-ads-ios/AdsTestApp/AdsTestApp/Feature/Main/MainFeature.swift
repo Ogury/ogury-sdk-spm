@@ -211,7 +211,7 @@ struct MainFeature: Reducer {
                         return .none
                     }
                     
-                case .destination(.presented(.settings(.enableAdUnitEditingToggleTapped))),
+                case .destination(.presented(.settings(.enableFieldsEditingToggleTapped))),
                         .destination(.presented(.settings(.showCampaignToggleTapped))),
                         .destination(.presented(.settings(.showCreativeToggleTapped))),
                         .destination(.presented(.settings(.showTestModeToggleTapped))),
@@ -352,7 +352,7 @@ struct MainFeature: Reducer {
             cardEvents.append(.showCampaignId(settings.showCampaignId))
         }
         if state.settingsPriorToChange.fieldEditingMask != settings.fieldEditingMask {
-            cardEvents.append(.enableAdUnitEditing(settings.fieldEditingMask == .allowAll))
+            cardEvents.append(.enableFieldsEditing(settings.fieldEditingMask == .allowAll))
         }
         if state.settingsPriorToChange.showCreativeId != settings.showCreativeId {
             cardEvents.append(.showCreativeId(settings.showCreativeId))
@@ -388,7 +388,7 @@ struct MainFeature: Reducer {
             index += 1
             return try? SdkLauncher.shared.adapter.adManager(for: adFormat,
                                                              options: .init(adParameters: .init(adUnitId: ""),
-                                                                            cardConfiguration: .init(enableAdUnitEditing: settings.enableAdUnitEditing,
+                                                                            cardConfiguration: .init(enableFieldsEditing: settings.enableFieldsEditing,
                                                                                                      showCampaignId: settings.showCampaignId,
                                                                                                      showCreativeId: settings.showCreativeId,
                                                                                                      showDspFields: settings.showDspFields,

@@ -35,7 +35,7 @@ struct AppSettingsFeature: Reducer {
         }
         
         @BindingState var settings: SettingsContainer
-        var enableAdUnitEditing: Bool {
+        var enableFieldsEditing: Bool {
             settings.fieldEditingMask == .allowAll
         }
         var showCampaignId: Bool { settings.showCampaignId }
@@ -83,7 +83,7 @@ struct AppSettingsFeature: Reducer {
         case binding(BindingAction<State>)
         case startSDKToggleTapped
         case showCampaignToggleTapped
-        case enableAdUnitEditingToggleTapped
+        case enableFieldsEditingToggleTapped
         case showCreativeToggleTapped
         case showDspFieldsToggleTapped
         case showTestModeToggleTapped
@@ -184,7 +184,7 @@ struct AppSettingsFeature: Reducer {
                     state.settings.showTestMode.toggle()
                     return .none
                     
-                case .enableAdUnitEditingToggleTapped:
+                case .enableFieldsEditingToggleTapped:
                     if state.settings.fieldEditingMask == .denyAll {
                         state.settings.fieldEditingMask = .allowAll
                     } else {

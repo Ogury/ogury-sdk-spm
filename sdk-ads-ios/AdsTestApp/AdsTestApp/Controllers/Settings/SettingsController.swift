@@ -20,8 +20,8 @@ enum ConsentManager: String, CaseIterable, Equatable, Codable, DefaultsValueConv
 extension FieldEditingMask: @retroactive DefaultsValueConvertible {}
 
 struct SettingsController {
-    @UserDefault("enableAdUnitEditing")
-    var enableAdUnitEditing: Bool = true
+    @UserDefault("enableFieldsEditing")
+    var enableFieldsEditing: Bool = true
     
     @UserDefault("fieldEditingMask")
     var fieldEditingMask: FieldEditingMask = .allowAll

@@ -42,7 +42,7 @@ public struct FieldEditingMask: OptionSet, Codable, Hashable, CaseIterable {
 }
 
 public struct CardConfiguration: Codable, Equatable, Hashable {
-    public var enableAdUnitEditing: Bool = true
+    public var enableFieldsEditing: Bool = true
     public var fieldEditingMask: FieldEditingMask = .allowAll
     /// show the campaignId field on the ``AdView``
     public var showCampaignId: Bool = true
@@ -69,7 +69,7 @@ public struct CardConfiguration: Codable, Equatable, Hashable {
     /// The card accessibilityLabel for testSigma and filter logs
     public var qaLabel: String = UUID().uuidString
     
-    public init(enableAdUnitEditing: Bool = true,
+    public init(enableFieldsEditing: Bool = true,
                 fieldEditingMask: FieldEditingMask = .allowAll,
                 showCampaignId: Bool = true,
                 showCreativeId: Bool = false,
@@ -83,7 +83,7 @@ public struct CardConfiguration: Codable, Equatable, Hashable {
                 rtbTestModeEnabled: Bool = true,
                 killWebviewMode: KillWebviewMode = .none,
                 qaLabel: String = UUID().uuidString) {
-        self.enableAdUnitEditing = enableAdUnitEditing
+        self.enableFieldsEditing = enableFieldsEditing
         self.fieldEditingMask = fieldEditingMask
         self.showCampaignId = showCampaignId
         self.showCreativeId = showCreativeId

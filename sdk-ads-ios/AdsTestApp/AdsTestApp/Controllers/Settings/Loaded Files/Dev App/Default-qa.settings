@@ -9,7 +9,7 @@
     "killWebviewMode" : "simulate",
     "showTestMode" : true,
     "showCreativeId" : false,
-    "enableAdUnitEditing" : true,
+    "enableFieldsEditing" : true,
     "os" : "iOS",
     "startSDKWithApplication" : true,
     "showDspFields" : false,

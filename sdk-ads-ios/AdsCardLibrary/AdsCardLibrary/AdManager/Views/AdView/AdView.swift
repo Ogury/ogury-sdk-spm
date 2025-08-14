@@ -160,7 +160,7 @@ public struct AdView: View {
                         ZStack(alignment: .topTrailing) {
                             AdsTextField($store.adUnitId,
                                          placeholder: "Ad Unit Id")
-                            .disabled(!store.enableAdUnitEditing)
+                            .disabled(!store.enableFieldsEditing)
                             .accessibilityLabel("Card#\(store.qaLabel)_AdUnitField")
                             
                             Spacer()
@@ -176,7 +176,7 @@ public struct AdView: View {
                                              placeholder: "Campaign Id")
                                 .keyboardType(.numberPad)
                                 .disabled(store.testModeEnabled)
-                                .disabled(!store.enableAdUnitEditing)
+                                .disabled(!store.enableFieldsEditing)
                                 .accessibilityLabel("Card#\(store.qaLabel)_CampaignField")
                             }
                             
@@ -187,7 +187,7 @@ public struct AdView: View {
                                              placeholder: "Creative Id")
                                 .keyboardType(.numberPad)
                                 .disabled(store.testModeEnabled)
-                                .disabled(!store.enableAdUnitEditing)
+                                .disabled(!store.enableFieldsEditing)
                                 .accessibilityLabel("Card#\(store.qaLabel)_CreativeField")
                             }
                         }
@@ -200,7 +200,7 @@ public struct AdView: View {
                                              placeholder: "DSP Creative Id")
                                 .keyboardType(.default)
                                 .disabled(store.testModeEnabled)
-                                .disabled(!store.enableAdUnitEditing)
+                                .disabled(!store.enableFieldsEditing)
                                 .accessibilityLabel("Card#\(store.qaLabel)_DSPCreativeField")
                                 
                                 Picker("DSP Region", selection: $store.dspRegion) {
@@ -212,7 +212,7 @@ public struct AdView: View {
                                 .tint(Color(AdColorPalette.Text.placeholder.color))
                                 .font(.adsBody)
                                 .disabled(store.testModeEnabled)
-                                .disabled(!store.enableAdUnitEditing)
+                                .disabled(!store.enableFieldsEditing)
                                 .fixedSize(horizontal: true, vertical: true)
                                 .pickerStyle(.menu)
                                 .accessibilityLabel("Card#\(store.qaLabel)_DSPRegionField")
@@ -256,7 +256,7 @@ public struct AdView: View {
         withAnimation {
             events.forEach { event in
                 switch event {
-                    case let .enableAdUnitEditing(value): ViewStore(store, observe: { $0 }).send(.enableAdUnitEditing(value))
+                    case let .enableFieldsEditing(value): ViewStore(store, observe: { $0 }).send(.enableFieldsEditing(value))
                     case let .showCampaignId(value): ViewStore(store, observe: { $0 }).send(.showCampaignId(value))
                     case let .showCreativeId(value): ViewStore(store, observe: { $0 }).send(.showCreativeId(value))
                     case let .showDspFields(value): ViewStore(store, observe: { $0 }).send(.showDspFields(value))
