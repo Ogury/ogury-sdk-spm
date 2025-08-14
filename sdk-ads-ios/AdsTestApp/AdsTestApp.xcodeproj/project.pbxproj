@@ -1011,7 +1011,7 @@
 		438ED4242AA5D0C300486AF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		438ED42A2AA5D0E100486AF2 /* SdkLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SdkLauncher.swift; sourceTree = "<group>"; };
 		438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OMSDK_Ogury.xcframework; path = ../OMSDK_Ogury.xcframework; sourceTree = "<group>"; };
-		439126D22E4C89D600C1BFD5 /* AdsTestApp-Ext.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AdsTestApp-Ext.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		439126D22E4C89D600C1BFD5 /* Ogury Ext.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ogury Ext.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4391282B2E4DC67300C1BFD5 /* ConsentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentController.swift; sourceTree = "<group>"; };
 		4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAppLogController.swift; sourceTree = "<group>"; };
 		4394F7472CA42FF1001086FE /* LogOptionFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOptionFeature.swift; sourceTree = "<group>"; };
@@ -1961,7 +1961,7 @@
 				43352D612DFC0E920082026C /* PrebidTestApp-devc.app */,
 				433530EF2E093A680082026C /* PrebidTestApp-staging.app */,
 				433531342E093A700082026C /* PrebidTestApp.app */,
-				439126D22E4C89D600C1BFD5 /* AdsTestApp-Ext.app */,
+				439126D22E4C89D600C1BFD5 /* Ogury Ext.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2552,7 +2552,7 @@
 				439126872E4C89D600C1BFD5 /* SwiftMessages */,
 			);
 			productName = AdsTestApp;
-			productReference = 439126D22E4C89D600C1BFD5 /* AdsTestApp-Ext.app */;
+			productReference = 439126D22E4C89D600C1BFD5 /* Ogury Ext.app */;
 			productType = "com.apple.product-type.application";
 		};
 		43BCB0932C22DD45002FB0B1 /* AdsTestApp-Devc-art */ = {
@@ -5243,7 +5243,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app.ext;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Ogury Ext";
 				SDK_SOURCE = Dev;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
@@ -5288,7 +5288,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app.ext;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Ogury Ext";
 				SDK_SOURCE = Dev;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
