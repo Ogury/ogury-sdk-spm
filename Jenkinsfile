@@ -250,9 +250,12 @@ pipeline {
             }
             steps {
                 script {
+                    echo 'start tag resolution'
                     // Extract app selector from TAG_NAME like "internal-testApp_ogury-1.0.0"
                     def tagName = env.TAG_NAME ?: ""
+                    echo "Tag name: ${tagName}"
                     def match = tagName =~ /testApp_([^-\s]+)/
+                    echo "match: ${match}"
         
                     if (!match) {
                         error("No app selector found in TAG_NAME: ${tagName}")
