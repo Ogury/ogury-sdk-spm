@@ -245,14 +245,14 @@ pipeline {
                 beforeAgent true
                 buildingTag()
                 expression {
-                    env.TAG_NAME?.contains('internal-testApp@')
+                    env.TAG_NAME?.contains('internal-testApp_')
                 }
             }
             steps {
                 script {
-                    // Extract app selector from TAG_NAME like "internal-testApp@ogury-1.0.0"
+                    // Extract app selector from TAG_NAME like "internal-testApp_ogury-1.0.0"
                     def tagName = env.TAG_NAME ?: ""
-                    def match = tagName =~ /testApp@([^-\s]+)/
+                    def match = tagName =~ /testApp_([^-\s]+)/
         
                     if (!match) {
                         error("No app selector found in TAG_NAME: ${tagName}")
