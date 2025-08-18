@@ -254,7 +254,10 @@ pipeline {
                     // Extract app selector from TAG_NAME like "internal-testApp_ogury-1.0.0"
                     def tagName = env.TAG_NAME ?: ""
                     echo "Tag name: ${tagName}"
-                    def match = tagName =~ /testApp_([^-\s]+)/
+                    def match = tagName =~ /testApp_(.+)/
+                    if (match) {
+                        println match[0][1]  // -> ogury-5.1.0
+                    }
                     echo "match: ${match}"
         
                     if (!match) {
