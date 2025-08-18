@@ -254,16 +254,17 @@ pipeline {
                     // Extract app selector from TAG_NAME like "internal-testApp@ogury-1.0.0"
                     def tagName = env.TAG_NAME ?: ""
                     echo "TAG NAME: ${tagName}"
-                    def match = tagName =~ /testApp@([^-]+)/
-                    echo "match: ${match}"
-        
-                    if (!match) {
-                        error("No app selector found in TAG_NAME: ${tagName}")
+                    def appSelector = null
+                    def version = null
+                    def matcher = tagName =~ /internal-testApp@([^-]+)(?:-(.+))?/
+                    
+                    if (matcher.find()) {
+                        appSelector = matcher.group(1)   // "ogury"
+                        version     = matcher.group(2)   // "5.1.0"
+                        echo "Selector: ${appSelector}, Version: ${version}"
                     } else {
-                        echo "App selector: ${match[1]}"
+                        error("No app selector found in TAG_NAME: ${tagName}")
                     }
-        
-                    def appSelector = match[0][1]  // e.g., "all, "ogury", "mediation", or "prodTestApp"
                     echo "Found -> ${appSelector}"
         
                     // Additional flags if needed
