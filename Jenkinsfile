@@ -245,19 +245,16 @@ pipeline {
                 beforeAgent true
                 buildingTag()
                 expression {
-                    env.TAG_NAME?.contains('internal-testApp_')
+                    env.TAG_NAME?.contains('internal-testApp@')
                 }
             }
             steps {
                 script {
-                    echo 'start tag resolution'
-                    // Extract app selector from TAG_NAME like "internal-testApp_ogury-1.0.0"
+                    echo 'tag resolution'
+                    // Extract app selector from TAG_NAME like "internal-testApp@ogury-1.0.0"
                     def tagName = env.TAG_NAME ?: ""
-                    echo "Tag name: ${tagName}"
-                    def match = tagName =~ /testApp_(.+)/
-                    if (match) {
-                        println match[0][1]  // -> ogury-5.1.0
-                    }
+                    echo "TAG NAME: ${tagName}"
+                    def match = tagName =~ /testApp@([^-]+)/
                     echo "match: ${match}"
         
                     if (!match) {
