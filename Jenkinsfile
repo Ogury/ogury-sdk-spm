@@ -10,7 +10,7 @@ pipeline {
         GIT_TOKEN = credentials('GIT_TOKEN')
         GIT_USERNAME = "weareogury"
         LC_ALL = 'en_US.UTF-8'
-        PATH = "$HOME/.rvm/bin:$PATH" // ensure RVM is found
+        PATH = "/usr/local/bin:$HOME/.rvm/bin:$PATH" // ensure RVM is found
         RBENV_SHELL = 'zsh'
         SONAR_CLOUD_TOKEN = credentials('SONAR_CLOUD_TOKEN')
         ARTIFACTORY_TOKEN = credentials('ARTIFACTORY_TOKEN')
@@ -49,7 +49,7 @@ pipeline {
                     def targetThreshold = "all"
                     
                     // Check if a tag exists and contains '-art'
-                    if (env.TAG_NAME && (env.TAG_NAME.contains('-art') || env.TAG_NAME.contains('release-') )) {
+                    if (env.GIT_TAG && (env.GIT_TAG.contains('-art'))) {
                         isArtifactory = true
                     }
 
@@ -149,25 +149,25 @@ pipeline {
                         def isArtifactory = elements.contains("art")
                         def killModeEnabled = elements.contains("killModeEnabled")
 
-                        // environment : internal - beta - release
-                        def envType = ""
-                        switch (elements[0]) {
-                            case "internal":
-                                envType = "prod"
-                                break
-                            case "beta":
-                                envType = "beta"
-                                break
-                            case "release":
-                                envType = "release"
-                                // Ensure that release mode always has this setting to false
-                                killModeEnabled = false
-                                // always use external dependencies when compiling for prod
-                                isArtifactory = true
-                                break
-                            default:
-                                error "Unknown environment type: ${elements[0]}"
-                        }
+                    // environment : internal - beta - release
+                    def envType = ""
+                    switch (elements[0]) {
+                        case "internal":
+                            envType = "prod"
+                            break
+                        case "beta":
+                            envType = "beta"
+                            break
+                        case "release":
+                            envType = "release"
+                            // Ensure that release mode always has this setting to false
+                            killModeEnabled = false
+                            // always use external dependencies when compiling for prod
+                            isArtifactory = false
+                            break
+                        default:
+                            error "Unknown environment type: ${elements[0]}"
+                    }
 
                         // framework : ads (+ omid) - core - wrapper
                         def framework = ""

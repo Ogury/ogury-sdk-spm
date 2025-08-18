@@ -1,13 +1,11 @@
 import SwiftUI
 internal import ComposableArchitecture
-import Combine
 import AdsCardLibrary
 
 struct LogsView: View {
     let store: StoreOf<LogsFeature>
     @Binding var logsHeight: CGFloat
     @State private var previousHeight: CGFloat = 0
-    @State private var logsSubscription: AnyCancellable?
     @Binding var isSearching: Bool
     @FocusState private var isTextFieldFocused: Bool
     
@@ -163,12 +161,8 @@ struct LogsView: View {
                         }
                     }
                 }
-                .onAppear {
-                    logsSubscription = TestAppLogController.shared.logger.logs
-                        .receive(on: DispatchQueue.main)
-                        .sink { logMessages in
-                            viewStore.send(.receiveLog(logMessages))
-                        }
+                .task {
+                    viewStore.send(.logViewDidAppear)
                     
                     NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { notification in
                         logsHeight = 80
@@ -181,10 +175,9 @@ struct LogsView: View {
                     }
                 }
                 .onDisappear {
-                    logsSubscription?.cancel()
-                    logsSubscription = nil
                     NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
                     NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+                    viewStore.send(.logViewDidDisappear)
                 }
                 .animation(.easeInOut, value: isSearching)
             }
