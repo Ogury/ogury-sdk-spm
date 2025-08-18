@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "439126822E4C89D600C1BFD5"
-               BuildableName = "AdsTestApp-Ext.app"
+               BuildableName = "Ogury Ext.app"
                BlueprintName = "AdsTestApp-Ext"
                ReferencedContainer = "container:AdsTestApp.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "439126822E4C89D600C1BFD5"
-            BuildableName = "AdsTestApp-Ext.app"
+            BuildableName = "Ogury Ext.app"
             BlueprintName = "AdsTestApp-Ext"
             ReferencedContainer = "container:AdsTestApp.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "439126822E4C89D600C1BFD5"
-            BuildableName = "AdsTestApp-Ext.app"
+            BuildableName = "Ogury Ext.app"
             BlueprintName = "AdsTestApp-Ext"
             ReferencedContainer = "container:AdsTestApp.xcodeproj">
          </BuildableReference>
