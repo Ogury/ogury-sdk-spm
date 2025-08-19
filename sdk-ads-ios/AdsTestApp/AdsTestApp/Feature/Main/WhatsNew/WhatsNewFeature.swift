@@ -10,27 +10,7 @@ internal import ComposableArchitecture
 struct WhatsNewFeature {
     @ObservableState
     struct State: Equatable {
-        var markdownString =
-"""
-  ## Try MarkdownUI
-
-  **MarkdownUI** is a native Markdown renderer for SwiftUI
-  compatible with the
-  [GitHub Flavored Markdown Spec](https://github.github.com/gfm/).
-
-  ## Status
-  Use `git status` to list all new or modified files
-  that haven't yet been committed.
-
-  ### Quotes
-  You can quote text with a `>`.
-
-  > Outside of a dog, a book is man's best friend. Inside of a
-  > dog it's too dark to read.
-
-  – Groucho Marx
-
-"""
+        var markdownString = ""
     }
     
     enum Action: Equatable  {}

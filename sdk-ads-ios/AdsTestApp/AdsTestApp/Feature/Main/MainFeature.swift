@@ -127,7 +127,7 @@ struct MainFeature: Reducer {
         case settingsButtonTapped
         case bulkModeButtonTapped
         case addButtonTapped
-        case showWhatsNew
+        case showWhatsNew(_: String)
         case showConsentButtonTapped
         case startSDKButtonTapped
         case cancelAddButtonTapped
@@ -261,8 +261,8 @@ struct MainFeature: Reducer {
                     state.destination = .add(.init())
                     return .none
                     
-                case .showWhatsNew:
-                    state.destination = .whatsNew(.init())
+                case let .showWhatsNew(markdownString):
+                    state.destination = .whatsNew(.init(markdownString: markdownString))
                     return .none
                     
                 case .addFormatButtonTapped:

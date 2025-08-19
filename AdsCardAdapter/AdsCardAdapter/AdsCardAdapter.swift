@@ -64,6 +64,8 @@ public protocol AdsCardAdaptable {
     var sdkVersions: String { get }
     /// custom actions to add to the `more` test app menu
     var actions: [AdsCardAdapterAction] { get }
+    /// populates the what's new sheet of the test app. Must be a markdown string
+    var whatsNew: String? { get }
     
     /// returns the AdManager associated with an `AdAdapterFormat`
     /// - throws: throws an exception if no adapter is available
@@ -102,6 +104,14 @@ extension AdsCardAdaptable {
             let sayHiTo: ClosureType = unsafeBitCast(imp, to: ClosureType.self)
             sayHiTo(obj, sel, types)
         #endif
+    }
+    
+    public var whatsNew: String? {
+"""
+**No information provided**
+
+Please reach out to [askInApp](https://weareogury.slack.com/archives/C07Q1JP7P96)
+"""
     }
 }
 

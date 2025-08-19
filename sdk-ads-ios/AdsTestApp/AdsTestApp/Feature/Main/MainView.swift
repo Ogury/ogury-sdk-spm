@@ -207,12 +207,14 @@ struct MainView: View {
                         }
                     }
                     
-                    Button{
-                        viewStore.send(.showWhatsNew)
-                    } label: {
-                        HStack {
-                            Text("What's new ?").font(.adsBody)
-                            Image(systemName: "questionmark.circle")
+                    if let markdownString = SdkLauncher.shared.adapter.whatsNew {
+                        Button{
+                            viewStore.send(.showWhatsNew(markdownString))
+                        } label: {
+                            HStack {
+                                Text("What's new ?").font(.adsBody)
+                                Image(systemName: "questionmark.circle")
+                            }
                         }
                     }
                     
