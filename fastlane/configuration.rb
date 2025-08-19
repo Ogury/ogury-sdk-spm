@@ -22,7 +22,7 @@ class Configuration
     @deployment = Deployment.new(internalRepositories, publicRepositories)
     @slack = Slack.new("https://hooks.slack.com/services/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", "#sdk-ios-ci-update")
     @cocoapods = Cocoapods.new("git@github.com:Ogury/ogury-cocoapods-repository.git")
-    @frameworks = Frameworks.new("./OMSDK_Ogury.xcframework")
+    @frameworks = Frameworks.new()
     @frameworks.ogury_core = Framework.new("2.1.0-rc.3", "2.1.0", "2.1.0")
     @frameworks.ogury_ads = Framework.new("4.1.0-rc.3", "4.1.0", "4.1.0")
     @frameworks.ogury_sdk = Framework.new("5.1.0-rc.3", "5.1.0", "5.1.0")
