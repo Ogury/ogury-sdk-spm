@@ -321,6 +321,17 @@
 		438ED4232AA5D0C300486AF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
 		438ED42B2AA5D0E100486AF2 /* SdkLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED42A2AA5D0E100486AF2 /* SdkLauncher.swift */; };
 		43912E222E54B19D00C1BFD5 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 43912E212E54B19D00C1BFD5 /* MarkdownUI */; };
+		43912F3B2E54B29F00C1BFD5 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 43912F3A2E54B29F00C1BFD5 /* MarkdownUI */; };
+		43912F3D2E54B2A300C1BFD5 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 43912F3C2E54B2A300C1BFD5 /* MarkdownUI */; };
+		43912F3F2E54B2A800C1BFD5 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 43912F3E2E54B2A800C1BFD5 /* MarkdownUI */; };
+		43912F412E54B2AD00C1BFD5 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 43912F402E54B2AD00C1BFD5 /* MarkdownUI */; };
+		43912F432E54B2B100C1BFD5 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 43912F422E54B2B100C1BFD5 /* MarkdownUI */; };
+		43912F452E54B2B900C1BFD5 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 43912F442E54B2B900C1BFD5 /* MarkdownUI */; };
+		43912F472E54B2BD00C1BFD5 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 43912F462E54B2BD00C1BFD5 /* MarkdownUI */; };
+		43912F492E54B2C200C1BFD5 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 43912F482E54B2C200C1BFD5 /* MarkdownUI */; };
+		43912F4B2E54B2C600C1BFD5 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 43912F4A2E54B2C600C1BFD5 /* MarkdownUI */; };
+		43912F4D2E54B2CA00C1BFD5 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 43912F4C2E54B2CA00C1BFD5 /* MarkdownUI */; };
+		43912F4F2E54B2CF00C1BFD5 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 43912F4E2E54B2CF00C1BFD5 /* MarkdownUI */; };
 		4394F73F2CA3F4B2001086FE /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
 		4394F7402CA3F4B2001086FE /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
 		4394F7412CA3F4B2001086FE /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
@@ -1245,6 +1256,7 @@
 		43352D642DFC0F090082026C /* Prebid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (43352E2D2DFC1BBD0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E2E2DFC1BBE0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E302DFC1BC20082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 433531412E093AAA0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 433531422E093AAA0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Prebid; sourceTree = "<group>"; };
 		43352D652DFC0F110082026C /* Prebid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (43352E242DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E252DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E262DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E272DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E282DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E292DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E2A2DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E2B2DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E2C2DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Prebid; sourceTree = "<group>"; };
 		43352D662DFC0F190082026C /* Prebid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (43352F6D2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F6E2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F6F2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F702DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F712DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F722DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F742DFC20350082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 433531392E093A940082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 4335313A2E093A940082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Prebid; sourceTree = "<group>"; };
+		43912F502E54B2E300C1BFD5 /* WhatsNew */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = WhatsNew; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1255,6 +1267,7 @@
 				43352D3F2DFC0E920082026C /* SnapKit in Frameworks */,
 				43352D7A2DFC18530082026C /* PrebidCardAdapter.framework in Frameworks */,
 				43352D402DFC0E920082026C /* SwiftMessages in Frameworks */,
+				43912F4B2E54B2C600C1BFD5 /* MarkdownUI in Frameworks */,
 				43352D412DFC0E920082026C /* UserDefault in Frameworks */,
 				43352D442DFC0E920082026C /* AdsCardAdapter.framework in Frameworks */,
 				43352D482DFC0E920082026C /* AdsCardLibrary.framework in Frameworks */,
@@ -1270,6 +1283,7 @@
 				433530D82E093A680082026C /* SnapKit in Frameworks */,
 				433530D92E093A680082026C /* PrebidCardAdapter.framework in Frameworks */,
 				433530DA2E093A680082026C /* SwiftMessages in Frameworks */,
+				43912F4D2E54B2CA00C1BFD5 /* MarkdownUI in Frameworks */,
 				433530DB2E093A680082026C /* UserDefault in Frameworks */,
 				433530DC2E093A680082026C /* AdsCardAdapter.framework in Frameworks */,
 				433530DD2E093A680082026C /* AdsCardLibrary.framework in Frameworks */,
@@ -1285,6 +1299,7 @@
 				4335311D2E093A700082026C /* SnapKit in Frameworks */,
 				4335311E2E093A700082026C /* PrebidCardAdapter.framework in Frameworks */,
 				4335311F2E093A700082026C /* SwiftMessages in Frameworks */,
+				43912F4F2E54B2CF00C1BFD5 /* MarkdownUI in Frameworks */,
 				433531202E093A700082026C /* UserDefault in Frameworks */,
 				433531212E093A700082026C /* AdsCardAdapter.framework in Frameworks */,
 				433531222E093A700082026C /* AdsCardLibrary.framework in Frameworks */,
@@ -1305,6 +1320,7 @@
 				43B7136B2B45702C007C8D21 /* OMSDK_Ogury.xcframework in Frameworks */,
 				43EB19232DAFF02B002F170A /* OguryCore.framework in Frameworks */,
 				892845E746F07668F5F00F7C /* AdsCardAdapter.framework in Frameworks */,
+				43912F3D2E54B2A300C1BFD5 /* MarkdownUI in Frameworks */,
 				E6D752923C989A29C8B6C272 /* AdsCardLibrary.framework in Frameworks */,
 				9263F0113F9A251BB22776AD /* Pods_AdsTestApp_Staging.framework in Frameworks */,
 			);
@@ -1337,6 +1353,7 @@
 				4373B4702DCB61F300E1702F /* SwiftMessages in Frameworks */,
 				4373B4712DCB61F300E1702F /* UserDefault in Frameworks */,
 				4373B4722DCB61F300E1702F /* OguryAds.framework in Frameworks */,
+				43912F492E54B2C200C1BFD5 /* MarkdownUI in Frameworks */,
 				4373B5292DCB93F500E1702F /* OMSDK_Ogury.xcframework in Frameworks */,
 				4373B4742DCB61F300E1702F /* AdsCardAdapter.framework in Frameworks */,
 				4373B5242DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework in Frameworks */,
@@ -1360,6 +1377,7 @@
 				1E5BE62D2B21CD0E0010B995 /* SnapKit in Frameworks */,
 				43EB19292DAFF03C002F170A /* OguryCore.framework in Frameworks */,
 				3C4FBDC03683D0592ECCE0AA /* AdsCardAdapter.framework in Frameworks */,
+				43912F3B2E54B29F00C1BFD5 /* MarkdownUI in Frameworks */,
 				641C84CBDB1DF68759CA97FE /* AdsCardLibrary.framework in Frameworks */,
 				CFEC2379422951461C4C02FF /* Pods_AdsTestApp_Devc.framework in Frameworks */,
 			);
@@ -1378,6 +1396,7 @@
 				40B361EB0DA04D73C2BB3A5D /* AdsCardLibrary.framework in Frameworks */,
 				F4F1FE3A7BF6ECD6BBCDD682 /* AdsCardAdapter.framework in Frameworks */,
 				482F499EC79AFF2101CF5CE1 /* Pods_AdsTestApp_Devc_art.framework in Frameworks */,
+				43912F3F2E54B2A800C1BFD5 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1394,6 +1413,7 @@
 				F1C35725B4319655E70B6EA6 /* AdsCardLibrary.framework in Frameworks */,
 				768024427BB8B30140B90414 /* AdsCardAdapter.framework in Frameworks */,
 				CCD85732B1EFE6F4314F4CB0 /* Pods_AdsTestApp_Staging_art.framework in Frameworks */,
+				43912F412E54B2AD00C1BFD5 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1402,6 +1422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43F66E3E2D394D79000AED12 /* (null) in Frameworks */,
+				43912F432E54B2B100C1BFD5 /* MarkdownUI in Frameworks */,
 				43BCB1432C22DD60002FB0B1 /* SnapKit in Frameworks */,
 				43BCB1452C22DD60002FB0B1 /* SwiftMessages in Frameworks */,
 				4379F9EF2DEEED220069F47A /* OguryCardAdapter.framework in Frameworks */,
@@ -1422,6 +1443,7 @@
 				43EB21132DB8DAEA002F170A /* AdsCardAdapter.framework in Frameworks */,
 				43EB1E3E2DB24675002F170A /* OguryCore.framework in Frameworks */,
 				43EB21112DB8DACD002F170A /* OgurySdk.framework in Frameworks */,
+				43912F452E54B2B900C1BFD5 /* MarkdownUI in Frameworks */,
 				43EB21152DB8DAEA002F170A /* AdsCardLibrary.framework in Frameworks */,
 				90FB53CA44CACC8E5EE47CA9 /* Pods_MaxTestApp.framework in Frameworks */,
 			);
@@ -1434,6 +1456,7 @@
 				43EB269D2DBFCC84002F170A /* SnapKit in Frameworks */,
 				43EB269E2DBFCC84002F170A /* SwiftMessages in Frameworks */,
 				43EB269F2DBFCC84002F170A /* UserDefault in Frameworks */,
+				43912F472E54B2BD00C1BFD5 /* MarkdownUI in Frameworks */,
 				43EB26D82DC0C5E3002F170A /* AdMobCardAdapter.framework in Frameworks */,
 				43EB26A22DBFCC84002F170A /* AdsCardAdapter.framework in Frameworks */,
 				43EB26A62DBFCC84002F170A /* AdsCardLibrary.framework in Frameworks */,
@@ -1526,6 +1549,7 @@
 		434F84A02AC2CD02005077F5 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				43912F502E54B2E300C1BFD5 /* WhatsNew */,
 				1E9206192CCBE04C00916482 /* Logs */,
 				434F84A12AC2CD2B005077F5 /* MainView.swift */,
 				434F84A22AC2CD2B005077F5 /* MainFeature.swift */,
@@ -2023,12 +2047,14 @@
 			);
 			fileSystemSynchronizedGroups = (
 				43352D652DFC0F110082026C /* Prebid */,
+				43912F502E54B2E300C1BFD5 /* WhatsNew */,
 			);
 			name = "PrebidTestApp-devc";
 			packageProductDependencies = (
 				43352D132DFC0E920082026C /* SnapKit */,
 				43352D152DFC0E920082026C /* UserDefault */,
 				43352D172DFC0E920082026C /* SwiftMessages */,
+				43912F4A2E54B2C600C1BFD5 /* MarkdownUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 43352D612DFC0E920082026C /* PrebidTestApp-devc.app */;
@@ -2052,12 +2078,14 @@
 			);
 			fileSystemSynchronizedGroups = (
 				43352D652DFC0F110082026C /* Prebid */,
+				43912F502E54B2E300C1BFD5 /* WhatsNew */,
 			);
 			name = "PrebidTestApp-staging";
 			packageProductDependencies = (
 				433530AE2E093A680082026C /* SnapKit */,
 				433530B02E093A680082026C /* UserDefault */,
 				433530B22E093A680082026C /* SwiftMessages */,
+				43912F4C2E54B2CA00C1BFD5 /* MarkdownUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 433530EF2E093A680082026C /* PrebidTestApp-staging.app */;
@@ -2082,12 +2110,14 @@
 			);
 			fileSystemSynchronizedGroups = (
 				43352D652DFC0F110082026C /* Prebid */,
+				43912F502E54B2E300C1BFD5 /* WhatsNew */,
 			);
 			name = PrebidTestApp;
 			packageProductDependencies = (
 				433530F32E093A700082026C /* SnapKit */,
 				433530F52E093A700082026C /* UserDefault */,
 				433530F72E093A700082026C /* SwiftMessages */,
+				43912F4E2E54B2CF00C1BFD5 /* MarkdownUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 433531342E093A700082026C /* PrebidTestApp.app */;
@@ -2112,12 +2142,14 @@
 			fileSystemSynchronizedGroups = (
 				43352D652DFC0F110082026C /* Prebid */,
 				43352D662DFC0F190082026C /* Prebid */,
+				43912F502E54B2E300C1BFD5 /* WhatsNew */,
 			);
 			name = "AdsTestApp-Staging";
 			packageProductDependencies = (
 				1E5BE6282B21CD040010B995 /* SnapKit */,
 				43AE85DE2B5018B90010C812 /* UserDefault */,
 				43C1D1562B7E567A006F2D23 /* SwiftMessages */,
+				43912F3C2E54B2A300C1BFD5 /* MarkdownUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 434F84D62ACFE4FE005077F5 /* AdsTestApp-Staging.app */;
@@ -2142,6 +2174,7 @@
 			fileSystemSynchronizedGroups = (
 				43352D652DFC0F110082026C /* Prebid */,
 				43352D662DFC0F190082026C /* Prebid */,
+				43912F502E54B2E300C1BFD5 /* WhatsNew */,
 			);
 			name = "AdsTestApp-Prod";
 			packageProductDependencies = (
@@ -2172,12 +2205,14 @@
 			);
 			fileSystemSynchronizedGroups = (
 				43352D652DFC0F110082026C /* Prebid */,
+				43912F502E54B2E300C1BFD5 /* WhatsNew */,
 			);
 			name = UnityLevelPlayTestApp;
 			packageProductDependencies = (
 				4373B4432DCB61F300E1702F /* SnapKit */,
 				4373B4452DCB61F300E1702F /* UserDefault */,
 				4373B4472DCB61F300E1702F /* SwiftMessages */,
+				43912F482E54B2C200C1BFD5 /* MarkdownUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 4373B4912DCB61F300E1702F /* UnityLevelPlayTestApp.app */;
@@ -2203,12 +2238,14 @@
 				43352D642DFC0F090082026C /* Prebid */,
 				43352D652DFC0F110082026C /* Prebid */,
 				43352D662DFC0F190082026C /* Prebid */,
+				43912F502E54B2E300C1BFD5 /* WhatsNew */,
 			);
 			name = "AdsTestApp-Devc";
 			packageProductDependencies = (
 				1E5BE62C2B21CD0E0010B995 /* SnapKit */,
 				43AE85DC2B5018A20010C812 /* UserDefault */,
 				43C1D1542B7E566C006F2D23 /* SwiftMessages */,
+				43912F3A2E54B29F00C1BFD5 /* MarkdownUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 438ED4132AA5D0C200486AF2 /* AdsTestApp-Devc.app */;
@@ -2234,12 +2271,14 @@
 				43352D642DFC0F090082026C /* Prebid */,
 				43352D652DFC0F110082026C /* Prebid */,
 				43352D662DFC0F190082026C /* Prebid */,
+				43912F502E54B2E300C1BFD5 /* WhatsNew */,
 			);
 			name = "AdsTestApp-Devc-art";
 			packageProductDependencies = (
 				43BCB0942C22DD45002FB0B1 /* SnapKit */,
 				43BCB0982C22DD45002FB0B1 /* UserDefault */,
 				43BCB09A2C22DD45002FB0B1 /* SwiftMessages */,
+				43912F3E2E54B2A800C1BFD5 /* MarkdownUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 43BCB0D42C22DD45002FB0B1 /* AdsTestApp-Devc-art.app */;
@@ -2265,12 +2304,14 @@
 			fileSystemSynchronizedGroups = (
 				43352D652DFC0F110082026C /* Prebid */,
 				43352D662DFC0F190082026C /* Prebid */,
+				43912F502E54B2E300C1BFD5 /* WhatsNew */,
 			);
 			name = "AdsTestApp-Staging-art";
 			packageProductDependencies = (
 				43BCB0D72C22DD59002FB0B1 /* SnapKit */,
 				43BCB0DB2C22DD59002FB0B1 /* UserDefault */,
 				43BCB0DD2C22DD59002FB0B1 /* SwiftMessages */,
+				43912F402E54B2AD00C1BFD5 /* MarkdownUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 43BCB1172C22DD59002FB0B1 /* AdsTestApp-Staging-art.app */;
@@ -2295,12 +2336,14 @@
 			fileSystemSynchronizedGroups = (
 				43352D652DFC0F110082026C /* Prebid */,
 				43352D662DFC0F190082026C /* Prebid */,
+				43912F502E54B2E300C1BFD5 /* WhatsNew */,
 			);
 			name = "AdsTestApp-Prod-art";
 			packageProductDependencies = (
 				43BCB11A2C22DD60002FB0B1 /* SnapKit */,
 				43BCB11E2C22DD60002FB0B1 /* UserDefault */,
 				43BCB1202C22DD60002FB0B1 /* SwiftMessages */,
+				43912F422E54B2B100C1BFD5 /* MarkdownUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 43BCB15A2C22DD60002FB0B1 /* AdsTestApp-Prod-art.app */;
@@ -2324,12 +2367,14 @@
 			);
 			fileSystemSynchronizedGroups = (
 				43352D652DFC0F110082026C /* Prebid */,
+				43912F502E54B2E300C1BFD5 /* WhatsNew */,
 			);
 			name = MaxTestApp;
 			packageProductDependencies = (
 				43EB1E0D2DB24675002F170A /* SnapKit */,
 				43EB1E0F2DB24675002F170A /* UserDefault */,
 				43EB1E112DB24675002F170A /* SwiftMessages */,
+				43912F442E54B2B900C1BFD5 /* MarkdownUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 43EB1E562DB24675002F170A /* MaxTestApp.app */;
@@ -2354,12 +2399,14 @@
 			);
 			fileSystemSynchronizedGroups = (
 				43352D652DFC0F110082026C /* Prebid */,
+				43912F502E54B2E300C1BFD5 /* WhatsNew */,
 			);
 			name = AdMobTestApp;
 			packageProductDependencies = (
 				43EB26712DBFCC84002F170A /* SnapKit */,
 				43EB26732DBFCC84002F170A /* UserDefault */,
 				43EB26752DBFCC84002F170A /* SwiftMessages */,
+				43912F462E54B2BD00C1BFD5 /* MarkdownUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 43EB26BE2DBFCC84002F170A /* AdMobTestApp.app */;
@@ -5626,6 +5673,61 @@
 			productName = SwiftMessages;
 		};
 		43912E212E54B19D00C1BFD5 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43912E202E54B19D00C1BFD5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
+		43912F3A2E54B29F00C1BFD5 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43912E202E54B19D00C1BFD5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
+		43912F3C2E54B2A300C1BFD5 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43912E202E54B19D00C1BFD5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
+		43912F3E2E54B2A800C1BFD5 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43912E202E54B19D00C1BFD5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
+		43912F402E54B2AD00C1BFD5 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43912E202E54B19D00C1BFD5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
+		43912F422E54B2B100C1BFD5 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43912E202E54B19D00C1BFD5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
+		43912F442E54B2B900C1BFD5 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43912E202E54B19D00C1BFD5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
+		43912F462E54B2BD00C1BFD5 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43912E202E54B19D00C1BFD5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
+		43912F482E54B2C200C1BFD5 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43912E202E54B19D00C1BFD5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
+		43912F4A2E54B2C600C1BFD5 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43912E202E54B19D00C1BFD5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
+		43912F4C2E54B2CA00C1BFD5 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43912E202E54B19D00C1BFD5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
+		43912F4E2E54B2CF00C1BFD5 /* MarkdownUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 43912E202E54B19D00C1BFD5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
 			productName = MarkdownUI;

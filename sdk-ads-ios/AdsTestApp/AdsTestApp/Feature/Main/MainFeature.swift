@@ -127,6 +127,7 @@ struct MainFeature: Reducer {
         case settingsButtonTapped
         case bulkModeButtonTapped
         case addButtonTapped
+        case showWhatsNew
         case showConsentButtonTapped
         case startSDKButtonTapped
         case cancelAddButtonTapped
@@ -258,6 +259,10 @@ struct MainFeature: Reducer {
                     
                 case .addButtonTapped:
                     state.destination = .add(.init())
+                    return .none
+                    
+                case .showWhatsNew:
+                    state.destination = .whatsNew(.init())
                     return .none
                     
                 case .addFormatButtonTapped:
@@ -412,12 +417,14 @@ struct MainFeature: Reducer {
             case alert(AlertState<MainFeature.Action.Alert>)
             case settings(AppSettingsFeature.State)
             case add(AddFeature.State)
+            case whatsNew(WhatsNewFeature.State)
             case `import`(ImportFeature.State)
         }
         enum Action: Equatable {
             case alert(MainFeature.Action.Alert)
             case settings(AppSettingsFeature.Action)
             case add(AddFeature.Action)
+            case whatsNew(WhatsNewFeature.Action)
             case `import`(ImportFeature.Action)
         }
         var body: some ReducerOf<Self> {
@@ -426,6 +433,9 @@ struct MainFeature: Reducer {
             }
             Scope(state: /State.add, action: /Action.add) {
                 AddFeature()
+            }
+            Scope(state: /State.whatsNew, action: /Action.whatsNew) {
+                WhatsNewFeature()
             }
             Scope(state: /State.import, action: /Action.import) {
                 ImportFeature()

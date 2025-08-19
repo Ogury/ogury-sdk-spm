@@ -206,6 +206,16 @@ struct MainView: View {
                             }
                         }
                     }
+                    
+                    Button{
+                        viewStore.send(.showWhatsNew)
+                    } label: {
+                        HStack {
+                            Text("What's new ?").font(.adsBody)
+                            Image(systemName: "questionmark.circle")
+                        }
+                    }
+                    
                     Button{
                         viewStore.send(.aboutButtonTapped)
                     } label: {
@@ -265,6 +275,27 @@ extension View {
                         state: \.$destination,
                         action: MainFeature.Action.destination
                     ),
+                    state: /MainFeature.Destination.State.whatsNew,
+                    action: MainFeature.Destination.Action.whatsNew) { store in
+                        NavigationView {
+                            WhatsNewView(store: store)
+                                .toolbar {
+                                    ToolbarItem(placement: .topBarLeading) {
+                                        Button {
+                                            viewStore.send(.destination(.dismiss))
+                                        } label: {
+                                            Image(systemName: "xmark.circle")
+                                        }
+                                        .accessibilityLabel("SettingsSheetCancelButton")
+                                    }
+                                }
+                        }
+                    }
+                .sheet(
+                    store: store.scope(
+                        state: \.$destination,
+                        action: MainFeature.Action.destination
+                    ),
                     state: /MainFeature.Destination.State.settings,
                     action: MainFeature.Destination.Action.settings) { store in
                         NavigationView {
@@ -289,13 +320,9 @@ extension View {
                         state: /MainFeature.Destination.State.add,
                         action: MainFeature.Destination.Action.add,
                         content: { store in
-                            if #available(iOS 16.0, *) {
-                                AddSheetView(store: store, viewStore: viewStore)
-                                    .presentationDetents([.fraction(0.7)])
-                                    .presentationBackgroundInteraction(.disabled)
-                            } else {
-                                AddSheetView(store: store, viewStore: viewStore)
-                            }
+                            AddSheetView(store: store, viewStore: viewStore)
+                                .presentationDetents([.fraction(0.7)])
+                                .presentationBackgroundInteraction(.disabled)
                         })
         
     }
