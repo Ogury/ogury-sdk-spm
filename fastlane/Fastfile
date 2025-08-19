@@ -72,9 +72,7 @@ platform :ios do
   desc "Install CocoaPods internal repository for environment and update it."
   lane :update_internal_cocoapods do |options|
     repo_name = 'sdk-internal'
-    git_token = ENV["GIT_TOKEN"] || UI.user_error!("GIT_TOKEN not set")
-    git_username = ENV["GIT_USERNAME"] || "weareogury"
-    repo_url = "https://#{git_username}:#{git_token}@github.com/#{configuration.deployment.internal.cocoapods.url}"
+    repo_url = "git@github.com:Ogury/sdk-internal-cocoapods.git"
   
     Dir.chdir("..") do
       UI.message("Checking for CocoaPods repo '#{repo_name}'...")
@@ -101,10 +99,6 @@ platform :ios do
 
     if !configuration.allowed_environments.include? options[:environment]
       raise "Wrong environment specified!".red
-    end
-
-    if ENV['GIT_USERNAME'].nil? || ENV['GIT_TOKEN'].nil?
-      raise "GIT_USERNAME and GIT_TOKEN must be set in the environment!".red
     end
 
     environment = options[:environment]
