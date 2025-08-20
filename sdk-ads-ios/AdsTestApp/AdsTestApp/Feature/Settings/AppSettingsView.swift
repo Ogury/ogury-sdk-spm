@@ -73,15 +73,6 @@ struct AppSettingsView: View {
                                 Text(method.shortDisplayText)
                             }
                         }.accessibilityLabel("ImportMethod_Picker")
-                        
-                        Picker("Choose CMP provider",
-                               selection: viewStore.binding(get: \.consentManager,
-                                                            send: { .consentManagerSelected($0) })) {
-                            ForEach(ConsentManager.allCases, id:\.self) { cmp in
-                                Text(cmp.displayName)
-                            }
-                        }.accessibilityLabel("ImportMethod_Picker")
-                        
                     } header: {
                         Text("APPLICATION")
                             .font(.adsBody)
@@ -92,62 +83,60 @@ struct AppSettingsView: View {
                     .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                     .listRowBackground(Color(AdColorPalette.Background.secondary.color))
                     
-                    //MARK: - Audio
                     Section {
-                        Picker("Audio mode",
-                               selection: viewStore.binding(get: \.audioMode,
-                                                            send: { .audioModeSelected($0) })) {
-                            ForEach(AVAudioSession.Mode.allCases, id:\.self) { mode in
-                                if let name = mode.displayName {
-                                    Text(name)
-                                } else {
-                                    EmptyView()
-                                }
+                        Button {
+                            viewStore.send(.startConsentToggleTapped)
+                        } label: {
+                            HStack {
+                                Text("Start CMP with application")
+                                    .layoutPriority(1)
+                                
+                                Toggle("", isOn:
+                                        viewStore.binding(
+                                            get: \.settings.startConsentWithApplication,
+                                            send: .startConsentToggleTapped)
+                                )
                             }
-                        }.accessibilityLabel("AudioMode_Picker")
+                        }
+                        .accessibilityLabel("StartSDKWithApplication")
                         
-                        Picker("Audio category",
-                               selection: viewStore.binding(get: \.audioCategory,
-                                                            send: { .audioCategorySelected($0) })) {
-                            ForEach(AVAudioSession.Category.allCases, id:\.self) { cat in
-                                if let name = cat.displayName {
-                                    Text(name)
-                                } else {
-                                    EmptyView()
-                                }
+                        Picker("Choose CMP provider",
+                               selection: viewStore.binding(get: \.consentManager,
+                                                            send: { .consentManagerSelected($0) })) {
+                            ForEach(ConsentManager.allCases, id:\.self) { cmp in
+                                Text(cmp.displayName)
                             }
-                        }.accessibilityLabel("AudioCategory_Picker")
-                        
+                        }.accessibilityLabel("ImportMethod_Picker")
                     } header: {
-                        Text("Audio Session")
+                        Text("Consent")
                             .font(.adsBody)
                             .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
                             .padding(.horizontal, -16)
                     }
+                    .disabled(!appPermissions.settings)
                     .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                     .listRowBackground(Color(AdColorPalette.Background.secondary.color))
-                    .hidden(!appPermissions.settingPermissions.contains(.showAudioToggle))
                     
                     //MARK: - Hide settings
                     Section {
                         if viewStore.showShowSection {
                             Group {
                                 Button {
-                                    viewStore.send(.enableAdUnitEditingToggleTapped)
+                                    viewStore.send(.enableFieldsEditingToggleTapped)
                                 } label: {
                                     HStack {
-                                        Text("Allow AdUnit editing")
+                                        Text("Allow fields editing")
                                             .layoutPriority(1)
                                         
                                         Toggle("", isOn:
                                                 viewStore.binding(
-                                                    get: \.enableAdUnitEditing,
-                                                    send: .enableAdUnitEditingToggleTapped)
+                                                    get: \.enableFieldsEditing,
+                                                    send: .enableFieldsEditingToggleTapped)
                                         )
                                     }
                                 }
-                                .accessibilityLabel("AllowAdUnitEditingToggle")
-                                .hidden(!appPermissions.settingPermissions.contains(.showEditAdUnitToggle))
+                                .accessibilityLabel("AllowFieldsEditingToggle")
+                                .hidden(!appPermissions.settingPermissions.contains(.showEditFieldsToggle))
                                 
                                 Button {
                                     viewStore.send(.showCampaignToggleTapped)
@@ -406,6 +395,42 @@ struct AppSettingsView: View {
                     .disabled(!appPermissions.settings)
                     .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                     .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                    
+                    //MARK: - Audio
+                    Section {
+                        Picker("Audio mode",
+                               selection: viewStore.binding(get: \.audioMode,
+                                                            send: { .audioModeSelected($0) })) {
+                            ForEach(AVAudioSession.Mode.allCases, id:\.self) { mode in
+                                if let name = mode.displayName {
+                                    Text(name)
+                                } else {
+                                    EmptyView()
+                                }
+                            }
+                        }.accessibilityLabel("AudioMode_Picker")
+                        
+                        Picker("Audio category",
+                               selection: viewStore.binding(get: \.audioCategory,
+                                                            send: { .audioCategorySelected($0) })) {
+                            ForEach(AVAudioSession.Category.allCases, id:\.self) { cat in
+                                if let name = cat.displayName {
+                                    Text(name)
+                                } else {
+                                    EmptyView()
+                                }
+                            }
+                        }.accessibilityLabel("AudioCategory_Picker")
+                        
+                    } header: {
+                        Text("Audio Session")
+                            .font(.adsBody)
+                            .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                            .padding(.horizontal, -16)
+                    }
+                    .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
+                    .listRowBackground(Color(AdColorPalette.Background.secondary.color))
+                    .hidden(!appPermissions.settingPermissions.contains(.showAudioToggle))
                     
                     //MARK: - Logs settings
 #if canImport(OguryAds)

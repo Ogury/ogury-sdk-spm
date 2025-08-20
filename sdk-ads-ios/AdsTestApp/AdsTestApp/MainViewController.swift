@@ -88,6 +88,9 @@ class MainViewController: UIViewController {
         super.viewDidAppear(animated)
         adViewController.view.frame = view.bounds
         checkForWhatsNew()
+        if SettingsController().startConsentWithApplication {
+            showConsentNotice()
+        }
     }
     
     private func checkForWhatsNew() {
@@ -179,10 +182,10 @@ extension MainViewController: AdLifeCycleDelegate, ApplicationDelegate {
         return paths[0]
     }
     
-    func showConsentNotice(for manager: ConsentManager) {
-        switch manager {
-            case .inMobi: InmobiConsentManager.shared.resetConsent(viewController: self)
-            case .adMob: AdMobConsentManager.shared.resetConsent(viewController: self)
+    func showConsentNotice() {
+        Task { @MainActor in
+            try await Task.sleep(for: .seconds(1))
+            ConsentController.resetConsent(viewController: self)
         }
     }
     

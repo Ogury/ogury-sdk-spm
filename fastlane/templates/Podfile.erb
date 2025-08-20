@@ -82,6 +82,11 @@ target "AdsTestApp-Prod" do
   pod 'InMobiCMP', '2.0.1'
   pod 'Google-Mobile-Ads-SDK'
 end
+target "AdsTestApp-Ext" do
+  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  pod 'InMobiCMP', '2.0.1'
+  pod 'Google-Mobile-Ads-SDK'
+end
 target "MaxTestApp" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
   pod 'InMobiCMP', '2.0.1'

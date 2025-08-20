@@ -166,14 +166,18 @@ struct MainView: View {
                 }
                 
                 Section {
-                    Button{
-                        viewStore.send(.startSDKButtonTapped)
-                    } label: {
-                        HStack {
-                            Text("Start Ads SDK").font(.adsBody)
-                            Image(systemName: "power.circle")
+                    
+                    if appPermissions.settings {
+                        Button{
+                            viewStore.send(.startSDKButtonTapped)
+                        } label: {
+                            HStack {
+                                Text("Start Ads SDK").font(.adsBody)
+                                Image(systemName: "power.circle")
+                            }
                         }
                     }
+                    
                     Button{
                         viewStore.send(.showConsentButtonTapped)
                     } label: {
@@ -183,12 +187,14 @@ struct MainView: View {
                         }
                     }
                     
-                    Button{
-                        viewStore.send(.settingsButtonTapped)
-                    } label: {
-                        HStack {
-                            Text("Settings").font(.adsBody)
-                            Image(systemName: "gear")
+                    if appPermissions.settings {
+                        Button{
+                            viewStore.send(.settingsButtonTapped)
+                        } label: {
+                            HStack {
+                                Text("Settings").font(.adsBody)
+                                Image(systemName: "gear")
+                            }
                         }
                     }
                 }
