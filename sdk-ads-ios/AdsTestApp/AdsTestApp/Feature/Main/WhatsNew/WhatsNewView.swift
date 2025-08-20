@@ -32,6 +32,8 @@ struct WhatsNewView: View {
                     BackgroundColor(Color(AdColorPalette.Primary.accent.color).opacity(0.25))
                 }
         }
+        .navigationTitle("What's new in \(About().appName) ?")
+        .navigationBarTitleDisplayMode(.large)
     }
 }
 

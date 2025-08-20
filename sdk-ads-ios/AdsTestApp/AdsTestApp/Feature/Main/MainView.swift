@@ -293,6 +293,7 @@ extension View {
                                             viewStore.send(.destination(.dismiss))
                                         } label: {
                                             Image(systemName: "xmark.circle")
+                                                .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
                                         }
                                         .accessibilityLabel("SettingsSheetCancelButton")
                                     }
@@ -313,7 +314,8 @@ extension View {
                                         Button {
                                             viewStore.send(.destination(.dismiss))
                                         } label: {
-                                            Text("Dismiss")
+                                            Image(systemName: "xmark.circle")
+                                                .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
                                         }
                                         .accessibilityLabel("SettingsSheetCancelButton")
                                     }
