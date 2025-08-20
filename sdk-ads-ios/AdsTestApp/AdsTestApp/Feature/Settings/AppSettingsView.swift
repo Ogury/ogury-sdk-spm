@@ -125,8 +125,10 @@ struct AppSettingsView: View {
                                     viewStore.send(.enableFieldsEditingToggleTapped)
                                 } label: {
                                     HStack {
-                                        Text("Allow fields editing")
-                                            .layoutPriority(1)
+                                        VStack {
+                                            Text("Allow fields editing")
+                                                .layoutPriority(1)
+                                        }
                                         
                                         Toggle("", isOn:
                                                 viewStore.binding(
@@ -137,6 +139,22 @@ struct AppSettingsView: View {
                                 }
                                 .accessibilityLabel("AllowFieldsEditingToggle")
                                 .hidden(!appPermissions.settingPermissions.contains(.showEditFieldsToggle))
+                                
+                                if viewStore.enableFieldsEditing {
+                                    HStack {
+                                        Image(systemName: "exclamationmark.triangle.fill")
+                                            .font(.adsTitle)
+                                            .foregroundStyle(Color(AdColorPalette.State.failure.color))
+                                            .padding(.trailing, 8)
+                                            .symbolRenderingMode(.hierarchical)
+                                            .safeBreathe()
+                                        
+                                        Text("Caution : updating the ad's settings can lead to unexpected behavior. Use at you own risk.")
+                                            .font(.adsCaption)
+                                            .foregroundStyle(Color(AdColorPalette.State.failure.color))
+                                            .layoutPriority(1)
+                                    }
+                                }
                                 
                                 Button {
                                     viewStore.send(.showCampaignToggleTapped)
