@@ -215,7 +215,7 @@ struct MainView: View {
                     
                     if let markdownString = SdkLauncher.shared.adapter.whatsNew {
                         Button{
-                            viewStore.send(.showWhatsNew(markdownString))
+                            viewStore.send(.showWhatsNew(markdownString, showConfetti: false))
                         } label: {
                             HStack {
                                 Text("What's new ?").font(.adsBody)

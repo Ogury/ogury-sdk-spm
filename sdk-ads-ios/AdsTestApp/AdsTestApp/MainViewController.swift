@@ -96,7 +96,9 @@ class MainViewController: UIViewController {
     private func checkForWhatsNew() {
         defer { lastVersion = SdkLauncher.shared.adapter.sdkVersions }
         if lastVersion == nil || lastVersion! != SdkLauncher.shared.adapter.sdkVersions {
-            ViewStore(store, observe: { $0 }).send(.main(.showWhatsNew(SdkLauncher.shared.adapter.whatsNew ?? "")))
+            ViewStore(store, observe: { $0 })
+                .send(.main(.showWhatsNew(SdkLauncher.shared.adapter.whatsNew ?? "",
+                                          showConfetti: true)))
         }
     }
     

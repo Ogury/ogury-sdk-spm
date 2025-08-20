@@ -399,6 +399,19 @@
 		43912F4B2E54B2C600C1BFD5 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 43912F4A2E54B2C600C1BFD5 /* MarkdownUI */; };
 		43912F4D2E54B2CA00C1BFD5 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 43912F4C2E54B2CA00C1BFD5 /* MarkdownUI */; };
 		43912F4F2E54B2CF00C1BFD5 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 43912F4E2E54B2CF00C1BFD5 /* MarkdownUI */; };
+		439195792E55FC86001B0FCD /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 439195782E55FC86001B0FCD /* ConfettiSwiftUI */; };
+		4391968E2E560183001B0FCD /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4391968D2E560183001B0FCD /* ConfettiSwiftUI */; };
+		439196902E560187001B0FCD /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4391968F2E560187001B0FCD /* ConfettiSwiftUI */; };
+		439196922E56018B001B0FCD /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 439196912E56018B001B0FCD /* ConfettiSwiftUI */; };
+		439196942E560191001B0FCD /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 439196932E560191001B0FCD /* ConfettiSwiftUI */; };
+		439196962E560195001B0FCD /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 439196952E560195001B0FCD /* ConfettiSwiftUI */; };
+		439196982E560199001B0FCD /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 439196972E560199001B0FCD /* ConfettiSwiftUI */; };
+		4391969A2E56019D001B0FCD /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 439196992E56019D001B0FCD /* ConfettiSwiftUI */; };
+		4391969C2E5601A2001B0FCD /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4391969B2E5601A2001B0FCD /* ConfettiSwiftUI */; };
+		4391969E2E5601A6001B0FCD /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4391969D2E5601A6001B0FCD /* ConfettiSwiftUI */; };
+		439196A02E5601AA001B0FCD /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4391969F2E5601AA001B0FCD /* ConfettiSwiftUI */; };
+		439196A22E5601AF001B0FCD /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 439196A12E5601AF001B0FCD /* ConfettiSwiftUI */; };
+		439196A42E5601B4001B0FCD /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 439196A32E5601B4001B0FCD /* ConfettiSwiftUI */; };
 		4394F73F2CA3F4B2001086FE /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
 		4394F7402CA3F4B2001086FE /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
 		4394F7412CA3F4B2001086FE /* TestAppLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4394F73E2CA3F4B2001086FE /* TestAppLogController.swift */; };
@@ -1479,6 +1492,7 @@
 		439127172E4C8AB100C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				shareImageData.png,
 				"UTType+Extension.swift",
 			);
 			target = 438ED4122AA5D0C200486AF2 /* AdsTestApp-Devc */;
@@ -1486,6 +1500,7 @@
 		439127182E4C8AB100C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				shareImageData.png,
 				"UTType+Extension.swift",
 			);
 			target = 43BCB0932C22DD45002FB0B1 /* AdsTestApp-Devc-art */;
@@ -1493,6 +1508,7 @@
 		4391271B2E4C8AB900C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				shareImageData.png,
 				"UTType+Extension.swift",
 			);
 			target = 439126822E4C89D600C1BFD5 /* AdsTestApp-Ext */;
@@ -1547,6 +1563,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				439196A02E5601AA001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				43352D3F2DFC0E920082026C /* SnapKit in Frameworks */,
 				43352D7A2DFC18530082026C /* PrebidCardAdapter.framework in Frameworks */,
 				43352D402DFC0E920082026C /* SwiftMessages in Frameworks */,
@@ -1563,6 +1580,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				439196A22E5601AF001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				433530D82E093A680082026C /* SnapKit in Frameworks */,
 				433530D92E093A680082026C /* PrebidCardAdapter.framework in Frameworks */,
 				433530DA2E093A680082026C /* SwiftMessages in Frameworks */,
@@ -1579,6 +1597,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				439196A42E5601B4001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				4335311D2E093A700082026C /* SnapKit in Frameworks */,
 				4335311E2E093A700082026C /* PrebidCardAdapter.framework in Frameworks */,
 				4335311F2E093A700082026C /* SwiftMessages in Frameworks */,
@@ -1601,6 +1620,7 @@
 				43EB19212DAFF02B002F170A /* OguryAds.framework in Frameworks */,
 				43EB186F2DA6A4EF002F170A /* OguryCardAdapter.framework in Frameworks */,
 				43B7136B2B45702C007C8D21 /* OMSDK_Ogury.xcframework in Frameworks */,
+				4391968E2E560183001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				43EB19232DAFF02B002F170A /* OguryCore.framework in Frameworks */,
 				892845E746F07668F5F00F7C /* AdsCardAdapter.framework in Frameworks */,
 				43912F3D2E54B2A300C1BFD5 /* MarkdownUI in Frameworks */,
@@ -1619,6 +1639,7 @@
 				43C1D1592B7E5684006F2D23 /* SwiftMessages in Frameworks */,
 				43912E222E54B19D00C1BFD5 /* MarkdownUI in Frameworks */,
 				43AE85E12B5018BF0010C812 /* UserDefault in Frameworks */,
+				439196902E560187001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				43EB19192DAE8AC6002F170A /* OguryAds.framework in Frameworks */,
 				B68B98228FEF5F63D4165F6C /* (null) in Frameworks */,
 				43EB191D2DAE8AC9002F170A /* OguryCore.framework in Frameworks */,
@@ -1639,6 +1660,7 @@
 				4373B4722DCB61F300E1702F /* OguryAds.framework in Frameworks */,
 				43912F492E54B2C200C1BFD5 /* MarkdownUI in Frameworks */,
 				4373B5292DCB93F500E1702F /* OMSDK_Ogury.xcframework in Frameworks */,
+				4391969E2E5601A6001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				4373B4742DCB61F300E1702F /* AdsCardAdapter.framework in Frameworks */,
 				4373B5242DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework in Frameworks */,
 				4373B4752DCB61F300E1702F /* OguryCore.framework in Frameworks */,
@@ -1659,6 +1681,7 @@
 				43EB19272DAFF03C002F170A /* OguryAds.framework in Frameworks */,
 				43EB186C2DA6A4E7002F170A /* OguryCardAdapter.framework in Frameworks */,
 				1E5BE62D2B21CD0E0010B995 /* SnapKit in Frameworks */,
+				439195792E55FC86001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				43EB19292DAFF03C002F170A /* OguryCore.framework in Frameworks */,
 				3C4FBDC03683D0592ECCE0AA /* AdsCardAdapter.framework in Frameworks */,
 				43912F3B2E54B29F00C1BFD5 /* MarkdownUI in Frameworks */,
@@ -1677,6 +1700,7 @@
 				439126B32E4C89D600C1BFD5 /* UserDefault in Frameworks */,
 				439126B42E4C89D600C1BFD5 /* OguryAds.framework in Frameworks */,
 				439126B62E4C89D600C1BFD5 /* OguryCore.framework in Frameworks */,
+				439196922E56018B001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				439126B72E4C89D600C1BFD5 /* AdsCardLibrary.framework in Frameworks */,
 				439126B82E4C89D600C1BFD5 /* AdsCardAdapter.framework in Frameworks */,
 				43B9381B2E55BDAA00EFB857 /* MarkdownUI in Frameworks */,
@@ -1699,6 +1723,7 @@
 				F4F1FE3A7BF6ECD6BBCDD682 /* AdsCardAdapter.framework in Frameworks */,
 				482F499EC79AFF2101CF5CE1 /* Pods_AdsTestApp_Devc_art.framework in Frameworks */,
 				43912F3F2E54B2A800C1BFD5 /* MarkdownUI in Frameworks */,
+				439196942E560191001B0FCD /* ConfettiSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1716,6 +1741,7 @@
 				768024427BB8B30140B90414 /* AdsCardAdapter.framework in Frameworks */,
 				CCD85732B1EFE6F4314F4CB0 /* Pods_AdsTestApp_Staging_art.framework in Frameworks */,
 				43912F412E54B2AD00C1BFD5 /* MarkdownUI in Frameworks */,
+				439196962E560195001B0FCD /* ConfettiSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1729,6 +1755,7 @@
 				43BCB1452C22DD60002FB0B1 /* SwiftMessages in Frameworks */,
 				4379F9EF2DEEED220069F47A /* OguryCardAdapter.framework in Frameworks */,
 				43BCB1462C22DD60002FB0B1 /* UserDefault in Frameworks */,
+				439196982E560199001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				DCFE504B1E18D735E174D4FE /* Pods_AdsTestApp_Prod_art.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1743,6 +1770,7 @@
 				43EB1E3C2DB24675002F170A /* OguryAds.framework in Frameworks */,
 				43EB1F6E2DB2584A002F170A /* MaxCardAdapter.framework in Frameworks */,
 				43EB21132DB8DAEA002F170A /* AdsCardAdapter.framework in Frameworks */,
+				4391969A2E56019D001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				43EB1E3E2DB24675002F170A /* OguryCore.framework in Frameworks */,
 				43EB21112DB8DACD002F170A /* OgurySdk.framework in Frameworks */,
 				43912F452E54B2B900C1BFD5 /* MarkdownUI in Frameworks */,
@@ -1755,6 +1783,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4391969C2E5601A2001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				43EB269D2DBFCC84002F170A /* SnapKit in Frameworks */,
 				43EB269E2DBFCC84002F170A /* SwiftMessages in Frameworks */,
 				43EB269F2DBFCC84002F170A /* UserDefault in Frameworks */,
@@ -2349,8 +2378,8 @@
 				43352D3E2DFC0E920082026C /* Frameworks */,
 				43352D4A2DFC0E920082026C /* Resources */,
 				43352D562DFC0E920082026C /* Embed Frameworks */,
-				5FF7641291F3676FDA7219D9 /* [CP] Embed Pods Frameworks */,
-				8F9AD78D1F7A6405E9C09BB5 /* [CP] Copy Pods Resources */,
+				9BB71F528C2A91AD3249935F /* [CP] Embed Pods Frameworks */,
+				76C608E1CA9AA47D86A97406 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2367,6 +2396,7 @@
 				43352D152DFC0E920082026C /* UserDefault */,
 				43352D172DFC0E920082026C /* SwiftMessages */,
 				43912F4A2E54B2C600C1BFD5 /* MarkdownUI */,
+				4391969F2E5601AA001B0FCD /* ConfettiSwiftUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 43352D612DFC0E920082026C /* PrebidTestApp-devc.app */;
@@ -2381,8 +2411,8 @@
 				433530D72E093A680082026C /* Frameworks */,
 				433530E02E093A680082026C /* Resources */,
 				433530E72E093A680082026C /* Embed Frameworks */,
-				16EEB72C41A2A210C58AD7DD /* [CP] Embed Pods Frameworks */,
-				9D75042B4F04E447A7F63CFD /* [CP] Copy Pods Resources */,
+				8FC33A90754912A7A2DCCD53 /* [CP] Embed Pods Frameworks */,
+				2732A14A4375160BF9441B6D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2399,6 +2429,7 @@
 				433530B02E093A680082026C /* UserDefault */,
 				433530B22E093A680082026C /* SwiftMessages */,
 				43912F4C2E54B2CA00C1BFD5 /* MarkdownUI */,
+				439196A12E5601AF001B0FCD /* ConfettiSwiftUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 433530EF2E093A680082026C /* PrebidTestApp-staging.app */;
@@ -2414,8 +2445,7 @@
 				4335311C2E093A700082026C /* Frameworks */,
 				433531252E093A700082026C /* Resources */,
 				4335312C2E093A700082026C /* Embed Frameworks */,
-				56D2FC9693832C5D9396DDED /* [CP] Embed Pods Frameworks */,
-				34801FCABBCE974B5CDD8FCD /* [CP] Check Pods Manifest.lock */,
+				9F4AAD2DE4D5B424D85B7C0A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2432,6 +2462,7 @@
 				433530F52E093A700082026C /* UserDefault */,
 				433530F72E093A700082026C /* SwiftMessages */,
 				43912F4E2E54B2CF00C1BFD5 /* MarkdownUI */,
+				439196A32E5601B4001B0FCD /* ConfettiSwiftUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 433531342E093A700082026C /* PrebidTestApp.app */;
@@ -2446,8 +2477,7 @@
 				434F84CC2ACFE4FE005077F5 /* Frameworks */,
 				434F84CF2ACFE4FE005077F5 /* Resources */,
 				43B713662B45700B007C8D21 /* Embed Frameworks */,
-				133D62C5021B19CE1E13285B /* [CP] Embed Pods Frameworks */,
-				5611413985CA78E92D30BC96 /* [CP] Copy Pods Resources */,
+				A497C94FD77B3CD4C1088A73 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2466,6 +2496,7 @@
 				43AE85DE2B5018B90010C812 /* UserDefault */,
 				43C1D1562B7E567A006F2D23 /* SwiftMessages */,
 				43912F3C2E54B2A300C1BFD5 /* MarkdownUI */,
+				4391968D2E560183001B0FCD /* ConfettiSwiftUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 434F84D62ACFE4FE005077F5 /* AdsTestApp-Staging.app */;
@@ -2480,8 +2511,8 @@
 				434F84E82ACFE50A005077F5 /* Frameworks */,
 				434F84EB2ACFE50A005077F5 /* Resources */,
 				43EB19182DAE89B2002F170A /* Embed Frameworks */,
-				B92D1465848F182D488ACC68 /* [CP] Embed Pods Frameworks */,
-				18AE91B7FCB7582ABD8BAF12 /* [CP] Copy Pods Resources */,
+				C427C9E249833A8D62856272 /* [CP] Embed Pods Frameworks */,
+				78339E8D9C6E0AF9B7704E7D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2500,6 +2531,7 @@
 				43AE85E02B5018BF0010C812 /* UserDefault */,
 				43C1D1582B7E5684006F2D23 /* SwiftMessages */,
 				43912E212E54B19D00C1BFD5 /* MarkdownUI */,
+				4391968F2E560187001B0FCD /* ConfettiSwiftUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 434F84F22ACFE50A005077F5 /* AdsTestApp-Prod.app */;
@@ -2514,8 +2546,8 @@
 				4373B46E2DCB61F300E1702F /* Frameworks */,
 				4373B47A2DCB61F300E1702F /* Resources */,
 				4373B4872DCB61F300E1702F /* Embed Frameworks */,
-				CAC1A3A1C794ED85A11E62AD /* [CP] Embed Pods Frameworks */,
-				F83C1F8C9FF7D80C55C23B93 /* [CP] Copy Pods Resources */,
+				91861E116AC502C377B94ED1 /* [CP] Embed Pods Frameworks */,
+				366367F111BB1D38B7670DF1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2532,6 +2564,7 @@
 				4373B4452DCB61F300E1702F /* UserDefault */,
 				4373B4472DCB61F300E1702F /* SwiftMessages */,
 				43912F482E54B2C200C1BFD5 /* MarkdownUI */,
+				4391969D2E5601A6001B0FCD /* ConfettiSwiftUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 4373B4912DCB61F300E1702F /* UnityLevelPlayTestApp.app */;
@@ -2546,8 +2579,7 @@
 				438ED4102AA5D0C200486AF2 /* Frameworks */,
 				438ED4112AA5D0C200486AF2 /* Resources */,
 				1E0E81632ACD8D7A00EFD70C /* Embed Frameworks */,
-				7BA0399C76BA01350D43E224 /* [CP] Embed Pods Frameworks */,
-				5DF13D66AF0F1B88D659A3B0 /* [CP] Copy Pods Resources */,
+				F021478F20CF36863EE75BA8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2568,6 +2600,7 @@
 				43AE85DC2B5018A20010C812 /* UserDefault */,
 				43C1D1542B7E566C006F2D23 /* SwiftMessages */,
 				43912F3A2E54B29F00C1BFD5 /* MarkdownUI */,
+				439195782E55FC86001B0FCD /* ConfettiSwiftUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 438ED4132AA5D0C200486AF2 /* AdsTestApp-Devc.app */;
@@ -2582,8 +2615,8 @@
 				439126AE2E4C89D600C1BFD5 /* Frameworks */,
 				439126BA2E4C89D600C1BFD5 /* Resources */,
 				439126C62E4C89D600C1BFD5 /* Embed Frameworks */,
-				439126CE2E4C89D600C1BFD5 /* [CP] Copy Pods Resources */,
-				BC95444552BA5F42E004AD96 /* [CP] Embed Pods Frameworks */,
+				576FA373F47590B0DF12BE4D /* [CP] Embed Pods Frameworks */,
+				B36A6F7D306ECC3E4AD77FA8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2601,6 +2634,7 @@
 				439126852E4C89D600C1BFD5 /* UserDefault */,
 				439126872E4C89D600C1BFD5 /* SwiftMessages */,
 				43B9381A2E55BDAA00EFB857 /* MarkdownUI */,
+				439196912E56018B001B0FCD /* ConfettiSwiftUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 439126D22E4C89D600C1BFD5 /* Ogury Ext.app */;
@@ -2615,8 +2649,8 @@
 				43BCB0BC2C22DD45002FB0B1 /* Frameworks */,
 				43BCB0C52C22DD45002FB0B1 /* Resources */,
 				43BCB0CE2C22DD45002FB0B1 /* Embed Frameworks */,
-				A3A24BD012E98136411805EB /* [CP] Embed Pods Frameworks */,
-				898DE4D157B594E15D96B24A /* [CP] Copy Pods Resources */,
+				F8BB75940DD3F0D1BFB8E10E /* [CP] Embed Pods Frameworks */,
+				6C62CA44BAD62A5787356FB9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2637,6 +2671,7 @@
 				43BCB0982C22DD45002FB0B1 /* UserDefault */,
 				43BCB09A2C22DD45002FB0B1 /* SwiftMessages */,
 				43912F3E2E54B2A800C1BFD5 /* MarkdownUI */,
+				439196932E560191001B0FCD /* ConfettiSwiftUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 43BCB0D42C22DD45002FB0B1 /* AdsTestApp-Devc-art.app */;
@@ -2652,8 +2687,7 @@
 				43BCB0FF2C22DD59002FB0B1 /* Frameworks */,
 				43BCB1082C22DD59002FB0B1 /* Resources */,
 				43BCB1112C22DD59002FB0B1 /* Embed Frameworks */,
-				BFC0C3C225A9E3744D9DF5F7 /* [CP] Embed Pods Frameworks */,
-				B5E9867A812B952C59505B64 /* [CP] Copy Pods Resources */,
+				684523C4C82BE6E4FF2AAC2F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2672,6 +2706,7 @@
 				43BCB0DB2C22DD59002FB0B1 /* UserDefault */,
 				43BCB0DD2C22DD59002FB0B1 /* SwiftMessages */,
 				43912F402E54B2AD00C1BFD5 /* MarkdownUI */,
+				439196952E560195001B0FCD /* ConfettiSwiftUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 43BCB1172C22DD59002FB0B1 /* AdsTestApp-Staging-art.app */;
@@ -2686,8 +2721,8 @@
 				43BCB1422C22DD60002FB0B1 /* Frameworks */,
 				43BCB14B2C22DD60002FB0B1 /* Resources */,
 				4379F9F12DEEED220069F47A /* Embed Frameworks */,
-				11BA99C0B1C42469039E81A1 /* [CP] Embed Pods Frameworks */,
-				A538F9F6424F7EF02D99BECD /* [CP] Copy Pods Resources */,
+				A2696D1828DE277B52054320 /* [CP] Embed Pods Frameworks */,
+				187B09967582B41736B250C5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2706,6 +2741,7 @@
 				43BCB11E2C22DD60002FB0B1 /* UserDefault */,
 				43BCB1202C22DD60002FB0B1 /* SwiftMessages */,
 				43912F422E54B2B100C1BFD5 /* MarkdownUI */,
+				439196972E560199001B0FCD /* ConfettiSwiftUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 43BCB15A2C22DD60002FB0B1 /* AdsTestApp-Prod-art.app */;
@@ -2720,8 +2756,8 @@
 				43EB1E372DB24675002F170A /* Frameworks */,
 				43EB1E402DB24675002F170A /* Resources */,
 				43EB1E4E2DB24675002F170A /* Embed Frameworks */,
-				CD7EC2480729D57C3B3A30E1 /* [CP] Embed Pods Frameworks */,
-				AA771CDB8AA6C0F4BDC37BBC /* [CP] Copy Pods Resources */,
+				7B5FCA16190D4C4400BC29D2 /* [CP] Embed Pods Frameworks */,
+				67315F7FCA0AACB742EC1F92 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2738,6 +2774,7 @@
 				43EB1E0F2DB24675002F170A /* UserDefault */,
 				43EB1E112DB24675002F170A /* SwiftMessages */,
 				43912F442E54B2B900C1BFD5 /* MarkdownUI */,
+				439196992E56019D001B0FCD /* ConfettiSwiftUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 43EB1E562DB24675002F170A /* MaxTestApp.app */;
@@ -2752,8 +2789,8 @@
 				43EB269C2DBFCC84002F170A /* Frameworks */,
 				43EB26A72DBFCC84002F170A /* Resources */,
 				43EB26B42DBFCC84002F170A /* Embed Frameworks */,
-				7F0903C28A70398FDFA6E5E4 /* [CP] Embed Pods Frameworks */,
-				106754AA499638DB54D8396F /* [CP] Copy Pods Resources */,
+				F3953C13B289851C5402B2D8 /* [CP] Embed Pods Frameworks */,
+				F3FC17A99023BC2288C1AD51 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2770,6 +2807,7 @@
 				43EB26732DBFCC84002F170A /* UserDefault */,
 				43EB26752DBFCC84002F170A /* SwiftMessages */,
 				43912F462E54B2BD00C1BFD5 /* MarkdownUI */,
+				4391969B2E5601A2001B0FCD /* ConfettiSwiftUI */,
 			);
 			productName = AdsTestApp;
 			productReference = 43EB26BE2DBFCC84002F170A /* AdMobTestApp.app */;
@@ -2820,6 +2858,7 @@
 				43AE85DB2B5018A20010C812 /* XCRemoteSwiftPackageReference "UserDefault" */,
 				43C1D1532B7E566C006F2D23 /* XCRemoteSwiftPackageReference "SwiftMessages" */,
 				43912E202E54B19D00C1BFD5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+				439195772E55FC86001B0FCD /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 			);
 			productRefGroup = 438ED4142AA5D0C200486AF2 /* Products */;
 			projectDirPath = "";
@@ -3046,48 +3085,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		106754AA499638DB54D8396F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		11BA99C0B1C42469039E81A1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		12171DF1CCF3B296A9848482 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3108,27 +3105,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		133D62C5021B19CE1E13285B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		14E3A5D010643051A512AAED /* [CP] Check Pods Manifest.lock */ = {
@@ -3175,46 +3151,25 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		16EEB72C41A2A210C58AD7DD /* [CP] Embed Pods Frameworks */ = {
+		187B09967582B41736B250C5 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		18AE91B7FCB7582ABD8BAF12 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		220261A047AC614D0FCE4E8B /* [CP] Check Pods Manifest.lock */ = {
@@ -3239,6 +3194,27 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		2732A14A4375160BF9441B6D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2AF5C9FE08DA3B4154BDF837 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3261,26 +3237,25 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		34801FCABBCE974B5CDD8FCD /* [CP] Check Pods Manifest.lock */ = {
+		366367F111BB1D38B7670DF1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PrebidTestApp-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		439126892E4C89D600C1BFD5 /* [CP] Check Pods Manifest.lock */ = {
@@ -3303,27 +3278,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		439126CE2E4C89D600C1BFD5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4F521715CC51250B218E7FA0 /* [CP] Check Pods Manifest.lock */ = {
@@ -3370,46 +3324,25 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5611413985CA78E92D30BC96 /* [CP] Copy Pods Resources */ = {
+		576FA373F47590B0DF12BE4D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		56D2FC9693832C5D9396DDED /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		58F336F21978156304D31D8F /* [CP] Check Pods Manifest.lock */ = {
@@ -3434,46 +3367,130 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5DF13D66AF0F1B88D659A3B0 /* [CP] Copy Pods Resources */ = {
+		67315F7FCA0AACB742EC1F92 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5FF7641291F3676FDA7219D9 /* [CP] Embed Pods Frameworks */ = {
+		684523C4C82BE6E4FF2AAC2F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6C62CA44BAD62A5787356FB9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76C608E1CA9AA47D86A97406 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		78339E8D9C6E0AF9B7704E7D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7B5FCA16190D4C4400BC29D2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7B852FD87A0412AEE7D2D7DD /* [CP] Check Pods Manifest.lock */ = {
@@ -3498,172 +3515,130 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7BA0399C76BA01350D43E224 /* [CP] Embed Pods Frameworks */ = {
+		8FC33A90754912A7A2DCCD53 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7F0903C28A70398FDFA6E5E4 /* [CP] Embed Pods Frameworks */ = {
+		91861E116AC502C377B94ED1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		898DE4D157B594E15D96B24A /* [CP] Copy Pods Resources */ = {
+		9BB71F528C2A91AD3249935F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8F9AD78D1F7A6405E9C09BB5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9D75042B4F04E447A7F63CFD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A3A24BD012E98136411805EB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A538F9F6424F7EF02D99BECD /* [CP] Copy Pods Resources */ = {
+		9F4AAD2DE4D5B424D85B7C0A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AA771CDB8AA6C0F4BDC37BBC /* [CP] Copy Pods Resources */ = {
+		A2696D1828DE277B52054320 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A497C94FD77B3CD4C1088A73 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AF1F918FE222F0FDE250C4E1 /* [CP] Embed Pods Frameworks */ = {
@@ -3687,46 +3662,25 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B5E9867A812B952C59505B64 /* [CP] Copy Pods Resources */ = {
+		B36A6F7D306ECC3E4AD77FA8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B92D1465848F182D488ACC68 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BBEBED3CEC5948D298FDA2D7 /* [CP] Check Pods Manifest.lock */ = {
@@ -3751,27 +3705,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BC95444552BA5F42E004AD96 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		BCF8ACEC96919C537E0867A8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3794,67 +3727,25 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BFC0C3C225A9E3744D9DF5F7 /* [CP] Embed Pods Frameworks */ = {
+		C427C9E249833A8D62856272 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CAC1A3A1C794ED85A11E62AD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CD7EC2480729D57C3B3A30E1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E7D0F1BA28ED768F29B4E49F /* [CP] Copy Pods Resources */ = {
@@ -3900,25 +3791,88 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F83C1F8C9FF7D80C55C23B93 /* [CP] Copy Pods Resources */ = {
+		F021478F20CF36863EE75BA8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3953C13B289851C5402B2D8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3FC17A99023BC2288C1AD51 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8BB75940DD3F0D1BFB8E10E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -6052,6 +6006,14 @@
 				minimumVersion = 2.4.1;
 			};
 		};
+		439195772E55FC86001B0FCD /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.3;
+			};
+		};
 		43AE85DB2B5018A20010C812 /* XCRemoteSwiftPackageReference "UserDefault" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/juliand665/UserDefault";
@@ -6340,6 +6302,71 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 43912E202E54B19D00C1BFD5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
 			productName = MarkdownUI;
+		};
+		439195782E55FC86001B0FCD /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 439195772E55FC86001B0FCD /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+		4391968D2E560183001B0FCD /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 439195772E55FC86001B0FCD /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+		4391968F2E560187001B0FCD /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 439195772E55FC86001B0FCD /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+		439196912E56018B001B0FCD /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 439195772E55FC86001B0FCD /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+		439196932E560191001B0FCD /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 439195772E55FC86001B0FCD /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+		439196952E560195001B0FCD /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 439195772E55FC86001B0FCD /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+		439196972E560199001B0FCD /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 439195772E55FC86001B0FCD /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+		439196992E56019D001B0FCD /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 439195772E55FC86001B0FCD /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+		4391969B2E5601A2001B0FCD /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 439195772E55FC86001B0FCD /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+		4391969D2E5601A6001B0FCD /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 439195772E55FC86001B0FCD /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+		4391969F2E5601AA001B0FCD /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 439195772E55FC86001B0FCD /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+		439196A12E5601AF001B0FCD /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 439195772E55FC86001B0FCD /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+		439196A32E5601B4001B0FCD /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 439195772E55FC86001B0FCD /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
 		};
 		43AE85DC2B5018A20010C812 /* UserDefault */ = {
 			isa = XCSwiftPackageProductDependency;

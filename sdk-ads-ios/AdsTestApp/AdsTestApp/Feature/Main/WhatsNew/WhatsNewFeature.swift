@@ -8,12 +8,15 @@ internal import ComposableArchitecture
 
 @Reducer
 struct WhatsNewFeature {
+    
     @ObservableState
     struct State: Equatable {
         var markdownString = ""
+        var showConfetti = false
     }
     
-    enum Action: Equatable  {}
+    enum Action: Equatable  {
+    }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
