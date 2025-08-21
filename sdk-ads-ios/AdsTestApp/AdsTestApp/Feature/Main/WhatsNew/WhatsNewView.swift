@@ -14,6 +14,16 @@ struct WhatsNewView: View {
     @State var triggerConfetti = false
     var body: some View {
         ScrollView {
+            EmptyView()
+                .confettiCannon(trigger: $triggerConfetti,
+                                num: 100,
+                                openingAngle: Angle(degrees: 0),
+                                closingAngle: Angle(degrees: 360),
+                                radius: 200,
+                                repetitions: 2,
+                                repetitionInterval: 0.5,
+                                hapticFeedback: true)
+            
             WithPerceptionTracking {
                 Markdown(store.markdownString)
                     .padding()
@@ -36,14 +46,6 @@ struct WhatsNewView: View {
                     }
             }
         }
-        .confettiCannon(trigger: $triggerConfetti,
-                        num: 100,
-                        openingAngle: Angle(degrees: 0),
-                        closingAngle: Angle(degrees: 360),
-                        radius: 200,
-                        repetitions: 2,
-                        repetitionInterval: 0.5,
-                        hapticFeedback: true)
         .onAppear {
             if store.showConfetti {
                 triggerConfetti.toggle()

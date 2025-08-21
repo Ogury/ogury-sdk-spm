@@ -18,29 +18,7 @@ public enum OguryEnvironement {
 }
 
 public struct OguryAdsCardAdapter: AdsCardAdaptable {
-    public var whatsNew: String? {
-"""
-  ## Try MarkdownUI
-
-  **MarkdownUI** is a native Markdown renderer for SwiftUI
-  compatible with the
-  [GitHub Flavored Markdown Spec](https://github.github.com/gfm/).
-
-  ## Status
-  Use `git status` to list all new or modified files
-  that haven't yet been committed.
-
-  ### Quotes
-  You can quote text with a `>`.
-
-  > Outside of a dog, a book is man's best friend. Inside of a
-  > dog it's too dark to read.
-
-  – Groucho Marx
-
-"""
-    }
-    
+    public var currentBundle: Bundle { Bundle(for: InterstitialAdManager.self) ?? .main }
     public var sdkVersions: String {
         let coreSdkVersion = String(describing: OGCInternal.shared().getVersion())
         let ogurySdkVersion = Ogury.sdkVersion()

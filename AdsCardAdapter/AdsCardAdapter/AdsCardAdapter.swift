@@ -66,6 +66,8 @@ public protocol AdsCardAdaptable {
     var actions: [AdsCardAdapterAction] { get }
     /// populates the what's new sheet of the test app. Must be a markdown string
     var whatsNew: String? { get }
+    /// the bundle of the current bundle for each impplemenation of AdsCardAdaptable
+    var currentBundle: Bundle { get }
     
     /// returns the AdManager associated with an `AdAdapterFormat`
     /// - throws: throws an exception if no adapter is available
@@ -107,11 +109,15 @@ extension AdsCardAdaptable {
     }
     
     public var whatsNew: String? {
+        guard let readMe = try? self.currentBundle.loadStringFromFile(named: "WHATSNEW", extension: "md") else {
+            return
 """
 **No information provided**
 
 Please reach out to [askInApp](https://weareogury.slack.com/archives/C07Q1JP7P96)
 """
+        }
+        return readMe
     }
 }
 
@@ -135,5 +141,17 @@ public extension Decodable {
         }
         let conf: Self = try JSONDecoder().decode(Self.self, from: json)
         return conf
+    }
+}
+
+public extension Bundle {
+    func loadStringFromFile(named fileName: String,
+                            extension extName: String? = nil) throws -> String {
+        guard let url = url(forResource: fileName, withExtension: extName),
+              let data = try? Data(contentsOf: url) else {
+            throw DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "File not found"))
+        }
+        guard let string = String(data: data, encoding: .utf8) else { throw DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "No string found")) }
+        return string
     }
 }

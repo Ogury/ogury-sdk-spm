@@ -44,17 +44,7 @@ internal enum AdMobAction: AdsCardAdapterAction {
 }
 
 public struct AdMobAdsCardAdapter: AdsCardAdaptable {
-    public var whatsNew: String? {
-"""
-## Version 1.0.0+ogury.4.1.0.google.12.9.0
-
-In this version, we added support for OpenBidding ads.
-
-We would like to draw your attention to the fact that, even if the application displays various cards for each bidding type, the actual bidding resolution is done at `adUnit` level server side.
-
-> Please do not update the adUnit of the cards as this may result in unexpected behavior (for instance, a Header Bidding card can behave like an Open Bidding one if the adUnits do not fit
-"""
-    }
+    public var currentBundle: Bundle { Bundle(for: AdMobDelegateProxy.self) ?? .main }
     public init(debugViewController: UIViewController) {
         actions = [AdMobAction.showDebugger(debugViewController)]
     }
