@@ -281,6 +281,7 @@ pipeline {
 
                     sh """
                         #!/bin/zsh -l
+                        bundle install
                         bundle exec fastlane generate_test_app appSelector:'${appSelector}' isQa:${isQa} artifactory:${isArtifactory} tag:'${tagName}' killModeEnabled:${killModeEnabled}
                     """
                 }
