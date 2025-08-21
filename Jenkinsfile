@@ -1,4 +1,4 @@
-  
+
 @Library('ogury-jenkins-lib@v7.5.1') _
 
 pipeline {
@@ -279,8 +279,9 @@ pipeline {
         
                     echo "Will call bundle lane"
 
-                    sh """#!/bin/zsh -l
-                      bundle exec fastlane generate_test_app appSelector:'${appSelector}' isQa:${isQa} artifactory:${isArtifactory} tag:'${tagName}' killModeEnabled:${killModeEnabled}
+                    sh """
+                        #!/bin/zsh -l
+                        bundle exec fastlane generate_test_app appSelector:'${appSelector}' isQa:${isQa} artifactory:${isArtifactory} tag:'${tagName}' killModeEnabled:${killModeEnabled}
                     """
                 }
             }
