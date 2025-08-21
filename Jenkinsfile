@@ -269,17 +269,18 @@ pipeline {
         
                     // Additional flags if needed
                     def tagElements = tagName.split("-")
+                    echo "after split"
                     def isQa = tagElements.contains("qa")
+                    echo "isQa ${isQa}"
                     def isArtifactory = tagElements.contains("art")
+                    echo "isArtifactory ${isArtifactory}"
                     def killModeEnabled = tagElements.contains("killModeEnabled")
+                    echo "killModeEnabled ${killModeEnabled}"
         
+                    echo "Will call bundle lane"
+
                     sh """#!/bin/zsh -l
-                      bundle exec fastlane generate_test_app \\
-                        appSelector:'${appSelector}' \\
-                        isQa:${isQa} \\
-                        artifactory:${isArtifactory} \\
-                        tag:'${tagName}' \\
-                        killModeEnabled:${killModeEnabled}
+                      bundle exec fastlane generate_test_app appSelector:'${appSelector}' isQa:${isQa} artifactory:${isArtifactory} tag:'${tagName}' killModeEnabled:${killModeEnabled}
                     """
                 }
             }
