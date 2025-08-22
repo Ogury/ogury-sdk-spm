@@ -14,7 +14,10 @@ struct WhatsNewView: View {
     @State var triggerConfetti = false
     var body: some View {
         ScrollView {
-            EmptyView()
+            // just for the confetti to be on top
+            Circle()
+                .opacity(0)
+                .frame(width: 1, height: 1)
                 .confettiCannon(trigger: $triggerConfetti,
                                 num: 100,
                                 openingAngle: Angle(degrees: 0),

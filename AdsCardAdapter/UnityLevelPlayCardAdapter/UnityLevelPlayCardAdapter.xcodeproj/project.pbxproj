@@ -44,6 +44,8 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4373B3902DCA4D8A00E1702F /* UnityLevelPlayCardAdapter */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = UnityLevelPlayCardAdapter;
 			sourceTree = "<group>";
 		};
@@ -128,7 +130,6 @@
 				4373B38A2DCA4D8A00E1702F /* Sources */,
 				4373B38B2DCA4D8A00E1702F /* Frameworks */,
 				4373B38C2DCA4D8A00E1702F /* Resources */,
-				D6818B48A84BC372FFA0897F /* [CP] Copy Pods Resources */,
 				4373B4242DCA4E4800E1702F /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -188,27 +189,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		D6818B48A84BC372FFA0897F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayCardAdapter/Pods-UnityLevelPlayCardAdapter-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayCardAdapter/Pods-UnityLevelPlayCardAdapter-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayCardAdapter/Pods-UnityLevelPlayCardAdapter-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		FFC9E86757EC922F61285FFB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
