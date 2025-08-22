@@ -278,15 +278,9 @@ pipeline {
                     echo "killModeEnabled ${killModeEnabled}"
         
                     echo "Will call bundle lane"
+                    sh "echo 'Hello from worker'"
 
                     //sh "zsh -l -c 'bundle install && bundle exec fastlane deploy_ads_framework appSelector:\"${appSelector}\" isQa:${isQa} artifactory:${isArtifactory} tag:\"${tagName}\" killModeEnabled:${killModeEnabled}'"
-                }
-                
-                script {
-                    sh """#!/bin/zsh
-                    echo "Running fastlane"
-                    echo Hello from worker'
-                    """
                 }
             }
         }
