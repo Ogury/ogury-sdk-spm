@@ -248,39 +248,8 @@ pipeline {
             }
             steps {
                 script {
-                    echo 'tag resolution'
-                    // Extract app selector from TAG_NAME like "internal-testApp.ogury-1.0.0"
-                    def tagName = env.TAG_NAME ?: ""
-                    echo "TAG NAME: ${tagName}"
-                    def appSelector = null
-                    def version = null
-                    echo "TAG NAME: ${tagName}"
-                    def matcher = tagName =~ /internal-testApp\.([^-]+)(?:-(.+))?/
-                    
-                    if (matcher.find()) {
-                        appSelector = matcher.group(1)   // "ogury"
-                        version     = matcher.group(2)   // "1.0.0"
-                        echo "Selector: ${appSelector}, Version: ${version}"
-                    } else {
-                        error("No app selector found in TAG_NAME: ${tagName}")
-                    }
-                    
-                    echo "Found -> ${appSelector}"
-        
-                    // Additional flags if needed
-                    def tagElements = tagName.split("-")
-                    echo "after split"
-                    def isQa = tagElements.contains("qa")
-                    echo "isQa ${isQa}"
-                    def isArtifactory = tagElements.contains("art")
-                    echo "isArtifactory ${isArtifactory}"
-                    def killModeEnabled = tagElements.contains("killModeEnabled")
-                    echo "killModeEnabled ${killModeEnabled}"
-        
                     echo "Will call bundle lane"
                     sh "echo 'Hello from worker'"
-
-                    //sh "zsh -l -c 'bundle install && bundle exec fastlane deploy_ads_framework appSelector:\"${appSelector}\" isQa:${isQa} artifactory:${isArtifactory} tag:\"${tagName}\" killModeEnabled:${killModeEnabled}'"
                 }
             }
         }
