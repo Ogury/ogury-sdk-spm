@@ -244,9 +244,7 @@ pipeline {
             when {
                 beforeAgent true
                 buildingTag()
-                expression {
-                    env.TAG_NAME?.contains('internal-testApp.')
-                }
+                expression { return (env.TAG_NAME ?: "").contains("internal-testApp.") }
             }
             steps {
                 script {
@@ -280,8 +278,9 @@ pipeline {
                     echo "killModeEnabled ${killModeEnabled}"
         
                     echo "Will call bundle lane"
+                    sh "zsh -l -c 'echo Hello from worker'"
 
-                    sh "zsh -l -c 'bundle install && bundle exec fastlane deploy_ads_framework appSelector:\"${appSelector}\" isQa:${isQa} artifactory:${isArtifactory} tag:\"${tagName}\" killModeEnabled:${killModeEnabled}'"
+                    //sh "zsh -l -c 'bundle install && bundle exec fastlane deploy_ads_framework appSelector:\"${appSelector}\" isQa:${isQa} artifactory:${isArtifactory} tag:\"${tagName}\" killModeEnabled:${killModeEnabled}'"
                 }
             }
         }
