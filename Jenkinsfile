@@ -245,26 +245,28 @@ pipeline {
                 beforeAgent true
                 buildingTag()
                 expression {
-                    env.TAG_NAME?.contains('internal-testApp@')
+                    env.TAG_NAME?.contains('internal-testApp.')
                 }
             }
             steps {
                 script {
                     echo 'tag resolution'
-                    // Extract app selector from TAG_NAME like "internal-testApp@ogury-1.0.0"
+                    // Extract app selector from TAG_NAME like "internal-testApp.ogury-1.0.0"
                     def tagName = env.TAG_NAME ?: ""
                     echo "TAG NAME: ${tagName}"
                     def appSelector = null
                     def version = null
-                    def matcher = tagName =~ /internal-testApp@([^-]+)(?:-(.+))?/
+                    echo "TAG NAME: ${tagName}"
+                    def matcher = tagName =~ /internal-testApp\.([^-]+)(?:-(.+))?/
                     
                     if (matcher.find()) {
                         appSelector = matcher.group(1)   // "ogury"
-                        version     = matcher.group(2)   // "5.1.0"
+                        version     = matcher.group(2)   // "1.0.0"
                         echo "Selector: ${appSelector}, Version: ${version}"
                     } else {
                         error("No app selector found in TAG_NAME: ${tagName}")
                     }
+                    
                     echo "Found -> ${appSelector}"
         
                     // Additional flags if needed
@@ -279,11 +281,7 @@ pipeline {
         
                     echo "Will call bundle lane"
 
-                    sh """#!/bin/zsh -l
-                        bundle install
-                        #bundle exec fastlane generate_test_app appSelector:'${appSelector}' isQa:${isQa} artifactory:${isArtifactory} tag:'${tagName}' killModeEnabled:${killModeEnabled}
-                        bundle exec fastlane deploy_ads_framework appSelector:'${appSelector}' isQa:${isQa} artifactory:${isArtifactory} tag:'${tagName}' killModeEnabled:${killModeEnabled}
-                    """
+                    sh "zsh -l -c 'bundle install && bundle exec fastlane deploy_ads_framework appSelector:\"${appSelector}\" isQa:${isQa} artifactory:${isArtifactory} tag:\"${tagName}\" killModeEnabled:${killModeEnabled}'"
                 }
             }
         }
