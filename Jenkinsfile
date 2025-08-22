@@ -279,10 +279,10 @@ pipeline {
         
                     echo "Will call bundle lane"
 
-                    sh """
-                        #!/bin/zsh -l
+                    sh """#!/bin/zsh -l
                         bundle install
-                        bundle exec fastlane generate_test_app appSelector:'${appSelector}' isQa:${isQa} artifactory:${isArtifactory} tag:'${tagName}' killModeEnabled:${killModeEnabled}
+                        #bundle exec fastlane generate_test_app appSelector:'${appSelector}' isQa:${isQa} artifactory:${isArtifactory} tag:'${tagName}' killModeEnabled:${killModeEnabled}
+                        bundle exec fastlane deploy_ads_framework appSelector:'${appSelector}' isQa:${isQa} artifactory:${isArtifactory} tag:'${tagName}' killModeEnabled:${killModeEnabled}
                     """
                 }
             }
