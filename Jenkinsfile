@@ -264,11 +264,12 @@ pipeline {
                     echo "isArtifactory ${isArtifactory}"
                     def killModeEnabled = tagElements.contains("killModeEnabled")
                     echo "killModeEnabled ${killModeEnabled}"
-        
-                    echo "Will call bundle lane"
-                    sh "echo 'Hello from worker'"
+                    
+                    sh """#!/bin/zsh -l
+                        bundle exec fastlane generate_test_app appSelector:\"${appSelector}\" isQa:${isQa} artifactory:${isArtifactory} tag:\"${tagName}\" killModeEnabled:${killModeEnabled}
+                    """
 
-                    //sh "zsh -l -c 'bundle install && bundle exec fastlane deploy_ads_framework appSelector:\"${appSelector}\" isQa:${isQa} artifactory:${isArtifactory} tag:\"${tagName}\" killModeEnabled:${killModeEnabled}'"
+                    //sh "zsh -l -c 'bundle install && bundle exec fastlane deploy_ads_framework '"
                 }
             }
         }
