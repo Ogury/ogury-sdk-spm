@@ -17,6 +17,7 @@ public enum OguryEnvironement {
 }
 
 public struct PrebidAdsCardAdapter: AdsCardAdaptable {
+    public var currentBundle: Bundle { Bundle(for: PrebidAdManager.self) ?? .main }
     public func setLogLevel(_ level: OguryLogLevel) {
         
     }

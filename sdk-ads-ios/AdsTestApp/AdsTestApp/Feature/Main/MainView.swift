@@ -166,14 +166,18 @@ struct MainView: View {
                 }
                 
                 Section {
-                    Button{
-                        viewStore.send(.startSDKButtonTapped)
-                    } label: {
-                        HStack {
-                            Text("Start Ads SDK").font(.adsBody)
-                            Image(systemName: "power.circle")
+                    
+                    if appPermissions.settings {
+                        Button{
+                            viewStore.send(.startSDKButtonTapped)
+                        } label: {
+                            HStack {
+                                Text("Start Ads SDK").font(.adsBody)
+                                Image(systemName: "power.circle")
+                            }
                         }
                     }
+                    
                     Button{
                         viewStore.send(.showConsentButtonTapped)
                     } label: {
@@ -183,12 +187,14 @@ struct MainView: View {
                         }
                     }
                     
-                    Button{
-                        viewStore.send(.settingsButtonTapped)
-                    } label: {
-                        HStack {
-                            Text("Settings").font(.adsBody)
-                            Image(systemName: "gear")
+                    if appPermissions.settings {
+                        Button{
+                            viewStore.send(.settingsButtonTapped)
+                        } label: {
+                            HStack {
+                                Text("Settings").font(.adsBody)
+                                Image(systemName: "gear")
+                            }
                         }
                     }
                 }
@@ -206,6 +212,18 @@ struct MainView: View {
                             }
                         }
                     }
+                    
+                    if let markdownString = SdkLauncher.shared.adapter.whatsNew {
+                        Button{
+                            viewStore.send(.showWhatsNew(markdownString, showConfetti: false))
+                        } label: {
+                            HStack {
+                                Text("What's new ?").font(.adsBody)
+                                Image(systemName: "questionmark.circle")
+                            }
+                        }
+                    }
+                    
                     Button{
                         viewStore.send(.aboutButtonTapped)
                     } label: {
@@ -265,6 +283,28 @@ extension View {
                         state: \.$destination,
                         action: MainFeature.Action.destination
                     ),
+                    state: /MainFeature.Destination.State.whatsNew,
+                    action: MainFeature.Destination.Action.whatsNew) { store in
+                        NavigationView {
+                            WhatsNewView(store: store)
+                                .toolbar {
+                                    ToolbarItem(placement: .topBarLeading) {
+                                        Button {
+                                            viewStore.send(.destination(.dismiss))
+                                        } label: {
+                                            Image(systemName: "xmark.circle")
+                                                .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
+                                        }
+                                        .accessibilityLabel("SettingsSheetCancelButton")
+                                    }
+                                }
+                        }
+                    }
+                .sheet(
+                    store: store.scope(
+                        state: \.$destination,
+                        action: MainFeature.Action.destination
+                    ),
                     state: /MainFeature.Destination.State.settings,
                     action: MainFeature.Destination.Action.settings) { store in
                         NavigationView {
@@ -274,7 +314,8 @@ extension View {
                                         Button {
                                             viewStore.send(.destination(.dismiss))
                                         } label: {
-                                            Text("Dismiss")
+                                            Image(systemName: "xmark.circle")
+                                                .foregroundStyle(Color(AdColorPalette.Primary.accent.color))
                                         }
                                         .accessibilityLabel("SettingsSheetCancelButton")
                                     }
@@ -289,13 +330,9 @@ extension View {
                         state: /MainFeature.Destination.State.add,
                         action: MainFeature.Destination.Action.add,
                         content: { store in
-                            if #available(iOS 16.0, *) {
-                                AddSheetView(store: store, viewStore: viewStore)
-                                    .presentationDetents([.fraction(0.7)])
-                                    .presentationBackgroundInteraction(.disabled)
-                            } else {
-                                AddSheetView(store: store, viewStore: viewStore)
-                            }
+                            AddSheetView(store: store, viewStore: viewStore)
+                                .presentationDetents([.fraction(0.7)])
+                                .presentationBackgroundInteraction(.disabled)
                         })
         
     }

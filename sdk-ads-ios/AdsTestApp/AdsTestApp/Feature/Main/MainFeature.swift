@@ -127,6 +127,7 @@ struct MainFeature: Reducer {
         case settingsButtonTapped
         case bulkModeButtonTapped
         case addButtonTapped
+        case showWhatsNew(_: String, showConfetti: Bool)
         case showConsentButtonTapped
         case startSDKButtonTapped
         case cancelAddButtonTapped
@@ -211,7 +212,7 @@ struct MainFeature: Reducer {
                         return .none
                     }
                     
-                case .destination(.presented(.settings(.enableAdUnitEditingToggleTapped))),
+                case .destination(.presented(.settings(.enableFieldsEditingToggleTapped))),
                         .destination(.presented(.settings(.showCampaignToggleTapped))),
                         .destination(.presented(.settings(.showCreativeToggleTapped))),
                         .destination(.presented(.settings(.showTestModeToggleTapped))),
@@ -240,7 +241,7 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case .showConsentButtonTapped:
-                    adDelegate?.showConsentNotice(for: SettingsController().consentManager)
+                    adDelegate?.showConsentNotice()
                     return .none
                     
                 case .destination(.presented(.alert(.removeSet))):
@@ -258,6 +259,10 @@ struct MainFeature: Reducer {
                     
                 case .addButtonTapped:
                     state.destination = .add(.init())
+                    return .none
+                    
+                case let .showWhatsNew(markdownString, showConfetti):
+                    state.destination = .whatsNew(.init(markdownString: markdownString, showConfetti: showConfetti))
                     return .none
                     
                 case .addFormatButtonTapped:
@@ -351,8 +356,8 @@ struct MainFeature: Reducer {
         if state.settingsPriorToChange.showCampaignId != settings.showCampaignId {
             cardEvents.append(.showCampaignId(settings.showCampaignId))
         }
-        if state.settingsPriorToChange.enableAdUnitEditing != settings.enableAdUnitEditing {
-            cardEvents.append(.enableAdUnitEditing(settings.enableAdUnitEditing))
+        if state.settingsPriorToChange.fieldEditingMask != settings.fieldEditingMask {
+            cardEvents.append(.enableFieldsEditing(settings.fieldEditingMask == .allowAll))
         }
         if state.settingsPriorToChange.showCreativeId != settings.showCreativeId {
             cardEvents.append(.showCreativeId(settings.showCreativeId))
@@ -388,7 +393,7 @@ struct MainFeature: Reducer {
             index += 1
             return try? SdkLauncher.shared.adapter.adManager(for: adFormat,
                                                              options: .init(adParameters: .init(adUnitId: ""),
-                                                                            cardConfiguration: .init(enableAdUnitEditing: settings.enableAdUnitEditing,
+                                                                            cardConfiguration: .init(enableFieldsEditing: settings.enableFieldsEditing,
                                                                                                      showCampaignId: settings.showCampaignId,
                                                                                                      showCreativeId: settings.showCreativeId,
                                                                                                      showDspFields: settings.showDspFields,
@@ -412,12 +417,14 @@ struct MainFeature: Reducer {
             case alert(AlertState<MainFeature.Action.Alert>)
             case settings(AppSettingsFeature.State)
             case add(AddFeature.State)
+            case whatsNew(WhatsNewFeature.State)
             case `import`(ImportFeature.State)
         }
         enum Action: Equatable {
             case alert(MainFeature.Action.Alert)
             case settings(AppSettingsFeature.Action)
             case add(AddFeature.Action)
+            case whatsNew(WhatsNewFeature.Action)
             case `import`(ImportFeature.Action)
         }
         var body: some ReducerOf<Self> {
@@ -426,6 +433,9 @@ struct MainFeature: Reducer {
             }
             Scope(state: /State.add, action: /Action.add) {
                 AddFeature()
+            }
+            Scope(state: /State.whatsNew, action: /Action.whatsNew) {
+                WhatsNewFeature()
             }
             Scope(state: /State.import, action: /Action.import) {
                 ImportFeature()

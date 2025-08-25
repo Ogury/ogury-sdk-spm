@@ -18,6 +18,7 @@ public enum OguryEnvironement {
 }
 
 public struct OguryAdsCardAdapter: AdsCardAdaptable {
+    public var currentBundle: Bundle { Bundle(for: InterstitialAdManager.self) ?? .main }
     public var sdkVersions: String {
         let coreSdkVersion = String(describing: OGCInternal.shared().getVersion())
         let ogurySdkVersion = Ogury.sdkVersion()

@@ -238,7 +238,7 @@ public extension AdManager {
 }
 
 public enum AdOptionsEvent {
-    case enableAdUnitEditing(_: Bool)
+    case enableFieldsEditing(_: Bool)
     case showCampaignId(_: Bool)
     case showCreativeId(_: Bool)
     case showDspFields(_: Bool)
