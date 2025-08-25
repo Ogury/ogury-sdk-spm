@@ -331,6 +331,7 @@ lane :test do |options|
 
   desc "Proceed to deploy a new version of a framewok passed as parameter for the specified environment"
   lane :generate_test_app do |options|
+    puts "generate_test_app".red
     artifactory = options[:artifactory] ? options[:artifactory] : false
     isQa = options[:isQa] ? options[:isQa] : false
     killModeEnabled = options[:killModeEnabled] ? options[:killModeEnabled] : false
