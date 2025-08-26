@@ -18,13 +18,13 @@
 @synthesize algo, startDelay, threshold, rectSize, duration;
 
 - (instancetype)initWithSize:(CGSize)size threshold:(NSNumber*)threshold startDelay:(NSNumber*)delay {
-    return [self initWithSize:size threshold:threshold startDelay:startDelay log:OGALog.shared];
+    return [self initWithSize:size threshold:threshold startDelay:delay log:OGALog.shared];
 }
 
 - (instancetype)initWithSize:(CGSize)size threshold:(NSNumber*)threshold startDelay:(NSNumber*)delay log:(OGALog *)log {
     if (self = [super init]) {
         self.algo = OguryAdQualityAlgorythmUniformColorRect;
-        self.startDelay = startDelay;
+        self.startDelay = delay;
         self.threshold = threshold;
         self.rectSize = size;
         self.log = log;
@@ -47,18 +47,22 @@
 }
 
 - (void)performAdQualityCheckOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityAlgorythmCompletionBlock)completion {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.startDelay.intValue * MSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    NSLog(@"🐳 Start (%@) %@", self.startDelay, [NSDate date]);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.startDelay.intValue * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+        NSLog(@"🐳 Dispatch %@", [NSDate date]);
         [self logMessage:@"🐳 Start computing" adConfiguration:adConfiguration result:nil];
         NSDate *start = [NSDate date];
         CGRect targetRect = CGRectMake((view.bounds.size.width / 2) - self.rectSize.width / 2,
                                        (view.bounds.size.height / 2) - self.rectSize.height / 2,
                                        self.rectSize.width,
                                        self.rectSize.height);
-        UIGraphicsImageRenderer *renderer = [[UIGraphicsImageRenderer alloc] initWithBounds:targetRect];
-        UIImage *image = [renderer imageWithActions:^(UIGraphicsImageRendererContext * _Nonnull rendererContext) {
-            [view.layer renderInContext:rendererContext.CGContext];
-        }];
-        BOOL imageHasUniformColor = [self imageIsUniformColor:image];
+        
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, [UIScreen mainScreen].scale);
+        [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        BOOL imageHasUniformColor = [self imageIsUniformColor:image rect:targetRect];
         OGAAdQualityResult *result = [[OGAAdQualityResult alloc] init];
         result.sucess = !imageHasUniformColor;
         result.duration = @([[NSDate date] timeIntervalSinceDate:start]);
@@ -67,10 +71,28 @@
     });
 }
 
-- (BOOL)imageIsUniformColor:(UIImage *)image {
+- (BOOL)imageIsUniformColor:(UIImage *)image rect:(CGRect)rect {
     if (!image.CGImage) { return NO; }
     
-    CGImageRef cgImage = image.CGImage;
+    // Convert rect from points → pixels
+    CGFloat scale = image.scale > 0 ? image.scale : [UIScreen mainScreen].scale;
+    CGRect rectInPixels = CGRectMake(rect.origin.x * scale,
+                                     rect.origin.y * scale,
+                                     rect.size.width * scale,
+                                     rect.size.height * scale);
+    
+    // Intersect with image bounds
+    size_t imgW = CGImageGetWidth(image.CGImage);
+    size_t imgH = CGImageGetHeight(image.CGImage);
+    CGRect imgBoundsPx = CGRectMake(0, 0, imgW, imgH);
+    CGRect cropRect = CGRectIntersection(rectInPixels, imgBoundsPx);
+    if (CGRectIsEmpty(cropRect)) {
+        return NO;
+    }
+    
+    CGImageRef cgImage = CGImageCreateWithImageInRect(image.CGImage, cropRect);
+    if (!cgImage) { return NO; }
+    
     const size_t width  = CGImageGetWidth(cgImage);
     const size_t height = CGImageGetHeight(cgImage);
     const size_t bytesPerPixel = 4;

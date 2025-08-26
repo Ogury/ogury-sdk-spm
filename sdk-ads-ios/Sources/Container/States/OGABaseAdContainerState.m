@@ -196,7 +196,10 @@
     id<OGAAdDisplayer> displayer = self.displayer;
 
     if (displayer) {
-        [self.impressionController sendIfNecessaryAfterExposureChanged:exposure ad:displayer.ad delegateDispatcher:self.displayer.configuration.delegateDispatcher];
+        [self.impressionController sendIfNecessaryAfterExposureChanged:exposure
+                                                                    ad:displayer.ad
+                                                    delegateDispatcher:self.displayer.configuration.delegateDispatcher
+                                                             displayer:displayer];
 
         OGAAdDisplayerUpdateExposureInformation *information = [[OGAAdDisplayerUpdateExposureInformation alloc] initWithExposure:exposure];
         [self.displayer dispatchInformation:information];

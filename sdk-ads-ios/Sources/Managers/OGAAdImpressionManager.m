@@ -16,6 +16,7 @@
 #import "OGASKAdNetworkManager.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGAAd+ImpressionSource.h"
+#import "OGAAdQualityController.h"
 
 CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
 
@@ -70,13 +71,19 @@ CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
 
 #pragma mark - Methods
 
-- (void)sendIfNecessaryAfterExposureChanged:(OGAAdExposure *)exposure ad:(OGAAd *)ad delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher {
+- (void)sendIfNecessaryAfterExposureChanged:(OGAAdExposure *)exposure
+                                         ad:(OGAAd *)ad
+                         delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher
+                                  displayer:(id<OGAAdDisplayer>)displayer {
     if (exposure.exposurePercentage >= OGAAdImpressionControllerMinExposureForImpression) {
-        [self sendImpressionTracker:exposure ad:ad delegateDispatcher:delegateDispatcher];
+        [self sendImpressionTracker:exposure ad:ad delegateDispatcher:delegateDispatcher displayer:displayer];
     }
 }
 
-- (void)sendImpressionTracker:(OGAAdExposure *)exposure ad:(OGAAd *)ad delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher {
+- (void)sendImpressionTracker:(OGAAdExposure *)exposure
+                           ad:(OGAAd *)ad
+           delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher
+                    displayer:(id<OGAAdDisplayer>)displayer {
     @synchronized(self) {
         // We use the localIdentifier instead of the identifier due to a server bug that causes
         // the identifier to used twice.
@@ -102,6 +109,8 @@ CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
                 [self.monitoringDispatcher sendShowEventContainerDisplayedWithImpressionSource:[ad getRawImpressionSource]
                                                                                       exposure:@(exposure.exposurePercentage)
                                                                                adConfiguration:ad.adConfiguration];
+                // Ad Quality
+                [[OGAAdQualityController shared] performAdQualityChecksOn:displayer.view adConfiguration:ad.adConfiguration];
             }
 
             if ([ad isImpressionSourceSDK]) {
