@@ -21,6 +21,7 @@ extern NSString * const OguryAdQualityAlgorythmKey;
 @property (nonatomic, retain) NSError *_Nullable error;
 @property (nonatomic, retain) NSNumber* threshold;
 @property (nonatomic, retain) NSNumber* duration;
+@property (nonatomic, retain) NSNumber* devianceMax;
 @end
 
 typedef void (^AdQualityAlgorythmCompletionBlock)(OGAAdQualityResult *result);

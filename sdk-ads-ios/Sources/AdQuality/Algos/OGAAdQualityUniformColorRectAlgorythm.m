@@ -12,6 +12,7 @@
 
 @interface OGAAdQualityUniformColorRectAlgorythm()
 @property(nonatomic, strong) OGALog *log;
+@property(nonatomic, strong) NSNumber *devianceMax;
 @end
 
 @implementation OGAAdQualityUniformColorRectAlgorythm
@@ -26,6 +27,7 @@
         self.algo = OguryAdQualityAlgorythmUniformColorRect;
         self.startDelay = delay;
         self.threshold = threshold;
+        self.devianceMax = threshold;
         self.rectSize = size;
         self.log = log;
     }
@@ -36,8 +38,9 @@
     NSMutableArray<OguryLogTag *> * tags = [@[] mutableCopy];
     [tags addObject:[OguryLogTag tagWithKey:OguryAdQualityAlgorythmKey value:self.algo]];
     if (result != nil) {
-        [tags addObject:[OguryLogTag tagWithKey:@"result" value:@(result.sucess)]];
+        [tags addObject:[OguryLogTag tagWithKey:@"blank ad" value:result.sucess ? @"No" : @"Yes"]];
         [tags addObject:[OguryLogTag tagWithKey:@"duration" value:result.duration]];
+        [tags addObject:[OguryLogTag tagWithKey:@"deviance" value:result.devianceMax]];
     }
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
                                          adConfiguration:adConfiguration
@@ -47,10 +50,8 @@
 }
 
 - (void)performAdQualityCheckOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityAlgorythmCompletionBlock)completion {
-    NSLog(@"🐳 Start (%@) %@", self.startDelay, [NSDate date]);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.startDelay.intValue * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
-        NSLog(@"🐳 Dispatch %@", [NSDate date]);
-        [self logMessage:@"🐳 Start computing" adConfiguration:adConfiguration result:nil];
+        [self logMessage:@"Start computing" adConfiguration:adConfiguration result:nil];
         NSDate *start = [NSDate date];
         CGRect targetRect = CGRectMake((view.bounds.size.width / 2) - self.rectSize.width / 2,
                                        (view.bounds.size.height / 2) - self.rectSize.height / 2,
@@ -66,7 +67,8 @@
         OGAAdQualityResult *result = [[OGAAdQualityResult alloc] init];
         result.sucess = !imageHasUniformColor;
         result.duration = @([[NSDate date] timeIntervalSinceDate:start]);
-        [self logMessage:@"🐳 End computing" adConfiguration:adConfiguration result:result];
+        result.devianceMax = self.devianceMax;
+        [self logMessage:@"End computing" adConfiguration:adConfiguration result:result];
         completion(result);
     });
 }
@@ -137,6 +139,7 @@
             unsigned char a = rawData[offset + 3];
             int deviance = abs(r - r0) + abs(b - b0) + abs(g - g0) + abs(a - a0);
             if (deviance > self.threshold.intValue) {
+                self.devianceMax = @(deviance);
                 uniform = NO;
                 break;
             }
