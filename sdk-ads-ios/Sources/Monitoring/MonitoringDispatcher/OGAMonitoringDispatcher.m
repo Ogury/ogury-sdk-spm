@@ -20,6 +20,7 @@
 #import "OGALog.h"
 #import "OGAMonitoringLogMessage.h"
 #import "OGAMonitorEventConfigurationFactory.h"
+#import "OGAAdQualityController.h"
 
 @interface OGAMonitoringDispatcher ()
 
@@ -384,6 +385,11 @@
          customSessionId:nil
                  details:details
             errorContent:nil];
+    // Ad Quality
+    UIView *view = [UIView new];
+    [view setFrame:CGRectMake(0, 0, 200, 200)];
+    [view setBackgroundColor:[UIColor whiteColor]];
+    [[OGAAdQualityController shared] performAdQualityChecksOn:view adConfiguration:adConfiguration];
 }
 
 #pragma mark - Show error event method
