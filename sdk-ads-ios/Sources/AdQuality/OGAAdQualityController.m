@@ -51,15 +51,17 @@
     }
     dispatch_group_t group = dispatch_group_create();
     NSMutableArray<OGAAdQualityResult *> *results = [@[] mutableCopy];
-    
-    [self.activeAlgorythms enumerateObjectsUsingBlock:^(id<OGAAdQualityAlgorythm>  _Nonnull algo, NSUInteger idx, BOOL * _Nonnull stop) {
+
+    [self.activeAlgorythms enumerateObjectsUsingBlock:^(id<OGAAdQualityAlgorythm> _Nonnull algo, NSUInteger idx, BOOL *_Nonnull stop) {
         dispatch_group_enter(group);
-        [algo performAdQualityCheckOn:view adConfiguration:adConfiguration completion:^(OGAAdQualityResult * _Nonnull result) {
-            [results addObject:result];
-            dispatch_group_leave(group);
-        }];
+        [algo performAdQualityCheckOn:view
+                      adConfiguration:adConfiguration
+                           completion:^(OGAAdQualityResult *_Nonnull result) {
+                               [results addObject:result];
+                               dispatch_group_leave(group);
+                           }];
     }];
-    
+
     dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         [self safeResultCompletionWithData:results completion:completion];
     });

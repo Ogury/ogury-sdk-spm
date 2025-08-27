@@ -13,16 +13,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// OGAAdQualityUniformColorRectAlgorythm will grab a snapshot of `rectSize` centered in the view
 /// and check pixel by pixel the standard deviance from a reference pixel (random position)
-@interface OGAAdQualityUniformColorRectAlgorythm<OGAAdQualityAlgorythm>: NSObject
+@interface OGAAdQualityUniformColorRectAlgorythm<OGAAdQualityAlgorythm> : NSObject
 /// the size of the centered rect to analyze
-@property (nonatomic) CGSize rectSize;
+@property(nonatomic) CGSize rectSize;
 /// the threshold before considering a pixek is different
-@property (nonatomic, retain) NSNumber* threshold;
+@property(nonatomic, retain) NSNumber *threshold;
 /// start delay before grabing a snapshot, in milliseconds
-@property (nonatomic, retain) NSNumber* startDelay;
-@property (nonatomic, retain) NSNumber* duration;
-- (instancetype)initWithSize:(CGSize)size threshold:(NSNumber*)threshold startDelay:(NSNumber*)delay;
-@property (nonatomic, retain) OguryAdQualityAlgorythm algo;
+@property(nonatomic, retain) NSNumber *startDelay;
+@property(nonatomic, retain) NSNumber *duration;
+- (instancetype)initWithSize:(CGSize)size threshold:(NSNumber *)threshold startDelay:(NSNumber *)delay;
+@property(nonatomic, retain) OguryAdQualityAlgorythm algo;
 - (void)performAdQualityCheckOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityAlgorythmCompletionBlock)completion;
 @end
 

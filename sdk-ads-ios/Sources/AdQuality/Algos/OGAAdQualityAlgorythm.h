@@ -13,22 +13,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef NSString *OguryAdQualityAlgorythm NS_TYPED_EXTENSIBLE_ENUM;
 extern OguryAdQualityAlgorythm const OguryAdQualityAlgorythmUniformColorRect;
-extern NSString * const OguryAdQualityAlgorythmKey;
+extern NSString *const OguryAdQualityAlgorythmKey;
 
-@interface OGAAdQualityResult: NSObject
-@property (nonatomic, retain) OguryAdQualityAlgorythm algo;
-@property (nonatomic) BOOL sucess;
-@property (nonatomic, retain) NSError *_Nullable error;
-@property (nonatomic, retain) NSNumber* threshold;
-@property (nonatomic, retain) NSNumber* duration;
-@property (nonatomic, retain) NSNumber* devianceMax;
+@interface OGAAdQualityResult : NSObject
+@property(nonatomic, retain) OguryAdQualityAlgorythm algo;
+@property(nonatomic) BOOL sucess;
+@property(nonatomic, retain) NSError *_Nullable error;
+@property(nonatomic, retain) NSNumber *threshold;
+@property(nonatomic, retain) NSNumber *duration;
+@property(nonatomic, retain) NSNumber *devianceMax;
 @end
 
 typedef void (^AdQualityAlgorythmCompletionBlock)(OGAAdQualityResult *result);
 
 @protocol OGAAdQualityAlgorythm <NSObject>
-@property (nonatomic, retain) OguryAdQualityAlgorythm algo;
-@property (nonatomic, retain) NSNumber* duration;
+@property(nonatomic, retain) OguryAdQualityAlgorythm algo;
+@property(nonatomic, retain) NSNumber *duration;
 - (void)performAdQualityCheckOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityAlgorythmCompletionBlock)completion;
 @end
 

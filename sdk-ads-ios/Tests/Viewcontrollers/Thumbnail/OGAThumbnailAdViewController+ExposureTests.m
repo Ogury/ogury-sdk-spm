@@ -110,7 +110,7 @@
     [self.thumbnailController exposureDidChange:exposure];
 
     __block OGAAdDisplayerUpdateExposureInformation *info;
-    OCMVerify([self.impressionManager sendIfNecessaryAfterExposureChanged:exposure ad:self.ad delegateDispatcher:OCMOCK_ANY]);
+    OCMVerify([self.impressionManager sendIfNecessaryAfterExposureChanged:exposure ad:self.ad delegateDispatcher:OCMOCK_ANY displayer:OCMOCK_ANY]);
     OCMVerify([self.displayer dispatchInformation:[OCMArg checkWithBlock:^BOOL(id obj) {
                                   if ([obj isKindOfClass:[OGAAdDisplayerUpdateExposureInformation class]]) {
                                       info = obj;

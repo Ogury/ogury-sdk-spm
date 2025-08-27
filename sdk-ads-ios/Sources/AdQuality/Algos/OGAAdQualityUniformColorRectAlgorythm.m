@@ -10,7 +10,7 @@
 #import "OGALog.h"
 #import "OGAAdLogMessage.h"
 
-@interface OGAAdQualityUniformColorRectAlgorythm()
+@interface OGAAdQualityUniformColorRectAlgorythm ()
 @property(nonatomic, strong) OGALog *log;
 @property(nonatomic, strong) NSNumber *devianceMax;
 @property(nonatomic, strong) NSString *uniformHexColor;
@@ -19,11 +19,11 @@
 @implementation OGAAdQualityUniformColorRectAlgorythm
 @synthesize algo, startDelay, threshold, rectSize, duration, uniformHexColor;
 
-- (instancetype)initWithSize:(CGSize)size threshold:(NSNumber*)threshold startDelay:(NSNumber*)delay {
+- (instancetype)initWithSize:(CGSize)size threshold:(NSNumber *)threshold startDelay:(NSNumber *)delay {
     return [self initWithSize:size threshold:threshold startDelay:delay log:OGALog.shared];
 }
 
-- (instancetype)initWithSize:(CGSize)size threshold:(NSNumber*)threshold startDelay:(NSNumber*)delay log:(OGALog *)log {
+- (instancetype)initWithSize:(CGSize)size threshold:(NSNumber *)threshold startDelay:(NSNumber *)delay log:(OGALog *)log {
     if (self = [super init]) {
         self.algo = OguryAdQualityAlgorythmUniformColorRect;
         self.startDelay = delay;
@@ -35,8 +35,8 @@
     return self;
 }
 
-- (void)logMessage:(NSString *)message adConfiguration:(OGAAdConfiguration *)adConfiguration result:(OGAAdQualityResult * _Nullable)result {
-    NSMutableArray<OguryLogTag *> * tags = [@[] mutableCopy];
+- (void)logMessage:(NSString *)message adConfiguration:(OGAAdConfiguration *)adConfiguration result:(OGAAdQualityResult *_Nullable)result {
+    NSMutableArray<OguryLogTag *> *tags = [@[] mutableCopy];
     [tags addObject:[OguryLogTag tagWithKey:OguryAdQualityAlgorythmKey value:self.algo]];
     if (result != nil) {
         [tags addObject:[OguryLogTag tagWithKey:@"blank ad" value:result.sucess ? @"No" : @"Yes"]];
@@ -59,12 +59,12 @@
                                        (view.bounds.size.height / 2) - self.rectSize.height / 2,
                                        self.rectSize.width,
                                        self.rectSize.height);
-        
+
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, [UIScreen mainScreen].scale);
         [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        
+
         BOOL imageHasUniformColor = [self imageIsUniformColor:image rect:targetRect];
         OGAAdQualityResult *result = [[OGAAdQualityResult alloc] init];
         result.sucess = !imageHasUniformColor;
@@ -76,15 +76,17 @@
 }
 
 - (BOOL)imageIsUniformColor:(UIImage *)image rect:(CGRect)rect {
-    if (!image.CGImage) { return NO; }
-    
+    if (!image.CGImage) {
+        return NO;
+    }
+
     // Convert rect from points → pixels
     CGFloat scale = image.scale > 0 ? image.scale : [UIScreen mainScreen].scale;
     CGRect rectInPixels = CGRectMake(rect.origin.x * scale,
                                      rect.origin.y * scale,
                                      rect.size.width * scale,
                                      rect.size.height * scale);
-    
+
     // Intersect with image bounds
     size_t imgW = CGImageGetWidth(image.CGImage);
     size_t imgH = CGImageGetHeight(image.CGImage);
@@ -93,19 +95,23 @@
     if (CGRectIsEmpty(cropRect)) {
         return NO;
     }
-    
+
     CGImageRef cgImage = CGImageCreateWithImageInRect(image.CGImage, cropRect);
-    if (!cgImage) { return NO; }
-    
-    const size_t width  = CGImageGetWidth(cgImage);
+    if (!cgImage) {
+        return NO;
+    }
+
+    const size_t width = CGImageGetWidth(cgImage);
     const size_t height = CGImageGetHeight(cgImage);
     const size_t bytesPerPixel = 4;
     const size_t bitsPerComponent = 8;
     const size_t bytesPerRow = width * bytesPerPixel;
-    
+
     CGColorSpaceRef cs = CGColorSpaceCreateDeviceRGB();
-    if (!cs) { return NO; }
-    
+    if (!cs) {
+        return NO;
+    }
+
     unsigned char *rawData = (unsigned char *)calloc(height * width * bytesPerPixel, sizeof(unsigned char));
     CGContextRef ctx = CGBitmapContextCreate(rawData,
                                              width,
@@ -114,15 +120,15 @@
                                              bytesPerRow,
                                              cs,
                                              kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-    
+
     if (!ctx) {
         free(rawData);
         CGColorSpaceRelease(cs);
         return NO;
     }
-    
+
     CGContextDrawImage(ctx, CGRectMake(0, 0, width, height), cgImage);
-    
+
     NSUInteger pixelCount = width * height;
     NSUInteger randomIndex = arc4random_uniform((u_int32_t)pixelCount);
     size_t offset = randomIndex * bytesPerPixel;
@@ -131,7 +137,7 @@
     unsigned char b0 = rawData[offset + 2];
     unsigned char a0 = rawData[offset + 3];
     uniformHexColor = [NSString stringWithFormat:@"#%02X%02X%02X", r0, g0, b0];
-    
+
     BOOL uniform = YES;
     for (size_t y = 0; y < height && uniform; y++) {
         for (size_t x = 0; x < width; x++) {
@@ -148,12 +154,12 @@
             }
         }
     }
-    
+
     // Cleanup
     CGContextRelease(ctx);
     CGColorSpaceRelease(cs);
     free(rawData);
-    
+
     return uniform;
 }
 

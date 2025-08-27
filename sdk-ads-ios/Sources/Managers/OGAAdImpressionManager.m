@@ -26,6 +26,7 @@ CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
 @property(nonatomic, strong) OguryNetworkClient *networkClient;
 @property(nonatomic, strong) OGALog *log;
 @property(nonatomic, strong) OGAMonitoringDispatcher *monitoringDispatcher;
+@property(nonatomic, strong) OGAAdQualityController *adQualityController;
 
 @property(atomic, strong) NSMutableDictionary<NSString *, NSNumber *> *hasSentImpressionTrackByAdId;
 @property(atomic, strong) NSMutableDictionary<NSString *, NSNumber *> *hasSentImpressionDelegateByAdId;
@@ -50,13 +51,15 @@ CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
     return [self initWithMetricsService:[OGAMetricsService shared]
                           networkClient:[OguryNetworkClient shared]
                                     log:[OGALog shared]
-                   monitoringDispatcher:[OGAMonitoringDispatcher shared]];
+                   monitoringDispatcher:[OGAMonitoringDispatcher shared]
+                    adQualityController:[OGAAdQualityController shared]];
 }
 
 - (instancetype)initWithMetricsService:(OGAMetricsService *)metricsService
                          networkClient:(OguryNetworkClient *)networkClient
                                    log:(OGALog *)log
-                  monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher {
+                  monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher
+                   adQualityController:(OGAAdQualityController *)adQualityController {
     if (self = [super init]) {
         _metricsService = metricsService;
         _networkClient = networkClient;
@@ -65,6 +68,7 @@ CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
         _hasSentImpressionTrackBySessionId = [[NSMutableDictionary alloc] init];
         _log = log;
         _monitoringDispatcher = monitoringDispatcher;
+        _adQualityController = adQualityController;
     }
     return self;
 }
@@ -110,7 +114,7 @@ CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
                                                                                       exposure:@(exposure.exposurePercentage)
                                                                                adConfiguration:ad.adConfiguration];
                 // Ad Quality
-                [[OGAAdQualityController shared] performAdQualityChecksOn:displayer.view adConfiguration:ad.adConfiguration];
+                [self.adQualityController performAdQualityChecksOn:displayer.view adConfiguration:ad.adConfiguration];
             }
 
             if ([ad isImpressionSourceSDK]) {

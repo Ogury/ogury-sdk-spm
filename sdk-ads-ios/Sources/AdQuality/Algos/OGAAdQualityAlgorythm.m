@@ -9,7 +9,7 @@
 #import "OGAAdQualityAlgorythm.h"
 
 OguryAdQualityAlgorythm const OguryAdQualityAlgorythmUniformColorRect = @"UNIFORM_COLOR_RECT";
-NSString * const OguryAdQualityAlgorythmKey = @"algo";
+NSString *const OguryAdQualityAlgorythmKey = @"algo";
 
 @implementation OGAAdQualityResult
 @synthesize algo, sucess, error, threshold, duration, devianceMax;
