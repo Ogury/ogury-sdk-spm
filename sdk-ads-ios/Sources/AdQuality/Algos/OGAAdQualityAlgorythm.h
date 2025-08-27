@@ -28,6 +28,7 @@ typedef void (^AdQualityAlgorythmCompletionBlock)(OGAAdQualityResult *result);
 
 @protocol OGAAdQualityAlgorythm <NSObject>
 @property(nonatomic, retain) OguryAdQualityAlgorythm algo;
+@property(nonatomic, retain) NSArray<NSString *> *allowedFormats;
 @property(nonatomic, retain) NSNumber *duration;
 - (void)performAdQualityCheckOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityAlgorythmCompletionBlock)completion;
 @end

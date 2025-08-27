@@ -17,13 +17,20 @@
 @end
 
 @implementation OGAAdQualityUniformColorRectAlgorythm
-@synthesize algo, startDelay, threshold, rectSize, duration, uniformHexColor;
+@synthesize algo, startDelay, threshold, rectSize, duration, uniformHexColor, allowedFormats;
 
-- (instancetype)initWithSize:(CGSize)size threshold:(NSNumber *)threshold startDelay:(NSNumber *)delay {
-    return [self initWithSize:size threshold:threshold startDelay:delay log:OGALog.shared];
+- (instancetype)initWithSize:(CGSize)size
+                   threshold:(NSNumber *)threshold
+                  startDelay:(NSNumber *)delay
+             allowedFormats:(NSArray<NSString *> *)allowedFormats {
+    return [self initWithSize:size threshold:threshold startDelay:delay allowedFormats:allowedFormats log:OGALog.shared];
 }
 
-- (instancetype)initWithSize:(CGSize)size threshold:(NSNumber *)threshold startDelay:(NSNumber *)delay log:(OGALog *)log {
+- (instancetype)initWithSize:(CGSize)size
+                   threshold:(NSNumber *)threshold
+                  startDelay:(NSNumber *)delay
+             allowedFormats:(NSArray<NSString *> *)allowedFormats
+                         log:(OGALog *)log {
     if (self = [super init]) {
         self.algo = OguryAdQualityAlgorythmUniformColorRect;
         self.startDelay = delay;
@@ -31,6 +38,7 @@
         self.devianceMax = threshold;
         self.rectSize = size;
         self.log = log;
+        self.allowedFormats = allowedFormats;
     }
     return self;
 }

@@ -31,7 +31,8 @@
         activeAlgorythms = @[
             [[OGAAdQualityUniformColorRectAlgorythm alloc] initWithSize:CGSizeMake(50, 50)
                                                               threshold:@(6)
-                                                             startDelay:@(1000)]
+                                                             startDelay:@(1000)
+                                                         allowedFormats:@[OGAAdConfigurationAdTypeInterstitial]]
         ];
         self.isEnabled = YES;
     }
@@ -53,13 +54,15 @@
     NSMutableArray<OGAAdQualityResult *> *results = [@[] mutableCopy];
 
     [self.activeAlgorythms enumerateObjectsUsingBlock:^(id<OGAAdQualityAlgorythm> _Nonnull algo, NSUInteger idx, BOOL *_Nonnull stop) {
-        dispatch_group_enter(group);
-        [algo performAdQualityCheckOn:view
-                      adConfiguration:adConfiguration
-                           completion:^(OGAAdQualityResult *_Nonnull result) {
-                               [results addObject:result];
-                               dispatch_group_leave(group);
-                           }];
+        if ([algo.allowedFormats containsObject:[adConfiguration getAdTypeString]]) {
+            dispatch_group_enter(group);
+            [algo performAdQualityCheckOn:view
+                          adConfiguration:adConfiguration
+                               completion:^(OGAAdQualityResult *_Nonnull result) {
+                [results addObject:result];
+                dispatch_group_leave(group);
+            }];
+        }
     }];
 
     dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{

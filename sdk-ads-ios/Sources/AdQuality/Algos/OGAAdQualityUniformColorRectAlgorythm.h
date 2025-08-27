@@ -21,8 +21,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// start delay before grabing a snapshot, in milliseconds
 @property(nonatomic, retain) NSNumber *startDelay;
 @property(nonatomic, retain) NSNumber *duration;
-- (instancetype)initWithSize:(CGSize)size threshold:(NSNumber *)threshold startDelay:(NSNumber *)delay;
 @property(nonatomic, retain) OguryAdQualityAlgorythm algo;
+@property(nonatomic, retain) NSArray<NSString *> *allowedFormats;
+
+- (instancetype)initWithSize:(CGSize)size
+                   threshold:(NSNumber *)threshold
+                  startDelay:(NSNumber *)delay
+             allowedFormats:(NSArray<NSString *> *)allowedFormats;
 - (void)performAdQualityCheckOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityAlgorythmCompletionBlock)completion;
 @end
 
