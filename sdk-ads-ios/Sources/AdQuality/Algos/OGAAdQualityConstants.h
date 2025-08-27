@@ -13,4 +13,4 @@ extern NSString *const OguryAdQualityMonitoringKeyBlankAd;
 extern NSString *const OguryAdQualityMonitoringKeyColor;
 extern NSString *const OguryAdQualityMonitoringKeyParams;
 extern NSString *const OguryAdQualityMonitoringKeyDeviance;
-extern NSString *const OguryAdQualityMonitoringKeyTimeSpan;
+extern NSString *const OguryAdQualityMonitoringKeyDuration;

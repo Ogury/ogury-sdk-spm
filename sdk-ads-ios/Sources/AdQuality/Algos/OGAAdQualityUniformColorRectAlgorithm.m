@@ -107,7 +107,7 @@
                                              self.startDelay,
                                              self.threshold],
         OguryAdQualityMonitoringKeyDeviance : result.devianceMax,
-        OguryAdQualityMonitoringKeyTimeSpan : result.duration,
+        OguryAdQualityMonitoringKeyDuration : result.duration,
     }];
     [self.monitoringDispatcher sendAdQualityEvent:OGAShowEventAdQualityBlankAd
                                   adConfiguration:adConfiguration

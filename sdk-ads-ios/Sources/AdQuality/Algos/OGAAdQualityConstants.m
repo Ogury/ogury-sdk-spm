@@ -13,4 +13,4 @@ NSString *const OguryAdQualityMonitoringKeyBlankAd = @"is_blank";
 NSString *const OguryAdQualityMonitoringKeyColor = @"color_ref";
 NSString *const OguryAdQualityMonitoringKeyParams = @"params";
 NSString *const OguryAdQualityMonitoringKeyDeviance = @"deviance";
-NSString *const OguryAdQualityMonitoringKeyTimeSpan = @"time_span";
+NSString *const OguryAdQualityMonitoringKeyDuration = @"duration";
