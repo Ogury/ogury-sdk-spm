@@ -7,15 +7,15 @@
 //
 
 #import "OGAAdQualityController.h"
-#import "OGAAdQualityAlgorythm.h"
-#import "OGAAdQualityUniformColorRectAlgorythm.h"
+#import "OGAAdQualityAlgorithm.h"
+#import "OGAAdQualityUniformColorRectAlgorithm.h"
 
 @interface OGAAdQualityController ()
 
 @end
 
 @implementation OGAAdQualityController
-@synthesize activeAlgorythms, isEnabled;
+@synthesize activeAlgorithms, isEnabled;
 
 + (instancetype)shared {
     static OGAAdQualityController *instance;
@@ -28,11 +28,14 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        activeAlgorythms = @[
-            [[OGAAdQualityUniformColorRectAlgorythm alloc] initWithSize:CGSizeMake(50, 50)
+        activeAlgorithms = @[
+            [[OGAAdQualityUniformColorRectAlgorithm alloc] initWithSize:CGSizeMake(50, 50)
                                                               threshold:@(6)
                                                              startDelay:@(1000)
-                                                         allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial ]]
+                                                         allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial,
+                                                                           OGAAdConfigurationAdTypeRewarded,
+                                                                           OGAAdConfigurationAdTypeThumbnailAd,
+                                                                           OGAAdConfigurationAdTypeStandardBanners ]]
         ];
         self.isEnabled = YES;
     }
@@ -53,7 +56,7 @@
     dispatch_group_t group = dispatch_group_create();
     NSMutableArray<OGAAdQualityResult *> *results = [@[] mutableCopy];
 
-    [self.activeAlgorythms enumerateObjectsUsingBlock:^(id<OGAAdQualityAlgorythm> _Nonnull algo, NSUInteger idx, BOOL *_Nonnull stop) {
+    [self.activeAlgorithms enumerateObjectsUsingBlock:^(id<OGAAdQualityAlgorithm> _Nonnull algo, NSUInteger idx, BOOL *_Nonnull stop) {
         if ([algo.allowedFormats containsObject:[adConfiguration getAdTypeString]]) {
             dispatch_group_enter(group);
             [algo performAdQualityCheckOn:view

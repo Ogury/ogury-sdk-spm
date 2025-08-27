@@ -6,46 +6,56 @@
 //  Copyright © 2025 Ogury Ltd. All rights reserved.
 //
 
-#import "OGAAdQualityUniformColorRectAlgorythm.h"
+#import "OGAAdQualityUniformColorRectAlgorithm.h"
 #import "OGALog.h"
 #import "OGAAdLogMessage.h"
+#import "OGAMonitoringDispatcher.h"
+#import "OGAAdQualityConstants.h"
 
-@interface OGAAdQualityUniformColorRectAlgorythm ()
+@interface OGAAdQualityUniformColorRectAlgorithm ()
 @property(nonatomic, strong) OGALog *log;
 @property(nonatomic, strong) NSNumber *devianceMax;
 @property(nonatomic, strong) NSString *uniformHexColor;
+@property(nonatomic, strong) OGAMonitoringDispatcher *monitoringDispatcher;
 @end
 
-@implementation OGAAdQualityUniformColorRectAlgorythm
+@implementation OGAAdQualityUniformColorRectAlgorithm
 @synthesize algo, startDelay, threshold, rectSize, duration, uniformHexColor, allowedFormats;
 
 - (instancetype)initWithSize:(CGSize)size
                    threshold:(NSNumber *)threshold
                   startDelay:(NSNumber *)delay
               allowedFormats:(NSArray<NSString *> *)allowedFormats {
-    return [self initWithSize:size threshold:threshold startDelay:delay allowedFormats:allowedFormats log:OGALog.shared];
+    return [self initWithSize:size
+                    threshold:threshold
+                   startDelay:delay
+               allowedFormats:allowedFormats
+         monitoringDispatcher:[OGAMonitoringDispatcher shared]
+                          log:OGALog.shared];
 }
 
 - (instancetype)initWithSize:(CGSize)size
                    threshold:(NSNumber *)threshold
                   startDelay:(NSNumber *)delay
               allowedFormats:(NSArray<NSString *> *)allowedFormats
+        monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher
                          log:(OGALog *)log {
     if (self = [super init]) {
-        self.algo = OguryAdQualityAlgorythmUniformColorRect;
+        self.algo = OguryAdQualityAlgorithmUniformColorRect;
         self.startDelay = delay;
         self.threshold = threshold;
         self.devianceMax = threshold;
         self.rectSize = size;
         self.log = log;
         self.allowedFormats = allowedFormats;
+        self.monitoringDispatcher = monitoringDispatcher;
     }
     return self;
 }
 
 - (void)logMessage:(NSString *)message adConfiguration:(OGAAdConfiguration *)adConfiguration result:(OGAAdQualityResult *_Nullable)result {
     NSMutableArray<OguryLogTag *> *tags = [@[] mutableCopy];
-    [tags addObject:[OguryLogTag tagWithKey:OguryAdQualityAlgorythmKey value:self.algo]];
+    [tags addObject:[OguryLogTag tagWithKey:OguryAdQualityAlgorithmKey value:self.algo]];
     if (result != nil) {
         [tags addObject:[OguryLogTag tagWithKey:@"blank ad" value:result.success ? @"No" : @"Yes"]];
         [tags addObject:[OguryLogTag tagWithKey:@"duration" value:result.duration]];
@@ -59,7 +69,7 @@
                                                     tags:tags]];
 }
 
-- (void)performAdQualityCheckOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityAlgorythmCompletionBlock)completion {
+- (void)performAdQualityCheckOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityAlgorithmCompletionBlock)completion {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.startDelay.intValue * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
         [self logMessage:@"Start computing" adConfiguration:adConfiguration result:nil];
         NSDate *start = [NSDate date];
@@ -70,7 +80,7 @@
 
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, [UIScreen mainScreen].scale);
         [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
-        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+//        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
 
@@ -81,8 +91,27 @@
         result.duration = @(@([[NSDate date] timeIntervalSinceDate:start] * 1000).intValue);
         result.devianceMax = self.devianceMax;
         [self logMessage:@"End computing" adConfiguration:adConfiguration result:result];
+        [self sendMonitoringEventFor:result adConfiguration:adConfiguration];
         completion(result);
     });
+}
+
+- (void)sendMonitoringEventFor:(OGAAdQualityResult *)result adConfiguration:(OGAAdConfiguration *)adConfiguration {
+    OGAOrderedDictionary *dict = [OGAOrderedDictionary dictionaryWithDictionary:@{
+        OguryAdQualityMonitoringKeyAlgo : self.algo,
+        OguryAdQualityMonitoringKeyBlankAd : result.success ? @(NO) : @(YES),
+        OguryAdQualityMonitoringKeyColor : self.uniformHexColor,
+        OguryAdQualityMonitoringKeyParams : [NSString stringWithFormat:@"%0.0fx%0.0f;%@;%@",
+                                             rectSize.width,
+                                             rectSize.height,
+                                             self.startDelay,
+                                             self.threshold],
+        OguryAdQualityMonitoringKeyDeviance : result.devianceMax,
+        OguryAdQualityMonitoringKeyTimeSpan : result.duration,
+    }];
+    [self.monitoringDispatcher sendAdQualityEvent:OGAShowEventAdQualityBlankAd
+                                  adConfiguration:adConfiguration
+                                          details:dict];
 }
 
 - (BOOL)imageIsUniformColor:(UIImage *)image rect:(CGRect)rect {

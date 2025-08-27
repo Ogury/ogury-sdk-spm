@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OGAAdQualityAlgorythm.h"
+#import "OGAAdQualityAlgorithm.h"
 #import "OGAAdConfiguration.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -17,7 +17,7 @@ typedef void (^AdQualityCompletionBlock)(NSArray<OGAAdQualityResult *> *results)
 + (instancetype)shared;
 
 @property(nonatomic) BOOL isEnabled;
-@property(nonatomic, retain) NSArray<id<OGAAdQualityAlgorythm>> *activeAlgorythms;
+@property(nonatomic, retain) NSArray<id<OGAAdQualityAlgorithm>> *activeAlgorithms;
 
 - (void)performAdQualityChecksOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityCompletionBlock _Nullable)completion;
 - (void)performAdQualityChecksOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration;

@@ -10,7 +10,7 @@
 #import <OCMock/OCMock.h>
 #import "OGAAdQualityController.h"
 #import "OGAAdConfiguration.h"
-#import "OGAAdQualityUniformColorRectAlgorythm.h"
+#import "OGAAdQualityUniformColorRectAlgorithm.h"
 
 @interface OGAAdQualityControllerTests : XCTestCase
 @property(nonatomic, retain) OGAAdQualityController *sut;
@@ -32,17 +32,17 @@
 }
 
 - (void)testWhenUpdatingAllowedAlgosThenTheListIsUpdated {
-    self.sut.activeAlgorythms = @[];
-    XCTAssertEqual(self.sut.activeAlgorythms.count, 0);
-    self.sut.activeAlgorythms = @[ [[OGAAdQualityUniformColorRectAlgorythm alloc] initWithSize:CGSizeMake(50, 50)
+    self.sut.activeAlgorithms = @[];
+    XCTAssertEqual(self.sut.activeAlgorithms.count, 0);
+    self.sut.activeAlgorithms = @[ [[OGAAdQualityUniformColorRectAlgorithm alloc] initWithSize:CGSizeMake(50, 50)
                                                                                      threshold:@(6)
                                                                                     startDelay:@(1000)
                                                                                 allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial ]] ];
-    XCTAssertEqual(self.sut.activeAlgorythms.count, 1);
+    XCTAssertEqual(self.sut.activeAlgorithms.count, 1);
 }
 
 - (void)testWhenPerformingChecksWithNoAlgorythmThenEmptyCompletionIsCalled {
-    self.sut.activeAlgorythms = @[];
+    self.sut.activeAlgorithms = @[];
     OGAAdConfiguration *conf = OCMClassMock([OGAAdConfiguration class]);
     XCTestExpectation *ex = [self expectationWithDescription:@"Completion block called"];
     [self.sut performAdQualityChecksOn:[UIView new]
@@ -55,7 +55,7 @@
 }
 
 - (void)testWhenPerformingChecksWhileDisabledThenEmptyCompletionIsCalled {
-    self.sut.activeAlgorythms = @[ [[OGAAdQualityUniformColorRectAlgorythm alloc] initWithSize:CGSizeMake(50, 50)
+    self.sut.activeAlgorithms = @[ [[OGAAdQualityUniformColorRectAlgorithm alloc] initWithSize:CGSizeMake(50, 50)
                                                                                      threshold:@(6)
                                                                                     startDelay:@(1000)
                                                                                 allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial ]] ];
@@ -72,7 +72,7 @@
 }
 
 - (void)testWhenPerformingChecksOnUnallowedFormatThenEmptyCompletionIsCalled {
-    self.sut.activeAlgorythms = @[ [[OGAAdQualityUniformColorRectAlgorythm alloc] initWithSize:CGSizeMake(50, 50)
+    self.sut.activeAlgorithms = @[ [[OGAAdQualityUniformColorRectAlgorithm alloc] initWithSize:CGSizeMake(50, 50)
                                                                                      threshold:@(6)
                                                                                     startDelay:@(1000)
                                                                                 allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial ]] ];
@@ -90,11 +90,11 @@
 }
 
 - (void)testWhenPerformingChecksOnAllowedFormatThenEmptyCompletionIsCalled {
-    OGAAdQualityUniformColorRectAlgorythm *algo = OCMPartialMock([[OGAAdQualityUniformColorRectAlgorythm alloc] initWithSize:CGSizeMake(50, 50)
+    OGAAdQualityUniformColorRectAlgorithm *algo = OCMPartialMock([[OGAAdQualityUniformColorRectAlgorithm alloc] initWithSize:CGSizeMake(50, 50)
                                                                                                                    threshold:@(6)
                                                                                                                   startDelay:@(1000)
                                                                                                               allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial ]]);
-    self.sut.activeAlgorythms = @[ algo ];
+    self.sut.activeAlgorithms = @[ algo ];
     OGAAdConfiguration *conf = OCMClassMock([OGAAdConfiguration class]);
     OCMStub([conf getAdTypeString]).andReturn(OGAAdConfigurationAdTypeInterstitial);
     OCMStub(self.sut.isEnabled).andReturn(YES);
@@ -113,11 +113,11 @@
 }
 
 - (void)testWhenPerformingChecksOnWhiteViewThenUniformResultIsSentBack {
-    OGAAdQualityUniformColorRectAlgorythm *algo = OCMPartialMock([[OGAAdQualityUniformColorRectAlgorythm alloc] initWithSize:CGSizeMake(50, 50)
+    OGAAdQualityUniformColorRectAlgorithm *algo = OCMPartialMock([[OGAAdQualityUniformColorRectAlgorithm alloc] initWithSize:CGSizeMake(50, 50)
                                                                                                                    threshold:@(6)
                                                                                                                   startDelay:@(1000)
                                                                                                               allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial ]]);
-    self.sut.activeAlgorythms = @[ algo ];
+    self.sut.activeAlgorithms = @[ algo ];
     OGAAdConfiguration *conf = OCMClassMock([OGAAdConfiguration class]);
     OCMStub([conf getAdTypeString]).andReturn(OGAAdConfigurationAdTypeInterstitial);
     OCMStub(self.sut.isEnabled).andReturn(YES);
@@ -127,7 +127,7 @@
                             completion:^(NSArray<OGAAdQualityResult *> *_Nonnull results) {
                                 XCTAssertEqual(results.count, 1);
                                 OGAAdQualityResult *res = results[0];
-                                XCTAssertEqualObjects(res.algo, OguryAdQualityAlgorythmUniformColorRect);
+                                XCTAssertEqualObjects(res.algo, OguryAdQualityAlgorithmUniformColorRect);
                                 XCTAssertEqual(res.success, NO);
                                 [ex fulfill];
                             }];
@@ -135,11 +135,11 @@
 }
 
 - (void)testWhenPerformingChecksOnNotBlankAdThenUniformResultIsSentBack {
-    OGAAdQualityUniformColorRectAlgorythm *algo = OCMPartialMock([[OGAAdQualityUniformColorRectAlgorythm alloc] initWithSize:CGSizeMake(50, 50)
+    OGAAdQualityUniformColorRectAlgorithm *algo = OCMPartialMock([[OGAAdQualityUniformColorRectAlgorithm alloc] initWithSize:CGSizeMake(50, 50)
                                                                                                                    threshold:@(6)
                                                                                                                   startDelay:@(1000)
                                                                                                               allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial ]]);
-    self.sut.activeAlgorythms = @[ algo ];
+    self.sut.activeAlgorithms = @[ algo ];
     OGAAdConfiguration *conf = OCMClassMock([OGAAdConfiguration class]);
     OCMStub([conf getAdTypeString]).andReturn(OGAAdConfigurationAdTypeInterstitial);
     OCMStub(self.sut.isEnabled).andReturn(YES);
@@ -154,7 +154,7 @@
                             completion:^(NSArray<OGAAdQualityResult *> *_Nonnull results) {
                                 XCTAssertEqual(results.count, 1);
                                 OGAAdQualityResult *res = results[0];
-                                XCTAssertEqualObjects(res.algo, OguryAdQualityAlgorythmUniformColorRect);
+                                XCTAssertEqualObjects(res.algo, OguryAdQualityAlgorithmUniformColorRect);
                                 XCTAssertEqual(res.success, YES);
                                 [ex fulfill];
                             }];

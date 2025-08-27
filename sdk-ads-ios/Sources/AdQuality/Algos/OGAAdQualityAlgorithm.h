@@ -1,5 +1,5 @@
 //
-//  OGAAdQualityAlgorythm.h
+//  OGAAdQualityAlgorithm.h
 //  OguryAds
 //
 //  Created by Jerome TONNELIER on 26/08/2025.
@@ -11,12 +11,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NSString *OguryAdQualityAlgorythm NS_TYPED_EXTENSIBLE_ENUM;
-extern OguryAdQualityAlgorythm const OguryAdQualityAlgorythmUniformColorRect;
-extern NSString *const OguryAdQualityAlgorythmKey;
+typedef NSString *OguryAdQualityAlgorithm NS_TYPED_EXTENSIBLE_ENUM;
+extern OguryAdQualityAlgorithm const OguryAdQualityAlgorithmUniformColorRect;
+extern NSString *const OguryAdQualityAlgorithmKey;
 
 @interface OGAAdQualityResult : NSObject
-@property(nonatomic, retain) OguryAdQualityAlgorythm algo;
+@property(nonatomic, retain) OguryAdQualityAlgorithm algo;
 @property(nonatomic) BOOL success;
 @property(nonatomic, retain) NSError *_Nullable error;
 @property(nonatomic, retain) NSNumber *threshold;
@@ -24,13 +24,13 @@ extern NSString *const OguryAdQualityAlgorythmKey;
 @property(nonatomic, retain) NSNumber *devianceMax;
 @end
 
-typedef void (^AdQualityAlgorythmCompletionBlock)(OGAAdQualityResult *result);
+typedef void (^AdQualityAlgorithmCompletionBlock)(OGAAdQualityResult *result);
 
-@protocol OGAAdQualityAlgorythm <NSObject>
-@property(nonatomic, retain) OguryAdQualityAlgorythm algo;
+@protocol OGAAdQualityAlgorithm <NSObject>
+@property(nonatomic, retain) OguryAdQualityAlgorithm algo;
 @property(nonatomic, retain) NSArray<NSString *> *allowedFormats;
 @property(nonatomic, retain) NSNumber *duration;
-- (void)performAdQualityCheckOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityAlgorythmCompletionBlock)completion;
+- (void)performAdQualityCheckOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityAlgorithmCompletionBlock)completion;
 @end
 
 NS_ASSUME_NONNULL_END

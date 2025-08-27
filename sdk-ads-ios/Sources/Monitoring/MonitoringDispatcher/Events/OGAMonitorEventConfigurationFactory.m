@@ -253,6 +253,10 @@
                 [[OGAMonitorEventConfiguration alloc] initWithEventCode:@"SI-017"
                                                               eventName:@"SDK_SHOW_EVENT_WEBVIEW_TERMINATED"
                                                          permissionMask:OGAAdIdMaskCampaignId | OGAAdIdMaskCreativeId | OGAAdIdMaskExtras],
+            @(OGAShowEventAdQualityBlankAd) :
+                [[OGAMonitorEventConfiguration alloc] initWithEventCode:@"SI-018"
+                                                              eventName:@"SDK_EVENT_BLANK_AD_DETECTION"
+                                                         permissionMask:OGAAdIdMaskCampaignId | OGAAdIdMaskCreativeId | OGAAdIdMaskExtras],
 
 #pragma mark - Show SKNetwork
             @(OGASKNetworkShowEventStartingImpression) :
