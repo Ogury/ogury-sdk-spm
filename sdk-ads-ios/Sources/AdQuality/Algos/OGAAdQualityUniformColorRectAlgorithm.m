@@ -97,18 +97,17 @@
 }
 
 - (void)sendMonitoringEventFor:(OGAAdQualityResult *)result adConfiguration:(OGAAdConfiguration *)adConfiguration {
-    OGAOrderedDictionary *dict = [OGAOrderedDictionary dictionaryWithDictionary:@{
-        OguryAdQualityMonitoringKeyAlgo : self.algo,
-        OguryAdQualityMonitoringKeyBlankAd : result.success ? @(NO) : @(YES),
-        OguryAdQualityMonitoringKeyColor : self.uniformHexColor,
-        OguryAdQualityMonitoringKeyParams : [NSString stringWithFormat:@"%0.0fx%0.0f;%@;%@",
+    OGAMutableOrderedDictionary *dict = [OGAMutableOrderedDictionary new];
+    dict[OguryAdQualityMonitoringKeyAlgo] = self.algo;
+    dict[OguryAdQualityMonitoringKeyBlankAd] = result.success ? @(NO) : @(YES);
+    dict[OguryAdQualityMonitoringKeyColor] = self.uniformHexColor;
+    dict[OguryAdQualityMonitoringKeyParams] = [NSString stringWithFormat:@"%0.0fx%0.0f;%@;%@",
                                              rectSize.width,
                                              rectSize.height,
                                              self.startDelay,
-                                             self.threshold],
-        OguryAdQualityMonitoringKeyDeviance : result.devianceMax,
-        OguryAdQualityMonitoringKeyDuration : result.duration,
-    }];
+                                               self.threshold];
+    dict[OguryAdQualityMonitoringKeyDeviance] = result.devianceMax;
+    dict[OguryAdQualityMonitoringKeyDuration] = result.duration;
     [self.monitoringDispatcher sendAdQualityEvent:OGAShowEventAdQualityBlankAd
                                   adConfiguration:adConfiguration
                                           details:dict];
