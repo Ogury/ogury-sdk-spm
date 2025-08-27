@@ -13,10 +13,11 @@
 @interface OGAAdQualityUniformColorRectAlgorythm()
 @property(nonatomic, strong) OGALog *log;
 @property(nonatomic, strong) NSNumber *devianceMax;
+@property(nonatomic, strong) NSString *uniformHexColor;
 @end
 
 @implementation OGAAdQualityUniformColorRectAlgorythm
-@synthesize algo, startDelay, threshold, rectSize, duration;
+@synthesize algo, startDelay, threshold, rectSize, duration, uniformHexColor;
 
 - (instancetype)initWithSize:(CGSize)size threshold:(NSNumber*)threshold startDelay:(NSNumber*)delay {
     return [self initWithSize:size threshold:threshold startDelay:delay log:OGALog.shared];
@@ -41,6 +42,7 @@
         [tags addObject:[OguryLogTag tagWithKey:@"blank ad" value:result.sucess ? @"No" : @"Yes"]];
         [tags addObject:[OguryLogTag tagWithKey:@"duration" value:result.duration]];
         [tags addObject:[OguryLogTag tagWithKey:@"deviance" value:result.devianceMax]];
+        [tags addObject:[OguryLogTag tagWithKey:@"uniformColor" value:self.uniformHexColor]];
     }
     [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
                                          adConfiguration:adConfiguration
@@ -66,7 +68,7 @@
         BOOL imageHasUniformColor = [self imageIsUniformColor:image rect:targetRect];
         OGAAdQualityResult *result = [[OGAAdQualityResult alloc] init];
         result.sucess = !imageHasUniformColor;
-        result.duration = @([[NSDate date] timeIntervalSinceDate:start]);
+        result.duration = @(@([[NSDate date] timeIntervalSinceDate:start] * 1000).intValue);
         result.devianceMax = self.devianceMax;
         [self logMessage:@"End computing" adConfiguration:adConfiguration result:result];
         completion(result);
@@ -128,6 +130,7 @@
     unsigned char g0 = rawData[offset + 1];
     unsigned char b0 = rawData[offset + 2];
     unsigned char a0 = rawData[offset + 3];
+    uniformHexColor = [NSString stringWithFormat:@"#%02X%02X%02X", r0, g0, b0];
     
     BOOL uniform = YES;
     for (size_t y = 0; y < height && uniform; y++) {
