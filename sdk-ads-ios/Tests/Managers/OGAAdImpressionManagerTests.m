@@ -254,4 +254,38 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
     OCMVerify([self.monitoringDispatcher sendShowEventForImpressionSource:[OCMArg any] position:@2 adConfiguration:adConfiguration]);
 }
 
+- (void)testWhenSendingImpressionThenAdQualityControllerIsCalled {
+    OGAAdExposure *exposure = [[OGAAdExposure alloc] init];
+    exposure.exposurePercentage = 100.0f;
+    OGAAdConfiguration *adConf = OCMClassMock([OGAAdConfiguration class]);
+    OCMStub([self.ad adConfiguration]).andReturn(adConf);
+    OGAMonitoringDetails *details = OCMClassMock([OGAMonitoringDetails class]);
+    OCMStub(adConf.monitoringDetails).andReturn(details);
+    OCMStub(details.sessionId).andReturn(@"LKUHIOHN");
+    OCMStub(self.ad.isImpression).andReturn(YES);
+    OCMStub([self.ad isImpressionSourceSDK]).andReturn(YES);
+    OCMStub(self.ad.impressionUrl).andReturn(OGAAdImpressionControllerTestsImpressionUrl);
+    OCMStub([self.impressionManager sendCustomImpressionTracker:[OCMArg any]]);
+    self.impressionManager.hasSentImpressionTrackByAdId[OGAAdImpressionControllerTestsLocalIdentifier] = @(NO);
+    [self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:self.delegateDispatcher displayer:self.displayer];
+    OCMVerify([self.adQualityController performAdQualityChecksOn:[OCMArg any] adConfiguration:[OCMArg any]]);
+}
+
+- (void)testWhenNotSendingImpressionThenAdQualityControllerIsNotCalled {
+    OGAAdExposure *exposure = [[OGAAdExposure alloc] init];
+    exposure.exposurePercentage = 100.0f;
+    OGAAdConfiguration *adConf = OCMClassMock([OGAAdConfiguration class]);
+    OCMStub([self.ad adConfiguration]).andReturn(adConf);
+    OGAMonitoringDetails *details = OCMClassMock([OGAMonitoringDetails class]);
+    OCMStub(adConf.monitoringDetails).andReturn(details);
+    OCMStub(details.sessionId).andReturn(@"LKUHIOHN");
+    OCMStub(self.ad.isImpression).andReturn(YES);
+    OCMStub([self.ad isImpressionSourceSDK]).andReturn(YES);
+    OCMStub(self.ad.impressionUrl).andReturn(OGAAdImpressionControllerTestsImpressionUrl);
+    OCMStub([self.impressionManager sendCustomImpressionTracker:[OCMArg any]]);
+    self.impressionManager.hasSentImpressionTrackByAdId[OGAAdImpressionControllerTestsLocalIdentifier] = @(YES);
+    [self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:self.delegateDispatcher displayer:self.displayer];
+    OCMReject([self.adQualityController performAdQualityChecksOn:[OCMArg any] adConfiguration:[OCMArg any]]);
+}
+
 @end
