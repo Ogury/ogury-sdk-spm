@@ -22,14 +22,14 @@
 - (instancetype)initWithSize:(CGSize)size
                    threshold:(NSNumber *)threshold
                   startDelay:(NSNumber *)delay
-             allowedFormats:(NSArray<NSString *> *)allowedFormats {
+              allowedFormats:(NSArray<NSString *> *)allowedFormats {
     return [self initWithSize:size threshold:threshold startDelay:delay allowedFormats:allowedFormats log:OGALog.shared];
 }
 
 - (instancetype)initWithSize:(CGSize)size
                    threshold:(NSNumber *)threshold
                   startDelay:(NSNumber *)delay
-             allowedFormats:(NSArray<NSString *> *)allowedFormats
+              allowedFormats:(NSArray<NSString *> *)allowedFormats
                          log:(OGALog *)log {
     if (self = [super init]) {
         self.algo = OguryAdQualityAlgorythmUniformColorRect;
@@ -47,7 +47,7 @@
     NSMutableArray<OguryLogTag *> *tags = [@[] mutableCopy];
     [tags addObject:[OguryLogTag tagWithKey:OguryAdQualityAlgorythmKey value:self.algo]];
     if (result != nil) {
-        [tags addObject:[OguryLogTag tagWithKey:@"blank ad" value:result.sucess ? @"No" : @"Yes"]];
+        [tags addObject:[OguryLogTag tagWithKey:@"blank ad" value:result.success ? @"No" : @"Yes"]];
         [tags addObject:[OguryLogTag tagWithKey:@"duration" value:result.duration]];
         [tags addObject:[OguryLogTag tagWithKey:@"deviance" value:result.devianceMax]];
         [tags addObject:[OguryLogTag tagWithKey:@"uniformColor" value:self.uniformHexColor]];
@@ -70,12 +70,14 @@
 
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, [UIScreen mainScreen].scale);
         [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
+        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
 
         BOOL imageHasUniformColor = [self imageIsUniformColor:image rect:targetRect];
         OGAAdQualityResult *result = [[OGAAdQualityResult alloc] init];
-        result.sucess = !imageHasUniformColor;
+        result.success = !imageHasUniformColor;
+        result.algo = self.algo;
         result.duration = @(@([[NSDate date] timeIntervalSinceDate:start] * 1000).intValue);
         result.devianceMax = self.devianceMax;
         [self logMessage:@"End computing" adConfiguration:adConfiguration result:result];

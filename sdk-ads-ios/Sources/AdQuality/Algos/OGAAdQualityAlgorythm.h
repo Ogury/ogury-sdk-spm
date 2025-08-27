@@ -17,7 +17,7 @@ extern NSString *const OguryAdQualityAlgorythmKey;
 
 @interface OGAAdQualityResult : NSObject
 @property(nonatomic, retain) OguryAdQualityAlgorythm algo;
-@property(nonatomic) BOOL sucess;
+@property(nonatomic) BOOL success;
 @property(nonatomic, retain) NSError *_Nullable error;
 @property(nonatomic, retain) NSNumber *threshold;
 @property(nonatomic, retain) NSNumber *duration;

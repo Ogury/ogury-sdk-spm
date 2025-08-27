@@ -1431,6 +1431,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		437B11942E5CA17000CAA377 /* AdQuality */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AdQuality; sourceTree = "<group>"; };
+		437B11A22E5EF74A00CAA377 /* AdQuality */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AdQuality; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3131,6 +3132,7 @@
 		ED007E4425503BD800CA402E /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				437B11A22E5EF74A00CAA377 /* AdQuality */,
 				C9F4929228BF4129001933D5 /* Core */,
 				58BDDA75288ECC4E000A4A12 /* DarwinNotification */,
 				5890DD772822A9F700B3CDE7 /* Logs */,
@@ -3743,6 +3745,9 @@
 			);
 			dependencies = (
 				DEF1BF7F213917AA0004BAD1 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				437B11A22E5EF74A00CAA377 /* AdQuality */,
 			);
 			name = OguryAdsTests;
 			productName = PresageSDKTests;

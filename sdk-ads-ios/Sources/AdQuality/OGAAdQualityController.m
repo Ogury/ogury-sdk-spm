@@ -11,7 +11,7 @@
 #import "OGAAdQualityUniformColorRectAlgorythm.h"
 
 @interface OGAAdQualityController ()
-@property(nonatomic, retain) NSArray<id<OGAAdQualityAlgorythm>> *activeAlgorythms;
+
 @end
 
 @implementation OGAAdQualityController
@@ -32,7 +32,7 @@
             [[OGAAdQualityUniformColorRectAlgorythm alloc] initWithSize:CGSizeMake(50, 50)
                                                               threshold:@(6)
                                                              startDelay:@(1000)
-                                                         allowedFormats:@[OGAAdConfigurationAdTypeInterstitial]]
+                                                         allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial ]]
         ];
         self.isEnabled = YES;
     }
@@ -59,9 +59,9 @@
             [algo performAdQualityCheckOn:view
                           adConfiguration:adConfiguration
                                completion:^(OGAAdQualityResult *_Nonnull result) {
-                [results addObject:result];
-                dispatch_group_leave(group);
-            }];
+                                   [results addObject:result];
+                                   dispatch_group_leave(group);
+                               }];
         }
     }];
 

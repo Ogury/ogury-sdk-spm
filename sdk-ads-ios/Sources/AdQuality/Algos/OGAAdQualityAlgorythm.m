@@ -12,5 +12,5 @@ OguryAdQualityAlgorythm const OguryAdQualityAlgorythmUniformColorRect = @"UNIFOR
 NSString *const OguryAdQualityAlgorythmKey = @"algo";
 
 @implementation OGAAdQualityResult
-@synthesize algo, sucess, error, threshold, duration, devianceMax;
+@synthesize algo, success, error, threshold, duration, devianceMax;
 @end
