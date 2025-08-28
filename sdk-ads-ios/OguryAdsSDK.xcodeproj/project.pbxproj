@@ -506,9 +506,7 @@
 		43F8BBEE2BA885DB002695F8 /* OGAMonitoringDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = 43F8BBEB2BA885DB002695F8 /* OGAMonitoringDetails.h */; };
 		502477252B0D0E17006386BF /* OGAAdDspTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 502477242B0D0E17006386BF /* OGAAdDspTests.m */; };
 		503577CD2E27B041008217C4 /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A9F4A12C37E6D00085EF6F /* OguryCore.framework */; };
-		503577CE2E27B041008217C4 /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43A9F4A12C37E6D00085EF6F /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		503577D02E27B043008217C4 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9D432526E8AB3700A42224 /* OMSDK_Ogury.xcframework */; };
-		503577D12E27B043008217C4 /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED9D432526E8AB3700A42224 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		503577D22E27B079008217C4 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEF1BF73213917AA0004BAD1 /* OguryAds.framework */; };
 		503577D32E27B079008217C4 /* OguryAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DEF1BF73213917AA0004BAD1 /* OguryAds.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		503577D52E27B07C008217C4 /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A9F4A12C37E6D00085EF6F /* OguryCore.framework */; };
@@ -684,18 +682,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		503577CF2E27B041008217C4 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				503577CE2E27B041008217C4 /* OguryCore.framework in Embed Frameworks */,
-				503577D12E27B043008217C4 /* OMSDK_Ogury.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		503577D42E27B079008217C4 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3715,7 +3701,6 @@
 				DEF1BF6F213917AA0004BAD1 /* Frameworks */,
 				DEF1BF70213917AA0004BAD1 /* Headers */,
 				DEF1BF71213917AA0004BAD1 /* Resources */,
-				503577CF2E27B041008217C4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3827,9 +3812,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

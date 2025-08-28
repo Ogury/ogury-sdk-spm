@@ -9,25 +9,10 @@
 /* Begin PBXBuildFile section */
 		2758556FE721E189B66DE5FD /* Pods_UnityLevelPlayCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82AA197AAA6A20900447DA5C /* Pods_UnityLevelPlayCardAdapter.framework */; };
 		4373B4222DCA4E4800E1702F /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B4212DCA4E4800E1702F /* AdsCardAdapter.framework */; };
-		4373B4232DCA4E4800E1702F /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B4212DCA4E4800E1702F /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4373B4312DCB405400E1702F /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B42E2DCB405400E1702F /* OguryAds.framework */; };
 		4373B4332DCB405400E1702F /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B42F2DCB405400E1702F /* OguryCore.framework */; };
 		4373B4352DCB405400E1702F /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B4302DCB405400E1702F /* OgurySdk.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		4373B4242DCA4E4800E1702F /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				4373B4232DCA4E4800E1702F /* AdsCardAdapter.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2C8537109EC2C383063AAC0E /* Pods-UnityLevelPlayCardAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnityLevelPlayCardAdapter.debug.xcconfig"; path = "Target Support Files/Pods-UnityLevelPlayCardAdapter/Pods-UnityLevelPlayCardAdapter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -129,7 +114,6 @@
 				4373B38B2DCA4D8A00E1702F /* Frameworks */,
 				4373B38C2DCA4D8A00E1702F /* Resources */,
 				D6818B48A84BC372FFA0897F /* [CP] Copy Pods Resources */,
-				4373B4242DCA4E4800E1702F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
