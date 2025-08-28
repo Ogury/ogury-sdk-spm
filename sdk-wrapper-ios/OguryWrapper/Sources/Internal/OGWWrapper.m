@@ -7,6 +7,7 @@
 #import "OGWModulesManager.h"
 #import "OguryError+OGWWrapper.h"
 #import "OGWSetLogLevelNotificationManager.h"
+#import <OguryAds/OGAInternal.h>
 
 #if __has_include(<StoreKit/StoreKit.h>) || __has_include("StoreKit.h")
 #define OGCStoreKitInstalled
@@ -60,6 +61,7 @@ static int ogcMaxNumberOfConvertionValue = 63;
       _log = log;
       _startCompletionBlocks = [NSMutableArray new];
       _isStarting = NO;
+       [[OGAInternal shared] setSdkConsumer: [[OGASdkConsumer alloc] initWithName:@"sdk" version:[Ogury sdkVersion]] ];
    }
    return self;
 }
