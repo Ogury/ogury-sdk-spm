@@ -21,19 +21,11 @@
   "dependencies": {
     "OguryCore<%= framework_suffix %>": [
       "<%= ogury_core_version %>"
+    ],
+    "OguryAds<%= framework_suffix %>": [
+      "<%= ogury_ads_version %>"
     ]
   },
-  "default_subspecs": ["OguryAds"],
-  "subspecs": [
-    {
-      "name": "OguryAds",
-      "dependencies": {
-        "OguryAds<%= framework_suffix %>": [
-          "<%= ogury_ads_version %>"
-        ]
-      }
-    }
-  ],
   "source": {
     "http": "<%= source_url %>"
   }

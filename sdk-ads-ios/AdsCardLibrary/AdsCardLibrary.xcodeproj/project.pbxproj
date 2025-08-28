@@ -64,23 +64,8 @@
 		43EB15E22D9D4268002F170A /* AdViewFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB15DE2D9D4268002F170A /* AdViewFeature.swift */; };
 		43EB15E32D9D4268002F170A /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB15DF2D9D4268002F170A /* AdView.swift */; };
 		43EB18FA2DAE8871002F170A /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18F92DAE8871002F170A /* OguryCore.framework */; };
-		43EB18FB2DAE8871002F170A /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18F92DAE8871002F170A /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		64EF0978767A0C2D68F9D324 /* Pods_AdsCardLibrary_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9229C2A670D0334A99C0D988 /* Pods_AdsCardLibrary_art.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		43EB18FC2DAE8871002F170A /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				43EB18FB2DAE8871002F170A /* OguryCore.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		431F6F052C0F3D8100DBFFAA /* AdTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdTagView.swift; sourceTree = "<group>"; };
@@ -356,7 +341,6 @@
 				435C55DB2A42EAEF004186FF /* Sources */,
 				435C55DC2A42EAEF004186FF /* Frameworks */,
 				435C55DD2A42EAEF004186FF /* Resources */,
-				43EB18FC2DAE8871002F170A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

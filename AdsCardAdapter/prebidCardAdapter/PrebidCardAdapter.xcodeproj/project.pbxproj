@@ -8,23 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		43352C2F2DFAFF500082026C /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43352C2E2DFAFF500082026C /* AdsCardAdapter.framework */; };
-		43352C302DFAFF500082026C /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43352C2E2DFAFF500082026C /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4A428A1768225F83969B88E3 /* Pods_PrebidCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF6307FCD7FA042F645AB53 /* Pods_PrebidCardAdapter.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		43352C312DFAFF500082026C /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				43352C302DFAFF500082026C /* AdsCardAdapter.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3BF6307FCD7FA042F645AB53 /* Pods_PrebidCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PrebidCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,7 +101,6 @@
 				43352C172DFAFF460082026C /* Sources */,
 				43352C182DFAFF460082026C /* Frameworks */,
 				43352C192DFAFF460082026C /* Resources */,
-				43352C312DFAFF500082026C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
