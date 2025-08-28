@@ -13,6 +13,7 @@
 #import "OGAWebViewUserAgentService.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGAWebViewUserAgentServiceDelegate.h"
+#import "OGASdkConsumer.h"
 
 @interface OGAInternal () <OGAWebViewUserAgentServiceDelegate>
 
