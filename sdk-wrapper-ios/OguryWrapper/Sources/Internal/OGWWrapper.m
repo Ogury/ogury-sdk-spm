@@ -8,6 +8,7 @@
 #import "OguryError+OGWWrapper.h"
 #import "OGWSetLogLevelNotificationManager.h"
 #import <OguryAds/OGAInternal.h>
+#import <OguryAds/OGASdkConsumer.h>
 
 #if __has_include(<StoreKit/StoreKit.h>) || __has_include("StoreKit.h")
 #define OGCStoreKitInstalled
