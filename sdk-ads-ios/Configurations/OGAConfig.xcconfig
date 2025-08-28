@@ -8,7 +8,7 @@ PRODUCT_BUNDLE_IDENTIFIER = co.ogury.OguryAds
 
 // Versioning
 MARKETING_VERSION = 4.1.1
-BUNDLE_VERSION = 1
+BUNDLE_VERSION = 4
 
 // Environment available : PROD, DEVC, STAGING
 DEFAULT_ENV = PROD
