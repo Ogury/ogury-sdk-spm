@@ -5,12 +5,12 @@
 #import <Foundation/Foundation.h>
 #import <OguryCore/OguryLog.h>
 #import <OguryAds/OguryAds.h>
-#import <OguryAds/OGASdkConsumer.h>
 #import <OguryAds/OGAAdLogMessage.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^StartCompletionBlock)(BOOL success, OguryError *_Nullable error);
+@class OGASdkConsumer;
 
 @interface OGAInternal : NSObject
 

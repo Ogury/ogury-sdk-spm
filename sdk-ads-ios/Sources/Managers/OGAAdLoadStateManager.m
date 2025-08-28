@@ -133,6 +133,11 @@ NSString *const OGAAccomplishedOnAdLoaded = @"format";
 }
 
 - (void)triggerStateDelegateIfPossible {
+    NSLog(@"🐳 %@", self.adLoadingState & AdLoadingStateTimeOut ? @"Timeout" : @"");
+    NSLog(@"🐳 %@", self.adLoadingState & AdLoadingStateIdle ? @"Idle" : @"");
+    NSLog(@"🐳 %@", self.adLoadingState & AdLoadingStateConnect ? @"Connect" : @"");
+    NSLog(@"🐳 %@", self.adLoadingState & AdLoadingStateWebviewReady ? @"WebviewReady" : @"");
+    NSLog(@"🐳 %@", self.adLoadingState & AdLoadingStateFormatReady ? @"FormatReady" : @"");
     if (self.adLoadingState & AdLoadingStateTimeOut) {
         return;
     }

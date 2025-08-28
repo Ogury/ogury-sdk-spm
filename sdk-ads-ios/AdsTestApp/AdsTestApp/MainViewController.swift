@@ -9,6 +9,7 @@ import AdsCardLibrary
 import SnapKit
 import CoreServices
 import UniformTypeIdentifiers
+import UserDefault
 
 class MainViewController: UIViewController {
     lazy var store = Store(initialState: AppFeature.State()) {
@@ -16,14 +17,16 @@ class MainViewController: UIViewController {
     }
     lazy var rootView = AppView(store: self.store)
     lazy var adViewController = UIHostingController(rootView: rootView)
+    @UserDefault("lastAdapterVersion")
+    var lastVersion: String?
    
     override func viewDidLoad() {
         super.viewDidLoad()
         start()
         Task {
             await SdkLauncher.shared.launch()
-            await SdkLauncher.shared.adapter.setAllowedTypes(["Publisher", "Internal", "Requests", "Mraid", "Monitoring", "SDK Callbacks"])
-            await SdkLauncher.shared.adapter.setLogLevel(.all)
+            SdkLauncher.shared.adapter.setAllowedTypes(["Publisher", "Internal", "Requests", "Mraid", "Monitoring", "SDK Callbacks"])
+            SdkLauncher.shared.adapter.setLogLevel(.all)
         }
         addViewToHierarchy()
         startNotifiers()
@@ -84,6 +87,19 @@ class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         adViewController.view.frame = view.bounds
+        checkForWhatsNew()
+        if SettingsController().startConsentWithApplication {
+            showConsentNotice()
+        }
+    }
+    
+    private func checkForWhatsNew() {
+        defer { lastVersion = SdkLauncher.shared.adapter.sdkVersions }
+        if lastVersion == nil || lastVersion! != SdkLauncher.shared.adapter.sdkVersions {
+            ViewStore(store, observe: { $0 })
+                .send(.main(.showWhatsNew(SdkLauncher.shared.adapter.whatsNew ?? "",
+                                          showConfetti: true)))
+        }
     }
     
     func loadFile(at url: URL) {
@@ -168,10 +184,10 @@ extension MainViewController: AdLifeCycleDelegate, ApplicationDelegate {
         return paths[0]
     }
     
-    func showConsentNotice(for manager: ConsentManager) {
-        switch manager {
-            case .inMobi: InmobiConsentManager.shared.resetConsent(viewController: self)
-            case .adMob: AdMobConsentManager.shared.resetConsent(viewController: self)
+    func showConsentNotice() {
+        Task { @MainActor in
+            try await Task.sleep(for: .seconds(1))
+            ConsentController.resetConsent(viewController: self)
         }
     }
     

@@ -21,6 +21,7 @@ struct AppSettingsFeature: Reducer {
             lhs.showDspFields == rhs.showDspFields &&
             lhs.bulkModeEnabled == rhs.bulkModeEnabled &&
             lhs.startSDKWithApplication == rhs.startSDKWithApplication &&
+            lhs.startConsentWithApplication == rhs.startConsentWithApplication &&
             lhs.showTestMode == rhs.showTestMode &&
             lhs.showShowSection == rhs.showShowSection &&
             lhs.usOptout == rhs.usOptout &&
@@ -35,7 +36,9 @@ struct AppSettingsFeature: Reducer {
         }
         
         @BindingState var settings: SettingsContainer
-        var enableAdUnitEditing: Bool { settings.enableAdUnitEditing }
+        var enableFieldsEditing: Bool {
+            settings.fieldEditingMask == .allowAll
+        }
         var showCampaignId: Bool { settings.showCampaignId }
         var showCreativeId: Bool { settings.showCreativeId  }
         var showDspFields: Bool { settings.showDspFields }
@@ -44,6 +47,7 @@ struct AppSettingsFeature: Reducer {
         var killWebviewMode: KillWebviewMode { settings.killWebviewMode }
         var cachedKillWebviewMode: KillWebviewMode?
         var startSDKWithApplication: Bool { settings.startSDKWithApplication }
+        var startConsentWithApplication: Bool { settings.startConsentWithApplication }
         var consentManager: ConsentManager { settings.consentManager }
         var numberOfSDKStart: Int {
             get {
@@ -80,8 +84,9 @@ struct AppSettingsFeature: Reducer {
     enum Action: BindableAction, Equatable  {
         case binding(BindingAction<State>)
         case startSDKToggleTapped
+        case startConsentToggleTapped
         case showCampaignToggleTapped
-        case enableAdUnitEditingToggleTapped
+        case enableFieldsEditingToggleTapped
         case showCreativeToggleTapped
         case showDspFieldsToggleTapped
         case showTestModeToggleTapped
@@ -103,6 +108,8 @@ struct AppSettingsFeature: Reducer {
         case toggleKillWebviewMode
         case updateKillWebviewMode(_: KillWebviewMode)
         case copyIdfaButtonTapped
+        case appendFieldEditingMask(_: FieldEditingMask)
+        case removeFieldEditingMask(_: FieldEditingMask)
     }
     
     var body: some ReducerOf<Self> {
@@ -116,6 +123,22 @@ struct AppSettingsFeature: Reducer {
                     }
                     
                 case .binding:
+                    return .none
+                    
+                case let .appendFieldEditingMask(mask):
+                    if mask == .allowAll {
+                        state.settings.fieldEditingMask = mask
+                    } else {
+                        state.settings.fieldEditingMask.insert(mask)
+                    }
+                    return .none
+                    
+                case let .removeFieldEditingMask(mask):
+                    if mask == .denyAll {
+                        state.settings.fieldEditingMask = mask
+                    } else {
+                        state.settings.fieldEditingMask.remove(mask)
+                    }
                     return .none
                     
                 case .incrementSDKStart:
@@ -160,12 +183,20 @@ struct AppSettingsFeature: Reducer {
                     state.settings.startSDKWithApplication.toggle()
                     return .none
                     
+                case .startConsentToggleTapped:
+                    state.settings.startConsentWithApplication.toggle()
+                    return .none
+                    
                 case .showTestModeToggleTapped:
                     state.settings.showTestMode.toggle()
                     return .none
                     
-                case .enableAdUnitEditingToggleTapped:
-                    state.settings.enableAdUnitEditing.toggle()
+                case .enableFieldsEditingToggleTapped:
+                    if state.settings.fieldEditingMask == .denyAll {
+                        state.settings.fieldEditingMask = .allowAll
+                    } else {
+                        state.settings.fieldEditingMask = .denyAll
+                    }
                     return .none
                
                 case .usOptoutTapped:

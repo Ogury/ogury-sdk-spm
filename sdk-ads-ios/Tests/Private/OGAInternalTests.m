@@ -7,6 +7,7 @@
 #import <OCMock/OCMock.h>
 #import "OGAInternal+Testing.h"
 #import "OGALog.h"
+#import "OGASdkConsumer.h"
 #import "OGASetLogLevelNotificationManager.h"
 
 @interface OGAInternalTests : XCTestCase

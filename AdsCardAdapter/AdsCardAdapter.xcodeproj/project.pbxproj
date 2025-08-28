@@ -8,23 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		4379F9CA2DEEECB80069F47A /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18FD2DAE8957002F170A /* AdsCardLibrary.framework */; };
-		4379F9CB2DEEECB80069F47A /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18FD2DAE8957002F170A /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4379F9E02DEEECBC0069F47A /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18FD2DAE8957002F170A /* AdsCardLibrary.framework */; };
 		4379F9E32DEEECBC0069F47A /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18FD2DAE8957002F170A /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		4379F9CC2DEEECB80069F47A /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				4379F9CB2DEEECB80069F47A /* AdsCardLibrary.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4379F9E22DEEECBC0069F47A /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -212,7 +200,6 @@
 				43EB16222DA52338002F170A /* Sources */,
 				43EB16232DA52338002F170A /* Frameworks */,
 				43EB16242DA52338002F170A /* Resources */,
-				4379F9CC2DEEECB80069F47A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

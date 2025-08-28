@@ -28,7 +28,7 @@ internal enum Action: AdsCardAdapterAction {
     
     func perform()  {
         switch self {
-            case let .showDebugger(viewController): Task { @MainActor in IronSource.launchTestSuite(viewController) }
+            case let .showDebugger(viewController): Task { @MainActor in LevelPlay.launchTestSuite(viewController) }
         }
     }
     
@@ -36,6 +36,7 @@ internal enum Action: AdsCardAdapterAction {
 }
 
 public struct UnityLevelPlayAdsCardAdapter: AdsCardAdaptable {
+    public var currentBundle: Bundle { Bundle(for: ULPAdManager.self) ?? .main }
     public init(testSuiteViewController: UIViewController) {
         actions = [Action.showDebugger(testSuiteViewController)]
     }
@@ -139,7 +140,7 @@ OM SDK Version : \(omid)
         // Build the initial request
         let initRequest = requestBuilder.build()
         // Initialize LevelPlay with the prepared request
-        IronSource.setMetaDataWithKey("is_test_suite", value: "enabled")
+        LevelPlay.setMetaDataWithKey("is_test_suite", value: "enable")
         let res = try? await LevelPlay.initWith(initRequest)
         print(res.debugDescription)
     }
