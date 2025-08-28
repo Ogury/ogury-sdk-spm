@@ -53,6 +53,26 @@
     return self;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    NSString *algo = [coder decodeObjectForKey:@"name"];
+    if (![algo isEqualToString:OguryAdQualityAlgorithmUniformColorRect]) {
+        return nil;
+    }
+    NSDictionary *params = [coder decodeObjectForKey:@"params"];
+    NSNumber *startDelay = params[@"start_after_ms"];
+    NSNumber *threshold = params[@"threshold"];
+    NSNumber *width = params[@"width"];
+    NSNumber *height = params[@"height"];
+    NSArray<NSString *> *formats = [coder decodeObjectForKey:@"format"];
+    if (params == nil || startDelay == nil || threshold == nil || width == nil || height == nil || formats == nil) {
+        return nil;
+    }
+    return [self initWithSize:CGSizeMake(width.doubleValue, height.doubleValue)
+                    threshold:threshold
+                   startDelay:startDelay
+               allowedFormats:formats];
+}
+
 - (void)logMessage:(NSString *)message adConfiguration:(OGAAdConfiguration *)adConfiguration result:(OGAAdQualityResult *_Nullable)result {
     NSMutableArray<OguryLogTag *> *tags = [@[] mutableCopy];
     [tags addObject:[OguryLogTag tagWithKey:OguryAdQualityAlgorithmKey value:self.algo]];
@@ -80,7 +100,7 @@
 
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, [UIScreen mainScreen].scale);
         [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
-//        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+        //        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
 
@@ -102,10 +122,10 @@
     dict[OguryAdQualityMonitoringKeyBlankAd] = result.success ? @(NO) : @(YES);
     dict[OguryAdQualityMonitoringKeyColor] = self.uniformHexColor;
     dict[OguryAdQualityMonitoringKeyParams] = [NSString stringWithFormat:@"%0.0fx%0.0f;%@;%@",
-                                             rectSize.width,
-                                             rectSize.height,
-                                             self.startDelay,
-                                               self.threshold];
+                                                                         rectSize.width,
+                                                                         rectSize.height,
+                                                                         self.startDelay,
+                                                                         self.threshold];
     dict[OguryAdQualityMonitoringKeyDeviance] = result.devianceMax;
     dict[OguryAdQualityMonitoringKeyDuration] = result.duration;
     [self.monitoringDispatcher sendAdQualityEvent:OGAShowEventAdQualityBlankAd

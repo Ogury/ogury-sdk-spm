@@ -28,18 +28,28 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        activeAlgorithms = @[
-            [[OGAAdQualityUniformColorRectAlgorithm alloc] initWithSize:CGSizeMake(50, 50)
-                                                              threshold:@(6)
-                                                             startDelay:@(1000)
-                                                         allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial,
-                                                                           OGAAdConfigurationAdTypeRewarded,
-                                                                           OGAAdConfigurationAdTypeThumbnailAd,
-                                                                           OGAAdConfigurationAdTypeStandardBanners ]]
-        ];
+//        activeAlgorithms = @[
+//            [[OGAAdQualityUniformColorRectAlgorithm alloc] initWithSize:CGSizeMake(50, 50)
+//                                                              threshold:@(6)
+//                                                             startDelay:@(1000)
+//                                                         allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial,
+//                                                                           OGAAdConfigurationAdTypeRewarded,
+//                                                                           OGAAdConfigurationAdTypeThumbnailAd,
+//                                                                           OGAAdConfigurationAdTypeStandardBanners ]]
+//        ];
+        activeAlgorithms = @[];
         self.isEnabled = YES;
     }
     return self;
+}
+
+- (void)setUpFrom:(OGAAdQualityConfiguration *)configuration {
+    NSMutableArray<id<OGAAdQualityAlgorithm>> *configAlgos = [@[] mutableCopy];
+    [configuration.blankAdConfiguration.algos enumerateObjectsUsingBlock:^(OGAAdQualityUniformColorRectAlgorithm * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [configAlgos addObject:obj];
+    }];
+    self.activeAlgorithms = configAlgos;
+    self.isEnabled = YES;
 }
 
 - (void)safeResultCompletionWithData:(NSArray<OGAAdQualityResult *> *)results completion:(AdQualityCompletionBlock _Nullable)completion {

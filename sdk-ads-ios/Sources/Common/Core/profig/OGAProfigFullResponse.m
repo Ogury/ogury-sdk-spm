@@ -31,7 +31,8 @@ NSString *const OGAAdConfigurationDisablingReasonCountryUnopened = @"COUNTRY_NOT
         @"blacklistedTracks" : @"response.monitoring.ad_life_cycle.blacklist",
         @"omidEnabled" : @"response.omid.enabled",
         @"errorType" : @"error.type",
-        @"errorMessage" : @"error.message"
+        @"errorMessage" : @"error.message",
+        @"adQualityConfiguration" : @"ad_quality"
     }];
 }
 
