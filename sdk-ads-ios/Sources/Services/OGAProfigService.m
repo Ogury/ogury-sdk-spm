@@ -55,6 +55,7 @@
     }
     self.profigLoadTaskInProgress = YES;
     @weakify(self)
+    [self.adQualityController reset];
     [[OguryNetworkClient shared] performRequest:profigRequest
                completionHandlerWithUrlResponse:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
         @strongify(self)

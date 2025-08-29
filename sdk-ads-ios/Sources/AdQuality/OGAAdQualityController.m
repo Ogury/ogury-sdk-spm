@@ -11,11 +11,11 @@
 #import "OGAAdQualityUniformColorRectAlgorithm.h"
 
 @interface OGAAdQualityController ()
-
+@property(nonatomic, retain) NSArray<id<OGAAdQualityAlgorithm>> *activeAlgorithms;
 @end
 
 @implementation OGAAdQualityController
-@synthesize activeAlgorithms, isEnabled;
+@synthesize activeAlgorithms;
 
 + (instancetype)shared {
     static OGAAdQualityController *instance;
@@ -38,9 +38,12 @@
 //                                                                           OGAAdConfigurationAdTypeStandardBanners ]]
 //        ];
         activeAlgorithms = @[];
-        self.isEnabled = YES;
     }
     return self;
+}
+
+- (void)reset {
+    self.activeAlgorithms = @[];
 }
 
 - (void)setUpFrom:(OGAAdQualityConfiguration *)configuration {
@@ -49,7 +52,6 @@
         [configAlgos addObject:obj];
     }];
     self.activeAlgorithms = configAlgos;
-    self.isEnabled = YES;
 }
 
 - (void)safeResultCompletionWithData:(NSArray<OGAAdQualityResult *> *)results completion:(AdQualityCompletionBlock _Nullable)completion {
@@ -59,10 +61,6 @@
 }
 
 - (void)performAdQualityChecksOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityCompletionBlock _Nullable)completion {
-    if (!self.isEnabled) {
-        [self safeResultCompletionWithData:@[] completion:completion];
-        return;
-    }
     dispatch_group_t group = dispatch_group_create();
     NSMutableArray<OGAAdQualityResult *> *results = [@[] mutableCopy];
 

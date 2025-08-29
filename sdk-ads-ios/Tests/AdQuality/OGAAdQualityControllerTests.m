@@ -10,11 +10,21 @@
 #import <OCMock/OCMock.h>
 #import "OGAAdQualityController.h"
 #import "OGAAdConfiguration.h"
+#import "OGAMonitoringDispatcher.h"
 #import "OGAAdQualityUniformColorRectAlgorithm.h"
 
 @interface OGAAdQualityControllerTests : XCTestCase
 @property(nonatomic, retain) OGAAdQualityController *sut;
 @property(nonatomic, retain) UIView *emtpyView;
+@end
+
+@interface OGAAdQualityUniformColorRectAlgorithm ()
+- (instancetype)initWithSize:(CGSize)size
+                   threshold:(NSNumber *)threshold
+                  startDelay:(NSNumber *)delay
+              allowedFormats:(NSArray<NSString *> *)allowedFormats
+        monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher
+                         log:(OGALog *)log;
 @end
 
 @implementation OGAAdQualityControllerTests
@@ -149,15 +159,38 @@
     UIImage *image = [UIImage imageWithData:data];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
-    [self.sut performAdQualityChecksOn:imageView
-                       adConfiguration:conf
-                            completion:^(NSArray<OGAAdQualityResult *> *_Nonnull results) {
-                                XCTAssertEqual(results.count, 1);
-                                OGAAdQualityResult *res = results[0];
-                                XCTAssertEqualObjects(res.algo, OguryAdQualityAlgorithmUniformColorRect);
-                                XCTAssertEqual(res.success, YES);
-                                [ex fulfill];
-                            }];
+    [self.sut performAdQualityChecksOn:imageView adConfiguration:conf completion:^(NSArray<OGAAdQualityResult *> *_Nonnull results) {
+        XCTAssertEqual(results.count, 1);
+        OGAAdQualityResult *res = results[0];
+        XCTAssertEqualObjects(res.algo, OguryAdQualityAlgorithmUniformColorRect);
+        XCTAssertEqual(res.success, YES);
+        [ex fulfill];
+    }];
+    [self waitForExpectations:@[ ex ] timeout:2];
+}
+
+- (void)testWhenPerformingChecksOnNotBlankAdThenMonitoringEventIsSent {
+    OGALog *log = OCMClassMock([OGALog class]);
+    OGAMonitoringDispatcher *monitoring = OCMClassMock([OGAMonitoringDispatcher class]);
+    OGAAdQualityUniformColorRectAlgorithm *algo = OCMPartialMock([[OGAAdQualityUniformColorRectAlgorithm alloc] initWithSize:CGSizeMake(50, 50)
+                                                                                                                   threshold:@(6)
+                                                                                                                  startDelay:@(1000)
+                                                                                                              allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial ]
+                                                                                                        monitoringDispatcher:monitoring
+                                                                                                                         log:log]);
+    self.sut.activeAlgorithms = @[ algo ];
+    OGAAdConfiguration *conf = OCMClassMock([OGAAdConfiguration class]);
+    OCMStub([conf getAdTypeString]).andReturn(OGAAdConfigurationAdTypeInterstitial);
+    OCMStub(self.sut.isEnabled).andReturn(YES);
+    XCTestExpectation *ex = [self expectationWithDescription:@"Completion block called"];
+    [self.sut performAdQualityChecksOn:self.emtpyView adConfiguration:conf completion:^(NSArray<OGAAdQualityResult *> * _Nonnull results) {
+        XCTAssertEqual(results.count, 1);
+        OGAAdQualityResult *res = results[0];
+        XCTAssertEqualObjects(res.algo, OguryAdQualityAlgorithmUniformColorRect);
+        XCTAssertEqual(res.success, YES);
+        [ex fulfill];
+        OCMVerify([monitoring sendAdQualityEvent:OGAShowEventAdQualityBlankAd adConfiguration:conf details:<#(OGAOrderedDictionary * _Nonnull)#>]);
+    }];
     [self waitForExpectations:@[ ex ] timeout:2];
 }
 
