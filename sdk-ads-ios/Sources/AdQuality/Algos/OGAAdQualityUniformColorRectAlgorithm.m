@@ -50,6 +50,7 @@
         self.log = log;
         self.allowedFormats = allowedFormats;
         self.monitoringDispatcher = monitoringDispatcher;
+        self.uniformHexColor = @"#";
     }
     return self;
 }
