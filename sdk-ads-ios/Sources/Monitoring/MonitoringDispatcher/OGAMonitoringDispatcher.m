@@ -20,6 +20,7 @@
 #import "OGALog.h"
 #import "OGAMonitoringLogMessage.h"
 #import "OGAMonitorEventConfigurationFactory.h"
+#import "OGAAdQualityController.h"
 
 @interface OGAMonitoringDispatcher ()
 

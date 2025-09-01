@@ -11,7 +11,9 @@
 #import "OGAAdImpressionManager.h"
 #import "OGAAd+ImpressionSource.h"
 #import "OGALog.h"
+#import "OGAMRAIDAdDisplayer.h"
 #import "OGAMonitoringDispatcher.h"
+#import "OGAAdQualityController.h"
 #import "OguryError+utility.h"
 
 NSString *const OGAAdImpressionControllerTestsLocalIdentifier = @"local-id";
@@ -27,10 +29,14 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
 - (instancetype)initWithMetricsService:(OGAMetricsService *)metricsService
                          networkClient:(OguryNetworkClient *)networkClient
                                    log:(OGALog *)log
-                  monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher;
+                  monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher
+                   adQualityController:(OGAAdQualityController *)adQualityController;
 ;
 
-- (void)sendImpressionTracker:(OGAAdExposure *)exposure ad:(OGAAd *)ad delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher;
+- (void)sendImpressionTracker:(OGAAdExposure *)exposure
+                           ad:(OGAAd *)ad
+           delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher
+                    displayer:(id<OGAAdDisplayer>)displayer;
 
 - (void)hasSentImpressionDelegateFor:(OGAAd *)ad;
 
@@ -49,6 +55,8 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
 @property(nonatomic, strong) OGAAdImpressionManager *impressionManager;
 @property(nonatomic, strong) OGADelegateDispatcher *delegateDispatcher;
 @property(nonatomic, strong) OGAMonitoringDispatcher *monitoringDispatcher;
+@property(nonatomic, strong) OGAAdQualityController *adQualityController;
+@property(nonatomic, strong) id<OGAAdDisplayer> displayer;
 
 @end
 
@@ -61,6 +69,8 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
     self.delegateDispatcher = OCMClassMock([OGADelegateDispatcher class]);
     self.log = OCMClassMock([OGALog class]);
     self.monitoringDispatcher = OCMPartialMock([[OGAMonitoringDispatcher alloc] init]);
+    self.displayer = OCMClassMock([OGAMRAIDAdDisplayer class]);
+    self.adQualityController = OCMClassMock([OGAAdQualityController class]);
 
     OCMStub(self.ad.localIdentifier).andReturn(OGAAdImpressionControllerTestsLocalIdentifier);
     OCMStub(self.ad.identifier).andReturn(OGAAdImpressionControllerTestsAdvertId);
@@ -68,7 +78,8 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
     OGAAdImpressionManager *impressionManager = [[OGAAdImpressionManager alloc] initWithMetricsService:self.metricsService
                                                                                          networkClient:self.networkClient
                                                                                                    log:self.log
-                                                                                  monitoringDispatcher:self.monitoringDispatcher];
+                                                                                  monitoringDispatcher:self.monitoringDispatcher
+                                                                                   adQualityController:self.adQualityController];
     self.impressionManager = OCMPartialMock(impressionManager);
 }
 
@@ -77,19 +88,19 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
 - (void)testSendIfNecessaryAfterExposureChanged_sendImpressionIfExposureAboveMin {
     OGAAdExposure *exposure = [[OGAAdExposure alloc] init];
     exposure.exposurePercentage = 75.0f;
-    OCMStub([self.impressionManager sendImpressionTracker:OCMOCK_ANY ad:OCMOCK_ANY delegateDispatcher:OCMOCK_ANY]);
+    OCMStub([self.impressionManager sendImpressionTracker:OCMOCK_ANY ad:OCMOCK_ANY delegateDispatcher:OCMOCK_ANY displayer:self.displayer]);
 
-    [self.impressionManager sendIfNecessaryAfterExposureChanged:exposure ad:self.ad delegateDispatcher:OCMOCK_ANY];
+    [self.impressionManager sendIfNecessaryAfterExposureChanged:exposure ad:self.ad delegateDispatcher:OCMOCK_ANY displayer:self.displayer];
 
-    OCMVerify([self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:OCMOCK_ANY]);
+    OCMVerify([self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:OCMOCK_ANY displayer:self.displayer]);
 }
 
 - (void)testSendIfNecessaryAfterExposureChanged_doNotSendImpressionIfBelowMin {
     OGAAdExposure *exposure = [[OGAAdExposure alloc] init];
     exposure.exposurePercentage = 40.0f;
-    OCMStub([self.impressionManager sendImpressionTracker:OCMOCK_ANY ad:OCMOCK_ANY delegateDispatcher:OCMOCK_ANY]);
+    OCMStub([self.impressionManager sendImpressionTracker:OCMOCK_ANY ad:OCMOCK_ANY delegateDispatcher:OCMOCK_ANY displayer:self.displayer]);
 
-    [self.impressionManager sendIfNecessaryAfterExposureChanged:exposure ad:self.ad delegateDispatcher:OCMOCK_ANY];
+    [self.impressionManager sendIfNecessaryAfterExposureChanged:exposure ad:self.ad delegateDispatcher:OCMOCK_ANY displayer:self.displayer];
 }
 
 - (void)testSendImpressionTracker_sendDefaultImpressionTrackerIfNoImpressionUrl {
@@ -106,7 +117,7 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
     OCMStub(adConf.monitoringDetails).andReturn(details);
     OCMStub(details.sessionId).andReturn(@"LKUHIOHN");
 
-    [self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:delegateDispatcher];
+    [self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:delegateDispatcher displayer:self.displayer];
 
     XCTAssertTrue(self.impressionManager.hasSentImpressionTrackByAdId[OGAAdImpressionControllerTestsLocalIdentifier].boolValue);
     OCMVerify([self.impressionManager sendDefaultImpressionTracker:self.ad]);
@@ -127,7 +138,7 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
     OCMStub([self.impressionManager sendCustomImpressionTracker:[OCMArg any]]);
     OCMReject([self.impressionManager sendDefaultImpressionTracker:[OCMArg any]]);
     OCMReject([self.delegateDispatcher adImpression]);
-    [self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:self.delegateDispatcher];
+    [self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:self.delegateDispatcher displayer:self.displayer];
     XCTAssertTrue(self.impressionManager.hasSentImpressionTrackByAdId[OGAAdImpressionControllerTestsLocalIdentifier].boolValue);
     OCMVerify([self.impressionManager sendCustomImpressionTracker:self.ad]);
 }
@@ -146,7 +157,7 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
     OCMStub(self.ad.impressionUrl).andReturn(OGAAdImpressionControllerTestsImpressionUrl);
     OCMStub([self.impressionManager sendCustomImpressionTracker:[OCMArg any]]);
     OCMReject([self.impressionManager sendDefaultImpressionTracker:[OCMArg any]]);
-    [self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:self.delegateDispatcher];
+    [self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:self.delegateDispatcher displayer:self.displayer];
     XCTAssertTrue(self.impressionManager.hasSentImpressionTrackByAdId[OGAAdImpressionControllerTestsLocalIdentifier].boolValue);
     OCMVerify([self.impressionManager sendCustomImpressionTracker:self.ad]);
     OCMVerify([self.delegateDispatcher adImpression]);
@@ -167,7 +178,7 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
 
     OGADelegateDispatcher *delegateDispatcher = OCMClassMock([OGADelegateDispatcher class]);
 
-    [self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:delegateDispatcher];
+    [self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:delegateDispatcher displayer:self.displayer];
 
     XCTAssertTrue(self.impressionManager.hasSentImpressionTrackByAdId[OGAAdImpressionControllerTestsLocalIdentifier].boolValue);
     OCMVerify([self.impressionManager sendCustomImpressionTracker:self.ad]);
@@ -183,7 +194,7 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
     self.impressionManager.hasSentImpressionTrackByAdId[OGAAdImpressionControllerTestsLocalIdentifier] = @(YES);
     OCMReject([self.impressionManager sendDefaultImpressionTracker:[OCMArg any]]);
 
-    [self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:OCMOCK_ANY];
+    [self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:OCMOCK_ANY displayer:self.displayer];
 }
 
 - (void)testSendDefaultImpressionTracker {
@@ -241,6 +252,40 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
     OCMVerify([self.monitoringDispatcher sendShowEvent:OGAShowEventCreativeDisplayed impressionSource:[OCMArg any] adConfiguration:adConfiguration]);
     OCMVerify([self.monitoringDispatcher sendShowEvent:OGAShowEventDisplayed impressionSource:[OCMArg any] adConfiguration:adConfiguration]);
     OCMVerify([self.monitoringDispatcher sendShowEventForImpressionSource:[OCMArg any] position:@2 adConfiguration:adConfiguration]);
+}
+
+- (void)testWhenSendingImpressionThenAdQualityControllerIsCalled {
+    OGAAdExposure *exposure = [[OGAAdExposure alloc] init];
+    exposure.exposurePercentage = 100.0f;
+    OGAAdConfiguration *adConf = OCMClassMock([OGAAdConfiguration class]);
+    OCMStub([self.ad adConfiguration]).andReturn(adConf);
+    OGAMonitoringDetails *details = OCMClassMock([OGAMonitoringDetails class]);
+    OCMStub(adConf.monitoringDetails).andReturn(details);
+    OCMStub(details.sessionId).andReturn(@"LKUHIOHN");
+    OCMStub(self.ad.isImpression).andReturn(YES);
+    OCMStub([self.ad isImpressionSourceSDK]).andReturn(YES);
+    OCMStub(self.ad.impressionUrl).andReturn(OGAAdImpressionControllerTestsImpressionUrl);
+    OCMStub([self.impressionManager sendCustomImpressionTracker:[OCMArg any]]);
+    self.impressionManager.hasSentImpressionTrackByAdId[OGAAdImpressionControllerTestsLocalIdentifier] = @(NO);
+    [self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:self.delegateDispatcher displayer:self.displayer];
+    OCMVerify([self.adQualityController performAdQualityChecksOn:[OCMArg any] adConfiguration:[OCMArg any]]);
+}
+
+- (void)testWhenNotSendingImpressionThenAdQualityControllerIsNotCalled {
+    OGAAdExposure *exposure = [[OGAAdExposure alloc] init];
+    exposure.exposurePercentage = 100.0f;
+    OGAAdConfiguration *adConf = OCMClassMock([OGAAdConfiguration class]);
+    OCMStub([self.ad adConfiguration]).andReturn(adConf);
+    OGAMonitoringDetails *details = OCMClassMock([OGAMonitoringDetails class]);
+    OCMStub(adConf.monitoringDetails).andReturn(details);
+    OCMStub(details.sessionId).andReturn(@"LKUHIOHN");
+    OCMStub(self.ad.isImpression).andReturn(YES);
+    OCMStub([self.ad isImpressionSourceSDK]).andReturn(YES);
+    OCMStub(self.ad.impressionUrl).andReturn(OGAAdImpressionControllerTestsImpressionUrl);
+    OCMStub([self.impressionManager sendCustomImpressionTracker:[OCMArg any]]);
+    self.impressionManager.hasSentImpressionTrackByAdId[OGAAdImpressionControllerTestsLocalIdentifier] = @(YES);
+    [self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:self.delegateDispatcher displayer:self.displayer];
+    OCMReject([self.adQualityController performAdQualityChecksOn:[OCMArg any] adConfiguration:[OCMArg any]]);
 }
 
 @end

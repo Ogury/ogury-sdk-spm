@@ -16,6 +16,7 @@
 #import "OGASKAdNetworkManager.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGAAd+ImpressionSource.h"
+#import "OGAAdQualityController.h"
 
 CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
 
@@ -25,6 +26,7 @@ CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
 @property(nonatomic, strong) OguryNetworkClient *networkClient;
 @property(nonatomic, strong) OGALog *log;
 @property(nonatomic, strong) OGAMonitoringDispatcher *monitoringDispatcher;
+@property(nonatomic, strong) OGAAdQualityController *adQualityController;
 
 @property(atomic, strong) NSMutableDictionary<NSString *, NSNumber *> *hasSentImpressionTrackByAdId;
 @property(atomic, strong) NSMutableDictionary<NSString *, NSNumber *> *hasSentImpressionDelegateByAdId;
@@ -49,13 +51,15 @@ CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
     return [self initWithMetricsService:[OGAMetricsService shared]
                           networkClient:[OguryNetworkClient shared]
                                     log:[OGALog shared]
-                   monitoringDispatcher:[OGAMonitoringDispatcher shared]];
+                   monitoringDispatcher:[OGAMonitoringDispatcher shared]
+                    adQualityController:[OGAAdQualityController shared]];
 }
 
 - (instancetype)initWithMetricsService:(OGAMetricsService *)metricsService
                          networkClient:(OguryNetworkClient *)networkClient
                                    log:(OGALog *)log
-                  monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher {
+                  monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher
+                   adQualityController:(OGAAdQualityController *)adQualityController {
     if (self = [super init]) {
         _metricsService = metricsService;
         _networkClient = networkClient;
@@ -64,19 +68,26 @@ CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
         _hasSentImpressionTrackBySessionId = [[NSMutableDictionary alloc] init];
         _log = log;
         _monitoringDispatcher = monitoringDispatcher;
+        _adQualityController = adQualityController;
     }
     return self;
 }
 
 #pragma mark - Methods
 
-- (void)sendIfNecessaryAfterExposureChanged:(OGAAdExposure *)exposure ad:(OGAAd *)ad delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher {
+- (void)sendIfNecessaryAfterExposureChanged:(OGAAdExposure *)exposure
+                                         ad:(OGAAd *)ad
+                         delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher
+                                  displayer:(id<OGAAdDisplayer>)displayer {
     if (exposure.exposurePercentage >= OGAAdImpressionControllerMinExposureForImpression) {
-        [self sendImpressionTracker:exposure ad:ad delegateDispatcher:delegateDispatcher];
+        [self sendImpressionTracker:exposure ad:ad delegateDispatcher:delegateDispatcher displayer:displayer];
     }
 }
 
-- (void)sendImpressionTracker:(OGAAdExposure *)exposure ad:(OGAAd *)ad delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher {
+- (void)sendImpressionTracker:(OGAAdExposure *)exposure
+                           ad:(OGAAd *)ad
+           delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher
+                    displayer:(id<OGAAdDisplayer>)displayer {
     @synchronized(self) {
         // We use the localIdentifier instead of the identifier due to a server bug that causes
         // the identifier to used twice.
@@ -102,6 +113,8 @@ CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
                 [self.monitoringDispatcher sendShowEventContainerDisplayedWithImpressionSource:[ad getRawImpressionSource]
                                                                                       exposure:@(exposure.exposurePercentage)
                                                                                adConfiguration:ad.adConfiguration];
+                // Ad Quality
+                [self.adQualityController performAdQualityChecksOn:displayer.view adConfiguration:ad.adConfiguration];
             }
 
             if ([ad isImpressionSourceSDK]) {
