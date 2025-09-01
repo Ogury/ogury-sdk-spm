@@ -36,6 +36,7 @@ internal enum Action: AdsCardAdapterAction {
 }
 
 public struct UnityLevelPlayAdsCardAdapter: AdsCardAdaptable {
+    public var currentBundle: Bundle { Bundle(for: ULPAdManager.self) ?? .main }
     public init(testSuiteViewController: UIViewController) {
         actions = [Action.showDebugger(testSuiteViewController)]
     }

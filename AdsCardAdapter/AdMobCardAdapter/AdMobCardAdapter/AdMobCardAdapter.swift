@@ -44,6 +44,7 @@ internal enum AdMobAction: AdsCardAdapterAction {
 }
 
 public struct AdMobAdsCardAdapter: AdsCardAdaptable {
+    public var currentBundle: Bundle { Bundle(for: AdMobDelegateProxy.self) ?? .main }
     public init(debugViewController: UIViewController) {
         actions = [AdMobAction.showDebugger(debugViewController)]
     }

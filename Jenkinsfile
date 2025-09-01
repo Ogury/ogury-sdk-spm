@@ -1,4 +1,4 @@
-  
+
 @Library('ogury-jenkins-lib@v7.5.1') _
 
 pipeline {
@@ -10,7 +10,7 @@ pipeline {
         GIT_TOKEN = credentials('GIT_TOKEN')
         GIT_USERNAME = "weareogury"
         LC_ALL = 'en_US.UTF-8'
-        PATH = "$HOME/.rvm/bin:$PATH" // ensure RVM is found
+        PATH = "/usr/local/bin:$HOME/.rvm/bin:$PATH" // ensure RVM is found
         RBENV_SHELL = 'zsh'
         SONAR_CLOUD_TOKEN = credentials('SONAR_CLOUD_TOKEN')
         ARTIFACTORY_TOKEN = credentials('ARTIFACTORY_TOKEN')
@@ -54,7 +54,7 @@ pipeline {
                     def targetThreshold = "all"
                     
                     // Check if a tag exists and contains '-art'
-                    if (env.GIT_TAG && (env.GIT_TAG.contains('-art') || env.GIT_TAG.contains('release-') )) {
+                    if (env.GIT_TAG && (env.GIT_TAG.contains('-art'))) {
                         isArtifactory = true
                     }
 
@@ -167,7 +167,7 @@ pipeline {
                             // Ensure that release mode always has this setting to false
                             killModeEnabled = false
                             // always use external dependencies when compiling for prod
-                            isArtifactory = true
+                            isArtifactory = false
                             break
                         default:
                             error "Unknown environment type: ${elements[0]}"
@@ -244,39 +244,32 @@ pipeline {
             when {
                 beforeAgent true
                 buildingTag()
-                expression {
-                    env.TAG_NAME?.contains('internal-testApp@')
-                }
+                expression { return (env.TAG_NAME ?: "").contains("internal-testApp.") }
             }
             steps {
                 script {
-                    // Extract app selector from TAG_NAME like "internal-testApp@ogury-1.0.0"
+                    echo 'tag resolution'
+                    // Extract app selector from TAG_NAME like "internal-testApp.ogury-1.0.0"
                     def tagName = env.TAG_NAME ?: ""
-                    def match = tagName =~ /testApp@([^-\s]+)/
-        
-                    if (!match) {
-                        error("No app selector found in TAG_NAME: ${tagName}")
-                    } else {
-                        echo "App selector: ${match[1]}"
-                    }
-        
-                    def appSelector = match[0][1]  // e.g., "all, "ogury", "mediation", or "prodTestApp"
-                    echo "Found -> ${appSelector}"
+                    echo "TAG NAME: ${tagName}"
+                    def afterPrefix = tagName - "internal-testApp."
+                    def (appSelector, version) = afterPrefix.split("-", 2)
         
                     // Additional flags if needed
                     def tagElements = tagName.split("-")
+                    echo "after split"
                     def isQa = tagElements.contains("qa")
+                    echo "isQa ${isQa}"
                     def isArtifactory = tagElements.contains("art")
+                    echo "isArtifactory ${isArtifactory}"
                     def killModeEnabled = tagElements.contains("killModeEnabled")
-        
+                    echo "killModeEnabled ${killModeEnabled}"
+                    
                     sh """#!/bin/zsh -l
-                      bundle exec fastlane generate_test_app \\
-                        appSelector:'${appSelector}' \\
-                        isQa:${isQa} \\
-                        artifactory:${isArtifactory} \\
-                        tag:'${tagName}' \\
-                        killModeEnabled:${killModeEnabled}
+                        bundle exec fastlane generate_test_app appSelector:\"${appSelector}\" isQa:${isQa} artifactory:${isArtifactory} tag:\"${tagName}\" killModeEnabled:${killModeEnabled}
                     """
+
+                    //sh "zsh -l -c 'bundle install && bundle exec fastlane deploy_ads_framework '"
                 }
             }
         }
