@@ -58,7 +58,7 @@
     NSMutableArray<OGAAdQualityResult *> *results = [@[] mutableCopy];
 
     [self.activeAlgorithms enumerateObjectsUsingBlock:^(id<OGAAdQualityAlgorithm> _Nonnull algo, NSUInteger idx, BOOL *_Nonnull stop) {
-        if ([algo.allowedFormats containsObject:[adConfiguration getAdTypeString]]) {
+        if ([algo computationEnabledFor:adConfiguration]) {
             dispatch_group_enter(group);
             [algo performAdQualityCheckOn:view
                           adConfiguration:adConfiguration

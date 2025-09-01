@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, retain) NSNumber *duration;
 @property(nonatomic, retain) OguryAdQualityAlgorithm algo;
 @property(nonatomic, retain) NSArray<NSString *> *allowedFormats;
+- (BOOL)computationEnabledFor:(OGAAdConfiguration *)adConfiguration;
 
 - (instancetype)initWithSize:(CGSize)size
                    threshold:(NSNumber *)threshold

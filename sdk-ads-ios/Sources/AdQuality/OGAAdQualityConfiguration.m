@@ -41,6 +41,18 @@
     }];
 }
 
+- (instancetype)initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err {
+    self = [super initWithDictionary:dict error:err];
+    NSArray<NSDictionary *> *algos = dict[@"algo"];
+    NSMutableArray *insertedAlgos = [@[] mutableCopy];
+    [algos enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        OGAAdQualityUniformColorRectAlgorithm *algo = [[OGAAdQualityUniformColorRectAlgorithm alloc] initWithDictionary:obj error:nil];
+        [insertedAlgos addObject:algo];
+    }];
+    self.algos = insertedAlgos;
+    return self;
+}
+
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
     return true;
 }

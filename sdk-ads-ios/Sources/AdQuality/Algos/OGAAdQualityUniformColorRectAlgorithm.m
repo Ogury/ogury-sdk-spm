@@ -11,6 +11,7 @@
 #import "OGAAdLogMessage.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGAAdQualityConstants.h"
+#import "OguryBannerAdSize.h"
 
 @interface OGAAdQualityUniformColorRectAlgorithm ()
 @property(nonatomic, strong) OGALog *log;
@@ -84,13 +85,29 @@
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err {
-    self = [super initWithDictionary:dict error:err];
-    self.rectSize = CGSizeMake([dict[@"params"][@"width"] floatValue], [dict[@"params"][@"height"] floatValue]);
+    self = [self initWithSize:CGSizeMake([dict[@"params"][@"width"] floatValue], [dict[@"params"][@"height"] floatValue])
+                    threshold:dict[@"params"][@"threshold"]
+                   startDelay:dict[@"params"][@"start_after_ms"]
+               allowedFormats:dict[@"format"]];
     return self;
 }
 
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
     return true;
+}
+
+- (BOOL)computationEnabledFor:(OGAAdConfiguration *)adConfiguration {
+    NSString *adType = [adConfiguration getAdTypeString];
+    if ([adType isEqualToString:OGAAdConfigurationAdTypeInterstitial] || [adType isEqualToString:OGAAdConfigurationAdTypeRewarded] || [adType isEqualToString:OGAAdConfigurationAdTypeThumbnailAd]) {
+        return [self.allowedFormats containsObject:adType];
+    } else if ([adType isEqualToString:OGAAdConfigurationAdTypeStandardBanners]) {
+        if ([self.allowedFormats containsObject:@"standard_banners_320x50"]) {
+            return CGSizeEqualToSize(adConfiguration.size, [OguryBannerAdSize.small_banner_320x50 getSize]);
+        } else if ([self.allowedFormats containsObject:@"standard_banners_300x250"]) {
+            return CGSizeEqualToSize(adConfiguration.size, [OguryBannerAdSize.mrec_300x250 getSize]);
+        }
+    }
+    return NO;
 }
 
 - (void)logMessage:(NSString *)message adConfiguration:(OGAAdConfiguration *)adConfiguration result:(OGAAdQualityResult *_Nullable)result {
