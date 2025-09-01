@@ -18,7 +18,6 @@ typedef void (^AdQualityCompletionBlock)(NSArray<OGAAdQualityResult *> *results)
 + (instancetype)shared;
 // from config reset
 - (void)reset;
-
 - (void)setUpFrom:(OGAAdQualityConfiguration *)configuration;
 - (void)performAdQualityChecksOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityCompletionBlock _Nullable)completion;
 - (void)performAdQualityChecksOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration;

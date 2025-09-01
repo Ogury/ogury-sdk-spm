@@ -28,15 +28,6 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-//        activeAlgorithms = @[
-//            [[OGAAdQualityUniformColorRectAlgorithm alloc] initWithSize:CGSizeMake(50, 50)
-//                                                              threshold:@(6)
-//                                                             startDelay:@(1000)
-//                                                         allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial,
-//                                                                           OGAAdConfigurationAdTypeRewarded,
-//                                                                           OGAAdConfigurationAdTypeThumbnailAd,
-//                                                                           OGAAdConfigurationAdTypeStandardBanners ]]
-//        ];
         activeAlgorithms = @[];
     }
     return self;
@@ -48,9 +39,11 @@
 
 - (void)setUpFrom:(OGAAdQualityConfiguration *)configuration {
     NSMutableArray<id<OGAAdQualityAlgorithm>> *configAlgos = [@[] mutableCopy];
-    [configuration.blankAdConfiguration.algos enumerateObjectsUsingBlock:^(OGAAdQualityUniformColorRectAlgorithm * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [configAlgos addObject:obj];
-    }];
+    if (configuration.blankAdConfiguration.isEnabled) {
+        [configuration.blankAdConfiguration.algos enumerateObjectsUsingBlock:^(OGAAdQualityUniformColorRectAlgorithm * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [configAlgos addObject:obj];
+        }];
+    }
     self.activeAlgorithms = configAlgos;
 }
 
