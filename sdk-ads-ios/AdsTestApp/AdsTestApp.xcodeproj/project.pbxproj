@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F438EF5D61C494DE960745D /* Pods_AdsTestApp_Prod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3284F43285076C3732D5B37E /* Pods_AdsTestApp_Prod.framework */; };
-		1A2A015489F8BE6E51B1A4DE /* Pods_AdsTestApp_Prod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED2A126A0AA46659A0C060 /* Pods_AdsTestApp_Prod.framework */; };
 		1E0E81642ACD8DFB00EFD70C /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; };
 		1E0E81652ACD8DFB00EFD70C /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1E5BE6252B21CCE50010B995 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1E5BE6242B21CCE50010B995 /* SnapKit */; };
@@ -36,6 +34,7 @@
 		2D97BE07013D74650CACCBE3 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D32DAE3DA0002F170A /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E49408A034F475600BEA98D /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D32DAE3DA0002F170A /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		30DF6C0F2178BE9B7822DC89 /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		39243B4C2065B5BC47F1CF26 /* Pods_AdsTestApp_Prod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99ED2A126A0AA46659A0C060 /* Pods_AdsTestApp_Prod.framework */; };
 		3C4FBDC03683D0592ECCE0AA /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
 		3C9E0A9E1503073D45FE23A2 /* Pods_AdMobTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23658B3A7EFB0FFE4A971829 /* Pods_AdMobTestApp.framework */; };
 		406AEEA3223521CD56FDEC33 /* Pods_PrebidTestApp_devc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E1D76EB43273FAEEF2BD21 /* Pods_PrebidTestApp_devc.framework */; };
@@ -289,10 +288,7 @@
 		4373B46F2DCB61F300E1702F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4373B4432DCB61F300E1702F /* SnapKit */; };
 		4373B4702DCB61F300E1702F /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 4373B4472DCB61F300E1702F /* SwiftMessages */; };
 		4373B4712DCB61F300E1702F /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 4373B4452DCB61F300E1702F /* UserDefault */; };
-		4373B4722DCB61F300E1702F /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190D2DAE89B2002F170A /* OguryAds.framework */; };
 		4373B4742DCB61F300E1702F /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
-		4373B4752DCB61F300E1702F /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190F2DAE89B2002F170A /* OguryCore.framework */; };
-		4373B4762DCB61F300E1702F /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20BB2C6A60C400DF24AB /* OgurySdk.framework */; };
 		4373B4782DCB61F300E1702F /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F788AE2B4E88250022157E /* AdsCardLibrary.framework */; };
 		4373B47B2DCB61F300E1702F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
 		4373B47C2DCB61F300E1702F /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43236A162CF5C6F40078EF67 /* FiraCode-Regular.ttf */; };
@@ -310,6 +306,12 @@
 		4373B5242DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B5232DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework */; };
 		4373B5252DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B5232DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4373B5292DCB93F500E1702F /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; };
+		437825B72E60289200956ECB /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20BB2C6A60C400DF24AB /* OgurySdk.framework */; };
+		437825B82E60289200956ECB /* OgurySdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20BB2C6A60C400DF24AB /* OgurySdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		437825B92E6028A500956ECB /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20BB2C6A60C400DF24AB /* OgurySdk.framework */; };
+		437825BA2E6028A500956ECB /* OgurySdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20BB2C6A60C400DF24AB /* OgurySdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		437825BB2E6028AE00956ECB /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20BB2C6A60C400DF24AB /* OgurySdk.framework */; };
+		437825BC2E6028AE00956ECB /* OgurySdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20BB2C6A60C400DF24AB /* OgurySdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43788F402B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
 		43788F412B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
 		43788F422B60E9FF0041A9C1 /* AddFormatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43788F3E2B60E9FF0041A9C1 /* AddFormatsView.swift */; };
@@ -763,6 +765,7 @@
 		96C44FA9C5181024C924D231 /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A1DA1BC99E5F00FA508DA696 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D32DAE3DA0002F170A /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B68B98228FEF5F63D4165F6C /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		CB8055A435B330C78791EB99 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		CBDB8FD576DDD30E68476A73 /* Pods_UnityLevelPlayTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5616FBBCFCE8EB45F9C2D9E9 /* Pods_UnityLevelPlayTestApp.framework */; };
 		CCD85732B1EFE6F4314F4CB0 /* Pods_AdsTestApp_Staging_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9E66683CA8615CEAA621B07 /* Pods_AdsTestApp_Staging_art.framework */; };
 		CFEC2379422951461C4C02FF /* Pods_AdsTestApp_Devc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5F30A77D6A0C6DE0DC7BDA3 /* Pods_AdsTestApp_Devc.framework */; };
@@ -784,6 +787,7 @@
 			files = (
 				1E0E81652ACD8DFB00EFD70C /* OMSDK_Ogury.xcframework in Embed Frameworks */,
 				43EB186D2DA6A4E7002F170A /* OguryCardAdapter.framework in Embed Frameworks */,
+				437825B82E60289200956ECB /* OgurySdk.framework in Embed Frameworks */,
 				43EB192A2DAFF03C002F170A /* OguryCore.framework in Embed Frameworks */,
 				43EB19282DAFF03C002F170A /* OguryAds.framework in Embed Frameworks */,
 				940739CE2B14D6D0212589BE /* AdsCardLibrary.framework in Embed Frameworks */,
@@ -882,6 +886,7 @@
 			files = (
 				43B7136C2B45702C007C8D21 /* OMSDK_Ogury.xcframework in Embed Frameworks */,
 				43EB18702DA6A4EF002F170A /* OguryCardAdapter.framework in Embed Frameworks */,
+				437825BA2E6028A500956ECB /* OgurySdk.framework in Embed Frameworks */,
 				43EB19242DAFF02B002F170A /* OguryCore.framework in Embed Frameworks */,
 				43EB19222DAFF02B002F170A /* OguryAds.framework in Embed Frameworks */,
 				2E49408A034F475600BEA98D /* AdsCardLibrary.framework in Embed Frameworks */,
@@ -926,6 +931,7 @@
 			files = (
 				43EB191C2DAE8AC8002F170A /* OguryCardAdapter.framework in Embed Frameworks */,
 				43EB1F732DB25891002F170A /* AdsCardLibrary.framework in Embed Frameworks */,
+				437825BC2E6028AE00956ECB /* OgurySdk.framework in Embed Frameworks */,
 				43EB191A2DAE8AC6002F170A /* OguryAds.framework in Embed Frameworks */,
 				43EB1F712DB25872002F170A /* AdsCardAdapter.framework in Embed Frameworks */,
 				43EB191E2DAE8AC9002F170A /* OguryCore.framework in Embed Frameworks */,
@@ -1755,6 +1761,7 @@
 				43B7136B2B45702C007C8D21 /* OMSDK_Ogury.xcframework in Frameworks */,
 				4391968E2E560183001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				43EB19232DAFF02B002F170A /* OguryCore.framework in Frameworks */,
+				437825B92E6028A500956ECB /* OgurySdk.framework in Frameworks */,
 				892845E746F07668F5F00F7C /* AdsCardAdapter.framework in Frameworks */,
 				43912F3D2E54B2A300C1BFD5 /* MarkdownUI in Frameworks */,
 				E6D752923C989A29C8B6C272 /* AdsCardLibrary.framework in Frameworks */,
@@ -1775,12 +1782,13 @@
 				439196902E560187001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				43EB19192DAE8AC6002F170A /* OguryAds.framework in Frameworks */,
 				B68B98228FEF5F63D4165F6C /* BuildFile in Frameworks */,
+				437825BB2E6028AE00956ECB /* OgurySdk.framework in Frameworks */,
 				43EB191D2DAE8AC9002F170A /* OguryCore.framework in Frameworks */,
 				43EB1F722DB25891002F170A /* AdsCardLibrary.framework in Frameworks */,
 				43EB1F702DB25872002F170A /* AdsCardAdapter.framework in Frameworks */,
 				43EB191B2DAE8AC8002F170A /* OguryCardAdapter.framework in Frameworks */,
-				0F438EF5D61C494DE960745D /* Pods_AdsTestApp_Prod.framework in Frameworks */,
-				1A2A015489F8BE6E51B1A4DE /* Pods_AdsTestApp_Prod.framework in Frameworks */,
+				CB8055A435B330C78791EB99 /* BuildFile in Frameworks */,
+				39243B4C2065B5BC47F1CF26 /* Pods_AdsTestApp_Prod.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1791,14 +1799,11 @@
 				4373B46F2DCB61F300E1702F /* SnapKit in Frameworks */,
 				4373B4702DCB61F300E1702F /* SwiftMessages in Frameworks */,
 				4373B4712DCB61F300E1702F /* UserDefault in Frameworks */,
-				4373B4722DCB61F300E1702F /* OguryAds.framework in Frameworks */,
 				43912F492E54B2C200C1BFD5 /* MarkdownUI in Frameworks */,
 				4373B5292DCB93F500E1702F /* OMSDK_Ogury.xcframework in Frameworks */,
 				4391969E2E5601A6001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				4373B4742DCB61F300E1702F /* AdsCardAdapter.framework in Frameworks */,
 				4373B5242DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework in Frameworks */,
-				4373B4752DCB61F300E1702F /* OguryCore.framework in Frameworks */,
-				4373B4762DCB61F300E1702F /* OgurySdk.framework in Frameworks */,
 				4373B4782DCB61F300E1702F /* AdsCardLibrary.framework in Frameworks */,
 				7DB2F6E45BFD59711A7F6BC0 /* BuildFile in Frameworks */,
 				CBDB8FD576DDD30E68476A73 /* Pods_UnityLevelPlayTestApp.framework in Frameworks */,
@@ -1817,6 +1822,7 @@
 				1E5BE62D2B21CD0E0010B995 /* SnapKit in Frameworks */,
 				439195792E55FC86001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				43EB19292DAFF03C002F170A /* OguryCore.framework in Frameworks */,
+				437825B72E60289200956ECB /* OgurySdk.framework in Frameworks */,
 				3C4FBDC03683D0592ECCE0AA /* AdsCardAdapter.framework in Frameworks */,
 				43912F3B2E54B29F00C1BFD5 /* MarkdownUI in Frameworks */,
 				641C84CBDB1DF68759CA97FE /* AdsCardLibrary.framework in Frameworks */,
@@ -2570,7 +2576,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 433531312E093A700082026C /* Build configuration list for PBXNativeTarget "PrebidTestApp" */;
 			buildPhases = (
-				2AF5C9FE08DA3B4154BDF837 /* [CP] Check Pods Manifest.lock */,
+				D8DDF1DE041D61A1687C0DB4 /* [CP] Check Pods Manifest.lock */,
+				CDF207257F85A3923E4B3C1B /* [CP] Embed Pods Frameworks */,
 				E7D0F1BA28ED768F29B4E49F /* [CP] Copy Pods Resources */,
 				433530FA2E093A700082026C /* Sources */,
 				4335311C2E093A700082026C /* Frameworks */,
@@ -2608,8 +2615,8 @@
 				434F84CC2ACFE4FE005077F5 /* Frameworks */,
 				434F84CF2ACFE4FE005077F5 /* Resources */,
 				43B713662B45700B007C8D21 /* Embed Frameworks */,
-				A497C94FD77B3CD4C1088A73 /* [CP] Embed Pods Frameworks */,
 				7791A9D0ED69B76091A34D50 /* [CP] Copy Pods Resources */,
+				69E73794D11B5BB7E3D1A9E5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2638,13 +2645,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 434F84EF2ACFE50A005077F5 /* Build configuration list for PBXNativeTarget "AdsTestApp-Prod" */;
 			buildPhases = (
-				220261A047AC614D0FCE4E8B /* [CP] Check Pods Manifest.lock */,
+				DAECF0390565F56E3656A485 /* [CP] Check Pods Manifest.lock */,
 				434F84DA2ACFE50A005077F5 /* Sources */,
 				434F84E82ACFE50A005077F5 /* Frameworks */,
 				434F84EB2ACFE50A005077F5 /* Resources */,
 				43EB19182DAE89B2002F170A /* Embed Frameworks */,
-				C427C9E249833A8D62856272 /* [CP] Embed Pods Frameworks */,
-				78339E8D9C6E0AF9B7704E7D /* [CP] Copy Pods Resources */,
+				965C52F4DC3E9D132D7252C0 /* [CP] Embed Pods Frameworks */,
+				EAFF317EAD7006067A4315B6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2678,8 +2685,8 @@
 				4373B46E2DCB61F300E1702F /* Frameworks */,
 				4373B47A2DCB61F300E1702F /* Resources */,
 				4373B4872DCB61F300E1702F /* Embed Frameworks */,
-				91861E116AC502C377B94ED1 /* [CP] Embed Pods Frameworks */,
 				366367F111BB1D38B7670DF1 /* [CP] Copy Pods Resources */,
+				94F227627A69170E10C15E5D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2706,13 +2713,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 438ED4272AA5D0C300486AF2 /* Build configuration list for PBXNativeTarget "AdsTestApp-Devc" */;
 			buildPhases = (
-				4F521715CC51250B218E7FA0 /* [CP] Check Pods Manifest.lock */,
+				1305AB12419CF35E16A5E134 /* [CP] Check Pods Manifest.lock */,
 				438ED40F2AA5D0C200486AF2 /* Sources */,
 				438ED4102AA5D0C200486AF2 /* Frameworks */,
 				438ED4112AA5D0C200486AF2 /* Resources */,
 				1E0E81632ACD8D7A00EFD70C /* Embed Frameworks */,
 				F021478F20CF36863EE75BA8 /* [CP] Embed Pods Frameworks */,
-				B5DDB40EC1B9ADEB22EF3121 /* [CP] Copy Pods Resources */,
+				A3176FD76A4F9DBC0643E0B0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2782,8 +2789,8 @@
 				43BCB0BC2C22DD45002FB0B1 /* Frameworks */,
 				43BCB0C52C22DD45002FB0B1 /* Resources */,
 				43BCB0CE2C22DD45002FB0B1 /* Embed Frameworks */,
-				F8BB75940DD3F0D1BFB8E10E /* [CP] Embed Pods Frameworks */,
 				6C62CA44BAD62A5787356FB9 /* [CP] Copy Pods Resources */,
+				8DE4521B85BDE8D97DD7BFC6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2814,7 +2821,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43BCB1142C22DD59002FB0B1 /* Build configuration list for PBXNativeTarget "AdsTestApp-Staging-art" */;
 			buildPhases = (
-				7B852FD87A0412AEE7D2D7DD /* [CP] Check Pods Manifest.lock */,
+				697F354EA7BF5128D1215FAB /* [CP] Check Pods Manifest.lock */,
 				AF1F918FE222F0FDE250C4E1 /* [CP] Embed Pods Frameworks */,
 				43BCB0E02C22DD59002FB0B1 /* Sources */,
 				43BCB0FF2C22DD59002FB0B1 /* Frameworks */,
@@ -2849,7 +2856,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43BCB1572C22DD60002FB0B1 /* Build configuration list for PBXNativeTarget "AdsTestApp-Prod-art" */;
 			buildPhases = (
-				EB72E9A5A7A08960B7CA45C1 /* [CP] Check Pods Manifest.lock */,
+				8F5758C419D7F1223D81CF88 /* [CP] Check Pods Manifest.lock */,
+				EB72E9A5A7A08960B7CA45C1 /* [CP] Embed Pods Frameworks */,
 				43BCB1232C22DD60002FB0B1 /* Sources */,
 				43BCB1422C22DD60002FB0B1 /* Frameworks */,
 				43BCB14B2C22DD60002FB0B1 /* Resources */,
@@ -2917,13 +2925,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43EB26BB2DBFCC84002F170A /* Build configuration list for PBXNativeTarget "AdMobTestApp" */;
 			buildPhases = (
-				16C08BC4C56BC07208AB5409 /* [CP] Check Pods Manifest.lock */,
+				A38F4D4E02EAECB8B1D8022C /* [CP] Check Pods Manifest.lock */,
+				4B8A49AE6A05A1D7E0093A4B /* [CP] Check Pods Manifest.lock */,
 				43EB26782DBFCC84002F170A /* Sources */,
 				43EB269C2DBFCC84002F170A /* Frameworks */,
 				43EB26A72DBFCC84002F170A /* Resources */,
 				43EB26B42DBFCC84002F170A /* Embed Frameworks */,
-				F3953C13B289851C5402B2D8 /* [CP] Embed Pods Frameworks */,
-				F3FC17A99023BC2288C1AD51 /* [CP] Copy Pods Resources */,
+				C8BDB829D6C234AB5B1A2F44 /* [CP] Embed Pods Frameworks */,
+				98BE9E4BC2BBCD638309E5F3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3240,6 +3249,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		1305AB12419CF35E16A5E134 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AdsTestApp-Devc-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		14E3A5D010643051A512AAED /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3256,28 +3287,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-PrebidTestApp-devc-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		16C08BC4C56BC07208AB5409 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AdMobTestApp-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3301,28 +3310,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		220261A047AC614D0FCE4E8B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AdsTestApp-Prod-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2732A14A4375160BF9441B6D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3338,28 +3325,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2AF5C9FE08DA3B4154BDF837 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PrebidTestApp-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		366367F111BB1D38B7670DF1 /* [CP] Copy Pods Resources */ = {
@@ -3379,12 +3344,13 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4F521715CC51250B218E7FA0 /* [CP] Check Pods Manifest.lock */ = {
+		4B8A49AE6A05A1D7E0093A4B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
@@ -3462,6 +3428,45 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		697F354EA7BF5128D1215FAB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AdsTestApp-Staging-art-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69E73794D11B5BB7E3D1A9E5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6C62CA44BAD62A5787356FB9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3513,23 +3518,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		78339E8D9C6E0AF9B7704E7D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		7B5FCA16190D4C4400BC29D2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3547,7 +3535,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7B852FD87A0412AEE7D2D7DD /* [CP] Check Pods Manifest.lock */ = {
+		8DE4521B85BDE8D97DD7BFC6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F5758C419D7F1223D81CF88 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3562,7 +3567,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AdsTestApp-Staging-art-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-AdsTestApp-Prod-art-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3603,7 +3608,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		91861E116AC502C377B94ED1 /* [CP] Embed Pods Frameworks */ = {
+		94F227627A69170E10C15E5D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3618,6 +3623,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		965C52F4DC3E9D132D7252C0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		98BE9E4BC2BBCD638309E5F3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9BB71F528C2A91AD3249935F /* [CP] Embed Pods Frameworks */ = {
@@ -3671,21 +3710,43 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A497C94FD77B3CD4C1088A73 /* [CP] Embed Pods Frameworks */ = {
+		A3176FD76A4F9DBC0643E0B0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A38F4D4E02EAECB8B1D8022C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AdMobTestApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AF1F918FE222F0FDE250C4E1 /* [CP] Embed Pods Frameworks */ = {
@@ -3703,23 +3764,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B5DDB40EC1B9ADEB22EF3121 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BBEBED3CEC5948D298FDA2D7 /* [CP] Check Pods Manifest.lock */ = {
@@ -3766,21 +3810,38 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C427C9E249833A8D62856272 /* [CP] Embed Pods Frameworks */ = {
+		C8BDB829D6C234AB5B1A2F44 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CDF207257F85A3923E4B3C1B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CF3C727208DCF485B1EA251D /* [CP] Embed Pods Frameworks */ = {
@@ -3798,6 +3859,50 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D8DDF1DE041D61A1687C0DB4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PrebidTestApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DAECF0390565F56E3656A485 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AdsTestApp-Prod-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E7D0F1BA28ED768F29B4E49F /* [CP] Copy Pods Resources */ = {
@@ -3839,26 +3944,38 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EB72E9A5A7A08960B7CA45C1 /* [CP] Check Pods Manifest.lock */ = {
+		EAFF317EAD7006067A4315B6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AdsTestApp-Prod-art-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB72E9A5A7A08960B7CA45C1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F021478F20CF36863EE75BA8 /* [CP] Embed Pods Frameworks */ = {
@@ -3876,57 +3993,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F3953C13B289851C5402B2D8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F3FC17A99023BC2288C1AD51 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F8BB75940DD3F0D1BFB8E10E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FDEFB2E8CFD980C3A841FCE3 /* [CP] Copy Pods Resources */ = {
