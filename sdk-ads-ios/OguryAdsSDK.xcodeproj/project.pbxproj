@@ -1416,28 +1416,8 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		437B11942E5CA17000CAA377 /* AdQuality */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = AdQuality;
-			sourceTree = "<group>";
-		};
-		437B11A22E5EF74A00CAA377 /* AdQuality */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = AdQuality;
-			sourceTree = "<group>";
-		};
+		437B11942E5CA17000CAA377 /* AdQuality */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AdQuality; sourceTree = "<group>"; };
+		437B11A22E5EF74A00CAA377 /* AdQuality */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AdQuality; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
