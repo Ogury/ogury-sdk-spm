@@ -12,6 +12,7 @@
 #import "OGAAdConfiguration.h"
 #import "OGAAdQualityUniformColorRectAlgorithm.h"
 
+
 @interface OGAAdQualityControllerTests : XCTestCase
 @property(nonatomic, retain) OGAAdQualityController *sut;
 @property(nonatomic, retain) UIView *emtpyView;
@@ -43,6 +44,16 @@
 
 - (void)testWhenPerformingChecksWithNoAlgorythmThenEmptyCompletionIsCalled {
     self.sut.activeAlgorithms = @[];
+    XCTAssertEqual(self.sut.activeAlgorythms.count, 0);
+    self.sut.activeAlgorythms = @[ [[OGAAdQualityUniformColorRectAlgorythm alloc] initWithSize:CGSizeMake(50, 50)
+                                                                                     threshold:@(6)
+                                                                                    startDelay:@(1000)
+                                                                                allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial ]] ];
+    XCTAssertEqual(self.sut.activeAlgorythms.count, 1);
+}
+
+- (void)testWhenPerformingChecksWithNoAlgorythmThenEmptyCompletionIsCalled {
+    self.sut.activeAlgorythms = @[];
     OGAAdConfiguration *conf = OCMClassMock([OGAAdConfiguration class]);
     XCTestExpectation *ex = [self expectationWithDescription:@"Completion block called"];
     [self.sut performAdQualityChecksOn:[UIView new]
