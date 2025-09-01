@@ -41,7 +41,7 @@
     NSMutableArray<id<OGAAdQualityAlgorithm>> *configAlgos = [@[] mutableCopy];
     if (configuration.blankAdConfiguration.isEnabled) {
         [configuration.blankAdConfiguration.algos enumerateObjectsUsingBlock:^(OGAAdQualityUniformColorRectAlgorithm * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [configAlgos addObject:obj];
+            [configAlgos addObject:(id<OGAAdQualityAlgorithm>)obj];
         }];
     }
     self.activeAlgorithms = configAlgos;
