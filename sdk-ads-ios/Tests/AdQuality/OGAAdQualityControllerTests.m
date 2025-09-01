@@ -27,10 +27,10 @@
         monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher
                          log:(OGALog *)log;
 @end
-//
-//@interface OGAAdQualityController ()
-//@property(nonatomic, retain) NSArray<id<OGAAdQualityAlgorithm>> *activeAlgorithms;
-//@end
+
+@interface OGAAdQualityController ()
+@property(nonatomic, retain) NSArray<id<OGAAdQualityAlgorithm>> *activeAlgorithms;
+@end
 
 @implementation OGAAdQualityControllerTests
 
