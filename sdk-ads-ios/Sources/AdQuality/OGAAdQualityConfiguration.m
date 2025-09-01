@@ -57,6 +57,14 @@
     return true;
 }
 
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:[OGAAdQualityBlankAdConfiguration class]] == NO) {
+        return NO;
+    }
+    OGAAdQualityBlankAdConfiguration *qualityController = (OGAAdQualityBlankAdConfiguration *)object;
+    return [qualityController.algos isEqualToArray:self.algos];
+}
+
 @end
 
 @implementation OGAAdQualityConfiguration
@@ -91,4 +99,13 @@
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
     return true;
 }
+
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:[OGAAdQualityConfiguration class]] == NO) {
+        return NO;
+    }
+    OGAAdQualityConfiguration *qualityConf = (OGAAdQualityConfiguration *)object;
+    return [qualityConf.blankAdConfiguration isEqual:self.blankAdConfiguration];
+}
+
 @end

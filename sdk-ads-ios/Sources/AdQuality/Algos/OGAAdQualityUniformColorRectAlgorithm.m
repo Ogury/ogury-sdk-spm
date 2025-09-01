@@ -159,7 +159,7 @@
                                        (view.bounds.size.height / 2) - self.rectSize.height / 2,
                                        self.rectSize.width,
                                        self.rectSize.height);
-
+        
         UIImage *image = [view snapshot];
         BOOL imageHasUniformColor = [self imageIsUniformColor:image rect:targetRect];
         OGAAdQualityResult *result = [[OGAAdQualityResult alloc] init];
@@ -179,10 +179,10 @@
     dict[OguryAdQualityMonitoringKeyBlankAd] = result.success ? @(NO) : @(YES);
     dict[OguryAdQualityMonitoringKeyColor] = self.uniformHexColor;
     dict[OguryAdQualityMonitoringKeyParams] = [NSString stringWithFormat:@"%0.0fx%0.0f;%@;%@",
-                                                                         rectSize.width,
-                                                                         rectSize.height,
-                                                                         self.startDelay,
-                                                                         self.threshold];
+                                               rectSize.width,
+                                               rectSize.height,
+                                               self.startDelay,
+                                               self.threshold];
     dict[OguryAdQualityMonitoringKeyDeviance] = result.devianceMax;
     dict[OguryAdQualityMonitoringKeyDuration] = result.duration;
     [self.monitoringDispatcher sendAdQualityEvent:OGAShowEventAdQualityBlankAd
@@ -194,14 +194,14 @@
     if (!image.CGImage) {
         return NO;
     }
-
+    
     // Convert rect from points → pixels
     CGFloat scale = image.scale > 0 ? image.scale : [UIScreen mainScreen].scale;
     CGRect rectInPixels = CGRectMake(rect.origin.x * scale,
                                      rect.origin.y * scale,
                                      rect.size.width * scale,
                                      rect.size.height * scale);
-
+    
     // Intersect with image bounds
     size_t imgW = CGImageGetWidth(image.CGImage);
     size_t imgH = CGImageGetHeight(image.CGImage);
@@ -210,23 +210,23 @@
     if (CGRectIsEmpty(cropRect)) {
         return NO;
     }
-
+    
     CGImageRef cgImage = CGImageCreateWithImageInRect(image.CGImage, cropRect);
     if (!cgImage) {
         return NO;
     }
-
+    
     const size_t width = CGImageGetWidth(cgImage);
     const size_t height = CGImageGetHeight(cgImage);
     const size_t bytesPerPixel = 4;
     const size_t bitsPerComponent = 8;
     const size_t bytesPerRow = width * bytesPerPixel;
-
+    
     CGColorSpaceRef cs = CGColorSpaceCreateDeviceRGB();
     if (!cs) {
         return NO;
     }
-
+    
     unsigned char *rawData = (unsigned char *)calloc(height * width * bytesPerPixel, sizeof(unsigned char));
     CGContextRef ctx = CGBitmapContextCreate(rawData,
                                              width,
@@ -235,15 +235,15 @@
                                              bytesPerRow,
                                              cs,
                                              kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-
+    
     if (!ctx) {
         free(rawData);
         CGColorSpaceRelease(cs);
         return NO;
     }
-
+    
     CGContextDrawImage(ctx, CGRectMake(0, 0, width, height), cgImage);
-
+    
     NSUInteger pixelCount = width * height;
     NSUInteger randomIndex = arc4random_uniform((u_int32_t)pixelCount);
     size_t offset = randomIndex * bytesPerPixel;
@@ -252,7 +252,7 @@
     unsigned char b0 = rawData[offset + 2];
     unsigned char a0 = rawData[offset + 3];
     uniformHexColor = [NSString stringWithFormat:@"#%02X%02X%02X", r0, g0, b0];
-
+    
     BOOL uniform = YES;
     for (size_t y = 0; y < height && uniform; y++) {
         for (size_t x = 0; x < width; x++) {
@@ -269,13 +269,24 @@
             }
         }
     }
-
+    
     // Cleanup
     CGContextRelease(ctx);
     CGColorSpaceRelease(cs);
     free(rawData);
-
+    
     return uniform;
+}
+
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:[OGAAdQualityUniformColorRectAlgorithm class]] == NO) {
+        return NO;
+    }
+    OGAAdQualityUniformColorRectAlgorithm *algo = (OGAAdQualityUniformColorRectAlgorithm *)object;
+    return CGSizeEqualToSize(self.rectSize, algo.rectSize) &&
+    self.threshold.intValue == algo.threshold.intValue &&
+    self.startDelay.intValue == algo.startDelay.intValue &&
+    [self.allowedFormats isEqual:algo.allowedFormats];
 }
 
 @end

@@ -120,7 +120,7 @@ NSString *const OGAAdConfigurationDisablingReasonCountryUnopened = @"COUNTRY_NOT
         self.adsEnabled == profig.adsEnabled &&
         self.backButtonEnabled == profig.backButtonEnabled &&
         self.closeAdWhenLeavingApp == profig.closeAdWhenLeavingApp &&
-        self.adQualityConfiguration == profig.adQualityConfiguration &&
+        [self.adQualityConfiguration isEqual:profig.adQualityConfiguration ] &&
         self.omidEnabled == profig.omidEnabled;
 }
 
