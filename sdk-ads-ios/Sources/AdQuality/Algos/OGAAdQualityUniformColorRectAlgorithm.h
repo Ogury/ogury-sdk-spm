@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// OGAAdQualityUniformColorRectAlgorythm will grab a snapshot of `rectSize` centered in the view
 /// and check pixel by pixel the standard deviance from a reference pixel (random position)
-@interface OGAAdQualityUniformColorRectAlgorithm<OGAAdQualityAlgorithm, NSCoding> : NSObject
+@interface OGAAdQualityUniformColorRectAlgorithm<OGAAdQualityAlgorithm, NSCoding> : OGAJSONModel
 /// the size of the centered rect to analyze
 @property(nonatomic) CGSize rectSize;
 /// the threshold before considering a pixek is different

@@ -33,6 +33,18 @@
     return self;
 }
 
+// OGAJSONModel
++ (OGAJSONKeyMapper *)keyMapper {
+    return [[OGAJSONKeyMapper alloc] initWithModelToJSONDictionary:@{
+        @"algos" : @"algo",
+        @"isEnabled" : @"enabled"
+    }];
+}
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return true;
+}
+
 @end
 
 @implementation OGAAdQualityConfiguration
@@ -55,5 +67,16 @@
         self.blankAdConfiguration = [OGAAdQualityBlankAdConfiguration new];
     }
     return self;
+}
+
+// OGAJSONModel
++ (OGAJSONKeyMapper *)keyMapper {
+    return [[OGAJSONKeyMapper alloc] initWithModelToJSONDictionary:@{
+        @"blankAdConfiguration" : @"blank_ad_detection"
+    }];
+}
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return true;
 }
 @end

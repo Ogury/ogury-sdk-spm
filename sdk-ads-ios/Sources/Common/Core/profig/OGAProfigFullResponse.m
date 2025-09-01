@@ -32,7 +32,7 @@ NSString *const OGAAdConfigurationDisablingReasonCountryUnopened = @"COUNTRY_NOT
         @"omidEnabled" : @"response.omid.enabled",
         @"errorType" : @"error.type",
         @"errorMessage" : @"error.message",
-        @"adQualityConfiguration" : @"ad_quality"
+        @"adQualityConfiguration" : @"response.ad_quality"
     }];
 }
 

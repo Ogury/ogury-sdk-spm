@@ -73,6 +73,26 @@
                allowedFormats:formats];
 }
 
+// OGAJSONModel
++ (OGAJSONKeyMapper *)keyMapper {
+    return [[OGAJSONKeyMapper alloc] initWithModelToJSONDictionary:@{
+        @"algo" : @"name",
+        @"startDelay" : @"params.start_after_ms",
+        @"threshold" : @"params.threshold",
+        @"allowedFormats" : @"format",
+    }];
+}
+
+- (instancetype)initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err {
+    self = [super initWithDictionary:dict error:err];
+    self.rectSize = CGSizeMake([dict[@"params"][@"width"] floatValue], [dict[@"params"][@"height"] floatValue]);
+    return self;
+}
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return true;
+}
+
 - (void)logMessage:(NSString *)message adConfiguration:(OGAAdConfiguration *)adConfiguration result:(OGAAdQualityResult *_Nullable)result {
     NSMutableArray<OguryLogTag *> *tags = [@[] mutableCopy];
     [tags addObject:[OguryLogTag tagWithKey:OguryAdQualityAlgorithmKey value:self.algo]];
