@@ -1,5 +1,5 @@
 //
-//  OGAAdQualityUniformColorRectAlgorythm.h
+//  OGAAdQualityUniformColorRectAlgorithm.h
 //  OguryAds
 //
 //  Created by Jerome TONNELIER on 26/08/2025.
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// OGAAdQualityUniformColorRectAlgorythm will grab a snapshot of `rectSize` centered in the view
+/// OGAAdQualityUniformColorRectAlgorithm will grab a snapshot of `rectSize` centered in the view
 /// and check pixel by pixel the standard deviance from a reference pixel (random position)
 @interface OGAAdQualityUniformColorRectAlgorithm<OGAAdQualityAlgorithm> : NSObject
 /// the size of the centered rect to analyze

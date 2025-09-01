@@ -1,5 +1,5 @@
 //
-//  OGAAdQualityUniformColorRectAlgorythm.m
+//  OGAAdQualityUniformColorRectAlgorithm.m
 //  OguryAds
 //
 //  Created by Jerome TONNELIER on 26/08/2025.
@@ -17,6 +17,30 @@
 @property(nonatomic, strong) NSNumber *devianceMax;
 @property(nonatomic, strong) NSString *uniformHexColor;
 @property(nonatomic, strong) OGAMonitoringDispatcher *monitoringDispatcher;
+@end
+
+@implementation UIView (Snapshot)
+
+/// Added this helper method for Unit testsn mainly.
+/// In a real world scenario, we use [self draw...] which renders both videos and images neatly.
+/// But in a test scenario (using an UIImageView passed alongn the method), then it fails because the image is not added to the main view, hence not rendered.
+/// In that case, we must use layer drawinf in order to get an image from the view
+- (UIImage *)snapshot {
+    UIImage *snapshot = nil;
+    // 1. Try UIKit rendering (best for complex hierarchies, video, blurs)
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
+    BOOL success = [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:YES];
+    snapshot = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    // 2. If UIKit failed or returned nil/empty, fallback to CALayer rendering
+    if (!success || !snapshot) {
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
+        [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+        snapshot = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    }
+    return snapshot;
+}
 @end
 
 @implementation OGAAdQualityUniformColorRectAlgorithm
@@ -78,12 +102,7 @@
                                        self.rectSize.width,
                                        self.rectSize.height);
 
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, [UIScreen mainScreen].scale);
-        [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
-//        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-
+        UIImage *image = [view snapshot];
         BOOL imageHasUniformColor = [self imageIsUniformColor:image rect:targetRect];
         OGAAdQualityResult *result = [[OGAAdQualityResult alloc] init];
         result.success = !imageHasUniformColor;
@@ -102,10 +121,10 @@
     dict[OguryAdQualityMonitoringKeyBlankAd] = result.success ? @(NO) : @(YES);
     dict[OguryAdQualityMonitoringKeyColor] = self.uniformHexColor;
     dict[OguryAdQualityMonitoringKeyParams] = [NSString stringWithFormat:@"%0.0fx%0.0f;%@;%@",
-                                             rectSize.width,
-                                             rectSize.height,
-                                             self.startDelay,
-                                               self.threshold];
+                                                                         rectSize.width,
+                                                                         rectSize.height,
+                                                                         self.startDelay,
+                                                                         self.threshold];
     dict[OguryAdQualityMonitoringKeyDeviance] = result.devianceMax;
     dict[OguryAdQualityMonitoringKeyDuration] = result.duration;
     [self.monitoringDispatcher sendAdQualityEvent:OGAShowEventAdQualityBlankAd
