@@ -8,6 +8,11 @@
 NSString *const OGAAdConfigurationDisablingReasonConsentDenied = @"CONSENT_DENIED";
 NSString *const OGAAdConfigurationDisablingReasonConsentMissing = @"CONSENT_MISSING";
 NSString *const OGAAdConfigurationDisablingReasonCountryUnopened = @"COUNTRY_NOT_OPEN";
+NSString *const OGAAdConfigurationDisablingReasonUnkown = @"UNKNOWN_REASON";
+
+@interface OGAProfigFullResponse ()
+@property(nonatomic) NSUInteger rawBidTokenMode;
+@end
 
 @implementation OGAProfigFullResponse
 
@@ -17,6 +22,7 @@ NSString *const OGAAdConfigurationDisablingReasonCountryUnopened = @"COUNTRY_NOT
         @"childrenRequestPermissionsFilter" : @"response.global.children_request_permissions_filter",
         @"maxProfigApiCallsPerDay" : @"response.config_pull.limit_per_day",
         @"adsEnabled" : @"response.ad_serving.enabled",
+        @"rawBidTokenMode" : @"response.ad_serving.bid_token_mode",
         @"adsyncPermissions" : @"response.ad_serving.request_permissions",
         @"adExpirationTime" : @"response.ad_serving.ad_expiration_time",
         @"backButtonEnabled" : @"response.ad_serving.webview.back_button_enabled",
@@ -63,6 +69,10 @@ NSString *const OGAAdConfigurationDisablingReasonCountryUnopened = @"COUNTRY_NOT
         @"SI-014",
         @"SI-015"
     ];
+}
+
+- (OGABidTokenMode)bidTokenMode {
+    return (OGABidTokenMode)_rawBidTokenMode ?: OGABidTokenModeAllowNilToken;
 }
 
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
@@ -119,6 +129,7 @@ NSString *const OGAAdConfigurationDisablingReasonCountryUnopened = @"COUNTRY_NOT
         self.adsEnabled == profig.adsEnabled &&
         self.backButtonEnabled == profig.backButtonEnabled &&
         self.closeAdWhenLeavingApp == profig.closeAdWhenLeavingApp &&
+        self.bidTokenMode == profig.bidTokenMode &&
         self.omidEnabled == profig.omidEnabled;
 }
 

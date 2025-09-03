@@ -132,7 +132,7 @@
                             dspCreativeId:(NSString *_Nullable)dspCreativeId
                                 dspRegion:(NSString *_Nullable)dspRegion
                                completion:(BidTokenCompletionBlock)completion {
-    if (!self.profigDao.profigFullResponse.adsEnabled) {
+    if (!self.profigDao.profigFullResponse.adsEnabled && self.profigDao.profigFullResponse.bidTokenMode == OGABidTokenModeAllowNilToken) {
         completion(nil, [OguryAdError headerBiddingFrom:[self disabledReasonCode]]);
         return;
     }
@@ -148,6 +148,7 @@
                                       dspCreativeId:(NSString *_Nullable)dspCreativeId
                                           dspRegion:(NSString *_Nullable)dspRegion {
     OGAAdPrivacyConfiguration *privacyConfiguration = [self.profigManager currentPrivacyConfiguration];
+    OGAProfigFullResponse *profig = self.profigDao.profigFullResponse;
     NSMutableDictionary *token = [NSMutableDictionary dictionary];
     [token addEntriesFromDictionary:@{
         OGATokenSDK : @{
@@ -246,10 +247,12 @@
         OGATokenOmidIntegrationIsCompliantKey : isOMIDCompliant ? @(YES) : @(NO),
         OGATokenOmidIntegrationVersionKey : @([OGAOMIDService omidVersion])
     };
-    if (adSync.allKeys.count > 0) {
-        [token setObject:adSync forKey:OGATokenAdSync];
+    NSMutableDictionary *adServing = [@{ OGATokenAdServingEnabled : @(profig.adsEnabled) } mutableCopy];
+    if (!profig.adsEnabled) {
+        adServing[OGATokenDisablingReason] = profig.disablingReason ?: OGAAdConfigurationDisablingReasonUnkown;
     }
-
+    adSync[OGATokenAdServing] = adServing;
+    [token setObject:adSync forKey:OGATokenAdSync];
     return token;
 }
 
