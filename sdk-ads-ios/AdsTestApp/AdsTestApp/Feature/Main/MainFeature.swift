@@ -125,6 +125,7 @@ struct MainFeature: Reducer {
         case destination(PresentationAction<Destination.Action>)
         case binding(BindingAction<State>)
         case settingsButtonTapped
+        case showLogSettings
         case bulkModeButtonTapped
         case addButtonTapped
         case showWhatsNew(_: String, showConfetti: Bool)
@@ -144,6 +145,7 @@ struct MainFeature: Reducer {
         case aboutButtonTapped
         case startFailed
         case showDetail(managers: [any AdManager], adFormat: any AdAdapterFormat)
+        case resetProfig
         
         enum Alert {
             case notImplemented
@@ -249,7 +251,20 @@ struct MainFeature: Reducer {
                     store(formats: [], settings: .init())
                     return .none
                     
+                case .destination(.presented(.settings(.resetAdConfigButtonTapped))):
+                    return .send(.resetProfig)
+                    
+                case .resetProfig:
+                    SdkLauncher.shared.adapter.resetSdk()
+                    return .run { _ in
+                        await showNotification(message: "OguryAds has been reset")
+                    }
+                    
                 case .settingsButtonTapped:
+                    state.destination = .settings(AppSettingsFeature.State(settings: .init(), adDelegate: adDelegate))
+                    return .none
+                    
+                case .showLogSettings:
                     state.destination = .settings(AppSettingsFeature.State(settings: .init(), adDelegate: adDelegate))
                     return .none
                     

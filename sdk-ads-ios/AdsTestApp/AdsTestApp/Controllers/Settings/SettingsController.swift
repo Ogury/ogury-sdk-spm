@@ -67,6 +67,9 @@ struct SettingsController {
    
     @UserDefault("importMethod")
     var importMethod: ImportMethod = SettingsController.qaMode ? .rawText : .file
+   
+    @UserDefault("shakeFeature")
+    var shakeFeature: ShakeFeature = .showSettings
     
     var appPermissions: AppPermissions {
         get {

@@ -9,6 +9,18 @@ import UserDefault
 import AdsCardLibrary
 import AdsCardAdapter
 
+enum ShakeFeature: String, Codable, Equatable, CaseIterable, DefaultsValueConvertible {
+    case resetProfg, clearSet, showSettings, showLogSettings
+    var displayText: String {
+        switch self {
+            case .resetProfg: return "Reset profig"
+            case .clearSet: return "Clear Ad Set"
+            case .showSettings: return "Show Settings panel"
+            case .showLogSettings: return "Show Log Settings panel"
+        }
+    }
+}
+
 enum ImportMethod: String, Codable, Equatable, CaseIterable, DefaultsValueConvertible {
     case file, rawText
     var displayText: String {
@@ -141,6 +153,10 @@ struct SettingsContainer: Codable, Equatable {
     var importMethod: ImportMethod {
         get { settings.importMethod }
         set { settings.importMethod = newValue }
+    }
+    var shakeFeature: ShakeFeature {
+        get { settings.shakeFeature }
+        set { settings.shakeFeature = newValue }
     }
     var killWebviewMode: KillWebviewMode {
         get { settings.killWebviewMode }

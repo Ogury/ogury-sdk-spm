@@ -28,6 +28,7 @@ struct AppSettingsFeature: Reducer {
             lhs.usOptoutPartner == rhs.usOptoutPartner &&
             lhs.enableFeedbacks == rhs.enableFeedbacks &&
             lhs.importMethod == rhs.importMethod &&
+            lhs.shakeFeature == rhs.shakeFeature &&
             lhs.killWebviewMode == rhs.killWebviewMode &&
             lhs.consentManager == rhs.consentManager &&
             lhs.audioMode == rhs.audioMode &&
@@ -44,6 +45,7 @@ struct AppSettingsFeature: Reducer {
         var showDspFields: Bool { settings.showDspFields }
         var bulkModeEnabled: Bool { settings.bulkModeEnabled }
         var importMethod: ImportMethod { settings.importMethod }
+        var shakeFeature: ShakeFeature { settings.shakeFeature }
         var killWebviewMode: KillWebviewMode { settings.killWebviewMode }
         var cachedKillWebviewMode: KillWebviewMode?
         var startSDKWithApplication: Bool { settings.startSDKWithApplication }
@@ -105,11 +107,13 @@ struct AppSettingsFeature: Reducer {
         case audioModeSelected(_: AVAudioSession.Mode)
         case audioCategorySelected(_: AVAudioSession.Category)
         case updateImportMethod(_: ImportMethod)
+        case updateShakeFeature(_: ShakeFeature)
         case toggleKillWebviewMode
         case updateKillWebviewMode(_: KillWebviewMode)
         case copyIdfaButtonTapped
         case appendFieldEditingMask(_: FieldEditingMask)
         case removeFieldEditingMask(_: FieldEditingMask)
+        case showLogSettings
     }
     
     var body: some ReducerOf<Self> {
@@ -123,6 +127,11 @@ struct AppSettingsFeature: Reducer {
                     }
                     
                 case .binding:
+                    return .none
+                    
+                case .showLogSettings:
+#if canImport(OguryAds)
+#endif
                     return .none
                     
                 case let .appendFieldEditingMask(mask):
@@ -149,6 +158,10 @@ struct AppSettingsFeature: Reducer {
                     state.settings.importMethod = method
                     return .none
                     
+                case let .updateShakeFeature(shake):
+                    state.settings.shakeFeature = shake
+                    return .none
+                    
                 case .decrementSDKStart:
                     state.numberOfSDKStart = max(state.numberOfSDKStart - 1, 1)
                     return .none
@@ -170,10 +183,7 @@ struct AppSettingsFeature: Reducer {
                     return .none
                     
                 case .resetAdConfigButtonTapped:
-                    SdkLauncher.shared.adapter.resetSdk()
-                    return .run { _ in
-                        await showNotification(message: "OguryAds has been reset")
-                    }
+                    return .none
                     
                 case .toggleShowShowSection:
                     state.showShowSection.toggle()

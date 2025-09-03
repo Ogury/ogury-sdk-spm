@@ -73,6 +73,14 @@ struct AppSettingsView: View {
                                 Text(method.shortDisplayText)
                             }
                         }.accessibilityLabel("ImportMethod_Picker")
+                        
+                        Picker("Shake behavior",
+                               selection: viewStore.binding(get: \.shakeFeature,
+                                                            send: { .updateShakeFeature($0) })) {
+                            ForEach(ShakeFeature.allCases, id:\.self) { method in
+                                Text(method.displayText)
+                            }
+                        }.accessibilityLabel("ShakeFeature_Picker")
                     } header: {
                         Text("APPLICATION")
                             .font(.adsBody)
@@ -453,10 +461,14 @@ struct AppSettingsView: View {
                     //MARK: - Logs settings
 #if canImport(OguryAds)
                     Section {
-                        NavigationLink(
-                            destination: LogOptionView().navigationTitle("Log options")
-                        ) {
-                            Text("Show options")
+                        Button {
+                            viewStore.send(.showLogSettings)
+                        } label: {
+                            HStack {
+                                Text("Show options")
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                            }
                         }
                         .accessibilityLabel("ShowLogOptionsNavigationLink")
                     } header: {

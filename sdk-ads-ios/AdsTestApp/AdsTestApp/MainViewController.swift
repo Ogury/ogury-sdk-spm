@@ -68,6 +68,22 @@ class MainViewController: UIViewController {
         }
     }
     
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            handleShake()
+        }
+    }
+    
+    private func handleShake() {
+        let shake = SettingsController().shakeFeature
+        switch shake {
+            case .resetProfg: ViewStore(store, observe: { $0 }).send(.main(.resetProfig))
+            case .clearSet: ViewStore(store, observe: { $0 }).send(.main(.removeSetButtonTapped))
+            case .showSettings: ViewStore(store, observe: { $0 }).send(.main(.settingsButtonTapped))
+            case .showLogSettings: ViewStore(store, observe: { $0 }).send(.loadCards)
+        }
+    }
+    
     private func addViewToHierarchy() {
         view.addSubview(adViewController.view)
         addChild(adViewController)
