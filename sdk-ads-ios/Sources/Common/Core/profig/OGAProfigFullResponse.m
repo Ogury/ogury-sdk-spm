@@ -72,7 +72,9 @@ NSString *const OGAAdConfigurationDisablingReasonUnkown = @"UNKNOWN_REASON";
 }
 
 - (OGABidTokenMode)bidTokenMode {
-    return (OGABidTokenMode)_rawBidTokenMode ?: OGABidTokenModeAllowNilToken;
+    return (_rawBidTokenMode >= OGABidTokenModeAllowNilToken && _rawBidTokenMode <= OGABidTokenModeAlwaysReturnToken)
+    ? (OGABidTokenMode)_rawBidTokenMode
+    : OGABidTokenModeAllowNilToken;
 }
 
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
