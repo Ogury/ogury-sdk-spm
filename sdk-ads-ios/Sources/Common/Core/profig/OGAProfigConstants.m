@@ -29,6 +29,5 @@ Boolean const OGACacheLogsEnabledDefault = true;
 Boolean const OGAPrecachingLogsEnabledDefault = true;
 Boolean const OGAAdLifeCycleLogsEnabledDefault = true;
 Boolean const OGAAdOmidEnabledDefault = false;
-NSUInteger const OGAAdBidTokenModeDefault = 0;
 
 @end

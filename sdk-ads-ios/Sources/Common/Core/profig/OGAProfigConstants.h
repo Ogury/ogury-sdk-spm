@@ -31,7 +31,6 @@ extern Boolean const OGACacheLogsEnabledDefault;
 extern Boolean const OGAPrecachingLogsEnabledDefault;
 extern Boolean const OGAAdLifeCycleLogsEnabledDefault;
 extern Boolean const OGAAdOmidEnabledDefault;
-extern NSUInteger const OGAAdBidTokenModeDefault;
 
 @end
 
