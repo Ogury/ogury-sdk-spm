@@ -36,6 +36,7 @@ struct AppSettingsFeature: Reducer {
             lhs.numberOfSDKStart == rhs.numberOfSDKStart
         }
         
+        var path = StackState<Path.State>()
         @BindingState var settings: SettingsContainer
         var enableFieldsEditing: Bool {
             settings.fieldEditingMask == .allowAll
@@ -73,12 +74,13 @@ struct AppSettingsFeature: Reducer {
         var adDelegate: (AdLifeCycleDelegate & ApplicationDelegate)?
         let generator = UINotificationFeedbackGenerator()
 
-        init(settings: SettingsContainer, adDelegate: (AdLifeCycleDelegate & ApplicationDelegate)?) {
+        init(settings: SettingsContainer, adDelegate: (AdLifeCycleDelegate & ApplicationDelegate)?, path: StackState<Path.State> = .init()) {
             self.settings = settings
             self.showShowSection = UserDefaults.standard.value(forKey: "showShowSection") != nil
             ? UserDefaults.standard.bool(forKey: "showShowSection")
             : true
             self.adDelegate = adDelegate
+            self.path = path
         }
         var environment: String { Bundle.main.object(forInfoDictionaryKey: "DefaultEnv") as? String ?? "" }
     }
@@ -114,7 +116,31 @@ struct AppSettingsFeature: Reducer {
         case appendFieldEditingMask(_: FieldEditingMask)
         case removeFieldEditingMask(_: FieldEditingMask)
         case showLogSettings
+        case path(StackAction<Path.State, Path.Action>)
     }
+    
+    struct Path: Reducer {
+        enum State: Equatable {
+            case logs(LogOptionFeature.State)
+        }
+        enum Action: Equatable {
+            case logs(LogOptionFeature.Action)
+        }
+        
+        static let logCasePath =  AnyCasePath<Action, LogOptionFeature.Action>(
+            embed: { .logs($0) },
+            extract: { if case let .logs(value) = $0 { return value} else { return nil } }
+        )
+        
+        var body: some ReducerOf<Self> {
+            Scope(
+                state: /State.logs,
+                action: /Action.logs) {
+                    LogOptionFeature()
+                }
+        }
+    }
+    
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -129,8 +155,12 @@ struct AppSettingsFeature: Reducer {
                 case .binding:
                     return .none
                     
+                case .path:
+                    return .none
+                    
                 case .showLogSettings:
 #if canImport(OguryAds)
+                    state.path.append(.logs(.init()))
 #endif
                     return .none
                     
@@ -282,6 +312,9 @@ struct AppSettingsFeature: Reducer {
                         await showNotification(message: success ? "Audio category has been updated" : "Audio category update failed")
                     }
             }
+        }
+        .forEach(\.path, action: /Action.path) {
+            Path()
         }
     }
 }

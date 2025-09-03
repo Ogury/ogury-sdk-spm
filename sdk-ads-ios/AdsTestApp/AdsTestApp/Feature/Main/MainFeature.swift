@@ -265,7 +265,9 @@ struct MainFeature: Reducer {
                     return .none
                     
                 case .showLogSettings:
-                    state.destination = .settings(AppSettingsFeature.State(settings: .init(), adDelegate: adDelegate))
+                    var path: StackState<AppSettingsFeature.Path.State> = .init()
+                    path.append(.logs(.init()))
+                    state.destination = .settings(AppSettingsFeature.State(settings: .init(), adDelegate: adDelegate, path: path))
                     return .none
                     
                 case .bulkModeButtonTapped:
