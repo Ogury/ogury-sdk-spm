@@ -81,6 +81,7 @@ class MainViewController: UIViewController {
             case .clearSet: ViewStore(store, observe: { $0 }).send(.main(.removeSetButtonTapped))
             case .showSettings: ViewStore(store, observe: { $0 }).send(.main(.settingsButtonTapped))
             case .showLogSettings: ViewStore(store, observe: { $0 }).send(.main(.showLogSettings))
+            case .showLogs: ViewStore(store, observe: { $0 }).send(.main(.toggleLogConsole))
         }
     }
     

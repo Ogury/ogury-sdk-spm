@@ -140,6 +140,7 @@ struct MainFeature: Reducer {
         case saveCards
         case refreshAllCards(_: [AdCardList])
         case showLogs(_: Bool)
+        case toggleLogConsole
         case importFile(_: URL)
         case loadFromContainer(_: AdsStorableContainer)
         case aboutButtonTapped
@@ -344,7 +345,8 @@ struct MainFeature: Reducer {
                     
                 case.startSDKButtonTapped:
                     return .run { send in
-                        do { try await SdkLauncher.shared.startAds(forceStart: true) } catch {
+                        do {
+                            try await SdkLauncher.shared.startAds(forceStart: true) } catch {
                             await send(.startFailed)
                         }
                     }
@@ -357,6 +359,10 @@ struct MainFeature: Reducer {
                     var ctrl = SettingsController()
                     ctrl.showLogsSheet = show
                     return .none
+                    
+                case .toggleLogConsole:
+                    if state.adFormats.isEmpty { return .none }
+                    return .send(.showLogs(!state.showLogs))
                     
                 case .aboutButtonTapped:
                     state.destination = .alert(.about)

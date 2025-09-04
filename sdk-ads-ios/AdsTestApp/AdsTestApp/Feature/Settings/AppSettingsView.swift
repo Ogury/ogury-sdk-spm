@@ -90,7 +90,7 @@ struct AppSettingsView: View {
                                 .foregroundStyle(Color(AdColorPalette.Text.primary(onAccent: false).color))
                                 .padding(.horizontal, -16)
                         }
-                        .disabled(!appPermissions.settings)
+                        .disabled(!appPermissions.devFeatures)
                         .foregroundColor(Color(AdColorPalette.Text.primary(onAccent: false).color))
                         .listRowBackground(Color(AdColorPalette.Background.secondary.color))
                         

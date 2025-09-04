@@ -10,13 +10,14 @@ import AdsCardLibrary
 import AdsCardAdapter
 
 enum ShakeFeature: String, Codable, Equatable, CaseIterable, DefaultsValueConvertible {
-    case resetProfg, clearSet, showSettings, showLogSettings
+    case resetProfg, clearSet, showSettings, showLogSettings, showLogs
     var displayText: String {
         switch self {
             case .resetProfg: return "Reset profig"
-            case .clearSet: return "Clear Ad Set"
-            case .showSettings: return "Show Settings panel"
-            case .showLogSettings: return "Show Log Settings panel"
+            case .clearSet: return "Clear ad set"
+            case .showSettings: return "Show settings panel"
+            case .showLogSettings: return "Show logs settings panel"
+            case .showLogs: return "Show logs console"
         }
     }
 }
