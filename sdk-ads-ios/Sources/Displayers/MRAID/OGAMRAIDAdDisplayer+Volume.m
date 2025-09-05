@@ -5,6 +5,7 @@
 #import "OGAMRAIDAdDisplayer+Volume.h"
 #import "OGAMRAIDWebView.h"
 #import "OGAJavascriptCommandExecutor.h"
+#import "OGAVolumeManager.h"
 #import <MediaPlayer/MPVolumeView.h>
 
 @interface OGAMRAIDAdDisplayer ()
@@ -18,16 +19,9 @@
 @implementation OGAMRAIDAdDisplayer (Volume)
 
 - (void)setupVolumeView {
-    self.mpVolumeView = [[MPVolumeView alloc] initWithFrame:CGRectMake(-40, -40, 0, 0)];
-    self.mpVolumeView.showsRouteButton = false;
-    self.mpVolumeView.showsVolumeSlider = false;
-    [self.view addSubview:self.mpVolumeView];
-    for (UIView *view in self.mpVolumeView.subviews) {
-        if ([view isKindOfClass:[UISlider class]]) {
-            self.volumeSlider = (UISlider *)view;
-            break;
-        }
-    }
+    [OGAVolumeManager prepare];
+    self.mpVolumeView = [OGAVolumeManager sharedVolumeView];
+    self.volumeSlider = [OGAVolumeManager sharedVolumeSlider];
 }
 
 - (void)registerForVolumeChangeFromVolumeSlider {
@@ -42,7 +36,6 @@
     }
 }
 
-// for cleanUp
 - (void)unregisterFromVolumeChange {
     [self.volumeSlider removeTarget:self action:@selector(volumeDidChange:) forControlEvents:UIControlEventValueChanged];
 }
