@@ -254,7 +254,6 @@
     unsigned char r0 = rawData[offset];
     unsigned char g0 = rawData[offset + 1];
     unsigned char b0 = rawData[offset + 2];
-    unsigned char a0 = rawData[offset + 3];
     uniformHexColor = [NSString stringWithFormat:@"#%02X%02X%02X", r0, g0, b0];
     
     BOOL uniform = YES;
@@ -264,8 +263,7 @@
             unsigned char r = rawData[offset];
             unsigned char g = rawData[offset + 1];
             unsigned char b = rawData[offset + 2];
-            unsigned char a = rawData[offset + 3];
-            int deviance = abs(r - r0) + abs(b - b0) + abs(g - g0) + abs(a - a0);
+            int deviance = abs(r - r0) + abs(b - b0) + abs(g - g0);
             if (deviance > self.devianceMax.intValue) {
                 self.devianceMax = @(deviance);
             }
