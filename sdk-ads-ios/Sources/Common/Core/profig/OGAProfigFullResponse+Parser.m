@@ -134,6 +134,10 @@
     if (!profig.monitoringPermissions) {
         profig.monitoringPermissions = @(OGAMonitoringPermissions);
     }
+    
+    if (!profig.adQualityConfiguration) {
+        profig.adQualityConfiguration = [OGAAdQualityConfiguration new];
+    }
 
     [self handleBooleansDefaultValuesFrom:profigJSON for:profig];
     return profig;

@@ -35,6 +35,7 @@
         @(OGALoadEventLoadAdLoaded),
         @(OGALoadEventLoadAdBackgroundUnloaded),
         @(OGALoadEventWebviewTerminatedByOS),
+        @(OGAShowEventAdQualityBlankAd),
         @(OGALoadEventAdParseStarted),
         @(OGALoadEventAdParseEnded),
         @(OGASKNetworkLoadEventStoreViewControllerLoading),

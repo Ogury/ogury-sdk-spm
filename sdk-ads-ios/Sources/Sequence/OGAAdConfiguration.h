@@ -37,7 +37,6 @@ extern NSString *const OGAAdConfigurationAdTypeInterstitial;
 @property(nonatomic, copy, nullable) NSString *campaignId;
 @property(nonatomic, copy, nullable) NSString *creativeId;
 @property(nonatomic, copy, nullable) OGAAdDsp *adDsp;
-
 @property(nonatomic, assign) CGSize size;
 @property(nonatomic, assign) CGSize creativeSize;
 @property(nonatomic, assign) CGSize requestedSize;

@@ -333,6 +333,14 @@
             errorContent:nil];
 }
 
+- (void)sendAdQualityEvent:(OGAMonitoringEvent)event adConfiguration:(OGAAdConfiguration *)adConfiguration details:(OGAOrderedDictionary *_Nonnull)details {
+    [self prepareAndSend:event
+         adConfiguration:adConfiguration
+         customSessionId:nil
+                 details:details
+            errorContent:nil];
+}
+
 - (void)sendShowEventShowCalledWithNbAdsToShow:(NSNumber *)nbAdsToShow adConfiguration:(OGAAdConfiguration *)adConfiguration {
     [self sendShowEventShowCalledWithNbAdsToShow:nbAdsToShow adConfiguration:adConfiguration customSessionId:nil];
 }

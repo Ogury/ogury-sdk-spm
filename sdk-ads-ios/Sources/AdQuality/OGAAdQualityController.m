@@ -7,15 +7,15 @@
 //
 
 #import "OGAAdQualityController.h"
-#import "OGAAdQualityAlgorythm.h"
-#import "OGAAdQualityUniformColorRectAlgorythm.h"
+#import "OGAAdQualityAlgorithm.h"
+#import "OGAAdQualityUniformColorRectAlgorithm.h"
 
 @interface OGAAdQualityController ()
-
+@property(nonatomic, retain) NSArray<id<OGAAdQualityAlgorithm>> *activeAlgorithms;
 @end
 
 @implementation OGAAdQualityController
-@synthesize activeAlgorythms, isEnabled;
+@synthesize activeAlgorithms;
 
 + (instancetype)shared {
     static OGAAdQualityController *instance;
@@ -28,15 +28,23 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        activeAlgorythms = @[
-            [[OGAAdQualityUniformColorRectAlgorythm alloc] initWithSize:CGSizeMake(50, 50)
-                                                              threshold:@(6)
-                                                             startDelay:@(1000)
-                                                         allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial ]]
-        ];
-        self.isEnabled = YES;
+        activeAlgorithms = @[];
     }
     return self;
+}
+
+- (void)reset {
+    self.activeAlgorithms = @[];
+}
+
+- (void)setUpFrom:(OGAAdQualityConfiguration *)configuration {
+    NSMutableArray<id<OGAAdQualityAlgorithm>> *configAlgos = [@[] mutableCopy];
+    if (configuration.blankAdConfiguration.isEnabled) {
+        [configuration.blankAdConfiguration.algos enumerateObjectsUsingBlock:^(OGAAdQualityUniformColorRectAlgorithm * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [configAlgos addObject:(id<OGAAdQualityAlgorithm>)obj];
+        }];
+    }
+    self.activeAlgorithms = configAlgos;
 }
 
 - (void)safeResultCompletionWithData:(NSArray<OGAAdQualityResult *> *)results completion:(AdQualityCompletionBlock _Nullable)completion {
@@ -46,25 +54,21 @@
 }
 
 - (void)performAdQualityChecksOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityCompletionBlock _Nullable)completion {
-    if (!self.isEnabled) {
-        [self safeResultCompletionWithData:@[] completion:completion];
-        return;
-    }
     dispatch_group_t group = dispatch_group_create();
     NSMutableArray<OGAAdQualityResult *> *results = [@[] mutableCopy];
-
-    [self.activeAlgorythms enumerateObjectsUsingBlock:^(id<OGAAdQualityAlgorythm> _Nonnull algo, NSUInteger idx, BOOL *_Nonnull stop) {
-        if ([algo.allowedFormats containsObject:[adConfiguration getAdTypeString]]) {
+    
+    [self.activeAlgorithms enumerateObjectsUsingBlock:^(id<OGAAdQualityAlgorithm> _Nonnull algo, NSUInteger idx, BOOL *_Nonnull stop) {
+        if ([algo computationEnabledFor:adConfiguration]) {
             dispatch_group_enter(group);
             [algo performAdQualityCheckOn:view
                           adConfiguration:adConfiguration
                                completion:^(OGAAdQualityResult *_Nonnull result) {
-                                   [results addObject:result];
-                                   dispatch_group_leave(group);
-                               }];
+                [results addObject:result];
+                dispatch_group_leave(group);
+            }];
         }
     }];
-
+    
     dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         [self safeResultCompletionWithData:results completion:completion];
     });
@@ -73,4 +77,13 @@
 - (void)performAdQualityChecksOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration {
     [self performAdQualityChecksOn:view adConfiguration:adConfiguration completion:nil];
 }
+
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:[OGAAdQualityController class]] == NO) {
+        return NO;
+    }
+    OGAAdQualityController *qualityController = (OGAAdQualityController *)object;
+    return [qualityController.activeAlgorithms isEqualToArray:self.activeAlgorithms];
+}
+
 @end

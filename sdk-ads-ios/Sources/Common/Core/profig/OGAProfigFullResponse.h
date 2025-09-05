@@ -6,6 +6,7 @@
 #import "OGAJSONModel.h"
 #import "OGAProfigResponseError.h"
 #import "OGAAdPrivacyConfiguration.h"
+#import "OGAAdQualityConfiguration.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -53,6 +54,8 @@ extern NSString *const OGAAdConfigurationDisablingReasonCountryUnopened;
 // Error
 @property(nonatomic, strong) NSString *errorType;
 @property(nonatomic, strong) NSString *errorMessage;
+
+@property(nonatomic, strong) OGAAdQualityConfiguration *adQualityConfiguration;
 
 - (OGAAdPrivacyConfiguration *)getPrivacyConfiguration;
 - (BOOL)isAdsEnabled;

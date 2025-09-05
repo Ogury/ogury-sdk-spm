@@ -119,6 +119,8 @@
             return @"SI-015";
         case OGAShowEventWebviewTerminatedByOS:
             return @"SI-017";
+        case OGAShowEventAdQualityBlankAd:
+            return @"SI-018";
             // Show SKNetwork
         case OGASKNetworkShowEventStartingImpression:
             return @"SUI-001";
@@ -190,6 +192,8 @@
             return @"SDK_EVENT_BACKGROUND_UNLOAD";
         case OGALoadEventWebviewTerminatedByOS:
             return @"SDK_LOAD_EVENT_WEBVIEW_TERMINATED";
+        case OGAShowEventAdQualityBlankAd:
+            return @"SDK_EVENT_BLANK_AD_DETECTION";
         case OGALoadEventAdParseStarted:
             return @"SDK_EVENT_AD_PARSING";
         case OGALoadEventAdParseEnded:
@@ -368,6 +372,7 @@
         case OGAShowEventLauchBrowser:
         case OGAShowEventForegroundUnload:
         case OGAShowEventWebviewTerminatedByOS:
+        case OGAShowEventAdQualityBlankAd:
             return nil;
 
             // Show SKNetwork
@@ -484,6 +489,7 @@
         case OGAShowEventLauchBrowser:
         case OGAShowEventForegroundUnload:
         case OGAShowEventWebviewTerminatedByOS:
+        case OGAShowEventAdQualityBlankAd:
             return nil;
 
             // Show SKNetwork

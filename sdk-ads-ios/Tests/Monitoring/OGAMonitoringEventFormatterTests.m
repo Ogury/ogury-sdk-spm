@@ -66,6 +66,7 @@
     XCTAssertEqual([self.formatter eventCodeFromEvent:OGAShowEventAdClose], @"SI-013");
     XCTAssertEqual([self.formatter eventCodeFromEvent:OGAShowEventLauchBrowser], @"SI-014");
     XCTAssertEqual([self.formatter eventCodeFromEvent:OGAShowEventForegroundUnload], @"SI-015");
+    XCTAssertEqual([self.formatter eventCodeFromEvent:OGAShowEventAdQualityBlankAd], @"SI-018");
 }
 
 - (void)testEventCodeFromShowErrorEvent {
@@ -129,6 +130,7 @@
     XCTAssertEqual([self.formatter eventNameFromEvent:OGAShowEventAdClose], @"SDK_EVENT_AD_CLOSED");
     XCTAssertEqual([self.formatter eventNameFromEvent:OGAShowEventLauchBrowser], @"SDK_EVENT_LAUNCH_BROSWER");
     XCTAssertEqual([self.formatter eventNameFromEvent:OGAShowEventForegroundUnload], @"SDK_EVENT_FOREGROUND_UNLOAD");
+    XCTAssertEqual([self.formatter eventNameFromEvent:OGAShowEventAdQualityBlankAd], @"SDK_EVENT_BLANK_AD_DETECTION");
 }
 
 - (void)testEventNameFromShowErrorEvent {

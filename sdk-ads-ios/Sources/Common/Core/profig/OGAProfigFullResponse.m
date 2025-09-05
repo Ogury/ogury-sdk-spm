@@ -31,7 +31,8 @@ NSString *const OGAAdConfigurationDisablingReasonCountryUnopened = @"COUNTRY_NOT
         @"blacklistedTracks" : @"response.monitoring.ad_life_cycle.blacklist",
         @"omidEnabled" : @"response.omid.enabled",
         @"errorType" : @"error.type",
-        @"errorMessage" : @"error.message"
+        @"errorMessage" : @"error.message",
+        @"adQualityConfiguration" : @"response.ad_quality"
     }];
 }
 
@@ -119,6 +120,7 @@ NSString *const OGAAdConfigurationDisablingReasonCountryUnopened = @"COUNTRY_NOT
         self.adsEnabled == profig.adsEnabled &&
         self.backButtonEnabled == profig.backButtonEnabled &&
         self.closeAdWhenLeavingApp == profig.closeAdWhenLeavingApp &&
+        [self.adQualityConfiguration isEqual:profig.adQualityConfiguration ] &&
         self.omidEnabled == profig.omidEnabled;
 }
 
