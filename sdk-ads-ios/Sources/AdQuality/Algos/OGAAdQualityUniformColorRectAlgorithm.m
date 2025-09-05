@@ -22,10 +22,10 @@
 
 @implementation UIView (Snapshot)
 
-/// Added this helper method for Unit testsn mainly.
+/// Added this helper method for Unit tests mainly.
 /// In a real world scenario, we use [self draw...] which renders both videos and images neatly.
-/// But in a test scenario (using an UIImageView passed alongn the method), then it fails because the image is not added to the main view, hence not rendered.
-/// In that case, we must use layer drawinf in order to get an image from the view
+/// But in a test scenario (using an UIImageView passed along the method), then it fails because the image is not added to the main view, hence not rendered.
+/// In that case, we must use layer drawing in order to get an image from the view
 - (UIImage *)snapshot {
     UIImage *snapshot = nil;
     // 1. Try UIKit rendering (best for complex hierarchies, video, blurs)
@@ -69,7 +69,7 @@
         self.algo = OguryAdQualityAlgorithmUniformColorRect;
         self.startDelay = delay;
         self.threshold = threshold;
-        self.devianceMax = threshold;
+        self.devianceMax = 0;
         self.rectSize = size;
         self.log = log;
         self.allowedFormats = allowedFormats;
@@ -159,17 +159,20 @@
                                        (view.bounds.size.height / 2) - self.rectSize.height / 2,
                                        self.rectSize.width,
                                        self.rectSize.height);
-        
+        // get image on main thread
         UIImage *image = [view snapshot];
-        BOOL imageHasUniformColor = [self imageIsUniformColor:image rect:targetRect];
-        OGAAdQualityResult *result = [[OGAAdQualityResult alloc] init];
-        result.success = !imageHasUniformColor;
-        result.algo = self.algo;
-        result.duration = @(@([[NSDate date] timeIntervalSinceDate:start] * 1000).intValue);
-        result.devianceMax = self.devianceMax;
-        [self logMessage:@"End computing" adConfiguration:adConfiguration result:result];
-        [self sendMonitoringEventFor:result adConfiguration:adConfiguration];
-        completion(result);
+        // perform computation on background thread
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+            BOOL imageHasUniformColor = [self imageIsUniformColor:image rect:targetRect];
+            OGAAdQualityResult *result = [[OGAAdQualityResult alloc] init];
+            result.success = !imageHasUniformColor;
+            result.algo = self.algo;
+            result.duration = @(@([[NSDate date] timeIntervalSinceDate:start] * 1000).intValue);
+            result.devianceMax = self.devianceMax;
+            [self logMessage:@"End computing" adConfiguration:adConfiguration result:result];
+            [self sendMonitoringEventFor:result adConfiguration:adConfiguration];
+            completion(result);
+        });
     });
 }
 
@@ -239,6 +242,7 @@
     if (!ctx) {
         free(rawData);
         CGColorSpaceRelease(cs);
+        CGImageRelease(cgImage);
         return NO;
     }
     
@@ -262,8 +266,10 @@
             unsigned char b = rawData[offset + 2];
             unsigned char a = rawData[offset + 3];
             int deviance = abs(r - r0) + abs(b - b0) + abs(g - g0) + abs(a - a0);
-            if (deviance > self.threshold.intValue) {
+            if (deviance > self.devianceMax.intValue) {
                 self.devianceMax = @(deviance);
+            }
+            if (deviance > self.threshold.intValue) {
                 uniform = NO;
                 break;
             }
@@ -273,6 +279,7 @@
     // Cleanup
     CGContextRelease(ctx);
     CGColorSpaceRelease(cs);
+    CGImageRelease(cgImage);
     free(rawData);
     
     return uniform;
