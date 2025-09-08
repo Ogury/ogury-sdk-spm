@@ -47,6 +47,10 @@
                                completion:(BidTokenCompletionBlock)completion;
 @end
 
+@interface OGAProfigFullResponse()
+@property(nonatomic) NSUInteger rawBidTokenMode;
+@end
+
 @interface OGAAdPrivacyConfiguration ()
 @property NSUInteger adSyncPermissions;
 @end
@@ -93,7 +97,7 @@
 
 - (void)testGenerateBidTokenCampaignIdCreativeIdDspCreativeIdDspRegion {
     OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
-    [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:YES instanceTokenEnabled:YES lowBatteryMode:YES];
+    [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:YES instanceTokenEnabled:YES lowBatteryMode:YES bidTokenMode:OGABidTokenModeAllowNilToken];
     [self.tokenGenerator bidTokenWithCampaignId:@"campaign"
                                      creativeId:@"creativeId"
                                   dspCreativeId:@"dspCreativeId"
@@ -114,7 +118,7 @@
 
 - (void)testGenerateBidTokenWithCampaignId {
     OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
-    [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:YES instanceTokenEnabled:YES lowBatteryMode:YES];
+    [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:YES instanceTokenEnabled:YES lowBatteryMode:YES bidTokenMode:OGABidTokenModeAllowNilToken];
     [self.tokenGenerator bidTokenWithCampaignId:@"campaign"
                                      completion:^(NSString *_Nullable encodedBidToken, NSError *_Nullable error) {
                                          XCTAssertNotNil(encodedBidToken);
@@ -156,7 +160,7 @@
 
 - (void)testWhenLowBatteryModeIsOnThenTrueIsSet {
     OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
-    [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:YES instanceTokenEnabled:YES lowBatteryMode:YES];
+    [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:YES instanceTokenEnabled:YES lowBatteryMode:YES bidTokenMode:OGABidTokenModeAllowNilToken];
     [self.tokenGenerator bidToken:^(NSString *_Nullable encodedBidToken, NSError *_Nullable error) {
         NSError *decodeError = nil;
         NSDictionary *token = [NSDictionary ogaDecodeFromBase64:encodedBidToken error:&decodeError];
@@ -165,7 +169,7 @@
 }
 
 - (void)testWhenLowBatteryModeIsOffThenFalseIsSet {
-    [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:YES instanceTokenEnabled:YES lowBatteryMode:NO];
+    [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:YES instanceTokenEnabled:YES lowBatteryMode:NO bidTokenMode:OGABidTokenModeAllowNilToken];
     [self.tokenGenerator bidToken:^(NSString *_Nullable encodedBidToken, NSError *_Nullable error) {
         NSError *decodeError = nil;
         NSDictionary *token = [NSDictionary ogaDecodeFromBase64:encodedBidToken error:&decodeError];
@@ -174,7 +178,7 @@
 }
 
 - (void)testCollectBidTokenDataNoAssetKey {
-    [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:NO instanceTokenEnabled:YES lowBatteryMode:YES];
+    [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:NO instanceTokenEnabled:YES lowBatteryMode:YES bidTokenMode:OGABidTokenModeAllowNilToken];
     [self.tokenGenerator bidToken:^(NSString *_Nullable encodedBidToken, NSError *_Nullable error) {
         NSError *decodeError = nil;
         NSDictionary *token = [NSDictionary ogaDecodeFromBase64:encodedBidToken error:&decodeError];
@@ -183,7 +187,7 @@
 }
 
 - (void)testCollectBidTokenDataNoInstanceToken {
-    [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:YES instanceTokenEnabled:NO lowBatteryMode:YES];
+    [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:YES instanceTokenEnabled:NO lowBatteryMode:YES bidTokenMode:OGABidTokenModeAllowNilToken];
     [self.tokenGenerator bidToken:^(NSString *_Nullable encodedBidToken, NSError *_Nullable error) {
         NSError *decodeError = nil;
         NSDictionary *token = [NSDictionary ogaDecodeFromBase64:encodedBidToken error:&decodeError];
@@ -192,7 +196,7 @@
 }
 
 - (void)testCollectBidTokenDataNoInstanceTokenNoAssetKey {
-    [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:NO instanceTokenEnabled:NO lowBatteryMode:YES];
+    [self mockDataWithPermissions:65535 skanEnabled:YES assetKeyEnabled:NO instanceTokenEnabled:NO lowBatteryMode:YES bidTokenMode:OGABidTokenModeAllowNilToken];
     [self.tokenGenerator bidToken:^(NSString *_Nullable encodedBidToken, NSError *_Nullable error) {
         NSError *decodeError = nil;
         NSDictionary *token = [NSDictionary ogaDecodeFromBase64:encodedBidToken error:&decodeError];
@@ -249,7 +253,8 @@
                     skanEnabled:(BOOL)skanEnabled
                 assetKeyEnabled:(BOOL)assetKeyEnabled
            instanceTokenEnabled:(BOOL)instanceTokenEnabled
-                 lowBatteryMode:(BOOL)lowBatteryMode {
+                 lowBatteryMode:(BOOL)lowBatteryMode
+                   bidTokenMode:(OGABidTokenMode)bidTokenMode {
     self.privacyConfiguration.adSyncPermissions = permissions;
     id classMock = OCMClassMock([OGAAdConfiguration class]);
     OCMStub(ClassMethod([classMock isOnLowPowerMode])).andReturn(lowBatteryMode);
@@ -273,10 +278,11 @@
     [[[[self.skAdNetworkService stub] classMethod] andReturn:items] getInfoAdNetworkItems];
     OCMStub([self.profigResponse adsEnabled]).andReturn(YES);
     OCMStub(self.profigManager.shouldSync).andReturn(NO);
+    OCMStub(self.profigDao.profigFullResponse.bidTokenMode).andReturn(bidTokenMode);
 }
 
-- (NSDictionary *)fullyMockedTokenWithPermissions:(NSUInteger)permissions skanEnabled:(BOOL)skanEnabled {
-    [self mockDataWithPermissions:permissions skanEnabled:skanEnabled assetKeyEnabled:YES instanceTokenEnabled:YES lowBatteryMode:YES];
+- (NSDictionary *)fullyMockedTokenWithPermissions:(NSUInteger)permissions skanEnabled:(BOOL)skanEnabled bidTokenMode:(OGABidTokenMode)bidTokenMode {
+    [self mockDataWithPermissions:permissions skanEnabled:skanEnabled assetKeyEnabled:YES instanceTokenEnabled:YES lowBatteryMode:YES bidTokenMode:bidTokenMode];
     return [self.tokenGenerator computeBidTokenDataWithCampaignId:nil
                                                        creativeId:nil
                                                     dspCreativeId:nil
@@ -285,7 +291,7 @@
 
 - (void)testWhenAllPermissionsAreSetThenTokenEnvelopeIsValid {
     OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
-    NSDictionary *token = [self fullyMockedTokenWithPermissions:[self fullPermissions] skanEnabled:YES];
+    NSDictionary *token = [self fullyMockedTokenWithPermissions:[self fullPermissions] skanEnabled:YES bidTokenMode:OGABidTokenModeAllowNilToken];
     // App
     XCTAssertEqualObjects(token[@"app"][@"asset_key"], @"AssetKey");
     XCTAssertEqualObjects(token[@"app"][@"asset_type"], @"deviceOS");
@@ -308,6 +314,9 @@
     XCTAssertNil(token[@"ad_sync"][@"ad"][@"campaign_id"]);
     XCTAssertNil(token[@"ad_sync"][@"ad"][@"creative_id"]);
     XCTAssertNil(token[@"ad_sync"][@"ad"][@"dsp"]);
+    XCTAssertNotNil(token[@"ad_sync"][@"ad_serving"]);
+    XCTAssertNotNil(token[@"ad_sync"][@"ad_serving"][@"enabled"]);
+    XCTAssertTrue(token[@"ad_sync"][@"ad_serving"][@"enabled"]);
     // omid
     XCTAssertEqualObjects(token[@"ad_sync"][@"omid"][@"is_compliant"], @(NO));
     XCTAssertEqualObjects(token[@"ad_sync"][@"omid"][@"integration_version"], @(3));
@@ -315,7 +324,7 @@
 
 - (void)testWhenNoPermissionsAreSetThenTokenEnvelopeIsValid {
     OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
-    NSDictionary *token = [self fullyMockedTokenWithPermissions:OGAAdPrivacyPermissionAdTracking skanEnabled:YES];
+    NSDictionary *token = [self fullyMockedTokenWithPermissions:OGAAdPrivacyPermissionAdTracking skanEnabled:YES bidTokenMode:OGABidTokenModeAllowNilToken];
     // App
     XCTAssertNotNil(token[@"app"][@"asset_key"]);
     XCTAssertNotNil(token[@"app"][@"asset_type"]);
@@ -337,10 +346,13 @@
     XCTAssertNil(token[@"ad_sync"][@"ad"][@"campaign_id"]);
     XCTAssertNil(token[@"ad_sync"][@"ad"][@"creative_id"]);
     XCTAssertNil(token[@"ad_sync"][@"ad"][@"dsp"]);
+    XCTAssertNotNil(token[@"ad_sync"][@"ad_serving"]);
+    XCTAssertNotNil(token[@"ad_sync"][@"ad_serving"][@"enabled"]);
+    XCTAssertTrue(token[@"ad_sync"][@"ad_serving"][@"enabled"]);
 }
 
 - (void)testWhenSKNetworkIsUnavailabkeThenTokenEnvelopeIsValid {
-    NSDictionary *token = [self fullyMockedTokenWithPermissions:OGAAdPrivacyPermissionAdTracking skanEnabled:NO];
+    NSDictionary *token = [self fullyMockedTokenWithPermissions:OGAAdPrivacyPermissionAdTracking skanEnabled:NO bidTokenMode:OGABidTokenModeAllowNilToken];
     // skan
     XCTAssertNil(token[@"ad_sync"][@"skadnetwork"][@"version"]);
     XCTAssertNil(token[@"ad_sync"][@"skadnetwork"][@"identifier_list"]);
@@ -348,7 +360,7 @@
 
 - (void)checkTokenWithPermissionMask:(NSUInteger)permission assertMessage:(NSString *)message {
     OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
-    NSDictionary *token = [self fullyMockedTokenWithPermissions:permission skanEnabled:YES];
+    NSDictionary *token = [self fullyMockedTokenWithPermissions:permission skanEnabled:YES bidTokenMode:OGABidTokenModeAllowNilToken];
     if (permission & 1) {
         XCTAssertNotNil(token[@"device"][@"settings"][@"device_id"], @"%@", message);
     } else {
@@ -512,7 +524,7 @@
     NSDictionary *privacyDatas = @{@"us_optout" : @(YES), @"customKey" : @"customValue"};
     OCMStub([self.tokenGenerator privacyDatas]).andReturn(privacyDatas);
     OCMStub([self.assetKeyManager checkAssetKeyIsValid:[OCMArg anyObjectRef] type:OguryAdErrorTypeLoad]).andReturn(YES);
-    [self mockDataWithPermissions:0 skanEnabled:NO assetKeyEnabled:NO instanceTokenEnabled:NO lowBatteryMode:NO];
+    [self mockDataWithPermissions:0 skanEnabled:NO assetKeyEnabled:NO instanceTokenEnabled:NO lowBatteryMode:NO bidTokenMode:OGABidTokenModeAllowNilToken];
     NSDictionary *token = [self.tokenGenerator computeBidTokenDataWithCampaignId:nil creativeId:nil dspCreativeId:nil dspRegion:nil];
     XCTAssertNotNil(token[@"privacy_compliancy"][@"tcf"]);
     XCTAssertNotNil(token[@"privacy_compliancy"][@"gpp"]);
@@ -524,6 +536,86 @@
     XCTAssertEqualObjects(token[@"privacy_compliancy"][@"gpp_sid"], @"gppSidConsentString");
     XCTAssertTrue(token[@"privacy_compliancy"][@"publisher_data"][@"us_optout"]);
     XCTAssertEqualObjects(token[@"privacy_compliancy"][@"publisher_data"][@"customKey"], @"customValue");
+}
+
+
+- (void)mockDataWithPermissionsForBidTokenMode:(NSUInteger)permissions
+                                    adsEnabled:(BOOL)adsEnabled
+                                  bidTokenMode:(OGABidTokenMode)bidTokenMode
+                                  disablingReason:(NSString *_Nullable)disablingReason {
+    self.privacyConfiguration.adSyncPermissions = permissions;
+    id classMock = OCMClassMock([OGAAdConfiguration class]);
+    OCMStub(ClassMethod([classMock isOnLowPowerMode])).andReturn(NO);
+    id configurationUtilsMock = OCMClassMock([OGAConfigurationUtils class]);
+    OCMStub(OCMClassMethod([configurationUtilsMock timeZone])).andReturn(@"+00:00");
+    OCMStub(OCMClassMethod([configurationUtilsMock getAppMarketingVersion])).andReturn(@"2.2.2");
+    OCMStub(OCMClassMethod([configurationUtilsMock getDeviceOS])).andReturn(@"deviceOS");
+    OCMStub(OCMClassMethod([configurationUtilsMock getAppBundleIdentifer])).andReturn(@"bundle_id");
+    OCMStub(OCMClassMethod([configurationUtilsMock getVendorId])).andReturn(@"vendorId");
+    id adIdentifierServiceMock = OCMClassMock([OGAAdIdentifierService class]);
+    OCMStub(OCMClassMethod([adIdentifierServiceMock getInstanceToken])).andReturn(@"instanceToken");
+    OCMStub(OCMClassMethod([adIdentifierServiceMock getAdIdentifier])).andReturn(@"deviceId");
+    OCMStub(self.assetKeyManager.assetKey).andReturn(@"AssetKey");
+    OCMStub([self.internal getVersion]).andReturn(@"5.5.5");
+    OCMStub([self.internal getBuildVersion]).andReturn(@"1234");
+    OCMStub([self.deviceService interfaceOrientation]).andReturn(@"portrait");
+    OCMStub([self.omidService isOMIDFrameworkPresent]).andReturn(NO);
+    [[[[self.skAdNetworkService stub] classMethod] andReturnValue:OCMOCK_VALUE(YES)] sdkIsCompatibleWithSKAdNetwork];
+    [[[[self.skAdNetworkService stub] classMethod] andReturn:@"skanVersion"] getSKAdNetworkVersion];
+    NSArray *items = @[ @"1", @"2" ];
+    [[[[self.skAdNetworkService stub] classMethod] andReturn:items] getInfoAdNetworkItems];
+    OCMStub([self.profigResponse adsEnabled]).andReturn(adsEnabled);
+    OCMStub(self.profigManager.shouldSync).andReturn(NO);
+    self.profigDao.profigFullResponse.rawBidTokenMode = bidTokenMode;
+    OCMStub(self.profigDao.profigFullResponse.disablingReason).andReturn(disablingReason);
+}
+
+- (void)testWhenAdsAreEnabledAndTokenShouldBeReturnedThenAValidEnvelopeIsReturned {
+    [self mockDataWithPermissionsForBidTokenMode:[self fullPermissions] adsEnabled:YES  bidTokenMode:OGABidTokenModeAllowNilToken disablingReason:nil];
+    XCTestExpectation *ex = [self expectationWithDescription:@"Token should not be nil"];
+    [self.tokenGenerator collectBidTokenDataWithCampaignId:nil
+                                                creativeId:nil
+                                             dspCreativeId:nil
+                                                 dspRegion:nil
+                                                completion:^(NSString * _Nullable bidToken, OguryError * _Nullable error) {
+        NSLog(@"%@", bidToken);
+        if (bidToken != nil) {
+            [ex fulfill];
+        }
+    }];
+    [self waitForExpectations:@[ex] timeout:2];
+}
+
+- (void)testWhenAdsAreDisabledAndNilTokenShouldBeReturnedThenNoTokenIsReturned {
+    [self mockDataWithPermissionsForBidTokenMode:[self fullPermissions] adsEnabled:NO  bidTokenMode:OGABidTokenModeAllowNilToken disablingReason:nil];
+    XCTestExpectation *ex = [self expectationWithDescription:@"Token should be nil"];
+    [self.tokenGenerator collectBidTokenDataWithCampaignId:nil
+                                                creativeId:nil
+                                             dspCreativeId:nil
+                                                 dspRegion:nil
+                                                completion:^(NSString * _Nullable bidToken, OguryError * _Nullable error) {
+        NSLog(@"%@", bidToken);
+        if (bidToken == nil) {
+            [ex fulfill];
+        }
+    }];
+    [self waitForExpectations:@[ex] timeout:2];
+}
+
+- (void)testWhenAdsAreDisabledAndTokenShouldBeReturnedThenAValidEnvelopeIsReturned {
+    [self mockDataWithPermissionsForBidTokenMode:[self fullPermissions] adsEnabled:NO  bidTokenMode:OGABidTokenModeAlwaysReturnToken disablingReason:nil];
+    XCTestExpectation *ex = [self expectationWithDescription:@"Token should be nil"];
+    [self.tokenGenerator collectBidTokenDataWithCampaignId:nil
+                                                creativeId:nil
+                                             dspCreativeId:nil
+                                                 dspRegion:nil
+                                                completion:^(NSString * _Nullable bidToken, OguryError * _Nullable error) {
+        NSLog(@"%@", bidToken);
+        if (bidToken != nil) {
+            [ex fulfill];
+        }
+    }];
+    [self waitForExpectations:@[ex] timeout:2];
 }
 
 @end

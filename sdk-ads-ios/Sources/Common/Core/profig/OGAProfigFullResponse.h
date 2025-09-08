@@ -9,9 +9,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, OGABidTokenMode) {
+    OGABidTokenModeAllowNilToken = 0,
+    OGABidTokenModeAlwaysReturnToken
+};
+
 extern NSString *const OGAAdConfigurationDisablingReasonConsentDenied;
 extern NSString *const OGAAdConfigurationDisablingReasonConsentMissing;
 extern NSString *const OGAAdConfigurationDisablingReasonCountryUnopened;
+extern NSString *const OGAAdConfigurationDisablingReasonUnkown;
 
 @interface OGAProfigFullResponse : OGAJSONModel
 
@@ -19,6 +25,7 @@ extern NSString *const OGAAdConfigurationDisablingReasonCountryUnopened;
 
 @property(nonatomic, strong) NSNumber *requestTimeout;
 @property(nonatomic, strong) NSNumber *childrenRequestPermissionsFilter;
+@property(nonatomic) OGABidTokenMode bidTokenMode;
 
 // Config_pull
 @property(nonatomic, strong) NSNumber *retryInterval;  // max-age from header
