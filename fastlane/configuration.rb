@@ -1,23 +1,28 @@
 class Configuration
-  attr_reader :workspace, :targets, :schemes, :sdks, :test_devices, :allowed_environments, :firebase, :artifactory, :amazon, :slack, :cocoapods, :frameworks, :directories, :testApplications
+  attr_reader :workspace, :targets, :schemes, :sdks, :test_devices, :allowed_environments, :firebase, :deployment, :slack, :cocoapods, :frameworks, :directories, :testApplications
 
   def initialize
     @workspace = Workspace.new("OgurySdks", "OgurySdks.xcworkspace")
-    core = Target.new("OguryCore", "sdk-core-ios/OguryCore.xcodeproj", "OguryCore", nil, Dependency.new(hasPodspec: true), "core", "core-ios")
-    ads = Target.new("OguryAds", "sdk-ads-ios/OguryAdsSDK.xcodeproj", "OguryAds", nil, Dependency.new(core: true, omid: true, hasPodspec: true), "ads", "ads-ios")
-    wrapper = Target.new("OguryWrapper", "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj", "OguryWrapper", "OgurySdk", Dependency.new(core: true, ads: true, hasPodspec: true), "wrapper", "ios")
-    @targets = Targets.new(ads, core, wrapper)
+    
+    core = Target.new(name: "OguryCore", path: "sdk-core-ios/OguryCore.xcodeproj", scheme: "OguryCore", publicName: nil, dependencies: Dependency.new(hasPodspec: true), method: "core", amazon: "core-ios")
+    ads = Target.new(name: "OguryAds", path: "sdk-ads-ios/OguryAdsSDK.xcodeproj", scheme: "OguryAds", publicName: nil, dependencies: Dependency.new(core: true, omid: true, hasPodspec: true), method: "ads", amazon: "ads-ios")
+    wrapper = Target.new(name: "OguryWrapper", path: "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj", scheme: "OguryWrapper", publicName: "OgurySdk", dependencies: Dependency.new(core: true, ads: true, hasPodspec: true), method: "wrapper", amazon: "ios")
+    omid = OmidTarget.new(name: "OMSDK_Ogury", path: "./sdk-ads-ios/", amazon: "omid-ios")
+    @targets = Targets.new(ads, core, wrapper, omid)
     iosSdk = Sdk.new("iphoneos", "generic/platform=iOS")
     simulatorSdk = Sdk.new("iphonesimulator", "generic/platform=iOS Simulator")
     @sdks = Sdks.new([iosSdk, simulatorSdk], [simulatorSdk])
     @test_devices = ["iPhone 16"]
     @allowed_environments = ["devc", "staging", "prod", "beta", "release"]
     @firebase = Firebase.new("inApp")
-    @artifactory = Artifactory.new("https://ogury.jfrog.io/artifactory")
-    @amazon = Amazon.new("https://binaries.ogury.co")
+    internalS3 = S3Repository.new(public: "https://binaries.ogury.co", bucket:"ogury-sdk-binaries", path:"internal")
+    publicS3 = S3Repository.new(public: "https://binaries.ogury.co", bucket:"ogury-sdk-binaries")
+    internalRepositories = Repositories.new(internalS3, Repository.new("Ogury/sdk-internal-cocoapods"), Repository.new("https://github.com/Ogury/sdk-internal-spm"))
+    publicRepositories = Repositories.new(publicS3, Repository.new("https://cdn.cocoapods.org/"), Repository.new("https://github.com/Ogury/ogury-sdk-spm"))
+    @deployment = Deployment.new(internalRepositories, publicRepositories)
     @slack = Slack.new("https://hooks.slack.com/services/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", "#sdk-ios-ci-update")
     @cocoapods = Cocoapods.new("git@github.com:Ogury/ogury-cocoapods-repository.git")
-    @frameworks = Frameworks.new("./OMSDK_Ogury.xcframework")
+    @frameworks = Frameworks.new()
     @frameworks.ogury_core = Framework.new("2.1.0-rc.3", "2.1.0", "2.1.0")
     @frameworks.ogury_ads = Framework.new("4.1.1-rc.4", "4.1.0", "4.1.1")
     @frameworks.ogury_sdk = Framework.new("5.1.1-rc.4", "5.1.0", "5.1.1")
@@ -28,8 +33,7 @@ class Configuration
     maxTestApp = TestApplication.new("maxTestApp", "MaxTestApp", "MaxTestApp", "co.ogury.sdk.ads.max.app", "1:743372999564:ios:cc7358fc83c446edca24a9")
     adMobTestApp = TestApplication.new("adMobTestApp", "AdMobTestApp", "AdMobTestApp", "co.ogury.sdk.ads.admob.app", "1:743372999564:ios:126315fea3608a04ca24a9")
     unityTestApp = TestApplication.new("unityTestApp", "UnityLevelPlayTestApp", "UnityLevelPlayTestApp", "co.ogury.sdk.ads.ulp.app", "1:743372999564:ios:4c84c9f1f5248edaca24a9")
-    prebidTestApp = TestApplication.new("prebidTestApp", "PrebidTestApp", "PrebidTestApp", "co.ogury.sdk.ads.prebid.devc", "1:743372999564:ios:c00cac288d327678ca24a9
-")
+    prebidTestApp = TestApplication.new("prebidTestApp", "PrebidTestApp", "PrebidTestApp", "co.ogury.sdk.ads.prebid.devc", "1:743372999564:ios:c00cac288d327678ca24a9")
     @testApplications = TestApplications.new([prodTestApp, devcTestApp, stagingTestApp], [maxTestApp, adMobTestApp, unityTestApp, prebidTestApp])
   end
 end
@@ -72,7 +76,7 @@ class TestApplications
   end
 end
 
-Targets = Struct.new(:ads, :core, :wrapper) do
+Targets = Struct.new(:ads, :core, :wrapper, :omid) do
 end
 
 class Dependency
@@ -89,13 +93,14 @@ class Dependency
 end
 
 class Target
-  attr_accessor :name, :path, :scheme, :artScheme, :publicName, :dependencies, :method, :amazon
+  attr_accessor :name, :projectName, :path, :scheme, :publicName, :dependencies, :method, :amazon, :buildable
 
-  def initialize(name, path, scheme, publicName = nil, dependencies = nil, method, amazon)
+  def initialize(name:, projectName: nil, path:, scheme:, publicName: nil, dependencies: nil, method:, amazon:, buildable: true)
     @name = name
+    @projectName = projectName.nil? ? name : projectName
     @path = path
     @scheme = scheme
-    @artScheme = artScheme.nil? ? "#{scheme}-art" : artScheme
+    @buildable = buildable
     @publicName = publicName.nil? ? name : publicName
     @method = method
     @amazon = amazon
@@ -104,6 +109,12 @@ class Target
                     else
                       Dependency.new(**(dependencies || {}))
                     end
+  end
+end
+
+class OmidTarget < Target
+  def initialize(name:, path:, amazon:)
+    super(name: name, projectName: "OguryAds", path: path, scheme: "", publicName: name, dependencies: Dependency.new(hasPodspec: true), method: "omid", amazon: amazon, buildable: false)
   end
 end
 
@@ -116,7 +127,20 @@ end
 Firebase = Struct.new(:test_group) do
 end
 
-Artifactory = Struct.new(:url) do
+Deployment = Struct.new(:internal, :public) do
+end
+Repositories = Struct.new(:s3, :cocoapods, :spm) do
+end
+Repository = Struct.new(:url) do
+end
+
+class S3Repository
+  attr_accessor :public, :bucket
+
+  def initialize(public:, bucket:, path: nil)
+    @public = path.nil? ? public : "#{public}/#{path}"
+    @bucket = path.nil? ? bucket : "#{bucket}/#{path}"
+  end
 end
 
 Amazon = Struct.new(:url) do
@@ -128,7 +152,7 @@ end
 Cocoapods = Struct.new(:url) do
 end
 
-Frameworks = Struct.new(:omid) do
+Frameworks = Struct.new() do
   attr_accessor :ogury_core
   attr_accessor :ogury_ads
   attr_accessor :ogury_sdk

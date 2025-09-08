@@ -1,11 +1,5 @@
-source "https://github.com/Ogury/ogury-cocoapods-repository.git"
+source "git@github.com:Ogury/sdk-internal-cocoapods.git"
 source 'https://cdn.cocoapods.org/'
-
-<% if artifactory_repository_name != nil %>
-plugin 'cocoapods-art', :sources => [
-  '<%= artifactory_repository_name %>',
-]
-<% end %>
 
 platform :ios, "12.0"
 use_frameworks!
@@ -33,20 +27,22 @@ target "OguryAdsTests" do
 end
 
 #Ads Test Apps
-target "AdsTestApp-Devc" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+def testAppBasePods
   pod 'InMobiCMP', '2.0.1'
   pod 'Google-Mobile-Ads-SDK'
+end
+
+target "AdsTestApp-Devc" do
+  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  testAppBasePods
 end
 target "AdsTestApp-Staging" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod 'InMobiCMP', '2.0.1'
-  pod 'Google-Mobile-Ads-SDK'
+  testAppBasePods
 end
 target "AdsTestApp-Prod" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod 'InMobiCMP', '2.0.1'
-  pod 'Google-Mobile-Ads-SDK'
+  testAppBasePods
 end
 
 post_install do |installer|

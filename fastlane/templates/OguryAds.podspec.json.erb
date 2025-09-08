@@ -15,13 +15,14 @@
     },
     "frameworks": ["AdSupport", "SystemConfiguration", "UIKit"],
     "weak_frameworks": ["CoreTelephony"],
-    "subspecs": [{ "name": "OMID", "vendored_frameworks": "<%= omid_sdk %>" }],
-    "default_subspecs": ["OMID"],
     "libraries": "z",
     "requires_arc": true,
     "version": "<%= version %>",
     "vendored_frameworks": "OguryAds.xcframework",
-    "dependencies": {"OguryCore<%= framework_suffix %>": ["<%= ogury_core_version %>"]},
+    "dependencies": {
+        "OguryCore<%= framework_suffix %>": ["<%= ogury_core_version %>"],
+        "OguryOM<%= framework_suffix %>": ["<%= ogury_omid_version %>"]
+    },
     "source": {
         "http": "<%= source_url %>"
     }
