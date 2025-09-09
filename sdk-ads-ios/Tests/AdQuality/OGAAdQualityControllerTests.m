@@ -26,6 +26,11 @@
               allowedFormats:(NSArray<NSString *> *)allowedFormats
         monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher
                          log:(OGALog *)log;
+- (void)sendMonitoringEventFor:(OGAAdQualityResult *)result adConfiguration:(OGAAdConfiguration *)adConfiguration;
+@property(nonatomic, strong) OGALog *log;
+@property(nonatomic, strong) NSNumber *devianceMax;
+@property(nonatomic, strong) NSString *uniformHexColor;
+@property(nonatomic, strong) OGAMonitoringDispatcher *monitoringDispatcher;
 @end
 
 @interface OGAAdQualityController ()
@@ -40,6 +45,16 @@
     self.emtpyView = [UIView new];
     [self.emtpyView setBackgroundColor:[UIColor whiteColor]];
     [self.emtpyView setFrame:CGRectMake(0, 0, 100, 100)];
+}
+
+- (void)addDefaultDictValuesAndSingleton:(BOOL)addSingleton {
+    OGAAdQualityUniformColorRectAlgorithm *rectAlgo = self.sut.activeAlgorithms[0];
+    rectAlgo.devianceMax = @(0);
+    rectAlgo.uniformHexColor = @"";
+    if (addSingleton) {
+        rectAlgo.log = OCMClassMock([OGALog class]);
+        rectAlgo.monitoringDispatcher = OCMClassMock([OGAMonitoringDispatcher class]);
+    }
 }
 
 - (void)tearDown {
@@ -74,6 +89,7 @@
                                                                                      threshold:@(6)
                                                                                     startDelay:@(1000)
                                                                                 allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial ]] ];
+    [self addDefaultDictValuesAndSingleton:YES];
     OGAAdConfiguration *conf = OCMClassMock([OGAAdConfiguration class]);
     OCMStub([conf getAdTypeString]).andReturn(OGAAdConfigurationAdTypeStandardBanners);
     XCTestExpectation *ex = [self expectationWithDescription:@"Completion block called"];
@@ -92,6 +108,7 @@
                                                                                                                   startDelay:@(1000)
                                                                                                               allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial ]]);
     self.sut.activeAlgorithms = @[ algo ];
+    [self addDefaultDictValuesAndSingleton:YES];
     OGAAdConfiguration *conf = OCMClassMock([OGAAdConfiguration class]);
     OCMStub([conf getAdTypeString]).andReturn(OGAAdConfigurationAdTypeInterstitial);
     XCTestExpectation *ex = [self expectationWithDescription:@"Completion block called"];
@@ -114,6 +131,7 @@
                                                                                                                   startDelay:@(1000)
                                                                                                               allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial ]]);
     self.sut.activeAlgorithms = @[ algo ];
+    [self addDefaultDictValuesAndSingleton:YES];
     OGAAdConfiguration *conf = OCMClassMock([OGAAdConfiguration class]);
     OCMStub([conf getAdTypeString]).andReturn(OGAAdConfigurationAdTypeInterstitial);
     XCTestExpectation *ex = [self expectationWithDescription:@"Completion block called"];
@@ -135,6 +153,7 @@
                                                                                                                   startDelay:@(1000)
                                                                                                               allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial ]]);
     self.sut.activeAlgorithms = @[ algo ];
+    [self addDefaultDictValuesAndSingleton:YES];
     OGAAdConfiguration *conf = OCMClassMock([OGAAdConfiguration class]);
     OCMStub([conf getAdTypeString]).andReturn(OGAAdConfigurationAdTypeInterstitial);
     XCTestExpectation *ex = [self expectationWithDescription:@"Completion block called"];
@@ -163,6 +182,7 @@
                                                                                                         monitoringDispatcher:monitoring
                                                                                                                          log:log]);
     self.sut.activeAlgorithms = @[ algo ];
+    [self addDefaultDictValuesAndSingleton:NO];
     OGAAdConfiguration *conf = OCMClassMock([OGAAdConfiguration class]);
     OCMStub([conf getAdTypeString]).andReturn(OGAAdConfigurationAdTypeInterstitial);
     XCTestExpectation *ex = [self expectationWithDescription:@"Completion block called"];
