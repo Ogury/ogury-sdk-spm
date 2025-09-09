@@ -125,6 +125,7 @@ struct MainFeature: Reducer {
         case destination(PresentationAction<Destination.Action>)
         case binding(BindingAction<State>)
         case settingsButtonTapped
+        case showLogSettings
         case bulkModeButtonTapped
         case addButtonTapped
         case showWhatsNew(_: String, showConfetti: Bool)
@@ -139,11 +140,13 @@ struct MainFeature: Reducer {
         case saveCards
         case refreshAllCards(_: [AdCardList])
         case showLogs(_: Bool)
+        case toggleLogConsole
         case importFile(_: URL)
         case loadFromContainer(_: AdsStorableContainer)
         case aboutButtonTapped
         case startFailed
         case showDetail(managers: [any AdManager], adFormat: any AdAdapterFormat)
+        case resetProfig
         
         enum Alert {
             case notImplemented
@@ -249,8 +252,23 @@ struct MainFeature: Reducer {
                     store(formats: [], settings: .init())
                     return .none
                     
+                case .destination(.presented(.settings(.resetAdConfigButtonTapped))):
+                    return .send(.resetProfig)
+                    
+                case .resetProfig:
+                    SdkLauncher.shared.adapter.resetSdk()
+                    return .run { _ in
+                        await showNotification(message: "OguryAds has been reset")
+                    }
+                    
                 case .settingsButtonTapped:
                     state.destination = .settings(AppSettingsFeature.State(settings: .init(), adDelegate: adDelegate))
+                    return .none
+                    
+                case .showLogSettings:
+                    var path: StackState<AppSettingsFeature.Path.State> = .init()
+                    path.append(.logs(.init()))
+                    state.destination = .settings(AppSettingsFeature.State(settings: .init(), adDelegate: adDelegate, path: path))
                     return .none
                     
                 case .bulkModeButtonTapped:
@@ -327,7 +345,8 @@ struct MainFeature: Reducer {
                     
                 case.startSDKButtonTapped:
                     return .run { send in
-                        do { try await SdkLauncher.shared.startAds(forceStart: true) } catch {
+                        do {
+                            try await SdkLauncher.shared.startAds(forceStart: true) } catch {
                             await send(.startFailed)
                         }
                     }
@@ -340,6 +359,10 @@ struct MainFeature: Reducer {
                     var ctrl = SettingsController()
                     ctrl.showLogsSheet = show
                     return .none
+                    
+                case .toggleLogConsole:
+                    if state.adFormats.isEmpty { return .none }
+                    return .send(.showLogs(!state.showLogs))
                     
                 case .aboutButtonTapped:
                     state.destination = .alert(.about)

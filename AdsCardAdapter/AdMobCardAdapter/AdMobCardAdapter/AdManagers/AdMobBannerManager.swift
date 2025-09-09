@@ -54,14 +54,13 @@ class AdMobBannerManager: AdMobManager {
         set { internalSize = newValue as! BannerAdManagerSize }
     }
     
+    @MainActor
     override func instanciateAd() async {
-        Task { @MainActor in
-            guard ad == nil else { return }
-            ad = .init(adSize: internalSize.internalSize)
-            ad?.delegate = proxy
-            ad?.adUnitID = adType.adUnit
-            ad?.rootViewController = viewController
-        }
+        guard ad == nil else { return }
+        ad = .init(adSize: internalSize.internalSize)
+        ad?.delegate = proxy
+        ad?.adUnitID = adType.adUnit
+        ad?.rootViewController = viewController
     }
     
     override func resetAd() {
@@ -82,7 +81,7 @@ class AdMobBannerManager: AdMobManager {
     override func load() async {
         await super.load()
         await instanciateAd()
-        await ad?.load(.init())
+        await ad?.load(nil)
     }
     
     override func show() {

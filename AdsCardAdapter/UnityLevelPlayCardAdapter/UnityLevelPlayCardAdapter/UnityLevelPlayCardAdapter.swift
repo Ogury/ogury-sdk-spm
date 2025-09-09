@@ -47,19 +47,20 @@ public struct UnityLevelPlayAdsCardAdapter: AdsCardAdaptable {
             AdType.headerBidding(.rewardedVideo),
             AdType.headerBidding(.standardBanner),
         ]),
-        .init(title: "Waterfall", formats: [
-            AdType.waterfall(.interstitial),
-            AdType.waterfall(.rewardedVideo),
-            AdType.waterfall(.standardBanner),
-        ]),
+        // uncomment when we try to integrate waterfall
+//        .init(title: "Waterfall", formats: [
+//            AdType.waterfall(.interstitial),
+//            AdType.waterfall(.rewardedVideo),
+//            AdType.waterfall(.standardBanner),
+//        ]),
     ]
     
     public var sdkVersions: String {
         let coreSdkVersion = String(describing: OGCInternal.shared().getVersion())
-        let ulpSdkVersion = IronSource.sdkVersion()
+        let ulpSdkVersion = IronSourceAds.sdkVersion()
         let ogurySdkVersion = Ogury.sdkVersion()
         let origin = Bundle.main.object(forInfoDictionaryKey: "SDK_SOURCE") as? String ?? "Dev"
-        let adsSdkVersion = "\(String(describing: OGAInternal.shared().getVersion())) (\(origin == "Pod" ? "Release" : "Development"))"
+        let adsSdkVersion = "\(String(describing: OGAInternal.shared().getVersion()))"
         let omid = OMIDOgurySDK.versionString()
         return
 """
@@ -136,7 +137,7 @@ OM SDK Version : \(omid)
     public func startSdk() async {
         // Create a request builder with app key and ad formats. Add User ID if available
         let requestBuilder = LPMInitRequestBuilder(appKey: "21f32a64d")
-            .withLegacyAdFormats([IS_INTERSTITIAL, IS_BANNER, IS_REWARDED_VIDEO])
+//            .withLegacyAdFormats([IS_INTERSTITIAL, IS_BANNER, IS_REWARDED_VIDEO])
         // Build the initial request
         let initRequest = requestBuilder.build()
         // Initialize LevelPlay with the prepared request

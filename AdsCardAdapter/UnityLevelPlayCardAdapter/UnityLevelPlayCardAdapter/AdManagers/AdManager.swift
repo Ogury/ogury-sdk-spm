@@ -241,7 +241,7 @@ class ULPAdManager: NSObject, AdManager {
                         adInformations: .init(adUnitId: adConfiguration.adUnitId,
                                               bannerSize: actualSize?.size,
                                               settings: .init(oguryTestModeEnabled: false,
-                                                              rtbTestModeEnabled: true,
+                                                              rtbTestModeEnabled: false,
                                                               qaLabel: cardConfiguration.qaLabel)))
     }
     
@@ -304,5 +304,4 @@ class ULPDelegateProxy: NSObject, LPMInterstitialAdDelegate, LPMRewardedAdDelega
         guard let adManager else { return }
         adManager.append(.rewardReady(name: reward.name, value: "\(reward.amount)"))
     }
-    
 }
