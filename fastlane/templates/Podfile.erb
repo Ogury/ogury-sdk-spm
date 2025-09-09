@@ -1,11 +1,5 @@
-source "https://github.com/Ogury/ogury-cocoapods-repository.git"
+source "git@github.com:Ogury/sdk-internal-cocoapods.git"
 source 'https://cdn.cocoapods.org/'
-
-<% if artifactory_repository_name != nil %>
-plugin 'cocoapods-art', :sources => [
-  '<%= artifactory_repository_name %>',
-]
-<% end %>
 
 platform :ios, "12.0"
 use_frameworks!
@@ -67,20 +61,22 @@ target "PrebidCardAdapter" do
 end
 
 #Ads Test Apps
-target "AdsTestApp-Devc" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+def testAppBasePods
   pod 'InMobiCMP', '2.0.1'
   pod 'Google-Mobile-Ads-SDK'
+end
+
+target "AdsTestApp-Devc" do
+  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  testAppBasePods
 end
 target "AdsTestApp-Staging" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod 'InMobiCMP', '2.0.1'
-  pod 'Google-Mobile-Ads-SDK'
+  testAppBasePods
 end
 target "AdsTestApp-Prod" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod 'InMobiCMP', '2.0.1'
-  pod 'Google-Mobile-Ads-SDK'
+  testAppBasePods
 end
 target "AdsTestApp-Ext" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
@@ -89,57 +85,48 @@ target "AdsTestApp-Ext" do
 end
 target "MaxTestApp" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod 'InMobiCMP', '2.0.1'
-  pod 'Google-Mobile-Ads-SDK'
+  testAppBasePods
   pod 'AppLovinSDK'
   pod 'AppLovinMediationOguryPresageAdapter'
 end
 target "AdMobTestApp" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod 'InMobiCMP', '2.0.1'
-  pod 'Google-Mobile-Ads-SDK'
+  testAppBasePods
   pod 'OguryMediationGoogleMobileAds'
 end
 target "UnityLevelPlayTestApp" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod 'InMobiCMP', '2.0.1'
-  pod 'Google-Mobile-Ads-SDK'
+  testAppBasePods
   pod 'IronSourceSDK'
   pod 'IronSourceOguryAdapter'
 end
 target "PrebidTestApp-devc" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod 'InMobiCMP', '2.0.1'
-  pod 'Google-Mobile-Ads-SDK'
+  testAppBasePods
   pod 'PrebidMobile'
 end
 target "PrebidTestApp-staging" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod 'InMobiCMP', '2.0.1'
-  pod 'Google-Mobile-Ads-SDK'
+  testAppBasePods
   pod 'PrebidMobile'
 end
 target "PrebidTestApp" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod 'InMobiCMP', '2.0.1'
-  pod 'Google-Mobile-Ads-SDK'
+  testAppBasePods
   pod 'PrebidMobile'
 end
 
 target "AdsTestApp-Devc-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod 'InMobiCMP', '2.0.1'
-  pod 'Google-Mobile-Ads-SDK'
+  testAppBasePods
 end
 target "AdsTestApp-Staging-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod 'InMobiCMP', '2.0.1'
-  pod 'Google-Mobile-Ads-SDK'
+  testAppBasePods
 end
 target "AdsTestApp-Prod-art" do
   project "sdk-ads-ios/AdsTestApp/AdsTestApp"
-  pod 'InMobiCMP', '2.0.1'
-  pod 'Google-Mobile-Ads-SDK'
+  testAppBasePods
 end
 
 #Wrapper

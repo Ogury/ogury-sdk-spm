@@ -1,14 +1,14 @@
 //
 //  Copyright © 2020-present Ogury. All rights reserved.
 //
-
+#include "../../../Pods/Target Support Files/Pods-OguryWrapperTests/Pods-OguryWrapperTests.debug.xcconfig"
 // Identification
 PRODUCT_NAME = OgurySdk
 FRAMEWORK_NAME = OgurySdk
 PRODUCT_BUNDLE_IDENTIFIER = com.ogury.OguryWrapper
 
 // Versioning
-MARKETING_VERSION = 5.2.0-alpha
+MARKETING_VERSION = 5.1.0-cocoapods-1
 BUNDLE_VERSION = 1
 
 // Module
