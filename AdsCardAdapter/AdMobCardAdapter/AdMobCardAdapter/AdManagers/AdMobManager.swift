@@ -279,7 +279,7 @@ class AdMobDelegateProxy: NSObject, FullScreenContentDelegate, BannerViewDelegat
     /// Banner
     func bannerViewDidReceiveAd(_ bannerView: BannerView) {
         guard let adManager else { return }
-        adManager.append(.bannerReady(bannerView))
+        adManager.append(.adLoaded(canShow: true))
     }
     
     func bannerViewDidRecordClick(_ bannerView: BannerView) {
