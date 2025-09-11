@@ -227,6 +227,7 @@
     
     CGColorSpaceRef cs = CGColorSpaceCreateDeviceRGB();
     if (!cs) {
+        CGImageRelease(cgImage);
         return NO;
     }
     
