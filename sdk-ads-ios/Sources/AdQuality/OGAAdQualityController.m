@@ -53,9 +53,13 @@
     }
 }
 
-- (void)performAdQualityChecksOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityCompletionBlock _Nullable)completion {
+- (void)performAdQualityChecksOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityCompletionBlock _Nullable)completion {NSMutableArray<OGAAdQualityResult *> *results = [@[] mutableCopy];
+    if (self.activeAlgorithms.count == 0) {
+        [self safeResultCompletionWithData:results completion:completion];
+        return;
+    }
+    
     dispatch_group_t group = dispatch_group_create();
-    NSMutableArray<OGAAdQualityResult *> *results = [@[] mutableCopy];
     
     [self.activeAlgorithms enumerateObjectsUsingBlock:^(id<OGAAdQualityAlgorithm> _Nonnull algo, NSUInteger idx, BOOL *_Nonnull stop) {
         if ([algo computationEnabledFor:adConfiguration]) {
