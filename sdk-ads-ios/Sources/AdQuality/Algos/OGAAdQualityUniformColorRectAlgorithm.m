@@ -69,7 +69,7 @@
         self.algo = OguryAdQualityAlgorithmUniformColorRect;
         self.startDelay = delay;
         self.threshold = threshold;
-        self.devianceMax = 0;
+        self.devianceMax = @0;
         self.rectSize = size;
         self.log = log;
         self.allowedFormats = allowedFormats;
