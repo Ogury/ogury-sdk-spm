@@ -50,6 +50,7 @@
 #import "OGAAdController.h"
 #import "OguryAdError+Internal.h"
 #import "OGAMraidLogMessage.h"
+#import "OGAAdQualityController.h"
 
 #pragma mark - Constants
 
@@ -82,6 +83,7 @@ static NSUInteger const OGADefaultMaxNumberWebviewReload = 3;
 @property(nonatomic, strong) OGAMonitoringDispatcher *monitoringDispatcher;
 @property(nonatomic, strong) OGAProfigManager *profigManager;
 @property(nonatomic, strong) OGALog *log;
+@property(nonatomic, strong) OGAAdQualityController *adQualityController;
 @property(nonatomic, assign) NSUInteger numberOfReloadAttempts;
 
 @end
@@ -338,6 +340,7 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
 }
 
 - (void)cleanUp {
+    NSLog(@"🐳 clean up");
     [[OGASKAdNetworkManager shared] stopImpressionWithAd:self.ad];
     [self dispatchNoViewabilityAndZeroExposure];
 
@@ -350,6 +353,8 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
     if (self.containerWebView.omidSession) {
         [self.containerWebView.omidSession stopOMIDSession];
     }
+    [self.adQualityController cleanUp];
+    self.adQualityController = nil;
 }
 
 - (OGAMraidAdWebView *)mraidViewForId:(NSString *)webViewId {
@@ -840,6 +845,12 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
 - (WKWebView *)adWebview {
     OGAMraidAdWebView *mainWebView = [self mraidViewForId:OGANameMainWebView];
     return mainWebView.wkWebView;
+}
+
+- (void)performQualityChecks {
+    __weak OGAMRAIDAdDisplayer *wself = self;
+    self.adQualityController = [[OGAAdQualityController alloc] initFrom:wself.profigManager.currentAdQualityConfiguration];
+    [self.adQualityController performAdQualityChecksOn:wself.view adConfiguration:wself.configuration];
 }
 
 @end

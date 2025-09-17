@@ -10,27 +10,24 @@
 #import <OguryCore/OguryNetworkClient.h>
 #import <OguryCore/OguryNetworkClientError.h>
 #import "OGAEXTScope.h"
-#import "OGAAdQualityController.h"
 
 @interface OGAProfigService ()
 
 @property(atomic, assign) BOOL profigLoadTaskInProgress;
 @property(atomic, strong) OGALog *log;
-@property(atomic, strong) OGAAdQualityController *adQualityController;
 
 @end
 
 @implementation OGAProfigService
 
 - (instancetype)init {
-    return [self init:[OGALog shared] adQualityController:[OGAAdQualityController shared]];
+    return [self init:[OGALog shared]];
 }
 
-- (instancetype)init:(OGALog *)log adQualityController:(OGAAdQualityController*)adQualityController {
+- (instancetype)init:(OGALog *)log {
     if (self = [super init]) {
         _profigLoadTaskInProgress = NO;
         _log = log;
-        _adQualityController = adQualityController;
     }
     return self;
 }
@@ -55,13 +52,11 @@
     }
     self.profigLoadTaskInProgress = YES;
     @weakify(self)
-    [self.adQualityController reset];
     [[OguryNetworkClient shared] performRequest:profigRequest
                completionHandlerWithUrlResponse:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
         @strongify(self)
         // we still try to parse the profig since we can have business errors in a 400 response
         OGAProfigFullResponse *profigResponse = [OGAProfigFullResponse parseProfigResponseWithData:data urlResponse:response];
-        [self.adQualityController setUpFrom:profigResponse.adQualityConfiguration];
         if (error) {
             NSError *completionError = (profigResponse.errorType || profigResponse.errorMessage)
             ? [OGAConfigurationUtils errorForServerProfigError:profigResponse]

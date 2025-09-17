@@ -16,7 +16,6 @@
 #import "OGASKAdNetworkManager.h"
 #import "OGAMonitoringDispatcher.h"
 #import "OGAAd+ImpressionSource.h"
-#import "OGAAdQualityController.h"
 
 CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
 
@@ -26,7 +25,6 @@ CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
 @property(nonatomic, strong) OguryNetworkClient *networkClient;
 @property(nonatomic, strong) OGALog *log;
 @property(nonatomic, strong) OGAMonitoringDispatcher *monitoringDispatcher;
-@property(nonatomic, strong) OGAAdQualityController *adQualityController;
 
 @property(atomic, strong) NSMutableDictionary<NSString *, NSNumber *> *hasSentImpressionTrackByAdId;
 @property(atomic, strong) NSMutableDictionary<NSString *, NSNumber *> *hasSentImpressionDelegateByAdId;
@@ -51,15 +49,13 @@ CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
     return [self initWithMetricsService:[OGAMetricsService shared]
                           networkClient:[OguryNetworkClient shared]
                                     log:[OGALog shared]
-                   monitoringDispatcher:[OGAMonitoringDispatcher shared]
-                    adQualityController:[OGAAdQualityController shared]];
+                   monitoringDispatcher:[OGAMonitoringDispatcher shared]];
 }
 
 - (instancetype)initWithMetricsService:(OGAMetricsService *)metricsService
                          networkClient:(OguryNetworkClient *)networkClient
                                    log:(OGALog *)log
-                  monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher
-                   adQualityController:(OGAAdQualityController *)adQualityController {
+                  monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher {
     if (self = [super init]) {
         _metricsService = metricsService;
         _networkClient = networkClient;
@@ -68,7 +64,6 @@ CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
         _hasSentImpressionTrackBySessionId = [[NSMutableDictionary alloc] init];
         _log = log;
         _monitoringDispatcher = monitoringDispatcher;
-        _adQualityController = adQualityController;
     }
     return self;
 }
@@ -113,8 +108,8 @@ CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
                 [self.monitoringDispatcher sendShowEventContainerDisplayedWithImpressionSource:[ad getRawImpressionSource]
                                                                                       exposure:@(exposure.exposurePercentage)
                                                                                adConfiguration:ad.adConfiguration];
-                // Ad Quality
-                [self.adQualityController performAdQualityChecksOn:displayer.view adConfiguration:ad.adConfiguration];
+                // Ad Quality : we create the controller here to handle profig changes and updates since Impression Manager is only created once for every Ad created
+                [displayer performQualityChecks];
             }
 
             if ([ad isImpressionSourceSDK]) {

@@ -6,6 +6,7 @@
 #import "OGAProfigService.h"
 
 @class OGAAdPrivacyConfiguration;
+@class OGAAdQualityConfiguration;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -26,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)profigParametersWereUpdated;
 - (BOOL)shouldSync;
 - (OGAAdPrivacyConfiguration *_Nonnull)currentPrivacyConfiguration;
+- (OGAAdQualityConfiguration *_Nonnull)currentAdQualityConfiguration;
 
 @end
 

@@ -270,4 +270,8 @@ static NSString *const OGAHashConsentKey = @"OGY-HashConsentKeys";
     return [self.profigDao.profigFullResponse getPrivacyConfiguration] ?: [[OGAAdPrivacyConfiguration alloc] initWithAdSyncPermissionMask:0 monitoringMask:0];
 }
 
+- (OGAAdQualityConfiguration *_Nonnull)currentAdQualityConfiguration {
+    return self.profigDao.profigFullResponse.adQualityConfiguration;
+}
+
 @end
