@@ -29,8 +29,7 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
 - (instancetype)initWithMetricsService:(OGAMetricsService *)metricsService
                          networkClient:(OguryNetworkClient *)networkClient
                                    log:(OGALog *)log
-                  monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher
-                   adQualityController:(OGAAdQualityController *)adQualityController;
+                  monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher;
 ;
 
 - (void)sendImpressionTracker:(OGAAdExposure *)exposure
@@ -55,7 +54,6 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
 @property(nonatomic, strong) OGAAdImpressionManager *impressionManager;
 @property(nonatomic, strong) OGADelegateDispatcher *delegateDispatcher;
 @property(nonatomic, strong) OGAMonitoringDispatcher *monitoringDispatcher;
-@property(nonatomic, strong) OGAAdQualityController *adQualityController;
 @property(nonatomic, strong) id<OGAAdDisplayer> displayer;
 
 @end
@@ -70,7 +68,6 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
     self.log = OCMClassMock([OGALog class]);
     self.monitoringDispatcher = OCMPartialMock([[OGAMonitoringDispatcher alloc] init]);
     self.displayer = OCMClassMock([OGAMRAIDAdDisplayer class]);
-    self.adQualityController = OCMClassMock([OGAAdQualityController class]);
 
     OCMStub(self.ad.localIdentifier).andReturn(OGAAdImpressionControllerTestsLocalIdentifier);
     OCMStub(self.ad.identifier).andReturn(OGAAdImpressionControllerTestsAdvertId);
@@ -78,8 +75,7 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
     OGAAdImpressionManager *impressionManager = [[OGAAdImpressionManager alloc] initWithMetricsService:self.metricsService
                                                                                          networkClient:self.networkClient
                                                                                                    log:self.log
-                                                                                  monitoringDispatcher:self.monitoringDispatcher
-                                                                                   adQualityController:self.adQualityController];
+                                                                                  monitoringDispatcher:self.monitoringDispatcher];
     self.impressionManager = OCMPartialMock(impressionManager);
 }
 
@@ -268,7 +264,7 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
     OCMStub([self.impressionManager sendCustomImpressionTracker:[OCMArg any]]);
     self.impressionManager.hasSentImpressionTrackByAdId[OGAAdImpressionControllerTestsLocalIdentifier] = @(NO);
     [self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:self.delegateDispatcher displayer:self.displayer];
-    OCMVerify([self.adQualityController performAdQualityChecksOn:[OCMArg any] adConfiguration:[OCMArg any]]);
+    OCMVerify([self.displayer performQualityChecks]);
 }
 
 - (void)testWhenNotSendingImpressionThenAdQualityControllerIsNotCalled {
@@ -285,7 +281,7 @@ NSString *const OGAAdImpressionControllerTestsImpressionUrl = @"https://example.
     OCMStub([self.impressionManager sendCustomImpressionTracker:[OCMArg any]]);
     self.impressionManager.hasSentImpressionTrackByAdId[OGAAdImpressionControllerTestsLocalIdentifier] = @(YES);
     [self.impressionManager sendImpressionTracker:exposure ad:self.ad delegateDispatcher:self.delegateDispatcher displayer:self.displayer];
-    OCMReject([self.adQualityController performAdQualityChecksOn:[OCMArg any] adConfiguration:[OCMArg any]]);
+    OCMReject([self.displayer performQualityChecks]);
 }
 
 @end
