@@ -29,10 +29,6 @@
     return self;
 }
 
-- (void)dealloc {
-    NSLog(@"🐳 OGAAdQualityController dealloc");
-}
-
 -(void)cleanUp {
     [self.activeAlgorithms enumerateObjectsUsingBlock:^(id<OGAAdQualityAlgorithm>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.isCancelled = YES;

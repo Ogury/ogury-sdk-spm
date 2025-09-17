@@ -82,7 +82,6 @@
 }
 
 - (void)dealloc {
-    NSLog(@"🐳 dealloc");
     [self.timer invalidate];
     self.timer = nil;
 }
@@ -165,14 +164,12 @@
 }
 
 - (void)performAdQualityCheckOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityAlgorithmCompletionBlock)completion {
-    NSLog(@"🐳 %@ performAdQualityCheckOn %@", [NSDate date], self.startDelay);
     __weak OGAAdQualityUniformColorRectAlgorithm *weakSelf = self;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:self.startDelay.intValue / 1000 repeats:NO block:^(NSTimer * _Nonnull timer) {
         if (weakSelf.isCancelled) {
             completion(nil);
             return ;
         }
-        NSLog(@"🐳 %@  start analyzing", [NSDate date]);
         [weakSelf logMessage:@"Start computing" adConfiguration:adConfiguration result:nil];
         NSDate *start = [NSDate date];
         CGRect targetRect = CGRectMake((view.bounds.size.width / 2) - weakSelf.rectSize.width / 2,
@@ -183,7 +180,6 @@
         UIImage *image = [view snapshot];
         // perform computation on background thread
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-            NSLog(@"🐳 start analyzing on main thead");
             BOOL imageHasUniformColor = [weakSelf imageIsUniformColor:image rect:targetRect];
             OGAAdQualityResult *result = [[OGAAdQualityResult alloc] init];
             result.success = !imageHasUniformColor;

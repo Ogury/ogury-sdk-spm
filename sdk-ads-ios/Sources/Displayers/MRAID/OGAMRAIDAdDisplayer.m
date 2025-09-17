@@ -340,7 +340,6 @@ static NSString *const OGAMonitoringEventDetailMaxReloadAttemptsReached = @"max_
 }
 
 - (void)cleanUp {
-    NSLog(@"🐳 clean up");
     [[OGASKAdNetworkManager shared] stopImpressionWithAd:self.ad];
     [self dispatchNoViewabilityAndZeroExposure];
 
