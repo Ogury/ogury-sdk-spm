@@ -47,7 +47,9 @@
     NSMutableArray *insertedAlgos = [@[] mutableCopy];
     [algos enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         OGAAdQualityUniformColorRectAlgorithm *algo = [[OGAAdQualityUniformColorRectAlgorithm alloc] initWithDictionary:obj error:nil];
-        [insertedAlgos addObject:algo];
+        if (algo != nil) {
+            [insertedAlgos addObject:algo];
+        }
     }];
     self.algos = insertedAlgos;
     return self;

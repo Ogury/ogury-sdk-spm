@@ -110,6 +110,11 @@
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err {
+    NSDictionary *params = dict[@"params"];
+    NSString *name = dict[@"name"];
+    if (params == nil || params.allKeys.count == 0 || name == nil || [name isEqualToString:@""]) {
+        return nil;
+    }
     self = [self initWithSize:CGSizeMake([dict[@"params"][@"width"] floatValue], [dict[@"params"][@"height"] floatValue])
                     threshold:dict[@"params"][@"threshold"]
                    startDelay:dict[@"params"][@"start_after_ms"]
