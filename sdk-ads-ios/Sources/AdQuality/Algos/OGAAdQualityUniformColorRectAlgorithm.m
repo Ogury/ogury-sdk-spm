@@ -17,6 +17,7 @@
 @property(nonatomic, strong) OGALog *log;
 @property(nonatomic, strong) NSNumber *devianceMax;
 @property(nonatomic, strong) NSString *uniformHexColor;
+@property(nonatomic, strong) NSTimer *timer;
 @property(nonatomic, strong) OGAMonitoringDispatcher *monitoringDispatcher;
 @end
 
@@ -45,38 +46,36 @@
 @end
 
 @implementation OGAAdQualityUniformColorRectAlgorithm
-@synthesize algo, startDelay, threshold, rectSize, duration, uniformHexColor, allowedFormats;
+@synthesize algo, startDelay, threshold, rectSize, duration, uniformHexColor, allowedFormats, timer, isCancelled;
 
 - (instancetype)initWithSize:(CGSize)size
                    threshold:(NSNumber *)threshold
                   startDelay:(NSNumber *)delay
               allowedFormats:(NSArray<NSString *> *)allowedFormats {
-    return [self initWithSize:size
-                    threshold:threshold
-                   startDelay:delay
-               allowedFormats:allowedFormats
-         monitoringDispatcher:[OGAMonitoringDispatcher shared]
-                          log:OGALog.shared];
-}
-
-- (instancetype)initWithSize:(CGSize)size
-                   threshold:(NSNumber *)threshold
-                  startDelay:(NSNumber *)delay
-              allowedFormats:(NSArray<NSString *> *)allowedFormats
-        monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher
-                         log:(OGALog *)log {
     if (self = [super init]) {
         self.algo = OguryAdQualityAlgorithmUniformColorRect;
         self.startDelay = delay;
         self.threshold = threshold;
         self.devianceMax = @0;
         self.rectSize = size;
-        self.log = log;
         self.allowedFormats = allowedFormats;
-        self.monitoringDispatcher = monitoringDispatcher;
         self.uniformHexColor = @"#";
+        self.isCancelled = NO;
     }
     return self;
+}
+
+- (OGAMonitoringDispatcher *)monitoringDispatcher {
+    return OGAMonitoringDispatcher.shared;
+}
+
+- (OGALog *)log {
+    return OGALog.shared;
+}
+
+- (void)dealloc {
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
@@ -99,6 +98,19 @@
                allowedFormats:formats];
 }
 
+- (NSDictionary *)toDictionary {
+    return @{
+        @"name" : self.algo,
+        @"params" : @{
+            @"start_after_ms" : self.startDelay,
+            @"threshold" : self.threshold,
+            @"width" : @(self.rectSize.width),
+            @"height" : @(self.rectSize.height),
+        },
+        @"format" : self.allowedFormats
+    };
+}
+
 // OGAJSONModel
 + (OGAJSONKeyMapper *)keyMapper {
     return [[OGAJSONKeyMapper alloc] initWithModelToJSONDictionary:@{
@@ -110,6 +122,11 @@
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err {
+    NSDictionary *params = dict[@"params"];
+    NSString *name = dict[@"name"];
+    if (params == nil || params.allKeys.count == 0 || name == nil || [name isEqualToString:@""]) {
+        return nil;
+    }
     self = [self initWithSize:CGSizeMake([dict[@"params"][@"width"] floatValue], [dict[@"params"][@"height"] floatValue])
                     threshold:dict[@"params"][@"threshold"]
                    startDelay:dict[@"params"][@"start_after_ms"]
@@ -152,28 +169,35 @@
 }
 
 - (void)performAdQualityCheckOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityAlgorithmCompletionBlock)completion {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.startDelay.intValue * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
-        [self logMessage:@"Start computing" adConfiguration:adConfiguration result:nil];
+    self.isCancelled = NO;
+    __weak OGAAdQualityUniformColorRectAlgorithm *weakSelf = self;
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:self.startDelay.intValue / 1000 repeats:NO block:^(NSTimer * _Nonnull timer) {
+        if (weakSelf.isCancelled) {
+            completion(nil);
+            return ;
+        }
+        [weakSelf logMessage:@"Start computing" adConfiguration:adConfiguration result:nil];
         NSDate *start = [NSDate date];
-        CGRect targetRect = CGRectMake((view.bounds.size.width / 2) - self.rectSize.width / 2,
-                                       (view.bounds.size.height / 2) - self.rectSize.height / 2,
-                                       self.rectSize.width,
-                                       self.rectSize.height);
+        CGRect targetRect = CGRectMake((view.bounds.size.width / 2) - weakSelf.rectSize.width / 2,
+                                       (view.bounds.size.height / 2) - weakSelf.rectSize.height / 2,
+                                       weakSelf.rectSize.width,
+                                       weakSelf.rectSize.height);
         // get image on main thread
         UIImage *image = [view snapshot];
         // perform computation on background thread
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-            BOOL imageHasUniformColor = [self imageIsUniformColor:image rect:targetRect];
+            BOOL imageHasUniformColor = [weakSelf imageIsUniformColor:image rect:targetRect];
             OGAAdQualityResult *result = [[OGAAdQualityResult alloc] init];
             result.success = !imageHasUniformColor;
-            result.algo = self.algo;
+            result.algo = weakSelf.algo;
             result.duration = @(@([[NSDate date] timeIntervalSinceDate:start] * 1000).intValue);
-            result.devianceMax = self.devianceMax;
-            [self logMessage:@"End computing" adConfiguration:adConfiguration result:result];
-            [self sendMonitoringEventFor:result adConfiguration:adConfiguration];
+            result.devianceMax = weakSelf.devianceMax;
+            [weakSelf logMessage:@"End computing" adConfiguration:adConfiguration result:result];
+            [weakSelf sendMonitoringEventFor:result adConfiguration:adConfiguration];
             completion(result);
         });
-    });
+    }];
+//    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)sendMonitoringEventFor:(OGAAdQualityResult *)result adConfiguration:(OGAAdConfiguration *)adConfiguration {

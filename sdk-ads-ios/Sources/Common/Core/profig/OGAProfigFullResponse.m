@@ -112,8 +112,7 @@ NSString *const OGAAdConfigurationDisablingReasonCountryUnopened = @"COUNTRY_NOT
         [self.thumbnailDefaultMaxHeight isEqual:profig.thumbnailDefaultMaxHeight] &&
         [self.monitoringPermissions isEqual:profig.monitoringPermissions] &&
         [self.blacklistedTracks isEqual:profig.blacklistedTracks] &&
-        [self is:self.disablingReason
-            equalTo:profig.disablingReason] &&
+        [self is:self.disablingReason equalTo:profig.disablingReason] &&
         self.cacheLogsEnabled == profig.cacheLogsEnabled &&
         self.precachingLogsEnabled == profig.precachingLogsEnabled &&
         self.adLifeCycleLogsEnabled == profig.adLifeCycleLogsEnabled &&

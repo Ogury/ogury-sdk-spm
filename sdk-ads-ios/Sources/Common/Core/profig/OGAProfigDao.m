@@ -61,14 +61,14 @@
 
 - (OGAProfigDao *)sync {
     @weakify(self)
-        [[self daoQueue] addOperationWithBlock:^{
-            @strongify(self)
-                [self.userDefaults setObject:self.lastProfigSyncDate
-                                      forKey:PROFIG_LAST_PROFIG_SYNC_IDLESS];
-            [self.userDefaults setObject:[self.profigFullResponse toJSONString] forKey:FULL_PROFIG_RESPONSE_JSON_IDLESS];
-            [self.userDefaults setObject:self.profigInstanceToken forKey:LAST_INSTANCE_TOKEN_PROFIG_PARAM_IDLESS];
-            [self.userDefaults synchronize];
-        }];
+    [[self daoQueue] addOperationWithBlock:^{
+        @strongify(self)
+        [self.userDefaults setObject:self.lastProfigSyncDate forKey:PROFIG_LAST_PROFIG_SYNC_IDLESS];
+        NSString *jsonProfig = [self.profigFullResponse toJSONString];
+        [self.userDefaults setObject:jsonProfig forKey:FULL_PROFIG_RESPONSE_JSON_IDLESS];
+        [self.userDefaults setObject:self.profigInstanceToken forKey:LAST_INSTANCE_TOKEN_PROFIG_PARAM_IDLESS];
+        [self.userDefaults synchronize];
+    }];
     return self;
 }
 

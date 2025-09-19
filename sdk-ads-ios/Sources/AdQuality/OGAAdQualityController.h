@@ -15,12 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OGAAdQualityController : NSObject
 typedef void (^AdQualityCompletionBlock)(NSArray<OGAAdQualityResult *> *results);
-+ (instancetype)shared;
-// from config reset
-- (void)reset;
-- (void)setUpFrom:(OGAAdQualityConfiguration *)configuration;
+- (instancetype)initFrom:(OGAAdQualityConfiguration *)configuration;
 - (void)performAdQualityChecksOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityCompletionBlock _Nullable)completion;
 - (void)performAdQualityChecksOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration;
+- (void)cleanUp;
 @end
 
 NS_ASSUME_NONNULL_END

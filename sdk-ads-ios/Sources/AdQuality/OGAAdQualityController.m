@@ -16,35 +16,23 @@
 
 @implementation OGAAdQualityController
 @synthesize activeAlgorithms;
-
-+ (instancetype)shared {
-    static OGAAdQualityController *instance;
-    static dispatch_once_t token;
-    dispatch_once(&token, ^{
-        instance = [[OGAAdQualityController alloc] init];
-    });
-    return instance;
-}
-
-- (instancetype)init {
+- (instancetype)initFrom:(OGAAdQualityConfiguration *)configuration {
     if (self = [super init]) {
-        activeAlgorithms = @[];
+        NSMutableArray<id<OGAAdQualityAlgorithm>> *configAlgos = [@[] mutableCopy];
+        if (configuration.blankAdConfiguration.isEnabled) {
+            [configuration.blankAdConfiguration.algos enumerateObjectsUsingBlock:^(OGAAdQualityUniformColorRectAlgorithm * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [configAlgos addObject:(id<OGAAdQualityAlgorithm>)obj];
+            }];
+        }
+        self.activeAlgorithms = configAlgos;
     }
     return self;
 }
 
-- (void)reset {
-    self.activeAlgorithms = @[];
-}
-
-- (void)setUpFrom:(OGAAdQualityConfiguration *)configuration {
-    NSMutableArray<id<OGAAdQualityAlgorithm>> *configAlgos = [@[] mutableCopy];
-    if (configuration.blankAdConfiguration.isEnabled) {
-        [configuration.blankAdConfiguration.algos enumerateObjectsUsingBlock:^(OGAAdQualityUniformColorRectAlgorithm * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [configAlgos addObject:(id<OGAAdQualityAlgorithm>)obj];
-        }];
-    }
-    self.activeAlgorithms = configAlgos;
+-(void)cleanUp {
+    [self.activeAlgorithms enumerateObjectsUsingBlock:^(id<OGAAdQualityAlgorithm>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.isCancelled = YES;
+    }];;
 }
 
 - (void)safeResultCompletionWithData:(NSArray<OGAAdQualityResult *> *)results completion:(AdQualityCompletionBlock _Nullable)completion {
@@ -66,8 +54,10 @@
             dispatch_group_enter(group);
             [algo performAdQualityCheckOn:view
                           adConfiguration:adConfiguration
-                               completion:^(OGAAdQualityResult *_Nonnull result) {
-                [results addObject:result];
+                               completion:^(OGAAdQualityResult *_Nullable result) {
+                if (result) {
+                    [results addObject:result];
+                }
                 dispatch_group_leave(group);
             }];
         }

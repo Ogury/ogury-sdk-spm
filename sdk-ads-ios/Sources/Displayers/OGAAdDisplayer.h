@@ -49,6 +49,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)webViewLoaded:(NSString *)webViewId;
 
+- (void)performQualityChecks;
+
 - (void)webkitProcessDidTerminate;
 - (WKWebView *)adWebview;
 

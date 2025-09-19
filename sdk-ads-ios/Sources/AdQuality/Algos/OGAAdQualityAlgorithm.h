@@ -24,13 +24,14 @@ extern NSString *const OguryAdQualityAlgorithmKey;
 @property(nonatomic, retain) NSNumber *devianceMax;
 @end
 
-typedef void (^AdQualityAlgorithmCompletionBlock)(OGAAdQualityResult *result);
+typedef void (^AdQualityAlgorithmCompletionBlock)(OGAAdQualityResult *_Nullable result);
 
 @protocol OGAAdQualityAlgorithm <NSObject>
 @property(nonatomic, retain) OguryAdQualityAlgorithm algo;
 @property(nonatomic, retain) NSArray<NSString *> *allowedFormats;
-- (BOOL)computationEnabledFor:(OGAAdConfiguration *)adConfiguration;
 @property(nonatomic, retain) NSNumber *duration;
+@property(nonatomic) BOOL isCancelled;
+- (BOOL)computationEnabledFor:(OGAAdConfiguration *)adConfiguration;
 - (void)performAdQualityCheckOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityAlgorithmCompletionBlock)completion;
 @end
 

@@ -17,6 +17,11 @@
     return [self initWithAlgos:algo isEnabled:isEnabled ?: NO];
 }
 
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeBool:self.algos.count == 0 ? YES : NO forKey:@"enabled"];
+    [coder encodeObject:self.algos forKey:@"algo"];
+}
+
 - (instancetype)initWithAlgos:(NSArray<OGAAdQualityUniformColorRectAlgorithm *> *_Nullable)algos isEnabled:(BOOL)isEnabled {
     if (self = [super init]) {
         self.algos = algos;
@@ -41,13 +46,26 @@
     }];
 }
 
+- (NSDictionary *)toDictionary {
+    NSMutableArray *array = [@[] mutableCopy];
+    [self.algos enumerateObjectsUsingBlock:^(OGAAdQualityUniformColorRectAlgorithm * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [array addObject:[obj toDictionary]];
+    }];
+    return @{
+        @"enabled" : @(self.algos.count > 0),
+        @"algo" : array
+    };
+}
+
 - (instancetype)initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err {
     self = [super initWithDictionary:dict error:err];
     NSArray<NSDictionary *> *algos = dict[@"algo"];
     NSMutableArray *insertedAlgos = [@[] mutableCopy];
     [algos enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         OGAAdQualityUniformColorRectAlgorithm *algo = [[OGAAdQualityUniformColorRectAlgorithm alloc] initWithDictionary:obj error:nil];
-        [insertedAlgos addObject:algo];
+        if (algo != nil) {
+            [insertedAlgos addObject:algo];
+        }
     }];
     self.algos = insertedAlgos;
     return self;
@@ -82,6 +100,10 @@
     return self;
 }
 
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.blankAdConfiguration forKey:@"blank_ad_detection"];
+}
+
 - (instancetype)init {
     if (self = [super init]) {
         self.blankAdConfiguration = [OGAAdQualityBlankAdConfiguration new];
@@ -94,6 +116,10 @@
     return [[OGAJSONKeyMapper alloc] initWithModelToJSONDictionary:@{
         @"blankAdConfiguration" : @"blank_ad_detection"
     }];
+}
+
+- (NSDictionary *)toDictionary {
+    return @{ @"blank_ad_detection" : [self.blankAdConfiguration toDictionary] };
 }
 
 + (BOOL)propertyIsOptional:(NSString *)propertyName {

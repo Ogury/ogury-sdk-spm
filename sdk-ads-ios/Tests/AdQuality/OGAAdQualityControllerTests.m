@@ -23,9 +23,7 @@
 - (instancetype)initWithSize:(CGSize)size
                    threshold:(NSNumber *)threshold
                   startDelay:(NSNumber *)delay
-              allowedFormats:(NSArray<NSString *> *)allowedFormats
-        monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher
-                         log:(OGALog *)log;
+              allowedFormats:(NSArray<NSString *> *)allowedFormats;
 - (void)sendMonitoringEventFor:(OGAAdQualityResult *)result adConfiguration:(OGAAdConfiguration *)adConfiguration;
 @property(nonatomic, strong) OGALog *log;
 @property(nonatomic, strong) NSNumber *devianceMax;
@@ -178,10 +176,10 @@
     OGAAdQualityUniformColorRectAlgorithm *algo = OCMPartialMock([[OGAAdQualityUniformColorRectAlgorithm alloc] initWithSize:CGSizeMake(50, 50)
                                                                                                                    threshold:@(6)
                                                                                                                   startDelay:@(1000)
-                                                                                                              allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial ]
-                                                                                                        monitoringDispatcher:monitoring
-                                                                                                                         log:log]);
+                                                                                                              allowedFormats:@[ OGAAdConfigurationAdTypeInterstitial ]]);
     self.sut.activeAlgorithms = @[ algo ];
+    OCMStub(algo.monitoringDispatcher).andReturn(monitoring);
+    OCMStub(algo.log).andReturn(log);
     [self addDefaultDictValuesAndSingleton:NO];
     OGAAdConfiguration *conf = OCMClassMock([OGAAdConfiguration class]);
     OCMStub([conf getAdTypeString]).andReturn(OGAAdConfigurationAdTypeInterstitial);
