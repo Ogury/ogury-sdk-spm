@@ -52,38 +52,37 @@
     }
     self.profigLoadTaskInProgress = YES;
     @weakify(self)
-        [[OguryNetworkClient shared] performRequest:profigRequest
-                   completionHandlerWithUrlResponse:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
-                       @strongify(self)
-                           // we still try to parse the profig since we can have business errors in a 400 response
-                           OGAProfigFullResponse *profigResponse = [OGAProfigFullResponse parseProfigResponseWithData:data urlResponse:response];
-                       if (error) {
-                           NSError *completionError = (profigResponse.errorType || profigResponse.errorMessage)
-                               ? [OGAConfigurationUtils errorForServerProfigError:profigResponse]
-                               : [OGAConfigurationUtils errorForOGAProfigError:OGAProfigExternalErrorSetupFailed];
-                           completion(profigResponse, completionError);
-                       } else {
-                           [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
-                                                                adConfiguration:nil
-                                                                        logType:OguryLogTypeInternal
-                                                                        message:@"[Setup] profig raw response"
-                                                                           tags:@[
-                                                                               [OguryLogTag tagWithKey:@"response"
-                                                                                                 value:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]
-                                                                           ]]];
-
-                           if (response) {
-                               if (profigResponse.errorType || profigResponse.errorMessage) {
-                                   completion(profigResponse, [OGAConfigurationUtils errorForServerProfigError:profigResponse]);
-                               } else {
-                                   completion(profigResponse, nil);
-                               }
-
-                           } else {
-                               completion(profigResponse, [OGAConfigurationUtils errorForOGAProfigError:OGAProfigExternalErrorSetupFailed]);
-                           }
-                       }
-                       self.profigLoadTaskInProgress = NO;
+    [[OguryNetworkClient shared] performRequest:profigRequest
+               completionHandlerWithUrlResponse:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
+        @strongify(self)
+        // we still try to parse the profig since we can have business errors in a 400 response
+        OGAProfigFullResponse *profigResponse = [OGAProfigFullResponse parseProfigResponseWithData:data urlResponse:response];
+        if (error) {
+            NSError *completionError = (profigResponse.errorType || profigResponse.errorMessage)
+            ? [OGAConfigurationUtils errorForServerProfigError:profigResponse]
+            : [OGAConfigurationUtils errorForOGAProfigError:OGAProfigExternalErrorSetupFailed];
+            completion(profigResponse, completionError);
+        } else {
+            [self.log log:[[OGAAdLogMessage alloc] initWithLevel:OguryLogLevelDebug
+                                                 adConfiguration:nil
+                                                         logType:OguryLogTypeInternal
+                                                         message:@"[Setup] profig raw response"
+                                                            tags:@[
+                [OguryLogTag tagWithKey:@"response"
+                                  value:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]
+            ]]];
+            
+            if (response) {
+                if (profigResponse.errorType || profigResponse.errorMessage) {
+                    completion(profigResponse, [OGAConfigurationUtils errorForServerProfigError:profigResponse]);
+                } else {
+                    completion(profigResponse, nil);
+                }
+            } else {
+                completion(profigResponse, [OGAConfigurationUtils errorForOGAProfigError:OGAProfigExternalErrorSetupFailed]);
+            }
+        }
+        self.profigLoadTaskInProgress = NO;
                    }];
 }
 

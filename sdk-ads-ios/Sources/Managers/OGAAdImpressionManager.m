@@ -70,13 +70,19 @@ CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
 
 #pragma mark - Methods
 
-- (void)sendIfNecessaryAfterExposureChanged:(OGAAdExposure *)exposure ad:(OGAAd *)ad delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher {
+- (void)sendIfNecessaryAfterExposureChanged:(OGAAdExposure *)exposure
+                                         ad:(OGAAd *)ad
+                         delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher
+                                  displayer:(id<OGAAdDisplayer>)displayer {
     if (exposure.exposurePercentage >= OGAAdImpressionControllerMinExposureForImpression) {
-        [self sendImpressionTracker:exposure ad:ad delegateDispatcher:delegateDispatcher];
+        [self sendImpressionTracker:exposure ad:ad delegateDispatcher:delegateDispatcher displayer:displayer];
     }
 }
 
-- (void)sendImpressionTracker:(OGAAdExposure *)exposure ad:(OGAAd *)ad delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher {
+- (void)sendImpressionTracker:(OGAAdExposure *)exposure
+                           ad:(OGAAd *)ad
+           delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher
+                    displayer:(id<OGAAdDisplayer>)displayer {
     @synchronized(self) {
         // We use the localIdentifier instead of the identifier due to a server bug that causes
         // the identifier to used twice.
@@ -102,6 +108,8 @@ CGFloat const OGAAdImpressionControllerMinExposureForImpression = 50.0F;
                 [self.monitoringDispatcher sendShowEventContainerDisplayedWithImpressionSource:[ad getRawImpressionSource]
                                                                                       exposure:@(exposure.exposurePercentage)
                                                                                adConfiguration:ad.adConfiguration];
+                // Ad Quality : we create the controller here to handle profig changes and updates since Impression Manager is only created once for every Ad created
+                [displayer performQualityChecks];
             }
 
             if ([ad isImpressionSourceSDK]) {

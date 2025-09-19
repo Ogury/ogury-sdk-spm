@@ -7,6 +7,7 @@
 #import "OGAAd.h"
 #import "OGAAdExposure.h"
 #import "OGADelegateDispatcher.h"
+#import "OGAAdDisplayer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -26,7 +27,10 @@ extern CGFloat const OGAAdImpressionControllerMinExposureForImpression;
 
 #pragma mark - Methods
 
-- (void)sendIfNecessaryAfterExposureChanged:(OGAAdExposure *)exposure ad:(OGAAd *)ad delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher;
+- (void)sendIfNecessaryAfterExposureChanged:(OGAAdExposure *)exposure
+                                         ad:(OGAAd *)ad
+                         delegateDispatcher:(OGADelegateDispatcher *)delegateDispatcher
+                                  displayer:(id<OGAAdDisplayer>)displayer;
 
 - (BOOL)isImpressionDelegateSentFor:(OGAAd *)ad;
 

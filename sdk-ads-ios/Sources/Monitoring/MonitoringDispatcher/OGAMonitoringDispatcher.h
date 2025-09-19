@@ -53,6 +53,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)sendShowEvent:(OGAMonitoringEvent)event adConfiguration:(OGAAdConfiguration *)adConfiguration;
 
+- (void)sendAdQualityEvent:(OGAMonitoringEvent)event adConfiguration:(OGAAdConfiguration *)adConfiguration details:(OGAOrderedDictionary *_Nonnull)details;
+
 - (void)sendShowEventAllDisplayed:(NSString *)impressionSrc adConfiguration:(OGAAdConfiguration *)adConfiguration;
 
 - (void)sendShowEventShowCalledWithNbAdsToShow:(NSNumber *)nbAdsToShow adConfiguration:(OGAAdConfiguration *)adConfiguration;

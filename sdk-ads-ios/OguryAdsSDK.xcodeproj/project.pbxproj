@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -1415,6 +1415,11 @@
 		EF4FCA5166DFFFE5EF0D7E69 /* OguryBannerAdViewDelegateDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OguryBannerAdViewDelegateDispatcher.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		437B11942E5CA17000CAA377 /* AdQuality */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AdQuality; sourceTree = "<group>"; };
+		437B11A22E5EF74A00CAA377 /* AdQuality */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AdQuality; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		DEF1BF6F213917AA0004BAD1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -2668,6 +2673,7 @@
 		351A1F349C321F0E4EA1DE35 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				437B11942E5CA17000CAA377 /* AdQuality */,
 				58BDDA6C288ECB00000A4A12 /* DarwinNotification */,
 				351A130B356F5978AE7345B9 /* Actions */,
 				351A15AA6B13D12B921DCBC8 /* Categories */,
@@ -3102,6 +3108,7 @@
 		ED007E4425503BD800CA402E /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				437B11A22E5EF74A00CAA377 /* AdQuality */,
 				C9F4929228BF4129001933D5 /* Core */,
 				58BDDA75288ECC4E000A4A12 /* DarwinNotification */,
 				5890DD772822A9F700B3CDE7 /* Logs */,
@@ -3700,6 +3707,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				437B11942E5CA17000CAA377 /* AdQuality */,
+			);
 			name = OguryAds;
 			productName = PresageSDK;
 			productReference = DEF1BF73213917AA0004BAD1 /* OguryAds.framework */;
@@ -3720,6 +3730,9 @@
 			);
 			dependencies = (
 				DEF1BF7F213917AA0004BAD1 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				437B11A22E5EF74A00CAA377 /* AdQuality */,
 			);
 			name = OguryAdsTests;
 			productName = PresageSDKTests;
