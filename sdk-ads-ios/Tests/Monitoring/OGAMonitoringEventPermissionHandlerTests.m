@@ -140,6 +140,7 @@
     XCTAssertEqual([self.eventPermissionHandler adIdMaskForEvent:OGAShowErrorEventAnotherAdAlreadyDisplayed], OGAAdIdMaskCampaignId | OGAAdIdMaskCreativeId | OGAAdIdMaskExtras);
     XCTAssertEqual([self.eventPermissionHandler adIdMaskForEvent:OGAShowErrorEventNoInternetConnection], OGAAdIdMaskCampaignId | OGAAdIdMaskCreativeId | OGAAdIdMaskExtras);
     XCTAssertEqual([self.eventPermissionHandler adIdMaskForEvent:OGAShowErrorEventWebviewTerminatedByOS], OGAAdIdMaskCampaignId | OGAAdIdMaskCreativeId | OGAAdIdMaskExtras);
+    XCTAssertEqual([self.eventPermissionHandler adIdMaskForEvent:OGAShowEventAdQualityBlankAd], OGAAdIdMaskCampaignId | OGAAdIdMaskCreativeId | OGAAdIdMaskExtras);
     XCTAssertEqual([self.eventPermissionHandler adIdMaskForEvent:OGASKNetworkShowErrorEventFailedToStopImpression], OGAAdIdMaskCampaignId | OGAAdIdMaskCreativeId | OGAAdIdMaskExtras);
     XCTAssertEqual([self.eventPermissionHandler adIdMaskForEvent:OGASKNetworkShowErrorEventFailedToStopImpression], OGAAdIdMaskCampaignId | OGAAdIdMaskCreativeId | OGAAdIdMaskExtras);
     XCTAssertEqual([self.eventPermissionHandler adIdMaskForEvent:99999999999], OGAAdIdMaskNone);

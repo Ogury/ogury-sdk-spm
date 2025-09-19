@@ -307,10 +307,10 @@ extension View {
                     ),
                     state: /MainFeature.Destination.State.settings,
                     action: MainFeature.Destination.Action.settings) { store in
-                        NavigationView {
+                        NavigationStack {
                             AppSettingsView(store: store)
                                 .toolbar {
-                                    ToolbarItem(placement: .topBarLeading) {
+                                    ToolbarItem(placement: .navigationBarLeading) {
                                         Button {
                                             viewStore.send(.destination(.dismiss))
                                         } label: {

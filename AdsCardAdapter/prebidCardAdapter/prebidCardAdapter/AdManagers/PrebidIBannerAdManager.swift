@@ -42,11 +42,12 @@ class PrebidBannerAdManager: PrebidAdManager {
     }
     
     override func instanciateAd() async {
-        let _: Void = await withCheckedContinuation { continuation in
+        await withCheckedContinuation { continuation in
             Task { @MainActor in
-                ad = BannerView(frame: .init(),
+                let size = actualSize?.size ?? CGSize(width: 320, height: 50)
+                ad = BannerView(frame: .init(origin: .zero, size: size),
                                 configID: adConfiguration.adUnitId,
-                                adSize: actualSize?.size ?? .zero)
+                                adSize: size)
                 ad?.delegate = proxy
                 continuation.resume()
             }

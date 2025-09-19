@@ -100,6 +100,7 @@
         case OGAShowErrorEventViewInBackground:
         case OGAShowErrorEventAnotherAdAlreadyDisplayed:
         case OGAShowErrorEventWebviewTerminatedByOS:
+        case OGAShowEventAdQualityBlankAd:
             return adIdMask |= OGAAdIdMaskCampaignId | OGAAdIdMaskCreativeId | OGAAdIdMaskExtras;
 
             // Show Error SKNetwork

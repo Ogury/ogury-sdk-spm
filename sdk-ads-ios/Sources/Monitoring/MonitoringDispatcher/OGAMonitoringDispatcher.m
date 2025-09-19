@@ -20,6 +20,7 @@
 #import "OGALog.h"
 #import "OGAMonitoringLogMessage.h"
 #import "OGAMonitorEventConfigurationFactory.h"
+#import "OGAAdQualityController.h"
 
 @interface OGAMonitoringDispatcher ()
 
@@ -329,6 +330,14 @@
          adConfiguration:adConfiguration
          customSessionId:nil
                  details:nil
+            errorContent:nil];
+}
+
+- (void)sendAdQualityEvent:(OGAMonitoringEvent)event adConfiguration:(OGAAdConfiguration *)adConfiguration details:(OGAOrderedDictionary *_Nonnull)details {
+    [self prepareAndSend:event
+         adConfiguration:adConfiguration
+         customSessionId:nil
+                 details:details
             errorContent:nil];
 }
 

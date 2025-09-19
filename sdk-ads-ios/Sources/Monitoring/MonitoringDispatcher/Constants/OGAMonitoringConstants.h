@@ -119,6 +119,7 @@ typedef NS_ENUM(NSInteger, OGAMonitoringEvent) {
     OGAShowEventLauchBrowser,
     OGAShowEventForegroundUnload,
     OGAShowEventWebviewTerminatedByOS,
+    OGAShowEventAdQualityBlankAd,
 
     // Show SKNetwork
     OGASKNetworkShowEventStartingImpression,

@@ -69,28 +69,25 @@ platform :ios do
     end
   end
 
-  desc "Install cocoapods internal repository for environment and update it."
+  desc "Install CocoaPods internal repository for environment and update it."
   lane :update_internal_cocoapods do |options|
-    if !options[:environment]
-      raise "No environment specified!".red
-    end
-
-    environment = options[:environment]
-
-    artifactory_repository_url = get_artifactory_repository_url(environment, configuration.artifactory.url)
-    if !artifactory_repository_url
-      next
-    end
-
-    if artifactory_repository_url.empty?
-      next
-    end
-
-    artifactory_repository_name = get_artifactory_repository_name(environment)
-
+    repo_name = 'sdk-internal'
+    repo_url = "git@github.com:Ogury/sdk-internal-cocoapods.git"
+  
     Dir.chdir("..") do
-      sh("pod repo-art add #{artifactory_repository_name} #{artifactory_repository_url} || true")
-      sh("pod repo-art update #{artifactory_repository_name}")
+      UI.message("Checking for CocoaPods repo '#{repo_name}'...")
+  
+      repo_list = sh("pod repo list", log: false)
+  
+      unless repo_list.include?(repo_name)
+        UI.message("CocoaPods repo '#{repo_name}' not found. Adding it...")
+        sh("pod repo add #{repo_name} #{repo_url}")
+      else
+        UI.message("CocoaPods repo '#{repo_name}' already exists.")
+      end
+  
+      UI.message("Updating CocoaPods repo '#{repo_name}'...")
+      sh("pod repo update #{repo_name}")
     end
   end
 
@@ -118,7 +115,6 @@ platform :ios do
       templatePath = "./fastlane/templates/PodfileSdk.erb"
     end
     
-    artifactory_repository_name = get_artifactory_repository_name(environment)
     ogury_core_version = get_module_version(environment, configuration.frameworks.ogury_core.internal_version, configuration.frameworks.ogury_core.beta_version, configuration.frameworks.ogury_core.release_version)
     ogury_ads_version = get_module_version(environment, configuration.frameworks.ogury_ads.internal_version, configuration.frameworks.ogury_ads.beta_version, configuration.frameworks.ogury_ads.release_version)
     ogury_sdk_version = get_module_version(environment, configuration.frameworks.ogury_sdk.internal_version, configuration.frameworks.ogury_sdk.beta_version, configuration.frameworks.ogury_sdk.release_version)
@@ -128,7 +124,6 @@ platform :ios do
       destination: "./Podfile",
       placeholders: {
         :environment => environment,
-        :artifactory_repository_name => artifactory_repository_name,
         :framework_suffix => get_framework_suffix(environment),
         :ogury_core_version => ogury_core_version,
         :ogury_ads_version => ogury_ads_version,
@@ -168,11 +163,6 @@ lane :test do |options|
         configuration: configuration, 
         sdk: sdk
         )
-
-      # test_card_framework(
-      #   configuration: configuration, 
-      #   sdk: sdk
-      # )
     end
   end
 
@@ -200,10 +190,6 @@ lane :test do |options|
       deploy_ads_framework(environment: environment, tag: adsTag, artifactory: artifactory)
     end
 
-    if adsLibraryTag != nil 
-      deploy_adsLibrary_framework(environment: environment, tag: adsLibraryTag, artifactory: artifactory)
-    end
-
     if wrapperTag != nil 
       deploy_wrapper_framework(environment: environment, tag: wrapperTag, artifactory: artifactory)
     end
@@ -227,12 +213,12 @@ lane :test do |options|
     environment = options[:environment]
     target = options[:target]
     filePath = target.path
-    projectName = target.name
+    projectName = target.projectName
     tag = options[:tag]
     version = get_version(environment, filePath, projectName, tag)
     artifactory = options[:artifactory] ? options[:artifactory] : false
 
-    print "Deploying #{projectName} with version: #{version}\n"
+    print "Deploying #{target.name} with version: #{version}\n"
 
     if !configuration.allowed_environments.include? environment
       raise "Wrong environment specified!".red
@@ -247,18 +233,14 @@ lane :test do |options|
       artifactory: artifactory
     }
 
-    case environment
-    when "devc", "staging", "prod"
-      send(methodName, params)
-      
-      if !options[:dry_run]
-        deploy_on_artifactory(configuration: configuration,  environment: environment, version: version, target: target, artifactory: artifactory)
-      end
+    send(methodName, params)
 
-    when "beta", "release"
-      send(methodName, params)
-
-      if !options[:dry_run]
+    if !options[:dry_run]
+      case environment
+      when "devc", "staging", "prod"
+        deploy_on_private_cocoapods(configuration: configuration,  environment: environment, version: version, target: target, artifactory: artifactory)
+  
+      when "beta", "release"
         deploy_on_amazon(configuration: configuration, environment: environment, version: version, target: target, artifactory: artifactory)
       end
     end
@@ -302,6 +284,10 @@ lane :test do |options|
       repo_update: true
     )
 
+    deploy_framework(environment: environment, tag: tag, target: configuration.targets.omid, artifactory: false)
+    #update the internal repo so that the previous OMID push is available
+    update_internal_cocoapods environment: environment
+    #now deploy ads
     deploy_framework(environment: environment, tag: tag, target: configuration.targets.ads, artifactory: artifactory)
   end
 
@@ -407,6 +393,7 @@ lane :test do |options|
     environment = options[:environment]
     tag = options[:tag]
     deploy_podspec(configuration: configuration, environment: environment, tag:tag, target: configuration.targets.ads)
+    deploy_podspec(configuration: configuration, environment: environment, tag:tag, target: configuration.targets.omid)
   end
 
   desc "Proceed to deploy a new version of the ads framewok for the specified environment"

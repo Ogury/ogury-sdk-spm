@@ -291,7 +291,8 @@ internal struct ORTB: Codable {
 
 class AdMobDelegateProxy: NSObject, InterstitialAdUnitDelegate, BannerViewDelegate {
     func bannerViewPresentationController() -> UIViewController? {
-        nil
+        guard let adManager else { return nil }
+        return adManager.viewController
     }
     func bannerView(_ bannerView: BannerView, didReceiveAdWithAdSize adSize: CGSize) {
         guard let adManager else { return }

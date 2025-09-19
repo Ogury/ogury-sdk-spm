@@ -238,13 +238,13 @@
 
     XCTAssertEqual(information.adExposure, exposure);
 
-    OCMVerify([self.impressionManager sendIfNecessaryAfterExposureChanged:OCMOCK_ANY ad:OCMOCK_ANY delegateDispatcher:OCMOCK_ANY]);
+    OCMVerify([self.impressionManager sendIfNecessaryAfterExposureChanged:OCMOCK_ANY ad:OCMOCK_ANY delegateDispatcher:OCMOCK_ANY displayer:OCMOCK_ANY]);
 }
 
 - (void)testExposureDidChange_doNothingIfNoDisplayer {
     OGAAdExposure *exposure = [[OGAAdExposure alloc] init];
 
-    OCMReject([self.impressionManager sendIfNecessaryAfterExposureChanged:OCMOCK_ANY ad:OCMOCK_ANY delegateDispatcher:OCMOCK_ANY]);
+    OCMReject([self.impressionManager sendIfNecessaryAfterExposureChanged:OCMOCK_ANY ad:OCMOCK_ANY delegateDispatcher:OCMOCK_ANY displayer:OCMOCK_ANY]);
 
     [self.state exposureDidChange:exposure];
 }
