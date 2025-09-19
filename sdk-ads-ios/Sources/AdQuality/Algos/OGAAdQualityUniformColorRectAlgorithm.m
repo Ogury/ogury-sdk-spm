@@ -169,6 +169,7 @@
 }
 
 - (void)performAdQualityCheckOn:(UIView *)view adConfiguration:(OGAAdConfiguration *)adConfiguration completion:(AdQualityAlgorithmCompletionBlock)completion {
+    self.isCancelled = NO;
     __weak OGAAdQualityUniformColorRectAlgorithm *weakSelf = self;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:self.startDelay.intValue / 1000 repeats:NO block:^(NSTimer * _Nonnull timer) {
         if (weakSelf.isCancelled) {
