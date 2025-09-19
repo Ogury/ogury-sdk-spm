@@ -52,33 +52,25 @@
                    threshold:(NSNumber *)threshold
                   startDelay:(NSNumber *)delay
               allowedFormats:(NSArray<NSString *> *)allowedFormats {
-    return [self initWithSize:size
-                    threshold:threshold
-                   startDelay:delay
-               allowedFormats:allowedFormats
-         monitoringDispatcher:[OGAMonitoringDispatcher shared]
-                          log:OGALog.shared];
-}
-
-- (instancetype)initWithSize:(CGSize)size
-                   threshold:(NSNumber *)threshold
-                  startDelay:(NSNumber *)delay
-              allowedFormats:(NSArray<NSString *> *)allowedFormats
-        monitoringDispatcher:(OGAMonitoringDispatcher *)monitoringDispatcher
-                         log:(OGALog *)log {
     if (self = [super init]) {
         self.algo = OguryAdQualityAlgorithmUniformColorRect;
         self.startDelay = delay;
         self.threshold = threshold;
         self.devianceMax = @0;
         self.rectSize = size;
-        self.log = log;
         self.allowedFormats = allowedFormats;
-        self.monitoringDispatcher = monitoringDispatcher;
         self.uniformHexColor = @"#";
         self.isCancelled = NO;
     }
     return self;
+}
+
+- (OGAMonitoringDispatcher *)monitoringDispatcher {
+    return OGAMonitoringDispatcher.shared;
+}
+
+- (OGALog *)log {
+    return OGALog.shared;
 }
 
 - (void)dealloc {
@@ -104,6 +96,19 @@
                     threshold:threshold
                    startDelay:startDelay
                allowedFormats:formats];
+}
+
+- (NSDictionary *)toDictionary {
+    return @{
+        @"name" : self.algo,
+        @"params" : @{
+            @"start_after_ms" : self.startDelay,
+            @"threshold" : self.threshold,
+            @"width" : @(self.rectSize.width),
+            @"height" : @(self.rectSize.height),
+        },
+        @"format" : self.allowedFormats
+    };
 }
 
 // OGAJSONModel

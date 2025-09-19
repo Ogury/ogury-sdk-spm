@@ -17,6 +17,11 @@
     return [self initWithAlgos:algo isEnabled:isEnabled ?: NO];
 }
 
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeBool:self.algos.count == 0 ? YES : NO forKey:@"enabled"];
+    [coder encodeObject:self.algos forKey:@"algo"];
+}
+
 - (instancetype)initWithAlgos:(NSArray<OGAAdQualityUniformColorRectAlgorithm *> *_Nullable)algos isEnabled:(BOOL)isEnabled {
     if (self = [super init]) {
         self.algos = algos;
@@ -39,6 +44,17 @@
         @"algos" : @"algo",
         @"isEnabled" : @"enabled"
     }];
+}
+
+- (NSDictionary *)toDictionary {
+    NSMutableArray *array = [@[] mutableCopy];
+    [self.algos enumerateObjectsUsingBlock:^(OGAAdQualityUniformColorRectAlgorithm * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [array addObject:[obj toDictionary]];
+    }];
+    return @{
+        @"enabled" : @(self.algos.count > 0),
+        @"algo" : array
+    };
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err {
@@ -84,6 +100,10 @@
     return self;
 }
 
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.blankAdConfiguration forKey:@"blank_ad_detection"];
+}
+
 - (instancetype)init {
     if (self = [super init]) {
         self.blankAdConfiguration = [OGAAdQualityBlankAdConfiguration new];
@@ -96,6 +116,10 @@
     return [[OGAJSONKeyMapper alloc] initWithModelToJSONDictionary:@{
         @"blankAdConfiguration" : @"blank_ad_detection"
     }];
+}
+
+- (NSDictionary *)toDictionary {
+    return @{ @"blank_ad_detection" : [self.blankAdConfiguration toDictionary] };
 }
 
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
