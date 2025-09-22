@@ -7,6 +7,20 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        do {
+            // Get the shared session
+            let audioSession = AVAudioSession.sharedInstance()
+            
+            // Choose a category (depending on your use case)
+            try audioSession.setCategory(.playback, mode: .default, options: [])
+            
+            // Activate the session
+            try audioSession.setActive(true)
+            
+            print("Audio session is active")
+        } catch {
+            print("Failed to activate audio session: \(error)")
+        }
         // Override point for customization after application launch.
         return true
     }
