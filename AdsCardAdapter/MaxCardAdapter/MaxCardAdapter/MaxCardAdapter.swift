@@ -38,6 +38,7 @@ internal enum MaxAction: AdsCardAdapterAction {
 }
 
 public struct MaxAdsCardAdapter: AdsCardAdaptable {
+    public var currentBundle: Bundle { Bundle(for: ALDelegateProxy.self) ?? .main }
     public var availableAdFormats: [AdAdapterFormatSection] = [
         .init(title: "AppLovin Max",
               formats: [
