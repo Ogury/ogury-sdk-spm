@@ -14,6 +14,7 @@
 #import "OGAMonitoringDispatcher.h"
 #import "OGAWebViewUserAgentServiceDelegate.h"
 #import "OGASdkConsumer.h"
+#import "OGAVolumeManager.h"
 
 @interface OGAInternal () <OGAWebViewUserAgentServiceDelegate>
 
@@ -80,6 +81,7 @@
         _webViewUserAgentService.delegate = self;
         _sdkConsumer = nil;
         [_logNotificationManager registerToNotification];
+        [OGAVolumeManager prepare];
     }
     return self;
 }

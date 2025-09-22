@@ -39,6 +39,8 @@
 		1EC503162BC027F400A41349 /* OGAAdEnabledChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC503152BC027F400A41349 /* OGAAdEnabledChecker.m */; };
 		1ED3C28929F03CDF007604BF /* ogury_skadnetwork_public_key.pem in Resources */ = {isa = PBXBuildFile; fileRef = 1ED3C28829F03CDF007604BF /* ogury_skadnetwork_public_key.pem */; };
 		1ED5B2992A4B2F0900C85A84 /* OGAIsKilledChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED5B2982A4B2F0900C85A84 /* OGAIsKilledChecker.m */; };
+		1EE7A7F22E68709B00E87B66 /* OGAVolumeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EE7A7F12E68708D00E87B66 /* OGAVolumeManager.h */; };
+		1EE7A7F42E6870BF00E87B66 /* OGAVolumeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE7A7F32E6870BC00E87B66 /* OGAVolumeManager.m */; };
 		1FCABB7BE668DE94138245BD /* OguryBannerAdSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 53359DCB325F5F38DA124BE2 /* OguryBannerAdSize.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		220234AD256E67310088D70D /* OGAProfigFullResponseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 220234AC256E67310088D70D /* OGAProfigFullResponseTests.m */; };
 		220234D7256E9E2F0088D70D /* testProfigJSON2.json in Resources */ = {isa = PBXBuildFile; fileRef = 220234D6256E9E2F0088D70D /* testProfigJSON2.json */; };
@@ -728,6 +730,8 @@
 		1ED3C28829F03CDF007604BF /* ogury_skadnetwork_public_key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ogury_skadnetwork_public_key.pem; sourceTree = "<group>"; };
 		1ED5B2972A4B2EF500C85A84 /* OGAIsKilledChecker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAIsKilledChecker.h; sourceTree = "<group>"; };
 		1ED5B2982A4B2F0900C85A84 /* OGAIsKilledChecker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAIsKilledChecker.m; sourceTree = "<group>"; };
+		1EE7A7F12E68708D00E87B66 /* OGAVolumeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAVolumeManager.h; sourceTree = "<group>"; };
+		1EE7A7F32E6870BC00E87B66 /* OGAVolumeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAVolumeManager.m; sourceTree = "<group>"; };
 		220234AC256E67310088D70D /* OGAProfigFullResponseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAProfigFullResponseTests.m; sourceTree = "<group>"; };
 		220234D6256E9E2F0088D70D /* testProfigJSON2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testProfigJSON2.json; sourceTree = "<group>"; };
 		2214789525B59B5900A80C1A /* OGAThumbnailAdRestrictionsManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAThumbnailAdRestrictionsManagerTests.m; sourceTree = "<group>"; };
@@ -1441,6 +1445,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1EE7A7F52E68716000E87B66 /* Volume */ = {
+			isa = PBXGroup;
+			children = (
+				1EE7A7F32E6870BC00E87B66 /* OGAVolumeManager.m */,
+				1EE7A7F12E68708D00E87B66 /* OGAVolumeManager.h */,
+			);
+			path = Volume;
+			sourceTree = "<group>";
+		};
 		220234D1256E9D460088D70D /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -1868,6 +1881,7 @@
 		351A1279EF5B5B6207656111 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				1EE7A7F52E68716000E87B66 /* Volume */,
 				438AF74728DC545B000DCB49 /* UIViewController */,
 				2295392D26E789B80021605A /* NSDictionary */,
 				222C3B4425F919DF00325CEE /* UIColor */,
@@ -3526,6 +3540,7 @@
 				351A1380860D1356A6CFB490 /* OGAAdInternalAPI.h in Headers */,
 				351A15A066E514A715DE0497 /* OGARewardedAdInternalAPI.h in Headers */,
 				ED63DBF427562D1900554750 /* OGAMetricsServiceSendEventOperation.h in Headers */,
+				1EE7A7F22E68709B00E87B66 /* OGAVolumeManager.h in Headers */,
 				351A1388890E37AF8B75F9AE /* OGAThumbnailAdInternalAPI.h in Headers */,
 				351A13E64CD9AC1C7BC1A6FC /* OguryThumbnailAdDelegateDispatcher.h in Headers */,
 				351A12B2BFBD96898641C3A4 /* OGADelegateDispatcher.h in Headers */,
@@ -3958,6 +3973,7 @@
 				351A161BC90BE97DAD93A3D5 /* OGAAdUnit.m in Sources */,
 				351A1F7ACECC3C1DEBAB0A2D /* OGAThumbnailAdResponse.m in Sources */,
 				351A1AB3DBB27E3E709EBBEE /* OGABannerAdResponse.m in Sources */,
+				1EE7A7F42E6870BF00E87B66 /* OGAVolumeManager.m in Sources */,
 				351A14D7D5724007F41875E9 /* OGADevice.m in Sources */,
 				2295393526E912620021605A /* NSString+OGABase64.m in Sources */,
 				588A5CC1296727B800DB49B3 /* OGAAdServerMonitorRequestBuilder.m in Sources */,
