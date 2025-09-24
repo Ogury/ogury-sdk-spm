@@ -8,7 +8,7 @@ workspace "OgurySdks.xcworkspace"
 install! 'cocoapods',:warn_for_multiple_pod_sources => false, :warn_for_unused_master_specs_repo => false
 
 target 'LegacyTestApp' do
-  project 'sdk-ads-ios/LegacyTestApp/LegacyTestApp'
+  project 'OguryAds/LegacyTestApp/LegacyTestApp'
   pod 'RxSwift', "6.2.0" # 6.5+ introduced concurrency supports which breaks with iOS under 13
   pod 'RxCocoa', "6.2.0" # 6.5+ introduced concurrency supports which breaks with iOS under 13
   pod 'Yaml'
@@ -68,65 +68,65 @@ def testAppBasePods
 end
 
 target "AdsTestApp-Devc" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  project "AdsTestApp/AdsTestApp"
   testAppBasePods
 end
 target "AdsTestApp-Staging" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  project "AdsTestApp/AdsTestApp"
   testAppBasePods
 end
 target "AdsTestApp-Prod" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  project "AdsTestApp/AdsTestApp"
   testAppBasePods
 end
 target "AdsTestApp-Ext" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  project "AdsTestApp/AdsTestApp"
   pod 'InMobiCMP', '2.0.1'
   pod 'Google-Mobile-Ads-SDK'
 end
 target "MaxTestApp" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  project "AdsTestApp/AdsTestApp"
   testAppBasePods
   pod 'AppLovinSDK'
   pod 'AppLovinMediationOguryPresageAdapter'
 end
 target "AdMobTestApp" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  project "AdsTestApp/AdsTestApp"
   testAppBasePods
   pod 'OguryMediationGoogleMobileAds'
 end
 target "UnityLevelPlayTestApp" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  project "AdsTestApp/AdsTestApp"
   testAppBasePods
   pod 'IronSourceSDK'
   pod 'IronSourceOguryAdapter'
 end
 target "PrebidTestApp-devc" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  project "AdsTestApp/AdsTestApp"
   testAppBasePods
   pod 'PrebidMobile'
 end
 target "PrebidTestApp-staging" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  project "AdsTestApp/AdsTestApp"
   testAppBasePods
   pod 'PrebidMobile'
 end
 target "PrebidTestApp" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  project "AdsTestApp/AdsTestApp"
   testAppBasePods
   pod 'PrebidMobile'
 end
 
 target "AdsTestApp-Devc-art" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  project "AdsTestApp/AdsTestApp"
   testAppBasePods
 end
 target "AdsTestApp-Staging-art" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  project "AdsTestApp/AdsTestApp"
   testAppBasePods
 end
 target "AdsTestApp-Prod-art" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  project "AdsTestApp/AdsTestApp"
   testAppBasePods
 end
 

@@ -35,7 +35,7 @@
       location = "group:AdsCardAdapter/PrebidCardAdapter/PrebidCardAdapter.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:sdk-ads-ios/AdsTestApp/AdsTestApp.xcodeproj">
+      location = "group:AdsTestApp/AdsTestApp.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:OguryAds/LegacyTestApp/LegacyTestApp.xcodeproj">

@@ -1,0 +1,6 @@
+#include "../../../../../Pods/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art.release.xcconfig"
+ASSET_KEY = OGY-37AEE44C8F53
+DEFAULT_ENV = PROD
+PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app
+VERSION = 1.0.0+ogury.= 5.0.2
+BUILD_NUMBER = 1753778751
