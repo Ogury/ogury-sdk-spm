@@ -14,7 +14,7 @@
       location = "group:sdk-wrapper-ios/OguryWrapperTestApp/OguryWrapperTestApp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:sdk-ads-ios/AdsCardLibrary/AdsCardLibrary.xcodeproj">
+      location = "group:AdsCardAdapter/AdsCardLibrary/AdsCardLibrary.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:AdsCardAdapter/AdsCardAdapter.xcodeproj">
