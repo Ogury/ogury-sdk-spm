@@ -65,6 +65,20 @@
 			);
 			target = 43F33C202E82D5BE00752DE4 /* OguryCore */;
 		};
+		43F3417F2E83E4C000752DE4 /* Exceptions for "OguryCoreTests" folder in "OguryCore" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				OguryCoreTests.xctestplan,
+			);
+			target = 43F33C202E82D5BE00752DE4 /* OguryCore */;
+		};
+		43F341802E83E4C000752DE4 /* Exceptions for "OguryCoreTests" folder in "OguryCoreTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				OguryCoreTests.xctestplan,
+			);
+			target = 43F33CB82E82D64900752DE4 /* OguryCoreTests */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -78,6 +92,10 @@
 		};
 		43F33CBA2E82D64900752DE4 /* OguryCoreTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				43F3417F2E83E4C000752DE4 /* Exceptions for "OguryCoreTests" folder in "OguryCore" target */,
+				43F341802E83E4C000752DE4 /* Exceptions for "OguryCoreTests" folder in "OguryCoreTests" target */,
+			);
 			path = OguryCoreTests;
 			sourceTree = "<group>";
 		};
