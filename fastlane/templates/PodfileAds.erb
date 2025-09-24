@@ -8,7 +8,7 @@ workspace "OgurySdks.xcworkspace"
 install! 'cocoapods',:warn_for_multiple_pod_sources => false, :warn_for_unused_master_specs_repo => false
 
 target 'LegacyTestApp' do
-  project 'sdk-ads-ios/LegacyTestApp/LegacyTestApp'
+  project 'OguryAds/LegacyTestApp/LegacyTestApp'
   pod 'RxSwift', "6.2.0" # 6.5+ introduced concurrency supports which breaks with iOS under 13
   pod 'RxCocoa', "6.2.0" # 6.5+ introduced concurrency supports which breaks with iOS under 13
   pod 'Yaml'
@@ -17,12 +17,12 @@ target 'LegacyTestApp' do
 end
 
 target "OguryCoreTests" do
-  project "sdk-core-ios/OguryCore"
+  project "OguryCore/OguryCore"
   pod "OCMock", :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
 end
 
 target "OguryAdsTests" do
-  project "sdk-ads-ios/OguryAdsSDK"
+  project "OguryAds/OguryAds"
   pod "OCMock", :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
 end
 
@@ -33,15 +33,15 @@ def testAppBasePods
 end
 
 target "AdsTestApp-Devc" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  project "AdsTestApp/AdsTestApp"
   testAppBasePods
 end
 target "AdsTestApp-Staging" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  project "AdsTestApp/AdsTestApp"
   testAppBasePods
 end
 target "AdsTestApp-Prod" do
-  project "sdk-ads-ios/AdsTestApp/AdsTestApp"
+  project "AdsTestApp/AdsTestApp"
   testAppBasePods
 end
 
