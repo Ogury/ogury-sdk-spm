@@ -7,6 +7,7 @@
 #import "OGADelegateDispatcher.h"
 #import "OGAConfigurationUtils.h"
 #import "OGAConditionChecker.h"
+#import <OguryCore/OGCUtils.h>
 
 @class OGAAdSequence;
 @class OGAAdConfiguration;

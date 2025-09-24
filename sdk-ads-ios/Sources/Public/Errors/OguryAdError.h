@@ -6,6 +6,7 @@
 #import <OguryAds/OguryLoadErrorCode.h>
 #import <OguryAds/OguryShowErrorCode.h>
 #import <OguryAds/OguryBidTokenErrorCode.h>
+#import <OguryCore/OguryError+internal.h>
 
 typedef NS_ENUM(NSInteger, OguryAdErrorType) {
     OguryAdErrorTypeLoad = 0,

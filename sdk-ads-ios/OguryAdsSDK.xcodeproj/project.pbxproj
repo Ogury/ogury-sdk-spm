@@ -483,7 +483,6 @@
 		43A0691D29E6FB060055518D /* OGYOrderedDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A0691C29E6FB060055518D /* OGYOrderedDictionaryTests.m */; };
 		43A0692029E7FDF90055518D /* OGAOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A0691E29E7FDF90055518D /* OGAOrderedDictionary.m */; };
 		43A0692129E7FDF90055518D /* OGAOrderedDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 43A0691F29E7FDF90055518D /* OGAOrderedDictionary.h */; };
-		43A9F4A22C37E6D00085EF6F /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A9F4A12C37E6D00085EF6F /* OguryCore.framework */; };
 		43AC4FBE2A122849007E3873 /* testProfigError.json in Resources */ = {isa = PBXBuildFile; fileRef = 43AC4FBD2A122849007E3873 /* testProfigError.json */; };
 		43C1D13E2B7B46C2006F2D23 /* OGAMonitorEventConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C1D13C2B7B46C2006F2D23 /* OGAMonitorEventConfiguration.h */; };
 		43C1D13F2B7B46C2006F2D23 /* OGAMonitorEventConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C1D13D2B7B46C2006F2D23 /* OGAMonitorEventConfiguration.m */; };
@@ -505,6 +504,7 @@
 		43EB17982CDA5C3B00264EBB /* OGALogDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EB17962CDA5C3B00264EBB /* OGALogDetail.m */; };
 		43EB179D2CDB642D00264EBB /* OguryAds+Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EB179B2CDB642D00264EBB /* OguryAds+Log.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		43EB17A02CDB685D00264EBB /* OGMEventLogMonitorable.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EB179E2CDB685D00264EBB /* OGMEventLogMonitorable.h */; };
+		43F33F802E82E15000752DE4 /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F33F7F2E82E15000752DE4 /* OguryCore.framework */; };
 		43F8BBED2BA885DB002695F8 /* OGAMonitoringDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F8BBEC2BA885DB002695F8 /* OGAMonitoringDetails.m */; };
 		43F8BBEE2BA885DB002695F8 /* OGAMonitoringDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = 43F8BBEB2BA885DB002695F8 /* OGAMonitoringDetails.h */; };
 		502477252B0D0E17006386BF /* OGAAdDspTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 502477242B0D0E17006386BF /* OGAAdDspTests.m */; };
@@ -1227,6 +1227,7 @@
 		43EB17962CDA5C3B00264EBB /* OGALogDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGALogDetail.m; sourceTree = "<group>"; };
 		43EB179B2CDB642D00264EBB /* OguryAds+Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OguryAds+Log.h"; sourceTree = "<group>"; };
 		43EB179E2CDB685D00264EBB /* OGMEventLogMonitorable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGMEventLogMonitorable.h; sourceTree = "<group>"; };
+		43F33F7F2E82E15000752DE4 /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F8BBEB2BA885DB002695F8 /* OGAMonitoringDetails.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OGAMonitoringDetails.h; sourceTree = "<group>"; };
 		43F8BBEC2BA885DB002695F8 /* OGAMonitoringDetails.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGAMonitoringDetails.m; sourceTree = "<group>"; };
 		4E761F9BC7EAAB8963761989 /* OguryAdError+Message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OguryAdError+Message.h"; sourceTree = "<group>"; };
@@ -1426,8 +1427,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				54C0FC96225BA040005D6F29 /* SystemConfiguration.framework in Frameworks */,
-				43A9F4A22C37E6D00085EF6F /* OguryCore.framework in Frameworks */,
 				223A5571287C60F600275B12 /* OMSDK_Ogury.xcframework in Frameworks */,
+				43F33F802E82E15000752DE4 /* OguryCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1744,6 +1745,7 @@
 		28825141F949A4E042BA558A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43F33F7F2E82E15000752DE4 /* OguryCore.framework */,
 				43A9F4A12C37E6D00085EF6F /* OguryCore.framework */,
 				1ED3C27829F036E1007604BF /* StoreKitTest.framework */,
 				23396B31789CCF0D49F6112E /* Pods_OguryAdsTests.framework */,
@@ -3819,9 +3821,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -4311,6 +4317,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_NAME = "$(FRAMEWORK_NAME)";
+				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../OguryCore";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -4387,6 +4394,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_NAME = "$(FRAMEWORK_NAME)";
+				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../OguryCore";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -4432,8 +4440,8 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/TestApp/SwiftTestAppPresageSDK",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/TestApp/SwiftTestAppPresageSDK",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Configurations/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

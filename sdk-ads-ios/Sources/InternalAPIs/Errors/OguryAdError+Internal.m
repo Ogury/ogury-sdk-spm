@@ -11,6 +11,7 @@
 #import "OguryAdError+Internal.h"
 #import "OguryAdError+Message.h"
 #import <OguryCore/OguryError.h>
+#import <OguryCore/OguryError+internal.h>
 
 @implementation OguryAdError (internal)
 

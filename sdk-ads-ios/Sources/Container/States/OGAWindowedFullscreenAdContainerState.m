@@ -9,6 +9,7 @@
 #import "OGAAdDisplayerUpdateCurrentPositionInformation.h"
 #import "OGAAdDisplayerUpdateStateInformation.h"
 #import "OguryAdError+Internal.h"
+#import <OguryCore/OguryError+internal.h>
 
 @interface OGAWindowedFullscreenAdContainerState ()
 

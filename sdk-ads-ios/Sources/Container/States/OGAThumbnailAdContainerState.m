@@ -11,6 +11,7 @@
 #import "OGAProfigDao.h"
 #import "OGAThumbnailAdConstants.h"
 #import "OguryAdError+Internal.h"
+#import <OguryCore/OguryError+internal.h>
 
 @interface OGAThumbnailAdContainerState ()
 

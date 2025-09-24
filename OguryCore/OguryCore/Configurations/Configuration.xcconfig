@@ -1,0 +1,17 @@
+//
+//  Copyright © 2020-present Ogury. All rights reserved.
+//
+
+// Identification
+FRAMEWORK_NAME = OguryCore
+PRODUCT_BUNDLE_IDENTIFIER = com.ogury.core
+
+// Versioning
+MARKETING_VERSION = 2.1.0
+BUNDLE_VERSION = 1
+
+// Module maps
+DEFINES_MODULE = YES
+MODULEMAP_FILE = $(SRCROOT)/OguryCore/module.modulemap
+INSTALL_PATH = $(LOCAL_LIBRARY_DIR)/Frameworks
+SKIP_INSTALL = NO

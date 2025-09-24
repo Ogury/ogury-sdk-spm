@@ -3,8 +3,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <OguryCore/OguryAbstractLogMessage.h>
 #import <OguryCore/OguryLogType.h>
+#import <OguryCore/OguryError.h>
+#import <OguryCore/OguryAbstractLogMessage.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

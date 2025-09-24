@@ -17,6 +17,7 @@
 #import "OGAConfigurationUtils.h"
 #import "OguryAdError.h"
 #import "OguryAdError+Internal.h"
+#import <OguryCore/OguryError+internal.h>
 
 NSString *const OGAMetricsRequestBuilderConnectivityKey = @"connectivity";
 NSString *const OGAMetricsRequestBuilderAtKey = @"at";

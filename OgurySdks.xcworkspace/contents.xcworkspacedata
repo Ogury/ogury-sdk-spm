@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:sdk-core-ios/OguryCore.xcodeproj">
+      location = "group:OguryCore/OguryCore.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:sdk-ads-ios/OguryAdsSDK.xcodeproj">
