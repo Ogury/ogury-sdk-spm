@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="BannerListTableViewCell" customModule="New_Test_App" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="76"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0f5-nU-QB6">
+                    <rect key="frame" x="16" y="8" width="191" height="60"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcc-WN-pQa">
+                    <rect key="frame" x="207" y="8" width="60" height="60"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" image="download"/>
+                    <state key="disabled" image="download"/>
+                    <state key="selected" image="square.and.arrow.down" catalog="system"/>
+                    <state key="highlighted" image="square.and.arrow.down" catalog="system"/>
+                    <connections>
+                        <action selector="insertInView" destination="iN0-l3-epB" eventType="touchUpInside" id="ONQ-1D-LIf"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cos-Qp-ndB">
+                    <rect key="frame" x="329" y="8" width="85" height="60"/>
+                    <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" image="trash"/>
+                    <connections>
+                        <action selector="delete" destination="iN0-l3-epB" eventType="touchUpInside" id="Zxb-Kc-iKL"/>
+                    </connections>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ia-uA-AOZ">
+                    <rect key="frame" x="275" y="8" width="46" height="60"/>
+                    <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" image="upload"/>
+                    <connections>
+                        <action selector="removefromView" destination="iN0-l3-epB" eventType="touchUpOutside" id="0O5-PL-nS5"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="cos-Qp-ndB" secondAttribute="bottom" constant="8" id="6um-e6-Uve"/>
+                <constraint firstItem="gcc-WN-pQa" firstAttribute="leading" secondItem="0f5-nU-QB6" secondAttribute="trailing" id="9xY-z4-yzY"/>
+                <constraint firstItem="cos-Qp-ndB" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Hr8-iX-BeJ"/>
+                <constraint firstItem="cos-Qp-ndB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="J3f-J4-DH0"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="0f5-nU-QB6" secondAttribute="bottom" constant="8" id="Oq9-C7-YCZ"/>
+                <constraint firstItem="cos-Qp-ndB" firstAttribute="leading" secondItem="9ia-uA-AOZ" secondAttribute="trailing" constant="8" id="QYZ-QQ-3xE"/>
+                <constraint firstItem="0f5-nU-QB6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="R24-TT-I3I"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="centerX" secondItem="0f5-nU-QB6" secondAttribute="trailing" id="Th6-JC-aZQ"/>
+                <constraint firstItem="9ia-uA-AOZ" firstAttribute="width" secondItem="cos-Qp-ndB" secondAttribute="width" multiplier="0.541176" id="TsO-5s-NN4"/>
+                <constraint firstItem="0f5-nU-QB6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="a40-S9-vgc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="9ia-uA-AOZ" secondAttribute="bottom" constant="8" id="b3z-lV-qUj"/>
+                <constraint firstItem="9ia-uA-AOZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="eWr-wC-CzX"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="gcc-WN-pQa" secondAttribute="bottom" constant="8" id="gwj-KJ-quo"/>
+                <constraint firstItem="9ia-uA-AOZ" firstAttribute="leading" secondItem="gcc-WN-pQa" secondAttribute="trailing" constant="8" id="mXw-Nn-Rk2"/>
+                <constraint firstItem="gcc-WN-pQa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="wIK-FS-rFh"/>
+                <constraint firstItem="9ia-uA-AOZ" firstAttribute="width" secondItem="gcc-WN-pQa" secondAttribute="width" multiplier="0.766667" id="zC8-hY-Clv"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="bannerIdLabel" destination="0f5-nU-QB6" id="cP9-b6-6LL"/>
+                <outlet property="deletebutton" destination="cos-Qp-ndB" id="U0q-cN-zpw"/>
+                <outlet property="insertbutton" destination="gcc-WN-pQa" id="Lb3-Fo-SOc"/>
+                <outlet property="removebutton" destination="9ia-uA-AOZ" id="exc-jW-y4U"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="73.660714285714278"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="download" width="25.5" height="25.5"/>
+        <image name="square.and.arrow.down" catalog="system" width="60" height="64"/>
+        <image name="trash" width="25.5" height="25.5"/>
+        <image name="upload" width="25.5" height="25.5"/>
+    </resources>
+</document>
