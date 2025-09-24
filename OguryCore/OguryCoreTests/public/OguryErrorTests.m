@@ -3,7 +3,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "OguryError.h"
+#import "OguryError+internal.h"
 #import "OGCConstants.h"
 
 @interface OguryErrorTests : XCTestCase
