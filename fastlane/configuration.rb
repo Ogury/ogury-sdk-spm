@@ -4,10 +4,10 @@ class Configuration
   def initialize
     @workspace = Workspace.new("OgurySdks", "OgurySdks.xcworkspace")
     
-    core = Target.new(name: "OguryCore", path: "sdk-core-ios/OguryCore.xcodeproj", scheme: "OguryCore", publicName: nil, dependencies: Dependency.new(hasPodspec: true), method: "core", amazon: "core-ios")
-    ads = Target.new(name: "OguryAds", path: "sdk-ads-ios/OguryAdsSDK.xcodeproj", scheme: "OguryAds", publicName: nil, dependencies: Dependency.new(core: true, omid: true, hasPodspec: true), method: "ads", amazon: "ads-ios")
-    wrapper = Target.new(name: "OguryWrapper", path: "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj", scheme: "OguryWrapper", publicName: "OgurySdk", dependencies: Dependency.new(core: true, ads: true, hasPodspec: true), method: "wrapper", amazon: "ios")
-    omid = OmidTarget.new(name: "OMSDK_Ogury", path: "./sdk-ads-ios/", amazon: "omid-ios")
+    core = Target.new(name: "OguryCore", path: "OguryCore/OguryCore.xcodeproj", scheme: "OguryCore", publicName: nil, dependencies: Dependency.new(hasPodspec: true), method: "core", amazon: "core-ios")
+    ads = Target.new(name: "OguryAds", path: "OguryAds/OguryAdsSDK.xcodeproj", scheme: "OguryAds", publicName: nil, dependencies: Dependency.new(core: true, omid: true, hasPodspec: true), method: "ads", amazon: "ads-ios")
+    wrapper = Target.new(name: "OguryWrapper", path: "OgurySdk/OgurySdk.xcodeproj", scheme: "OgurySdk", publicName: "OgurySdk", dependencies: Dependency.new(core: true, ads: true, hasPodspec: true), method: "wrapper", amazon: "ios")
+    omid = OmidTarget.new(name: "OMSDK_Ogury", path: "./OguryAds/", amazon: "omid-ios")
     @targets = Targets.new(ads, core, wrapper, omid)
     iosSdk = Sdk.new("iphoneos", "generic/platform=iOS")
     simulatorSdk = Sdk.new("iphonesimulator", "generic/platform=iOS Simulator")
