@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "66693AD4-4CFE-4039-8368-C0A43F6950E3",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:OguryAds.xcodeproj",
+        "identifier" : "43F34D712E83EC8700752DE4",
+        "name" : "OguryAdsTests"
+      }
+    }
+  ],
+  "version" : 1
+}

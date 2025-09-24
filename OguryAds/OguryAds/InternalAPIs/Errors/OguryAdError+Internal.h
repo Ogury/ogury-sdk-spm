@@ -1,0 +1,54 @@
+//
+//  OguryAdError.h
+//  OguryAdsSDK
+//
+//  Created by Jerome TONNELIER on 23/08/2024.
+//  Copyright © 2024 Ogury Ltd. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "OguryAdError.h"
+#import <OguryCore/OguryError+internal.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+typedef NS_ENUM(NSInteger, OGAInternalError) {
+    OGAInternalUnknownError = 100000
+};
+
+typedef NS_ENUM(NSInteger, OguryAdIntegrationType) {
+    OguryAdIntegrationTypeDirect = 0,
+    OguryAdIntegrationTypeHeaderBidding
+};
+
+@interface OguryAdError (internal)
+
+- (instancetype)initWithErrorCode:(NSInteger)code type:(OguryAdErrorType)type;
+- (instancetype)initWithErrorCode:(NSInteger)code
+                       stacktrace:(NSString *_Nullable)stacktrace
+                             type:(OguryAdErrorType)type;
++ (OguryAdError *)sdkNotInitializedFrom:(OguryAdErrorType)type;
++ (OguryAdError *)sdkNotProperlyInitializedFrom:(OguryAdErrorType)type;
++ (OguryAdError *)noInternetConnectionFrom:(OguryAdErrorType)type;
++ (OguryAdError *)invalidConfigurationFrom:(OguryAdErrorType)type;
++ (OguryAdError *)adDisabled:(NSString *)reason from:(OguryAdErrorType)type;
++ (OguryAdError *)adDisabledUnopenedCountryFrom:(OguryAdErrorType)type;
++ (OguryAdError *)adDisabledConsentDeniedFrom:(OguryAdErrorType)type;
++ (OguryAdError *)adDisabledConsentMissingFrom:(OguryAdErrorType)type;
++ (OguryAdError *)adDisabledOtherReasonFrom:(OguryAdErrorType)type;
++ (OguryAdError *)adRequestFailedWithCode:(NSUInteger)requestStatusCode;
++ (OguryAdError *)noFillFrom:(OguryAdIntegrationType)integration;
++ (OguryAdError *)adParsingFailedWithStackTrace:(NSString *)stackTrace;
++ (OguryAdError *)adPrecachingFailedWithStackTrace:(NSString *)stackTrace;
++ (OguryAdError *)adPrecachingTimeout;
++ (OguryAdError *)adExpired;
++ (OguryAdError *)noAdLoaded;
++ (OguryAdError *)viewInBackground;
++ (OguryAdError *)anotherAdIsAlreadyDisplayed;
++ (OguryAdError *)webviewTerminatedBySystem;
++ (OguryAdError *)viewControllerPreventsAdFromBeingDisplayed;
++ (OguryError *)headerBiddingFrom:(NSInteger)originalErrorCode;
+
+@end
+
+NS_ASSUME_NONNULL_END

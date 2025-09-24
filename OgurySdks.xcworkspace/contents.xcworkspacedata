@@ -5,7 +5,7 @@
       location = "group:OguryCore/OguryCore.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:sdk-ads-ios/OguryAdsSDK.xcodeproj">
+      location = "group:OguryAds/OguryAds.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj">
