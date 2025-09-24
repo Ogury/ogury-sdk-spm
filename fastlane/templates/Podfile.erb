@@ -131,14 +131,14 @@ target "AdsTestApp-Prod-art" do
 end
 
 #Wrapper
-target 'OguryWrapperTests' do
-  project "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj/"
+target 'OgurySdkTests' do
+  project "OgurySdk/OgurySdk.xcodeproj/"
     inherit! :complete
     pod 'OCMock', :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
 end
 
 target 'OguryWrapperTestApp' do
-  project "sdk-wrapper-ios/OguryWrapperTestApp/OguryWrapperTestApp.xcodeproj"
+  project "OgurySdk/OguryWrapperTestApp/OguryWrapperTestApp.xcodeproj"
   pod 'InMobiCMP', '2.0.1'
 end
 

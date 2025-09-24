@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "C8495E2C-B804-4095-A66E-D427E95D73C4",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:OgurySdk.xcodeproj",
+        "identifier" : "43C1FD032E8425460005EAB9",
+        "name" : "OgurySdkTests"
+      }
+    }
+  ],
+  "version" : 1
+}

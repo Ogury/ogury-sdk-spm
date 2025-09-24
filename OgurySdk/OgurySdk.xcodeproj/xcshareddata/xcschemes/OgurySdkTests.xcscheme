@@ -1,43 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1630"
+   LastUpgradeVersion = "2600"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES"
       buildArchitectures = "Automatic">
-      <BuildActionEntries>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "05FDDE10255AE2D5000F4C8B"
-               BuildableName = "OgurySdk.framework"
-               BlueprintName = "OguryWrapper"
-               ReferencedContainer = "container:OguryWrapper.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-      </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      shouldAutocreateTestPlan = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:OgurySdkTests/OgurySdkTests.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+      </TestPlans>
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "05FDDE3E255AE449000F4C8B"
+               BlueprintIdentifier = "43C1FD032E8425460005EAB9"
                BuildableName = "OgurySdkTests.xctest"
-               BlueprintName = "OguryWrapperTests"
-               ReferencedContainer = "container:OguryWrapper.xcodeproj">
+               BlueprintName = "OgurySdkTests"
+               ReferencedContainer = "container:OgurySdk.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -59,15 +49,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "05FDDE10255AE2D5000F4C8B"
-            BuildableName = "OgurySdk.framework"
-            BlueprintName = "OguryWrapper"
-            ReferencedContainer = "container:OguryWrapper.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

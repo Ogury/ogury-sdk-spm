@@ -8,10 +8,7 @@
       location = "group:OguryAds/OguryAds.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:sdk-wrapper-ios/OguryWrapperTestApp/OguryWrapperTestApp.xcodeproj">
+      location = "group:OgurySdk/OgurySdk.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:AdsCardAdapter/AdsCardLibrary/AdsCardLibrary.xcodeproj">
@@ -39,6 +36,9 @@
    </FileRef>
    <FileRef
       location = "group:OguryAds/LegacyTestApp/LegacyTestApp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:OgurySdk/OguryWrapperTestApp/OguryWrapperTestApp.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

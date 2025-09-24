@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1630"
+   LastUpgradeVersion = "2600"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -8,17 +8,17 @@
       buildArchitectures = "Automatic">
       <BuildActionEntries>
          <BuildActionEntry
-            buildForTesting = "NO"
+            buildForTesting = "YES"
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43332D4D2D0832C400E4BAD0"
+               BlueprintIdentifier = "43C1FCF82E8425460005EAB9"
                BuildableName = "OgurySdk.framework"
-               BlueprintName = "OguryWrapper-art"
-               ReferencedContainer = "container:OguryWrapper.xcodeproj">
+               BlueprintName = "OgurySdk"
+               ReferencedContainer = "container:OgurySdk.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -27,8 +27,13 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      shouldAutocreateTestPlan = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:OgurySdkTests/OgurySdkTests.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+      </TestPlans>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -50,10 +55,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43332D4D2D0832C400E4BAD0"
+            BlueprintIdentifier = "43C1FCF82E8425460005EAB9"
             BuildableName = "OgurySdk.framework"
-            BlueprintName = "OguryWrapper-art"
-            ReferencedContainer = "container:OguryWrapper.xcodeproj">
+            BlueprintName = "OgurySdk"
+            ReferencedContainer = "container:OgurySdk.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

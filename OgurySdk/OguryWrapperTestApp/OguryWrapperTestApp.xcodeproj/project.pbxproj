@@ -15,22 +15,22 @@
 		05FFA07E25B9CA4B0047EFCD /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FFA07D25B9CA4B0047EFCD /* Environment.swift */; };
 		05FFA15C25BEC5C10047EFCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05FFA15B25BEC5C10047EFCD /* Assets.xcassets */; };
 		1E3DDE8E2C91E29300E5D8DB /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 1E3DDE8D2C91E29300E5D8DB /* SwiftMessages */; };
-		50FE9BB72CB80D0200181FCD /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FE9BB62CB80D0200181FCD /* OgurySdk.framework */; };
+		43C1068B2E842A340005EAB9 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C1068A2E842A340005EAB9 /* OMSDK_Ogury.xcframework */; };
+		43C1068C2E842A340005EAB9 /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43C1068A2E842A340005EAB9 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43C1068F2E842AC20005EAB9 /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C1068E2E842AC20005EAB9 /* OgurySdk.framework */; };
 		50FE9BBB2CB80D0D00181FCD /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FE9BBA2CB80D0D00181FCD /* OguryAds.framework */; };
 		50FE9BBE2CB80D1700181FCD /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FE9BBD2CB80D1700181FCD /* OguryCore.framework */; };
-		50FE9BC12CB80D2300181FCD /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FE9BC02CB80D2300181FCD /* OMSDK_Ogury.xcframework */; };
-		50FE9BC22CB80D2300181FCD /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50FE9BC02CB80D2300181FCD /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		518768966216C961B5B76812 /* Pods_OguryWrapperTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B971BC21A9F91A1DF5C777 /* Pods_OguryWrapperTestApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		50FE9BB92CB80D0200181FCD /* Embed Frameworks */ = {
+		43C1068D2E842A340005EAB9 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				50FE9BC22CB80D2300181FCD /* OMSDK_Ogury.xcframework in Embed Frameworks */,
+				43C1068C2E842A340005EAB9 /* OMSDK_Ogury.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,6 +49,8 @@
 		05FFA07D25B9CA4B0047EFCD /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		05FFA15B25BEC5C10047EFCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		335D4387D76D9C80006851C1 /* Pods-OguryWrapperTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryWrapperTestApp.release.xcconfig"; path = "Target Support Files/Pods-OguryWrapperTestApp/Pods-OguryWrapperTestApp.release.xcconfig"; sourceTree = "<group>"; };
+		43C1068A2E842A340005EAB9 /* OMSDK_Ogury.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OMSDK_Ogury.xcframework; path = ../../OguryAds/OMSDK_Ogury.xcframework; sourceTree = "<group>"; };
+		43C1068E2E842AC20005EAB9 /* OgurySdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OgurySdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50FE9BB62CB80D0200181FCD /* OgurySdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OgurySdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50FE9BBA2CB80D0D00181FCD /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50FE9BBD2CB80D1700181FCD /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,11 +63,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50FE9BB72CB80D0200181FCD /* OgurySdk.framework in Frameworks */,
+				43C1068F2E842AC20005EAB9 /* OgurySdk.framework in Frameworks */,
+				43C1068B2E842A340005EAB9 /* OMSDK_Ogury.xcframework in Frameworks */,
 				1E3DDE8E2C91E29300E5D8DB /* SwiftMessages in Frameworks */,
 				50FE9BBE2CB80D1700181FCD /* OguryCore.framework in Frameworks */,
 				50FE9BBB2CB80D0D00181FCD /* OguryAds.framework in Frameworks */,
-				50FE9BC12CB80D2300181FCD /* OMSDK_Ogury.xcframework in Frameworks */,
 				518768966216C961B5B76812 /* Pods_OguryWrapperTestApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +145,8 @@
 		BDE08D00BAFA4CABBE4891A2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43C1068E2E842AC20005EAB9 /* OgurySdk.framework */,
+				43C1068A2E842A340005EAB9 /* OMSDK_Ogury.xcframework */,
 				50FE9BC02CB80D2300181FCD /* OMSDK_Ogury.xcframework */,
 				50FE9BBD2CB80D1700181FCD /* OguryCore.framework */,
 				50FE9BBA2CB80D0D00181FCD /* OguryAds.framework */,
@@ -164,7 +168,7 @@
 				05FF9FE425B88DED0047EFCD /* Frameworks */,
 				05FF9FE525B88DED0047EFCD /* Resources */,
 				38F032B7ED42AD9178C0586D /* [CP] Embed Pods Frameworks */,
-				50FE9BB92CB80D0200181FCD /* Embed Frameworks */,
+				43C1068D2E842A340005EAB9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -236,9 +240,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OguryWrapperTestApp/Pods-OguryWrapperTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OguryWrapperTestApp/Pods-OguryWrapperTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
