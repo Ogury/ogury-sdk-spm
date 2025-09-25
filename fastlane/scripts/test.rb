@@ -22,7 +22,7 @@ private_lane :test_framework do |options|
     workspace: workspace,
     configuration: "Debug",
     scheme: scheme,
-    #devices: configuration.test_devices,
+    devices: configuration.test_devices,
     sdk: sdk.platform,
     clean: true,
     derived_data_path: configuration.directories.test_derived_data,
