@@ -1,5 +1,5 @@
 class Configuration
-  attr_reader :workspace, :targets, :schemes, :sdks, :test_devices, :allowed_environments, :firebase, :deployment, :slack, :cocoapods, :frameworks, :directories, :testApplications
+  attr_reader :workspace, :targets, :schemes, :sdks, :allowed_environments, :firebase, :deployment, :slack, :cocoapods, :frameworks, :directories, :testApplications
 
   def initialize
     @workspace = Workspace.new("OgurySdks", "OgurySdks.xcworkspace")
@@ -12,7 +12,6 @@ class Configuration
     iosSdk = Sdk.new("iphoneos", "generic/platform=iOS")
     simulatorSdk = Sdk.new("iphonesimulator", "generic/platform=iOS Simulator")
     @sdks = Sdks.new([iosSdk, simulatorSdk], [simulatorSdk])
-    @test_devices = ["iPhone 16"]
     @allowed_environments = ["devc", "staging", "prod", "beta", "release"]
     @firebase = Firebase.new("inApp")
     internalS3 = S3Repository.new(public: "https://binaries.ogury.co", bucket:"ogury-sdk-binaries", path:"internal")
