@@ -70,6 +70,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		43E3BD512E8BFC5D00E927D1 /* Exceptions for "OguryAdsTests" folder in "OguryAds" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Utility/Volume/OGAVolumeManager.h,
+				Utility/Volume/OGAVolumeManager.m,
+			);
+			target = 43F34D662E83EC8500752DE4 /* OguryAds */;
+		};
+		43E3BD522E8BFC5D00E927D1 /* Exceptions for "OguryAdsTests" folder in "OguryAdsTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Utility/Volume/OGAVolumeManager.m,
+			);
+			target = 43F34D712E83EC8700752DE4 /* OguryAdsTests */;
+		};
 		43F3546B2E83EE8700752DE4 /* Exceptions for "OguryAds" folder in "OguryAds" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -114,8 +129,6 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		43E3B5CE2E8BCD4400E927D1 /* OguryAdsHostTestApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = OguryAdsHostTestApp;
 			sourceTree = "<group>";
 		};
@@ -130,6 +143,8 @@
 		43F34D762E83EC8700752DE4 /* OguryAdsTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
+				43E3BD512E8BFC5D00E927D1 /* Exceptions for "OguryAdsTests" folder in "OguryAds" target */,
+				43E3BD522E8BFC5D00E927D1 /* Exceptions for "OguryAdsTests" folder in "OguryAdsTests" target */,
 			);
 			path = OguryAdsTests;
 			sourceTree = "<group>";
@@ -390,9 +405,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
