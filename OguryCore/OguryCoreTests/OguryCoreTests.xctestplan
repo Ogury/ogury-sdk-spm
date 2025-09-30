@@ -9,7 +9,12 @@
     }
   ],
   "defaultOptions" : {
-    "performanceAntipatternCheckerEnabled" : true
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:OguryCore.xcodeproj",
+      "identifier" : "43749B012E85731400D4CE77",
+      "name" : "OguryCoreTestHost"
+    }
   },
   "testTargets" : [
     {

@@ -28,7 +28,9 @@ private_lane :test_framework do |options|
     derived_data_path: configuration.directories.test_derived_data,
     slack_url: configuration.slack.url,
     slack_channel: configuration.slack.channel,
-    xcodebuild_formatter: 'xcpretty'
+    xcodebuild_formatter: 'xcpretty',
+    xcargs: "ONLY_ACTIVE_ARCH=NO ENABLE_USER_SCRIPT_SANDBOXING=NO",
+    build_for_testing: false
   )
 end
 

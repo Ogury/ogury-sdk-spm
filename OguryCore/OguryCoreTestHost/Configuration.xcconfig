@@ -1,0 +1,11 @@
+//
+//  Copyright © 2020-present Ogury. All rights reserved.
+//
+
+// Identification
+FRAMEWORK_NAME = OguryCoreTestHots
+PRODUCT_BUNDLE_IDENTIFIER = co.ogury.OguryCoreTestHost
+
+// Versioning
+MARKETING_VERSION = 1.1.0
+BUNDLE_VERSION = 1

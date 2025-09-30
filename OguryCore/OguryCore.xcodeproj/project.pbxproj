@@ -12,12 +12,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		43749B292E85734900D4CE77 /* PBXContainerItemProxy */ = {
+		4374B8402E8A6C1000D4CE77 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 43F33C182E82D5BE00752DE4 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 43F33C202E82D5BE00752DE4;
 			remoteInfo = OguryCore;
+		};
+		43E382FF2E8AC77D00E927D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43F33C182E82D5BE00752DE4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43749B012E85731400D4CE77;
+			remoteInfo = OguryCoreTestHost;
 		};
 		43F33CBE2E82D64900752DE4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -38,6 +45,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		43E383012E8AC97D00E927D1 /* Exceptions for "OguryCoreTestHost" folder in "OguryCoreTestHost" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 43749B012E85731400D4CE77 /* OguryCoreTestHost */;
+		};
 		43F33CFA2E82D86300752DE4 /* Exceptions for "OguryCore" folder in "OguryCore" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -90,34 +104,12 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		43749AD32E85726200D4CE77 /* core.tests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = core.tests;
-			sourceTree = "<group>";
-		};
-		43749AE12E85726300D4CE77 /* core.testsTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = core.testsTests;
-			sourceTree = "<group>";
-		};
-		43749AEB2E85726300D4CE77 /* core.testsUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = core.testsUITests;
-			sourceTree = "<group>";
-		};
 		43749B032E85731400D4CE77 /* OguryCoreTestHost */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				43E383012E8AC97D00E927D1 /* Exceptions for "OguryCoreTestHost" folder in "OguryCoreTestHost" target */,
+			);
 			path = OguryCoreTestHost;
-			sourceTree = "<group>";
-		};
-		43749B112E85731800D4CE77 /* OguryCoreTestHostTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = OguryCoreTestHostTests;
-			sourceTree = "<group>";
-		};
-		43749B1B2E85731800D4CE77 /* OguryCoreTestHostUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = OguryCoreTestHostUITests;
 			sourceTree = "<group>";
 		};
 		43F33C232E82D5BE00752DE4 /* OguryCore */ = {
@@ -171,12 +163,7 @@
 			children = (
 				43F33C232E82D5BE00752DE4 /* OguryCore */,
 				43F33CBA2E82D64900752DE4 /* OguryCoreTests */,
-				43749AD32E85726200D4CE77 /* core.tests */,
-				43749AE12E85726300D4CE77 /* core.testsTests */,
-				43749AEB2E85726300D4CE77 /* core.testsUITests */,
 				43749B032E85731400D4CE77 /* OguryCoreTestHost */,
-				43749B112E85731800D4CE77 /* OguryCoreTestHostTests */,
-				43749B1B2E85731800D4CE77 /* OguryCoreTestHostUITests */,
 				43F33C222E82D5BE00752DE4 /* Products */,
 				B7A071FFE8C3B5A1BCEBDC80 /* Pods */,
 				7050FFC333370EFC6D4F459F /* Frameworks */,
@@ -235,7 +222,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				43749B2A2E85734900D4CE77 /* PBXTargetDependency */,
+				4374B8412E8A6C1000D4CE77 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				43749B032E85731400D4CE77 /* OguryCoreTestHost */,
@@ -279,6 +266,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				43E383002E8AC77D00E927D1 /* PBXTargetDependency */,
 				43F33CBF2E82D64900752DE4 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -386,13 +374,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OguryCoreTests/Pods-OguryCoreTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OguryCoreTests/Pods-OguryCoreTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -426,10 +410,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		43749B2A2E85734900D4CE77 /* PBXTargetDependency */ = {
+		4374B8412E8A6C1000D4CE77 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 43F33C202E82D5BE00752DE4 /* OguryCore */;
-			targetProxy = 43749B292E85734900D4CE77 /* PBXContainerItemProxy */;
+			targetProxy = 4374B8402E8A6C1000D4CE77 /* PBXContainerItemProxy */;
+		};
+		43E383002E8AC77D00E927D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43749B012E85731400D4CE77 /* OguryCoreTestHost */;
+			targetProxy = 43E382FF2E8AC77D00E927D1 /* PBXContainerItemProxy */;
 		};
 		43F33CBF2E82D64900752DE4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -453,6 +442,7 @@
 					"$(inherited)",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OguryCoreTestHost/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -486,6 +476,7 @@
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OguryCoreTestHost/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -648,6 +639,8 @@
 		};
 		43F33C2B2E82D5BE00752DE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 43F33C232E82D5BE00752DE4 /* OguryCore */;
+			baseConfigurationReferenceRelativePath = Configurations/Configuration.xcconfig;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_CXX_LIBRARY = "libc++";
@@ -688,11 +681,14 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OguryCoreTestHost.app/OguryCoreTestHost";
 			};
 			name = Debug;
 		};
 		43F33C2C2E82D5BE00752DE4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 43F33C232E82D5BE00752DE4 /* OguryCore */;
+			baseConfigurationReferenceRelativePath = Configurations/Configuration.xcconfig;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_CXX_LIBRARY = "libc++";
@@ -729,6 +725,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OguryCoreTestHost.app/OguryCoreTestHost";
 			};
 			name = Release;
 		};
@@ -736,6 +733,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 53415B0627574788039923B4 /* Pods-OguryCoreTests.debug.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
@@ -759,6 +757,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 11F9A5914DE0D018AC093F5B /* Pods-OguryCoreTests.release.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
