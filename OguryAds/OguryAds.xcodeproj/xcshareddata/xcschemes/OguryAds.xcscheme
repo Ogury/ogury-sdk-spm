@@ -21,6 +21,20 @@
                ReferencedContainer = "container:OguryAds.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "43E3B5CC2E8BCD4400E927D1"
+               BuildableName = "OguryAdsHostTestApp.app"
+               BlueprintName = "OguryAdsHostTestApp"
+               ReferencedContainer = "container:OguryAds.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
