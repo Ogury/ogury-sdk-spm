@@ -66,11 +66,15 @@
 		};
 		43C1FD082E8425460005EAB9 /* OgurySdkTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = OgurySdkTests;
 			sourceTree = "<group>";
 		};
 		43E3BD402E8BD25D00E927D1 /* OgurySdkHostTestApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = OgurySdkHostTestApp;
 			sourceTree = "<group>";
 		};
@@ -221,8 +225,6 @@
 				43E3BD402E8BD25D00E927D1 /* OgurySdkHostTestApp */,
 			);
 			name = OgurySdkHostTestApp;
-			packageProductDependencies = (
-			);
 			productName = OgurySdkHostTestApp;
 			productReference = 43E3BD3F2E8BD25D00E927D1 /* OgurySdkHostTestApp.app */;
 			productType = "com.apple.product-type.application";
@@ -302,13 +304,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OgurySdkTests/Pods-OgurySdkTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OgurySdkTests/Pods-OgurySdkTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

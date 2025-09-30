@@ -23,7 +23,7 @@
     self.mpVolumeView = [OGAVolumeManager sharedVolumeView];
     self.volumeSlider = [OGAVolumeManager sharedVolumeSlider];
 }
-
+    
 - (void)registerForVolumeChangeFromVolumeSlider {
     [self.volumeSlider addTarget:self action:@selector(volumeDidChange:) forControlEvents:UIControlEventValueChanged];
     [self volumeDidChange:self.volumeSlider];
