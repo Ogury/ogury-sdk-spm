@@ -11,9 +11,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             // Get the shared session
             let audioSession = AVAudioSession.sharedInstance()
-            
+            let audioCategory: AVAudioSession.Category = AVAudioSession.sharedInstance().category
+            let audioMode: AVAudioSession.Mode = AVAudioSession.sharedInstance().mode
             // Choose a category (depending on your use case)
-            try audioSession.setCategory(.playback, mode: .default, options: [])
+            try audioSession.setCategory(audioCategory, mode: audioMode, options: [])
             
             // Activate the session
             try audioSession.setActive(true)
