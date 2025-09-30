@@ -21,6 +21,13 @@
 			remoteGlobalIDString = 43C1FCF82E8425460005EAB9;
 			remoteInfo = OgurySdk;
 		};
+		43E3BD4A2E8BD27100E927D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43C1FCF02E8425460005EAB9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43E3BD3E2E8BD25D00E927D1;
+			remoteInfo = OgurySdkHostTestApp;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +36,7 @@
 		43C1FD042E8425460005EAB9 /* OgurySdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OgurySdkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C1FD672E8426730005EAB9 /* OguryAds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryAds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C1FD682E8426730005EAB9 /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43E3BD3F2E8BD25D00E927D1 /* OgurySdkHostTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OgurySdkHostTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BA47CA4B9585687E19DE4A6 /* Pods_OgurySdkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OgurySdkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF487E902D28AE5F9DE5AA82 /* Pods-OgurySdkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OgurySdkTests.debug.xcconfig"; path = "Target Support Files/Pods-OgurySdkTests/Pods-OgurySdkTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,9 +66,12 @@
 		};
 		43C1FD082E8425460005EAB9 /* OgurySdkTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = OgurySdkTests;
+			sourceTree = "<group>";
+		};
+		43E3BD402E8BD25D00E927D1 /* OgurySdkHostTestApp */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = OgurySdkHostTestApp;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -84,6 +95,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		43E3BD3C2E8BD25D00E927D1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -92,6 +110,7 @@
 			children = (
 				43C1FCFB2E8425460005EAB9 /* OgurySdk */,
 				43C1FD082E8425460005EAB9 /* OgurySdkTests */,
+				43E3BD402E8BD25D00E927D1 /* OgurySdkHostTestApp */,
 				43C1FD662E8426730005EAB9 /* Frameworks */,
 				43C1FCFA2E8425460005EAB9 /* Products */,
 				72D9E34E8A5B6FD2110EE23E /* Pods */,
@@ -103,6 +122,7 @@
 			children = (
 				43C1FCF92E8425460005EAB9 /* OgurySdk.framework */,
 				43C1FD042E8425460005EAB9 /* OgurySdkTests.xctest */,
+				43E3BD3F2E8BD25D00E927D1 /* OgurySdkHostTestApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -174,6 +194,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				43E3BD4B2E8BD27100E927D1 /* PBXTargetDependency */,
 				43C1FD072E8425460005EAB9 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -183,6 +204,28 @@
 			productName = OgurySdkTests;
 			productReference = 43C1FD042E8425460005EAB9 /* OgurySdkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		43E3BD3E2E8BD25D00E927D1 /* OgurySdkHostTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43E3BD492E8BD25F00E927D1 /* Build configuration list for PBXNativeTarget "OgurySdkHostTestApp" */;
+			buildPhases = (
+				43E3BD3B2E8BD25D00E927D1 /* Sources */,
+				43E3BD3C2E8BD25D00E927D1 /* Frameworks */,
+				43E3BD3D2E8BD25D00E927D1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				43E3BD402E8BD25D00E927D1 /* OgurySdkHostTestApp */,
+			);
+			name = OgurySdkHostTestApp;
+			packageProductDependencies = (
+			);
+			productName = OgurySdkHostTestApp;
+			productReference = 43E3BD3F2E8BD25D00E927D1 /* OgurySdkHostTestApp.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -198,6 +241,9 @@
 						CreatedOnToolsVersion = 26.0.1;
 					};
 					43C1FD032E8425460005EAB9 = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
+					43E3BD3E2E8BD25D00E927D1 = {
 						CreatedOnToolsVersion = 26.0.1;
 					};
 				};
@@ -218,6 +264,7 @@
 			targets = (
 				43C1FCF82E8425460005EAB9 /* OgurySdk */,
 				43C1FD032E8425460005EAB9 /* OgurySdkTests */,
+				43E3BD3E2E8BD25D00E927D1 /* OgurySdkHostTestApp */,
 			);
 		};
 /* End PBXProject section */
@@ -237,6 +284,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		43E3BD3D2E8BD25D00E927D1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -248,9 +302,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OgurySdkTests/Pods-OgurySdkTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OgurySdkTests/Pods-OgurySdkTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -296,6 +354,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		43E3BD3B2E8BD25D00E927D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -303,6 +368,11 @@
 			isa = PBXTargetDependency;
 			target = 43C1FCF82E8425460005EAB9 /* OgurySdk */;
 			targetProxy = 43C1FD062E8425460005EAB9 /* PBXContainerItemProxy */;
+		};
+		43E3BD4B2E8BD27100E927D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43E3BD3E2E8BD25D00E927D1 /* OgurySdkHostTestApp */;
+			targetProxy = 43E3BD4A2E8BD27100E927D1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -532,6 +602,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF487E902D28AE5F9DE5AA82 /* Pods-OgurySdkTests.debug.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "${TEST_HOST}";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
@@ -546,6 +617,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OgurySdkHostTestApp.app/OgurySdkHostTestApp";
 			};
 			name = Debug;
 		};
@@ -553,6 +625,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0B0328C37D3FFD27B432CEF8 /* Pods-OgurySdkTests.release.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "${TEST_HOST}";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W7JZNL3R6G;
@@ -564,6 +637,79 @@
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OgurySdkHostTestApp.app/OgurySdkHostTestApp";
+			};
+			name = Release;
+		};
+		43E3BD472E8BD25F00E927D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.OgurySdkHostTestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		43E3BD482E8BD25F00E927D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.OgurySdkHostTestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -596,6 +742,15 @@
 			buildConfigurations = (
 				43C1FD112E8425460005EAB9 /* Debug */,
 				43C1FD122E8425460005EAB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43E3BD492E8BD25F00E927D1 /* Build configuration list for PBXNativeTarget "OgurySdkHostTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43E3BD472E8BD25F00E927D1 /* Debug */,
+				43E3BD482E8BD25F00E927D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

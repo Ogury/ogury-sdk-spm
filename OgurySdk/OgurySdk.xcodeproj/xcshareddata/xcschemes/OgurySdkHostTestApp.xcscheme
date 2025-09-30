@@ -15,20 +15,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43C1FCF82E8425460005EAB9"
-               BuildableName = "OgurySdk.framework"
-               BlueprintName = "OgurySdk"
-               ReferencedContainer = "container:OgurySdk.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "43E3BD3E2E8BD25D00E927D1"
                BuildableName = "OgurySdkHostTestApp.app"
                BlueprintName = "OgurySdkHostTestApp"
@@ -41,13 +27,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
-      <TestPlans>
-         <TestPlanReference
-            reference = "container:OgurySdkTests/OgurySdkTests.xctestplan"
-            default = "YES">
-         </TestPlanReference>
-      </TestPlans>
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -59,6 +40,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "43E3BD3E2E8BD25D00E927D1"
+            BuildableName = "OgurySdkHostTestApp.app"
+            BlueprintName = "OgurySdkHostTestApp"
+            ReferencedContainer = "container:OgurySdk.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -66,15 +57,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43C1FCF82E8425460005EAB9"
-            BuildableName = "OgurySdk.framework"
-            BlueprintName = "OgurySdk"
+            BlueprintIdentifier = "43E3BD3E2E8BD25D00E927D1"
+            BuildableName = "OgurySdkHostTestApp.app"
+            BlueprintName = "OgurySdkHostTestApp"
             ReferencedContainer = "container:OgurySdk.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
