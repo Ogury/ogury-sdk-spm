@@ -12,6 +12,7 @@
 		4373B4312DCB405400E1702F /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B42E2DCB405400E1702F /* OguryAds.framework */; };
 		4373B4332DCB405400E1702F /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B42F2DCB405400E1702F /* OguryCore.framework */; };
 		4373B4352DCB405400E1702F /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B4302DCB405400E1702F /* OgurySdk.framework */; };
+		43F287042E8C1410000DFB7A /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F287032E8C1410000DFB7A /* OMSDK_Ogury.xcframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		4373B42F2DCB405400E1702F /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4373B4302DCB405400E1702F /* OgurySdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OgurySdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4373B5262DCB93E400E1702F /* OMSDK_Ogury.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OMSDK_Ogury.xcframework; path = "../../sdk-ads-ios/OMSDK_Ogury.xcframework"; sourceTree = "<group>"; };
+		43F287032E8C1410000DFB7A /* OMSDK_Ogury.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OMSDK_Ogury.xcframework; path = ../../OguryAds/OMSDK_Ogury.xcframework; sourceTree = "<group>"; };
 		82AA197AAA6A20900447DA5C /* Pods_UnityLevelPlayCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnityLevelPlayCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C11207F385B380B8D08AABB9 /* Pods-UnityLevelPlayCardAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnityLevelPlayCardAdapter.release.xcconfig"; path = "Target Support Files/Pods-UnityLevelPlayCardAdapter/Pods-UnityLevelPlayCardAdapter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -29,8 +31,6 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4373B3902DCA4D8A00E1702F /* UnityLevelPlayCardAdapter */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = UnityLevelPlayCardAdapter;
 			sourceTree = "<group>";
 		};
@@ -42,6 +42,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4373B4352DCB405400E1702F /* OgurySdk.framework in Frameworks */,
+				43F287042E8C1410000DFB7A /* OMSDK_Ogury.xcframework in Frameworks */,
 				2758556FE721E189B66DE5FD /* Pods_UnityLevelPlayCardAdapter.framework in Frameworks */,
 				4373B4222DCA4E4800E1702F /* AdsCardAdapter.framework in Frameworks */,
 				4373B4332DCB405400E1702F /* OguryCore.framework in Frameworks */,
@@ -83,6 +84,7 @@
 		E75DEBCEBB15405ABCF4A1FA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43F287032E8C1410000DFB7A /* OMSDK_Ogury.xcframework */,
 				4373B5262DCB93E400E1702F /* OMSDK_Ogury.xcframework */,
 				4373B42E2DCB405400E1702F /* OguryAds.framework */,
 				4373B42F2DCB405400E1702F /* OguryCore.framework */,
@@ -182,9 +184,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayCardAdapter/Pods-UnityLevelPlayCardAdapter-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayCardAdapter/Pods-UnityLevelPlayCardAdapter-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

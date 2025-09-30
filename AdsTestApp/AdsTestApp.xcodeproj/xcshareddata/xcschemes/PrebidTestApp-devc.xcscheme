@@ -27,7 +27,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "&quot;${SRCROOT}/../scripts/update_version.sh&quot; \&#10;  --config-folder &quot;AdsTestApp/Config/Prebid&quot; \&#10;  --mediation-framework-name &quot;PrebidMobile&quot; \&#10;  --mediation-label &quot;prebid&quot;&#10;">
+               scriptText = "if [ &quot;$ACTION&quot; = &quot;install&quot; ]; then&#10;&quot;${SRCROOT}/../scripts/update_version.sh&quot; \&#10;  --config-folder &quot;AdsTestApp/Config/Prebid&quot; \&#10;  --mediation-framework-name &quot;PrebidMobile&quot; \&#10;  --mediation-label &quot;prebid&quot;&#10;fi&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

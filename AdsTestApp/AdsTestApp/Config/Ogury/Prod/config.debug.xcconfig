@@ -1,8 +1,4 @@
-// Default PODS_ROOT so the include path works even before CocoaPods defines it.
-PODS_ROOT = $(SRCROOT)/../Pods
-
-// Include the CocoaPods-generated xcconfig for this configuration/target if it exists.
-#include? "$(PODS_ROOT)/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod.debug.xcconfig"
+#include "../../../../../Pods/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod.debug.xcconfig"
 
 ASSET_KEY = OGY-37AEE44C8F53
 DEFAULT_ENV = PROD

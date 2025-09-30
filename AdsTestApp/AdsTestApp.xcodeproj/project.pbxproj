@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 71;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -301,7 +301,6 @@
 		4373B4AF2DCB634B00E1702F /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 4373B4AD2DCB634B00E1702F /* Default.settings */; };
 		4373B5242DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B5232DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework */; };
 		4373B5252DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B5232DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4373B5292DCB93F500E1702F /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; };
 		437825B72E60289200956ECB /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20BB2C6A60C400DF24AB /* OgurySdk.framework */; };
 		437825B82E60289200956ECB /* OgurySdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20BB2C6A60C400DF24AB /* OgurySdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		437825B92E6028A500956ECB /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D20BB2C6A60C400DF24AB /* OgurySdk.framework */; };
@@ -320,7 +319,7 @@
 		438ED4202AA5D0C300486AF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 438ED41F2AA5D0C300486AF2 /* Assets.xcassets */; };
 		438ED4232AA5D0C300486AF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438ED4212AA5D0C300486AF2 /* LaunchScreen.storyboard */; };
 		438ED42B2AA5D0E100486AF2 /* SdkLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438ED42A2AA5D0E100486AF2 /* SdkLauncher.swift */; };
-		439126802E4B3D3800C1BFD5 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		439126802E4B3D3800C1BFD5 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		4391268B2E4C89D600C1BFD5 /* AdsStorableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B4A8A2B34259900037FE1 /* AdsStorableContainer.swift */; };
 		4391268C2E4C89D600C1BFD5 /* AddFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F84AE2AC3008C005077F5 /* AddFeature.swift */; };
 		4391268D2E4C89D600C1BFD5 /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F849C2AC2CC54005077F5 /* AppFeature.swift */; };
@@ -355,7 +354,6 @@
 		439126AB2E4C89D600C1BFD5 /* SdkLaunchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB21092DB8CD3E002F170A /* SdkLaunchable.swift */; };
 		439126AC2E4C89D600C1BFD5 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F849B2AC2CC54005077F5 /* AppView.swift */; };
 		439126AF2E4C89D600C1BFD5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 439126832E4C89D600C1BFD5 /* SnapKit */; };
-		439126B02E4C89D600C1BFD5 /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; };
 		439126B22E4C89D600C1BFD5 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 439126872E4C89D600C1BFD5 /* SwiftMessages */; };
 		439126B32E4C89D600C1BFD5 /* UserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = 439126852E4C89D600C1BFD5 /* UserDefault */; };
 		439126B42E4C89D600C1BFD5 /* OguryAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190D2DAE89B2002F170A /* OguryAds.framework */; };
@@ -372,7 +370,6 @@
 		439126C92E4C89D600C1BFD5 /* OguryAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190D2DAE89B2002F170A /* OguryAds.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		439126CA2E4C89D600C1BFD5 /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		439126CB2E4C89D600C1BFD5 /* OguryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB190F2DAE89B2002F170A /* OguryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		439126CC2E4C89D600C1BFD5 /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 438ED42F2AA5D0F600486AF2 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4391282C2E4DC67300C1BFD5 /* ConsentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4391282B2E4DC67300C1BFD5 /* ConsentController.swift */; };
 		4391282D2E4DC67300C1BFD5 /* ConsentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4391282B2E4DC67300C1BFD5 /* ConsentController.swift */; };
 		4391282E2E4DC67300C1BFD5 /* ConsentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4391282B2E4DC67300C1BFD5 /* ConsentController.swift */; };
@@ -732,9 +729,24 @@
 		43EB26D82DC0C5E3002F170A /* AdMobCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB26D72DC0C5E3002F170A /* AdMobCardAdapter.framework */; };
 		43EB26D92DC0C5E3002F170A /* AdMobCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB26D72DC0C5E3002F170A /* AdMobCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43EB27432DC0D55F002F170A /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43EB27422DC0D55F002F170A /* Default.settings */; };
-		43F66E3C2D394D79000AED12 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
-		43F66E3D2D394D79000AED12 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
-		43F66E3E2D394D79000AED12 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		43F286EC2E8C11E5000DFB7A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F286EB2E8C11E5000DFB7A /* AVFoundation.framework */; };
+		43F286ED2E8C11EC000DFB7A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F286EB2E8C11E5000DFB7A /* AVFoundation.framework */; };
+		43F286EE2E8C11F2000DFB7A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F286EB2E8C11E5000DFB7A /* AVFoundation.framework */; };
+		43F286EF2E8C11FB000DFB7A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F286EB2E8C11E5000DFB7A /* AVFoundation.framework */; };
+		43F286F02E8C1200000DFB7A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F286EB2E8C11E5000DFB7A /* AVFoundation.framework */; };
+		43F286F12E8C1205000DFB7A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F286EB2E8C11E5000DFB7A /* AVFoundation.framework */; };
+		43F286F22E8C1209000DFB7A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F286EB2E8C11E5000DFB7A /* AVFoundation.framework */; };
+		43F286F32E8C120F000DFB7A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F286EB2E8C11E5000DFB7A /* AVFoundation.framework */; };
+		43F286F42E8C121A000DFB7A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F286EB2E8C11E5000DFB7A /* AVFoundation.framework */; };
+		43F286F52E8C1220000DFB7A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F286EB2E8C11E5000DFB7A /* AVFoundation.framework */; };
+		43F286F62E8C1226000DFB7A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F286EB2E8C11E5000DFB7A /* AVFoundation.framework */; };
+		43F286F72E8C122B000DFB7A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F286EB2E8C11E5000DFB7A /* AVFoundation.framework */; };
+		43F286F82E8C1230000DFB7A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F286EB2E8C11E5000DFB7A /* AVFoundation.framework */; };
+		43F286F92E8C1392000DFB7A /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C1E4F42E8422780005EAB9 /* OMSDK_Ogury.xcframework */; };
+		43F286FA2E8C1392000DFB7A /* OMSDK_Ogury.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43C1E4F42E8422780005EAB9 /* OMSDK_Ogury.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43F66E3C2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		43F66E3D2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		43F66E3E2D394D79000AED12 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		43F66E582D48E94F000AED12 /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
 		43F66E592D48E94F000AED12 /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
 		43F66E5A2D48E94F000AED12 /* Default.settings in Resources */ = {isa = PBXBuildFile; fileRef = 43F66E572D48E94F000AED12 /* Default.settings */; };
@@ -761,7 +773,7 @@
 		767623DC1C64B7BAADC191C8 /* Pods_PrebidTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E99956A5926D15FBCC8E19 /* Pods_PrebidTestApp.framework */; };
 		768024427BB8B30140B90414 /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; };
 		774D55BB7D600092C0CFAF11 /* Pods_AdMobTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23658B3A7EFB0FFE4A971829 /* Pods_AdMobTestApp.framework */; };
-		7DB2F6E45BFD59711A7F6BC0 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		7DB2F6E45BFD59711A7F6BC0 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		7FE42D884CEAD81073CDABEB /* Pods_UnityLevelPlayTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C32DCDB3AABCBFF41EA47503 /* Pods_UnityLevelPlayTestApp.framework */; };
 		84A05D971C84CE3FCE2C1B76 /* Pods_AdsTestApp_Devc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B751118C675C7DED4438420 /* Pods_AdsTestApp_Devc.framework */; };
 		87D3553F5A34C10B6AC8B6FD /* Pods_MaxTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D466EE10242EBAE519B1CCBD /* Pods_MaxTestApp.framework */; };
@@ -770,9 +782,9 @@
 		96C44FA9C5181024C924D231 /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A1DA1BC99E5F00FA508DA696 /* AdsCardLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D32DAE3DA0002F170A /* AdsCardLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AF5AE9E73392E48D9E35B077 /* Pods_AdsTestApp_Prod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CD67EA3F9B3D77038461DBB /* Pods_AdsTestApp_Prod.framework */; };
-		B68B98228FEF5F63D4165F6C /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
-		CB8055A435B330C78791EB99 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
-		CBDB8FD576DDD30E68476A73 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		B68B98228FEF5F63D4165F6C /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		CB8055A435B330C78791EB99 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		CBDB8FD576DDD30E68476A73 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		DBDBF95790282E5FEDFF37F3 /* AdsCardAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D22DAE3DA0002F170A /* AdsCardAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E6D752923C989A29C8B6C272 /* AdsCardLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EB18D32DAE3DA0002F170A /* AdsCardLibrary.framework */; };
 		E8CB01DDB262BEC18CE5E860 /* Pods_AdsTestApp_Devc_art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E41A333D04390C0DB6795D53 /* Pods_AdsTestApp_Devc_art.framework */; };
@@ -873,11 +885,11 @@
 			dstSubfolderSpec = 10;
 			files = (
 				439126C72E4C89D600C1BFD5 /* OguryCardAdapter.framework in Embed Frameworks */,
+				43F286FA2E8C1392000DFB7A /* OMSDK_Ogury.xcframework in Embed Frameworks */,
 				439126C82E4C89D600C1BFD5 /* AdsCardLibrary.framework in Embed Frameworks */,
 				439126C92E4C89D600C1BFD5 /* OguryAds.framework in Embed Frameworks */,
 				439126CA2E4C89D600C1BFD5 /* AdsCardAdapter.framework in Embed Frameworks */,
 				439126CB2E4C89D600C1BFD5 /* OguryCore.framework in Embed Frameworks */,
-				439126CC2E4C89D600C1BFD5 /* OMSDK_Ogury.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1126,6 +1138,7 @@
 		43EB26D42DBFCE5C002F170A /* AdMobCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdMobCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB26D72DC0C5E3002F170A /* AdMobCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdMobCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB27422DC0D55F002F170A /* Default.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Default.settings; sourceTree = "<group>"; };
+		43F286EB2E8C11E5000DFB7A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		43F66E572D48E94F000AED12 /* Default.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Default.settings; sourceTree = "<group>"; };
 		43F66E5E2D48E95C000AED12 /* Custom.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = Custom.settings; sourceTree = "<group>"; };
 		43F66E682D4A20E2000AED12 /* Default-qa.settings */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Default-qa.settings"; sourceTree = "<group>"; };
@@ -1162,70 +1175,70 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		43352E242DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc" target */ = {
+		43352E242DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 438ED4122AA5D0C200486AF2 /* AdsTestApp-Devc */;
 		};
-		43352E252DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Staging" target */ = {
+		43352E252DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 434F84BC2ACFE4FE005077F5 /* AdsTestApp-Staging */;
 		};
-		43352E262DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Prod" target */ = {
+		43352E262DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 434F84D82ACFE50A005077F5 /* AdsTestApp-Prod */;
 		};
-		43352E272DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc-art" target */ = {
+		43352E272DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 43BCB0932C22DD45002FB0B1 /* AdsTestApp-Devc-art */;
 		};
-		43352E282DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Staging-art" target */ = {
+		43352E282DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 43BCB0D62C22DD59002FB0B1 /* AdsTestApp-Staging-art */;
 		};
-		43352E292DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Prod-art" target */ = {
+		43352E292DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 43BCB1192C22DD60002FB0B1 /* AdsTestApp-Prod-art */;
 		};
-		43352E2A2DFC1B320082026C /* Exceptions for "Prebid" folder in "MaxTestApp" target */ = {
+		43352E2A2DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 43EB1E0C2DB24675002F170A /* MaxTestApp */;
 		};
-		43352E2B2DFC1B320082026C /* Exceptions for "Prebid" folder in "AdMobTestApp" target */ = {
+		43352E2B2DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 43EB26702DBFCC84002F170A /* AdMobTestApp */;
 		};
-		43352E2C2DFC1B320082026C /* Exceptions for "Prebid" folder in "UnityLevelPlayTestApp" target */ = {
+		43352E2C2DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 4373B4422DCB61F300E1702F /* UnityLevelPlayTestApp */;
 		};
-		43352E2D2DFC1BBD0082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc" target */ = {
+		43352E2D2DFC1BBD0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				shareImageData.png,
@@ -1233,7 +1246,7 @@
 			);
 			target = 438ED4122AA5D0C200486AF2 /* AdsTestApp-Devc */;
 		};
-		43352E2E2DFC1BBE0082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc-art" target */ = {
+		43352E2E2DFC1BBE0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				shareImageData.png,
@@ -1241,7 +1254,7 @@
 			);
 			target = 43BCB0932C22DD45002FB0B1 /* AdsTestApp-Devc-art */;
 		};
-		43352E302DFC1BC20082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-devc" target */ = {
+		43352E302DFC1BC20082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				shareImageData.png,
@@ -1249,7 +1262,7 @@
 			);
 			target = 43352D122DFC0E920082026C /* PrebidTestApp-devc */;
 		};
-		43352ECD2DFC1E460082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-devc" target */ = {
+		43352ECD2DFC1E460082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Asset.xcassets,
@@ -1258,70 +1271,70 @@
 			);
 			target = 43352D122DFC0E920082026C /* PrebidTestApp-devc */;
 		};
-		43352F6D2DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc" target */ = {
+		43352F6D2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Default.settings,
 			);
 			target = 438ED4122AA5D0C200486AF2 /* AdsTestApp-Devc */;
 		};
-		43352F6E2DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Staging" target */ = {
+		43352F6E2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Default.settings,
 			);
 			target = 434F84BC2ACFE4FE005077F5 /* AdsTestApp-Staging */;
 		};
-		43352F6F2DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Prod" target */ = {
+		43352F6F2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Default.settings,
 			);
 			target = 434F84D82ACFE50A005077F5 /* AdsTestApp-Prod */;
 		};
-		43352F702DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc-art" target */ = {
+		43352F702DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Default.settings,
 			);
 			target = 43BCB0932C22DD45002FB0B1 /* AdsTestApp-Devc-art */;
 		};
-		43352F712DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Staging-art" target */ = {
+		43352F712DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Default.settings,
 			);
 			target = 43BCB0D62C22DD59002FB0B1 /* AdsTestApp-Staging-art */;
 		};
-		43352F722DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Prod-art" target */ = {
+		43352F722DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Default.settings,
 			);
 			target = 43BCB1192C22DD60002FB0B1 /* AdsTestApp-Prod-art */;
 		};
-		43352F742DFC20350082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-devc" target */ = {
+		43352F742DFC20350082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Default.settings,
 			);
 			target = 43352D122DFC0E920082026C /* PrebidTestApp-devc */;
 		};
-		433531392E093A940082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-staging" target */ = {
+		433531392E093A940082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Default.settings,
 			);
 			target = 433530AD2E093A680082026C /* PrebidTestApp-staging */;
 		};
-		4335313A2E093A940082026C /* Exceptions for "Prebid" folder in "PrebidTestApp" target */ = {
+		4335313A2E093A940082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Default.settings,
 			);
 			target = 433530F22E093A700082026C /* PrebidTestApp */;
 		};
-		433531412E093AAA0082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-staging" target */ = {
+		433531412E093AAA0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				shareImageData.png,
@@ -1329,7 +1342,7 @@
 			);
 			target = 433530AD2E093A680082026C /* PrebidTestApp-staging */;
 		};
-		433531422E093AAA0082026C /* Exceptions for "Prebid" folder in "PrebidTestApp" target */ = {
+		433531422E093AAA0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				shareImageData.png,
@@ -1337,7 +1350,7 @@
 			);
 			target = 433530F22E093A700082026C /* PrebidTestApp */;
 		};
-		433531492E093AB60082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-staging" target */ = {
+		433531492E093AB60082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Asset.xcassets,
@@ -1346,7 +1359,7 @@
 			);
 			target = 433530AD2E093A680082026C /* PrebidTestApp-staging */;
 		};
-		4335314A2E093AB60082026C /* Exceptions for "Prebid" folder in "PrebidTestApp" target */ = {
+		4335314A2E093AB60082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Asset.xcassets,
@@ -1355,91 +1368,91 @@
 			);
 			target = 433530F22E093A700082026C /* PrebidTestApp */;
 		};
-		439126FE2E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Devc" target */ = {
+		439126FE2E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 438ED4122AA5D0C200486AF2 /* AdsTestApp-Devc */;
 		};
-		439126FF2E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Staging" target */ = {
+		439126FF2E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 434F84BC2ACFE4FE005077F5 /* AdsTestApp-Staging */;
 		};
-		439127002E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Prod" target */ = {
+		439127002E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 434F84D82ACFE50A005077F5 /* AdsTestApp-Prod */;
 		};
-		439127012E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Devc-art" target */ = {
+		439127012E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 43BCB0932C22DD45002FB0B1 /* AdsTestApp-Devc-art */;
 		};
-		439127022E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Staging-art" target */ = {
+		439127022E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 43BCB0D62C22DD59002FB0B1 /* AdsTestApp-Staging-art */;
 		};
-		439127032E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Prod-art" target */ = {
+		439127032E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 43BCB1192C22DD60002FB0B1 /* AdsTestApp-Prod-art */;
 		};
-		439127042E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "MaxTestApp" target */ = {
+		439127042E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 43EB1E0C2DB24675002F170A /* MaxTestApp */;
 		};
-		439127052E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "AdMobTestApp" target */ = {
+		439127052E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 43EB26702DBFCC84002F170A /* AdMobTestApp */;
 		};
-		439127062E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "UnityLevelPlayTestApp" target */ = {
+		439127062E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 4373B4422DCB61F300E1702F /* UnityLevelPlayTestApp */;
 		};
-		439127072E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "PrebidTestApp-devc" target */ = {
+		439127072E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 43352D122DFC0E920082026C /* PrebidTestApp-devc */;
 		};
-		439127082E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "PrebidTestApp-staging" target */ = {
+		439127082E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 433530AD2E093A680082026C /* PrebidTestApp-staging */;
 		};
-		439127092E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "PrebidTestApp" target */ = {
+		439127092E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
 			);
 			target = 433530F22E093A700082026C /* PrebidTestApp */;
 		};
-		4391270A2E4C8A6500C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Devc" target */ = {
+		4391270A2E4C8A6500C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Custom.settings,
@@ -1448,7 +1461,7 @@
 			);
 			target = 438ED4122AA5D0C200486AF2 /* AdsTestApp-Devc */;
 		};
-		4391270B2E4C8A6500C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Staging" target */ = {
+		4391270B2E4C8A6500C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Custom.settings,
@@ -1457,7 +1470,7 @@
 			);
 			target = 434F84BC2ACFE4FE005077F5 /* AdsTestApp-Staging */;
 		};
-		4391270C2E4C8A6500C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Prod" target */ = {
+		4391270C2E4C8A6500C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Custom.settings,
@@ -1466,7 +1479,7 @@
 			);
 			target = 434F84D82ACFE50A005077F5 /* AdsTestApp-Prod */;
 		};
-		4391270D2E4C8A6500C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Devc-art" target */ = {
+		4391270D2E4C8A6500C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Custom.settings,
@@ -1475,7 +1488,7 @@
 			);
 			target = 43BCB0932C22DD45002FB0B1 /* AdsTestApp-Devc-art */;
 		};
-		4391270E2E4C8A6500C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Staging-art" target */ = {
+		4391270E2E4C8A6500C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Custom.settings,
@@ -1484,7 +1497,7 @@
 			);
 			target = 43BCB0D62C22DD59002FB0B1 /* AdsTestApp-Staging-art */;
 		};
-		4391270F2E4C8A6500C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Prod-art" target */ = {
+		4391270F2E4C8A6500C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Custom.settings,
@@ -1493,7 +1506,7 @@
 			);
 			target = 43BCB1192C22DD60002FB0B1 /* AdsTestApp-Prod-art */;
 		};
-		439127172E4C8AB100C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Devc" target */ = {
+		439127172E4C8AB100C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				shareImageData.png,
@@ -1501,7 +1514,7 @@
 			);
 			target = 438ED4122AA5D0C200486AF2 /* AdsTestApp-Devc */;
 		};
-		439127182E4C8AB100C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Devc-art" target */ = {
+		439127182E4C8AB100C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				shareImageData.png,
@@ -1509,7 +1522,7 @@
 			);
 			target = 43BCB0932C22DD45002FB0B1 /* AdsTestApp-Devc-art */;
 		};
-		4391271B2E4C8AB900C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Ext" target */ = {
+		4391271B2E4C8AB900C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				shareImageData.png,
@@ -1517,7 +1530,7 @@
 			);
 			target = 439126822E4C89D600C1BFD5 /* AdsTestApp-Ext */;
 		};
-		4391272C2E4C8BD500C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Ext" target */ = {
+		4391272C2E4C8BD500C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Asset.xcassets,
@@ -1526,7 +1539,7 @@
 			);
 			target = 439126822E4C89D600C1BFD5 /* AdsTestApp-Ext */;
 		};
-		43B937052E55BB7E00EFB857 /* Exceptions for "WhatsNew" folder in "AdsTestApp-Ext" target */ = {
+		43B937052E55BB7E00EFB857 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				WhatsNewFeature.swift,
@@ -1534,14 +1547,14 @@
 			);
 			target = 439126822E4C89D600C1BFD5 /* AdsTestApp-Ext */;
 		};
-		43B938182E55BCA200EFB857 /* Exceptions for "Prebid" folder in "AdsTestApp-Ext" target */ = {
+		43B938182E55BCA200EFB857 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Default.settings,
 			);
 			target = 439126822E4C89D600C1BFD5 /* AdsTestApp-Ext */;
 		};
-		43B938192E55BD1A00EFB857 /* Exceptions for "Prebid" folder in "AdsTestApp-Ext" target */ = {
+		43B938192E55BD1A00EFB857 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SdkLauncher.swift,
@@ -1551,156 +1564,15 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		43352D632DFC0F010082026C /* Prebid */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				43352ECD2DFC1E460082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-devc" target */,
-				433531492E093AB60082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-staging" target */,
-				4335314A2E093AB60082026C /* Exceptions for "Prebid" folder in "PrebidTestApp" target */,
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = Prebid;
-			sourceTree = "<group>";
-		};
-		43352D642DFC0F090082026C /* Prebid */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				43352E2D2DFC1BBD0082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc" target */,
-				43352E2E2DFC1BBE0082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc-art" target */,
-				43352E302DFC1BC20082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-devc" target */,
-				433531412E093AAA0082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-staging" target */,
-				433531422E093AAA0082026C /* Exceptions for "Prebid" folder in "PrebidTestApp" target */,
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = Prebid;
-			sourceTree = "<group>";
-		};
-		43352D652DFC0F110082026C /* Prebid */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				43352E242DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc" target */,
-				43352E252DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Staging" target */,
-				43352E262DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Prod" target */,
-				43B938192E55BD1A00EFB857 /* Exceptions for "Prebid" folder in "AdsTestApp-Ext" target */,
-				43352E272DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc-art" target */,
-				43352E282DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Staging-art" target */,
-				43352E292DFC1B320082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Prod-art" target */,
-				43352E2A2DFC1B320082026C /* Exceptions for "Prebid" folder in "MaxTestApp" target */,
-				43352E2B2DFC1B320082026C /* Exceptions for "Prebid" folder in "AdMobTestApp" target */,
-				43352E2C2DFC1B320082026C /* Exceptions for "Prebid" folder in "UnityLevelPlayTestApp" target */,
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = Prebid;
-			sourceTree = "<group>";
-		};
-		43352D662DFC0F190082026C /* Prebid */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				43352F6D2DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc" target */,
-				43352F6E2DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Staging" target */,
-				43352F6F2DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Prod" target */,
-				43B938182E55BCA200EFB857 /* Exceptions for "Prebid" folder in "AdsTestApp-Ext" target */,
-				43352F702DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Devc-art" target */,
-				43352F712DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Staging-art" target */,
-				43352F722DFC20300082026C /* Exceptions for "Prebid" folder in "AdsTestApp-Prod-art" target */,
-				43352F742DFC20350082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-devc" target */,
-				433531392E093A940082026C /* Exceptions for "Prebid" folder in "PrebidTestApp-staging" target */,
-				4335313A2E093A940082026C /* Exceptions for "Prebid" folder in "PrebidTestApp" target */,
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = Prebid;
-			sourceTree = "<group>";
-		};
-		439126D62E4C8A0100C1BFD5 /* External */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				4391270A2E4C8A6500C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Devc" target */,
-				4391270B2E4C8A6500C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Staging" target */,
-				4391270C2E4C8A6500C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Prod" target */,
-				4391270D2E4C8A6500C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Devc-art" target */,
-				4391270E2E4C8A6500C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Staging-art" target */,
-				4391270F2E4C8A6500C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Prod-art" target */,
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = External;
-			sourceTree = "<group>";
-		};
-		439126EF2E4C8A3E00C1BFD5 /* External */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				439126FE2E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Devc" target */,
-				439126FF2E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Staging" target */,
-				439127002E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Prod" target */,
-				439127012E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Devc-art" target */,
-				439127022E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Staging-art" target */,
-				439127032E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Prod-art" target */,
-				439127042E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "MaxTestApp" target */,
-				439127052E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "AdMobTestApp" target */,
-				439127062E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "UnityLevelPlayTestApp" target */,
-				439127072E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "PrebidTestApp-devc" target */,
-				439127082E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "PrebidTestApp-staging" target */,
-				439127092E4C8A5C00C1BFD5 /* Exceptions for "External" folder in "PrebidTestApp" target */,
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = External;
-			sourceTree = "<group>";
-		};
-		439127102E4C8A9B00C1BFD5 /* External */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				439127172E4C8AB100C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Devc" target */,
-				4391271B2E4C8AB900C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Ext" target */,
-				439127182E4C8AB100C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Devc-art" target */,
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = External;
-			sourceTree = "<group>";
-		};
-		439127222E4C8B9200C1BFD5 /* External */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				4391272C2E4C8BD500C1BFD5 /* Exceptions for "External" folder in "AdsTestApp-Ext" target */,
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = External;
-			sourceTree = "<group>";
-		};
-		43912F502E54B2E300C1BFD5 /* WhatsNew */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				43B937052E55BB7E00EFB857 /* Exceptions for "WhatsNew" folder in "AdsTestApp-Ext" target */,
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = WhatsNew;
-			sourceTree = "<group>";
-		};
+		43352D632DFC0F010082026C /* Prebid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (43352ECD2DFC1E460082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 433531492E093AB60082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 4335314A2E093AB60082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Prebid; sourceTree = "<group>"; };
+		43352D642DFC0F090082026C /* Prebid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (43352E2D2DFC1BBD0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E2E2DFC1BBE0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E302DFC1BC20082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 433531412E093AAA0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 433531422E093AAA0082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Prebid; sourceTree = "<group>"; };
+		43352D652DFC0F110082026C /* Prebid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (43352E242DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E252DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E262DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43B938192E55BD1A00EFB857 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E272DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E282DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E292DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E2A2DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E2B2DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352E2C2DFC1B320082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Prebid; sourceTree = "<group>"; };
+		43352D662DFC0F190082026C /* Prebid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (43352F6D2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F6E2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F6F2DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43B938182E55BCA200EFB857 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F702DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F712DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F722DFC20300082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 43352F742DFC20350082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 433531392E093A940082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 4335313A2E093A940082026C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Prebid; sourceTree = "<group>"; };
+		439126D62E4C8A0100C1BFD5 /* External */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (4391270A2E4C8A6500C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 4391270B2E4C8A6500C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 4391270C2E4C8A6500C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 4391270D2E4C8A6500C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 4391270E2E4C8A6500C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 4391270F2E4C8A6500C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = External; sourceTree = "<group>"; };
+		439126EF2E4C8A3E00C1BFD5 /* External */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (439126FE2E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 439126FF2E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 439127002E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 439127012E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 439127022E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 439127032E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 439127042E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 439127052E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 439127062E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 439127072E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 439127082E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 439127092E4C8A5C00C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = External; sourceTree = "<group>"; };
+		439127102E4C8A9B00C1BFD5 /* External */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (439127172E4C8AB100C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 4391271B2E4C8AB900C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 439127182E4C8AB100C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = External; sourceTree = "<group>"; };
+		439127222E4C8B9200C1BFD5 /* External */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (4391272C2E4C8BD500C1BFD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = External; sourceTree = "<group>"; };
+		43912F502E54B2E300C1BFD5 /* WhatsNew */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (43B937052E55BB7E00EFB857 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = WhatsNew; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1710,6 +1582,7 @@
 			files = (
 				439196A02E5601AA001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				43352D3F2DFC0E920082026C /* SnapKit in Frameworks */,
+				43F286F62E8C1226000DFB7A /* AVFoundation.framework in Frameworks */,
 				43352D7A2DFC18530082026C /* PrebidCardAdapter.framework in Frameworks */,
 				43352D402DFC0E920082026C /* SwiftMessages in Frameworks */,
 				43912F4B2E54B2C600C1BFD5 /* MarkdownUI in Frameworks */,
@@ -1727,6 +1600,7 @@
 			files = (
 				439196A22E5601AF001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				433530D82E093A680082026C /* SnapKit in Frameworks */,
+				43F286F72E8C122B000DFB7A /* AVFoundation.framework in Frameworks */,
 				433530D92E093A680082026C /* PrebidCardAdapter.framework in Frameworks */,
 				433530DA2E093A680082026C /* SwiftMessages in Frameworks */,
 				43912F4D2E54B2CA00C1BFD5 /* MarkdownUI in Frameworks */,
@@ -1744,6 +1618,7 @@
 			files = (
 				439196A42E5601B4001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				4335311D2E093A700082026C /* SnapKit in Frameworks */,
+				43F286F82E8C1230000DFB7A /* AVFoundation.framework in Frameworks */,
 				4335311E2E093A700082026C /* PrebidCardAdapter.framework in Frameworks */,
 				4335311F2E093A700082026C /* SwiftMessages in Frameworks */,
 				43912F4F2E54B2CF00C1BFD5 /* MarkdownUI in Frameworks */,
@@ -1771,6 +1646,7 @@
 				43912F3D2E54B2A300C1BFD5 /* MarkdownUI in Frameworks */,
 				E6D752923C989A29C8B6C272 /* AdsCardLibrary.framework in Frameworks */,
 				43C1E4F72E8422870005EAB9 /* OMSDK_Ogury.xcframework in Frameworks */,
+				43F286EE2E8C11F2000DFB7A /* AVFoundation.framework in Frameworks */,
 				67BC8D4D3C36CD49FF92DE77 /* Pods_AdsTestApp_Staging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1781,19 +1657,20 @@
 			files = (
 				1E5BE6252B21CCE50010B995 /* SnapKit in Frameworks */,
 				43C1E4F92E8422960005EAB9 /* OMSDK_Ogury.xcframework in Frameworks */,
-				439126802E4B3D3800C1BFD5 /* BuildFile in Frameworks */,
+				439126802E4B3D3800C1BFD5 /* (null) in Frameworks */,
 				43C1D1592B7E5684006F2D23 /* SwiftMessages in Frameworks */,
 				43912E222E54B19D00C1BFD5 /* MarkdownUI in Frameworks */,
 				43AE85E12B5018BF0010C812 /* UserDefault in Frameworks */,
 				439196902E560187001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				43EB19192DAE8AC6002F170A /* OguryAds.framework in Frameworks */,
-				B68B98228FEF5F63D4165F6C /* BuildFile in Frameworks */,
+				B68B98228FEF5F63D4165F6C /* (null) in Frameworks */,
 				437825BB2E6028AE00956ECB /* OgurySdk.framework in Frameworks */,
 				43EB191D2DAE8AC9002F170A /* OguryCore.framework in Frameworks */,
+				43F286EC2E8C11E5000DFB7A /* AVFoundation.framework in Frameworks */,
 				43EB1F722DB25891002F170A /* AdsCardLibrary.framework in Frameworks */,
 				43EB1F702DB25872002F170A /* AdsCardAdapter.framework in Frameworks */,
 				43EB191B2DAE8AC8002F170A /* OguryCardAdapter.framework in Frameworks */,
-				CB8055A435B330C78791EB99 /* BuildFile in Frameworks */,
+				CB8055A435B330C78791EB99 /* (null) in Frameworks */,
 				AF5AE9E73392E48D9E35B077 /* Pods_AdsTestApp_Prod.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1806,14 +1683,14 @@
 				4373B4702DCB61F300E1702F /* SwiftMessages in Frameworks */,
 				4373B4712DCB61F300E1702F /* UserDefault in Frameworks */,
 				43912F492E54B2C200C1BFD5 /* MarkdownUI in Frameworks */,
-				4373B5292DCB93F500E1702F /* OMSDK_Ogury.xcframework in Frameworks */,
 				4391969E2E5601A6001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				4373B4742DCB61F300E1702F /* AdsCardAdapter.framework in Frameworks */,
 				4373B5242DCB65A600E1702F /* UnityLevelPlayCardAdapter.framework in Frameworks */,
 				4373B4782DCB61F300E1702F /* AdsCardLibrary.framework in Frameworks */,
-				7DB2F6E45BFD59711A7F6BC0 /* BuildFile in Frameworks */,
-				CBDB8FD576DDD30E68476A73 /* BuildFile in Frameworks */,
+				7DB2F6E45BFD59711A7F6BC0 /* (null) in Frameworks */,
+				CBDB8FD576DDD30E68476A73 /* (null) in Frameworks */,
 				7FE42D884CEAD81073CDABEB /* Pods_UnityLevelPlayTestApp.framework in Frameworks */,
+				43F286F52E8C1220000DFB7A /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1833,6 +1710,7 @@
 				43912F3B2E54B29F00C1BFD5 /* MarkdownUI in Frameworks */,
 				641C84CBDB1DF68759CA97FE /* AdsCardLibrary.framework in Frameworks */,
 				43C1E4F52E8422780005EAB9 /* OMSDK_Ogury.xcframework in Frameworks */,
+				43F286ED2E8C11EC000DFB7A /* AVFoundation.framework in Frameworks */,
 				84A05D971C84CE3FCE2C1B76 /* Pods_AdsTestApp_Devc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1842,7 +1720,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				439126AF2E4C89D600C1BFD5 /* SnapKit in Frameworks */,
-				439126B02E4C89D600C1BFD5 /* OMSDK_Ogury.xcframework in Frameworks */,
 				439126B22E4C89D600C1BFD5 /* SwiftMessages in Frameworks */,
 				439126B32E4C89D600C1BFD5 /* UserDefault in Frameworks */,
 				439126B42E4C89D600C1BFD5 /* OguryAds.framework in Frameworks */,
@@ -1853,6 +1730,8 @@
 				43B9381B2E55BDAA00EFB857 /* MarkdownUI in Frameworks */,
 				439126B92E4C89D600C1BFD5 /* OguryCardAdapter.framework in Frameworks */,
 				59C83537E966AF588AD11F14 /* Pods_AdsTestApp_Ext.framework in Frameworks */,
+				43F286F92E8C1392000DFB7A /* OMSDK_Ogury.xcframework in Frameworks */,
+				43F286EF2E8C11FB000DFB7A /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1860,7 +1739,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F66E3C2D394D79000AED12 /* BuildFile in Frameworks */,
+				43F66E3C2D394D79000AED12 /* (null) in Frameworks */,
 				43BCB0BE2C22DD45002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB0C02C22DD45002FB0B1 /* UserDefault in Frameworks */,
 				43BCB0C12C22DD45002FB0B1 /* SnapKit in Frameworks */,
@@ -1868,6 +1747,7 @@
 				43EB198B2DAFF8DE002F170A /* OguryCardAdapter.framework in Frameworks */,
 				40B361EB0DA04D73C2BB3A5D /* AdsCardLibrary.framework in Frameworks */,
 				F4F1FE3A7BF6ECD6BBCDD682 /* AdsCardAdapter.framework in Frameworks */,
+				43F286F02E8C1200000DFB7A /* AVFoundation.framework in Frameworks */,
 				43912F3F2E54B2A800C1BFD5 /* MarkdownUI in Frameworks */,
 				439196942E560191001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				E8CB01DDB262BEC18CE5E860 /* Pods_AdsTestApp_Devc_art.framework in Frameworks */,
@@ -1878,7 +1758,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F66E3D2D394D79000AED12 /* BuildFile in Frameworks */,
+				43F66E3D2D394D79000AED12 /* (null) in Frameworks */,
 				43BCB1002C22DD59002FB0B1 /* SnapKit in Frameworks */,
 				43BCB1022C22DD59002FB0B1 /* SwiftMessages in Frameworks */,
 				43BCB1032C22DD59002FB0B1 /* UserDefault in Frameworks */,
@@ -1886,6 +1766,7 @@
 				43EB198E2DAFF8E9002F170A /* OguryCardAdapter.framework in Frameworks */,
 				F1C35725B4319655E70B6EA6 /* AdsCardLibrary.framework in Frameworks */,
 				768024427BB8B30140B90414 /* AdsCardAdapter.framework in Frameworks */,
+				43F286F12E8C1205000DFB7A /* AVFoundation.framework in Frameworks */,
 				43912F412E54B2AD00C1BFD5 /* MarkdownUI in Frameworks */,
 				439196962E560195001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				5CEA2C982D261DB6A5E72DBE /* Pods_AdsTestApp_Staging_art.framework in Frameworks */,
@@ -1896,8 +1777,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F66E3E2D394D79000AED12 /* BuildFile in Frameworks */,
+				43F66E3E2D394D79000AED12 /* (null) in Frameworks */,
 				43C1E4FF2E8422B50005EAB9 /* OMSDK_Ogury.xcframework in Frameworks */,
+				43F286F22E8C1209000DFB7A /* AVFoundation.framework in Frameworks */,
 				43912F432E54B2B100C1BFD5 /* MarkdownUI in Frameworks */,
 				43BCB1432C22DD60002FB0B1 /* SnapKit in Frameworks */,
 				43BCB1452C22DD60002FB0B1 /* SwiftMessages in Frameworks */,
@@ -1914,6 +1796,7 @@
 			files = (
 				43EB1E382DB24675002F170A /* SnapKit in Frameworks */,
 				43EB1E3A2DB24675002F170A /* SwiftMessages in Frameworks */,
+				43F286F32E8C120F000DFB7A /* AVFoundation.framework in Frameworks */,
 				43EB1E3B2DB24675002F170A /* UserDefault in Frameworks */,
 				43EB1F6E2DB2584A002F170A /* MaxCardAdapter.framework in Frameworks */,
 				43EB21132DB8DAEA002F170A /* AdsCardAdapter.framework in Frameworks */,
@@ -1930,6 +1813,7 @@
 			files = (
 				4391969C2E5601A2001B0FCD /* ConfettiSwiftUI in Frameworks */,
 				43EB269D2DBFCC84002F170A /* SnapKit in Frameworks */,
+				43F286F42E8C121A000DFB7A /* AVFoundation.framework in Frameworks */,
 				43EB269E2DBFCC84002F170A /* SwiftMessages in Frameworks */,
 				43EB269F2DBFCC84002F170A /* UserDefault in Frameworks */,
 				43912F472E54B2BD00C1BFD5 /* MarkdownUI in Frameworks */,
@@ -2197,6 +2081,7 @@
 		438ED42C2AA5D0F600486AF2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43F286EB2E8C11E5000DFB7A /* AVFoundation.framework */,
 				43C1E4F42E8422780005EAB9 /* OMSDK_Ogury.xcframework */,
 				43C1D2D32E83F7230005EAB9 /* OMSDK_Ogury.xcframework */,
 				43352D792DFC18530082026C /* PrebidCardAdapter.framework */,
@@ -3243,9 +3128,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3260,9 +3149,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3277,9 +3170,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3294,9 +3191,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3333,9 +3234,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3350,9 +3255,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3367,9 +3276,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-devc/Pods-PrebidTestApp-devc-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3406,9 +3319,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3445,9 +3362,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3484,9 +3405,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3523,9 +3448,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc/Pods-AdsTestApp-Devc-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3584,9 +3513,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3666,9 +3599,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3683,9 +3620,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3700,9 +3641,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3717,9 +3662,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging/Pods-AdsTestApp-Staging-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3734,9 +3683,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Devc-art/Pods-AdsTestApp-Devc-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3795,9 +3748,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3812,9 +3769,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Staging-art/Pods-AdsTestApp-Staging-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3873,9 +3834,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp-staging/Pods-PrebidTestApp-staging-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3890,9 +3855,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PrebidTestApp/Pods-PrebidTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3907,9 +3876,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MaxTestApp/Pods-MaxTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3924,9 +3897,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-UnityLevelPlayTestApp/Pods-UnityLevelPlayTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3941,9 +3918,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdMobTestApp/Pods-AdMobTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3958,9 +3939,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod-art/Pods-AdsTestApp-Prod-art-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3975,9 +3960,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdsTestApp-Prod/Pods-AdsTestApp-Prod-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -4562,7 +4551,8 @@
 /* Begin XCBuildConfiguration section */
 		43352D5F2DFC0E920082026C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 362700FC6633E91BE43D8B96 /* Pods-PrebidTestApp-devc.debug.xcconfig */;
+			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
+			baseConfigurationReferenceRelativePath = config.debug.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -4608,7 +4598,8 @@
 		};
 		43352D602DFC0E920082026C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 62A6B79C6561708F477C6089 /* Pods-PrebidTestApp-devc.release.xcconfig */;
+			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
+			baseConfigurationReferenceRelativePath = config.release.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -4653,7 +4644,8 @@
 		};
 		433530ED2E093A680082026C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 36251FF26D72F06884C8C3F1 /* Pods-PrebidTestApp-staging.debug.xcconfig */;
+			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
+			baseConfigurationReferenceRelativePath = config.debug.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -4699,7 +4691,8 @@
 		};
 		433530EE2E093A680082026C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 441D5E64E10E4AA3E8C95EFE /* Pods-PrebidTestApp-staging.release.xcconfig */;
+			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
+			baseConfigurationReferenceRelativePath = config.release.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -4744,7 +4737,8 @@
 		};
 		433531322E093A700082026C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E5C051F42D9B1580CB422F63 /* Pods-PrebidTestApp.debug.xcconfig */;
+			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
+			baseConfigurationReferenceRelativePath = config.debug.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -4790,7 +4784,8 @@
 		};
 		433531332E093A700082026C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 95D18589A622DC2C01E8FFB7 /* Pods-PrebidTestApp.release.xcconfig */;
+			baseConfigurationReferenceAnchor = 43352D632DFC0F010082026C /* Prebid */;
+			baseConfigurationReferenceRelativePath = config.release.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -5317,7 +5312,8 @@
 		};
 		439126D02E4C89D600C1BFD5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 17C89249BA57B5303E91D7EB /* Pods-AdsTestApp-Ext.debug.xcconfig */;
+			baseConfigurationReferenceAnchor = 439127222E4C8B9200C1BFD5 /* External */;
+			baseConfigurationReferenceRelativePath = config.debug.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -5362,7 +5358,8 @@
 		};
 		439126D12E4C89D600C1BFD5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 305CE850CCB0021DE93294B2 /* Pods-AdsTestApp-Ext.release.xcconfig */;
+			baseConfigurationReferenceAnchor = 439127222E4C8B9200C1BFD5 /* External */;
+			baseConfigurationReferenceRelativePath = config.release.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

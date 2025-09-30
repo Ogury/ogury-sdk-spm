@@ -11,6 +11,7 @@
 		4373B42A2DCB403F00E1702F /* OguryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B4262DCB403F00E1702F /* OguryCore.framework */; };
 		4373B42C2DCB403F00E1702F /* OgurySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4373B4272DCB403F00E1702F /* OgurySdk.framework */; };
 		4379FBCF2DF2BCD60069F47A /* AdsCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4379FBCE2DF2BCD60069F47A /* AdsCardAdapter.framework */; };
+		43F287002E8C1404000DFB7A /* OMSDK_Ogury.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F286FF2E8C1404000DFB7A /* OMSDK_Ogury.xcframework */; };
 		E3C2D7D5BE995FC7CC4AA7E3 /* Pods_AdMobCardAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CEBA4781A6DC6115B8A7709 /* Pods_AdMobCardAdapter.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +25,7 @@
 		43EB25D72DBFAC67002F170A /* AdsCardAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdsCardAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB284E2DC25E75002F170A /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EB28512DC25F0A002F170A /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43F286FF2E8C1404000DFB7A /* OMSDK_Ogury.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OMSDK_Ogury.xcframework; path = ../../OguryAds/OMSDK_Ogury.xcframework; sourceTree = "<group>"; };
 		6FB3AA5A2A4DB995AB50124E /* Pods-AdMobCardAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdMobCardAdapter.release.xcconfig"; path = "Target Support Files/Pods-AdMobCardAdapter/Pods-AdMobCardAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		D19BE47C1EE3BE9EDF9F30CB /* Pods-AdMobCardAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdMobCardAdapter.debug.xcconfig"; path = "Target Support Files/Pods-AdMobCardAdapter/Pods-AdMobCardAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -31,8 +33,6 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		43EB25BD2DBFAC49002F170A /* AdMobCardAdapter */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = AdMobCardAdapter;
 			sourceTree = "<group>";
 		};
@@ -44,6 +44,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4373B42C2DCB403F00E1702F /* OgurySdk.framework in Frameworks */,
+				43F287002E8C1404000DFB7A /* OMSDK_Ogury.xcframework in Frameworks */,
 				E3C2D7D5BE995FC7CC4AA7E3 /* Pods_AdMobCardAdapter.framework in Frameworks */,
 				4379FBCF2DF2BCD60069F47A /* AdsCardAdapter.framework in Frameworks */,
 				4373B42A2DCB403F00E1702F /* OguryCore.framework in Frameworks */,
@@ -75,6 +76,7 @@
 		43EB25D62DBFAC67002F170A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43F286FF2E8C1404000DFB7A /* OMSDK_Ogury.xcframework */,
 				4379FBCE2DF2BCD60069F47A /* AdsCardAdapter.framework */,
 				4373B4252DCB403F00E1702F /* OguryAds.framework */,
 				4373B4262DCB403F00E1702F /* OguryCore.framework */,
@@ -208,9 +210,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdMobCardAdapter/Pods-AdMobCardAdapter-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AdMobCardAdapter/Pods-AdMobCardAdapter-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
