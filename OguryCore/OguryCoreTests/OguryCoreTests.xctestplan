@@ -18,7 +18,7 @@
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
+      "parallelizable" : false,
       "target" : {
         "containerPath" : "container:OguryCore.xcodeproj",
         "identifier" : "43F33CB82E82D64900752DE4",

@@ -78,7 +78,7 @@ NSString *const OGAOGAConfigurationUtilsDeviceOS = @"ios";
 
 - (void)test_ShouldReturnBuildIdentifier {
     NSString *buildId = [OGAConfigurationUtils getAppBundleIdentifer];
-    XCTAssertEqualObjects(buildId, @"com.ogury.OguryAdsTests");
+    XCTAssertEqualObjects(buildId, @"co.ogury.OguryAdsHostTestApp");
 }
 
 @end

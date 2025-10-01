@@ -46,18 +46,47 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-value"
 - (void)testinitWithAd {
-    XCTAssertNotNil([self.mraidWebView initWithAd:self.ad stateManager:self.stateManager]);
-    OCMVerify([self.mraidWebView initWithAd:self.ad stateManager:[OCMArg any] monitoringDispatcher:[OCMArg any]]);
+    id instanceMock = OCMPartialMock([OGAMRAIDWebView alloc]); // juste l’alloc
+    id classMock = OCMClassMock([OGAMRAIDWebView class]);
+    
+    OCMStub([classMock alloc]).andReturn(instanceMock);
+    OCMExpect([instanceMock initWithAd:[OCMArg any]
+                          stateManager:[OCMArg any]
+                  monitoringDispatcher:[OCMArg any]]).andForwardToRealObject();
+    
+    [[OGAMRAIDWebView alloc] initWithAd:self.ad stateManager:self.stateManager monitoringDispatcher:self.monitoringDispatcher];
+    
+    OCMVerifyAll(instanceMock);
+    
+    [classMock stopMocking];
+    [instanceMock stopMocking];
 }
 #pragma clang diagnostic pop
 
 - (void)testinitWithAdMonitoringDispatcher {
-    OGAMRAIDWebView *newMraidWebView = [self.mraidWebView initWithAd:self.ad
-                                                        stateManager:self.stateManager
-                                                monitoringDispatcher:self.monitoringDispatcher];
+    // 1) allouer sans init
+    OGAMRAIDWebView *alloced = [OGAMRAIDWebView alloc];
+    
+    // 2) créer le partial mock sur l'objet alloué
+    id partialMock = OCMPartialMock(alloced);
+    
+    // 3) définir l'attente AVANT d'appeler init (la méthode appelée dans init sera interceptée)
+    OCMExpect([partialMock setupMKWebView]);
+    
+    // 4) appeler init (l'appel à setupMKWebView dans init sera capturé par le mock)
+    OGAMRAIDWebView *newMraidWebView = [partialMock initWithAd:self.ad
+                                                  stateManager:self.stateManager
+                                          monitoringDispatcher:self.monitoringDispatcher];
+    
+    // vérifs habituelles
     XCTAssertNotNil(newMraidWebView);
     XCTAssertEqual(self.monitoringDispatcher, newMraidWebView.monitoringDispatcher);
-    OCMVerify([self.mraidWebView setupMKWebView]);
+    
+    // 5) vérifier les attentes
+    OCMVerifyAll(partialMock);
+    
+    // 6) cleanup du mock
+    [partialMock stopMocking];
 }
 
 - (void)testSetupMKWebViewWithFiledHtml {

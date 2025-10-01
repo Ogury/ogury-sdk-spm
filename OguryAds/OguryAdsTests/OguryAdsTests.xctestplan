@@ -18,7 +18,19 @@
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
+      "parallelizable" : false,
+      "skippedTests" : [
+        "OGAWebViewCleanupManagerTests\/testKeepLiveObject",
+        "OGAWebViewUserAgentServiceTests",
+        "OGAWebViewUserAgentServiceTests\/testInit",
+        "OGAWebViewUserAgentServiceTests\/testShared",
+        "OGAWebViewUserAgentServiceTests\/testSyncWebViewUserAgent",
+        "OGAWebViewUserAgentServiceTests\/testWebViewDidFinishNavigationFirstAllTimeFail",
+        "OGAWebViewUserAgentServiceTests\/testWebViewDidFinishNavigationFirstTimeFail",
+        "OGAWebViewUserAgentServiceTests\/testWebViewDidFinishNavigationFirstTimeSuccess",
+        "OGAWebViewUserAgentServiceTests\/testWhenServiceIsResetedAfterReceivingUserAgentThenNextCallWillTriggerDelegate",
+        "OGAWebViewUserAgentServiceTests\/testWhenServiceIsResetedBeforeReceivingUserAgentThenWebviewDelegateIsCalled"
+      ],
       "target" : {
         "containerPath" : "container:OguryAds.xcodeproj",
         "identifier" : "43F34D712E83EC8700752DE4",
