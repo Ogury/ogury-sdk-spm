@@ -4,3 +4,4 @@ DEFAULT_ENV = PROD
 PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.ulp.app
 VERSION = 1.0.0+ogury.4.1.0-cocoapods-1.unity.8.10.0
 BUILD_NUMBER = 1753778985
+CUSTOM_VERSION = 5.2.0.Swift

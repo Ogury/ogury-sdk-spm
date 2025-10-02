@@ -2,6 +2,5 @@
 ASSET_KEY = OGY-11D9353D6FB5
 DEFAULT_ENV = DEVC
 PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app.devc
-CUSTOM_VERSION=alpha.standardbanners.2
 VERSION = 1.0.0-alpha.standardbanners.2
 BUILD_NUMBER = 1753778245
