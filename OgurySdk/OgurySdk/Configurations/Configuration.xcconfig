@@ -8,7 +8,7 @@ FRAMEWORK_NAME = OgurySdk
 PRODUCT_BUNDLE_IDENTIFIER = com.ogury.OguryWrapper
 
 // Versioning
-MARKETING_VERSION = 5.2.0-alpha
+MARKETING_VERSION = 5.2.0-swift.1
 BUNDLE_VERSION = 1
 
 // Module

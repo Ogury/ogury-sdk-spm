@@ -7,7 +7,7 @@ FRAMEWORK_NAME = OguryCore
 PRODUCT_BUNDLE_IDENTIFIER = com.ogury.core
 
 // Versioning
-MARKETING_VERSION = 2.1.0
+MARKETING_VERSION = 2.1.0-swift.1
 BUNDLE_VERSION = 1
 
 // Module maps
