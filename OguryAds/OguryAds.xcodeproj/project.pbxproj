@@ -65,7 +65,7 @@
 		43F354602E83ECFF00752DE4 /* OguryCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OguryCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F354642E83ED1300752DE4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		43F354662E83ED5A00752DE4 /* OMSDK_Ogury.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = OMSDK_Ogury.xcframework; sourceTree = "<group>"; };
-		5B5957C50DDCADA60478BE1B /* Pods-OguryAdsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAdsTests.debug.xcconfig"; path = "Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7BD37EB6A08892067D3EF695 /* Pods-OguryAdsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OguryAdsTests.debug.xcconfig"; path = "Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B11EC0B36ABC81B3E1F5A572 /* Pods_OguryAdsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OguryAdsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -129,6 +129,8 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		43E3B5CE2E8BCD4400E927D1 /* OguryAdsHostTestApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = OguryAdsHostTestApp;
 			sourceTree = "<group>";
 		};
@@ -187,8 +189,8 @@
 		16BE5D0ABB909A5D547A9C73 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5B5957C50DDCADA60478BE1B /* Pods-OguryAdsTests.debug.xcconfig */,
 				39821BDEABAECFBB7639048D /* Pods-OguryAdsTests.release.xcconfig */,
+				7BD37EB6A08892067D3EF695 /* Pods-OguryAdsTests.debug.xcconfig */,
 			);
 			name = Pods;
 			path = ../Pods;
@@ -405,13 +407,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OguryAdsTests/Pods-OguryAdsTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -680,7 +678,6 @@
 		};
 		43F34D7C2E83EC8700752DE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B5957C50DDCADA60478BE1B /* Pods-OguryAdsTests.debug.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_CXX_LIBRARY = "libc++";
@@ -706,7 +703,6 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = "${MARKETING_VERSION}";
 				MODULEMAP_FILE = "$(SRCROOT)/OguryAds/Configurations/module.modulemap";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
@@ -727,7 +723,6 @@
 		};
 		43F34D7D2E83EC8700752DE4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B5957C50DDCADA60478BE1B /* Pods-OguryAdsTests.debug.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_CXX_LIBRARY = "libc++";
@@ -749,7 +744,6 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = "${MARKETING_VERSION}";
 				MODULEMAP_FILE = "$(SRCROOT)/OguryAds/Configurations/module.modulemap";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
@@ -770,6 +764,7 @@
 		};
 		43F34D7F2E83EC8700752DE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BD37EB6A08892067D3EF695 /* Pods-OguryAdsTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -792,6 +787,7 @@
 		};
 		43F34D802E83EC8700752DE4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39821BDEABAECFBB7639048D /* Pods-OguryAdsTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;

@@ -25,10 +25,15 @@ end
 # For beta and production releases, the version number is taken from the project configuration.
 # For internal releases, the version is retrieved from the tag instead.
 def get_version(environment, xcodeproj, target, tag)
-  project_version = get_version_number(
-    xcodeproj: xcodeproj,
-    target: target
-  )
+  puts "xcodeproj #{xcodeproj} target #{target}".green
+  project_version = %x[
+    xcodebuild -showBuildSettings \
+      -project ../#{xcodeproj} \
+      -scheme #{target} \
+      -configuration Release | grep MARKETING_VERSION
+  ].strip.split.last
+  
+  puts "📦 MARKETING_VERSION = #{project_version}"
   
   if ["beta", "release"].include? environment
     return project_version
