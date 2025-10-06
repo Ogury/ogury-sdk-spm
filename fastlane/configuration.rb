@@ -114,7 +114,7 @@ end
 
 class OmidTarget < Target
   def initialize(name:, path:, amazon:)
-    super(name: name, projectName: "OguryAds", path: path, scheme: "", publicName: "OguryOM", dependencies: Dependency.new(hasPodspec: true), method: "omid", amazon: amazon, buildable: false)
+    super(name: name, projectName: "OguryAds", path: path, scheme: "", publicName: nil, dependencies: Dependency.new(hasPodspec: true), method: "omid", amazon: amazon, buildable: false)
   end
 end
 
