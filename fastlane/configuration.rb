@@ -7,7 +7,7 @@ class Configuration
     core = Target.new(name: "OguryCore", path: "OguryCore/OguryCore.xcodeproj", scheme: "OguryCore", publicName: nil, dependencies: Dependency.new(hasPodspec: true), method: "core", amazon: "core-ios")
     ads = Target.new(name: "OguryAds", path: "OguryAds/OguryAdsSDK.xcodeproj", scheme: "OguryAds", publicName: nil, dependencies: Dependency.new(core: true, omid: true, hasPodspec: true), method: "ads", amazon: "ads-ios")
     wrapper = Target.new(name: "OguryWrapper", path: "OgurySdk/OgurySdk.xcodeproj", scheme: "OgurySdk", publicName: "OgurySdk", dependencies: Dependency.new(core: true, ads: true, hasPodspec: true), method: "wrapper", amazon: "ios")
-    omid = OmidTarget.new(name: "OguryOM", path: "./OguryAds/", amazon: "omid-ios")
+    omid = OmidTarget.new(name: "OMSDK_Ogury", path: "./OguryAds/", amazon: "omid-ios")
     @targets = Targets.new(ads, core, wrapper, omid)
     iosSdk = Sdk.new("iphoneos", "generic/platform=iOS")
     simulatorSdk = Sdk.new("iphonesimulator", "generic/platform=iOS Simulator")
@@ -114,7 +114,7 @@ end
 
 class OmidTarget < Target
   def initialize(name:, path:, amazon:)
-    super(name: name, projectName: "OguryAds", path: path, scheme: "", publicName: name, dependencies: Dependency.new(hasPodspec: true), method: "omid", amazon: amazon, buildable: false)
+    super(name: name, projectName: "OguryAds", path: path, scheme: "", publicName: "OguryOM", dependencies: Dependency.new(hasPodspec: true), method: "omid", amazon: amazon, buildable: false)
   end
 end
 
