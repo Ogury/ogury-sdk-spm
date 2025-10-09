@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "1630"
+   version = "1.7">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES"
+      buildArchitectures = "Automatic">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "#&quot;${SRCROOT}/../../scripts/updateDerivedData.sh&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "43BCB1192C22DD60002FB0B1"
+                     BuildableName = "AdsTestApp-Prod-art.app"
+                     BlueprintName = "AdsTestApp-Prod-art"
+                     ReferencedContainer = "container:AdsTestApp.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "if [ &quot;$ACTION&quot; = &quot;install&quot; ]; then&#10;&quot;${SRCROOT}/../scripts/update_version.sh&quot; \&#10;  --config-folder &quot;AdsTestApp/Config/Ogury/Prod&quot; \&#10;  --local-xcconfig &quot;${PROJECT_DIR}/../OgurySdk/OgurySdk/Configurations/Configuration.xcconfig&quot; \&#10;  --ogury-mode pod \&#10;  --ogury-framework-name &quot;OgurySdk&quot; \&#10;  --ogury-pod-name &quot;OgurySdk&quot; \&#10;  --ogury-version-label &quot;ogury&quot;&#10;fi&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "43BCB1192C22DD60002FB0B1"
+                     BuildableName = "AdsTestApp-Prod-art.app"
+                     BlueprintName = "AdsTestApp-Prod-art"
+                     ReferencedContainer = "container:AdsTestApp.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "43BCB1192C22DD60002FB0B1"
+               BuildableName = "AdsTestApp-Prod-art.app"
+               BlueprintName = "AdsTestApp-Prod-art"
+               ReferencedContainer = "container:AdsTestApp.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "43BCB1192C22DD60002FB0B1"
+            BuildableName = "AdsTestApp-Prod-art.app"
+            BlueprintName = "AdsTestApp-Prod-art"
+            ReferencedContainer = "container:AdsTestApp.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "43BCB1192C22DD60002FB0B1"
+            BuildableName = "AdsTestApp-Prod-art.app"
+            BlueprintName = "AdsTestApp-Prod-art"
+            ReferencedContainer = "container:AdsTestApp.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>

@@ -1,0 +1,7 @@
+#include "../../../../Pods/Target Support Files/Pods-AdsTestApp-Ext/Pods-AdsTestApp-Ext.debug.xcconfig"
+ASSET_KEY = OGY-4795165606DF
+DEFAULT_ENV = PROD
+PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app.ext
+VERSION = 1.0.0+omid.5.1.0
+BUILD_NUMBER = 1756131017
+CUSTOM_VERSION = 5.2.0.Swift

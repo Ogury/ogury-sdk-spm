@@ -1,0 +1,17 @@
+//
+//  Copyright © 2020-present Ogury. All rights reserved.
+//
+
+// Identification
+PRODUCT_NAME = OgurySdk
+FRAMEWORK_NAME = OgurySdk
+PRODUCT_BUNDLE_IDENTIFIER = com.ogury.OguryWrapper
+
+// Versioning
+MARKETING_VERSION = 5.2.0-swift.2
+BUNDLE_VERSION = 1
+
+// Module
+PRODUCT_MODULE_NAME = OgurySdk
+MODULEMAP_FILE = Configurations/module.modulemap
+

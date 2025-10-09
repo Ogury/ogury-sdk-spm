@@ -1,0 +1,30 @@
+{
+  "configurations" : [
+    {
+      "id" : "C8495E2C-B804-4095-A66E-D427E95D73C4",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:OgurySdk.xcodeproj",
+      "identifier" : "43E3BD3E2E8BD25D00E927D1",
+      "name" : "OgurySdkHostTestApp"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:OgurySdk.xcodeproj",
+        "identifier" : "43C1FD032E8425460005EAB9",
+        "name" : "OgurySdkTests"
+      }
+    }
+  ],
+  "version" : 1
+}

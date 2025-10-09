@@ -27,7 +27,7 @@ platform :ios do
       generate_podfile(environment:environment, targetThreshold:targetThreshold)
       cocoapods(
         podfile: "./Podfile",
-        repo_update: true
+        repo_update: false
       )
     end
 
@@ -215,6 +215,7 @@ lane :test do |options|
     filePath = target.path
     projectName = target.projectName
     tag = options[:tag]
+    puts "environment #{environment} target #{target} filePath #{filePath} projectName #{projectName} tag #{tag}".red
     version = get_version(environment, filePath, projectName, tag)
     artifactory = options[:artifactory] ? options[:artifactory] : false
 
@@ -281,7 +282,7 @@ lane :test do |options|
     generate_podfile(environment:environment, targetThreshold:"ads")
     cocoapods(
       podfile: "./Podfile",
-      repo_update: true
+      repo_update: false
     )
 
     deploy_framework(environment: environment, tag: tag, target: configuration.targets.omid, artifactory: false)
@@ -309,7 +310,7 @@ lane :test do |options|
     generate_podfile(environment:environment, targetThreshold:"sdk")
     cocoapods(
       podfile: "./Podfile",
-      repo_update: true
+      repo_update: false
     )
 
     deploy_framework(environment: environment, tag: tag, target: configuration.targets.wrapper, artifactory: artifactory)

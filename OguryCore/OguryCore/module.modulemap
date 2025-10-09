@@ -1,0 +1,28 @@
+//
+//  module.modulemap
+//  OguryCore
+//
+// Copyright (c) 2025 and Confidential to ___ORGANIZATIONNAME___ All rights reserved.
+//
+
+framework module OguryCore {
+    umbrella header "OguryCore.h"
+    export *
+    module * { export * }
+    
+    // Sous-module privé (ObjC uniquement)
+    explicit module Private [system] {
+        header "OGCInternal.h"
+        header "OguryError+Internal.h"
+        header "OguryLog.h"
+        header "OguryAbstractLogMessage.h"
+        header "OguryLogger.h"
+        header "OguryLogType.h"
+        header "OguryLogLevel.h"
+        header "OguryLogMessage.h"
+        header "OguryLogFormatter.h"
+        header "OguryLogType.h"
+        // ajoute tes autres headers internes ici
+        export *
+    }
+}

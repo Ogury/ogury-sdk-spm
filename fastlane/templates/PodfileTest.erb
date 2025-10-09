@@ -8,17 +8,18 @@ workspace "OgurySdks.xcworkspace"
 install! 'cocoapods',:warn_for_multiple_pod_sources => false, :warn_for_unused_master_specs_repo => false
 
 target "OguryCoreTests" do
-  project "sdk-core-ios/OguryCore"
+  project "OguryCore/OguryCore"
   pod "OCMock", :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
 end
 
 target "OguryAdsTests" do
-  project "sdk-ads-ios/OguryAdsSDK"
+  project "OguryAds/OguryAds"
   pod "OCMock", :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
 end
 
-target 'OguryWrapperTests' do
-  project "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj/"
+#Wrapper
+target 'OgurySdkTests' do
+  project "OgurySdk/OgurySdk.xcodeproj/"
     inherit! :complete
     pod 'OCMock', :git=> 'https://github.com/SDKOguryDev/ocmock', :branch => 'master'
 end

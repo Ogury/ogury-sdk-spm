@@ -4,10 +4,10 @@ class Configuration
   def initialize
     @workspace = Workspace.new("OgurySdks", "OgurySdks.xcworkspace")
     
-    core = Target.new(name: "OguryCore", path: "sdk-core-ios/OguryCore.xcodeproj", scheme: "OguryCore", publicName: nil, dependencies: Dependency.new(hasPodspec: true), method: "core", amazon: "core-ios")
-    ads = Target.new(name: "OguryAds", path: "sdk-ads-ios/OguryAdsSDK.xcodeproj", scheme: "OguryAds", publicName: nil, dependencies: Dependency.new(core: true, omid: true, hasPodspec: true), method: "ads", amazon: "ads-ios")
-    wrapper = Target.new(name: "OguryWrapper", path: "sdk-wrapper-ios/OguryWrapper/OguryWrapper.xcodeproj", scheme: "OguryWrapper", publicName: "OgurySdk", dependencies: Dependency.new(core: true, ads: true, hasPodspec: true), method: "wrapper", amazon: "ios")
-    omid = OmidTarget.new(name: "OMSDK_Ogury", path: "./sdk-ads-ios/", amazon: "omid-ios")
+    core = Target.new(name: "OguryCore", path: "OguryCore/OguryCore.xcodeproj", scheme: "OguryCore", publicName: nil, dependencies: Dependency.new(hasPodspec: true), method: "core", amazon: "core-ios")
+    ads = Target.new(name: "OguryAds", path: "OguryAds/OguryAdsSDK.xcodeproj", scheme: "OguryAds", publicName: nil, dependencies: Dependency.new(core: true, omid: true, hasPodspec: true), method: "ads", amazon: "ads-ios")
+    wrapper = Target.new(name: "OguryWrapper", path: "OgurySdk/OgurySdk.xcodeproj", scheme: "OgurySdk", publicName: "OgurySdk", dependencies: Dependency.new(core: true, ads: true, hasPodspec: true), method: "wrapper", amazon: "ios")
+    omid = OmidTarget.new(name: "OMSDK_Ogury", path: "./OguryAds/", amazon: "omid-ios")
     @targets = Targets.new(ads, core, wrapper, omid)
     iosSdk = Sdk.new("iphoneos", "generic/platform=iOS")
     simulatorSdk = Sdk.new("iphonesimulator", "generic/platform=iOS Simulator")
@@ -23,9 +23,9 @@ class Configuration
     @slack = Slack.new("https://hooks.slack.com/services/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", "#sdk-ios-ci-update")
     @cocoapods = Cocoapods.new("git@github.com:Ogury/ogury-cocoapods-repository.git")
     @frameworks = Frameworks.new()
-    @frameworks.ogury_core = Framework.new("2.1.0-beta.cocoapod.1", "2.1.0", "2.1.0")
-    @frameworks.ogury_ads = Framework.new("4.1.0-beta.cocoapod.1", "4.1.0", "4.1.1")
-    @frameworks.ogury_sdk = Framework.new("5.1.0-beta.cocoapod.1", "5.1.0", "5.1.1")
+    @frameworks.ogury_core = Framework.new("2.1.0--alpha.swift2", "2.1.0", "2.1.0")
+    @frameworks.ogury_ads = Framework.new("4.2.0--alpha.swift2", "4.1.0", "4.1.1")
+    @frameworks.ogury_sdk = Framework.new("5.2.0--alpha.swift2", "5.1.0", "5.1.1")
     @directories = Directories.new("./jenkins/build", "./jenkins/output", "./jenkins/test_derived_data", "./jenkins/testApp")
     prodTestApp = TestApplication.new("prodTestApp", "AdsTestApp-Prod", nil, "co.ogury.sdk.ads.app", "1:743372999564:ios:b2fa9c2a0751d1abca24a9")
     devcTestApp = TestApplication.new("devcTestApp", "AdsTestApp-Devc", nil, "co.ogury.sdk.ads.app.devc", "1:743372999564:ios:a479c7c9a882a87bca24a9")
@@ -114,7 +114,7 @@ end
 
 class OmidTarget < Target
   def initialize(name:, path:, amazon:)
-    super(name: name, projectName: "OguryAds", path: path, scheme: "", publicName: name, dependencies: Dependency.new(hasPodspec: true), method: "omid", amazon: amazon, buildable: false)
+    super(name: name, projectName: "OguryAds", path: path, scheme: "", publicName: nil, dependencies: Dependency.new(hasPodspec: true), method: "omid", amazon: amazon, buildable: false)
   end
 end
 

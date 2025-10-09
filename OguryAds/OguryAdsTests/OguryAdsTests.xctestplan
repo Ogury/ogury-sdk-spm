@@ -1,0 +1,42 @@
+{
+  "configurations" : [
+    {
+      "id" : "66693AD4-4CFE-4039-8368-C0A43F6950E3",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:OguryAds.xcodeproj",
+      "identifier" : "43E3B5CC2E8BCD4400E927D1",
+      "name" : "OguryAdsHostTestApp"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "skippedTests" : [
+        "OGAWebViewCleanupManagerTests\/testKeepLiveObject",
+        "OGAWebViewUserAgentServiceTests",
+        "OGAWebViewUserAgentServiceTests\/testInit",
+        "OGAWebViewUserAgentServiceTests\/testShared",
+        "OGAWebViewUserAgentServiceTests\/testSyncWebViewUserAgent",
+        "OGAWebViewUserAgentServiceTests\/testWebViewDidFinishNavigationFirstAllTimeFail",
+        "OGAWebViewUserAgentServiceTests\/testWebViewDidFinishNavigationFirstTimeFail",
+        "OGAWebViewUserAgentServiceTests\/testWebViewDidFinishNavigationFirstTimeSuccess",
+        "OGAWebViewUserAgentServiceTests\/testWhenServiceIsResetedAfterReceivingUserAgentThenNextCallWillTriggerDelegate",
+        "OGAWebViewUserAgentServiceTests\/testWhenServiceIsResetedBeforeReceivingUserAgentThenWebviewDelegateIsCalled"
+      ],
+      "target" : {
+        "containerPath" : "container:OguryAds.xcodeproj",
+        "identifier" : "43F34D712E83EC8700752DE4",
+        "name" : "OguryAdsTests"
+      }
+    }
+  ],
+  "version" : 1
+}

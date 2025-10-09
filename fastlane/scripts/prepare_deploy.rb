@@ -341,7 +341,7 @@ lane :prepare_omid_for_deployment do |options|
   #copy framework before deploying
   Dir.chdir("..") do
     sh("mkdir -p #{configuration.directories.output}")
-    sh("cp -R #{target.path}#{target.name}.xcframework #{configuration.directories.output}")
+    sh("cp -R #{target.path}#{target.name}.xcframework #{configuration.directories.output}/#{target.publicName}.xcframework")
   end
 
   prepare_for_deployment(
@@ -409,7 +409,7 @@ private_lane :deploy_test_app do |options|
   generate_podfile(environment:'prod', targetThreshold:"all")
   cocoapods(
     podfile: "./Podfile",
-    repo_update: true
+    #repo_update: true
   )
   
   puts "Building TestApp".green
