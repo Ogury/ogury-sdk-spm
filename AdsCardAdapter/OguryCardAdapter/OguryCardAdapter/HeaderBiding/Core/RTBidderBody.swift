@@ -35,6 +35,7 @@ struct RTBidderBody: Encodable {
     var tmax: Int = 550
     var user: User = .init()
     var test: Int = 0
+    var id: String = UUID().uuidString.lowercased()
 }
 
 struct Imp: Encodable {
