@@ -23,6 +23,7 @@ struct RTBidderBody: Encodable {
         case tmax
         case user
         case test
+        case id
     }
 
     var app: App = .init()
