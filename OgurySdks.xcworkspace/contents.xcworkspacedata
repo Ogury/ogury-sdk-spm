@@ -11,6 +11,9 @@
       location = "group:OgurySdk/OgurySdk.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:OgurySdk/OgurySdk-SPM">
+   </FileRef>
+   <FileRef
       location = "group:AdsCardAdapter/AdsCardLibrary/AdsCardLibrary.xcodeproj">
    </FileRef>
    <FileRef
