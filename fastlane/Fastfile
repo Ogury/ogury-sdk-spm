@@ -1,5 +1,6 @@
 import("./configuration.rb")
 import("./scripts/test.rb")
+import("./scripts/spm.rb")
 import("./scripts/utility_functions.rb")
 import("./scripts/prepare_deploy.rb")
 import("./scripts/deploy.rb")
@@ -410,6 +411,13 @@ lane :test do |options|
     environment = options[:environment]
     tag = options[:tag]
     deploy_podspec(configuration: configuration, environment: environment, tag:tag, target: configuration.targets.wrapper)
+  end
+
+  desc ""
+  lane :deploy_spm do |options|
+    environment = options[:environment]
+    UI.user_error!("Missing environment") unless environment
+    spm(configuration: configuration, environment: environment)
   end
 
 end

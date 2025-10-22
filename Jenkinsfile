@@ -149,25 +149,25 @@ pipeline {
                         def isArtifactory = elements.contains("art")
                         def killModeEnabled = elements.contains("killModeEnabled")
 
-                    // environment : internal - beta - release
-                    def envType = ""
-                    switch (elements[0]) {
-                        case "internal":
-                            envType = "prod"
-                            break
-                        case "beta":
-                            envType = "beta"
-                            break
-                        case "release":
-                            envType = "release"
-                            // Ensure that release mode always has this setting to false
-                            killModeEnabled = false
-                            // always use external dependencies when compiling for prod
-                            isArtifactory = false
-                            break
-                        default:
-                            error "Unknown environment type: ${elements[0]}"
-                    }
+                        // environment : internal - beta - release
+                        def envType = ""
+                        switch (elements[0]) {
+                            case "internal":
+                                envType = "prod"
+                                break
+                            case "beta":
+                                envType = "beta"
+                                break
+                            case "release":
+                                envType = "release"
+                                // Ensure that release mode always has this setting to false
+                                killModeEnabled = false
+                                // always use external dependencies when compiling for prod
+                                isArtifactory = false
+                                break
+                            default:
+                                error "Unknown environment type: ${elements[0]}"
+                        }
 
                         // framework : ads (+ omid) - core - wrapper
                         def framework = ""
@@ -185,19 +185,19 @@ pipeline {
                                 error "Unknown framework type: ${elements[1]}"
                         }
 
-                    def targetThreshold = "all"
-                    if (env.TAG_NAME && env.TAG_NAME.contains('-core-')) {
-                        targetThreshold = "core"
-                    }
-                    if (env.TAG_NAME && env.TAG_NAME.contains('-ads-')) {
-                        targetThreshold = "ads"
-                    }
-                    if (env.TAG_NAME && env.TAG_NAME.contains('wrapper')) {
-                        targetThreshold = "sdk"
-                    }
-                    if (env.TAG_NAME && env.TAG_NAME.contains('-killModeEnabled')) {
-                        killModeEnabled = true
-                    }
+                        def targetThreshold = "all"
+                        if (env.TAG_NAME && env.TAG_NAME.contains('-core-')) {
+                            targetThreshold = "core"
+                        }
+                        if (env.TAG_NAME && env.TAG_NAME.contains('-ads-')) {
+                            targetThreshold = "ads"
+                        }
+                        if (env.TAG_NAME && env.TAG_NAME.contains('wrapper')) {
+                            targetThreshold = "sdk"
+                        }
+                        if (env.TAG_NAME && env.TAG_NAME.contains('-killModeEnabled')) {
+                            killModeEnabled = true
+                        }
 
                         def isBetaOrRelease = (envType == "beta" || envType == "release")
                         if (isBetaOrRelease) {
@@ -208,18 +208,22 @@ pipeline {
         
                         echo "Deploying ${framework} in ${envType} mode, artifactory: ${isArtifactory}, targetThreshold: ${targetThreshold}, killModeEnabled: ${killModeEnabled}"
 
-                        // Main deployment logic
-                        sh """#!/bin/zsh -l
-                            bundle exec fastlane deploy_${framework}_framework environment:${envType} tag:${env.TAG_NAME} artifactory:${isArtifactory} targetThreshold:${targetThreshold} killModeEnabled:${killModeEnabled}
-                        """
-        
-                        // Handle additional steps for beta/release
-                        if (isBetaOrRelease) {
-                            sshagent(['Ogy-JenkinsAuth']) {
+                        sshagent(['Ogy-JenkinsAuth']) {
+                            // Main deployment logic
+                            sh """#!/bin/zsh -l
+                                bundle exec fastlane deploy_${framework}_framework environment:${envType} tag:${env.TAG_NAME} artifactory:${isArtifactory} targetThreshold:${targetThreshold} killModeEnabled:${killModeEnabled}
+                            """
+            
+                            // Handle additional steps for beta/release
+                            if (isBetaOrRelease) {
                                 sh """#!/bin/zsh -l
                                     bundle exec fastlane deploy_${framework}_podspec environment:${envType} tag:${env.TAG_NAME} artifactory:${isArtifactory} targetThreshold:${targetThreshold}
                                 """
                             }
+
+                            sh """#!/bin/zsh -l
+                                bundle exec fastlane deploy_spm environment:${envType}
+                            """    
                         }
                     }
                 }

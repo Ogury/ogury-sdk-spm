@@ -15,7 +15,7 @@
 		438131362E0BC1B1004067AD /* OgurySdk in Frameworks */ = {isa = PBXBuildFile; productRef = 438131352E0BC1B1004067AD /* OgurySdk */; };
 		438131752E0BC215004067AD /* OgurySdk in Frameworks */ = {isa = PBXBuildFile; productRef = 438131742E0BC215004067AD /* OgurySdk */; };
 		438131902E0C2180004067AD /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 4381318F2E0C2180004067AD /* GoogleMobileAds */; };
-		438131922E0C2180004067AD /* OgurySdk in Frameworks */ = {isa = PBXBuildFile; productRef = 438131912E0C2180004067AD /* OgurySdk */; };
+		43AE4D842EA62C3D004179BA /* OgurySdk in Frameworks */ = {isa = PBXBuildFile; productRef = 43AE4D832EA62C3D004179BA /* OgurySdk */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43AE4D842EA62C3D004179BA /* OgurySdk in Frameworks */,
 				438131362E0BC1B1004067AD /* OgurySdk in Frameworks */,
 				4381311C2E0BC160004067AD /* OgurySdk in Frameworks */,
 				438131192E0BC150004067AD /* OgurySdk in Frameworks */,
@@ -79,7 +80,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				438131922E0C2180004067AD /* OgurySdk in Frameworks */,
 				438131902E0C2180004067AD /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,6 +141,7 @@
 				438131322E0BC19E004067AD /* OgurySdk */,
 				438131352E0BC1B1004067AD /* OgurySdk */,
 				438131742E0BC215004067AD /* OgurySdk */,
+				43AE4D832EA62C3D004179BA /* OgurySdk */,
 			);
 			productName = OgurySpmTestApp;
 			productReference = 437449512E09517F00475BFA /* OgySpmTests.app */;
@@ -165,7 +166,6 @@
 			name = OgySpmTestsUITests;
 			packageProductDependencies = (
 				4381318F2E0C2180004067AD /* GoogleMobileAds */,
-				438131912E0C2180004067AD /* OgurySdk */,
 			);
 			productName = OgySpmTestsUITests;
 			productReference = 4381317A2E0BE521004067AD /* OgySpmTestsUITests.xctest */;
@@ -201,7 +201,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				43744C5E2E09819200475BFA /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
-				438131732E0BC215004067AD /* XCLocalSwiftPackageReference "../ogury-sdk-spm" */,
+				43AE4D822EA62C3D004179BA /* XCLocalSwiftPackageReference "../OgurySdk-SPM" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 437449522E09517F00475BFA /* Products */;
@@ -517,9 +517,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		438131732E0BC215004067AD /* XCLocalSwiftPackageReference "../ogury-sdk-spm" */ = {
+		43AE4D822EA62C3D004179BA /* XCLocalSwiftPackageReference "../OgurySdk-SPM" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = "../ogury-sdk-spm";
+			relativePath = "../OgurySdk-SPM";
 		};
 /* End XCLocalSwiftPackageReference section */
 
@@ -570,9 +570,8 @@
 			package = 43744C5E2E09819200475BFA /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
 			productName = GoogleMobileAds;
 		};
-		438131912E0C2180004067AD /* OgurySdk */ = {
+		43AE4D832EA62C3D004179BA /* OgurySdk */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 438131732E0BC215004067AD /* XCLocalSwiftPackageReference "../ogury-sdk-spm" */;
 			productName = OgurySdk;
 		};
 /* End XCSwiftPackageProductDependency section */

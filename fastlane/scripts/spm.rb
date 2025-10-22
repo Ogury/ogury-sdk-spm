@@ -1,12 +1,21 @@
-
 require "open-uri"
 require "fileutils"
 require "tmpdir"
-###############################################################
-# update_spm_package
-#
-# Fully replaces update_package.rb logic inside Fastlane
-###############################################################
+
+desc "Updates the package.swift file, upload it to spm repo, create a release branch, a tag and a release version"
+lane :spm do |options|
+  environment = options[:environment]
+  UI.user_error!("Missing environment") unless environment
+  configuration = options[:configuration]
+
+  ogury_sdk_version = get_module_version(environment, configuration.frameworks.ogury_sdk.internal_version, configuration.frameworks.ogury_sdk.beta_version, configuration.frameworks.ogury_sdk.release_version)
+  update_spm_package(configuration: configuration, environment: environment)
+  #build_spm_package()
+  repo_name = environment == 'prod' ? "ogury-sdk-spm" : "sdk-internal-spm"
+  push_spm_package(repo_name: repo_name, version: ogury_sdk_version)
+  create_spm_release(repo_name: repo_name, version: ogury_sdk_version)
+end
+
 desc "Update Ogury Package.swift with latest binaries & checksums"
 lane :update_spm_package do |options|
 
@@ -16,9 +25,17 @@ lane :update_spm_package do |options|
   UI.user_error!("Missing configuration") unless configuration
 
   internal_mode = !(environment == "release" || environment == "beta")
-  base_url = internal_mode ? "https://binaries.ogury.co/internal/prod" : "https://binaries.ogury.co"
-
   UI.message("🔧 Mode: #{internal_mode ? "Internal" : "Release"}")
+
+  base_url = ""
+  case environment
+      when "release"
+          base_url = "https://binaries.ogury.co"
+      when "beta"
+          base_url = "https://binaries.ogury.co/beta"
+      else
+          base_url = "https://binaries.ogury.co/internal/prod"
+  end
 
   ogury_core_version = get_module_version(environment, configuration.frameworks.ogury_core.internal_version, configuration.frameworks.ogury_core.beta_version, configuration.frameworks.ogury_core.release_version)
   ogury_ads_version = get_module_version(environment, configuration.frameworks.ogury_ads.internal_version, configuration.frameworks.ogury_ads.beta_version, configuration.frameworks.ogury_ads.release_version)
@@ -73,7 +90,7 @@ lane :update_spm_package do |options|
     end
 
     UI.message("📝 Updating Package.swift...")
-    package_path = File.expand_path("../Package.swift", __dir__)
+    package_path = File.expand_path("../../OgurySdk/OgurySdk-SPM/Package.swift", __dir__)
     package_contents = File.read(package_path)
 
     sdks.each do |sdk|
@@ -102,7 +119,7 @@ end
 ###############################################################
 desc "Build the Ogury SPM package for validation"
 lane :build_spm_package do
-  Dir.chdir("../ogury-sdk-spm") do
+  Dir.chdir("../OgurySdk/OgurySdk-SPM/") do
     sh "swift build --configuration release"
   end
 end
@@ -110,15 +127,68 @@ end
 ###############################################################
 # push_spm_package
 ###############################################################
-desc "Push updated Package.swift to ogury-sdk-spm"
+desc "Push updated Package.swift to a release branch and open PR on ogury-sdk-spm"
 lane :push_spm_package do |options|
-  branch = options[:branch] || "main"
-  Dir.chdir("../ogury-sdk-spm") do
-    sh "git config user.name 'Jenkins CI'"
-    sh "git config user.email 'ci@jenkins.local'"
-    sh "git add Package.swift"
-    sh "git commit -m 'Update Package.swift from sdk-ios build' || true"
-    sh "git push origin #{branch}"
+  git_token    = ENV["GIT_TOKEN"]
+  git_username = ENV["GIT_USERNAME"] || "weareogury"
+
+  UI.user_error!("Missing GIT_TOKEN in environment") if git_token.to_s.strip.empty?
+
+  repo_name        = options[:repo_name] || "ogury-sdk-spm"
+  version          = options[:version]
+  branch           = options[:branch] || (version ? "release/#{version}" : "release-#{Time.now.utc.strftime('%Y%m%d-%H%M%S')}")
+  source_path_opt  = options[:source_path] || "./Package.swift"
+  commit_message   = options[:commit_message] || "Update Package.swift for #{version || branch}"
+  source_path      = File.expand_path(source_path_opt, Dir.pwd)
+  repo_url         = "https://#{git_username}:#{git_token}@github.com/ogury/#{repo_name}.git"
+
+  raise "Source Package.swift not found: #{source_path}" unless File.exist?(source_path)
+
+  tmpdir = Dir.mktmpdir("ogury-spm-clone")
+
+  begin
+    UI.message("⬇️  Cloning #{repo_name} main branch into #{tmpdir}")
+    sh("git clone --single-branch --branch main #{repo_url} #{tmpdir}")
+
+    Dir.chdir(tmpdir) do
+      # Create and switch to new release branch
+      sh("git checkout -b #{branch}")
+
+      FileUtils.cp(source_path, File.join(tmpdir, "Package.swift"))
+
+      sh("git config user.name 'Jenkins CI'")
+      sh("git config user.email 'ci@jenkins.local'")
+
+      sh("git add Package.swift")
+      sh("git commit -m \"#{commit_message}\" || true")
+      sh("git push origin #{branch}")
+      UI.success("✅ Branch #{branch} pushed to #{repo_name}")
+
+      # Create Pull Request via GitHub API
+      if git_token
+        pr_title = "Release #{version || branch}"
+        pr_body = "Automated PR for SDK release #{version || branch}."
+        UI.message("📬 Creating Pull Request for #{branch} -> main")
+
+        sh <<~SH
+          curl -s -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer #{git_token}" \
+            https://api.github.com/repos/ogury/#{repo_name}/pulls \
+            -d '{
+              "title": "#{pr_title}",
+              "head": "#{branch}",
+              "base": "main",
+              "body": "#{pr_body}"
+            }'
+        SH
+      end
+    end
+  ensure
+    if tmpdir && Dir.exist?(tmpdir)
+      UI.message("🧹 Cleaning up temporary directory #{tmpdir}")
+      FileUtils.rm_rf(tmpdir)
+    end
   end
 end
 
@@ -131,13 +201,13 @@ lane :create_spm_release do |options|
   release_notes = options[:release_notes] || "Automated release #{version} generated by sdk-ios CI"
   raise "Missing version parameter" unless version
 
-  Dir.chdir("../ogury-sdk-spm") do
+  Dir.chdir("../OgurySdk/OgurySdk-SPM/") do
     sh "git tag #{version}"
     sh "git push origin #{version}"
   end
 
-  github_api_token = ENV["GITHUB_TOKEN"]
-  raise "GITHUB_TOKEN missing" unless github_api_token
+  github_api_token = ENV["git_token"]
+  raise "git_token missing" unless github_api_token
 
   sh <<~SH
     curl -X POST \
@@ -152,16 +222,4 @@ lane :create_spm_release do |options|
         "prerelease": false
       }'
   SH
-end
-
-###############################################################
-# deploy_spm_package (main CI entry point)
-###############################################################
-desc "Update, build, push, and release the Ogury SPM package"
-lane :deploy_spm_package do |options|
-  version = options[:version]
-  update_spm_package(internal: options[:internal])
-  build_spm_package
-  push_spm_package(branch: "main")
-  create_spm_release(version: version, release_notes: options[:release_notes])
 end

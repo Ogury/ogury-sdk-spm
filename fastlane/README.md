@@ -13,6 +13,46 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
+### spm
+
+```sh
+[bundle exec] fastlane spm
+```
+
+Updates the package.swift file, upload it to spm repo, create a release branch, a tag and a release version
+
+### update_spm_package
+
+```sh
+[bundle exec] fastlane update_spm_package
+```
+
+Update Ogury Package.swift with latest binaries & checksums
+
+### build_spm_package
+
+```sh
+[bundle exec] fastlane build_spm_package
+```
+
+Build the Ogury SPM package for validation
+
+### push_spm_package
+
+```sh
+[bundle exec] fastlane push_spm_package
+```
+
+Push updated Package.swift to a release branch and open PR on ogury-sdk-spm
+
+### create_spm_release
+
+```sh
+[bundle exec] fastlane create_spm_release
+```
+
+Tag and create a GitHub release for ogury-sdk-spm
+
 ### prepare_for_deployment
 
 ```sh
@@ -169,6 +209,14 @@ Proceed to deploy a new version of the ads framewok for the specified environmen
 ```
 
 Proceed to deploy a new version of the ads framewok for the specified environment
+
+### ios deploy_spm
+
+```sh
+[bundle exec] fastlane ios deploy_spm
+```
+
+
 
 ----
 
