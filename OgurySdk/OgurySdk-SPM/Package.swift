@@ -14,18 +14,18 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "OguryWrapper",
-            url: "https://binaries.ogury.co/internal/prod/OgurySdk/OgurySdk-Prod-5.2.0-rc.3.zip",
-            checksum: "e8f121cf9775ded60784d24a7bf5f0d2d1bcfa917e1cdb5478fa054d03560fd2"
+            url: "https://binaries.ogury.co/internal/prod/OgurySdk/OgurySdk-Prod-5.2.0-rc.5.zip",
+            checksum: "da4a2361d0c8a87c1d5a04466b814a4a9196deb5542b3cff6a6cc38f2a34e957"
         ),
         .binaryTarget(
             name: "OguryAds",
-            url: "https://binaries.ogury.co/internal/prod/OguryAds/OguryAds-Prod-4.2.0-rc.3.zip",
-            checksum: "b2fdd41198d663fdf6a385bc07825135f7a2f4633c283b3b82426ecc2de545f8"
+            url: "https://binaries.ogury.co/internal/prod/OguryAds/OguryAds-Prod-4.2.0-rc.5.zip",
+            checksum: "ebba8fdf30ca65570bf7e68036257b40d41f361831bd180677fa58e6f0f75948"
         ),
         .binaryTarget(
             name: "OguryCore",
-            url: "https://binaries.ogury.co/internal/prod/OguryCore/OguryCore-Prod-2.2.0-rc.1.zip",
-            checksum: "b1dcadcd4c6be799cae470f49a47ca9df4ec00071edb2e25ca2f78d2206af7e0"
+            url: "https://binaries.ogury.co/internal/prod/OguryCore/OguryCore-Prod-2.2.0-rc.2.zip",
+            checksum: "b3b3bb3ccaebb0a54cc23bf868e30641337ee10b106777f8684cf6a2b6ecb421"
         ),
         .binaryTarget(
             name: "OMSDK",

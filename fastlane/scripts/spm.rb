@@ -137,7 +137,7 @@ lane :push_spm_package do |options|
   repo_name       = repo_type == "private" ? "internal-ogury-sdk-spm" : "ogury-sdk-spm"
   branch          = options[:branch] || (options[:version] ? "release/#{options[:version]}" : "release-#{Time.now.utc.strftime('%Y%m%d-%H%M%S')}")
   version         = options[:version]
-  source_path_opt = options[:source_path] || "./Package.swift"
+  source_path_opt = options[:source_path] || "../OgurySdk/OgurySdk-SPM/Package.swift"
   commit_message  = options[:commit_message] || "Update Package.swift for #{version || branch}"
   source_path     = File.expand_path(source_path_opt, Dir.pwd)
   repo_path       = options[:repo_path] || "../OgurySdk/OgurySdk-SPM"
@@ -146,8 +146,8 @@ lane :push_spm_package do |options|
   raise "Repo path not found: #{repo_path}" unless Dir.exist?(repo_path)
 
   Dir.chdir(repo_path) do
-    sh("git fetch #{repo_type} main")
-    sh("git checkout -B #{branch} #{repo_type}/main")
+    sh("git fetch #{repo_type} master")
+    sh("git checkout -B #{branch} #{repo_type}/master")
 
     FileUtils.cp(source_path, File.join(repo_path, "Package.swift"))
 
@@ -162,7 +162,7 @@ lane :push_spm_package do |options|
     # Create Pull Request via GitHub API
     pr_title = "Release #{version || branch}"
     pr_body  = "Automated PR for SDK release #{version || branch}."
-    UI.message("📬 Creating Pull Request for #{branch} → main")
+    UI.message("📬 Creating Pull Request for #{branch} → master")
 
     sh <<~SH
       curl -s -X POST \
@@ -172,7 +172,7 @@ lane :push_spm_package do |options|
         -d '{
           "title": "#{pr_title}",
           "head": "#{branch}",
-          "base": "main",
+          "base": "master",
           "body": "#{pr_body}"
         }'
     SH
