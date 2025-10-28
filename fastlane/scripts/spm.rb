@@ -8,12 +8,12 @@ lane :spm do |options|
   UI.user_error!("Missing environment") unless environment
   configuration = options[:configuration]
 
+  configure_git_remotes
   ogury_sdk_version = get_module_version(environment, configuration.frameworks.ogury_sdk.internal_version, configuration.frameworks.ogury_sdk.beta_version, configuration.frameworks.ogury_sdk.release_version)
   update_spm_package(configuration: configuration, environment: environment)
-  #build_spm_package()
-  repo_name = environment == 'prod' ? "ogury-sdk-spm" : "sdk-internal-spm"
-  push_spm_package(repo_name: repo_name, version: ogury_sdk_version)
-  create_spm_release(repo_name: repo_name, version: ogury_sdk_version)
+  repo_type = environment == 'prod' ? "official" : "private"
+  push_spm_package(repo_type: repo_type, version: ogury_sdk_version)
+  create_spm_release(repo_type: repo_type, version: ogury_sdk_version)
 end
 
 desc "Update Ogury Package.swift with latest binaries & checksums"
@@ -131,64 +131,51 @@ desc "Push updated Package.swift to a release branch and open PR on ogury-sdk-sp
 lane :push_spm_package do |options|
   git_token    = ENV["GIT_TOKEN"]
   git_username = ENV["GIT_USERNAME"] || "weareogury"
-
   UI.user_error!("Missing GIT_TOKEN in environment") if git_token.to_s.strip.empty?
 
-  repo_name        = options[:repo_name] || "ogury-sdk-spm"
-  version          = options[:version]
-  branch           = options[:branch] || (version ? "release/#{version}" : "release-#{Time.now.utc.strftime('%Y%m%d-%H%M%S')}")
-  source_path_opt  = options[:source_path] || "./Package.swift"
-  commit_message   = options[:commit_message] || "Update Package.swift for #{version || branch}"
-  source_path      = File.expand_path(source_path_opt, Dir.pwd)
-  repo_url         = "https://#{git_username}:#{git_token}@github.com/ogury/#{repo_name}.git"
+  repo_type       = options[:repo_type] || "official" # "official" or "private"
+  repo_name       = repo_type == "private" ? "internal-ogury-sdk-spm" : "ogury-sdk-spm"
+  branch          = options[:branch] || (options[:version] ? "release/#{options[:version]}" : "release-#{Time.now.utc.strftime('%Y%m%d-%H%M%S')}")
+  version         = options[:version]
+  source_path_opt = options[:source_path] || "./Package.swift"
+  commit_message  = options[:commit_message] || "Update Package.swift for #{version || branch}"
+  source_path     = File.expand_path(source_path_opt, Dir.pwd)
+  repo_path       = options[:repo_path] || "../OgurySdk/OgurySdk-SPM"
 
   raise "Source Package.swift not found: #{source_path}" unless File.exist?(source_path)
+  raise "Repo path not found: #{repo_path}" unless Dir.exist?(repo_path)
 
-  tmpdir = Dir.mktmpdir("ogury-spm-clone")
+  Dir.chdir(repo_path) do
+    sh("git fetch #{repo_type} main")
+    sh("git checkout -B #{branch} #{repo_type}/main")
 
-  begin
-    UI.message("⬇️  Cloning #{repo_name} main branch into #{tmpdir}")
-    sh("git clone --single-branch --branch main #{repo_url} #{tmpdir}")
+    FileUtils.cp(source_path, File.join(repo_path, "Package.swift"))
 
-    Dir.chdir(tmpdir) do
-      # Create and switch to new release branch
-      sh("git checkout -b #{branch}")
+    sh("git config user.name 'Jenkins CI'")
+    sh("git config user.email 'ci@jenkins.local'")
 
-      FileUtils.cp(source_path, File.join(tmpdir, "Package.swift"))
+    sh("git add Package.swift")
+    sh("git commit -m \"#{commit_message}\" || true")
+    sh("git push #{repo_type} #{branch}")
+    UI.success("✅ Branch #{branch} pushed to #{repo_name} (remote: #{repo_type})")
 
-      sh("git config user.name 'Jenkins CI'")
-      sh("git config user.email 'ci@jenkins.local'")
+    # Create Pull Request via GitHub API
+    pr_title = "Release #{version || branch}"
+    pr_body  = "Automated PR for SDK release #{version || branch}."
+    UI.message("📬 Creating Pull Request for #{branch} → main")
 
-      sh("git add Package.swift")
-      sh("git commit -m \"#{commit_message}\" || true")
-      sh("git push origin #{branch}")
-      UI.success("✅ Branch #{branch} pushed to #{repo_name}")
-
-      # Create Pull Request via GitHub API
-      if git_token
-        pr_title = "Release #{version || branch}"
-        pr_body = "Automated PR for SDK release #{version || branch}."
-        UI.message("📬 Creating Pull Request for #{branch} -> main")
-
-        sh <<~SH
-          curl -s -X POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer #{git_token}" \
-            https://api.github.com/repos/ogury/#{repo_name}/pulls \
-            -d '{
-              "title": "#{pr_title}",
-              "head": "#{branch}",
-              "base": "main",
-              "body": "#{pr_body}"
-            }'
-        SH
-      end
-    end
-  ensure
-    if tmpdir && Dir.exist?(tmpdir)
-      UI.message("🧹 Cleaning up temporary directory #{tmpdir}")
-      FileUtils.rm_rf(tmpdir)
-    end
+    sh <<~SH
+      curl -s -X POST \
+        -H "Accept: application/vnd.github+json" \
+        -H "Authorization: Bearer #{git_token}" \
+        https://api.github.com/repos/ogury/#{repo_name}/pulls \
+        -d '{
+          "title": "#{pr_title}",
+          "head": "#{branch}",
+          "base": "main",
+          "body": "#{pr_body}"
+        }'
+    SH
   end
 end
 
@@ -197,29 +184,72 @@ end
 ###############################################################
 desc "Tag and create a GitHub release for ogury-sdk-spm"
 lane :create_spm_release do |options|
-  version = options[:version]
+  git_token = ENV["GIT_TOKEN"]
+  UI.user_error!("Missing GIT_TOKEN in environment") if git_token.to_s.strip.empty?
+
+  version       = options[:version]
+  repo_type     = options[:repo_type] || "official"
+  repo_name     = repo_type == "private" ? "internal-ogury-sdk-spm" : "ogury-sdk-spm"
+  repo_path     = options[:repo_path] || "../OgurySdk/OgurySdk-SPM"
   release_notes = options[:release_notes] || "Automated release #{version} generated by sdk-ios CI"
+
   raise "Missing version parameter" unless version
+  raise "Repo path not found: #{repo_path}" unless Dir.exist?(repo_path)
 
-  Dir.chdir("../OgurySdk/OgurySdk-SPM/") do
-    sh "git tag #{version}"
-    sh "git push origin #{version}"
+  Dir.chdir(repo_path) do
+    UI.message("🏷️ Tagging version #{version} on #{repo_name} (remote: #{repo_type})")
+
+    sh("git fetch #{repo_type} --tags")
+    sh("git tag #{version}")
+    sh("git push #{repo_type} #{version}")
+
+    UI.success("✅ Tag #{version} pushed to #{repo_name}")
+
+    UI.message("🚀 Creating GitHub release for #{version}")
+
+    sh <<~SH
+      curl -s -X POST \
+        -H "Accept: application/vnd.github+json" \
+        -H "Authorization: Bearer #{git_token}" \
+        https://api.github.com/repos/ogury/#{repo_name}/releases \
+        -d '{
+          "tag_name": "#{version}",
+          "name": "v#{version}",
+          "body": "#{release_notes}",
+          "draft": false,
+          "prerelease": false
+        }'
+    SH
   end
+end
 
-  github_api_token = ENV["git_token"]
-  raise "git_token missing" unless github_api_token
+desc "Ensure both 'official' and 'private' Git remotes exist for OgurySdk-SPM"
+lane :configure_git_remotes do
+  Dir.chdir("../OgurySdk/OgurySdk-SPM") do
+    # Liste les remotes existants
+    existing_remotes = sh("git remote").split("\n").map(&:strip)
 
-  sh <<~SH
-    curl -X POST \
-      -H "Accept: application/vnd.github+json" \
-      -H "Authorization: Bearer #{github_api_token}" \
-      https://api.github.com/repos/ogury/ogury-sdk-spm/releases \
-      -d '{
-        "tag_name": "#{version}",
-        "name": "v#{version}",
-        "body": "#{release_notes}",
-        "draft": false,
-        "prerelease": false
-      }'
-  SH
+    # Définis les URLs officielles
+    official_url = "git@github.com:weareogury/ogury-sdk-spm.git"
+    private_url  = "git@github.com:ogury/internal-ogury-sdk-spm.git"
+
+    # Si 'official' n’existe pas, on le crée
+    unless existing_remotes.include?("official")
+      UI.message("🔹 Adding remote 'official' → #{official_url}")
+      sh("git remote add official #{official_url}")
+    else
+      UI.message("✅ Remote 'official' already exists")
+    end
+
+    # Si 'private' n’existe pas, on le crée
+    unless existing_remotes.include?("private")
+      UI.message("🔹 Adding remote 'private' → #{private_url}")
+      sh("git remote add private #{private_url}")
+    else
+      UI.message("✅ Remote 'private' already exists")
+    end
+
+    # Vérifie les remotes finaux
+    sh("git remote -v")
+  end
 end

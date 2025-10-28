@@ -53,6 +53,14 @@ Push updated Package.swift to a release branch and open PR on ogury-sdk-spm
 
 Tag and create a GitHub release for ogury-sdk-spm
 
+### configure_git_remotes
+
+```sh
+[bundle exec] fastlane configure_git_remotes
+```
+
+Ensure both 'official' and 'private' Git remotes exist for OgurySdk-SPM
+
 ### prepare_for_deployment
 
 ```sh
