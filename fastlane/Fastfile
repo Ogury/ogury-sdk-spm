@@ -18,6 +18,8 @@ platform :ios do
       raise "No environment specified!".red
     end    
 
+    update_submodule_before_build
+
     environment = options[:environment]
     targetThreshold = options[:targetThreshold] ? options[:targetThreshold] : "all"
 

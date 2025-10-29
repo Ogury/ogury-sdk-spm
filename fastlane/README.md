@@ -61,10 +61,10 @@ Tag and create a GitHub release for ogury-sdk-spm
 
 Ensure both 'official' and 'private' Git remotes exist for OgurySdk-SPM
 
-### update_submodule
+### update_submodule_before_build
 
 ```sh
-[bundle exec] fastlane update_submodule
+[bundle exec] fastlane update_submodule_before_build
 ```
 
 

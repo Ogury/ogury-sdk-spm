@@ -249,18 +249,14 @@ lane :configure_git_remotes do
   end
 end
 
-lane :update_submodule do
-  sh <<~BASH
-    echo "➡️ Initialisation du submodule"
-    git submodule update --init --recursive
+lane :update_submodule_before_build do |options|
+  repo_path = options[:repo_path] || "../OgurySdk/OgurySdk-SPM"
+  remote    = options[:remote] || "private"
+  branch    = options[:branch] || "master"
 
-    echo "➡️ Mise à jour du submodule sur la dernière version privée"
-    cd OgurySdk/OgurySdk-SPM
-    git fetch private
-    git checkout master
-    git pull private master
-
-    echo "✅ Submodule OgurySdk-SPM mis à jour sur le dernier commit master"
-    cd ../..
-  BASH
+  Dir.chdir(repo_path) do
+    sh("git fetch #{remote}")
+    sh("git checkout #{branch}")
+    sh("git pull #{remote} #{branch}")
+  end
 end
