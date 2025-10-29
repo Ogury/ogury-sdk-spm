@@ -43,7 +43,7 @@ Build the Ogury SPM package for validation
 [bundle exec] fastlane push_spm_package
 ```
 
-Push updated Package.swift to a release branch and open PR on ogury-sdk-spm
+
 
 ### create_spm_release
 
@@ -60,6 +60,14 @@ Tag and create a GitHub release for ogury-sdk-spm
 ```
 
 Ensure both 'official' and 'private' Git remotes exist for OgurySdk-SPM
+
+### update_submodule
+
+```sh
+[bundle exec] fastlane update_submodule
+```
+
+
 
 ### prepare_for_deployment
 

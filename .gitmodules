@@ -1,0 +1,3 @@
+[submodule "OgurySdk/OgurySdk-SPM"]
+	path = OgurySdk/OgurySdk-SPM
+	url = git@github.com:ogury/sdk-internal-spm.git

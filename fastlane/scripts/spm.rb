@@ -11,7 +11,7 @@ lane :spm do |options|
   configure_git_remotes
   ogury_sdk_version = get_module_version(environment, configuration.frameworks.ogury_sdk.internal_version, configuration.frameworks.ogury_sdk.beta_version, configuration.frameworks.ogury_sdk.release_version)
   update_spm_package(configuration: configuration, environment: environment)
-  repo_type = environment == 'prod' ? "official" : "private"
+  repo_type = environment == 'release' ? "official" : "private"
   push_spm_package(repo_type: repo_type, version: ogury_sdk_version)
   create_spm_release(repo_type: repo_type, version: ogury_sdk_version)
 end
@@ -127,43 +127,38 @@ end
 ###############################################################
 # push_spm_package
 ###############################################################
-desc "Push updated Package.swift to a release branch and open PR on ogury-sdk-spm"
 lane :push_spm_package do |options|
   git_token    = ENV["GIT_TOKEN"]
   git_username = ENV["GIT_USERNAME"] || "weareogury"
   UI.user_error!("Missing GIT_TOKEN in environment") if git_token.to_s.strip.empty?
 
-  repo_type       = options[:repo_type] || "official" # "official" or "private"
-  repo_name       = repo_type == "private" ? "internal-ogury-sdk-spm" : "ogury-sdk-spm"
-  branch          = options[:branch] || (options[:version] ? "release/#{options[:version]}" : "release-#{Time.now.utc.strftime('%Y%m%d-%H%M%S')}")
-  version         = options[:version]
-  source_path_opt = options[:source_path] || "../OgurySdk/OgurySdk-SPM/Package.swift"
-  commit_message  = options[:commit_message] || "Update Package.swift for #{version || branch}"
-  source_path     = File.expand_path(source_path_opt, Dir.pwd)
-  repo_path       = options[:repo_path] || "../OgurySdk/OgurySdk-SPM"
+  repo_type  = options[:repo_type] || "official" # "official" or "private"
+  repo_name  = repo_type == "private" ? "internal-ogury-sdk-spm" : "ogury-sdk-spm"
+  branch     = options[:branch] || (options[:version] ? "release/#{options[:version]}" : "release-#{Time.now.utc.strftime('%Y%m%d-%H%M%S')}")
+  commit_message  = options[:commit_message] || "Update Package.swift for #{options[:version] || branch}"
+  repo_path = options[:repo_path] || "../OgurySdk/OgurySdk-SPM"
 
-  raise "Source Package.swift not found: #{source_path}" unless File.exist?(source_path)
   raise "Repo path not found: #{repo_path}" unless Dir.exist?(repo_path)
 
   Dir.chdir(repo_path) do
     sh("git fetch #{repo_type} master")
     sh("git checkout -B #{branch} #{repo_type}/master")
 
-    FileUtils.cp(source_path, File.join(repo_path, "Package.swift"))
-
+    # Configure user for CI
     sh("git config user.name 'Jenkins CI'")
     sh("git config user.email 'ci@jenkins.local'")
 
-    sh("git add Package.swift")
+    # Commit changes if there are any
+    sh("git add .")
     sh("git commit -m \"#{commit_message}\" || true")
     sh("git push #{repo_type} #{branch}")
+
     UI.success("✅ Branch #{branch} pushed to #{repo_name} (remote: #{repo_type})")
 
-    # Create Pull Request via GitHub API
-    pr_title = "Release #{version || branch}"
-    pr_body  = "Automated PR for SDK release #{version || branch}."
+    # Optional: create PR
+    pr_title = "Release #{options[:version] || branch}"
+    pr_body  = "Automated PR for SDK release #{options[:version] || branch}."
     UI.message("📬 Creating Pull Request for #{branch} → master")
-
     sh <<~SH
       curl -s -X POST \
         -H "Accept: application/vnd.github+json" \
@@ -252,4 +247,20 @@ lane :configure_git_remotes do
     # Vérifie les remotes finaux
     sh("git remote -v")
   end
+end
+
+lane :update_submodule do
+  sh <<~BASH
+    echo "➡️ Initialisation du submodule"
+    git submodule update --init --recursive
+
+    echo "➡️ Mise à jour du submodule sur la dernière version privée"
+    cd OgurySdk/OgurySdk-SPM
+    git fetch private
+    git checkout master
+    git pull private master
+
+    echo "✅ Submodule OgurySdk-SPM mis à jour sur le dernier commit master"
+    cd ../..
+  BASH
 end
