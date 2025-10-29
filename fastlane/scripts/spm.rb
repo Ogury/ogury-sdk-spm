@@ -13,7 +13,7 @@ lane :spm do |options|
   update_spm_package(configuration: configuration, environment: environment)
   repo_type = environment == 'release' ? "official" : "private"
   push_spm_package(repo_type: repo_type, version: ogury_sdk_version)
-  create_spm_release(repo_type: repo_type, version: ogury_sdk_version)
+  #create_spm_release(repo_type: repo_type, version: ogury_sdk_version)
 end
 
 desc "Update Ogury Package.swift with latest binaries & checksums"
@@ -212,7 +212,7 @@ lane :create_spm_release do |options|
           "name": "v#{version}",
           "body": "#{release_notes}",
           "draft": false,
-          "prerelease": false
+          "prerelease": true
         }'
     SH
   end

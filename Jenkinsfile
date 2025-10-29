@@ -221,9 +221,12 @@ pipeline {
                                 """
                             }
 
-                            sh """#!/bin/zsh -l
-                                bundle exec fastlane deploy_spm environment:${envType}
-                            """    
+                            // only push new SPM version if a new wrapper is tagged
+                            if (framework == 'wrapper') {
+                                sh """#!/bin/zsh -l
+                                    bundle exec fastlane deploy_spm environment:${envType}
+                                """    
+                            }
                         }
                     }
                 }
@@ -258,8 +261,6 @@ pipeline {
                     sh """#!/bin/zsh -l
                         bundle exec fastlane generate_test_app appSelector:\"${appSelector}\" isQa:${isQa} artifactory:${isArtifactory} tag:\"${tagName}\" killModeEnabled:${killModeEnabled}
                     """
-
-                    //sh "zsh -l -c 'bundle install && bundle exec fastlane deploy_ads_framework '"
                 }
             }
         }
