@@ -18,6 +18,8 @@ platform :ios do
       raise "No environment specified!".red
     end    
 
+    # update git submodules
+    configure_git_remotes
     update_submodule_before_build
 
     environment = options[:environment]
@@ -419,7 +421,7 @@ lane :test do |options|
   lane :deploy_spm do |options|
     environment = options[:environment]
     UI.user_error!("Missing environment") unless environment
-    spm(configuration: configuration, environment: environment)
+    handle_spm(configuration: configuration, environment: environment)
   end
 
 end

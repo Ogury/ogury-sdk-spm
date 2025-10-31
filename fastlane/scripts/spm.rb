@@ -3,7 +3,7 @@ require "fileutils"
 require "tmpdir"
 
 desc "Updates the package.swift file, upload it to spm repo, create a release branch, a tag and a release version"
-lane :spm do |options|
+lane :handle_spm do |options|
   environment = options[:environment]
   UI.user_error!("Missing environment") unless environment
   configuration = options[:configuration]
@@ -225,8 +225,8 @@ lane :configure_git_remotes do
     existing_remotes = sh("git remote").split("\n").map(&:strip)
 
     # Définis les URLs officielles
-    official_url = "git@github.com:weareogury/ogury-sdk-spm.git"
-    private_url  = "git@github.com:ogury/internal-ogury-sdk-spm.git"
+    official_url = "git@github.com:ogury/ogury-sdk-spm.git"
+    private_url  = "git@github.com:ogury/sdk-internal-spm.git"
 
     # Si 'official' n’existe pas, on le crée
     unless existing_remotes.include?("official")
