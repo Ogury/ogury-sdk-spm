@@ -76,9 +76,9 @@ pipeline {
                         source ~/.zshrc
                         source $HOME/.rvm/scripts/rvm
                         rvm use 3.3.1 --default
-                        ruby -v
-                        gem uninstall bundler
-                        gem install bundler
+                        #ruby -v
+                        #gem uninstall bundler
+                        #gem install bundler
                         bundle install
                         bundle exec fastlane build environment:'prod' artifactory:${isArtifactory} targetThreshold:${targetThreshold} killModeEnabled:${killModeEnabled}
                     """
