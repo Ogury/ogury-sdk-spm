@@ -1,9 +1,8 @@
 source "https://rubygems.org"
 
-gem 'cocoapods'
-gem "fastlane"
-gem 'activesupport'
-gem 'aws-sdk-s3'
+gem 'cocoapods', '~> 1.16'
+gem "fastlane", '~> 2.228'
+gem 'aws-sdk-s3', '~> 1.201'
 
 plugins_path = File.join(File.dirname(__FILE__), 'fastlane', 'Pluginfile')
 eval_gemfile(plugins_path) if File.exist?(plugins_path)
