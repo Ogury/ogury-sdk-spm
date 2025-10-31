@@ -20,7 +20,10 @@ pipeline {
         stage('Setup') {
             steps {
                 sh """#!/bin/zsh -l
-                    bundle install
+                    source $HOME/.rvm/scripts/rvm
+                    rvm use 3.3.1 --default
+                    gem install bundler
+                    bundle _2.7.2_ install
                     defaults write com.apple.dt.Xcode IDESkipMacroFingerprintValidation -bool YES
                 """
             }
@@ -74,12 +77,6 @@ pipeline {
                     // Run the Fastlane build with artifactory set based on the tag
                     sh """#!/bin/zsh -l
                         source ~/.zshrc
-                        source $HOME/.rvm/scripts/rvm
-                        rvm use 3.3.1 --default
-                        #ruby -v
-                        #gem uninstall bundler
-                        #gem install bundler
-                        bundle install
                         bundle exec fastlane build environment:'prod' artifactory:${isArtifactory} targetThreshold:${targetThreshold} killModeEnabled:${killModeEnabled}
                     """
                 }
