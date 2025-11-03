@@ -13,7 +13,7 @@ This is the recommend method when you integrate OgurySdk with SPM right into you
 3. We recommend that you always use the latest version
 4. Be sure to target your app's target when validating the Sdk dependency
 
-We recommend that you build your app once before importing our Sdk as it will allow Xcode to properlty resolve dependencies
+We recommend that you build your app once before importing our Sdk as it will allow Xcode to properly resolve dependencies
 
 ### From another package
 To integrate the OgurySdk into your Xcode project using Swift Package Manager:
