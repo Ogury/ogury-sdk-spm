@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="OgySpmTests" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="zBE-Ah-Gbp">
+                                <rect key="frame" x="32" y="330.33333333333331" width="329" height="191.33333333333331"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ADv-To-ean">
+                                        <rect key="frame" x="0.0" y="0.0" width="329" height="20"/>
+                                        <color key="color" name="AccentColor"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQf-xN-wJX">
+                                        <rect key="frame" x="0.0" y="32" width="329" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemRedColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0z-j5-ftf">
+                                        <rect key="frame" x="0.0" y="64.333333333333371" width="329" height="34.333333333333343"/>
+                                        <color key="tintColor" name="AccentColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="hand.raised.circle.fill" catalog="system" title="Show Consent notice" imagePadding="8"/>
+                                        <connections>
+                                            <action selector="requestConsent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fDx-pm-NJI"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="L2A-ho-wc7">
+                                        <rect key="frame" x="0.0" y="110.66666666666669" width="329" height="34.333333333333343"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Twz-Gi-yFQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="223.33333333333334" height="34.333333333333336"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="AccentColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GcU-CI-xbT">
+                                                <rect key="frame" x="230.33333333333329" y="0.0" width="98.666666666666657" height="34.333333333333336"/>
+                                                <color key="tintColor" name="AccentColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="tinted" title="Start SDK"/>
+                                                <connections>
+                                                    <action selector="startSdk:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c04-sr-1hG"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="tql-SV-uop">
+                                        <rect key="frame" x="0.0" y="157" width="329" height="34.333333333333343"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzL-IE-jRz">
+                                                <rect key="frame" x="0.0" y="0.0" width="187.33333333333334" height="34.333333333333336"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="AccentColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dTW-dg-Ct0">
+                                                <rect key="frame" x="194.33333333333334" y="0.0" width="61.666666666666657" height="34.333333333333336"/>
+                                                <color key="tintColor" name="AccentColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="tinted" title="Load"/>
+                                                <connections>
+                                                    <action selector="load:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Uu-45-bC5"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfd-LP-7RW">
+                                                <rect key="frame" x="263" y="0.0" width="66" height="34.333333333333336"/>
+                                                <color key="tintColor" name="AccentColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Show"/>
+                                                <connections>
+                                                    <action selector="show:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ode-cJ-Swk"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ewq-Qh-MSm">
+                                <rect key="frame" x="100" y="694.66666666666663" width="193" height="89.333333333333371"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Ogury" translatesAutoresizingMaskIntoConstraints="NO" id="AAF-aP-iPE">
+                                        <rect key="frame" x="0.0" y="0.0" width="193" height="69"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="69" id="1EO-zT-uGx"/>
+                                            <constraint firstAttribute="height" constant="69" id="Mel-mu-MDY"/>
+                                            <constraint firstAttribute="width" constant="193" id="hhp-Sz-nUh"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUT-QD-i3j">
+                                        <rect key="frame" x="76" y="69" width="41.333333333333343" height="20.333333333333329"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="sdkVersion"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ewq-Qh-MSm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="COE-oQ-8ww"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zBE-Ah-Gbp" secondAttribute="trailing" constant="32" id="Iup-US-wv1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ewq-Qh-MSm" secondAttribute="trailing" constant="100" id="LC6-vL-VnV"/>
+                            <constraint firstItem="zBE-Ah-Gbp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="OMc-7I-bcg"/>
+                            <constraint firstItem="Ewq-Qh-MSm" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="co2-6g-ciR"/>
+                            <constraint firstItem="zBE-Ah-Gbp" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="dtj-FP-eeh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="errorLabel" destination="TQf-xN-wJX" id="EaX-zv-AmL"/>
+                        <outlet property="interLabel" destination="NzL-IE-jRz" id="L0t-TN-sJ5"/>
+                        <outlet property="interLoadButton" destination="dTW-dg-Ct0" id="oqE-ES-Nxy"/>
+                        <outlet property="interShowButton" destination="vfd-LP-7RW" id="bfz-av-jBR"/>
+                        <outlet property="loader" destination="ADv-To-ean" id="QKL-QJ-Cqm"/>
+                        <outlet property="sdkStateButton" destination="GcU-CI-xbT" id="hhH-0w-tli"/>
+                        <outlet property="sdkStateLabel" destination="Twz-Gi-yFQ" id="XJz-dc-0ky"/>
+                        <outlet property="sdkVersion" destination="WUT-QD-i3j" id="3cq-xc-NAQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="135.1145038167939" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Ogury" width="777" height="256"/>
+        <image name="hand.raised.circle.fill" catalog="system" width="128" height="123"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.23100000619888306" blue="0.3880000114440918" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

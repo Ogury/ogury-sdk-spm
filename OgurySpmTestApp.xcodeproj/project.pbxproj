@@ -1,0 +1,581 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4374499E2E09531100475BFA /* OgurySdk in Frameworks */ = {isa = PBXBuildFile; productRef = 4374499D2E09531100475BFA /* OgurySdk */; };
+		43744C602E09819200475BFA /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 43744C5F2E09819200475BFA /* GoogleMobileAds */; };
+		438131192E0BC150004067AD /* OgurySdk in Frameworks */ = {isa = PBXBuildFile; productRef = 438131182E0BC150004067AD /* OgurySdk */; };
+		4381311C2E0BC160004067AD /* OgurySdk in Frameworks */ = {isa = PBXBuildFile; productRef = 4381311B2E0BC160004067AD /* OgurySdk */; };
+		438131332E0BC19E004067AD /* OgurySdk in Frameworks */ = {isa = PBXBuildFile; productRef = 438131322E0BC19E004067AD /* OgurySdk */; };
+		438131362E0BC1B1004067AD /* OgurySdk in Frameworks */ = {isa = PBXBuildFile; productRef = 438131352E0BC1B1004067AD /* OgurySdk */; };
+		438131752E0BC215004067AD /* OgurySdk in Frameworks */ = {isa = PBXBuildFile; productRef = 438131742E0BC215004067AD /* OgurySdk */; };
+		438131902E0C2180004067AD /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 4381318F2E0C2180004067AD /* GoogleMobileAds */; };
+		438131922E0C2180004067AD /* OgurySdk in Frameworks */ = {isa = PBXBuildFile; productRef = 438131912E0C2180004067AD /* OgurySdk */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		438131802E0BE521004067AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 437449492E09517E00475BFA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 437449502E09517F00475BFA;
+			remoteInfo = OgurySpmTestApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		437449512E09517F00475BFA /* OgySpmTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OgySpmTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4381317A2E0BE521004067AD /* OgySpmTestsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OgySpmTestsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4381318B2E0BF624004067AD /* OgurySpmTestApp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = OgurySpmTestApp.xctestplan; path = OgySpmTestsUITests/OgurySpmTestApp.xctestplan; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		437449632E09518000475BFA /* Exceptions for "OgurySpmTestApp" folder in "OgurySpmTestApp" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 437449502E09517F00475BFA /* OgurySpmTestApp */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		437449532E09517F00475BFA /* OgurySpmTestApp */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				437449632E09518000475BFA /* Exceptions for "OgurySpmTestApp" folder in "OgurySpmTestApp" target */,
+			);
+			path = OgurySpmTestApp;
+			sourceTree = "<group>";
+		};
+		4381317B2E0BE521004067AD /* OgySpmTestsUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = OgySpmTestsUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4374494E2E09517F00475BFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				438131362E0BC1B1004067AD /* OgurySdk in Frameworks */,
+				4381311C2E0BC160004067AD /* OgurySdk in Frameworks */,
+				438131192E0BC150004067AD /* OgurySdk in Frameworks */,
+				43744C602E09819200475BFA /* GoogleMobileAds in Frameworks */,
+				438131752E0BC215004067AD /* OgurySdk in Frameworks */,
+				438131332E0BC19E004067AD /* OgurySdk in Frameworks */,
+				4374499E2E09531100475BFA /* OgurySdk in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		438131772E0BE521004067AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				438131922E0C2180004067AD /* OgurySdk in Frameworks */,
+				438131902E0C2180004067AD /* GoogleMobileAds in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		437449482E09517E00475BFA = {
+			isa = PBXGroup;
+			children = (
+				4381318B2E0BF624004067AD /* OgurySpmTestApp.xctestplan */,
+				437449532E09517F00475BFA /* OgurySpmTestApp */,
+				4381317B2E0BE521004067AD /* OgySpmTestsUITests */,
+				4381318E2E0C2180004067AD /* Frameworks */,
+				437449522E09517F00475BFA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		437449522E09517F00475BFA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				437449512E09517F00475BFA /* OgySpmTests.app */,
+				4381317A2E0BE521004067AD /* OgySpmTestsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4381318E2E0C2180004067AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		437449502E09517F00475BFA /* OgurySpmTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 437449642E09518000475BFA /* Build configuration list for PBXNativeTarget "OgurySpmTestApp" */;
+			buildPhases = (
+				4374494D2E09517F00475BFA /* Sources */,
+				4374494E2E09517F00475BFA /* Frameworks */,
+				4374494F2E09517F00475BFA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				437449532E09517F00475BFA /* OgurySpmTestApp */,
+			);
+			name = OgurySpmTestApp;
+			packageProductDependencies = (
+				4374499D2E09531100475BFA /* OgurySdk */,
+				43744C5F2E09819200475BFA /* GoogleMobileAds */,
+				438131182E0BC150004067AD /* OgurySdk */,
+				4381311B2E0BC160004067AD /* OgurySdk */,
+				438131322E0BC19E004067AD /* OgurySdk */,
+				438131352E0BC1B1004067AD /* OgurySdk */,
+				438131742E0BC215004067AD /* OgurySdk */,
+			);
+			productName = OgurySpmTestApp;
+			productReference = 437449512E09517F00475BFA /* OgySpmTests.app */;
+			productType = "com.apple.product-type.application";
+		};
+		438131792E0BE521004067AD /* OgySpmTestsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 438131822E0BE521004067AD /* Build configuration list for PBXNativeTarget "OgySpmTestsUITests" */;
+			buildPhases = (
+				438131762E0BE521004067AD /* Sources */,
+				438131772E0BE521004067AD /* Frameworks */,
+				438131782E0BE521004067AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				438131812E0BE521004067AD /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				4381317B2E0BE521004067AD /* OgySpmTestsUITests */,
+			);
+			name = OgySpmTestsUITests;
+			packageProductDependencies = (
+				4381318F2E0C2180004067AD /* GoogleMobileAds */,
+				438131912E0C2180004067AD /* OgurySdk */,
+			);
+			productName = OgySpmTestsUITests;
+			productReference = 4381317A2E0BE521004067AD /* OgySpmTestsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		437449492E09517E00475BFA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					437449502E09517F00475BFA = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					438131792E0BE521004067AD = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 437449502E09517F00475BFA;
+					};
+				};
+			};
+			buildConfigurationList = 4374494C2E09517E00475BFA /* Build configuration list for PBXProject "OgurySpmTestApp" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 437449482E09517E00475BFA;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				43744C5E2E09819200475BFA /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				438131732E0BC215004067AD /* XCLocalSwiftPackageReference "../ogury-sdk-spm" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 437449522E09517F00475BFA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				437449502E09517F00475BFA /* OgurySpmTestApp */,
+				438131792E0BE521004067AD /* OgySpmTestsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4374494F2E09517F00475BFA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		438131782E0BE521004067AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4374494D2E09517F00475BFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		438131762E0BE521004067AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		438131812E0BE521004067AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 437449502E09517F00475BFA /* OgurySpmTestApp */;
+			targetProxy = 438131802E0BE521004067AD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		437449652E09518000475BFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OgurySpmTestApp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app.SpmTestApp;
+				PRODUCT_NAME = OgySpmTests;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		437449662E09518000475BFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OgurySpmTestApp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app.SpmTestApp;
+				PRODUCT_NAME = OgySpmTests;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		437449672E09518000475BFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		437449682E09518000475BFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		438131832E0BE521004067AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app.OgySpmTestsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_TARGET_NAME = OgurySpmTestApp;
+			};
+			name = Debug;
+		};
+		438131842E0BE521004067AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W7JZNL3R6G;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.ogury.sdk.ads.app.OgySpmTestsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_TARGET_NAME = OgurySpmTestApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4374494C2E09517E00475BFA /* Build configuration list for PBXProject "OgurySpmTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				437449672E09518000475BFA /* Debug */,
+				437449682E09518000475BFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		437449642E09518000475BFA /* Build configuration list for PBXNativeTarget "OgurySpmTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				437449652E09518000475BFA /* Debug */,
+				437449662E09518000475BFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		438131822E0BE521004067AD /* Build configuration list for PBXNativeTarget "OgySpmTestsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				438131832E0BE521004067AD /* Debug */,
+				438131842E0BE521004067AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		438131732E0BC215004067AD /* XCLocalSwiftPackageReference "../ogury-sdk-spm" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../ogury-sdk-spm";
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		43744C5E2E09819200475BFA /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4374499D2E09531100475BFA /* OgurySdk */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = OgurySdk;
+		};
+		43744C5F2E09819200475BFA /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43744C5E2E09819200475BFA /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+		438131182E0BC150004067AD /* OgurySdk */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43744C5E2E09819200475BFA /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = OgurySdk;
+		};
+		4381311B2E0BC160004067AD /* OgurySdk */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = OgurySdk;
+		};
+		438131322E0BC19E004067AD /* OgurySdk */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = OgurySdk;
+		};
+		438131352E0BC1B1004067AD /* OgurySdk */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = OgurySdk;
+		};
+		438131742E0BC215004067AD /* OgurySdk */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = OgurySdk;
+		};
+		4381318F2E0C2180004067AD /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 43744C5E2E09819200475BFA /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+		438131912E0C2180004067AD /* OgurySdk */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 438131732E0BC215004067AD /* XCLocalSwiftPackageReference "../ogury-sdk-spm" */;
+			productName = OgurySdk;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 437449492E09517E00475BFA /* Project object */;
+}
