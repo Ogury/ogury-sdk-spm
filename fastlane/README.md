@@ -13,10 +13,10 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
-### spm
+### handle_spm
 
 ```sh
-[bundle exec] fastlane spm
+[bundle exec] fastlane handle_spm
 ```
 
 Updates the package.swift file, upload it to spm repo, create a release branch, a tag and a release version
