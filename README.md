@@ -31,4 +31,4 @@ You can check our companion test application `OgurySpmTestApp` that ships with o
 
 Please note that in order to be able to launch the project, the swift package (i.e. Package.swift) must not be already opened in Xcode. 
 
-Check out our integration [docs](https://support.ogury.com/ios/) for more info on getting started with the Ogury Sdk.
+Check out our integration [docs](https://support.ogury.com/inapp/ogury-direct/ios) for more info on getting started with the Ogury Sdk.
