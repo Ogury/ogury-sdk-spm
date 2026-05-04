@@ -14,8 +14,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "OguryWrapper",
-            url: "https://binaries.ogury.co/release/ios/5.2.2/OgurySdk-5.2.2.zip",
-            checksum: "ff620e358ca1a8033c6895b3ba71bd4cda0e54498def83442e7d8132b75e851d"
+            url: "https://binaries.ogury.co/release/ios/5.2.3/OgurySdk-5.2.3.zip",
+            checksum: "f9411c03065b9aa6fc03ac6ecef0e1c4be39e9bcada492c8be4bde569011b39a"
         ),
         .binaryTarget(
             name: "OguryAds",
@@ -30,7 +30,7 @@ let package = Package(
         .binaryTarget(
             name: "OMSDK",
             url: "https://binaries.ogury.co/release/omsdk-ios/1.5.7/OMSDK_Ogury-1.5.7.zip",
-            checksum: "249245ac21482405775b2ec9b575755a883aa04e7f7a3e4f56797c5b843679ea"
+            checksum: "7adb6caa6359e5cf3efe5cd929628f4e67463179105e7e878db13761e40c7307"
         )
     ]
 )
