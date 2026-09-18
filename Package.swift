@@ -6,10 +6,7 @@ import PackageDescription
 let package = Package(
     name: "OgurySdk",
     platforms: [
-        // Matches the frameworks' own IPHONEOS_DEPLOYMENT_TARGET (15.0 since
-        // OgurySdk 5.3.1) and the "ios": "15.0" floor in the CocoaPods podspecs.
-        // Without this, SwiftPM resolves the package for any deployment target
-        // and the mismatch only surfaces later as an opaque link-time error.
+        // Align with Xcode 27's new minimum requirements
         .iOS(.v15)
     ],
     products: [
