@@ -5,6 +5,10 @@ import PackageDescription
 
 let package = Package(
     name: "OgurySdk",
+    platforms: [
+        // Align with Xcode 27's new minimum requirements
+        .iOS(.v15)
+    ],
     products: [
         .library(
             name: "OgurySdk",
