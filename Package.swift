@@ -18,23 +18,23 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "OguryWrapper",
-            url: "https://binaries.ogury.co/release/ios/5.3.1/OgurySdk-5.3.1.zip",
-            checksum: "54b98f723e578975c45d780ce7298355280bb6e6c0018121d1d335a2950828f6"
+            url: "https://binaries.ogury.co/release/ios/5.4.0/OgurySdk-5.4.0.zip",
+            checksum: "0c6d9f68e0c7b4221afde421481cf5a43fcbf3889fb8e54543ca4d9bb409eee1"
         ),
         .binaryTarget(
             name: "OguryAds",
-            url: "https://binaries.ogury.co/release/ads-ios/4.3.1/OguryAds-4.3.1.zip",
-            checksum: "2d4430b2dae5eba4c7f7c8f970970adfa94a9a9eb800dd45a9c0fde84cb52d0a"
+            url: "https://binaries.ogury.co/release/ads-ios/4.4.0/OguryAds-4.4.0.zip",
+            checksum: "5c505acc41bd44ffa08a9ee6c8fecb346791a3af45a2d0290ef5af7da23503da"
         ),
         .binaryTarget(
             name: "OguryCore",
-            url: "https://binaries.ogury.co/release/core-ios/2.3.1/OguryCore-2.3.1.zip",
-            checksum: "e19759437ed847e5f0a09b5ec70422e5d274641e47677162834f193f09a4e00c"
+            url: "https://binaries.ogury.co/release/core-ios/2.4.0/OguryCore-2.4.0.zip",
+            checksum: "32090abe0fa2d9f5ca34eddeede513d3de0554e96894267152f8b70bb35b32b5"
         ),
         .binaryTarget(
             name: "OMSDK",
-            url: "https://binaries.ogury.co/release/omsdk-ios/1.6.10/OMSDK_Ogury-1.6.10.zip",
-            checksum: "71f5ec13afbddda2bd2d20686b21b5753d57623bd83a27b26369b18e7f8c067a"
+            url: "https://binaries.ogury.co/release/omsdk-ios/1.6.11/OMSDK_Ogury-1.6.11.zip",
+            checksum: "089f8afea96be2605116d64699c5b7c72b20567e59adb5c340aa5d3ee118f0cc"
         )
     ]
 )
